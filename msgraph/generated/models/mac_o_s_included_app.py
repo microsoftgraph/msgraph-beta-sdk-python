@@ -37,7 +37,7 @@ class MacOSIncludedApp(AdditionalDataHolder, Parsable):
         """
         Sets the bundleId property value. The CFBundleIdentifier.
         Args:
-            value: Value to set for the bundleId property.
+            value: Value to set for the bundle_id property.
         """
         self._bundle_id = value
     
@@ -54,7 +54,7 @@ class MacOSIncludedApp(AdditionalDataHolder, Parsable):
         """
         Sets the bundleVersion property value. The CFBundleVersion.
         Args:
-            value: Value to set for the bundleVersion property.
+            value: Value to set for the bundle_version property.
         """
         self._bundle_version = value
     
@@ -90,8 +90,8 @@ class MacOSIncludedApp(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bundle_id": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
-            "bundle_version": lambda n : setattr(self, 'bundle_version', n.get_str_value()),
+            "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
+            "bundleVersion": lambda n : setattr(self, 'bundle_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -109,7 +109,7 @@ class MacOSIncludedApp(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -44,12 +44,11 @@ class LegalHoldsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[legal_hold_collection_response.LegalHoldCollectionResponse]:
+    async def get(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> Optional[legal_hold_collection_response.LegalHoldCollectionResponse]:
         """
         Returns a list of case legalHold objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[legal_hold_collection_response.LegalHoldCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class LegalHoldsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, legal_hold_collection_response.LegalHoldCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, legal_hold_collection_response.LegalHoldCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[legal_hold.LegalHold]:
+    async def post(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldsRequestBuilderPostRequestConfiguration] = None) -> Optional[legal_hold.LegalHold]:
         """
         Create new navigation property to legalHolds for compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[legal_hold.LegalHold]
         """
         if body is None:
@@ -83,7 +81,7 @@ class LegalHoldsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LegalHoldsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

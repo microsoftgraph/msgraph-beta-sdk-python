@@ -9,4 +9,6 @@ class WindowsHealthMonitoringScope(Enum):
     BootPerformance = "bootPerformance",
     # Windows updates events
     WindowsUpdates = "windowsUpdates",
+    # PrivilegeManagement
+    PrivilegeManagement = "privilegeManagement",
 

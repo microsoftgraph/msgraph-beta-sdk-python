@@ -14,9 +14,9 @@ resource_specific_permission_grant = lazy_import('msgraph.generated.models.resou
 resource_specific_permission_grant_collection_response = lazy_import('msgraph.generated.models.resource_specific_permission_grant_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.count.count_request_builder')
-get_by_ids_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.get_by_ids.get_by_ids_request_builder')
-get_user_owned_objects_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.get_user_owned_objects.get_user_owned_objects_request_builder')
-validate_properties_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.validate_properties.validate_properties_request_builder')
+microsoft_graph_get_by_ids_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.microsoft_graph_get_by_ids.microsoft_graph_get_by_ids_request_builder')
+microsoft_graph_get_user_owned_objects_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.microsoft_graph_get_user_owned_objects.microsoft_graph_get_user_owned_objects_request_builder')
+microsoft_graph_validate_properties_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.permission_grants.microsoft_graph_validate_properties.microsoft_graph_validate_properties_request_builder')
 
 class PermissionGrantsRequestBuilder():
     """
@@ -30,25 +30,25 @@ class PermissionGrantsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def microsoft_graph_get_by_ids(self) -> microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def microsoft_graph_get_user_owned_objects(self) -> microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def microsoft_graph_validate_properties(self) -> microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -68,12 +68,11 @@ class PermissionGrantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]:
+    async def get(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]:
         """
         List all resource-specific permission grants on the team. This list specifies the Azure AD apps that have access to the **team**, along with the corresponding kind of resource-specific access that each app has.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +84,14 @@ class PermissionGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[PermissionGrantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
+    async def post(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[PermissionGrantsRequestBuilderPostRequestConfiguration] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
         """
         Create new navigation property to permissionGrants for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]
         """
         if body is None:
@@ -107,7 +105,7 @@ class PermissionGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

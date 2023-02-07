@@ -39,8 +39,8 @@ class DispositionReviewStage(entity.Entity):
         """
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "reviewers_email_addresses": lambda n : setattr(self, 'reviewers_email_addresses', n.get_collection_of_primitive_values(str)),
-            "stage_number": lambda n : setattr(self, 'stage_number', n.get_int_value()),
+            "reviewersEmailAddresses": lambda n : setattr(self, 'reviewers_email_addresses', n.get_collection_of_primitive_values(str)),
+            "stageNumber": lambda n : setattr(self, 'stage_number', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -76,7 +76,7 @@ class DispositionReviewStage(entity.Entity):
         """
         Sets the reviewersEmailAddresses property value. A collection of reviewers at each stage.
         Args:
-            value: Value to set for the reviewersEmailAddresses property.
+            value: Value to set for the reviewers_email_addresses property.
         """
         self._reviewers_email_addresses = value
     
@@ -106,7 +106,7 @@ class DispositionReviewStage(entity.Entity):
         """
         Sets the stageNumber property value. The sequence number for each stage of the disposition review.
         Args:
-            value: Value to set for the stageNumber property.
+            value: Value to set for the stage_number property.
         """
         self._stage_number = value
     

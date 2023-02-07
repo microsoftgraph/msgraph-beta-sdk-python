@@ -39,7 +39,7 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         """
         Sets the attributeMappings property value. Attribute mappings define which attributes to map from the source object into the target object and how they should flow. A number of functions are available to support the transformation of the original source values.
         Args:
-            value: Value to set for the attributeMappings property.
+            value: Value to set for the attribute_mappings property.
         """
         self._attribute_mappings = value
     
@@ -111,7 +111,7 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         """
         Sets the flowTypes property value. The flowTypes property
         Args:
-            value: Value to set for the flowTypes property.
+            value: Value to set for the flow_types property.
         """
         self._flow_types = value
     
@@ -121,15 +121,15 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attribute_mappings": lambda n : setattr(self, 'attribute_mappings', n.get_collection_of_object_values(attribute_mapping.AttributeMapping)),
+            "attributeMappings": lambda n : setattr(self, 'attribute_mappings', n.get_collection_of_object_values(attribute_mapping.AttributeMapping)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "flow_types": lambda n : setattr(self, 'flow_types', n.get_enum_value(object_flow_types.ObjectFlowTypes)),
+            "flowTypes": lambda n : setattr(self, 'flow_types', n.get_enum_value(object_flow_types.ObjectFlowTypes)),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_object_value(filter.Filter)),
-            "source_object_name": lambda n : setattr(self, 'source_object_name', n.get_str_value()),
-            "target_object_name": lambda n : setattr(self, 'target_object_name', n.get_str_value()),
+            "sourceObjectName": lambda n : setattr(self, 'source_object_name', n.get_str_value()),
+            "targetObjectName": lambda n : setattr(self, 'target_object_name', n.get_str_value()),
         }
         return fields
     
@@ -180,7 +180,7 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -233,7 +233,7 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         """
         Sets the sourceObjectName property value. Name of the object in the source directory. Must match the object name from the source directory definition.
         Args:
-            value: Value to set for the sourceObjectName property.
+            value: Value to set for the source_object_name property.
         """
         self._source_object_name = value
     
@@ -250,7 +250,7 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         """
         Sets the targetObjectName property value. Name of the object in target directory. Must match the object name from the target directory definition.
         Args:
-            value: Value to set for the targetObjectName property.
+            value: Value to set for the target_object_name property.
         """
         self._target_object_name = value
     

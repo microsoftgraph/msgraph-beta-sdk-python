@@ -44,12 +44,11 @@ class DevicesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]:
+    async def get(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]:
         """
         Get a list of all Microsoft Teams-enabled devices provisioned for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_collection_response.TeamworkDeviceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DevicesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_collection_response.TeamworkDeviceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_collection_response.TeamworkDeviceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[DevicesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device.TeamworkDevice]:
+    async def post(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[DevicesRequestBuilderPostRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
         """
         Create new navigation property to devices for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device.TeamworkDevice]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DevicesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -14,7 +14,7 @@ attachment_base = lazy_import('msgraph.generated.models.attachment_base')
 attachment_base_collection_response = lazy_import('msgraph.generated.models.attachment_base_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.todo.lists.item.tasks.item.attachments.count.count_request_builder')
-create_upload_session_request_builder = lazy_import('msgraph.generated.users.item.todo.lists.item.tasks.item.attachments.create_upload_session.create_upload_session_request_builder')
+microsoft_graph_create_upload_session_request_builder = lazy_import('msgraph.generated.users.item.todo.lists.item.tasks.item.attachments.microsoft_graph_create_upload_session.microsoft_graph_create_upload_session_request_builder')
 
 class AttachmentsRequestBuilder():
     """
@@ -28,11 +28,11 @@ class AttachmentsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_upload_session(self) -> create_upload_session_request_builder.CreateUploadSessionRequestBuilder:
+    def microsoft_graph_create_upload_session(self) -> microsoft_graph_create_upload_session_request_builder.MicrosoftGraphCreateUploadSessionRequestBuilder:
         """
         Provides operations to call the createUploadSession method.
         """
-        return create_upload_session_request_builder.CreateUploadSessionRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_create_upload_session_request_builder.MicrosoftGraphCreateUploadSessionRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class AttachmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attachment_base_collection_response.AttachmentBaseCollectionResponse]:
+    async def get(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[attachment_base_collection_response.AttachmentBaseCollectionResponse]:
         """
         Get a list of the taskFileAttachment objects and their properties. The **contentBytes** property will not be returned in the response. Use the Get attachment API to view the **contentBytes**.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attachment_base_collection_response.AttachmentBaseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class AttachmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attachment_base_collection_response.AttachmentBaseCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attachment_base_collection_response.AttachmentBaseCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[attachment_base.AttachmentBase] = None, request_configuration: Optional[AttachmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attachment_base.AttachmentBase]:
+    async def post(self,body: Optional[attachment_base.AttachmentBase] = None, request_configuration: Optional[AttachmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[attachment_base.AttachmentBase]:
         """
         Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attachment_base.AttachmentBase]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AttachmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attachment_base.AttachmentBase, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attachment_base.AttachmentBase, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AttachmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

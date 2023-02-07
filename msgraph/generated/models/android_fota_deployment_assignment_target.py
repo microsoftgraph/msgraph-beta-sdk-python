@@ -54,7 +54,7 @@ class AndroidFotaDeploymentAssignmentTarget(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class AndroidFotaDeploymentAssignmentTarget(AdditionalDataHolder, Parsable):
         """
         Sets the groupId property value. AAD Group Id.
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -89,7 +89,7 @@ class AndroidFotaDeploymentAssignmentTarget(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

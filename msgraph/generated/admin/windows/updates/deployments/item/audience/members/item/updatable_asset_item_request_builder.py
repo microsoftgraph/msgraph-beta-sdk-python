@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-add_members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.add_members.add_members_request_builder')
-add_members_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.add_members_by_id.add_members_by_id_request_builder')
-remove_members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.remove_members.remove_members_request_builder')
-remove_members_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.remove_members_by_id.remove_members_by_id_request_builder')
+microsoft_graph_windows_updates_add_members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.microsoft_graph_windows_updates_add_members.microsoft_graph_windows_updates_add_members_request_builder')
+microsoft_graph_windows_updates_add_members_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.microsoft_graph_windows_updates_add_members_by_id.microsoft_graph_windows_updates_add_members_by_id_request_builder')
+microsoft_graph_windows_updates_remove_members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.microsoft_graph_windows_updates_remove_members.microsoft_graph_windows_updates_remove_members_request_builder')
+microsoft_graph_windows_updates_remove_members_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.microsoft_graph_windows_updates_remove_members_by_id.microsoft_graph_windows_updates_remove_members_by_id_request_builder')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 
@@ -22,32 +22,32 @@ class UpdatableAssetItemRequestBuilder():
     Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
     """
     @property
-    def add_members(self) -> add_members_request_builder.AddMembersRequestBuilder:
+    def microsoft_graph_windows_updates_add_members(self) -> microsoft_graph_windows_updates_add_members_request_builder.MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder:
         """
         Provides operations to call the addMembers method.
         """
-        return add_members_request_builder.AddMembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_add_members_request_builder.MicrosoftGraphWindowsUpdatesAddMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def add_members_by_id(self) -> add_members_by_id_request_builder.AddMembersByIdRequestBuilder:
+    def microsoft_graph_windows_updates_add_members_by_id(self) -> microsoft_graph_windows_updates_add_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder:
         """
         Provides operations to call the addMembersById method.
         """
-        return add_members_by_id_request_builder.AddMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_add_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesAddMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_members(self) -> remove_members_request_builder.RemoveMembersRequestBuilder:
+    def microsoft_graph_windows_updates_remove_members(self) -> microsoft_graph_windows_updates_remove_members_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersRequestBuilder:
         """
         Provides operations to call the removeMembers method.
         """
-        return remove_members_request_builder.RemoveMembersRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_remove_members_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_members_by_id(self) -> remove_members_by_id_request_builder.RemoveMembersByIdRequestBuilder:
+    def microsoft_graph_windows_updates_remove_members_by_id(self) -> microsoft_graph_windows_updates_remove_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder:
         """
         Provides operations to call the removeMembersById method.
         """
-        return remove_members_by_id_request_builder.RemoveMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_remove_members_by_id_request_builder.MicrosoftGraphWindowsUpdatesRemoveMembersByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -67,12 +67,11 @@ class UpdatableAssetItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property members for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,14 +82,13 @@ class UpdatableAssetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def get(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Specifies the assets to include in the audience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         request_info = self.to_get_request_information(
@@ -102,15 +100,14 @@ class UpdatableAssetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
     
-    async def patch(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def patch(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[UpdatableAssetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Update the navigation property members in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         if body is None:
@@ -124,7 +121,7 @@ class UpdatableAssetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UpdatableAssetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

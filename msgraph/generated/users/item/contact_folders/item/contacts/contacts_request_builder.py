@@ -14,7 +14,7 @@ contact = lazy_import('msgraph.generated.models.contact')
 contact_collection_response = lazy_import('msgraph.generated.models.contact_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.contact_folders.item.contacts.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.users.item.contact_folders.item.contacts.delta.delta_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.users.item.contact_folders.item.contacts.microsoft_graph_delta.microsoft_graph_delta_request_builder')
 
 class ContactsRequestBuilder():
     """
@@ -26,6 +26,13 @@ class ContactsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,19 +52,11 @@ class ContactsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[contact_collection_response.ContactCollectionResponse]:
+    async def get(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None) -> Optional[contact_collection_response.ContactCollectionResponse]:
         """
         Get all the contacts in the signed-in user's mailbox (.../me/contacts), or from the specified contact folder.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[contact_collection_response.ContactCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class ContactsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, contact_collection_response.ContactCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, contact_collection_response.ContactCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[contact.Contact] = None, request_configuration: Optional[ContactsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[contact.Contact]:
+    async def post(self,body: Optional[contact.Contact] = None, request_configuration: Optional[ContactsRequestBuilderPostRequestConfiguration] = None) -> Optional[contact.Contact]:
         """
         Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[contact.Contact]
         """
         if body is None:
@@ -91,7 +89,7 @@ class ContactsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, contact.Contact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, contact.Contact, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ContactsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

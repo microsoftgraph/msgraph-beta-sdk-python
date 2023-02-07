@@ -78,7 +78,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the createdDateTime property value. DateTime the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -124,7 +124,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the deviceStatuses property value. The list of device installation states for this mobile app configuration.
         Args:
-            value: Value to set for the deviceStatuses property.
+            value: Value to set for the device_statuses property.
         """
         self._device_statuses = value
     
@@ -141,7 +141,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the displayName property value. Admin provided name of the device configuration.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -158,7 +158,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the expirationDateTime property value. Optional profile expiration date and time.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -169,17 +169,17 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_statuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(managed_device_mobile_app_configuration_device_status.ManagedDeviceMobileAppConfigurationDeviceStatus)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "group_assignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "deviceStatuses": lambda n : setattr(self, 'device_statuses', n.get_collection_of_object_values(managed_device_mobile_app_configuration_device_status.ManagedDeviceMobileAppConfigurationDeviceStatus)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "groupAssignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "payload": lambda n : setattr(self, 'payload', n.get_bytes_value()),
-            "payload_file_name": lambda n : setattr(self, 'payload_file_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "user_statuses": lambda n : setattr(self, 'user_statuses', n.get_collection_of_object_values(managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus)),
+            "payloadFileName": lambda n : setattr(self, 'payload_file_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "userStatuses": lambda n : setattr(self, 'user_statuses', n.get_collection_of_object_values(managed_device_mobile_app_configuration_user_status.ManagedDeviceMobileAppConfigurationUserStatus)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -199,7 +199,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the groupAssignments property value. The associated group assignments.
         Args:
-            value: Value to set for the groupAssignments property.
+            value: Value to set for the group_assignments property.
         """
         self._group_assignments = value
     
@@ -216,7 +216,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. DateTime the object was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -250,7 +250,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the payloadFileName property value. Payload file name (.mobileprovision
         Args:
-            value: Value to set for the payloadFileName property.
+            value: Value to set for the payload_file_name property.
         """
         self._payload_file_name = value
     
@@ -267,7 +267,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this iOS LOB app provisioning configuration entity.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -307,7 +307,7 @@ class IosLobAppProvisioningConfiguration(entity.Entity):
         """
         Sets the userStatuses property value. The list of user installation states for this mobile app configuration.
         Args:
-            value: Value to set for the userStatuses property.
+            value: Value to set for the user_statuses property.
         """
         self._user_statuses = value
     

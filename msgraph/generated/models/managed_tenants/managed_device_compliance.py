@@ -20,7 +20,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the complianceStatus property value. Compliance state of the device. This property is read-only. Possible values are: unknown, compliant, noncompliant, conflict, error, inGracePeriod, configManager. Optional. Read-only.
         Args:
-            value: Value to set for the complianceStatus property.
+            value: Value to set for the compliance_status property.
         """
         self._compliance_status = value
     
@@ -85,7 +85,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the deviceType property value. Platform of the device. This property is read-only. Possible values are: desktop, windowsRT, winMO6, nokia, windowsPhone, mac, winCE, winEmbedded, iPhone, iPad, iPod, android, iSocConsumer, unix, macMDM, holoLens, surfaceHub, androidForWork, androidEnterprise, windows10x, androidnGMS, chromeOS, linux, blackberry, palm, unknown, cloudPC.  Optional. Read-only.
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -95,20 +95,20 @@ class ManagedDeviceCompliance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_status": lambda n : setattr(self, 'compliance_status', n.get_str_value()),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_str_value()),
-            "in_grace_period_until_date_time": lambda n : setattr(self, 'in_grace_period_until_date_time', n.get_datetime_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_str_value()),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_str_value()),
+            "inGracePeriodUntilDateTime": lambda n : setattr(self, 'in_grace_period_until_date_time', n.get_datetime_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "os_description": lambda n : setattr(self, 'os_description', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "owner_type": lambda n : setattr(self, 'owner_type', n.get_str_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "osDescription": lambda n : setattr(self, 'os_description', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_str_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,7 +127,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the inGracePeriodUntilDateTime property value. The date and time when the grace period will expire. Optional. Read-only.
         Args:
-            value: Value to set for the inGracePeriodUntilDateTime property.
+            value: Value to set for the in_grace_period_until_date_time property.
         """
         self._in_grace_period_until_date_time = value
     
@@ -144,7 +144,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -161,7 +161,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Microsoft Endpoint Manager. Optional. Read-only.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -178,7 +178,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the managedDeviceId property value. The identifier for the managed device in Microsoft Endpoint Manager. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -195,7 +195,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the managedDeviceName property value. The display name for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -246,7 +246,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the osDescription property value. The description of the operating system for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the osDescription property.
+            value: Value to set for the os_description property.
         """
         self._os_description = value
     
@@ -263,7 +263,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the osVersion property value. The version of the operating system for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -280,7 +280,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the ownerType property value. The type of owner for the managed device. Optional. Read-only.
         Args:
-            value: Value to set for the ownerType property.
+            value: Value to set for the owner_type property.
         """
         self._owner_type = value
     
@@ -321,7 +321,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -338,7 +338,7 @@ class ManagedDeviceCompliance(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

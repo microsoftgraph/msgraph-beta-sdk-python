@@ -2,7 +2,7 @@ from enum import Enum
 
 class GroupPolicyUploadedDefinitionFileStatus(Enum):
     # Group Policy uploaded definition file invalid upload status.
-    None_escaped = "none",
+    None_ = "none",
     # Group Policy uploaded definition file upload in progress.
     UploadInProgress = "uploadInProgress",
     # Group Policy uploaded definition file available.

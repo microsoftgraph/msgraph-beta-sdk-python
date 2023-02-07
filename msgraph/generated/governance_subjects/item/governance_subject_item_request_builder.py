@@ -35,12 +35,11 @@ class GovernanceSubjectItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GovernanceSubjectItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GovernanceSubjectItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from governanceSubjects
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class GovernanceSubjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GovernanceSubjectItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_subject.GovernanceSubject]:
+    async def get(self,request_configuration: Optional[GovernanceSubjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_subject.GovernanceSubject]:
         """
         Get entity from governanceSubjects by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_subject.GovernanceSubject]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class GovernanceSubjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_subject.GovernanceSubject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_subject.GovernanceSubject, error_mapping)
     
-    async def patch(self,body: Optional[governance_subject.GovernanceSubject] = None, request_configuration: Optional[GovernanceSubjectItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_subject.GovernanceSubject]:
+    async def patch(self,body: Optional[governance_subject.GovernanceSubject] = None, request_configuration: Optional[GovernanceSubjectItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[governance_subject.GovernanceSubject]:
         """
         Update entity in governanceSubjects
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_subject.GovernanceSubject]
         """
         if body is None:
@@ -92,7 +89,7 @@ class GovernanceSubjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_subject.GovernanceSubject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_subject.GovernanceSubject, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GovernanceSubjectItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

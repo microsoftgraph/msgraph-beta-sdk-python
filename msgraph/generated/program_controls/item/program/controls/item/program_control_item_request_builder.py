@@ -35,12 +35,11 @@ class ProgramControlItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ProgramControlItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProgramControlItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property controls for programControls
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ProgramControlItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ProgramControlItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program_control.ProgramControl]:
+    async def get(self,request_configuration: Optional[ProgramControlItemRequestBuilderGetRequestConfiguration] = None) -> Optional[program_control.ProgramControl]:
         """
         Controls associated with the program.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control.ProgramControl]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ProgramControlItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program_control.ProgramControl, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program_control.ProgramControl, error_mapping)
     
-    async def patch(self,body: Optional[program_control.ProgramControl] = None, request_configuration: Optional[ProgramControlItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program_control.ProgramControl]:
+    async def patch(self,body: Optional[program_control.ProgramControl] = None, request_configuration: Optional[ProgramControlItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[program_control.ProgramControl]:
         """
         Update the navigation property controls in programControls
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program_control.ProgramControl]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ProgramControlItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program_control.ProgramControl, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program_control.ProgramControl, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProgramControlItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

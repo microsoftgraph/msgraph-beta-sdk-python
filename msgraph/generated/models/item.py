@@ -22,7 +22,7 @@ class Item(entity.Entity):
         """
         Sets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
         Args:
-            value: Value to set for the baseUnitOfMeasureId property.
+            value: Value to set for the base_unit_of_measure_id property.
         """
         self._base_unit_of_measure_id = value
     
@@ -110,7 +110,7 @@ class Item(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -120,23 +120,23 @@ class Item(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "base_unit_of_measure_id": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_object_value(Guid)),
+            "baseUnitOfMeasureId": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_object_value(Guid)),
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "gtin": lambda n : setattr(self, 'gtin', n.get_str_value()),
             "inventory": lambda n : setattr(self, 'inventory', n.get_float_value()),
-            "item_category": lambda n : setattr(self, 'item_category', n.get_object_value(item_category.ItemCategory)),
-            "item_category_code": lambda n : setattr(self, 'item_category_code', n.get_str_value()),
-            "item_category_id": lambda n : setattr(self, 'item_category_id', n.get_object_value(Guid)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "itemCategory": lambda n : setattr(self, 'item_category', n.get_object_value(item_category.ItemCategory)),
+            "itemCategoryCode": lambda n : setattr(self, 'item_category_code', n.get_str_value()),
+            "itemCategoryId": lambda n : setattr(self, 'item_category_id', n.get_object_value(Guid)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
-            "price_includes_tax": lambda n : setattr(self, 'price_includes_tax', n.get_bool_value()),
-            "tax_group_code": lambda n : setattr(self, 'tax_group_code', n.get_str_value()),
-            "tax_group_id": lambda n : setattr(self, 'tax_group_id', n.get_object_value(Guid)),
+            "priceIncludesTax": lambda n : setattr(self, 'price_includes_tax', n.get_bool_value()),
+            "taxGroupCode": lambda n : setattr(self, 'tax_group_code', n.get_str_value()),
+            "taxGroupId": lambda n : setattr(self, 'tax_group_id', n.get_object_value(Guid)),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
-            "unit_cost": lambda n : setattr(self, 'unit_cost', n.get_float_value()),
-            "unit_price": lambda n : setattr(self, 'unit_price', n.get_float_value()),
+            "unitCost": lambda n : setattr(self, 'unit_cost', n.get_float_value()),
+            "unitPrice": lambda n : setattr(self, 'unit_price', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -189,7 +189,7 @@ class Item(entity.Entity):
         """
         Sets the itemCategory property value. The itemCategory property
         Args:
-            value: Value to set for the itemCategory property.
+            value: Value to set for the item_category property.
         """
         self._item_category = value
     
@@ -206,7 +206,7 @@ class Item(entity.Entity):
         """
         Sets the itemCategoryCode property value. The itemCategoryCode property
         Args:
-            value: Value to set for the itemCategoryCode property.
+            value: Value to set for the item_category_code property.
         """
         self._item_category_code = value
     
@@ -223,7 +223,7 @@ class Item(entity.Entity):
         """
         Sets the itemCategoryId property value. The itemCategoryId property
         Args:
-            value: Value to set for the itemCategoryId property.
+            value: Value to set for the item_category_id property.
         """
         self._item_category_id = value
     
@@ -240,7 +240,7 @@ class Item(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -291,7 +291,7 @@ class Item(entity.Entity):
         """
         Sets the priceIncludesTax property value. The priceIncludesTax property
         Args:
-            value: Value to set for the priceIncludesTax property.
+            value: Value to set for the price_includes_tax property.
         """
         self._price_includes_tax = value
     
@@ -335,7 +335,7 @@ class Item(entity.Entity):
         """
         Sets the taxGroupCode property value. The taxGroupCode property
         Args:
-            value: Value to set for the taxGroupCode property.
+            value: Value to set for the tax_group_code property.
         """
         self._tax_group_code = value
     
@@ -352,7 +352,7 @@ class Item(entity.Entity):
         """
         Sets the taxGroupId property value. The taxGroupId property
         Args:
-            value: Value to set for the taxGroupId property.
+            value: Value to set for the tax_group_id property.
         """
         self._tax_group_id = value
     
@@ -386,7 +386,7 @@ class Item(entity.Entity):
         """
         Sets the unitCost property value. The unitCost property
         Args:
-            value: Value to set for the unitCost property.
+            value: Value to set for the unit_cost property.
         """
         self._unit_cost = value
     
@@ -403,7 +403,7 @@ class Item(entity.Entity):
         """
         Sets the unitPrice property value. The unitPrice property
         Args:
-            value: Value to set for the unitPrice property.
+            value: Value to set for the unit_price property.
         """
         self._unit_price = value
     

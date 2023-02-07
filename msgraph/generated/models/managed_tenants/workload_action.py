@@ -20,7 +20,7 @@ class WorkloadAction(AdditionalDataHolder, Parsable):
         """
         Sets the actionId property value. The unique identifier for the workload action. Required. Read-only.
         Args:
-            value: Value to set for the actionId property.
+            value: Value to set for the action_id property.
         """
         self._action_id = value
     
@@ -124,7 +124,7 @@ class WorkloadAction(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the workload action. Optional. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -134,10 +134,10 @@ class WorkloadAction(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_id": lambda n : setattr(self, 'action_id', n.get_str_value()),
+            "actionId": lambda n : setattr(self, 'action_id', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(workload_action_category.WorkloadActionCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "licenses": lambda n : setattr(self, 'licenses', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
@@ -175,7 +175,7 @@ class WorkloadAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -56,7 +56,7 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
         """
         Sets the codeRequirement property value. Code requirement for the app or binary that receives the Apple Event.
         Args:
-            value: Value to set for the codeRequirement property.
+            value: Value to set for the code_requirement property.
         """
         self._code_requirement = value
     
@@ -97,9 +97,9 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
         """
         fields = {
             "allowed": lambda n : setattr(self, 'allowed', n.get_bool_value()),
-            "code_requirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
+            "codeRequirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
-            "identifier_type": lambda n : setattr(self, 'identifier_type', n.get_enum_value(mac_o_s_process_identifier_type.MacOSProcessIdentifierType)),
+            "identifierType": lambda n : setattr(self, 'identifier_type', n.get_enum_value(mac_o_s_process_identifier_type.MacOSProcessIdentifierType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -134,7 +134,7 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
         """
         Sets the identifierType property value. Process identifier types for MacOS Privacy Preferences
         Args:
-            value: Value to set for the identifierType property.
+            value: Value to set for the identifier_type property.
         """
         self._identifier_type = value
     
@@ -151,7 +151,7 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -20,7 +20,7 @@ class RemoteAssistanceSettings(entity.Entity):
         """
         Sets the allowSessionsToUnenrolledDevices property value. Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
         Args:
-            value: Value to set for the allowSessionsToUnenrolledDevices property.
+            value: Value to set for the allow_sessions_to_unenrolled_devices property.
         """
         self._allow_sessions_to_unenrolled_devices = value
     
@@ -37,7 +37,7 @@ class RemoteAssistanceSettings(entity.Entity):
         """
         Sets the blockChat property value. Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
         Args:
-            value: Value to set for the blockChat property.
+            value: Value to set for the block_chat property.
         """
         self._block_chat = value
     
@@ -73,9 +73,9 @@ class RemoteAssistanceSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_sessions_to_unenrolled_devices": lambda n : setattr(self, 'allow_sessions_to_unenrolled_devices', n.get_bool_value()),
-            "block_chat": lambda n : setattr(self, 'block_chat', n.get_bool_value()),
-            "remote_assistance_state": lambda n : setattr(self, 'remote_assistance_state', n.get_enum_value(remote_assistance_state.RemoteAssistanceState)),
+            "allowSessionsToUnenrolledDevices": lambda n : setattr(self, 'allow_sessions_to_unenrolled_devices', n.get_bool_value()),
+            "blockChat": lambda n : setattr(self, 'block_chat', n.get_bool_value()),
+            "remoteAssistanceState": lambda n : setattr(self, 'remote_assistance_state', n.get_enum_value(remote_assistance_state.RemoteAssistanceState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -94,7 +94,7 @@ class RemoteAssistanceSettings(entity.Entity):
         """
         Sets the remoteAssistanceState property value. State of remote assistance for the account
         Args:
-            value: Value to set for the remoteAssistanceState property.
+            value: Value to set for the remote_assistance_state property.
         """
         self._remote_assistance_state = value
     

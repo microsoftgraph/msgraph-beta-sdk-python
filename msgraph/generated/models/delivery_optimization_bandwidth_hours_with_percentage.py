@@ -20,7 +20,7 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         """
         Sets the bandwidthBackgroundPercentageHours property value. Background download percentage hours.
         Args:
-            value: Value to set for the bandwidthBackgroundPercentageHours property.
+            value: Value to set for the bandwidth_background_percentage_hours property.
         """
         self._bandwidth_background_percentage_hours = value
     
@@ -37,7 +37,7 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         """
         Sets the bandwidthForegroundPercentageHours property value. Foreground download percentage hours.
         Args:
-            value: Value to set for the bandwidthForegroundPercentageHours property.
+            value: Value to set for the bandwidth_foreground_percentage_hours property.
         """
         self._bandwidth_foreground_percentage_hours = value
     
@@ -70,8 +70,8 @@ class DeliveryOptimizationBandwidthHoursWithPercentage(delivery_optimization_ban
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bandwidth_background_percentage_hours": lambda n : setattr(self, 'bandwidth_background_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
-            "bandwidth_foreground_percentage_hours": lambda n : setattr(self, 'bandwidth_foreground_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
+            "bandwidthBackgroundPercentageHours": lambda n : setattr(self, 'bandwidth_background_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
+            "bandwidthForegroundPercentageHours": lambda n : setattr(self, 'bandwidth_foreground_percentage_hours', n.get_object_value(delivery_optimization_bandwidth_business_hours_limit.DeliveryOptimizationBandwidthBusinessHoursLimit)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

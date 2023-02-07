@@ -14,7 +14,7 @@ privileged_role_assignment_request = lazy_import('msgraph.generated.models.privi
 privileged_role_assignment_request_collection_response = lazy_import('msgraph.generated.models.privileged_role_assignment_request_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.count.count_request_builder')
-my_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.my.my_request_builder')
+microsoft_graph_my_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.microsoft_graph_my.microsoft_graph_my_request_builder')
 
 class PrivilegedRoleAssignmentRequestsRequestBuilder():
     """
@@ -26,6 +26,13 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_my(self) -> microsoft_graph_my_request_builder.MicrosoftGraphMyRequestBuilder:
+        """
+        Provides operations to call the my method.
+        """
+        return microsoft_graph_my_request_builder.MicrosoftGraphMyRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,12 +52,11 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]:
         """
         Retrieve a collection of privilegedRoleAssignmentRequest.  **Note:** This requester must have at least one role assignment on the resource.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request_collection_response.PrivilegedRoleAssignmentRequestCollectionResponse, error_mapping)
     
-    def my(self,) -> my_request_builder.MyRequestBuilder:
-        """
-        Provides operations to call the my method.
-        Returns: my_request_builder.MyRequestBuilder
-        """
-        return my_request_builder.MyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
+    async def post(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
         Create a privilegedroleassignmentrequest object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
         """
         if body is None:
@@ -91,7 +89,7 @@ class PrivilegedRoleAssignmentRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

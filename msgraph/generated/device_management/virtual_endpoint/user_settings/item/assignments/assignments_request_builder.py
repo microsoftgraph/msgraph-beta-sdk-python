@@ -44,12 +44,11 @@ class AssignmentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_user_setting_assignment_collection_response.CloudPcUserSettingAssignmentCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_user_setting_assignment_collection_response.CloudPcUserSettingAssignmentCollectionResponse]:
         """
         Represents the set of Microsoft 365 groups and security groups in Azure Active Directory that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSettingample.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_user_setting_assignment_collection_response.CloudPcUserSettingAssignmentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting_assignment_collection_response.CloudPcUserSettingAssignmentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting_assignment_collection_response.CloudPcUserSettingAssignmentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment]:
+    async def post(self,body: Optional[cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment] = None, request_configuration: Optional[AssignmentsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment]:
         """
         Create new navigation property to assignments for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AssignmentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

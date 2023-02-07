@@ -77,7 +77,7 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         fields = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_value_template_id": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
+            "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
         }
         return fields
     
@@ -94,7 +94,7 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -124,7 +124,7 @@ class DeviceManagementConfigurationGroupSettingValueTemplate(AdditionalDataHolde
         """
         Sets the settingValueTemplateId property value. Setting Value Template Id
         Args:
-            value: Value to set for the settingValueTemplateId property.
+            value: Value to set for the setting_value_template_id property.
         """
         self._setting_value_template_id = value
     

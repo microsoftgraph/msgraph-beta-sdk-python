@@ -46,11 +46,11 @@ class MobileAppRelationship(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "target_display_name": lambda n : setattr(self, 'target_display_name', n.get_str_value()),
-            "target_display_version": lambda n : setattr(self, 'target_display_version', n.get_str_value()),
-            "target_id": lambda n : setattr(self, 'target_id', n.get_str_value()),
-            "target_publisher": lambda n : setattr(self, 'target_publisher', n.get_str_value()),
-            "target_type": lambda n : setattr(self, 'target_type', n.get_enum_value(mobile_app_relationship_type.MobileAppRelationshipType)),
+            "targetDisplayName": lambda n : setattr(self, 'target_display_name', n.get_str_value()),
+            "targetDisplayVersion": lambda n : setattr(self, 'target_display_version', n.get_str_value()),
+            "targetId": lambda n : setattr(self, 'target_id', n.get_str_value()),
+            "targetPublisher": lambda n : setattr(self, 'target_publisher', n.get_str_value()),
+            "targetType": lambda n : setattr(self, 'target_type', n.get_enum_value(mobile_app_relationship_type.MobileAppRelationshipType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class MobileAppRelationship(entity.Entity):
         """
         Sets the targetDisplayName property value. The target mobile app's display name.
         Args:
-            value: Value to set for the targetDisplayName property.
+            value: Value to set for the target_display_name property.
         """
         self._target_display_name = value
     
@@ -101,7 +101,7 @@ class MobileAppRelationship(entity.Entity):
         """
         Sets the targetDisplayVersion property value. The target mobile app's display version.
         Args:
-            value: Value to set for the targetDisplayVersion property.
+            value: Value to set for the target_display_version property.
         """
         self._target_display_version = value
     
@@ -118,7 +118,7 @@ class MobileAppRelationship(entity.Entity):
         """
         Sets the targetId property value. The target mobile app's app id.
         Args:
-            value: Value to set for the targetId property.
+            value: Value to set for the target_id property.
         """
         self._target_id = value
     
@@ -135,7 +135,7 @@ class MobileAppRelationship(entity.Entity):
         """
         Sets the targetPublisher property value. The target mobile app's publisher.
         Args:
-            value: Value to set for the targetPublisher property.
+            value: Value to set for the target_publisher property.
         """
         self._target_publisher = value
     
@@ -152,7 +152,7 @@ class MobileAppRelationship(entity.Entity):
         """
         Sets the targetType property value. Indicates whether the target of a relationship is the parent or the child in the relationship.
         Args:
-            value: Value to set for the targetType property.
+            value: Value to set for the target_type property.
         """
         self._target_type = value
     

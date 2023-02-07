@@ -46,7 +46,7 @@ class ManagementIntent(entity.Entity):
         """
         Sets the displayName property value. The display name for the management intent. Optional. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -56,9 +56,9 @@ class ManagementIntent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_global": lambda n : setattr(self, 'is_global', n.get_bool_value()),
-            "management_templates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template_detailed_info.ManagementTemplateDetailedInfo)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isGlobal": lambda n : setattr(self, 'is_global', n.get_bool_value()),
+            "managementTemplates": lambda n : setattr(self, 'management_templates', n.get_collection_of_object_values(management_template_detailed_info.ManagementTemplateDetailedInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class ManagementIntent(entity.Entity):
         """
         Sets the isGlobal property value. A flag indicating whether the management intent is global. Required. Read-only.
         Args:
-            value: Value to set for the isGlobal property.
+            value: Value to set for the is_global property.
         """
         self._is_global = value
     
@@ -94,7 +94,7 @@ class ManagementIntent(entity.Entity):
         """
         Sets the managementTemplates property value. The collection of management templates associated with the management intent. Optional. Read-only.
         Args:
-            value: Value to set for the managementTemplates property.
+            value: Value to set for the management_templates property.
         """
         self._management_templates = value
     

@@ -21,7 +21,7 @@ class AppManagementPolicy(policy_base.PolicyBase):
         """
         Sets the appliesTo property value. The appliesTo property
         Args:
-            value: Value to set for the appliesTo property.
+            value: Value to set for the applies_to property.
         """
         self._applies_to = value
     
@@ -56,8 +56,8 @@ class AppManagementPolicy(policy_base.PolicyBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applies_to": lambda n : setattr(self, 'applies_to', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "restrictions": lambda n : setattr(self, 'restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),
         }
         super_fields = super().get_field_deserializers()
@@ -77,7 +77,7 @@ class AppManagementPolicy(policy_base.PolicyBase):
         """
         Sets the isEnabled property value. The isEnabled property
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     

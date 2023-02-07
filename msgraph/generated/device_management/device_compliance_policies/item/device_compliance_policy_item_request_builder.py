@@ -10,7 +10,6 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.assignments.assignments_request_builder')
 device_compliance_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.assignments.item.device_compliance_policy_assignment_item_request_builder')
 device_setting_state_summaries_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.device_setting_state_summaries.device_setting_state_summaries_request_builder')
@@ -18,7 +17,8 @@ setting_state_device_summary_item_request_builder = lazy_import('msgraph.generat
 device_statuses_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.device_statuses.device_statuses_request_builder')
 device_compliance_device_status_item_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.device_statuses.item.device_compliance_device_status_item_request_builder')
 device_status_overview_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.device_status_overview.device_status_overview_request_builder')
-schedule_actions_for_rules_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.schedule_actions_for_rules.schedule_actions_for_rules_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
+microsoft_graph_schedule_actions_for_rules_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.microsoft_graph_schedule_actions_for_rules.microsoft_graph_schedule_actions_for_rules_request_builder')
 scheduled_actions_for_rule_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.scheduled_actions_for_rule.scheduled_actions_for_rule_request_builder')
 device_compliance_scheduled_action_for_rule_item_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.scheduled_actions_for_rule.item.device_compliance_scheduled_action_for_rule_item_request_builder')
 user_statuses_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.item.user_statuses.user_statuses_request_builder')
@@ -31,13 +31,6 @@ class DeviceCompliancePolicyItemRequestBuilder():
     """
     Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -67,11 +60,18 @@ class DeviceCompliancePolicyItemRequestBuilder():
         return device_status_overview_request_builder.DeviceStatusOverviewRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def schedule_actions_for_rules(self) -> schedule_actions_for_rules_request_builder.ScheduleActionsForRulesRequestBuilder:
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_schedule_actions_for_rules(self) -> microsoft_graph_schedule_actions_for_rules_request_builder.MicrosoftGraphScheduleActionsForRulesRequestBuilder:
         """
         Provides operations to call the scheduleActionsForRules method.
         """
-        return schedule_actions_for_rules_request_builder.ScheduleActionsForRulesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_schedule_actions_for_rules_request_builder.MicrosoftGraphScheduleActionsForRulesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def scheduled_actions_for_rule(self) -> scheduled_actions_for_rule_request_builder.ScheduledActionsForRuleRequestBuilder:
@@ -125,12 +125,11 @@ class DeviceCompliancePolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceCompliancePolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceCompliancePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceCompliancePolicies for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -141,7 +140,7 @@ class DeviceCompliancePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_setting_state_summaries_by_id(self,id: str) -> setting_state_device_summary_item_request_builder.SettingStateDeviceSummaryItemRequestBuilder:
         """
@@ -169,12 +168,11 @@ class DeviceCompliancePolicyItemRequestBuilder():
         url_tpl_params["deviceComplianceDeviceStatus%2Did"] = id
         return device_compliance_device_status_item_request_builder.DeviceComplianceDeviceStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceCompliancePolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
+    async def get(self,request_configuration: Optional[DeviceCompliancePolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
         """
         The device compliance policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy.DeviceCompliancePolicy]
         """
         request_info = self.to_get_request_information(
@@ -186,15 +184,14 @@ class DeviceCompliancePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, error_mapping)
     
-    async def patch(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
+    async def patch(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
         """
         Update the navigation property deviceCompliancePolicies in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy.DeviceCompliancePolicy]
         """
         if body is None:
@@ -208,7 +205,7 @@ class DeviceCompliancePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, error_mapping)
     
     def scheduled_actions_for_rule_by_id(self,id: str) -> device_compliance_scheduled_action_for_rule_item_request_builder.DeviceComplianceScheduledActionForRuleItemRequestBuilder:
         """

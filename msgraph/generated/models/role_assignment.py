@@ -73,7 +73,7 @@ class RoleAssignment(entity.Entity):
         """
         Sets the displayName property value. The display or friendly name of the role Assignment.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -84,11 +84,11 @@ class RoleAssignment(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "resource_scopes": lambda n : setattr(self, 'resource_scopes', n.get_collection_of_primitive_values(str)),
-            "role_definition": lambda n : setattr(self, 'role_definition', n.get_object_value(role_definition.RoleDefinition)),
-            "scope_members": lambda n : setattr(self, 'scope_members', n.get_collection_of_primitive_values(str)),
-            "scope_type": lambda n : setattr(self, 'scope_type', n.get_enum_value(role_assignment_scope_type.RoleAssignmentScopeType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "resourceScopes": lambda n : setattr(self, 'resource_scopes', n.get_collection_of_primitive_values(str)),
+            "roleDefinition": lambda n : setattr(self, 'role_definition', n.get_object_value(role_definition.RoleDefinition)),
+            "scopeMembers": lambda n : setattr(self, 'scope_members', n.get_collection_of_primitive_values(str)),
+            "scopeType": lambda n : setattr(self, 'scope_type', n.get_enum_value(role_assignment_scope_type.RoleAssignmentScopeType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,7 +107,7 @@ class RoleAssignment(entity.Entity):
         """
         Sets the resourceScopes property value. List of ids of role scope member security groups.  These are IDs from Azure Active Directory.
         Args:
-            value: Value to set for the resourceScopes property.
+            value: Value to set for the resource_scopes property.
         """
         self._resource_scopes = value
     
@@ -124,7 +124,7 @@ class RoleAssignment(entity.Entity):
         """
         Sets the roleDefinition property value. Role definition this assignment is part of.
         Args:
-            value: Value to set for the roleDefinition property.
+            value: Value to set for the role_definition property.
         """
         self._role_definition = value
     
@@ -141,7 +141,7 @@ class RoleAssignment(entity.Entity):
         """
         Sets the scopeMembers property value. List of ids of role scope member security groups.  These are IDs from Azure Active Directory.
         Args:
-            value: Value to set for the scopeMembers property.
+            value: Value to set for the scope_members property.
         """
         self._scope_members = value
     
@@ -158,7 +158,7 @@ class RoleAssignment(entity.Entity):
         """
         Sets the scopeType property value. Specifies the type of scope for a Role Assignment.
         Args:
-            value: Value to set for the scopeType property.
+            value: Value to set for the scope_type property.
         """
         self._scope_type = value
     

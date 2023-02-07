@@ -14,12 +14,12 @@ user = lazy_import('msgraph.generated.models.user')
 user_collection_response = lazy_import('msgraph.generated.models.user_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.users.delta.delta_request_builder')
-get_by_ids_request_builder = lazy_import('msgraph.generated.users.get_by_ids.get_by_ids_request_builder')
-get_managed_app_blocked_users_request_builder = lazy_import('msgraph.generated.users.get_managed_app_blocked_users.get_managed_app_blocked_users_request_builder')
-get_user_owned_objects_request_builder = lazy_import('msgraph.generated.users.get_user_owned_objects.get_user_owned_objects_request_builder')
-validate_password_request_builder = lazy_import('msgraph.generated.users.validate_password.validate_password_request_builder')
-validate_properties_request_builder = lazy_import('msgraph.generated.users.validate_properties.validate_properties_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.users.microsoft_graph_delta.microsoft_graph_delta_request_builder')
+microsoft_graph_get_by_ids_request_builder = lazy_import('msgraph.generated.users.microsoft_graph_get_by_ids.microsoft_graph_get_by_ids_request_builder')
+microsoft_graph_get_managed_app_blocked_users_request_builder = lazy_import('msgraph.generated.users.microsoft_graph_get_managed_app_blocked_users.microsoft_graph_get_managed_app_blocked_users_request_builder')
+microsoft_graph_get_user_owned_objects_request_builder = lazy_import('msgraph.generated.users.microsoft_graph_get_user_owned_objects.microsoft_graph_get_user_owned_objects_request_builder')
+microsoft_graph_validate_password_request_builder = lazy_import('msgraph.generated.users.microsoft_graph_validate_password.microsoft_graph_validate_password_request_builder')
+microsoft_graph_validate_properties_request_builder = lazy_import('msgraph.generated.users.microsoft_graph_validate_properties.microsoft_graph_validate_properties_request_builder')
 
 class UsersRequestBuilder():
     """
@@ -33,32 +33,46 @@ class UsersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_by_ids(self) -> microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def microsoft_graph_get_managed_app_blocked_users(self) -> microsoft_graph_get_managed_app_blocked_users_request_builder.MicrosoftGraphGetManagedAppBlockedUsersRequestBuilder:
+        """
+        Provides operations to call the getManagedAppBlockedUsers method.
+        """
+        return microsoft_graph_get_managed_app_blocked_users_request_builder.MicrosoftGraphGetManagedAppBlockedUsersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_user_owned_objects(self) -> microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_password(self) -> validate_password_request_builder.ValidatePasswordRequestBuilder:
+    def microsoft_graph_validate_password(self) -> microsoft_graph_validate_password_request_builder.MicrosoftGraphValidatePasswordRequestBuilder:
         """
         Provides operations to call the validatePassword method.
         """
-        return validate_password_request_builder.ValidatePasswordRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_password_request_builder.MicrosoftGraphValidatePasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def microsoft_graph_validate_properties(self) -> microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -78,19 +92,11 @@ class UsersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
+    async def get(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> Optional[user_collection_response.UserCollectionResponse]:
         """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_collection_response.UserCollectionResponse]:
-        """
-        Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option.
+        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_collection_response.UserCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -102,22 +108,14 @@ class UsersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_collection_response.UserCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_collection_response.UserCollectionResponse, error_mapping)
     
-    def get_managed_app_blocked_users(self,) -> get_managed_app_blocked_users_request_builder.GetManagedAppBlockedUsersRequestBuilder:
-        """
-        Provides operations to call the getManagedAppBlockedUsers method.
-        Returns: get_managed_app_blocked_users_request_builder.GetManagedAppBlockedUsersRequestBuilder
-        """
-        return get_managed_app_blocked_users_request_builder.GetManagedAppBlockedUsersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[user.User] = None, request_configuration: Optional[UsersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
+    async def post(self,body: Optional[user.User] = None, request_configuration: Optional[UsersRequestBuilderPostRequestConfiguration] = None) -> Optional[user.User]:
         """
         Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties. This operation returns by default only a subset of the properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation and specify the properties in a `$select` OData query option.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         if body is None:
@@ -131,11 +129,11 @@ class UsersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UsersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option.
+        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -175,7 +173,7 @@ class UsersRequestBuilder():
     @dataclass
     class UsersRequestBuilderGetQueryParameters():
         """
-        Retrieve a list of user objects. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option.
+        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
         """
         # Include count of items
         count: Optional[bool] = None

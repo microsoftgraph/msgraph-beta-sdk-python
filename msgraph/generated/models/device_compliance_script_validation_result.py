@@ -60,9 +60,9 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_errors": lambda n : setattr(self, 'rule_errors', n.get_collection_of_object_values(device_compliance_script_rule_error.DeviceComplianceScriptRuleError)),
             "rules": lambda n : setattr(self, 'rules', n.get_collection_of_object_values(device_compliance_script_rule.DeviceComplianceScriptRule)),
-            "script_errors": lambda n : setattr(self, 'script_errors', n.get_collection_of_object_values(device_compliance_script_error.DeviceComplianceScriptError)),
+            "ruleErrors": lambda n : setattr(self, 'rule_errors', n.get_collection_of_object_values(device_compliance_script_rule_error.DeviceComplianceScriptRuleError)),
+            "scriptErrors": lambda n : setattr(self, 'script_errors', n.get_collection_of_object_values(device_compliance_script_error.DeviceComplianceScriptError)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -96,7 +96,7 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the ruleErrors property value. Errors in json for the script for rules.
         Args:
-            value: Value to set for the ruleErrors property.
+            value: Value to set for the rule_errors property.
         """
         self._rule_errors = value
     
@@ -130,7 +130,7 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the scriptErrors property value. Errors in json for the script.
         Args:
-            value: Value to set for the scriptErrors property.
+            value: Value to set for the script_errors property.
         """
         self._script_errors = value
     
@@ -143,8 +143,8 @@ class DeviceComplianceScriptValidationResult(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_collection_of_object_values("ruleErrors", self.rule_errors)
         writer.write_collection_of_object_values("rules", self.rules)
+        writer.write_collection_of_object_values("ruleErrors", self.rule_errors)
         writer.write_collection_of_object_values("scriptErrors", self.script_errors)
         writer.write_additional_data_value(self.additional_data)
     

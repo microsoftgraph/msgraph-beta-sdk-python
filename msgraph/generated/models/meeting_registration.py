@@ -57,7 +57,7 @@ class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
         """
         Sets the customQuestions property value. Custom registration questions.
         Args:
-            value: Value to set for the customQuestions property.
+            value: Value to set for the custom_questions property.
         """
         self._custom_questions = value
     
@@ -91,7 +91,7 @@ class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
         """
         Sets the endDateTime property value. The meeting end time in UTC.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -101,13 +101,13 @@ class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_questions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(meeting_registration_question.MeetingRegistrationQuestion)),
+            "customQuestions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(meeting_registration_question.MeetingRegistrationQuestion)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "registration_page_view_count": lambda n : setattr(self, 'registration_page_view_count', n.get_int_value()),
-            "registration_page_web_url": lambda n : setattr(self, 'registration_page_web_url', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "registrationPageViewCount": lambda n : setattr(self, 'registration_page_view_count', n.get_int_value()),
+            "registrationPageWebUrl": lambda n : setattr(self, 'registration_page_web_url', n.get_str_value()),
             "speakers": lambda n : setattr(self, 'speakers', n.get_collection_of_object_values(meeting_speaker.MeetingSpeaker)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -127,7 +127,7 @@ class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
         """
         Sets the registrationPageViewCount property value. The number of times the registration page has been visited. Read-only.
         Args:
-            value: Value to set for the registrationPageViewCount property.
+            value: Value to set for the registration_page_view_count property.
         """
         self._registration_page_view_count = value
     
@@ -144,7 +144,7 @@ class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
         """
         Sets the registrationPageWebUrl property value. The URL of the registration page. Read-only.
         Args:
-            value: Value to set for the registrationPageWebUrl property.
+            value: Value to set for the registration_page_web_url property.
         """
         self._registration_page_web_url = value
     
@@ -196,7 +196,7 @@ class MeetingRegistration(meeting_registration_base.MeetingRegistrationBase):
         """
         Sets the startDateTime property value. The meeting start time in UTC.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

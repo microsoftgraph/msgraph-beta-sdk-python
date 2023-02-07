@@ -42,7 +42,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the activityDateTime property value. The date time in UTC when the activity was performed. Read-only.
         Args:
-            value: Value to set for the activityDateTime property.
+            value: Value to set for the activity_date_time property.
         """
         self._activity_date_time = value
     
@@ -59,7 +59,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the activityOperationType property value. The activityOperationType property
         Args:
-            value: Value to set for the activityOperationType property.
+            value: Value to set for the activity_operation_type property.
         """
         self._activity_operation_type = value
     
@@ -76,7 +76,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the activityResult property value. The activityResult property
         Args:
-            value: Value to set for the activityResult property.
+            value: Value to set for the activity_result property.
         """
         self._activity_result = value
     
@@ -93,7 +93,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the activityType property value. The type of activity that was performed. Read-only.
         Args:
-            value: Value to set for the activityType property.
+            value: Value to set for the activity_type property.
         """
         self._activity_type = value
     
@@ -144,7 +144,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the componentName property value. Component name. Read-only.
         Args:
-            value: Value to set for the componentName property.
+            value: Value to set for the component_name property.
         """
         self._component_name = value
     
@@ -191,7 +191,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the correlationId property value. The client request identifier, used to correlate activity within the system. Read-only.
         Args:
-            value: Value to set for the correlationId property.
+            value: Value to set for the correlation_id property.
         """
         self._correlation_id = value
     
@@ -220,7 +220,7 @@ class CloudPcAuditEvent(entity.Entity):
         """
         Sets the displayName property value. Event display name. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -231,15 +231,15 @@ class CloudPcAuditEvent(entity.Entity):
         """
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
-            "activity_date_time": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
-            "activity_operation_type": lambda n : setattr(self, 'activity_operation_type', n.get_enum_value(cloud_pc_audit_activity_operation_type.CloudPcAuditActivityOperationType)),
-            "activity_result": lambda n : setattr(self, 'activity_result', n.get_enum_value(cloud_pc_audit_activity_result.CloudPcAuditActivityResult)),
-            "activity_type": lambda n : setattr(self, 'activity_type', n.get_str_value()),
+            "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
+            "activityOperationType": lambda n : setattr(self, 'activity_operation_type', n.get_enum_value(cloud_pc_audit_activity_operation_type.CloudPcAuditActivityOperationType)),
+            "activityResult": lambda n : setattr(self, 'activity_result', n.get_enum_value(cloud_pc_audit_activity_result.CloudPcAuditActivityResult)),
+            "activityType": lambda n : setattr(self, 'activity_type', n.get_str_value()),
             "actor": lambda n : setattr(self, 'actor', n.get_object_value(cloud_pc_audit_actor.CloudPcAuditActor)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(cloud_pc_audit_category.CloudPcAuditCategory)),
-            "component_name": lambda n : setattr(self, 'component_name', n.get_str_value()),
-            "correlation_id": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "componentName": lambda n : setattr(self, 'component_name', n.get_str_value()),
+            "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(cloud_pc_audit_resource.CloudPcAuditResource)),
         }
         super_fields = super().get_field_deserializers()

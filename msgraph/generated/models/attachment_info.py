@@ -36,7 +36,7 @@ class AttachmentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the attachmentType property value. The type of the attachment. The possible values are: file, item, reference. Required.
         Args:
-            value: Value to set for the attachmentType property.
+            value: Value to set for the attachment_type property.
         """
         self._attachment_type = value
     
@@ -71,7 +71,7 @@ class AttachmentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the contentType property value. The nature of the data in the attachment. Optional.
         Args:
-            value: Value to set for the contentType property.
+            value: Value to set for the content_type property.
         """
         self._content_type = value
     
@@ -93,8 +93,8 @@ class AttachmentInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attachment_type": lambda n : setattr(self, 'attachment_type', n.get_enum_value(attachment_type.AttachmentType)),
-            "content_type": lambda n : setattr(self, 'content_type', n.get_str_value()),
+            "attachmentType": lambda n : setattr(self, 'attachment_type', n.get_enum_value(attachment_type.AttachmentType)),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
@@ -131,7 +131,7 @@ class AttachmentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

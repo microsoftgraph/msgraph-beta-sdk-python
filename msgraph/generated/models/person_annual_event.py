@@ -63,7 +63,7 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -74,7 +74,7 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         """
         fields = {
             "date": lambda n : setattr(self, 'date', n.get_object_value(Date)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(person_annual_event_type.PersonAnnualEventType)),
         }
         super_fields = super().get_field_deserializers()

@@ -23,7 +23,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the approvalDuration property value. The approvalDuration property
         Args:
-            value: Value to set for the approvalDuration property.
+            value: Value to set for the approval_duration property.
         """
         self._approval_duration = value
     
@@ -40,7 +40,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the approvalState property value. Possible values are: pending, approved, denied, aborted, canceled.
         Args:
-            value: Value to set for the approvalState property.
+            value: Value to set for the approval_state property.
         """
         self._approval_state = value
     
@@ -57,7 +57,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the approvalType property value. The approvalType property
         Args:
-            value: Value to set for the approvalType property.
+            value: Value to set for the approval_type property.
         """
         self._approval_type = value
     
@@ -74,7 +74,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the approverReason property value. The approverReason property
         Args:
-            value: Value to set for the approverReason property.
+            value: Value to set for the approver_reason property.
         """
         self._approver_reason = value
     
@@ -133,7 +133,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the endDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -143,17 +143,17 @@ class PrivilegedApproval(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "approval_duration": lambda n : setattr(self, 'approval_duration', n.get_object_value(Timedelta)),
-            "approval_state": lambda n : setattr(self, 'approval_state', n.get_enum_value(approval_state.ApprovalState)),
-            "approval_type": lambda n : setattr(self, 'approval_type', n.get_str_value()),
-            "approver_reason": lambda n : setattr(self, 'approver_reason', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "approvalDuration": lambda n : setattr(self, 'approval_duration', n.get_object_value(Timedelta)),
+            "approvalState": lambda n : setattr(self, 'approval_state', n.get_enum_value(approval_state.ApprovalState)),
+            "approvalType": lambda n : setattr(self, 'approval_type', n.get_str_value()),
+            "approverReason": lambda n : setattr(self, 'approver_reason', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "request": lambda n : setattr(self, 'request', n.get_object_value(privileged_role_assignment_request.PrivilegedRoleAssignmentRequest)),
-            "requestor_reason": lambda n : setattr(self, 'requestor_reason', n.get_str_value()),
-            "role_id": lambda n : setattr(self, 'role_id', n.get_str_value()),
-            "role_info": lambda n : setattr(self, 'role_info', n.get_object_value(privileged_role.PrivilegedRole)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "requestorReason": lambda n : setattr(self, 'requestor_reason', n.get_str_value()),
+            "roleId": lambda n : setattr(self, 'role_id', n.get_str_value()),
+            "roleInfo": lambda n : setattr(self, 'role_info', n.get_object_value(privileged_role.PrivilegedRole)),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -189,7 +189,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the requestorReason property value. The requestorReason property
         Args:
-            value: Value to set for the requestorReason property.
+            value: Value to set for the requestor_reason property.
         """
         self._requestor_reason = value
     
@@ -206,7 +206,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the roleId property value. The roleId property
         Args:
-            value: Value to set for the roleId property.
+            value: Value to set for the role_id property.
         """
         self._role_id = value
     
@@ -223,7 +223,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the roleInfo property value. The roleInfo property
         Args:
-            value: Value to set for the roleInfo property.
+            value: Value to set for the role_info property.
         """
         self._role_info = value
     
@@ -261,7 +261,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the startDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
@@ -278,7 +278,7 @@ class PrivilegedApproval(entity.Entity):
         """
         Sets the userId property value. The userId property
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

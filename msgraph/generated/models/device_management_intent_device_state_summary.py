@@ -19,7 +19,7 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         """
         Sets the conflictCount property value. Number of devices in conflict
         Args:
-            value: Value to set for the conflictCount property.
+            value: Value to set for the conflict_count property.
         """
         self._conflict_count = value
     
@@ -68,7 +68,7 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         """
         Sets the errorCount property value. Number of error devices
         Args:
-            value: Value to set for the errorCount property.
+            value: Value to set for the error_count property.
         """
         self._error_count = value
     
@@ -85,7 +85,7 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         """
         Sets the failedCount property value. Number of failed devices
         Args:
-            value: Value to set for the failedCount property.
+            value: Value to set for the failed_count property.
         """
         self._failed_count = value
     
@@ -95,12 +95,12 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "conflict_count": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
-            "error_count": lambda n : setattr(self, 'error_count', n.get_int_value()),
-            "failed_count": lambda n : setattr(self, 'failed_count', n.get_int_value()),
-            "not_applicable_count": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
-            "not_applicable_platform_count": lambda n : setattr(self, 'not_applicable_platform_count', n.get_int_value()),
-            "success_count": lambda n : setattr(self, 'success_count', n.get_int_value()),
+            "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
+            "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
+            "failedCount": lambda n : setattr(self, 'failed_count', n.get_int_value()),
+            "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
+            "notApplicablePlatformCount": lambda n : setattr(self, 'not_applicable_platform_count', n.get_int_value()),
+            "successCount": lambda n : setattr(self, 'success_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -119,7 +119,7 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         """
         Sets the notApplicableCount property value. Number of not applicable devices
         Args:
-            value: Value to set for the notApplicableCount property.
+            value: Value to set for the not_applicable_count property.
         """
         self._not_applicable_count = value
     
@@ -136,7 +136,7 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         """
         Sets the notApplicablePlatformCount property value. Number of not applicable devices due to mismatch platform and policy
         Args:
-            value: Value to set for the notApplicablePlatformCount property.
+            value: Value to set for the not_applicable_platform_count property.
         """
         self._not_applicable_platform_count = value
     
@@ -169,7 +169,7 @@ class DeviceManagementIntentDeviceStateSummary(entity.Entity):
         """
         Sets the successCount property value. Number of succeeded devices
         Args:
-            value: Value to set for the successCount property.
+            value: Value to set for the success_count property.
         """
         self._success_count = value
     

@@ -58,10 +58,10 @@ class SignInActivity(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_non_interactive_sign_in_date_time": lambda n : setattr(self, 'last_non_interactive_sign_in_date_time', n.get_datetime_value()),
-            "last_non_interactive_sign_in_request_id": lambda n : setattr(self, 'last_non_interactive_sign_in_request_id', n.get_str_value()),
-            "last_sign_in_date_time": lambda n : setattr(self, 'last_sign_in_date_time', n.get_datetime_value()),
-            "last_sign_in_request_id": lambda n : setattr(self, 'last_sign_in_request_id', n.get_str_value()),
+            "lastNonInteractiveSignInDateTime": lambda n : setattr(self, 'last_non_interactive_sign_in_date_time', n.get_datetime_value()),
+            "lastNonInteractiveSignInRequestId": lambda n : setattr(self, 'last_non_interactive_sign_in_request_id', n.get_str_value()),
+            "lastSignInDateTime": lambda n : setattr(self, 'last_sign_in_date_time', n.get_datetime_value()),
+            "lastSignInRequestId": lambda n : setattr(self, 'last_sign_in_request_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -79,7 +79,7 @@ class SignInActivity(AdditionalDataHolder, Parsable):
         """
         Sets the lastNonInteractiveSignInDateTime property value. The last non-interactive sign-in date for a specific user. You can use this field to calculate the last time a client signed in to the directory on behalf of a user. Because some users may use clients to access tenant resources rather than signing into your tenant directly, you can use the non-interactive sign-in date to along with lastSignInDateTime to identify inactive users. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is: '2014-01-01T00:00:00Z'. Azure AD maintains non-interactive sign-ins going back to May 2020. For more information about using the value of this property, see Manage inactive user accounts in Azure AD.
         Args:
-            value: Value to set for the lastNonInteractiveSignInDateTime property.
+            value: Value to set for the last_non_interactive_sign_in_date_time property.
         """
         self._last_non_interactive_sign_in_date_time = value
     
@@ -96,7 +96,7 @@ class SignInActivity(AdditionalDataHolder, Parsable):
         """
         Sets the lastNonInteractiveSignInRequestId property value. Request identifier of the last non-interactive sign-in performed by this user.
         Args:
-            value: Value to set for the lastNonInteractiveSignInRequestId property.
+            value: Value to set for the last_non_interactive_sign_in_request_id property.
         """
         self._last_non_interactive_sign_in_request_id = value
     
@@ -113,7 +113,7 @@ class SignInActivity(AdditionalDataHolder, Parsable):
         """
         Sets the lastSignInDateTime property value. The last interactive sign-in date and time for a specific user. You can use this field to calculate the last time a user signed in to the directory with an interactive authentication method. This field can be used to build reports, such as inactive users. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is: '2014-01-01T00:00:00Z'. Azure AD maintains interactive sign-ins going back to April 2020. For more information about using the value of this property, see Manage inactive user accounts in Azure AD.
         Args:
-            value: Value to set for the lastSignInDateTime property.
+            value: Value to set for the last_sign_in_date_time property.
         """
         self._last_sign_in_date_time = value
     
@@ -130,7 +130,7 @@ class SignInActivity(AdditionalDataHolder, Parsable):
         """
         Sets the lastSignInRequestId property value. Request identifier of the last interactive sign-in performed by this user.
         Args:
-            value: Value to set for the lastSignInRequestId property.
+            value: Value to set for the last_sign_in_request_id property.
         """
         self._last_sign_in_request_id = value
     
@@ -147,7 +147,7 @@ class SignInActivity(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

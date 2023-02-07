@@ -12,26 +12,26 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-org_contact_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.item.org_contact.org_contact_request_builder')
-user_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.item.user.user_request_builder')
+microsoft_graph_org_contact_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.item.microsoft_graph_org_contact.microsoft_graph_org_contact_request_builder')
+microsoft_graph_user_request_builder = lazy_import('msgraph.generated.users.item.direct_reports.item.microsoft_graph_user.microsoft_graph_user_request_builder')
 
 class DirectoryObjectItemRequestBuilder():
     """
     Provides operations to manage the directReports property of the microsoft.graph.user entity.
     """
     @property
-    def org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
+    def microsoft_graph_org_contact(self) -> microsoft_graph_org_contact_request_builder.MicrosoftGraphOrgContactRequestBuilder:
         """
         Casts the previous resource to orgContact.
         """
-        return org_contact_request_builder.OrgContactRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_org_contact_request_builder.MicrosoftGraphOrgContactRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
+    def microsoft_graph_user(self) -> microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder:
         """
         Casts the previous resource to user.
         """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class DirectoryObjectItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         request_info = self.to_get_request_information(
@@ -68,7 +67,7 @@ class DirectoryObjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

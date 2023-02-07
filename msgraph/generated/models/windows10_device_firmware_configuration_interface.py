@@ -38,7 +38,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the bootFromBuiltInNetworkAdapters property value. Possible values of a property
         Args:
-            value: Value to set for the bootFromBuiltInNetworkAdapters property.
+            value: Value to set for the boot_from_built_in_network_adapters property.
         """
         self._boot_from_built_in_network_adapters = value
     
@@ -55,7 +55,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the bootFromExternalMedia property value. Possible values of a property
         Args:
-            value: Value to set for the bootFromExternalMedia property.
+            value: Value to set for the boot_from_external_media property.
         """
         self._boot_from_external_media = value
     
@@ -89,7 +89,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the changeUefiSettingsPermission property value. Defines the permission level granted to users to enable them change Uefi settings
         Args:
-            value: Value to set for the changeUefiSettingsPermission property.
+            value: Value to set for the change_uefi_settings_permission property.
         """
         self._change_uefi_settings_permission = value
     
@@ -167,7 +167,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the frontCamera property value. Possible values of a property
         Args:
-            value: Value to set for the frontCamera property.
+            value: Value to set for the front_camera property.
         """
         self._front_camera = value
     
@@ -178,26 +178,26 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         fields = {
             "bluetooth": lambda n : setattr(self, 'bluetooth', n.get_enum_value(enablement.Enablement)),
-            "boot_from_built_in_network_adapters": lambda n : setattr(self, 'boot_from_built_in_network_adapters', n.get_enum_value(enablement.Enablement)),
-            "boot_from_external_media": lambda n : setattr(self, 'boot_from_external_media', n.get_enum_value(enablement.Enablement)),
+            "bootFromBuiltInNetworkAdapters": lambda n : setattr(self, 'boot_from_built_in_network_adapters', n.get_enum_value(enablement.Enablement)),
+            "bootFromExternalMedia": lambda n : setattr(self, 'boot_from_external_media', n.get_enum_value(enablement.Enablement)),
             "cameras": lambda n : setattr(self, 'cameras', n.get_enum_value(enablement.Enablement)),
-            "change_uefi_settings_permission": lambda n : setattr(self, 'change_uefi_settings_permission', n.get_enum_value(change_uefi_settings_permission.ChangeUefiSettingsPermission)),
-            "front_camera": lambda n : setattr(self, 'front_camera', n.get_enum_value(enablement.Enablement)),
-            "infrared_camera": lambda n : setattr(self, 'infrared_camera', n.get_enum_value(enablement.Enablement)),
+            "changeUefiSettingsPermission": lambda n : setattr(self, 'change_uefi_settings_permission', n.get_enum_value(change_uefi_settings_permission.ChangeUefiSettingsPermission)),
+            "frontCamera": lambda n : setattr(self, 'front_camera', n.get_enum_value(enablement.Enablement)),
+            "infraredCamera": lambda n : setattr(self, 'infrared_camera', n.get_enum_value(enablement.Enablement)),
             "microphone": lambda n : setattr(self, 'microphone', n.get_enum_value(enablement.Enablement)),
-            "microphones_and_speakers": lambda n : setattr(self, 'microphones_and_speakers', n.get_enum_value(enablement.Enablement)),
-            "near_field_communication": lambda n : setattr(self, 'near_field_communication', n.get_enum_value(enablement.Enablement)),
+            "microphonesAndSpeakers": lambda n : setattr(self, 'microphones_and_speakers', n.get_enum_value(enablement.Enablement)),
+            "nearFieldCommunication": lambda n : setattr(self, 'near_field_communication', n.get_enum_value(enablement.Enablement)),
             "radios": lambda n : setattr(self, 'radios', n.get_enum_value(enablement.Enablement)),
-            "rear_camera": lambda n : setattr(self, 'rear_camera', n.get_enum_value(enablement.Enablement)),
-            "sd_card": lambda n : setattr(self, 'sd_card', n.get_enum_value(enablement.Enablement)),
-            "simultaneous_multi_threading": lambda n : setattr(self, 'simultaneous_multi_threading', n.get_enum_value(enablement.Enablement)),
-            "usb_type_a_port": lambda n : setattr(self, 'usb_type_a_port', n.get_enum_value(enablement.Enablement)),
-            "virtualization_of_cpu_and_i_o": lambda n : setattr(self, 'virtualization_of_cpu_and_i_o', n.get_enum_value(enablement.Enablement)),
-            "wake_on_l_a_n": lambda n : setattr(self, 'wake_on_l_a_n', n.get_enum_value(enablement.Enablement)),
-            "wake_on_power": lambda n : setattr(self, 'wake_on_power', n.get_enum_value(enablement.Enablement)),
-            "wi_fi": lambda n : setattr(self, 'wi_fi', n.get_enum_value(enablement.Enablement)),
-            "windows_platform_binary_table": lambda n : setattr(self, 'windows_platform_binary_table', n.get_enum_value(enablement.Enablement)),
-            "wireless_wide_area_network": lambda n : setattr(self, 'wireless_wide_area_network', n.get_enum_value(enablement.Enablement)),
+            "rearCamera": lambda n : setattr(self, 'rear_camera', n.get_enum_value(enablement.Enablement)),
+            "sdCard": lambda n : setattr(self, 'sd_card', n.get_enum_value(enablement.Enablement)),
+            "simultaneousMultiThreading": lambda n : setattr(self, 'simultaneous_multi_threading', n.get_enum_value(enablement.Enablement)),
+            "usbTypeAPort": lambda n : setattr(self, 'usb_type_a_port', n.get_enum_value(enablement.Enablement)),
+            "virtualizationOfCpuAndIO": lambda n : setattr(self, 'virtualization_of_cpu_and_i_o', n.get_enum_value(enablement.Enablement)),
+            "wakeOnLAN": lambda n : setattr(self, 'wake_on_l_a_n', n.get_enum_value(enablement.Enablement)),
+            "wakeOnPower": lambda n : setattr(self, 'wake_on_power', n.get_enum_value(enablement.Enablement)),
+            "windowsPlatformBinaryTable": lambda n : setattr(self, 'windows_platform_binary_table', n.get_enum_value(enablement.Enablement)),
+            "wirelessWideAreaNetwork": lambda n : setattr(self, 'wireless_wide_area_network', n.get_enum_value(enablement.Enablement)),
+            "wiFi": lambda n : setattr(self, 'wi_fi', n.get_enum_value(enablement.Enablement)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -216,7 +216,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the infraredCamera property value. Possible values of a property
         Args:
-            value: Value to set for the infraredCamera property.
+            value: Value to set for the infrared_camera property.
         """
         self._infrared_camera = value
     
@@ -250,7 +250,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the microphonesAndSpeakers property value. Possible values of a property
         Args:
-            value: Value to set for the microphonesAndSpeakers property.
+            value: Value to set for the microphones_and_speakers property.
         """
         self._microphones_and_speakers = value
     
@@ -267,7 +267,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the nearFieldCommunication property value. Possible values of a property
         Args:
-            value: Value to set for the nearFieldCommunication property.
+            value: Value to set for the near_field_communication property.
         """
         self._near_field_communication = value
     
@@ -301,7 +301,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the rearCamera property value. Possible values of a property
         Args:
-            value: Value to set for the rearCamera property.
+            value: Value to set for the rear_camera property.
         """
         self._rear_camera = value
     
@@ -318,7 +318,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the sdCard property value. Possible values of a property
         Args:
-            value: Value to set for the sdCard property.
+            value: Value to set for the sd_card property.
         """
         self._sd_card = value
     
@@ -349,9 +349,9 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         writer.write_enum_value("virtualizationOfCpuAndIO", self.virtualization_of_cpu_and_i_o)
         writer.write_enum_value("wakeOnLAN", self.wake_on_l_a_n)
         writer.write_enum_value("wakeOnPower", self.wake_on_power)
-        writer.write_enum_value("wiFi", self.wi_fi)
         writer.write_enum_value("windowsPlatformBinaryTable", self.windows_platform_binary_table)
         writer.write_enum_value("wirelessWideAreaNetwork", self.wireless_wide_area_network)
+        writer.write_enum_value("wiFi", self.wi_fi)
     
     @property
     def simultaneous_multi_threading(self,) -> Optional[enablement.Enablement]:
@@ -366,7 +366,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the simultaneousMultiThreading property value. Possible values of a property
         Args:
-            value: Value to set for the simultaneousMultiThreading property.
+            value: Value to set for the simultaneous_multi_threading property.
         """
         self._simultaneous_multi_threading = value
     
@@ -383,7 +383,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the usbTypeAPort property value. Possible values of a property
         Args:
-            value: Value to set for the usbTypeAPort property.
+            value: Value to set for the usb_type_a_port property.
         """
         self._usb_type_a_port = value
     
@@ -400,7 +400,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the virtualizationOfCpuAndIO property value. Possible values of a property
         Args:
-            value: Value to set for the virtualizationOfCpuAndIO property.
+            value: Value to set for the virtualization_of_cpu_and_i_o property.
         """
         self._virtualization_of_cpu_and_i_o = value
     
@@ -417,7 +417,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the wakeOnLAN property value. Possible values of a property
         Args:
-            value: Value to set for the wakeOnLAN property.
+            value: Value to set for the wake_on_l_a_n property.
         """
         self._wake_on_l_a_n = value
     
@@ -434,7 +434,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the wakeOnPower property value. Possible values of a property
         Args:
-            value: Value to set for the wakeOnPower property.
+            value: Value to set for the wake_on_power property.
         """
         self._wake_on_power = value
     
@@ -451,7 +451,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the wiFi property value. Possible values of a property
         Args:
-            value: Value to set for the wiFi property.
+            value: Value to set for the wi_fi property.
         """
         self._wi_fi = value
     
@@ -468,7 +468,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the windowsPlatformBinaryTable property value. Possible values of a property
         Args:
-            value: Value to set for the windowsPlatformBinaryTable property.
+            value: Value to set for the windows_platform_binary_table property.
         """
         self._windows_platform_binary_table = value
     
@@ -485,7 +485,7 @@ class Windows10DeviceFirmwareConfigurationInterface(device_configuration.DeviceC
         """
         Sets the wirelessWideAreaNetwork property value. Possible values of a property
         Args:
-            value: Value to set for the wirelessWideAreaNetwork property.
+            value: Value to set for the wireless_wide_area_network property.
         """
         self._wireless_wide_area_network = value
     

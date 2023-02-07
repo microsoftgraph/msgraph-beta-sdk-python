@@ -20,13 +20,14 @@ drives_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.d
 drive_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.drives.item.drive_item_request_builder')
 external_columns_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.external_columns.external_columns_request_builder')
 column_definition_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.external_columns.item.column_definition_item_request_builder')
-get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
-get_applicable_content_types_for_list_with_list_id_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.get_applicable_content_types_for_list_with_list_id.get_applicable_content_types_for_list_with_list_id_request_builder')
-get_by_path_with_path_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.get_by_path_with_path.get_by_path_with_path_request_builder')
+information_protection_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.information_protection.information_protection_request_builder')
 items_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.items.items_request_builder')
 base_item_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.items.item.base_item_item_request_builder')
 lists_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.lists_request_builder')
 list_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.list_item_request_builder')
+microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
+microsoft_graph_get_applicable_content_types_for_list_with_list_id_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.microsoft_graph_get_applicable_content_types_for_list_with_list_id.microsoft_graph_get_applicable_content_types_for_list_with_list_id_request_builder')
+microsoft_graph_get_by_path_with_path_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.microsoft_graph_get_by_path_with_path.microsoft_graph_get_by_path_with_path_request_builder')
 onenote_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.onenote.onenote_request_builder')
 operations_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.operations.operations_request_builder')
 rich_long_running_operation_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.operations.item.rich_long_running_operation_item_request_builder')
@@ -85,6 +86,13 @@ class SiteItemRequestBuilder():
         Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
         """
         return external_columns_request_builder.ExternalColumnsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def information_protection(self) -> information_protection_request_builder.InformationProtectionRequestBuilder:
+        """
+        Provides operations to manage the informationProtection property of the microsoft.graph.site entity.
+        """
+        return information_protection_request_builder.InformationProtectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def items(self) -> items_request_builder.ItemsRequestBuilder:
@@ -212,12 +220,11 @@ class SiteItemRequestBuilder():
         url_tpl_params["columnDefinition%2Did"] = id
         return column_definition_item_request_builder.ColumnDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SiteItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site.Site]:
+    async def get(self,request_configuration: Optional[SiteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site.Site]:
         """
         The list of SharePoint sites in this group. Access the default site with /sites/root.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site.Site]
         """
         request_info = self.to_get_request_information(
@@ -229,46 +236,7 @@ class SiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site.Site, response_handler, error_mapping)
-    
-    def get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
-        """
-        Provides operations to call the getActivitiesByInterval method.
-        Args:
-            endDateTime: Usage: endDateTime='{endDateTime}'
-            interval: Usage: interval='{interval}'
-            startDateTime: Usage: startDateTime='{startDateTime}'
-        Returns: get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
-        """
-        if end_date_time is None:
-            raise Exception("end_date_time cannot be undefined")
-        if interval is None:
-            raise Exception("interval cannot be undefined")
-        if start_date_time is None:
-            raise Exception("start_date_time cannot be undefined")
-        return get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
-    
-    def get_applicable_content_types_for_list_with_list_id(self,list_id: Optional[str] = None) -> get_applicable_content_types_for_list_with_list_id_request_builder.GetApplicableContentTypesForListWithListIdRequestBuilder:
-        """
-        Provides operations to call the getApplicableContentTypesForList method.
-        Args:
-            listId: Usage: listId='{listId}'
-        Returns: get_applicable_content_types_for_list_with_list_id_request_builder.GetApplicableContentTypesForListWithListIdRequestBuilder
-        """
-        if list_id is None:
-            raise Exception("list_id cannot be undefined")
-        return get_applicable_content_types_for_list_with_list_id_request_builder.GetApplicableContentTypesForListWithListIdRequestBuilder(self.request_adapter, self.path_parameters, listId)
-    
-    def get_by_path_with_path(self,path: Optional[str] = None) -> get_by_path_with_path_request_builder.GetByPathWithPathRequestBuilder:
-        """
-        Provides operations to call the getByPath method.
-        Args:
-            path: Usage: path='{path}'
-        Returns: get_by_path_with_path_request_builder.GetByPathWithPathRequestBuilder
-        """
-        if path is None:
-            raise Exception("path cannot be undefined")
-        return get_by_path_with_path_request_builder.GetByPathWithPathRequestBuilder(self.request_adapter, self.path_parameters, path)
+        return await self.request_adapter.send_async(request_info, site.Site, error_mapping)
     
     def items_by_id(self,id: str) -> base_item_item_request_builder.BaseItemItemRequestBuilder:
         """
@@ -296,6 +264,45 @@ class SiteItemRequestBuilder():
         url_tpl_params["list%2Did"] = id
         return list_item_request_builder.ListItemRequestBuilder(self.request_adapter, url_tpl_params)
     
+    def microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
+        """
+        Provides operations to call the getActivitiesByInterval method.
+        Args:
+            endDateTime: Usage: endDateTime='{endDateTime}'
+            interval: Usage: interval='{interval}'
+            startDateTime: Usage: startDateTime='{startDateTime}'
+        Returns: microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
+        """
+        if end_date_time is None:
+            raise Exception("end_date_time cannot be undefined")
+        if interval is None:
+            raise Exception("interval cannot be undefined")
+        if start_date_time is None:
+            raise Exception("start_date_time cannot be undefined")
+        return microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
+    
+    def microsoft_graph_get_applicable_content_types_for_list_with_list_id(self,list_id: Optional[str] = None) -> microsoft_graph_get_applicable_content_types_for_list_with_list_id_request_builder.MicrosoftGraphGetApplicableContentTypesForListWithListIdRequestBuilder:
+        """
+        Provides operations to call the getApplicableContentTypesForList method.
+        Args:
+            listId: Usage: listId='{listId}'
+        Returns: microsoft_graph_get_applicable_content_types_for_list_with_list_id_request_builder.MicrosoftGraphGetApplicableContentTypesForListWithListIdRequestBuilder
+        """
+        if list_id is None:
+            raise Exception("list_id cannot be undefined")
+        return microsoft_graph_get_applicable_content_types_for_list_with_list_id_request_builder.MicrosoftGraphGetApplicableContentTypesForListWithListIdRequestBuilder(self.request_adapter, self.path_parameters, listId)
+    
+    def microsoft_graph_get_by_path_with_path(self,path: Optional[str] = None) -> microsoft_graph_get_by_path_with_path_request_builder.MicrosoftGraphGetByPathWithPathRequestBuilder:
+        """
+        Provides operations to call the getByPath method.
+        Args:
+            path: Usage: path='{path}'
+        Returns: microsoft_graph_get_by_path_with_path_request_builder.MicrosoftGraphGetByPathWithPathRequestBuilder
+        """
+        if path is None:
+            raise Exception("path cannot be undefined")
+        return microsoft_graph_get_by_path_with_path_request_builder.MicrosoftGraphGetByPathWithPathRequestBuilder(self.request_adapter, self.path_parameters, path)
+    
     def operations_by_id(self,id: str) -> rich_long_running_operation_item_request_builder.RichLongRunningOperationItemRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.site entity.
@@ -322,13 +329,12 @@ class SiteItemRequestBuilder():
         url_tpl_params["sitePage%2Did"] = id
         return site_page_item_request_builder.SitePageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[site.Site] = None, request_configuration: Optional[SiteItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site.Site]:
+    async def patch(self,body: Optional[site.Site] = None, request_configuration: Optional[SiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site.Site]:
         """
         Update the navigation property sites in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site.Site]
         """
         if body is None:
@@ -342,7 +348,7 @@ class SiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site.Site, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site.Site, error_mapping)
     
     def permissions_by_id(self,id: str) -> permission_item_request_builder.PermissionItemRequestBuilder:
         """

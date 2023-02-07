@@ -38,8 +38,8 @@ class InformationProtection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "label_policy_settings": lambda n : setattr(self, 'label_policy_settings', n.get_object_value(information_protection_policy_setting.InformationProtectionPolicySetting)),
-            "sensitivity_labels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
+            "labelPolicySettings": lambda n : setattr(self, 'label_policy_settings', n.get_object_value(information_protection_policy_setting.InformationProtectionPolicySetting)),
+            "sensitivityLabels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -58,7 +58,7 @@ class InformationProtection(entity.Entity):
         """
         Sets the labelPolicySettings property value. Read the Microsoft Purview Information Protection policy settings for the user or organization.
         Args:
-            value: Value to set for the labelPolicySettings property.
+            value: Value to set for the label_policy_settings property.
         """
         self._label_policy_settings = value
     
@@ -75,7 +75,7 @@ class InformationProtection(entity.Entity):
         """
         Sets the sensitivityLabels property value. Read the Microsoft Purview Information Protection labels for the user or organization.
         Args:
-            value: Value to set for the sensitivityLabels property.
+            value: Value to set for the sensitivity_labels property.
         """
         self._sensitivity_labels = value
     

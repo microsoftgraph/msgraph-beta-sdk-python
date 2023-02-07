@@ -37,8 +37,8 @@ class DefaultUserRoleOverride(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
-            "role_permissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(unified_role_permission.UnifiedRolePermission)),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "rolePermissions": lambda n : setattr(self, 'role_permissions', n.get_collection_of_object_values(unified_role_permission.UnifiedRolePermission)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,7 +57,7 @@ class DefaultUserRoleOverride(entity.Entity):
         """
         Sets the isDefault property value. The isDefault property
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     
@@ -74,7 +74,7 @@ class DefaultUserRoleOverride(entity.Entity):
         """
         Sets the rolePermissions property value. The rolePermissions property
         Args:
-            value: Value to set for the rolePermissions property.
+            value: Value to set for the role_permissions property.
         """
         self._role_permissions = value
     

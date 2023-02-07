@@ -10,10 +10,10 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+microsoft_graph_request_upgrade_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_graph_request_upgrade.microsoft_graph_request_upgrade_request_builder')
 microsoft_tunnel_configuration_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_configuration.microsoft_tunnel_configuration_request_builder')
 microsoft_tunnel_servers_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.microsoft_tunnel_servers_request_builder')
 microsoft_tunnel_server_item_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.microsoft_tunnel_servers.item.microsoft_tunnel_server_item_request_builder')
-request_upgrade_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_sites.item.request_upgrade.request_upgrade_request_builder')
 microsoft_tunnel_site = lazy_import('msgraph.generated.models.microsoft_tunnel_site')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,6 +21,13 @@ class MicrosoftTunnelSiteItemRequestBuilder():
     """
     Provides operations to manage the microsoftTunnelSites property of the microsoft.graph.deviceManagement entity.
     """
+    @property
+    def microsoft_graph_request_upgrade(self) -> microsoft_graph_request_upgrade_request_builder.MicrosoftGraphRequestUpgradeRequestBuilder:
+        """
+        Provides operations to call the requestUpgrade method.
+        """
+        return microsoft_graph_request_upgrade_request_builder.MicrosoftGraphRequestUpgradeRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def microsoft_tunnel_configuration(self) -> microsoft_tunnel_configuration_request_builder.MicrosoftTunnelConfigurationRequestBuilder:
         """
@@ -34,13 +41,6 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         Provides operations to manage the microsoftTunnelServers property of the microsoft.graph.microsoftTunnelSite entity.
         """
         return microsoft_tunnel_servers_request_builder.MicrosoftTunnelServersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def request_upgrade(self) -> request_upgrade_request_builder.RequestUpgradeRequestBuilder:
-        """
-        Provides operations to call the requestUpgrade method.
-        """
-        return request_upgrade_request_builder.RequestUpgradeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -60,12 +60,11 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property microsoftTunnelSites for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -76,14 +75,13 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
+    async def get(self,request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
         """
         Collection of MicrosoftTunnelSite settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_site.MicrosoftTunnelSite]
         """
         request_info = self.to_get_request_information(
@@ -95,7 +93,7 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, error_mapping)
     
     def microsoft_tunnel_servers_by_id(self,id: str) -> microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder:
         """
@@ -110,13 +108,12 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         url_tpl_params["microsoftTunnelServer%2Did"] = id
         return microsoft_tunnel_server_item_request_builder.MicrosoftTunnelServerItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[microsoft_tunnel_site.MicrosoftTunnelSite] = None, request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
+    async def patch(self,body: Optional[microsoft_tunnel_site.MicrosoftTunnelSite] = None, request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[microsoft_tunnel_site.MicrosoftTunnelSite]:
         """
         Update the navigation property microsoftTunnelSites in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[microsoft_tunnel_site.MicrosoftTunnelSite]
         """
         if body is None:
@@ -130,7 +127,7 @@ class MicrosoftTunnelSiteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, microsoft_tunnel_site.MicrosoftTunnelSite, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MicrosoftTunnelSiteItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

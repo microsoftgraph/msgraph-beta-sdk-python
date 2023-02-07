@@ -14,7 +14,7 @@ alert = lazy_import('msgraph.generated.models.alert')
 alert_collection_response = lazy_import('msgraph.generated.models.alert_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.security.alerts.count.count_request_builder')
-update_alerts_request_builder = lazy_import('msgraph.generated.security.alerts.update_alerts.update_alerts_request_builder')
+microsoft_graph_update_alerts_request_builder = lazy_import('msgraph.generated.security.alerts.microsoft_graph_update_alerts.microsoft_graph_update_alerts_request_builder')
 
 class AlertsRequestBuilder():
     """
@@ -28,11 +28,11 @@ class AlertsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_alerts(self) -> update_alerts_request_builder.UpdateAlertsRequestBuilder:
+    def microsoft_graph_update_alerts(self) -> microsoft_graph_update_alerts_request_builder.MicrosoftGraphUpdateAlertsRequestBuilder:
         """
         Provides operations to call the updateAlerts method.
         """
-        return update_alerts_request_builder.UpdateAlertsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_update_alerts_request_builder.MicrosoftGraphUpdateAlertsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class AlertsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_collection_response.AlertCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_collection_response.AlertCollectionResponse]:
         """
         Retrieve a list of alert objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_collection_response.AlertCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class AlertsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_collection_response.AlertCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_collection_response.AlertCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[alert.Alert] = None, request_configuration: Optional[AlertsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert.Alert]:
+    async def post(self,body: Optional[alert.Alert] = None, request_configuration: Optional[AlertsRequestBuilderPostRequestConfiguration] = None) -> Optional[alert.Alert]:
         """
         Create new navigation property to alerts for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert.Alert]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AlertsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert.Alert, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert.Alert, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

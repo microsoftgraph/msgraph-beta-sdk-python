@@ -49,12 +49,12 @@ class WindowsMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         self._v10_1903: Optional[bool] = None
         # Windows 10 1909 or later.
         self._v10_1909: Optional[bool] = None
+        # Windows 10 2H20 or later.
+        self._v10_2_h20: Optional[bool] = None
         # Windows 10 2004 or later.
         self._v10_2004: Optional[bool] = None
         # Windows 10 21H1 or later.
         self._v10_21_h1: Optional[bool] = None
-        # Windows 10 2H20 or later.
-        self._v10_2_h20: Optional[bool] = None
         # Windows version 8.0 or later.
         self._v8_0: Optional[bool] = None
         # Windows version 8.1 or later.
@@ -88,8 +88,8 @@ class WindowsMinimumOperatingSystem(AdditionalDataHolder, Parsable):
             "v10_1903": lambda n : setattr(self, 'v10_1903', n.get_bool_value()),
             "v10_1909": lambda n : setattr(self, 'v10_1909', n.get_bool_value()),
             "v10_2004": lambda n : setattr(self, 'v10_2004', n.get_bool_value()),
-            "v10_21_h1": lambda n : setattr(self, 'v10_21_h1', n.get_bool_value()),
-            "v10_2_h20": lambda n : setattr(self, 'v10_2_h20', n.get_bool_value()),
+            "v10_21H1": lambda n : setattr(self, 'v10_21_h1', n.get_bool_value()),
+            "v10_2H20": lambda n : setattr(self, 'v10_2_h20', n.get_bool_value()),
             "v8_0": lambda n : setattr(self, 'v8_0', n.get_bool_value()),
             "v8_1": lambda n : setattr(self, 'v8_1', n.get_bool_value()),
         }
@@ -108,7 +108,7 @@ class WindowsMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -273,6 +273,23 @@ class WindowsMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         self._v10_1909 = value
     
     @property
+    def v10_2_h20(self,) -> Optional[bool]:
+        """
+        Gets the v10_2H20 property value. Windows 10 2H20 or later.
+        Returns: Optional[bool]
+        """
+        return self._v10_2_h20
+    
+    @v10_2_h20.setter
+    def v10_2_h20(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the v10_2H20 property value. Windows 10 2H20 or later.
+        Args:
+            value: Value to set for the v10_2_h20 property.
+        """
+        self._v10_2_h20 = value
+    
+    @property
     def v10_2004(self,) -> Optional[bool]:
         """
         Gets the v10_2004 property value. Windows 10 2004 or later.
@@ -302,26 +319,9 @@ class WindowsMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         """
         Sets the v10_21H1 property value. Windows 10 21H1 or later.
         Args:
-            value: Value to set for the v10_21H1 property.
+            value: Value to set for the v10_21_h1 property.
         """
         self._v10_21_h1 = value
-    
-    @property
-    def v10_2_h20(self,) -> Optional[bool]:
-        """
-        Gets the v10_2H20 property value. Windows 10 2H20 or later.
-        Returns: Optional[bool]
-        """
-        return self._v10_2_h20
-    
-    @v10_2_h20.setter
-    def v10_2_h20(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the v10_2H20 property value. Windows 10 2H20 or later.
-        Args:
-            value: Value to set for the v10_2H20 property.
-        """
-        self._v10_2_h20 = value
     
     @property
     def v8_0(self,) -> Optional[bool]:

@@ -24,7 +24,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the androidDeviceOwnerFullyManagedEnrollmentEnabled property value. Company codes for AndroidManagedStoreAccountEnterpriseSettings
         Args:
-            value: Value to set for the androidDeviceOwnerFullyManagedEnrollmentEnabled property.
+            value: Value to set for the android_device_owner_fully_managed_enrollment_enabled property.
         """
         self._android_device_owner_fully_managed_enrollment_enabled = value
     
@@ -41,7 +41,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the bindStatus property value. Bind status of the tenant with the Google EMM API
         Args:
-            value: Value to set for the bindStatus property.
+            value: Value to set for the bind_status property.
         """
         self._bind_status = value
     
@@ -58,7 +58,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the companyCodes property value. Company codes for AndroidManagedStoreAccountEnterpriseSettings
         Args:
-            value: Value to set for the companyCodes property.
+            value: Value to set for the company_codes property.
         """
         self._company_codes = value
     
@@ -119,7 +119,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the deviceOwnerManagementEnabled property value. Indicates if this account is flighting for Android Device Owner Management with CloudDPC.
         Args:
-            value: Value to set for the deviceOwnerManagementEnabled property.
+            value: Value to set for the device_owner_management_enabled property.
         """
         self._device_owner_management_enabled = value
     
@@ -136,7 +136,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the enrollmentTarget property value. Android for Work device management targeting type for the account
         Args:
-            value: Value to set for the enrollmentTarget property.
+            value: Value to set for the enrollment_target property.
         """
         self._enrollment_target = value
     
@@ -146,18 +146,18 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "android_device_owner_fully_managed_enrollment_enabled": lambda n : setattr(self, 'android_device_owner_fully_managed_enrollment_enabled', n.get_bool_value()),
-            "bind_status": lambda n : setattr(self, 'bind_status', n.get_enum_value(android_managed_store_account_bind_status.AndroidManagedStoreAccountBindStatus)),
-            "company_codes": lambda n : setattr(self, 'company_codes', n.get_collection_of_object_values(android_enrollment_company_code.AndroidEnrollmentCompanyCode)),
-            "device_owner_management_enabled": lambda n : setattr(self, 'device_owner_management_enabled', n.get_bool_value()),
-            "enrollment_target": lambda n : setattr(self, 'enrollment_target', n.get_enum_value(android_managed_store_account_enrollment_target.AndroidManagedStoreAccountEnrollmentTarget)),
-            "last_app_sync_date_time": lambda n : setattr(self, 'last_app_sync_date_time', n.get_datetime_value()),
-            "last_app_sync_status": lambda n : setattr(self, 'last_app_sync_status', n.get_enum_value(android_managed_store_account_app_sync_status.AndroidManagedStoreAccountAppSyncStatus)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "managed_google_play_initial_scope_tag_ids": lambda n : setattr(self, 'managed_google_play_initial_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "owner_organization_name": lambda n : setattr(self, 'owner_organization_name', n.get_str_value()),
-            "owner_user_principal_name": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
-            "target_group_ids": lambda n : setattr(self, 'target_group_ids', n.get_collection_of_primitive_values(str)),
+            "androidDeviceOwnerFullyManagedEnrollmentEnabled": lambda n : setattr(self, 'android_device_owner_fully_managed_enrollment_enabled', n.get_bool_value()),
+            "bindStatus": lambda n : setattr(self, 'bind_status', n.get_enum_value(android_managed_store_account_bind_status.AndroidManagedStoreAccountBindStatus)),
+            "companyCodes": lambda n : setattr(self, 'company_codes', n.get_collection_of_object_values(android_enrollment_company_code.AndroidEnrollmentCompanyCode)),
+            "deviceOwnerManagementEnabled": lambda n : setattr(self, 'device_owner_management_enabled', n.get_bool_value()),
+            "enrollmentTarget": lambda n : setattr(self, 'enrollment_target', n.get_enum_value(android_managed_store_account_enrollment_target.AndroidManagedStoreAccountEnrollmentTarget)),
+            "lastAppSyncDateTime": lambda n : setattr(self, 'last_app_sync_date_time', n.get_datetime_value()),
+            "lastAppSyncStatus": lambda n : setattr(self, 'last_app_sync_status', n.get_enum_value(android_managed_store_account_app_sync_status.AndroidManagedStoreAccountAppSyncStatus)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "managedGooglePlayInitialScopeTagIds": lambda n : setattr(self, 'managed_google_play_initial_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "ownerOrganizationName": lambda n : setattr(self, 'owner_organization_name', n.get_str_value()),
+            "ownerUserPrincipalName": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
+            "targetGroupIds": lambda n : setattr(self, 'target_group_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -176,7 +176,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the lastAppSyncDateTime property value. Last completion time for app sync
         Args:
-            value: Value to set for the lastAppSyncDateTime property.
+            value: Value to set for the last_app_sync_date_time property.
         """
         self._last_app_sync_date_time = value
     
@@ -193,7 +193,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the lastAppSyncStatus property value. Sync status of the tenant with the Google EMM API
         Args:
-            value: Value to set for the lastAppSyncStatus property.
+            value: Value to set for the last_app_sync_status property.
         """
         self._last_app_sync_status = value
     
@@ -210,7 +210,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modification time for Android enterprise settings
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -227,7 +227,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the managedGooglePlayInitialScopeTagIds property value. Initial scope tags for MGP apps
         Args:
-            value: Value to set for the managedGooglePlayInitialScopeTagIds property.
+            value: Value to set for the managed_google_play_initial_scope_tag_ids property.
         """
         self._managed_google_play_initial_scope_tag_ids = value
     
@@ -244,7 +244,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the ownerOrganizationName property value. Organization name used when onboarding Android Enterprise
         Args:
-            value: Value to set for the ownerOrganizationName property.
+            value: Value to set for the owner_organization_name property.
         """
         self._owner_organization_name = value
     
@@ -261,7 +261,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the ownerUserPrincipalName property value. Owner UPN that created the enterprise
         Args:
-            value: Value to set for the ownerUserPrincipalName property.
+            value: Value to set for the owner_user_principal_name property.
         """
         self._owner_user_principal_name = value
     
@@ -300,7 +300,7 @@ class AndroidManagedStoreAccountEnterpriseSettings(entity.Entity):
         """
         Sets the targetGroupIds property value. Specifies which AAD groups can enroll devices in Android for Work device management if enrollmentTarget is set to 'Targeted'
         Args:
-            value: Value to set for the targetGroupIds property.
+            value: Value to set for the target_group_ids property.
         """
         self._target_group_ids = value
     

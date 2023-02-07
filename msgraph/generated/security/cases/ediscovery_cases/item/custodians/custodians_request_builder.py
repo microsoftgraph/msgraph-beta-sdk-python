@@ -13,21 +13,14 @@ from typing import Any, Callable, Dict, List, Optional, Union
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 ediscovery_custodian = lazy_import('msgraph.generated.models.security.ediscovery_custodian')
 ediscovery_custodian_collection_response = lazy_import('msgraph.generated.models.security.ediscovery_custodian_collection_response')
-apply_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.apply_hold.apply_hold_request_builder')
 count_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.count.count_request_builder')
-remove_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.remove_hold.remove_hold_request_builder')
+microsoft_graph_security_apply_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.microsoft_graph_security_apply_hold.microsoft_graph_security_apply_hold_request_builder')
+microsoft_graph_security_remove_hold_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.custodians.microsoft_graph_security_remove_hold.microsoft_graph_security_remove_hold_request_builder')
 
 class CustodiansRequestBuilder():
     """
     Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
     """
-    @property
-    def apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
-        """
-        Provides operations to call the applyHold method.
-        """
-        return apply_hold_request_builder.ApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
@@ -36,11 +29,18 @@ class CustodiansRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
+    def microsoft_graph_security_apply_hold(self) -> microsoft_graph_security_apply_hold_request_builder.MicrosoftGraphSecurityApplyHoldRequestBuilder:
+        """
+        Provides operations to call the applyHold method.
+        """
+        return microsoft_graph_security_apply_hold_request_builder.MicrosoftGraphSecurityApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_security_remove_hold(self) -> microsoft_graph_security_remove_hold_request_builder.MicrosoftGraphSecurityRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        return remove_hold_request_builder.RemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_remove_hold_request_builder.MicrosoftGraphSecurityRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -60,12 +60,11 @@ class CustodiansRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]:
         """
         Get a list of the custodian objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class CustodiansRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_custodian_collection_response.EdiscoveryCustodianCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ediscovery_custodian.EdiscoveryCustodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_custodian.EdiscoveryCustodian]:
+    async def post(self,body: Optional[ediscovery_custodian.EdiscoveryCustodian] = None, request_configuration: Optional[CustodiansRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_custodian.EdiscoveryCustodian]:
         """
         Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_custodian.EdiscoveryCustodian]
         """
         if body is None:
@@ -99,7 +97,7 @@ class CustodiansRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_custodian.EdiscoveryCustodian, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_custodian.EdiscoveryCustodian, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustodiansRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

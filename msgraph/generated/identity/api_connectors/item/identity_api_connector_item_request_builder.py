@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-upload_client_certificate_request_builder = lazy_import('msgraph.generated.identity.api_connectors.item.upload_client_certificate.upload_client_certificate_request_builder')
+microsoft_graph_upload_client_certificate_request_builder = lazy_import('msgraph.generated.identity.api_connectors.item.microsoft_graph_upload_client_certificate.microsoft_graph_upload_client_certificate_request_builder')
 identity_api_connector = lazy_import('msgraph.generated.models.identity_api_connector')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class IdentityApiConnectorItemRequestBuilder():
     Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
     """
     @property
-    def upload_client_certificate(self) -> upload_client_certificate_request_builder.UploadClientCertificateRequestBuilder:
+    def microsoft_graph_upload_client_certificate(self) -> microsoft_graph_upload_client_certificate_request_builder.MicrosoftGraphUploadClientCertificateRequestBuilder:
         """
         Provides operations to call the uploadClientCertificate method.
         """
-        return upload_client_certificate_request_builder.UploadClientCertificateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_upload_client_certificate_request_builder.MicrosoftGraphUploadClientCertificateRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class IdentityApiConnectorItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[IdentityApiConnectorItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[IdentityApiConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property apiConnectors for identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class IdentityApiConnectorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[IdentityApiConnectorItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_api_connector.IdentityApiConnector]:
+    async def get(self,request_configuration: Optional[IdentityApiConnectorItemRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_api_connector.IdentityApiConnector]:
         """
         Represents entry point for API connectors.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_api_connector.IdentityApiConnector]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class IdentityApiConnectorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_api_connector.IdentityApiConnector, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_api_connector.IdentityApiConnector, error_mapping)
     
-    async def patch(self,body: Optional[identity_api_connector.IdentityApiConnector] = None, request_configuration: Optional[IdentityApiConnectorItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_api_connector.IdentityApiConnector]:
+    async def patch(self,body: Optional[identity_api_connector.IdentityApiConnector] = None, request_configuration: Optional[IdentityApiConnectorItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[identity_api_connector.IdentityApiConnector]:
         """
         Update the navigation property apiConnectors in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_api_connector.IdentityApiConnector]
         """
         if body is None:
@@ -100,7 +97,7 @@ class IdentityApiConnectorItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_api_connector.IdentityApiConnector, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_api_connector.IdentityApiConnector, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityApiConnectorItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

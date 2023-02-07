@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.count.count_request_builder')
-enroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.enroll_assets.enroll_assets_request_builder')
-enroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.enroll_assets_by_id.enroll_assets_by_id_request_builder')
-unenroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.unenroll_assets.unenroll_assets_request_builder')
-unenroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.unenroll_assets_by_id.unenroll_assets_by_id_request_builder')
+microsoft_graph_windows_updates_enroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.microsoft_graph_windows_updates_enroll_assets.microsoft_graph_windows_updates_enroll_assets_request_builder')
+microsoft_graph_windows_updates_enroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.microsoft_graph_windows_updates_enroll_assets_by_id.microsoft_graph_windows_updates_enroll_assets_by_id_request_builder')
+microsoft_graph_windows_updates_unenroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.microsoft_graph_windows_updates_unenroll_assets.microsoft_graph_windows_updates_unenroll_assets_request_builder')
+microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.microsoft_graph_windows_updates_unenroll_assets_by_id.microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 updatable_asset_collection_response = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_collection_response')
@@ -31,32 +31,32 @@ class MembersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_assets(self) -> enroll_assets_request_builder.EnrollAssetsRequestBuilder:
+    def microsoft_graph_windows_updates_enroll_assets(self) -> microsoft_graph_windows_updates_enroll_assets_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsRequestBuilder:
         """
         Provides operations to call the enrollAssets method.
         """
-        return enroll_assets_request_builder.EnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_enroll_assets_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_assets_by_id(self) -> enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder:
+    def microsoft_graph_windows_updates_enroll_assets_by_id(self) -> microsoft_graph_windows_updates_enroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the enrollAssetsById method.
         """
-        return enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_enroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesEnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unenroll_assets(self) -> unenroll_assets_request_builder.UnenrollAssetsRequestBuilder:
+    def microsoft_graph_windows_updates_unenroll_assets(self) -> microsoft_graph_windows_updates_unenroll_assets_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsRequestBuilder:
         """
         Provides operations to call the unenrollAssets method.
         """
-        return unenroll_assets_request_builder.UnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_unenroll_assets_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unenroll_assets_by_id(self) -> unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder:
+    def microsoft_graph_windows_updates_unenroll_assets_by_id(self) -> microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the unenrollAssetsById method.
         """
-        return unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_windows_updates_unenroll_assets_by_id_request_builder.MicrosoftGraphWindowsUpdatesUnenrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -76,12 +76,11 @@ class MembersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
         List the updatableAsset resources that are members of a deploymentAudience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class MembersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[MembersRequestBuilderPostRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Create new navigation property to members for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         if body is None:
@@ -115,7 +113,7 @@ class MembersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MembersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

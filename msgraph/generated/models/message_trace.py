@@ -10,7 +10,7 @@ message_recipient = lazy_import('msgraph.generated.models.message_recipient')
 class MessageTrace(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new MessageTrace and sets the default values.
+        Instantiates a new messageTrace and sets the default values.
         """
         super().__init__()
         # The destinationIPAddress property
@@ -57,7 +57,7 @@ class MessageTrace(entity.Entity):
         """
         Sets the destinationIPAddress property value. The destinationIPAddress property
         Args:
-            value: Value to set for the destinationIPAddress property.
+            value: Value to set for the destination_i_p_address property.
         """
         self._destination_i_p_address = value
     
@@ -67,13 +67,13 @@ class MessageTrace(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "destination_i_p_address": lambda n : setattr(self, 'destination_i_p_address', n.get_str_value()),
-            "message_id": lambda n : setattr(self, 'message_id', n.get_str_value()),
-            "received_date_time": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
+            "destinationIPAddress": lambda n : setattr(self, 'destination_i_p_address', n.get_str_value()),
+            "messageId": lambda n : setattr(self, 'message_id', n.get_str_value()),
+            "receivedDateTime": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(message_recipient.MessageRecipient)),
-            "sender_email": lambda n : setattr(self, 'sender_email', n.get_str_value()),
+            "senderEmail": lambda n : setattr(self, 'sender_email', n.get_str_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "source_i_p_address": lambda n : setattr(self, 'source_i_p_address', n.get_str_value()),
+            "sourceIPAddress": lambda n : setattr(self, 'source_i_p_address', n.get_str_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -93,7 +93,7 @@ class MessageTrace(entity.Entity):
         """
         Sets the messageId property value. The messageId property
         Args:
-            value: Value to set for the messageId property.
+            value: Value to set for the message_id property.
         """
         self._message_id = value
     
@@ -110,7 +110,7 @@ class MessageTrace(entity.Entity):
         """
         Sets the receivedDateTime property value. The receivedDateTime property
         Args:
-            value: Value to set for the receivedDateTime property.
+            value: Value to set for the received_date_time property.
         """
         self._received_date_time = value
     
@@ -144,7 +144,7 @@ class MessageTrace(entity.Entity):
         """
         Sets the senderEmail property value. The senderEmail property
         Args:
-            value: Value to set for the senderEmail property.
+            value: Value to set for the sender_email property.
         """
         self._sender_email = value
     
@@ -196,7 +196,7 @@ class MessageTrace(entity.Entity):
         """
         Sets the sourceIPAddress property value. The sourceIPAddress property
         Args:
-            value: Value to set for the sourceIPAddress property.
+            value: Value to set for the source_i_p_address property.
         """
         self._source_i_p_address = value
     

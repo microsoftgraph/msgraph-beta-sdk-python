@@ -38,7 +38,7 @@ class InformationProtectionContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentMethod property value. The assignmentMethod property
         Args:
-            value: Value to set for the assignmentMethod property.
+            value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
     
@@ -83,7 +83,7 @@ class InformationProtectionContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the creationDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -93,8 +93,8 @@ class InformationProtectionContentLabel(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_method": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "label": lambda n : setattr(self, 'label', n.get_object_value(label_details.LabelDetails)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -130,7 +130,7 @@ class InformationProtectionContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

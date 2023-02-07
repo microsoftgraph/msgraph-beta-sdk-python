@@ -35,12 +35,11 @@ class ApprovalStepItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ApprovalStepItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ApprovalStepItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property steps for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ApprovalStepItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ApprovalStepItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[approval_step.ApprovalStep]:
+    async def get(self,request_configuration: Optional[ApprovalStepItemRequestBuilderGetRequestConfiguration] = None) -> Optional[approval_step.ApprovalStep]:
         """
         Get steps from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_step.ApprovalStep]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ApprovalStepItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, approval_step.ApprovalStep, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, approval_step.ApprovalStep, error_mapping)
     
-    async def patch(self,body: Optional[approval_step.ApprovalStep] = None, request_configuration: Optional[ApprovalStepItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[approval_step.ApprovalStep]:
+    async def patch(self,body: Optional[approval_step.ApprovalStep] = None, request_configuration: Optional[ApprovalStepItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[approval_step.ApprovalStep]:
         """
         Update the navigation property steps in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[approval_step.ApprovalStep]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ApprovalStepItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, approval_step.ApprovalStep, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, approval_step.ApprovalStep, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ApprovalStepItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

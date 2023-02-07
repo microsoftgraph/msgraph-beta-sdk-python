@@ -42,12 +42,12 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "publication_id": lambda n : setattr(self, 'publication_id', n.get_str_value()),
-            "published_to_plan_id": lambda n : setattr(self, 'published_to_plan_id', n.get_str_value()),
-            "publishing_team_id": lambda n : setattr(self, 'publishing_team_id', n.get_str_value()),
-            "publishing_team_name": lambda n : setattr(self, 'publishing_team_name', n.get_str_value()),
+            "publicationId": lambda n : setattr(self, 'publication_id', n.get_str_value()),
+            "publishedToPlanId": lambda n : setattr(self, 'published_to_plan_id', n.get_str_value()),
+            "publishingTeamId": lambda n : setattr(self, 'publishing_team_id', n.get_str_value()),
+            "publishingTeamName": lambda n : setattr(self, 'publishing_team_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,7 +66,7 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         """
         Sets the lastModifiedDateTime property value. The date and time when this task was last modified by the publication process. Read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -83,7 +83,7 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -100,7 +100,7 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         """
         Sets the publicationId property value. The identifier of the publication. Read-only.
         Args:
-            value: Value to set for the publicationId property.
+            value: Value to set for the publication_id property.
         """
         self._publication_id = value
     
@@ -117,7 +117,7 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         """
         Sets the publishedToPlanId property value. The identifier of the plannerPlan this task was originally placed in. Read-only.
         Args:
-            value: Value to set for the publishedToPlanId property.
+            value: Value to set for the published_to_plan_id property.
         """
         self._published_to_plan_id = value
     
@@ -134,7 +134,7 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         """
         Sets the publishingTeamId property value. The identifier of the team that initiated the publication process. Read-only.
         Args:
-            value: Value to set for the publishingTeamId property.
+            value: Value to set for the publishing_team_id property.
         """
         self._publishing_team_id = value
     
@@ -151,7 +151,7 @@ class PlannerTeamsPublicationInfo(planner_task_creation.PlannerTaskCreation):
         """
         Sets the publishingTeamName property value. The display name of the team that initiated the publication process. This display name is for reference only, and might not represent the most up-to-date name of the team. Read-only.
         Args:
-            value: Value to set for the publishingTeamName property.
+            value: Value to set for the publishing_team_name property.
         """
         self._publishing_team_name = value
     

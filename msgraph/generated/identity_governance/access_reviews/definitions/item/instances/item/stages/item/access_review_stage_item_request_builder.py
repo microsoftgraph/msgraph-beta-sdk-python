@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 decisions_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.decisions_request_builder')
 access_review_instance_decision_item_item_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.decisions.item.access_review_instance_decision_item_item_request_builder')
-stop_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.stop.stop_request_builder')
+microsoft_graph_stop_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.stages.item.microsoft_graph_stop.microsoft_graph_stop_request_builder')
 access_review_stage = lazy_import('msgraph.generated.models.access_review_stage')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -28,11 +28,11 @@ class AccessReviewStageItemRequestBuilder():
         return decisions_request_builder.DecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
+    def microsoft_graph_stop(self) -> microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder:
         """
         Provides operations to call the stop method.
         """
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -65,12 +65,11 @@ class AccessReviewStageItemRequestBuilder():
         url_tpl_params["accessReviewInstanceDecisionItem%2Did"] = id
         return access_review_instance_decision_item_item_request_builder.AccessReviewInstanceDecisionItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[AccessReviewStageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewStageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property stages for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -81,14 +80,13 @@ class AccessReviewStageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewStageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_stage.AccessReviewStage]:
+    async def get(self,request_configuration: Optional[AccessReviewStageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_stage.AccessReviewStage]:
         """
         If the instance has multiple stages, this returns the collection of stages. A new stage will only be created when the previous stage ends. The existence, number, and settings of stages on a review instance are created based on the accessReviewStageSettings on the parent accessReviewScheduleDefinition.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_stage.AccessReviewStage]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +98,14 @@ class AccessReviewStageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_stage.AccessReviewStage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_stage.AccessReviewStage, error_mapping)
     
-    async def patch(self,body: Optional[access_review_stage.AccessReviewStage] = None, request_configuration: Optional[AccessReviewStageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_stage.AccessReviewStage]:
+    async def patch(self,body: Optional[access_review_stage.AccessReviewStage] = None, request_configuration: Optional[AccessReviewStageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_stage.AccessReviewStage]:
         """
         Update the navigation property stages in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_stage.AccessReviewStage]
         """
         if body is None:
@@ -122,7 +119,7 @@ class AccessReviewStageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_stage.AccessReviewStage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_stage.AccessReviewStage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewStageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

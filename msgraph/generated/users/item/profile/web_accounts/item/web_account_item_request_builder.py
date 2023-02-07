@@ -35,12 +35,11 @@ class WebAccountItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property webAccounts for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class WebAccountItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[web_account.WebAccount]:
+    async def get(self,request_configuration: Optional[WebAccountItemRequestBuilderGetRequestConfiguration] = None) -> Optional[web_account.WebAccount]:
         """
         Represents web accounts the user has indicated they use or has added to their user profile.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[web_account.WebAccount]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class WebAccountItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, web_account.WebAccount, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, web_account.WebAccount, error_mapping)
     
-    async def patch(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[web_account.WebAccount]:
+    async def patch(self,body: Optional[web_account.WebAccount] = None, request_configuration: Optional[WebAccountItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[web_account.WebAccount]:
         """
         Update the navigation property webAccounts in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[web_account.WebAccount]
         """
         if body is None:
@@ -92,7 +89,7 @@ class WebAccountItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, web_account.WebAccount, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, web_account.WebAccount, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WebAccountItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -34,7 +34,7 @@ class DeliveryOptimizationGroupIdSourceOptions(delivery_optimization_group_id_so
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id_source_option": lambda n : setattr(self, 'group_id_source_option', n.get_enum_value(delivery_optimization_group_id_options_type.DeliveryOptimizationGroupIdOptionsType)),
+            "groupIdSourceOption": lambda n : setattr(self, 'group_id_source_option', n.get_enum_value(delivery_optimization_group_id_options_type.DeliveryOptimizationGroupIdOptionsType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class DeliveryOptimizationGroupIdSourceOptions(delivery_optimization_group_id_so
         """
         Sets the groupIdSourceOption property value. Possible values for the DeliveryOptimizationGroupIdOptionsType setting.
         Args:
-            value: Value to set for the groupIdSourceOption property.
+            value: Value to set for the group_id_source_option property.
         """
         self._group_id_source_option = value
     

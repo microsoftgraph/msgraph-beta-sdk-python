@@ -1,7 +1,7 @@
 from enum import Enum
 
 class AuthenticationStrengthRequirements(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Mfa = "mfa",
     UnknownFutureValue = "unknownFutureValue",
 

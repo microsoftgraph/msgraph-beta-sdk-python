@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementConfigurationPlatforms(Enum):
     # None.
-    None_escaped = "none",
+    None_ = "none",
     # Android.
     Android = "android",
     # iOS.

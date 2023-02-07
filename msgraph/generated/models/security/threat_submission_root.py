@@ -15,10 +15,10 @@ class ThreatSubmissionRoot(entity.Entity):
         Instantiates a new threatSubmissionRoot and sets the default values.
         """
         super().__init__()
-        # The emailThreats property
-        self._email_threats: Optional[List[email_threat_submission.EmailThreatSubmission]] = None
         # The emailThreatSubmissionPolicies property
         self._email_threat_submission_policies: Optional[List[email_threat_submission_policy.EmailThreatSubmissionPolicy]] = None
+        # The emailThreats property
+        self._email_threats: Optional[List[email_threat_submission.EmailThreatSubmission]] = None
         # The fileThreats property
         self._file_threats: Optional[List[file_threat_submission.FileThreatSubmission]] = None
         # The OdataType property
@@ -39,23 +39,6 @@ class ThreatSubmissionRoot(entity.Entity):
         return ThreatSubmissionRoot()
     
     @property
-    def email_threats(self,) -> Optional[List[email_threat_submission.EmailThreatSubmission]]:
-        """
-        Gets the emailThreats property value. The emailThreats property
-        Returns: Optional[List[email_threat_submission.EmailThreatSubmission]]
-        """
-        return self._email_threats
-    
-    @email_threats.setter
-    def email_threats(self,value: Optional[List[email_threat_submission.EmailThreatSubmission]] = None) -> None:
-        """
-        Sets the emailThreats property value. The emailThreats property
-        Args:
-            value: Value to set for the emailThreats property.
-        """
-        self._email_threats = value
-    
-    @property
     def email_threat_submission_policies(self,) -> Optional[List[email_threat_submission_policy.EmailThreatSubmissionPolicy]]:
         """
         Gets the emailThreatSubmissionPolicies property value. The emailThreatSubmissionPolicies property
@@ -68,9 +51,26 @@ class ThreatSubmissionRoot(entity.Entity):
         """
         Sets the emailThreatSubmissionPolicies property value. The emailThreatSubmissionPolicies property
         Args:
-            value: Value to set for the emailThreatSubmissionPolicies property.
+            value: Value to set for the email_threat_submission_policies property.
         """
         self._email_threat_submission_policies = value
+    
+    @property
+    def email_threats(self,) -> Optional[List[email_threat_submission.EmailThreatSubmission]]:
+        """
+        Gets the emailThreats property value. The emailThreats property
+        Returns: Optional[List[email_threat_submission.EmailThreatSubmission]]
+        """
+        return self._email_threats
+    
+    @email_threats.setter
+    def email_threats(self,value: Optional[List[email_threat_submission.EmailThreatSubmission]] = None) -> None:
+        """
+        Sets the emailThreats property value. The emailThreats property
+        Args:
+            value: Value to set for the email_threats property.
+        """
+        self._email_threats = value
     
     @property
     def file_threats(self,) -> Optional[List[file_threat_submission.FileThreatSubmission]]:
@@ -85,7 +85,7 @@ class ThreatSubmissionRoot(entity.Entity):
         """
         Sets the fileThreats property value. The fileThreats property
         Args:
-            value: Value to set for the fileThreats property.
+            value: Value to set for the file_threats property.
         """
         self._file_threats = value
     
@@ -95,10 +95,10 @@ class ThreatSubmissionRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "email_threats": lambda n : setattr(self, 'email_threats', n.get_collection_of_object_values(email_threat_submission.EmailThreatSubmission)),
-            "email_threat_submission_policies": lambda n : setattr(self, 'email_threat_submission_policies', n.get_collection_of_object_values(email_threat_submission_policy.EmailThreatSubmissionPolicy)),
-            "file_threats": lambda n : setattr(self, 'file_threats', n.get_collection_of_object_values(file_threat_submission.FileThreatSubmission)),
-            "url_threats": lambda n : setattr(self, 'url_threats', n.get_collection_of_object_values(url_threat_submission.UrlThreatSubmission)),
+            "emailThreats": lambda n : setattr(self, 'email_threats', n.get_collection_of_object_values(email_threat_submission.EmailThreatSubmission)),
+            "emailThreatSubmissionPolicies": lambda n : setattr(self, 'email_threat_submission_policies', n.get_collection_of_object_values(email_threat_submission_policy.EmailThreatSubmissionPolicy)),
+            "fileThreats": lambda n : setattr(self, 'file_threats', n.get_collection_of_object_values(file_threat_submission.FileThreatSubmission)),
+            "urlThreats": lambda n : setattr(self, 'url_threats', n.get_collection_of_object_values(url_threat_submission.UrlThreatSubmission)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -131,7 +131,7 @@ class ThreatSubmissionRoot(entity.Entity):
         """
         Sets the urlThreats property value. The urlThreats property
         Args:
-            value: Value to set for the urlThreats property.
+            value: Value to set for the url_threats property.
         """
         self._url_threats = value
     

@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-copy_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.copy.copy_request_builder')
 message_rules_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.message_rules.message_rules_request_builder')
 message_rule_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.message_rules.item.message_rule_item_request_builder')
 messages_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.messages.messages_request_builder')
 message_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.messages.item.message_item_request_builder')
-move_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.move.move_request_builder')
+microsoft_graph_copy_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.microsoft_graph_copy.microsoft_graph_copy_request_builder')
+microsoft_graph_move_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.microsoft_graph_move.microsoft_graph_move_request_builder')
 multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
 multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
 single_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.mail_folders.item.child_folders.item.single_value_extended_properties.single_value_extended_properties_request_builder')
@@ -29,13 +29,6 @@ class MailFolderItemRequestBuilder():
     """
     Provides operations to manage the childFolders property of the microsoft.graph.mailFolder entity.
     """
-    @property
-    def copy(self) -> copy_request_builder.CopyRequestBuilder:
-        """
-        Provides operations to call the copy method.
-        """
-        return copy_request_builder.CopyRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def message_rules(self) -> message_rules_request_builder.MessageRulesRequestBuilder:
         """
@@ -51,11 +44,18 @@ class MailFolderItemRequestBuilder():
         return messages_request_builder.MessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def move(self) -> move_request_builder.MoveRequestBuilder:
+    def microsoft_graph_copy(self) -> microsoft_graph_copy_request_builder.MicrosoftGraphCopyRequestBuilder:
+        """
+        Provides operations to call the copy method.
+        """
+        return microsoft_graph_copy_request_builder.MicrosoftGraphCopyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_move(self) -> microsoft_graph_move_request_builder.MicrosoftGraphMoveRequestBuilder:
         """
         Provides operations to call the move method.
         """
-        return move_request_builder.MoveRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_move_request_builder.MicrosoftGraphMoveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
@@ -96,12 +96,11 @@ class MailFolderItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MailFolderItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MailFolderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property childFolders for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -112,14 +111,13 @@ class MailFolderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MailFolderItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mail_folder.MailFolder]:
+    async def get(self,request_configuration: Optional[MailFolderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mail_folder.MailFolder]:
         """
         The collection of child folders in the mailFolder.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mail_folder.MailFolder]
         """
         request_info = self.to_get_request_information(
@@ -131,7 +129,7 @@ class MailFolderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mail_folder.MailFolder, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mail_folder.MailFolder, error_mapping)
     
     def message_rules_by_id(self,id: str) -> message_rule_item_request_builder.MessageRuleItemRequestBuilder:
         """
@@ -172,13 +170,12 @@ class MailFolderItemRequestBuilder():
         url_tpl_params["multiValueLegacyExtendedProperty%2Did"] = id
         return multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[mail_folder.MailFolder] = None, request_configuration: Optional[MailFolderItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mail_folder.MailFolder]:
+    async def patch(self,body: Optional[mail_folder.MailFolder] = None, request_configuration: Optional[MailFolderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mail_folder.MailFolder]:
         """
         Update the navigation property childFolders in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mail_folder.MailFolder]
         """
         if body is None:
@@ -192,7 +189,7 @@ class MailFolderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mail_folder.MailFolder, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mail_folder.MailFolder, error_mapping)
     
     def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
         """

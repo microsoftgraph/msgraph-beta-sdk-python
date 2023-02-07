@@ -20,7 +20,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the authMethods property value. Represents the authentication method that the user has registered. Possible values are: email, mobilePhone, officePhone,  securityQuestion (only used for self-service password reset), appNotification,  appCode, alternateMobilePhone (supported only in registration),  fido,  appPassword,  unknownFutureValue.
         Args:
-            value: Value to set for the authMethods property.
+            value: Value to set for the auth_methods property.
         """
         self._auth_methods = value
     
@@ -64,13 +64,13 @@ class CredentialUserRegistrationDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auth_methods": lambda n : setattr(self, 'auth_methods', n.get_collection_of_enum_values(registration_auth_method.RegistrationAuthMethod)),
-            "is_capable": lambda n : setattr(self, 'is_capable', n.get_bool_value()),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "is_mfa_registered": lambda n : setattr(self, 'is_mfa_registered', n.get_bool_value()),
-            "is_registered": lambda n : setattr(self, 'is_registered', n.get_bool_value()),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "authMethods": lambda n : setattr(self, 'auth_methods', n.get_collection_of_enum_values(registration_auth_method.RegistrationAuthMethod)),
+            "isCapable": lambda n : setattr(self, 'is_capable', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "isMfaRegistered": lambda n : setattr(self, 'is_mfa_registered', n.get_bool_value()),
+            "isRegistered": lambda n : setattr(self, 'is_registered', n.get_bool_value()),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -89,7 +89,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the isCapable property value. Indicates whether the user is ready to perform self-service password reset or MFA.
         Args:
-            value: Value to set for the isCapable property.
+            value: Value to set for the is_capable property.
         """
         self._is_capable = value
     
@@ -106,7 +106,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the isEnabled property value. Indicates whether the user enabled to perform self-service password reset.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -123,7 +123,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the isMfaRegistered property value. Indicates whether the user is registered for MFA.
         Args:
-            value: Value to set for the isMfaRegistered property.
+            value: Value to set for the is_mfa_registered property.
         """
         self._is_mfa_registered = value
     
@@ -140,7 +140,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the isRegistered property value. Indicates whether the user has registered any authentication methods for self-service password reset.
         Args:
-            value: Value to set for the isRegistered property.
+            value: Value to set for the is_registered property.
         """
         self._is_registered = value
     
@@ -174,7 +174,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the userDisplayName property value. Provides the user name of the corresponding user.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -191,7 +191,7 @@ class CredentialUserRegistrationDetails(entity.Entity):
         """
         Sets the userPrincipalName property value. Provides the user principal name of the corresponding user.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

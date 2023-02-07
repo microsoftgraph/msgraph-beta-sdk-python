@@ -64,7 +64,7 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         """
         Sets the exchangeConnection property value. Information about the Exchange connection.
         Args:
-            value: Value to set for the exchangeConnection property.
+            value: Value to set for the exchange_connection property.
         """
         self._exchange_connection = value
     
@@ -74,10 +74,10 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "exchange_connection": lambda n : setattr(self, 'exchange_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
+            "exchangeConnection": lambda n : setattr(self, 'exchange_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "skype_connection": lambda n : setattr(self, 'skype_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
-            "teams_connection": lambda n : setattr(self, 'teams_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
+            "skypeConnection": lambda n : setattr(self, 'skype_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
+            "teamsConnection": lambda n : setattr(self, 'teams_connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
         }
         return fields
     
@@ -94,7 +94,7 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -125,7 +125,7 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         """
         Sets the skypeConnection property value. Information about the Skype for Business connection.
         Args:
-            value: Value to set for the skypeConnection property.
+            value: Value to set for the skype_connection property.
         """
         self._skype_connection = value
     
@@ -142,7 +142,7 @@ class TeamworkLoginStatus(AdditionalDataHolder, Parsable):
         """
         Sets the teamsConnection property value. Information about the Teams connection.
         Args:
-            value: Value to set for the teamsConnection property.
+            value: Value to set for the teams_connection property.
         """
         self._teams_connection = value
     

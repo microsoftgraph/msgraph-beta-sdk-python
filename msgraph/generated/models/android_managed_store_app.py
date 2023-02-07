@@ -20,7 +20,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the appIdentifier property value. The Identity Name.
         Args:
-            value: Value to set for the appIdentifier property.
+            value: Value to set for the app_identifier property.
         """
         self._app_identifier = value
     
@@ -37,7 +37,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the appStoreUrl property value. The Play for Work Store app URL.
         Args:
-            value: Value to set for the appStoreUrl property.
+            value: Value to set for the app_store_url property.
         """
         self._app_store_url = value
     
@@ -54,7 +54,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the appTracks property value. The tracks that are visible to this enterprise.
         Args:
-            value: Value to set for the appTracks property.
+            value: Value to set for the app_tracks property.
         """
         self._app_tracks = value
     
@@ -101,15 +101,15 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_identifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
-            "app_store_url": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
-            "app_tracks": lambda n : setattr(self, 'app_tracks', n.get_collection_of_object_values(android_managed_store_app_track.AndroidManagedStoreAppTrack)),
-            "is_private": lambda n : setattr(self, 'is_private', n.get_bool_value()),
-            "is_system_app": lambda n : setattr(self, 'is_system_app', n.get_bool_value()),
-            "package_id": lambda n : setattr(self, 'package_id', n.get_str_value()),
-            "supports_oem_config": lambda n : setattr(self, 'supports_oem_config', n.get_bool_value()),
-            "total_license_count": lambda n : setattr(self, 'total_license_count', n.get_int_value()),
-            "used_license_count": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
+            "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
+            "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
+            "appTracks": lambda n : setattr(self, 'app_tracks', n.get_collection_of_object_values(android_managed_store_app_track.AndroidManagedStoreAppTrack)),
+            "isPrivate": lambda n : setattr(self, 'is_private', n.get_bool_value()),
+            "isSystemApp": lambda n : setattr(self, 'is_system_app', n.get_bool_value()),
+            "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
+            "supportsOemConfig": lambda n : setattr(self, 'supports_oem_config', n.get_bool_value()),
+            "totalLicenseCount": lambda n : setattr(self, 'total_license_count', n.get_int_value()),
+            "usedLicenseCount": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -128,7 +128,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the isPrivate property value. Indicates whether the app is only available to a given enterprise's users.
         Args:
-            value: Value to set for the isPrivate property.
+            value: Value to set for the is_private property.
         """
         self._is_private = value
     
@@ -145,7 +145,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the isSystemApp property value. Indicates whether the app is a preinstalled system app.
         Args:
-            value: Value to set for the isSystemApp property.
+            value: Value to set for the is_system_app property.
         """
         self._is_system_app = value
     
@@ -162,7 +162,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the packageId property value. The package identifier.
         Args:
-            value: Value to set for the packageId property.
+            value: Value to set for the package_id property.
         """
         self._package_id = value
     
@@ -198,7 +198,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the supportsOemConfig property value. Whether this app supports OEMConfig policy.
         Args:
-            value: Value to set for the supportsOemConfig property.
+            value: Value to set for the supports_oem_config property.
         """
         self._supports_oem_config = value
     
@@ -215,7 +215,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the totalLicenseCount property value. The total number of VPP licenses.
         Args:
-            value: Value to set for the totalLicenseCount property.
+            value: Value to set for the total_license_count property.
         """
         self._total_license_count = value
     
@@ -232,7 +232,7 @@ class AndroidManagedStoreApp(mobile_app.MobileApp):
         """
         Sets the usedLicenseCount property value. The number of VPP licenses in use.
         Args:
-            value: Value to set for the usedLicenseCount property.
+            value: Value to set for the used_license_count property.
         """
         self._used_license_count = value
     

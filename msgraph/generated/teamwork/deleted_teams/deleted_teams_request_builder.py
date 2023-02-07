@@ -14,7 +14,7 @@ deleted_team = lazy_import('msgraph.generated.models.deleted_team')
 deleted_team_collection_response = lazy_import('msgraph.generated.models.deleted_team_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.count.count_request_builder')
-get_all_messages_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.get_all_messages.get_all_messages_request_builder')
+microsoft_graph_get_all_messages_request_builder = lazy_import('msgraph.generated.teamwork.deleted_teams.microsoft_graph_get_all_messages.microsoft_graph_get_all_messages_request_builder')
 
 class DeletedTeamsRequestBuilder():
     """
@@ -26,6 +26,13 @@ class DeletedTeamsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_all_messages(self) -> microsoft_graph_get_all_messages_request_builder.MicrosoftGraphGetAllMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllMessages method.
+        """
+        return microsoft_graph_get_all_messages_request_builder.MicrosoftGraphGetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,12 +52,11 @@ class DeletedTeamsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeletedTeamsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[deleted_team_collection_response.DeletedTeamCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeletedTeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[deleted_team_collection_response.DeletedTeamCollectionResponse]:
         """
         Get a list of the deletedTeam objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deleted_team_collection_response.DeletedTeamCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class DeletedTeamsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, deleted_team_collection_response.DeletedTeamCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, deleted_team_collection_response.DeletedTeamCollectionResponse, error_mapping)
     
-    def get_all_messages(self,) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
-        """
-        Provides operations to call the getAllMessages method.
-        Returns: get_all_messages_request_builder.GetAllMessagesRequestBuilder
-        """
-        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[deleted_team.DeletedTeam] = None, request_configuration: Optional[DeletedTeamsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[deleted_team.DeletedTeam]:
+    async def post(self,body: Optional[deleted_team.DeletedTeam] = None, request_configuration: Optional[DeletedTeamsRequestBuilderPostRequestConfiguration] = None) -> Optional[deleted_team.DeletedTeam]:
         """
         Create new navigation property to deletedTeams for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deleted_team.DeletedTeam]
         """
         if body is None:
@@ -91,7 +89,7 @@ class DeletedTeamsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, deleted_team.DeletedTeam, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, deleted_team.DeletedTeam, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeletedTeamsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

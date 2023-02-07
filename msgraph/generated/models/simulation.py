@@ -28,7 +28,7 @@ class Simulation(entity.Entity):
         """
         Sets the attackTechnique property value. The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.
         Args:
-            value: Value to set for the attackTechnique property.
+            value: Value to set for the attack_technique property.
         """
         self._attack_technique = value
     
@@ -45,7 +45,7 @@ class Simulation(entity.Entity):
         """
         Sets the attackType property value. Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.
         Args:
-            value: Value to set for the attackType property.
+            value: Value to set for the attack_type property.
         """
         self._attack_type = value
     
@@ -62,7 +62,7 @@ class Simulation(entity.Entity):
         """
         Sets the automationId property value. Unique identifier for the attack simulation automation.
         Args:
-            value: Value to set for the automationId property.
+            value: Value to set for the automation_id property.
         """
         self._automation_id = value
     
@@ -79,7 +79,7 @@ class Simulation(entity.Entity):
         """
         Sets the completionDateTime property value. Date and time of completion of the attack simulation and training campaign. Supports $filter and $orderby.
         Args:
-            value: Value to set for the completionDateTime property.
+            value: Value to set for the completion_date_time property.
         """
         self._completion_date_time = value
     
@@ -104,11 +104,11 @@ class Simulation(entity.Entity):
         self._description: Optional[str] = None
         # Display name of the attack simulation and training campaign. Supports $filter and $orderby.
         self._display_name: Optional[str] = None
-        # The durationInDays property
+        # Simulation duration in days.
         self._duration_in_days: Optional[int] = None
-        # The excludedAccountTarget property
+        # Users excluded from the simulation.
         self._excluded_account_target: Optional[account_target_content.AccountTargetContent] = None
-        # The includedAccountTarget property
+        # Users targeted in the simulation.
         self._included_account_target: Optional[account_target_content.AccountTargetContent] = None
         # Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
         self._is_automated: Optional[bool] = None
@@ -120,7 +120,7 @@ class Simulation(entity.Entity):
         self._launch_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The payload property
+        # The payload associated with a simulation during its creation.
         self._payload: Optional[payload.Payload] = None
         # Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
         self._payload_delivery_platform: Optional[payload_delivery_platform.PayloadDeliveryPlatform] = None
@@ -142,7 +142,7 @@ class Simulation(entity.Entity):
         """
         Sets the createdBy property value. Identity of the user who created the attack simulation and training campaign.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -159,7 +159,7 @@ class Simulation(entity.Entity):
         """
         Sets the createdDateTime property value. Date and time of creation of the attack simulation and training campaign.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -205,14 +205,14 @@ class Simulation(entity.Entity):
         """
         Sets the displayName property value. Display name of the attack simulation and training campaign. Supports $filter and $orderby.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
     @property
     def duration_in_days(self,) -> Optional[int]:
         """
-        Gets the durationInDays property value. The durationInDays property
+        Gets the durationInDays property value. Simulation duration in days.
         Returns: Optional[int]
         """
         return self._duration_in_days
@@ -220,16 +220,16 @@ class Simulation(entity.Entity):
     @duration_in_days.setter
     def duration_in_days(self,value: Optional[int] = None) -> None:
         """
-        Sets the durationInDays property value. The durationInDays property
+        Sets the durationInDays property value. Simulation duration in days.
         Args:
-            value: Value to set for the durationInDays property.
+            value: Value to set for the duration_in_days property.
         """
         self._duration_in_days = value
     
     @property
     def excluded_account_target(self,) -> Optional[account_target_content.AccountTargetContent]:
         """
-        Gets the excludedAccountTarget property value. The excludedAccountTarget property
+        Gets the excludedAccountTarget property value. Users excluded from the simulation.
         Returns: Optional[account_target_content.AccountTargetContent]
         """
         return self._excluded_account_target
@@ -237,9 +237,9 @@ class Simulation(entity.Entity):
     @excluded_account_target.setter
     def excluded_account_target(self,value: Optional[account_target_content.AccountTargetContent] = None) -> None:
         """
-        Sets the excludedAccountTarget property value. The excludedAccountTarget property
+        Sets the excludedAccountTarget property value. Users excluded from the simulation.
         Args:
-            value: Value to set for the excludedAccountTarget property.
+            value: Value to set for the excluded_account_target property.
         """
         self._excluded_account_target = value
     
@@ -249,23 +249,23 @@ class Simulation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attack_technique": lambda n : setattr(self, 'attack_technique', n.get_enum_value(simulation_attack_technique.SimulationAttackTechnique)),
-            "attack_type": lambda n : setattr(self, 'attack_type', n.get_enum_value(simulation_attack_type.SimulationAttackType)),
-            "automation_id": lambda n : setattr(self, 'automation_id', n.get_str_value()),
-            "completion_date_time": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(email_identity.EmailIdentity)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "attackTechnique": lambda n : setattr(self, 'attack_technique', n.get_enum_value(simulation_attack_technique.SimulationAttackTechnique)),
+            "attackType": lambda n : setattr(self, 'attack_type', n.get_enum_value(simulation_attack_type.SimulationAttackType)),
+            "automationId": lambda n : setattr(self, 'automation_id', n.get_str_value()),
+            "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(email_identity.EmailIdentity)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "duration_in_days": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
-            "excluded_account_target": lambda n : setattr(self, 'excluded_account_target', n.get_object_value(account_target_content.AccountTargetContent)),
-            "included_account_target": lambda n : setattr(self, 'included_account_target', n.get_object_value(account_target_content.AccountTargetContent)),
-            "is_automated": lambda n : setattr(self, 'is_automated', n.get_bool_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(email_identity.EmailIdentity)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "launch_date_time": lambda n : setattr(self, 'launch_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
+            "excludedAccountTarget": lambda n : setattr(self, 'excluded_account_target', n.get_object_value(account_target_content.AccountTargetContent)),
+            "includedAccountTarget": lambda n : setattr(self, 'included_account_target', n.get_object_value(account_target_content.AccountTargetContent)),
+            "isAutomated": lambda n : setattr(self, 'is_automated', n.get_bool_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(email_identity.EmailIdentity)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "launchDateTime": lambda n : setattr(self, 'launch_date_time', n.get_datetime_value()),
             "payload": lambda n : setattr(self, 'payload', n.get_object_value(payload.Payload)),
-            "payload_delivery_platform": lambda n : setattr(self, 'payload_delivery_platform', n.get_enum_value(payload_delivery_platform.PayloadDeliveryPlatform)),
+            "payloadDeliveryPlatform": lambda n : setattr(self, 'payload_delivery_platform', n.get_enum_value(payload_delivery_platform.PayloadDeliveryPlatform)),
             "report": lambda n : setattr(self, 'report', n.get_object_value(simulation_report.SimulationReport)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(simulation_status.SimulationStatus)),
         }
@@ -276,7 +276,7 @@ class Simulation(entity.Entity):
     @property
     def included_account_target(self,) -> Optional[account_target_content.AccountTargetContent]:
         """
-        Gets the includedAccountTarget property value. The includedAccountTarget property
+        Gets the includedAccountTarget property value. Users targeted in the simulation.
         Returns: Optional[account_target_content.AccountTargetContent]
         """
         return self._included_account_target
@@ -284,9 +284,9 @@ class Simulation(entity.Entity):
     @included_account_target.setter
     def included_account_target(self,value: Optional[account_target_content.AccountTargetContent] = None) -> None:
         """
-        Sets the includedAccountTarget property value. The includedAccountTarget property
+        Sets the includedAccountTarget property value. Users targeted in the simulation.
         Args:
-            value: Value to set for the includedAccountTarget property.
+            value: Value to set for the included_account_target property.
         """
         self._included_account_target = value
     
@@ -303,7 +303,7 @@ class Simulation(entity.Entity):
         """
         Sets the isAutomated property value. Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
         Args:
-            value: Value to set for the isAutomated property.
+            value: Value to set for the is_automated property.
         """
         self._is_automated = value
     
@@ -320,7 +320,7 @@ class Simulation(entity.Entity):
         """
         Sets the lastModifiedBy property value. Identity of the user who most recently modified the attack simulation and training campaign.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -337,7 +337,7 @@ class Simulation(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Date and time of the most recent modification of the attack simulation and training campaign.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -354,14 +354,14 @@ class Simulation(entity.Entity):
         """
         Sets the launchDateTime property value. Date and time of the launch/start of the attack simulation and training campaign. Supports $filter and $orderby.
         Args:
-            value: Value to set for the launchDateTime property.
+            value: Value to set for the launch_date_time property.
         """
         self._launch_date_time = value
     
     @property
     def payload(self,) -> Optional[payload.Payload]:
         """
-        Gets the payload property value. The payload property
+        Gets the payload property value. The payload associated with a simulation during its creation.
         Returns: Optional[payload.Payload]
         """
         return self._payload
@@ -369,7 +369,7 @@ class Simulation(entity.Entity):
     @payload.setter
     def payload(self,value: Optional[payload.Payload] = None) -> None:
         """
-        Sets the payload property value. The payload property
+        Sets the payload property value. The payload associated with a simulation during its creation.
         Args:
             value: Value to set for the payload property.
         """
@@ -388,7 +388,7 @@ class Simulation(entity.Entity):
         """
         Sets the payloadDeliveryPlatform property value. Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
         Args:
-            value: Value to set for the payloadDeliveryPlatform property.
+            value: Value to set for the payload_delivery_platform property.
         """
         self._payload_delivery_platform = value
     

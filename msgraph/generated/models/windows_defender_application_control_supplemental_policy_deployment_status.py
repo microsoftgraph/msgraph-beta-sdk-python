@@ -65,7 +65,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the deploymentStatus property value. Enum values for the various WindowsDefenderApplicationControl supplemental policy deployment statuses.
         Args:
-            value: Value to set for the deploymentStatus property.
+            value: Value to set for the deployment_status property.
         """
         self._deployment_status = value
     
@@ -82,7 +82,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the deviceId property value. Device ID.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -99,7 +99,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the deviceName property value. Device name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -109,16 +109,16 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deployment_status": lambda n : setattr(self, 'deployment_status', n.get_enum_value(windows_defender_application_control_supplemental_policy_statuses.WindowsDefenderApplicationControlSupplementalPolicyStatuses)),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "os_description": lambda n : setattr(self, 'os_description', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "deploymentStatus": lambda n : setattr(self, 'deployment_status', n.get_enum_value(windows_defender_application_control_supplemental_policy_statuses.WindowsDefenderApplicationControlSupplementalPolicyStatuses)),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "osDescription": lambda n : setattr(self, 'os_description', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy)),
-            "policy_version": lambda n : setattr(self, 'policy_version', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "policyVersion": lambda n : setattr(self, 'policy_version', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -137,7 +137,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the lastSyncDateTime property value. Last sync date time.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -154,7 +154,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the osDescription property value. Windows OS Version Description.
         Args:
-            value: Value to set for the osDescription property.
+            value: Value to set for the os_description property.
         """
         self._os_description = value
     
@@ -171,7 +171,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the osVersion property value. Windows OS Version.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -205,7 +205,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the policyVersion property value. Human readable version of the WindowsDefenderApplicationControl supplemental policy.
         Args:
-            value: Value to set for the policyVersion property.
+            value: Value to set for the policy_version property.
         """
         self._policy_version = value
     
@@ -242,7 +242,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the userName property value. The name of the user of this device.
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -259,7 +259,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         """
         Sets the userPrincipalName property value. User Principal Name.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

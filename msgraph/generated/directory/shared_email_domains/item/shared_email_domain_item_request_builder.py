@@ -35,12 +35,11 @@ class SharedEmailDomainItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SharedEmailDomainItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SharedEmailDomainItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property sharedEmailDomains for directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class SharedEmailDomainItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SharedEmailDomainItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[shared_email_domain.SharedEmailDomain]:
+    async def get(self,request_configuration: Optional[SharedEmailDomainItemRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_email_domain.SharedEmailDomain]:
         """
         Get sharedEmailDomains from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_email_domain.SharedEmailDomain]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class SharedEmailDomainItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, shared_email_domain.SharedEmailDomain, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, shared_email_domain.SharedEmailDomain, error_mapping)
     
-    async def patch(self,body: Optional[shared_email_domain.SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[shared_email_domain.SharedEmailDomain]:
+    async def patch(self,body: Optional[shared_email_domain.SharedEmailDomain] = None, request_configuration: Optional[SharedEmailDomainItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[shared_email_domain.SharedEmailDomain]:
         """
         Update the navigation property sharedEmailDomains in directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_email_domain.SharedEmailDomain]
         """
         if body is None:
@@ -92,7 +89,7 @@ class SharedEmailDomainItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, shared_email_domain.SharedEmailDomain, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, shared_email_domain.SharedEmailDomain, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SharedEmailDomainItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

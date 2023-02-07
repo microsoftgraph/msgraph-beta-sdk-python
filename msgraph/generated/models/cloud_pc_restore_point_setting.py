@@ -60,7 +60,7 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, Parsable):
         """
         Sets the frequencyInHours property value. The time interval in hours to take snapshots (restore points) of a Cloud PC automatically. Possible values are 4, 6, 12, 16, and 24. The default frequency is 12 hours.
         Args:
-            value: Value to set for the frequencyInHours property.
+            value: Value to set for the frequency_in_hours property.
         """
         self._frequency_in_hours = value
     
@@ -70,9 +70,9 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "frequency_in_hours": lambda n : setattr(self, 'frequency_in_hours', n.get_int_value()),
+            "frequencyInHours": lambda n : setattr(self, 'frequency_in_hours', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_restore_enabled": lambda n : setattr(self, 'user_restore_enabled', n.get_bool_value()),
+            "userRestoreEnabled": lambda n : setattr(self, 'user_restore_enabled', n.get_bool_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class CloudPcRestorePointSetting(AdditionalDataHolder, Parsable):
         """
         Sets the userRestoreEnabled property value. If true, the user has the ability to use snapshots to restore Cloud PCs. If false, non-admin users cannot use snapshots to restore the Cloud PC.
         Args:
-            value: Value to set for the userRestoreEnabled property.
+            value: Value to set for the user_restore_enabled property.
         """
         self._user_restore_enabled = value
     

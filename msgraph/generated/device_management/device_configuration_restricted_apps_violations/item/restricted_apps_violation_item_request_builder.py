@@ -35,12 +35,11 @@ class RestrictedAppsViolationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceConfigurationRestrictedAppsViolations for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class RestrictedAppsViolationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[restricted_apps_violation.RestrictedAppsViolation]:
+    async def get(self,request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[restricted_apps_violation.RestrictedAppsViolation]:
         """
         Restricted apps violations for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[restricted_apps_violation.RestrictedAppsViolation]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class RestrictedAppsViolationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, restricted_apps_violation.RestrictedAppsViolation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, restricted_apps_violation.RestrictedAppsViolation, error_mapping)
     
-    async def patch(self,body: Optional[restricted_apps_violation.RestrictedAppsViolation] = None, request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[restricted_apps_violation.RestrictedAppsViolation]:
+    async def patch(self,body: Optional[restricted_apps_violation.RestrictedAppsViolation] = None, request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[restricted_apps_violation.RestrictedAppsViolation]:
         """
         Update the navigation property deviceConfigurationRestrictedAppsViolations in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[restricted_apps_violation.RestrictedAppsViolation]
         """
         if body is None:
@@ -92,7 +89,7 @@ class RestrictedAppsViolationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, restricted_apps_violation.RestrictedAppsViolation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, restricted_apps_violation.RestrictedAppsViolation, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[RestrictedAppsViolationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

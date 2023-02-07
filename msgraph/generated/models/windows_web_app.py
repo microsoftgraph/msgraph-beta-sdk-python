@@ -9,7 +9,7 @@ class WindowsWebApp(mobile_app.MobileApp):
     @property
     def app_url(self,) -> Optional[str]:
         """
-        Gets the appUrl property value. The web app URL.
+        Gets the appUrl property value. Indicates the Windows web app URL. Example: 'https://www.contoso.com'
         Returns: Optional[str]
         """
         return self._app_url
@@ -17,9 +17,9 @@ class WindowsWebApp(mobile_app.MobileApp):
     @app_url.setter
     def app_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the appUrl property value. The web app URL.
+        Sets the appUrl property value. Indicates the Windows web app URL. Example: 'https://www.contoso.com'
         Args:
-            value: Value to set for the appUrl property.
+            value: Value to set for the app_url property.
         """
         self._app_url = value
     
@@ -29,7 +29,7 @@ class WindowsWebApp(mobile_app.MobileApp):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsWebApp"
-        # The web app URL.
+        # Indicates the Windows web app URL. Example: 'https://www.contoso.com'
         self._app_url: Optional[str] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class WindowsWebApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_url": lambda n : setattr(self, 'app_url', n.get_str_value()),
+            "appUrl": lambda n : setattr(self, 'app_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

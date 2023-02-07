@@ -58,9 +58,9 @@ class UserFlowApiConnectorConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "post_attribute_collection": lambda n : setattr(self, 'post_attribute_collection', n.get_object_value(identity_api_connector.IdentityApiConnector)),
-            "post_federation_signup": lambda n : setattr(self, 'post_federation_signup', n.get_object_value(identity_api_connector.IdentityApiConnector)),
-            "pre_token_issuance": lambda n : setattr(self, 'pre_token_issuance', n.get_object_value(identity_api_connector.IdentityApiConnector)),
+            "postAttributeCollection": lambda n : setattr(self, 'post_attribute_collection', n.get_object_value(identity_api_connector.IdentityApiConnector)),
+            "postFederationSignup": lambda n : setattr(self, 'post_federation_signup', n.get_object_value(identity_api_connector.IdentityApiConnector)),
+            "preTokenIssuance": lambda n : setattr(self, 'pre_token_issuance', n.get_object_value(identity_api_connector.IdentityApiConnector)),
         }
         return fields
     
@@ -77,7 +77,7 @@ class UserFlowApiConnectorConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -94,7 +94,7 @@ class UserFlowApiConnectorConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the postAttributeCollection property value. The postAttributeCollection property
         Args:
-            value: Value to set for the postAttributeCollection property.
+            value: Value to set for the post_attribute_collection property.
         """
         self._post_attribute_collection = value
     
@@ -111,7 +111,7 @@ class UserFlowApiConnectorConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the postFederationSignup property value. The postFederationSignup property
         Args:
-            value: Value to set for the postFederationSignup property.
+            value: Value to set for the post_federation_signup property.
         """
         self._post_federation_signup = value
     
@@ -128,7 +128,7 @@ class UserFlowApiConnectorConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the preTokenIssuance property value. The preTokenIssuance property
         Args:
-            value: Value to set for the preTokenIssuance property.
+            value: Value to set for the pre_token_issuance property.
         """
         self._pre_token_issuance = value
     

@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.assignments.assignments_request_builder')
 group_policy_configuration_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.assignments.item.group_policy_configuration_assignment_item_request_builder')
 definition_values_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.definition_values.definition_values_request_builder')
 group_policy_definition_value_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.definition_values.item.group_policy_definition_value_item_request_builder')
-update_definition_values_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.update_definition_values.update_definition_values_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
+microsoft_graph_update_definition_values_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.item.microsoft_graph_update_definition_values.microsoft_graph_update_definition_values_request_builder')
 group_policy_configuration = lazy_import('msgraph.generated.models.group_policy_configuration')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -23,13 +23,6 @@ class GroupPolicyConfigurationItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyConfigurations property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -45,11 +38,18 @@ class GroupPolicyConfigurationItemRequestBuilder():
         return definition_values_request_builder.DefinitionValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_definition_values(self) -> update_definition_values_request_builder.UpdateDefinitionValuesRequestBuilder:
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_definition_values(self) -> microsoft_graph_update_definition_values_request_builder.MicrosoftGraphUpdateDefinitionValuesRequestBuilder:
         """
         Provides operations to call the updateDefinitionValues method.
         """
-        return update_definition_values_request_builder.UpdateDefinitionValuesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_update_definition_values_request_builder.MicrosoftGraphUpdateDefinitionValuesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def assignments_by_id(self,id: str) -> group_policy_configuration_assignment_item_request_builder.GroupPolicyConfigurationAssignmentItemRequestBuilder:
         """
@@ -95,12 +95,11 @@ class GroupPolicyConfigurationItemRequestBuilder():
         url_tpl_params["groupPolicyDefinitionValue%2Did"] = id
         return group_policy_definition_value_item_request_builder.GroupPolicyDefinitionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property groupPolicyConfigurations for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -111,14 +110,13 @@ class GroupPolicyConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_configuration.GroupPolicyConfiguration]:
+    async def get(self,request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_configuration.GroupPolicyConfiguration]:
         """
         The group policy configurations created by this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_configuration.GroupPolicyConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -130,15 +128,14 @@ class GroupPolicyConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_configuration.GroupPolicyConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_configuration.GroupPolicyConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[group_policy_configuration.GroupPolicyConfiguration] = None, request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_configuration.GroupPolicyConfiguration]:
+    async def patch(self,body: Optional[group_policy_configuration.GroupPolicyConfiguration] = None, request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_configuration.GroupPolicyConfiguration]:
         """
         Update the navigation property groupPolicyConfigurations in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_configuration.GroupPolicyConfiguration]
         """
         if body is None:
@@ -152,7 +149,7 @@ class GroupPolicyConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_configuration.GroupPolicyConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_configuration.GroupPolicyConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

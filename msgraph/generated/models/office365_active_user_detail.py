@@ -20,7 +20,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the assignedProducts property value. All the products assigned for the user.
         Args:
-            value: Value to set for the assignedProducts property.
+            value: Value to set for the assigned_products property.
         """
         self._assigned_products = value
     
@@ -105,7 +105,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the deletedDate property value. The date when the delete operation happened. Default value is 'null' when the user has not been deleted.
         Args:
-            value: Value to set for the deletedDate property.
+            value: Value to set for the deleted_date property.
         """
         self._deleted_date = value
     
@@ -122,7 +122,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the displayName property value. The name displayed in the address book for the user. This is usually the combination of the user's first name, middle initial, and last name. This property is required when a user is created and it cannot be cleared during updates.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -139,7 +139,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the exchangeLastActivityDate property value. The date when user last read or sent email.
         Args:
-            value: Value to set for the exchangeLastActivityDate property.
+            value: Value to set for the exchange_last_activity_date property.
         """
         self._exchange_last_activity_date = value
     
@@ -156,7 +156,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the exchangeLicenseAssignDate property value. The last date when the user was assigned an Exchange license.
         Args:
-            value: Value to set for the exchangeLicenseAssignDate property.
+            value: Value to set for the exchange_license_assign_date property.
         """
         self._exchange_license_assign_date = value
     
@@ -166,30 +166,30 @@ class Office365ActiveUserDetail(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_products": lambda n : setattr(self, 'assigned_products', n.get_collection_of_primitive_values(str)),
-            "deleted_date": lambda n : setattr(self, 'deleted_date', n.get_object_value(Date)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "exchange_last_activity_date": lambda n : setattr(self, 'exchange_last_activity_date', n.get_object_value(Date)),
-            "exchange_license_assign_date": lambda n : setattr(self, 'exchange_license_assign_date', n.get_object_value(Date)),
-            "has_exchange_license": lambda n : setattr(self, 'has_exchange_license', n.get_bool_value()),
-            "has_one_drive_license": lambda n : setattr(self, 'has_one_drive_license', n.get_bool_value()),
-            "has_share_point_license": lambda n : setattr(self, 'has_share_point_license', n.get_bool_value()),
-            "has_skype_for_business_license": lambda n : setattr(self, 'has_skype_for_business_license', n.get_bool_value()),
-            "has_teams_license": lambda n : setattr(self, 'has_teams_license', n.get_bool_value()),
-            "has_yammer_license": lambda n : setattr(self, 'has_yammer_license', n.get_bool_value()),
-            "is_deleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
-            "one_drive_last_activity_date": lambda n : setattr(self, 'one_drive_last_activity_date', n.get_object_value(Date)),
-            "one_drive_license_assign_date": lambda n : setattr(self, 'one_drive_license_assign_date', n.get_object_value(Date)),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
-            "share_point_last_activity_date": lambda n : setattr(self, 'share_point_last_activity_date', n.get_object_value(Date)),
-            "share_point_license_assign_date": lambda n : setattr(self, 'share_point_license_assign_date', n.get_object_value(Date)),
-            "skype_for_business_last_activity_date": lambda n : setattr(self, 'skype_for_business_last_activity_date', n.get_object_value(Date)),
-            "skype_for_business_license_assign_date": lambda n : setattr(self, 'skype_for_business_license_assign_date', n.get_object_value(Date)),
-            "teams_last_activity_date": lambda n : setattr(self, 'teams_last_activity_date', n.get_object_value(Date)),
-            "teams_license_assign_date": lambda n : setattr(self, 'teams_license_assign_date', n.get_object_value(Date)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "yammer_last_activity_date": lambda n : setattr(self, 'yammer_last_activity_date', n.get_object_value(Date)),
-            "yammer_license_assign_date": lambda n : setattr(self, 'yammer_license_assign_date', n.get_object_value(Date)),
+            "assignedProducts": lambda n : setattr(self, 'assigned_products', n.get_collection_of_primitive_values(str)),
+            "deletedDate": lambda n : setattr(self, 'deleted_date', n.get_object_value(Date)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "exchangeLastActivityDate": lambda n : setattr(self, 'exchange_last_activity_date', n.get_object_value(Date)),
+            "exchangeLicenseAssignDate": lambda n : setattr(self, 'exchange_license_assign_date', n.get_object_value(Date)),
+            "hasExchangeLicense": lambda n : setattr(self, 'has_exchange_license', n.get_bool_value()),
+            "hasOneDriveLicense": lambda n : setattr(self, 'has_one_drive_license', n.get_bool_value()),
+            "hasSharePointLicense": lambda n : setattr(self, 'has_share_point_license', n.get_bool_value()),
+            "hasSkypeForBusinessLicense": lambda n : setattr(self, 'has_skype_for_business_license', n.get_bool_value()),
+            "hasTeamsLicense": lambda n : setattr(self, 'has_teams_license', n.get_bool_value()),
+            "hasYammerLicense": lambda n : setattr(self, 'has_yammer_license', n.get_bool_value()),
+            "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
+            "oneDriveLastActivityDate": lambda n : setattr(self, 'one_drive_last_activity_date', n.get_object_value(Date)),
+            "oneDriveLicenseAssignDate": lambda n : setattr(self, 'one_drive_license_assign_date', n.get_object_value(Date)),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "sharePointLastActivityDate": lambda n : setattr(self, 'share_point_last_activity_date', n.get_object_value(Date)),
+            "sharePointLicenseAssignDate": lambda n : setattr(self, 'share_point_license_assign_date', n.get_object_value(Date)),
+            "skypeForBusinessLastActivityDate": lambda n : setattr(self, 'skype_for_business_last_activity_date', n.get_object_value(Date)),
+            "skypeForBusinessLicenseAssignDate": lambda n : setattr(self, 'skype_for_business_license_assign_date', n.get_object_value(Date)),
+            "teamsLastActivityDate": lambda n : setattr(self, 'teams_last_activity_date', n.get_object_value(Date)),
+            "teamsLicenseAssignDate": lambda n : setattr(self, 'teams_license_assign_date', n.get_object_value(Date)),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "yammerLastActivityDate": lambda n : setattr(self, 'yammer_last_activity_date', n.get_object_value(Date)),
+            "yammerLicenseAssignDate": lambda n : setattr(self, 'yammer_license_assign_date', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -208,7 +208,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the hasExchangeLicense property value. Whether the user has been assigned an Exchange license.
         Args:
-            value: Value to set for the hasExchangeLicense property.
+            value: Value to set for the has_exchange_license property.
         """
         self._has_exchange_license = value
     
@@ -225,7 +225,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the hasOneDriveLicense property value. Whether the user has been assigned a OneDrive license.
         Args:
-            value: Value to set for the hasOneDriveLicense property.
+            value: Value to set for the has_one_drive_license property.
         """
         self._has_one_drive_license = value
     
@@ -242,7 +242,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the hasSharePointLicense property value. Whether the user has been assigned a SharePoint license.
         Args:
-            value: Value to set for the hasSharePointLicense property.
+            value: Value to set for the has_share_point_license property.
         """
         self._has_share_point_license = value
     
@@ -259,7 +259,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the hasSkypeForBusinessLicense property value. Whether the user has been assigned a Skype For Business license.
         Args:
-            value: Value to set for the hasSkypeForBusinessLicense property.
+            value: Value to set for the has_skype_for_business_license property.
         """
         self._has_skype_for_business_license = value
     
@@ -276,7 +276,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the hasTeamsLicense property value. Whether the user has been assigned a Teams license.
         Args:
-            value: Value to set for the hasTeamsLicense property.
+            value: Value to set for the has_teams_license property.
         """
         self._has_teams_license = value
     
@@ -293,7 +293,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the hasYammerLicense property value. Whether the user has been assigned a Yammer license.
         Args:
-            value: Value to set for the hasYammerLicense property.
+            value: Value to set for the has_yammer_license property.
         """
         self._has_yammer_license = value
     
@@ -310,7 +310,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the isDeleted property value. Whether this user has been deleted or soft deleted.
         Args:
-            value: Value to set for the isDeleted property.
+            value: Value to set for the is_deleted property.
         """
         self._is_deleted = value
     
@@ -327,7 +327,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the oneDriveLastActivityDate property value. The date when user last viewed or edited files, shared files internally or externally, or synced files.
         Args:
-            value: Value to set for the oneDriveLastActivityDate property.
+            value: Value to set for the one_drive_last_activity_date property.
         """
         self._one_drive_last_activity_date = value
     
@@ -344,7 +344,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the oneDriveLicenseAssignDate property value. The last date when the user was assigned a OneDrive license.
         Args:
-            value: Value to set for the oneDriveLicenseAssignDate property.
+            value: Value to set for the one_drive_license_assign_date property.
         """
         self._one_drive_license_assign_date = value
     
@@ -361,7 +361,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     
@@ -412,7 +412,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the sharePointLastActivityDate property value. The date when user last viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages.
         Args:
-            value: Value to set for the sharePointLastActivityDate property.
+            value: Value to set for the share_point_last_activity_date property.
         """
         self._share_point_last_activity_date = value
     
@@ -429,7 +429,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the sharePointLicenseAssignDate property value. The last date when the user was assigned a SharePoint license.
         Args:
-            value: Value to set for the sharePointLicenseAssignDate property.
+            value: Value to set for the share_point_license_assign_date property.
         """
         self._share_point_license_assign_date = value
     
@@ -446,7 +446,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the skypeForBusinessLastActivityDate property value. The date when user last organized or participated in conferences, or joined peer-to-peer sessions.
         Args:
-            value: Value to set for the skypeForBusinessLastActivityDate property.
+            value: Value to set for the skype_for_business_last_activity_date property.
         """
         self._skype_for_business_last_activity_date = value
     
@@ -463,7 +463,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the skypeForBusinessLicenseAssignDate property value. The last date when the user was assigned a Skype For Business license.
         Args:
-            value: Value to set for the skypeForBusinessLicenseAssignDate property.
+            value: Value to set for the skype_for_business_license_assign_date property.
         """
         self._skype_for_business_license_assign_date = value
     
@@ -480,7 +480,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the teamsLastActivityDate property value. The date when user last posted messages in team channels, sent messages in private chat sessions, or participated in meetings or calls.
         Args:
-            value: Value to set for the teamsLastActivityDate property.
+            value: Value to set for the teams_last_activity_date property.
         """
         self._teams_last_activity_date = value
     
@@ -497,7 +497,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the teamsLicenseAssignDate property value. The last date when the user was assigned a Teams license.
         Args:
-            value: Value to set for the teamsLicenseAssignDate property.
+            value: Value to set for the teams_license_assign_date property.
         """
         self._teams_license_assign_date = value
     
@@ -514,7 +514,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name (UPN) of the user. The UPN is an Internet-style login name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where domain must be present in the tenant’s collection of verified domains. This property is required when a user is created.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -531,7 +531,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the yammerLastActivityDate property value. The date when user last posted, read, or liked message.
         Args:
-            value: Value to set for the yammerLastActivityDate property.
+            value: Value to set for the yammer_last_activity_date property.
         """
         self._yammer_last_activity_date = value
     
@@ -548,7 +548,7 @@ class Office365ActiveUserDetail(entity.Entity):
         """
         Sets the yammerLicenseAssignDate property value. The last date when the user was assigned a Yammer license.
         Args:
-            value: Value to set for the yammerLicenseAssignDate property.
+            value: Value to set for the yammer_license_assign_date property.
         """
         self._yammer_license_assign_date = value
     

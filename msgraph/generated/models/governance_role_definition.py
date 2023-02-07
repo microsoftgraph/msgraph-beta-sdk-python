@@ -53,7 +53,7 @@ class GovernanceRoleDefinition(entity.Entity):
         """
         Sets the displayName property value. The display name of the role definition.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -70,7 +70,7 @@ class GovernanceRoleDefinition(entity.Entity):
         """
         Sets the externalId property value. The external id of the role definition.
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -80,12 +80,12 @@ class GovernanceRoleDefinition(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(governance_resource.GovernanceResource)),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
-            "role_setting": lambda n : setattr(self, 'role_setting', n.get_object_value(governance_role_setting.GovernanceRoleSetting)),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "roleSetting": lambda n : setattr(self, 'role_setting', n.get_object_value(governance_role_setting.GovernanceRoleSetting)),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,7 +121,7 @@ class GovernanceRoleDefinition(entity.Entity):
         """
         Sets the resourceId property value. Required. The id of the resource associated with the role definition.
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     
@@ -138,7 +138,7 @@ class GovernanceRoleDefinition(entity.Entity):
         """
         Sets the roleSetting property value. The associated role setting for the role definition.
         Args:
-            value: Value to set for the roleSetting property.
+            value: Value to set for the role_setting property.
         """
         self._role_setting = value
     
@@ -171,7 +171,7 @@ class GovernanceRoleDefinition(entity.Entity):
         """
         Sets the templateId property value. The templateId property
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     

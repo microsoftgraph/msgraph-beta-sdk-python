@@ -34,7 +34,7 @@ class UnmanagedDeviceDiscoveryTask(device_app_management_task.DeviceAppManagemen
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "unmanaged_devices": lambda n : setattr(self, 'unmanaged_devices', n.get_collection_of_object_values(unmanaged_device.UnmanagedDevice)),
+            "unmanagedDevices": lambda n : setattr(self, 'unmanaged_devices', n.get_collection_of_object_values(unmanaged_device.UnmanagedDevice)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class UnmanagedDeviceDiscoveryTask(device_app_management_task.DeviceAppManagemen
         """
         Sets the unmanagedDevices property value. Unmanaged devices discovered in the network.
         Args:
-            value: Value to set for the unmanagedDevices property.
+            value: Value to set for the unmanaged_devices property.
         """
         self._unmanaged_devices = value
     

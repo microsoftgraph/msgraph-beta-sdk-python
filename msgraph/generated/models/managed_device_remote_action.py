@@ -25,4 +25,6 @@ class ManagedDeviceRemoteAction(Enum):
     CollectDiagnostics = "collectDiagnostics",
     # Name of action to initiate MDM key recovery
     InitiateMobileDeviceManagementKeyRecovery = "initiateMobileDeviceManagementKeyRecovery",
+    # Name of action to initiate On Demand Proactive Remediation
+    InitiateOnDemandProactiveRemediation = "initiateOnDemandProactiveRemediation",
 

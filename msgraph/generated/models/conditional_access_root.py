@@ -24,9 +24,26 @@ class ConditionalAccessRoot(entity.Entity):
         """
         Sets the authenticationContextClassReferences property value. Read-only. Nullable. Returns a collection of the specified authentication context class references.
         Args:
-            value: Value to set for the authenticationContextClassReferences property.
+            value: Value to set for the authentication_context_class_references property.
         """
         self._authentication_context_class_references = value
+    
+    @property
+    def authentication_strength(self,) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
+        """
+        Gets the authenticationStrength property value. The authenticationStrength property
+        Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]
+        """
+        return self._authentication_strength
+    
+    @authentication_strength.setter
+    def authentication_strength(self,value: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None) -> None:
+        """
+        Sets the authenticationStrength property value. The authenticationStrength property
+        Args:
+            value: Value to set for the authentication_strength property.
+        """
+        self._authentication_strength = value
     
     @property
     def authentication_strengths(self,) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
@@ -41,7 +58,7 @@ class ConditionalAccessRoot(entity.Entity):
         """
         Sets the authenticationStrengths property value. Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
         Args:
-            value: Value to set for the authenticationStrengths property.
+            value: Value to set for the authentication_strengths property.
         """
         self._authentication_strengths = value
     
@@ -52,6 +69,8 @@ class ConditionalAccessRoot(entity.Entity):
         super().__init__()
         # Read-only. Nullable. Returns a collection of the specified authentication context class references.
         self._authentication_context_class_references: Optional[List[authentication_context_class_reference.AuthenticationContextClassReference]] = None
+        # The authenticationStrength property
+        self._authentication_strength: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None
         # Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
         self._authentication_strengths: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None
         # Read-only. Nullable. Returns a collection of the specified named locations.
@@ -81,9 +100,10 @@ class ConditionalAccessRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_context_class_references": lambda n : setattr(self, 'authentication_context_class_references', n.get_collection_of_object_values(authentication_context_class_reference.AuthenticationContextClassReference)),
-            "authentication_strengths": lambda n : setattr(self, 'authentication_strengths', n.get_object_value(authentication_strength_root.AuthenticationStrengthRoot)),
-            "named_locations": lambda n : setattr(self, 'named_locations', n.get_collection_of_object_values(named_location.NamedLocation)),
+            "authenticationContextClassReferences": lambda n : setattr(self, 'authentication_context_class_references', n.get_collection_of_object_values(authentication_context_class_reference.AuthenticationContextClassReference)),
+            "authenticationStrength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(authentication_strength_root.AuthenticationStrengthRoot)),
+            "authenticationStrengths": lambda n : setattr(self, 'authentication_strengths', n.get_object_value(authentication_strength_root.AuthenticationStrengthRoot)),
+            "namedLocations": lambda n : setattr(self, 'named_locations', n.get_collection_of_object_values(named_location.NamedLocation)),
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(conditional_access_policy.ConditionalAccessPolicy)),
             "templates": lambda n : setattr(self, 'templates', n.get_collection_of_object_values(conditional_access_template.ConditionalAccessTemplate)),
         }
@@ -104,7 +124,7 @@ class ConditionalAccessRoot(entity.Entity):
         """
         Sets the namedLocations property value. Read-only. Nullable. Returns a collection of the specified named locations.
         Args:
-            value: Value to set for the namedLocations property.
+            value: Value to set for the named_locations property.
         """
         self._named_locations = value
     
@@ -135,6 +155,7 @@ class ConditionalAccessRoot(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("authenticationContextClassReferences", self.authentication_context_class_references)
+        writer.write_object_value("authenticationStrength", self.authentication_strength)
         writer.write_object_value("authenticationStrengths", self.authentication_strengths)
         writer.write_collection_of_object_values("namedLocations", self.named_locations)
         writer.write_collection_of_object_values("policies", self.policies)

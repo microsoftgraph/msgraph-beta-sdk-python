@@ -38,7 +38,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the appliesToInvoiceId property value. The appliesToInvoiceId property
         Args:
-            value: Value to set for the appliesToInvoiceId property.
+            value: Value to set for the applies_to_invoice_id property.
         """
         self._applies_to_invoice_id = value
     
@@ -55,7 +55,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the appliesToInvoiceNumber property value. The appliesToInvoiceNumber property
         Args:
-            value: Value to set for the appliesToInvoiceNumber property.
+            value: Value to set for the applies_to_invoice_number property.
         """
         self._applies_to_invoice_number = value
     
@@ -127,7 +127,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the contactId property value. The contactId property
         Args:
-            value: Value to set for the contactId property.
+            value: Value to set for the contact_id property.
         """
         self._contact_id = value
     
@@ -173,7 +173,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the customerId property value. The customerId property
         Args:
-            value: Value to set for the customerId property.
+            value: Value to set for the customer_id property.
         """
         self._customer_id = value
     
@@ -190,7 +190,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the customerNumber property value. The customerNumber property
         Args:
-            value: Value to set for the customerNumber property.
+            value: Value to set for the customer_number property.
         """
         self._customer_number = value
     
@@ -224,7 +224,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the documentNumber property value. The documentNumber property
         Args:
-            value: Value to set for the documentNumber property.
+            value: Value to set for the document_number property.
         """
         self._document_number = value
     
@@ -241,7 +241,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the externalDocumentNumber property value. The externalDocumentNumber property
         Args:
-            value: Value to set for the externalDocumentNumber property.
+            value: Value to set for the external_document_number property.
         """
         self._external_document_number = value
     
@@ -252,20 +252,20 @@ class CustomerPayment(entity.Entity):
         """
         fields = {
             "amount": lambda n : setattr(self, 'amount', n.get_float_value()),
-            "applies_to_invoice_id": lambda n : setattr(self, 'applies_to_invoice_id', n.get_object_value(Guid)),
-            "applies_to_invoice_number": lambda n : setattr(self, 'applies_to_invoice_number', n.get_str_value()),
+            "appliesToInvoiceId": lambda n : setattr(self, 'applies_to_invoice_id', n.get_object_value(Guid)),
+            "appliesToInvoiceNumber": lambda n : setattr(self, 'applies_to_invoice_number', n.get_str_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "contact_id": lambda n : setattr(self, 'contact_id', n.get_str_value()),
+            "contactId": lambda n : setattr(self, 'contact_id', n.get_str_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
-            "customer_number": lambda n : setattr(self, 'customer_number', n.get_str_value()),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "customerNumber": lambda n : setattr(self, 'customer_number', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "document_number": lambda n : setattr(self, 'document_number', n.get_str_value()),
-            "external_document_number": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
-            "journal_display_name": lambda n : setattr(self, 'journal_display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "line_number": lambda n : setattr(self, 'line_number', n.get_int_value()),
-            "posting_date": lambda n : setattr(self, 'posting_date', n.get_object_value(Date)),
+            "documentNumber": lambda n : setattr(self, 'document_number', n.get_str_value()),
+            "externalDocumentNumber": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
+            "journalDisplayName": lambda n : setattr(self, 'journal_display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lineNumber": lambda n : setattr(self, 'line_number', n.get_int_value()),
+            "postingDate": lambda n : setattr(self, 'posting_date', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -284,7 +284,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the journalDisplayName property value. The journalDisplayName property
         Args:
-            value: Value to set for the journalDisplayName property.
+            value: Value to set for the journal_display_name property.
         """
         self._journal_display_name = value
     
@@ -301,7 +301,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -318,7 +318,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the lineNumber property value. The lineNumber property
         Args:
-            value: Value to set for the lineNumber property.
+            value: Value to set for the line_number property.
         """
         self._line_number = value
     
@@ -335,7 +335,7 @@ class CustomerPayment(entity.Entity):
         """
         Sets the postingDate property value. The postingDate property
         Args:
-            value: Value to set for the postingDate property.
+            value: Value to set for the posting_date property.
         """
         self._posting_date = value
     

@@ -21,7 +21,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the connectAutomatically property value. Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
         Args:
-            value: Value to set for the connectAutomatically property.
+            value: Value to set for the connect_automatically property.
         """
         self._connect_automatically = value
     
@@ -38,7 +38,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the connectWhenNetworkNameIsHidden property value. When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
         Args:
-            value: Value to set for the connectWhenNetworkNameIsHidden property.
+            value: Value to set for the connect_when_network_name_is_hidden property.
         """
         self._connect_when_network_name_is_hidden = value
     
@@ -91,18 +91,18 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connect_automatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
-            "connect_when_network_name_is_hidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
-            "network_name": lambda n : setattr(self, 'network_name', n.get_str_value()),
-            "pre_shared_key": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
-            "pre_shared_key_is_set": lambda n : setattr(self, 'pre_shared_key_is_set', n.get_bool_value()),
-            "proxy_automatic_configuration_url": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
-            "proxy_exclusion_list": lambda n : setattr(self, 'proxy_exclusion_list', n.get_str_value()),
-            "proxy_manual_address": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
-            "proxy_manual_port": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
-            "proxy_settings": lambda n : setattr(self, 'proxy_settings', n.get_enum_value(wi_fi_proxy_setting.WiFiProxySetting)),
+            "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
+            "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
+            "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
+            "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
+            "preSharedKeyIsSet": lambda n : setattr(self, 'pre_shared_key_is_set', n.get_bool_value()),
+            "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
+            "proxyExclusionList": lambda n : setattr(self, 'proxy_exclusion_list', n.get_str_value()),
+            "proxyManualAddress": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
+            "proxyManualPort": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
+            "proxySettings": lambda n : setattr(self, 'proxy_settings', n.get_enum_value(wi_fi_proxy_setting.WiFiProxySetting)),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
-            "wi_fi_security_type": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(android_device_owner_wi_fi_security_type.AndroidDeviceOwnerWiFiSecurityType)),
+            "wiFiSecurityType": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(android_device_owner_wi_fi_security_type.AndroidDeviceOwnerWiFiSecurityType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,7 +121,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the networkName property value. Network Name
         Args:
-            value: Value to set for the networkName property.
+            value: Value to set for the network_name property.
         """
         self._network_name = value
     
@@ -138,7 +138,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the preSharedKey property value. This is the pre-shared key for WPA Personal Wi-Fi network.
         Args:
-            value: Value to set for the preSharedKey property.
+            value: Value to set for the pre_shared_key property.
         """
         self._pre_shared_key = value
     
@@ -155,7 +155,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the preSharedKeyIsSet property value. This is the pre-shared key for WPA Personal Wi-Fi network.
         Args:
-            value: Value to set for the preSharedKeyIsSet property.
+            value: Value to set for the pre_shared_key_is_set property.
         """
         self._pre_shared_key_is_set = value
     
@@ -172,7 +172,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the proxyAutomaticConfigurationUrl property value. Specify the proxy server configuration script URL.
         Args:
-            value: Value to set for the proxyAutomaticConfigurationUrl property.
+            value: Value to set for the proxy_automatic_configuration_url property.
         """
         self._proxy_automatic_configuration_url = value
     
@@ -189,7 +189,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the proxyExclusionList property value. List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
         Args:
-            value: Value to set for the proxyExclusionList property.
+            value: Value to set for the proxy_exclusion_list property.
         """
         self._proxy_exclusion_list = value
     
@@ -206,7 +206,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the proxyManualAddress property value. Specify the proxy server IP address. Android documentation does not specify IPv4 or IPv6. For example: 192.168.1.1.
         Args:
-            value: Value to set for the proxyManualAddress property.
+            value: Value to set for the proxy_manual_address property.
         """
         self._proxy_manual_address = value
     
@@ -223,7 +223,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the proxyManualPort property value. Specify the proxy server port.
         Args:
-            value: Value to set for the proxyManualPort property.
+            value: Value to set for the proxy_manual_port property.
         """
         self._proxy_manual_port = value
     
@@ -240,7 +240,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the proxySettings property value. Wi-Fi Proxy Settings.
         Args:
-            value: Value to set for the proxySettings property.
+            value: Value to set for the proxy_settings property.
         """
         self._proxy_settings = value
     
@@ -296,7 +296,7 @@ class AndroidDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the wiFiSecurityType property value. Wi-Fi Security Types for Android Device Owner.
         Args:
-            value: Value to set for the wiFiSecurityType property.
+            value: Value to set for the wi_fi_security_type property.
         """
         self._wi_fi_security_type = value
     

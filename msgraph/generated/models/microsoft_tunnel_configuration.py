@@ -8,6 +8,9 @@ entity = lazy_import('msgraph.generated.models.entity')
 key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class MicrosoftTunnelConfiguration(entity.Entity):
+    """
+    Entity that represents a collection of Microsoft Tunnel settings
+    """
     @property
     def advanced_settings(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
         """
@@ -21,7 +24,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the advancedSettings property value. Additional settings that may be applied to the server
         Args:
-            value: Value to set for the advancedSettings property.
+            value: Value to set for the advanced_settings property.
         """
         self._advanced_settings = value
     
@@ -88,7 +91,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the defaultDomainSuffix property value. The Default Domain appendix that will be used by the clients
         Args:
-            value: Value to set for the defaultDomainSuffix property.
+            value: Value to set for the default_domain_suffix property.
         """
         self._default_domain_suffix = value
     
@@ -122,7 +125,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the disableUdpConnections property value. When DisableUdpConnections is set, the clients and VPN server will not use DTLS connections to transfer data.
         Args:
-            value: Value to set for the disableUdpConnections property.
+            value: Value to set for the disable_udp_connections property.
         """
         self._disable_udp_connections = value
     
@@ -139,7 +142,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the displayName property value. The display name for the server configuration. This property is required when a server is created.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -156,7 +159,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the dnsServers property value. The DNS servers that will be used by the clients
         Args:
-            value: Value to set for the dnsServers property.
+            value: Value to set for the dns_servers property.
         """
         self._dns_servers = value
     
@@ -166,21 +169,21 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "advanced_settings": lambda n : setattr(self, 'advanced_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "default_domain_suffix": lambda n : setattr(self, 'default_domain_suffix', n.get_str_value()),
+            "advancedSettings": lambda n : setattr(self, 'advanced_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "defaultDomainSuffix": lambda n : setattr(self, 'default_domain_suffix', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "disable_udp_connections": lambda n : setattr(self, 'disable_udp_connections', n.get_bool_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "dns_servers": lambda n : setattr(self, 'dns_servers', n.get_collection_of_primitive_values(str)),
-            "last_update_date_time": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
-            "listen_port": lambda n : setattr(self, 'listen_port', n.get_int_value()),
+            "disableUdpConnections": lambda n : setattr(self, 'disable_udp_connections', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "dnsServers": lambda n : setattr(self, 'dns_servers', n.get_collection_of_primitive_values(str)),
+            "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
+            "listenPort": lambda n : setattr(self, 'listen_port', n.get_int_value()),
             "network": lambda n : setattr(self, 'network', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "route_excludes": lambda n : setattr(self, 'route_excludes', n.get_collection_of_primitive_values(str)),
-            "route_includes": lambda n : setattr(self, 'route_includes', n.get_collection_of_primitive_values(str)),
-            "routes_exclude": lambda n : setattr(self, 'routes_exclude', n.get_collection_of_primitive_values(str)),
-            "routes_include": lambda n : setattr(self, 'routes_include', n.get_collection_of_primitive_values(str)),
-            "split_d_n_s": lambda n : setattr(self, 'split_d_n_s', n.get_collection_of_primitive_values(str)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "routesExclude": lambda n : setattr(self, 'routes_exclude', n.get_collection_of_primitive_values(str)),
+            "routesInclude": lambda n : setattr(self, 'routes_include', n.get_collection_of_primitive_values(str)),
+            "routeExcludes": lambda n : setattr(self, 'route_excludes', n.get_collection_of_primitive_values(str)),
+            "routeIncludes": lambda n : setattr(self, 'route_includes', n.get_collection_of_primitive_values(str)),
+            "splitDNS": lambda n : setattr(self, 'split_d_n_s', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -199,7 +202,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the lastUpdateDateTime property value. When the configuration was last updated
         Args:
-            value: Value to set for the lastUpdateDateTime property.
+            value: Value to set for the last_update_date_time property.
         """
         self._last_update_date_time = value
     
@@ -216,7 +219,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the listenPort property value. The port that both TCP and UPD will listen over on the server
         Args:
-            value: Value to set for the listenPort property.
+            value: Value to set for the listen_port property.
         """
         self._listen_port = value
     
@@ -250,7 +253,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -267,7 +270,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the routeExcludes property value. Subsets of the routes that will not be routed by the server
         Args:
-            value: Value to set for the routeExcludes property.
+            value: Value to set for the route_excludes property.
         """
         self._route_excludes = value
     
@@ -284,7 +287,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the routeIncludes property value. The routes that will be routed by the server
         Args:
-            value: Value to set for the routeIncludes property.
+            value: Value to set for the route_includes property.
         """
         self._route_includes = value
     
@@ -301,7 +304,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the routesExclude property value. Subsets of the routes that will not be routed by the server. This property is going to be deprecated with the option of using the new property, 'RouteExcludes'.
         Args:
-            value: Value to set for the routesExclude property.
+            value: Value to set for the routes_exclude property.
         """
         self._routes_exclude = value
     
@@ -318,7 +321,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the routesInclude property value. The routes that will be routed by the server. This property is going to be deprecated with the option of using the new property, 'RouteIncludes'.
         Args:
-            value: Value to set for the routesInclude property.
+            value: Value to set for the routes_include property.
         """
         self._routes_include = value
     
@@ -341,10 +344,10 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         writer.write_int_value("listenPort", self.listen_port)
         writer.write_str_value("network", self.network)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
-        writer.write_collection_of_primitive_values("routeExcludes", self.route_excludes)
-        writer.write_collection_of_primitive_values("routeIncludes", self.route_includes)
         writer.write_collection_of_primitive_values("routesExclude", self.routes_exclude)
         writer.write_collection_of_primitive_values("routesInclude", self.routes_include)
+        writer.write_collection_of_primitive_values("routeExcludes", self.route_excludes)
+        writer.write_collection_of_primitive_values("routeIncludes", self.route_includes)
         writer.write_collection_of_primitive_values("splitDNS", self.split_d_n_s)
     
     @property
@@ -360,7 +363,7 @@ class MicrosoftTunnelConfiguration(entity.Entity):
         """
         Sets the splitDNS property value. The domains that will be resolved using the provided dns servers
         Args:
-            value: Value to set for the splitDNS property.
+            value: Value to set for the split_d_n_s property.
         """
         self._split_d_n_s = value
     

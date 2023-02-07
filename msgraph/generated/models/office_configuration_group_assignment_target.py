@@ -33,7 +33,7 @@ class OfficeConfigurationGroupAssignmentTarget(office_configuration_assignment_t
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class OfficeConfigurationGroupAssignmentTarget(office_configuration_assignment_t
         """
         Sets the groupId property value. The Id of the AAD group we are targeting the device configuration to.
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     

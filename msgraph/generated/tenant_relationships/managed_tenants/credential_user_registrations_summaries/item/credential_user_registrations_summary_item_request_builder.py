@@ -35,12 +35,11 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property credentialUserRegistrationsSummaries for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
+    async def get(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
         """
         Summary information for user registration for multi-factor authentication and self service password reset across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary.CredentialUserRegistrationsSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary.CredentialUserRegistrationsSummary, error_mapping)
     
-    async def patch(self,body: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary] = None, request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
+    async def patch(self,body: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary] = None, request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]:
         """
         Update the navigation property credentialUserRegistrationsSummaries in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[credential_user_registrations_summary.CredentialUserRegistrationsSummary]
         """
         if body is None:
@@ -92,7 +89,7 @@ class CredentialUserRegistrationsSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary.CredentialUserRegistrationsSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, credential_user_registrations_summary.CredentialUserRegistrationsSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CredentialUserRegistrationsSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

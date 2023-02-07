@@ -12,7 +12,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.count.count_request_builder')
-summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.summary_with_start_date_time_with_end_date_time.summary_with_start_date_time_with_end_date_time_request_builder')
+microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.user_processing_results.microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time.microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder')
 user_processing_result_collection_response = lazy_import('msgraph.generated.models.identity_governance.user_processing_result_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -45,12 +45,11 @@ class UserProcessingResultsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]:
         """
         Get the **userProcessingResult** resources for a workflow.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_processing_result_collection_response.UserProcessingResultCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,21 +61,21 @@ class UserProcessingResultsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_processing_result_collection_response.UserProcessingResultCollectionResponse, error_mapping)
     
-    def summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the summary method.
         Args:
             endDateTime: Usage: endDateTime={endDateTime}
             startDateTime: Usage: startDateTime={startDateTime}
-        Returns: summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
         if end_date_time is None:
             raise Exception("end_date_time cannot be undefined")
         if start_date_time is None:
             raise Exception("start_date_time cannot be undefined")
-        return summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, startDateTime)
+        return microsoft_graph_identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, startDateTime)
     
     def to_get_request_information(self,request_configuration: Optional[UserProcessingResultsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

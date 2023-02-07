@@ -17,7 +17,7 @@ deployment_collection_response = lazy_import('msgraph.generated.models.windows_u
 
 class DeploymentsRequestBuilder():
     """
-    Provides operations to manage the deployments property of the microsoft.graph.windowsUpdates.updates entity.
+    Provides operations to manage the deployments property of the microsoft.graph.adminWindowsUpdates entity.
     """
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
@@ -44,12 +44,11 @@ class DeploymentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[deployment_collection_response.DeploymentCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_collection_response.DeploymentCollectionResponse]:
         """
         Get a list of deployment objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deployment_collection_response.DeploymentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class DeploymentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, deployment_collection_response.DeploymentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, deployment_collection_response.DeploymentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[deployment.Deployment] = None, request_configuration: Optional[DeploymentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[deployment.Deployment]:
+    async def post(self,body: Optional[deployment.Deployment] = None, request_configuration: Optional[DeploymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[deployment.Deployment]:
         """
         Create a new deployment object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deployment.Deployment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class DeploymentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, deployment.Deployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, deployment.Deployment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeploymentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

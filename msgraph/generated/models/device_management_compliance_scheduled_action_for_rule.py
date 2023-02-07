@@ -40,8 +40,8 @@ class DeviceManagementComplianceScheduledActionForRule(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "rule_name": lambda n : setattr(self, 'rule_name', n.get_str_value()),
-            "scheduled_action_configurations": lambda n : setattr(self, 'scheduled_action_configurations', n.get_collection_of_object_values(device_management_compliance_action_item.DeviceManagementComplianceActionItem)),
+            "ruleName": lambda n : setattr(self, 'rule_name', n.get_str_value()),
+            "scheduledActionConfigurations": lambda n : setattr(self, 'scheduled_action_configurations', n.get_collection_of_object_values(device_management_compliance_action_item.DeviceManagementComplianceActionItem)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -60,7 +60,7 @@ class DeviceManagementComplianceScheduledActionForRule(entity.Entity):
         """
         Sets the ruleName property value. Name of the rule which this scheduled action applies to.
         Args:
-            value: Value to set for the ruleName property.
+            value: Value to set for the rule_name property.
         """
         self._rule_name = value
     
@@ -77,7 +77,7 @@ class DeviceManagementComplianceScheduledActionForRule(entity.Entity):
         """
         Sets the scheduledActionConfigurations property value. The list of scheduled action configurations for this compliance policy. This collection can contain a maximum of 100 elements.
         Args:
-            value: Value to set for the scheduledActionConfigurations property.
+            value: Value to set for the scheduled_action_configurations property.
         """
         self._scheduled_action_configurations = value
     

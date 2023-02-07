@@ -6,9 +6,12 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class BookingNamedEntity(entity.Entity):
+    """
+    Booking entities that provide a display name.
+    """
     def __init__(self,) -> None:
         """
-        Instantiates a new BookingNamedEntity and sets the default values.
+        Instantiates a new bookingNamedEntity and sets the default values.
         """
         super().__init__()
         # A name for the derived entity, which interfaces with customers.
@@ -41,7 +44,7 @@ class BookingNamedEntity(entity.Entity):
         """
         Sets the displayName property value. A name for the derived entity, which interfaces with customers.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -51,7 +54,7 @@ class BookingNamedEntity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

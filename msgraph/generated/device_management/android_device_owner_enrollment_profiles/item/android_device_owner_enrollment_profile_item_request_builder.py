@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-create_token_request_builder = lazy_import('msgraph.generated.device_management.android_device_owner_enrollment_profiles.item.create_token.create_token_request_builder')
-revoke_token_request_builder = lazy_import('msgraph.generated.device_management.android_device_owner_enrollment_profiles.item.revoke_token.revoke_token_request_builder')
+microsoft_graph_create_token_request_builder = lazy_import('msgraph.generated.device_management.android_device_owner_enrollment_profiles.item.microsoft_graph_create_token.microsoft_graph_create_token_request_builder')
+microsoft_graph_revoke_token_request_builder = lazy_import('msgraph.generated.device_management.android_device_owner_enrollment_profiles.item.microsoft_graph_revoke_token.microsoft_graph_revoke_token_request_builder')
 android_device_owner_enrollment_profile = lazy_import('msgraph.generated.models.android_device_owner_enrollment_profile')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,18 +20,18 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
     Provides operations to manage the androidDeviceOwnerEnrollmentProfiles property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def create_token(self) -> create_token_request_builder.CreateTokenRequestBuilder:
+    def microsoft_graph_create_token(self) -> microsoft_graph_create_token_request_builder.MicrosoftGraphCreateTokenRequestBuilder:
         """
         Provides operations to call the createToken method.
         """
-        return create_token_request_builder.CreateTokenRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_create_token_request_builder.MicrosoftGraphCreateTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def revoke_token(self) -> revoke_token_request_builder.RevokeTokenRequestBuilder:
+    def microsoft_graph_revoke_token(self) -> microsoft_graph_revoke_token_request_builder.MicrosoftGraphRevokeTokenRequestBuilder:
         """
         Provides operations to call the revokeToken method.
         """
-        return revoke_token_request_builder.RevokeTokenRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_revoke_token_request_builder.MicrosoftGraphRevokeTokenRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidDeviceOwnerEnrollmentProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
+    async def get(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
         """
         Android device owner enrollment profile entities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, error_mapping)
     
-    async def patch(self,body: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
+    async def patch(self,body: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile] = None, request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]:
         """
         Update the navigation property androidDeviceOwnerEnrollmentProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile]
         """
         if body is None:
@@ -108,7 +105,7 @@ class AndroidDeviceOwnerEnrollmentProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_device_owner_enrollment_profile.AndroidDeviceOwnerEnrollmentProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidDeviceOwnerEnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

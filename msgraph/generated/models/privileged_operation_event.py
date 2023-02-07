@@ -20,7 +20,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the additionalInformation property value. Detailed human readable information for the event.
         Args:
-            value: Value to set for the additionalInformation property.
+            value: Value to set for the additional_information property.
         """
         self._additional_information = value
     
@@ -41,12 +41,12 @@ class PrivilegedOperationEvent(entity.Entity):
         self._reference_key: Optional[str] = None
         # Incident/Request ticketing system provided during tole activation. The value is presented only if the ticket system is provided during role activation.
         self._reference_system: Optional[str] = None
+        # The request operation type. The requestType value can be: Assign (role assignment), Activate (role activation), Unassign (remove role assignment), Deactivate (role deactivation), ScanAlertsNow (scan security alerts), DismissAlert (dismiss security alert), FixAlertItem (fix a security alert issue),  AccessReview_Review (review an Access Review), AccessReview_Create (create an Access Review) , AccessReview_Update (update an Access Review), AccessReview_Delete (delete an Access Review).
+        self._request_type: Optional[str] = None
         # The user id of the requestor who initiates the operation.
         self._requestor_id: Optional[str] = None
         # The user name of the requestor who initiates the operation.
         self._requestor_name: Optional[str] = None
-        # The request operation type. The requestType value can be: Assign (role assignment), Activate (role activation), Unassign (remove role assignment), Deactivate (role deactivation), ScanAlertsNow (scan security alerts), DismissAlert (dismiss security alert), FixAlertItem (fix a security alert issue),  AccessReview_Review (review an Access Review), AccessReview_Create (create an Access Review) , AccessReview_Update (update an Access Review), AccessReview_Delete (delete an Access Review).
-        self._request_type: Optional[str] = None
         # The id of the role that is associated with the operation.
         self._role_id: Optional[str] = None
         # The name of the role.
@@ -85,7 +85,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the creationDateTime property value. Indicates the time when the event is created.
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -102,7 +102,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the expirationDateTime property value. This is only used when the requestType is Activate, and it indicates the expiration time for the role activation.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -112,20 +112,20 @@ class PrivilegedOperationEvent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_information": lambda n : setattr(self, 'additional_information', n.get_str_value()),
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "reference_key": lambda n : setattr(self, 'reference_key', n.get_str_value()),
-            "reference_system": lambda n : setattr(self, 'reference_system', n.get_str_value()),
-            "requestor_id": lambda n : setattr(self, 'requestor_id', n.get_str_value()),
-            "requestor_name": lambda n : setattr(self, 'requestor_name', n.get_str_value()),
-            "request_type": lambda n : setattr(self, 'request_type', n.get_str_value()),
-            "role_id": lambda n : setattr(self, 'role_id', n.get_str_value()),
-            "role_name": lambda n : setattr(self, 'role_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_mail": lambda n : setattr(self, 'user_mail', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "referenceKey": lambda n : setattr(self, 'reference_key', n.get_str_value()),
+            "referenceSystem": lambda n : setattr(self, 'reference_system', n.get_str_value()),
+            "requestorId": lambda n : setattr(self, 'requestor_id', n.get_str_value()),
+            "requestorName": lambda n : setattr(self, 'requestor_name', n.get_str_value()),
+            "requestType": lambda n : setattr(self, 'request_type', n.get_str_value()),
+            "roleId": lambda n : setattr(self, 'role_id', n.get_str_value()),
+            "roleName": lambda n : setattr(self, 'role_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userMail": lambda n : setattr(self, 'user_mail', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -144,7 +144,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the referenceKey property value. Incident/Request ticket number during role activation. The value is presented only if the ticket number is provided during role activation.
         Args:
-            value: Value to set for the referenceKey property.
+            value: Value to set for the reference_key property.
         """
         self._reference_key = value
     
@@ -161,9 +161,26 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the referenceSystem property value. Incident/Request ticketing system provided during tole activation. The value is presented only if the ticket system is provided during role activation.
         Args:
-            value: Value to set for the referenceSystem property.
+            value: Value to set for the reference_system property.
         """
         self._reference_system = value
+    
+    @property
+    def request_type(self,) -> Optional[str]:
+        """
+        Gets the requestType property value. The request operation type. The requestType value can be: Assign (role assignment), Activate (role activation), Unassign (remove role assignment), Deactivate (role deactivation), ScanAlertsNow (scan security alerts), DismissAlert (dismiss security alert), FixAlertItem (fix a security alert issue),  AccessReview_Review (review an Access Review), AccessReview_Create (create an Access Review) , AccessReview_Update (update an Access Review), AccessReview_Delete (delete an Access Review).
+        Returns: Optional[str]
+        """
+        return self._request_type
+    
+    @request_type.setter
+    def request_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the requestType property value. The request operation type. The requestType value can be: Assign (role assignment), Activate (role activation), Unassign (remove role assignment), Deactivate (role deactivation), ScanAlertsNow (scan security alerts), DismissAlert (dismiss security alert), FixAlertItem (fix a security alert issue),  AccessReview_Review (review an Access Review), AccessReview_Create (create an Access Review) , AccessReview_Update (update an Access Review), AccessReview_Delete (delete an Access Review).
+        Args:
+            value: Value to set for the request_type property.
+        """
+        self._request_type = value
     
     @property
     def requestor_id(self,) -> Optional[str]:
@@ -178,7 +195,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the requestorId property value. The user id of the requestor who initiates the operation.
         Args:
-            value: Value to set for the requestorId property.
+            value: Value to set for the requestor_id property.
         """
         self._requestor_id = value
     
@@ -195,26 +212,9 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the requestorName property value. The user name of the requestor who initiates the operation.
         Args:
-            value: Value to set for the requestorName property.
+            value: Value to set for the requestor_name property.
         """
         self._requestor_name = value
-    
-    @property
-    def request_type(self,) -> Optional[str]:
-        """
-        Gets the requestType property value. The request operation type. The requestType value can be: Assign (role assignment), Activate (role activation), Unassign (remove role assignment), Deactivate (role deactivation), ScanAlertsNow (scan security alerts), DismissAlert (dismiss security alert), FixAlertItem (fix a security alert issue),  AccessReview_Review (review an Access Review), AccessReview_Create (create an Access Review) , AccessReview_Update (update an Access Review), AccessReview_Delete (delete an Access Review).
-        Returns: Optional[str]
-        """
-        return self._request_type
-    
-    @request_type.setter
-    def request_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the requestType property value. The request operation type. The requestType value can be: Assign (role assignment), Activate (role activation), Unassign (remove role assignment), Deactivate (role deactivation), ScanAlertsNow (scan security alerts), DismissAlert (dismiss security alert), FixAlertItem (fix a security alert issue),  AccessReview_Review (review an Access Review), AccessReview_Create (create an Access Review) , AccessReview_Update (update an Access Review), AccessReview_Delete (delete an Access Review).
-        Args:
-            value: Value to set for the requestType property.
-        """
-        self._request_type = value
     
     @property
     def role_id(self,) -> Optional[str]:
@@ -229,7 +229,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the roleId property value. The id of the role that is associated with the operation.
         Args:
-            value: Value to set for the roleId property.
+            value: Value to set for the role_id property.
         """
         self._role_id = value
     
@@ -246,7 +246,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the roleName property value. The name of the role.
         Args:
-            value: Value to set for the roleName property.
+            value: Value to set for the role_name property.
         """
         self._role_name = value
     
@@ -287,7 +287,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the tenantId property value. The tenant (organization) id.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -304,7 +304,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the userId property value. The id of the user that is associated with the operation.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -321,7 +321,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the userMail property value. The user's email.
         Args:
-            value: Value to set for the userMail property.
+            value: Value to set for the user_mail property.
         """
         self._user_mail = value
     
@@ -338,7 +338,7 @@ class PrivilegedOperationEvent(entity.Entity):
         """
         Sets the userName property value. The user's display name.
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     

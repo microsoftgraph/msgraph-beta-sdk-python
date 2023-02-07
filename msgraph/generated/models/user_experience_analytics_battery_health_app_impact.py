@@ -22,7 +22,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         """
         Sets the activeDevices property value. Number of active devices for using that app over a 14-day period. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDevices property.
+            value: Value to set for the active_devices property.
         """
         self._active_devices = value
     
@@ -39,7 +39,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         """
         Sets the appDisplayName property value. User friendly display name for the app. Eg: Outlook
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -56,7 +56,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         """
         Sets the appName property value. App name. Eg: oltk.exe
         Args:
-            value: Value to set for the appName property.
+            value: Value to set for the app_name property.
         """
         self._app_name = value
     
@@ -73,7 +73,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         """
         Sets the appPublisher property value. App publisher. Eg: Microsoft Corporation
         Args:
-            value: Value to set for the appPublisher property.
+            value: Value to set for the app_publisher property.
         """
         self._app_publisher = value
     
@@ -90,7 +90,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         """
         Sets the batteryUsagePercentage property value. The percent of total battery power used by this application when the device was not plugged into AC power, over 14 days computed across all devices in the tenant. Unit in percentage. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the batteryUsagePercentage property.
+            value: Value to set for the battery_usage_percentage property.
         """
         self._battery_usage_percentage = value
     
@@ -132,12 +132,12 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_devices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_name": lambda n : setattr(self, 'app_name', n.get_str_value()),
-            "app_publisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "battery_usage_percentage": lambda n : setattr(self, 'battery_usage_percentage', n.get_float_value()),
-            "is_foreground_app": lambda n : setattr(self, 'is_foreground_app', n.get_bool_value()),
+            "activeDevices": lambda n : setattr(self, 'active_devices', n.get_int_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
+            "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
+            "batteryUsagePercentage": lambda n : setattr(self, 'battery_usage_percentage', n.get_float_value()),
+            "isForegroundApp": lambda n : setattr(self, 'is_foreground_app', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -156,7 +156,7 @@ class UserExperienceAnalyticsBatteryHealthAppImpact(entity.Entity):
         """
         Sets the isForegroundApp property value. true if the user had active interaction with the app.
         Args:
-            value: Value to set for the isForegroundApp property.
+            value: Value to set for the is_foreground_app property.
         """
         self._is_foreground_app = value
     

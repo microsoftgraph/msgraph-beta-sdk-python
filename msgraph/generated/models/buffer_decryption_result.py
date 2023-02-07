@@ -58,7 +58,7 @@ class BufferDecryptionResult(AdditionalDataHolder, Parsable):
         """
         Sets the decryptedBuffer property value. The decryptedBuffer property
         Args:
-            value: Value to set for the decryptedBuffer property.
+            value: Value to set for the decrypted_buffer property.
         """
         self._decrypted_buffer = value
     
@@ -68,7 +68,7 @@ class BufferDecryptionResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "decrypted_buffer": lambda n : setattr(self, 'decrypted_buffer', n.get_bytes_value()),
+            "decryptedBuffer": lambda n : setattr(self, 'decrypted_buffer', n.get_bytes_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -86,7 +86,7 @@ class BufferDecryptionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

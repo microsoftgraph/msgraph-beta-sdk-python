@@ -35,12 +35,11 @@ class ManagementIntentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managementIntents for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_intent.ManagementIntent]:
+    async def get(self,request_configuration: Optional[ManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_intent.ManagementIntent]:
         """
         The collection of baseline management intents across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_intent.ManagementIntent]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_intent.ManagementIntent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_intent.ManagementIntent, error_mapping)
     
-    async def patch(self,body: Optional[management_intent.ManagementIntent] = None, request_configuration: Optional[ManagementIntentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_intent.ManagementIntent]:
+    async def patch(self,body: Optional[management_intent.ManagementIntent] = None, request_configuration: Optional[ManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_intent.ManagementIntent]:
         """
         Update the navigation property managementIntents in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_intent.ManagementIntent]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_intent.ManagementIntent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_intent.ManagementIntent, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

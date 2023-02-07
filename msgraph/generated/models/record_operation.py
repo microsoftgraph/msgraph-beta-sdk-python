@@ -20,7 +20,7 @@ class RecordOperation(comms_operation.CommsOperation):
         """
         Sets the completionReason property value. Possible values are: operationCanceled, stopToneDetected, maxRecordDurationReached, initialSilenceTimeout, maxSilenceTimeout, playPromptFailed, playBeepFailed, mediaReceiveTimeout, unspecifiedError, none.
         Args:
-            value: Value to set for the completionReason property.
+            value: Value to set for the completion_reason property.
         """
         self._completion_reason = value
     
@@ -56,9 +56,9 @@ class RecordOperation(comms_operation.CommsOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completion_reason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(record_completion_reason.RecordCompletionReason)),
-            "recording_access_token": lambda n : setattr(self, 'recording_access_token', n.get_str_value()),
-            "recording_location": lambda n : setattr(self, 'recording_location', n.get_str_value()),
+            "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(record_completion_reason.RecordCompletionReason)),
+            "recordingAccessToken": lambda n : setattr(self, 'recording_access_token', n.get_str_value()),
+            "recordingLocation": lambda n : setattr(self, 'recording_location', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class RecordOperation(comms_operation.CommsOperation):
         """
         Sets the recordingAccessToken property value. The access token required to retrieve the recording.
         Args:
-            value: Value to set for the recordingAccessToken property.
+            value: Value to set for the recording_access_token property.
         """
         self._recording_access_token = value
     
@@ -94,7 +94,7 @@ class RecordOperation(comms_operation.CommsOperation):
         """
         Sets the recordingLocation property value. The location where the recording is located.
         Args:
-            value: Value to set for the recordingLocation property.
+            value: Value to set for the recording_location property.
         """
         self._recording_location = value
     

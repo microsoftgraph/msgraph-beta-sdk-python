@@ -106,24 +106,11 @@ domain_join_connectors_request_builder = lazy_import('msgraph.generated.device_m
 device_management_domain_join_connector_item_request_builder = lazy_import('msgraph.generated.device_management.domain_join_connectors.item.device_management_domain_join_connector_item_request_builder')
 embedded_s_i_m_activation_code_pools_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.embedded_s_i_m_activation_code_pools_request_builder')
 embedded_s_i_m_activation_code_pool_item_request_builder = lazy_import('msgraph.generated.device_management.embedded_s_i_m_activation_code_pools.item.embedded_s_i_m_activation_code_pool_item_request_builder')
-enable_android_device_administrator_enrollment_request_builder = lazy_import('msgraph.generated.device_management.enable_android_device_administrator_enrollment.enable_android_device_administrator_enrollment_request_builder')
-enable_legacy_pc_management_request_builder = lazy_import('msgraph.generated.device_management.enable_legacy_pc_management.enable_legacy_pc_management_request_builder')
-enable_unlicensed_adminstrators_request_builder = lazy_import('msgraph.generated.device_management.enable_unlicensed_adminstrators.enable_unlicensed_adminstrators_request_builder')
-evaluate_assignment_filter_request_builder = lazy_import('msgraph.generated.device_management.evaluate_assignment_filter.evaluate_assignment_filter_request_builder')
 exchange_connectors_request_builder = lazy_import('msgraph.generated.device_management.exchange_connectors.exchange_connectors_request_builder')
 device_management_exchange_connector_item_request_builder = lazy_import('msgraph.generated.device_management.exchange_connectors.item.device_management_exchange_connector_item_request_builder')
 exchange_on_premises_policies_request_builder = lazy_import('msgraph.generated.device_management.exchange_on_premises_policies.exchange_on_premises_policies_request_builder')
 device_management_exchange_on_premises_policy_item_request_builder = lazy_import('msgraph.generated.device_management.exchange_on_premises_policies.item.device_management_exchange_on_premises_policy_item_request_builder')
 exchange_on_premises_policy_request_builder = lazy_import('msgraph.generated.device_management.exchange_on_premises_policy.exchange_on_premises_policy_request_builder')
-get_assigned_role_details_request_builder = lazy_import('msgraph.generated.device_management.get_assigned_role_details.get_assigned_role_details_request_builder')
-get_assignment_filters_status_details_request_builder = lazy_import('msgraph.generated.device_management.get_assignment_filters_status_details.get_assignment_filters_status_details_request_builder')
-get_comanaged_devices_summary_request_builder = lazy_import('msgraph.generated.device_management.get_comanaged_devices_summary.get_comanaged_devices_summary_request_builder')
-get_comanagement_eligible_devices_summary_request_builder = lazy_import('msgraph.generated.device_management.get_comanagement_eligible_devices_summary.get_comanagement_eligible_devices_summary_request_builder')
-get_effective_permissions_request_builder = lazy_import('msgraph.generated.device_management.get_effective_permissions.get_effective_permissions_request_builder')
-get_effective_permissions_with_scope_request_builder = lazy_import('msgraph.generated.device_management.get_effective_permissions_with_scope.get_effective_permissions_with_scope_request_builder')
-get_role_scope_tags_by_ids_with_ids_request_builder = lazy_import('msgraph.generated.device_management.get_role_scope_tags_by_ids_with_ids.get_role_scope_tags_by_ids_with_ids_request_builder')
-get_role_scope_tags_by_resource_with_resource_request_builder = lazy_import('msgraph.generated.device_management.get_role_scope_tags_by_resource_with_resource.get_role_scope_tags_by_resource_with_resource_request_builder')
-get_suggested_enrollment_limit_with_enrollment_type_request_builder = lazy_import('msgraph.generated.device_management.get_suggested_enrollment_limit_with_enrollment_type.get_suggested_enrollment_limit_with_enrollment_type_request_builder')
 group_policy_categories_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.group_policy_categories_request_builder')
 group_policy_category_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_categories.item.group_policy_category_item_request_builder')
 group_policy_configurations_request_builder = lazy_import('msgraph.generated.device_management.group_policy_configurations.group_policy_configurations_request_builder')
@@ -155,6 +142,24 @@ managed_device_encryption_state_item_request_builder = lazy_import('msgraph.gene
 managed_device_overview_request_builder = lazy_import('msgraph.generated.device_management.managed_device_overview.managed_device_overview_request_builder')
 managed_devices_request_builder = lazy_import('msgraph.generated.device_management.managed_devices.managed_devices_request_builder')
 managed_device_item_request_builder = lazy_import('msgraph.generated.device_management.managed_devices.item.managed_device_item_request_builder')
+microsoft_graph_enable_android_device_administrator_enrollment_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_enable_android_device_administrator_enrollment.microsoft_graph_enable_android_device_administrator_enrollment_request_builder')
+microsoft_graph_enable_legacy_pc_management_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_enable_legacy_pc_management.microsoft_graph_enable_legacy_pc_management_request_builder')
+microsoft_graph_enable_unlicensed_adminstrators_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_enable_unlicensed_adminstrators.microsoft_graph_enable_unlicensed_adminstrators_request_builder')
+microsoft_graph_evaluate_assignment_filter_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_evaluate_assignment_filter.microsoft_graph_evaluate_assignment_filter_request_builder')
+microsoft_graph_get_assigned_role_details_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_assigned_role_details.microsoft_graph_get_assigned_role_details_request_builder')
+microsoft_graph_get_assignment_filters_status_details_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_assignment_filters_status_details.microsoft_graph_get_assignment_filters_status_details_request_builder')
+microsoft_graph_get_comanaged_devices_summary_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_comanaged_devices_summary.microsoft_graph_get_comanaged_devices_summary_request_builder')
+microsoft_graph_get_comanagement_eligible_devices_summary_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_comanagement_eligible_devices_summary.microsoft_graph_get_comanagement_eligible_devices_summary_request_builder')
+microsoft_graph_get_effective_permissions_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_effective_permissions.microsoft_graph_get_effective_permissions_request_builder')
+microsoft_graph_get_effective_permissions_with_scope_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_effective_permissions_with_scope.microsoft_graph_get_effective_permissions_with_scope_request_builder')
+microsoft_graph_get_role_scope_tags_by_ids_with_ids_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_role_scope_tags_by_ids_with_ids.microsoft_graph_get_role_scope_tags_by_ids_with_ids_request_builder')
+microsoft_graph_get_role_scope_tags_by_resource_with_resource_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_role_scope_tags_by_resource_with_resource.microsoft_graph_get_role_scope_tags_by_resource_with_resource_request_builder')
+microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type.microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type_request_builder')
+microsoft_graph_scoped_for_resource_with_resource_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_scoped_for_resource_with_resource.microsoft_graph_scoped_for_resource_with_resource_request_builder')
+microsoft_graph_send_custom_notification_to_company_portal_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_send_custom_notification_to_company_portal.microsoft_graph_send_custom_notification_to_company_portal_request_builder')
+microsoft_graph_user_experience_analytics_summarized_device_scopes_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_user_experience_analytics_summarized_device_scopes.microsoft_graph_user_experience_analytics_summarized_device_scopes_request_builder')
+microsoft_graph_user_experience_analytics_summarize_work_from_anywhere_devices_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_user_experience_analytics_summarize_work_from_anywhere_devices.microsoft_graph_user_experience_analytics_summarize_work_from_anywhere_devices_request_builder')
+microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name_request_builder = lazy_import('msgraph.generated.device_management.microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name.microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name_request_builder')
 microsoft_tunnel_configurations_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_configurations.microsoft_tunnel_configurations_request_builder')
 microsoft_tunnel_configuration_item_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_configurations.item.microsoft_tunnel_configuration_item_request_builder')
 microsoft_tunnel_health_thresholds_request_builder = lazy_import('msgraph.generated.device_management.microsoft_tunnel_health_thresholds.microsoft_tunnel_health_thresholds_request_builder')
@@ -194,8 +199,8 @@ role_definitions_request_builder = lazy_import('msgraph.generated.device_managem
 role_definition_item_request_builder = lazy_import('msgraph.generated.device_management.role_definitions.item.role_definition_item_request_builder')
 role_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.role_scope_tags_request_builder')
 role_scope_tag_item_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.item.role_scope_tag_item_request_builder')
-scoped_for_resource_with_resource_request_builder = lazy_import('msgraph.generated.device_management.scoped_for_resource_with_resource.scoped_for_resource_with_resource_request_builder')
-send_custom_notification_to_company_portal_request_builder = lazy_import('msgraph.generated.device_management.send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder')
+service_now_connections_request_builder = lazy_import('msgraph.generated.device_management.service_now_connections.service_now_connections_request_builder')
+service_now_connection_item_request_builder = lazy_import('msgraph.generated.device_management.service_now_connections.item.service_now_connection_item_request_builder')
 setting_definitions_request_builder = lazy_import('msgraph.generated.device_management.setting_definitions.setting_definitions_request_builder')
 device_management_setting_definition_item_request_builder = lazy_import('msgraph.generated.device_management.setting_definitions.item.device_management_setting_definition_item_request_builder')
 software_update_status_summary_request_builder = lazy_import('msgraph.generated.device_management.software_update_status_summary.software_update_status_summary_request_builder')
@@ -268,8 +273,8 @@ user_experience_analytics_device_startup_process_performance_request_builder = l
 user_experience_analytics_device_startup_process_performance_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_startup_process_performance.item.user_experience_analytics_device_startup_process_performance_item_request_builder')
 user_experience_analytics_devices_without_cloud_identity_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder')
 user_experience_analytics_device_without_cloud_identity_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_devices_without_cloud_identity.item.user_experience_analytics_device_without_cloud_identity_item_request_builder')
-user_experience_analytics_device_timeline_events_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_events.user_experience_analytics_device_timeline_events_request_builder')
-user_experience_analytics_device_timeline_events_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_events.item.user_experience_analytics_device_timeline_events_item_request_builder')
+user_experience_analytics_device_timeline_event_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_event.user_experience_analytics_device_timeline_event_request_builder')
+user_experience_analytics_device_timeline_event_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_event.item.user_experience_analytics_device_timeline_event_item_request_builder')
 user_experience_analytics_impacting_process_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_impacting_process.user_experience_analytics_impacting_process_request_builder')
 user_experience_analytics_impacting_process_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_impacting_process.item.user_experience_analytics_impacting_process_item_request_builder')
 user_experience_analytics_metric_history_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_metric_history.user_experience_analytics_metric_history_request_builder')
@@ -285,8 +290,6 @@ user_experience_analytics_resource_performance_request_builder = lazy_import('ms
 user_experience_analytics_resource_performance_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_resource_performance.item.user_experience_analytics_resource_performance_item_request_builder')
 user_experience_analytics_score_history_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_score_history.user_experience_analytics_score_history_request_builder')
 user_experience_analytics_score_history_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_score_history.item.user_experience_analytics_score_history_item_request_builder')
-user_experience_analytics_summarized_device_scopes_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_summarized_device_scopes.user_experience_analytics_summarized_device_scopes_request_builder')
-user_experience_analytics_summarize_work_from_anywhere_devices_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_summarize_work_from_anywhere_devices.user_experience_analytics_summarize_work_from_anywhere_devices_request_builder')
 user_experience_analytics_work_from_anywhere_hardware_readiness_metric_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_work_from_anywhere_hardware_readiness_metric.user_experience_analytics_work_from_anywhere_hardware_readiness_metric_request_builder')
 user_experience_analytics_work_from_anywhere_metrics_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_work_from_anywhere_metrics.user_experience_analytics_work_from_anywhere_metrics_request_builder')
 user_experience_analytics_work_from_anywhere_metric_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_work_from_anywhere_metrics.item.user_experience_analytics_work_from_anywhere_metric_item_request_builder')
@@ -294,7 +297,6 @@ user_experience_analytics_work_from_anywhere_model_performance_request_builder =
 user_experience_analytics_work_from_anywhere_model_performance_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_work_from_anywhere_model_performance.item.user_experience_analytics_work_from_anywhere_model_performance_item_request_builder')
 user_pfx_certificates_request_builder = lazy_import('msgraph.generated.device_management.user_pfx_certificates.user_pfx_certificates_request_builder')
 user_p_f_x_certificate_item_request_builder = lazy_import('msgraph.generated.device_management.user_pfx_certificates.item.user_p_f_x_certificate_item_request_builder')
-verify_windows_enrollment_auto_discovery_with_domain_name_request_builder = lazy_import('msgraph.generated.device_management.verify_windows_enrollment_auto_discovery_with_domain_name.verify_windows_enrollment_auto_discovery_with_domain_name_request_builder')
 virtual_endpoint_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.virtual_endpoint_request_builder')
 windows_autopilot_deployment_profiles_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.windows_autopilot_deployment_profiles_request_builder')
 windows_autopilot_deployment_profile_item_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.item.windows_autopilot_deployment_profile_item_request_builder')
@@ -320,7 +322,7 @@ zebra_fota_artifact_item_request_builder = lazy_import('msgraph.generated.device
 zebra_fota_connector_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.zebra_fota_connector_request_builder')
 zebra_fota_deployments_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_deployments.zebra_fota_deployments_request_builder')
 zebra_fota_deployment_item_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_deployments.item.zebra_fota_deployment_item_request_builder')
-device_management = lazy_import('msgraph.generated.models.device_management')
+device_management = lazy_import('msgraph.generated.models.device_management.device_management')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceManagementRequestBuilder():
@@ -692,34 +694,6 @@ class DeviceManagementRequestBuilder():
         return embedded_s_i_m_activation_code_pools_request_builder.EmbeddedSIMActivationCodePoolsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable_android_device_administrator_enrollment(self) -> enable_android_device_administrator_enrollment_request_builder.EnableAndroidDeviceAdministratorEnrollmentRequestBuilder:
-        """
-        Provides operations to call the enableAndroidDeviceAdministratorEnrollment method.
-        """
-        return enable_android_device_administrator_enrollment_request_builder.EnableAndroidDeviceAdministratorEnrollmentRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def enable_legacy_pc_management(self) -> enable_legacy_pc_management_request_builder.EnableLegacyPcManagementRequestBuilder:
-        """
-        Provides operations to call the enableLegacyPcManagement method.
-        """
-        return enable_legacy_pc_management_request_builder.EnableLegacyPcManagementRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def enable_unlicensed_adminstrators(self) -> enable_unlicensed_adminstrators_request_builder.EnableUnlicensedAdminstratorsRequestBuilder:
-        """
-        Provides operations to call the enableUnlicensedAdminstrators method.
-        """
-        return enable_unlicensed_adminstrators_request_builder.EnableUnlicensedAdminstratorsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def evaluate_assignment_filter(self) -> evaluate_assignment_filter_request_builder.EvaluateAssignmentFilterRequestBuilder:
-        """
-        Provides operations to call the evaluateAssignmentFilter method.
-        """
-        return evaluate_assignment_filter_request_builder.EvaluateAssignmentFilterRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def exchange_connectors(self) -> exchange_connectors_request_builder.ExchangeConnectorsRequestBuilder:
         """
         Provides operations to manage the exchangeConnectors property of the microsoft.graph.deviceManagement entity.
@@ -739,13 +713,6 @@ class DeviceManagementRequestBuilder():
         Provides operations to manage the exchangeOnPremisesPolicy property of the microsoft.graph.deviceManagement entity.
         """
         return exchange_on_premises_policy_request_builder.ExchangeOnPremisesPolicyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_assignment_filters_status_details(self) -> get_assignment_filters_status_details_request_builder.GetAssignmentFiltersStatusDetailsRequestBuilder:
-        """
-        Provides operations to call the getAssignmentFiltersStatusDetails method.
-        """
-        return get_assignment_filters_status_details_request_builder.GetAssignmentFiltersStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def group_policy_categories(self) -> group_policy_categories_request_builder.GroupPolicyCategoriesRequestBuilder:
@@ -858,6 +825,90 @@ class DeviceManagementRequestBuilder():
         Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.
         """
         return managed_devices_request_builder.ManagedDevicesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_enable_android_device_administrator_enrollment(self) -> microsoft_graph_enable_android_device_administrator_enrollment_request_builder.MicrosoftGraphEnableAndroidDeviceAdministratorEnrollmentRequestBuilder:
+        """
+        Provides operations to call the enableAndroidDeviceAdministratorEnrollment method.
+        """
+        return microsoft_graph_enable_android_device_administrator_enrollment_request_builder.MicrosoftGraphEnableAndroidDeviceAdministratorEnrollmentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_enable_legacy_pc_management(self) -> microsoft_graph_enable_legacy_pc_management_request_builder.MicrosoftGraphEnableLegacyPcManagementRequestBuilder:
+        """
+        Provides operations to call the enableLegacyPcManagement method.
+        """
+        return microsoft_graph_enable_legacy_pc_management_request_builder.MicrosoftGraphEnableLegacyPcManagementRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_enable_unlicensed_adminstrators(self) -> microsoft_graph_enable_unlicensed_adminstrators_request_builder.MicrosoftGraphEnableUnlicensedAdminstratorsRequestBuilder:
+        """
+        Provides operations to call the enableUnlicensedAdminstrators method.
+        """
+        return microsoft_graph_enable_unlicensed_adminstrators_request_builder.MicrosoftGraphEnableUnlicensedAdminstratorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_evaluate_assignment_filter(self) -> microsoft_graph_evaluate_assignment_filter_request_builder.MicrosoftGraphEvaluateAssignmentFilterRequestBuilder:
+        """
+        Provides operations to call the evaluateAssignmentFilter method.
+        """
+        return microsoft_graph_evaluate_assignment_filter_request_builder.MicrosoftGraphEvaluateAssignmentFilterRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_assigned_role_details(self) -> microsoft_graph_get_assigned_role_details_request_builder.MicrosoftGraphGetAssignedRoleDetailsRequestBuilder:
+        """
+        Provides operations to call the getAssignedRoleDetails method.
+        """
+        return microsoft_graph_get_assigned_role_details_request_builder.MicrosoftGraphGetAssignedRoleDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_assignment_filters_status_details(self) -> microsoft_graph_get_assignment_filters_status_details_request_builder.MicrosoftGraphGetAssignmentFiltersStatusDetailsRequestBuilder:
+        """
+        Provides operations to call the getAssignmentFiltersStatusDetails method.
+        """
+        return microsoft_graph_get_assignment_filters_status_details_request_builder.MicrosoftGraphGetAssignmentFiltersStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_comanaged_devices_summary(self) -> microsoft_graph_get_comanaged_devices_summary_request_builder.MicrosoftGraphGetComanagedDevicesSummaryRequestBuilder:
+        """
+        Provides operations to call the getComanagedDevicesSummary method.
+        """
+        return microsoft_graph_get_comanaged_devices_summary_request_builder.MicrosoftGraphGetComanagedDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_comanagement_eligible_devices_summary(self) -> microsoft_graph_get_comanagement_eligible_devices_summary_request_builder.MicrosoftGraphGetComanagementEligibleDevicesSummaryRequestBuilder:
+        """
+        Provides operations to call the getComanagementEligibleDevicesSummary method.
+        """
+        return microsoft_graph_get_comanagement_eligible_devices_summary_request_builder.MicrosoftGraphGetComanagementEligibleDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_effective_permissions(self) -> microsoft_graph_get_effective_permissions_request_builder.MicrosoftGraphGetEffectivePermissionsRequestBuilder:
+        """
+        Provides operations to call the getEffectivePermissions method.
+        """
+        return microsoft_graph_get_effective_permissions_request_builder.MicrosoftGraphGetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_send_custom_notification_to_company_portal(self) -> microsoft_graph_send_custom_notification_to_company_portal_request_builder.MicrosoftGraphSendCustomNotificationToCompanyPortalRequestBuilder:
+        """
+        Provides operations to call the sendCustomNotificationToCompanyPortal method.
+        """
+        return microsoft_graph_send_custom_notification_to_company_portal_request_builder.MicrosoftGraphSendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_user_experience_analytics_summarized_device_scopes(self) -> microsoft_graph_user_experience_analytics_summarized_device_scopes_request_builder.MicrosoftGraphUserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
+        """
+        Provides operations to call the userExperienceAnalyticsSummarizedDeviceScopes method.
+        """
+        return microsoft_graph_user_experience_analytics_summarized_device_scopes_request_builder.MicrosoftGraphUserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_user_experience_analytics_summarize_work_from_anywhere_devices(self) -> microsoft_graph_user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.MicrosoftGraphUserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder:
+        """
+        Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
+        """
+        return microsoft_graph_user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.MicrosoftGraphUserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def microsoft_tunnel_configurations(self) -> microsoft_tunnel_configurations_request_builder.MicrosoftTunnelConfigurationsRequestBuilder:
@@ -1007,11 +1058,11 @@ class DeviceManagementRequestBuilder():
         return role_scope_tags_request_builder.RoleScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_custom_notification_to_company_portal(self) -> send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder:
+    def service_now_connections(self) -> service_now_connections_request_builder.ServiceNowConnectionsRequestBuilder:
         """
-        Provides operations to call the sendCustomNotificationToCompanyPortal method.
+        Provides operations to manage the serviceNowConnections property of the microsoft.graph.deviceManagement entity.
         """
-        return send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
+        return service_now_connections_request_builder.ServiceNowConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def setting_definitions(self) -> setting_definitions_request_builder.SettingDefinitionsRequestBuilder:
@@ -1287,11 +1338,11 @@ class DeviceManagementRequestBuilder():
         return user_experience_analytics_devices_without_cloud_identity_request_builder.UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_device_timeline_events(self) -> user_experience_analytics_device_timeline_events_request_builder.UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder:
+    def user_experience_analytics_device_timeline_event(self) -> user_experience_analytics_device_timeline_event_request_builder.UserExperienceAnalyticsDeviceTimelineEventRequestBuilder:
         """
-        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvents property of the microsoft.graph.deviceManagement entity.
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvent property of the microsoft.graph.deviceManagement entity.
         """
-        return user_experience_analytics_device_timeline_events_request_builder.UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder(self.request_adapter, self.path_parameters)
+        return user_experience_analytics_device_timeline_event_request_builder.UserExperienceAnalyticsDeviceTimelineEventRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_impacting_process(self) -> user_experience_analytics_impacting_process_request_builder.UserExperienceAnalyticsImpactingProcessRequestBuilder:
@@ -2091,12 +2142,11 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["deviceManagementExchangeOnPremisesPolicy%2Did"] = id
         return device_management_exchange_on_premises_policy_item_request_builder.DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management.DeviceManagement]:
+    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management.DeviceManagement]:
         """
         Get deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management.DeviceManagement]
         """
         request_info = self.to_get_request_information(
@@ -2108,79 +2158,7 @@ class DeviceManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, response_handler, error_mapping)
-    
-    def get_assigned_role_details(self,) -> get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder:
-        """
-        Provides operations to call the getAssignedRoleDetails method.
-        Returns: get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder
-        """
-        return get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_comanaged_devices_summary(self,) -> get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder:
-        """
-        Provides operations to call the getComanagedDevicesSummary method.
-        Returns: get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder
-        """
-        return get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_comanagement_eligible_devices_summary(self,) -> get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder:
-        """
-        Provides operations to call the getComanagementEligibleDevicesSummary method.
-        Returns: get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder
-        """
-        return get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_effective_permissions(self,) -> get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder:
-        """
-        Provides operations to call the getEffectivePermissions method.
-        Returns: get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder
-        """
-        return get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_effective_permissions_with_scope(self,scope: Optional[str] = None) -> get_effective_permissions_with_scope_request_builder.GetEffectivePermissionsWithScopeRequestBuilder:
-        """
-        Provides operations to call the getEffectivePermissions method.
-        Args:
-            scope: Usage: scope='{scope}'
-        Returns: get_effective_permissions_with_scope_request_builder.GetEffectivePermissionsWithScopeRequestBuilder
-        """
-        if scope is None:
-            raise Exception("scope cannot be undefined")
-        return get_effective_permissions_with_scope_request_builder.GetEffectivePermissionsWithScopeRequestBuilder(self.request_adapter, self.path_parameters, scope)
-    
-    def get_role_scope_tags_by_ids_with_ids(self,ids: Optional[str] = None) -> get_role_scope_tags_by_ids_with_ids_request_builder.GetRoleScopeTagsByIdsWithIdsRequestBuilder:
-        """
-        Provides operations to call the getRoleScopeTagsByIds method.
-        Args:
-            ids: Usage: ids={ids}
-        Returns: get_role_scope_tags_by_ids_with_ids_request_builder.GetRoleScopeTagsByIdsWithIdsRequestBuilder
-        """
-        if ids is None:
-            raise Exception("ids cannot be undefined")
-        return get_role_scope_tags_by_ids_with_ids_request_builder.GetRoleScopeTagsByIdsWithIdsRequestBuilder(self.request_adapter, self.path_parameters, ids)
-    
-    def get_role_scope_tags_by_resource_with_resource(self,resource: Optional[str] = None) -> get_role_scope_tags_by_resource_with_resource_request_builder.GetRoleScopeTagsByResourceWithResourceRequestBuilder:
-        """
-        Provides operations to call the getRoleScopeTagsByResource method.
-        Args:
-            resource: Usage: resource='{resource}'
-        Returns: get_role_scope_tags_by_resource_with_resource_request_builder.GetRoleScopeTagsByResourceWithResourceRequestBuilder
-        """
-        if resource is None:
-            raise Exception("resource cannot be undefined")
-        return get_role_scope_tags_by_resource_with_resource_request_builder.GetRoleScopeTagsByResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
-    
-    def get_suggested_enrollment_limit_with_enrollment_type(self,enrollment_type: Optional[str] = None) -> get_suggested_enrollment_limit_with_enrollment_type_request_builder.GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder:
-        """
-        Provides operations to call the getSuggestedEnrollmentLimit method.
-        Args:
-            enrollmentType: Usage: enrollmentType='{enrollmentType}'
-        Returns: get_suggested_enrollment_limit_with_enrollment_type_request_builder.GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder
-        """
-        if enrollment_type is None:
-            raise Exception("enrollment_type cannot be undefined")
-        return get_suggested_enrollment_limit_with_enrollment_type_request_builder.GetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(self.request_adapter, self.path_parameters, enrollmentType)
+        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, error_mapping)
     
     def group_policy_categories_by_id(self,id: str) -> group_policy_category_item_request_builder.GroupPolicyCategoryItemRequestBuilder:
         """
@@ -2377,6 +2355,72 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["managedDevice%2Did"] = id
         return managed_device_item_request_builder.ManagedDeviceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
+    def microsoft_graph_get_effective_permissions_with_scope(self,scope: Optional[str] = None) -> microsoft_graph_get_effective_permissions_with_scope_request_builder.MicrosoftGraphGetEffectivePermissionsWithScopeRequestBuilder:
+        """
+        Provides operations to call the getEffectivePermissions method.
+        Args:
+            scope: Usage: scope='{scope}'
+        Returns: microsoft_graph_get_effective_permissions_with_scope_request_builder.MicrosoftGraphGetEffectivePermissionsWithScopeRequestBuilder
+        """
+        if scope is None:
+            raise Exception("scope cannot be undefined")
+        return microsoft_graph_get_effective_permissions_with_scope_request_builder.MicrosoftGraphGetEffectivePermissionsWithScopeRequestBuilder(self.request_adapter, self.path_parameters, scope)
+    
+    def microsoft_graph_get_role_scope_tags_by_ids_with_ids(self,ids: Optional[str] = None) -> microsoft_graph_get_role_scope_tags_by_ids_with_ids_request_builder.MicrosoftGraphGetRoleScopeTagsByIdsWithIdsRequestBuilder:
+        """
+        Provides operations to call the getRoleScopeTagsByIds method.
+        Args:
+            ids: Usage: ids={ids}
+        Returns: microsoft_graph_get_role_scope_tags_by_ids_with_ids_request_builder.MicrosoftGraphGetRoleScopeTagsByIdsWithIdsRequestBuilder
+        """
+        if ids is None:
+            raise Exception("ids cannot be undefined")
+        return microsoft_graph_get_role_scope_tags_by_ids_with_ids_request_builder.MicrosoftGraphGetRoleScopeTagsByIdsWithIdsRequestBuilder(self.request_adapter, self.path_parameters, ids)
+    
+    def microsoft_graph_get_role_scope_tags_by_resource_with_resource(self,resource: Optional[str] = None) -> microsoft_graph_get_role_scope_tags_by_resource_with_resource_request_builder.MicrosoftGraphGetRoleScopeTagsByResourceWithResourceRequestBuilder:
+        """
+        Provides operations to call the getRoleScopeTagsByResource method.
+        Args:
+            resource: Usage: resource='{resource}'
+        Returns: microsoft_graph_get_role_scope_tags_by_resource_with_resource_request_builder.MicrosoftGraphGetRoleScopeTagsByResourceWithResourceRequestBuilder
+        """
+        if resource is None:
+            raise Exception("resource cannot be undefined")
+        return microsoft_graph_get_role_scope_tags_by_resource_with_resource_request_builder.MicrosoftGraphGetRoleScopeTagsByResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
+    
+    def microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type(self,enrollment_type: Optional[str] = None) -> microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type_request_builder.MicrosoftGraphGetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder:
+        """
+        Provides operations to call the getSuggestedEnrollmentLimit method.
+        Args:
+            enrollmentType: Usage: enrollmentType='{enrollmentType}'
+        Returns: microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type_request_builder.MicrosoftGraphGetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder
+        """
+        if enrollment_type is None:
+            raise Exception("enrollment_type cannot be undefined")
+        return microsoft_graph_get_suggested_enrollment_limit_with_enrollment_type_request_builder.MicrosoftGraphGetSuggestedEnrollmentLimitWithEnrollmentTypeRequestBuilder(self.request_adapter, self.path_parameters, enrollmentType)
+    
+    def microsoft_graph_scoped_for_resource_with_resource(self,resource: Optional[str] = None) -> microsoft_graph_scoped_for_resource_with_resource_request_builder.MicrosoftGraphScopedForResourceWithResourceRequestBuilder:
+        """
+        Provides operations to call the scopedForResource method.
+        Args:
+            resource: Usage: resource='{resource}'
+        Returns: microsoft_graph_scoped_for_resource_with_resource_request_builder.MicrosoftGraphScopedForResourceWithResourceRequestBuilder
+        """
+        if resource is None:
+            raise Exception("resource cannot be undefined")
+        return microsoft_graph_scoped_for_resource_with_resource_request_builder.MicrosoftGraphScopedForResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
+    
+    def microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name(self,domain_name: Optional[str] = None) -> microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.MicrosoftGraphVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder:
+        """
+        Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.
+        Args:
+            domainName: Usage: domainName='{domainName}'
+        Returns: microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.MicrosoftGraphVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder
+        """
+        if domain_name is None:
+            raise Exception("domain_name cannot be undefined")
+        return microsoft_graph_verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.MicrosoftGraphVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(self.request_adapter, self.path_parameters, domainName)
+    
     def microsoft_tunnel_configurations_by_id(self,id: str) -> microsoft_tunnel_configuration_item_request_builder.MicrosoftTunnelConfigurationItemRequestBuilder:
         """
         Provides operations to manage the microsoftTunnelConfigurations property of the microsoft.graph.deviceManagement entity.
@@ -2494,13 +2538,12 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["oemWarrantyInformationOnboarding%2Did"] = id
         return oem_warranty_information_onboarding_item_request_builder.OemWarrantyInformationOnboardingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[device_management.DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management.DeviceManagement]:
+    async def patch(self,body: Optional[device_management.DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management.DeviceManagement]:
         """
         Update deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management.DeviceManagement]
         """
         if body is None:
@@ -2514,7 +2557,7 @@ class DeviceManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, error_mapping)
     
     def remote_action_audits_by_id(self,id: str) -> remote_action_audit_item_request_builder.RemoteActionAuditItemRequestBuilder:
         """
@@ -2633,16 +2676,18 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["roleScopeTag%2Did"] = id
         return role_scope_tag_item_request_builder.RoleScopeTagItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def scoped_for_resource_with_resource(self,resource: Optional[str] = None) -> scoped_for_resource_with_resource_request_builder.ScopedForResourceWithResourceRequestBuilder:
+    def service_now_connections_by_id(self,id: str) -> service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder:
         """
-        Provides operations to call the scopedForResource method.
+        Provides operations to manage the serviceNowConnections property of the microsoft.graph.deviceManagement entity.
         Args:
-            resource: Usage: resource='{resource}'
-        Returns: scoped_for_resource_with_resource_request_builder.ScopedForResourceWithResourceRequestBuilder
+            id: Unique identifier of the item
+        Returns: service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder
         """
-        if resource is None:
-            raise Exception("resource cannot be undefined")
-        return scoped_for_resource_with_resource_request_builder.ScopedForResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["serviceNowConnection%2Did"] = id
+        return service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def setting_definitions_by_id(self,id: str) -> device_management_setting_definition_item_request_builder.DeviceManagementSettingDefinitionItemRequestBuilder:
         """
@@ -3112,18 +3157,18 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["userExperienceAnalyticsDeviceWithoutCloudIdentity%2Did"] = id
         return user_experience_analytics_device_without_cloud_identity_item_request_builder.UserExperienceAnalyticsDeviceWithoutCloudIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_experience_analytics_device_timeline_events_by_id(self,id: str) -> user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder:
+    def user_experience_analytics_device_timeline_event_by_id(self,id: str) -> user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder:
         """
-        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvents property of the microsoft.graph.deviceManagement entity.
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvent property of the microsoft.graph.deviceManagement entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder
+        Returns: user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder
         """
         if id is None:
             raise Exception("id cannot be undefined")
         url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userExperienceAnalyticsDeviceTimelineEvents%2Did"] = id
-        return user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder(self.request_adapter, url_tpl_params)
+        url_tpl_params["userExperienceAnalyticsDeviceTimelineEvent%2Did"] = id
+        return user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def user_experience_analytics_impacting_process_by_id(self,id: str) -> user_experience_analytics_impacting_process_item_request_builder.UserExperienceAnalyticsImpactingProcessItemRequestBuilder:
         """
@@ -3216,20 +3261,6 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["userExperienceAnalyticsScoreHistory%2Did"] = id
         return user_experience_analytics_score_history_item_request_builder.UserExperienceAnalyticsScoreHistoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_experience_analytics_summarized_device_scopes(self,) -> user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
-        """
-        Provides operations to call the userExperienceAnalyticsSummarizedDeviceScopes method.
-        Returns: user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder
-        """
-        return user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def user_experience_analytics_summarize_work_from_anywhere_devices(self,) -> user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder:
-        """
-        Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
-        Returns: user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder
-        """
-        return user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def user_experience_analytics_work_from_anywhere_metrics_by_id(self,id: str) -> user_experience_analytics_work_from_anywhere_metric_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder:
         """
         Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereMetrics property of the microsoft.graph.deviceManagement entity.
@@ -3268,17 +3299,6 @@ class DeviceManagementRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userPFXCertificate%2Did"] = id
         return user_p_f_x_certificate_item_request_builder.UserPFXCertificateItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def verify_windows_enrollment_auto_discovery_with_domain_name(self,domain_name: Optional[str] = None) -> verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder:
-        """
-        Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.
-        Args:
-            domainName: Usage: domainName='{domainName}'
-        Returns: verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder
-        """
-        if domain_name is None:
-            raise Exception("domain_name cannot be undefined")
-        return verify_windows_enrollment_auto_discovery_with_domain_name_request_builder.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(self.request_adapter, self.path_parameters, domainName)
     
     def windows_autopilot_deployment_profiles_by_id(self,id: str) -> windows_autopilot_deployment_profile_item_request_builder.WindowsAutopilotDeploymentProfileItemRequestBuilder:
         """

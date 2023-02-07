@@ -67,7 +67,7 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
         """
         Sets the folderIdentifier property value. Unique identifier for the folder
         Args:
-            value: Value to set for the folderIdentifier property.
+            value: Value to set for the folder_identifier property.
         """
         self._folder_identifier = value
     
@@ -84,7 +84,7 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
         """
         Sets the folderName property value. Display name for the folder
         Args:
-            value: Value to set for the folderName property.
+            value: Value to set for the folder_name property.
         """
         self._folder_name = value
     
@@ -94,8 +94,8 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "folder_identifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
-            "folder_name": lambda n : setattr(self, 'folder_name', n.get_str_value()),
+            "folderIdentifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
+            "folderName": lambda n : setattr(self, 'folder_name', n.get_str_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -131,7 +131,7 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

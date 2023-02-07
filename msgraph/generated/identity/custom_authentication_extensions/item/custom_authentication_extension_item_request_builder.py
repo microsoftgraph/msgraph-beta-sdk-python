@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-validate_authentication_configuration_request_builder = lazy_import('msgraph.generated.identity.custom_authentication_extensions.item.validate_authentication_configuration.validate_authentication_configuration_request_builder')
+microsoft_graph_validate_authentication_configuration_request_builder = lazy_import('msgraph.generated.identity.custom_authentication_extensions.item.microsoft_graph_validate_authentication_configuration.microsoft_graph_validate_authentication_configuration_request_builder')
 custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class CustomAuthenticationExtensionItemRequestBuilder():
     Provides operations to manage the customAuthenticationExtensions property of the microsoft.graph.identityContainer entity.
     """
     @property
-    def validate_authentication_configuration(self) -> validate_authentication_configuration_request_builder.ValidateAuthenticationConfigurationRequestBuilder:
+    def microsoft_graph_validate_authentication_configuration(self) -> microsoft_graph_validate_authentication_configuration_request_builder.MicrosoftGraphValidateAuthenticationConfigurationRequestBuilder:
         """
         Provides operations to call the validateAuthenticationConfiguration method.
         """
-        return validate_authentication_configuration_request_builder.ValidateAuthenticationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_authentication_configuration_request_builder.MicrosoftGraphValidateAuthenticationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class CustomAuthenticationExtensionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property customAuthenticationExtensions for identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class CustomAuthenticationExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
+    async def get(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
         """
         Get customAuthenticationExtensions from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_authentication_extension.CustomAuthenticationExtension]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class CustomAuthenticationExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_authentication_extension.CustomAuthenticationExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_authentication_extension.CustomAuthenticationExtension, error_mapping)
     
-    async def patch(self,body: Optional[custom_authentication_extension.CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
+    async def patch(self,body: Optional[custom_authentication_extension.CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
         """
         Update the navigation property customAuthenticationExtensions in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_authentication_extension.CustomAuthenticationExtension]
         """
         if body is None:
@@ -100,7 +97,7 @@ class CustomAuthenticationExtensionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_authentication_extension.CustomAuthenticationExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_authentication_extension.CustomAuthenticationExtension, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -85,7 +85,7 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         """
         Sets the deviceMode property value. Describes applicability for the mode the device is in
         Args:
-            value: Value to set for the deviceMode property.
+            value: Value to set for the device_mode property.
         """
         self._device_mode = value
     
@@ -96,7 +96,7 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_mode": lambda n : setattr(self, 'device_mode', n.get_enum_value(device_management_configuration_device_mode.DeviceManagementConfigurationDeviceMode)),
+            "deviceMode": lambda n : setattr(self, 'device_mode', n.get_enum_value(device_management_configuration_device_mode.DeviceManagementConfigurationDeviceMode)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(device_management_configuration_platforms.DeviceManagementConfigurationPlatforms)),
             "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(device_management_configuration_technologies.DeviceManagementConfigurationTechnologies)),
@@ -116,7 +116,7 @@ class DeviceManagementConfigurationSettingApplicability(AdditionalDataHolder, Pa
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

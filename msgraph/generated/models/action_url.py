@@ -28,11 +28,11 @@ class ActionUrl(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The displayName property
+        # Brief title for the page that the links directs to.
         self._display_name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The url property
+        # The URL to the documentation or Azure portal page.
         self._url: Optional[str] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class ActionUrl(AdditionalDataHolder, Parsable):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. Brief title for the page that the links directs to.
         Returns: Optional[str]
         """
         return self._display_name
@@ -58,9 +58,9 @@ class ActionUrl(AdditionalDataHolder, Parsable):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. Brief title for the page that the links directs to.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -70,7 +70,7 @@ class ActionUrl(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
@@ -89,7 +89,7 @@ class ActionUrl(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class ActionUrl(AdditionalDataHolder, Parsable):
     @property
     def url(self,) -> Optional[str]:
         """
-        Gets the url property value. The url property
+        Gets the url property value. The URL to the documentation or Azure portal page.
         Returns: Optional[str]
         """
         return self._url
@@ -117,7 +117,7 @@ class ActionUrl(AdditionalDataHolder, Parsable):
     @url.setter
     def url(self,value: Optional[str] = None) -> None:
         """
-        Sets the url property value. The url property
+        Sets the url property value. The URL to the documentation or Azure portal page.
         Args:
             value: Value to set for the url property.
         """

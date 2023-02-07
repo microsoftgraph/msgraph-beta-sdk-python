@@ -57,7 +57,7 @@ class ExtendedKeyUsage(AdditionalDataHolder, Parsable):
         """
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "object_identifier": lambda n : setattr(self, 'object_identifier', n.get_str_value()),
+            "objectIdentifier": lambda n : setattr(self, 'object_identifier', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class ExtendedKeyUsage(AdditionalDataHolder, Parsable):
         """
         Sets the objectIdentifier property value. Extended Key Usage Object Identifier
         Args:
-            value: Value to set for the objectIdentifier property.
+            value: Value to set for the object_identifier property.
         """
         self._object_identifier = value
     
@@ -109,7 +109,7 @@ class ExtendedKeyUsage(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

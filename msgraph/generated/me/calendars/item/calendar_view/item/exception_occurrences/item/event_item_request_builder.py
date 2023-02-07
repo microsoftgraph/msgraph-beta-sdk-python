@@ -10,24 +10,24 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-accept_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.accept.accept_request_builder')
 attachments_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.attachments.attachments_request_builder')
 attachment_item_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.attachments.item.attachment_item_request_builder')
 calendar_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.calendar.calendar_request_builder')
-cancel_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.cancel.cancel_request_builder')
-decline_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.decline.decline_request_builder')
-dismiss_reminder_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.dismiss_reminder.dismiss_reminder_request_builder')
 extensions_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.extensions.extensions_request_builder')
 extension_item_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.extensions.item.extension_item_request_builder')
-forward_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.forward.forward_request_builder')
 instances_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.instances.instances_request_builder')
 event_item_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.instances.item.event_item_request_builder')
+microsoft_graph_accept_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_accept.microsoft_graph_accept_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
+microsoft_graph_decline_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_decline.microsoft_graph_decline_request_builder')
+microsoft_graph_dismiss_reminder_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_dismiss_reminder.microsoft_graph_dismiss_reminder_request_builder')
+microsoft_graph_forward_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_forward.microsoft_graph_forward_request_builder')
+microsoft_graph_snooze_reminder_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_snooze_reminder.microsoft_graph_snooze_reminder_request_builder')
+microsoft_graph_tentatively_accept_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.microsoft_graph_tentatively_accept.microsoft_graph_tentatively_accept_request_builder')
 multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
 multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
 single_value_extended_properties_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.single_value_extended_properties.single_value_extended_properties_request_builder')
 single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
-snooze_reminder_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.snooze_reminder.snooze_reminder_request_builder')
-tentatively_accept_request_builder = lazy_import('msgraph.generated.me.calendars.item.calendar_view.item.exception_occurrences.item.tentatively_accept.tentatively_accept_request_builder')
 event = lazy_import('msgraph.generated.models.event')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -35,13 +35,6 @@ class EventItemRequestBuilder():
     """
     Provides operations to manage the exceptionOccurrences property of the microsoft.graph.event entity.
     """
-    @property
-    def accept(self) -> accept_request_builder.AcceptRequestBuilder:
-        """
-        Provides operations to call the accept method.
-        """
-        return accept_request_builder.AcceptRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def attachments(self) -> attachments_request_builder.AttachmentsRequestBuilder:
         """
@@ -57,27 +50,6 @@ class EventItemRequestBuilder():
         return calendar_request_builder.CalendarRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def decline(self) -> decline_request_builder.DeclineRequestBuilder:
-        """
-        Provides operations to call the decline method.
-        """
-        return decline_request_builder.DeclineRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def dismiss_reminder(self) -> dismiss_reminder_request_builder.DismissReminderRequestBuilder:
-        """
-        Provides operations to call the dismissReminder method.
-        """
-        return dismiss_reminder_request_builder.DismissReminderRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.event entity.
@@ -85,18 +57,60 @@ class EventItemRequestBuilder():
         return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def forward(self) -> forward_request_builder.ForwardRequestBuilder:
-        """
-        Provides operations to call the forward method.
-        """
-        return forward_request_builder.ForwardRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def instances(self) -> instances_request_builder.InstancesRequestBuilder:
         """
         Provides operations to manage the instances property of the microsoft.graph.event entity.
         """
         return instances_request_builder.InstancesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_accept(self) -> microsoft_graph_accept_request_builder.MicrosoftGraphAcceptRequestBuilder:
+        """
+        Provides operations to call the accept method.
+        """
+        return microsoft_graph_accept_request_builder.MicrosoftGraphAcceptRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_decline(self) -> microsoft_graph_decline_request_builder.MicrosoftGraphDeclineRequestBuilder:
+        """
+        Provides operations to call the decline method.
+        """
+        return microsoft_graph_decline_request_builder.MicrosoftGraphDeclineRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_dismiss_reminder(self) -> microsoft_graph_dismiss_reminder_request_builder.MicrosoftGraphDismissReminderRequestBuilder:
+        """
+        Provides operations to call the dismissReminder method.
+        """
+        return microsoft_graph_dismiss_reminder_request_builder.MicrosoftGraphDismissReminderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_forward(self) -> microsoft_graph_forward_request_builder.MicrosoftGraphForwardRequestBuilder:
+        """
+        Provides operations to call the forward method.
+        """
+        return microsoft_graph_forward_request_builder.MicrosoftGraphForwardRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_snooze_reminder(self) -> microsoft_graph_snooze_reminder_request_builder.MicrosoftGraphSnoozeReminderRequestBuilder:
+        """
+        Provides operations to call the snoozeReminder method.
+        """
+        return microsoft_graph_snooze_reminder_request_builder.MicrosoftGraphSnoozeReminderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_tentatively_accept(self) -> microsoft_graph_tentatively_accept_request_builder.MicrosoftGraphTentativelyAcceptRequestBuilder:
+        """
+        Provides operations to call the tentativelyAccept method.
+        """
+        return microsoft_graph_tentatively_accept_request_builder.MicrosoftGraphTentativelyAcceptRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
@@ -111,20 +125,6 @@ class EventItemRequestBuilder():
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
         """
         return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def snooze_reminder(self) -> snooze_reminder_request_builder.SnoozeReminderRequestBuilder:
-        """
-        Provides operations to call the snoozeReminder method.
-        """
-        return snooze_reminder_request_builder.SnoozeReminderRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def tentatively_accept(self) -> tentatively_accept_request_builder.TentativelyAcceptRequestBuilder:
-        """
-        Provides operations to call the tentativelyAccept method.
-        """
-        return tentatively_accept_request_builder.TentativelyAcceptRequestBuilder(self.request_adapter, self.path_parameters)
     
     def attachments_by_id(self,id: str) -> attachment_item_request_builder.AttachmentItemRequestBuilder:
         """
@@ -170,12 +170,11 @@ class EventItemRequestBuilder():
         url_tpl_params["extension%2Did"] = id
         return extension_item_request_builder.ExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[EventItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[event.Event]:
+    async def get(self,request_configuration: Optional[EventItemRequestBuilderGetRequestConfiguration] = None) -> Optional[event.Event]:
         """
         Get exceptionOccurrences from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[event.Event]
         """
         request_info = self.to_get_request_information(
@@ -187,7 +186,7 @@ class EventItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, event.Event, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, event.Event, error_mapping)
     
     def instances_by_id(self,id: str) -> EventItemRequestBuilder:
         """

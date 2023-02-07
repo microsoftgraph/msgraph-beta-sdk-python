@@ -34,7 +34,7 @@ class SmsAuthenticationMethodConfiguration(authentication_method_configuration.A
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "include_targets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(sms_authentication_method_target.SmsAuthenticationMethodTarget)),
+            "includeTargets": lambda n : setattr(self, 'include_targets', n.get_collection_of_object_values(sms_authentication_method_target.SmsAuthenticationMethodTarget)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class SmsAuthenticationMethodConfiguration(authentication_method_configuration.A
         """
         Sets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
         Args:
-            value: Value to set for the includeTargets property.
+            value: Value to set for the include_targets property.
         """
         self._include_targets = value
     

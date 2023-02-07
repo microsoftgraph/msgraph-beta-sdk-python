@@ -56,7 +56,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the displayName property value. The display name that appears in Viva Learning. Required.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -66,14 +66,14 @@ class LearningProvider(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "learning_contents": lambda n : setattr(self, 'learning_contents', n.get_collection_of_object_values(learning_content.LearningContent)),
-            "login_web_url": lambda n : setattr(self, 'login_web_url', n.get_str_value()),
-            "long_logo_web_url_for_dark_theme": lambda n : setattr(self, 'long_logo_web_url_for_dark_theme', n.get_str_value()),
-            "long_logo_web_url_for_light_theme": lambda n : setattr(self, 'long_logo_web_url_for_light_theme', n.get_str_value()),
-            "square_logo_web_url_for_dark_theme": lambda n : setattr(self, 'square_logo_web_url_for_dark_theme', n.get_str_value()),
-            "square_logo_web_url_for_light_theme": lambda n : setattr(self, 'square_logo_web_url_for_light_theme', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "learningContents": lambda n : setattr(self, 'learning_contents', n.get_collection_of_object_values(learning_content.LearningContent)),
+            "loginWebUrl": lambda n : setattr(self, 'login_web_url', n.get_str_value()),
+            "longLogoWebUrlForDarkTheme": lambda n : setattr(self, 'long_logo_web_url_for_dark_theme', n.get_str_value()),
+            "longLogoWebUrlForLightTheme": lambda n : setattr(self, 'long_logo_web_url_for_light_theme', n.get_str_value()),
+            "squareLogoWebUrlForDarkTheme": lambda n : setattr(self, 'square_logo_web_url_for_dark_theme', n.get_str_value()),
+            "squareLogoWebUrlForLightTheme": lambda n : setattr(self, 'square_logo_web_url_for_light_theme', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -92,7 +92,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the isEnabled property value. The state of the provider. Optional.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -109,7 +109,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the learningContents property value. Learning catalog items for the provider.
         Args:
-            value: Value to set for the learningContents property.
+            value: Value to set for the learning_contents property.
         """
         self._learning_contents = value
     
@@ -126,7 +126,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the loginWebUrl property value. Authentication URL to access the courses for the provider. Optional.
         Args:
-            value: Value to set for the loginWebUrl property.
+            value: Value to set for the login_web_url property.
         """
         self._login_web_url = value
     
@@ -143,7 +143,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the longLogoWebUrlForDarkTheme property value. The long logo URL for the dark mode, which needs to be a publicly accessible image. This image would be saved to the Blob storage of Viva Learning for rendering within the Viva Learning app. Required.
         Args:
-            value: Value to set for the longLogoWebUrlForDarkTheme property.
+            value: Value to set for the long_logo_web_url_for_dark_theme property.
         """
         self._long_logo_web_url_for_dark_theme = value
     
@@ -160,7 +160,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the longLogoWebUrlForLightTheme property value. The long logo URL for the light mode, which needs to be a publicly accessible image. This image would be saved to the Blob storage of Viva Learning for rendering  within the Viva Learning app. Required.
         Args:
-            value: Value to set for the longLogoWebUrlForLightTheme property.
+            value: Value to set for the long_logo_web_url_for_light_theme property.
         """
         self._long_logo_web_url_for_light_theme = value
     
@@ -195,7 +195,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the squareLogoWebUrlForDarkTheme property value. The square logo URL for the dark mode, which needs to be a publicly accessible image. This image would be saved to the Blob storage of Viva Learning for rendering within the Viva Learning app. Required.
         Args:
-            value: Value to set for the squareLogoWebUrlForDarkTheme property.
+            value: Value to set for the square_logo_web_url_for_dark_theme property.
         """
         self._square_logo_web_url_for_dark_theme = value
     
@@ -212,7 +212,7 @@ class LearningProvider(entity.Entity):
         """
         Sets the squareLogoWebUrlForLightTheme property value. The square logo URL for the light mode, which needs to be a publicly accessible image. This image would be saved to the Blob storage of Viva Learning for rendering within the Viva Learning app. Required.
         Args:
-            value: Value to set for the squareLogoWebUrlForLightTheme property.
+            value: Value to set for the square_logo_web_url_for_light_theme property.
         """
         self._square_logo_web_url_for_light_theme = value
     

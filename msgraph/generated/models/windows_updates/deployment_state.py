@@ -32,14 +32,14 @@ class DeploymentState(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
+        # The effectiveValue property
+        self._effective_value: Optional[deployment_state_value.DeploymentStateValue] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
         # Specifies the reasons the deployment has its state value. Read-only.
         self._reasons: Optional[List[deployment_state_reason.DeploymentStateReason]] = None
         # The requestedValue property
         self._requested_value: Optional[requested_deployment_state_value.RequestedDeploymentStateValue] = None
-        # The value property
-        self._value: Optional[deployment_state_value.DeploymentStateValue] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeploymentState:
@@ -53,16 +53,33 @@ class DeploymentState(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return DeploymentState()
     
+    @property
+    def effective_value(self,) -> Optional[deployment_state_value.DeploymentStateValue]:
+        """
+        Gets the effectiveValue property value. The effectiveValue property
+        Returns: Optional[deployment_state_value.DeploymentStateValue]
+        """
+        return self._effective_value
+    
+    @effective_value.setter
+    def effective_value(self,value: Optional[deployment_state_value.DeploymentStateValue] = None) -> None:
+        """
+        Sets the effectiveValue property value. The effectiveValue property
+        Args:
+            value: Value to set for the effective_value property.
+        """
+        self._effective_value = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "effectiveValue": lambda n : setattr(self, 'effective_value', n.get_enum_value(deployment_state_value.DeploymentStateValue)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reasons": lambda n : setattr(self, 'reasons', n.get_collection_of_object_values(deployment_state_reason.DeploymentStateReason)),
-            "requested_value": lambda n : setattr(self, 'requested_value', n.get_enum_value(requested_deployment_state_value.RequestedDeploymentStateValue)),
-            "value": lambda n : setattr(self, 'value', n.get_enum_value(deployment_state_value.DeploymentStateValue)),
+            "requestedValue": lambda n : setattr(self, 'requested_value', n.get_enum_value(requested_deployment_state_value.RequestedDeploymentStateValue)),
         }
         return fields
     
@@ -79,7 +96,7 @@ class DeploymentState(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -113,7 +130,7 @@ class DeploymentState(AdditionalDataHolder, Parsable):
         """
         Sets the requestedValue property value. The requestedValue property
         Args:
-            value: Value to set for the requestedValue property.
+            value: Value to set for the requested_value property.
         """
         self._requested_value = value
     
@@ -125,27 +142,10 @@ class DeploymentState(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_enum_value("effectiveValue", self.effective_value)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_collection_of_object_values("reasons", self.reasons)
         writer.write_enum_value("requestedValue", self.requested_value)
-        writer.write_enum_value("value", self.value)
         writer.write_additional_data_value(self.additional_data)
-    
-    @property
-    def value(self,) -> Optional[deployment_state_value.DeploymentStateValue]:
-        """
-        Gets the value property value. The value property
-        Returns: Optional[deployment_state_value.DeploymentStateValue]
-        """
-        return self._value
-    
-    @value.setter
-    def value(self,value: Optional[deployment_state_value.DeploymentStateValue] = None) -> None:
-        """
-        Sets the value property value. The value property
-        Args:
-            value: Value to set for the value property.
-        """
-        self._value = value
     
 

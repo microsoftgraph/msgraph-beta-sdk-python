@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_resource_account_to_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.assign_resource_account_to_device.assign_resource_account_to_device_request_builder')
-assign_user_to_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.assign_user_to_device.assign_user_to_device_request_builder')
 deployment_profile_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.deployment_profile.deployment_profile_request_builder')
 intended_deployment_profile_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.intended_deployment_profile.intended_deployment_profile_request_builder')
-unassign_resource_account_from_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.unassign_resource_account_from_device.unassign_resource_account_from_device_request_builder')
-unassign_user_from_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.unassign_user_from_device.unassign_user_from_device_request_builder')
-update_device_properties_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.update_device_properties.update_device_properties_request_builder')
+microsoft_graph_assign_resource_account_to_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.microsoft_graph_assign_resource_account_to_device.microsoft_graph_assign_resource_account_to_device_request_builder')
+microsoft_graph_assign_user_to_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.microsoft_graph_assign_user_to_device.microsoft_graph_assign_user_to_device_request_builder')
+microsoft_graph_unassign_resource_account_from_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.microsoft_graph_unassign_resource_account_from_device.microsoft_graph_unassign_resource_account_from_device_request_builder')
+microsoft_graph_unassign_user_from_device_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.microsoft_graph_unassign_user_from_device.microsoft_graph_unassign_user_from_device_request_builder')
+microsoft_graph_update_device_properties_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_device_identities.item.microsoft_graph_update_device_properties.microsoft_graph_update_device_properties_request_builder')
 windows_autopilot_device_identity = lazy_import('msgraph.generated.models.windows_autopilot_device_identity')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -24,20 +24,6 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
     """
     Provides operations to manage the windowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign_resource_account_to_device(self) -> assign_resource_account_to_device_request_builder.AssignResourceAccountToDeviceRequestBuilder:
-        """
-        Provides operations to call the assignResourceAccountToDevice method.
-        """
-        return assign_resource_account_to_device_request_builder.AssignResourceAccountToDeviceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assign_user_to_device(self) -> assign_user_to_device_request_builder.AssignUserToDeviceRequestBuilder:
-        """
-        Provides operations to call the assignUserToDevice method.
-        """
-        return assign_user_to_device_request_builder.AssignUserToDeviceRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def deployment_profile(self) -> deployment_profile_request_builder.DeploymentProfileRequestBuilder:
         """
@@ -53,25 +39,39 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         return intended_deployment_profile_request_builder.IntendedDeploymentProfileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unassign_resource_account_from_device(self) -> unassign_resource_account_from_device_request_builder.UnassignResourceAccountFromDeviceRequestBuilder:
+    def microsoft_graph_assign_resource_account_to_device(self) -> microsoft_graph_assign_resource_account_to_device_request_builder.MicrosoftGraphAssignResourceAccountToDeviceRequestBuilder:
+        """
+        Provides operations to call the assignResourceAccountToDevice method.
+        """
+        return microsoft_graph_assign_resource_account_to_device_request_builder.MicrosoftGraphAssignResourceAccountToDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_assign_user_to_device(self) -> microsoft_graph_assign_user_to_device_request_builder.MicrosoftGraphAssignUserToDeviceRequestBuilder:
+        """
+        Provides operations to call the assignUserToDevice method.
+        """
+        return microsoft_graph_assign_user_to_device_request_builder.MicrosoftGraphAssignUserToDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_unassign_resource_account_from_device(self) -> microsoft_graph_unassign_resource_account_from_device_request_builder.MicrosoftGraphUnassignResourceAccountFromDeviceRequestBuilder:
         """
         Provides operations to call the unassignResourceAccountFromDevice method.
         """
-        return unassign_resource_account_from_device_request_builder.UnassignResourceAccountFromDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_unassign_resource_account_from_device_request_builder.MicrosoftGraphUnassignResourceAccountFromDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unassign_user_from_device(self) -> unassign_user_from_device_request_builder.UnassignUserFromDeviceRequestBuilder:
+    def microsoft_graph_unassign_user_from_device(self) -> microsoft_graph_unassign_user_from_device_request_builder.MicrosoftGraphUnassignUserFromDeviceRequestBuilder:
         """
         Provides operations to call the unassignUserFromDevice method.
         """
-        return unassign_user_from_device_request_builder.UnassignUserFromDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_unassign_user_from_device_request_builder.MicrosoftGraphUnassignUserFromDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_device_properties(self) -> update_device_properties_request_builder.UpdateDevicePropertiesRequestBuilder:
+    def microsoft_graph_update_device_properties(self) -> microsoft_graph_update_device_properties_request_builder.MicrosoftGraphUpdateDevicePropertiesRequestBuilder:
         """
         Provides operations to call the updateDeviceProperties method.
         """
-        return update_device_properties_request_builder.UpdateDevicePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_update_device_properties_request_builder.MicrosoftGraphUpdateDevicePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -91,12 +91,11 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +106,13 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]:
+    async def get(self,request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]:
         """
         The Windows autopilot device identities contained collection.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +124,14 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity, error_mapping)
     
-    async def patch(self,body: Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity] = None, request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]:
+    async def patch(self,body: Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity] = None, request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]:
         """
         Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity]
         """
         if body is None:
@@ -148,7 +145,7 @@ class WindowsAutopilotDeviceIdentityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_autopilot_device_identity.WindowsAutopilotDeviceIdentity, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsAutopilotDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

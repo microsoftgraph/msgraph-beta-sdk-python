@@ -62,7 +62,7 @@ class Workflow(workflow_base.WorkflowBase):
         """
         Sets the deletedDateTime property value. When the workflow was deleted.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the deletedDateTime property.
+            value: Value to set for the deleted_date_time property.
         """
         self._deleted_date_time = value
     
@@ -79,7 +79,7 @@ class Workflow(workflow_base.WorkflowBase):
         """
         Sets the executionScope property value. The unique identifier of the Azure AD identity that last modified the workflow object.
         Args:
-            value: Value to set for the executionScope property.
+            value: Value to set for the execution_scope property.
         """
         self._execution_scope = value
     
@@ -89,13 +89,13 @@ class Workflow(workflow_base.WorkflowBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deleted_date_time": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
-            "execution_scope": lambda n : setattr(self, 'execution_scope', n.get_collection_of_object_values(user.User)),
+            "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
+            "executionScope": lambda n : setattr(self, 'execution_scope', n.get_collection_of_object_values(user.User)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "next_schedule_run_date_time": lambda n : setattr(self, 'next_schedule_run_date_time', n.get_datetime_value()),
+            "nextScheduleRunDateTime": lambda n : setattr(self, 'next_schedule_run_date_time', n.get_datetime_value()),
             "runs": lambda n : setattr(self, 'runs', n.get_collection_of_object_values(run.Run)),
-            "task_reports": lambda n : setattr(self, 'task_reports', n.get_collection_of_object_values(task_report.TaskReport)),
-            "user_processing_results": lambda n : setattr(self, 'user_processing_results', n.get_collection_of_object_values(user_processing_result.UserProcessingResult)),
+            "taskReports": lambda n : setattr(self, 'task_reports', n.get_collection_of_object_values(task_report.TaskReport)),
+            "userProcessingResults": lambda n : setattr(self, 'user_processing_results', n.get_collection_of_object_values(user_processing_result.UserProcessingResult)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
             "versions": lambda n : setattr(self, 'versions', n.get_collection_of_object_values(workflow_version.WorkflowVersion)),
         }
@@ -133,7 +133,7 @@ class Workflow(workflow_base.WorkflowBase):
         """
         Sets the nextScheduleRunDateTime property value. The date time when the workflow is expected to run next based on the schedule interval, if there are any users matching the execution conditions. Supports $filter(lt,gt) and $orderBy.
         Args:
-            value: Value to set for the nextScheduleRunDateTime property.
+            value: Value to set for the next_schedule_run_date_time property.
         """
         self._next_schedule_run_date_time = value
     
@@ -186,7 +186,7 @@ class Workflow(workflow_base.WorkflowBase):
         """
         Sets the taskReports property value. Represents the aggregation of task execution data for tasks within a workflow object.
         Args:
-            value: Value to set for the taskReports property.
+            value: Value to set for the task_reports property.
         """
         self._task_reports = value
     
@@ -203,7 +203,7 @@ class Workflow(workflow_base.WorkflowBase):
         """
         Sets the userProcessingResults property value. The userProcessingResults property
         Args:
-            value: Value to set for the userProcessingResults property.
+            value: Value to set for the user_processing_results property.
         """
         self._user_processing_results = value
     

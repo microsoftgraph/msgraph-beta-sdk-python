@@ -10,16 +10,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-check_member_groups_request_builder = lazy_import('msgraph.generated.contacts.item.check_member_groups.check_member_groups_request_builder')
-check_member_objects_request_builder = lazy_import('msgraph.generated.contacts.item.check_member_objects.check_member_objects_request_builder')
 direct_reports_request_builder = lazy_import('msgraph.generated.contacts.item.direct_reports.direct_reports_request_builder')
 directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.direct_reports.item.directory_object_item_request_builder')
-get_member_groups_request_builder = lazy_import('msgraph.generated.contacts.item.get_member_groups.get_member_groups_request_builder')
-get_member_objects_request_builder = lazy_import('msgraph.generated.contacts.item.get_member_objects.get_member_objects_request_builder')
 manager_request_builder = lazy_import('msgraph.generated.contacts.item.manager.manager_request_builder')
 member_of_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.member_of_request_builder')
 directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.item.directory_object_item_request_builder')
-restore_request_builder = lazy_import('msgraph.generated.contacts.item.restore.restore_request_builder')
+microsoft_graph_check_member_groups_request_builder = lazy_import('msgraph.generated.contacts.item.microsoft_graph_check_member_groups.microsoft_graph_check_member_groups_request_builder')
+microsoft_graph_check_member_objects_request_builder = lazy_import('msgraph.generated.contacts.item.microsoft_graph_check_member_objects.microsoft_graph_check_member_objects_request_builder')
+microsoft_graph_get_member_groups_request_builder = lazy_import('msgraph.generated.contacts.item.microsoft_graph_get_member_groups.microsoft_graph_get_member_groups_request_builder')
+microsoft_graph_get_member_objects_request_builder = lazy_import('msgraph.generated.contacts.item.microsoft_graph_get_member_objects.microsoft_graph_get_member_objects_request_builder')
+microsoft_graph_restore_request_builder = lazy_import('msgraph.generated.contacts.item.microsoft_graph_restore.microsoft_graph_restore_request_builder')
 transitive_member_of_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_member_of.transitive_member_of_request_builder')
 directory_object_item_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_member_of.item.directory_object_item_request_builder')
 transitive_reports_request_builder = lazy_import('msgraph.generated.contacts.item.transitive_reports.transitive_reports_request_builder')
@@ -32,39 +32,11 @@ class OrgContactItemRequestBuilder():
     Provides operations to manage the collection of orgContact entities.
     """
     @property
-    def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the checkMemberGroups method.
-        """
-        return check_member_groups_request_builder.CheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def check_member_objects(self) -> check_member_objects_request_builder.CheckMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the checkMemberObjects method.
-        """
-        return check_member_objects_request_builder.CheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def direct_reports(self) -> direct_reports_request_builder.DirectReportsRequestBuilder:
         """
         Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.
         """
         return direct_reports_request_builder.DirectReportsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
-        """
-        Provides operations to call the getMemberGroups method.
-        """
-        return get_member_groups_request_builder.GetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_member_objects(self) -> get_member_objects_request_builder.GetMemberObjectsRequestBuilder:
-        """
-        Provides operations to call the getMemberObjects method.
-        """
-        return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def manager(self) -> manager_request_builder.ManagerRequestBuilder:
@@ -81,11 +53,39 @@ class OrgContactItemRequestBuilder():
         return member_of_request_builder.MemberOfRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore(self) -> restore_request_builder.RestoreRequestBuilder:
+    def microsoft_graph_check_member_groups(self) -> microsoft_graph_check_member_groups_request_builder.MicrosoftGraphCheckMemberGroupsRequestBuilder:
+        """
+        Provides operations to call the checkMemberGroups method.
+        """
+        return microsoft_graph_check_member_groups_request_builder.MicrosoftGraphCheckMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_check_member_objects(self) -> microsoft_graph_check_member_objects_request_builder.MicrosoftGraphCheckMemberObjectsRequestBuilder:
+        """
+        Provides operations to call the checkMemberObjects method.
+        """
+        return microsoft_graph_check_member_objects_request_builder.MicrosoftGraphCheckMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_member_groups(self) -> microsoft_graph_get_member_groups_request_builder.MicrosoftGraphGetMemberGroupsRequestBuilder:
+        """
+        Provides operations to call the getMemberGroups method.
+        """
+        return microsoft_graph_get_member_groups_request_builder.MicrosoftGraphGetMemberGroupsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_member_objects(self) -> microsoft_graph_get_member_objects_request_builder.MicrosoftGraphGetMemberObjectsRequestBuilder:
+        """
+        Provides operations to call the getMemberObjects method.
+        """
+        return microsoft_graph_get_member_objects_request_builder.MicrosoftGraphGetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_restore(self) -> microsoft_graph_restore_request_builder.MicrosoftGraphRestoreRequestBuilder:
         """
         Provides operations to call the restore method.
         """
-        return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_restore_request_builder.MicrosoftGraphRestoreRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def transitive_member_of(self) -> transitive_member_of_request_builder.TransitiveMemberOfRequestBuilder:
@@ -119,12 +119,11 @@ class OrgContactItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OrgContactItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OrgContactItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from contacts
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -135,7 +134,7 @@ class OrgContactItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def direct_reports_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
         """
@@ -150,12 +149,11 @@ class OrgContactItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[OrgContactItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[org_contact.OrgContact]:
+    async def get(self,request_configuration: Optional[OrgContactItemRequestBuilderGetRequestConfiguration] = None) -> Optional[org_contact.OrgContact]:
         """
         Get the properties and relationships of an organizational contact object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[org_contact.OrgContact]
         """
         request_info = self.to_get_request_information(
@@ -167,7 +165,7 @@ class OrgContactItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, org_contact.OrgContact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, org_contact.OrgContact, error_mapping)
     
     def member_of_by_id(self,id: str) -> directory_object_item_request_builder.DirectoryObjectItemRequestBuilder:
         """
@@ -182,13 +180,12 @@ class OrgContactItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[org_contact.OrgContact] = None, request_configuration: Optional[OrgContactItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[org_contact.OrgContact]:
+    async def patch(self,body: Optional[org_contact.OrgContact] = None, request_configuration: Optional[OrgContactItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[org_contact.OrgContact]:
         """
         Update entity in contacts
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[org_contact.OrgContact]
         """
         if body is None:
@@ -202,7 +199,7 @@ class OrgContactItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, org_contact.OrgContact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, org_contact.OrgContact, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OrgContactItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -33,7 +33,7 @@ class DeviceManagementSettingFileConstraint(device_management_constraint.DeviceM
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "supported_extensions": lambda n : setattr(self, 'supported_extensions', n.get_collection_of_primitive_values(str)),
+            "supportedExtensions": lambda n : setattr(self, 'supported_extensions', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class DeviceManagementSettingFileConstraint(device_management_constraint.DeviceM
         """
         Sets the supportedExtensions property value. Acceptable file extensions to upload for this setting
         Args:
-            value: Value to set for the supportedExtensions property.
+            value: Value to set for the supported_extensions property.
         """
         self._supported_extensions = value
     

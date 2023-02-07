@@ -14,7 +14,7 @@ printer = lazy_import('msgraph.generated.models.printer')
 printer_collection_response = lazy_import('msgraph.generated.models.printer_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.print.printers.count.count_request_builder')
-create_request_builder = lazy_import('msgraph.generated.print.printers.create.create_request_builder')
+microsoft_graph_create_request_builder = lazy_import('msgraph.generated.print.printers.microsoft_graph_create.microsoft_graph_create_request_builder')
 
 class PrintersRequestBuilder():
     """
@@ -28,11 +28,11 @@ class PrintersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create(self) -> create_request_builder.CreateRequestBuilder:
+    def microsoft_graph_create(self) -> microsoft_graph_create_request_builder.MicrosoftGraphCreateRequestBuilder:
         """
         Provides operations to call the create method.
         """
-        return create_request_builder.CreateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_create_request_builder.MicrosoftGraphCreateRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class PrintersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[printer_collection_response.PrinterCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None) -> Optional[printer_collection_response.PrinterCollectionResponse]:
         """
         Retrieve the list of **printers** that are registered in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer_collection_response.PrinterCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class PrintersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, printer_collection_response.PrinterCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, printer_collection_response.PrinterCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrintersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[printer.Printer]:
+    async def post(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrintersRequestBuilderPostRequestConfiguration] = None) -> Optional[printer.Printer]:
         """
         Create new navigation property to printers for print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer.Printer]
         """
         if body is None:
@@ -91,7 +89,7 @@ class PrintersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, printer.Printer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, printer.Printer, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

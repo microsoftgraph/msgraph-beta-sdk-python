@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.booking_businesses.item.appointments.item.cancel.cancel_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.booking_businesses.item.appointments.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
 booking_appointment = lazy_import('msgraph.generated.models.booking_appointment')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class BookingAppointmentItemRequestBuilder():
     Provides operations to manage the appointments property of the microsoft.graph.bookingBusiness entity.
     """
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class BookingAppointmentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property appointments for bookingBusinesses
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class BookingAppointmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_appointment.BookingAppointment]:
+    async def get(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_appointment.BookingAppointment]:
         """
         All the appointments of this business. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_appointment.BookingAppointment]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class BookingAppointmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, error_mapping)
     
-    async def patch(self,body: Optional[booking_appointment.BookingAppointment] = None, request_configuration: Optional[BookingAppointmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_appointment.BookingAppointment]:
+    async def patch(self,body: Optional[booking_appointment.BookingAppointment] = None, request_configuration: Optional[BookingAppointmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_appointment.BookingAppointment]:
         """
         Update the navigation property appointments in bookingBusinesses
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_appointment.BookingAppointment]
         """
         if body is None:
@@ -100,7 +97,7 @@ class BookingAppointmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

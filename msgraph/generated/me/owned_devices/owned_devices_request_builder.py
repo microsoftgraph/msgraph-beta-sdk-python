@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.me.owned_devices.count.count_request_builder')
-device_request_builder = lazy_import('msgraph.generated.me.owned_devices.device.device_request_builder')
-endpoint_request_builder = lazy_import('msgraph.generated.me.owned_devices.endpoint.endpoint_request_builder')
+microsoft_graph_device_request_builder = lazy_import('msgraph.generated.me.owned_devices.microsoft_graph_device.microsoft_graph_device_request_builder')
+microsoft_graph_endpoint_request_builder = lazy_import('msgraph.generated.me.owned_devices.microsoft_graph_endpoint.microsoft_graph_endpoint_request_builder')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -28,18 +28,18 @@ class OwnedDevicesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
+    def microsoft_graph_device(self) -> microsoft_graph_device_request_builder.MicrosoftGraphDeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
-        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_request_builder.MicrosoftGraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def microsoft_graph_endpoint(self) -> microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -59,12 +59,11 @@ class OwnedDevicesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OwnedDevicesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[OwnedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Devices that are owned by the user. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -76,7 +75,7 @@ class OwnedDevicesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OwnedDevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

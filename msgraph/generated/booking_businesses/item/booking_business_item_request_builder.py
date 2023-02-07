@@ -18,13 +18,13 @@ customers_request_builder = lazy_import('msgraph.generated.booking_businesses.it
 booking_customer_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.customers.item.booking_customer_item_request_builder')
 custom_questions_request_builder = lazy_import('msgraph.generated.booking_businesses.item.custom_questions.custom_questions_request_builder')
 booking_custom_question_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.custom_questions.item.booking_custom_question_item_request_builder')
-get_staff_availability_request_builder = lazy_import('msgraph.generated.booking_businesses.item.get_staff_availability.get_staff_availability_request_builder')
-publish_request_builder = lazy_import('msgraph.generated.booking_businesses.item.publish.publish_request_builder')
+microsoft_graph_get_staff_availability_request_builder = lazy_import('msgraph.generated.booking_businesses.item.microsoft_graph_get_staff_availability.microsoft_graph_get_staff_availability_request_builder')
+microsoft_graph_publish_request_builder = lazy_import('msgraph.generated.booking_businesses.item.microsoft_graph_publish.microsoft_graph_publish_request_builder')
+microsoft_graph_unpublish_request_builder = lazy_import('msgraph.generated.booking_businesses.item.microsoft_graph_unpublish.microsoft_graph_unpublish_request_builder')
 services_request_builder = lazy_import('msgraph.generated.booking_businesses.item.services.services_request_builder')
 booking_service_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.services.item.booking_service_item_request_builder')
 staff_members_request_builder = lazy_import('msgraph.generated.booking_businesses.item.staff_members.staff_members_request_builder')
 booking_staff_member_item_request_builder = lazy_import('msgraph.generated.booking_businesses.item.staff_members.item.booking_staff_member_item_request_builder')
-unpublish_request_builder = lazy_import('msgraph.generated.booking_businesses.item.unpublish.unpublish_request_builder')
 booking_business = lazy_import('msgraph.generated.models.booking_business')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -61,18 +61,25 @@ class BookingBusinessItemRequestBuilder():
         return custom_questions_request_builder.CustomQuestionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_staff_availability(self) -> get_staff_availability_request_builder.GetStaffAvailabilityRequestBuilder:
+    def microsoft_graph_get_staff_availability(self) -> microsoft_graph_get_staff_availability_request_builder.MicrosoftGraphGetStaffAvailabilityRequestBuilder:
         """
         Provides operations to call the getStaffAvailability method.
         """
-        return get_staff_availability_request_builder.GetStaffAvailabilityRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_staff_availability_request_builder.MicrosoftGraphGetStaffAvailabilityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def microsoft_graph_publish(self) -> microsoft_graph_publish_request_builder.MicrosoftGraphPublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_publish_request_builder.MicrosoftGraphPublishRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_unpublish(self) -> microsoft_graph_unpublish_request_builder.MicrosoftGraphUnpublishRequestBuilder:
+        """
+        Provides operations to call the unpublish method.
+        """
+        return microsoft_graph_unpublish_request_builder.MicrosoftGraphUnpublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def services(self) -> services_request_builder.ServicesRequestBuilder:
@@ -87,13 +94,6 @@ class BookingBusinessItemRequestBuilder():
         Provides operations to manage the staffMembers property of the microsoft.graph.bookingBusiness entity.
         """
         return staff_members_request_builder.StaffMembersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unpublish(self) -> unpublish_request_builder.UnpublishRequestBuilder:
-        """
-        Provides operations to call the unpublish method.
-        """
-        return unpublish_request_builder.UnpublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     def appointments_by_id(self,id: str) -> booking_appointment_item_request_builder.BookingAppointmentItemRequestBuilder:
         """
@@ -165,12 +165,11 @@ class BookingBusinessItemRequestBuilder():
         url_tpl_params["bookingCustomQuestion%2Did"] = id
         return booking_custom_question_item_request_builder.BookingCustomQuestionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[BookingBusinessItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[BookingBusinessItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a bookingBusiness object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -181,14 +180,13 @@ class BookingBusinessItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[BookingBusinessItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_business.BookingBusiness]:
+    async def get(self,request_configuration: Optional[BookingBusinessItemRequestBuilderGetRequestConfiguration] = None) -> Optional[booking_business.BookingBusiness]:
         """
         Get the properties and relationships of a bookingBusiness object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_business.BookingBusiness]
         """
         request_info = self.to_get_request_information(
@@ -200,15 +198,14 @@ class BookingBusinessItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_business.BookingBusiness, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_business.BookingBusiness, error_mapping)
     
-    async def patch(self,body: Optional[booking_business.BookingBusiness] = None, request_configuration: Optional[BookingBusinessItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[booking_business.BookingBusiness]:
+    async def patch(self,body: Optional[booking_business.BookingBusiness] = None, request_configuration: Optional[BookingBusinessItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_business.BookingBusiness]:
         """
         Update the properties of a bookingBusiness object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[booking_business.BookingBusiness]
         """
         if body is None:
@@ -222,7 +219,7 @@ class BookingBusinessItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, booking_business.BookingBusiness, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, booking_business.BookingBusiness, error_mapping)
     
     def services_by_id(self,id: str) -> booking_service_item_request_builder.BookingServiceItemRequestBuilder:
         """

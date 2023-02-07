@@ -36,7 +36,7 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the appliesTo property value. The user role type to assign to license. Possible values are: student, teacher, faculty.
         Args:
-            value: Value to set for the appliesTo property.
+            value: Value to set for the applies_to property.
         """
         self._applies_to = value
     
@@ -72,9 +72,9 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applies_to": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sku_ids": lambda n : setattr(self, 'sku_ids', n.get_collection_of_primitive_values(str)),
+            "skuIds": lambda n : setattr(self, 'sku_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -91,7 +91,7 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -121,7 +121,7 @@ class EducationSynchronizationLicenseAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the skuIds property value. Represents the SKU identifiers of the licenses to assign.
         Args:
-            value: Value to set for the skuIds property.
+            value: Value to set for the sku_ids property.
         """
         self._sku_ids = value
     

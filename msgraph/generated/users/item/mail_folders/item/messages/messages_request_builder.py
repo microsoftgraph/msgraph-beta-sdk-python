@@ -14,7 +14,7 @@ message = lazy_import('msgraph.generated.models.message')
 message_collection_response = lazy_import('msgraph.generated.models.message_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.messages.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.messages.delta.delta_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.messages.microsoft_graph_delta.microsoft_graph_delta_request_builder')
 
 class MessagesRequestBuilder():
     """
@@ -26,6 +26,13 @@ class MessagesRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,19 +52,11 @@ class MessagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[message_collection_response.MessageCollectionResponse]:
+    async def get(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> Optional[message_collection_response.MessageCollectionResponse]:
         """
         List all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message_collection_response.MessageCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class MessagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, message_collection_response.MessageCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, message_collection_response.MessageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[message.Message] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[message.Message]:
+    async def post(self,body: Optional[message.Message] = None, request_configuration: Optional[MessagesRequestBuilderPostRequestConfiguration] = None) -> Optional[message.Message]:
         """
         Use this API to create a new Message in a mailfolder.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message.Message]
         """
         if body is None:
@@ -91,7 +89,7 @@ class MessagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, message.Message, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, message.Message, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MessagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

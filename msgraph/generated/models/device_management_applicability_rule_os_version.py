@@ -59,11 +59,11 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, Parsable)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "max_o_s_version": lambda n : setattr(self, 'max_o_s_version', n.get_str_value()),
-            "min_o_s_version": lambda n : setattr(self, 'min_o_s_version', n.get_str_value()),
+            "maxOSVersion": lambda n : setattr(self, 'max_o_s_version', n.get_str_value()),
+            "minOSVersion": lambda n : setattr(self, 'min_o_s_version', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_type": lambda n : setattr(self, 'rule_type', n.get_enum_value(device_management_applicability_rule_type.DeviceManagementApplicabilityRuleType)),
+            "ruleType": lambda n : setattr(self, 'rule_type', n.get_enum_value(device_management_applicability_rule_type.DeviceManagementApplicabilityRuleType)),
         }
         return fields
     
@@ -80,7 +80,7 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, Parsable)
         """
         Sets the maxOSVersion property value. Max OS version for Applicability Rule.
         Args:
-            value: Value to set for the maxOSVersion property.
+            value: Value to set for the max_o_s_version property.
         """
         self._max_o_s_version = value
     
@@ -97,7 +97,7 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, Parsable)
         """
         Sets the minOSVersion property value. Min OS version for Applicability Rule.
         Args:
-            value: Value to set for the minOSVersion property.
+            value: Value to set for the min_o_s_version property.
         """
         self._min_o_s_version = value
     
@@ -131,7 +131,7 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, Parsable)
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -148,7 +148,7 @@ class DeviceManagementApplicabilityRuleOsVersion(AdditionalDataHolder, Parsable)
         """
         Sets the ruleType property value. Supported Applicability rule types for Device Configuration
         Args:
-            value: Value to set for the ruleType property.
+            value: Value to set for the rule_type property.
         """
         self._rule_type = value
     

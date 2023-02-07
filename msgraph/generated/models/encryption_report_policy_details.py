@@ -57,8 +57,8 @@ class EncryptionReportPolicyDetails(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "policy_id": lambda n : setattr(self, 'policy_id', n.get_str_value()),
-            "policy_name": lambda n : setattr(self, 'policy_name', n.get_str_value()),
+            "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
+            "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class EncryptionReportPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -92,7 +92,7 @@ class EncryptionReportPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the policyId property value. Policy Id for Encryption Report
         Args:
-            value: Value to set for the policyId property.
+            value: Value to set for the policy_id property.
         """
         self._policy_id = value
     
@@ -109,7 +109,7 @@ class EncryptionReportPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the policyName property value. Policy Name for Encryption Report
         Args:
-            value: Value to set for the policyName property.
+            value: Value to set for the policy_name property.
         """
         self._policy_name = value
     

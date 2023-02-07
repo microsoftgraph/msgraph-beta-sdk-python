@@ -67,7 +67,7 @@ class AirPrintDestination(AdditionalDataHolder, Parsable):
         """
         Sets the forceTls property value. If true AirPrint connections are secured by Transport Layer Security (TLS). Default is false. Available in iOS 11.0 and later.
         Args:
-            value: Value to set for the forceTls property.
+            value: Value to set for the force_tls property.
         """
         self._force_tls = value
     
@@ -77,11 +77,11 @@ class AirPrintDestination(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "force_tls": lambda n : setattr(self, 'force_tls', n.get_bool_value()),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "forceTls": lambda n : setattr(self, 'force_tls', n.get_bool_value()),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
-            "resource_path": lambda n : setattr(self, 'resource_path', n.get_str_value()),
+            "resourcePath": lambda n : setattr(self, 'resource_path', n.get_str_value()),
         }
         return fields
     
@@ -98,7 +98,7 @@ class AirPrintDestination(AdditionalDataHolder, Parsable):
         """
         Sets the ipAddress property value. The IP Address of the AirPrint destination.
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -115,7 +115,7 @@ class AirPrintDestination(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -149,7 +149,7 @@ class AirPrintDestination(AdditionalDataHolder, Parsable):
         """
         Sets the resourcePath property value. The Resource Path associated with the printer. This corresponds to the rp parameter of the ipps.tcp Bonjour record. For example: printers/Canon_MG5300_series, printers/Xerox_Phaser_7600, ipp/print, Epson_IPP_Printer.
         Args:
-            value: Value to set for the resourcePath property.
+            value: Value to set for the resource_path property.
         """
         self._resource_path = value
     

@@ -66,7 +66,7 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         """
         Sets the failedHealthCheckItems property value. A list of failed health check items. If the status property is available, this property will be empty.
         Args:
-            value: Value to set for the failedHealthCheckItems property.
+            value: Value to set for the failed_health_check_items property.
         """
         self._failed_health_check_items = value
     
@@ -76,10 +76,10 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_health_check_items": lambda n : setattr(self, 'failed_health_check_items', n.get_collection_of_object_values(cloud_pc_health_check_item.CloudPcHealthCheckItem)),
+            "failedHealthCheckItems": lambda n : setattr(self, 'failed_health_check_items', n.get_collection_of_object_values(cloud_pc_health_check_item.CloudPcHealthCheckItem)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_connectivity_status.CloudPcConnectivityStatus)),
-            "updated_date_time": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
+            "updatedDateTime": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -96,7 +96,7 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -144,7 +144,7 @@ class CloudPcConnectivityResult(AdditionalDataHolder, Parsable):
         """
         Sets the updatedDateTime property value. Datetime when the status was updated. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the updatedDateTime property.
+            value: Value to set for the updated_date_time property.
         """
         self._updated_date_time = value
     

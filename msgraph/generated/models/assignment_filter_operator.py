@@ -16,7 +16,7 @@ class AssignmentFilterOperator(Enum):
     # NotContains.
     NotContains = "notContains",
     # In.
-    In_escaped = "in",
+    In_ = "in",
     # NotIn.
     NotIn = "notIn",
     # EndsWith.

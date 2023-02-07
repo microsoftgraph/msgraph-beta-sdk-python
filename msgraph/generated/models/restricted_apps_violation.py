@@ -63,7 +63,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the deviceConfigurationId property value. Device configuration profile unique identifier, must be Guid
         Args:
-            value: Value to set for the deviceConfigurationId property.
+            value: Value to set for the device_configuration_id property.
         """
         self._device_configuration_id = value
     
@@ -80,7 +80,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the deviceConfigurationName property value. Device configuration profile name
         Args:
-            value: Value to set for the deviceConfigurationName property.
+            value: Value to set for the device_configuration_name property.
         """
         self._device_configuration_name = value
     
@@ -97,7 +97,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the deviceName property value. Device name
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -107,15 +107,15 @@ class RestrictedAppsViolation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_configuration_id": lambda n : setattr(self, 'device_configuration_id', n.get_str_value()),
-            "device_configuration_name": lambda n : setattr(self, 'device_configuration_name', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
-            "restricted_apps": lambda n : setattr(self, 'restricted_apps', n.get_collection_of_object_values(managed_device_reported_app.ManagedDeviceReportedApp)),
-            "restricted_apps_state": lambda n : setattr(self, 'restricted_apps_state', n.get_enum_value(restricted_apps_state.RestrictedAppsState)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "deviceConfigurationId": lambda n : setattr(self, 'device_configuration_id', n.get_str_value()),
+            "deviceConfigurationName": lambda n : setattr(self, 'device_configuration_name', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
+            "restrictedApps": lambda n : setattr(self, 'restricted_apps', n.get_collection_of_object_values(managed_device_reported_app.ManagedDeviceReportedApp)),
+            "restrictedAppsState": lambda n : setattr(self, 'restricted_apps_state', n.get_enum_value(restricted_apps_state.RestrictedAppsState)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -134,7 +134,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the managedDeviceId property value. Managed device unique identifier, must be Guid
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -151,7 +151,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the platformType property value. Supported platform types for policies.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     
@@ -168,7 +168,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the restrictedApps property value. List of violated restricted apps
         Args:
-            value: Value to set for the restrictedApps property.
+            value: Value to set for the restricted_apps property.
         """
         self._restricted_apps = value
     
@@ -185,7 +185,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the restrictedAppsState property value. Restricted apps state
         Args:
-            value: Value to set for the restrictedAppsState property.
+            value: Value to set for the restricted_apps_state property.
         """
         self._restricted_apps_state = value
     
@@ -221,7 +221,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the userId property value. User unique identifier, must be Guid
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -238,7 +238,7 @@ class RestrictedAppsViolation(entity.Entity):
         """
         Sets the userName property value. User name
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     

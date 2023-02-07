@@ -24,7 +24,7 @@ class UserActivity(entity.Entity):
         """
         Sets the activationUrl property value. The activationUrl property
         Args:
-            value: Value to set for the activationUrl property.
+            value: Value to set for the activation_url property.
         """
         self._activation_url = value
     
@@ -41,7 +41,7 @@ class UserActivity(entity.Entity):
         """
         Sets the activitySourceHost property value. The activitySourceHost property
         Args:
-            value: Value to set for the activitySourceHost property.
+            value: Value to set for the activity_source_host property.
         """
         self._activity_source_host = value
     
@@ -58,7 +58,7 @@ class UserActivity(entity.Entity):
         """
         Sets the appActivityId property value. The appActivityId property
         Args:
-            value: Value to set for the appActivityId property.
+            value: Value to set for the app_activity_id property.
         """
         self._app_activity_id = value
     
@@ -75,7 +75,7 @@ class UserActivity(entity.Entity):
         """
         Sets the appDisplayName property value. The appDisplayName property
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -128,7 +128,7 @@ class UserActivity(entity.Entity):
         """
         Sets the contentInfo property value. The contentInfo property
         Args:
-            value: Value to set for the contentInfo property.
+            value: Value to set for the content_info property.
         """
         self._content_info = value
     
@@ -145,7 +145,7 @@ class UserActivity(entity.Entity):
         """
         Sets the contentUrl property value. The contentUrl property
         Args:
-            value: Value to set for the contentUrl property.
+            value: Value to set for the content_url property.
         """
         self._content_url = value
     
@@ -162,7 +162,7 @@ class UserActivity(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -191,7 +191,7 @@ class UserActivity(entity.Entity):
         """
         Sets the expirationDateTime property value. The expirationDateTime property
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -208,7 +208,7 @@ class UserActivity(entity.Entity):
         """
         Sets the fallbackUrl property value. The fallbackUrl property
         Args:
-            value: Value to set for the fallbackUrl property.
+            value: Value to set for the fallback_url property.
         """
         self._fallback_url = value
     
@@ -218,20 +218,20 @@ class UserActivity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activation_url": lambda n : setattr(self, 'activation_url', n.get_str_value()),
-            "activity_source_host": lambda n : setattr(self, 'activity_source_host', n.get_str_value()),
-            "app_activity_id": lambda n : setattr(self, 'app_activity_id', n.get_str_value()),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "content_info": lambda n : setattr(self, 'content_info', n.get_object_value(json.Json)),
-            "content_url": lambda n : setattr(self, 'content_url', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "fallback_url": lambda n : setattr(self, 'fallback_url', n.get_str_value()),
-            "history_items": lambda n : setattr(self, 'history_items', n.get_collection_of_object_values(activity_history_item.ActivityHistoryItem)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "activationUrl": lambda n : setattr(self, 'activation_url', n.get_str_value()),
+            "activitySourceHost": lambda n : setattr(self, 'activity_source_host', n.get_str_value()),
+            "appActivityId": lambda n : setattr(self, 'app_activity_id', n.get_str_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(json.Json)),
+            "contentUrl": lambda n : setattr(self, 'content_url', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "fallbackUrl": lambda n : setattr(self, 'fallback_url', n.get_str_value()),
+            "historyItems": lambda n : setattr(self, 'history_items', n.get_collection_of_object_values(activity_history_item.ActivityHistoryItem)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(status.Status)),
-            "user_timezone": lambda n : setattr(self, 'user_timezone', n.get_str_value()),
-            "visual_elements": lambda n : setattr(self, 'visual_elements', n.get_object_value(visual_info.VisualInfo)),
+            "userTimezone": lambda n : setattr(self, 'user_timezone', n.get_str_value()),
+            "visualElements": lambda n : setattr(self, 'visual_elements', n.get_object_value(visual_info.VisualInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -250,7 +250,7 @@ class UserActivity(entity.Entity):
         """
         Sets the historyItems property value. The historyItems property
         Args:
-            value: Value to set for the historyItems property.
+            value: Value to set for the history_items property.
         """
         self._history_items = value
     
@@ -267,7 +267,7 @@ class UserActivity(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -325,7 +325,7 @@ class UserActivity(entity.Entity):
         """
         Sets the userTimezone property value. The userTimezone property
         Args:
-            value: Value to set for the userTimezone property.
+            value: Value to set for the user_timezone property.
         """
         self._user_timezone = value
     
@@ -342,7 +342,7 @@ class UserActivity(entity.Entity):
         """
         Sets the visualElements property value. The visualElements property
         Args:
-            value: Value to set for the visualElements property.
+            value: Value to set for the visual_elements property.
         """
         self._visual_elements = value
     

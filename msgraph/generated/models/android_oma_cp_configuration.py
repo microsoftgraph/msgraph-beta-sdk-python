@@ -19,7 +19,7 @@ class AndroidOmaCpConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the configurationXml property value. Configuration XML that will be applied to the device. When it is read, it only provides a placeholder string since the original data is encrypted and stored.
         Args:
-            value: Value to set for the configurationXml property.
+            value: Value to set for the configuration_xml property.
         """
         self._configuration_xml = value
     
@@ -50,7 +50,7 @@ class AndroidOmaCpConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_xml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
+            "configurationXml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

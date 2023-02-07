@@ -35,12 +35,11 @@ class FileThreatSubmissionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property fileThreats for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class FileThreatSubmissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[file_threat_submission.FileThreatSubmission]:
+    async def get(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[file_threat_submission.FileThreatSubmission]:
         """
         Get fileThreats from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[file_threat_submission.FileThreatSubmission]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class FileThreatSubmissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, file_threat_submission.FileThreatSubmission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, file_threat_submission.FileThreatSubmission, error_mapping)
     
-    async def patch(self,body: Optional[file_threat_submission.FileThreatSubmission] = None, request_configuration: Optional[FileThreatSubmissionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[file_threat_submission.FileThreatSubmission]:
+    async def patch(self,body: Optional[file_threat_submission.FileThreatSubmission] = None, request_configuration: Optional[FileThreatSubmissionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[file_threat_submission.FileThreatSubmission]:
         """
         Update the navigation property fileThreats in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[file_threat_submission.FileThreatSubmission]
         """
         if body is None:
@@ -92,7 +89,7 @@ class FileThreatSubmissionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, file_threat_submission.FileThreatSubmission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, file_threat_submission.FileThreatSubmission, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[FileThreatSubmissionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -24,7 +24,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the accountId property value. Tenant GUID the enrollment profile belongs to.
         Args:
-            value: Value to set for the accountId property.
+            value: Value to set for the account_id property.
         """
         self._account_id = value
     
@@ -69,7 +69,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the createdDateTime property value. Date time the enrollment profile was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -115,7 +115,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the displayName property value. Display name for the enrollment profile.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -132,7 +132,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the enrolledDeviceCount property value. Total number of Android devices that have enrolled using this enrollment profile.
         Args:
-            value: Value to set for the enrolledDeviceCount property.
+            value: Value to set for the enrolled_device_count property.
         """
         self._enrolled_device_count = value
     
@@ -142,16 +142,16 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_id": lambda n : setattr(self, 'account_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "accountId": lambda n : setattr(self, 'account_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enrolled_device_count": lambda n : setattr(self, 'enrolled_device_count', n.get_int_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "qr_code_content": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
-            "qr_code_image": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
-            "token_expiration_date_time": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
-            "token_value": lambda n : setattr(self, 'token_value', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enrolledDeviceCount": lambda n : setattr(self, 'enrolled_device_count', n.get_int_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "qrCodeContent": lambda n : setattr(self, 'qr_code_content', n.get_str_value()),
+            "qrCodeImage": lambda n : setattr(self, 'qr_code_image', n.get_object_value(mime_content.MimeContent)),
+            "tokenExpirationDateTime": lambda n : setattr(self, 'token_expiration_date_time', n.get_datetime_value()),
+            "tokenValue": lambda n : setattr(self, 'token_value', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -170,7 +170,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Date time the enrollment profile was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -187,7 +187,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the qrCodeContent property value. String used to generate a QR code for the token.
         Args:
-            value: Value to set for the qrCodeContent property.
+            value: Value to set for the qr_code_content property.
         """
         self._qr_code_content = value
     
@@ -204,7 +204,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the qrCodeImage property value. String used to generate a QR code for the token.
         Args:
-            value: Value to set for the qrCodeImage property.
+            value: Value to set for the qr_code_image property.
         """
         self._qr_code_image = value
     
@@ -241,7 +241,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the tokenExpirationDateTime property value. Date time the most recently created token will expire.
         Args:
-            value: Value to set for the tokenExpirationDateTime property.
+            value: Value to set for the token_expiration_date_time property.
         """
         self._token_expiration_date_time = value
     
@@ -258,7 +258,7 @@ class AndroidForWorkEnrollmentProfile(entity.Entity):
         """
         Sets the tokenValue property value. Value of the most recently created token for this enrollment profile.
         Args:
-            value: Value to set for the tokenValue property.
+            value: Value to set for the token_value property.
         """
         self._token_value = value
     

@@ -35,12 +35,11 @@ class AppManagementPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[app_management_policy.AppManagementPolicy]:
+    async def get(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[app_management_policy.AppManagementPolicy]:
         """
         The appManagementPolicy applied to this service principal.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[app_management_policy.AppManagementPolicy]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class AppManagementPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, app_management_policy.AppManagementPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, app_management_policy.AppManagementPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppManagementPolicyItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

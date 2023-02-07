@@ -21,7 +21,7 @@ class CredentialUsageSummary(entity.Entity):
         """
         Sets the authMethod property value. The authMethod property
         Args:
-            value: Value to set for the authMethod property.
+            value: Value to set for the auth_method property.
         """
         self._auth_method = value
     
@@ -66,7 +66,7 @@ class CredentialUsageSummary(entity.Entity):
         """
         Sets the failureActivityCount property value. Provides the count of failed resets or registration data.
         Args:
-            value: Value to set for the failureActivityCount property.
+            value: Value to set for the failure_activity_count property.
         """
         self._failure_activity_count = value
     
@@ -93,10 +93,10 @@ class CredentialUsageSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auth_method": lambda n : setattr(self, 'auth_method', n.get_enum_value(usage_auth_method.UsageAuthMethod)),
-            "failure_activity_count": lambda n : setattr(self, 'failure_activity_count', n.get_int_value()),
+            "authMethod": lambda n : setattr(self, 'auth_method', n.get_enum_value(usage_auth_method.UsageAuthMethod)),
+            "failureActivityCount": lambda n : setattr(self, 'failure_activity_count', n.get_int_value()),
             "feature": lambda n : setattr(self, 'feature', n.get_enum_value(feature_type.FeatureType)),
-            "successful_activity_count": lambda n : setattr(self, 'successful_activity_count', n.get_int_value()),
+            "successfulActivityCount": lambda n : setattr(self, 'successful_activity_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -129,7 +129,7 @@ class CredentialUsageSummary(entity.Entity):
         """
         Sets the successfulActivityCount property value. Provides the count of successful registrations or resets.
         Args:
-            value: Value to set for the successfulActivityCount property.
+            value: Value to set for the successful_activity_count property.
         """
         self._successful_activity_count = value
     

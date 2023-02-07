@@ -49,8 +49,8 @@ class SynchronizationJob(entity.Entity):
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(synchronization_schedule.SynchronizationSchedule)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(synchronization_schema.SynchronizationSchema)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(synchronization_status.SynchronizationStatus)),
-            "synchronization_job_settings": lambda n : setattr(self, 'synchronization_job_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "synchronizationJobSettings": lambda n : setattr(self, 'synchronization_job_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -135,7 +135,7 @@ class SynchronizationJob(entity.Entity):
         """
         Sets the synchronizationJobSettings property value. Settings associated with the job. Some settings are inherited from the template.
         Args:
-            value: Value to set for the synchronizationJobSettings property.
+            value: Value to set for the synchronization_job_settings property.
         """
         self._synchronization_job_settings = value
     
@@ -152,7 +152,7 @@ class SynchronizationJob(entity.Entity):
         """
         Sets the templateId property value. Identifier of the synchronization template this job is based on.
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     

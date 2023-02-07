@@ -28,7 +28,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the alertData property value. The alertData property
         Args:
-            value: Value to set for the alertData property.
+            value: Value to set for the alert_data property.
         """
         self._alert_data = value
     
@@ -45,7 +45,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the alertDataReferenceStrings property value. The alertDataReferenceStrings property
         Args:
-            value: Value to set for the alertDataReferenceStrings property.
+            value: Value to set for the alert_data_reference_strings property.
         """
         self._alert_data_reference_strings = value
     
@@ -62,7 +62,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the alertLogs property value. The alertLogs property
         Args:
-            value: Value to set for the alertLogs property.
+            value: Value to set for the alert_logs property.
         """
         self._alert_logs = value
     
@@ -79,7 +79,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the alertRule property value. The alertRule property
         Args:
-            value: Value to set for the alertRule property.
+            value: Value to set for the alert_rule property.
         """
         self._alert_rule = value
     
@@ -96,7 +96,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the alertRuleDisplayName property value. The alertRuleDisplayName property
         Args:
-            value: Value to set for the alertRuleDisplayName property.
+            value: Value to set for the alert_rule_display_name property.
         """
         self._alert_rule_display_name = value
     
@@ -113,7 +113,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the apiNotifications property value. The apiNotifications property
         Args:
-            value: Value to set for the apiNotifications property.
+            value: Value to set for the api_notifications property.
         """
         self._api_notifications = value
     
@@ -130,7 +130,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the assignedToUserId property value. The assignedToUserId property
         Args:
-            value: Value to set for the assignedToUserId property.
+            value: Value to set for the assigned_to_user_id property.
         """
         self._assigned_to_user_id = value
     
@@ -193,7 +193,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the correlationCount property value. The correlationCount property
         Args:
-            value: Value to set for the correlationCount property.
+            value: Value to set for the correlation_count property.
         """
         self._correlation_count = value
     
@@ -210,7 +210,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the correlationId property value. The correlationId property
         Args:
-            value: Value to set for the correlationId property.
+            value: Value to set for the correlation_id property.
         """
         self._correlation_id = value
     
@@ -227,7 +227,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -244,7 +244,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -273,7 +273,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the emailNotifications property value. The emailNotifications property
         Args:
-            value: Value to set for the emailNotifications property.
+            value: Value to set for the email_notifications property.
         """
         self._email_notifications = value
     
@@ -283,24 +283,24 @@ class ManagedTenantAlert(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_data": lambda n : setattr(self, 'alert_data', n.get_object_value(alert_data.AlertData)),
-            "alert_data_reference_strings": lambda n : setattr(self, 'alert_data_reference_strings', n.get_collection_of_object_values(alert_data_reference_string.AlertDataReferenceString)),
-            "alert_logs": lambda n : setattr(self, 'alert_logs', n.get_collection_of_object_values(managed_tenant_alert_log.ManagedTenantAlertLog)),
-            "alert_rule": lambda n : setattr(self, 'alert_rule', n.get_object_value(managed_tenant_alert_rule.ManagedTenantAlertRule)),
-            "alert_rule_display_name": lambda n : setattr(self, 'alert_rule_display_name', n.get_str_value()),
-            "api_notifications": lambda n : setattr(self, 'api_notifications', n.get_collection_of_object_values(managed_tenant_api_notification.ManagedTenantApiNotification)),
-            "assigned_to_user_id": lambda n : setattr(self, 'assigned_to_user_id', n.get_str_value()),
-            "correlation_count": lambda n : setattr(self, 'correlation_count', n.get_int_value()),
-            "correlation_id": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "email_notifications": lambda n : setattr(self, 'email_notifications', n.get_collection_of_object_values(managed_tenant_email_notification.ManagedTenantEmailNotification)),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "alertData": lambda n : setattr(self, 'alert_data', n.get_object_value(alert_data.AlertData)),
+            "alertDataReferenceStrings": lambda n : setattr(self, 'alert_data_reference_strings', n.get_collection_of_object_values(alert_data_reference_string.AlertDataReferenceString)),
+            "alertLogs": lambda n : setattr(self, 'alert_logs', n.get_collection_of_object_values(managed_tenant_alert_log.ManagedTenantAlertLog)),
+            "alertRule": lambda n : setattr(self, 'alert_rule', n.get_object_value(managed_tenant_alert_rule.ManagedTenantAlertRule)),
+            "alertRuleDisplayName": lambda n : setattr(self, 'alert_rule_display_name', n.get_str_value()),
+            "apiNotifications": lambda n : setattr(self, 'api_notifications', n.get_collection_of_object_values(managed_tenant_api_notification.ManagedTenantApiNotification)),
+            "assignedToUserId": lambda n : setattr(self, 'assigned_to_user_id', n.get_str_value()),
+            "correlationCount": lambda n : setattr(self, 'correlation_count', n.get_int_value()),
+            "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "emailNotifications": lambda n : setattr(self, 'email_notifications', n.get_collection_of_object_values(managed_tenant_email_notification.ManagedTenantEmailNotification)),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(alert_severity.AlertSeverity)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(alert_status.AlertStatus)),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -320,7 +320,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -337,7 +337,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -434,7 +434,7 @@ class ManagedTenantAlert(entity.Entity):
         """
         Sets the tenantId property value. The tenantId property
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

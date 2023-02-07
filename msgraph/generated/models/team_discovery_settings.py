@@ -52,7 +52,7 @@ class TeamDiscoverySettings(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "show_in_teams_search_and_suggestions": lambda n : setattr(self, 'show_in_teams_search_and_suggestions', n.get_bool_value()),
+            "showInTeamsSearchAndSuggestions": lambda n : setattr(self, 'show_in_teams_search_and_suggestions', n.get_bool_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class TeamDiscoverySettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -98,7 +98,7 @@ class TeamDiscoverySettings(AdditionalDataHolder, Parsable):
         """
         Sets the showInTeamsSearchAndSuggestions property value. If set to true, the team is visible via search and suggestions from the Teams client.
         Args:
-            value: Value to set for the showInTeamsSearchAndSuggestions property.
+            value: Value to set for the show_in_teams_search_and_suggestions property.
         """
         self._show_in_teams_search_and_suggestions = value
     

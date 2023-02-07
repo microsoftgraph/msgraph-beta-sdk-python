@@ -88,7 +88,7 @@ class ItemActivityOLD(entity.Entity):
         """
         Sets the driveItem property value. The driveItem property
         Args:
-            value: Value to set for the driveItem property.
+            value: Value to set for the drive_item property.
         """
         self._drive_item = value
     
@@ -100,8 +100,8 @@ class ItemActivityOLD(entity.Entity):
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_object_value(item_action_set.ItemActionSet)),
             "actor": lambda n : setattr(self, 'actor', n.get_object_value(identity_set.IdentitySet)),
-            "drive_item": lambda n : setattr(self, 'drive_item', n.get_object_value(drive_item.DriveItem)),
-            "list_item": lambda n : setattr(self, 'list_item', n.get_object_value(list_item.ListItem)),
+            "driveItem": lambda n : setattr(self, 'drive_item', n.get_object_value(drive_item.DriveItem)),
+            "listItem": lambda n : setattr(self, 'list_item', n.get_object_value(list_item.ListItem)),
             "times": lambda n : setattr(self, 'times', n.get_object_value(item_activity_time_set.ItemActivityTimeSet)),
         }
         super_fields = super().get_field_deserializers()
@@ -121,7 +121,7 @@ class ItemActivityOLD(entity.Entity):
         """
         Sets the listItem property value. The listItem property
         Args:
-            value: Value to set for the listItem property.
+            value: Value to set for the list_item property.
         """
         self._list_item = value
     

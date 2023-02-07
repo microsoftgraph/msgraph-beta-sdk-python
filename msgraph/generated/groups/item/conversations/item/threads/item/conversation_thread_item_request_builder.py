@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+microsoft_graph_reply_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.microsoft_graph_reply.microsoft_graph_reply_request_builder')
 posts_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.posts_request_builder')
 post_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.post_item_request_builder')
-reply_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.reply.reply_request_builder')
 conversation_thread = lazy_import('msgraph.generated.models.conversation_thread')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,18 +21,18 @@ class ConversationThreadItemRequestBuilder():
     Provides operations to manage the threads property of the microsoft.graph.conversation entity.
     """
     @property
+    def microsoft_graph_reply(self) -> microsoft_graph_reply_request_builder.MicrosoftGraphReplyRequestBuilder:
+        """
+        Provides operations to call the reply method.
+        """
+        return microsoft_graph_reply_request_builder.MicrosoftGraphReplyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def posts(self) -> posts_request_builder.PostsRequestBuilder:
         """
         Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
         """
         return posts_request_builder.PostsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reply(self) -> reply_request_builder.ReplyRequestBuilder:
-        """
-        Provides operations to call the reply method.
-        """
-        return reply_request_builder.ReplyRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class ConversationThreadItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ConversationThreadItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConversationThreadItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property threads for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +67,13 @@ class ConversationThreadItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConversationThreadItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conversation_thread.ConversationThread]:
+    async def get(self,request_configuration: Optional[ConversationThreadItemRequestBuilderGetRequestConfiguration] = None) -> Optional[conversation_thread.ConversationThread]:
         """
         A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_thread.ConversationThread]
         """
         request_info = self.to_get_request_information(
@@ -87,15 +85,14 @@ class ConversationThreadItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, error_mapping)
     
-    async def patch(self,body: Optional[conversation_thread.ConversationThread] = None, request_configuration: Optional[ConversationThreadItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conversation_thread.ConversationThread]:
+    async def patch(self,body: Optional[conversation_thread.ConversationThread] = None, request_configuration: Optional[ConversationThreadItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[conversation_thread.ConversationThread]:
         """
         Update the navigation property threads in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_thread.ConversationThread]
         """
         if body is None:
@@ -109,7 +106,7 @@ class ConversationThreadItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, error_mapping)
     
     def posts_by_id(self,id: str) -> post_item_request_builder.PostItemRequestBuilder:
         """

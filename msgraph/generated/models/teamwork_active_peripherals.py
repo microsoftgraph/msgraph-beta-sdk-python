@@ -36,7 +36,7 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
         """
         Sets the communicationSpeaker property value. The communicationSpeaker property
         Args:
-            value: Value to set for the communicationSpeaker property.
+            value: Value to set for the communication_speaker property.
         """
         self._communication_speaker = value
     
@@ -73,7 +73,7 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
         """
         Sets the contentCamera property value. The contentCamera property
         Args:
-            value: Value to set for the contentCamera property.
+            value: Value to set for the content_camera property.
         """
         self._content_camera = value
     
@@ -95,11 +95,11 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "communication_speaker": lambda n : setattr(self, 'communication_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
-            "content_camera": lambda n : setattr(self, 'content_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "communicationSpeaker": lambda n : setattr(self, 'communication_speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "contentCamera": lambda n : setattr(self, 'content_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "microphone": lambda n : setattr(self, 'microphone', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "room_camera": lambda n : setattr(self, 'room_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "roomCamera": lambda n : setattr(self, 'room_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "speaker": lambda n : setattr(self, 'speaker', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
         }
         return fields
@@ -134,7 +134,7 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -151,7 +151,7 @@ class TeamworkActivePeripherals(AdditionalDataHolder, Parsable):
         """
         Sets the roomCamera property value. The roomCamera property
         Args:
-            value: Value to set for the roomCamera property.
+            value: Value to set for the room_camera property.
         """
         self._room_camera = value
     

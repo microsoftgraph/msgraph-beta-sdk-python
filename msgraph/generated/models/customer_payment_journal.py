@@ -39,7 +39,7 @@ class CustomerPaymentJournal(entity.Entity):
         """
         Sets the balancingAccountId property value. The balancingAccountId property
         Args:
-            value: Value to set for the balancingAccountId property.
+            value: Value to set for the balancing_account_id property.
         """
         self._balancing_account_id = value
     
@@ -56,7 +56,7 @@ class CustomerPaymentJournal(entity.Entity):
         """
         Sets the balancingAccountNumber property value. The balancingAccountNumber property
         Args:
-            value: Value to set for the balancingAccountNumber property.
+            value: Value to set for the balancing_account_number property.
         """
         self._balancing_account_number = value
     
@@ -124,7 +124,7 @@ class CustomerPaymentJournal(entity.Entity):
         """
         Sets the customerPayments property value. The customerPayments property
         Args:
-            value: Value to set for the customerPayments property.
+            value: Value to set for the customer_payments property.
         """
         self._customer_payments = value
     
@@ -141,7 +141,7 @@ class CustomerPaymentJournal(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -152,12 +152,12 @@ class CustomerPaymentJournal(entity.Entity):
         """
         fields = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "balancing_account_id": lambda n : setattr(self, 'balancing_account_id', n.get_object_value(Guid)),
-            "balancing_account_number": lambda n : setattr(self, 'balancing_account_number', n.get_str_value()),
+            "balancingAccountId": lambda n : setattr(self, 'balancing_account_id', n.get_object_value(Guid)),
+            "balancingAccountNumber": lambda n : setattr(self, 'balancing_account_number', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
-            "customer_payments": lambda n : setattr(self, 'customer_payments', n.get_collection_of_object_values(customer_payment.CustomerPayment)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "customerPayments": lambda n : setattr(self, 'customer_payments', n.get_collection_of_object_values(customer_payment.CustomerPayment)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -176,7 +176,7 @@ class CustomerPaymentJournal(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

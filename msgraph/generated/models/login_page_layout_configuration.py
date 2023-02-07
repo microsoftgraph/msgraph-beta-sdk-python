@@ -57,9 +57,9 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_footer_shown": lambda n : setattr(self, 'is_footer_shown', n.get_bool_value()),
-            "is_header_shown": lambda n : setattr(self, 'is_header_shown', n.get_bool_value()),
-            "layout_template_type": lambda n : setattr(self, 'layout_template_type', n.get_enum_value(layout_template_type.LayoutTemplateType)),
+            "isFooterShown": lambda n : setattr(self, 'is_footer_shown', n.get_bool_value()),
+            "isHeaderShown": lambda n : setattr(self, 'is_header_shown', n.get_bool_value()),
+            "layoutTemplateType": lambda n : setattr(self, 'layout_template_type', n.get_enum_value(layout_template_type.LayoutTemplateType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -77,7 +77,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isFooterShown property value. Option to show the footer on the sign-in page.
         Args:
-            value: Value to set for the isFooterShown property.
+            value: Value to set for the is_footer_shown property.
         """
         self._is_footer_shown = value
     
@@ -94,7 +94,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isHeaderShown property value. Option to show the header on the sign-in page.
         Args:
-            value: Value to set for the isHeaderShown property.
+            value: Value to set for the is_header_shown property.
         """
         self._is_header_shown = value
     
@@ -111,7 +111,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the layoutTemplateType property value. Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
         Args:
-            value: Value to set for the layoutTemplateType property.
+            value: Value to set for the layout_template_type property.
         """
         self._layout_template_type = value
     
@@ -128,7 +128,7 @@ class LoginPageLayoutConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

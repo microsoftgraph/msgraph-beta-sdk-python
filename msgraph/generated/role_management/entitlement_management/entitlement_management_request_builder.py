@@ -12,6 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 rbac_application = lazy_import('msgraph.generated.models.rbac_application')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+microsoft_graph_role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.microsoft_graph_role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.microsoft_graph_role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder')
+microsoft_graph_role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.microsoft_graph_role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.microsoft_graph_role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder')
 resource_namespaces_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.resource_namespaces.resource_namespaces_request_builder')
 unified_rbac_resource_namespace_item_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.resource_namespaces.item.unified_rbac_resource_namespace_item_request_builder')
 role_assignment_approvals_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_assignment_approvals.role_assignment_approvals_request_builder')
@@ -32,8 +34,6 @@ role_eligibility_schedule_requests_request_builder = lazy_import('msgraph.genera
 unified_role_eligibility_schedule_request_item_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_eligibility_schedule_requests.item.unified_role_eligibility_schedule_request_item_request_builder')
 role_eligibility_schedules_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_eligibility_schedules.role_eligibility_schedules_request_builder')
 unified_role_eligibility_schedule_item_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_eligibility_schedules.item.unified_role_eligibility_schedule_item_request_builder')
-role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder')
-role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id.role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder')
 transitive_role_assignments_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.transitive_role_assignments.transitive_role_assignments_request_builder')
 unified_role_assignment_item_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.transitive_role_assignments.item.unified_role_assignment_item_request_builder')
 
@@ -41,6 +41,20 @@ class EntitlementManagementRequestBuilder():
     """
     Provides operations to manage the entitlementManagement property of the microsoft.graph.roleManagement entity.
     """
+    @property
+    def microsoft_graph_role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self) -> microsoft_graph_role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.MicrosoftGraphRoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
+        """
+        Provides operations to call the roleScheduleInstances method.
+        """
+        return microsoft_graph_role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.MicrosoftGraphRoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self) -> microsoft_graph_role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.MicrosoftGraphRoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
+        """
+        Provides operations to call the roleSchedules method.
+        """
+        return microsoft_graph_role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.MicrosoftGraphRoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def resource_namespaces(self) -> resource_namespaces_request_builder.ResourceNamespacesRequestBuilder:
         """
@@ -136,12 +150,11 @@ class EntitlementManagementRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property entitlementManagement for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -152,14 +165,13 @@ class EntitlementManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EntitlementManagementRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[rbac_application.RbacApplication]:
+    async def get(self,request_configuration: Optional[EntitlementManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[rbac_application.RbacApplication]:
         """
         The RbacApplication for Entitlement Management
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[rbac_application.RbacApplication]
         """
         request_info = self.to_get_request_information(
@@ -171,15 +183,14 @@ class EntitlementManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, rbac_application.RbacApplication, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, rbac_application.RbacApplication, error_mapping)
     
-    async def patch(self,body: Optional[rbac_application.RbacApplication] = None, request_configuration: Optional[EntitlementManagementRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[rbac_application.RbacApplication]:
+    async def patch(self,body: Optional[rbac_application.RbacApplication] = None, request_configuration: Optional[EntitlementManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[rbac_application.RbacApplication]:
         """
         Update the navigation property entitlementManagement in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[rbac_application.RbacApplication]
         """
         if body is None:
@@ -193,7 +204,7 @@ class EntitlementManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, rbac_application.RbacApplication, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, rbac_application.RbacApplication, error_mapping)
     
     def resource_namespaces_by_id(self,id: str) -> unified_rbac_resource_namespace_item_request_builder.UnifiedRbacResourceNamespaceItemRequestBuilder:
         """
@@ -324,20 +335,6 @@ class EntitlementManagementRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedRoleEligibilitySchedule%2Did"] = id
         return unified_role_eligibility_schedule_item_request_builder.UnifiedRoleEligibilityScheduleItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self,) -> role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
-        """
-        Provides operations to call the roleScheduleInstances method.
-        Returns: role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder
-        """
-        return role_schedule_instancesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleScheduleInstancesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id(self,) -> role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder:
-        """
-        Provides operations to call the roleSchedules method.
-        Returns: role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder
-        """
-        return role_schedulesdirectory_scope_id_directory_scope_id_app_scope_id_app_scope_id_principal_id_principal_id_role_definition_id_role_definition_id_request_builder.RoleSchedulesdirectoryScopeIdDirectoryScopeIdAppScopeIdAppScopeIdPrincipalIdPrincipalIdRoleDefinitionIdRoleDefinitionIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     def to_delete_request_information(self,request_configuration: Optional[EntitlementManagementRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

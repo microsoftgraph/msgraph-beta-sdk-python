@@ -61,12 +61,12 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "hide_account_reset_credentials": lambda n : setattr(self, 'hide_account_reset_credentials', n.get_bool_value()),
-            "hide_cannot_access_your_account": lambda n : setattr(self, 'hide_cannot_access_your_account', n.get_bool_value()),
-            "hide_forgot_my_password": lambda n : setattr(self, 'hide_forgot_my_password', n.get_bool_value()),
-            "hide_privacy_and_cookies": lambda n : setattr(self, 'hide_privacy_and_cookies', n.get_bool_value()),
-            "hide_reset_it_now": lambda n : setattr(self, 'hide_reset_it_now', n.get_bool_value()),
-            "hide_terms_of_use": lambda n : setattr(self, 'hide_terms_of_use', n.get_bool_value()),
+            "hideAccountResetCredentials": lambda n : setattr(self, 'hide_account_reset_credentials', n.get_bool_value()),
+            "hideCannotAccessYourAccount": lambda n : setattr(self, 'hide_cannot_access_your_account', n.get_bool_value()),
+            "hideForgotMyPassword": lambda n : setattr(self, 'hide_forgot_my_password', n.get_bool_value()),
+            "hidePrivacyAndCookies": lambda n : setattr(self, 'hide_privacy_and_cookies', n.get_bool_value()),
+            "hideResetItNow": lambda n : setattr(self, 'hide_reset_it_now', n.get_bool_value()),
+            "hideTermsOfUse": lambda n : setattr(self, 'hide_terms_of_use', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -84,7 +84,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideAccountResetCredentials property value. Option to hide the self-service password reset (SSPR) hyperlinks such as 'Can't access your account?', 'Forgot my password' and 'Reset it now' on the sign-in form.
         Args:
-            value: Value to set for the hideAccountResetCredentials property.
+            value: Value to set for the hide_account_reset_credentials property.
         """
         self._hide_account_reset_credentials = value
     
@@ -101,7 +101,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideCannotAccessYourAccount property value. Option to hide the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in form.
         Args:
-            value: Value to set for the hideCannotAccessYourAccount property.
+            value: Value to set for the hide_cannot_access_your_account property.
         """
         self._hide_cannot_access_your_account = value
     
@@ -118,7 +118,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideForgotMyPassword property value. Option to hide the self-service password reset (SSPR) 'Forgot my password' hyperlink on the sign-in form.
         Args:
-            value: Value to set for the hideForgotMyPassword property.
+            value: Value to set for the hide_forgot_my_password property.
         """
         self._hide_forgot_my_password = value
     
@@ -135,7 +135,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the hidePrivacyAndCookies property value. Option to hide the 'Privacy & Cookies' hyperlink in the footer.
         Args:
-            value: Value to set for the hidePrivacyAndCookies property.
+            value: Value to set for the hide_privacy_and_cookies property.
         """
         self._hide_privacy_and_cookies = value
     
@@ -152,7 +152,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideResetItNow property value. Option to hide the self-service password reset (SSPR) 'reset it now' hyperlink on the sign-in form.
         Args:
-            value: Value to set for the hideResetItNow property.
+            value: Value to set for the hide_reset_it_now property.
         """
         self._hide_reset_it_now = value
     
@@ -169,7 +169,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideTermsOfUse property value. Option to hide the 'Terms of Use' hyperlink in the footer.
         Args:
-            value: Value to set for the hideTermsOfUse property.
+            value: Value to set for the hide_terms_of_use property.
         """
         self._hide_terms_of_use = value
     
@@ -186,7 +186,7 @@ class LoginPageTextVisibilitySettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-terminate_request_builder = lazy_import('msgraph.generated.device_management.device_management_partners.item.terminate.terminate_request_builder')
+microsoft_graph_terminate_request_builder = lazy_import('msgraph.generated.device_management.device_management_partners.item.microsoft_graph_terminate.microsoft_graph_terminate_request_builder')
 device_management_partner = lazy_import('msgraph.generated.models.device_management_partner')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class DeviceManagementPartnerItemRequestBuilder():
     Provides operations to manage the deviceManagementPartners property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def terminate(self) -> terminate_request_builder.TerminateRequestBuilder:
+    def microsoft_graph_terminate(self) -> microsoft_graph_terminate_request_builder.MicrosoftGraphTerminateRequestBuilder:
         """
         Provides operations to call the terminate method.
         """
-        return terminate_request_builder.TerminateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_terminate_request_builder.MicrosoftGraphTerminateRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class DeviceManagementPartnerItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceManagementPartners for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class DeviceManagementPartnerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_partner.DeviceManagementPartner]:
+    async def get(self,request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_partner.DeviceManagementPartner]:
         """
         The list of Device Management Partners configured by the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_partner.DeviceManagementPartner]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class DeviceManagementPartnerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_partner.DeviceManagementPartner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_partner.DeviceManagementPartner, error_mapping)
     
-    async def patch(self,body: Optional[device_management_partner.DeviceManagementPartner] = None, request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_partner.DeviceManagementPartner]:
+    async def patch(self,body: Optional[device_management_partner.DeviceManagementPartner] = None, request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_partner.DeviceManagementPartner]:
         """
         Update the navigation property deviceManagementPartners in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_partner.DeviceManagementPartner]
         """
         if body is None:
@@ -100,7 +97,7 @@ class DeviceManagementPartnerItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_partner.DeviceManagementPartner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_partner.DeviceManagementPartner, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementPartnerItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

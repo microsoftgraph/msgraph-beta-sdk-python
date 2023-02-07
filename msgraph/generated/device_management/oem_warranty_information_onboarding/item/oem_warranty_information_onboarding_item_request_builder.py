@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-disable_request_builder = lazy_import('msgraph.generated.device_management.oem_warranty_information_onboarding.item.disable.disable_request_builder')
-enable_request_builder = lazy_import('msgraph.generated.device_management.oem_warranty_information_onboarding.item.enable.enable_request_builder')
+microsoft_graph_disable_request_builder = lazy_import('msgraph.generated.device_management.oem_warranty_information_onboarding.item.microsoft_graph_disable.microsoft_graph_disable_request_builder')
+microsoft_graph_enable_request_builder = lazy_import('msgraph.generated.device_management.oem_warranty_information_onboarding.item.microsoft_graph_enable.microsoft_graph_enable_request_builder')
 oem_warranty_information_onboarding = lazy_import('msgraph.generated.models.oem_warranty_information_onboarding')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,18 +20,18 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
     Provides operations to manage the oemWarrantyInformationOnboarding property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def disable(self) -> disable_request_builder.DisableRequestBuilder:
+    def microsoft_graph_disable(self) -> microsoft_graph_disable_request_builder.MicrosoftGraphDisableRequestBuilder:
         """
         Provides operations to call the disable method.
         """
-        return disable_request_builder.DisableRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_disable_request_builder.MicrosoftGraphDisableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable(self) -> enable_request_builder.EnableRequestBuilder:
+    def microsoft_graph_enable(self) -> microsoft_graph_enable_request_builder.MicrosoftGraphEnableRequestBuilder:
         """
         Provides operations to call the enable method.
         """
-        return enable_request_builder.EnableRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_enable_request_builder.MicrosoftGraphEnableRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property oemWarrantyInformationOnboarding for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]:
+    async def get(self,request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderGetRequestConfiguration] = None) -> Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]:
         """
         List of OEM Warranty Statuses
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, oem_warranty_information_onboarding.OemWarrantyInformationOnboarding, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, oem_warranty_information_onboarding.OemWarrantyInformationOnboarding, error_mapping)
     
-    async def patch(self,body: Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding] = None, request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]:
+    async def patch(self,body: Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding] = None, request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]:
         """
         Update the navigation property oemWarrantyInformationOnboarding in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[oem_warranty_information_onboarding.OemWarrantyInformationOnboarding]
         """
         if body is None:
@@ -108,7 +105,7 @@ class OemWarrantyInformationOnboardingItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, oem_warranty_information_onboarding.OemWarrantyInformationOnboarding, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, oem_warranty_information_onboarding.OemWarrantyInformationOnboarding, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OemWarrantyInformationOnboardingItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

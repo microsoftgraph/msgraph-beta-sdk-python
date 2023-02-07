@@ -44,12 +44,11 @@ class RoleSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RoleSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse]:
         """
         The collection of role settings for the resource.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class RoleSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_setting_collection_response.GovernanceRoleSettingCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[governance_role_setting.GovernanceRoleSetting] = None, request_configuration: Optional[RoleSettingsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[governance_role_setting.GovernanceRoleSetting]:
+    async def post(self,body: Optional[governance_role_setting.GovernanceRoleSetting] = None, request_configuration: Optional[RoleSettingsRequestBuilderPostRequestConfiguration] = None) -> Optional[governance_role_setting.GovernanceRoleSetting]:
         """
         Create new navigation property to roleSettings for governanceResources
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[governance_role_setting.GovernanceRoleSetting]
         """
         if body is None:
@@ -83,7 +81,7 @@ class RoleSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, governance_role_setting.GovernanceRoleSetting, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, governance_role_setting.GovernanceRoleSetting, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleSettingsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

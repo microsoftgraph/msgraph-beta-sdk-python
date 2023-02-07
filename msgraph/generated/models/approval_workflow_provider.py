@@ -21,7 +21,7 @@ class ApprovalWorkflowProvider(entity.Entity):
         """
         Sets the businessFlows property value. The businessFlows property
         Args:
-            value: Value to set for the businessFlows property.
+            value: Value to set for the business_flows property.
         """
         self._business_flows = value
     
@@ -38,7 +38,7 @@ class ApprovalWorkflowProvider(entity.Entity):
         """
         Sets the businessFlowsWithRequestsAwaitingMyDecision property value. The businessFlowsWithRequestsAwaitingMyDecision property
         Args:
-            value: Value to set for the businessFlowsWithRequestsAwaitingMyDecision property.
+            value: Value to set for the business_flows_with_requests_awaiting_my_decision property.
         """
         self._business_flows_with_requests_awaiting_my_decision = value
     
@@ -83,7 +83,7 @@ class ApprovalWorkflowProvider(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -93,10 +93,10 @@ class ApprovalWorkflowProvider(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "business_flows": lambda n : setattr(self, 'business_flows', n.get_collection_of_object_values(business_flow.BusinessFlow)),
-            "business_flows_with_requests_awaiting_my_decision": lambda n : setattr(self, 'business_flows_with_requests_awaiting_my_decision', n.get_collection_of_object_values(business_flow.BusinessFlow)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "policy_templates": lambda n : setattr(self, 'policy_templates', n.get_collection_of_object_values(governance_policy_template.GovernancePolicyTemplate)),
+            "businessFlows": lambda n : setattr(self, 'business_flows', n.get_collection_of_object_values(business_flow.BusinessFlow)),
+            "businessFlowsWithRequestsAwaitingMyDecision": lambda n : setattr(self, 'business_flows_with_requests_awaiting_my_decision', n.get_collection_of_object_values(business_flow.BusinessFlow)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "policyTemplates": lambda n : setattr(self, 'policy_templates', n.get_collection_of_object_values(governance_policy_template.GovernancePolicyTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -115,7 +115,7 @@ class ApprovalWorkflowProvider(entity.Entity):
         """
         Sets the policyTemplates property value. The policyTemplates property
         Args:
-            value: Value to set for the policyTemplates property.
+            value: Value to set for the policy_templates property.
         """
         self._policy_templates = value
     

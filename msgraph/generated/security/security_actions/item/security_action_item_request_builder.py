@@ -12,18 +12,18 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 security_action = lazy_import('msgraph.generated.models.security_action')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-cancel_security_action_request_builder = lazy_import('msgraph.generated.security.security_actions.item.cancel_security_action.cancel_security_action_request_builder')
+microsoft_graph_cancel_security_action_request_builder = lazy_import('msgraph.generated.security.security_actions.item.microsoft_graph_cancel_security_action.microsoft_graph_cancel_security_action_request_builder')
 
 class SecurityActionItemRequestBuilder():
     """
     Provides operations to manage the securityActions property of the microsoft.graph.security entity.
     """
     @property
-    def cancel_security_action(self) -> cancel_security_action_request_builder.CancelSecurityActionRequestBuilder:
+    def microsoft_graph_cancel_security_action(self) -> microsoft_graph_cancel_security_action_request_builder.MicrosoftGraphCancelSecurityActionRequestBuilder:
         """
         Provides operations to call the cancelSecurityAction method.
         """
-        return cancel_security_action_request_builder.CancelSecurityActionRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_cancel_security_action_request_builder.MicrosoftGraphCancelSecurityActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class SecurityActionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SecurityActionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SecurityActionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property securityActions for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class SecurityActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SecurityActionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_action.SecurityAction]:
+    async def get(self,request_configuration: Optional[SecurityActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[security_action.SecurityAction]:
         """
         Get securityActions from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_action.SecurityAction]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class SecurityActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_action.SecurityAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_action.SecurityAction, error_mapping)
     
-    async def patch(self,body: Optional[security_action.SecurityAction] = None, request_configuration: Optional[SecurityActionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security_action.SecurityAction]:
+    async def patch(self,body: Optional[security_action.SecurityAction] = None, request_configuration: Optional[SecurityActionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[security_action.SecurityAction]:
         """
         Update the navigation property securityActions in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security_action.SecurityAction]
         """
         if body is None:
@@ -100,7 +97,7 @@ class SecurityActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security_action.SecurityAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security_action.SecurityAction, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SecurityActionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

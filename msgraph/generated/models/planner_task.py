@@ -14,6 +14,7 @@ planner_preview_type = lazy_import('msgraph.generated.models.planner_preview_typ
 planner_progress_task_board_task_format = lazy_import('msgraph.generated.models.planner_progress_task_board_task_format')
 planner_task_creation = lazy_import('msgraph.generated.models.planner_task_creation')
 planner_task_details = lazy_import('msgraph.generated.models.planner_task_details')
+planner_task_recurrence = lazy_import('msgraph.generated.models.planner_task_recurrence')
 
 class PlannerTask(planner_delta.PlannerDelta):
     @property
@@ -29,7 +30,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the activeChecklistItemCount property value. Number of checklist items with value set to false, representing incomplete items.
         Args:
-            value: Value to set for the activeChecklistItemCount property.
+            value: Value to set for the active_checklist_item_count property.
         """
         self._active_checklist_item_count = value
     
@@ -46,7 +47,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the appliedCategories property value. The categories to which the task has been applied. See applied Categories for possible values.
         Args:
-            value: Value to set for the appliedCategories property.
+            value: Value to set for the applied_categories property.
         """
         self._applied_categories = value
     
@@ -63,7 +64,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the assignedToTaskBoardFormat property value. Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
         Args:
-            value: Value to set for the assignedToTaskBoardFormat property.
+            value: Value to set for the assigned_to_task_board_format property.
         """
         self._assigned_to_task_board_format = value
     
@@ -80,7 +81,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the assigneePriority property value. Hint used to order items of this type in a list view. The format is defined as outlined here.
         Args:
-            value: Value to set for the assigneePriority property.
+            value: Value to set for the assignee_priority property.
         """
         self._assignee_priority = value
     
@@ -114,7 +115,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the bucketId property value. Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It is 28 characters long and case-sensitive. Format validation is done on the service.
         Args:
-            value: Value to set for the bucketId property.
+            value: Value to set for the bucket_id property.
         """
         self._bucket_id = value
     
@@ -131,7 +132,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the bucketTaskBoardFormat property value. Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
         Args:
-            value: Value to set for the bucketTaskBoardFormat property.
+            value: Value to set for the bucket_task_board_format property.
         """
         self._bucket_task_board_format = value
     
@@ -148,7 +149,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the checklistItemCount property value. Number of checklist items that are present on the task.
         Args:
-            value: Value to set for the checklistItemCount property.
+            value: Value to set for the checklist_item_count property.
         """
         self._checklist_item_count = value
     
@@ -165,7 +166,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the completedBy property value. Identity of the user that completed the task.
         Args:
-            value: Value to set for the completedBy property.
+            value: Value to set for the completed_by property.
         """
         self._completed_by = value
     
@@ -182,7 +183,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the completedDateTime property value. Read-only. Date and time at which the 'percentComplete' of the task is set to '100'. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -239,6 +240,8 @@ class PlannerTask(planner_delta.PlannerDelta):
         self._priority: Optional[int] = None
         # Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         self._progress_task_board_format: Optional[planner_progress_task_board_task_format.PlannerProgressTaskBoardTaskFormat] = None
+        # The recurrence property
+        self._recurrence: Optional[planner_task_recurrence.PlannerTaskRecurrence] = None
         # Number of external references that exist on the task.
         self._reference_count: Optional[int] = None
         # Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
@@ -259,7 +262,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the conversationThreadId property value. Thread ID of the conversation on the task. This is the ID of the conversation thread object created in the group.
         Args:
-            value: Value to set for the conversationThreadId property.
+            value: Value to set for the conversation_thread_id property.
         """
         self._conversation_thread_id = value
     
@@ -276,7 +279,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the createdBy property value. Identity of the user that created the task.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -293,7 +296,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the createdDateTime property value. Read-only. Date and time at which the task is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -322,7 +325,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the creationSource property value. Contains information about the origin of the task.
         Args:
-            value: Value to set for the creationSource property.
+            value: Value to set for the creation_source property.
         """
         self._creation_source = value
     
@@ -356,7 +359,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the dueDateTime property value. Date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the dueDateTime property.
+            value: Value to set for the due_date_time property.
         """
         self._due_date_time = value
     
@@ -366,31 +369,32 @@ class PlannerTask(planner_delta.PlannerDelta):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_checklist_item_count": lambda n : setattr(self, 'active_checklist_item_count', n.get_int_value()),
-            "applied_categories": lambda n : setattr(self, 'applied_categories', n.get_object_value(planner_applied_categories.PlannerAppliedCategories)),
-            "assigned_to_task_board_format": lambda n : setattr(self, 'assigned_to_task_board_format', n.get_object_value(planner_assigned_to_task_board_task_format.PlannerAssignedToTaskBoardTaskFormat)),
-            "assignee_priority": lambda n : setattr(self, 'assignee_priority', n.get_str_value()),
+            "activeChecklistItemCount": lambda n : setattr(self, 'active_checklist_item_count', n.get_int_value()),
+            "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(planner_applied_categories.PlannerAppliedCategories)),
+            "assignedToTaskBoardFormat": lambda n : setattr(self, 'assigned_to_task_board_format', n.get_object_value(planner_assigned_to_task_board_task_format.PlannerAssignedToTaskBoardTaskFormat)),
+            "assigneePriority": lambda n : setattr(self, 'assignee_priority', n.get_str_value()),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(planner_assignments.PlannerAssignments)),
-            "bucket_id": lambda n : setattr(self, 'bucket_id', n.get_str_value()),
-            "bucket_task_board_format": lambda n : setattr(self, 'bucket_task_board_format', n.get_object_value(planner_bucket_task_board_task_format.PlannerBucketTaskBoardTaskFormat)),
-            "checklist_item_count": lambda n : setattr(self, 'checklist_item_count', n.get_int_value()),
-            "completed_by": lambda n : setattr(self, 'completed_by', n.get_object_value(identity_set.IdentitySet)),
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "conversation_thread_id": lambda n : setattr(self, 'conversation_thread_id', n.get_str_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "creation_source": lambda n : setattr(self, 'creation_source', n.get_object_value(planner_task_creation.PlannerTaskCreation)),
+            "bucketId": lambda n : setattr(self, 'bucket_id', n.get_str_value()),
+            "bucketTaskBoardFormat": lambda n : setattr(self, 'bucket_task_board_format', n.get_object_value(planner_bucket_task_board_task_format.PlannerBucketTaskBoardTaskFormat)),
+            "checklistItemCount": lambda n : setattr(self, 'checklist_item_count', n.get_int_value()),
+            "completedBy": lambda n : setattr(self, 'completed_by', n.get_object_value(identity_set.IdentitySet)),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "conversationThreadId": lambda n : setattr(self, 'conversation_thread_id', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(planner_task_creation.PlannerTaskCreation)),
             "details": lambda n : setattr(self, 'details', n.get_object_value(planner_task_details.PlannerTaskDetails)),
-            "due_date_time": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
-            "has_description": lambda n : setattr(self, 'has_description', n.get_bool_value()),
-            "order_hint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
-            "percent_complete": lambda n : setattr(self, 'percent_complete', n.get_int_value()),
-            "plan_id": lambda n : setattr(self, 'plan_id', n.get_str_value()),
-            "preview_type": lambda n : setattr(self, 'preview_type', n.get_enum_value(planner_preview_type.PlannerPreviewType)),
+            "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_datetime_value()),
+            "hasDescription": lambda n : setattr(self, 'has_description', n.get_bool_value()),
+            "orderHint": lambda n : setattr(self, 'order_hint', n.get_str_value()),
+            "percentComplete": lambda n : setattr(self, 'percent_complete', n.get_int_value()),
+            "planId": lambda n : setattr(self, 'plan_id', n.get_str_value()),
+            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(planner_preview_type.PlannerPreviewType)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "progress_task_board_format": lambda n : setattr(self, 'progress_task_board_format', n.get_object_value(planner_progress_task_board_task_format.PlannerProgressTaskBoardTaskFormat)),
-            "reference_count": lambda n : setattr(self, 'reference_count', n.get_int_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "progressTaskBoardFormat": lambda n : setattr(self, 'progress_task_board_format', n.get_object_value(planner_progress_task_board_task_format.PlannerProgressTaskBoardTaskFormat)),
+            "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(planner_task_recurrence.PlannerTaskRecurrence)),
+            "referenceCount": lambda n : setattr(self, 'reference_count', n.get_int_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -410,7 +414,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the hasDescription property value. Read-only. Value is true if the details object of the task has a non-empty description and false otherwise.
         Args:
-            value: Value to set for the hasDescription property.
+            value: Value to set for the has_description property.
         """
         self._has_description = value
     
@@ -427,7 +431,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the orderHint property value. Hint used to order items of this type in a list view. The format is defined as outlined here.
         Args:
-            value: Value to set for the orderHint property.
+            value: Value to set for the order_hint property.
         """
         self._order_hint = value
     
@@ -444,7 +448,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the percentComplete property value. Percentage of task completion. When set to 100, the task is considered completed.
         Args:
-            value: Value to set for the percentComplete property.
+            value: Value to set for the percent_complete property.
         """
         self._percent_complete = value
     
@@ -461,7 +465,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the planId property value. Plan ID to which the task belongs.
         Args:
-            value: Value to set for the planId property.
+            value: Value to set for the plan_id property.
         """
         self._plan_id = value
     
@@ -478,7 +482,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the previewType property value. This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference.
         Args:
-            value: Value to set for the previewType property.
+            value: Value to set for the preview_type property.
         """
         self._preview_type = value
     
@@ -512,9 +516,26 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the progressTaskBoardFormat property value. Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         Args:
-            value: Value to set for the progressTaskBoardFormat property.
+            value: Value to set for the progress_task_board_format property.
         """
         self._progress_task_board_format = value
+    
+    @property
+    def recurrence(self,) -> Optional[planner_task_recurrence.PlannerTaskRecurrence]:
+        """
+        Gets the recurrence property value. The recurrence property
+        Returns: Optional[planner_task_recurrence.PlannerTaskRecurrence]
+        """
+        return self._recurrence
+    
+    @recurrence.setter
+    def recurrence(self,value: Optional[planner_task_recurrence.PlannerTaskRecurrence] = None) -> None:
+        """
+        Sets the recurrence property value. The recurrence property
+        Args:
+            value: Value to set for the recurrence property.
+        """
+        self._recurrence = value
     
     @property
     def reference_count(self,) -> Optional[int]:
@@ -529,7 +550,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the referenceCount property value. Number of external references that exist on the task.
         Args:
-            value: Value to set for the referenceCount property.
+            value: Value to set for the reference_count property.
         """
         self._reference_count = value
     
@@ -565,6 +586,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         writer.write_enum_value("previewType", self.preview_type)
         writer.write_int_value("priority", self.priority)
         writer.write_object_value("progressTaskBoardFormat", self.progress_task_board_format)
+        writer.write_object_value("recurrence", self.recurrence)
         writer.write_int_value("referenceCount", self.reference_count)
         writer.write_datetime_value("startDateTime", self.start_date_time)
         writer.write_str_value("title", self.title)
@@ -582,7 +604,7 @@ class PlannerTask(planner_delta.PlannerDelta):
         """
         Sets the startDateTime property value. Date and time at which the task starts. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

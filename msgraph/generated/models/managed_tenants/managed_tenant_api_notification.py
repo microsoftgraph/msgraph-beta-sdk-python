@@ -64,7 +64,7 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -81,7 +81,7 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -104,14 +104,14 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         fields = {
             "alert": lambda n : setattr(self, 'alert', n.get_object_value(managed_tenant_alert.ManagedTenantAlert)),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "is_acknowledged": lambda n : setattr(self, 'is_acknowledged', n.get_bool_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "isAcknowledged": lambda n : setattr(self, 'is_acknowledged', n.get_bool_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -130,7 +130,7 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         Sets the isAcknowledged property value. The isAcknowledged property
         Args:
-            value: Value to set for the isAcknowledged property.
+            value: Value to set for the is_acknowledged property.
         """
         self._is_acknowledged = value
     
@@ -147,7 +147,7 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -164,7 +164,7 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -234,7 +234,7 @@ class ManagedTenantApiNotification(entity.Entity):
         """
         Sets the userId property value. The userId property
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

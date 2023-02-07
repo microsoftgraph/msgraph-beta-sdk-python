@@ -66,7 +66,7 @@ class ExactMatchDataStoreBase(entity.Entity):
         """
         Sets the dataLastUpdatedDateTime property value. The dataLastUpdatedDateTime property
         Args:
-            value: Value to set for the dataLastUpdatedDateTime property.
+            value: Value to set for the data_last_updated_date_time property.
         """
         self._data_last_updated_date_time = value
     
@@ -100,7 +100,7 @@ class ExactMatchDataStoreBase(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -111,9 +111,9 @@ class ExactMatchDataStoreBase(entity.Entity):
         """
         fields = {
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(exact_data_match_store_column.ExactDataMatchStoreColumn)),
-            "data_last_updated_date_time": lambda n : setattr(self, 'data_last_updated_date_time', n.get_datetime_value()),
+            "dataLastUpdatedDateTime": lambda n : setattr(self, 'data_last_updated_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

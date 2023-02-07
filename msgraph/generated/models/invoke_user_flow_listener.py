@@ -34,7 +34,7 @@ class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_flow": lambda n : setattr(self, 'user_flow', n.get_object_value(b2x_identity_user_flow.B2xIdentityUserFlow)),
+            "userFlow": lambda n : setattr(self, 'user_flow', n.get_object_value(b2x_identity_user_flow.B2xIdentityUserFlow)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class InvokeUserFlowListener(authentication_listener.AuthenticationListener):
         """
         Sets the userFlow property value. The user flow that is invoked when this action executes.
         Args:
-            value: Value to set for the userFlow property.
+            value: Value to set for the user_flow property.
         """
         self._user_flow = value
     

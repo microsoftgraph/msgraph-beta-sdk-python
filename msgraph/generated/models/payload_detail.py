@@ -26,7 +26,7 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
     @property
     def coachmarks(self,) -> Optional[List[payload_coachmark.PayloadCoachmark]]:
         """
-        Gets the coachmarks property value. The coachmarks property
+        Gets the coachmarks property value. Payload coachmark details.
         Returns: Optional[List[payload_coachmark.PayloadCoachmark]]
         """
         return self._coachmarks
@@ -34,7 +34,7 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
     @coachmarks.setter
     def coachmarks(self,value: Optional[List[payload_coachmark.PayloadCoachmark]] = None) -> None:
         """
-        Sets the coachmarks property value. The coachmarks property
+        Sets the coachmarks property value. Payload coachmark details.
         Args:
             value: Value to set for the coachmarks property.
         """
@@ -47,19 +47,19 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The coachmarks property
+        # Payload coachmark details.
         self._coachmarks: Optional[List[payload_coachmark.PayloadCoachmark]] = None
-        # The content property
+        # Payload content details.
         self._content: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The phishingUrl property
+        # The phishing URL used to target a user.
         self._phishing_url: Optional[str] = None
     
     @property
     def content(self,) -> Optional[str]:
         """
-        Gets the content property value. The content property
+        Gets the content property value. Payload content details.
         Returns: Optional[str]
         """
         return self._content
@@ -67,7 +67,7 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
     @content.setter
     def content(self,value: Optional[str] = None) -> None:
         """
-        Sets the content property value. The content property
+        Sets the content property value. Payload content details.
         Args:
             value: Value to set for the content property.
         """
@@ -94,7 +94,7 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
             "coachmarks": lambda n : setattr(self, 'coachmarks', n.get_collection_of_object_values(payload_coachmark.PayloadCoachmark)),
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "phishing_url": lambda n : setattr(self, 'phishing_url', n.get_str_value()),
+            "phishingUrl": lambda n : setattr(self, 'phishing_url', n.get_str_value()),
         }
         return fields
     
@@ -111,14 +111,14 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
     @property
     def phishing_url(self,) -> Optional[str]:
         """
-        Gets the phishingUrl property value. The phishingUrl property
+        Gets the phishingUrl property value. The phishing URL used to target a user.
         Returns: Optional[str]
         """
         return self._phishing_url
@@ -126,9 +126,9 @@ class PayloadDetail(AdditionalDataHolder, Parsable):
     @phishing_url.setter
     def phishing_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the phishingUrl property value. The phishingUrl property
+        Sets the phishingUrl property value. The phishing URL used to target a user.
         Args:
-            value: Value to set for the phishingUrl property.
+            value: Value to set for the phishing_url property.
         """
         self._phishing_url = value
     

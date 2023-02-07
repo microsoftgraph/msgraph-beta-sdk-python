@@ -76,7 +76,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         """
         Sets the favoritePlanReferences property value. A collection that contains the references to the plans that the user has marked as favorites.
         Args:
-            value: Value to set for the favoritePlanReferences property.
+            value: Value to set for the favorite_plan_references property.
         """
         self._favorite_plan_references = value
     
@@ -93,7 +93,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         """
         Sets the favoritePlans property value. Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
         Args:
-            value: Value to set for the favoritePlans property.
+            value: Value to set for the favorite_plans property.
         """
         self._favorite_plans = value
     
@@ -104,12 +104,12 @@ class PlannerUser(planner_delta.PlannerDelta):
         """
         fields = {
             "all": lambda n : setattr(self, 'all', n.get_collection_of_object_values(planner_delta.PlannerDelta)),
-            "favorite_plan_references": lambda n : setattr(self, 'favorite_plan_references', n.get_object_value(planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection)),
-            "favorite_plans": lambda n : setattr(self, 'favorite_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
+            "favoritePlans": lambda n : setattr(self, 'favorite_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
+            "favoritePlanReferences": lambda n : setattr(self, 'favorite_plan_references', n.get_object_value(planner_favorite_plan_reference_collection.PlannerFavoritePlanReferenceCollection)),
             "plans": lambda n : setattr(self, 'plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
-            "recent_plan_references": lambda n : setattr(self, 'recent_plan_references', n.get_object_value(planner_recent_plan_reference_collection.PlannerRecentPlanReferenceCollection)),
-            "recent_plans": lambda n : setattr(self, 'recent_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
-            "roster_plans": lambda n : setattr(self, 'roster_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
+            "recentPlans": lambda n : setattr(self, 'recent_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
+            "recentPlanReferences": lambda n : setattr(self, 'recent_plan_references', n.get_object_value(planner_recent_plan_reference_collection.PlannerRecentPlanReferenceCollection)),
+            "rosterPlans": lambda n : setattr(self, 'roster_plans', n.get_collection_of_object_values(planner_plan.PlannerPlan)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(planner_task.PlannerTask)),
         }
         super_fields = super().get_field_deserializers()
@@ -146,7 +146,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         """
         Sets the recentPlanReferences property value. A collection that contains references to the plans that were viewed recently by the user in apps that support recent plans.
         Args:
-            value: Value to set for the recentPlanReferences property.
+            value: Value to set for the recent_plan_references property.
         """
         self._recent_plan_references = value
     
@@ -163,7 +163,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         """
         Sets the recentPlans property value. Read-only. Nullable. Returns the plannerPlans that have been recently viewed by the user in apps that support recent plans.
         Args:
-            value: Value to set for the recentPlans property.
+            value: Value to set for the recent_plans property.
         """
         self._recent_plans = value
     
@@ -180,7 +180,7 @@ class PlannerUser(planner_delta.PlannerDelta):
         """
         Sets the rosterPlans property value. Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
         Args:
-            value: Value to set for the rosterPlans property.
+            value: Value to set for the roster_plans property.
         """
         self._roster_plans = value
     
@@ -194,11 +194,11 @@ class PlannerUser(planner_delta.PlannerDelta):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("all", self.all)
-        writer.write_object_value("favoritePlanReferences", self.favorite_plan_references)
         writer.write_collection_of_object_values("favoritePlans", self.favorite_plans)
+        writer.write_object_value("favoritePlanReferences", self.favorite_plan_references)
         writer.write_collection_of_object_values("plans", self.plans)
-        writer.write_object_value("recentPlanReferences", self.recent_plan_references)
         writer.write_collection_of_object_values("recentPlans", self.recent_plans)
+        writer.write_object_value("recentPlanReferences", self.recent_plan_references)
         writer.write_collection_of_object_values("rosterPlans", self.roster_plans)
         writer.write_collection_of_object_values("tasks", self.tasks)
     

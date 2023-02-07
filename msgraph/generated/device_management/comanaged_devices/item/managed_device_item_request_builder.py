@@ -10,15 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-activate_device_esim_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.activate_device_esim.activate_device_esim_request_builder')
 assignment_filter_evaluation_status_details_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.assignment_filter_evaluation_status_details.assignment_filter_evaluation_status_details_request_builder')
 assignment_filter_evaluation_status_details_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.assignment_filter_evaluation_status_details.item.assignment_filter_evaluation_status_details_item_request_builder')
-bypass_activation_lock_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.bypass_activation_lock.bypass_activation_lock_request_builder')
-clean_windows_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.clean_windows_device.clean_windows_device_request_builder')
-create_device_log_collection_request_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.create_device_log_collection_request.create_device_log_collection_request_request_builder')
-create_remote_help_session_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.create_remote_help_session.create_remote_help_session_request_builder')
-delete_user_from_shared_apple_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.delete_user_from_shared_apple_device.delete_user_from_shared_apple_device_request_builder')
-deprovision_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.deprovision.deprovision_request_builder')
 detected_apps_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.detected_apps.detected_apps_request_builder')
 detected_app_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.detected_apps.item.detected_app_item_request_builder')
 device_category_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_category.device_category_request_builder')
@@ -26,55 +19,64 @@ device_compliance_policy_states_request_builder = lazy_import('msgraph.generated
 device_compliance_policy_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_compliance_policy_states.item.device_compliance_policy_state_item_request_builder')
 device_configuration_states_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_configuration_states.device_configuration_states_request_builder')
 device_configuration_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_configuration_states.item.device_configuration_state_item_request_builder')
-disable_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.disable.disable_request_builder')
-disable_lost_mode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.disable_lost_mode.disable_lost_mode_request_builder')
-enable_lost_mode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.enable_lost_mode.enable_lost_mode_request_builder')
-end_remote_help_session_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.end_remote_help_session.end_remote_help_session_request_builder')
-enroll_now_action_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.enroll_now_action.enroll_now_action_request_builder')
-get_cloud_pc_remote_action_results_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_cloud_pc_remote_action_results.get_cloud_pc_remote_action_results_request_builder')
-get_cloud_pc_review_status_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_cloud_pc_review_status.get_cloud_pc_review_status_request_builder')
-get_file_vault_key_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_file_vault_key.get_file_vault_key_request_builder')
-get_non_compliant_settings_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_non_compliant_settings.get_non_compliant_settings_request_builder')
-get_oem_warranty_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_oem_warranty.get_oem_warranty_request_builder')
-initiate_mobile_device_management_key_recovery_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder')
-locate_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.locate_device.locate_device_request_builder')
+device_health_script_states_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_health_script_states.device_health_script_states_request_builder')
 log_collection_requests_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.log_collection_requests.log_collection_requests_request_builder')
 device_log_collection_response_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.log_collection_requests.item.device_log_collection_response_item_request_builder')
-logout_shared_apple_device_active_user_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.logout_shared_apple_device_active_user.logout_shared_apple_device_active_user_request_builder')
 managed_device_mobile_app_configuration_states_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.managed_device_mobile_app_configuration_states.managed_device_mobile_app_configuration_states_request_builder')
 managed_device_mobile_app_configuration_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.managed_device_mobile_app_configuration_states.item.managed_device_mobile_app_configuration_state_item_request_builder')
-override_compliance_state_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.override_compliance_state.override_compliance_state_request_builder')
-play_lost_mode_sound_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.play_lost_mode_sound.play_lost_mode_sound_request_builder')
-reboot_now_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.reboot_now.reboot_now_request_builder')
-recover_passcode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.recover_passcode.recover_passcode_request_builder')
-reenable_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.reenable.reenable_request_builder')
-remote_lock_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.remote_lock.remote_lock_request_builder')
-remove_device_firmware_configuration_interface_management_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.remove_device_firmware_configuration_interface_management.remove_device_firmware_configuration_interface_management_request_builder')
-reprovision_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.reprovision_cloud_pc.reprovision_cloud_pc_request_builder')
-request_remote_assistance_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.request_remote_assistance.request_remote_assistance_request_builder')
-request_remote_help_session_access_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.request_remote_help_session_access.request_remote_help_session_access_request_builder')
-reset_passcode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.reset_passcode.reset_passcode_request_builder')
-resize_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.resize_cloud_pc.resize_cloud_pc_request_builder')
-restore_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.restore_cloud_pc.restore_cloud_pc_request_builder')
-retire_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.retire.retire_request_builder')
-retrieve_remote_help_session_with_session_key_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.retrieve_remote_help_session_with_session_key.retrieve_remote_help_session_with_session_key_request_builder')
-revoke_apple_vpp_licenses_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder')
-rotate_bit_locker_keys_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder')
-rotate_file_vault_key_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.rotate_file_vault_key.rotate_file_vault_key_request_builder')
+microsoft_graph_activate_device_esim_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_activate_device_esim.microsoft_graph_activate_device_esim_request_builder')
+microsoft_graph_bypass_activation_lock_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_bypass_activation_lock.microsoft_graph_bypass_activation_lock_request_builder')
+microsoft_graph_clean_windows_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_clean_windows_device.microsoft_graph_clean_windows_device_request_builder')
+microsoft_graph_create_device_log_collection_request_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_create_device_log_collection_request.microsoft_graph_create_device_log_collection_request_request_builder')
+microsoft_graph_create_remote_help_session_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_create_remote_help_session.microsoft_graph_create_remote_help_session_request_builder')
+microsoft_graph_delete_user_from_shared_apple_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_delete_user_from_shared_apple_device.microsoft_graph_delete_user_from_shared_apple_device_request_builder')
+microsoft_graph_deprovision_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_deprovision.microsoft_graph_deprovision_request_builder')
+microsoft_graph_disable_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_disable.microsoft_graph_disable_request_builder')
+microsoft_graph_disable_lost_mode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_disable_lost_mode.microsoft_graph_disable_lost_mode_request_builder')
+microsoft_graph_enable_lost_mode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_enable_lost_mode.microsoft_graph_enable_lost_mode_request_builder')
+microsoft_graph_end_remote_help_session_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_end_remote_help_session.microsoft_graph_end_remote_help_session_request_builder')
+microsoft_graph_enroll_now_action_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_enroll_now_action.microsoft_graph_enroll_now_action_request_builder')
+microsoft_graph_get_cloud_pc_remote_action_results_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_get_cloud_pc_remote_action_results.microsoft_graph_get_cloud_pc_remote_action_results_request_builder')
+microsoft_graph_get_cloud_pc_review_status_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_get_cloud_pc_review_status.microsoft_graph_get_cloud_pc_review_status_request_builder')
+microsoft_graph_get_file_vault_key_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_get_file_vault_key.microsoft_graph_get_file_vault_key_request_builder')
+microsoft_graph_get_non_compliant_settings_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_get_non_compliant_settings.microsoft_graph_get_non_compliant_settings_request_builder')
+microsoft_graph_get_oem_warranty_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_get_oem_warranty.microsoft_graph_get_oem_warranty_request_builder')
+microsoft_graph_initiate_mobile_device_management_key_recovery_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_initiate_mobile_device_management_key_recovery.microsoft_graph_initiate_mobile_device_management_key_recovery_request_builder')
+microsoft_graph_initiate_on_demand_proactive_remediation_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_initiate_on_demand_proactive_remediation.microsoft_graph_initiate_on_demand_proactive_remediation_request_builder')
+microsoft_graph_locate_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_locate_device.microsoft_graph_locate_device_request_builder')
+microsoft_graph_logout_shared_apple_device_active_user_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_logout_shared_apple_device_active_user.microsoft_graph_logout_shared_apple_device_active_user_request_builder')
+microsoft_graph_override_compliance_state_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_override_compliance_state.microsoft_graph_override_compliance_state_request_builder')
+microsoft_graph_play_lost_mode_sound_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_play_lost_mode_sound.microsoft_graph_play_lost_mode_sound_request_builder')
+microsoft_graph_reboot_now_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_reboot_now.microsoft_graph_reboot_now_request_builder')
+microsoft_graph_recover_passcode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_recover_passcode.microsoft_graph_recover_passcode_request_builder')
+microsoft_graph_reenable_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_reenable.microsoft_graph_reenable_request_builder')
+microsoft_graph_remote_lock_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_remote_lock.microsoft_graph_remote_lock_request_builder')
+microsoft_graph_remove_device_firmware_configuration_interface_management_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_remove_device_firmware_configuration_interface_management.microsoft_graph_remove_device_firmware_configuration_interface_management_request_builder')
+microsoft_graph_reprovision_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_reprovision_cloud_pc.microsoft_graph_reprovision_cloud_pc_request_builder')
+microsoft_graph_request_remote_assistance_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_request_remote_assistance.microsoft_graph_request_remote_assistance_request_builder')
+microsoft_graph_request_remote_help_session_access_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_request_remote_help_session_access.microsoft_graph_request_remote_help_session_access_request_builder')
+microsoft_graph_reset_passcode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_reset_passcode.microsoft_graph_reset_passcode_request_builder')
+microsoft_graph_resize_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_resize_cloud_pc.microsoft_graph_resize_cloud_pc_request_builder')
+microsoft_graph_restore_cloud_pc_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_restore_cloud_pc.microsoft_graph_restore_cloud_pc_request_builder')
+microsoft_graph_retire_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_retire.microsoft_graph_retire_request_builder')
+microsoft_graph_retrieve_remote_help_session_with_session_key_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_retrieve_remote_help_session_with_session_key.microsoft_graph_retrieve_remote_help_session_with_session_key_request_builder')
+microsoft_graph_revoke_apple_vpp_licenses_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_revoke_apple_vpp_licenses.microsoft_graph_revoke_apple_vpp_licenses_request_builder')
+microsoft_graph_rotate_bit_locker_keys_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_rotate_bit_locker_keys.microsoft_graph_rotate_bit_locker_keys_request_builder')
+microsoft_graph_rotate_file_vault_key_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_rotate_file_vault_key.microsoft_graph_rotate_file_vault_key_request_builder')
+microsoft_graph_send_custom_notification_to_company_portal_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_send_custom_notification_to_company_portal.microsoft_graph_send_custom_notification_to_company_portal_request_builder')
+microsoft_graph_set_cloud_pc_review_status_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_set_cloud_pc_review_status.microsoft_graph_set_cloud_pc_review_status_request_builder')
+microsoft_graph_set_device_name_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_set_device_name.microsoft_graph_set_device_name_request_builder')
+microsoft_graph_shut_down_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_shut_down.microsoft_graph_shut_down_request_builder')
+microsoft_graph_sync_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_sync_device.microsoft_graph_sync_device_request_builder')
+microsoft_graph_trigger_configuration_manager_action_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_trigger_configuration_manager_action.microsoft_graph_trigger_configuration_manager_action_request_builder')
+microsoft_graph_update_windows_device_account_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_update_windows_device_account.microsoft_graph_update_windows_device_account_request_builder')
+microsoft_graph_windows_defender_scan_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_windows_defender_scan.microsoft_graph_windows_defender_scan_request_builder')
+microsoft_graph_windows_defender_update_signatures_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_windows_defender_update_signatures.microsoft_graph_windows_defender_update_signatures_request_builder')
+microsoft_graph_wipe_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.microsoft_graph_wipe.microsoft_graph_wipe_request_builder')
 security_baseline_states_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.security_baseline_states.security_baseline_states_request_builder')
 security_baseline_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.security_baseline_states.item.security_baseline_state_item_request_builder')
-send_custom_notification_to_company_portal_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder')
-set_cloud_pc_review_status_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.set_cloud_pc_review_status.set_cloud_pc_review_status_request_builder')
-set_device_name_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.set_device_name.set_device_name_request_builder')
-shut_down_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.shut_down.shut_down_request_builder')
-sync_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.sync_device.sync_device_request_builder')
-trigger_configuration_manager_action_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.trigger_configuration_manager_action.trigger_configuration_manager_action_request_builder')
-update_windows_device_account_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.update_windows_device_account.update_windows_device_account_request_builder')
 users_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.users.users_request_builder')
-windows_defender_scan_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.windows_defender_scan.windows_defender_scan_request_builder')
-windows_defender_update_signatures_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.windows_defender_update_signatures.windows_defender_update_signatures_request_builder')
 windows_protection_state_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.windows_protection_state.windows_protection_state_request_builder')
-wipe_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.wipe.wipe_request_builder')
 managed_device = lazy_import('msgraph.generated.models.managed_device')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -83,60 +85,11 @@ class ManagedDeviceItemRequestBuilder():
     Provides operations to manage the comanagedDevices property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def activate_device_esim(self) -> activate_device_esim_request_builder.ActivateDeviceEsimRequestBuilder:
-        """
-        Provides operations to call the activateDeviceEsim method.
-        """
-        return activate_device_esim_request_builder.ActivateDeviceEsimRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def assignment_filter_evaluation_status_details(self) -> assignment_filter_evaluation_status_details_request_builder.AssignmentFilterEvaluationStatusDetailsRequestBuilder:
         """
         Provides operations to manage the assignmentFilterEvaluationStatusDetails property of the microsoft.graph.managedDevice entity.
         """
         return assignment_filter_evaluation_status_details_request_builder.AssignmentFilterEvaluationStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def bypass_activation_lock(self) -> bypass_activation_lock_request_builder.BypassActivationLockRequestBuilder:
-        """
-        Provides operations to call the bypassActivationLock method.
-        """
-        return bypass_activation_lock_request_builder.BypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def clean_windows_device(self) -> clean_windows_device_request_builder.CleanWindowsDeviceRequestBuilder:
-        """
-        Provides operations to call the cleanWindowsDevice method.
-        """
-        return clean_windows_device_request_builder.CleanWindowsDeviceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_device_log_collection_request(self) -> create_device_log_collection_request_request_builder.CreateDeviceLogCollectionRequestRequestBuilder:
-        """
-        Provides operations to call the createDeviceLogCollectionRequest method.
-        """
-        return create_device_log_collection_request_request_builder.CreateDeviceLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_remote_help_session(self) -> create_remote_help_session_request_builder.CreateRemoteHelpSessionRequestBuilder:
-        """
-        Provides operations to call the createRemoteHelpSession method.
-        """
-        return create_remote_help_session_request_builder.CreateRemoteHelpSessionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def delete_user_from_shared_apple_device(self) -> delete_user_from_shared_apple_device_request_builder.DeleteUserFromSharedAppleDeviceRequestBuilder:
-        """
-        Provides operations to call the deleteUserFromSharedAppleDevice method.
-        """
-        return delete_user_from_shared_apple_device_request_builder.DeleteUserFromSharedAppleDeviceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def deprovision(self) -> deprovision_request_builder.DeprovisionRequestBuilder:
-        """
-        Provides operations to call the deprovision method.
-        """
-        return deprovision_request_builder.DeprovisionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def detected_apps(self) -> detected_apps_request_builder.DetectedAppsRequestBuilder:
@@ -167,53 +120,11 @@ class ManagedDeviceItemRequestBuilder():
         return device_configuration_states_request_builder.DeviceConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def disable(self) -> disable_request_builder.DisableRequestBuilder:
+    def device_health_script_states(self) -> device_health_script_states_request_builder.DeviceHealthScriptStatesRequestBuilder:
         """
-        Provides operations to call the disable method.
+        Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
         """
-        return disable_request_builder.DisableRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def disable_lost_mode(self) -> disable_lost_mode_request_builder.DisableLostModeRequestBuilder:
-        """
-        Provides operations to call the disableLostMode method.
-        """
-        return disable_lost_mode_request_builder.DisableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def enable_lost_mode(self) -> enable_lost_mode_request_builder.EnableLostModeRequestBuilder:
-        """
-        Provides operations to call the enableLostMode method.
-        """
-        return enable_lost_mode_request_builder.EnableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def end_remote_help_session(self) -> end_remote_help_session_request_builder.EndRemoteHelpSessionRequestBuilder:
-        """
-        Provides operations to call the endRemoteHelpSession method.
-        """
-        return end_remote_help_session_request_builder.EndRemoteHelpSessionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def enroll_now_action(self) -> enroll_now_action_request_builder.EnrollNowActionRequestBuilder:
-        """
-        Provides operations to call the enrollNowAction method.
-        """
-        return enroll_now_action_request_builder.EnrollNowActionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def initiate_mobile_device_management_key_recovery(self) -> initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:
-        """
-        Provides operations to call the initiateMobileDeviceManagementKeyRecovery method.
-        """
-        return initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def locate_device(self) -> locate_device_request_builder.LocateDeviceRequestBuilder:
-        """
-        Provides operations to call the locateDevice method.
-        """
-        return locate_device_request_builder.LocateDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return device_health_script_states_request_builder.DeviceHealthScriptStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def log_collection_requests(self) -> log_collection_requests_request_builder.LogCollectionRequestsRequestBuilder:
@@ -223,13 +134,6 @@ class ManagedDeviceItemRequestBuilder():
         return log_collection_requests_request_builder.LogCollectionRequestsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def logout_shared_apple_device_active_user(self) -> logout_shared_apple_device_active_user_request_builder.LogoutSharedAppleDeviceActiveUserRequestBuilder:
-        """
-        Provides operations to call the logoutSharedAppleDeviceActiveUser method.
-        """
-        return logout_shared_apple_device_active_user_request_builder.LogoutSharedAppleDeviceActiveUserRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def managed_device_mobile_app_configuration_states(self) -> managed_device_mobile_app_configuration_states_request_builder.ManagedDeviceMobileAppConfigurationStatesRequestBuilder:
         """
         Provides operations to manage the managedDeviceMobileAppConfigurationStates property of the microsoft.graph.managedDevice entity.
@@ -237,123 +141,340 @@ class ManagedDeviceItemRequestBuilder():
         return managed_device_mobile_app_configuration_states_request_builder.ManagedDeviceMobileAppConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def override_compliance_state(self) -> override_compliance_state_request_builder.OverrideComplianceStateRequestBuilder:
+    def microsoft_graph_activate_device_esim(self) -> microsoft_graph_activate_device_esim_request_builder.MicrosoftGraphActivateDeviceEsimRequestBuilder:
+        """
+        Provides operations to call the activateDeviceEsim method.
+        """
+        return microsoft_graph_activate_device_esim_request_builder.MicrosoftGraphActivateDeviceEsimRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_bypass_activation_lock(self) -> microsoft_graph_bypass_activation_lock_request_builder.MicrosoftGraphBypassActivationLockRequestBuilder:
+        """
+        Provides operations to call the bypassActivationLock method.
+        """
+        return microsoft_graph_bypass_activation_lock_request_builder.MicrosoftGraphBypassActivationLockRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_clean_windows_device(self) -> microsoft_graph_clean_windows_device_request_builder.MicrosoftGraphCleanWindowsDeviceRequestBuilder:
+        """
+        Provides operations to call the cleanWindowsDevice method.
+        """
+        return microsoft_graph_clean_windows_device_request_builder.MicrosoftGraphCleanWindowsDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_device_log_collection_request(self) -> microsoft_graph_create_device_log_collection_request_request_builder.MicrosoftGraphCreateDeviceLogCollectionRequestRequestBuilder:
+        """
+        Provides operations to call the createDeviceLogCollectionRequest method.
+        """
+        return microsoft_graph_create_device_log_collection_request_request_builder.MicrosoftGraphCreateDeviceLogCollectionRequestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_remote_help_session(self) -> microsoft_graph_create_remote_help_session_request_builder.MicrosoftGraphCreateRemoteHelpSessionRequestBuilder:
+        """
+        Provides operations to call the createRemoteHelpSession method.
+        """
+        return microsoft_graph_create_remote_help_session_request_builder.MicrosoftGraphCreateRemoteHelpSessionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delete_user_from_shared_apple_device(self) -> microsoft_graph_delete_user_from_shared_apple_device_request_builder.MicrosoftGraphDeleteUserFromSharedAppleDeviceRequestBuilder:
+        """
+        Provides operations to call the deleteUserFromSharedAppleDevice method.
+        """
+        return microsoft_graph_delete_user_from_shared_apple_device_request_builder.MicrosoftGraphDeleteUserFromSharedAppleDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_deprovision(self) -> microsoft_graph_deprovision_request_builder.MicrosoftGraphDeprovisionRequestBuilder:
+        """
+        Provides operations to call the deprovision method.
+        """
+        return microsoft_graph_deprovision_request_builder.MicrosoftGraphDeprovisionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_disable(self) -> microsoft_graph_disable_request_builder.MicrosoftGraphDisableRequestBuilder:
+        """
+        Provides operations to call the disable method.
+        """
+        return microsoft_graph_disable_request_builder.MicrosoftGraphDisableRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_disable_lost_mode(self) -> microsoft_graph_disable_lost_mode_request_builder.MicrosoftGraphDisableLostModeRequestBuilder:
+        """
+        Provides operations to call the disableLostMode method.
+        """
+        return microsoft_graph_disable_lost_mode_request_builder.MicrosoftGraphDisableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_enable_lost_mode(self) -> microsoft_graph_enable_lost_mode_request_builder.MicrosoftGraphEnableLostModeRequestBuilder:
+        """
+        Provides operations to call the enableLostMode method.
+        """
+        return microsoft_graph_enable_lost_mode_request_builder.MicrosoftGraphEnableLostModeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_end_remote_help_session(self) -> microsoft_graph_end_remote_help_session_request_builder.MicrosoftGraphEndRemoteHelpSessionRequestBuilder:
+        """
+        Provides operations to call the endRemoteHelpSession method.
+        """
+        return microsoft_graph_end_remote_help_session_request_builder.MicrosoftGraphEndRemoteHelpSessionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_enroll_now_action(self) -> microsoft_graph_enroll_now_action_request_builder.MicrosoftGraphEnrollNowActionRequestBuilder:
+        """
+        Provides operations to call the enrollNowAction method.
+        """
+        return microsoft_graph_enroll_now_action_request_builder.MicrosoftGraphEnrollNowActionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_cloud_pc_remote_action_results(self) -> microsoft_graph_get_cloud_pc_remote_action_results_request_builder.MicrosoftGraphGetCloudPcRemoteActionResultsRequestBuilder:
+        """
+        Provides operations to call the getCloudPcRemoteActionResults method.
+        """
+        return microsoft_graph_get_cloud_pc_remote_action_results_request_builder.MicrosoftGraphGetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_cloud_pc_review_status(self) -> microsoft_graph_get_cloud_pc_review_status_request_builder.MicrosoftGraphGetCloudPcReviewStatusRequestBuilder:
+        """
+        Provides operations to call the getCloudPcReviewStatus method.
+        """
+        return microsoft_graph_get_cloud_pc_review_status_request_builder.MicrosoftGraphGetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_file_vault_key(self) -> microsoft_graph_get_file_vault_key_request_builder.MicrosoftGraphGetFileVaultKeyRequestBuilder:
+        """
+        Provides operations to call the getFileVaultKey method.
+        """
+        return microsoft_graph_get_file_vault_key_request_builder.MicrosoftGraphGetFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_non_compliant_settings(self) -> microsoft_graph_get_non_compliant_settings_request_builder.MicrosoftGraphGetNonCompliantSettingsRequestBuilder:
+        """
+        Provides operations to call the getNonCompliantSettings method.
+        """
+        return microsoft_graph_get_non_compliant_settings_request_builder.MicrosoftGraphGetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_oem_warranty(self) -> microsoft_graph_get_oem_warranty_request_builder.MicrosoftGraphGetOemWarrantyRequestBuilder:
+        """
+        Provides operations to call the getOemWarranty method.
+        """
+        return microsoft_graph_get_oem_warranty_request_builder.MicrosoftGraphGetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_initiate_mobile_device_management_key_recovery(self) -> microsoft_graph_initiate_mobile_device_management_key_recovery_request_builder.MicrosoftGraphInitiateMobileDeviceManagementKeyRecoveryRequestBuilder:
+        """
+        Provides operations to call the initiateMobileDeviceManagementKeyRecovery method.
+        """
+        return microsoft_graph_initiate_mobile_device_management_key_recovery_request_builder.MicrosoftGraphInitiateMobileDeviceManagementKeyRecoveryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_initiate_on_demand_proactive_remediation(self) -> microsoft_graph_initiate_on_demand_proactive_remediation_request_builder.MicrosoftGraphInitiateOnDemandProactiveRemediationRequestBuilder:
+        """
+        Provides operations to call the initiateOnDemandProactiveRemediation method.
+        """
+        return microsoft_graph_initiate_on_demand_proactive_remediation_request_builder.MicrosoftGraphInitiateOnDemandProactiveRemediationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_locate_device(self) -> microsoft_graph_locate_device_request_builder.MicrosoftGraphLocateDeviceRequestBuilder:
+        """
+        Provides operations to call the locateDevice method.
+        """
+        return microsoft_graph_locate_device_request_builder.MicrosoftGraphLocateDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_logout_shared_apple_device_active_user(self) -> microsoft_graph_logout_shared_apple_device_active_user_request_builder.MicrosoftGraphLogoutSharedAppleDeviceActiveUserRequestBuilder:
+        """
+        Provides operations to call the logoutSharedAppleDeviceActiveUser method.
+        """
+        return microsoft_graph_logout_shared_apple_device_active_user_request_builder.MicrosoftGraphLogoutSharedAppleDeviceActiveUserRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_override_compliance_state(self) -> microsoft_graph_override_compliance_state_request_builder.MicrosoftGraphOverrideComplianceStateRequestBuilder:
         """
         Provides operations to call the overrideComplianceState method.
         """
-        return override_compliance_state_request_builder.OverrideComplianceStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_override_compliance_state_request_builder.MicrosoftGraphOverrideComplianceStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def play_lost_mode_sound(self) -> play_lost_mode_sound_request_builder.PlayLostModeSoundRequestBuilder:
+    def microsoft_graph_play_lost_mode_sound(self) -> microsoft_graph_play_lost_mode_sound_request_builder.MicrosoftGraphPlayLostModeSoundRequestBuilder:
         """
         Provides operations to call the playLostModeSound method.
         """
-        return play_lost_mode_sound_request_builder.PlayLostModeSoundRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_play_lost_mode_sound_request_builder.MicrosoftGraphPlayLostModeSoundRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reboot_now(self) -> reboot_now_request_builder.RebootNowRequestBuilder:
+    def microsoft_graph_reboot_now(self) -> microsoft_graph_reboot_now_request_builder.MicrosoftGraphRebootNowRequestBuilder:
         """
         Provides operations to call the rebootNow method.
         """
-        return reboot_now_request_builder.RebootNowRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reboot_now_request_builder.MicrosoftGraphRebootNowRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def recover_passcode(self) -> recover_passcode_request_builder.RecoverPasscodeRequestBuilder:
+    def microsoft_graph_recover_passcode(self) -> microsoft_graph_recover_passcode_request_builder.MicrosoftGraphRecoverPasscodeRequestBuilder:
         """
         Provides operations to call the recoverPasscode method.
         """
-        return recover_passcode_request_builder.RecoverPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_recover_passcode_request_builder.MicrosoftGraphRecoverPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reenable(self) -> reenable_request_builder.ReenableRequestBuilder:
+    def microsoft_graph_reenable(self) -> microsoft_graph_reenable_request_builder.MicrosoftGraphReenableRequestBuilder:
         """
         Provides operations to call the reenable method.
         """
-        return reenable_request_builder.ReenableRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reenable_request_builder.MicrosoftGraphReenableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remote_lock(self) -> remote_lock_request_builder.RemoteLockRequestBuilder:
+    def microsoft_graph_remote_lock(self) -> microsoft_graph_remote_lock_request_builder.MicrosoftGraphRemoteLockRequestBuilder:
         """
         Provides operations to call the remoteLock method.
         """
-        return remote_lock_request_builder.RemoteLockRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_remote_lock_request_builder.MicrosoftGraphRemoteLockRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_device_firmware_configuration_interface_management(self) -> remove_device_firmware_configuration_interface_management_request_builder.RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder:
+    def microsoft_graph_remove_device_firmware_configuration_interface_management(self) -> microsoft_graph_remove_device_firmware_configuration_interface_management_request_builder.MicrosoftGraphRemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder:
         """
         Provides operations to call the removeDeviceFirmwareConfigurationInterfaceManagement method.
         """
-        return remove_device_firmware_configuration_interface_management_request_builder.RemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_remove_device_firmware_configuration_interface_management_request_builder.MicrosoftGraphRemoveDeviceFirmwareConfigurationInterfaceManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reprovision_cloud_pc(self) -> reprovision_cloud_pc_request_builder.ReprovisionCloudPcRequestBuilder:
+    def microsoft_graph_reprovision_cloud_pc(self) -> microsoft_graph_reprovision_cloud_pc_request_builder.MicrosoftGraphReprovisionCloudPcRequestBuilder:
         """
         Provides operations to call the reprovisionCloudPc method.
         """
-        return reprovision_cloud_pc_request_builder.ReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reprovision_cloud_pc_request_builder.MicrosoftGraphReprovisionCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def request_remote_assistance(self) -> request_remote_assistance_request_builder.RequestRemoteAssistanceRequestBuilder:
+    def microsoft_graph_request_remote_assistance(self) -> microsoft_graph_request_remote_assistance_request_builder.MicrosoftGraphRequestRemoteAssistanceRequestBuilder:
         """
         Provides operations to call the requestRemoteAssistance method.
         """
-        return request_remote_assistance_request_builder.RequestRemoteAssistanceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_request_remote_assistance_request_builder.MicrosoftGraphRequestRemoteAssistanceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def request_remote_help_session_access(self) -> request_remote_help_session_access_request_builder.RequestRemoteHelpSessionAccessRequestBuilder:
+    def microsoft_graph_request_remote_help_session_access(self) -> microsoft_graph_request_remote_help_session_access_request_builder.MicrosoftGraphRequestRemoteHelpSessionAccessRequestBuilder:
         """
         Provides operations to call the requestRemoteHelpSessionAccess method.
         """
-        return request_remote_help_session_access_request_builder.RequestRemoteHelpSessionAccessRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_request_remote_help_session_access_request_builder.MicrosoftGraphRequestRemoteHelpSessionAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_passcode(self) -> reset_passcode_request_builder.ResetPasscodeRequestBuilder:
+    def microsoft_graph_reset_passcode(self) -> microsoft_graph_reset_passcode_request_builder.MicrosoftGraphResetPasscodeRequestBuilder:
         """
         Provides operations to call the resetPasscode method.
         """
-        return reset_passcode_request_builder.ResetPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reset_passcode_request_builder.MicrosoftGraphResetPasscodeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def resize_cloud_pc(self) -> resize_cloud_pc_request_builder.ResizeCloudPcRequestBuilder:
+    def microsoft_graph_resize_cloud_pc(self) -> microsoft_graph_resize_cloud_pc_request_builder.MicrosoftGraphResizeCloudPcRequestBuilder:
         """
         Provides operations to call the resizeCloudPc method.
         """
-        return resize_cloud_pc_request_builder.ResizeCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_resize_cloud_pc_request_builder.MicrosoftGraphResizeCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restore_cloud_pc(self) -> restore_cloud_pc_request_builder.RestoreCloudPcRequestBuilder:
+    def microsoft_graph_restore_cloud_pc(self) -> microsoft_graph_restore_cloud_pc_request_builder.MicrosoftGraphRestoreCloudPcRequestBuilder:
         """
         Provides operations to call the restoreCloudPc method.
         """
-        return restore_cloud_pc_request_builder.RestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_restore_cloud_pc_request_builder.MicrosoftGraphRestoreCloudPcRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def retire(self) -> retire_request_builder.RetireRequestBuilder:
+    def microsoft_graph_retire(self) -> microsoft_graph_retire_request_builder.MicrosoftGraphRetireRequestBuilder:
         """
         Provides operations to call the retire method.
         """
-        return retire_request_builder.RetireRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_retire_request_builder.MicrosoftGraphRetireRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def revoke_apple_vpp_licenses(self) -> revoke_apple_vpp_licenses_request_builder.RevokeAppleVppLicensesRequestBuilder:
+    def microsoft_graph_revoke_apple_vpp_licenses(self) -> microsoft_graph_revoke_apple_vpp_licenses_request_builder.MicrosoftGraphRevokeAppleVppLicensesRequestBuilder:
         """
         Provides operations to call the revokeAppleVppLicenses method.
         """
-        return revoke_apple_vpp_licenses_request_builder.RevokeAppleVppLicensesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_revoke_apple_vpp_licenses_request_builder.MicrosoftGraphRevokeAppleVppLicensesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rotate_bit_locker_keys(self) -> rotate_bit_locker_keys_request_builder.RotateBitLockerKeysRequestBuilder:
+    def microsoft_graph_rotate_bit_locker_keys(self) -> microsoft_graph_rotate_bit_locker_keys_request_builder.MicrosoftGraphRotateBitLockerKeysRequestBuilder:
         """
         Provides operations to call the rotateBitLockerKeys method.
         """
-        return rotate_bit_locker_keys_request_builder.RotateBitLockerKeysRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_rotate_bit_locker_keys_request_builder.MicrosoftGraphRotateBitLockerKeysRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def rotate_file_vault_key(self) -> rotate_file_vault_key_request_builder.RotateFileVaultKeyRequestBuilder:
+    def microsoft_graph_rotate_file_vault_key(self) -> microsoft_graph_rotate_file_vault_key_request_builder.MicrosoftGraphRotateFileVaultKeyRequestBuilder:
         """
         Provides operations to call the rotateFileVaultKey method.
         """
-        return rotate_file_vault_key_request_builder.RotateFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_rotate_file_vault_key_request_builder.MicrosoftGraphRotateFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_send_custom_notification_to_company_portal(self) -> microsoft_graph_send_custom_notification_to_company_portal_request_builder.MicrosoftGraphSendCustomNotificationToCompanyPortalRequestBuilder:
+        """
+        Provides operations to call the sendCustomNotificationToCompanyPortal method.
+        """
+        return microsoft_graph_send_custom_notification_to_company_portal_request_builder.MicrosoftGraphSendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_set_cloud_pc_review_status(self) -> microsoft_graph_set_cloud_pc_review_status_request_builder.MicrosoftGraphSetCloudPcReviewStatusRequestBuilder:
+        """
+        Provides operations to call the setCloudPcReviewStatus method.
+        """
+        return microsoft_graph_set_cloud_pc_review_status_request_builder.MicrosoftGraphSetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_set_device_name(self) -> microsoft_graph_set_device_name_request_builder.MicrosoftGraphSetDeviceNameRequestBuilder:
+        """
+        Provides operations to call the setDeviceName method.
+        """
+        return microsoft_graph_set_device_name_request_builder.MicrosoftGraphSetDeviceNameRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_shut_down(self) -> microsoft_graph_shut_down_request_builder.MicrosoftGraphShutDownRequestBuilder:
+        """
+        Provides operations to call the shutDown method.
+        """
+        return microsoft_graph_shut_down_request_builder.MicrosoftGraphShutDownRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_sync_device(self) -> microsoft_graph_sync_device_request_builder.MicrosoftGraphSyncDeviceRequestBuilder:
+        """
+        Provides operations to call the syncDevice method.
+        """
+        return microsoft_graph_sync_device_request_builder.MicrosoftGraphSyncDeviceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_trigger_configuration_manager_action(self) -> microsoft_graph_trigger_configuration_manager_action_request_builder.MicrosoftGraphTriggerConfigurationManagerActionRequestBuilder:
+        """
+        Provides operations to call the triggerConfigurationManagerAction method.
+        """
+        return microsoft_graph_trigger_configuration_manager_action_request_builder.MicrosoftGraphTriggerConfigurationManagerActionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_windows_device_account(self) -> microsoft_graph_update_windows_device_account_request_builder.MicrosoftGraphUpdateWindowsDeviceAccountRequestBuilder:
+        """
+        Provides operations to call the updateWindowsDeviceAccount method.
+        """
+        return microsoft_graph_update_windows_device_account_request_builder.MicrosoftGraphUpdateWindowsDeviceAccountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_windows_defender_scan(self) -> microsoft_graph_windows_defender_scan_request_builder.MicrosoftGraphWindowsDefenderScanRequestBuilder:
+        """
+        Provides operations to call the windowsDefenderScan method.
+        """
+        return microsoft_graph_windows_defender_scan_request_builder.MicrosoftGraphWindowsDefenderScanRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_windows_defender_update_signatures(self) -> microsoft_graph_windows_defender_update_signatures_request_builder.MicrosoftGraphWindowsDefenderUpdateSignaturesRequestBuilder:
+        """
+        Provides operations to call the windowsDefenderUpdateSignatures method.
+        """
+        return microsoft_graph_windows_defender_update_signatures_request_builder.MicrosoftGraphWindowsDefenderUpdateSignaturesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_wipe(self) -> microsoft_graph_wipe_request_builder.MicrosoftGraphWipeRequestBuilder:
+        """
+        Provides operations to call the wipe method.
+        """
+        return microsoft_graph_wipe_request_builder.MicrosoftGraphWipeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def security_baseline_states(self) -> security_baseline_states_request_builder.SecurityBaselineStatesRequestBuilder:
@@ -363,55 +484,6 @@ class ManagedDeviceItemRequestBuilder():
         return security_baseline_states_request_builder.SecurityBaselineStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_custom_notification_to_company_portal(self) -> send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder:
-        """
-        Provides operations to call the sendCustomNotificationToCompanyPortal method.
-        """
-        return send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def set_cloud_pc_review_status(self) -> set_cloud_pc_review_status_request_builder.SetCloudPcReviewStatusRequestBuilder:
-        """
-        Provides operations to call the setCloudPcReviewStatus method.
-        """
-        return set_cloud_pc_review_status_request_builder.SetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def set_device_name(self) -> set_device_name_request_builder.SetDeviceNameRequestBuilder:
-        """
-        Provides operations to call the setDeviceName method.
-        """
-        return set_device_name_request_builder.SetDeviceNameRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def shut_down(self) -> shut_down_request_builder.ShutDownRequestBuilder:
-        """
-        Provides operations to call the shutDown method.
-        """
-        return shut_down_request_builder.ShutDownRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def sync_device(self) -> sync_device_request_builder.SyncDeviceRequestBuilder:
-        """
-        Provides operations to call the syncDevice method.
-        """
-        return sync_device_request_builder.SyncDeviceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def trigger_configuration_manager_action(self) -> trigger_configuration_manager_action_request_builder.TriggerConfigurationManagerActionRequestBuilder:
-        """
-        Provides operations to call the triggerConfigurationManagerAction method.
-        """
-        return trigger_configuration_manager_action_request_builder.TriggerConfigurationManagerActionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_windows_device_account(self) -> update_windows_device_account_request_builder.UpdateWindowsDeviceAccountRequestBuilder:
-        """
-        Provides operations to call the updateWindowsDeviceAccount method.
-        """
-        return update_windows_device_account_request_builder.UpdateWindowsDeviceAccountRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def users(self) -> users_request_builder.UsersRequestBuilder:
         """
         Provides operations to manage the users property of the microsoft.graph.managedDevice entity.
@@ -419,32 +491,11 @@ class ManagedDeviceItemRequestBuilder():
         return users_request_builder.UsersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def windows_defender_scan(self) -> windows_defender_scan_request_builder.WindowsDefenderScanRequestBuilder:
-        """
-        Provides operations to call the windowsDefenderScan method.
-        """
-        return windows_defender_scan_request_builder.WindowsDefenderScanRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_defender_update_signatures(self) -> windows_defender_update_signatures_request_builder.WindowsDefenderUpdateSignaturesRequestBuilder:
-        """
-        Provides operations to call the windowsDefenderUpdateSignatures method.
-        """
-        return windows_defender_update_signatures_request_builder.WindowsDefenderUpdateSignaturesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def windows_protection_state(self) -> windows_protection_state_request_builder.WindowsProtectionStateRequestBuilder:
         """
         Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
         """
         return windows_protection_state_request_builder.WindowsProtectionStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def wipe(self) -> wipe_request_builder.WipeRequestBuilder:
-        """
-        Provides operations to call the wipe method.
-        """
-        return wipe_request_builder.WipeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def assignment_filter_evaluation_status_details_by_id(self,id: str) -> assignment_filter_evaluation_status_details_item_request_builder.AssignmentFilterEvaluationStatusDetailsItemRequestBuilder:
         """
@@ -477,12 +528,11 @@ class ManagedDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property comanagedDevices for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -493,7 +543,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def detected_apps_by_id(self,id: str) -> detected_app_item_request_builder.DetectedAppItemRequestBuilder:
         """
@@ -534,12 +584,11 @@ class ManagedDeviceItemRequestBuilder():
         url_tpl_params["deviceConfigurationState%2Did"] = id
         return device_configuration_state_item_request_builder.DeviceConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device.ManagedDevice]:
+    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
         """
         The list of co-managed devices report
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]
         """
         request_info = self.to_get_request_information(
@@ -551,42 +600,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, response_handler, error_mapping)
-    
-    def get_cloud_pc_remote_action_results(self,) -> get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder:
-        """
-        Provides operations to call the getCloudPcRemoteActionResults method.
-        Returns: get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder
-        """
-        return get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_cloud_pc_review_status(self,) -> get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder:
-        """
-        Provides operations to call the getCloudPcReviewStatus method.
-        Returns: get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder
-        """
-        return get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_file_vault_key(self,) -> get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder:
-        """
-        Provides operations to call the getFileVaultKey method.
-        Returns: get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder
-        """
-        return get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_non_compliant_settings(self,) -> get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder:
-        """
-        Provides operations to call the getNonCompliantSettings method.
-        Returns: get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder
-        """
-        return get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_oem_warranty(self,) -> get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder:
-        """
-        Provides operations to call the getOemWarranty method.
-        Returns: get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder
-        """
-        return get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
     
     def log_collection_requests_by_id(self,id: str) -> device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder:
         """
@@ -614,13 +628,23 @@ class ManagedDeviceItemRequestBuilder():
         url_tpl_params["managedDeviceMobileAppConfigurationState%2Did"] = id
         return managed_device_mobile_app_configuration_state_item_request_builder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device.ManagedDevice]:
+    def microsoft_graph_retrieve_remote_help_session_with_session_key(self,session_key: Optional[str] = None) -> microsoft_graph_retrieve_remote_help_session_with_session_key_request_builder.MicrosoftGraphRetrieveRemoteHelpSessionWithSessionKeyRequestBuilder:
+        """
+        Provides operations to call the retrieveRemoteHelpSession method.
+        Args:
+            sessionKey: Usage: sessionKey='{sessionKey}'
+        Returns: microsoft_graph_retrieve_remote_help_session_with_session_key_request_builder.MicrosoftGraphRetrieveRemoteHelpSessionWithSessionKeyRequestBuilder
+        """
+        if session_key is None:
+            raise Exception("session_key cannot be undefined")
+        return microsoft_graph_retrieve_remote_help_session_with_session_key_request_builder.MicrosoftGraphRetrieveRemoteHelpSessionWithSessionKeyRequestBuilder(self.request_adapter, self.path_parameters, sessionKey)
+    
+    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
         """
         Update the navigation property comanagedDevices in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]
         """
         if body is None:
@@ -634,18 +658,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, response_handler, error_mapping)
-    
-    def retrieve_remote_help_session_with_session_key(self,session_key: Optional[str] = None) -> retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder:
-        """
-        Provides operations to call the retrieveRemoteHelpSession method.
-        Args:
-            sessionKey: Usage: sessionKey='{sessionKey}'
-        Returns: retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder
-        """
-        if session_key is None:
-            raise Exception("session_key cannot be undefined")
-        return retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder(self.request_adapter, self.path_parameters, sessionKey)
+        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
     
     def security_baseline_states_by_id(self,id: str) -> security_baseline_state_item_request_builder.SecurityBaselineStateItemRequestBuilder:
         """

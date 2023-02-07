@@ -12,9 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 group_policy_setting_mappings_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.group_policy_setting_mappings_request_builder')
 group_policy_setting_mapping_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.item.group_policy_setting_mapping_item_request_builder')
+microsoft_graph_update_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.microsoft_graph_update_scope_tags.microsoft_graph_update_scope_tags_request_builder')
 unsupported_group_policy_extensions_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.unsupported_group_policy_extensions_request_builder')
 unsupported_group_policy_extension_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.item.unsupported_group_policy_extension_item_request_builder')
-update_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.update_scope_tags.update_scope_tags_request_builder')
 group_policy_migration_report = lazy_import('msgraph.generated.models.group_policy_migration_report')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -30,18 +30,18 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         return group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_update_scope_tags(self) -> microsoft_graph_update_scope_tags_request_builder.MicrosoftGraphUpdateScopeTagsRequestBuilder:
+        """
+        Provides operations to call the updateScopeTags method.
+        """
+        return microsoft_graph_update_scope_tags_request_builder.MicrosoftGraphUpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def unsupported_group_policy_extensions(self) -> unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder:
         """
         Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
         """
         return unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_scope_tags(self) -> update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder:
-        """
-        Provides operations to call the updateScopeTags method.
-        """
-        return update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -61,12 +61,11 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property groupPolicyMigrationReports for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -77,14 +76,13 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
         """
         A list of Group Policy migration reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
         """
         request_info = self.to_get_request_information(
@@ -96,7 +94,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def group_policy_setting_mappings_by_id(self,id: str) -> group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder:
         """
@@ -111,13 +109,12 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         url_tpl_params["groupPolicySettingMapping%2Did"] = id
         return group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def patch(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
         """
         Update the navigation property groupPolicyMigrationReports in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
         """
         if body is None:
@@ -131,7 +128,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

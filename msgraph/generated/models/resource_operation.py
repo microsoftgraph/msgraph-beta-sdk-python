@@ -22,7 +22,7 @@ class ResourceOperation(entity.Entity):
         """
         Sets the actionName property value. Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.
         Args:
-            value: Value to set for the actionName property.
+            value: Value to set for the action_name property.
         """
         self._action_name = value
     
@@ -86,7 +86,7 @@ class ResourceOperation(entity.Entity):
         """
         Sets the enabledForScopeValidation property value. Determines whether the Permission is validated for Scopes defined per Role Assignment. This property is read-only.
         Args:
-            value: Value to set for the enabledForScopeValidation property.
+            value: Value to set for the enabled_for_scope_validation property.
         """
         self._enabled_for_scope_validation = value
     
@@ -96,11 +96,11 @@ class ResourceOperation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_name": lambda n : setattr(self, 'action_name', n.get_str_value()),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "enabled_for_scope_validation": lambda n : setattr(self, 'enabled_for_scope_validation', n.get_bool_value()),
+            "enabledForScopeValidation": lambda n : setattr(self, 'enabled_for_scope_validation', n.get_bool_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_str_value()),
-            "resource_name": lambda n : setattr(self, 'resource_name', n.get_str_value()),
+            "resourceName": lambda n : setattr(self, 'resource_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -136,7 +136,7 @@ class ResourceOperation(entity.Entity):
         """
         Sets the resourceName property value. Name of the Resource this operation is performed on.
         Args:
-            value: Value to set for the resourceName property.
+            value: Value to set for the resource_name property.
         """
         self._resource_name = value
     

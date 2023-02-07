@@ -74,7 +74,7 @@ class MyRole(AdditionalDataHolder, Parsable):
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(role_assignment.RoleAssignment)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         return fields
     
@@ -91,7 +91,7 @@ class MyRole(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -121,7 +121,7 @@ class MyRole(AdditionalDataHolder, Parsable):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

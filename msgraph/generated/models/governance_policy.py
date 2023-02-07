@@ -63,7 +63,7 @@ class GovernancePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the decisionMakerCriteria property value. The decisionMakerCriteria property
         Args:
-            value: Value to set for the decisionMakerCriteria property.
+            value: Value to set for the decision_maker_criteria property.
         """
         self._decision_maker_criteria = value
     
@@ -73,8 +73,8 @@ class GovernancePolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "decision_maker_criteria": lambda n : setattr(self, 'decision_maker_criteria', n.get_collection_of_object_values(governance_criteria.GovernanceCriteria)),
-            "notification_policy": lambda n : setattr(self, 'notification_policy', n.get_object_value(governance_notification_policy.GovernanceNotificationPolicy)),
+            "decisionMakerCriteria": lambda n : setattr(self, 'decision_maker_criteria', n.get_collection_of_object_values(governance_criteria.GovernanceCriteria)),
+            "notificationPolicy": lambda n : setattr(self, 'notification_policy', n.get_object_value(governance_notification_policy.GovernanceNotificationPolicy)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class GovernancePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the notificationPolicy property value. The notificationPolicy property
         Args:
-            value: Value to set for the notificationPolicy property.
+            value: Value to set for the notification_policy property.
         """
         self._notification_policy = value
     
@@ -109,7 +109,7 @@ class GovernancePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

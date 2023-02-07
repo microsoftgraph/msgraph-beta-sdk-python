@@ -27,7 +27,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the accessPackage property value. The access package with this policy. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the accessPackage property.
+            value: Value to set for the access_package property.
         """
         self._access_package = value
     
@@ -44,7 +44,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the accessPackageCatalog property value. The accessPackageCatalog property
         Args:
-            value: Value to set for the accessPackageCatalog property.
+            value: Value to set for the access_package_catalog property.
         """
         self._access_package_catalog = value
     
@@ -61,7 +61,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the accessPackageId property value. Identifier of the access package.
         Args:
-            value: Value to set for the accessPackageId property.
+            value: Value to set for the access_package_id property.
         """
         self._access_package_id = value
     
@@ -78,7 +78,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the accessReviewSettings property value. Who must review, and how often, the assignments to the access package from this policy. This property is null if reviews are not required.
         Args:
-            value: Value to set for the accessReviewSettings property.
+            value: Value to set for the access_review_settings property.
         """
         self._access_review_settings = value
     
@@ -95,7 +95,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the canExtend property value. Indicates whether a user can extend the access package assignment duration after approval.
         Args:
-            value: Value to set for the canExtend property.
+            value: Value to set for the can_extend property.
         """
         self._can_extend = value
     
@@ -154,7 +154,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the createdBy property value. The createdBy property
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -171,7 +171,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -200,7 +200,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the customExtensionHandlers property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
         Args:
-            value: Value to set for the customExtensionHandlers property.
+            value: Value to set for the custom_extension_handlers property.
         """
         self._custom_extension_handlers = value
     
@@ -234,7 +234,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the displayName property value. The display name of the policy. Supports $filter (eq).
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -251,7 +251,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the durationInDays property value. The number of days in which assignments from this policy last until they are expired.
         Args:
-            value: Value to set for the durationInDays property.
+            value: Value to set for the duration_in_days property.
         """
         self._duration_in_days = value
     
@@ -268,7 +268,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the expirationDateTime property value. The expiration date for assignments created in this policy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -278,23 +278,23 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
-            "access_package_catalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(access_package_catalog.AccessPackageCatalog)),
-            "access_package_id": lambda n : setattr(self, 'access_package_id', n.get_str_value()),
-            "access_review_settings": lambda n : setattr(self, 'access_review_settings', n.get_object_value(assignment_review_settings.AssignmentReviewSettings)),
-            "can_extend": lambda n : setattr(self, 'can_extend', n.get_bool_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "custom_extension_handlers": lambda n : setattr(self, 'custom_extension_handlers', n.get_collection_of_object_values(custom_extension_handler.CustomExtensionHandler)),
+            "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
+            "accessPackageCatalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(access_package_catalog.AccessPackageCatalog)),
+            "accessPackageId": lambda n : setattr(self, 'access_package_id', n.get_str_value()),
+            "accessReviewSettings": lambda n : setattr(self, 'access_review_settings', n.get_object_value(assignment_review_settings.AssignmentReviewSettings)),
+            "canExtend": lambda n : setattr(self, 'can_extend', n.get_bool_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "customExtensionHandlers": lambda n : setattr(self, 'custom_extension_handlers', n.get_collection_of_object_values(custom_extension_handler.CustomExtensionHandler)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "duration_in_days": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "modified_by": lambda n : setattr(self, 'modified_by', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "questions": lambda n : setattr(self, 'questions', n.get_collection_of_object_values(access_package_question.AccessPackageQuestion)),
-            "request_approval_settings": lambda n : setattr(self, 'request_approval_settings', n.get_object_value(approval_settings.ApprovalSettings)),
-            "requestor_settings": lambda n : setattr(self, 'requestor_settings', n.get_object_value(requestor_settings.RequestorSettings)),
+            "requestorSettings": lambda n : setattr(self, 'requestor_settings', n.get_object_value(requestor_settings.RequestorSettings)),
+            "requestApprovalSettings": lambda n : setattr(self, 'request_approval_settings', n.get_object_value(approval_settings.ApprovalSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -313,7 +313,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the modifiedBy property value. The modifiedBy property
         Args:
-            value: Value to set for the modifiedBy property.
+            value: Value to set for the modified_by property.
         """
         self._modified_by = value
     
@@ -330,7 +330,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the modifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -364,7 +364,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the requestApprovalSettings property value. Who must approve requests for access package in this policy.
         Args:
-            value: Value to set for the requestApprovalSettings property.
+            value: Value to set for the request_approval_settings property.
         """
         self._request_approval_settings = value
     
@@ -381,7 +381,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         Sets the requestorSettings property value. Who can request this access package from this policy.
         Args:
-            value: Value to set for the requestorSettings property.
+            value: Value to set for the requestor_settings property.
         """
         self._requestor_settings = value
     
@@ -409,7 +409,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         writer.write_str_value("modifiedBy", self.modified_by)
         writer.write_datetime_value("modifiedDateTime", self.modified_date_time)
         writer.write_collection_of_object_values("questions", self.questions)
-        writer.write_object_value("requestApprovalSettings", self.request_approval_settings)
         writer.write_object_value("requestorSettings", self.requestor_settings)
+        writer.write_object_value("requestApprovalSettings", self.request_approval_settings)
     
 

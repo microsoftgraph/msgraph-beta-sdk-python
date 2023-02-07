@@ -22,7 +22,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         Sets the autoPilotProfileAssigned property value. The intune device's autopilotProfileAssigned.
         Args:
-            value: Value to set for the autoPilotProfileAssigned property.
+            value: Value to set for the auto_pilot_profile_assigned property.
         """
         self._auto_pilot_profile_assigned = value
     
@@ -39,7 +39,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         Sets the autoPilotRegistered property value. The intune device's autopilotRegistered.
         Args:
-            value: Value to set for the autoPilotRegistered property.
+            value: Value to set for the auto_pilot_registered property.
         """
         self._auto_pilot_registered = value
     
@@ -56,7 +56,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         Sets the azureAdJoinType property value. The intune device's azure Ad joinType.
         Args:
-            value: Value to set for the azureAdJoinType property.
+            value: Value to set for the azure_ad_join_type property.
         """
         self._azure_ad_join_type = value
     
@@ -73,7 +73,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         Sets the azureAdRegistered property value. The intune device's azureAdRegistered.
         Args:
-            value: Value to set for the azureAdRegistered property.
+            value: Value to set for the azure_ad_registered property.
         """
         self._azure_ad_registered = value
     
@@ -128,7 +128,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         Sets the deviceName property value. The intune device's name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -138,15 +138,15 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auto_pilot_profile_assigned": lambda n : setattr(self, 'auto_pilot_profile_assigned', n.get_bool_value()),
-            "auto_pilot_registered": lambda n : setattr(self, 'auto_pilot_registered', n.get_bool_value()),
-            "azure_ad_join_type": lambda n : setattr(self, 'azure_ad_join_type', n.get_str_value()),
-            "azure_ad_registered": lambda n : setattr(self, 'azure_ad_registered', n.get_bool_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "managed_by": lambda n : setattr(self, 'managed_by', n.get_str_value()),
+            "autoPilotProfileAssigned": lambda n : setattr(self, 'auto_pilot_profile_assigned', n.get_bool_value()),
+            "autoPilotRegistered": lambda n : setattr(self, 'auto_pilot_registered', n.get_bool_value()),
+            "azureAdJoinType": lambda n : setattr(self, 'azure_ad_join_type', n.get_str_value()),
+            "azureAdRegistered": lambda n : setattr(self, 'azure_ad_registered', n.get_bool_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "managedBy": lambda n : setattr(self, 'managed_by', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -165,7 +165,7 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         Sets the managedBy property value. The intune device's managed by.
         Args:
-            value: Value to set for the managedBy property.
+            value: Value to set for the managed_by property.
         """
         self._managed_by = value
     
@@ -203,6 +203,23 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         """
         self._model = value
     
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. The intune device's serial number.
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. The intune device's serial number.
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -221,22 +238,5 @@ class UserExperienceAnalyticsNotAutopilotReadyDevice(entity.Entity):
         writer.write_str_value("manufacturer", self.manufacturer)
         writer.write_str_value("model", self.model)
         writer.write_str_value("serialNumber", self.serial_number)
-    
-    @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. The intune device's serial number.
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. The intune device's serial number.
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
     
 

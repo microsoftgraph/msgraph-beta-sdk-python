@@ -10,8 +10,6 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-classify_exact_matches_request_builder = lazy_import('msgraph.generated.data_classification.classify_exact_matches.classify_exact_matches_request_builder')
-classify_file_request_builder = lazy_import('msgraph.generated.data_classification.classify_file.classify_file_request_builder')
 classify_file_jobs_request_builder = lazy_import('msgraph.generated.data_classification.classify_file_jobs.classify_file_jobs_request_builder')
 job_response_base_item_request_builder = lazy_import('msgraph.generated.data_classification.classify_file_jobs.item.job_response_base_item_request_builder')
 classify_text_jobs_request_builder = lazy_import('msgraph.generated.data_classification.classify_text_jobs.classify_text_jobs_request_builder')
@@ -26,6 +24,8 @@ exact_match_upload_agents_request_builder = lazy_import('msgraph.generated.data_
 exact_match_upload_agent_item_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_upload_agents.item.exact_match_upload_agent_item_request_builder')
 jobs_request_builder = lazy_import('msgraph.generated.data_classification.jobs.jobs_request_builder')
 job_response_base_item_request_builder = lazy_import('msgraph.generated.data_classification.jobs.item.job_response_base_item_request_builder')
+microsoft_graph_classify_exact_matches_request_builder = lazy_import('msgraph.generated.data_classification.microsoft_graph_classify_exact_matches.microsoft_graph_classify_exact_matches_request_builder')
+microsoft_graph_classify_file_request_builder = lazy_import('msgraph.generated.data_classification.microsoft_graph_classify_file.microsoft_graph_classify_file_request_builder')
 sensitive_types_request_builder = lazy_import('msgraph.generated.data_classification.sensitive_types.sensitive_types_request_builder')
 sensitive_type_item_request_builder = lazy_import('msgraph.generated.data_classification.sensitive_types.item.sensitive_type_item_request_builder')
 sensitivity_labels_request_builder = lazy_import('msgraph.generated.data_classification.sensitivity_labels.sensitivity_labels_request_builder')
@@ -37,20 +37,6 @@ class DataClassificationRequestBuilder():
     """
     Provides operations to manage the dataClassificationService singleton.
     """
-    @property
-    def classify_exact_matches(self) -> classify_exact_matches_request_builder.ClassifyExactMatchesRequestBuilder:
-        """
-        Provides operations to call the classifyExactMatches method.
-        """
-        return classify_exact_matches_request_builder.ClassifyExactMatchesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def classify_file(self) -> classify_file_request_builder.ClassifyFileRequestBuilder:
-        """
-        Provides operations to call the classifyFile method.
-        """
-        return classify_file_request_builder.ClassifyFileRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def classify_file_jobs(self) -> classify_file_jobs_request_builder.ClassifyFileJobsRequestBuilder:
         """
@@ -99,6 +85,20 @@ class DataClassificationRequestBuilder():
         Provides operations to manage the jobs property of the microsoft.graph.dataClassificationService entity.
         """
         return jobs_request_builder.JobsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_classify_exact_matches(self) -> microsoft_graph_classify_exact_matches_request_builder.MicrosoftGraphClassifyExactMatchesRequestBuilder:
+        """
+        Provides operations to call the classifyExactMatches method.
+        """
+        return microsoft_graph_classify_exact_matches_request_builder.MicrosoftGraphClassifyExactMatchesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_classify_file(self) -> microsoft_graph_classify_file_request_builder.MicrosoftGraphClassifyFileRequestBuilder:
+        """
+        Provides operations to call the classifyFile method.
+        """
+        return microsoft_graph_classify_file_request_builder.MicrosoftGraphClassifyFileRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def sensitive_types(self) -> sensitive_types_request_builder.SensitiveTypesRequestBuilder:
@@ -210,12 +210,11 @@ class DataClassificationRequestBuilder():
         url_tpl_params["exactMatchUploadAgent%2Did"] = id
         return exact_match_upload_agent_item_request_builder.ExactMatchUploadAgentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_classification_service.DataClassificationService]:
+    async def get(self,request_configuration: Optional[DataClassificationRequestBuilderGetRequestConfiguration] = None) -> Optional[data_classification_service.DataClassificationService]:
         """
         Get dataClassification
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_classification_service.DataClassificationService]
         """
         request_info = self.to_get_request_information(
@@ -227,7 +226,7 @@ class DataClassificationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, error_mapping)
     
     def jobs_by_id(self,id: str) -> job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder:
         """
@@ -242,13 +241,12 @@ class DataClassificationRequestBuilder():
         url_tpl_params["jobResponseBase%2Did"] = id
         return job_response_base_item_request_builder.JobResponseBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[data_classification_service.DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[data_classification_service.DataClassificationService]:
+    async def patch(self,body: Optional[data_classification_service.DataClassificationService] = None, request_configuration: Optional[DataClassificationRequestBuilderPatchRequestConfiguration] = None) -> Optional[data_classification_service.DataClassificationService]:
         """
         Update dataClassification
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[data_classification_service.DataClassificationService]
         """
         if body is None:
@@ -262,7 +260,7 @@ class DataClassificationRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, data_classification_service.DataClassificationService, error_mapping)
     
     def sensitive_types_by_id(self,id: str) -> sensitive_type_item_request_builder.SensitiveTypeItemRequestBuilder:
         """

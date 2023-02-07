@@ -44,12 +44,11 @@ class InstancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[InstancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_collection_response.AccessReviewCollectionResponse]:
+    async def get(self,request_configuration: Optional[InstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_collection_response.AccessReviewCollectionResponse]:
         """
         The collection of access reviews instances past, present and future, if this object is a recurring access review.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_collection_response.AccessReviewCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class InstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_collection_response.AccessReviewCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_collection_response.AccessReviewCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_review.AccessReview] = None, request_configuration: Optional[InstancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review.AccessReview]:
+    async def post(self,body: Optional[access_review.AccessReview] = None, request_configuration: Optional[InstancesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review.AccessReview]:
         """
         Create new navigation property to instances for accessReviews
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review.AccessReview]
         """
         if body is None:
@@ -83,7 +81,7 @@ class InstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review.AccessReview, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review.AccessReview, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[InstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

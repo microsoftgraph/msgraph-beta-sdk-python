@@ -41,7 +41,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the applicationId property value. MobieApp identifier.
         Args:
-            value: Value to set for the applicationId property.
+            value: Value to set for the application_id property.
         """
         self._application_id = value
     
@@ -92,7 +92,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The admin provided or imported title of the app.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -109,7 +109,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the displayVersion property value. Human readable version of the application
         Args:
-            value: Value to set for the displayVersion property.
+            value: Value to set for the display_version property.
         """
         self._display_version = value
     
@@ -119,13 +119,13 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_id": lambda n : setattr(self, 'application_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "display_version": lambda n : setattr(self, 'display_version', n.get_str_value()),
-            "install_state": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),
-            "mobile_app_intent": lambda n : setattr(self, 'mobile_app_intent', n.get_enum_value(mobile_app_intent.MobileAppIntent)),
+            "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
+            "installState": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),
+            "mobileAppIntent": lambda n : setattr(self, 'mobile_app_intent', n.get_enum_value(mobile_app_intent.MobileAppIntent)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "supported_device_types": lambda n : setattr(self, 'supported_device_types', n.get_collection_of_object_values(mobile_app_supported_device_type.MobileAppSupportedDeviceType)),
+            "supportedDeviceTypes": lambda n : setattr(self, 'supported_device_types', n.get_collection_of_object_values(mobile_app_supported_device_type.MobileAppSupportedDeviceType)),
         }
         return fields
     
@@ -142,7 +142,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the installState property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
         Args:
-            value: Value to set for the installState property.
+            value: Value to set for the install_state property.
         """
         self._install_state = value
     
@@ -159,7 +159,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the mobileAppIntent property value. Indicates the status of the mobile app on the device.
         Args:
-            value: Value to set for the mobileAppIntent property.
+            value: Value to set for the mobile_app_intent property.
         """
         self._mobile_app_intent = value
     
@@ -176,7 +176,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -210,7 +210,7 @@ class MobileAppIntentAndStateDetail(AdditionalDataHolder, Parsable):
         """
         Sets the supportedDeviceTypes property value. The supported platforms for the app.
         Args:
-            value: Value to set for the supportedDeviceTypes property.
+            value: Value to set for the supported_device_types property.
         """
         self._supported_device_types = value
     

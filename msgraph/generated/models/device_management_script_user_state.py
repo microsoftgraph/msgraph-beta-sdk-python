@@ -51,7 +51,7 @@ class DeviceManagementScriptUserState(entity.Entity):
         """
         Sets the deviceRunStates property value. List of run states for this script across all devices of specific user.
         Args:
-            value: Value to set for the deviceRunStates property.
+            value: Value to set for the device_run_states property.
         """
         self._device_run_states = value
     
@@ -68,7 +68,7 @@ class DeviceManagementScriptUserState(entity.Entity):
         """
         Sets the errorDeviceCount property value. Error device count for specific user.
         Args:
-            value: Value to set for the errorDeviceCount property.
+            value: Value to set for the error_device_count property.
         """
         self._error_device_count = value
     
@@ -78,10 +78,10 @@ class DeviceManagementScriptUserState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_run_states": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_management_script_device_state.DeviceManagementScriptDeviceState)),
-            "error_device_count": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
-            "success_device_count": lambda n : setattr(self, 'success_device_count', n.get_int_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "deviceRunStates": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_management_script_device_state.DeviceManagementScriptDeviceState)),
+            "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
+            "successDeviceCount": lambda n : setattr(self, 'success_device_count', n.get_int_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,7 +114,7 @@ class DeviceManagementScriptUserState(entity.Entity):
         """
         Sets the successDeviceCount property value. Success device count for specific user.
         Args:
-            value: Value to set for the successDeviceCount property.
+            value: Value to set for the success_device_count property.
         """
         self._success_device_count = value
     
@@ -131,7 +131,7 @@ class DeviceManagementScriptUserState(entity.Entity):
         """
         Sets the userPrincipalName property value. User principle name of specific user.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

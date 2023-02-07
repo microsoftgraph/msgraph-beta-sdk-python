@@ -11,4 +11,6 @@ class RemediationState(Enum):
     RemediationFailed = "remediationFailed",
     # Remediation script execution encountered and error or timed out
     ScriptError = "scriptError",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

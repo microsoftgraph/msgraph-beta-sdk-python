@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.assignments.assignments_request_builder')
 device_management_configuration_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.assignments.item.device_management_configuration_policy_assignment_item_request_builder')
-create_copy_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.create_copy.create_copy_request_builder')
-reorder_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.reorder.reorder_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
+microsoft_graph_create_copy_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.microsoft_graph_create_copy.microsoft_graph_create_copy_request_builder')
+microsoft_graph_reorder_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.microsoft_graph_reorder.microsoft_graph_reorder_request_builder')
 settings_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.settings.settings_request_builder')
 device_management_configuration_setting_item_request_builder = lazy_import('msgraph.generated.device_management.configuration_policies.item.settings.item.device_management_configuration_setting_item_request_builder')
 device_management_configuration_policy = lazy_import('msgraph.generated.models.device_management_configuration_policy')
@@ -25,13 +25,6 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
     Provides operations to manage the configurationPolicies property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
@@ -39,18 +32,25 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_copy(self) -> microsoft_graph_create_copy_request_builder.MicrosoftGraphCreateCopyRequestBuilder:
         """
         Provides operations to call the createCopy method.
         """
-        return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_create_copy_request_builder.MicrosoftGraphCreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reorder(self) -> reorder_request_builder.ReorderRequestBuilder:
+    def microsoft_graph_reorder(self) -> microsoft_graph_reorder_request_builder.MicrosoftGraphReorderRequestBuilder:
         """
         Provides operations to call the reorder method.
         """
-        return reorder_request_builder.ReorderRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reorder_request_builder.MicrosoftGraphReorderRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
@@ -90,12 +90,11 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property configurationPolicies for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -106,14 +105,13 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
+    async def get(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
         """
         List of all Configuration policies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]
         """
         request_info = self.to_get_request_information(
@@ -125,15 +123,14 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
     
-    async def patch(self,body: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
+    async def patch(self,body: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
         """
         Update the navigation property configurationPolicies in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]
         """
         if body is None:
@@ -147,7 +144,7 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder:
         """

@@ -35,12 +35,11 @@ class ImportedDeviceIdentityItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property importedDeviceIdentities for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ImportedDeviceIdentityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_device_identity.ImportedDeviceIdentity]:
+    async def get(self,request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderGetRequestConfiguration] = None) -> Optional[imported_device_identity.ImportedDeviceIdentity]:
         """
         The imported device identities.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_device_identity.ImportedDeviceIdentity]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ImportedDeviceIdentityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_device_identity.ImportedDeviceIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_device_identity.ImportedDeviceIdentity, error_mapping)
     
-    async def patch(self,body: Optional[imported_device_identity.ImportedDeviceIdentity] = None, request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[imported_device_identity.ImportedDeviceIdentity]:
+    async def patch(self,body: Optional[imported_device_identity.ImportedDeviceIdentity] = None, request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[imported_device_identity.ImportedDeviceIdentity]:
         """
         Update the navigation property importedDeviceIdentities in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[imported_device_identity.ImportedDeviceIdentity]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ImportedDeviceIdentityItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, imported_device_identity.ImportedDeviceIdentity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, imported_device_identity.ImportedDeviceIdentity, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ImportedDeviceIdentityItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

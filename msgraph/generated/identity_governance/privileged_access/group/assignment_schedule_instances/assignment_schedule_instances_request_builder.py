@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_instances.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_instances.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+microsoft_graph_filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.group.assignment_schedule_instances.microsoft_graph_filter_by_current_user_with_on.microsoft_graph_filter_by_current_user_with_on_request_builder')
 privileged_access_group_assignment_schedule_instance = lazy_import('msgraph.generated.models.privileged_access_group_assignment_schedule_instance')
 privileged_access_group_assignment_schedule_instance_collection_response = lazy_import('msgraph.generated.models.privileged_access_group_assignment_schedule_instance_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -45,23 +45,11 @@ class AssignmentScheduleInstancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]:
         """
         Get assignmentScheduleInstances from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class AssignmentScheduleInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance_collection_response.PrivilegedAccessGroupAssignmentScheduleInstanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance] = None, request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance] = None, request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]:
         """
         Create new navigation property to assignmentScheduleInstances for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance]
         """
         if body is None:
@@ -95,7 +93,7 @@ class AssignmentScheduleInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -14,8 +14,8 @@ unified_role_assignment_schedule_request = lazy_import('msgraph.generated.models
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 activated_using_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.activated_using.activated_using_request_builder')
 app_scope_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.app_scope.app_scope_request_builder')
-cancel_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.cancel.cancel_request_builder')
 directory_scope_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.directory_scope.directory_scope_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
 principal_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.principal.principal_request_builder')
 role_definition_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.role_definition.role_definition_request_builder')
 target_schedule_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_requests.item.target_schedule.target_schedule_request_builder')
@@ -39,18 +39,18 @@ class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder():
         return app_scope_request_builder.AppScopeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def directory_scope(self) -> directory_scope_request_builder.DirectoryScopeRequestBuilder:
         """
         Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         """
         return directory_scope_request_builder.DirectoryScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def principal(self) -> principal_request_builder.PrincipalRequestBuilder:
@@ -91,12 +91,11 @@ class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleAssignmentScheduleRequests for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +106,13 @@ class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
+    async def get(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
         """
         Get roleAssignmentScheduleRequests from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +124,14 @@ class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest, error_mapping)
     
-    async def patch(self,body: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest] = None, request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
+    async def patch(self,body: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest] = None, request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]:
         """
         Update the navigation property roleAssignmentScheduleRequests in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest]
         """
         if body is None:
@@ -148,7 +145,7 @@ class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_request.UnifiedRoleAssignmentScheduleRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

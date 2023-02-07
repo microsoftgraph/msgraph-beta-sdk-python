@@ -38,9 +38,9 @@ class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "identity_version": lambda n : setattr(self, 'identity_version', n.get_str_value()),
-            "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
-            "product_identifier": lambda n : setattr(self, 'product_identifier', n.get_str_value()),
+            "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
+            "productIdentifier": lambda n : setattr(self, 'product_identifier', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -59,7 +59,7 @@ class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
         """
         Sets the identityVersion property value. The identity version.
         Args:
-            value: Value to set for the identityVersion property.
+            value: Value to set for the identity_version property.
         """
         self._identity_version = value
     
@@ -76,7 +76,7 @@ class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
         """
         Sets the minimumSupportedOperatingSystem property value. The minimum operating system required for a Windows mobile app.
         Args:
-            value: Value to set for the minimumSupportedOperatingSystem property.
+            value: Value to set for the minimum_supported_operating_system property.
         """
         self._minimum_supported_operating_system = value
     
@@ -93,7 +93,7 @@ class WindowsPhoneXAP(mobile_lob_app.MobileLobApp):
         """
         Sets the productIdentifier property value. The Product Identifier.
         Args:
-            value: Value to set for the productIdentifier property.
+            value: Value to set for the product_identifier property.
         """
         self._product_identifier = value
     

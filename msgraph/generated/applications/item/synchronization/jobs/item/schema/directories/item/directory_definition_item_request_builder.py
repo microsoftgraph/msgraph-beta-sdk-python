@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-discover_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.directories.item.discover.discover_request_builder')
+microsoft_graph_discover_request_builder = lazy_import('msgraph.generated.applications.item.synchronization.jobs.item.schema.directories.item.microsoft_graph_discover.microsoft_graph_discover_request_builder')
 directory_definition = lazy_import('msgraph.generated.models.directory_definition')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class DirectoryDefinitionItemRequestBuilder():
     Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
     """
     @property
-    def discover(self) -> discover_request_builder.DiscoverRequestBuilder:
+    def microsoft_graph_discover(self) -> microsoft_graph_discover_request_builder.MicrosoftGraphDiscoverRequestBuilder:
         """
         Provides operations to call the discover method.
         """
-        return discover_request_builder.DiscoverRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_discover_request_builder.MicrosoftGraphDiscoverRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class DirectoryDefinitionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DirectoryDefinitionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DirectoryDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property directories for applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class DirectoryDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DirectoryDefinitionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_definition.DirectoryDefinition]:
+    async def get(self,request_configuration: Optional[DirectoryDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_definition.DirectoryDefinition]:
         """
         Contains the collection of directories and all of their objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_definition.DirectoryDefinition]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class DirectoryDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_definition.DirectoryDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_definition.DirectoryDefinition, error_mapping)
     
-    async def patch(self,body: Optional[directory_definition.DirectoryDefinition] = None, request_configuration: Optional[DirectoryDefinitionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_definition.DirectoryDefinition]:
+    async def patch(self,body: Optional[directory_definition.DirectoryDefinition] = None, request_configuration: Optional[DirectoryDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory_definition.DirectoryDefinition]:
         """
         Update the navigation property directories in applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_definition.DirectoryDefinition]
         """
         if body is None:
@@ -100,7 +97,7 @@ class DirectoryDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_definition.DirectoryDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_definition.DirectoryDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DirectoryDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

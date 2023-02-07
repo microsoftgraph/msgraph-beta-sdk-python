@@ -52,12 +52,11 @@ class UserProcessingResultItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserProcessingResultItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_processing_result.UserProcessingResult]:
+    async def get(self,request_configuration: Optional[UserProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_processing_result.UserProcessingResult]:
         """
         The associated individual user execution.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_processing_result.UserProcessingResult]
         """
         request_info = self.to_get_request_information(
@@ -69,7 +68,7 @@ class UserProcessingResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_processing_result.UserProcessingResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_processing_result.UserProcessingResult, error_mapping)
     
     def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
         """

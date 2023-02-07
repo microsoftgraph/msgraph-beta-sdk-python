@@ -22,7 +22,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the alertRules property value. The alertRules property
         Args:
-            value: Value to set for the alertRules property.
+            value: Value to set for the alert_rules property.
         """
         self._alert_rules = value
     
@@ -61,7 +61,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -78,7 +78,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -107,7 +107,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the definitionTemplate property value. The definitionTemplate property
         Args:
-            value: Value to set for the definitionTemplate property.
+            value: Value to set for the definition_template property.
         """
         self._definition_template = value
     
@@ -124,7 +124,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -134,13 +134,13 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_rules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(managed_tenant_alert_rule.ManagedTenantAlertRule)),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "definition_template": lambda n : setattr(self, 'definition_template', n.get_object_value(alert_rule_definition_template.AlertRuleDefinitionTemplate)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(managed_tenant_alert_rule.ManagedTenantAlertRule)),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "definitionTemplate": lambda n : setattr(self, 'definition_template', n.get_object_value(alert_rule_definition_template.AlertRuleDefinitionTemplate)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -159,7 +159,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -176,7 +176,7 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     

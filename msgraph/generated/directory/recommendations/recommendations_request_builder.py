@@ -44,12 +44,11 @@ class RecommendationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation_collection_response.RecommendationCollectionResponse]:
+    async def get(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> Optional[recommendation_collection_response.RecommendationCollectionResponse]:
         """
-        Get recommendations from directory
+        Get a list of the recommendation objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[recommendation_collection_response.RecommendationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class RecommendationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation_collection_response.RecommendationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, recommendation_collection_response.RecommendationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[recommendation.Recommendation] = None, request_configuration: Optional[RecommendationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation.Recommendation]:
+    async def post(self,body: Optional[recommendation.Recommendation] = None, request_configuration: Optional[RecommendationsRequestBuilderPostRequestConfiguration] = None) -> Optional[recommendation.Recommendation]:
         """
         Create new navigation property to recommendations for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[recommendation.Recommendation]
         """
         if body is None:
@@ -83,11 +81,11 @@ class RecommendationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, recommendation.Recommendation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RecommendationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get recommendations from directory
+        Get a list of the recommendation objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -127,7 +125,7 @@ class RecommendationsRequestBuilder():
     @dataclass
     class RecommendationsRequestBuilderGetQueryParameters():
         """
-        Get recommendations from directory
+        Get a list of the recommendation objects and their properties.
         """
         # Include count of items
         count: Optional[bool] = None

@@ -16,9 +16,9 @@ acronyms_request_builder = lazy_import('msgraph.generated.search.acronyms.acrony
 acronym_item_request_builder = lazy_import('msgraph.generated.search.acronyms.item.acronym_item_request_builder')
 bookmarks_request_builder = lazy_import('msgraph.generated.search.bookmarks.bookmarks_request_builder')
 bookmark_item_request_builder = lazy_import('msgraph.generated.search.bookmarks.item.bookmark_item_request_builder')
+microsoft_graph_query_request_builder = lazy_import('msgraph.generated.search.microsoft_graph_query.microsoft_graph_query_request_builder')
 qnas_request_builder = lazy_import('msgraph.generated.search.qnas.qnas_request_builder')
 qna_item_request_builder = lazy_import('msgraph.generated.search.qnas.item.qna_item_request_builder')
-query_request_builder = lazy_import('msgraph.generated.search.query.query_request_builder')
 
 class SearchRequestBuilder():
     """
@@ -39,18 +39,18 @@ class SearchRequestBuilder():
         return bookmarks_request_builder.BookmarksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_query(self) -> microsoft_graph_query_request_builder.MicrosoftGraphQueryRequestBuilder:
+        """
+        Provides operations to call the query method.
+        """
+        return microsoft_graph_query_request_builder.MicrosoftGraphQueryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def qnas(self) -> qnas_request_builder.QnasRequestBuilder:
         """
         Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
         """
         return qnas_request_builder.QnasRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def query(self) -> query_request_builder.QueryRequestBuilder:
-        """
-        Provides operations to call the query method.
-        """
-        return query_request_builder.QueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     def acronyms_by_id(self,id: str) -> acronym_item_request_builder.AcronymItemRequestBuilder:
         """
@@ -96,12 +96,11 @@ class SearchRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[search_entity.SearchEntity]:
+    async def get(self,request_configuration: Optional[SearchRequestBuilderGetRequestConfiguration] = None) -> Optional[search_entity.SearchEntity]:
         """
         Get search
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[search_entity.SearchEntity]
         """
         request_info = self.to_get_request_information(
@@ -113,15 +112,14 @@ class SearchRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, error_mapping)
     
-    async def patch(self,body: Optional[search_entity.SearchEntity] = None, request_configuration: Optional[SearchRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[search_entity.SearchEntity]:
+    async def patch(self,body: Optional[search_entity.SearchEntity] = None, request_configuration: Optional[SearchRequestBuilderPatchRequestConfiguration] = None) -> Optional[search_entity.SearchEntity]:
         """
         Update search
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[search_entity.SearchEntity]
         """
         if body is None:
@@ -135,7 +133,7 @@ class SearchRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, search_entity.SearchEntity, error_mapping)
     
     def qnas_by_id(self,id: str) -> qna_item_request_builder.QnaItemRequestBuilder:
         """

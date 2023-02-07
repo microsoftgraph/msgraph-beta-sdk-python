@@ -2,7 +2,7 @@ from enum import Enum
 
 class GroupPolicyMigrationReadiness(Enum):
     # No Intune coverage
-    None_escaped = "none",
+    None_ = "none",
     # Partial Intune coverage
     Partial = "partial",
     # Complete Intune coverage

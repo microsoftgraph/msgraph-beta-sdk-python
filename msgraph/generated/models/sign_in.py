@@ -46,7 +46,7 @@ class SignIn(entity.Entity):
         """
         Sets the appDisplayName property value. The application name displayed in the Azure Portal. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -63,7 +63,7 @@ class SignIn(entity.Entity):
         """
         Sets the appId property value. The application identifier in Azure Active Directory. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
@@ -80,14 +80,14 @@ class SignIn(entity.Entity):
         """
         Sets the appliedConditionalAccessPolicies property value. A list of conditional access policies that are triggered by the corresponding sign-in activity.
         Args:
-            value: Value to set for the appliedConditionalAccessPolicies property.
+            value: Value to set for the applied_conditional_access_policies property.
         """
         self._applied_conditional_access_policies = value
     
     @property
     def applied_event_listeners(self,) -> Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]]:
         """
-        Gets the appliedEventListeners property value. The appliedEventListeners property
+        Gets the appliedEventListeners property value. Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
         Returns: Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]]
         """
         return self._applied_event_listeners
@@ -95,9 +95,9 @@ class SignIn(entity.Entity):
     @applied_event_listeners.setter
     def applied_event_listeners(self,value: Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]] = None) -> None:
         """
-        Sets the appliedEventListeners property value. The appliedEventListeners property
+        Sets the appliedEventListeners property value. Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
         Args:
-            value: Value to set for the appliedEventListeners property.
+            value: Value to set for the applied_event_listeners property.
         """
         self._applied_event_listeners = value
     
@@ -114,7 +114,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationAppDeviceDetails property value. Provides details about the app and device used during an Azure AD authentication step.
         Args:
-            value: Value to set for the authenticationAppDeviceDetails property.
+            value: Value to set for the authentication_app_device_details property.
         """
         self._authentication_app_device_details = value
     
@@ -131,7 +131,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationAppPolicyEvaluationDetails property value. Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
         Args:
-            value: Value to set for the authenticationAppPolicyEvaluationDetails property.
+            value: Value to set for the authentication_app_policy_evaluation_details property.
         """
         self._authentication_app_policy_evaluation_details = value
     
@@ -148,7 +148,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationContextClassReferences property value. Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in.
         Args:
-            value: Value to set for the authenticationContextClassReferences property.
+            value: Value to set for the authentication_context_class_references property.
         """
         self._authentication_context_class_references = value
     
@@ -165,7 +165,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationDetails property value. The result of the authentication attempt and additional details on the authentication method.
         Args:
-            value: Value to set for the authenticationDetails property.
+            value: Value to set for the authentication_details property.
         """
         self._authentication_details = value
     
@@ -182,7 +182,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationMethodsUsed property value. The authentication methods used. Possible values: SMS, Authenticator App, App Verification code, Password, FIDO, PTA, or PHS.
         Args:
-            value: Value to set for the authenticationMethodsUsed property.
+            value: Value to set for the authentication_methods_used property.
         """
         self._authentication_methods_used = value
     
@@ -199,7 +199,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationProcessingDetails property value. Additional authentication processing details, such as the agent name in case of PTA/PHS or Server/farm name in case of federated authentication.
         Args:
-            value: Value to set for the authenticationProcessingDetails property.
+            value: Value to set for the authentication_processing_details property.
         """
         self._authentication_processing_details = value
     
@@ -216,7 +216,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationProtocol property value. Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue. For authentications that use protocols other than the possible values listed, the protocol type is listed as none.
         Args:
-            value: Value to set for the authenticationProtocol property.
+            value: Value to set for the authentication_protocol property.
         """
         self._authentication_protocol = value
     
@@ -233,7 +233,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationRequirement property value. This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the authenticationRequirement property.
+            value: Value to set for the authentication_requirement property.
         """
         self._authentication_requirement = value
     
@@ -250,7 +250,7 @@ class SignIn(entity.Entity):
         """
         Sets the authenticationRequirementPolicies property value. Sources of authentication requirement, such as conditional access, per-user MFA, identity protection, and security defaults.
         Args:
-            value: Value to set for the authenticationRequirementPolicies property.
+            value: Value to set for the authentication_requirement_policies property.
         """
         self._authentication_requirement_policies = value
     
@@ -267,7 +267,7 @@ class SignIn(entity.Entity):
         """
         Sets the autonomousSystemNumber property value. The Autonomous System Number (ASN) of the network used by the actor.
         Args:
-            value: Value to set for the autonomousSystemNumber property.
+            value: Value to set for the autonomous_system_number property.
         """
         self._autonomous_system_number = value
     
@@ -284,7 +284,7 @@ class SignIn(entity.Entity):
         """
         Sets the azureResourceId property value. Contains a fully qualified Azure Resource Manager ID of an Azure resource accessed during the sign-in.
         Args:
-            value: Value to set for the azureResourceId property.
+            value: Value to set for the azure_resource_id property.
         """
         self._azure_resource_id = value
     
@@ -301,7 +301,7 @@ class SignIn(entity.Entity):
         """
         Sets the clientAppUsed property value. The legacy client used for sign-in activity. For example: Browser, Exchange ActiveSync, Modern clients, IMAP, MAPI, SMTP, or POP. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the clientAppUsed property.
+            value: Value to set for the client_app_used property.
         """
         self._client_app_used = value
     
@@ -318,7 +318,7 @@ class SignIn(entity.Entity):
         """
         Sets the clientCredentialType property value. Describes the credential type that a user client or service principal provided to Azure AD to authenticate itself. You may wish to review clientCredentialType to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
         Args:
-            value: Value to set for the clientCredentialType property.
+            value: Value to set for the client_credential_type property.
         """
         self._client_credential_type = value
     
@@ -335,7 +335,7 @@ class SignIn(entity.Entity):
         """
         Sets the conditionalAccessStatus property value. The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the conditionalAccessStatus property.
+            value: Value to set for the conditional_access_status property.
         """
         self._conditional_access_status = value
     
@@ -350,7 +350,7 @@ class SignIn(entity.Entity):
         self._app_id: Optional[str] = None
         # A list of conditional access policies that are triggered by the corresponding sign-in activity.
         self._applied_conditional_access_policies: Optional[List[applied_conditional_access_policy.AppliedConditionalAccessPolicy]] = None
-        # The appliedEventListeners property
+        # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
         self._applied_event_listeners: Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]] = None
         # Provides details about the app and device used during an Azure AD authentication step.
         self._authentication_app_device_details: Optional[authentication_app_device_details.AuthenticationAppDeviceDetails] = None
@@ -486,7 +486,7 @@ class SignIn(entity.Entity):
         """
         Sets the correlationId property value. The identifier that's sent from the client when sign-in is initiated. This is used for troubleshooting the corresponding sign-in activity when calling for support. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the correlationId property.
+            value: Value to set for the correlation_id property.
         """
         self._correlation_id = value
     
@@ -503,7 +503,7 @@ class SignIn(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $orderby and $filter (eq, le, and ge operators only).
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -532,7 +532,7 @@ class SignIn(entity.Entity):
         """
         Sets the crossTenantAccessType property value. Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in did not cross tenant boundaries, the value is none.
         Args:
-            value: Value to set for the crossTenantAccessType property.
+            value: Value to set for the cross_tenant_access_type property.
         """
         self._cross_tenant_access_type = value
     
@@ -549,7 +549,7 @@ class SignIn(entity.Entity):
         """
         Sets the deviceDetail property value. The device information from where the sign-in occurred. Includes information such as deviceId, OS, and browser. Supports $filter (eq and startsWith operators only) on browser and operatingSystem properties.
         Args:
-            value: Value to set for the deviceDetail property.
+            value: Value to set for the device_detail property.
         """
         self._device_detail = value
     
@@ -566,7 +566,7 @@ class SignIn(entity.Entity):
         """
         Sets the federatedCredentialId property value. Contains the identifier of an application's federated identity credential, if a federated identity credential was used to sign in.
         Args:
-            value: Value to set for the federatedCredentialId property.
+            value: Value to set for the federated_credential_id property.
         """
         self._federated_credential_id = value
     
@@ -583,7 +583,7 @@ class SignIn(entity.Entity):
         """
         Sets the flaggedForReview property value. During a failed sign in, a user may click a button in the Azure portal to mark the failed event for tenant admins. If a user clicked the button to flag the failed sign in, this value is true.
         Args:
-            value: Value to set for the flaggedForReview property.
+            value: Value to set for the flagged_for_review property.
         """
         self._flagged_for_review = value
     
@@ -593,69 +593,69 @@ class SignIn(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "applied_conditional_access_policies": lambda n : setattr(self, 'applied_conditional_access_policies', n.get_collection_of_object_values(applied_conditional_access_policy.AppliedConditionalAccessPolicy)),
-            "applied_event_listeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(applied_authentication_event_listener.AppliedAuthenticationEventListener)),
-            "authentication_app_device_details": lambda n : setattr(self, 'authentication_app_device_details', n.get_object_value(authentication_app_device_details.AuthenticationAppDeviceDetails)),
-            "authentication_app_policy_evaluation_details": lambda n : setattr(self, 'authentication_app_policy_evaluation_details', n.get_collection_of_object_values(authentication_app_policy_details.AuthenticationAppPolicyDetails)),
-            "authentication_context_class_references": lambda n : setattr(self, 'authentication_context_class_references', n.get_collection_of_object_values(authentication_context.AuthenticationContext)),
-            "authentication_details": lambda n : setattr(self, 'authentication_details', n.get_collection_of_object_values(authentication_detail.AuthenticationDetail)),
-            "authentication_methods_used": lambda n : setattr(self, 'authentication_methods_used', n.get_collection_of_primitive_values(str)),
-            "authentication_processing_details": lambda n : setattr(self, 'authentication_processing_details', n.get_collection_of_object_values(key_value.KeyValue)),
-            "authentication_protocol": lambda n : setattr(self, 'authentication_protocol', n.get_enum_value(protocol_type.ProtocolType)),
-            "authentication_requirement": lambda n : setattr(self, 'authentication_requirement', n.get_str_value()),
-            "authentication_requirement_policies": lambda n : setattr(self, 'authentication_requirement_policies', n.get_collection_of_object_values(authentication_requirement_policy.AuthenticationRequirementPolicy)),
-            "autonomous_system_number": lambda n : setattr(self, 'autonomous_system_number', n.get_int_value()),
-            "azure_resource_id": lambda n : setattr(self, 'azure_resource_id', n.get_str_value()),
-            "client_app_used": lambda n : setattr(self, 'client_app_used', n.get_str_value()),
-            "client_credential_type": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(client_credential_type.ClientCredentialType)),
-            "conditional_access_status": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(conditional_access_status.ConditionalAccessStatus)),
-            "correlation_id": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "cross_tenant_access_type": lambda n : setattr(self, 'cross_tenant_access_type', n.get_enum_value(sign_in_access_type.SignInAccessType)),
-            "device_detail": lambda n : setattr(self, 'device_detail', n.get_object_value(device_detail.DeviceDetail)),
-            "federated_credential_id": lambda n : setattr(self, 'federated_credential_id', n.get_str_value()),
-            "flagged_for_review": lambda n : setattr(self, 'flagged_for_review', n.get_bool_value()),
-            "home_tenant_id": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
-            "home_tenant_name": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
-            "incoming_token_type": lambda n : setattr(self, 'incoming_token_type', n.get_enum_value(incoming_token_type.IncomingTokenType)),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "ip_address_from_resource_provider": lambda n : setattr(self, 'ip_address_from_resource_provider', n.get_str_value()),
-            "is_interactive": lambda n : setattr(self, 'is_interactive', n.get_bool_value()),
-            "is_tenant_restricted": lambda n : setattr(self, 'is_tenant_restricted', n.get_bool_value()),
+            "appliedConditionalAccessPolicies": lambda n : setattr(self, 'applied_conditional_access_policies', n.get_collection_of_object_values(applied_conditional_access_policy.AppliedConditionalAccessPolicy)),
+            "appliedEventListeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(applied_authentication_event_listener.AppliedAuthenticationEventListener)),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "authenticationAppDeviceDetails": lambda n : setattr(self, 'authentication_app_device_details', n.get_object_value(authentication_app_device_details.AuthenticationAppDeviceDetails)),
+            "authenticationAppPolicyEvaluationDetails": lambda n : setattr(self, 'authentication_app_policy_evaluation_details', n.get_collection_of_object_values(authentication_app_policy_details.AuthenticationAppPolicyDetails)),
+            "authenticationContextClassReferences": lambda n : setattr(self, 'authentication_context_class_references', n.get_collection_of_object_values(authentication_context.AuthenticationContext)),
+            "authenticationDetails": lambda n : setattr(self, 'authentication_details', n.get_collection_of_object_values(authentication_detail.AuthenticationDetail)),
+            "authenticationMethodsUsed": lambda n : setattr(self, 'authentication_methods_used', n.get_collection_of_primitive_values(str)),
+            "authenticationProcessingDetails": lambda n : setattr(self, 'authentication_processing_details', n.get_collection_of_object_values(key_value.KeyValue)),
+            "authenticationProtocol": lambda n : setattr(self, 'authentication_protocol', n.get_enum_value(protocol_type.ProtocolType)),
+            "authenticationRequirement": lambda n : setattr(self, 'authentication_requirement', n.get_str_value()),
+            "authenticationRequirementPolicies": lambda n : setattr(self, 'authentication_requirement_policies', n.get_collection_of_object_values(authentication_requirement_policy.AuthenticationRequirementPolicy)),
+            "autonomousSystemNumber": lambda n : setattr(self, 'autonomous_system_number', n.get_int_value()),
+            "azureResourceId": lambda n : setattr(self, 'azure_resource_id', n.get_str_value()),
+            "clientAppUsed": lambda n : setattr(self, 'client_app_used', n.get_str_value()),
+            "clientCredentialType": lambda n : setattr(self, 'client_credential_type', n.get_enum_value(client_credential_type.ClientCredentialType)),
+            "conditionalAccessStatus": lambda n : setattr(self, 'conditional_access_status', n.get_enum_value(conditional_access_status.ConditionalAccessStatus)),
+            "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "crossTenantAccessType": lambda n : setattr(self, 'cross_tenant_access_type', n.get_enum_value(sign_in_access_type.SignInAccessType)),
+            "deviceDetail": lambda n : setattr(self, 'device_detail', n.get_object_value(device_detail.DeviceDetail)),
+            "federatedCredentialId": lambda n : setattr(self, 'federated_credential_id', n.get_str_value()),
+            "flaggedForReview": lambda n : setattr(self, 'flagged_for_review', n.get_bool_value()),
+            "homeTenantId": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
+            "homeTenantName": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
+            "incomingTokenType": lambda n : setattr(self, 'incoming_token_type', n.get_enum_value(incoming_token_type.IncomingTokenType)),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "ipAddressFromResourceProvider": lambda n : setattr(self, 'ip_address_from_resource_provider', n.get_str_value()),
+            "isInteractive": lambda n : setattr(self, 'is_interactive', n.get_bool_value()),
+            "isTenantRestricted": lambda n : setattr(self, 'is_tenant_restricted', n.get_bool_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(sign_in_location.SignInLocation)),
-            "mfa_detail": lambda n : setattr(self, 'mfa_detail', n.get_object_value(mfa_detail.MfaDetail)),
-            "network_location_details": lambda n : setattr(self, 'network_location_details', n.get_collection_of_object_values(network_location_detail.NetworkLocationDetail)),
-            "original_request_id": lambda n : setattr(self, 'original_request_id', n.get_str_value()),
-            "private_link_details": lambda n : setattr(self, 'private_link_details', n.get_object_value(private_link_details.PrivateLinkDetails)),
-            "processing_time_in_milliseconds": lambda n : setattr(self, 'processing_time_in_milliseconds', n.get_int_value()),
-            "resource_display_name": lambda n : setattr(self, 'resource_display_name', n.get_str_value()),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
-            "resource_service_principal_id": lambda n : setattr(self, 'resource_service_principal_id', n.get_str_value()),
-            "resource_tenant_id": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
-            "risk_detail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(risk_detail.RiskDetail)),
-            "risk_event_types_v2": lambda n : setattr(self, 'risk_event_types_v2', n.get_collection_of_primitive_values(str)),
-            "risk_level_aggregated": lambda n : setattr(self, 'risk_level_aggregated', n.get_enum_value(risk_level.RiskLevel)),
-            "risk_level_during_sign_in": lambda n : setattr(self, 'risk_level_during_sign_in', n.get_enum_value(risk_level.RiskLevel)),
-            "risk_state": lambda n : setattr(self, 'risk_state', n.get_enum_value(risk_state.RiskState)),
-            "service_principal_credential_key_id": lambda n : setattr(self, 'service_principal_credential_key_id', n.get_str_value()),
-            "service_principal_credential_thumbprint": lambda n : setattr(self, 'service_principal_credential_thumbprint', n.get_str_value()),
-            "service_principal_id": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
-            "service_principal_name": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
-            "session_lifetime_policies": lambda n : setattr(self, 'session_lifetime_policies', n.get_collection_of_object_values(session_lifetime_policy.SessionLifetimePolicy)),
-            "sign_in_event_types": lambda n : setattr(self, 'sign_in_event_types', n.get_collection_of_primitive_values(str)),
-            "sign_in_identifier": lambda n : setattr(self, 'sign_in_identifier', n.get_str_value()),
-            "sign_in_identifier_type": lambda n : setattr(self, 'sign_in_identifier_type', n.get_enum_value(sign_in_identifier_type.SignInIdentifierType)),
+            "mfaDetail": lambda n : setattr(self, 'mfa_detail', n.get_object_value(mfa_detail.MfaDetail)),
+            "networkLocationDetails": lambda n : setattr(self, 'network_location_details', n.get_collection_of_object_values(network_location_detail.NetworkLocationDetail)),
+            "originalRequestId": lambda n : setattr(self, 'original_request_id', n.get_str_value()),
+            "privateLinkDetails": lambda n : setattr(self, 'private_link_details', n.get_object_value(private_link_details.PrivateLinkDetails)),
+            "processingTimeInMilliseconds": lambda n : setattr(self, 'processing_time_in_milliseconds', n.get_int_value()),
+            "resourceDisplayName": lambda n : setattr(self, 'resource_display_name', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "resourceServicePrincipalId": lambda n : setattr(self, 'resource_service_principal_id', n.get_str_value()),
+            "resourceTenantId": lambda n : setattr(self, 'resource_tenant_id', n.get_str_value()),
+            "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(risk_detail.RiskDetail)),
+            "riskEventTypes_v2": lambda n : setattr(self, 'risk_event_types_v2', n.get_collection_of_primitive_values(str)),
+            "riskLevelAggregated": lambda n : setattr(self, 'risk_level_aggregated', n.get_enum_value(risk_level.RiskLevel)),
+            "riskLevelDuringSignIn": lambda n : setattr(self, 'risk_level_during_sign_in', n.get_enum_value(risk_level.RiskLevel)),
+            "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(risk_state.RiskState)),
+            "servicePrincipalCredentialKeyId": lambda n : setattr(self, 'service_principal_credential_key_id', n.get_str_value()),
+            "servicePrincipalCredentialThumbprint": lambda n : setattr(self, 'service_principal_credential_thumbprint', n.get_str_value()),
+            "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
+            "servicePrincipalName": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
+            "sessionLifetimePolicies": lambda n : setattr(self, 'session_lifetime_policies', n.get_collection_of_object_values(session_lifetime_policy.SessionLifetimePolicy)),
+            "signInEventTypes": lambda n : setattr(self, 'sign_in_event_types', n.get_collection_of_primitive_values(str)),
+            "signInIdentifier": lambda n : setattr(self, 'sign_in_identifier', n.get_str_value()),
+            "signInIdentifierType": lambda n : setattr(self, 'sign_in_identifier_type', n.get_enum_value(sign_in_identifier_type.SignInIdentifierType)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(sign_in_status.SignInStatus)),
-            "token_issuer_name": lambda n : setattr(self, 'token_issuer_name', n.get_str_value()),
-            "token_issuer_type": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(token_issuer_type.TokenIssuerType)),
-            "unique_token_identifier": lambda n : setattr(self, 'unique_token_identifier', n.get_str_value()),
-            "user_agent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "user_type": lambda n : setattr(self, 'user_type', n.get_enum_value(sign_in_user_type.SignInUserType)),
+            "tokenIssuerName": lambda n : setattr(self, 'token_issuer_name', n.get_str_value()),
+            "tokenIssuerType": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(token_issuer_type.TokenIssuerType)),
+            "uniqueTokenIdentifier": lambda n : setattr(self, 'unique_token_identifier', n.get_str_value()),
+            "userAgent": lambda n : setattr(self, 'user_agent', n.get_str_value()),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(sign_in_user_type.SignInUserType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -674,7 +674,7 @@ class SignIn(entity.Entity):
         """
         Sets the homeTenantId property value. The tenant identifier of the user initiating the sign in. Not applicable in Managed Identity or service principal sign ins.
         Args:
-            value: Value to set for the homeTenantId property.
+            value: Value to set for the home_tenant_id property.
         """
         self._home_tenant_id = value
     
@@ -691,7 +691,7 @@ class SignIn(entity.Entity):
         """
         Sets the homeTenantName property value. For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Azure AD to show the tenant content.
         Args:
-            value: Value to set for the homeTenantName property.
+            value: Value to set for the home_tenant_name property.
         """
         self._home_tenant_name = value
     
@@ -708,7 +708,7 @@ class SignIn(entity.Entity):
         """
         Sets the incomingTokenType property value. Indicates the token types that were presented to Azure AD to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Azure AD may have also used token types not listed in this Enum type to authenticate the actor. Do not infer the lack of a token if it is not one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
         Args:
-            value: Value to set for the incomingTokenType property.
+            value: Value to set for the incoming_token_type property.
         """
         self._incoming_token_type = value
     
@@ -725,7 +725,7 @@ class SignIn(entity.Entity):
         """
         Sets the ipAddress property value. The IP address of the client from where the sign-in occurred. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -742,7 +742,7 @@ class SignIn(entity.Entity):
         """
         Sets the ipAddressFromResourceProvider property value. The IP address a user used to reach a resource provider, used to determine Conditional Access compliance for some policies. For example, when a user interacts with Exchange Online, the IP address Exchange receives from the user may be recorded here. This value is often null.
         Args:
-            value: Value to set for the ipAddressFromResourceProvider property.
+            value: Value to set for the ip_address_from_resource_provider property.
         """
         self._ip_address_from_resource_provider = value
     
@@ -759,7 +759,7 @@ class SignIn(entity.Entity):
         """
         Sets the isInteractive property value. Indicates whether a user sign in is interactive. In interactive sign in, the user provides an authentication factor to Azure AD. These factors include passwords, responses to MFA challenges, biometric factors, or QR codes that a user provides to Azure AD or an associated app. In non-interactive sign in, the user doesn't provide an authentication factor. Instead, the client app uses a token or code to authenticate or access a resource on behalf of a user. Non-interactive sign ins are commonly used for a client to sign in on a user's behalf in a process transparent to the user.
         Args:
-            value: Value to set for the isInteractive property.
+            value: Value to set for the is_interactive property.
         """
         self._is_interactive = value
     
@@ -776,7 +776,7 @@ class SignIn(entity.Entity):
         """
         Sets the isTenantRestricted property value. Shows whether the sign in event was subject to an Azure AD tenant restriction policy.
         Args:
-            value: Value to set for the isTenantRestricted property.
+            value: Value to set for the is_tenant_restricted property.
         """
         self._is_tenant_restricted = value
     
@@ -810,7 +810,7 @@ class SignIn(entity.Entity):
         """
         Sets the mfaDetail property value. The mfaDetail property
         Args:
-            value: Value to set for the mfaDetail property.
+            value: Value to set for the mfa_detail property.
         """
         self._mfa_detail = value
     
@@ -827,7 +827,7 @@ class SignIn(entity.Entity):
         """
         Sets the networkLocationDetails property value. The network location details including the type of network used and its names.
         Args:
-            value: Value to set for the networkLocationDetails property.
+            value: Value to set for the network_location_details property.
         """
         self._network_location_details = value
     
@@ -844,7 +844,7 @@ class SignIn(entity.Entity):
         """
         Sets the originalRequestId property value. The request identifier of the first request in the authentication sequence. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the originalRequestId property.
+            value: Value to set for the original_request_id property.
         """
         self._original_request_id = value
     
@@ -861,7 +861,7 @@ class SignIn(entity.Entity):
         """
         Sets the privateLinkDetails property value. Contains information about the Azure AD Private Link policy that is associated with the sign in event.
         Args:
-            value: Value to set for the privateLinkDetails property.
+            value: Value to set for the private_link_details property.
         """
         self._private_link_details = value
     
@@ -878,7 +878,7 @@ class SignIn(entity.Entity):
         """
         Sets the processingTimeInMilliseconds property value. The request processing time in milliseconds in AD STS.
         Args:
-            value: Value to set for the processingTimeInMilliseconds property.
+            value: Value to set for the processing_time_in_milliseconds property.
         """
         self._processing_time_in_milliseconds = value
     
@@ -895,7 +895,7 @@ class SignIn(entity.Entity):
         """
         Sets the resourceDisplayName property value. The name of the resource that the user signed in to. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the resourceDisplayName property.
+            value: Value to set for the resource_display_name property.
         """
         self._resource_display_name = value
     
@@ -912,7 +912,7 @@ class SignIn(entity.Entity):
         """
         Sets the resourceId property value. The identifier of the resource that the user signed in to. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     
@@ -929,7 +929,7 @@ class SignIn(entity.Entity):
         """
         Sets the resourceServicePrincipalId property value. The identifier of the service principal representing the target resource in the sign-in event.
         Args:
-            value: Value to set for the resourceServicePrincipalId property.
+            value: Value to set for the resource_service_principal_id property.
         """
         self._resource_service_principal_id = value
     
@@ -946,7 +946,7 @@ class SignIn(entity.Entity):
         """
         Sets the resourceTenantId property value. The tenant identifier of the resource referenced in the sign in.
         Args:
-            value: Value to set for the resourceTenantId property.
+            value: Value to set for the resource_tenant_id property.
         """
         self._resource_tenant_id = value
     
@@ -963,7 +963,7 @@ class SignIn(entity.Entity):
         """
         Sets the riskDetail property value. The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
         Args:
-            value: Value to set for the riskDetail property.
+            value: Value to set for the risk_detail property.
         """
         self._risk_detail = value
     
@@ -980,7 +980,7 @@ class SignIn(entity.Entity):
         """
         Sets the riskEventTypes_v2 property value. The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the riskEventTypes_v2 property.
+            value: Value to set for the risk_event_types_v2 property.
         """
         self._risk_event_types_v2 = value
     
@@ -997,7 +997,7 @@ class SignIn(entity.Entity):
         """
         Sets the riskLevelAggregated property value. The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
         Args:
-            value: Value to set for the riskLevelAggregated property.
+            value: Value to set for the risk_level_aggregated property.
         """
         self._risk_level_aggregated = value
     
@@ -1014,7 +1014,7 @@ class SignIn(entity.Entity):
         """
         Sets the riskLevelDuringSignIn property value. The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
         Args:
-            value: Value to set for the riskLevelDuringSignIn property.
+            value: Value to set for the risk_level_during_sign_in property.
         """
         self._risk_level_during_sign_in = value
     
@@ -1031,7 +1031,7 @@ class SignIn(entity.Entity):
         """
         Sets the riskState property value. The risk state of a risky user, sign-in, or a risk event. Possible values: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, or unknownFutureValue. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the riskState property.
+            value: Value to set for the risk_state property.
         """
         self._risk_state = value
     
@@ -1044,10 +1044,10 @@ class SignIn(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_str_value("appDisplayName", self.app_display_name)
-        writer.write_str_value("appId", self.app_id)
         writer.write_collection_of_object_values("appliedConditionalAccessPolicies", self.applied_conditional_access_policies)
         writer.write_collection_of_object_values("appliedEventListeners", self.applied_event_listeners)
+        writer.write_str_value("appDisplayName", self.app_display_name)
+        writer.write_str_value("appId", self.app_id)
         writer.write_object_value("authenticationAppDeviceDetails", self.authentication_app_device_details)
         writer.write_collection_of_object_values("authenticationAppPolicyEvaluationDetails", self.authentication_app_policy_evaluation_details)
         writer.write_collection_of_object_values("authenticationContextClassReferences", self.authentication_context_class_references)
@@ -1121,7 +1121,7 @@ class SignIn(entity.Entity):
         """
         Sets the servicePrincipalCredentialKeyId property value. The unique identifier of the key credential used by the service principal to authenticate.
         Args:
-            value: Value to set for the servicePrincipalCredentialKeyId property.
+            value: Value to set for the service_principal_credential_key_id property.
         """
         self._service_principal_credential_key_id = value
     
@@ -1138,7 +1138,7 @@ class SignIn(entity.Entity):
         """
         Sets the servicePrincipalCredentialThumbprint property value. The certificate thumbprint of the certificate used by the service principal to authenticate.
         Args:
-            value: Value to set for the servicePrincipalCredentialThumbprint property.
+            value: Value to set for the service_principal_credential_thumbprint property.
         """
         self._service_principal_credential_thumbprint = value
     
@@ -1155,7 +1155,7 @@ class SignIn(entity.Entity):
         """
         Sets the servicePrincipalId property value. The application identifier used for sign-in. This field is populated when you are signing in using an application. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the servicePrincipalId property.
+            value: Value to set for the service_principal_id property.
         """
         self._service_principal_id = value
     
@@ -1172,7 +1172,7 @@ class SignIn(entity.Entity):
         """
         Sets the servicePrincipalName property value. The application name used for sign-in. This field is populated when you are signing in using an application. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the servicePrincipalName property.
+            value: Value to set for the service_principal_name property.
         """
         self._service_principal_name = value
     
@@ -1189,7 +1189,7 @@ class SignIn(entity.Entity):
         """
         Sets the sessionLifetimePolicies property value. Any conditional access session management policies that were applied during the sign-in event.
         Args:
-            value: Value to set for the sessionLifetimePolicies property.
+            value: Value to set for the session_lifetime_policies property.
         """
         self._session_lifetime_policies = value
     
@@ -1206,7 +1206,7 @@ class SignIn(entity.Entity):
         """
         Sets the signInEventTypes property value. Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue. Supports $filter (eq, ne).
         Args:
-            value: Value to set for the signInEventTypes property.
+            value: Value to set for the sign_in_event_types property.
         """
         self._sign_in_event_types = value
     
@@ -1223,7 +1223,7 @@ class SignIn(entity.Entity):
         """
         Sets the signInIdentifier property value. The identification that the user provided to sign in. It may be the userPrincipalName but it's also populated when a user signs in using other identifiers.
         Args:
-            value: Value to set for the signInIdentifier property.
+            value: Value to set for the sign_in_identifier property.
         """
         self._sign_in_identifier = value
     
@@ -1240,7 +1240,7 @@ class SignIn(entity.Entity):
         """
         Sets the signInIdentifierType property value. The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
         Args:
-            value: Value to set for the signInIdentifierType property.
+            value: Value to set for the sign_in_identifier_type property.
         """
         self._sign_in_identifier_type = value
     
@@ -1274,7 +1274,7 @@ class SignIn(entity.Entity):
         """
         Sets the tokenIssuerName property value. The name of the identity provider. For example, sts.microsoft.com. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the tokenIssuerName property.
+            value: Value to set for the token_issuer_name property.
         """
         self._token_issuer_name = value
     
@@ -1291,7 +1291,7 @@ class SignIn(entity.Entity):
         """
         Sets the tokenIssuerType property value. The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
         Args:
-            value: Value to set for the tokenIssuerType property.
+            value: Value to set for the token_issuer_type property.
         """
         self._token_issuer_type = value
     
@@ -1308,7 +1308,7 @@ class SignIn(entity.Entity):
         """
         Sets the uniqueTokenIdentifier property value. A unique base64 encoded request identifier used to track tokens issued by Azure AD as they are redeemed at resource providers.
         Args:
-            value: Value to set for the uniqueTokenIdentifier property.
+            value: Value to set for the unique_token_identifier property.
         """
         self._unique_token_identifier = value
     
@@ -1325,7 +1325,7 @@ class SignIn(entity.Entity):
         """
         Sets the userAgent property value. The user agent information related to sign-in. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the userAgent property.
+            value: Value to set for the user_agent property.
         """
         self._user_agent = value
     
@@ -1342,7 +1342,7 @@ class SignIn(entity.Entity):
         """
         Sets the userDisplayName property value. The display name of the user. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -1359,7 +1359,7 @@ class SignIn(entity.Entity):
         """
         Sets the userId property value. The identifier of the user. Supports $filter (eq operator only).
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -1376,7 +1376,7 @@ class SignIn(entity.Entity):
         """
         Sets the userPrincipalName property value. The UPN of the user. Supports $filter (eq and startsWith operators only).
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -1393,7 +1393,7 @@ class SignIn(entity.Entity):
         """
         Sets the userType property value. Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue.
         Args:
-            value: Value to set for the userType property.
+            value: Value to set for the user_type property.
         """
         self._user_type = value
     

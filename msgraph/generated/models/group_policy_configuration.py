@@ -67,7 +67,7 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -96,7 +96,7 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         Sets the definitionValues property value. The list of enabled or disabled group policy definition values for the configuration.
         Args:
-            value: Value to set for the definitionValues property.
+            value: Value to set for the definition_values property.
         """
         self._definition_values = value
     
@@ -130,7 +130,7 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         Sets the displayName property value. User provided name for the resource object.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -141,13 +141,13 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(group_policy_configuration_assignment.GroupPolicyConfigurationAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "definition_values": lambda n : setattr(self, 'definition_values', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "definitionValues": lambda n : setattr(self, 'definition_values', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "policy_configuration_ingestion_type": lambda n : setattr(self, 'policy_configuration_ingestion_type', n.get_enum_value(group_policy_configuration_ingestion_type.GroupPolicyConfigurationIngestionType)),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "policyConfigurationIngestionType": lambda n : setattr(self, 'policy_configuration_ingestion_type', n.get_enum_value(group_policy_configuration_ingestion_type.GroupPolicyConfigurationIngestionType)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -166,7 +166,7 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -183,7 +183,7 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         Sets the policyConfigurationIngestionType property value. Group Policy Configuration Ingestion Type
         Args:
-            value: Value to set for the policyConfigurationIngestionType property.
+            value: Value to set for the policy_configuration_ingestion_type property.
         """
         self._policy_configuration_ingestion_type = value
     
@@ -200,7 +200,7 @@ class GroupPolicyConfiguration(entity.Entity):
         """
         Sets the roleScopeTagIds property value. The list of scope tags for the configuration.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

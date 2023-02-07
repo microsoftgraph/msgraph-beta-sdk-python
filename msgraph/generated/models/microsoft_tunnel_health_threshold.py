@@ -50,7 +50,7 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         """
         Sets the defaultHealthyThreshold property value. The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized. Read-only.
         Args:
-            value: Value to set for the defaultHealthyThreshold property.
+            value: Value to set for the default_healthy_threshold property.
         """
         self._default_healthy_threshold = value
     
@@ -67,7 +67,7 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         """
         Sets the defaultUnhealthyThreshold property value. The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency unhealthy > 20ms, health metrics can be customized. Read-only.
         Args:
-            value: Value to set for the defaultUnhealthyThreshold property.
+            value: Value to set for the default_unhealthy_threshold property.
         """
         self._default_unhealthy_threshold = value
     
@@ -77,10 +77,10 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_healthy_threshold": lambda n : setattr(self, 'default_healthy_threshold', n.get_int_value()),
-            "default_unhealthy_threshold": lambda n : setattr(self, 'default_unhealthy_threshold', n.get_int_value()),
-            "healthy_threshold": lambda n : setattr(self, 'healthy_threshold', n.get_int_value()),
-            "unhealthy_threshold": lambda n : setattr(self, 'unhealthy_threshold', n.get_int_value()),
+            "defaultHealthyThreshold": lambda n : setattr(self, 'default_healthy_threshold', n.get_int_value()),
+            "defaultUnhealthyThreshold": lambda n : setattr(self, 'default_unhealthy_threshold', n.get_int_value()),
+            "healthyThreshold": lambda n : setattr(self, 'healthy_threshold', n.get_int_value()),
+            "unhealthyThreshold": lambda n : setattr(self, 'unhealthy_threshold', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -99,7 +99,7 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         """
         Sets the healthyThreshold property value. The threshold for being healthy based on default health status metrics: CPU usage healthy < 50%, Memory usage healthy < 50%, Disk space healthy > 5GB, Latency healthy < 10ms, health metrics can be customized.
         Args:
-            value: Value to set for the healthyThreshold property.
+            value: Value to set for the healthy_threshold property.
         """
         self._healthy_threshold = value
     
@@ -130,7 +130,7 @@ class MicrosoftTunnelHealthThreshold(entity.Entity):
         """
         Sets the unhealthyThreshold property value. The threshold for being unhealthy based on default health status metrics: CPU usage unhealthy > 75%, Memory usage unhealthy > 75%, Disk space < 3GB, Latency Unhealthy > 20ms, health metrics can be customized.
         Args:
-            value: Value to set for the unhealthyThreshold property.
+            value: Value to set for the unhealthy_threshold property.
         """
         self._unhealthy_threshold = value
     

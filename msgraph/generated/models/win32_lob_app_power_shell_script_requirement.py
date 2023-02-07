@@ -20,10 +20,10 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         self._display_name: Optional[str] = None
         # A value indicating whether signature check is enforced
         self._enforce_signature_check: Optional[bool] = None
-        # A value indicating whether this script should run as 32-bit
-        self._run_as32_bit: Optional[bool] = None
         # Indicates the type of execution context the app runs in.
         self._run_as_account: Optional[run_as_account_type.RunAsAccountType] = None
+        # A value indicating whether this script should run as 32-bit
+        self._run_as32_bit: Optional[bool] = None
         # The base64 encoded script content to detect Win32 Line of Business (LoB) app
         self._script_content: Optional[str] = None
     
@@ -52,7 +52,7 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         """
         Sets the detectionType property value. Contains all supported Powershell Script output detection type.
         Args:
-            value: Value to set for the detectionType property.
+            value: Value to set for the detection_type property.
         """
         self._detection_type = value
     
@@ -69,7 +69,7 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         """
         Sets the displayName property value. The unique display name for this rule
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -86,7 +86,7 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         """
         Sets the enforceSignatureCheck property value. A value indicating whether signature check is enforced
         Args:
-            value: Value to set for the enforceSignatureCheck property.
+            value: Value to set for the enforce_signature_check property.
         """
         self._enforce_signature_check = value
     
@@ -96,33 +96,16 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "detection_type": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_power_shell_script_detection_type.Win32LobAppPowerShellScriptDetectionType)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enforce_signature_check": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
-            "run_as32_bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
-            "run_as_account": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
-            "script_content": lambda n : setattr(self, 'script_content', n.get_str_value()),
+            "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_power_shell_script_detection_type.Win32LobAppPowerShellScriptDetectionType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
+            "runAs32Bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
+            "runAsAccount": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
+            "scriptContent": lambda n : setattr(self, 'script_content', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def run_as32_bit(self,) -> Optional[bool]:
-        """
-        Gets the runAs32Bit property value. A value indicating whether this script should run as 32-bit
-        Returns: Optional[bool]
-        """
-        return self._run_as32_bit
-    
-    @run_as32_bit.setter
-    def run_as32_bit(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the runAs32Bit property value. A value indicating whether this script should run as 32-bit
-        Args:
-            value: Value to set for the runAs32Bit property.
-        """
-        self._run_as32_bit = value
     
     @property
     def run_as_account(self,) -> Optional[run_as_account_type.RunAsAccountType]:
@@ -137,9 +120,26 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         """
         Sets the runAsAccount property value. Indicates the type of execution context the app runs in.
         Args:
-            value: Value to set for the runAsAccount property.
+            value: Value to set for the run_as_account property.
         """
         self._run_as_account = value
+    
+    @property
+    def run_as32_bit(self,) -> Optional[bool]:
+        """
+        Gets the runAs32Bit property value. A value indicating whether this script should run as 32-bit
+        Returns: Optional[bool]
+        """
+        return self._run_as32_bit
+    
+    @run_as32_bit.setter
+    def run_as32_bit(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the runAs32Bit property value. A value indicating whether this script should run as 32-bit
+        Args:
+            value: Value to set for the run_as32_bit property.
+        """
+        self._run_as32_bit = value
     
     @property
     def script_content(self,) -> Optional[str]:
@@ -154,7 +154,7 @@ class Win32LobAppPowerShellScriptRequirement(win32_lob_app_requirement.Win32LobA
         """
         Sets the scriptContent property value. The base64 encoded script content to detect Win32 Line of Business (LoB) app
         Args:
-            value: Value to set for the scriptContent property.
+            value: Value to set for the script_content property.
         """
         self._script_content = value
     

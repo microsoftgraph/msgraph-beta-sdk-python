@@ -19,7 +19,7 @@ class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item
         """
         Sets the className property value. Class name of application
         Args:
-            value: Value to set for the className property.
+            value: Value to set for the class_name property.
         """
         self._class_name = value
     
@@ -52,7 +52,7 @@ class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "class_name": lambda n : setattr(self, 'class_name', n.get_str_value()),
+            "className": lambda n : setattr(self, 'class_name', n.get_str_value()),
             "package": lambda n : setattr(self, 'package', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

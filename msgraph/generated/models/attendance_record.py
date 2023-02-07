@@ -21,7 +21,7 @@ class AttendanceRecord(entity.Entity):
         """
         Sets the attendanceIntervals property value. List of time periods between joining and leaving a meeting.
         Args:
-            value: Value to set for the attendanceIntervals property.
+            value: Value to set for the attendance_intervals property.
         """
         self._attendance_intervals = value
     
@@ -70,7 +70,7 @@ class AttendanceRecord(entity.Entity):
         """
         Sets the emailAddress property value. Email address of the user associated with this atttendance record.
         Args:
-            value: Value to set for the emailAddress property.
+            value: Value to set for the email_address property.
         """
         self._email_address = value
     
@@ -80,12 +80,12 @@ class AttendanceRecord(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attendance_intervals": lambda n : setattr(self, 'attendance_intervals', n.get_collection_of_object_values(attendance_interval.AttendanceInterval)),
-            "email_address": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "attendanceIntervals": lambda n : setattr(self, 'attendance_intervals', n.get_collection_of_object_values(attendance_interval.AttendanceInterval)),
+            "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(identity.Identity)),
-            "registrant_id": lambda n : setattr(self, 'registrant_id', n.get_str_value()),
+            "registrantId": lambda n : setattr(self, 'registrant_id', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
-            "total_attendance_in_seconds": lambda n : setattr(self, 'total_attendance_in_seconds', n.get_int_value()),
+            "totalAttendanceInSeconds": lambda n : setattr(self, 'total_attendance_in_seconds', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -121,7 +121,7 @@ class AttendanceRecord(entity.Entity):
         """
         Sets the registrantId property value. Unique identifier of a meetingRegistrant. Presents when the participant has registered for the meeting.
         Args:
-            value: Value to set for the registrantId property.
+            value: Value to set for the registrant_id property.
         """
         self._registrant_id = value
     
@@ -171,7 +171,7 @@ class AttendanceRecord(entity.Entity):
         """
         Sets the totalAttendanceInSeconds property value. Total duration of the attendances in seconds.
         Args:
-            value: Value to set for the totalAttendanceInSeconds property.
+            value: Value to set for the total_attendance_in_seconds property.
         """
         self._total_attendance_in_seconds = value
     

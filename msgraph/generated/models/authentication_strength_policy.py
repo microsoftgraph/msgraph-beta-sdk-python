@@ -24,7 +24,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the allowedCombinations property value. A collection of authentication method modes that are required be used to satify this authentication strength.
         Args:
-            value: Value to set for the allowedCombinations property.
+            value: Value to set for the allowed_combinations property.
         """
         self._allowed_combinations = value
     
@@ -41,7 +41,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the combinationConfigurations property value. Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
         Args:
-            value: Value to set for the combinationConfigurations property.
+            value: Value to set for the combination_configurations property.
         """
         self._combination_configurations = value
     
@@ -82,7 +82,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the createdDateTime property value. The datetime when this policy was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -128,7 +128,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the displayName property value. The human-readable display name of this policy. Supports $filter (eq, ne, not , and in).
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -138,14 +138,14 @@ class AuthenticationStrengthPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_combinations": lambda n : setattr(self, 'allowed_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
-            "combination_configurations": lambda n : setattr(self, 'combination_configurations', n.get_collection_of_object_values(authentication_combination_configuration.AuthenticationCombinationConfiguration)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "allowedCombinations": lambda n : setattr(self, 'allowed_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
+            "combinationConfigurations": lambda n : setattr(self, 'combination_configurations', n.get_collection_of_object_values(authentication_combination_configuration.AuthenticationCombinationConfiguration)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
-            "policy_type": lambda n : setattr(self, 'policy_type', n.get_enum_value(authentication_strength_policy_type.AuthenticationStrengthPolicyType)),
-            "requirements_satisfied": lambda n : setattr(self, 'requirements_satisfied', n.get_enum_value(authentication_strength_requirements.AuthenticationStrengthRequirements)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(authentication_strength_policy_type.AuthenticationStrengthPolicyType)),
+            "requirementsSatisfied": lambda n : setattr(self, 'requirements_satisfied', n.get_enum_value(authentication_strength_requirements.AuthenticationStrengthRequirements)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -164,7 +164,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the modifiedDateTime property value. The datetime when this policy was last modified.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -181,7 +181,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the policyType property value. The policyType property
         Args:
-            value: Value to set for the policyType property.
+            value: Value to set for the policy_type property.
         """
         self._policy_type = value
     
@@ -198,7 +198,7 @@ class AuthenticationStrengthPolicy(entity.Entity):
         """
         Sets the requirementsSatisfied property value. The requirementsSatisfied property
         Args:
-            value: Value to set for the requirementsSatisfied property.
+            value: Value to set for the requirements_satisfied property.
         """
         self._requirements_satisfied = value
     

@@ -59,9 +59,9 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "occurrence_date_time": lambda n : setattr(self, 'occurrence_date_time', n.get_datetime_value()),
+            "occurrenceDateTime": lambda n : setattr(self, 'occurrence_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "troubleshooting_error_details": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails)),
+            "troubleshootingErrorDetails": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails)),
         }
         return fields
     
@@ -78,7 +78,7 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, Parsable):
         """
         Sets the occurrenceDateTime property value. Time when the history item occurred.
         Args:
-            value: Value to set for the occurrenceDateTime property.
+            value: Value to set for the occurrence_date_time property.
         """
         self._occurrence_date_time = value
     
@@ -95,7 +95,7 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -125,7 +125,7 @@ class MobileAppTroubleshootingHistoryItem(AdditionalDataHolder, Parsable):
         """
         Sets the troubleshootingErrorDetails property value. Object containing detailed information about the error and its remediation.
         Args:
-            value: Value to set for the troubleshootingErrorDetails property.
+            value: Value to set for the troubleshooting_error_details property.
         """
         self._troubleshooting_error_details = value
     

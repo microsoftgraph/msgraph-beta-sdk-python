@@ -28,7 +28,7 @@ class DelegatedAdminRelationshipCustomerParticipant(AdditionalDataHolder, Parsab
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The display name of the customer tenant as set by Azure AD. Read only
+        # The display name of the customer tenant as set by Azure AD. Read-only
         self._display_name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -50,7 +50,7 @@ class DelegatedAdminRelationshipCustomerParticipant(AdditionalDataHolder, Parsab
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The display name of the customer tenant as set by Azure AD. Read only
+        Gets the displayName property value. The display name of the customer tenant as set by Azure AD. Read-only
         Returns: Optional[str]
         """
         return self._display_name
@@ -58,9 +58,9 @@ class DelegatedAdminRelationshipCustomerParticipant(AdditionalDataHolder, Parsab
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The display name of the customer tenant as set by Azure AD. Read only
+        Sets the displayName property value. The display name of the customer tenant as set by Azure AD. Read-only
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -70,9 +70,9 @@ class DelegatedAdminRelationshipCustomerParticipant(AdditionalDataHolder, Parsab
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class DelegatedAdminRelationshipCustomerParticipant(AdditionalDataHolder, Parsab
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class DelegatedAdminRelationshipCustomerParticipant(AdditionalDataHolder, Parsab
         """
         Sets the tenantId property value. The Azure AD-assigned tenant ID of the customer tenant.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

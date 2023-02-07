@@ -40,7 +40,7 @@ class EmailContentThreatSubmission(email_threat_submission.EmailThreatSubmission
         """
         Sets the fileContent property value. Base64 encoded file content.
         Args:
-            value: Value to set for the fileContent property.
+            value: Value to set for the file_content property.
         """
         self._file_content = value
     
@@ -50,7 +50,7 @@ class EmailContentThreatSubmission(email_threat_submission.EmailThreatSubmission
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_content": lambda n : setattr(self, 'file_content', n.get_str_value()),
+            "fileContent": lambda n : setattr(self, 'file_content', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

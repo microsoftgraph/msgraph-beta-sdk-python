@@ -12,14 +12,14 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 calendar = lazy_import('msgraph.generated.models.calendar')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-allowed_calendar_sharing_roles_with_user_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.allowed_calendar_sharing_roles_with_user.allowed_calendar_sharing_roles_with_user_request_builder')
 calendar_permissions_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.calendar_permissions.calendar_permissions_request_builder')
 calendar_permission_item_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.calendar_permissions.item.calendar_permission_item_request_builder')
 calendar_view_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.calendar_view.calendar_view_request_builder')
 event_item_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.calendar_view.item.event_item_request_builder')
 events_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.events.events_request_builder')
 event_item_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.events.item.event_item_request_builder')
-get_schedule_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.get_schedule.get_schedule_request_builder')
+microsoft_graph_allowed_calendar_sharing_roles_with_user_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.microsoft_graph_allowed_calendar_sharing_roles_with_user.microsoft_graph_allowed_calendar_sharing_roles_with_user_request_builder')
+microsoft_graph_get_schedule_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.microsoft_graph_get_schedule.microsoft_graph_get_schedule_request_builder')
 multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
 multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
 single_value_extended_properties_request_builder = lazy_import('msgraph.generated.users.item.calendar_groups.item.calendars.item.single_value_extended_properties.single_value_extended_properties_request_builder')
@@ -51,11 +51,11 @@ class CalendarItemRequestBuilder():
         return events_request_builder.EventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_schedule(self) -> get_schedule_request_builder.GetScheduleRequestBuilder:
+    def microsoft_graph_get_schedule(self) -> microsoft_graph_get_schedule_request_builder.MicrosoftGraphGetScheduleRequestBuilder:
         """
         Provides operations to call the getSchedule method.
         """
-        return get_schedule_request_builder.GetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_schedule_request_builder.MicrosoftGraphGetScheduleRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
@@ -70,17 +70,6 @@ class CalendarItemRequestBuilder():
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
         """
         return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def allowed_calendar_sharing_roles_with_user(self,user: Optional[str] = None) -> allowed_calendar_sharing_roles_with_user_request_builder.AllowedCalendarSharingRolesWithUserRequestBuilder:
-        """
-        Provides operations to call the allowedCalendarSharingRoles method.
-        Args:
-            User: Usage: User='{User}'
-        Returns: allowed_calendar_sharing_roles_with_user_request_builder.AllowedCalendarSharingRolesWithUserRequestBuilder
-        """
-        if user is None:
-            raise Exception("user cannot be undefined")
-        return allowed_calendar_sharing_roles_with_user_request_builder.AllowedCalendarSharingRolesWithUserRequestBuilder(self.request_adapter, self.path_parameters, User)
     
     def calendar_permissions_by_id(self,id: str) -> calendar_permission_item_request_builder.CalendarPermissionItemRequestBuilder:
         """
@@ -126,12 +115,11 @@ class CalendarItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CalendarItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CalendarItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property calendars for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -142,7 +130,7 @@ class CalendarItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def events_by_id(self,id: str) -> event_item_request_builder.EventItemRequestBuilder:
         """
@@ -157,12 +145,11 @@ class CalendarItemRequestBuilder():
         url_tpl_params["event%2Did"] = id
         return event_item_request_builder.EventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CalendarItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[calendar.Calendar]:
+    async def get(self,request_configuration: Optional[CalendarItemRequestBuilderGetRequestConfiguration] = None) -> Optional[calendar.Calendar]:
         """
         The calendars in the calendar group. Navigation property. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[calendar.Calendar]
         """
         request_info = self.to_get_request_information(
@@ -174,7 +161,18 @@ class CalendarItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, calendar.Calendar, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, calendar.Calendar, error_mapping)
+    
+    def microsoft_graph_allowed_calendar_sharing_roles_with_user(self,user: Optional[str] = None) -> microsoft_graph_allowed_calendar_sharing_roles_with_user_request_builder.MicrosoftGraphAllowedCalendarSharingRolesWithUserRequestBuilder:
+        """
+        Provides operations to call the allowedCalendarSharingRoles method.
+        Args:
+            User: Usage: User='{User}'
+        Returns: microsoft_graph_allowed_calendar_sharing_roles_with_user_request_builder.MicrosoftGraphAllowedCalendarSharingRolesWithUserRequestBuilder
+        """
+        if user is None:
+            raise Exception("user cannot be undefined")
+        return microsoft_graph_allowed_calendar_sharing_roles_with_user_request_builder.MicrosoftGraphAllowedCalendarSharingRolesWithUserRequestBuilder(self.request_adapter, self.path_parameters, User)
     
     def multi_value_extended_properties_by_id(self,id: str) -> multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder:
         """
@@ -189,13 +187,12 @@ class CalendarItemRequestBuilder():
         url_tpl_params["multiValueLegacyExtendedProperty%2Did"] = id
         return multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[calendar.Calendar] = None, request_configuration: Optional[CalendarItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[calendar.Calendar]:
+    async def patch(self,body: Optional[calendar.Calendar] = None, request_configuration: Optional[CalendarItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[calendar.Calendar]:
         """
         Update the navigation property calendars in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[calendar.Calendar]
         """
         if body is None:
@@ -209,7 +206,7 @@ class CalendarItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, calendar.Calendar, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, calendar.Calendar, error_mapping)
     
     def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
         """

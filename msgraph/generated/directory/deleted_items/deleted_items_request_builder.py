@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-application_request_builder = lazy_import('msgraph.generated.directory.deleted_items.application.application_request_builder')
 count_request_builder = lazy_import('msgraph.generated.directory.deleted_items.count.count_request_builder')
-get_by_ids_request_builder = lazy_import('msgraph.generated.directory.deleted_items.get_by_ids.get_by_ids_request_builder')
-get_user_owned_objects_request_builder = lazy_import('msgraph.generated.directory.deleted_items.get_user_owned_objects.get_user_owned_objects_request_builder')
-group_request_builder = lazy_import('msgraph.generated.directory.deleted_items.group.group_request_builder')
-user_request_builder = lazy_import('msgraph.generated.directory.deleted_items.user.user_request_builder')
-validate_properties_request_builder = lazy_import('msgraph.generated.directory.deleted_items.validate_properties.validate_properties_request_builder')
+microsoft_graph_application_request_builder = lazy_import('msgraph.generated.directory.deleted_items.microsoft_graph_application.microsoft_graph_application_request_builder')
+microsoft_graph_get_by_ids_request_builder = lazy_import('msgraph.generated.directory.deleted_items.microsoft_graph_get_by_ids.microsoft_graph_get_by_ids_request_builder')
+microsoft_graph_get_user_owned_objects_request_builder = lazy_import('msgraph.generated.directory.deleted_items.microsoft_graph_get_user_owned_objects.microsoft_graph_get_user_owned_objects_request_builder')
+microsoft_graph_group_request_builder = lazy_import('msgraph.generated.directory.deleted_items.microsoft_graph_group.microsoft_graph_group_request_builder')
+microsoft_graph_user_request_builder = lazy_import('msgraph.generated.directory.deleted_items.microsoft_graph_user.microsoft_graph_user_request_builder')
+microsoft_graph_validate_properties_request_builder = lazy_import('msgraph.generated.directory.deleted_items.microsoft_graph_validate_properties.microsoft_graph_validate_properties_request_builder')
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -26,13 +26,6 @@ class DeletedItemsRequestBuilder():
     Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
     """
     @property
-    def application(self) -> application_request_builder.ApplicationRequestBuilder:
-        """
-        Casts the previous resource to application.
-        """
-        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -40,39 +33,46 @@ class DeletedItemsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def microsoft_graph_application(self) -> microsoft_graph_application_request_builder.MicrosoftGraphApplicationRequestBuilder:
+        """
+        Casts the previous resource to application.
+        """
+        return microsoft_graph_application_request_builder.MicrosoftGraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_by_ids(self) -> microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def microsoft_graph_get_user_owned_objects(self) -> microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
+    def microsoft_graph_group(self) -> microsoft_graph_group_request_builder.MicrosoftGraphGroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
-        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_group_request_builder.MicrosoftGraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
+    def microsoft_graph_user(self) -> microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder:
         """
         Casts the previous resource to user.
         """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def microsoft_graph_validate_properties(self) -> microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -92,12 +92,11 @@ class DeletedItemsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeletedItemsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeletedItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Get deletedItems from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -109,15 +108,14 @@ class DeletedItemsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[DeletedItemsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def post(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[DeletedItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Create new navigation property to deletedItems for directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         if body is None:
@@ -131,7 +129,7 @@ class DeletedItemsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeletedItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

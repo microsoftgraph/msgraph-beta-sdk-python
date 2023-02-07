@@ -60,7 +60,7 @@ class SubmissionDetectedFile(AdditionalDataHolder, Parsable):
         """
         Sets the fileHash property value. The file hash.
         Args:
-            value: Value to set for the fileHash property.
+            value: Value to set for the file_hash property.
         """
         self._file_hash = value
     
@@ -77,7 +77,7 @@ class SubmissionDetectedFile(AdditionalDataHolder, Parsable):
         """
         Sets the fileName property value. The file name.
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -87,8 +87,8 @@ class SubmissionDetectedFile(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_hash": lambda n : setattr(self, 'file_hash', n.get_str_value()),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "fileHash": lambda n : setattr(self, 'file_hash', n.get_str_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -106,7 +106,7 @@ class SubmissionDetectedFile(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

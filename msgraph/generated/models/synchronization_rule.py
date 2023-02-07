@@ -89,11 +89,11 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(string_key_string_value_pair.StringKeyStringValuePair)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "object_mappings": lambda n : setattr(self, 'object_mappings', n.get_collection_of_object_values(object_mapping.ObjectMapping)),
+            "objectMappings": lambda n : setattr(self, 'object_mappings', n.get_collection_of_object_values(object_mapping.ObjectMapping)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "source_directory_name": lambda n : setattr(self, 'source_directory_name', n.get_str_value()),
-            "target_directory_name": lambda n : setattr(self, 'target_directory_name', n.get_str_value()),
+            "sourceDirectoryName": lambda n : setattr(self, 'source_directory_name', n.get_str_value()),
+            "targetDirectoryName": lambda n : setattr(self, 'target_directory_name', n.get_str_value()),
         }
         return fields
     
@@ -161,7 +161,7 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         """
         Sets the objectMappings property value. Collection of object mappings supported by the rule. Tells the synchronization engine which objects should be synchronized.
         Args:
-            value: Value to set for the objectMappings property.
+            value: Value to set for the object_mappings property.
         """
         self._object_mappings = value
     
@@ -178,7 +178,7 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -231,7 +231,7 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         """
         Sets the sourceDirectoryName property value. Name of the source directory. Must match one of the directory definitions in synchronizationSchema.
         Args:
-            value: Value to set for the sourceDirectoryName property.
+            value: Value to set for the source_directory_name property.
         """
         self._source_directory_name = value
     
@@ -248,7 +248,7 @@ class SynchronizationRule(AdditionalDataHolder, Parsable):
         """
         Sets the targetDirectoryName property value. Name of the target directory. Must match one of the directory definitions in synchronizationSchema.
         Args:
-            value: Value to set for the targetDirectoryName property.
+            value: Value to set for the target_directory_name property.
         """
         self._target_directory_name = value
     

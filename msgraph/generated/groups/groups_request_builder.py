@@ -11,11 +11,11 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.groups.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.groups.delta.delta_request_builder')
-evaluate_dynamic_membership_request_builder = lazy_import('msgraph.generated.groups.evaluate_dynamic_membership.evaluate_dynamic_membership_request_builder')
-get_by_ids_request_builder = lazy_import('msgraph.generated.groups.get_by_ids.get_by_ids_request_builder')
-get_user_owned_objects_request_builder = lazy_import('msgraph.generated.groups.get_user_owned_objects.get_user_owned_objects_request_builder')
-validate_properties_request_builder = lazy_import('msgraph.generated.groups.validate_properties.validate_properties_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.groups.microsoft_graph_delta.microsoft_graph_delta_request_builder')
+microsoft_graph_evaluate_dynamic_membership_request_builder = lazy_import('msgraph.generated.groups.microsoft_graph_evaluate_dynamic_membership.microsoft_graph_evaluate_dynamic_membership_request_builder')
+microsoft_graph_get_by_ids_request_builder = lazy_import('msgraph.generated.groups.microsoft_graph_get_by_ids.microsoft_graph_get_by_ids_request_builder')
+microsoft_graph_get_user_owned_objects_request_builder = lazy_import('msgraph.generated.groups.microsoft_graph_get_user_owned_objects.microsoft_graph_get_user_owned_objects_request_builder')
+microsoft_graph_validate_properties_request_builder = lazy_import('msgraph.generated.groups.microsoft_graph_validate_properties.microsoft_graph_validate_properties_request_builder')
 group = lazy_import('msgraph.generated.models.group')
 group_collection_response = lazy_import('msgraph.generated.models.group_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -32,32 +32,39 @@ class GroupsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_dynamic_membership(self) -> evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder:
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_evaluate_dynamic_membership(self) -> microsoft_graph_evaluate_dynamic_membership_request_builder.MicrosoftGraphEvaluateDynamicMembershipRequestBuilder:
         """
         Provides operations to call the evaluateDynamicMembership method.
         """
-        return evaluate_dynamic_membership_request_builder.EvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_evaluate_dynamic_membership_request_builder.MicrosoftGraphEvaluateDynamicMembershipRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def microsoft_graph_get_by_ids(self) -> microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def microsoft_graph_get_user_owned_objects(self) -> microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
+    def microsoft_graph_validate_properties(self) -> microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder:
         """
         Provides operations to call the validateProperties method.
         """
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -77,19 +84,11 @@ class GroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_collection_response.GroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[group_collection_response.GroupCollectionResponse]:
         """
         List all the groups available in an organization, excluding dynamic distribution groups. To retrieve dynamic distribution groups, use the Exchange admin center. This operation returns by default only a subset of the more commonly used properties for each group. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the group and specify the properties in a `$select` OData query option. The **hasMembersWithLicenseErrors** and **isArchived** properties are an exception and are not returned in the `$select` query.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_collection_response.GroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -101,15 +100,14 @@ class GroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_collection_response.GroupCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_collection_response.GroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[group.Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group.Group]:
+    async def post(self,body: Optional[group.Group] = None, request_configuration: Optional[GroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[group.Group]:
         """
         Create a new group as specified in the request body. You can create one of the following groups: This operation returns by default only a subset of the properties for each group. These default properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation and specify the properties in a `$select` OData query option. **Note**: To create a team, first create a group then add a team to it, see create team.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group.Group]
         """
         if body is None:
@@ -123,7 +121,7 @@ class GroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group.Group, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group.Group, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -51,7 +51,7 @@ class AddWatermarkAction(information_protection_action.InformationProtectionActi
         """
         Sets the fontColor property value. Color of the font to use for the watermark.
         Args:
-            value: Value to set for the fontColor property.
+            value: Value to set for the font_color property.
         """
         self._font_color = value
     
@@ -68,7 +68,7 @@ class AddWatermarkAction(information_protection_action.InformationProtectionActi
         """
         Sets the fontName property value. Name of the font to use for the watermark.
         Args:
-            value: Value to set for the fontName property.
+            value: Value to set for the font_name property.
         """
         self._font_name = value
     
@@ -85,7 +85,7 @@ class AddWatermarkAction(information_protection_action.InformationProtectionActi
         """
         Sets the fontSize property value. Font size to use for the watermark.
         Args:
-            value: Value to set for the fontSize property.
+            value: Value to set for the font_size property.
         """
         self._font_size = value
     
@@ -95,12 +95,12 @@ class AddWatermarkAction(information_protection_action.InformationProtectionActi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "font_color": lambda n : setattr(self, 'font_color', n.get_str_value()),
-            "font_name": lambda n : setattr(self, 'font_name', n.get_str_value()),
-            "font_size": lambda n : setattr(self, 'font_size', n.get_int_value()),
+            "fontColor": lambda n : setattr(self, 'font_color', n.get_str_value()),
+            "fontName": lambda n : setattr(self, 'font_name', n.get_str_value()),
+            "fontSize": lambda n : setattr(self, 'font_size', n.get_int_value()),
             "layout": lambda n : setattr(self, 'layout', n.get_enum_value(watermark_layout.WatermarkLayout)),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
-            "ui_element_name": lambda n : setattr(self, 'ui_element_name', n.get_str_value()),
+            "uiElementName": lambda n : setattr(self, 'ui_element_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -169,7 +169,7 @@ class AddWatermarkAction(information_protection_action.InformationProtectionActi
         """
         Sets the uiElementName property value. The name of the UI element where the watermark should be placed.
         Args:
-            value: Value to set for the uiElementName property.
+            value: Value to set for the ui_element_name property.
         """
         self._ui_element_name = value
     

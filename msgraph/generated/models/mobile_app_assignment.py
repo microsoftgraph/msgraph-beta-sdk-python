@@ -52,7 +52,7 @@ class MobileAppAssignment(entity.Entity):
             "intent": lambda n : setattr(self, 'intent', n.get_enum_value(install_intent.InstallIntent)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(mobile_app_assignment_settings.MobileAppAssignmentSettings)),
             "source": lambda n : setattr(self, 'source', n.get_enum_value(device_and_app_management_assignment_source.DeviceAndAppManagementAssignmentSource)),
-            "source_id": lambda n : setattr(self, 'source_id', n.get_str_value()),
+            "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),
             "target": lambda n : setattr(self, 'target', n.get_object_value(device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget)),
         }
         super_fields = super().get_field_deserializers()
@@ -138,7 +138,7 @@ class MobileAppAssignment(entity.Entity):
         """
         Sets the sourceId property value. The identifier of the source of the assignment.
         Args:
-            value: Value to set for the sourceId property.
+            value: Value to set for the source_id property.
         """
         self._source_id = value
     

@@ -51,7 +51,7 @@ class EducationSynchronizationProfileStatus(entity.Entity):
         """
         Sets the errorCount property value. Number of errors during synchronization.
         Args:
-            value: Value to set for the errorCount property.
+            value: Value to set for the error_count property.
         """
         self._error_count = value
     
@@ -61,11 +61,11 @@ class EducationSynchronizationProfileStatus(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_count": lambda n : setattr(self, 'error_count', n.get_int_value()),
-            "last_activity_date_time": lambda n : setattr(self, 'last_activity_date_time', n.get_datetime_value()),
-            "last_synchronization_date_time": lambda n : setattr(self, 'last_synchronization_date_time', n.get_datetime_value()),
+            "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
+            "lastActivityDateTime": lambda n : setattr(self, 'last_activity_date_time', n.get_datetime_value()),
+            "lastSynchronizationDateTime": lambda n : setattr(self, 'last_synchronization_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(education_synchronization_status.EducationSynchronizationStatus)),
-            "status_message": lambda n : setattr(self, 'status_message', n.get_str_value()),
+            "statusMessage": lambda n : setattr(self, 'status_message', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class EducationSynchronizationProfileStatus(entity.Entity):
         """
         Sets the lastActivityDateTime property value. Date and time when most recent changes were observed in the profile.
         Args:
-            value: Value to set for the lastActivityDateTime property.
+            value: Value to set for the last_activity_date_time property.
         """
         self._last_activity_date_time = value
     
@@ -101,7 +101,7 @@ class EducationSynchronizationProfileStatus(entity.Entity):
         """
         Sets the lastSynchronizationDateTime property value. Date and time of the most recent successful synchronization.
         Args:
-            value: Value to set for the lastSynchronizationDateTime property.
+            value: Value to set for the last_synchronization_date_time property.
         """
         self._last_synchronization_date_time = value
     
@@ -150,7 +150,7 @@ class EducationSynchronizationProfileStatus(entity.Entity):
         """
         Sets the statusMessage property value. Status message for the synchronization stage of the current profile.
         Args:
-            value: Value to set for the statusMessage property.
+            value: Value to set for the status_message property.
         """
         self._status_message = value
     

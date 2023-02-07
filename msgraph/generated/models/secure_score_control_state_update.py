@@ -35,7 +35,7 @@ class SecureScoreControlStateUpdate(AdditionalDataHolder, Parsable):
         """
         Sets the assignedTo property value. The assignedTo property
         Args:
-            value: Value to set for the assignedTo property.
+            value: Value to set for the assigned_to property.
         """
         self._assigned_to = value
     
@@ -94,12 +94,12 @@ class SecureScoreControlStateUpdate(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_to": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
+            "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
-            "updated_by": lambda n : setattr(self, 'updated_by', n.get_str_value()),
-            "updated_date_time": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
+            "updatedBy": lambda n : setattr(self, 'updated_by', n.get_str_value()),
+            "updatedDateTime": lambda n : setattr(self, 'updated_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -116,7 +116,7 @@ class SecureScoreControlStateUpdate(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -166,7 +166,7 @@ class SecureScoreControlStateUpdate(AdditionalDataHolder, Parsable):
         """
         Sets the updatedBy property value. The updatedBy property
         Args:
-            value: Value to set for the updatedBy property.
+            value: Value to set for the updated_by property.
         """
         self._updated_by = value
     
@@ -183,7 +183,7 @@ class SecureScoreControlStateUpdate(AdditionalDataHolder, Parsable):
         """
         Sets the updatedDateTime property value. The updatedDateTime property
         Args:
-            value: Value to set for the updatedDateTime property.
+            value: Value to set for the updated_date_time property.
         """
         self._updated_date_time = value
     

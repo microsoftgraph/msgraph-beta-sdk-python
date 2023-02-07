@@ -45,6 +45,8 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         self._v14_0: Optional[bool] = None
         # When TRUE, only Version 15.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v15_0: Optional[bool] = None
+        # When TRUE, only Version 16.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+        self._v16_0: Optional[bool] = None
         # When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
         self._v8_0: Optional[bool] = None
         # When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
@@ -75,6 +77,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
             "v13_0": lambda n : setattr(self, 'v13_0', n.get_bool_value()),
             "v14_0": lambda n : setattr(self, 'v14_0', n.get_bool_value()),
             "v15_0": lambda n : setattr(self, 'v15_0', n.get_bool_value()),
+            "v16_0": lambda n : setattr(self, 'v16_0', n.get_bool_value()),
             "v8_0": lambda n : setattr(self, 'v8_0', n.get_bool_value()),
             "v9_0": lambda n : setattr(self, 'v9_0', n.get_bool_value()),
         }
@@ -93,7 +96,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,6 +115,7 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
         writer.write_bool_value("v13_0", self.v13_0)
         writer.write_bool_value("v14_0", self.v14_0)
         writer.write_bool_value("v15_0", self.v15_0)
+        writer.write_bool_value("v16_0", self.v16_0)
         writer.write_bool_value("v8_0", self.v8_0)
         writer.write_bool_value("v9_0", self.v9_0)
         writer.write_additional_data_value(self.additional_data)
@@ -217,6 +221,23 @@ class IosMinimumOperatingSystem(AdditionalDataHolder, Parsable):
             value: Value to set for the v15_0 property.
         """
         self._v15_0 = value
+    
+    @property
+    def v16_0(self,) -> Optional[bool]:
+        """
+        Gets the v16_0 property value. When TRUE, only Version 16.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+        Returns: Optional[bool]
+        """
+        return self._v16_0
+    
+    @v16_0.setter
+    def v16_0(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the v16_0 property value. When TRUE, only Version 16.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.
+        Args:
+            value: Value to set for the v16_0 property.
+        """
+        self._v16_0 = value
     
     @property
     def v8_0(self,) -> Optional[bool]:

@@ -21,7 +21,7 @@ class UserAnalytics(entity.Entity):
         """
         Sets the activityStatistics property value. The collection of work activities that a user spent time on during and outside of working hours. Read-only. Nullable.
         Args:
-            value: Value to set for the activityStatistics property.
+            value: Value to set for the activity_statistics property.
         """
         self._activity_statistics = value
     
@@ -55,7 +55,7 @@ class UserAnalytics(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_statistics": lambda n : setattr(self, 'activity_statistics', n.get_collection_of_object_values(activity_statistics.ActivityStatistics)),
+            "activityStatistics": lambda n : setattr(self, 'activity_statistics', n.get_collection_of_object_values(activity_statistics.ActivityStatistics)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(settings.Settings)),
         }
         super_fields = super().get_field_deserializers()

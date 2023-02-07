@@ -22,7 +22,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the accessPackageResource property value. The accessPackageResource property
         Args:
-            value: Value to set for the accessPackageResource property.
+            value: Value to set for the access_package_resource property.
         """
         self._access_package_resource = value
     
@@ -39,7 +39,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the catalogId property value. The unique ID of the access package catalog.
         Args:
-            value: Value to set for the catalogId property.
+            value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
     
@@ -62,14 +62,14 @@ class AccessPackageResourceRequest(entity.Entity):
         self._justification: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Read-only. Nullable. Supports $expand.
-        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
         # The outcome of whether the service was able to add the resource to the catalog.  The value is Delivered if the resource was added or removed. Read-Only.
         self._request_state: Optional[str] = None
         # The requestStatus property
         self._request_status: Optional[str] = None
         # Use AdminAdd to add a resource, if the caller is an administrator or resource owner, AdminUpdate to update a resource, or AdminRemove to remove a resource.
         self._request_type: Optional[str] = None
+        # Read-only. Nullable. Supports $expand.
+        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResourceRequest:
@@ -96,7 +96,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the executeImmediately property value. The executeImmediately property
         Args:
-            value: Value to set for the executeImmediately property.
+            value: Value to set for the execute_immediately property.
         """
         self._execute_immediately = value
     
@@ -113,7 +113,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the expirationDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -123,16 +123,16 @@ class AccessPackageResourceRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_resource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
-            "catalog_id": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
-            "execute_immediately": lambda n : setattr(self, 'execute_immediately', n.get_bool_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "is_validation_only": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
+            "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
+            "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "executeImmediately": lambda n : setattr(self, 'execute_immediately', n.get_bool_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
             "requestor": lambda n : setattr(self, 'requestor', n.get_object_value(access_package_subject.AccessPackageSubject)),
-            "request_state": lambda n : setattr(self, 'request_state', n.get_str_value()),
-            "request_status": lambda n : setattr(self, 'request_status', n.get_str_value()),
-            "request_type": lambda n : setattr(self, 'request_type', n.get_str_value()),
+            "requestState": lambda n : setattr(self, 'request_state', n.get_str_value()),
+            "requestStatus": lambda n : setattr(self, 'request_status', n.get_str_value()),
+            "requestType": lambda n : setattr(self, 'request_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -151,7 +151,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the isValidationOnly property value. If set, does not add the resource.
         Args:
-            value: Value to set for the isValidationOnly property.
+            value: Value to set for the is_validation_only property.
         """
         self._is_validation_only = value
     
@@ -173,23 +173,6 @@ class AccessPackageResourceRequest(entity.Entity):
         self._justification = value
     
     @property
-    def requestor(self,) -> Optional[access_package_subject.AccessPackageSubject]:
-        """
-        Gets the requestor property value. Read-only. Nullable. Supports $expand.
-        Returns: Optional[access_package_subject.AccessPackageSubject]
-        """
-        return self._requestor
-    
-    @requestor.setter
-    def requestor(self,value: Optional[access_package_subject.AccessPackageSubject] = None) -> None:
-        """
-        Sets the requestor property value. Read-only. Nullable. Supports $expand.
-        Args:
-            value: Value to set for the requestor property.
-        """
-        self._requestor = value
-    
-    @property
     def request_state(self,) -> Optional[str]:
         """
         Gets the requestState property value. The outcome of whether the service was able to add the resource to the catalog.  The value is Delivered if the resource was added or removed. Read-Only.
@@ -202,7 +185,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the requestState property value. The outcome of whether the service was able to add the resource to the catalog.  The value is Delivered if the resource was added or removed. Read-Only.
         Args:
-            value: Value to set for the requestState property.
+            value: Value to set for the request_state property.
         """
         self._request_state = value
     
@@ -219,7 +202,7 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the requestStatus property value. The requestStatus property
         Args:
-            value: Value to set for the requestStatus property.
+            value: Value to set for the request_status property.
         """
         self._request_status = value
     
@@ -236,9 +219,26 @@ class AccessPackageResourceRequest(entity.Entity):
         """
         Sets the requestType property value. Use AdminAdd to add a resource, if the caller is an administrator or resource owner, AdminUpdate to update a resource, or AdminRemove to remove a resource.
         Args:
-            value: Value to set for the requestType property.
+            value: Value to set for the request_type property.
         """
         self._request_type = value
+    
+    @property
+    def requestor(self,) -> Optional[access_package_subject.AccessPackageSubject]:
+        """
+        Gets the requestor property value. Read-only. Nullable. Supports $expand.
+        Returns: Optional[access_package_subject.AccessPackageSubject]
+        """
+        return self._requestor
+    
+    @requestor.setter
+    def requestor(self,value: Optional[access_package_subject.AccessPackageSubject] = None) -> None:
+        """
+        Sets the requestor property value. Read-only. Nullable. Supports $expand.
+        Args:
+            value: Value to set for the requestor property.
+        """
+        self._requestor = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """

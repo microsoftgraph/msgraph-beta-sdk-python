@@ -12,8 +12,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 access_package_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.access_package.access_package_request_builder')
 access_package_assignment_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.access_package_assignment.access_package_assignment_request_builder')
-cancel_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.cancel.cancel_request_builder')
-reprocess_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.reprocess.reprocess_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
+microsoft_graph_reprocess_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.microsoft_graph_reprocess.microsoft_graph_reprocess_request_builder')
 requestor_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignment_requests.item.requestor.requestor_request_builder')
 access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -37,18 +37,18 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         return access_package_assignment_request_builder.AccessPackageAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reprocess(self) -> reprocess_request_builder.ReprocessRequestBuilder:
+    def microsoft_graph_reprocess(self) -> microsoft_graph_reprocess_request_builder.MicrosoftGraphReprocessRequestBuilder:
         """
         Provides operations to call the reprocess method.
         """
-        return reprocess_request_builder.ReprocessRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reprocess_request_builder.MicrosoftGraphReprocessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def requestor(self) -> requestor_request_builder.RequestorRequestBuilder:
@@ -75,12 +75,11 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property accessPackageAssignmentRequests for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -91,14 +90,13 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
         """
         Represents access package assignment requests created by or on behalf of a user.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_request.AccessPackageAssignmentRequest]
         """
         request_info = self.to_get_request_information(
@@ -110,15 +108,14 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_request.AccessPackageAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_request.AccessPackageAssignmentRequest, error_mapping)
     
-    async def patch(self,body: Optional[access_package_assignment_request.AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
+    async def patch(self,body: Optional[access_package_assignment_request.AccessPackageAssignmentRequest] = None, request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_assignment_request.AccessPackageAssignmentRequest]:
         """
         Update the navigation property accessPackageAssignmentRequests in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment_request.AccessPackageAssignmentRequest]
         """
         if body is None:
@@ -132,7 +129,7 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment_request.AccessPackageAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment_request.AccessPackageAssignmentRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

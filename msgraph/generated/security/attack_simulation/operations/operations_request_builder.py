@@ -44,12 +44,11 @@ class OperationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse]:
+    async def get(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> Optional[attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse]:
         """
-        Get operations from security
+        Represents an attack simulation training operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class OperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attack_simulation_operation_collection_response.AttackSimulationOperationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[attack_simulation_operation.AttackSimulationOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
+    async def post(self,body: Optional[attack_simulation_operation.AttackSimulationOperation] = None, request_configuration: Optional[OperationsRequestBuilderPostRequestConfiguration] = None) -> Optional[attack_simulation_operation.AttackSimulationOperation]:
         """
         Create new navigation property to operations for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attack_simulation_operation.AttackSimulationOperation]
         """
         if body is None:
@@ -83,11 +81,11 @@ class OperationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attack_simulation_operation.AttackSimulationOperation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OperationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get operations from security
+        Represents an attack simulation training operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -127,7 +125,7 @@ class OperationsRequestBuilder():
     @dataclass
     class OperationsRequestBuilderGetQueryParameters():
         """
-        Get operations from security
+        Represents an attack simulation training operation.
         """
         # Include count of items
         count: Optional[bool] = None

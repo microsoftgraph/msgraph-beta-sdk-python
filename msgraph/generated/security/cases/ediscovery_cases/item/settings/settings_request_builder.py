@@ -12,18 +12,18 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 ediscovery_case_settings = lazy_import('msgraph.generated.models.security.ediscovery_case_settings')
-reset_to_default_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.settings.reset_to_default.reset_to_default_request_builder')
+microsoft_graph_security_reset_to_default_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.settings.microsoft_graph_security_reset_to_default.microsoft_graph_security_reset_to_default_request_builder')
 
 class SettingsRequestBuilder():
     """
     Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
     """
     @property
-    def reset_to_default(self) -> reset_to_default_request_builder.ResetToDefaultRequestBuilder:
+    def microsoft_graph_security_reset_to_default(self) -> microsoft_graph_security_reset_to_default_request_builder.MicrosoftGraphSecurityResetToDefaultRequestBuilder:
         """
         Provides operations to call the resetToDefault method.
         """
-        return reset_to_default_request_builder.ResetToDefaultRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_reset_to_default_request_builder.MicrosoftGraphSecurityResetToDefaultRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class SettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property settings for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_case_settings.EdiscoveryCaseSettings]:
+    async def get(self,request_configuration: Optional[SettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_case_settings.EdiscoveryCaseSettings]:
         """
         Read the properties and relationships of an ediscoveryCaseSettings object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_case_settings.EdiscoveryCaseSettings]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_case_settings.EdiscoveryCaseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_case_settings.EdiscoveryCaseSettings, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_case_settings.EdiscoveryCaseSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_case_settings.EdiscoveryCaseSettings]:
+    async def patch(self,body: Optional[ediscovery_case_settings.EdiscoveryCaseSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_case_settings.EdiscoveryCaseSettings]:
         """
         Update the properties of an ediscoveryCaseSettings object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_case_settings.EdiscoveryCaseSettings]
         """
         if body is None:
@@ -100,7 +97,7 @@ class SettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_case_settings.EdiscoveryCaseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_case_settings.EdiscoveryCaseSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -24,7 +24,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the appStoreUrl property value. The store URL.
         Args:
-            value: Value to set for the appStoreUrl property.
+            value: Value to set for the app_store_url property.
         """
         self._app_store_url = value
     
@@ -41,7 +41,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the assignedLicenses property value. The licenses assigned to this app.
         Args:
-            value: Value to set for the assignedLicenses property.
+            value: Value to set for the assigned_licenses property.
         """
         self._assigned_licenses = value
     
@@ -58,7 +58,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the bundleId property value. The Identity Name.
         Args:
-            value: Value to set for the bundleId property.
+            value: Value to set for the bundle_id property.
         """
         self._bundle_id = value
     
@@ -111,18 +111,18 @@ class MacOsVppApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_store_url": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
-            "assigned_licenses": lambda n : setattr(self, 'assigned_licenses', n.get_collection_of_object_values(mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense)),
-            "bundle_id": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
-            "licensing_type": lambda n : setattr(self, 'licensing_type', n.get_object_value(vpp_licensing_type.VppLicensingType)),
-            "release_date_time": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
-            "revoke_license_action_results": lambda n : setattr(self, 'revoke_license_action_results', n.get_collection_of_object_values(mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult)),
-            "total_license_count": lambda n : setattr(self, 'total_license_count', n.get_int_value()),
-            "used_license_count": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
-            "vpp_token_account_type": lambda n : setattr(self, 'vpp_token_account_type', n.get_enum_value(vpp_token_account_type.VppTokenAccountType)),
-            "vpp_token_apple_id": lambda n : setattr(self, 'vpp_token_apple_id', n.get_str_value()),
-            "vpp_token_id": lambda n : setattr(self, 'vpp_token_id', n.get_str_value()),
-            "vpp_token_organization_name": lambda n : setattr(self, 'vpp_token_organization_name', n.get_str_value()),
+            "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
+            "assignedLicenses": lambda n : setattr(self, 'assigned_licenses', n.get_collection_of_object_values(mac_os_vpp_app_assigned_license.MacOsVppAppAssignedLicense)),
+            "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
+            "licensingType": lambda n : setattr(self, 'licensing_type', n.get_object_value(vpp_licensing_type.VppLicensingType)),
+            "releaseDateTime": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
+            "revokeLicenseActionResults": lambda n : setattr(self, 'revoke_license_action_results', n.get_collection_of_object_values(mac_os_vpp_app_revoke_licenses_action_result.MacOsVppAppRevokeLicensesActionResult)),
+            "totalLicenseCount": lambda n : setattr(self, 'total_license_count', n.get_int_value()),
+            "usedLicenseCount": lambda n : setattr(self, 'used_license_count', n.get_int_value()),
+            "vppTokenAccountType": lambda n : setattr(self, 'vpp_token_account_type', n.get_enum_value(vpp_token_account_type.VppTokenAccountType)),
+            "vppTokenAppleId": lambda n : setattr(self, 'vpp_token_apple_id', n.get_str_value()),
+            "vppTokenId": lambda n : setattr(self, 'vpp_token_id', n.get_str_value()),
+            "vppTokenOrganizationName": lambda n : setattr(self, 'vpp_token_organization_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -141,7 +141,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the licensingType property value. The supported License Type.
         Args:
-            value: Value to set for the licensingType property.
+            value: Value to set for the licensing_type property.
         """
         self._licensing_type = value
     
@@ -158,7 +158,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the releaseDateTime property value. The VPP application release date and time.
         Args:
-            value: Value to set for the releaseDateTime property.
+            value: Value to set for the release_date_time property.
         """
         self._release_date_time = value
     
@@ -175,7 +175,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the revokeLicenseActionResults property value. Results of revoke license actions on this app.
         Args:
-            value: Value to set for the revokeLicenseActionResults property.
+            value: Value to set for the revoke_license_action_results property.
         """
         self._revoke_license_action_results = value
     
@@ -214,7 +214,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the totalLicenseCount property value. The total number of VPP licenses.
         Args:
-            value: Value to set for the totalLicenseCount property.
+            value: Value to set for the total_license_count property.
         """
         self._total_license_count = value
     
@@ -231,7 +231,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the usedLicenseCount property value. The number of VPP licenses in use.
         Args:
-            value: Value to set for the usedLicenseCount property.
+            value: Value to set for the used_license_count property.
         """
         self._used_license_count = value
     
@@ -248,7 +248,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the vppTokenAccountType property value. Possible types of an Apple Volume Purchase Program token.
         Args:
-            value: Value to set for the vppTokenAccountType property.
+            value: Value to set for the vpp_token_account_type property.
         """
         self._vpp_token_account_type = value
     
@@ -265,7 +265,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the vppTokenAppleId property value. The Apple Id associated with the given Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the vppTokenAppleId property.
+            value: Value to set for the vpp_token_apple_id property.
         """
         self._vpp_token_apple_id = value
     
@@ -282,7 +282,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the vppTokenId property value. Identifier of the VPP token associated with this app.
         Args:
-            value: Value to set for the vppTokenId property.
+            value: Value to set for the vpp_token_id property.
         """
         self._vpp_token_id = value
     
@@ -299,7 +299,7 @@ class MacOsVppApp(mobile_app.MobileApp):
         """
         Sets the vppTokenOrganizationName property value. The organization associated with the Apple Volume Purchase Program Token
         Args:
-            value: Value to set for the vppTokenOrganizationName property.
+            value: Value to set for the vpp_token_organization_name property.
         """
         self._vpp_token_organization_name = value
     

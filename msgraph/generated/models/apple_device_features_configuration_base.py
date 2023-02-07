@@ -20,7 +20,7 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         """
         Sets the airPrintDestinations property value. An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the airPrintDestinations property.
+            value: Value to set for the air_print_destinations property.
         """
         self._air_print_destinations = value
     
@@ -51,7 +51,7 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "air_print_destinations": lambda n : setattr(self, 'air_print_destinations', n.get_collection_of_object_values(air_print_destination.AirPrintDestination)),
+            "airPrintDestinations": lambda n : setattr(self, 'air_print_destinations', n.get_collection_of_object_values(air_print_destination.AirPrintDestination)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

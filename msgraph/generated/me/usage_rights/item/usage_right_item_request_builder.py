@@ -35,12 +35,11 @@ class UsageRightItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UsageRightItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UsageRightItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property usageRights for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class UsageRightItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UsageRightItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[usage_right.UsageRight]:
+    async def get(self,request_configuration: Optional[UsageRightItemRequestBuilderGetRequestConfiguration] = None) -> Optional[usage_right.UsageRight]:
         """
         Represents the usage rights a user has been granted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[usage_right.UsageRight]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class UsageRightItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, usage_right.UsageRight, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, usage_right.UsageRight, error_mapping)
     
-    async def patch(self,body: Optional[usage_right.UsageRight] = None, request_configuration: Optional[UsageRightItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[usage_right.UsageRight]:
+    async def patch(self,body: Optional[usage_right.UsageRight] = None, request_configuration: Optional[UsageRightItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[usage_right.UsageRight]:
         """
         Update the navigation property usageRights in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[usage_right.UsageRight]
         """
         if body is None:
@@ -92,7 +89,7 @@ class UsageRightItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, usage_right.UsageRight, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, usage_right.UsageRight, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UsageRightItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

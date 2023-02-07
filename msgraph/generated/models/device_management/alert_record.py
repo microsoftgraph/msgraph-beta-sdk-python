@@ -24,7 +24,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the alertImpact property value. The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. 12 affectedCloudPcPercentage means 12% of Cloud PCs are affected.
         Args:
-            value: Value to set for the alertImpact property.
+            value: Value to set for the alert_impact property.
         """
         self._alert_impact = value
     
@@ -41,7 +41,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the alertRuleId property value. The corresponding ID of the alert rule.
         Args:
-            value: Value to set for the alertRuleId property.
+            value: Value to set for the alert_rule_id property.
         """
         self._alert_rule_id = value
     
@@ -58,7 +58,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the alertRuleTemplate property value. The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
         Args:
-            value: Value to set for the alertRuleTemplate property.
+            value: Value to set for the alert_rule_template property.
         """
         self._alert_rule_template = value
     
@@ -113,7 +113,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the detectedDateTime property value. The date and time when the alert event was detected. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the detectedDateTime property.
+            value: Value to set for the detected_date_time property.
         """
         self._detected_date_time = value
     
@@ -130,7 +130,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the displayName property value. The display name of the alert record.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -140,13 +140,13 @@ class AlertRecord(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_impact": lambda n : setattr(self, 'alert_impact', n.get_object_value(alert_impact.AlertImpact)),
-            "alert_rule_id": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
-            "alert_rule_template": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
-            "detected_date_time": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "resolved_date_time": lambda n : setattr(self, 'resolved_date_time', n.get_datetime_value()),
+            "alertImpact": lambda n : setattr(self, 'alert_impact', n.get_object_value(alert_impact.AlertImpact)),
+            "alertRuleId": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
+            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
+            "detectedDateTime": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "resolvedDateTime": lambda n : setattr(self, 'resolved_date_time', n.get_datetime_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(rule_severity_type.RuleSeverityType)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(alert_status_type.AlertStatusType)),
         }
@@ -167,7 +167,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. The date and time when the alert record was last updated. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -184,7 +184,7 @@ class AlertRecord(entity.Entity):
         """
         Sets the resolvedDateTime property value. The date and time when the alert event was resolved. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the resolvedDateTime property.
+            value: Value to set for the resolved_date_time property.
         """
         self._resolved_date_time = value
     

@@ -1,7 +1,7 @@
 from enum import Enum
 
 class UserExperienceAnalyticsInsightSeverity(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Informational = "informational",
     Warning = "warning",
     Error = "error",

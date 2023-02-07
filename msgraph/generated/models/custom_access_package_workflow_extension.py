@@ -9,7 +9,7 @@ custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_
 class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCalloutExtension):
     def __init__(self,) -> None:
         """
-        Instantiates a new CustomAccessPackageWorkflowExtension and sets the default values.
+        Instantiates a new customAccessPackageWorkflowExtension and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.customAccessPackageWorkflowExtension"
@@ -31,7 +31,7 @@ class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCallou
         """
         Sets the createdDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -53,8 +53,8 @@ class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCallou
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class CustomAccessPackageWorkflowExtension(custom_callout_extension.CustomCallou
         """
         Sets the lastModifiedDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

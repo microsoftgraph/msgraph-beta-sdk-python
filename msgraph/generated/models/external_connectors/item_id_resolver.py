@@ -36,8 +36,8 @@ class ItemIdResolver(url_to_item_resolver_base.UrlToItemResolverBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "item_id": lambda n : setattr(self, 'item_id', n.get_str_value()),
-            "url_match_info": lambda n : setattr(self, 'url_match_info', n.get_object_value(url_match_info.UrlMatchInfo)),
+            "itemId": lambda n : setattr(self, 'item_id', n.get_str_value()),
+            "urlMatchInfo": lambda n : setattr(self, 'url_match_info', n.get_object_value(url_match_info.UrlMatchInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class ItemIdResolver(url_to_item_resolver_base.UrlToItemResolverBase):
         """
         Sets the itemId property value. Pattern that specifies how to form the ID of the external item that the URL represents. The named groups from the regular expression in urlPattern within the urlMatchInfo can be referenced by inserting the group name inside curly brackets.
         Args:
-            value: Value to set for the itemId property.
+            value: Value to set for the item_id property.
         """
         self._item_id = value
     
@@ -85,7 +85,7 @@ class ItemIdResolver(url_to_item_resolver_base.UrlToItemResolverBase):
         """
         Sets the urlMatchInfo property value. Configurations to match and resolve URL.
         Args:
-            value: Value to set for the urlMatchInfo property.
+            value: Value to set for the url_match_info property.
         """
         self._url_match_info = value
     

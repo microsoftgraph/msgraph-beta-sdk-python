@@ -44,12 +44,11 @@ class AttributeSetsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AttributeSetsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attribute_set_collection_response.AttributeSetCollectionResponse]:
+    async def get(self,request_configuration: Optional[AttributeSetsRequestBuilderGetRequestConfiguration] = None) -> Optional[attribute_set_collection_response.AttributeSetCollectionResponse]:
         """
         Get a list of the attributeSet objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attribute_set_collection_response.AttributeSetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AttributeSetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attribute_set_collection_response.AttributeSetCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attribute_set_collection_response.AttributeSetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[attribute_set.AttributeSet] = None, request_configuration: Optional[AttributeSetsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[attribute_set.AttributeSet]:
+    async def post(self,body: Optional[attribute_set.AttributeSet] = None, request_configuration: Optional[AttributeSetsRequestBuilderPostRequestConfiguration] = None) -> Optional[attribute_set.AttributeSet]:
         """
         Create a new attributeSet object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[attribute_set.AttributeSet]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AttributeSetsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, attribute_set.AttributeSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, attribute_set.AttributeSet, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AttributeSetsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

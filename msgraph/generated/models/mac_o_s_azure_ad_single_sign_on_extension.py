@@ -20,7 +20,7 @@ class MacOSAzureAdSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSSi
         """
         Sets the bundleIdAccessControlList property value. An optional list of additional bundle IDs allowed to use the AAD extension for single sign-on.
         Args:
-            value: Value to set for the bundleIdAccessControlList property.
+            value: Value to set for the bundle_id_access_control_list property.
         """
         self._bundle_id_access_control_list = value
     
@@ -79,7 +79,7 @@ class MacOSAzureAdSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSSi
         """
         Sets the enableSharedDeviceMode property value. Enables or disables shared device mode.
         Args:
-            value: Value to set for the enableSharedDeviceMode property.
+            value: Value to set for the enable_shared_device_mode property.
         """
         self._enable_shared_device_mode = value
     
@@ -89,9 +89,9 @@ class MacOSAzureAdSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSSi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bundle_id_access_control_list": lambda n : setattr(self, 'bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
+            "bundleIdAccessControlList": lambda n : setattr(self, 'bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(key_typed_value_pair.KeyTypedValuePair)),
-            "enable_shared_device_mode": lambda n : setattr(self, 'enable_shared_device_mode', n.get_bool_value()),
+            "enableSharedDeviceMode": lambda n : setattr(self, 'enable_shared_device_mode', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

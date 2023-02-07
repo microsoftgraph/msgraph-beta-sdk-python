@@ -44,12 +44,11 @@ class ResourceActionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ResourceActionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse]:
+    async def get(self,request_configuration: Optional[ResourceActionsRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse]:
         """
         Get a list of the unifiedRbacResourceAction objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ResourceActionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action_collection_response.UnifiedRbacResourceActionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction] = None, request_configuration: Optional[ResourceActionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
+    async def post(self,body: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction] = None, request_configuration: Optional[ResourceActionsRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]:
         """
         Create new navigation property to resourceActions for roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_rbac_resource_action.UnifiedRbacResourceAction]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ResourceActionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_rbac_resource_action.UnifiedRbacResourceAction, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ResourceActionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

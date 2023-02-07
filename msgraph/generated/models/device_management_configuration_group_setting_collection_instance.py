@@ -34,7 +34,7 @@ class DeviceManagementConfigurationGroupSettingCollectionInstance(device_managem
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_setting_collection_value": lambda n : setattr(self, 'group_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue)),
+            "groupSettingCollectionValue": lambda n : setattr(self, 'group_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_group_setting_value.DeviceManagementConfigurationGroupSettingValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class DeviceManagementConfigurationGroupSettingCollectionInstance(device_managem
         """
         Sets the groupSettingCollectionValue property value. A collection of GroupSetting values
         Args:
-            value: Value to set for the groupSettingCollectionValue property.
+            value: Value to set for the group_setting_collection_value property.
         """
         self._group_setting_collection_value = value
     

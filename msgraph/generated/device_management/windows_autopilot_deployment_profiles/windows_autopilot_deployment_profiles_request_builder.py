@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.count.count_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.has_payload_links.has_payload_links_request_builder')
+microsoft_graph_has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.windows_autopilot_deployment_profiles.microsoft_graph_has_payload_links.microsoft_graph_has_payload_links_request_builder')
 windows_autopilot_deployment_profile = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile')
 windows_autopilot_deployment_profile_collection_response = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,11 +28,11 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]:
         """
         Windows auto pilot deployment profiles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile_collection_response.WindowsAutopilotDeploymentProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile] = None, request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]:
+    async def post(self,body: Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile] = None, request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]:
         """
         Create new navigation property to windowsAutopilotDeploymentProfiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile]
         """
         if body is None:
@@ -91,7 +89,7 @@ class WindowsAutopilotDeploymentProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[WindowsAutopilotDeploymentProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

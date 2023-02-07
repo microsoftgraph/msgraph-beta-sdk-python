@@ -10,29 +10,29 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-add_large_gallery_view_request_builder = lazy_import('msgraph.generated.app.calls.item.add_large_gallery_view.add_large_gallery_view_request_builder')
-answer_request_builder = lazy_import('msgraph.generated.app.calls.item.answer.answer_request_builder')
 audio_routing_groups_request_builder = lazy_import('msgraph.generated.app.calls.item.audio_routing_groups.audio_routing_groups_request_builder')
 audio_routing_group_item_request_builder = lazy_import('msgraph.generated.app.calls.item.audio_routing_groups.item.audio_routing_group_item_request_builder')
-cancel_media_processing_request_builder = lazy_import('msgraph.generated.app.calls.item.cancel_media_processing.cancel_media_processing_request_builder')
-change_screen_sharing_role_request_builder = lazy_import('msgraph.generated.app.calls.item.change_screen_sharing_role.change_screen_sharing_role_request_builder')
 content_sharing_sessions_request_builder = lazy_import('msgraph.generated.app.calls.item.content_sharing_sessions.content_sharing_sessions_request_builder')
 content_sharing_session_item_request_builder = lazy_import('msgraph.generated.app.calls.item.content_sharing_sessions.item.content_sharing_session_item_request_builder')
-keep_alive_request_builder = lazy_import('msgraph.generated.app.calls.item.keep_alive.keep_alive_request_builder')
-mute_request_builder = lazy_import('msgraph.generated.app.calls.item.mute.mute_request_builder')
+microsoft_graph_add_large_gallery_view_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_add_large_gallery_view.microsoft_graph_add_large_gallery_view_request_builder')
+microsoft_graph_answer_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_answer.microsoft_graph_answer_request_builder')
+microsoft_graph_cancel_media_processing_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_cancel_media_processing.microsoft_graph_cancel_media_processing_request_builder')
+microsoft_graph_change_screen_sharing_role_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_change_screen_sharing_role.microsoft_graph_change_screen_sharing_role_request_builder')
+microsoft_graph_keep_alive_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_keep_alive.microsoft_graph_keep_alive_request_builder')
+microsoft_graph_mute_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_mute.microsoft_graph_mute_request_builder')
+microsoft_graph_play_prompt_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_play_prompt.microsoft_graph_play_prompt_request_builder')
+microsoft_graph_record_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_record.microsoft_graph_record_request_builder')
+microsoft_graph_record_response_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_record_response.microsoft_graph_record_response_request_builder')
+microsoft_graph_redirect_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_redirect.microsoft_graph_redirect_request_builder')
+microsoft_graph_reject_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_reject.microsoft_graph_reject_request_builder')
+microsoft_graph_subscribe_to_tone_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_subscribe_to_tone.microsoft_graph_subscribe_to_tone_request_builder')
+microsoft_graph_transfer_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_transfer.microsoft_graph_transfer_request_builder')
+microsoft_graph_unmute_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_unmute.microsoft_graph_unmute_request_builder')
+microsoft_graph_update_recording_status_request_builder = lazy_import('msgraph.generated.app.calls.item.microsoft_graph_update_recording_status.microsoft_graph_update_recording_status_request_builder')
 operations_request_builder = lazy_import('msgraph.generated.app.calls.item.operations.operations_request_builder')
 comms_operation_item_request_builder = lazy_import('msgraph.generated.app.calls.item.operations.item.comms_operation_item_request_builder')
 participants_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.participants_request_builder')
 participant_item_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.item.participant_item_request_builder')
-play_prompt_request_builder = lazy_import('msgraph.generated.app.calls.item.play_prompt.play_prompt_request_builder')
-record_request_builder = lazy_import('msgraph.generated.app.calls.item.record.record_request_builder')
-record_response_request_builder = lazy_import('msgraph.generated.app.calls.item.record_response.record_response_request_builder')
-redirect_request_builder = lazy_import('msgraph.generated.app.calls.item.redirect.redirect_request_builder')
-reject_request_builder = lazy_import('msgraph.generated.app.calls.item.reject.reject_request_builder')
-subscribe_to_tone_request_builder = lazy_import('msgraph.generated.app.calls.item.subscribe_to_tone.subscribe_to_tone_request_builder')
-transfer_request_builder = lazy_import('msgraph.generated.app.calls.item.transfer.transfer_request_builder')
-unmute_request_builder = lazy_import('msgraph.generated.app.calls.item.unmute.unmute_request_builder')
-update_recording_status_request_builder = lazy_import('msgraph.generated.app.calls.item.update_recording_status.update_recording_status_request_builder')
 call = lazy_import('msgraph.generated.models.call')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -41,39 +41,11 @@ class CallItemRequestBuilder():
     Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
     """
     @property
-    def add_large_gallery_view(self) -> add_large_gallery_view_request_builder.AddLargeGalleryViewRequestBuilder:
-        """
-        Provides operations to call the addLargeGalleryView method.
-        """
-        return add_large_gallery_view_request_builder.AddLargeGalleryViewRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def answer(self) -> answer_request_builder.AnswerRequestBuilder:
-        """
-        Provides operations to call the answer method.
-        """
-        return answer_request_builder.AnswerRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def audio_routing_groups(self) -> audio_routing_groups_request_builder.AudioRoutingGroupsRequestBuilder:
         """
         Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.
         """
         return audio_routing_groups_request_builder.AudioRoutingGroupsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def cancel_media_processing(self) -> cancel_media_processing_request_builder.CancelMediaProcessingRequestBuilder:
-        """
-        Provides operations to call the cancelMediaProcessing method.
-        """
-        return cancel_media_processing_request_builder.CancelMediaProcessingRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def change_screen_sharing_role(self) -> change_screen_sharing_role_request_builder.ChangeScreenSharingRoleRequestBuilder:
-        """
-        Provides operations to call the changeScreenSharingRole method.
-        """
-        return change_screen_sharing_role_request_builder.ChangeScreenSharingRoleRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def content_sharing_sessions(self) -> content_sharing_sessions_request_builder.ContentSharingSessionsRequestBuilder:
@@ -83,18 +55,109 @@ class CallItemRequestBuilder():
         return content_sharing_sessions_request_builder.ContentSharingSessionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def keep_alive(self) -> keep_alive_request_builder.KeepAliveRequestBuilder:
+    def microsoft_graph_add_large_gallery_view(self) -> microsoft_graph_add_large_gallery_view_request_builder.MicrosoftGraphAddLargeGalleryViewRequestBuilder:
+        """
+        Provides operations to call the addLargeGalleryView method.
+        """
+        return microsoft_graph_add_large_gallery_view_request_builder.MicrosoftGraphAddLargeGalleryViewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_answer(self) -> microsoft_graph_answer_request_builder.MicrosoftGraphAnswerRequestBuilder:
+        """
+        Provides operations to call the answer method.
+        """
+        return microsoft_graph_answer_request_builder.MicrosoftGraphAnswerRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_cancel_media_processing(self) -> microsoft_graph_cancel_media_processing_request_builder.MicrosoftGraphCancelMediaProcessingRequestBuilder:
+        """
+        Provides operations to call the cancelMediaProcessing method.
+        """
+        return microsoft_graph_cancel_media_processing_request_builder.MicrosoftGraphCancelMediaProcessingRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_change_screen_sharing_role(self) -> microsoft_graph_change_screen_sharing_role_request_builder.MicrosoftGraphChangeScreenSharingRoleRequestBuilder:
+        """
+        Provides operations to call the changeScreenSharingRole method.
+        """
+        return microsoft_graph_change_screen_sharing_role_request_builder.MicrosoftGraphChangeScreenSharingRoleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_keep_alive(self) -> microsoft_graph_keep_alive_request_builder.MicrosoftGraphKeepAliveRequestBuilder:
         """
         Provides operations to call the keepAlive method.
         """
-        return keep_alive_request_builder.KeepAliveRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_keep_alive_request_builder.MicrosoftGraphKeepAliveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def mute(self) -> mute_request_builder.MuteRequestBuilder:
+    def microsoft_graph_mute(self) -> microsoft_graph_mute_request_builder.MicrosoftGraphMuteRequestBuilder:
         """
         Provides operations to call the mute method.
         """
-        return mute_request_builder.MuteRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_mute_request_builder.MicrosoftGraphMuteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_play_prompt(self) -> microsoft_graph_play_prompt_request_builder.MicrosoftGraphPlayPromptRequestBuilder:
+        """
+        Provides operations to call the playPrompt method.
+        """
+        return microsoft_graph_play_prompt_request_builder.MicrosoftGraphPlayPromptRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_record(self) -> microsoft_graph_record_request_builder.MicrosoftGraphRecordRequestBuilder:
+        """
+        Provides operations to call the record method.
+        """
+        return microsoft_graph_record_request_builder.MicrosoftGraphRecordRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_record_response(self) -> microsoft_graph_record_response_request_builder.MicrosoftGraphRecordResponseRequestBuilder:
+        """
+        Provides operations to call the recordResponse method.
+        """
+        return microsoft_graph_record_response_request_builder.MicrosoftGraphRecordResponseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_redirect(self) -> microsoft_graph_redirect_request_builder.MicrosoftGraphRedirectRequestBuilder:
+        """
+        Provides operations to call the redirect method.
+        """
+        return microsoft_graph_redirect_request_builder.MicrosoftGraphRedirectRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_reject(self) -> microsoft_graph_reject_request_builder.MicrosoftGraphRejectRequestBuilder:
+        """
+        Provides operations to call the reject method.
+        """
+        return microsoft_graph_reject_request_builder.MicrosoftGraphRejectRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_subscribe_to_tone(self) -> microsoft_graph_subscribe_to_tone_request_builder.MicrosoftGraphSubscribeToToneRequestBuilder:
+        """
+        Provides operations to call the subscribeToTone method.
+        """
+        return microsoft_graph_subscribe_to_tone_request_builder.MicrosoftGraphSubscribeToToneRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_transfer(self) -> microsoft_graph_transfer_request_builder.MicrosoftGraphTransferRequestBuilder:
+        """
+        Provides operations to call the transfer method.
+        """
+        return microsoft_graph_transfer_request_builder.MicrosoftGraphTransferRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_unmute(self) -> microsoft_graph_unmute_request_builder.MicrosoftGraphUnmuteRequestBuilder:
+        """
+        Provides operations to call the unmute method.
+        """
+        return microsoft_graph_unmute_request_builder.MicrosoftGraphUnmuteRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_recording_status(self) -> microsoft_graph_update_recording_status_request_builder.MicrosoftGraphUpdateRecordingStatusRequestBuilder:
+        """
+        Provides operations to call the updateRecordingStatus method.
+        """
+        return microsoft_graph_update_recording_status_request_builder.MicrosoftGraphUpdateRecordingStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
@@ -109,69 +172,6 @@ class CallItemRequestBuilder():
         Provides operations to manage the participants property of the microsoft.graph.call entity.
         """
         return participants_request_builder.ParticipantsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def play_prompt(self) -> play_prompt_request_builder.PlayPromptRequestBuilder:
-        """
-        Provides operations to call the playPrompt method.
-        """
-        return play_prompt_request_builder.PlayPromptRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def record(self) -> record_request_builder.RecordRequestBuilder:
-        """
-        Provides operations to call the record method.
-        """
-        return record_request_builder.RecordRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def record_response(self) -> record_response_request_builder.RecordResponseRequestBuilder:
-        """
-        Provides operations to call the recordResponse method.
-        """
-        return record_response_request_builder.RecordResponseRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def redirect(self) -> redirect_request_builder.RedirectRequestBuilder:
-        """
-        Provides operations to call the redirect method.
-        """
-        return redirect_request_builder.RedirectRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reject(self) -> reject_request_builder.RejectRequestBuilder:
-        """
-        Provides operations to call the reject method.
-        """
-        return reject_request_builder.RejectRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def subscribe_to_tone(self) -> subscribe_to_tone_request_builder.SubscribeToToneRequestBuilder:
-        """
-        Provides operations to call the subscribeToTone method.
-        """
-        return subscribe_to_tone_request_builder.SubscribeToToneRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def transfer(self) -> transfer_request_builder.TransferRequestBuilder:
-        """
-        Provides operations to call the transfer method.
-        """
-        return transfer_request_builder.TransferRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unmute(self) -> unmute_request_builder.UnmuteRequestBuilder:
-        """
-        Provides operations to call the unmute method.
-        """
-        return unmute_request_builder.UnmuteRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_recording_status(self) -> update_recording_status_request_builder.UpdateRecordingStatusRequestBuilder:
-        """
-        Provides operations to call the updateRecordingStatus method.
-        """
-        return update_recording_status_request_builder.UpdateRecordingStatusRequestBuilder(self.request_adapter, self.path_parameters)
     
     def audio_routing_groups_by_id(self,id: str) -> audio_routing_group_item_request_builder.AudioRoutingGroupItemRequestBuilder:
         """
@@ -217,12 +217,11 @@ class CallItemRequestBuilder():
         url_tpl_params["contentSharingSession%2Did"] = id
         return content_sharing_session_item_request_builder.ContentSharingSessionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[CallItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CallItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property calls for app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -233,14 +232,13 @@ class CallItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CallItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call.Call]:
+    async def get(self,request_configuration: Optional[CallItemRequestBuilderGetRequestConfiguration] = None) -> Optional[call.Call]:
         """
         Get calls from app
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call.Call]
         """
         request_info = self.to_get_request_information(
@@ -252,7 +250,7 @@ class CallItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call.Call, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call.Call, error_mapping)
     
     def operations_by_id(self,id: str) -> comms_operation_item_request_builder.CommsOperationItemRequestBuilder:
         """
@@ -280,13 +278,12 @@ class CallItemRequestBuilder():
         url_tpl_params["participant%2Did"] = id
         return participant_item_request_builder.ParticipantItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[call.Call] = None, request_configuration: Optional[CallItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[call.Call]:
+    async def patch(self,body: Optional[call.Call] = None, request_configuration: Optional[CallItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[call.Call]:
         """
         Update the navigation property calls in app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[call.Call]
         """
         if body is None:
@@ -300,7 +297,7 @@ class CallItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, call.Call, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, call.Call, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CallItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

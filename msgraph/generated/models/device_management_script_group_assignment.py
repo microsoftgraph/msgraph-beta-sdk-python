@@ -37,7 +37,7 @@ class DeviceManagementScriptGroupAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "target_group_id": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
+            "targetGroupId": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -67,7 +67,7 @@ class DeviceManagementScriptGroupAssignment(entity.Entity):
         """
         Sets the targetGroupId property value. The Id of the Azure Active Directory group we are targeting the script to.
         Args:
-            value: Value to set for the targetGroupId property.
+            value: Value to set for the target_group_id property.
         """
         self._target_group_id = value
     

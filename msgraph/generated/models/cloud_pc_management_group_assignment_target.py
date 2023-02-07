@@ -35,8 +35,8 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
-            "service_plan_id": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
         """
         Sets the groupId property value. The id of the assignment's target group
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -84,7 +84,7 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
         """
         Sets the servicePlanId property value. The servicePlanId property
         Args:
-            value: Value to set for the servicePlanId property.
+            value: Value to set for the service_plan_id property.
         """
         self._service_plan_id = value
     

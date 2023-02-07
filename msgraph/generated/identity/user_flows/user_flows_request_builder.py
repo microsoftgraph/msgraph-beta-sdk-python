@@ -44,12 +44,11 @@ class UserFlowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_user_flow_collection_response.IdentityUserFlowCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_user_flow_collection_response.IdentityUserFlowCollectionResponse]:
         """
         Retrieve a list of userflows.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_user_flow_collection_response.IdentityUserFlowCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserFlowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_user_flow_collection_response.IdentityUserFlowCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_user_flow_collection_response.IdentityUserFlowCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[identity_user_flow.IdentityUserFlow] = None, request_configuration: Optional[UserFlowsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_user_flow.IdentityUserFlow]:
+    async def post(self,body: Optional[identity_user_flow.IdentityUserFlow] = None, request_configuration: Optional[UserFlowsRequestBuilderPostRequestConfiguration] = None) -> Optional[identity_user_flow.IdentityUserFlow]:
         """
         Create a new userFlow object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_user_flow.IdentityUserFlow]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserFlowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_user_flow.IdentityUserFlow, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_user_flow.IdentityUserFlow, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserFlowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -14,24 +14,24 @@ message = lazy_import('msgraph.generated.models.message')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 attachments_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.attachments.attachments_request_builder')
 attachment_item_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.attachments.item.attachment_item_request_builder')
-copy_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.copy.copy_request_builder')
-create_forward_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.create_forward.create_forward_request_builder')
-create_reply_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.create_reply.create_reply_request_builder')
-create_reply_all_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.create_reply_all.create_reply_all_request_builder')
 extensions_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.extensions.extensions_request_builder')
 extension_item_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.extensions.item.extension_item_request_builder')
-forward_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.forward.forward_request_builder')
 mentions_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.mentions.mentions_request_builder')
 mention_item_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.mentions.item.mention_item_request_builder')
-move_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.move.move_request_builder')
+microsoft_graph_copy_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_copy.microsoft_graph_copy_request_builder')
+microsoft_graph_create_forward_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_create_forward.microsoft_graph_create_forward_request_builder')
+microsoft_graph_create_reply_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_create_reply.microsoft_graph_create_reply_request_builder')
+microsoft_graph_create_reply_all_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_create_reply_all.microsoft_graph_create_reply_all_request_builder')
+microsoft_graph_forward_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_forward.microsoft_graph_forward_request_builder')
+microsoft_graph_move_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_move.microsoft_graph_move_request_builder')
+microsoft_graph_reply_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_reply.microsoft_graph_reply_request_builder')
+microsoft_graph_reply_all_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_reply_all.microsoft_graph_reply_all_request_builder')
+microsoft_graph_send_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_send.microsoft_graph_send_request_builder')
+microsoft_graph_unsubscribe_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.microsoft_graph_unsubscribe.microsoft_graph_unsubscribe_request_builder')
 multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.multi_value_extended_properties.multi_value_extended_properties_request_builder')
 multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
-reply_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.reply.reply_request_builder')
-reply_all_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.reply_all.reply_all_request_builder')
-send_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.send.send_request_builder')
 single_value_extended_properties_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.single_value_extended_properties.single_value_extended_properties_request_builder')
 single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
-unsubscribe_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.unsubscribe.unsubscribe_request_builder')
 content_request_builder = lazy_import('msgraph.generated.users.item.mail_folders.item.child_folders.item.messages.item.value.content_request_builder')
 
 class MessageItemRequestBuilder():
@@ -53,46 +53,11 @@ class MessageItemRequestBuilder():
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def copy(self) -> copy_request_builder.CopyRequestBuilder:
-        """
-        Provides operations to call the copy method.
-        """
-        return copy_request_builder.CopyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_forward(self) -> create_forward_request_builder.CreateForwardRequestBuilder:
-        """
-        Provides operations to call the createForward method.
-        """
-        return create_forward_request_builder.CreateForwardRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_reply(self) -> create_reply_request_builder.CreateReplyRequestBuilder:
-        """
-        Provides operations to call the createReply method.
-        """
-        return create_reply_request_builder.CreateReplyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_reply_all(self) -> create_reply_all_request_builder.CreateReplyAllRequestBuilder:
-        """
-        Provides operations to call the createReplyAll method.
-        """
-        return create_reply_all_request_builder.CreateReplyAllRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def extensions(self) -> extensions_request_builder.ExtensionsRequestBuilder:
         """
         Provides operations to manage the extensions property of the microsoft.graph.message entity.
         """
         return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def forward(self) -> forward_request_builder.ForwardRequestBuilder:
-        """
-        Provides operations to call the forward method.
-        """
-        return forward_request_builder.ForwardRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def mentions(self) -> mentions_request_builder.MentionsRequestBuilder:
@@ -102,11 +67,74 @@ class MessageItemRequestBuilder():
         return mentions_request_builder.MentionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def move(self) -> move_request_builder.MoveRequestBuilder:
+    def microsoft_graph_copy(self) -> microsoft_graph_copy_request_builder.MicrosoftGraphCopyRequestBuilder:
+        """
+        Provides operations to call the copy method.
+        """
+        return microsoft_graph_copy_request_builder.MicrosoftGraphCopyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_forward(self) -> microsoft_graph_create_forward_request_builder.MicrosoftGraphCreateForwardRequestBuilder:
+        """
+        Provides operations to call the createForward method.
+        """
+        return microsoft_graph_create_forward_request_builder.MicrosoftGraphCreateForwardRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_reply(self) -> microsoft_graph_create_reply_request_builder.MicrosoftGraphCreateReplyRequestBuilder:
+        """
+        Provides operations to call the createReply method.
+        """
+        return microsoft_graph_create_reply_request_builder.MicrosoftGraphCreateReplyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_reply_all(self) -> microsoft_graph_create_reply_all_request_builder.MicrosoftGraphCreateReplyAllRequestBuilder:
+        """
+        Provides operations to call the createReplyAll method.
+        """
+        return microsoft_graph_create_reply_all_request_builder.MicrosoftGraphCreateReplyAllRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_forward(self) -> microsoft_graph_forward_request_builder.MicrosoftGraphForwardRequestBuilder:
+        """
+        Provides operations to call the forward method.
+        """
+        return microsoft_graph_forward_request_builder.MicrosoftGraphForwardRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_move(self) -> microsoft_graph_move_request_builder.MicrosoftGraphMoveRequestBuilder:
         """
         Provides operations to call the move method.
         """
-        return move_request_builder.MoveRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_move_request_builder.MicrosoftGraphMoveRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_reply(self) -> microsoft_graph_reply_request_builder.MicrosoftGraphReplyRequestBuilder:
+        """
+        Provides operations to call the reply method.
+        """
+        return microsoft_graph_reply_request_builder.MicrosoftGraphReplyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_reply_all(self) -> microsoft_graph_reply_all_request_builder.MicrosoftGraphReplyAllRequestBuilder:
+        """
+        Provides operations to call the replyAll method.
+        """
+        return microsoft_graph_reply_all_request_builder.MicrosoftGraphReplyAllRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_send(self) -> microsoft_graph_send_request_builder.MicrosoftGraphSendRequestBuilder:
+        """
+        Provides operations to call the send method.
+        """
+        return microsoft_graph_send_request_builder.MicrosoftGraphSendRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_unsubscribe(self) -> microsoft_graph_unsubscribe_request_builder.MicrosoftGraphUnsubscribeRequestBuilder:
+        """
+        Provides operations to call the unsubscribe method.
+        """
+        return microsoft_graph_unsubscribe_request_builder.MicrosoftGraphUnsubscribeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
@@ -116,39 +144,11 @@ class MessageItemRequestBuilder():
         return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reply(self) -> reply_request_builder.ReplyRequestBuilder:
-        """
-        Provides operations to call the reply method.
-        """
-        return reply_request_builder.ReplyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reply_all(self) -> reply_all_request_builder.ReplyAllRequestBuilder:
-        """
-        Provides operations to call the replyAll method.
-        """
-        return reply_all_request_builder.ReplyAllRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def send(self) -> send_request_builder.SendRequestBuilder:
-        """
-        Provides operations to call the send method.
-        """
-        return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
         """
         Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
         """
         return single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unsubscribe(self) -> unsubscribe_request_builder.UnsubscribeRequestBuilder:
-        """
-        Provides operations to call the unsubscribe method.
-        """
-        return unsubscribe_request_builder.UnsubscribeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def attachments_by_id(self,id: str) -> attachment_item_request_builder.AttachmentItemRequestBuilder:
         """
@@ -181,12 +181,11 @@ class MessageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MessageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MessageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property messages for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -197,7 +196,7 @@ class MessageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def extensions_by_id(self,id: str) -> extension_item_request_builder.ExtensionItemRequestBuilder:
         """
@@ -212,12 +211,11 @@ class MessageItemRequestBuilder():
         url_tpl_params["extension%2Did"] = id
         return extension_item_request_builder.ExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[MessageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[message.Message]:
+    async def get(self,request_configuration: Optional[MessageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[message.Message]:
         """
         The collection of messages in the mailFolder.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message.Message]
         """
         request_info = self.to_get_request_information(
@@ -229,7 +227,7 @@ class MessageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, message.Message, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, message.Message, error_mapping)
     
     def mentions_by_id(self,id: str) -> mention_item_request_builder.MentionItemRequestBuilder:
         """
@@ -257,13 +255,12 @@ class MessageItemRequestBuilder():
         url_tpl_params["multiValueLegacyExtendedProperty%2Did"] = id
         return multi_value_legacy_extended_property_item_request_builder.MultiValueLegacyExtendedPropertyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[message.Message] = None, request_configuration: Optional[MessageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[message.Message]:
+    async def patch(self,body: Optional[message.Message] = None, request_configuration: Optional[MessageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[message.Message]:
         """
         Update the navigation property messages in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[message.Message]
         """
         if body is None:
@@ -277,7 +274,7 @@ class MessageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, message.Message, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, message.Message, error_mapping)
     
     def single_value_extended_properties_by_id(self,id: str) -> single_value_legacy_extended_property_item_request_builder.SingleValueLegacyExtendedPropertyItemRequestBuilder:
         """

@@ -55,7 +55,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_definition_id": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
+            "settingDefinitionId": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -101,7 +101,7 @@ class DeviceManagementConfigurationReferredSettingInformation(AdditionalDataHold
         """
         Sets the settingDefinitionId property value. Setting definition id that is being referred to a setting. Applicable for reusable setting
         Args:
-            value: Value to set for the settingDefinitionId property.
+            value: Value to set for the setting_definition_id property.
         """
         self._setting_definition_id = value
     

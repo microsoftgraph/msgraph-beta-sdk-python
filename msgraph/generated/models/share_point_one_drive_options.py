@@ -53,7 +53,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "include_content": lambda n : setattr(self, 'include_content', n.get_enum_value(search_content.SearchContent)),
+            "includeContent": lambda n : setattr(self, 'include_content', n.get_enum_value(search_content.SearchContent)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -71,7 +71,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, Parsable):
         """
         Sets the includeContent property value. The type of search content. The possible values are: privateContent, sharedContent. Read-only.
         Args:
-            value: Value to set for the includeContent property.
+            value: Value to set for the include_content property.
         """
         self._include_content = value
     
@@ -88,7 +88,7 @@ class SharePointOneDriveOptions(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -57,7 +57,7 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         """
         Sets the displayName property value. Human readable name of the software update
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -67,12 +67,12 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "product_key": lambda n : setattr(self, 'product_key', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "productKey": lambda n : setattr(self, 'product_key', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(mac_o_s_software_update_state.MacOSSoftwareUpdateState)),
-            "update_category": lambda n : setattr(self, 'update_category', n.get_enum_value(mac_o_s_software_update_category.MacOSSoftwareUpdateCategory)),
-            "update_version": lambda n : setattr(self, 'update_version', n.get_str_value()),
+            "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(mac_o_s_software_update_category.MacOSSoftwareUpdateCategory)),
+            "updateVersion": lambda n : setattr(self, 'update_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -91,7 +91,7 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. Last date time the report for this device and product key was updated.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -108,7 +108,7 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         """
         Sets the productKey property value. Product key of the software update.
         Args:
-            value: Value to set for the productKey property.
+            value: Value to set for the product_key property.
         """
         self._product_key = value
     
@@ -158,7 +158,7 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         """
         Sets the updateCategory property value. MacOS Software Update Category
         Args:
-            value: Value to set for the updateCategory property.
+            value: Value to set for the update_category property.
         """
         self._update_category = value
     
@@ -175,7 +175,7 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         """
         Sets the updateVersion property value. Version of the software update
         Args:
-            value: Value to set for the updateVersion property.
+            value: Value to set for the update_version property.
         """
         self._update_version = value
     

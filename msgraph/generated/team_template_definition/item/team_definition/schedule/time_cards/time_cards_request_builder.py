@@ -13,26 +13,26 @@ from typing import Any, Callable, Dict, List, Optional, Union
 time_card = lazy_import('msgraph.generated.models.time_card')
 time_card_collection_response = lazy_import('msgraph.generated.models.time_card_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-clock_in_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.clock_in.clock_in_request_builder')
 count_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.count.count_request_builder')
+microsoft_graph_clock_in_request_builder = lazy_import('msgraph.generated.team_template_definition.item.team_definition.schedule.time_cards.microsoft_graph_clock_in.microsoft_graph_clock_in_request_builder')
 
 class TimeCardsRequestBuilder():
     """
     Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
     """
     @property
-    def clock_in(self) -> clock_in_request_builder.ClockInRequestBuilder:
-        """
-        Provides operations to call the clockIn method.
-        """
-        return clock_in_request_builder.ClockInRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_clock_in(self) -> microsoft_graph_clock_in_request_builder.MicrosoftGraphClockInRequestBuilder:
+        """
+        Provides operations to call the clockIn method.
+        """
+        return microsoft_graph_clock_in_request_builder.MicrosoftGraphClockInRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class TimeCardsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[time_card_collection_response.TimeCardCollectionResponse]:
+    async def get(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None) -> Optional[time_card_collection_response.TimeCardCollectionResponse]:
         """
         Retrieve a list of timeCard entries in a schedule.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card_collection_response.TimeCardCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class TimeCardsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, time_card_collection_response.TimeCardCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, time_card_collection_response.TimeCardCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[time_card.TimeCard]:
+    async def post(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardsRequestBuilderPostRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
         Create new navigation property to timeCards for teamTemplateDefinition
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card.TimeCard]
         """
         if body is None:
@@ -91,7 +89,7 @@ class TimeCardsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, time_card.TimeCard, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, time_card.TimeCard, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TimeCardsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

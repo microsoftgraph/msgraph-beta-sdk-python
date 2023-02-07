@@ -34,7 +34,7 @@ class GroupWritebackConfiguration(writeback_configuration.WritebackConfiguration
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "on_premises_group_type": lambda n : setattr(self, 'on_premises_group_type', n.get_str_value()),
+            "onPremisesGroupType": lambda n : setattr(self, 'on_premises_group_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class GroupWritebackConfiguration(writeback_configuration.WritebackConfiguration
         """
         Sets the onPremisesGroupType property value. Indicates the target on-premise group type the cloud object will be written back as. Nullable. The possible values are: universalDistributionGroup, universalSecurityGroup, universalMailEnabledSecurityGroup.If the cloud group is a unified (Microsoft 365) group, this property can be one of the following: universalDistributionGroup, universalSecurityGroup, universalMailEnabledSecurityGroup. Azure AD security groups can be written back as universalSecurityGroup. If isEnabled or the NewUnifiedGroupWritebackDefault group setting is true but this property is not explicitly configured: Microsoft 365 groups will be written back as universalDistributionGroup by defaultSecurity groups will be written back as universalSecurityGroup by default
         Args:
-            value: Value to set for the onPremisesGroupType property.
+            value: Value to set for the on_premises_group_type property.
         """
         self._on_premises_group_type = value
     

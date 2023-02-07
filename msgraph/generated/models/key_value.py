@@ -28,11 +28,11 @@ class KeyValue(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Key.
+        # Contains the name of the field that a value is associated with. When a sign in or domain hint is included in the sign-in request, corresponding fields are included as key-value pairs. Possible keys: Login hint present, Domain hint present.
         self._key: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Value.
+        # Contains the corresponding value for the specified key. The value is true if a sign in hint was included in the sign-in request; otherwise false. The value is true if a domain hint was included in the sign-in request; otherwise false.
         self._value: Optional[str] = None
     
     @staticmethod
@@ -62,7 +62,7 @@ class KeyValue(AdditionalDataHolder, Parsable):
     @property
     def key(self,) -> Optional[str]:
         """
-        Gets the key property value. Key.
+        Gets the key property value. Contains the name of the field that a value is associated with. When a sign in or domain hint is included in the sign-in request, corresponding fields are included as key-value pairs. Possible keys: Login hint present, Domain hint present.
         Returns: Optional[str]
         """
         return self._key
@@ -70,7 +70,7 @@ class KeyValue(AdditionalDataHolder, Parsable):
     @key.setter
     def key(self,value: Optional[str] = None) -> None:
         """
-        Sets the key property value. Key.
+        Sets the key property value. Contains the name of the field that a value is associated with. When a sign in or domain hint is included in the sign-in request, corresponding fields are included as key-value pairs. Possible keys: Login hint present, Domain hint present.
         Args:
             value: Value to set for the key property.
         """
@@ -89,7 +89,7 @@ class KeyValue(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class KeyValue(AdditionalDataHolder, Parsable):
     @property
     def value(self,) -> Optional[str]:
         """
-        Gets the value property value. Value.
+        Gets the value property value. Contains the corresponding value for the specified key. The value is true if a sign in hint was included in the sign-in request; otherwise false. The value is true if a domain hint was included in the sign-in request; otherwise false.
         Returns: Optional[str]
         """
         return self._value
@@ -117,7 +117,7 @@ class KeyValue(AdditionalDataHolder, Parsable):
     @value.setter
     def value(self,value: Optional[str] = None) -> None:
         """
-        Sets the value property value. Value.
+        Sets the value property value. Contains the corresponding value for the specified key. The value is true if a sign in hint was included in the sign-in request; otherwise false. The value is true if a domain hint was included in the sign-in request; otherwise false.
         Args:
             value: Value to set for the value property.
         """

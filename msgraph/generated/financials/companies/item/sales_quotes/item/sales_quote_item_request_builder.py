@@ -12,11 +12,11 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.currency.currency_request_builder')
 customer_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.customer.customer_request_builder')
-make_invoice_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.make_invoice.make_invoice_request_builder')
+microsoft_graph_make_invoice_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.microsoft_graph_make_invoice.microsoft_graph_make_invoice_request_builder')
+microsoft_graph_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.microsoft_graph_send.microsoft_graph_send_request_builder')
 payment_term_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.payment_term.payment_term_request_builder')
 sales_quote_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.sales_quote_lines.sales_quote_lines_request_builder')
 sales_quote_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.sales_quote_lines.item.sales_quote_line_item_request_builder')
-send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.send.send_request_builder')
 shipment_method_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_quotes.item.shipment_method.shipment_method_request_builder')
 sales_quote = lazy_import('msgraph.generated.models.sales_quote')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -40,11 +40,18 @@ class SalesQuoteItemRequestBuilder():
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def make_invoice(self) -> make_invoice_request_builder.MakeInvoiceRequestBuilder:
+    def microsoft_graph_make_invoice(self) -> microsoft_graph_make_invoice_request_builder.MicrosoftGraphMakeInvoiceRequestBuilder:
         """
         Provides operations to call the makeInvoice method.
         """
-        return make_invoice_request_builder.MakeInvoiceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_make_invoice_request_builder.MicrosoftGraphMakeInvoiceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_send(self) -> microsoft_graph_send_request_builder.MicrosoftGraphSendRequestBuilder:
+        """
+        Provides operations to call the send method.
+        """
+        return microsoft_graph_send_request_builder.MicrosoftGraphSendRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
@@ -59,13 +66,6 @@ class SalesQuoteItemRequestBuilder():
         Provides operations to manage the salesQuoteLines property of the microsoft.graph.salesQuote entity.
         """
         return sales_quote_lines_request_builder.SalesQuoteLinesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def send(self) -> send_request_builder.SendRequestBuilder:
-        """
-        Provides operations to call the send method.
-        """
-        return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
@@ -92,12 +92,11 @@ class SalesQuoteItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesQuoteItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_quote.SalesQuote]:
+    async def get(self,request_configuration: Optional[SalesQuoteItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_quote.SalesQuote]:
         """
         Get salesQuotes from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_quote.SalesQuote]
         """
         request_info = self.to_get_request_information(
@@ -109,15 +108,14 @@ class SalesQuoteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, error_mapping)
     
-    async def patch(self,body: Optional[sales_quote.SalesQuote] = None, request_configuration: Optional[SalesQuoteItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_quote.SalesQuote]:
+    async def patch(self,body: Optional[sales_quote.SalesQuote] = None, request_configuration: Optional[SalesQuoteItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_quote.SalesQuote]:
         """
         Update the navigation property salesQuotes in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_quote.SalesQuote]
         """
         if body is None:
@@ -131,7 +129,7 @@ class SalesQuoteItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_quote.SalesQuote, error_mapping)
     
     def sales_quote_lines_by_id(self,id: str) -> sales_quote_line_item_request_builder.SalesQuoteLineItemRequestBuilder:
         """

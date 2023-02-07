@@ -58,8 +58,8 @@ class NotificationChannel(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "notification_channel_type": lambda n : setattr(self, 'notification_channel_type', n.get_enum_value(notification_channel_type.NotificationChannelType)),
-            "notification_receivers": lambda n : setattr(self, 'notification_receivers', n.get_collection_of_object_values(notification_receiver.NotificationReceiver)),
+            "notificationChannelType": lambda n : setattr(self, 'notification_channel_type', n.get_enum_value(notification_channel_type.NotificationChannelType)),
+            "notificationReceivers": lambda n : setattr(self, 'notification_receivers', n.get_collection_of_object_values(notification_receiver.NotificationReceiver)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "receivers": lambda n : setattr(self, 'receivers', n.get_collection_of_primitive_values(str)),
         }
@@ -78,7 +78,7 @@ class NotificationChannel(AdditionalDataHolder, Parsable):
         """
         Sets the notificationChannelType property value. The type of the notification channel. The possible values are: portal, email, phoneCall, sms, unknownFutureValue.
         Args:
-            value: Value to set for the notificationChannelType property.
+            value: Value to set for the notification_channel_type property.
         """
         self._notification_channel_type = value
     
@@ -95,7 +95,7 @@ class NotificationChannel(AdditionalDataHolder, Parsable):
         """
         Sets the notificationReceivers property value. Information about the notification receivers, such as locale and contact information. For example, en-us for locale and serena.davis@contoso.com for contact information.
         Args:
-            value: Value to set for the notificationReceivers property.
+            value: Value to set for the notification_receivers property.
         """
         self._notification_receivers = value
     
@@ -112,7 +112,7 @@ class NotificationChannel(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

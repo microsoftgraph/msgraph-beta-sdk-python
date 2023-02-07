@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.count.count_request_builder')
-enable_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.enable.enable_request_builder')
-get_platform_supported_properties_with_platform_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.get_platform_supported_properties_with_platform.get_platform_supported_properties_with_platform_request_builder')
-get_state_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.get_state.get_state_request_builder')
-validate_filter_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.validate_filter.validate_filter_request_builder')
+microsoft_graph_enable_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.microsoft_graph_enable.microsoft_graph_enable_request_builder')
+microsoft_graph_get_platform_supported_properties_with_platform_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.microsoft_graph_get_platform_supported_properties_with_platform.microsoft_graph_get_platform_supported_properties_with_platform_request_builder')
+microsoft_graph_get_state_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.microsoft_graph_get_state.microsoft_graph_get_state_request_builder')
+microsoft_graph_validate_filter_request_builder = lazy_import('msgraph.generated.device_management.assignment_filters.microsoft_graph_validate_filter.microsoft_graph_validate_filter_request_builder')
 device_and_app_management_assignment_filter = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter')
 device_and_app_management_assignment_filter_collection_response = lazy_import('msgraph.generated.models.device_and_app_management_assignment_filter_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -31,18 +31,25 @@ class AssignmentFiltersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enable(self) -> enable_request_builder.EnableRequestBuilder:
+    def microsoft_graph_enable(self) -> microsoft_graph_enable_request_builder.MicrosoftGraphEnableRequestBuilder:
         """
         Provides operations to call the enable method.
         """
-        return enable_request_builder.EnableRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_enable_request_builder.MicrosoftGraphEnableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_filter(self) -> validate_filter_request_builder.ValidateFilterRequestBuilder:
+    def microsoft_graph_get_state(self) -> microsoft_graph_get_state_request_builder.MicrosoftGraphGetStateRequestBuilder:
+        """
+        Provides operations to call the getState method.
+        """
+        return microsoft_graph_get_state_request_builder.MicrosoftGraphGetStateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_validate_filter(self) -> microsoft_graph_validate_filter_request_builder.MicrosoftGraphValidateFilterRequestBuilder:
         """
         Provides operations to call the validateFilter method.
         """
-        return validate_filter_request_builder.ValidateFilterRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_filter_request_builder.MicrosoftGraphValidateFilterRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -62,12 +69,11 @@ class AssignmentFiltersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]:
         """
         The list of assignment filters
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -79,33 +85,25 @@ class AssignmentFiltersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse, error_mapping)
     
-    def get_platform_supported_properties_with_platform(self,platform: Optional[str] = None) -> get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder:
+    def microsoft_graph_get_platform_supported_properties_with_platform(self,platform: Optional[str] = None) -> microsoft_graph_get_platform_supported_properties_with_platform_request_builder.MicrosoftGraphGetPlatformSupportedPropertiesWithPlatformRequestBuilder:
         """
         Provides operations to call the getPlatformSupportedProperties method.
         Args:
             platform: Usage: platform='{platform}'
-        Returns: get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder
+        Returns: microsoft_graph_get_platform_supported_properties_with_platform_request_builder.MicrosoftGraphGetPlatformSupportedPropertiesWithPlatformRequestBuilder
         """
         if platform is None:
             raise Exception("platform cannot be undefined")
-        return get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
+        return microsoft_graph_get_platform_supported_properties_with_platform_request_builder.MicrosoftGraphGetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
     
-    def get_state(self,) -> get_state_request_builder.GetStateRequestBuilder:
-        """
-        Provides operations to call the getState method.
-        Returns: get_state_request_builder.GetStateRequestBuilder
-        """
-        return get_state_request_builder.GetStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def post(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
         if body is None:
@@ -119,7 +117,7 @@ class AssignmentFiltersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -20,7 +20,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the blackAndWhitePageCount property value. The blackAndWhitePageCount property
         Args:
-            value: Value to set for the blackAndWhitePageCount property.
+            value: Value to set for the black_and_white_page_count property.
         """
         self._black_and_white_page_count = value
     
@@ -37,7 +37,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the colorPageCount property value. The colorPageCount property
         Args:
-            value: Value to set for the colorPageCount property.
+            value: Value to set for the color_page_count property.
         """
         self._color_page_count = value
     
@@ -54,7 +54,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the completedBlackAndWhiteJobCount property value. The completedBlackAndWhiteJobCount property
         Args:
-            value: Value to set for the completedBlackAndWhiteJobCount property.
+            value: Value to set for the completed_black_and_white_job_count property.
         """
         self._completed_black_and_white_job_count = value
     
@@ -71,7 +71,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the completedColorJobCount property value. The completedColorJobCount property
         Args:
-            value: Value to set for the completedColorJobCount property.
+            value: Value to set for the completed_color_job_count property.
         """
         self._completed_color_job_count = value
     
@@ -88,7 +88,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the completedJobCount property value. The completedJobCount property
         Args:
-            value: Value to set for the completedJobCount property.
+            value: Value to set for the completed_job_count property.
         """
         self._completed_job_count = value
     
@@ -147,7 +147,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the doubleSidedSheetCount property value. The doubleSidedSheetCount property
         Args:
-            value: Value to set for the doubleSidedSheetCount property.
+            value: Value to set for the double_sided_sheet_count property.
         """
         self._double_sided_sheet_count = value
     
@@ -157,17 +157,17 @@ class PrintUsage(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "black_and_white_page_count": lambda n : setattr(self, 'black_and_white_page_count', n.get_int_value()),
-            "color_page_count": lambda n : setattr(self, 'color_page_count', n.get_int_value()),
-            "completed_black_and_white_job_count": lambda n : setattr(self, 'completed_black_and_white_job_count', n.get_int_value()),
-            "completed_color_job_count": lambda n : setattr(self, 'completed_color_job_count', n.get_int_value()),
-            "completed_job_count": lambda n : setattr(self, 'completed_job_count', n.get_int_value()),
-            "double_sided_sheet_count": lambda n : setattr(self, 'double_sided_sheet_count', n.get_int_value()),
-            "incomplete_job_count": lambda n : setattr(self, 'incomplete_job_count', n.get_int_value()),
-            "media_sheet_count": lambda n : setattr(self, 'media_sheet_count', n.get_int_value()),
-            "page_count": lambda n : setattr(self, 'page_count', n.get_int_value()),
-            "single_sided_sheet_count": lambda n : setattr(self, 'single_sided_sheet_count', n.get_int_value()),
-            "usage_date": lambda n : setattr(self, 'usage_date', n.get_object_value(Date)),
+            "blackAndWhitePageCount": lambda n : setattr(self, 'black_and_white_page_count', n.get_int_value()),
+            "colorPageCount": lambda n : setattr(self, 'color_page_count', n.get_int_value()),
+            "completedBlackAndWhiteJobCount": lambda n : setattr(self, 'completed_black_and_white_job_count', n.get_int_value()),
+            "completedColorJobCount": lambda n : setattr(self, 'completed_color_job_count', n.get_int_value()),
+            "completedJobCount": lambda n : setattr(self, 'completed_job_count', n.get_int_value()),
+            "doubleSidedSheetCount": lambda n : setattr(self, 'double_sided_sheet_count', n.get_int_value()),
+            "incompleteJobCount": lambda n : setattr(self, 'incomplete_job_count', n.get_int_value()),
+            "mediaSheetCount": lambda n : setattr(self, 'media_sheet_count', n.get_int_value()),
+            "pageCount": lambda n : setattr(self, 'page_count', n.get_int_value()),
+            "singleSidedSheetCount": lambda n : setattr(self, 'single_sided_sheet_count', n.get_int_value()),
+            "usageDate": lambda n : setattr(self, 'usage_date', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -186,7 +186,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the incompleteJobCount property value. The incompleteJobCount property
         Args:
-            value: Value to set for the incompleteJobCount property.
+            value: Value to set for the incomplete_job_count property.
         """
         self._incomplete_job_count = value
     
@@ -203,7 +203,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the mediaSheetCount property value. The mediaSheetCount property
         Args:
-            value: Value to set for the mediaSheetCount property.
+            value: Value to set for the media_sheet_count property.
         """
         self._media_sheet_count = value
     
@@ -220,7 +220,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the pageCount property value. The pageCount property
         Args:
-            value: Value to set for the pageCount property.
+            value: Value to set for the page_count property.
         """
         self._page_count = value
     
@@ -258,7 +258,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the singleSidedSheetCount property value. The singleSidedSheetCount property
         Args:
-            value: Value to set for the singleSidedSheetCount property.
+            value: Value to set for the single_sided_sheet_count property.
         """
         self._single_sided_sheet_count = value
     
@@ -275,7 +275,7 @@ class PrintUsage(entity.Entity):
         """
         Sets the usageDate property value. The usageDate property
         Args:
-            value: Value to set for the usageDate property.
+            value: Value to set for the usage_date property.
         """
         self._usage_date = value
     

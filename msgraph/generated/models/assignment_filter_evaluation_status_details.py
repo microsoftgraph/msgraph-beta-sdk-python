@@ -37,7 +37,7 @@ class AssignmentFilterEvaluationStatusDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "payload_id": lambda n : setattr(self, 'payload_id', n.get_str_value()),
+            "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class AssignmentFilterEvaluationStatusDetails(entity.Entity):
         """
         Sets the payloadId property value. PayloadId on which filter has been applied.
         Args:
-            value: Value to set for the payloadId property.
+            value: Value to set for the payload_id property.
         """
         self._payload_id = value
     

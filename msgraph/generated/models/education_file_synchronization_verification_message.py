@@ -79,7 +79,7 @@ class EducationFileSynchronizationVerificationMessage(AdditionalDataHolder, Pars
         """
         Sets the fileName property value. The fileName property
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -90,7 +90,7 @@ class EducationFileSynchronizationVerificationMessage(AdditionalDataHolder, Pars
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
@@ -109,7 +109,7 @@ class EducationFileSynchronizationVerificationMessage(AdditionalDataHolder, Pars
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

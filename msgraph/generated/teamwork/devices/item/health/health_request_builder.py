@@ -35,12 +35,11 @@ class HealthRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[HealthRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[HealthRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property health for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class HealthRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[HealthRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_health.TeamworkDeviceHealth]:
+    async def get(self,request_configuration: Optional[HealthRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device_health.TeamworkDeviceHealth]:
         """
         Get the health details of a Microsoft Teams-enabled device. Device health is calculated based on the device configuration and other device parameters.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_health.TeamworkDeviceHealth]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class HealthRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_health.TeamworkDeviceHealth, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_health.TeamworkDeviceHealth, error_mapping)
     
-    async def patch(self,body: Optional[teamwork_device_health.TeamworkDeviceHealth] = None, request_configuration: Optional[HealthRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device_health.TeamworkDeviceHealth]:
+    async def patch(self,body: Optional[teamwork_device_health.TeamworkDeviceHealth] = None, request_configuration: Optional[HealthRequestBuilderPatchRequestConfiguration] = None) -> Optional[teamwork_device_health.TeamworkDeviceHealth]:
         """
         Update the navigation property health in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device_health.TeamworkDeviceHealth]
         """
         if body is None:
@@ -92,7 +89,7 @@ class HealthRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device_health.TeamworkDeviceHealth, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device_health.TeamworkDeviceHealth, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[HealthRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

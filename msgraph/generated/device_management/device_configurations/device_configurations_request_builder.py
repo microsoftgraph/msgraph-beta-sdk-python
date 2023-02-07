@@ -11,9 +11,9 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.count.count_request_builder')
-get_ios_available_update_versions_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.get_ios_available_update_versions.get_ios_available_update_versions_request_builder')
-get_targeted_users_and_devices_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.get_targeted_users_and_devices.get_targeted_users_and_devices_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.has_payload_links.has_payload_links_request_builder')
+microsoft_graph_get_ios_available_update_versions_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.microsoft_graph_get_ios_available_update_versions.microsoft_graph_get_ios_available_update_versions_request_builder')
+microsoft_graph_get_targeted_users_and_devices_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.microsoft_graph_get_targeted_users_and_devices.microsoft_graph_get_targeted_users_and_devices_request_builder')
+microsoft_graph_has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.device_configurations.microsoft_graph_has_payload_links.microsoft_graph_has_payload_links_request_builder')
 device_configuration = lazy_import('msgraph.generated.models.device_configuration')
 device_configuration_collection_response = lazy_import('msgraph.generated.models.device_configuration_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -30,18 +30,25 @@ class DeviceConfigurationsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_targeted_users_and_devices(self) -> get_targeted_users_and_devices_request_builder.GetTargetedUsersAndDevicesRequestBuilder:
+    def microsoft_graph_get_ios_available_update_versions(self) -> microsoft_graph_get_ios_available_update_versions_request_builder.MicrosoftGraphGetIosAvailableUpdateVersionsRequestBuilder:
+        """
+        Provides operations to call the getIosAvailableUpdateVersions method.
+        """
+        return microsoft_graph_get_ios_available_update_versions_request_builder.MicrosoftGraphGetIosAvailableUpdateVersionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_targeted_users_and_devices(self) -> microsoft_graph_get_targeted_users_and_devices_request_builder.MicrosoftGraphGetTargetedUsersAndDevicesRequestBuilder:
         """
         Provides operations to call the getTargetedUsersAndDevices method.
         """
-        return get_targeted_users_and_devices_request_builder.GetTargetedUsersAndDevicesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_targeted_users_and_devices_request_builder.MicrosoftGraphGetTargetedUsersAndDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -61,12 +68,11 @@ class DeviceConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
         """
         The device configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -78,22 +84,14 @@ class DeviceConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration_collection_response.DeviceConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration_collection_response.DeviceConfigurationCollectionResponse, error_mapping)
     
-    def get_ios_available_update_versions(self,) -> get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder:
-        """
-        Provides operations to call the getIosAvailableUpdateVersions method.
-        Returns: get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder
-        """
-        return get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[device_configuration.DeviceConfiguration] = None, request_configuration: Optional[DeviceConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration.DeviceConfiguration]:
+    async def post(self,body: Optional[device_configuration.DeviceConfiguration] = None, request_configuration: Optional[DeviceConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_configuration.DeviceConfiguration]:
         """
         Create new navigation property to deviceConfigurations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration.DeviceConfiguration]
         """
         if body is None:
@@ -107,7 +105,7 @@ class DeviceConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration.DeviceConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration.DeviceConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

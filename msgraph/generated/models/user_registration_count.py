@@ -56,8 +56,8 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "registration_count": lambda n : setattr(self, 'registration_count', n.get_int_value()),
-            "registration_status": lambda n : setattr(self, 'registration_status', n.get_enum_value(registration_status_type.RegistrationStatusType)),
+            "registrationCount": lambda n : setattr(self, 'registration_count', n.get_int_value()),
+            "registrationStatus": lambda n : setattr(self, 'registration_status', n.get_enum_value(registration_status_type.RegistrationStatusType)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -91,7 +91,7 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
         """
         Sets the registrationCount property value. Provides the registration count for your tenant.
         Args:
-            value: Value to set for the registrationCount property.
+            value: Value to set for the registration_count property.
         """
         self._registration_count = value
     
@@ -108,7 +108,7 @@ class UserRegistrationCount(AdditionalDataHolder, Parsable):
         """
         Sets the registrationStatus property value. The registrationStatus property
         Args:
-            value: Value to set for the registrationStatus property.
+            value: Value to set for the registration_status property.
         """
         self._registration_status = value
     

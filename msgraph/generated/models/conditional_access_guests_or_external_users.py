@@ -63,7 +63,7 @@ class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
         """
         Sets the externalTenants property value. The tenant ids of the selected types of external users. It could be either all b2b tenant, or a collection of tenant ids. External tenants can be specified only when guestOrExternalUserTypes is not null or an empty string.
         Args:
-            value: Value to set for the externalTenants property.
+            value: Value to set for the external_tenants property.
         """
         self._external_tenants = value
     
@@ -73,8 +73,8 @@ class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "external_tenants": lambda n : setattr(self, 'external_tenants', n.get_object_value(conditional_access_external_tenants.ConditionalAccessExternalTenants)),
-            "guest_or_external_user_types": lambda n : setattr(self, 'guest_or_external_user_types', n.get_enum_value(conditional_access_guest_or_external_user_types.ConditionalAccessGuestOrExternalUserTypes)),
+            "externalTenants": lambda n : setattr(self, 'external_tenants', n.get_object_value(conditional_access_external_tenants.ConditionalAccessExternalTenants)),
+            "guestOrExternalUserTypes": lambda n : setattr(self, 'guest_or_external_user_types', n.get_enum_value(conditional_access_guest_or_external_user_types.ConditionalAccessGuestOrExternalUserTypes)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
         """
         Sets the guestOrExternalUserTypes property value. The guestOrExternalUserTypes property
         Args:
-            value: Value to set for the guestOrExternalUserTypes property.
+            value: Value to set for the guest_or_external_user_types property.
         """
         self._guest_or_external_user_types = value
     
@@ -109,7 +109,7 @@ class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

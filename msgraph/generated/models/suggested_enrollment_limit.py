@@ -55,7 +55,7 @@ class SuggestedEnrollmentLimit(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "suggested_daily_limit": lambda n : setattr(self, 'suggested_daily_limit', n.get_int_value()),
+            "suggestedDailyLimit": lambda n : setattr(self, 'suggested_daily_limit', n.get_int_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class SuggestedEnrollmentLimit(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -101,7 +101,7 @@ class SuggestedEnrollmentLimit(AdditionalDataHolder, Parsable):
         """
         Sets the suggestedDailyLimit property value. The suggested enrollment limit within a day
         Args:
-            value: Value to set for the suggestedDailyLimit property.
+            value: Value to set for the suggested_daily_limit property.
         """
         self._suggested_daily_limit = value
     

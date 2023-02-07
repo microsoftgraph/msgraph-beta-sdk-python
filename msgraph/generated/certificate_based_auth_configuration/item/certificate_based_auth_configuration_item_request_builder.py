@@ -35,12 +35,11 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from certificateBasedAuthConfiguration
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]:
+    async def get(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]:
         """
         Get entity from certificateBasedAuthConfiguration by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration.CertificateBasedAuthConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration.CertificateBasedAuthConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration] = None, request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]:
+    async def patch(self,body: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration] = None, request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]:
         """
         Update entity in certificateBasedAuthConfiguration
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[certificate_based_auth_configuration.CertificateBasedAuthConfiguration]
         """
         if body is None:
@@ -92,7 +89,7 @@ class CertificateBasedAuthConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration.CertificateBasedAuthConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, certificate_based_auth_configuration.CertificateBasedAuthConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CertificateBasedAuthConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

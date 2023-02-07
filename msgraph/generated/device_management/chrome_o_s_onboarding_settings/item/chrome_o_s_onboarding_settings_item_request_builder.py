@@ -35,12 +35,11 @@ class ChromeOSOnboardingSettingsItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property chromeOSOnboardingSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class ChromeOSOnboardingSettingsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
+    async def get(self,request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
         """
         Collection of ChromeOSOnboardingSettings settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class ChromeOSOnboardingSettingsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, error_mapping)
     
-    async def patch(self,body: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
+    async def patch(self,body: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings] = None, request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]:
         """
         Update the navigation property chromeOSOnboardingSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings]
         """
         if body is None:
@@ -92,7 +89,7 @@ class ChromeOSOnboardingSettingsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chrome_o_s_onboarding_settings.ChromeOSOnboardingSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ChromeOSOnboardingSettingsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

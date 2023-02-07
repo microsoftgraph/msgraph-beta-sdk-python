@@ -12,9 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 unified_role_definition = lazy_import('msgraph.generated.models.unified_role_definition')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.item.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder')
 inherits_permissions_from_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.item.inherits_permissions_from.inherits_permissions_from_request_builder')
 unified_role_definition_item_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.item.inherits_permissions_from.item.unified_role_definition_item_request_builder')
+microsoft_graph_assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder = lazy_import('msgraph.generated.role_management.device_management.role_definitions.item.microsoft_graph_assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id.microsoft_graph_assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder')
 
 class UnifiedRoleDefinitionItemRequestBuilder():
     """
@@ -27,12 +27,12 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         """
         return inherits_permissions_from_request_builder.InheritsPermissionsFromRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id(self,) -> assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder.AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder:
+    @property
+    def microsoft_graph_assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id(self) -> microsoft_graph_assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder.MicrosoftGraphAssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder:
         """
         Provides operations to call the assignedPrincipals method.
-        Returns: assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder.AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder
         """
-        return assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder.AssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_assigned_principals_with_transitivedirectory_scope_type_directory_scope_type_directory_scope_id_directory_scope_id_request_builder.MicrosoftGraphAssignedPrincipalsWithTransitivedirectoryScopeTypeDirectoryScopeTypeDirectoryScopeIdDirectoryScopeIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property roleDefinitions for roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +67,13 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
+    async def get(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
         """
         Get roleDefinitions from roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_definition.UnifiedRoleDefinition]
         """
         request_info = self.to_get_request_information(
@@ -87,7 +85,7 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, error_mapping)
     
     def inherits_permissions_from_by_id(self,id: str) -> UnifiedRoleDefinitionItemRequestBuilder:
         """
@@ -102,13 +100,12 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         url_tpl_params["unifiedRoleDefinition%2Did1"] = id
         return UnifiedRoleDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[unified_role_definition.UnifiedRoleDefinition] = None, request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
+    async def patch(self,body: Optional[unified_role_definition.UnifiedRoleDefinition] = None, request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[unified_role_definition.UnifiedRoleDefinition]:
         """
         Update the navigation property roleDefinitions in roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_definition.UnifiedRoleDefinition]
         """
         if body is None:
@@ -122,7 +119,7 @@ class UnifiedRoleDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_definition.UnifiedRoleDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UnifiedRoleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

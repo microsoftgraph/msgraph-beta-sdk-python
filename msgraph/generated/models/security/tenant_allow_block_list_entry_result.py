@@ -70,7 +70,7 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, Parsable):
         """
         Sets the entryType property value. The entry type of tenant allow block list. The possible values are: url, fileHash, sender, recipient and unkownFutureValue.
         Args:
-            value: Value to set for the entryType property.
+            value: Value to set for the entry_type property.
         """
         self._entry_type = value
     
@@ -87,7 +87,7 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDateTime property value. Specifies when will this entry expire in date time.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -97,8 +97,8 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "entry_type": lambda n : setattr(self, 'entry_type', n.get_enum_value(tenant_allow_block_list_entry_type.TenantAllowBlockListEntryType)),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "entryType": lambda n : setattr(self, 'entry_type', n.get_enum_value(tenant_allow_block_list_entry_type.TenantAllowBlockListEntryType)),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "identity": lambda n : setattr(self, 'identity', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(long_running_operation_status.LongRunningOperationStatus)),
@@ -136,7 +136,7 @@ class TenantAllowBlockListEntryResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

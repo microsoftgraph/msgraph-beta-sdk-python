@@ -23,7 +23,7 @@ feature_rollout_policy_item_request_builder = lazy_import('msgraph.generated.dir
 federation_configurations_request_builder = lazy_import('msgraph.generated.directory.federation_configurations.federation_configurations_request_builder')
 identity_provider_base_item_request_builder = lazy_import('msgraph.generated.directory.federation_configurations.item.identity_provider_base_item_request_builder')
 impacted_resources_request_builder = lazy_import('msgraph.generated.directory.impacted_resources.impacted_resources_request_builder')
-recommendation_resource_item_request_builder = lazy_import('msgraph.generated.directory.impacted_resources.item.recommendation_resource_item_request_builder')
+impacted_resource_item_request_builder = lazy_import('msgraph.generated.directory.impacted_resources.item.impacted_resource_item_request_builder')
 inbound_shared_user_profiles_request_builder = lazy_import('msgraph.generated.directory.inbound_shared_user_profiles.inbound_shared_user_profiles_request_builder')
 inbound_shared_user_profile_user_item_request_builder = lazy_import('msgraph.generated.directory.inbound_shared_user_profiles.item.inbound_shared_user_profile_user_item_request_builder')
 on_premises_synchronization_request_builder = lazy_import('msgraph.generated.directory.on_premises_synchronization.on_premises_synchronization_request_builder')
@@ -221,12 +221,11 @@ class DirectoryRequestBuilder():
         url_tpl_params["identityProviderBase%2Did"] = id
         return identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DirectoryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory.Directory]:
+    async def get(self,request_configuration: Optional[DirectoryRequestBuilderGetRequestConfiguration] = None) -> Optional[directory.Directory]:
         """
         Get directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory.Directory]
         """
         request_info = self.to_get_request_information(
@@ -238,20 +237,20 @@ class DirectoryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory.Directory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory.Directory, error_mapping)
     
-    def impacted_resources_by_id(self,id: str) -> recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder:
+    def impacted_resources_by_id(self,id: str) -> impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder:
         """
         Provides operations to manage the impactedResources property of the microsoft.graph.directory entity.
         Args:
             id: Unique identifier of the item
-        Returns: recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder
+        Returns: impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder
         """
         if id is None:
             raise Exception("id cannot be undefined")
         url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["recommendationResource%2Did"] = id
-        return recommendation_resource_item_request_builder.RecommendationResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+        url_tpl_params["impactedResource%2Did"] = id
+        return impacted_resource_item_request_builder.ImpactedResourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def inbound_shared_user_profiles_by_id(self,id: str) -> inbound_shared_user_profile_user_item_request_builder.InboundSharedUserProfileUserItemRequestBuilder:
         """
@@ -292,13 +291,12 @@ class DirectoryRequestBuilder():
         url_tpl_params["outboundSharedUserProfile%2DuserId"] = id
         return outbound_shared_user_profile_user_item_request_builder.OutboundSharedUserProfileUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[directory.Directory] = None, request_configuration: Optional[DirectoryRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory.Directory]:
+    async def patch(self,body: Optional[directory.Directory] = None, request_configuration: Optional[DirectoryRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory.Directory]:
         """
         Update directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory.Directory]
         """
         if body is None:
@@ -312,7 +310,7 @@ class DirectoryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory.Directory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory.Directory, error_mapping)
     
     def recommendations_by_id(self,id: str) -> recommendation_item_request_builder.RecommendationItemRequestBuilder:
         """

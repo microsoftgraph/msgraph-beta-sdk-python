@@ -12,18 +12,18 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 management_action = lazy_import('msgraph.generated.models.managed_tenants.management_action')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-apply_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_actions.item.apply.apply_request_builder')
+microsoft_graph_managed_tenants_apply_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_actions.item.microsoft_graph_managed_tenants_apply.microsoft_graph_managed_tenants_apply_request_builder')
 
 class ManagementActionItemRequestBuilder():
     """
     Provides operations to manage the managementActions property of the microsoft.graph.managedTenants.managedTenant entity.
     """
     @property
-    def apply(self) -> apply_request_builder.ApplyRequestBuilder:
+    def microsoft_graph_managed_tenants_apply(self) -> microsoft_graph_managed_tenants_apply_request_builder.MicrosoftGraphManagedTenantsApplyRequestBuilder:
         """
         Provides operations to call the apply method.
         """
-        return apply_request_builder.ApplyRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_apply_request_builder.MicrosoftGraphManagedTenantsApplyRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class ManagementActionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagementActionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagementActionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managementActions for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class ManagementActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ManagementActionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_action.ManagementAction]:
+    async def get(self,request_configuration: Optional[ManagementActionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[management_action.ManagementAction]:
         """
         The collection of baseline management actions across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_action.ManagementAction]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class ManagementActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_action.ManagementAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_action.ManagementAction, error_mapping)
     
-    async def patch(self,body: Optional[management_action.ManagementAction] = None, request_configuration: Optional[ManagementActionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[management_action.ManagementAction]:
+    async def patch(self,body: Optional[management_action.ManagementAction] = None, request_configuration: Optional[ManagementActionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_action.ManagementAction]:
         """
         Update the navigation property managementActions in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[management_action.ManagementAction]
         """
         if body is None:
@@ -100,7 +97,7 @@ class ManagementActionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, management_action.ManagementAction, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, management_action.ManagementAction, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementActionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

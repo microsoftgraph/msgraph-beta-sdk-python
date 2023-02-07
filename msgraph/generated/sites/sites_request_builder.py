@@ -12,22 +12,15 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 site_collection_response = lazy_import('msgraph.generated.models.site_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-add_request_builder = lazy_import('msgraph.generated.sites.add.add_request_builder')
 count_request_builder = lazy_import('msgraph.generated.sites.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.sites.delta.delta_request_builder')
-remove_request_builder = lazy_import('msgraph.generated.sites.remove.remove_request_builder')
+microsoft_graph_add_request_builder = lazy_import('msgraph.generated.sites.microsoft_graph_add.microsoft_graph_add_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.sites.microsoft_graph_delta.microsoft_graph_delta_request_builder')
+microsoft_graph_remove_request_builder = lazy_import('msgraph.generated.sites.microsoft_graph_remove.microsoft_graph_remove_request_builder')
 
 class SitesRequestBuilder():
     """
     Provides operations to manage the collection of site entities.
     """
-    @property
-    def add(self) -> add_request_builder.AddRequestBuilder:
-        """
-        Provides operations to call the add method.
-        """
-        return add_request_builder.AddRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
@@ -36,11 +29,25 @@ class SitesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove(self) -> remove_request_builder.RemoveRequestBuilder:
+    def microsoft_graph_add(self) -> microsoft_graph_add_request_builder.MicrosoftGraphAddRequestBuilder:
+        """
+        Provides operations to call the add method.
+        """
+        return microsoft_graph_add_request_builder.MicrosoftGraphAddRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_remove(self) -> microsoft_graph_remove_request_builder.MicrosoftGraphRemoveRequestBuilder:
         """
         Provides operations to call the remove method.
         """
-        return remove_request_builder.RemoveRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_remove_request_builder.MicrosoftGraphRemoveRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -60,19 +67,11 @@ class SitesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_collection_response.SiteCollectionResponse]:
+    async def get(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None) -> Optional[site_collection_response.SiteCollectionResponse]:
         """
         List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_collection_response.SiteCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -84,7 +83,7 @@ class SitesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_collection_response.SiteCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_collection_response.SiteCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SitesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

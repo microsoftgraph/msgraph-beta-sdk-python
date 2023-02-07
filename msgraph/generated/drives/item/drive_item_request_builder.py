@@ -19,10 +19,10 @@ drive_item_item_request_builder = lazy_import('msgraph.generated.drives.item.fol
 items_request_builder = lazy_import('msgraph.generated.drives.item.items.items_request_builder')
 drive_item_item_request_builder = lazy_import('msgraph.generated.drives.item.items.item.drive_item_item_request_builder')
 list_request_builder = lazy_import('msgraph.generated.drives.item.list.list_request_builder')
-recent_request_builder = lazy_import('msgraph.generated.drives.item.recent.recent_request_builder')
+microsoft_graph_recent_request_builder = lazy_import('msgraph.generated.drives.item.microsoft_graph_recent.microsoft_graph_recent_request_builder')
+microsoft_graph_search_with_q_request_builder = lazy_import('msgraph.generated.drives.item.microsoft_graph_search_with_q.microsoft_graph_search_with_q_request_builder')
+microsoft_graph_shared_with_me_request_builder = lazy_import('msgraph.generated.drives.item.microsoft_graph_shared_with_me.microsoft_graph_shared_with_me_request_builder')
 root_request_builder = lazy_import('msgraph.generated.drives.item.root.root_request_builder')
-search_with_q_request_builder = lazy_import('msgraph.generated.drives.item.search_with_q.search_with_q_request_builder')
-shared_with_me_request_builder = lazy_import('msgraph.generated.drives.item.shared_with_me.shared_with_me_request_builder')
 special_request_builder = lazy_import('msgraph.generated.drives.item.special.special_request_builder')
 drive_item_item_request_builder = lazy_import('msgraph.generated.drives.item.special.item.drive_item_item_request_builder')
 drive = lazy_import('msgraph.generated.models.drive')
@@ -66,6 +66,20 @@ class DriveItemRequestBuilder():
         Provides operations to manage the list property of the microsoft.graph.drive entity.
         """
         return list_request_builder.ListRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_recent(self) -> microsoft_graph_recent_request_builder.MicrosoftGraphRecentRequestBuilder:
+        """
+        Provides operations to call the recent method.
+        """
+        return microsoft_graph_recent_request_builder.MicrosoftGraphRecentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_shared_with_me(self) -> microsoft_graph_shared_with_me_request_builder.MicrosoftGraphSharedWithMeRequestBuilder:
+        """
+        Provides operations to call the sharedWithMe method.
+        """
+        return microsoft_graph_shared_with_me_request_builder.MicrosoftGraphSharedWithMeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def root(self) -> root_request_builder.RootRequestBuilder:
@@ -125,12 +139,11 @@ class DriveItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DriveItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DriveItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from drives
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -141,7 +154,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def following_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
         """
@@ -156,12 +169,11 @@ class DriveItemRequestBuilder():
         url_tpl_params["driveItem%2Did"] = id
         return drive_item_item_request_builder.DriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive.Drive]:
+    async def get(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None) -> Optional[drive.Drive]:
         """
         Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive.Drive]
         """
         request_info = self.to_get_request_information(
@@ -173,7 +185,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive.Drive, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive.Drive, error_mapping)
     
     def items_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
         """
@@ -188,13 +200,23 @@ class DriveItemRequestBuilder():
         url_tpl_params["driveItem%2Did"] = id
         return drive_item_item_request_builder.DriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[drive.Drive] = None, request_configuration: Optional[DriveItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive.Drive]:
+    def microsoft_graph_search_with_q(self,q: Optional[str] = None) -> microsoft_graph_search_with_q_request_builder.MicrosoftGraphSearchWithQRequestBuilder:
+        """
+        Provides operations to call the search method.
+        Args:
+            q: Usage: q='{q}'
+        Returns: microsoft_graph_search_with_q_request_builder.MicrosoftGraphSearchWithQRequestBuilder
+        """
+        if q is None:
+            raise Exception("q cannot be undefined")
+        return microsoft_graph_search_with_q_request_builder.MicrosoftGraphSearchWithQRequestBuilder(self.request_adapter, self.path_parameters, q)
+    
+    async def patch(self,body: Optional[drive.Drive] = None, request_configuration: Optional[DriveItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[drive.Drive]:
         """
         Update entity in drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive.Drive]
         """
         if body is None:
@@ -208,32 +230,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive.Drive, response_handler, error_mapping)
-    
-    def recent(self,) -> recent_request_builder.RecentRequestBuilder:
-        """
-        Provides operations to call the recent method.
-        Returns: recent_request_builder.RecentRequestBuilder
-        """
-        return recent_request_builder.RecentRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def search_with_q(self,q: Optional[str] = None) -> search_with_q_request_builder.SearchWithQRequestBuilder:
-        """
-        Provides operations to call the search method.
-        Args:
-            q: Usage: q='{q}'
-        Returns: search_with_q_request_builder.SearchWithQRequestBuilder
-        """
-        if q is None:
-            raise Exception("q cannot be undefined")
-        return search_with_q_request_builder.SearchWithQRequestBuilder(self.request_adapter, self.path_parameters, q)
-    
-    def shared_with_me(self,) -> shared_with_me_request_builder.SharedWithMeRequestBuilder:
-        """
-        Provides operations to call the sharedWithMe method.
-        Returns: shared_with_me_request_builder.SharedWithMeRequestBuilder
-        """
-        return shared_with_me_request_builder.SharedWithMeRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, drive.Drive, error_mapping)
     
     def special_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
         """

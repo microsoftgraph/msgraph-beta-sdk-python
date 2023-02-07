@@ -31,7 +31,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedDataIngestionLocations property value. Data storage locations where a user may store managed data.
         Args:
-            value: Value to set for the allowedDataIngestionLocations property.
+            value: Value to set for the allowed_data_ingestion_locations property.
         """
         self._allowed_data_ingestion_locations = value
     
@@ -48,7 +48,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedDataStorageLocations property value. Data storage locations where a user may store managed data.
         Args:
-            value: Value to set for the allowedDataStorageLocations property.
+            value: Value to set for the allowed_data_storage_locations property.
         """
         self._allowed_data_storage_locations = value
     
@@ -65,7 +65,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedInboundDataTransferSources property value. Data can be transferred from/to these classes of apps
         Args:
-            value: Value to set for the allowedInboundDataTransferSources property.
+            value: Value to set for the allowed_inbound_data_transfer_sources property.
         """
         self._allowed_inbound_data_transfer_sources = value
     
@@ -82,7 +82,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedOutboundClipboardSharingExceptionLength property value. Specify the number of characters that may be cut or copied from Org data and accounts to any application. This setting overrides the AllowedOutboundClipboardSharingLevel restriction. Default value of '0' means no exception is allowed.
         Args:
-            value: Value to set for the allowedOutboundClipboardSharingExceptionLength property.
+            value: Value to set for the allowed_outbound_clipboard_sharing_exception_length property.
         """
         self._allowed_outbound_clipboard_sharing_exception_length = value
     
@@ -99,7 +99,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedOutboundClipboardSharingLevel property value. Represents the level to which the device's clipboard may be shared between apps
         Args:
-            value: Value to set for the allowedOutboundClipboardSharingLevel property.
+            value: Value to set for the allowed_outbound_clipboard_sharing_level property.
         """
         self._allowed_outbound_clipboard_sharing_level = value
     
@@ -116,7 +116,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedOutboundDataTransferDestinations property value. Data can be transferred from/to these classes of apps
         Args:
-            value: Value to set for the allowedOutboundDataTransferDestinations property.
+            value: Value to set for the allowed_outbound_data_transfer_destinations property.
         """
         self._allowed_outbound_data_transfer_destinations = value
     
@@ -133,7 +133,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the appActionIfDeviceComplianceRequired property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfDeviceComplianceRequired property.
+            value: Value to set for the app_action_if_device_compliance_required property.
         """
         self._app_action_if_device_compliance_required = value
     
@@ -150,7 +150,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the appActionIfMaximumPinRetriesExceeded property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfMaximumPinRetriesExceeded property.
+            value: Value to set for the app_action_if_maximum_pin_retries_exceeded property.
         """
         self._app_action_if_maximum_pin_retries_exceeded = value
     
@@ -167,7 +167,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the appActionIfUnableToAuthenticateUser property value. If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Possible values are: block, wipe, warn.
         Args:
-            value: Value to set for the appActionIfUnableToAuthenticateUser property.
+            value: Value to set for the app_action_if_unable_to_authenticate_user property.
         """
         self._app_action_if_unable_to_authenticate_user = value
     
@@ -184,7 +184,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the blockDataIngestionIntoOrganizationDocuments property value. Indicates whether a user can bring data into org documents.
         Args:
-            value: Value to set for the blockDataIngestionIntoOrganizationDocuments property.
+            value: Value to set for the block_data_ingestion_into_organization_documents property.
         """
         self._block_data_ingestion_into_organization_documents = value
     
@@ -300,7 +300,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the contactSyncBlocked property value. Indicates whether contacts can be synced to the user's device.
         Args:
-            value: Value to set for the contactSyncBlocked property.
+            value: Value to set for the contact_sync_blocked property.
         """
         self._contact_sync_blocked = value
     
@@ -329,7 +329,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the dataBackupBlocked property value. Indicates whether the backup of a managed app's data is blocked.
         Args:
-            value: Value to set for the dataBackupBlocked property.
+            value: Value to set for the data_backup_blocked property.
         """
         self._data_backup_blocked = value
     
@@ -346,7 +346,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the deviceComplianceRequired property value. Indicates whether device compliance is required.
         Args:
-            value: Value to set for the deviceComplianceRequired property.
+            value: Value to set for the device_compliance_required property.
         """
         self._device_compliance_required = value
     
@@ -363,7 +363,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the dialerRestrictionLevel property value. The classes of apps that are allowed to click-to-open a phone number, for making phone calls or sending text messages.
         Args:
-            value: Value to set for the dialerRestrictionLevel property.
+            value: Value to set for the dialer_restriction_level property.
         """
         self._dialer_restriction_level = value
     
@@ -380,7 +380,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the disableAppPinIfDevicePinIsSet property value. Indicates whether use of the app pin is required if the device pin is set.
         Args:
-            value: Value to set for the disableAppPinIfDevicePinIsSet property.
+            value: Value to set for the disable_app_pin_if_device_pin_is_set property.
         """
         self._disable_app_pin_if_device_pin_is_set = value
     
@@ -397,7 +397,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the fingerprintBlocked property value. Indicates whether use of the fingerprint reader is allowed in place of a pin if PinRequired is set to True.
         Args:
-            value: Value to set for the fingerprintBlocked property.
+            value: Value to set for the fingerprint_blocked property.
         """
         self._fingerprint_blocked = value
     
@@ -407,52 +407,52 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_data_ingestion_locations": lambda n : setattr(self, 'allowed_data_ingestion_locations', n.get_collection_of_enum_values(managed_app_data_ingestion_location.ManagedAppDataIngestionLocation)),
-            "allowed_data_storage_locations": lambda n : setattr(self, 'allowed_data_storage_locations', n.get_collection_of_enum_values(managed_app_data_storage_location.ManagedAppDataStorageLocation)),
-            "allowed_inbound_data_transfer_sources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(managed_app_data_transfer_level.ManagedAppDataTransferLevel)),
-            "allowed_outbound_clipboard_sharing_exception_length": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_exception_length', n.get_int_value()),
-            "allowed_outbound_clipboard_sharing_level": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(managed_app_clipboard_sharing_level.ManagedAppClipboardSharingLevel)),
-            "allowed_outbound_data_transfer_destinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(managed_app_data_transfer_level.ManagedAppDataTransferLevel)),
-            "app_action_if_device_compliance_required": lambda n : setattr(self, 'app_action_if_device_compliance_required', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_maximum_pin_retries_exceeded": lambda n : setattr(self, 'app_action_if_maximum_pin_retries_exceeded', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_unable_to_authenticate_user": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "block_data_ingestion_into_organization_documents": lambda n : setattr(self, 'block_data_ingestion_into_organization_documents', n.get_bool_value()),
-            "contact_sync_blocked": lambda n : setattr(self, 'contact_sync_blocked', n.get_bool_value()),
-            "data_backup_blocked": lambda n : setattr(self, 'data_backup_blocked', n.get_bool_value()),
-            "device_compliance_required": lambda n : setattr(self, 'device_compliance_required', n.get_bool_value()),
-            "dialer_restriction_level": lambda n : setattr(self, 'dialer_restriction_level', n.get_enum_value(managed_app_phone_number_redirect_level.ManagedAppPhoneNumberRedirectLevel)),
-            "disable_app_pin_if_device_pin_is_set": lambda n : setattr(self, 'disable_app_pin_if_device_pin_is_set', n.get_bool_value()),
-            "fingerprint_blocked": lambda n : setattr(self, 'fingerprint_blocked', n.get_bool_value()),
-            "grace_period_to_block_apps_during_off_clock_hours": lambda n : setattr(self, 'grace_period_to_block_apps_during_off_clock_hours', n.get_object_value(Timedelta)),
-            "managed_browser": lambda n : setattr(self, 'managed_browser', n.get_enum_value(managed_browser_type.ManagedBrowserType)),
-            "managed_browser_to_open_links_required": lambda n : setattr(self, 'managed_browser_to_open_links_required', n.get_bool_value()),
-            "maximum_allowed_device_threat_level": lambda n : setattr(self, 'maximum_allowed_device_threat_level', n.get_enum_value(managed_app_device_threat_level.ManagedAppDeviceThreatLevel)),
-            "maximum_pin_retries": lambda n : setattr(self, 'maximum_pin_retries', n.get_int_value()),
-            "maximum_required_os_version": lambda n : setattr(self, 'maximum_required_os_version', n.get_str_value()),
-            "maximum_warning_os_version": lambda n : setattr(self, 'maximum_warning_os_version', n.get_str_value()),
-            "maximum_wipe_os_version": lambda n : setattr(self, 'maximum_wipe_os_version', n.get_str_value()),
-            "minimum_pin_length": lambda n : setattr(self, 'minimum_pin_length', n.get_int_value()),
-            "minimum_required_app_version": lambda n : setattr(self, 'minimum_required_app_version', n.get_str_value()),
-            "minimum_required_os_version": lambda n : setattr(self, 'minimum_required_os_version', n.get_str_value()),
-            "minimum_warning_app_version": lambda n : setattr(self, 'minimum_warning_app_version', n.get_str_value()),
-            "minimum_warning_os_version": lambda n : setattr(self, 'minimum_warning_os_version', n.get_str_value()),
-            "minimum_wipe_app_version": lambda n : setattr(self, 'minimum_wipe_app_version', n.get_str_value()),
-            "minimum_wipe_os_version": lambda n : setattr(self, 'minimum_wipe_os_version', n.get_str_value()),
-            "mobile_threat_defense_partner_priority": lambda n : setattr(self, 'mobile_threat_defense_partner_priority', n.get_enum_value(mobile_threat_defense_partner_priority.MobileThreatDefensePartnerPriority)),
-            "mobile_threat_defense_remediation_action": lambda n : setattr(self, 'mobile_threat_defense_remediation_action', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "notification_restriction": lambda n : setattr(self, 'notification_restriction', n.get_enum_value(managed_app_notification_restriction.ManagedAppNotificationRestriction)),
-            "organizational_credentials_required": lambda n : setattr(self, 'organizational_credentials_required', n.get_bool_value()),
-            "period_before_pin_reset": lambda n : setattr(self, 'period_before_pin_reset', n.get_object_value(Timedelta)),
-            "period_offline_before_access_check": lambda n : setattr(self, 'period_offline_before_access_check', n.get_object_value(Timedelta)),
-            "period_offline_before_wipe_is_enforced": lambda n : setattr(self, 'period_offline_before_wipe_is_enforced', n.get_object_value(Timedelta)),
-            "period_online_before_access_check": lambda n : setattr(self, 'period_online_before_access_check', n.get_object_value(Timedelta)),
-            "pin_character_set": lambda n : setattr(self, 'pin_character_set', n.get_enum_value(managed_app_pin_character_set.ManagedAppPinCharacterSet)),
-            "pin_required": lambda n : setattr(self, 'pin_required', n.get_bool_value()),
-            "pin_required_instead_of_biometric_timeout": lambda n : setattr(self, 'pin_required_instead_of_biometric_timeout', n.get_object_value(Timedelta)),
-            "previous_pin_block_count": lambda n : setattr(self, 'previous_pin_block_count', n.get_int_value()),
-            "print_blocked": lambda n : setattr(self, 'print_blocked', n.get_bool_value()),
-            "save_as_blocked": lambda n : setattr(self, 'save_as_blocked', n.get_bool_value()),
-            "simple_pin_blocked": lambda n : setattr(self, 'simple_pin_blocked', n.get_bool_value()),
+            "allowedDataIngestionLocations": lambda n : setattr(self, 'allowed_data_ingestion_locations', n.get_collection_of_enum_values(managed_app_data_ingestion_location.ManagedAppDataIngestionLocation)),
+            "allowedDataStorageLocations": lambda n : setattr(self, 'allowed_data_storage_locations', n.get_collection_of_enum_values(managed_app_data_storage_location.ManagedAppDataStorageLocation)),
+            "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(managed_app_data_transfer_level.ManagedAppDataTransferLevel)),
+            "allowedOutboundClipboardSharingExceptionLength": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_exception_length', n.get_int_value()),
+            "allowedOutboundClipboardSharingLevel": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(managed_app_clipboard_sharing_level.ManagedAppClipboardSharingLevel)),
+            "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(managed_app_data_transfer_level.ManagedAppDataTransferLevel)),
+            "appActionIfDeviceComplianceRequired": lambda n : setattr(self, 'app_action_if_device_compliance_required', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfMaximumPinRetriesExceeded": lambda n : setattr(self, 'app_action_if_maximum_pin_retries_exceeded', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "blockDataIngestionIntoOrganizationDocuments": lambda n : setattr(self, 'block_data_ingestion_into_organization_documents', n.get_bool_value()),
+            "contactSyncBlocked": lambda n : setattr(self, 'contact_sync_blocked', n.get_bool_value()),
+            "dataBackupBlocked": lambda n : setattr(self, 'data_backup_blocked', n.get_bool_value()),
+            "deviceComplianceRequired": lambda n : setattr(self, 'device_compliance_required', n.get_bool_value()),
+            "dialerRestrictionLevel": lambda n : setattr(self, 'dialer_restriction_level', n.get_enum_value(managed_app_phone_number_redirect_level.ManagedAppPhoneNumberRedirectLevel)),
+            "disableAppPinIfDevicePinIsSet": lambda n : setattr(self, 'disable_app_pin_if_device_pin_is_set', n.get_bool_value()),
+            "fingerprintBlocked": lambda n : setattr(self, 'fingerprint_blocked', n.get_bool_value()),
+            "gracePeriodToBlockAppsDuringOffClockHours": lambda n : setattr(self, 'grace_period_to_block_apps_during_off_clock_hours', n.get_object_value(Timedelta)),
+            "managedBrowser": lambda n : setattr(self, 'managed_browser', n.get_enum_value(managed_browser_type.ManagedBrowserType)),
+            "managedBrowserToOpenLinksRequired": lambda n : setattr(self, 'managed_browser_to_open_links_required', n.get_bool_value()),
+            "maximumAllowedDeviceThreatLevel": lambda n : setattr(self, 'maximum_allowed_device_threat_level', n.get_enum_value(managed_app_device_threat_level.ManagedAppDeviceThreatLevel)),
+            "maximumPinRetries": lambda n : setattr(self, 'maximum_pin_retries', n.get_int_value()),
+            "maximumRequiredOsVersion": lambda n : setattr(self, 'maximum_required_os_version', n.get_str_value()),
+            "maximumWarningOsVersion": lambda n : setattr(self, 'maximum_warning_os_version', n.get_str_value()),
+            "maximumWipeOsVersion": lambda n : setattr(self, 'maximum_wipe_os_version', n.get_str_value()),
+            "minimumPinLength": lambda n : setattr(self, 'minimum_pin_length', n.get_int_value()),
+            "minimumRequiredAppVersion": lambda n : setattr(self, 'minimum_required_app_version', n.get_str_value()),
+            "minimumRequiredOsVersion": lambda n : setattr(self, 'minimum_required_os_version', n.get_str_value()),
+            "minimumWarningAppVersion": lambda n : setattr(self, 'minimum_warning_app_version', n.get_str_value()),
+            "minimumWarningOsVersion": lambda n : setattr(self, 'minimum_warning_os_version', n.get_str_value()),
+            "minimumWipeAppVersion": lambda n : setattr(self, 'minimum_wipe_app_version', n.get_str_value()),
+            "minimumWipeOsVersion": lambda n : setattr(self, 'minimum_wipe_os_version', n.get_str_value()),
+            "mobileThreatDefensePartnerPriority": lambda n : setattr(self, 'mobile_threat_defense_partner_priority', n.get_enum_value(mobile_threat_defense_partner_priority.MobileThreatDefensePartnerPriority)),
+            "mobileThreatDefenseRemediationAction": lambda n : setattr(self, 'mobile_threat_defense_remediation_action', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "notificationRestriction": lambda n : setattr(self, 'notification_restriction', n.get_enum_value(managed_app_notification_restriction.ManagedAppNotificationRestriction)),
+            "organizationalCredentialsRequired": lambda n : setattr(self, 'organizational_credentials_required', n.get_bool_value()),
+            "periodBeforePinReset": lambda n : setattr(self, 'period_before_pin_reset', n.get_object_value(Timedelta)),
+            "periodOfflineBeforeAccessCheck": lambda n : setattr(self, 'period_offline_before_access_check', n.get_object_value(Timedelta)),
+            "periodOfflineBeforeWipeIsEnforced": lambda n : setattr(self, 'period_offline_before_wipe_is_enforced', n.get_object_value(Timedelta)),
+            "periodOnlineBeforeAccessCheck": lambda n : setattr(self, 'period_online_before_access_check', n.get_object_value(Timedelta)),
+            "pinCharacterSet": lambda n : setattr(self, 'pin_character_set', n.get_enum_value(managed_app_pin_character_set.ManagedAppPinCharacterSet)),
+            "pinRequired": lambda n : setattr(self, 'pin_required', n.get_bool_value()),
+            "pinRequiredInsteadOfBiometricTimeout": lambda n : setattr(self, 'pin_required_instead_of_biometric_timeout', n.get_object_value(Timedelta)),
+            "previousPinBlockCount": lambda n : setattr(self, 'previous_pin_block_count', n.get_int_value()),
+            "printBlocked": lambda n : setattr(self, 'print_blocked', n.get_bool_value()),
+            "saveAsBlocked": lambda n : setattr(self, 'save_as_blocked', n.get_bool_value()),
+            "simplePinBlocked": lambda n : setattr(self, 'simple_pin_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -471,7 +471,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the gracePeriodToBlockAppsDuringOffClockHours property value. A grace period before blocking app access during off clock hours.
         Args:
-            value: Value to set for the gracePeriodToBlockAppsDuringOffClockHours property.
+            value: Value to set for the grace_period_to_block_apps_during_off_clock_hours property.
         """
         self._grace_period_to_block_apps_during_off_clock_hours = value
     
@@ -488,7 +488,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the managedBrowser property value. Type of managed browser
         Args:
-            value: Value to set for the managedBrowser property.
+            value: Value to set for the managed_browser property.
         """
         self._managed_browser = value
     
@@ -505,7 +505,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the managedBrowserToOpenLinksRequired property value. Indicates whether internet links should be opened in the managed browser app, or any custom browser specified by CustomBrowserProtocol (for iOS) or CustomBrowserPackageId/CustomBrowserDisplayName (for Android)
         Args:
-            value: Value to set for the managedBrowserToOpenLinksRequired property.
+            value: Value to set for the managed_browser_to_open_links_required property.
         """
         self._managed_browser_to_open_links_required = value
     
@@ -522,7 +522,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumAllowedDeviceThreatLevel property value. The maxium threat level allowed for an app to be compliant.
         Args:
-            value: Value to set for the maximumAllowedDeviceThreatLevel property.
+            value: Value to set for the maximum_allowed_device_threat_level property.
         """
         self._maximum_allowed_device_threat_level = value
     
@@ -539,7 +539,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumPinRetries property value. Maximum number of incorrect pin retry attempts before the managed app is either blocked or wiped.
         Args:
-            value: Value to set for the maximumPinRetries property.
+            value: Value to set for the maximum_pin_retries property.
         """
         self._maximum_pin_retries = value
     
@@ -556,7 +556,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumRequiredOsVersion property value. Versions bigger than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the maximumRequiredOsVersion property.
+            value: Value to set for the maximum_required_os_version property.
         """
         self._maximum_required_os_version = value
     
@@ -573,7 +573,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumWarningOsVersion property value. Versions bigger than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the maximumWarningOsVersion property.
+            value: Value to set for the maximum_warning_os_version property.
         """
         self._maximum_warning_os_version = value
     
@@ -590,7 +590,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumWipeOsVersion property value. Versions bigger than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the maximumWipeOsVersion property.
+            value: Value to set for the maximum_wipe_os_version property.
         """
         self._maximum_wipe_os_version = value
     
@@ -607,7 +607,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumPinLength property value. Minimum pin length required for an app-level pin if PinRequired is set to True
         Args:
-            value: Value to set for the minimumPinLength property.
+            value: Value to set for the minimum_pin_length property.
         """
         self._minimum_pin_length = value
     
@@ -624,7 +624,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumRequiredAppVersion property value. Versions less than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the minimumRequiredAppVersion property.
+            value: Value to set for the minimum_required_app_version property.
         """
         self._minimum_required_app_version = value
     
@@ -641,7 +641,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumRequiredOsVersion property value. Versions less than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the minimumRequiredOsVersion property.
+            value: Value to set for the minimum_required_os_version property.
         """
         self._minimum_required_os_version = value
     
@@ -658,7 +658,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWarningAppVersion property value. Versions less than the specified version will result in warning message on the managed app.
         Args:
-            value: Value to set for the minimumWarningAppVersion property.
+            value: Value to set for the minimum_warning_app_version property.
         """
         self._minimum_warning_app_version = value
     
@@ -675,7 +675,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWarningOsVersion property value. Versions less than the specified version will result in warning message on the managed app from accessing company data.
         Args:
-            value: Value to set for the minimumWarningOsVersion property.
+            value: Value to set for the minimum_warning_os_version property.
         """
         self._minimum_warning_os_version = value
     
@@ -692,7 +692,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWipeAppVersion property value. Versions less than or equal to the specified version will wipe the managed app and the associated company data.
         Args:
-            value: Value to set for the minimumWipeAppVersion property.
+            value: Value to set for the minimum_wipe_app_version property.
         """
         self._minimum_wipe_app_version = value
     
@@ -709,7 +709,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWipeOsVersion property value. Versions less than or equal to the specified version will wipe the managed app and the associated company data.
         Args:
-            value: Value to set for the minimumWipeOsVersion property.
+            value: Value to set for the minimum_wipe_os_version property.
         """
         self._minimum_wipe_os_version = value
     
@@ -726,7 +726,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the mobileThreatDefensePartnerPriority property value. Indicates how to prioritize which Mobile Threat Defense (MTD) partner is enabled for a given platform, when more than one is enabled. An app can only be actively using a single Mobile Threat Defense partner. When NULL, Microsoft Defender will be given preference. Otherwise setting the value to defenderOverThirdPartyPartner or thirdPartyPartnerOverDefender will make explicit which partner to prioritize. Possible values are: null, defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender and unknownFutureValue. Default value is null. Possible values are: defenderOverThirdPartyPartner, thirdPartyPartnerOverDefender, unknownFutureValue.
         Args:
-            value: Value to set for the mobileThreatDefensePartnerPriority property.
+            value: Value to set for the mobile_threat_defense_partner_priority property.
         """
         self._mobile_threat_defense_partner_priority = value
     
@@ -743,7 +743,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the mobileThreatDefenseRemediationAction property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the mobileThreatDefenseRemediationAction property.
+            value: Value to set for the mobile_threat_defense_remediation_action property.
         """
         self._mobile_threat_defense_remediation_action = value
     
@@ -760,7 +760,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the notificationRestriction property value. Restrict managed app notification
         Args:
-            value: Value to set for the notificationRestriction property.
+            value: Value to set for the notification_restriction property.
         """
         self._notification_restriction = value
     
@@ -777,7 +777,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the organizationalCredentialsRequired property value. Indicates whether organizational credentials are required for app use.
         Args:
-            value: Value to set for the organizationalCredentialsRequired property.
+            value: Value to set for the organizational_credentials_required property.
         """
         self._organizational_credentials_required = value
     
@@ -794,7 +794,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the periodBeforePinReset property value. TimePeriod before the all-level pin must be reset if PinRequired is set to True.
         Args:
-            value: Value to set for the periodBeforePinReset property.
+            value: Value to set for the period_before_pin_reset property.
         """
         self._period_before_pin_reset = value
     
@@ -811,7 +811,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the periodOfflineBeforeAccessCheck property value. The period after which access is checked when the device is not connected to the internet.
         Args:
-            value: Value to set for the periodOfflineBeforeAccessCheck property.
+            value: Value to set for the period_offline_before_access_check property.
         """
         self._period_offline_before_access_check = value
     
@@ -828,7 +828,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the periodOfflineBeforeWipeIsEnforced property value. The amount of time an app is allowed to remain disconnected from the internet before all managed data it is wiped.
         Args:
-            value: Value to set for the periodOfflineBeforeWipeIsEnforced property.
+            value: Value to set for the period_offline_before_wipe_is_enforced property.
         """
         self._period_offline_before_wipe_is_enforced = value
     
@@ -845,7 +845,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the periodOnlineBeforeAccessCheck property value. The period after which access is checked when the device is connected to the internet.
         Args:
-            value: Value to set for the periodOnlineBeforeAccessCheck property.
+            value: Value to set for the period_online_before_access_check property.
         """
         self._period_online_before_access_check = value
     
@@ -862,7 +862,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the pinCharacterSet property value. Character set which is to be used for a user's app PIN
         Args:
-            value: Value to set for the pinCharacterSet property.
+            value: Value to set for the pin_character_set property.
         """
         self._pin_character_set = value
     
@@ -879,7 +879,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the pinRequired property value. Indicates whether an app-level pin is required.
         Args:
-            value: Value to set for the pinRequired property.
+            value: Value to set for the pin_required property.
         """
         self._pin_required = value
     
@@ -896,7 +896,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the pinRequiredInsteadOfBiometricTimeout property value. Timeout in minutes for an app pin instead of non biometrics passcode
         Args:
-            value: Value to set for the pinRequiredInsteadOfBiometricTimeout property.
+            value: Value to set for the pin_required_instead_of_biometric_timeout property.
         """
         self._pin_required_instead_of_biometric_timeout = value
     
@@ -913,7 +913,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the previousPinBlockCount property value. Requires a pin to be unique from the number specified in this property.
         Args:
-            value: Value to set for the previousPinBlockCount property.
+            value: Value to set for the previous_pin_block_count property.
         """
         self._previous_pin_block_count = value
     
@@ -930,7 +930,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the printBlocked property value. Indicates whether printing is allowed from managed apps.
         Args:
-            value: Value to set for the printBlocked property.
+            value: Value to set for the print_blocked property.
         """
         self._print_blocked = value
     
@@ -947,7 +947,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the saveAsBlocked property value. Indicates whether users may use the 'Save As' menu item to save a copy of protected files.
         Args:
-            value: Value to set for the saveAsBlocked property.
+            value: Value to set for the save_as_blocked property.
         """
         self._save_as_blocked = value
     
@@ -1020,7 +1020,7 @@ class ManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the simplePinBlocked property value. Indicates whether simplePin is blocked.
         Args:
-            value: Value to set for the simplePinBlocked property.
+            value: Value to set for the simple_pin_blocked property.
         """
         self._simple_pin_blocked = value
     

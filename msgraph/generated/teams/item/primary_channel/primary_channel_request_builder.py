@@ -12,15 +12,15 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 channel = lazy_import('msgraph.generated.models.channel')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-complete_migration_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.complete_migration.complete_migration_request_builder')
-does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder')
 files_folder_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.files_folder.files_folder_request_builder')
 members_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.members.members_request_builder')
 conversation_member_item_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.members.item.conversation_member_item_request_builder')
 messages_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.messages.messages_request_builder')
 chat_message_item_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.messages.item.chat_message_item_request_builder')
-provision_email_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.provision_email.provision_email_request_builder')
-remove_email_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.remove_email.remove_email_request_builder')
+microsoft_graph_complete_migration_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.microsoft_graph_complete_migration.microsoft_graph_complete_migration_request_builder')
+microsoft_graph_does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.microsoft_graph_does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name.microsoft_graph_does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder')
+microsoft_graph_provision_email_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.microsoft_graph_provision_email.microsoft_graph_provision_email_request_builder')
+microsoft_graph_remove_email_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.microsoft_graph_remove_email.microsoft_graph_remove_email_request_builder')
 shared_with_teams_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.shared_with_teams.shared_with_teams_request_builder')
 shared_with_channel_team_info_item_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.shared_with_teams.item.shared_with_channel_team_info_item_request_builder')
 tabs_request_builder = lazy_import('msgraph.generated.teams.item.primary_channel.tabs.tabs_request_builder')
@@ -30,13 +30,6 @@ class PrimaryChannelRequestBuilder():
     """
     Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
     """
-    @property
-    def complete_migration(self) -> complete_migration_request_builder.CompleteMigrationRequestBuilder:
-        """
-        Provides operations to call the completeMigration method.
-        """
-        return complete_migration_request_builder.CompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def files_folder(self) -> files_folder_request_builder.FilesFolderRequestBuilder:
         """
@@ -59,18 +52,32 @@ class PrimaryChannelRequestBuilder():
         return messages_request_builder.MessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def provision_email(self) -> provision_email_request_builder.ProvisionEmailRequestBuilder:
+    def microsoft_graph_complete_migration(self) -> microsoft_graph_complete_migration_request_builder.MicrosoftGraphCompleteMigrationRequestBuilder:
+        """
+        Provides operations to call the completeMigration method.
+        """
+        return microsoft_graph_complete_migration_request_builder.MicrosoftGraphCompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name(self) -> microsoft_graph_does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder:
+        """
+        Provides operations to call the doesUserHaveAccess method.
+        """
+        return microsoft_graph_does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_provision_email(self) -> microsoft_graph_provision_email_request_builder.MicrosoftGraphProvisionEmailRequestBuilder:
         """
         Provides operations to call the provisionEmail method.
         """
-        return provision_email_request_builder.ProvisionEmailRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_provision_email_request_builder.MicrosoftGraphProvisionEmailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_email(self) -> remove_email_request_builder.RemoveEmailRequestBuilder:
+    def microsoft_graph_remove_email(self) -> microsoft_graph_remove_email_request_builder.MicrosoftGraphRemoveEmailRequestBuilder:
         """
         Provides operations to call the removeEmail method.
         """
-        return remove_email_request_builder.RemoveEmailRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_remove_email_request_builder.MicrosoftGraphRemoveEmailRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def shared_with_teams(self) -> shared_with_teams_request_builder.SharedWithTeamsRequestBuilder:
@@ -104,12 +111,11 @@ class PrimaryChannelRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrimaryChannelRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrimaryChannelRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property primaryChannel for teams
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -120,21 +126,13 @@ class PrimaryChannelRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name(self,) -> does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder:
-        """
-        Provides operations to call the doesUserHaveAccess method.
-        Returns: does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder
-        """
-        return does_user_have_accessuser_id_user_id_tenant_id_tenant_id_user_principal_name_user_principal_name_request_builder.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[channel.Channel]:
+    async def get(self,request_configuration: Optional[PrimaryChannelRequestBuilderGetRequestConfiguration] = None) -> Optional[channel.Channel]:
         """
         Get the default channel, **General**, of a team.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[channel.Channel]
         """
         request_info = self.to_get_request_information(
@@ -146,7 +144,7 @@ class PrimaryChannelRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, channel.Channel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, channel.Channel, error_mapping)
     
     def members_by_id(self,id: str) -> conversation_member_item_request_builder.ConversationMemberItemRequestBuilder:
         """
@@ -174,13 +172,12 @@ class PrimaryChannelRequestBuilder():
         url_tpl_params["chatMessage%2Did"] = id
         return chat_message_item_request_builder.ChatMessageItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[channel.Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[channel.Channel]:
+    async def patch(self,body: Optional[channel.Channel] = None, request_configuration: Optional[PrimaryChannelRequestBuilderPatchRequestConfiguration] = None) -> Optional[channel.Channel]:
         """
         Update the navigation property primaryChannel in teams
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[channel.Channel]
         """
         if body is None:
@@ -194,7 +191,7 @@ class PrimaryChannelRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, channel.Channel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, channel.Channel, error_mapping)
     
     def shared_with_teams_by_id(self,id: str) -> shared_with_channel_team_info_item_request_builder.SharedWithChannelTeamInfoItemRequestBuilder:
         """

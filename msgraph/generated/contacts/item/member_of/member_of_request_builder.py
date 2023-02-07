@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-application_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.application.application_request_builder')
 count_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.count.count_request_builder')
-device_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.device.device_request_builder')
-group_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.group.group_request_builder')
-org_contact_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.org_contact.org_contact_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.service_principal.service_principal_request_builder')
-user_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.user.user_request_builder')
+microsoft_graph_application_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.microsoft_graph_application.microsoft_graph_application_request_builder')
+microsoft_graph_device_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.microsoft_graph_device.microsoft_graph_device_request_builder')
+microsoft_graph_group_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.microsoft_graph_group.microsoft_graph_group_request_builder')
+microsoft_graph_org_contact_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.microsoft_graph_org_contact.microsoft_graph_org_contact_request_builder')
+microsoft_graph_service_principal_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.microsoft_graph_service_principal.microsoft_graph_service_principal_request_builder')
+microsoft_graph_user_request_builder = lazy_import('msgraph.generated.contacts.item.member_of.microsoft_graph_user.microsoft_graph_user_request_builder')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -25,13 +25,6 @@ class MemberOfRequestBuilder():
     Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
     """
     @property
-    def application(self) -> application_request_builder.ApplicationRequestBuilder:
-        """
-        Casts the previous resource to application.
-        """
-        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -39,39 +32,46 @@ class MemberOfRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
+    def microsoft_graph_application(self) -> microsoft_graph_application_request_builder.MicrosoftGraphApplicationRequestBuilder:
+        """
+        Casts the previous resource to application.
+        """
+        return microsoft_graph_application_request_builder.MicrosoftGraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_device(self) -> microsoft_graph_device_request_builder.MicrosoftGraphDeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
-        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_request_builder.MicrosoftGraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
+    def microsoft_graph_group(self) -> microsoft_graph_group_request_builder.MicrosoftGraphGroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
-        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_group_request_builder.MicrosoftGraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
+    def microsoft_graph_org_contact(self) -> microsoft_graph_org_contact_request_builder.MicrosoftGraphOrgContactRequestBuilder:
         """
         Casts the previous resource to orgContact.
         """
-        return org_contact_request_builder.OrgContactRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_org_contact_request_builder.MicrosoftGraphOrgContactRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
+    def microsoft_graph_service_principal(self) -> microsoft_graph_service_principal_request_builder.MicrosoftGraphServicePrincipalRequestBuilder:
         """
         Casts the previous resource to servicePrincipal.
         """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_service_principal_request_builder.MicrosoftGraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
+    def microsoft_graph_user(self) -> microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder:
         """
         Casts the previous resource to user.
         """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -91,12 +91,11 @@ class MemberOfRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MemberOfRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[MemberOfRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -108,7 +107,7 @@ class MemberOfRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MemberOfRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

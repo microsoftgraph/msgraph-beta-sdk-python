@@ -63,7 +63,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the colorMode property value. The colorMode property
         Args:
-            value: Value to set for the colorMode property.
+            value: Value to set for the color_mode property.
         """
         self._color_mode = value
     
@@ -176,7 +176,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the duplexMode property value. The duplexMode property
         Args:
-            value: Value to set for the duplexMode property.
+            value: Value to set for the duplex_mode property.
         """
         self._duplex_mode = value
     
@@ -193,7 +193,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the feedDirection property value. The feedDirection property
         Args:
-            value: Value to set for the feedDirection property.
+            value: Value to set for the feed_direction property.
         """
         self._feed_direction = value
     
@@ -210,7 +210,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the feedOrientation property value. The feedOrientation property
         Args:
-            value: Value to set for the feedOrientation property.
+            value: Value to set for the feed_orientation property.
         """
         self._feed_orientation = value
     
@@ -244,7 +244,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the fitPdfToPage property value. The fitPdfToPage property
         Args:
-            value: Value to set for the fitPdfToPage property.
+            value: Value to set for the fit_pdf_to_page property.
         """
         self._fit_pdf_to_page = value
     
@@ -255,24 +255,24 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "collate": lambda n : setattr(self, 'collate', n.get_bool_value()),
-            "color_mode": lambda n : setattr(self, 'color_mode', n.get_enum_value(print_color_mode.PrintColorMode)),
+            "colorMode": lambda n : setattr(self, 'color_mode', n.get_enum_value(print_color_mode.PrintColorMode)),
             "copies": lambda n : setattr(self, 'copies', n.get_int_value()),
             "dpi": lambda n : setattr(self, 'dpi', n.get_int_value()),
-            "duplex_mode": lambda n : setattr(self, 'duplex_mode', n.get_enum_value(print_duplex_mode.PrintDuplexMode)),
-            "feed_direction": lambda n : setattr(self, 'feed_direction', n.get_enum_value(printer_feed_direction.PrinterFeedDirection)),
-            "feed_orientation": lambda n : setattr(self, 'feed_orientation', n.get_enum_value(printer_feed_orientation.PrinterFeedOrientation)),
+            "duplexMode": lambda n : setattr(self, 'duplex_mode', n.get_enum_value(print_duplex_mode.PrintDuplexMode)),
+            "feedDirection": lambda n : setattr(self, 'feed_direction', n.get_enum_value(printer_feed_direction.PrinterFeedDirection)),
+            "feedOrientation": lambda n : setattr(self, 'feed_orientation', n.get_enum_value(printer_feed_orientation.PrinterFeedOrientation)),
             "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(print_finishing.PrintFinishing)),
-            "fit_pdf_to_page": lambda n : setattr(self, 'fit_pdf_to_page', n.get_bool_value()),
-            "input_bin": lambda n : setattr(self, 'input_bin', n.get_str_value()),
+            "fitPdfToPage": lambda n : setattr(self, 'fit_pdf_to_page', n.get_bool_value()),
+            "inputBin": lambda n : setattr(self, 'input_bin', n.get_str_value()),
             "margin": lambda n : setattr(self, 'margin', n.get_object_value(print_margin.PrintMargin)),
-            "media_size": lambda n : setattr(self, 'media_size', n.get_str_value()),
-            "media_type": lambda n : setattr(self, 'media_type', n.get_str_value()),
-            "multipage_layout": lambda n : setattr(self, 'multipage_layout', n.get_enum_value(print_multipage_layout.PrintMultipageLayout)),
+            "mediaSize": lambda n : setattr(self, 'media_size', n.get_str_value()),
+            "mediaType": lambda n : setattr(self, 'media_type', n.get_str_value()),
+            "multipageLayout": lambda n : setattr(self, 'multipage_layout', n.get_enum_value(print_multipage_layout.PrintMultipageLayout)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "orientation": lambda n : setattr(self, 'orientation', n.get_enum_value(print_orientation.PrintOrientation)),
-            "output_bin": lambda n : setattr(self, 'output_bin', n.get_str_value()),
-            "page_ranges": lambda n : setattr(self, 'page_ranges', n.get_collection_of_object_values(integer_range.IntegerRange)),
-            "pages_per_sheet": lambda n : setattr(self, 'pages_per_sheet', n.get_int_value()),
+            "outputBin": lambda n : setattr(self, 'output_bin', n.get_str_value()),
+            "pagesPerSheet": lambda n : setattr(self, 'pages_per_sheet', n.get_int_value()),
+            "pageRanges": lambda n : setattr(self, 'page_ranges', n.get_collection_of_object_values(integer_range.IntegerRange)),
             "quality": lambda n : setattr(self, 'quality', n.get_enum_value(print_quality.PrintQuality)),
             "scaling": lambda n : setattr(self, 'scaling', n.get_enum_value(print_scaling.PrintScaling)),
         }
@@ -291,7 +291,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the inputBin property value. The inputBin property
         Args:
-            value: Value to set for the inputBin property.
+            value: Value to set for the input_bin property.
         """
         self._input_bin = value
     
@@ -325,7 +325,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the mediaSize property value. The mediaSize property
         Args:
-            value: Value to set for the mediaSize property.
+            value: Value to set for the media_size property.
         """
         self._media_size = value
     
@@ -342,7 +342,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the mediaType property value. The mediaType property
         Args:
-            value: Value to set for the mediaType property.
+            value: Value to set for the media_type property.
         """
         self._media_type = value
     
@@ -359,7 +359,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the multipageLayout property value. The multipageLayout property
         Args:
-            value: Value to set for the multipageLayout property.
+            value: Value to set for the multipage_layout property.
         """
         self._multipage_layout = value
     
@@ -376,7 +376,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -410,7 +410,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the outputBin property value. The outputBin property
         Args:
-            value: Value to set for the outputBin property.
+            value: Value to set for the output_bin property.
         """
         self._output_bin = value
     
@@ -427,7 +427,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the pageRanges property value. The pageRanges property
         Args:
-            value: Value to set for the pageRanges property.
+            value: Value to set for the page_ranges property.
         """
         self._page_ranges = value
     
@@ -444,7 +444,7 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the pagesPerSheet property value. The pagesPerSheet property
         Args:
-            value: Value to set for the pagesPerSheet property.
+            value: Value to set for the pages_per_sheet property.
         """
         self._pages_per_sheet = value
     
@@ -507,8 +507,8 @@ class PrinterDocumentConfiguration(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("orientation", self.orientation)
         writer.write_str_value("outputBin", self.output_bin)
-        writer.write_collection_of_object_values("pageRanges", self.page_ranges)
         writer.write_int_value("pagesPerSheet", self.pages_per_sheet)
+        writer.write_collection_of_object_values("pageRanges", self.page_ranges)
         writer.write_enum_value("quality", self.quality)
         writer.write_enum_value("scaling", self.scaling)
         writer.write_additional_data_value(self.additional_data)

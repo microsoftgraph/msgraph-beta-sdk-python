@@ -21,7 +21,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the backgroundColor property value. Color that appears in place of the background image in low-bandwidth connections. We recommend that you use the primary color of your banner logo or your organization color. Specify this in hexadecimal format, for example, white is #FFFFFF.
         Args:
-            value: Value to set for the backgroundColor property.
+            value: Value to set for the background_color property.
         """
         self._background_color = value
     
@@ -38,7 +38,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the backgroundImage property value. Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
         Args:
-            value: Value to set for the backgroundImage property.
+            value: Value to set for the background_image property.
         """
         self._background_image = value
     
@@ -55,7 +55,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the backgroundImageRelativeUrl property value. A relative URL for the backgroundImage property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Args:
-            value: Value to set for the backgroundImageRelativeUrl property.
+            value: Value to set for the background_image_relative_url property.
         """
         self._background_image_relative_url = value
     
@@ -72,7 +72,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the bannerLogo property value. A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
-            value: Value to set for the bannerLogo property.
+            value: Value to set for the banner_logo property.
         """
         self._banner_logo = value
     
@@ -89,7 +89,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the bannerLogoRelativeUrl property value. A relative URL for the bannerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
         Args:
-            value: Value to set for the bannerLogoRelativeUrl property.
+            value: Value to set for the banner_logo_relative_url property.
         """
         self._banner_logo_relative_url = value
     
@@ -106,7 +106,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the cdnList property value. A list of base URLs for all available CDN providers that are serving the assets of the current resource. Several CDN providers are used at the same time for high availability of read requests. Read-only.
         Args:
-            value: Value to set for the cdnList property.
+            value: Value to set for the cdn_list property.
         """
         self._cdn_list = value
     
@@ -129,14 +129,14 @@ class OrganizationalBrandingProperties(entity.Entity):
         self._cdn_list: Optional[List[str]] = None
         # A custom URL for resetting account credentials. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
         self._custom_account_reset_credentials_url: Optional[str] = None
-        # A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
-        self._custom_cannot_access_your_account_text: Optional[str] = None
-        # A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
-        self._custom_cannot_access_your_account_url: Optional[str] = None
         # CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         self._custom_c_s_s: Optional[bytes] = None
         # A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         self._custom_c_s_s_relative_url: Optional[str] = None
+        # A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
+        self._custom_cannot_access_your_account_text: Optional[str] = None
+        # A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
+        self._custom_cannot_access_your_account_url: Optional[str] = None
         # A string to replace the default 'Forgot my password' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters.
         self._custom_forgot_my_password_text: Optional[str] = None
         # A string to replace the default 'Privacy and Cookies' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
@@ -203,43 +203,9 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customAccountResetCredentialsUrl property value. A custom URL for resetting account credentials. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
         Args:
-            value: Value to set for the customAccountResetCredentialsUrl property.
+            value: Value to set for the custom_account_reset_credentials_url property.
         """
         self._custom_account_reset_credentials_url = value
-    
-    @property
-    def custom_cannot_access_your_account_text(self,) -> Optional[str]:
-        """
-        Gets the customCannotAccessYourAccountText property value. A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
-        Returns: Optional[str]
-        """
-        return self._custom_cannot_access_your_account_text
-    
-    @custom_cannot_access_your_account_text.setter
-    def custom_cannot_access_your_account_text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customCannotAccessYourAccountText property value. A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
-        Args:
-            value: Value to set for the customCannotAccessYourAccountText property.
-        """
-        self._custom_cannot_access_your_account_text = value
-    
-    @property
-    def custom_cannot_access_your_account_url(self,) -> Optional[str]:
-        """
-        Gets the customCannotAccessYourAccountUrl property value. A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
-        Returns: Optional[str]
-        """
-        return self._custom_cannot_access_your_account_url
-    
-    @custom_cannot_access_your_account_url.setter
-    def custom_cannot_access_your_account_url(self,value: Optional[str] = None) -> None:
-        """
-        Sets the customCannotAccessYourAccountUrl property value. A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
-        Args:
-            value: Value to set for the customCannotAccessYourAccountUrl property.
-        """
-        self._custom_cannot_access_your_account_url = value
     
     @property
     def custom_c_s_s(self,) -> Optional[bytes]:
@@ -254,7 +220,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customCSS property value. CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         Args:
-            value: Value to set for the customCSS property.
+            value: Value to set for the custom_c_s_s property.
         """
         self._custom_c_s_s = value
     
@@ -271,9 +237,43 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customCSSRelativeUrl property value. A relative URL for the customCSS property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Args:
-            value: Value to set for the customCSSRelativeUrl property.
+            value: Value to set for the custom_c_s_s_relative_url property.
         """
         self._custom_c_s_s_relative_url = value
+    
+    @property
+    def custom_cannot_access_your_account_text(self,) -> Optional[str]:
+        """
+        Gets the customCannotAccessYourAccountText property value. A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
+        Returns: Optional[str]
+        """
+        return self._custom_cannot_access_your_account_text
+    
+    @custom_cannot_access_your_account_text.setter
+    def custom_cannot_access_your_account_text(self,value: Optional[str] = None) -> None:
+        """
+        Sets the customCannotAccessYourAccountText property value. A string to replace the default 'Can't access your account?' self-service password reset (SSPR) hyperlink text on the sign-in page. This text must be in Unicode format and not exceed 256 characters.
+        Args:
+            value: Value to set for the custom_cannot_access_your_account_text property.
+        """
+        self._custom_cannot_access_your_account_text = value
+    
+    @property
+    def custom_cannot_access_your_account_url(self,) -> Optional[str]:
+        """
+        Gets the customCannotAccessYourAccountUrl property value. A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
+        Returns: Optional[str]
+        """
+        return self._custom_cannot_access_your_account_url
+    
+    @custom_cannot_access_your_account_url.setter
+    def custom_cannot_access_your_account_url(self,value: Optional[str] = None) -> None:
+        """
+        Sets the customCannotAccessYourAccountUrl property value. A custom URL to replace the default URL of the self-service password reset (SSPR) 'Can't access your account?' hyperlink on the sign-in page. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters. DO NOT USE. Use customAccountResetCredentialsUrl instead.
+        Args:
+            value: Value to set for the custom_cannot_access_your_account_url property.
+        """
+        self._custom_cannot_access_your_account_url = value
     
     @property
     def custom_forgot_my_password_text(self,) -> Optional[str]:
@@ -288,7 +288,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customForgotMyPasswordText property value. A string to replace the default 'Forgot my password' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters.
         Args:
-            value: Value to set for the customForgotMyPasswordText property.
+            value: Value to set for the custom_forgot_my_password_text property.
         """
         self._custom_forgot_my_password_text = value
     
@@ -305,7 +305,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customPrivacyAndCookiesText property value. A string to replace the default 'Privacy and Cookies' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
         Args:
-            value: Value to set for the customPrivacyAndCookiesText property.
+            value: Value to set for the custom_privacy_and_cookies_text property.
         """
         self._custom_privacy_and_cookies_text = value
     
@@ -322,7 +322,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customPrivacyAndCookiesUrl property value. A custom URL to replace the default URL of the 'Privacy and Cookies' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.
         Args:
-            value: Value to set for the customPrivacyAndCookiesUrl property.
+            value: Value to set for the custom_privacy_and_cookies_url property.
         """
         self._custom_privacy_and_cookies_url = value
     
@@ -339,7 +339,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customResetItNowText property value. A string to replace the default 'reset it now' hyperlink text on the sign-in form. This text must be in Unicode format and not exceed 256 characters. DO NOT USE: Customization of the 'reset it now' hyperlink text is currently not supported.
         Args:
-            value: Value to set for the customResetItNowText property.
+            value: Value to set for the custom_reset_it_now_text property.
         """
         self._custom_reset_it_now_text = value
     
@@ -356,7 +356,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customTermsOfUseText property value. A string to replace the the default 'Terms of Use' hyperlink text in the footer. This text must be in Unicode format and not exceed 256 characters.
         Args:
-            value: Value to set for the customTermsOfUseText property.
+            value: Value to set for the custom_terms_of_use_text property.
         """
         self._custom_terms_of_use_text = value
     
@@ -373,7 +373,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the customTermsOfUseUrl property value. A custom URL to replace the default URL of the 'Terms of Use' hyperlink in the footer. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128characters.
         Args:
-            value: Value to set for the customTermsOfUseUrl property.
+            value: Value to set for the custom_terms_of_use_url property.
         """
         self._custom_terms_of_use_url = value
     
@@ -407,7 +407,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the faviconRelativeUrl property value. A relative url for the favicon above that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Args:
-            value: Value to set for the faviconRelativeUrl property.
+            value: Value to set for the favicon_relative_url property.
         """
         self._favicon_relative_url = value
     
@@ -417,36 +417,36 @@ class OrganizationalBrandingProperties(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "background_color": lambda n : setattr(self, 'background_color', n.get_str_value()),
-            "background_image": lambda n : setattr(self, 'background_image', n.get_bytes_value()),
-            "background_image_relative_url": lambda n : setattr(self, 'background_image_relative_url', n.get_str_value()),
-            "banner_logo": lambda n : setattr(self, 'banner_logo', n.get_bytes_value()),
-            "banner_logo_relative_url": lambda n : setattr(self, 'banner_logo_relative_url', n.get_str_value()),
-            "cdn_list": lambda n : setattr(self, 'cdn_list', n.get_collection_of_primitive_values(str)),
-            "custom_account_reset_credentials_url": lambda n : setattr(self, 'custom_account_reset_credentials_url', n.get_str_value()),
-            "custom_cannot_access_your_account_text": lambda n : setattr(self, 'custom_cannot_access_your_account_text', n.get_str_value()),
-            "custom_cannot_access_your_account_url": lambda n : setattr(self, 'custom_cannot_access_your_account_url', n.get_str_value()),
-            "custom_c_s_s": lambda n : setattr(self, 'custom_c_s_s', n.get_bytes_value()),
-            "custom_c_s_s_relative_url": lambda n : setattr(self, 'custom_c_s_s_relative_url', n.get_str_value()),
-            "custom_forgot_my_password_text": lambda n : setattr(self, 'custom_forgot_my_password_text', n.get_str_value()),
-            "custom_privacy_and_cookies_text": lambda n : setattr(self, 'custom_privacy_and_cookies_text', n.get_str_value()),
-            "custom_privacy_and_cookies_url": lambda n : setattr(self, 'custom_privacy_and_cookies_url', n.get_str_value()),
-            "custom_reset_it_now_text": lambda n : setattr(self, 'custom_reset_it_now_text', n.get_str_value()),
-            "custom_terms_of_use_text": lambda n : setattr(self, 'custom_terms_of_use_text', n.get_str_value()),
-            "custom_terms_of_use_url": lambda n : setattr(self, 'custom_terms_of_use_url', n.get_str_value()),
+            "backgroundColor": lambda n : setattr(self, 'background_color', n.get_str_value()),
+            "backgroundImage": lambda n : setattr(self, 'background_image', n.get_bytes_value()),
+            "backgroundImageRelativeUrl": lambda n : setattr(self, 'background_image_relative_url', n.get_str_value()),
+            "bannerLogo": lambda n : setattr(self, 'banner_logo', n.get_bytes_value()),
+            "bannerLogoRelativeUrl": lambda n : setattr(self, 'banner_logo_relative_url', n.get_str_value()),
+            "cdnList": lambda n : setattr(self, 'cdn_list', n.get_collection_of_primitive_values(str)),
+            "customAccountResetCredentialsUrl": lambda n : setattr(self, 'custom_account_reset_credentials_url', n.get_str_value()),
+            "customCannotAccessYourAccountText": lambda n : setattr(self, 'custom_cannot_access_your_account_text', n.get_str_value()),
+            "customCannotAccessYourAccountUrl": lambda n : setattr(self, 'custom_cannot_access_your_account_url', n.get_str_value()),
+            "customCSS": lambda n : setattr(self, 'custom_c_s_s', n.get_bytes_value()),
+            "customCSSRelativeUrl": lambda n : setattr(self, 'custom_c_s_s_relative_url', n.get_str_value()),
+            "customForgotMyPasswordText": lambda n : setattr(self, 'custom_forgot_my_password_text', n.get_str_value()),
+            "customPrivacyAndCookiesText": lambda n : setattr(self, 'custom_privacy_and_cookies_text', n.get_str_value()),
+            "customPrivacyAndCookiesUrl": lambda n : setattr(self, 'custom_privacy_and_cookies_url', n.get_str_value()),
+            "customResetItNowText": lambda n : setattr(self, 'custom_reset_it_now_text', n.get_str_value()),
+            "customTermsOfUseText": lambda n : setattr(self, 'custom_terms_of_use_text', n.get_str_value()),
+            "customTermsOfUseUrl": lambda n : setattr(self, 'custom_terms_of_use_url', n.get_str_value()),
             "favicon": lambda n : setattr(self, 'favicon', n.get_bytes_value()),
-            "favicon_relative_url": lambda n : setattr(self, 'favicon_relative_url', n.get_str_value()),
-            "header_background_color": lambda n : setattr(self, 'header_background_color', n.get_str_value()),
-            "header_logo": lambda n : setattr(self, 'header_logo', n.get_bytes_value()),
-            "header_logo_relative_url": lambda n : setattr(self, 'header_logo_relative_url', n.get_str_value()),
-            "login_page_layout_configuration": lambda n : setattr(self, 'login_page_layout_configuration', n.get_object_value(login_page_layout_configuration.LoginPageLayoutConfiguration)),
-            "login_page_text_visibility_settings": lambda n : setattr(self, 'login_page_text_visibility_settings', n.get_object_value(login_page_text_visibility_settings.LoginPageTextVisibilitySettings)),
-            "sign_in_page_text": lambda n : setattr(self, 'sign_in_page_text', n.get_str_value()),
-            "square_logo": lambda n : setattr(self, 'square_logo', n.get_bytes_value()),
-            "square_logo_dark": lambda n : setattr(self, 'square_logo_dark', n.get_bytes_value()),
-            "square_logo_dark_relative_url": lambda n : setattr(self, 'square_logo_dark_relative_url', n.get_str_value()),
-            "square_logo_relative_url": lambda n : setattr(self, 'square_logo_relative_url', n.get_str_value()),
-            "username_hint_text": lambda n : setattr(self, 'username_hint_text', n.get_str_value()),
+            "faviconRelativeUrl": lambda n : setattr(self, 'favicon_relative_url', n.get_str_value()),
+            "headerBackgroundColor": lambda n : setattr(self, 'header_background_color', n.get_str_value()),
+            "headerLogo": lambda n : setattr(self, 'header_logo', n.get_bytes_value()),
+            "headerLogoRelativeUrl": lambda n : setattr(self, 'header_logo_relative_url', n.get_str_value()),
+            "loginPageLayoutConfiguration": lambda n : setattr(self, 'login_page_layout_configuration', n.get_object_value(login_page_layout_configuration.LoginPageLayoutConfiguration)),
+            "loginPageTextVisibilitySettings": lambda n : setattr(self, 'login_page_text_visibility_settings', n.get_object_value(login_page_text_visibility_settings.LoginPageTextVisibilitySettings)),
+            "signInPageText": lambda n : setattr(self, 'sign_in_page_text', n.get_str_value()),
+            "squareLogo": lambda n : setattr(self, 'square_logo', n.get_bytes_value()),
+            "squareLogoDark": lambda n : setattr(self, 'square_logo_dark', n.get_bytes_value()),
+            "squareLogoDarkRelativeUrl": lambda n : setattr(self, 'square_logo_dark_relative_url', n.get_str_value()),
+            "squareLogoRelativeUrl": lambda n : setattr(self, 'square_logo_relative_url', n.get_str_value()),
+            "usernameHintText": lambda n : setattr(self, 'username_hint_text', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -465,7 +465,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the headerBackgroundColor property value. The RGB color to apply to customize the color of the header.
         Args:
-            value: Value to set for the headerBackgroundColor property.
+            value: Value to set for the header_background_color property.
         """
         self._header_background_color = value
     
@@ -482,7 +482,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the headerLogo property value. A company logo that appears in the header of the sign-in page. The allowed types are PNG or JPEG not larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
         Args:
-            value: Value to set for the headerLogo property.
+            value: Value to set for the header_logo property.
         """
         self._header_logo = value
     
@@ -499,7 +499,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the headerLogoRelativeUrl property value. A relative URL for the headerLogo property that is combined with a CDN base URL from the cdnList to provide the read-only version served by a CDN. Read-only.
         Args:
-            value: Value to set for the headerLogoRelativeUrl property.
+            value: Value to set for the header_logo_relative_url property.
         """
         self._header_logo_relative_url = value
     
@@ -516,7 +516,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the loginPageLayoutConfiguration property value. Represents the layout configuration to be displayed on the login page for a tenant.
         Args:
-            value: Value to set for the loginPageLayoutConfiguration property.
+            value: Value to set for the login_page_layout_configuration property.
         """
         self._login_page_layout_configuration = value
     
@@ -533,7 +533,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the loginPageTextVisibilitySettings property value. Represents the various texts that can be hidden on the login page for a tenant.
         Args:
-            value: Value to set for the loginPageTextVisibilitySettings property.
+            value: Value to set for the login_page_text_visibility_settings property.
         """
         self._login_page_text_visibility_settings = value
     
@@ -590,7 +590,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the signInPageText property value. Text that appears at the bottom of the sign-in box. Use this to communicate additional information, such as the phone number to your help desk or a legal statement. This text must be in Unicode format and not exceed 1024 characters.
         Args:
-            value: Value to set for the signInPageText property.
+            value: Value to set for the sign_in_page_text property.
         """
         self._sign_in_page_text = value
     
@@ -607,7 +607,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the squareLogo property value. A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
         Args:
-            value: Value to set for the squareLogo property.
+            value: Value to set for the square_logo property.
         """
         self._square_logo = value
     
@@ -624,7 +624,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the squareLogoDark property value. A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
         Args:
-            value: Value to set for the squareLogoDark property.
+            value: Value to set for the square_logo_dark property.
         """
         self._square_logo_dark = value
     
@@ -641,7 +641,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the squareLogoDarkRelativeUrl property value. A relative URL for the squareLogoDark property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Args:
-            value: Value to set for the squareLogoDarkRelativeUrl property.
+            value: Value to set for the square_logo_dark_relative_url property.
         """
         self._square_logo_dark_relative_url = value
     
@@ -658,7 +658,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the squareLogoRelativeUrl property value. A relative URL for the squareLogo property that is combined with a CDN base URL from the cdnList to provide the version served by a CDN. Read-only.
         Args:
-            value: Value to set for the squareLogoRelativeUrl property.
+            value: Value to set for the square_logo_relative_url property.
         """
         self._square_logo_relative_url = value
     
@@ -675,7 +675,7 @@ class OrganizationalBrandingProperties(entity.Entity):
         """
         Sets the usernameHintText property value. A string that shows as the hint in the username textbox on the sign-in screen. This text must be a Unicode, without links or code, and can't exceed 64 characters.
         Args:
-            value: Value to set for the usernameHintText property.
+            value: Value to set for the username_hint_text property.
         """
         self._username_hint_text = value
     

@@ -12,42 +12,42 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-application_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.application.application_request_builder')
-endpoint_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.endpoint.endpoint_request_builder')
-group_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.group.group_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.service_principal.service_principal_request_builder')
+microsoft_graph_application_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.microsoft_graph_application.microsoft_graph_application_request_builder')
+microsoft_graph_endpoint_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.microsoft_graph_endpoint.microsoft_graph_endpoint_request_builder')
+microsoft_graph_group_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.microsoft_graph_group.microsoft_graph_group_request_builder')
+microsoft_graph_service_principal_request_builder = lazy_import('msgraph.generated.service_principals.item.owned_objects.item.microsoft_graph_service_principal.microsoft_graph_service_principal_request_builder')
 
 class DirectoryObjectItemRequestBuilder():
     """
     Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
     """
     @property
-    def application(self) -> application_request_builder.ApplicationRequestBuilder:
+    def microsoft_graph_application(self) -> microsoft_graph_application_request_builder.MicrosoftGraphApplicationRequestBuilder:
         """
         Casts the previous resource to application.
         """
-        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_application_request_builder.MicrosoftGraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def microsoft_graph_endpoint(self) -> microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
+    def microsoft_graph_group(self) -> microsoft_graph_group_request_builder.MicrosoftGraphGroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
-        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_group_request_builder.MicrosoftGraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
+    def microsoft_graph_service_principal(self) -> microsoft_graph_service_principal_request_builder.MicrosoftGraphServicePrincipalRequestBuilder:
         """
         Casts the previous resource to servicePrincipal.
         """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_service_principal_request_builder.MicrosoftGraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -67,12 +67,11 @@ class DirectoryObjectItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         request_info = self.to_get_request_information(
@@ -84,7 +83,7 @@ class DirectoryObjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

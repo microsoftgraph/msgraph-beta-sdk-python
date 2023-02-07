@@ -45,11 +45,11 @@ class UserExperienceAnalyticsDeviceStartupProcess(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "process_name": lambda n : setattr(self, 'process_name', n.get_str_value()),
-            "product_name": lambda n : setattr(self, 'product_name', n.get_str_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "processName": lambda n : setattr(self, 'process_name', n.get_str_value()),
+            "productName": lambda n : setattr(self, 'product_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "startup_impact_in_ms": lambda n : setattr(self, 'startup_impact_in_ms', n.get_int_value()),
+            "startupImpactInMs": lambda n : setattr(self, 'startup_impact_in_ms', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -68,7 +68,7 @@ class UserExperienceAnalyticsDeviceStartupProcess(entity.Entity):
         """
         Sets the managedDeviceId property value. The user experience analytics device id.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -85,7 +85,7 @@ class UserExperienceAnalyticsDeviceStartupProcess(entity.Entity):
         """
         Sets the processName property value. User experience analytics device startup process name.
         Args:
-            value: Value to set for the processName property.
+            value: Value to set for the process_name property.
         """
         self._process_name = value
     
@@ -102,7 +102,7 @@ class UserExperienceAnalyticsDeviceStartupProcess(entity.Entity):
         """
         Sets the productName property value. The user experience analytics device startup process product name.
         Args:
-            value: Value to set for the productName property.
+            value: Value to set for the product_name property.
         """
         self._product_name = value
     
@@ -151,7 +151,7 @@ class UserExperienceAnalyticsDeviceStartupProcess(entity.Entity):
         """
         Sets the startupImpactInMs property value. User experience analytics device startup process impact in milliseconds.
         Args:
-            value: Value to set for the startupImpactInMs property.
+            value: Value to set for the startup_impact_in_ms property.
         """
         self._startup_impact_in_ms = value
     

@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-device_request_builder = lazy_import('msgraph.generated.me.owned_devices.item.device.device_request_builder')
-endpoint_request_builder = lazy_import('msgraph.generated.me.owned_devices.item.endpoint.endpoint_request_builder')
+microsoft_graph_device_request_builder = lazy_import('msgraph.generated.me.owned_devices.item.microsoft_graph_device.microsoft_graph_device_request_builder')
+microsoft_graph_endpoint_request_builder = lazy_import('msgraph.generated.me.owned_devices.item.microsoft_graph_endpoint.microsoft_graph_endpoint_request_builder')
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,18 +20,18 @@ class DirectoryObjectItemRequestBuilder():
     Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
     """
     @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
+    def microsoft_graph_device(self) -> microsoft_graph_device_request_builder.MicrosoftGraphDeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
-        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_request_builder.MicrosoftGraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def microsoft_graph_endpoint(self) -> microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class DirectoryObjectItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Devices that are owned by the user. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         request_info = self.to_get_request_information(
@@ -68,7 +67,7 @@ class DirectoryObjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -35,7 +35,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationMethod property value. The type of authentication method used to perform this step of authentication. Possible values: Password, SMS, Voice, Authenticator App, Software OATH token, Satisfied by token, Previously satisfied.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -52,7 +52,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationMethodDetail property value. Details about the authentication method used to perform this authentication step. For example, phone number (for SMS and voice), device name (for Authenticator app), and password source (e.g. cloud, AD FS, PTA, PHS).
         Args:
-            value: Value to set for the authenticationMethodDetail property.
+            value: Value to set for the authentication_method_detail property.
         """
         self._authentication_method_detail = value
     
@@ -69,7 +69,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationStepDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the authenticationStepDateTime property.
+            value: Value to set for the authentication_step_date_time property.
         """
         self._authentication_step_date_time = value
     
@@ -86,7 +86,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationStepRequirement property value. The step of authentication that this satisfied. For example, primary authentication, or multi-factor authentication.
         Args:
-            value: Value to set for the authenticationStepRequirement property.
+            value: Value to set for the authentication_step_requirement property.
         """
         self._authentication_step_requirement = value
     
@@ -103,7 +103,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationStepResultDetail property value. Details about why the step succeeded or failed. For examples, user is blocked, fraud code entered, no phone input - timed out, phone unreachable, or claim in token.
         Args:
-            value: Value to set for the authenticationStepResultDetail property.
+            value: Value to set for the authentication_step_result_detail property.
         """
         self._authentication_step_result_detail = value
     
@@ -147,11 +147,11 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_str_value()),
-            "authentication_method_detail": lambda n : setattr(self, 'authentication_method_detail', n.get_str_value()),
-            "authentication_step_date_time": lambda n : setattr(self, 'authentication_step_date_time', n.get_datetime_value()),
-            "authentication_step_requirement": lambda n : setattr(self, 'authentication_step_requirement', n.get_str_value()),
-            "authentication_step_result_detail": lambda n : setattr(self, 'authentication_step_result_detail', n.get_str_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_str_value()),
+            "authenticationMethodDetail": lambda n : setattr(self, 'authentication_method_detail', n.get_str_value()),
+            "authenticationStepDateTime": lambda n : setattr(self, 'authentication_step_date_time', n.get_datetime_value()),
+            "authenticationStepRequirement": lambda n : setattr(self, 'authentication_step_requirement', n.get_str_value()),
+            "authenticationStepResultDetail": lambda n : setattr(self, 'authentication_step_result_detail', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "succeeded": lambda n : setattr(self, 'succeeded', n.get_bool_value()),
         }
@@ -170,7 +170,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -67,7 +67,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name of the Azure AD security group used for the assignment.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -77,7 +77,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "target": lambda n : setattr(self, 'target', n.get_object_value(android_fota_deployment_assignment_target.AndroidFotaDeploymentAssignmentTarget)),
@@ -114,7 +114,7 @@ class AndroidFotaDeploymentAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

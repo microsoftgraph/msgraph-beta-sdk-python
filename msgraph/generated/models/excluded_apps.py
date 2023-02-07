@@ -137,15 +137,15 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
             "bing": lambda n : setattr(self, 'bing', n.get_bool_value()),
             "excel": lambda n : setattr(self, 'excel', n.get_bool_value()),
             "groove": lambda n : setattr(self, 'groove', n.get_bool_value()),
-            "info_path": lambda n : setattr(self, 'info_path', n.get_bool_value()),
+            "infoPath": lambda n : setattr(self, 'info_path', n.get_bool_value()),
             "lync": lambda n : setattr(self, 'lync', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "one_drive": lambda n : setattr(self, 'one_drive', n.get_bool_value()),
-            "one_note": lambda n : setattr(self, 'one_note', n.get_bool_value()),
+            "oneDrive": lambda n : setattr(self, 'one_drive', n.get_bool_value()),
+            "oneNote": lambda n : setattr(self, 'one_note', n.get_bool_value()),
             "outlook": lambda n : setattr(self, 'outlook', n.get_bool_value()),
-            "power_point": lambda n : setattr(self, 'power_point', n.get_bool_value()),
+            "powerPoint": lambda n : setattr(self, 'power_point', n.get_bool_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_bool_value()),
-            "share_point_designer": lambda n : setattr(self, 'share_point_designer', n.get_bool_value()),
+            "sharePointDesigner": lambda n : setattr(self, 'share_point_designer', n.get_bool_value()),
             "teams": lambda n : setattr(self, 'teams', n.get_bool_value()),
             "visio": lambda n : setattr(self, 'visio', n.get_bool_value()),
             "word": lambda n : setattr(self, 'word', n.get_bool_value()),
@@ -182,7 +182,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         Sets the infoPath property value. The value for if MS Office InfoPath should be excluded or not.
         Args:
-            value: Value to set for the infoPath property.
+            value: Value to set for the info_path property.
         """
         self._info_path = value
     
@@ -216,7 +216,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -233,7 +233,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         Sets the oneDrive property value. The value for if MS Office OneDrive should be excluded or not.
         Args:
-            value: Value to set for the oneDrive property.
+            value: Value to set for the one_drive property.
         """
         self._one_drive = value
     
@@ -250,7 +250,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         Sets the oneNote property value. The value for if MS Office OneNote should be excluded or not.
         Args:
-            value: Value to set for the oneNote property.
+            value: Value to set for the one_note property.
         """
         self._one_note = value
     
@@ -284,7 +284,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         Sets the powerPoint property value. The value for if MS Office PowerPoint should be excluded or not.
         Args:
-            value: Value to set for the powerPoint property.
+            value: Value to set for the power_point property.
         """
         self._power_point = value
     
@@ -344,7 +344,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         Sets the sharePointDesigner property value. The value for if MS Office SharePointDesigner should be excluded or not.
         Args:
-            value: Value to set for the sharePointDesigner property.
+            value: Value to set for the share_point_designer property.
         """
         self._share_point_designer = value
     

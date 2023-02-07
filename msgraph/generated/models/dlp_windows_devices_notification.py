@@ -30,7 +30,7 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
         """
         Sets the contentName property value. The contentName property
         Args:
-            value: Value to set for the contentName property.
+            value: Value to set for the content_name property.
         """
         self._content_name = value
     
@@ -52,8 +52,8 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_name": lambda n : setattr(self, 'content_name', n.get_str_value()),
-            "last_modfied_by": lambda n : setattr(self, 'last_modfied_by', n.get_str_value()),
+            "contentName": lambda n : setattr(self, 'content_name', n.get_str_value()),
+            "lastModfiedBy": lambda n : setattr(self, 'last_modfied_by', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class DlpWindowsDevicesNotification(dlp_notification.DlpNotification):
         """
         Sets the lastModfiedBy property value. The lastModfiedBy property
         Args:
-            value: Value to set for the lastModfiedBy property.
+            value: Value to set for the last_modfied_by property.
         """
         self._last_modfied_by = value
     

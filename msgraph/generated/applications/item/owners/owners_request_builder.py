@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.applications.item.owners.count.count_request_builder')
-endpoint_request_builder = lazy_import('msgraph.generated.applications.item.owners.endpoint.endpoint_request_builder')
+microsoft_graph_endpoint_request_builder = lazy_import('msgraph.generated.applications.item.owners.microsoft_graph_endpoint.microsoft_graph_endpoint_request_builder')
+microsoft_graph_service_principal_request_builder = lazy_import('msgraph.generated.applications.item.owners.microsoft_graph_service_principal.microsoft_graph_service_principal_request_builder')
+microsoft_graph_user_request_builder = lazy_import('msgraph.generated.applications.item.owners.microsoft_graph_user.microsoft_graph_user_request_builder')
 ref_request_builder = lazy_import('msgraph.generated.applications.item.owners.ref.ref_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.applications.item.owners.service_principal.service_principal_request_builder')
-user_request_builder = lazy_import('msgraph.generated.applications.item.owners.user.user_request_builder')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -30,11 +30,25 @@ class OwnersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def microsoft_graph_endpoint(self) -> microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_endpoint_request_builder.MicrosoftGraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_service_principal(self) -> microsoft_graph_service_principal_request_builder.MicrosoftGraphServicePrincipalRequestBuilder:
+        """
+        Casts the previous resource to servicePrincipal.
+        """
+        return microsoft_graph_service_principal_request_builder.MicrosoftGraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_user(self) -> microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder:
+        """
+        Casts the previous resource to user.
+        """
+        return microsoft_graph_user_request_builder.MicrosoftGraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
@@ -42,20 +56,6 @@ class OwnersRequestBuilder():
         Provides operations to manage the collection of application entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
-        """
-        Casts the previous resource to servicePrincipal.
-        """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
-        """
-        Casts the previous resource to user.
-        """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -75,12 +75,11 @@ class OwnersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OwnersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[OwnersRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -92,7 +91,7 @@ class OwnersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OwnersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

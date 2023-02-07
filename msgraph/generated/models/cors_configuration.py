@@ -34,7 +34,7 @@ class CorsConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowedHeaders property value. The request headers that the origin domain may specify on the CORS request. The wildcard character * indicates that any header beginning with the specified prefix is allowed.
         Args:
-            value: Value to set for the allowedHeaders property.
+            value: Value to set for the allowed_headers property.
         """
         self._allowed_headers = value
     
@@ -51,7 +51,7 @@ class CorsConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowedMethods property value. The HTTP request methods that the origin domain may use for a CORS request.
         Args:
-            value: Value to set for the allowedMethods property.
+            value: Value to set for the allowed_methods property.
         """
         self._allowed_methods = value
     
@@ -68,7 +68,7 @@ class CorsConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowedOrigins property value. The origin domains that are permitted to make a request against the service via CORS. The origin domain is the domain from which the request originates. The origin must be an exact case-sensitive match with the origin that the user age sends to the service.
         Args:
-            value: Value to set for the allowedOrigins property.
+            value: Value to set for the allowed_origins property.
         """
         self._allowed_origins = value
     
@@ -110,10 +110,10 @@ class CorsConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_headers": lambda n : setattr(self, 'allowed_headers', n.get_collection_of_primitive_values(str)),
-            "allowed_methods": lambda n : setattr(self, 'allowed_methods', n.get_collection_of_primitive_values(str)),
-            "allowed_origins": lambda n : setattr(self, 'allowed_origins', n.get_collection_of_primitive_values(str)),
-            "max_age_in_seconds": lambda n : setattr(self, 'max_age_in_seconds', n.get_int_value()),
+            "allowedHeaders": lambda n : setattr(self, 'allowed_headers', n.get_collection_of_primitive_values(str)),
+            "allowedMethods": lambda n : setattr(self, 'allowed_methods', n.get_collection_of_primitive_values(str)),
+            "allowedOrigins": lambda n : setattr(self, 'allowed_origins', n.get_collection_of_primitive_values(str)),
+            "maxAgeInSeconds": lambda n : setattr(self, 'max_age_in_seconds', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_str_value()),
         }
@@ -132,7 +132,7 @@ class CorsConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the maxAgeInSeconds property value. The maximum amount of time that a browser should cache the response to the preflight OPTIONS request.
         Args:
-            value: Value to set for the maxAgeInSeconds property.
+            value: Value to set for the max_age_in_seconds property.
         """
         self._max_age_in_seconds = value
     
@@ -149,7 +149,7 @@ class CorsConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

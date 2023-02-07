@@ -20,7 +20,7 @@ class WebSegmentConfiguration(segment_configuration.SegmentConfiguration):
         """
         Sets the applicationSegments property value. The applicationSegments property
         Args:
-            value: Value to set for the applicationSegments property.
+            value: Value to set for the application_segments property.
         """
         self._application_segments = value
     
@@ -51,7 +51,7 @@ class WebSegmentConfiguration(segment_configuration.SegmentConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_segments": lambda n : setattr(self, 'application_segments', n.get_collection_of_object_values(web_application_segment.WebApplicationSegment)),
+            "applicationSegments": lambda n : setattr(self, 'application_segments', n.get_collection_of_object_values(web_application_segment.WebApplicationSegment)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

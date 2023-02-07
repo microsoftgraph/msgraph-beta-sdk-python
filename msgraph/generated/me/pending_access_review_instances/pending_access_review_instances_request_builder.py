@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+microsoft_graph_filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.microsoft_graph_filter_by_current_user_with_on.microsoft_graph_filter_by_current_user_with_on_request_builder')
 access_review_instance = lazy_import('msgraph.generated.models.access_review_instance')
 access_review_instance_collection_response = lazy_import('msgraph.generated.models.access_review_instance_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -45,23 +45,11 @@ class PendingAccessReviewInstancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]:
         """
         Retrieve the accessReviewInstance objects pending approval by the calling user. A list of zero or more accessReviewInstance objects are returned, of which the calling user is an assigned reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance_collection_response.AccessReviewInstanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class PendingAccessReviewInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance_collection_response.AccessReviewInstanceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance_collection_response.AccessReviewInstanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
         Create new navigation property to pendingAccessReviewInstances for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance.AccessReviewInstance]
         """
         if body is None:
@@ -95,7 +93,7 @@ class PendingAccessReviewInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PendingAccessReviewInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

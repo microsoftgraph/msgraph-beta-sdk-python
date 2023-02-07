@@ -36,7 +36,7 @@ class ExactMatchLookupJob(exact_match_job_base.ExactMatchJobBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "matching_rows": lambda n : setattr(self, 'matching_rows', n.get_collection_of_object_values(lookup_result_row.LookupResultRow)),
+            "matchingRows": lambda n : setattr(self, 'matching_rows', n.get_collection_of_object_values(lookup_result_row.LookupResultRow)),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -56,7 +56,7 @@ class ExactMatchLookupJob(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the matchingRows property value. The matchingRows property
         Args:
-            value: Value to set for the matchingRows property.
+            value: Value to set for the matching_rows property.
         """
         self._matching_rows = value
     

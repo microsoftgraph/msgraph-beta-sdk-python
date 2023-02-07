@@ -41,7 +41,7 @@ class DeviceManagementConfigurationStringSettingValueTemplate(device_management_
         """
         Sets the defaultValue property value. String Setting Value Default Template.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -51,7 +51,7 @@ class DeviceManagementConfigurationStringSettingValueTemplate(device_management_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_string_setting_value_default_template.DeviceManagementConfigurationStringSettingValueDefaultTemplate)),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_string_setting_value_default_template.DeviceManagementConfigurationStringSettingValueDefaultTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

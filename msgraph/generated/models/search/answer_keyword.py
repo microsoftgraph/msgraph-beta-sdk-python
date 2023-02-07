@@ -56,9 +56,9 @@ class AnswerKeyword(AdditionalDataHolder, Parsable):
         """
         fields = {
             "keywords": lambda n : setattr(self, 'keywords', n.get_collection_of_primitive_values(str)),
-            "match_similar_keywords": lambda n : setattr(self, 'match_similar_keywords', n.get_bool_value()),
+            "matchSimilarKeywords": lambda n : setattr(self, 'match_similar_keywords', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "reserved_keywords": lambda n : setattr(self, 'reserved_keywords', n.get_collection_of_primitive_values(str)),
+            "reservedKeywords": lambda n : setattr(self, 'reserved_keywords', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class AnswerKeyword(AdditionalDataHolder, Parsable):
         """
         Sets the matchSimilarKeywords property value. If true, indicates that the search term contains similar words to the keywords that should trigger the search answer.
         Args:
-            value: Value to set for the matchSimilarKeywords property.
+            value: Value to set for the match_similar_keywords property.
         """
         self._match_similar_keywords = value
     
@@ -109,7 +109,7 @@ class AnswerKeyword(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -126,7 +126,7 @@ class AnswerKeyword(AdditionalDataHolder, Parsable):
         """
         Sets the reservedKeywords property value. Unique keywords that will guarantee the search answer is triggered.
         Args:
-            value: Value to set for the reservedKeywords property.
+            value: Value to set for the reserved_keywords property.
         """
         self._reserved_keywords = value
     

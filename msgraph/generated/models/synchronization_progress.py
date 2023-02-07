@@ -35,7 +35,7 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         """
         Sets the completedUnits property value. The numerator of a progress ratio; the number of units of changes already processed.
         Args:
-            value: Value to set for the completedUnits property.
+            value: Value to set for the completed_units property.
         """
         self._completed_units = value
     
@@ -75,10 +75,10 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_units": lambda n : setattr(self, 'completed_units', n.get_int_value()),
+            "completedUnits": lambda n : setattr(self, 'completed_units', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "progress_observation_date_time": lambda n : setattr(self, 'progress_observation_date_time', n.get_datetime_value()),
-            "total_units": lambda n : setattr(self, 'total_units', n.get_int_value()),
+            "progressObservationDateTime": lambda n : setattr(self, 'progress_observation_date_time', n.get_datetime_value()),
+            "totalUnits": lambda n : setattr(self, 'total_units', n.get_int_value()),
             "units": lambda n : setattr(self, 'units', n.get_str_value()),
         }
         return fields
@@ -96,7 +96,7 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -113,7 +113,7 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         """
         Sets the progressObservationDateTime property value. The time of a progress observation as an offset in minutes from UTC.
         Args:
-            value: Value to set for the progressObservationDateTime property.
+            value: Value to set for the progress_observation_date_time property.
         """
         self._progress_observation_date_time = value
     
@@ -145,7 +145,7 @@ class SynchronizationProgress(AdditionalDataHolder, Parsable):
         """
         Sets the totalUnits property value. The denominator of a progress ratio; a number of units of changes to be processed to accomplish synchronization.
         Args:
-            value: Value to set for the totalUnits property.
+            value: Value to set for the total_units property.
         """
         self._total_units = value
     

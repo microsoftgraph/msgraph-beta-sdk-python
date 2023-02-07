@@ -31,7 +31,7 @@ class CloudPC(entity.Entity):
         """
         Sets the aadDeviceId property value. The Azure Active Directory (Azure AD) device ID of the Cloud PC.
         Args:
-            value: Value to set for the aadDeviceId property.
+            value: Value to set for the aad_device_id property.
         """
         self._aad_device_id = value
     
@@ -48,7 +48,7 @@ class CloudPC(entity.Entity):
         """
         Sets the connectivityResult property value. The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC is able to be connected or not.
         Args:
-            value: Value to set for the connectivityResult property.
+            value: Value to set for the connectivity_result property.
         """
         self._connectivity_result = value
     
@@ -61,7 +61,7 @@ class CloudPC(entity.Entity):
         self._aad_device_id: Optional[str] = None
         # The connectivity health check result of a Cloud PC, including the updated timestamp and whether the Cloud PC is able to be connected or not.
         self._connectivity_result: Optional[cloud_pc_connectivity_result.CloudPcConnectivityResult] = None
-        # The diskEncryptionState property
+        # The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
         self._disk_encryption_state: Optional[cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState] = None
         # The display name of the Cloud PC.
         self._display_name: Optional[str] = None
@@ -123,7 +123,7 @@ class CloudPC(entity.Entity):
     @property
     def disk_encryption_state(self,) -> Optional[cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState]:
         """
-        Gets the diskEncryptionState property value. The diskEncryptionState property
+        Gets the diskEncryptionState property value. The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
         Returns: Optional[cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState]
         """
         return self._disk_encryption_state
@@ -131,9 +131,9 @@ class CloudPC(entity.Entity):
     @disk_encryption_state.setter
     def disk_encryption_state(self,value: Optional[cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState] = None) -> None:
         """
-        Sets the diskEncryptionState property value. The diskEncryptionState property
+        Sets the diskEncryptionState property value. The disk encryption applied to the Cloud PC. Possible values: notAvailable, notEncrypted, encryptedUsingPlatformManagedKey, encryptedUsingCustomerManagedKey, and unknownFutureValue.
         Args:
-            value: Value to set for the diskEncryptionState property.
+            value: Value to set for the disk_encryption_state property.
         """
         self._disk_encryption_state = value
     
@@ -150,7 +150,7 @@ class CloudPC(entity.Entity):
         """
         Sets the displayName property value. The display name of the Cloud PC.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -160,30 +160,30 @@ class CloudPC(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "aad_device_id": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
-            "connectivity_result": lambda n : setattr(self, 'connectivity_result', n.get_object_value(cloud_pc_connectivity_result.CloudPcConnectivityResult)),
-            "disk_encryption_state": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "grace_period_end_date_time": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
-            "image_display_name": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
-            "last_login_result": lambda n : setattr(self, 'last_login_result', n.get_object_value(cloud_pc_login_result.CloudPcLoginResult)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "last_remote_action_result": lambda n : setattr(self, 'last_remote_action_result', n.get_object_value(cloud_pc_remote_action_result.CloudPcRemoteActionResult)),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "on_premises_connection_name": lambda n : setattr(self, 'on_premises_connection_name', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
-            "partner_agent_install_results": lambda n : setattr(self, 'partner_agent_install_results', n.get_collection_of_object_values(cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult)),
-            "provisioning_policy_id": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
-            "provisioning_policy_name": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
-            "provisioning_type": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(cloud_pc_provisioning_type.CloudPcProvisioningType)),
-            "service_plan_id": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
-            "service_plan_name": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
-            "service_plan_type": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(cloud_pc_service_plan_type.CloudPcServicePlanType)),
+            "aadDeviceId": lambda n : setattr(self, 'aad_device_id', n.get_str_value()),
+            "connectivityResult": lambda n : setattr(self, 'connectivity_result', n.get_object_value(cloud_pc_connectivity_result.CloudPcConnectivityResult)),
+            "diskEncryptionState": lambda n : setattr(self, 'disk_encryption_state', n.get_enum_value(cloud_pc_disk_encryption_state.CloudPcDiskEncryptionState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "gracePeriodEndDateTime": lambda n : setattr(self, 'grace_period_end_date_time', n.get_datetime_value()),
+            "imageDisplayName": lambda n : setattr(self, 'image_display_name', n.get_str_value()),
+            "lastLoginResult": lambda n : setattr(self, 'last_login_result', n.get_object_value(cloud_pc_login_result.CloudPcLoginResult)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastRemoteActionResult": lambda n : setattr(self, 'last_remote_action_result', n.get_object_value(cloud_pc_remote_action_result.CloudPcRemoteActionResult)),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "onPremisesConnectionName": lambda n : setattr(self, 'on_premises_connection_name', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
+            "partnerAgentInstallResults": lambda n : setattr(self, 'partner_agent_install_results', n.get_collection_of_object_values(cloud_pc_partner_agent_install_result.CloudPcPartnerAgentInstallResult)),
+            "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
+            "provisioningPolicyName": lambda n : setattr(self, 'provisioning_policy_name', n.get_str_value()),
+            "provisioningType": lambda n : setattr(self, 'provisioning_type', n.get_enum_value(cloud_pc_provisioning_type.CloudPcProvisioningType)),
+            "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
+            "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
+            "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_enum_value(cloud_pc_service_plan_type.CloudPcServicePlanType)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_status.CloudPcStatus)),
-            "status_details": lambda n : setattr(self, 'status_details', n.get_object_value(cloud_pc_status_details.CloudPcStatusDetails)),
-            "user_account_type": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(cloud_pc_status_details.CloudPcStatusDetails)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -202,7 +202,7 @@ class CloudPC(entity.Entity):
         """
         Sets the gracePeriodEndDateTime property value. The date and time when the grace period ends and reprovisioning/deprovisioning happens. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the gracePeriodEndDateTime property.
+            value: Value to set for the grace_period_end_date_time property.
         """
         self._grace_period_end_date_time = value
     
@@ -219,7 +219,7 @@ class CloudPC(entity.Entity):
         """
         Sets the imageDisplayName property value. Name of the OS image that's on the Cloud PC.
         Args:
-            value: Value to set for the imageDisplayName property.
+            value: Value to set for the image_display_name property.
         """
         self._image_display_name = value
     
@@ -236,7 +236,7 @@ class CloudPC(entity.Entity):
         """
         Sets the lastLoginResult property value. The last login result of the Cloud PC. For example, { 'time': '2014-01-01T00:00:00Z'}.
         Args:
-            value: Value to set for the lastLoginResult property.
+            value: Value to set for the last_login_result property.
         """
         self._last_login_result = value
     
@@ -253,7 +253,7 @@ class CloudPC(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The last modified date and time of the Cloud PC. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -270,7 +270,7 @@ class CloudPC(entity.Entity):
         """
         Sets the lastRemoteActionResult property value. The last remote action result of the enterprise Cloud PCs. The supported remote actions are: Reboot, Rename, Reprovision, Restore, and Troubleshoot.
         Args:
-            value: Value to set for the lastRemoteActionResult property.
+            value: Value to set for the last_remote_action_result property.
         """
         self._last_remote_action_result = value
     
@@ -287,7 +287,7 @@ class CloudPC(entity.Entity):
         """
         Sets the managedDeviceId property value. The Intune device ID of the Cloud PC.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -304,7 +304,7 @@ class CloudPC(entity.Entity):
         """
         Sets the managedDeviceName property value. The Intune device name of the Cloud PC.
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -321,7 +321,7 @@ class CloudPC(entity.Entity):
         """
         Sets the onPremisesConnectionName property value. The Azure network connection that is applied during the provisioning of Cloud PCs.
         Args:
-            value: Value to set for the onPremisesConnectionName property.
+            value: Value to set for the on_premises_connection_name property.
         """
         self._on_premises_connection_name = value
     
@@ -338,7 +338,7 @@ class CloudPC(entity.Entity):
         """
         Sets the osVersion property value. The version of the operating system (OS) to provision on Cloud PCs. Possible values are: windows10, windows11, and unknownFutureValue.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -355,7 +355,7 @@ class CloudPC(entity.Entity):
         """
         Sets the partnerAgentInstallResults property value. The results of every partner agent's installation status on Cloud PC.
         Args:
-            value: Value to set for the partnerAgentInstallResults property.
+            value: Value to set for the partner_agent_install_results property.
         """
         self._partner_agent_install_results = value
     
@@ -372,7 +372,7 @@ class CloudPC(entity.Entity):
         """
         Sets the provisioningPolicyId property value. The provisioning policy ID of the Cloud PC.
         Args:
-            value: Value to set for the provisioningPolicyId property.
+            value: Value to set for the provisioning_policy_id property.
         """
         self._provisioning_policy_id = value
     
@@ -389,7 +389,7 @@ class CloudPC(entity.Entity):
         """
         Sets the provisioningPolicyName property value. The provisioning policy that is applied during the provisioning of Cloud PCs.
         Args:
-            value: Value to set for the provisioningPolicyName property.
+            value: Value to set for the provisioning_policy_name property.
         """
         self._provisioning_policy_name = value
     
@@ -406,7 +406,7 @@ class CloudPC(entity.Entity):
         """
         Sets the provisioningType property value. The provisioningType property
         Args:
-            value: Value to set for the provisioningType property.
+            value: Value to set for the provisioning_type property.
         """
         self._provisioning_type = value
     
@@ -457,7 +457,7 @@ class CloudPC(entity.Entity):
         """
         Sets the servicePlanId property value. The service plan ID of the Cloud PC.
         Args:
-            value: Value to set for the servicePlanId property.
+            value: Value to set for the service_plan_id property.
         """
         self._service_plan_id = value
     
@@ -474,7 +474,7 @@ class CloudPC(entity.Entity):
         """
         Sets the servicePlanName property value. The service plan name of the Cloud PC.
         Args:
-            value: Value to set for the servicePlanName property.
+            value: Value to set for the service_plan_name property.
         """
         self._service_plan_name = value
     
@@ -491,7 +491,7 @@ class CloudPC(entity.Entity):
         """
         Sets the servicePlanType property value. The service plan type of the Cloud PC.
         Args:
-            value: Value to set for the servicePlanType property.
+            value: Value to set for the service_plan_type property.
         """
         self._service_plan_type = value
     
@@ -525,7 +525,7 @@ class CloudPC(entity.Entity):
         """
         Sets the statusDetails property value. The details of the Cloud PC status.
         Args:
-            value: Value to set for the statusDetails property.
+            value: Value to set for the status_details property.
         """
         self._status_details = value
     
@@ -542,7 +542,7 @@ class CloudPC(entity.Entity):
         """
         Sets the userAccountType property value. The account type of the user on provisioned Cloud PCs. Possible values are: standardUser, administrator, and unknownFutureValue.
         Args:
-            value: Value to set for the userAccountType property.
+            value: Value to set for the user_account_type property.
         """
         self._user_account_type = value
     
@@ -559,7 +559,7 @@ class CloudPC(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name (UPN) of the user assigned to the Cloud PC.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

@@ -13,11 +13,11 @@ from typing import Any, Callable, Dict, List, Optional, Union
 onenote_page = lazy_import('msgraph.generated.models.onenote_page')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 content_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.content.content_request_builder')
-copy_to_section_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.copy_to_section.copy_to_section_request_builder')
-onenote_patch_content_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.onenote_patch_content.onenote_patch_content_request_builder')
+microsoft_graph_copy_to_section_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.microsoft_graph_copy_to_section.microsoft_graph_copy_to_section_request_builder')
+microsoft_graph_onenote_patch_content_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.microsoft_graph_onenote_patch_content.microsoft_graph_onenote_patch_content_request_builder')
+microsoft_graph_preview_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.microsoft_graph_preview.microsoft_graph_preview_request_builder')
 parent_notebook_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.parent_notebook.parent_notebook_request_builder')
 parent_section_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.parent_section.parent_section_request_builder')
-preview_request_builder = lazy_import('msgraph.generated.sites.item.onenote.sections.item.pages.item.preview.preview_request_builder')
 
 class OnenotePageItemRequestBuilder():
     """
@@ -31,18 +31,25 @@ class OnenotePageItemRequestBuilder():
         return content_request_builder.ContentRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def copy_to_section(self) -> copy_to_section_request_builder.CopyToSectionRequestBuilder:
+    def microsoft_graph_copy_to_section(self) -> microsoft_graph_copy_to_section_request_builder.MicrosoftGraphCopyToSectionRequestBuilder:
         """
         Provides operations to call the copyToSection method.
         """
-        return copy_to_section_request_builder.CopyToSectionRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_copy_to_section_request_builder.MicrosoftGraphCopyToSectionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def onenote_patch_content(self) -> onenote_patch_content_request_builder.OnenotePatchContentRequestBuilder:
+    def microsoft_graph_onenote_patch_content(self) -> microsoft_graph_onenote_patch_content_request_builder.MicrosoftGraphOnenotePatchContentRequestBuilder:
         """
         Provides operations to call the onenotePatchContent method.
         """
-        return onenote_patch_content_request_builder.OnenotePatchContentRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_onenote_patch_content_request_builder.MicrosoftGraphOnenotePatchContentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_preview(self) -> microsoft_graph_preview_request_builder.MicrosoftGraphPreviewRequestBuilder:
+        """
+        Provides operations to call the preview method.
+        """
+        return microsoft_graph_preview_request_builder.MicrosoftGraphPreviewRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def parent_notebook(self) -> parent_notebook_request_builder.ParentNotebookRequestBuilder:
@@ -76,12 +83,11 @@ class OnenotePageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property pages for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -92,14 +98,13 @@ class OnenotePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OnenotePageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_page.OnenotePage]:
+    async def get(self,request_configuration: Optional[OnenotePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[onenote_page.OnenotePage]:
         """
         The collection of pages in the section.  Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_page.OnenotePage]
         """
         request_info = self.to_get_request_information(
@@ -111,15 +116,14 @@ class OnenotePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_page.OnenotePage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, onenote_page.OnenotePage, error_mapping)
     
-    async def patch(self,body: Optional[onenote_page.OnenotePage] = None, request_configuration: Optional[OnenotePageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_page.OnenotePage]:
+    async def patch(self,body: Optional[onenote_page.OnenotePage] = None, request_configuration: Optional[OnenotePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[onenote_page.OnenotePage]:
         """
         Update the navigation property pages in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_page.OnenotePage]
         """
         if body is None:
@@ -133,14 +137,7 @@ class OnenotePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_page.OnenotePage, response_handler, error_mapping)
-    
-    def preview(self,) -> preview_request_builder.PreviewRequestBuilder:
-        """
-        Provides operations to call the preview method.
-        Returns: preview_request_builder.PreviewRequestBuilder
-        """
-        return preview_request_builder.PreviewRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, onenote_page.OnenotePage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OnenotePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

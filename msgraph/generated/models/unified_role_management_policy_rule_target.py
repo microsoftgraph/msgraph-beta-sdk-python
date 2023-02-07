@@ -87,7 +87,7 @@ class UnifiedRoleManagementPolicyRuleTarget(AdditionalDataHolder, Parsable):
         """
         Sets the enforcedSettings property value. The list of role settings that are enforced and cannot be overridden by child scopes. Use All for all settings.
         Args:
-            value: Value to set for the enforcedSettings property.
+            value: Value to set for the enforced_settings property.
         """
         self._enforced_settings = value
     
@@ -98,12 +98,12 @@ class UnifiedRoleManagementPolicyRuleTarget(AdditionalDataHolder, Parsable):
         """
         fields = {
             "caller": lambda n : setattr(self, 'caller', n.get_str_value()),
-            "enforced_settings": lambda n : setattr(self, 'enforced_settings', n.get_collection_of_primitive_values(str)),
-            "inheritable_settings": lambda n : setattr(self, 'inheritable_settings', n.get_collection_of_primitive_values(str)),
+            "enforcedSettings": lambda n : setattr(self, 'enforced_settings', n.get_collection_of_primitive_values(str)),
+            "inheritableSettings": lambda n : setattr(self, 'inheritable_settings', n.get_collection_of_primitive_values(str)),
             "level": lambda n : setattr(self, 'level', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_primitive_values(str)),
-            "target_objects": lambda n : setattr(self, 'target_objects', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "targetObjects": lambda n : setattr(self, 'target_objects', n.get_collection_of_object_values(directory_object.DirectoryObject)),
         }
         return fields
     
@@ -120,7 +120,7 @@ class UnifiedRoleManagementPolicyRuleTarget(AdditionalDataHolder, Parsable):
         """
         Sets the inheritableSettings property value. The list of role settings that can be inherited by child scopes. Use All for all settings.
         Args:
-            value: Value to set for the inheritableSettings property.
+            value: Value to set for the inheritable_settings property.
         """
         self._inheritable_settings = value
     
@@ -154,7 +154,7 @@ class UnifiedRoleManagementPolicyRuleTarget(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -205,7 +205,7 @@ class UnifiedRoleManagementPolicyRuleTarget(AdditionalDataHolder, Parsable):
         """
         Sets the targetObjects property value. The targetObjects property
         Args:
-            value: Value to set for the targetObjects property.
+            value: Value to set for the target_objects property.
         """
         self._target_objects = value
     

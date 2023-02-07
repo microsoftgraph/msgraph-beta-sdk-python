@@ -56,8 +56,8 @@ class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
         """
         fields = {
             "classification": lambda n : setattr(self, 'classification', n.get_enum_value(windows_quality_update_classification.WindowsQualityUpdateClassification)),
-            "is_expeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
-            "kb_article_id": lambda n : setattr(self, 'kb_article_id', n.get_str_value()),
+            "isExpeditable": lambda n : setattr(self, 'is_expeditable', n.get_bool_value()),
+            "kbArticleId": lambda n : setattr(self, 'kb_article_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -76,7 +76,7 @@ class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
         """
         Sets the isExpeditable property value. Flag indicating if update qualifies for expedite
         Args:
-            value: Value to set for the isExpeditable property.
+            value: Value to set for the is_expeditable property.
         """
         self._is_expeditable = value
     
@@ -93,7 +93,7 @@ class WindowsQualityUpdateCatalogItem(windows_update_catalog_item.WindowsUpdateC
         """
         Sets the kbArticleId property value. Knowledge base article id
         Args:
-            value: Value to set for the kbArticleId property.
+            value: Value to set for the kb_article_id property.
         """
         self._kb_article_id = value
     

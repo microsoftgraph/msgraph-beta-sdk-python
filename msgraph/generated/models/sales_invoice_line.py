@@ -39,7 +39,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the accountId property value. The accountId property
         Args:
-            value: Value to set for the accountId property.
+            value: Value to set for the account_id property.
         """
         self._account_id = value
     
@@ -56,7 +56,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the amountExcludingTax property value. The amountExcludingTax property
         Args:
-            value: Value to set for the amountExcludingTax property.
+            value: Value to set for the amount_excluding_tax property.
         """
         self._amount_excluding_tax = value
     
@@ -73,7 +73,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the amountIncludingTax property value. The amountIncludingTax property
         Args:
-            value: Value to set for the amountIncludingTax property.
+            value: Value to set for the amount_including_tax property.
         """
         self._amount_including_tax = value
     
@@ -175,7 +175,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the discountAmount property value. The discountAmount property
         Args:
-            value: Value to set for the discountAmount property.
+            value: Value to set for the discount_amount property.
         """
         self._discount_amount = value
     
@@ -192,7 +192,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the discountAppliedBeforeTax property value. The discountAppliedBeforeTax property
         Args:
-            value: Value to set for the discountAppliedBeforeTax property.
+            value: Value to set for the discount_applied_before_tax property.
         """
         self._discount_applied_before_tax = value
     
@@ -209,7 +209,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the discountPercent property value. The discountPercent property
         Args:
-            value: Value to set for the discountPercent property.
+            value: Value to set for the discount_percent property.
         """
         self._discount_percent = value
     
@@ -226,7 +226,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the documentId property value. The documentId property
         Args:
-            value: Value to set for the documentId property.
+            value: Value to set for the document_id property.
         """
         self._document_id = value
     
@@ -237,29 +237,29 @@ class SalesInvoiceLine(entity.Entity):
         """
         fields = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "account_id": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
-            "amount_excluding_tax": lambda n : setattr(self, 'amount_excluding_tax', n.get_float_value()),
-            "amount_including_tax": lambda n : setattr(self, 'amount_including_tax', n.get_float_value()),
+            "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
+            "amountExcludingTax": lambda n : setattr(self, 'amount_excluding_tax', n.get_float_value()),
+            "amountIncludingTax": lambda n : setattr(self, 'amount_including_tax', n.get_float_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
-            "discount_applied_before_tax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
-            "discount_percent": lambda n : setattr(self, 'discount_percent', n.get_float_value()),
-            "document_id": lambda n : setattr(self, 'document_id', n.get_object_value(Guid)),
-            "invoice_discount_allocation": lambda n : setattr(self, 'invoice_discount_allocation', n.get_float_value()),
+            "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
+            "discountAppliedBeforeTax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
+            "discountPercent": lambda n : setattr(self, 'discount_percent', n.get_float_value()),
+            "documentId": lambda n : setattr(self, 'document_id', n.get_object_value(Guid)),
+            "invoiceDiscountAllocation": lambda n : setattr(self, 'invoice_discount_allocation', n.get_float_value()),
             "item": lambda n : setattr(self, 'item', n.get_object_value(item.Item)),
-            "item_id": lambda n : setattr(self, 'item_id', n.get_object_value(Guid)),
-            "line_type": lambda n : setattr(self, 'line_type', n.get_str_value()),
-            "net_amount": lambda n : setattr(self, 'net_amount', n.get_float_value()),
-            "net_amount_including_tax": lambda n : setattr(self, 'net_amount_including_tax', n.get_float_value()),
-            "net_tax_amount": lambda n : setattr(self, 'net_tax_amount', n.get_float_value()),
+            "itemId": lambda n : setattr(self, 'item_id', n.get_object_value(Guid)),
+            "lineType": lambda n : setattr(self, 'line_type', n.get_str_value()),
+            "netAmount": lambda n : setattr(self, 'net_amount', n.get_float_value()),
+            "netAmountIncludingTax": lambda n : setattr(self, 'net_amount_including_tax', n.get_float_value()),
+            "netTaxAmount": lambda n : setattr(self, 'net_tax_amount', n.get_float_value()),
             "quantity": lambda n : setattr(self, 'quantity', n.get_float_value()),
             "sequence": lambda n : setattr(self, 'sequence', n.get_int_value()),
-            "shipment_date": lambda n : setattr(self, 'shipment_date', n.get_object_value(Date)),
-            "tax_code": lambda n : setattr(self, 'tax_code', n.get_str_value()),
-            "tax_percent": lambda n : setattr(self, 'tax_percent', n.get_float_value()),
-            "total_tax_amount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
-            "unit_of_measure_id": lambda n : setattr(self, 'unit_of_measure_id', n.get_object_value(Guid)),
-            "unit_price": lambda n : setattr(self, 'unit_price', n.get_float_value()),
+            "shipmentDate": lambda n : setattr(self, 'shipment_date', n.get_object_value(Date)),
+            "taxCode": lambda n : setattr(self, 'tax_code', n.get_str_value()),
+            "taxPercent": lambda n : setattr(self, 'tax_percent', n.get_float_value()),
+            "totalTaxAmount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
+            "unitOfMeasureId": lambda n : setattr(self, 'unit_of_measure_id', n.get_object_value(Guid)),
+            "unitPrice": lambda n : setattr(self, 'unit_price', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -278,7 +278,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the invoiceDiscountAllocation property value. The invoiceDiscountAllocation property
         Args:
-            value: Value to set for the invoiceDiscountAllocation property.
+            value: Value to set for the invoice_discount_allocation property.
         """
         self._invoice_discount_allocation = value
     
@@ -312,7 +312,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the itemId property value. The itemId property
         Args:
-            value: Value to set for the itemId property.
+            value: Value to set for the item_id property.
         """
         self._item_id = value
     
@@ -329,7 +329,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the lineType property value. The lineType property
         Args:
-            value: Value to set for the lineType property.
+            value: Value to set for the line_type property.
         """
         self._line_type = value
     
@@ -346,7 +346,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the netAmount property value. The netAmount property
         Args:
-            value: Value to set for the netAmount property.
+            value: Value to set for the net_amount property.
         """
         self._net_amount = value
     
@@ -363,7 +363,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the netAmountIncludingTax property value. The netAmountIncludingTax property
         Args:
-            value: Value to set for the netAmountIncludingTax property.
+            value: Value to set for the net_amount_including_tax property.
         """
         self._net_amount_including_tax = value
     
@@ -380,7 +380,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the netTaxAmount property value. The netTaxAmount property
         Args:
-            value: Value to set for the netTaxAmount property.
+            value: Value to set for the net_tax_amount property.
         """
         self._net_tax_amount = value
     
@@ -465,7 +465,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the shipmentDate property value. The shipmentDate property
         Args:
-            value: Value to set for the shipmentDate property.
+            value: Value to set for the shipment_date property.
         """
         self._shipment_date = value
     
@@ -482,7 +482,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the taxCode property value. The taxCode property
         Args:
-            value: Value to set for the taxCode property.
+            value: Value to set for the tax_code property.
         """
         self._tax_code = value
     
@@ -499,7 +499,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the taxPercent property value. The taxPercent property
         Args:
-            value: Value to set for the taxPercent property.
+            value: Value to set for the tax_percent property.
         """
         self._tax_percent = value
     
@@ -516,7 +516,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the totalTaxAmount property value. The totalTaxAmount property
         Args:
-            value: Value to set for the totalTaxAmount property.
+            value: Value to set for the total_tax_amount property.
         """
         self._total_tax_amount = value
     
@@ -533,7 +533,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the unitOfMeasureId property value. The unitOfMeasureId property
         Args:
-            value: Value to set for the unitOfMeasureId property.
+            value: Value to set for the unit_of_measure_id property.
         """
         self._unit_of_measure_id = value
     
@@ -550,7 +550,7 @@ class SalesInvoiceLine(entity.Entity):
         """
         Sets the unitPrice property value. The unitPrice property
         Args:
-            value: Value to set for the unitPrice property.
+            value: Value to set for the unit_price property.
         """
         self._unit_price = value
     

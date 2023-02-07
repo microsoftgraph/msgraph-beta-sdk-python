@@ -11,12 +11,12 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.count.count_request_builder')
-get_devices_scheduled_to_retire_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.get_devices_scheduled_to_retire.get_devices_scheduled_to_retire_request_builder')
-get_noncompliant_devices_to_retire_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.get_noncompliant_devices_to_retire.get_noncompliant_devices_to_retire_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.has_payload_links.has_payload_links_request_builder')
-refresh_device_compliance_report_summarization_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.refresh_device_compliance_report_summarization.refresh_device_compliance_report_summarization_request_builder')
-set_scheduled_retire_state_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.set_scheduled_retire_state.set_scheduled_retire_state_request_builder')
-validate_compliance_script_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.validate_compliance_script.validate_compliance_script_request_builder')
+microsoft_graph_get_devices_scheduled_to_retire_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.microsoft_graph_get_devices_scheduled_to_retire.microsoft_graph_get_devices_scheduled_to_retire_request_builder')
+microsoft_graph_get_noncompliant_devices_to_retire_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.microsoft_graph_get_noncompliant_devices_to_retire.microsoft_graph_get_noncompliant_devices_to_retire_request_builder')
+microsoft_graph_has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.microsoft_graph_has_payload_links.microsoft_graph_has_payload_links_request_builder')
+microsoft_graph_refresh_device_compliance_report_summarization_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.microsoft_graph_refresh_device_compliance_report_summarization.microsoft_graph_refresh_device_compliance_report_summarization_request_builder')
+microsoft_graph_set_scheduled_retire_state_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.microsoft_graph_set_scheduled_retire_state.microsoft_graph_set_scheduled_retire_state_request_builder')
+microsoft_graph_validate_compliance_script_request_builder = lazy_import('msgraph.generated.device_management.device_compliance_policies.microsoft_graph_validate_compliance_script.microsoft_graph_validate_compliance_script_request_builder')
 device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
 device_compliance_policy_collection_response = lazy_import('msgraph.generated.models.device_compliance_policy_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -33,39 +33,46 @@ class DeviceCompliancePoliciesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_noncompliant_devices_to_retire(self) -> get_noncompliant_devices_to_retire_request_builder.GetNoncompliantDevicesToRetireRequestBuilder:
+    def microsoft_graph_get_devices_scheduled_to_retire(self) -> microsoft_graph_get_devices_scheduled_to_retire_request_builder.MicrosoftGraphGetDevicesScheduledToRetireRequestBuilder:
+        """
+        Provides operations to call the getDevicesScheduledToRetire method.
+        """
+        return microsoft_graph_get_devices_scheduled_to_retire_request_builder.MicrosoftGraphGetDevicesScheduledToRetireRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_noncompliant_devices_to_retire(self) -> microsoft_graph_get_noncompliant_devices_to_retire_request_builder.MicrosoftGraphGetNoncompliantDevicesToRetireRequestBuilder:
         """
         Provides operations to call the getNoncompliantDevicesToRetire method.
         """
-        return get_noncompliant_devices_to_retire_request_builder.GetNoncompliantDevicesToRetireRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_noncompliant_devices_to_retire_request_builder.MicrosoftGraphGetNoncompliantDevicesToRetireRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def refresh_device_compliance_report_summarization(self) -> refresh_device_compliance_report_summarization_request_builder.RefreshDeviceComplianceReportSummarizationRequestBuilder:
+    def microsoft_graph_refresh_device_compliance_report_summarization(self) -> microsoft_graph_refresh_device_compliance_report_summarization_request_builder.MicrosoftGraphRefreshDeviceComplianceReportSummarizationRequestBuilder:
         """
         Provides operations to call the refreshDeviceComplianceReportSummarization method.
         """
-        return refresh_device_compliance_report_summarization_request_builder.RefreshDeviceComplianceReportSummarizationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_refresh_device_compliance_report_summarization_request_builder.MicrosoftGraphRefreshDeviceComplianceReportSummarizationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_scheduled_retire_state(self) -> set_scheduled_retire_state_request_builder.SetScheduledRetireStateRequestBuilder:
+    def microsoft_graph_set_scheduled_retire_state(self) -> microsoft_graph_set_scheduled_retire_state_request_builder.MicrosoftGraphSetScheduledRetireStateRequestBuilder:
         """
         Provides operations to call the setScheduledRetireState method.
         """
-        return set_scheduled_retire_state_request_builder.SetScheduledRetireStateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_set_scheduled_retire_state_request_builder.MicrosoftGraphSetScheduledRetireStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_compliance_script(self) -> validate_compliance_script_request_builder.ValidateComplianceScriptRequestBuilder:
+    def microsoft_graph_validate_compliance_script(self) -> microsoft_graph_validate_compliance_script_request_builder.MicrosoftGraphValidateComplianceScriptRequestBuilder:
         """
         Provides operations to call the validateComplianceScript method.
         """
-        return validate_compliance_script_request_builder.ValidateComplianceScriptRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_compliance_script_request_builder.MicrosoftGraphValidateComplianceScriptRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -85,12 +92,11 @@ class DeviceCompliancePoliciesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]:
         """
         The device compliance policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -102,22 +108,14 @@ class DeviceCompliancePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy_collection_response.DeviceCompliancePolicyCollectionResponse, error_mapping)
     
-    def get_devices_scheduled_to_retire(self,) -> get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder:
-        """
-        Provides operations to call the getDevicesScheduledToRetire method.
-        Returns: get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder
-        """
-        return get_devices_scheduled_to_retire_request_builder.GetDevicesScheduledToRetireRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
+    async def post(self,body: Optional[device_compliance_policy.DeviceCompliancePolicy] = None, request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_compliance_policy.DeviceCompliancePolicy]:
         """
         Create new navigation property to deviceCompliancePolicies for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_compliance_policy.DeviceCompliancePolicy]
         """
         if body is None:
@@ -131,7 +129,7 @@ class DeviceCompliancePoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_compliance_policy.DeviceCompliancePolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceCompliancePoliciesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -19,7 +19,7 @@ class WindowsStoreApp(mobile_app.MobileApp):
         """
         Sets the appStoreUrl property value. The Windows app store URL.
         Args:
-            value: Value to set for the appStoreUrl property.
+            value: Value to set for the app_store_url property.
         """
         self._app_store_url = value
     
@@ -50,7 +50,7 @@ class WindowsStoreApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_store_url": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
+            "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

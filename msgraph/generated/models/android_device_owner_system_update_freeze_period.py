@@ -67,7 +67,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, Parsable)
         """
         Sets the endDay property value. The day of the end date of the freeze period. Valid values 1 to 31
         Args:
-            value: Value to set for the endDay property.
+            value: Value to set for the end_day property.
         """
         self._end_day = value
     
@@ -84,7 +84,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, Parsable)
         """
         Sets the endMonth property value. The month of the end date of the freeze period. Valid values 1 to 12
         Args:
-            value: Value to set for the endMonth property.
+            value: Value to set for the end_month property.
         """
         self._end_month = value
     
@@ -94,11 +94,11 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, Parsable)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_day": lambda n : setattr(self, 'end_day', n.get_int_value()),
-            "end_month": lambda n : setattr(self, 'end_month', n.get_int_value()),
+            "endDay": lambda n : setattr(self, 'end_day', n.get_int_value()),
+            "endMonth": lambda n : setattr(self, 'end_month', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_day": lambda n : setattr(self, 'start_day', n.get_int_value()),
-            "start_month": lambda n : setattr(self, 'start_month', n.get_int_value()),
+            "startDay": lambda n : setattr(self, 'start_day', n.get_int_value()),
+            "startMonth": lambda n : setattr(self, 'start_month', n.get_int_value()),
         }
         return fields
     
@@ -115,7 +115,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, Parsable)
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -147,7 +147,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, Parsable)
         """
         Sets the startDay property value. The day of the start date of the freeze period. Valid values 1 to 31
         Args:
-            value: Value to set for the startDay property.
+            value: Value to set for the start_day property.
         """
         self._start_day = value
     
@@ -164,7 +164,7 @@ class AndroidDeviceOwnerSystemUpdateFreezePeriod(AdditionalDataHolder, Parsable)
         """
         Sets the startMonth property value. The month of the start date of the freeze period. Valid values 1 to 12
         Args:
-            value: Value to set for the startMonth property.
+            value: Value to set for the start_month property.
         """
         self._start_month = value
     

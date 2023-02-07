@@ -25,7 +25,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         """
         Sets the complianceStatus property value. The complianceStatus property
         Args:
-            value: Value to set for the complianceStatus property.
+            value: Value to set for the compliance_status property.
         """
         self._compliance_status = value
     
@@ -74,7 +74,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         """
         Sets the displayName property value. The friendly name of the policy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -91,7 +91,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         """
         Sets the errorCode property value. The errorode associated with the compliance or enforcement status of the policy. Error code for enforcement status takes precedence if it exists.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -101,12 +101,12 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_status": lambda n : setattr(self, 'compliance_status', n.get_enum_value(device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "last_reported_date_time": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "policy_type": lambda n : setattr(self, 'policy_type', n.get_enum_value(device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType)),
-            "tracked_on_enrollment_status": lambda n : setattr(self, 'tracked_on_enrollment_status', n.get_bool_value()),
+            "complianceStatus": lambda n : setattr(self, 'compliance_status', n.get_enum_value(device_management_autopilot_policy_compliance_status.DeviceManagementAutopilotPolicyComplianceStatus)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(device_management_autopilot_policy_type.DeviceManagementAutopilotPolicyType)),
+            "trackedOnEnrollmentStatus": lambda n : setattr(self, 'tracked_on_enrollment_status', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         """
         Sets the lastReportedDateTime property value. Timestamp of the reported policy status
         Args:
-            value: Value to set for the lastReportedDateTime property.
+            value: Value to set for the last_reported_date_time property.
         """
         self._last_reported_date_time = value
     
@@ -142,7 +142,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         """
         Sets the policyType property value. The policyType property
         Args:
-            value: Value to set for the policyType property.
+            value: Value to set for the policy_type property.
         """
         self._policy_type = value
     
@@ -175,7 +175,7 @@ class DeviceManagementAutopilotPolicyStatusDetail(entity.Entity):
         """
         Sets the trackedOnEnrollmentStatus property value. Indicates if this prolicy was tracked as part of the autopilot bootstrap enrollment sync session
         Args:
-            value: Value to set for the trackedOnEnrollmentStatus property.
+            value: Value to set for the tracked_on_enrollment_status property.
         """
         self._tracked_on_enrollment_status = value
     

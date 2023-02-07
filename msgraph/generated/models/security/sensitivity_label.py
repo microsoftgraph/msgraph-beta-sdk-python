@@ -64,7 +64,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the contentFormats property value. Returns the supported content formats for the label.
         Args:
-            value: Value to set for the contentFormats property.
+            value: Value to set for the content_formats property.
         """
         self._content_formats = value
     
@@ -104,11 +104,11 @@ class SensitivityLabel(entity.Entity):
         """
         fields = {
             "color": lambda n : setattr(self, 'color', n.get_str_value()),
-            "content_formats": lambda n : setattr(self, 'content_formats', n.get_collection_of_primitive_values(str)),
+            "contentFormats": lambda n : setattr(self, 'content_formats', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "has_protection": lambda n : setattr(self, 'has_protection', n.get_bool_value()),
-            "is_active": lambda n : setattr(self, 'is_active', n.get_bool_value()),
-            "is_appliable": lambda n : setattr(self, 'is_appliable', n.get_bool_value()),
+            "hasProtection": lambda n : setattr(self, 'has_protection', n.get_bool_value()),
+            "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
+            "isAppliable": lambda n : setattr(self, 'is_appliable', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(SensitivityLabel)),
             "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_int_value()),
@@ -131,7 +131,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the hasProtection property value. Indicates whether the label has protection actions configured.
         Args:
-            value: Value to set for the hasProtection property.
+            value: Value to set for the has_protection property.
         """
         self._has_protection = value
     
@@ -148,7 +148,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in the UI.
         Args:
-            value: Value to set for the isActive property.
+            value: Value to set for the is_active property.
         """
         self._is_active = value
     
@@ -165,7 +165,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the isAppliable property value. Indicates whether the label can be applied to content. False if the label is a parent with child labels.
         Args:
-            value: Value to set for the isAppliable property.
+            value: Value to set for the is_appliable property.
         """
         self._is_appliable = value
     

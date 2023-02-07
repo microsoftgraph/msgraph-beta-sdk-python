@@ -13,8 +13,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 site_page = lazy_import('msgraph.generated.models.site_page')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 canvas_layout_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.canvas_layout.canvas_layout_request_builder')
-get_web_parts_by_position_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.get_web_parts_by_position.get_web_parts_by_position_request_builder')
-publish_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.publish.publish_request_builder')
+microsoft_graph_get_web_parts_by_position_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.microsoft_graph_get_web_parts_by_position.microsoft_graph_get_web_parts_by_position_request_builder')
+microsoft_graph_publish_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.microsoft_graph_publish.microsoft_graph_publish_request_builder')
 web_parts_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.web_parts.web_parts_request_builder')
 web_part_item_request_builder = lazy_import('msgraph.generated.sites.item.pages.item.web_parts.item.web_part_item_request_builder')
 
@@ -30,18 +30,18 @@ class SitePageItemRequestBuilder():
         return canvas_layout_request_builder.CanvasLayoutRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_web_parts_by_position(self) -> get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder:
+    def microsoft_graph_get_web_parts_by_position(self) -> microsoft_graph_get_web_parts_by_position_request_builder.MicrosoftGraphGetWebPartsByPositionRequestBuilder:
         """
         Provides operations to call the getWebPartsByPosition method.
         """
-        return get_web_parts_by_position_request_builder.GetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_web_parts_by_position_request_builder.MicrosoftGraphGetWebPartsByPositionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def microsoft_graph_publish(self) -> microsoft_graph_publish_request_builder.MicrosoftGraphPublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_publish_request_builder.MicrosoftGraphPublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def web_parts(self) -> web_parts_request_builder.WebPartsRequestBuilder:
@@ -68,12 +68,11 @@ class SitePageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property pages for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +83,13 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page.SitePage]:
+    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
         The collection of pages in the SitePages list in this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
         """
         request_info = self.to_get_request_information(
@@ -103,15 +101,14 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
     
-    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page.SitePage]:
+    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
         Update the navigation property pages in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
         """
         if body is None:
@@ -125,7 +122,7 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

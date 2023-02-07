@@ -20,7 +20,7 @@ class Windows10XTrustedRootCertificate(device_management_resource_access_profile
         """
         Sets the certFileName property value. File name to display in UI.
         Args:
-            value: Value to set for the certFileName property.
+            value: Value to set for the cert_file_name property.
         """
         self._cert_file_name = value
     
@@ -62,7 +62,7 @@ class Windows10XTrustedRootCertificate(device_management_resource_access_profile
         """
         Sets the destinationStore property value. Possible values for the Certificate Destination Store.
         Args:
-            value: Value to set for the destinationStore property.
+            value: Value to set for the destination_store property.
         """
         self._destination_store = value
     
@@ -72,9 +72,9 @@ class Windows10XTrustedRootCertificate(device_management_resource_access_profile
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cert_file_name": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
-            "destination_store": lambda n : setattr(self, 'destination_store', n.get_enum_value(certificate_destination_store.CertificateDestinationStore)),
-            "trusted_root_certificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
+            "certFileName": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
+            "destinationStore": lambda n : setattr(self, 'destination_store', n.get_enum_value(certificate_destination_store.CertificateDestinationStore)),
+            "trustedRootCertificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -106,7 +106,7 @@ class Windows10XTrustedRootCertificate(device_management_resource_access_profile
         """
         Sets the trustedRootCertificate property value. Trusted Root Certificate
         Args:
-            value: Value to set for the trustedRootCertificate property.
+            value: Value to set for the trusted_root_certificate property.
         """
         self._trusted_root_certificate = value
     

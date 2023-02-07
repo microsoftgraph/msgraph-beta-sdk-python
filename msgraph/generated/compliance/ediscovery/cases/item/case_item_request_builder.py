@@ -10,16 +10,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-close_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.close.close_request_builder')
 custodians_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.custodians_request_builder')
 custodian_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.custodians.item.custodian_item_request_builder')
 legal_holds_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.legal_holds_request_builder')
 legal_hold_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.legal_hold_item_request_builder')
+microsoft_graph_ediscovery_close_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.microsoft_graph_ediscovery_close.microsoft_graph_ediscovery_close_request_builder')
+microsoft_graph_ediscovery_reopen_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.microsoft_graph_ediscovery_reopen.microsoft_graph_ediscovery_reopen_request_builder')
 noncustodial_data_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.noncustodial_data_sources_request_builder')
 noncustodial_data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.noncustodial_data_source_item_request_builder')
 operations_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.operations_request_builder')
 case_operation_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.operations.item.case_operation_item_request_builder')
-reopen_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.reopen.reopen_request_builder')
 review_sets_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.review_sets_request_builder')
 review_set_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.review_sets.item.review_set_item_request_builder')
 settings_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.settings.settings_request_builder')
@@ -35,13 +35,6 @@ class CaseItemRequestBuilder():
     Provides operations to manage the cases property of the microsoft.graph.ediscovery.ediscoveryroot entity.
     """
     @property
-    def close(self) -> close_request_builder.CloseRequestBuilder:
-        """
-        Provides operations to call the close method.
-        """
-        return close_request_builder.CloseRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def custodians(self) -> custodians_request_builder.CustodiansRequestBuilder:
         """
         Provides operations to manage the custodians property of the microsoft.graph.ediscovery.case entity.
@@ -56,6 +49,20 @@ class CaseItemRequestBuilder():
         return legal_holds_request_builder.LegalHoldsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_ediscovery_close(self) -> microsoft_graph_ediscovery_close_request_builder.MicrosoftGraphEdiscoveryCloseRequestBuilder:
+        """
+        Provides operations to call the close method.
+        """
+        return microsoft_graph_ediscovery_close_request_builder.MicrosoftGraphEdiscoveryCloseRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_ediscovery_reopen(self) -> microsoft_graph_ediscovery_reopen_request_builder.MicrosoftGraphEdiscoveryReopenRequestBuilder:
+        """
+        Provides operations to call the reopen method.
+        """
+        return microsoft_graph_ediscovery_reopen_request_builder.MicrosoftGraphEdiscoveryReopenRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def noncustodial_data_sources(self) -> noncustodial_data_sources_request_builder.NoncustodialDataSourcesRequestBuilder:
         """
         Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
@@ -68,13 +75,6 @@ class CaseItemRequestBuilder():
         Provides operations to manage the operations property of the microsoft.graph.ediscovery.case entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reopen(self) -> reopen_request_builder.ReopenRequestBuilder:
-        """
-        Provides operations to call the reopen method.
-        """
-        return reopen_request_builder.ReopenRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def review_sets(self) -> review_sets_request_builder.ReviewSetsRequestBuilder:
@@ -135,12 +135,11 @@ class CaseItemRequestBuilder():
         url_tpl_params["custodian%2Did"] = id
         return custodian_item_request_builder.CustodianItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property cases for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -151,14 +150,13 @@ class CaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case.Case]:
+    async def get(self,request_configuration: Optional[CaseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[case.Case]:
         """
         Get cases from compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]
         """
         request_info = self.to_get_request_information(
@@ -170,7 +168,7 @@ class CaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
     
     def legal_holds_by_id(self,id: str) -> legal_hold_item_request_builder.LegalHoldItemRequestBuilder:
         """
@@ -211,13 +209,12 @@ class CaseItemRequestBuilder():
         url_tpl_params["caseOperation%2Did"] = id
         return case_operation_item_request_builder.CaseOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[case.Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[case.Case]:
+    async def patch(self,body: Optional[case.Case] = None, request_configuration: Optional[CaseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[case.Case]:
         """
         Update the navigation property cases in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[case.Case]
         """
         if body is None:
@@ -231,7 +228,7 @@ class CaseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, case.Case, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, case.Case, error_mapping)
     
     def review_sets_by_id(self,id: str) -> review_set_item_request_builder.ReviewSetItemRequestBuilder:
         """

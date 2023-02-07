@@ -20,7 +20,7 @@ class EmailActivityStatistics(activity_statistics.ActivityStatistics):
         """
         Sets the afterHours property value. Total hours spent on email outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
         Args:
-            value: Value to set for the afterHours property.
+            value: Value to set for the after_hours property.
         """
         self._after_hours = value
     
@@ -55,9 +55,9 @@ class EmailActivityStatistics(activity_statistics.ActivityStatistics):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "after_hours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
-            "read_email": lambda n : setattr(self, 'read_email', n.get_object_value(Timedelta)),
-            "sent_email": lambda n : setattr(self, 'sent_email', n.get_object_value(Timedelta)),
+            "afterHours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
+            "readEmail": lambda n : setattr(self, 'read_email', n.get_object_value(Timedelta)),
+            "sentEmail": lambda n : setattr(self, 'sent_email', n.get_object_value(Timedelta)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -76,7 +76,7 @@ class EmailActivityStatistics(activity_statistics.ActivityStatistics):
         """
         Sets the readEmail property value. Total hours spent reading email. The value is represented in ISO 8601 format for durations.
         Args:
-            value: Value to set for the readEmail property.
+            value: Value to set for the read_email property.
         """
         self._read_email = value
     
@@ -93,7 +93,7 @@ class EmailActivityStatistics(activity_statistics.ActivityStatistics):
         """
         Sets the sentEmail property value. Total hours spent writing and sending email. The value is represented in ISO 8601 format for durations.
         Args:
-            value: Value to set for the sentEmail property.
+            value: Value to set for the sent_email property.
         """
         self._sent_email = value
     

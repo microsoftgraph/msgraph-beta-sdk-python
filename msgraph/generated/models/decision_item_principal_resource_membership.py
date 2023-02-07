@@ -53,7 +53,7 @@ class DecisionItemPrincipalResourceMembership(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "membership_type": lambda n : setattr(self, 'membership_type', n.get_enum_value(decision_item_principal_resource_membership_type.DecisionItemPrincipalResourceMembershipType)),
+            "membershipType": lambda n : setattr(self, 'membership_type', n.get_enum_value(decision_item_principal_resource_membership_type.DecisionItemPrincipalResourceMembershipType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -71,7 +71,7 @@ class DecisionItemPrincipalResourceMembership(AdditionalDataHolder, Parsable):
         """
         Sets the membershipType property value. The membershipType property
         Args:
-            value: Value to set for the membershipType property.
+            value: Value to set for the membership_type property.
         """
         self._membership_type = value
     
@@ -88,7 +88,7 @@ class DecisionItemPrincipalResourceMembership(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

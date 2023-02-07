@@ -80,9 +80,9 @@ class HasPayloadLinkResultItem(AdditionalDataHolder, Parsable):
         """
         fields = {
             "error": lambda n : setattr(self, 'error', n.get_str_value()),
-            "has_link": lambda n : setattr(self, 'has_link', n.get_bool_value()),
+            "hasLink": lambda n : setattr(self, 'has_link', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "payload_id": lambda n : setattr(self, 'payload_id', n.get_str_value()),
+            "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
             "sources": lambda n : setattr(self, 'sources', n.get_collection_of_enum_values(device_and_app_management_assignment_source.DeviceAndAppManagementAssignmentSource)),
         }
         return fields
@@ -100,7 +100,7 @@ class HasPayloadLinkResultItem(AdditionalDataHolder, Parsable):
         """
         Sets the hasLink property value. Indicate whether a payload has any link or not.
         Args:
-            value: Value to set for the hasLink property.
+            value: Value to set for the has_link property.
         """
         self._has_link = value
     
@@ -117,7 +117,7 @@ class HasPayloadLinkResultItem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -134,7 +134,7 @@ class HasPayloadLinkResultItem(AdditionalDataHolder, Parsable):
         """
         Sets the payloadId property value. Key of the Payload, In the format of Guid.
         Args:
-            value: Value to set for the payloadId property.
+            value: Value to set for the payload_id property.
         """
         self._payload_id = value
     

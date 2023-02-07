@@ -10,12 +10,12 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.assignments.assignments_request_builder')
 windows_defender_application_control_supplemental_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.assignments.item.windows_defender_application_control_supplemental_policy_assignment_item_request_builder')
 deploy_summary_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.deploy_summary.deploy_summary_request_builder')
 device_statuses_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.device_statuses.device_statuses_request_builder')
 windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.device_statuses.item.windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_app_management.wdac_supplemental_policies.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
 windows_defender_application_control_supplemental_policy = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -23,13 +23,6 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
     """
     Provides operations to manage the wdacSupplementalPolicies property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -50,6 +43,13 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         Provides operations to manage the deviceStatuses property of the microsoft.graph.windowsDefenderApplicationControlSupplementalPolicy entity.
         """
         return device_statuses_request_builder.DeviceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     def assignments_by_id(self,id: str) -> windows_defender_application_control_supplemental_policy_assignment_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyAssignmentItemRequestBuilder:
         """
@@ -82,12 +82,11 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property wdacSupplementalPolicies for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -98,7 +97,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_statuses_by_id(self,id: str) -> windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder:
         """
@@ -113,12 +112,11 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         url_tpl_params["windowsDefenderApplicationControlSupplementalPolicyDeploymentStatus%2Did"] = id
         return windows_defender_application_control_supplemental_policy_deployment_status_item_request_builder.WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
+    async def get(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
         """
         The collection of Windows Defender Application Control Supplemental Policies.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]
         """
         request_info = self.to_get_request_information(
@@ -130,15 +128,14 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
     
-    async def patch(self,body: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy] = None, request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
+    async def patch(self,body: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy] = None, request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]:
         """
         Update the navigation property wdacSupplementalPolicies in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy]
         """
         if body is None:
@@ -152,7 +149,7 @@ class WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_defender_application_control_supplemental_policy.WindowsDefenderApplicationControlSupplementalPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsDefenderApplicationControlSupplementalPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

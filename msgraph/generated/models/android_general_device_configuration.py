@@ -24,7 +24,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the appsBlockClipboardSharing property value. Indicates whether or not to block clipboard sharing to copy and paste between applications.
         Args:
-            value: Value to set for the appsBlockClipboardSharing property.
+            value: Value to set for the apps_block_clipboard_sharing property.
         """
         self._apps_block_clipboard_sharing = value
     
@@ -41,7 +41,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the appsBlockCopyPaste property value. Indicates whether or not to block copy and paste within applications.
         Args:
-            value: Value to set for the appsBlockCopyPaste property.
+            value: Value to set for the apps_block_copy_paste property.
         """
         self._apps_block_copy_paste = value
     
@@ -58,7 +58,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the appsBlockYouTube property value. Indicates whether or not to block the YouTube app.
         Args:
-            value: Value to set for the appsBlockYouTube property.
+            value: Value to set for the apps_block_you_tube property.
         """
         self._apps_block_you_tube = value
     
@@ -75,7 +75,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the appsHideList property value. List of apps to be hidden on the KNOX device. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the appsHideList property.
+            value: Value to set for the apps_hide_list property.
         """
         self._apps_hide_list = value
     
@@ -92,7 +92,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the appsInstallAllowList property value. List of apps which can be installed on the KNOX device. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the appsInstallAllowList property.
+            value: Value to set for the apps_install_allow_list property.
         """
         self._apps_install_allow_list = value
     
@@ -109,7 +109,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the appsLaunchBlockList property value. List of apps which are blocked from being launched on the KNOX device. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the appsLaunchBlockList property.
+            value: Value to set for the apps_launch_block_list property.
         """
         self._apps_launch_block_list = value
     
@@ -126,7 +126,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the bluetoothBlocked property value. Indicates whether or not to block Bluetooth.
         Args:
-            value: Value to set for the bluetoothBlocked property.
+            value: Value to set for the bluetooth_blocked property.
         """
         self._bluetooth_blocked = value
     
@@ -143,7 +143,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the cameraBlocked property value. Indicates whether or not to block the use of the camera.
         Args:
-            value: Value to set for the cameraBlocked property.
+            value: Value to set for the camera_blocked property.
         """
         self._camera_blocked = value
     
@@ -160,7 +160,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the cellularBlockDataRoaming property value. Indicates whether or not to block data roaming.
         Args:
-            value: Value to set for the cellularBlockDataRoaming property.
+            value: Value to set for the cellular_block_data_roaming property.
         """
         self._cellular_block_data_roaming = value
     
@@ -177,7 +177,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the cellularBlockMessaging property value. Indicates whether or not to block SMS/MMS messaging.
         Args:
-            value: Value to set for the cellularBlockMessaging property.
+            value: Value to set for the cellular_block_messaging property.
         """
         self._cellular_block_messaging = value
     
@@ -194,7 +194,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the cellularBlockVoiceRoaming property value. Indicates whether or not to block voice roaming.
         Args:
-            value: Value to set for the cellularBlockVoiceRoaming property.
+            value: Value to set for the cellular_block_voice_roaming property.
         """
         self._cellular_block_voice_roaming = value
     
@@ -211,7 +211,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the cellularBlockWiFiTethering property value. Indicates whether or not to block syncing Wi-Fi tethering.
         Args:
-            value: Value to set for the cellularBlockWiFiTethering property.
+            value: Value to set for the cellular_block_wi_fi_tethering property.
         """
         self._cellular_block_wi_fi_tethering = value
     
@@ -228,7 +228,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the compliantAppListType property value. Possible values of the compliance app list.
         Args:
-            value: Value to set for the compliantAppListType property.
+            value: Value to set for the compliant_app_list_type property.
         """
         self._compliant_app_list_type = value
     
@@ -245,7 +245,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the compliantAppsList property value. List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the compliantAppsList property.
+            value: Value to set for the compliant_apps_list property.
         """
         self._compliant_apps_list = value
     
@@ -345,12 +345,12 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         self._voice_dialing_blocked: Optional[bool] = None
         # Indicates whether or not to block the web browser's auto fill feature.
         self._web_browser_block_autofill: Optional[bool] = None
-        # Indicates whether or not to block the web browser.
-        self._web_browser_blocked: Optional[bool] = None
         # Indicates whether or not to block JavaScript within the web browser.
         self._web_browser_block_java_script: Optional[bool] = None
         # Indicates whether or not to block popups within the web browser.
         self._web_browser_block_popups: Optional[bool] = None
+        # Indicates whether or not to block the web browser.
+        self._web_browser_blocked: Optional[bool] = None
         # Web Browser Cookie Settings.
         self._web_browser_cookie_settings: Optional[web_browser_cookie_settings.WebBrowserCookieSettings] = None
         # Indicates whether or not to block syncing Wi-Fi.
@@ -381,7 +381,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the dateAndTimeBlockChanges property value. Indicates whether or not to block changing date and time while in KNOX Mode.
         Args:
-            value: Value to set for the dateAndTimeBlockChanges property.
+            value: Value to set for the date_and_time_block_changes property.
         """
         self._date_and_time_block_changes = value
     
@@ -398,7 +398,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the deviceSharingAllowed property value. Indicates whether or not to allow device sharing mode.
         Args:
-            value: Value to set for the deviceSharingAllowed property.
+            value: Value to set for the device_sharing_allowed property.
         """
         self._device_sharing_allowed = value
     
@@ -415,7 +415,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the diagnosticDataBlockSubmission property value. Indicates whether or not to block diagnostic data submission.
         Args:
-            value: Value to set for the diagnosticDataBlockSubmission property.
+            value: Value to set for the diagnostic_data_block_submission property.
         """
         self._diagnostic_data_block_submission = value
     
@@ -432,7 +432,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the factoryResetBlocked property value. Indicates whether or not to block user performing a factory reset.
         Args:
-            value: Value to set for the factoryResetBlocked property.
+            value: Value to set for the factory_reset_blocked property.
         """
         self._factory_reset_blocked = value
     
@@ -442,56 +442,56 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apps_block_clipboard_sharing": lambda n : setattr(self, 'apps_block_clipboard_sharing', n.get_bool_value()),
-            "apps_block_copy_paste": lambda n : setattr(self, 'apps_block_copy_paste', n.get_bool_value()),
-            "apps_block_you_tube": lambda n : setattr(self, 'apps_block_you_tube', n.get_bool_value()),
-            "apps_hide_list": lambda n : setattr(self, 'apps_hide_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "apps_install_allow_list": lambda n : setattr(self, 'apps_install_allow_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "apps_launch_block_list": lambda n : setattr(self, 'apps_launch_block_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "bluetooth_blocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
-            "camera_blocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
-            "cellular_block_data_roaming": lambda n : setattr(self, 'cellular_block_data_roaming', n.get_bool_value()),
-            "cellular_block_messaging": lambda n : setattr(self, 'cellular_block_messaging', n.get_bool_value()),
-            "cellular_block_voice_roaming": lambda n : setattr(self, 'cellular_block_voice_roaming', n.get_bool_value()),
-            "cellular_block_wi_fi_tethering": lambda n : setattr(self, 'cellular_block_wi_fi_tethering', n.get_bool_value()),
-            "compliant_app_list_type": lambda n : setattr(self, 'compliant_app_list_type', n.get_enum_value(app_list_type.AppListType)),
-            "compliant_apps_list": lambda n : setattr(self, 'compliant_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "date_and_time_block_changes": lambda n : setattr(self, 'date_and_time_block_changes', n.get_bool_value()),
-            "device_sharing_allowed": lambda n : setattr(self, 'device_sharing_allowed', n.get_bool_value()),
-            "diagnostic_data_block_submission": lambda n : setattr(self, 'diagnostic_data_block_submission', n.get_bool_value()),
-            "factory_reset_blocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
-            "google_account_block_auto_sync": lambda n : setattr(self, 'google_account_block_auto_sync', n.get_bool_value()),
-            "google_play_store_blocked": lambda n : setattr(self, 'google_play_store_blocked', n.get_bool_value()),
-            "kiosk_mode_apps": lambda n : setattr(self, 'kiosk_mode_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "kiosk_mode_block_sleep_button": lambda n : setattr(self, 'kiosk_mode_block_sleep_button', n.get_bool_value()),
-            "kiosk_mode_block_volume_buttons": lambda n : setattr(self, 'kiosk_mode_block_volume_buttons', n.get_bool_value()),
-            "location_services_blocked": lambda n : setattr(self, 'location_services_blocked', n.get_bool_value()),
-            "nfc_blocked": lambda n : setattr(self, 'nfc_blocked', n.get_bool_value()),
-            "password_block_fingerprint_unlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
-            "password_block_trust_agents": lambda n : setattr(self, 'password_block_trust_agents', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_required_password_type.AndroidRequiredPasswordType)),
-            "password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
-            "power_off_blocked": lambda n : setattr(self, 'power_off_blocked', n.get_bool_value()),
-            "required_password_complexity": lambda n : setattr(self, 'required_password_complexity', n.get_enum_value(android_required_password_complexity.AndroidRequiredPasswordComplexity)),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "security_require_verify_apps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
-            "storage_block_google_backup": lambda n : setattr(self, 'storage_block_google_backup', n.get_bool_value()),
-            "storage_block_removable_storage": lambda n : setattr(self, 'storage_block_removable_storage', n.get_bool_value()),
-            "storage_require_device_encryption": lambda n : setattr(self, 'storage_require_device_encryption', n.get_bool_value()),
-            "storage_require_removable_storage_encryption": lambda n : setattr(self, 'storage_require_removable_storage_encryption', n.get_bool_value()),
-            "voice_assistant_blocked": lambda n : setattr(self, 'voice_assistant_blocked', n.get_bool_value()),
-            "voice_dialing_blocked": lambda n : setattr(self, 'voice_dialing_blocked', n.get_bool_value()),
-            "web_browser_block_autofill": lambda n : setattr(self, 'web_browser_block_autofill', n.get_bool_value()),
-            "web_browser_blocked": lambda n : setattr(self, 'web_browser_blocked', n.get_bool_value()),
-            "web_browser_block_java_script": lambda n : setattr(self, 'web_browser_block_java_script', n.get_bool_value()),
-            "web_browser_block_popups": lambda n : setattr(self, 'web_browser_block_popups', n.get_bool_value()),
-            "web_browser_cookie_settings": lambda n : setattr(self, 'web_browser_cookie_settings', n.get_enum_value(web_browser_cookie_settings.WebBrowserCookieSettings)),
-            "wi_fi_blocked": lambda n : setattr(self, 'wi_fi_blocked', n.get_bool_value()),
+            "appsBlockClipboardSharing": lambda n : setattr(self, 'apps_block_clipboard_sharing', n.get_bool_value()),
+            "appsBlockCopyPaste": lambda n : setattr(self, 'apps_block_copy_paste', n.get_bool_value()),
+            "appsBlockYouTube": lambda n : setattr(self, 'apps_block_you_tube', n.get_bool_value()),
+            "appsHideList": lambda n : setattr(self, 'apps_hide_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "appsInstallAllowList": lambda n : setattr(self, 'apps_install_allow_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "appsLaunchBlockList": lambda n : setattr(self, 'apps_launch_block_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "bluetoothBlocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
+            "cameraBlocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
+            "cellularBlockDataRoaming": lambda n : setattr(self, 'cellular_block_data_roaming', n.get_bool_value()),
+            "cellularBlockMessaging": lambda n : setattr(self, 'cellular_block_messaging', n.get_bool_value()),
+            "cellularBlockVoiceRoaming": lambda n : setattr(self, 'cellular_block_voice_roaming', n.get_bool_value()),
+            "cellularBlockWiFiTethering": lambda n : setattr(self, 'cellular_block_wi_fi_tethering', n.get_bool_value()),
+            "compliantAppsList": lambda n : setattr(self, 'compliant_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "compliantAppListType": lambda n : setattr(self, 'compliant_app_list_type', n.get_enum_value(app_list_type.AppListType)),
+            "dateAndTimeBlockChanges": lambda n : setattr(self, 'date_and_time_block_changes', n.get_bool_value()),
+            "deviceSharingAllowed": lambda n : setattr(self, 'device_sharing_allowed', n.get_bool_value()),
+            "diagnosticDataBlockSubmission": lambda n : setattr(self, 'diagnostic_data_block_submission', n.get_bool_value()),
+            "factoryResetBlocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
+            "googleAccountBlockAutoSync": lambda n : setattr(self, 'google_account_block_auto_sync', n.get_bool_value()),
+            "googlePlayStoreBlocked": lambda n : setattr(self, 'google_play_store_blocked', n.get_bool_value()),
+            "kioskModeApps": lambda n : setattr(self, 'kiosk_mode_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "kioskModeBlockSleepButton": lambda n : setattr(self, 'kiosk_mode_block_sleep_button', n.get_bool_value()),
+            "kioskModeBlockVolumeButtons": lambda n : setattr(self, 'kiosk_mode_block_volume_buttons', n.get_bool_value()),
+            "locationServicesBlocked": lambda n : setattr(self, 'location_services_blocked', n.get_bool_value()),
+            "nfcBlocked": lambda n : setattr(self, 'nfc_blocked', n.get_bool_value()),
+            "passwordBlockFingerprintUnlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
+            "passwordBlockTrustAgents": lambda n : setattr(self, 'password_block_trust_agents', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_required_password_type.AndroidRequiredPasswordType)),
+            "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "powerOffBlocked": lambda n : setattr(self, 'power_off_blocked', n.get_bool_value()),
+            "requiredPasswordComplexity": lambda n : setattr(self, 'required_password_complexity', n.get_enum_value(android_required_password_complexity.AndroidRequiredPasswordComplexity)),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
+            "storageBlockGoogleBackup": lambda n : setattr(self, 'storage_block_google_backup', n.get_bool_value()),
+            "storageBlockRemovableStorage": lambda n : setattr(self, 'storage_block_removable_storage', n.get_bool_value()),
+            "storageRequireDeviceEncryption": lambda n : setattr(self, 'storage_require_device_encryption', n.get_bool_value()),
+            "storageRequireRemovableStorageEncryption": lambda n : setattr(self, 'storage_require_removable_storage_encryption', n.get_bool_value()),
+            "voiceAssistantBlocked": lambda n : setattr(self, 'voice_assistant_blocked', n.get_bool_value()),
+            "voiceDialingBlocked": lambda n : setattr(self, 'voice_dialing_blocked', n.get_bool_value()),
+            "webBrowserBlocked": lambda n : setattr(self, 'web_browser_blocked', n.get_bool_value()),
+            "webBrowserBlockAutofill": lambda n : setattr(self, 'web_browser_block_autofill', n.get_bool_value()),
+            "webBrowserBlockJavaScript": lambda n : setattr(self, 'web_browser_block_java_script', n.get_bool_value()),
+            "webBrowserBlockPopups": lambda n : setattr(self, 'web_browser_block_popups', n.get_bool_value()),
+            "webBrowserCookieSettings": lambda n : setattr(self, 'web_browser_cookie_settings', n.get_enum_value(web_browser_cookie_settings.WebBrowserCookieSettings)),
+            "wiFiBlocked": lambda n : setattr(self, 'wi_fi_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -510,7 +510,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the googleAccountBlockAutoSync property value. Indicates whether or not to block Google account auto sync.
         Args:
-            value: Value to set for the googleAccountBlockAutoSync property.
+            value: Value to set for the google_account_block_auto_sync property.
         """
         self._google_account_block_auto_sync = value
     
@@ -527,7 +527,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the googlePlayStoreBlocked property value. Indicates whether or not to block the Google Play store.
         Args:
-            value: Value to set for the googlePlayStoreBlocked property.
+            value: Value to set for the google_play_store_blocked property.
         """
         self._google_play_store_blocked = value
     
@@ -544,7 +544,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the kioskModeApps property value. A list of apps that will be allowed to run when the device is in Kiosk Mode. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the kioskModeApps property.
+            value: Value to set for the kiosk_mode_apps property.
         """
         self._kiosk_mode_apps = value
     
@@ -561,7 +561,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the kioskModeBlockSleepButton property value. Indicates whether or not to block the screen sleep button while in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeBlockSleepButton property.
+            value: Value to set for the kiosk_mode_block_sleep_button property.
         """
         self._kiosk_mode_block_sleep_button = value
     
@@ -578,7 +578,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the kioskModeBlockVolumeButtons property value. Indicates whether or not to block the volume buttons while in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeBlockVolumeButtons property.
+            value: Value to set for the kiosk_mode_block_volume_buttons property.
         """
         self._kiosk_mode_block_volume_buttons = value
     
@@ -595,7 +595,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the locationServicesBlocked property value. Indicates whether or not to block location services.
         Args:
-            value: Value to set for the locationServicesBlocked property.
+            value: Value to set for the location_services_blocked property.
         """
         self._location_services_blocked = value
     
@@ -612,7 +612,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the nfcBlocked property value. Indicates whether or not to block Near-Field Communication.
         Args:
-            value: Value to set for the nfcBlocked property.
+            value: Value to set for the nfc_blocked property.
         """
         self._nfc_blocked = value
     
@@ -629,7 +629,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordBlockFingerprintUnlock property value. Indicates whether or not to block fingerprint unlock.
         Args:
-            value: Value to set for the passwordBlockFingerprintUnlock property.
+            value: Value to set for the password_block_fingerprint_unlock property.
         """
         self._password_block_fingerprint_unlock = value
     
@@ -646,7 +646,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordBlockTrustAgents property value. Indicates whether or not to block Smart Lock and other trust agents.
         Args:
-            value: Value to set for the passwordBlockTrustAgents property.
+            value: Value to set for the password_block_trust_agents property.
         """
         self._password_block_trust_agents = value
     
@@ -663,7 +663,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordExpirationDays property value. Number of days before the password expires. Valid values 1 to 365
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -680,7 +680,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordMinimumLength property value. Minimum length of passwords. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -697,7 +697,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -714,7 +714,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordPreviousPasswordBlockCount property value. Number of previous passwords to block. Valid values 0 to 24
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -731,7 +731,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordRequired property value. Indicates whether or not to require a password.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -748,7 +748,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordRequiredType property value. Android required password type.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -765,7 +765,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the passwordSignInFailureCountBeforeFactoryReset property value. Number of sign in failures allowed before factory reset. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the password_sign_in_failure_count_before_factory_reset property.
         """
         self._password_sign_in_failure_count_before_factory_reset = value
     
@@ -782,7 +782,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the powerOffBlocked property value. Indicates whether or not to block powering off the device.
         Args:
-            value: Value to set for the powerOffBlocked property.
+            value: Value to set for the power_off_blocked property.
         """
         self._power_off_blocked = value
     
@@ -799,7 +799,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the requiredPasswordComplexity property value. The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
         Args:
-            value: Value to set for the requiredPasswordComplexity property.
+            value: Value to set for the required_password_complexity property.
         """
         self._required_password_complexity = value
     
@@ -816,7 +816,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the screenCaptureBlocked property value. Indicates whether or not to block screenshots.
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -833,7 +833,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the securityRequireVerifyApps property value. Require the Android Verify apps feature is turned on.
         Args:
-            value: Value to set for the securityRequireVerifyApps property.
+            value: Value to set for the security_require_verify_apps property.
         """
         self._security_require_verify_apps = value
     
@@ -858,8 +858,8 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         writer.write_bool_value("cellularBlockMessaging", self.cellular_block_messaging)
         writer.write_bool_value("cellularBlockVoiceRoaming", self.cellular_block_voice_roaming)
         writer.write_bool_value("cellularBlockWiFiTethering", self.cellular_block_wi_fi_tethering)
-        writer.write_enum_value("compliantAppListType", self.compliant_app_list_type)
         writer.write_collection_of_object_values("compliantAppsList", self.compliant_apps_list)
+        writer.write_enum_value("compliantAppListType", self.compliant_app_list_type)
         writer.write_bool_value("dateAndTimeBlockChanges", self.date_and_time_block_changes)
         writer.write_bool_value("deviceSharingAllowed", self.device_sharing_allowed)
         writer.write_bool_value("diagnosticDataBlockSubmission", self.diagnostic_data_block_submission)
@@ -890,8 +890,8 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         writer.write_bool_value("storageRequireRemovableStorageEncryption", self.storage_require_removable_storage_encryption)
         writer.write_bool_value("voiceAssistantBlocked", self.voice_assistant_blocked)
         writer.write_bool_value("voiceDialingBlocked", self.voice_dialing_blocked)
-        writer.write_bool_value("webBrowserBlockAutofill", self.web_browser_block_autofill)
         writer.write_bool_value("webBrowserBlocked", self.web_browser_blocked)
+        writer.write_bool_value("webBrowserBlockAutofill", self.web_browser_block_autofill)
         writer.write_bool_value("webBrowserBlockJavaScript", self.web_browser_block_java_script)
         writer.write_bool_value("webBrowserBlockPopups", self.web_browser_block_popups)
         writer.write_enum_value("webBrowserCookieSettings", self.web_browser_cookie_settings)
@@ -910,7 +910,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the storageBlockGoogleBackup property value. Indicates whether or not to block Google Backup.
         Args:
-            value: Value to set for the storageBlockGoogleBackup property.
+            value: Value to set for the storage_block_google_backup property.
         """
         self._storage_block_google_backup = value
     
@@ -927,7 +927,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the storageBlockRemovableStorage property value. Indicates whether or not to block removable storage usage.
         Args:
-            value: Value to set for the storageBlockRemovableStorage property.
+            value: Value to set for the storage_block_removable_storage property.
         """
         self._storage_block_removable_storage = value
     
@@ -944,7 +944,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the storageRequireDeviceEncryption property value. Indicates whether or not to require device encryption.
         Args:
-            value: Value to set for the storageRequireDeviceEncryption property.
+            value: Value to set for the storage_require_device_encryption property.
         """
         self._storage_require_device_encryption = value
     
@@ -961,7 +961,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the storageRequireRemovableStorageEncryption property value. Indicates whether or not to require removable storage encryption.
         Args:
-            value: Value to set for the storageRequireRemovableStorageEncryption property.
+            value: Value to set for the storage_require_removable_storage_encryption property.
         """
         self._storage_require_removable_storage_encryption = value
     
@@ -978,7 +978,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the voiceAssistantBlocked property value. Indicates whether or not to block the use of the Voice Assistant.
         Args:
-            value: Value to set for the voiceAssistantBlocked property.
+            value: Value to set for the voice_assistant_blocked property.
         """
         self._voice_assistant_blocked = value
     
@@ -995,7 +995,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the voiceDialingBlocked property value. Indicates whether or not to block voice dialing.
         Args:
-            value: Value to set for the voiceDialingBlocked property.
+            value: Value to set for the voice_dialing_blocked property.
         """
         self._voice_dialing_blocked = value
     
@@ -1012,26 +1012,9 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the webBrowserBlockAutofill property value. Indicates whether or not to block the web browser's auto fill feature.
         Args:
-            value: Value to set for the webBrowserBlockAutofill property.
+            value: Value to set for the web_browser_block_autofill property.
         """
         self._web_browser_block_autofill = value
-    
-    @property
-    def web_browser_blocked(self,) -> Optional[bool]:
-        """
-        Gets the webBrowserBlocked property value. Indicates whether or not to block the web browser.
-        Returns: Optional[bool]
-        """
-        return self._web_browser_blocked
-    
-    @web_browser_blocked.setter
-    def web_browser_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the webBrowserBlocked property value. Indicates whether or not to block the web browser.
-        Args:
-            value: Value to set for the webBrowserBlocked property.
-        """
-        self._web_browser_blocked = value
     
     @property
     def web_browser_block_java_script(self,) -> Optional[bool]:
@@ -1046,7 +1029,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the webBrowserBlockJavaScript property value. Indicates whether or not to block JavaScript within the web browser.
         Args:
-            value: Value to set for the webBrowserBlockJavaScript property.
+            value: Value to set for the web_browser_block_java_script property.
         """
         self._web_browser_block_java_script = value
     
@@ -1063,9 +1046,26 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the webBrowserBlockPopups property value. Indicates whether or not to block popups within the web browser.
         Args:
-            value: Value to set for the webBrowserBlockPopups property.
+            value: Value to set for the web_browser_block_popups property.
         """
         self._web_browser_block_popups = value
+    
+    @property
+    def web_browser_blocked(self,) -> Optional[bool]:
+        """
+        Gets the webBrowserBlocked property value. Indicates whether or not to block the web browser.
+        Returns: Optional[bool]
+        """
+        return self._web_browser_blocked
+    
+    @web_browser_blocked.setter
+    def web_browser_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the webBrowserBlocked property value. Indicates whether or not to block the web browser.
+        Args:
+            value: Value to set for the web_browser_blocked property.
+        """
+        self._web_browser_blocked = value
     
     @property
     def web_browser_cookie_settings(self,) -> Optional[web_browser_cookie_settings.WebBrowserCookieSettings]:
@@ -1080,7 +1080,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the webBrowserCookieSettings property value. Web Browser Cookie Settings.
         Args:
-            value: Value to set for the webBrowserCookieSettings property.
+            value: Value to set for the web_browser_cookie_settings property.
         """
         self._web_browser_cookie_settings = value
     
@@ -1097,7 +1097,7 @@ class AndroidGeneralDeviceConfiguration(device_configuration.DeviceConfiguration
         """
         Sets the wiFiBlocked property value. Indicates whether or not to block syncing Wi-Fi.
         Args:
-            value: Value to set for the wiFiBlocked property.
+            value: Value to set for the wi_fi_blocked property.
         """
         self._wi_fi_blocked = value
     

@@ -28,7 +28,7 @@ class FilterOperatorSchema(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new filterOperatorSchema and sets the default values.
+        Instantiates a new FilterOperatorSchema and sets the default values.
         """
         super().__init__()
         # The arity property
@@ -59,8 +59,8 @@ class FilterOperatorSchema(entity.Entity):
         """
         fields = {
             "arity": lambda n : setattr(self, 'arity', n.get_enum_value(scope_operator_type.ScopeOperatorType)),
-            "multivalued_comparison_type": lambda n : setattr(self, 'multivalued_comparison_type', n.get_enum_value(scope_operator_multi_valued_comparison_type.ScopeOperatorMultiValuedComparisonType)),
-            "supported_attribute_types": lambda n : setattr(self, 'supported_attribute_types', n.get_collection_of_enum_values(attribute_type.AttributeType)),
+            "multivaluedComparisonType": lambda n : setattr(self, 'multivalued_comparison_type', n.get_enum_value(scope_operator_multi_valued_comparison_type.ScopeOperatorMultiValuedComparisonType)),
+            "supportedAttributeTypes": lambda n : setattr(self, 'supported_attribute_types', n.get_collection_of_enum_values(attribute_type.AttributeType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -79,7 +79,7 @@ class FilterOperatorSchema(entity.Entity):
         """
         Sets the multivaluedComparisonType property value. The multivaluedComparisonType property
         Args:
-            value: Value to set for the multivaluedComparisonType property.
+            value: Value to set for the multivalued_comparison_type property.
         """
         self._multivalued_comparison_type = value
     
@@ -109,7 +109,7 @@ class FilterOperatorSchema(entity.Entity):
         """
         Sets the supportedAttributeTypes property value. Attribute types supported by the operator. Possible values are: Boolean, Binary, Reference, Integer, String.
         Args:
-            value: Value to set for the supportedAttributeTypes property.
+            value: Value to set for the supported_attribute_types property.
         """
         self._supported_attribute_types = value
     

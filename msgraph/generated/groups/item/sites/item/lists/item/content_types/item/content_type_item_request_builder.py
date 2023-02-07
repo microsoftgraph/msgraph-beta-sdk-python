@@ -10,7 +10,6 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-associate_with_hub_sites_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.associate_with_hub_sites.associate_with_hub_sites_request_builder')
 base_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.base.base_request_builder')
 base_types_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.base_types.base_types_request_builder')
 content_type_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.base_types.item.content_type_item_request_builder')
@@ -20,10 +19,11 @@ column_positions_request_builder = lazy_import('msgraph.generated.groups.item.si
 column_definition_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.column_positions.item.column_definition_item_request_builder')
 columns_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.columns.columns_request_builder')
 column_definition_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.columns.item.column_definition_item_request_builder')
-copy_to_default_content_location_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.copy_to_default_content_location.copy_to_default_content_location_request_builder')
-is_published_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.is_published.is_published_request_builder')
-publish_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.publish.publish_request_builder')
-unpublish_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.unpublish.unpublish_request_builder')
+microsoft_graph_associate_with_hub_sites_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.microsoft_graph_associate_with_hub_sites.microsoft_graph_associate_with_hub_sites_request_builder')
+microsoft_graph_copy_to_default_content_location_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.microsoft_graph_copy_to_default_content_location.microsoft_graph_copy_to_default_content_location_request_builder')
+microsoft_graph_is_published_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.microsoft_graph_is_published.microsoft_graph_is_published_request_builder')
+microsoft_graph_publish_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.microsoft_graph_publish.microsoft_graph_publish_request_builder')
+microsoft_graph_unpublish_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.content_types.item.microsoft_graph_unpublish.microsoft_graph_unpublish_request_builder')
 content_type = lazy_import('msgraph.generated.models.content_type')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -31,13 +31,6 @@ class ContentTypeItemRequestBuilder():
     """
     Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
     """
-    @property
-    def associate_with_hub_sites(self) -> associate_with_hub_sites_request_builder.AssociateWithHubSitesRequestBuilder:
-        """
-        Provides operations to call the associateWithHubSites method.
-        """
-        return associate_with_hub_sites_request_builder.AssociateWithHubSitesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def base(self) -> base_request_builder.BaseRequestBuilder:
         """
@@ -74,25 +67,39 @@ class ContentTypeItemRequestBuilder():
         return columns_request_builder.ColumnsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def copy_to_default_content_location(self) -> copy_to_default_content_location_request_builder.CopyToDefaultContentLocationRequestBuilder:
+    def microsoft_graph_associate_with_hub_sites(self) -> microsoft_graph_associate_with_hub_sites_request_builder.MicrosoftGraphAssociateWithHubSitesRequestBuilder:
+        """
+        Provides operations to call the associateWithHubSites method.
+        """
+        return microsoft_graph_associate_with_hub_sites_request_builder.MicrosoftGraphAssociateWithHubSitesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_copy_to_default_content_location(self) -> microsoft_graph_copy_to_default_content_location_request_builder.MicrosoftGraphCopyToDefaultContentLocationRequestBuilder:
         """
         Provides operations to call the copyToDefaultContentLocation method.
         """
-        return copy_to_default_content_location_request_builder.CopyToDefaultContentLocationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_copy_to_default_content_location_request_builder.MicrosoftGraphCopyToDefaultContentLocationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def publish(self) -> publish_request_builder.PublishRequestBuilder:
+    def microsoft_graph_is_published(self) -> microsoft_graph_is_published_request_builder.MicrosoftGraphIsPublishedRequestBuilder:
+        """
+        Provides operations to call the isPublished method.
+        """
+        return microsoft_graph_is_published_request_builder.MicrosoftGraphIsPublishedRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_publish(self) -> microsoft_graph_publish_request_builder.MicrosoftGraphPublishRequestBuilder:
         """
         Provides operations to call the publish method.
         """
-        return publish_request_builder.PublishRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_publish_request_builder.MicrosoftGraphPublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unpublish(self) -> unpublish_request_builder.UnpublishRequestBuilder:
+    def microsoft_graph_unpublish(self) -> microsoft_graph_unpublish_request_builder.MicrosoftGraphUnpublishRequestBuilder:
         """
         Provides operations to call the unpublish method.
         """
-        return unpublish_request_builder.UnpublishRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_unpublish_request_builder.MicrosoftGraphUnpublishRequestBuilder(self.request_adapter, self.path_parameters)
     
     def base_types_by_id(self,id: str) -> ContentTypeItemRequestBuilder:
         """
@@ -164,12 +171,11 @@ class ContentTypeItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ContentTypeItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ContentTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property contentTypes for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -180,14 +186,13 @@ class ContentTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ContentTypeItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[content_type.ContentType]:
+    async def get(self,request_configuration: Optional[ContentTypeItemRequestBuilderGetRequestConfiguration] = None) -> Optional[content_type.ContentType]:
         """
         Get contentTypes from groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[content_type.ContentType]
         """
         request_info = self.to_get_request_information(
@@ -199,22 +204,14 @@ class ContentTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, content_type.ContentType, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, content_type.ContentType, error_mapping)
     
-    def is_published(self,) -> is_published_request_builder.IsPublishedRequestBuilder:
-        """
-        Provides operations to call the isPublished method.
-        Returns: is_published_request_builder.IsPublishedRequestBuilder
-        """
-        return is_published_request_builder.IsPublishedRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[content_type.ContentType] = None, request_configuration: Optional[ContentTypeItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[content_type.ContentType]:
+    async def patch(self,body: Optional[content_type.ContentType] = None, request_configuration: Optional[ContentTypeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[content_type.ContentType]:
         """
         Update the navigation property contentTypes in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[content_type.ContentType]
         """
         if body is None:
@@ -228,7 +225,7 @@ class ContentTypeItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, content_type.ContentType, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, content_type.ContentType, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ContentTypeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

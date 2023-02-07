@@ -62,7 +62,7 @@ class CustomQuestionAnswer(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Display name of the custom registration question. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -72,9 +72,9 @@ class CustomQuestionAnswer(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "question_id": lambda n : setattr(self, 'question_id', n.get_str_value()),
+            "questionId": lambda n : setattr(self, 'question_id', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class CustomQuestionAnswer(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class CustomQuestionAnswer(AdditionalDataHolder, Parsable):
         """
         Sets the questionId property value. ID the custom registration question. Read-only.
         Args:
-            value: Value to set for the questionId property.
+            value: Value to set for the question_id property.
         """
         self._question_id = value
     

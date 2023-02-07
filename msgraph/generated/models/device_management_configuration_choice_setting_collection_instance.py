@@ -20,7 +20,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(device_manage
         """
         Sets the choiceSettingCollectionValue property value. Choice setting collection value
         Args:
-            value: Value to set for the choiceSettingCollectionValue property.
+            value: Value to set for the choice_setting_collection_value property.
         """
         self._choice_setting_collection_value = value
     
@@ -51,7 +51,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstance(device_manage
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "choice_setting_collection_value": lambda n : setattr(self, 'choice_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_choice_setting_value.DeviceManagementConfigurationChoiceSettingValue)),
+            "choiceSettingCollectionValue": lambda n : setattr(self, 'choice_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_choice_setting_value.DeviceManagementConfigurationChoiceSettingValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

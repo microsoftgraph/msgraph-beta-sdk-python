@@ -25,7 +25,7 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the authenticationMethod property value. VPN Authentication Method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -42,7 +42,7 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectionName property value. Connection name displayed to the user.
         Args:
-            value: Value to set for the connectionName property.
+            value: Value to set for the connection_name property.
         """
         self._connection_name = value
     
@@ -59,7 +59,7 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectionType property value. Android For Work VPN connection type.
         Args:
-            value: Value to set for the connectionType property.
+            value: Value to set for the connection_type property.
         """
         self._connection_type = value
     
@@ -115,7 +115,7 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the customData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customData property.
+            value: Value to set for the custom_data property.
         """
         self._custom_data = value
     
@@ -132,7 +132,7 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the customKeyValueData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customKeyValueData property.
+            value: Value to set for the custom_key_value_data property.
         """
         self._custom_key_value_data = value
     
@@ -159,13 +159,13 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
-            "connection_name": lambda n : setattr(self, 'connection_name', n.get_str_value()),
-            "connection_type": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType)),
-            "custom_data": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
-            "custom_key_value_data": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
+            "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_for_work_vpn_connection_type.AndroidForWorkVpnConnectionType)),
+            "customData": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
+            "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "fingerprint": lambda n : setattr(self, 'fingerprint', n.get_str_value()),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_for_work_certificate_profile_base.AndroidForWorkCertificateProfileBase)),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_object_values(vpn_server.VpnServer)),
@@ -187,7 +187,7 @@ class AndroidForWorkVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     

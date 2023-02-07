@@ -19,7 +19,7 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(access_review_insta
         """
         Sets the appId property value. The appId for the service principal entity being reviewed.
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
@@ -54,9 +54,9 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(access_review_insta
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "service_principal_display_name": lambda n : setattr(self, 'service_principal_display_name', n.get_str_value()),
-            "service_principal_id": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "servicePrincipalDisplayName": lambda n : setattr(self, 'service_principal_display_name', n.get_str_value()),
+            "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -88,7 +88,7 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(access_review_insta
         """
         Sets the servicePrincipalDisplayName property value. The display name of the service principal whose access is being reviewed.
         Args:
-            value: Value to set for the servicePrincipalDisplayName property.
+            value: Value to set for the service_principal_display_name property.
         """
         self._service_principal_display_name = value
     
@@ -105,7 +105,7 @@ class AccessReviewInstanceDecisionItemServicePrincipalTarget(access_review_insta
         """
         Sets the servicePrincipalId property value. The servicePrincipalId property
         Args:
-            value: Value to set for the servicePrincipalId property.
+            value: Value to set for the service_principal_id property.
         """
         self._service_principal_id = value
     

@@ -75,7 +75,7 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
         fields = {
             "files": lambda n : setattr(self, 'files', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "powerlift_id": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
+            "powerliftId": lambda n : setattr(self, 'powerlift_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class PowerliftDownloadRequest(AdditionalDataHolder, Parsable):
         """
         Sets the powerliftId property value. The unique id for the request
         Args:
-            value: Value to set for the powerliftId property.
+            value: Value to set for the powerlift_id property.
         """
         self._powerlift_id = value
     

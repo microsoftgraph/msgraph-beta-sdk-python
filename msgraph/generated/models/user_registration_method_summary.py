@@ -62,10 +62,10 @@ class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "total_user_count": lambda n : setattr(self, 'total_user_count', n.get_int_value()),
-            "user_registration_method_counts": lambda n : setattr(self, 'user_registration_method_counts', n.get_collection_of_object_values(user_registration_method_count.UserRegistrationMethodCount)),
-            "user_roles": lambda n : setattr(self, 'user_roles', n.get_enum_value(included_user_roles.IncludedUserRoles)),
-            "user_types": lambda n : setattr(self, 'user_types', n.get_enum_value(included_user_types.IncludedUserTypes)),
+            "totalUserCount": lambda n : setattr(self, 'total_user_count', n.get_int_value()),
+            "userRegistrationMethodCounts": lambda n : setattr(self, 'user_registration_method_counts', n.get_collection_of_object_values(user_registration_method_count.UserRegistrationMethodCount)),
+            "userRoles": lambda n : setattr(self, 'user_roles', n.get_enum_value(included_user_roles.IncludedUserRoles)),
+            "userTypes": lambda n : setattr(self, 'user_types', n.get_enum_value(included_user_types.IncludedUserTypes)),
         }
         return fields
     
@@ -82,7 +82,7 @@ class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -114,7 +114,7 @@ class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalUserCount property value. Total number of users in the tenant.
         Args:
-            value: Value to set for the totalUserCount property.
+            value: Value to set for the total_user_count property.
         """
         self._total_user_count = value
     
@@ -131,7 +131,7 @@ class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
         """
         Sets the userRegistrationMethodCounts property value. Number of users registered for each authentication method.
         Args:
-            value: Value to set for the userRegistrationMethodCounts property.
+            value: Value to set for the user_registration_method_counts property.
         """
         self._user_registration_method_counts = value
     
@@ -148,7 +148,7 @@ class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
         """
         Sets the userRoles property value. User role type. Possible values are: all, privilegedAdmin, admin, user.
         Args:
-            value: Value to set for the userRoles property.
+            value: Value to set for the user_roles property.
         """
         self._user_roles = value
     
@@ -165,7 +165,7 @@ class UserRegistrationMethodSummary(AdditionalDataHolder, Parsable):
         """
         Sets the userTypes property value. User type. Possible values are: all, member, guest.
         Args:
-            value: Value to set for the userTypes property.
+            value: Value to set for the user_types property.
         """
         self._user_types = value
     

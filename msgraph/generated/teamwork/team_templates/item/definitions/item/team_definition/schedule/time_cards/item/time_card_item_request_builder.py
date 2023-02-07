@@ -12,42 +12,42 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 time_card = lazy_import('msgraph.generated.models.time_card')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-clock_out_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.clock_out.clock_out_request_builder')
-confirm_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.confirm.confirm_request_builder')
-end_break_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.end_break.end_break_request_builder')
-start_break_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.start_break.start_break_request_builder')
+microsoft_graph_clock_out_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.microsoft_graph_clock_out.microsoft_graph_clock_out_request_builder')
+microsoft_graph_confirm_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.microsoft_graph_confirm.microsoft_graph_confirm_request_builder')
+microsoft_graph_end_break_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.microsoft_graph_end_break.microsoft_graph_end_break_request_builder')
+microsoft_graph_start_break_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.time_cards.item.microsoft_graph_start_break.microsoft_graph_start_break_request_builder')
 
 class TimeCardItemRequestBuilder():
     """
     Provides operations to manage the timeCards property of the microsoft.graph.schedule entity.
     """
     @property
-    def clock_out(self) -> clock_out_request_builder.ClockOutRequestBuilder:
+    def microsoft_graph_clock_out(self) -> microsoft_graph_clock_out_request_builder.MicrosoftGraphClockOutRequestBuilder:
         """
         Provides operations to call the clockOut method.
         """
-        return clock_out_request_builder.ClockOutRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_clock_out_request_builder.MicrosoftGraphClockOutRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def confirm(self) -> confirm_request_builder.ConfirmRequestBuilder:
+    def microsoft_graph_confirm(self) -> microsoft_graph_confirm_request_builder.MicrosoftGraphConfirmRequestBuilder:
         """
         Provides operations to call the confirm method.
         """
-        return confirm_request_builder.ConfirmRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_confirm_request_builder.MicrosoftGraphConfirmRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def end_break(self) -> end_break_request_builder.EndBreakRequestBuilder:
+    def microsoft_graph_end_break(self) -> microsoft_graph_end_break_request_builder.MicrosoftGraphEndBreakRequestBuilder:
         """
         Provides operations to call the endBreak method.
         """
-        return end_break_request_builder.EndBreakRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_end_break_request_builder.MicrosoftGraphEndBreakRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def start_break(self) -> start_break_request_builder.StartBreakRequestBuilder:
+    def microsoft_graph_start_break(self) -> microsoft_graph_start_break_request_builder.MicrosoftGraphStartBreakRequestBuilder:
         """
         Provides operations to call the startBreak method.
         """
-        return start_break_request_builder.StartBreakRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_start_break_request_builder.MicrosoftGraphStartBreakRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -67,12 +67,11 @@ class TimeCardItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property timeCards for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -83,14 +82,13 @@ class TimeCardItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TimeCardItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[time_card.TimeCard]:
+    async def get(self,request_configuration: Optional[TimeCardItemRequestBuilderGetRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
         Get timeCards from teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card.TimeCard]
         """
         request_info = self.to_get_request_information(
@@ -102,15 +100,14 @@ class TimeCardItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, time_card.TimeCard, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, time_card.TimeCard, error_mapping)
     
-    async def patch(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[time_card.TimeCard]:
+    async def patch(self,body: Optional[time_card.TimeCard] = None, request_configuration: Optional[TimeCardItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[time_card.TimeCard]:
         """
         Update the navigation property timeCards in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[time_card.TimeCard]
         """
         if body is None:
@@ -124,7 +121,7 @@ class TimeCardItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, time_card.TimeCard, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, time_card.TimeCard, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TimeCardItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

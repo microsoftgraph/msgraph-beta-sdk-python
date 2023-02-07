@@ -23,7 +23,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the appReliabilityScore property value. The user experience analytics model app reliability score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the appReliabilityScore property.
+            value: Value to set for the app_reliability_score property.
         """
         self._app_reliability_score = value
     
@@ -40,7 +40,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the batteryHealthScore property value. The user experience analytics model battery health score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the batteryHealthScore property.
+            value: Value to set for the battery_health_score property.
         """
         self._battery_health_score = value
     
@@ -95,7 +95,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the endpointAnalyticsScore property value. The user experience analytics model score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the endpointAnalyticsScore property.
+            value: Value to set for the endpoint_analytics_score property.
         """
         self._endpoint_analytics_score = value
     
@@ -105,15 +105,15 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_reliability_score": lambda n : setattr(self, 'app_reliability_score', n.get_float_value()),
-            "battery_health_score": lambda n : setattr(self, 'battery_health_score', n.get_float_value()),
-            "endpoint_analytics_score": lambda n : setattr(self, 'endpoint_analytics_score', n.get_float_value()),
-            "health_status": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
+            "appReliabilityScore": lambda n : setattr(self, 'app_reliability_score', n.get_float_value()),
+            "batteryHealthScore": lambda n : setattr(self, 'battery_health_score', n.get_float_value()),
+            "endpointAnalyticsScore": lambda n : setattr(self, 'endpoint_analytics_score', n.get_float_value()),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "model_device_count": lambda n : setattr(self, 'model_device_count', n.get_int_value()),
-            "startup_performance_score": lambda n : setattr(self, 'startup_performance_score', n.get_float_value()),
-            "work_from_anywhere_score": lambda n : setattr(self, 'work_from_anywhere_score', n.get_float_value()),
+            "modelDeviceCount": lambda n : setattr(self, 'model_device_count', n.get_int_value()),
+            "startupPerformanceScore": lambda n : setattr(self, 'startup_performance_score', n.get_float_value()),
+            "workFromAnywhereScore": lambda n : setattr(self, 'work_from_anywhere_score', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -132,7 +132,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the healthStatus property value. The healthStatus property
         Args:
-            value: Value to set for the healthStatus property.
+            value: Value to set for the health_status property.
         """
         self._health_status = value
     
@@ -183,7 +183,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the modelDeviceCount property value. The user experience analytics model device count. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
         Args:
-            value: Value to set for the modelDeviceCount property.
+            value: Value to set for the model_device_count property.
         """
         self._model_device_count = value
     
@@ -219,7 +219,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the startupPerformanceScore property value. The user experience analytics model startup performance score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the startupPerformanceScore property.
+            value: Value to set for the startup_performance_score property.
         """
         self._startup_performance_score = value
     
@@ -236,7 +236,7 @@ class UserExperienceAnalyticsModelScores(entity.Entity):
         """
         Sets the workFromAnywhereScore property value. The user experience analytics model work from anywhere score. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the workFromAnywhereScore property.
+            value: Value to set for the work_from_anywhere_score property.
         """
         self._work_from_anywhere_score = value
     

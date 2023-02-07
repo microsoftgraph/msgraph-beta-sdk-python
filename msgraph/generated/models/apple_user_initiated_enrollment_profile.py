@@ -44,7 +44,7 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         """
         Sets the availableEnrollmentTypeOptions property value. List of available enrollment type options
         Args:
-            value: Value to set for the availableEnrollmentTypeOptions property.
+            value: Value to set for the available_enrollment_type_options property.
         """
         self._available_enrollment_type_options = value
     
@@ -87,7 +87,7 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         """
         Sets the createdDateTime property value. Profile creation time
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -116,7 +116,7 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         """
         Sets the defaultEnrollmentType property value. The defaultEnrollmentType property
         Args:
-            value: Value to set for the defaultEnrollmentType property.
+            value: Value to set for the default_enrollment_type property.
         """
         self._default_enrollment_type = value
     
@@ -150,7 +150,7 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         """
         Sets the displayName property value. Name of the profile
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -161,12 +161,12 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(apple_enrollment_profile_assignment.AppleEnrollmentProfileAssignment)),
-            "available_enrollment_type_options": lambda n : setattr(self, 'available_enrollment_type_options', n.get_collection_of_object_values(apple_owner_type_enrollment_type.AppleOwnerTypeEnrollmentType)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "default_enrollment_type": lambda n : setattr(self, 'default_enrollment_type', n.get_enum_value(apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType)),
+            "availableEnrollmentTypeOptions": lambda n : setattr(self, 'available_enrollment_type_options', n.get_collection_of_object_values(apple_owner_type_enrollment_type.AppleOwnerTypeEnrollmentType)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "defaultEnrollmentType": lambda n : setattr(self, 'default_enrollment_type', n.get_enum_value(apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }
@@ -187,7 +187,7 @@ class AppleUserInitiatedEnrollmentProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Profile last modified time
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

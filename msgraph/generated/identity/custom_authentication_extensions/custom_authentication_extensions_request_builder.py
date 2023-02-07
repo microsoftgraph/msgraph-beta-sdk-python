@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity.custom_authentication_extensions.count.count_request_builder')
-validate_authentication_configuration_request_builder = lazy_import('msgraph.generated.identity.custom_authentication_extensions.validate_authentication_configuration.validate_authentication_configuration_request_builder')
+microsoft_graph_validate_authentication_configuration_request_builder = lazy_import('msgraph.generated.identity.custom_authentication_extensions.microsoft_graph_validate_authentication_configuration.microsoft_graph_validate_authentication_configuration_request_builder')
 custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
 custom_authentication_extension_collection_response = lazy_import('msgraph.generated.models.custom_authentication_extension_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,11 +28,11 @@ class CustomAuthenticationExtensionsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_authentication_configuration(self) -> validate_authentication_configuration_request_builder.ValidateAuthenticationConfigurationRequestBuilder:
+    def microsoft_graph_validate_authentication_configuration(self) -> microsoft_graph_validate_authentication_configuration_request_builder.MicrosoftGraphValidateAuthenticationConfigurationRequestBuilder:
         """
         Provides operations to call the validateAuthenticationConfiguration method.
         """
-        return validate_authentication_configuration_request_builder.ValidateAuthenticationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_authentication_configuration_request_builder.MicrosoftGraphValidateAuthenticationConfigurationRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class CustomAuthenticationExtensionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> Optional[custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse]:
         """
         Get customAuthenticationExtensions from identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class CustomAuthenticationExtensionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_authentication_extension_collection_response.CustomAuthenticationExtensionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[custom_authentication_extension.CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
+    async def post(self,body: Optional[custom_authentication_extension.CustomAuthenticationExtension] = None, request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderPostRequestConfiguration] = None) -> Optional[custom_authentication_extension.CustomAuthenticationExtension]:
         """
         Create new navigation property to customAuthenticationExtensions for identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[custom_authentication_extension.CustomAuthenticationExtension]
         """
         if body is None:
@@ -91,7 +89,7 @@ class CustomAuthenticationExtensionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, custom_authentication_extension.CustomAuthenticationExtension, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, custom_authentication_extension.CustomAuthenticationExtension, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomAuthenticationExtensionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

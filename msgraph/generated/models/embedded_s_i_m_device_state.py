@@ -48,7 +48,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the createdDateTime property value. The time the embedded SIM device status was created. Generated service side.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -77,7 +77,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the deviceName property value. Device name to which the subscription was provisioned e.g. DESKTOP-JOE
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -87,14 +87,14 @@ class EmbeddedSIMDeviceState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(embedded_s_i_m_device_state_value.EmbeddedSIMDeviceStateValue)),
-            "state_details": lambda n : setattr(self, 'state_details', n.get_str_value()),
-            "universal_integrated_circuit_card_identifier": lambda n : setattr(self, 'universal_integrated_circuit_card_identifier', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "stateDetails": lambda n : setattr(self, 'state_details', n.get_str_value()),
+            "universalIntegratedCircuitCardIdentifier": lambda n : setattr(self, 'universal_integrated_circuit_card_identifier', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -113,7 +113,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The time the embedded SIM device last checked in. Updated service side.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -130,7 +130,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the modifiedDateTime property value. The time the embedded SIM device status was last modified. Updated service side.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -182,7 +182,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the stateDetails property value. String description of the provisioning state.
         Args:
-            value: Value to set for the stateDetails property.
+            value: Value to set for the state_details property.
         """
         self._state_details = value
     
@@ -199,7 +199,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the universalIntegratedCircuitCardIdentifier property value. The Universal Integrated Circuit Card Identifier (UICCID) identifying the hardware onto which a profile is to be deployed.
         Args:
-            value: Value to set for the universalIntegratedCircuitCardIdentifier property.
+            value: Value to set for the universal_integrated_circuit_card_identifier property.
         """
         self._universal_integrated_circuit_card_identifier = value
     
@@ -216,7 +216,7 @@ class EmbeddedSIMDeviceState(entity.Entity):
         """
         Sets the userName property value. Username which the subscription was provisioned to e.g. joe@contoso.com
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     

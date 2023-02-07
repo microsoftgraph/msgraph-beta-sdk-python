@@ -12,18 +12,18 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 subscription = lazy_import('msgraph.generated.models.subscription')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-reauthorize_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.subscriptions.item.reauthorize.reauthorize_request_builder')
+microsoft_graph_reauthorize_request_builder = lazy_import('msgraph.generated.sites.item.lists.item.subscriptions.item.microsoft_graph_reauthorize.microsoft_graph_reauthorize_request_builder')
 
 class SubscriptionItemRequestBuilder():
     """
     Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
     """
     @property
-    def reauthorize(self) -> reauthorize_request_builder.ReauthorizeRequestBuilder:
+    def microsoft_graph_reauthorize(self) -> microsoft_graph_reauthorize_request_builder.MicrosoftGraphReauthorizeRequestBuilder:
         """
         Provides operations to call the reauthorize method.
         """
-        return reauthorize_request_builder.ReauthorizeRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reauthorize_request_builder.MicrosoftGraphReauthorizeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class SubscriptionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SubscriptionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SubscriptionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property subscriptions for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class SubscriptionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SubscriptionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subscription.Subscription]:
+    async def get(self,request_configuration: Optional[SubscriptionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[subscription.Subscription]:
         """
         The set of subscriptions on the list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subscription.Subscription]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class SubscriptionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subscription.Subscription, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, subscription.Subscription, error_mapping)
     
-    async def patch(self,body: Optional[subscription.Subscription] = None, request_configuration: Optional[SubscriptionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subscription.Subscription]:
+    async def patch(self,body: Optional[subscription.Subscription] = None, request_configuration: Optional[SubscriptionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[subscription.Subscription]:
         """
         Update the navigation property subscriptions in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subscription.Subscription]
         """
         if body is None:
@@ -100,7 +97,7 @@ class SubscriptionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subscription.Subscription, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, subscription.Subscription, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SubscriptionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

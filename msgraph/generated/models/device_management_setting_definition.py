@@ -118,7 +118,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the displayName property value. The setting's display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -135,7 +135,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the documentationUrl property value. Url to setting documentation
         Args:
-            value: Value to set for the documentationUrl property.
+            value: Value to set for the documentation_url property.
         """
         self._documentation_url = value
     
@@ -148,14 +148,14 @@ class DeviceManagementSettingDefinition(entity.Entity):
             "constraints": lambda n : setattr(self, 'constraints', n.get_collection_of_object_values(device_management_constraint.DeviceManagementConstraint)),
             "dependencies": lambda n : setattr(self, 'dependencies', n.get_collection_of_object_values(device_management_setting_dependency.DeviceManagementSettingDependency)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "documentation_url": lambda n : setattr(self, 'documentation_url', n.get_str_value()),
-            "header_subtitle": lambda n : setattr(self, 'header_subtitle', n.get_str_value()),
-            "header_title": lambda n : setattr(self, 'header_title', n.get_str_value()),
-            "is_top_level": lambda n : setattr(self, 'is_top_level', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "documentationUrl": lambda n : setattr(self, 'documentation_url', n.get_str_value()),
+            "headerSubtitle": lambda n : setattr(self, 'header_subtitle', n.get_str_value()),
+            "headerTitle": lambda n : setattr(self, 'header_title', n.get_str_value()),
+            "isTopLevel": lambda n : setattr(self, 'is_top_level', n.get_bool_value()),
             "keywords": lambda n : setattr(self, 'keywords', n.get_collection_of_primitive_values(str)),
-            "placeholder_text": lambda n : setattr(self, 'placeholder_text', n.get_str_value()),
-            "value_type": lambda n : setattr(self, 'value_type', n.get_enum_value(device_manangement_intent_value_type.DeviceManangementIntentValueType)),
+            "placeholderText": lambda n : setattr(self, 'placeholder_text', n.get_str_value()),
+            "valueType": lambda n : setattr(self, 'value_type', n.get_enum_value(device_manangement_intent_value_type.DeviceManangementIntentValueType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -174,7 +174,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the headerSubtitle property value. subtitle of the setting header for more details about the category/section
         Args:
-            value: Value to set for the headerSubtitle property.
+            value: Value to set for the header_subtitle property.
         """
         self._header_subtitle = value
     
@@ -191,7 +191,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the headerTitle property value. title of the setting header represents a category/section of a setting/settings
         Args:
-            value: Value to set for the headerTitle property.
+            value: Value to set for the header_title property.
         """
         self._header_title = value
     
@@ -208,7 +208,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the isTopLevel property value. If the setting is top level, it can be configured without the need to be wrapped in a collection or complex setting
         Args:
-            value: Value to set for the isTopLevel property.
+            value: Value to set for the is_top_level property.
         """
         self._is_top_level = value
     
@@ -242,7 +242,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the placeholderText property value. Placeholder text as an example of valid input
         Args:
-            value: Value to set for the placeholderText property.
+            value: Value to set for the placeholder_text property.
         """
         self._placeholder_text = value
     
@@ -280,7 +280,7 @@ class DeviceManagementSettingDefinition(entity.Entity):
         """
         Sets the valueType property value. The valueType property
         Args:
-            value: Value to set for the valueType property.
+            value: Value to set for the value_type property.
         """
         self._value_type = value
     

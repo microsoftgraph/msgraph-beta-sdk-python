@@ -8,5 +8,5 @@ class UpdateClassification(Enum):
     # Important.
     Important = "important",
     # None.
-    None_escaped = "none",
+    None_ = "none",
 

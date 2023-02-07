@@ -34,7 +34,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the auditEvents property value. Cloud PC audit event.
         Args:
-            value: Value to set for the auditEvents property.
+            value: Value to set for the audit_events property.
         """
         self._audit_events = value
     
@@ -51,7 +51,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the cloudPCs property value. Cloud managed virtual desktops.
         Args:
-            value: Value to set for the cloudPCs property.
+            value: Value to set for the cloud_p_cs property.
         """
         self._cloud_p_cs = value
     
@@ -118,7 +118,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the crossCloudGovernmentOrganizationMapping property value. Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
         Args:
-            value: Value to set for the crossCloudGovernmentOrganizationMapping property.
+            value: Value to set for the cross_cloud_government_organization_mapping property.
         """
         self._cross_cloud_government_organization_mapping = value
     
@@ -135,7 +135,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the deviceImages property value. The image resource on Cloud PC.
         Args:
-            value: Value to set for the deviceImages property.
+            value: Value to set for the device_images property.
         """
         self._device_images = value
     
@@ -152,7 +152,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the externalPartnerSettings property value. The external partner settings on a Cloud PC.
         Args:
-            value: Value to set for the externalPartnerSettings property.
+            value: Value to set for the external_partner_settings property.
         """
         self._external_partner_settings = value
     
@@ -169,7 +169,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the galleryImages property value. The gallery image resource on Cloud PC.
         Args:
-            value: Value to set for the galleryImages property.
+            value: Value to set for the gallery_images property.
         """
         self._gallery_images = value
     
@@ -179,21 +179,21 @@ class VirtualEndpoint(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "audit_events": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(cloud_pc_audit_event.CloudPcAuditEvent)),
-            "cloud_p_cs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(cloud_p_c.CloudPC)),
-            "cross_cloud_government_organization_mapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping)),
-            "device_images": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(cloud_pc_device_image.CloudPcDeviceImage)),
-            "external_partner_settings": lambda n : setattr(self, 'external_partner_settings', n.get_collection_of_object_values(cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting)),
-            "gallery_images": lambda n : setattr(self, 'gallery_images', n.get_collection_of_object_values(cloud_pc_gallery_image.CloudPcGalleryImage)),
-            "on_premises_connections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(cloud_pc_on_premises_connection.CloudPcOnPremisesConnection)),
-            "organization_settings": lambda n : setattr(self, 'organization_settings', n.get_object_value(cloud_pc_organization_settings.CloudPcOrganizationSettings)),
-            "provisioning_policies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(cloud_pc_provisioning_policy.CloudPcProvisioningPolicy)),
+            "auditEvents": lambda n : setattr(self, 'audit_events', n.get_collection_of_object_values(cloud_pc_audit_event.CloudPcAuditEvent)),
+            "cloudPCs": lambda n : setattr(self, 'cloud_p_cs', n.get_collection_of_object_values(cloud_p_c.CloudPC)),
+            "crossCloudGovernmentOrganizationMapping": lambda n : setattr(self, 'cross_cloud_government_organization_mapping', n.get_object_value(cloud_pc_cross_cloud_government_organization_mapping.CloudPcCrossCloudGovernmentOrganizationMapping)),
+            "deviceImages": lambda n : setattr(self, 'device_images', n.get_collection_of_object_values(cloud_pc_device_image.CloudPcDeviceImage)),
+            "externalPartnerSettings": lambda n : setattr(self, 'external_partner_settings', n.get_collection_of_object_values(cloud_pc_external_partner_setting.CloudPcExternalPartnerSetting)),
+            "galleryImages": lambda n : setattr(self, 'gallery_images', n.get_collection_of_object_values(cloud_pc_gallery_image.CloudPcGalleryImage)),
+            "onPremisesConnections": lambda n : setattr(self, 'on_premises_connections', n.get_collection_of_object_values(cloud_pc_on_premises_connection.CloudPcOnPremisesConnection)),
+            "organizationSettings": lambda n : setattr(self, 'organization_settings', n.get_object_value(cloud_pc_organization_settings.CloudPcOrganizationSettings)),
+            "provisioningPolicies": lambda n : setattr(self, 'provisioning_policies', n.get_collection_of_object_values(cloud_pc_provisioning_policy.CloudPcProvisioningPolicy)),
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(cloud_pc_reports.CloudPcReports)),
-            "service_plans": lambda n : setattr(self, 'service_plans', n.get_collection_of_object_values(cloud_pc_service_plan.CloudPcServicePlan)),
-            "shared_use_service_plans": lambda n : setattr(self, 'shared_use_service_plans', n.get_collection_of_object_values(cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan)),
+            "servicePlans": lambda n : setattr(self, 'service_plans', n.get_collection_of_object_values(cloud_pc_service_plan.CloudPcServicePlan)),
+            "sharedUseServicePlans": lambda n : setattr(self, 'shared_use_service_plans', n.get_collection_of_object_values(cloud_pc_shared_use_service_plan.CloudPcSharedUseServicePlan)),
             "snapshots": lambda n : setattr(self, 'snapshots', n.get_collection_of_object_values(cloud_pc_snapshot.CloudPcSnapshot)),
-            "supported_regions": lambda n : setattr(self, 'supported_regions', n.get_collection_of_object_values(cloud_pc_supported_region.CloudPcSupportedRegion)),
-            "user_settings": lambda n : setattr(self, 'user_settings', n.get_collection_of_object_values(cloud_pc_user_setting.CloudPcUserSetting)),
+            "supportedRegions": lambda n : setattr(self, 'supported_regions', n.get_collection_of_object_values(cloud_pc_supported_region.CloudPcSupportedRegion)),
+            "userSettings": lambda n : setattr(self, 'user_settings', n.get_collection_of_object_values(cloud_pc_user_setting.CloudPcUserSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -212,7 +212,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the onPremisesConnections property value. A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
         Args:
-            value: Value to set for the onPremisesConnections property.
+            value: Value to set for the on_premises_connections property.
         """
         self._on_premises_connections = value
     
@@ -229,7 +229,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the organizationSettings property value. The Cloud PC organization settings for a tenant.
         Args:
-            value: Value to set for the organizationSettings property.
+            value: Value to set for the organization_settings property.
         """
         self._organization_settings = value
     
@@ -246,7 +246,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the provisioningPolicies property value. Cloud PC provisioning policy.
         Args:
-            value: Value to set for the provisioningPolicies property.
+            value: Value to set for the provisioning_policies property.
         """
         self._provisioning_policies = value
     
@@ -305,7 +305,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the servicePlans property value. Cloud PC service plans.
         Args:
-            value: Value to set for the servicePlans property.
+            value: Value to set for the service_plans property.
         """
         self._service_plans = value
     
@@ -322,7 +322,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the sharedUseServicePlans property value. The sharedUseServicePlans property
         Args:
-            value: Value to set for the sharedUseServicePlans property.
+            value: Value to set for the shared_use_service_plans property.
         """
         self._shared_use_service_plans = value
     
@@ -356,7 +356,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the supportedRegions property value. Cloud PC supported regions.
         Args:
-            value: Value to set for the supportedRegions property.
+            value: Value to set for the supported_regions property.
         """
         self._supported_regions = value
     
@@ -373,7 +373,7 @@ class VirtualEndpoint(entity.Entity):
         """
         Sets the userSettings property value. Cloud PC user settings.
         Args:
-            value: Value to set for the userSettings property.
+            value: Value to set for the user_settings property.
         """
         self._user_settings = value
     

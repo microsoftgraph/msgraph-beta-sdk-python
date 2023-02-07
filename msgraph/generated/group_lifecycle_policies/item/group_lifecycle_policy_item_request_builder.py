@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-add_group_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.item.add_group.add_group_request_builder')
-remove_group_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.item.remove_group.remove_group_request_builder')
+microsoft_graph_add_group_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.item.microsoft_graph_add_group.microsoft_graph_add_group_request_builder')
+microsoft_graph_remove_group_request_builder = lazy_import('msgraph.generated.group_lifecycle_policies.item.microsoft_graph_remove_group.microsoft_graph_remove_group_request_builder')
 group_lifecycle_policy = lazy_import('msgraph.generated.models.group_lifecycle_policy')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,18 +20,18 @@ class GroupLifecyclePolicyItemRequestBuilder():
     Provides operations to manage the collection of groupLifecyclePolicy entities.
     """
     @property
-    def add_group(self) -> add_group_request_builder.AddGroupRequestBuilder:
+    def microsoft_graph_add_group(self) -> microsoft_graph_add_group_request_builder.MicrosoftGraphAddGroupRequestBuilder:
         """
         Provides operations to call the addGroup method.
         """
-        return add_group_request_builder.AddGroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_add_group_request_builder.MicrosoftGraphAddGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_group(self) -> remove_group_request_builder.RemoveGroupRequestBuilder:
+    def microsoft_graph_remove_group(self) -> microsoft_graph_remove_group_request_builder.MicrosoftGraphRemoveGroupRequestBuilder:
         """
         Provides operations to call the removeGroup method.
         """
-        return remove_group_request_builder.RemoveGroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_remove_group_request_builder.MicrosoftGraphRemoveGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class GroupLifecyclePolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete a groupLifecyclePolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class GroupLifecyclePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
+    async def get(self,request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
         """
         Retrieve the properties and relationships of a groupLifecyclePolicies object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_lifecycle_policy.GroupLifecyclePolicy]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class GroupLifecyclePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, error_mapping)
     
-    async def patch(self,body: Optional[group_lifecycle_policy.GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
+    async def patch(self,body: Optional[group_lifecycle_policy.GroupLifecyclePolicy] = None, request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_lifecycle_policy.GroupLifecyclePolicy]:
         """
         Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_lifecycle_policy.GroupLifecyclePolicy]
         """
         if body is None:
@@ -108,7 +105,7 @@ class GroupLifecyclePolicyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_lifecycle_policy.GroupLifecyclePolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

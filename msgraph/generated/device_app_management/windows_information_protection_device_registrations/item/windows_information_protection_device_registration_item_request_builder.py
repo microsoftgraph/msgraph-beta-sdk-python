@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-wipe_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_device_registrations.item.wipe.wipe_request_builder')
+microsoft_graph_wipe_request_builder = lazy_import('msgraph.generated.device_app_management.windows_information_protection_device_registrations.item.microsoft_graph_wipe.microsoft_graph_wipe_request_builder')
 windows_information_protection_device_registration = lazy_import('msgraph.generated.models.windows_information_protection_device_registration')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
     Provides operations to manage the windowsInformationProtectionDeviceRegistrations property of the microsoft.graph.deviceAppManagement entity.
     """
     @property
-    def wipe(self) -> wipe_request_builder.WipeRequestBuilder:
+    def microsoft_graph_wipe(self) -> microsoft_graph_wipe_request_builder.MicrosoftGraphWipeRequestBuilder:
         """
         Provides operations to call the wipe method.
         """
-        return wipe_request_builder.WipeRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_wipe_request_builder.MicrosoftGraphWipeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windowsInformationProtectionDeviceRegistrations for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]:
+    async def get(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]:
         """
         Windows information protection device registrations that are not MDM enrolled.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration, error_mapping)
     
-    async def patch(self,body: Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration] = None, request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]:
+    async def patch(self,body: Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration] = None, request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]:
         """
         Update the navigation property windowsInformationProtectionDeviceRegistrations in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration]
         """
         if body is None:
@@ -100,7 +97,7 @@ class WindowsInformationProtectionDeviceRegistrationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, windows_information_protection_device_registration.WindowsInformationProtectionDeviceRegistration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsInformationProtectionDeviceRegistrationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

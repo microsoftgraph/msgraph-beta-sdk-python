@@ -12,18 +12,18 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 alert_record = lazy_import('msgraph.generated.models.device_management.alert_record')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-set_portal_notification_as_sent_request_builder = lazy_import('msgraph.generated.monitoring.alert_records.item.set_portal_notification_as_sent.set_portal_notification_as_sent_request_builder')
+microsoft_graph_device_management_set_portal_notification_as_sent_request_builder = lazy_import('msgraph.generated.monitoring.alert_records.item.microsoft_graph_device_management_set_portal_notification_as_sent.microsoft_graph_device_management_set_portal_notification_as_sent_request_builder')
 
 class AlertRecordItemRequestBuilder():
     """
     Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
     """
     @property
-    def set_portal_notification_as_sent(self) -> set_portal_notification_as_sent_request_builder.SetPortalNotificationAsSentRequestBuilder:
+    def microsoft_graph_device_management_set_portal_notification_as_sent(self) -> microsoft_graph_device_management_set_portal_notification_as_sent_request_builder.MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder:
         """
         Provides operations to call the setPortalNotificationAsSent method.
         """
-        return set_portal_notification_as_sent_request_builder.SetPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_device_management_set_portal_notification_as_sent_request_builder.MicrosoftGraphDeviceManagementSetPortalNotificationAsSentRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class AlertRecordItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AlertRecordItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AlertRecordItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property alertRecords for monitoring
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class AlertRecordItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AlertRecordItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_record.AlertRecord]:
+    async def get(self,request_configuration: Optional[AlertRecordItemRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record.AlertRecord]:
         """
         The collection of records of alert events.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record.AlertRecord]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class AlertRecordItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, error_mapping)
     
-    async def patch(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_record.AlertRecord]:
+    async def patch(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[alert_record.AlertRecord]:
         """
         Update the navigation property alertRecords in monitoring
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record.AlertRecord]
         """
         if body is None:
@@ -100,7 +97,7 @@ class AlertRecordItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AlertRecordItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

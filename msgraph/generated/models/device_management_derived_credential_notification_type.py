@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementDerivedCredentialNotificationType(Enum):
     # None
-    None_escaped = "none",
+    None_ = "none",
     # Company Portal
     CompanyPortal = "companyPortal",
     # Email

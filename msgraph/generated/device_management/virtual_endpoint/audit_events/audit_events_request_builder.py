@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.audit_events.count.count_request_builder')
-get_audit_activity_types_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.audit_events.get_audit_activity_types.get_audit_activity_types_request_builder')
+microsoft_graph_get_audit_activity_types_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.audit_events.microsoft_graph_get_audit_activity_types.microsoft_graph_get_audit_activity_types_request_builder')
 cloud_pc_audit_event = lazy_import('msgraph.generated.models.cloud_pc_audit_event')
 cloud_pc_audit_event_collection_response = lazy_import('msgraph.generated.models.cloud_pc_audit_event_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -26,6 +26,13 @@ class AuditEventsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_audit_activity_types(self) -> microsoft_graph_get_audit_activity_types_request_builder.MicrosoftGraphGetAuditActivityTypesRequestBuilder:
+        """
+        Provides operations to call the getAuditActivityTypes method.
+        """
+        return microsoft_graph_get_audit_activity_types_request_builder.MicrosoftGraphGetAuditActivityTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,12 +52,11 @@ class AuditEventsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]:
+    async def get(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]:
         """
         List all the cloudPcAuditEvent objects for the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class AuditEventsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_audit_event_collection_response.CloudPcAuditEventCollectionResponse, error_mapping)
     
-    def get_audit_activity_types(self,) -> get_audit_activity_types_request_builder.GetAuditActivityTypesRequestBuilder:
-        """
-        Provides operations to call the getAuditActivityTypes method.
-        Returns: get_audit_activity_types_request_builder.GetAuditActivityTypesRequestBuilder
-        """
-        return get_audit_activity_types_request_builder.GetAuditActivityTypesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[cloud_pc_audit_event.CloudPcAuditEvent] = None, request_configuration: Optional[AuditEventsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_audit_event.CloudPcAuditEvent]:
+    async def post(self,body: Optional[cloud_pc_audit_event.CloudPcAuditEvent] = None, request_configuration: Optional[AuditEventsRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_pc_audit_event.CloudPcAuditEvent]:
         """
         Create new navigation property to auditEvents for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_audit_event.CloudPcAuditEvent]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AuditEventsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_audit_event.CloudPcAuditEvent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_audit_event.CloudPcAuditEvent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AuditEventsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

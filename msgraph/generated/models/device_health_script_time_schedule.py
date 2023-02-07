@@ -37,7 +37,7 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         """
         fields = {
             "time": lambda n : setattr(self, 'time', n.get_object_value(Time)),
-            "use_utc": lambda n : setattr(self, 'use_utc', n.get_bool_value()),
+            "useUtc": lambda n : setattr(self, 'use_utc', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         """
         Sets the useUtc property value. Indicate if the time is Utc or client local time.
         Args:
-            value: Value to set for the useUtc property.
+            value: Value to set for the use_utc property.
         """
         self._use_utc = value
     

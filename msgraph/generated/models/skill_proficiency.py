@@ -37,7 +37,7 @@ class SkillProficiency(item_facet.ItemFacet):
         """
         Sets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
         Args:
-            value: Value to set for the collaborationTags property.
+            value: Value to set for the collaboration_tags property.
         """
         self._collaboration_tags = value
     
@@ -85,7 +85,7 @@ class SkillProficiency(item_facet.ItemFacet):
         """
         Sets the displayName property value. Contains a friendly name for the skill.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -96,11 +96,11 @@ class SkillProficiency(item_facet.ItemFacet):
         """
         fields = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
-            "collaboration_tags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(skill_proficiency_level.SkillProficiencyLevel)),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -152,7 +152,7 @@ class SkillProficiency(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. The thumbnailUrl property
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     
@@ -169,7 +169,7 @@ class SkillProficiency(item_facet.ItemFacet):
         """
         Sets the webUrl property value. Contains a link to an information source about the skill.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

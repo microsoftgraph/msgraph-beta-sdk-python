@@ -34,7 +34,7 @@ class InformationalUrls(AdditionalDataHolder, Parsable):
         """
         Sets the appSignUpUrl property value. The appSignUpUrl property
         Args:
-            value: Value to set for the appSignUpUrl property.
+            value: Value to set for the app_sign_up_url property.
         """
         self._app_sign_up_url = value
     
@@ -70,9 +70,9 @@ class InformationalUrls(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_sign_up_url": lambda n : setattr(self, 'app_sign_up_url', n.get_str_value()),
+            "appSignUpUrl": lambda n : setattr(self, 'app_sign_up_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "single_sign_on_documentation_url": lambda n : setattr(self, 'single_sign_on_documentation_url', n.get_str_value()),
+            "singleSignOnDocumentationUrl": lambda n : setattr(self, 'single_sign_on_documentation_url', n.get_str_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class InformationalUrls(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class InformationalUrls(AdditionalDataHolder, Parsable):
         """
         Sets the singleSignOnDocumentationUrl property value. The singleSignOnDocumentationUrl property
         Args:
-            value: Value to set for the singleSignOnDocumentationUrl property.
+            value: Value to set for the single_sign_on_documentation_url property.
         """
         self._single_sign_on_documentation_url = value
     

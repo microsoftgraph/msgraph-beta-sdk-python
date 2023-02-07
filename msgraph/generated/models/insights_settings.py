@@ -43,7 +43,7 @@ class InsightsSettings(entity.Entity):
         """
         Sets the disabledForGroup property value. The ID of an Azure Active Directory group, of which the specified type of insights are disabled for its members. Default is empty. Optional.
         Args:
-            value: Value to set for the disabledForGroup property.
+            value: Value to set for the disabled_for_group property.
         """
         self._disabled_for_group = value
     
@@ -53,8 +53,8 @@ class InsightsSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "disabled_for_group": lambda n : setattr(self, 'disabled_for_group', n.get_str_value()),
-            "is_enabled_in_organization": lambda n : setattr(self, 'is_enabled_in_organization', n.get_bool_value()),
+            "disabledForGroup": lambda n : setattr(self, 'disabled_for_group', n.get_str_value()),
+            "isEnabledInOrganization": lambda n : setattr(self, 'is_enabled_in_organization', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class InsightsSettings(entity.Entity):
         """
         Sets the isEnabledInOrganization property value. true if the specified type of insights are enabled for the organization; false if the specified type of insights are disabled for all users without exceptions. Default is true. Optional.
         Args:
-            value: Value to set for the isEnabledInOrganization property.
+            value: Value to set for the is_enabled_in_organization property.
         """
         self._is_enabled_in_organization = value
     

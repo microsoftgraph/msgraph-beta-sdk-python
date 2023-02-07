@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.device_management_scripts.count.count_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.device_management_scripts.has_payload_links.has_payload_links_request_builder')
+microsoft_graph_has_payload_links_request_builder = lazy_import('msgraph.generated.device_management.device_management_scripts.microsoft_graph_has_payload_links.microsoft_graph_has_payload_links_request_builder')
 device_management_script = lazy_import('msgraph.generated.models.device_management_script')
 device_management_script_collection_response = lazy_import('msgraph.generated.models.device_management_script_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,11 +28,11 @@ class DeviceManagementScriptsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class DeviceManagementScriptsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceManagementScriptsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_collection_response.DeviceManagementScriptCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceManagementScriptsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_script_collection_response.DeviceManagementScriptCollectionResponse]:
         """
         The list of device management scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_collection_response.DeviceManagementScriptCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class DeviceManagementScriptsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_collection_response.DeviceManagementScriptCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_collection_response.DeviceManagementScriptCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_script.DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script.DeviceManagementScript]:
+    async def post(self,body: Optional[device_management_script.DeviceManagementScript] = None, request_configuration: Optional[DeviceManagementScriptsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_script.DeviceManagementScript]:
         """
         Create new navigation property to deviceManagementScripts for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script.DeviceManagementScript]
         """
         if body is None:
@@ -91,7 +89,7 @@ class DeviceManagementScriptsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script.DeviceManagementScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script.DeviceManagementScript, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceManagementScriptsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

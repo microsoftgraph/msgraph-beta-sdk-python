@@ -10,16 +10,16 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.cancel.cancel_request_builder')
-cancel_and_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.cancel_and_send.cancel_and_send_request_builder')
 currency_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.currency.currency_request_builder')
 customer_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.customer.customer_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
+microsoft_graph_cancel_and_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.microsoft_graph_cancel_and_send.microsoft_graph_cancel_and_send_request_builder')
+microsoft_graph_post_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.microsoft_graph_post.microsoft_graph_post_request_builder')
+microsoft_graph_post_and_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.microsoft_graph_post_and_send.microsoft_graph_post_and_send_request_builder')
+microsoft_graph_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.microsoft_graph_send.microsoft_graph_send_request_builder')
 payment_term_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.payment_term.payment_term_request_builder')
-post_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.post.post_request_builder')
-post_and_send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.post_and_send.post_and_send_request_builder')
 sales_invoice_lines_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.sales_invoice_lines.sales_invoice_lines_request_builder')
 sales_invoice_line_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.sales_invoice_lines.item.sales_invoice_line_item_request_builder')
-send_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.send.send_request_builder')
 shipment_method_request_builder = lazy_import('msgraph.generated.financials.companies.item.sales_invoices.item.shipment_method.shipment_method_request_builder')
 sales_invoice = lazy_import('msgraph.generated.models.sales_invoice')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,20 +28,6 @@ class SalesInvoiceItemRequestBuilder():
     """
     Provides operations to manage the salesInvoices property of the microsoft.graph.company entity.
     """
-    @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def cancel_and_send(self) -> cancel_and_send_request_builder.CancelAndSendRequestBuilder:
-        """
-        Provides operations to call the cancelAndSend method.
-        """
-        return cancel_and_send_request_builder.CancelAndSendRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def currency(self) -> currency_request_builder.CurrencyRequestBuilder:
         """
@@ -57,6 +43,41 @@ class SalesInvoiceItemRequestBuilder():
         return customer_request_builder.CustomerRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_cancel_and_send(self) -> microsoft_graph_cancel_and_send_request_builder.MicrosoftGraphCancelAndSendRequestBuilder:
+        """
+        Provides operations to call the cancelAndSend method.
+        """
+        return microsoft_graph_cancel_and_send_request_builder.MicrosoftGraphCancelAndSendRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_post(self) -> microsoft_graph_post_request_builder.MicrosoftGraphPostRequestBuilder:
+        """
+        Provides operations to call the post method.
+        """
+        return microsoft_graph_post_request_builder.MicrosoftGraphPostRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_post_and_send(self) -> microsoft_graph_post_and_send_request_builder.MicrosoftGraphPostAndSendRequestBuilder:
+        """
+        Provides operations to call the postAndSend method.
+        """
+        return microsoft_graph_post_and_send_request_builder.MicrosoftGraphPostAndSendRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_send(self) -> microsoft_graph_send_request_builder.MicrosoftGraphSendRequestBuilder:
+        """
+        Provides operations to call the send method.
+        """
+        return microsoft_graph_send_request_builder.MicrosoftGraphSendRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def payment_term(self) -> payment_term_request_builder.PaymentTermRequestBuilder:
         """
         Provides operations to manage the paymentTerm property of the microsoft.graph.salesInvoice entity.
@@ -64,32 +85,11 @@ class SalesInvoiceItemRequestBuilder():
         return payment_term_request_builder.PaymentTermRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def post(self) -> post_request_builder.PostRequestBuilder:
-        """
-        Provides operations to call the post method.
-        """
-        return post_request_builder.PostRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def post_and_send(self) -> post_and_send_request_builder.PostAndSendRequestBuilder:
-        """
-        Provides operations to call the postAndSend method.
-        """
-        return post_and_send_request_builder.PostAndSendRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def sales_invoice_lines(self) -> sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder:
         """
         Provides operations to manage the salesInvoiceLines property of the microsoft.graph.salesInvoice entity.
         """
         return sales_invoice_lines_request_builder.SalesInvoiceLinesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def send(self) -> send_request_builder.SendRequestBuilder:
-        """
-        Provides operations to call the send method.
-        """
-        return send_request_builder.SendRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def shipment_method(self) -> shipment_method_request_builder.ShipmentMethodRequestBuilder:
@@ -116,12 +116,11 @@ class SalesInvoiceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesInvoiceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_invoice.SalesInvoice]:
+    async def get(self,request_configuration: Optional[SalesInvoiceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_invoice.SalesInvoice]:
         """
         Get salesInvoices from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_invoice.SalesInvoice]
         """
         request_info = self.to_get_request_information(
@@ -133,15 +132,14 @@ class SalesInvoiceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, error_mapping)
     
-    async def patch(self,body: Optional[sales_invoice.SalesInvoice] = None, request_configuration: Optional[SalesInvoiceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_invoice.SalesInvoice]:
+    async def patch(self,body: Optional[sales_invoice.SalesInvoice] = None, request_configuration: Optional[SalesInvoiceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_invoice.SalesInvoice]:
         """
         Update the navigation property salesInvoices in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_invoice.SalesInvoice]
         """
         if body is None:
@@ -155,7 +153,7 @@ class SalesInvoiceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_invoice.SalesInvoice, error_mapping)
     
     def sales_invoice_lines_by_id(self,id: str) -> sales_invoice_line_item_request_builder.SalesInvoiceLineItemRequestBuilder:
         """

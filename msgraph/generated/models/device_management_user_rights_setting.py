@@ -59,7 +59,7 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "local_users_or_groups": lambda n : setattr(self, 'local_users_or_groups', n.get_collection_of_object_values(device_management_user_rights_local_user_or_group.DeviceManagementUserRightsLocalUserOrGroup)),
+            "localUsersOrGroups": lambda n : setattr(self, 'local_users_or_groups', n.get_collection_of_object_values(device_management_user_rights_local_user_or_group.DeviceManagementUserRightsLocalUserOrGroup)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(state_management_setting.StateManagementSetting)),
         }
@@ -78,7 +78,7 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
         """
         Sets the localUsersOrGroups property value. Representing a collection of local users or groups which will be set on device if the state of this setting is Allowed. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the localUsersOrGroups property.
+            value: Value to set for the local_users_or_groups property.
         """
         self._local_users_or_groups = value
     
@@ -95,7 +95,7 @@ class DeviceManagementUserRightsSetting(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

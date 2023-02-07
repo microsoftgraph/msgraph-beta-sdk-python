@@ -13,12 +13,12 @@ from typing import Any, Callable, Dict, List, Optional, Union
 activities_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.activities.activities_request_builder')
 item_activity_o_l_d_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.activities.item.item_activity_o_l_d_item_request_builder')
 analytics_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.analytics.analytics_request_builder')
-create_link_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.create_link.create_link_request_builder')
 document_set_versions_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.document_set_versions.document_set_versions_request_builder')
 document_set_version_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.document_set_versions.item.document_set_version_item_request_builder')
 drive_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.drive_item.drive_item_request_builder')
 fields_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.fields.fields_request_builder')
-get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
+microsoft_graph_create_link_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.microsoft_graph_create_link.microsoft_graph_create_link_request_builder')
+microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval.microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder')
 versions_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.versions.versions_request_builder')
 list_item_version_item_request_builder = lazy_import('msgraph.generated.groups.item.sites.item.lists.item.items.item.versions.item.list_item_version_item_request_builder')
 list_item = lazy_import('msgraph.generated.models.list_item')
@@ -43,13 +43,6 @@ class ListItemItemRequestBuilder():
         return analytics_request_builder.AnalyticsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def create_link(self) -> create_link_request_builder.CreateLinkRequestBuilder:
-        """
-        Provides operations to call the createLink method.
-        """
-        return create_link_request_builder.CreateLinkRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def document_set_versions(self) -> document_set_versions_request_builder.DocumentSetVersionsRequestBuilder:
         """
         Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
@@ -69,6 +62,13 @@ class ListItemItemRequestBuilder():
         Provides operations to manage the fields property of the microsoft.graph.listItem entity.
         """
         return fields_request_builder.FieldsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_link(self) -> microsoft_graph_create_link_request_builder.MicrosoftGraphCreateLinkRequestBuilder:
+        """
+        Provides operations to call the createLink method.
+        """
+        return microsoft_graph_create_link_request_builder.MicrosoftGraphCreateLinkRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def versions(self) -> versions_request_builder.VersionsRequestBuilder:
@@ -108,12 +108,11 @@ class ListItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property items for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -124,7 +123,7 @@ class ListItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def document_set_versions_by_id(self,id: str) -> document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder:
         """
@@ -139,12 +138,11 @@ class ListItemItemRequestBuilder():
         url_tpl_params["documentSetVersion%2Did"] = id
         return document_set_version_item_request_builder.DocumentSetVersionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ListItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list_item.ListItem]:
+    async def get(self,request_configuration: Optional[ListItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[list_item.ListItem]:
         """
         All items contained in the list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item.ListItem]
         """
         request_info = self.to_get_request_information(
@@ -156,16 +154,16 @@ class ListItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list_item.ListItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, list_item.ListItem, error_mapping)
     
-    def get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
+    def microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
         """
         Provides operations to call the getActivitiesByInterval method.
         Args:
             endDateTime: Usage: endDateTime='{endDateTime}'
             interval: Usage: interval='{interval}'
             startDateTime: Usage: startDateTime='{startDateTime}'
-        Returns: get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
+        Returns: microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder
         """
         if end_date_time is None:
             raise Exception("end_date_time cannot be undefined")
@@ -173,15 +171,14 @@ class ListItemItemRequestBuilder():
             raise Exception("interval cannot be undefined")
         if start_date_time is None:
             raise Exception("start_date_time cannot be undefined")
-        return get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
+        return microsoft_graph_get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
     
-    async def patch(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ListItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list_item.ListItem]:
+    async def patch(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ListItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[list_item.ListItem]:
         """
         Update the navigation property items in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item.ListItem]
         """
         if body is None:
@@ -195,7 +192,7 @@ class ListItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list_item.ListItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, list_item.ListItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ListItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

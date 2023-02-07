@@ -37,7 +37,7 @@ class TimeCardEvent(AdditionalDataHolder, Parsable):
         """
         Sets the atApprovedLocation property value. Indicates whether the entry was recorded at the approved location.
         Args:
-            value: Value to set for the atApprovedLocation property.
+            value: Value to set for the at_approved_location property.
         """
         self._at_approved_location = value
     
@@ -82,7 +82,7 @@ class TimeCardEvent(AdditionalDataHolder, Parsable):
         """
         Sets the dateTime property value. The time the entry is recorded.
         Args:
-            value: Value to set for the dateTime property.
+            value: Value to set for the date_time property.
         """
         self._date_time = value
     
@@ -92,8 +92,8 @@ class TimeCardEvent(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "at_approved_location": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
-            "date_time": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
+            "atApprovedLocation": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
+            "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -129,7 +129,7 @@ class TimeCardEvent(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

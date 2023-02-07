@@ -58,9 +58,9 @@ class FilterClause(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operator_name": lambda n : setattr(self, 'operator_name', n.get_str_value()),
-            "source_operand_name": lambda n : setattr(self, 'source_operand_name', n.get_str_value()),
-            "target_operand": lambda n : setattr(self, 'target_operand', n.get_object_value(filter_operand.FilterOperand)),
+            "operatorName": lambda n : setattr(self, 'operator_name', n.get_str_value()),
+            "sourceOperandName": lambda n : setattr(self, 'source_operand_name', n.get_str_value()),
+            "targetOperand": lambda n : setattr(self, 'target_operand', n.get_object_value(filter_operand.FilterOperand)),
         }
         return fields
     
@@ -77,7 +77,7 @@ class FilterClause(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -94,7 +94,7 @@ class FilterClause(AdditionalDataHolder, Parsable):
         """
         Sets the operatorName property value. Name of the operator to be applied to the source and target operands. Must be one of the supported operators. Supported operators can be discovered.
         Args:
-            value: Value to set for the operatorName property.
+            value: Value to set for the operator_name property.
         """
         self._operator_name = value
     
@@ -125,7 +125,7 @@ class FilterClause(AdditionalDataHolder, Parsable):
         """
         Sets the sourceOperandName property value. Name of source operand (the operand being tested). The source operand name must match one of the attribute names on the source object.
         Args:
-            value: Value to set for the sourceOperandName property.
+            value: Value to set for the source_operand_name property.
         """
         self._source_operand_name = value
     
@@ -142,7 +142,7 @@ class FilterClause(AdditionalDataHolder, Parsable):
         """
         Sets the targetOperand property value. Values that the source operand will be tested against.
         Args:
-            value: Value to set for the targetOperand property.
+            value: Value to set for the target_operand property.
         """
         self._target_operand = value
     

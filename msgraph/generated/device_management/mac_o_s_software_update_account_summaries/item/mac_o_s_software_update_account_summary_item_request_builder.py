@@ -57,12 +57,11 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property macOSSoftwareUpdateAccountSummaries for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +72,13 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]:
+    async def get(self,request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]:
         """
         The MacOS software update account summaries for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +90,14 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary, error_mapping)
     
-    async def patch(self,body: Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary] = None, request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]:
+    async def patch(self,body: Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary] = None, request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]:
         """
         Update the navigation property macOSSoftwareUpdateAccountSummaries in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary]
         """
         if body is None:
@@ -114,7 +111,7 @@ class MacOSSoftwareUpdateAccountSummaryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mac_o_s_software_update_account_summary.MacOSSoftwareUpdateAccountSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MacOSSoftwareUpdateAccountSummaryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

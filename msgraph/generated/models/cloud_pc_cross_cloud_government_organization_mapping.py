@@ -34,7 +34,7 @@ class CloudPcCrossCloudGovernmentOrganizationMapping(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "organization_ids_in_u_s_gov_cloud": lambda n : setattr(self, 'organization_ids_in_u_s_gov_cloud', n.get_collection_of_primitive_values(str)),
+            "organizationIdsInUSGovCloud": lambda n : setattr(self, 'organization_ids_in_u_s_gov_cloud', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class CloudPcCrossCloudGovernmentOrganizationMapping(entity.Entity):
         """
         Sets the organizationIdsInUSGovCloud property value. The tenant ID in the Azure Government cloud corresponding to the GCC tenant in the public cloud. Currently, 1:1 mappings are supported, so this collection can only contain one tenant ID.
         Args:
-            value: Value to set for the organizationIdsInUSGovCloud property.
+            value: Value to set for the organization_ids_in_u_s_gov_cloud property.
         """
         self._organization_ids_in_u_s_gov_cloud = value
     

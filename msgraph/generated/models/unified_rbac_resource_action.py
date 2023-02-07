@@ -20,7 +20,7 @@ class UnifiedRbacResourceAction(entity.Entity):
         """
         Sets the actionVerb property value. HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
         Args:
-            value: Value to set for the actionVerb property.
+            value: Value to set for the action_verb property.
         """
         self._action_verb = value
     
@@ -37,7 +37,7 @@ class UnifiedRbacResourceAction(entity.Entity):
         """
         Sets the authenticationContextId property value. The authenticationContextId property
         Args:
-            value: Value to set for the authenticationContextId property.
+            value: Value to set for the authentication_context_id property.
         """
         self._authentication_context_id = value
     
@@ -98,13 +98,13 @@ class UnifiedRbacResourceAction(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_verb": lambda n : setattr(self, 'action_verb', n.get_str_value()),
-            "authentication_context_id": lambda n : setattr(self, 'authentication_context_id', n.get_str_value()),
+            "actionVerb": lambda n : setattr(self, 'action_verb', n.get_str_value()),
+            "authenticationContextId": lambda n : setattr(self, 'authentication_context_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_authentication_context_settable": lambda n : setattr(self, 'is_authentication_context_settable', n.get_bool_value()),
+            "isAuthenticationContextSettable": lambda n : setattr(self, 'is_authentication_context_settable', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "resource_scope": lambda n : setattr(self, 'resource_scope', n.get_object_value(unified_rbac_resource_scope.UnifiedRbacResourceScope)),
-            "resource_scope_id": lambda n : setattr(self, 'resource_scope_id', n.get_str_value()),
+            "resourceScope": lambda n : setattr(self, 'resource_scope', n.get_object_value(unified_rbac_resource_scope.UnifiedRbacResourceScope)),
+            "resourceScopeId": lambda n : setattr(self, 'resource_scope_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -123,7 +123,7 @@ class UnifiedRbacResourceAction(entity.Entity):
         """
         Sets the isAuthenticationContextSettable property value. The isAuthenticationContextSettable property
         Args:
-            value: Value to set for the isAuthenticationContextSettable property.
+            value: Value to set for the is_authentication_context_settable property.
         """
         self._is_authentication_context_settable = value
     
@@ -157,7 +157,7 @@ class UnifiedRbacResourceAction(entity.Entity):
         """
         Sets the resourceScope property value. The resourceScope property
         Args:
-            value: Value to set for the resourceScope property.
+            value: Value to set for the resource_scope property.
         """
         self._resource_scope = value
     
@@ -174,7 +174,7 @@ class UnifiedRbacResourceAction(entity.Entity):
         """
         Sets the resourceScopeId property value. Not implemented.
         Args:
-            value: Value to set for the resourceScopeId property.
+            value: Value to set for the resource_scope_id property.
         """
         self._resource_scope_id = value
     

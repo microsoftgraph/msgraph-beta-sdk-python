@@ -24,7 +24,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the accessPackageAssignmentPolicies property value. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the accessPackageAssignmentPolicies property.
+            value: Value to set for the access_package_assignment_policies property.
         """
         self._access_package_assignment_policies = value
     
@@ -41,7 +41,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the accessPackageCatalog property value. The accessPackageCatalog property
         Args:
-            value: Value to set for the accessPackageCatalog property.
+            value: Value to set for the access_package_catalog property.
         """
         self._access_package_catalog = value
     
@@ -58,7 +58,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the accessPackageResourceRoleScopes property value. The accessPackageResourceRoleScopes property
         Args:
-            value: Value to set for the accessPackageResourceRoleScopes property.
+            value: Value to set for the access_package_resource_role_scopes property.
         """
         self._access_package_resource_role_scopes = value
     
@@ -75,7 +75,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the accessPackagesIncompatibleWith property value. The access packages that are incompatible with this package. Read-only.
         Args:
-            value: Value to set for the accessPackagesIncompatibleWith property.
+            value: Value to set for the access_packages_incompatible_with property.
         """
         self._access_packages_incompatible_with = value
     
@@ -92,7 +92,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the catalogId property value. Identifier of the access package catalog referencing this access package. Read-only.
         Args:
-            value: Value to set for the catalogId property.
+            value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
     
@@ -147,7 +147,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the createdBy property value. The userPrincipalName of the user or identity of the subject who created this resource. Read-only.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -164,7 +164,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -210,7 +210,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the displayName property value. The display name of the access package. Supports $filter (eq, contains).
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -220,21 +220,21 @@ class AccessPackage(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_assignment_policies": lambda n : setattr(self, 'access_package_assignment_policies', n.get_collection_of_object_values(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
-            "access_package_catalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(access_package_catalog.AccessPackageCatalog)),
-            "access_package_resource_role_scopes": lambda n : setattr(self, 'access_package_resource_role_scopes', n.get_collection_of_object_values(access_package_resource_role_scope.AccessPackageResourceRoleScope)),
-            "access_packages_incompatible_with": lambda n : setattr(self, 'access_packages_incompatible_with', n.get_collection_of_object_values(AccessPackage)),
-            "catalog_id": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "accessPackagesIncompatibleWith": lambda n : setattr(self, 'access_packages_incompatible_with', n.get_collection_of_object_values(AccessPackage)),
+            "accessPackageAssignmentPolicies": lambda n : setattr(self, 'access_package_assignment_policies', n.get_collection_of_object_values(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
+            "accessPackageCatalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(access_package_catalog.AccessPackageCatalog)),
+            "accessPackageResourceRoleScopes": lambda n : setattr(self, 'access_package_resource_role_scopes', n.get_collection_of_object_values(access_package_resource_role_scope.AccessPackageResourceRoleScope)),
+            "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "incompatible_access_packages": lambda n : setattr(self, 'incompatible_access_packages', n.get_collection_of_object_values(AccessPackage)),
-            "incompatible_groups": lambda n : setattr(self, 'incompatible_groups', n.get_collection_of_object_values(group.Group)),
-            "is_hidden": lambda n : setattr(self, 'is_hidden', n.get_bool_value()),
-            "is_role_scopes_visible": lambda n : setattr(self, 'is_role_scopes_visible', n.get_bool_value()),
-            "modified_by": lambda n : setattr(self, 'modified_by', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "incompatibleAccessPackages": lambda n : setattr(self, 'incompatible_access_packages', n.get_collection_of_object_values(AccessPackage)),
+            "incompatibleGroups": lambda n : setattr(self, 'incompatible_groups', n.get_collection_of_object_values(group.Group)),
+            "isHidden": lambda n : setattr(self, 'is_hidden', n.get_bool_value()),
+            "isRoleScopesVisible": lambda n : setattr(self, 'is_role_scopes_visible', n.get_bool_value()),
+            "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -253,7 +253,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the incompatibleAccessPackages property value. The  access packages whose assigned users are ineligible to be assigned this access package.
         Args:
-            value: Value to set for the incompatibleAccessPackages property.
+            value: Value to set for the incompatible_access_packages property.
         """
         self._incompatible_access_packages = value
     
@@ -270,7 +270,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the incompatibleGroups property value. The groups whose members are ineligible to be assigned this access package.
         Args:
-            value: Value to set for the incompatibleGroups property.
+            value: Value to set for the incompatible_groups property.
         """
         self._incompatible_groups = value
     
@@ -287,7 +287,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the isHidden property value. Whether the access package is hidden from the requestor.
         Args:
-            value: Value to set for the isHidden property.
+            value: Value to set for the is_hidden property.
         """
         self._is_hidden = value
     
@@ -304,7 +304,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the isRoleScopesVisible property value. Indicates whether role scopes are visible.
         Args:
-            value: Value to set for the isRoleScopesVisible property.
+            value: Value to set for the is_role_scopes_visible property.
         """
         self._is_role_scopes_visible = value
     
@@ -321,7 +321,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the modifiedBy property value. The userPrincipalName of the user who last modified this resource. Read-only.
         Args:
-            value: Value to set for the modifiedBy property.
+            value: Value to set for the modified_by property.
         """
         self._modified_by = value
     
@@ -338,7 +338,7 @@ class AccessPackage(entity.Entity):
         """
         Sets the modifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -351,10 +351,10 @@ class AccessPackage(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("accessPackagesIncompatibleWith", self.access_packages_incompatible_with)
         writer.write_collection_of_object_values("accessPackageAssignmentPolicies", self.access_package_assignment_policies)
         writer.write_object_value("accessPackageCatalog", self.access_package_catalog)
         writer.write_collection_of_object_values("accessPackageResourceRoleScopes", self.access_package_resource_role_scopes)
-        writer.write_collection_of_object_values("accessPackagesIncompatibleWith", self.access_packages_incompatible_with)
         writer.write_str_value("catalogId", self.catalog_id)
         writer.write_str_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

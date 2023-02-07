@@ -14,7 +14,7 @@ synchronization_job = lazy_import('msgraph.generated.models.synchronization_job'
 synchronization_job_collection_response = lazy_import('msgraph.generated.models.synchronization_job_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.count.count_request_builder')
-validate_credentials_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.validate_credentials.validate_credentials_request_builder')
+microsoft_graph_validate_credentials_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.microsoft_graph_validate_credentials.microsoft_graph_validate_credentials_request_builder')
 
 class JobsRequestBuilder():
     """
@@ -28,11 +28,11 @@ class JobsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
+    def microsoft_graph_validate_credentials(self) -> microsoft_graph_validate_credentials_request_builder.MicrosoftGraphValidateCredentialsRequestBuilder:
         """
         Provides operations to call the validateCredentials method.
         """
-        return validate_credentials_request_builder.ValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_credentials_request_builder.MicrosoftGraphValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class JobsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[JobsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_job_collection_response.SynchronizationJobCollectionResponse]:
+    async def get(self,request_configuration: Optional[JobsRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_job_collection_response.SynchronizationJobCollectionResponse]:
         """
         List existing jobs for a given application instance (service principal).
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job_collection_response.SynchronizationJobCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class JobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_job_collection_response.SynchronizationJobCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_job_collection_response.SynchronizationJobCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[JobsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_job.SynchronizationJob]:
+    async def post(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[JobsRequestBuilderPostRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
         """
         Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job.SynchronizationJob]
         """
         if body is None:
@@ -91,7 +89,7 @@ class JobsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[JobsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

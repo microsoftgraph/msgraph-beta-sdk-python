@@ -34,7 +34,7 @@ class PreAuthorizedApplication(AdditionalDataHolder, Parsable):
         """
         Sets the appId property value. The unique identifier for the client application.
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
@@ -70,9 +70,9 @@ class PreAuthorizedApplication(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "permission_ids": lambda n : setattr(self, 'permission_ids', n.get_collection_of_primitive_values(str)),
+            "permissionIds": lambda n : setattr(self, 'permission_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -89,7 +89,7 @@ class PreAuthorizedApplication(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -106,7 +106,7 @@ class PreAuthorizedApplication(AdditionalDataHolder, Parsable):
         """
         Sets the permissionIds property value. The unique identifier for the scopes the client application is granted.
         Args:
-            value: Value to set for the permissionIds property.
+            value: Value to set for the permission_ids property.
         """
         self._permission_ids = value
     

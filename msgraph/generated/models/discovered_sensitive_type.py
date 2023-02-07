@@ -36,7 +36,7 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
         """
         Sets the classificationAttributes property value. The classificationAttributes property
         Args:
-            value: Value to set for the classificationAttributes property.
+            value: Value to set for the classification_attributes property.
         """
         self._classification_attributes = value
     
@@ -110,7 +110,7 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classification_attributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(classification_attribute.ClassificationAttribute)),
+            "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(classification_attribute.ClassificationAttribute)),
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "id": lambda n : setattr(self, 'id', n.get_object_value(Guid)),
@@ -148,7 +148,7 @@ class DiscoveredSensitiveType(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

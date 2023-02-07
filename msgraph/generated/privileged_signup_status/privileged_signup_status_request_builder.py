@@ -13,23 +13,16 @@ from typing import Any, Callable, Dict, List, Optional, Union
 privileged_signup_status = lazy_import('msgraph.generated.models.privileged_signup_status')
 privileged_signup_status_collection_response = lazy_import('msgraph.generated.models.privileged_signup_status_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-can_sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.can_sign_up.can_sign_up_request_builder')
-complete_setup_request_builder = lazy_import('msgraph.generated.privileged_signup_status.complete_setup.complete_setup_request_builder')
 count_request_builder = lazy_import('msgraph.generated.privileged_signup_status.count.count_request_builder')
-is_signed_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.is_signed_up.is_signed_up_request_builder')
-sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.sign_up.sign_up_request_builder')
+microsoft_graph_can_sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.microsoft_graph_can_sign_up.microsoft_graph_can_sign_up_request_builder')
+microsoft_graph_complete_setup_request_builder = lazy_import('msgraph.generated.privileged_signup_status.microsoft_graph_complete_setup.microsoft_graph_complete_setup_request_builder')
+microsoft_graph_is_signed_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.microsoft_graph_is_signed_up.microsoft_graph_is_signed_up_request_builder')
+microsoft_graph_sign_up_request_builder = lazy_import('msgraph.generated.privileged_signup_status.microsoft_graph_sign_up.microsoft_graph_sign_up_request_builder')
 
 class PrivilegedSignupStatusRequestBuilder():
     """
     Provides operations to manage the collection of privilegedSignupStatus entities.
     """
-    @property
-    def complete_setup(self) -> complete_setup_request_builder.CompleteSetupRequestBuilder:
-        """
-        Provides operations to call the completeSetup method.
-        """
-        return complete_setup_request_builder.CompleteSetupRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
@@ -38,18 +31,32 @@ class PrivilegedSignupStatusRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sign_up(self) -> sign_up_request_builder.SignUpRequestBuilder:
+    def microsoft_graph_can_sign_up(self) -> microsoft_graph_can_sign_up_request_builder.MicrosoftGraphCanSignUpRequestBuilder:
+        """
+        Provides operations to call the canSignUp method.
+        """
+        return microsoft_graph_can_sign_up_request_builder.MicrosoftGraphCanSignUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_complete_setup(self) -> microsoft_graph_complete_setup_request_builder.MicrosoftGraphCompleteSetupRequestBuilder:
+        """
+        Provides operations to call the completeSetup method.
+        """
+        return microsoft_graph_complete_setup_request_builder.MicrosoftGraphCompleteSetupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_is_signed_up(self) -> microsoft_graph_is_signed_up_request_builder.MicrosoftGraphIsSignedUpRequestBuilder:
+        """
+        Provides operations to call the isSignedUp method.
+        """
+        return microsoft_graph_is_signed_up_request_builder.MicrosoftGraphIsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_sign_up(self) -> microsoft_graph_sign_up_request_builder.MicrosoftGraphSignUpRequestBuilder:
         """
         Provides operations to call the signUp method.
         """
-        return sign_up_request_builder.SignUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def can_sign_up(self,) -> can_sign_up_request_builder.CanSignUpRequestBuilder:
-        """
-        Provides operations to call the canSignUp method.
-        Returns: can_sign_up_request_builder.CanSignUpRequestBuilder
-        """
-        return can_sign_up_request_builder.CanSignUpRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_sign_up_request_builder.MicrosoftGraphSignUpRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -69,12 +76,11 @@ class PrivilegedSignupStatusRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
         """
         Get entities from privilegedSignupStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -86,22 +92,14 @@ class PrivilegedSignupStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, error_mapping)
     
-    def is_signed_up(self,) -> is_signed_up_request_builder.IsSignedUpRequestBuilder:
-        """
-        Provides operations to call the isSignedUp method.
-        Returns: is_signed_up_request_builder.IsSignedUpRequestBuilder
-        """
-        return is_signed_up_request_builder.IsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
+    async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
         """
         Add new entity to privilegedSignupStatus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status.PrivilegedSignupStatus]
         """
         if body is None:
@@ -115,7 +113,7 @@ class PrivilegedSignupStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

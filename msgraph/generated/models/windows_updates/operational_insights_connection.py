@@ -19,7 +19,7 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         """
         Sets the azureResourceGroupName property value. The name of the Azure resource group that contains the Log Analytics workspace.
         Args:
-            value: Value to set for the azureResourceGroupName property.
+            value: Value to set for the azure_resource_group_name property.
         """
         self._azure_resource_group_name = value
     
@@ -36,7 +36,7 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         """
         Sets the azureSubscriptionId property value. The Azure subscription ID that contains the Log Analytics workspace.
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -71,9 +71,9 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_resource_group_name": lambda n : setattr(self, 'azure_resource_group_name', n.get_str_value()),
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "workspace_name": lambda n : setattr(self, 'workspace_name', n.get_str_value()),
+            "azureResourceGroupName": lambda n : setattr(self, 'azure_resource_group_name', n.get_str_value()),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "workspaceName": lambda n : setattr(self, 'workspace_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -105,7 +105,7 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         """
         Sets the workspaceName property value. The name of the Log Analytics workspace.
         Args:
-            value: Value to set for the workspaceName property.
+            value: Value to set for the workspace_name property.
         """
         self._workspace_name = value
     

@@ -71,7 +71,7 @@ class UserAccount(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -81,12 +81,12 @@ class UserAccount(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
-            "signin_name": lambda n : setattr(self, 'signin_name', n.get_str_value()),
+            "signinName": lambda n : setattr(self, 'signin_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(account_status.AccountStatus)),
         }
         return fields
@@ -104,7 +104,7 @@ class UserAccount(AdditionalDataHolder, Parsable):
         """
         Sets the lastSeenDateTime property value. The lastSeenDateTime property
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -121,7 +121,7 @@ class UserAccount(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -138,7 +138,7 @@ class UserAccount(AdditionalDataHolder, Parsable):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -189,7 +189,7 @@ class UserAccount(AdditionalDataHolder, Parsable):
         """
         Sets the signinName property value. The signinName property
         Args:
-            value: Value to set for the signinName property.
+            value: Value to set for the signin_name property.
         """
         self._signin_name = value
     

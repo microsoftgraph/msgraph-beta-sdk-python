@@ -11,12 +11,12 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.count.count_request_builder')
-get_mobile_app_count_with_status_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.get_mobile_app_count_with_status.get_mobile_app_count_with_status_request_builder')
-get_top_mobile_apps_with_status_with_count_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.get_top_mobile_apps_with_status_with_count.get_top_mobile_apps_with_status_with_count_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.has_payload_links.has_payload_links_request_builder')
-managed_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.managed_mobile_lob_app.managed_mobile_lob_app_request_builder')
-mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.mobile_lob_app.mobile_lob_app_request_builder')
-validate_xml_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.validate_xml.validate_xml_request_builder')
+microsoft_graph_get_mobile_app_count_with_status_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.microsoft_graph_get_mobile_app_count_with_status.microsoft_graph_get_mobile_app_count_with_status_request_builder')
+microsoft_graph_get_top_mobile_apps_with_status_with_count_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.microsoft_graph_get_top_mobile_apps_with_status_with_count.microsoft_graph_get_top_mobile_apps_with_status_with_count_request_builder')
+microsoft_graph_has_payload_links_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.microsoft_graph_has_payload_links.microsoft_graph_has_payload_links_request_builder')
+microsoft_graph_managed_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.microsoft_graph_managed_mobile_lob_app.microsoft_graph_managed_mobile_lob_app_request_builder')
+microsoft_graph_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.microsoft_graph_mobile_lob_app.microsoft_graph_mobile_lob_app_request_builder')
+microsoft_graph_validate_xml_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.microsoft_graph_validate_xml.microsoft_graph_validate_xml_request_builder')
 mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 mobile_app_collection_response = lazy_import('msgraph.generated.models.mobile_app_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -33,32 +33,32 @@ class MobileAppsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def managed_mobile_lob_app(self) -> managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder:
+    def microsoft_graph_managed_mobile_lob_app(self) -> microsoft_graph_managed_mobile_lob_app_request_builder.MicrosoftGraphManagedMobileLobAppRequestBuilder:
         """
         Casts the previous resource to managedMobileLobApp.
         """
-        return managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_mobile_lob_app_request_builder.MicrosoftGraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def mobile_lob_app(self) -> mobile_lob_app_request_builder.MobileLobAppRequestBuilder:
+    def microsoft_graph_mobile_lob_app(self) -> microsoft_graph_mobile_lob_app_request_builder.MicrosoftGraphMobileLobAppRequestBuilder:
         """
         Casts the previous resource to mobileLobApp.
         """
-        return mobile_lob_app_request_builder.MobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_mobile_lob_app_request_builder.MicrosoftGraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def validate_xml(self) -> validate_xml_request_builder.ValidateXmlRequestBuilder:
+    def microsoft_graph_validate_xml(self) -> microsoft_graph_validate_xml_request_builder.MicrosoftGraphValidateXmlRequestBuilder:
         """
         Provides operations to call the validateXml method.
         """
-        return validate_xml_request_builder.ValidateXmlRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_validate_xml_request_builder.MicrosoftGraphValidateXmlRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -78,12 +78,11 @@ class MobileAppsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_collection_response.MobileAppCollectionResponse]:
+    async def get(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_collection_response.MobileAppCollectionResponse]:
         """
         The mobile apps.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_collection_response.MobileAppCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -95,40 +94,39 @@ class MobileAppsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, error_mapping)
     
-    def get_mobile_app_count_with_status(self,status: Optional[str] = None) -> get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder:
+    def microsoft_graph_get_mobile_app_count_with_status(self,status: Optional[str] = None) -> microsoft_graph_get_mobile_app_count_with_status_request_builder.MicrosoftGraphGetMobileAppCountWithStatusRequestBuilder:
         """
         Provides operations to call the getMobileAppCount method.
         Args:
             status: Usage: status='{status}'
-        Returns: get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder
+        Returns: microsoft_graph_get_mobile_app_count_with_status_request_builder.MicrosoftGraphGetMobileAppCountWithStatusRequestBuilder
         """
         if status is None:
             raise Exception("status cannot be undefined")
-        return get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder(self.request_adapter, self.path_parameters, status)
+        return microsoft_graph_get_mobile_app_count_with_status_request_builder.MicrosoftGraphGetMobileAppCountWithStatusRequestBuilder(self.request_adapter, self.path_parameters, status)
     
-    def get_top_mobile_apps_with_status_with_count(self,count: Optional[int] = None, status: Optional[str] = None) -> get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder:
+    def microsoft_graph_get_top_mobile_apps_with_status_with_count(self,count: Optional[int] = None, status: Optional[str] = None) -> microsoft_graph_get_top_mobile_apps_with_status_with_count_request_builder.MicrosoftGraphGetTopMobileAppsWithStatusWithCountRequestBuilder:
         """
         Provides operations to call the getTopMobileApps method.
         Args:
             count: Usage: count={count}
             status: Usage: status='{status}'
-        Returns: get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder
+        Returns: microsoft_graph_get_top_mobile_apps_with_status_with_count_request_builder.MicrosoftGraphGetTopMobileAppsWithStatusWithCountRequestBuilder
         """
         if count is None:
             raise Exception("count cannot be undefined")
         if status is None:
             raise Exception("status cannot be undefined")
-        return get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder(self.request_adapter, self.path_parameters, count, status)
+        return microsoft_graph_get_top_mobile_apps_with_status_with_count_request_builder.MicrosoftGraphGetTopMobileAppsWithStatusWithCountRequestBuilder(self.request_adapter, self.path_parameters, count, status)
     
-    async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app.MobileApp]:
+    async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """
         Create new navigation property to mobileApps for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app.MobileApp]
         """
         if body is None:
@@ -142,7 +140,7 @@ class MobileAppsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

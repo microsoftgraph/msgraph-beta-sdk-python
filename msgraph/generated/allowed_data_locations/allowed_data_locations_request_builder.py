@@ -44,12 +44,11 @@ class AllowedDataLocationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AllowedDataLocationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[allowed_data_location_collection_response.AllowedDataLocationCollectionResponse]:
+    async def get(self,request_configuration: Optional[AllowedDataLocationsRequestBuilderGetRequestConfiguration] = None) -> Optional[allowed_data_location_collection_response.AllowedDataLocationCollectionResponse]:
         """
         Get entities from allowedDataLocations
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[allowed_data_location_collection_response.AllowedDataLocationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class AllowedDataLocationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, allowed_data_location_collection_response.AllowedDataLocationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, allowed_data_location_collection_response.AllowedDataLocationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[allowed_data_location.AllowedDataLocation] = None, request_configuration: Optional[AllowedDataLocationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[allowed_data_location.AllowedDataLocation]:
+    async def post(self,body: Optional[allowed_data_location.AllowedDataLocation] = None, request_configuration: Optional[AllowedDataLocationsRequestBuilderPostRequestConfiguration] = None) -> Optional[allowed_data_location.AllowedDataLocation]:
         """
         Add new entity to allowedDataLocations
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[allowed_data_location.AllowedDataLocation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class AllowedDataLocationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, allowed_data_location.AllowedDataLocation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, allowed_data_location.AllowedDataLocation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AllowedDataLocationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

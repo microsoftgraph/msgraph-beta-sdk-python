@@ -51,7 +51,7 @@ class AutoReviewSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "not_reviewed_result": lambda n : setattr(self, 'not_reviewed_result', n.get_str_value()),
+            "notReviewedResult": lambda n : setattr(self, 'not_reviewed_result', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class AutoReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the notReviewedResult property value. Possible values: Approve, Deny, or Recommendation.  If Recommendation, then accessRecommendationsEnabled in the accessReviewSettings resource should also be set to true. If you want to have the system provide a decision even if the reviewer does not make a choice, set the autoReviewEnabled property in the accessReviewSettings resource to true and include an autoReviewSettings object with the notReviewedResult property. Then, when a review completes, based on the notReviewedResult property, the decision is recorded as either Approve or Deny.
         Args:
-            value: Value to set for the notReviewedResult property.
+            value: Value to set for the not_reviewed_result property.
         """
         self._not_reviewed_result = value
     
@@ -86,7 +86,7 @@ class AutoReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

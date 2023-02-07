@@ -88,7 +88,7 @@ class UserExperienceAnalyticsImpactingProcess(entity.Entity):
         """
         Sets the deviceId property value. The unique identifier of the impacted device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -100,9 +100,9 @@ class UserExperienceAnalyticsImpactingProcess(entity.Entity):
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "impact_value": lambda n : setattr(self, 'impact_value', n.get_float_value()),
-            "process_name": lambda n : setattr(self, 'process_name', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "impactValue": lambda n : setattr(self, 'impact_value', n.get_float_value()),
+            "processName": lambda n : setattr(self, 'process_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -122,7 +122,7 @@ class UserExperienceAnalyticsImpactingProcess(entity.Entity):
         """
         Sets the impactValue property value. The impact value of the process. Valid values 0 to 1.79769313486232E+308
         Args:
-            value: Value to set for the impactValue property.
+            value: Value to set for the impact_value property.
         """
         self._impact_value = value
     
@@ -139,7 +139,7 @@ class UserExperienceAnalyticsImpactingProcess(entity.Entity):
         """
         Sets the processName property value. The process name.
         Args:
-            value: Value to set for the processName property.
+            value: Value to set for the process_name property.
         """
         self._process_name = value
     

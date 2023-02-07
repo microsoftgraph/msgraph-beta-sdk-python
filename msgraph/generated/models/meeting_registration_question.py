@@ -20,7 +20,7 @@ class MeetingRegistrationQuestion(entity.Entity):
         """
         Sets the answerInputType property value. Answer input type of the custom registration question.
         Args:
-            value: Value to set for the answerInputType property.
+            value: Value to set for the answer_input_type property.
         """
         self._answer_input_type = value
     
@@ -37,7 +37,7 @@ class MeetingRegistrationQuestion(entity.Entity):
         """
         Sets the answerOptions property value. Answer options when answerInputType is radioButton.
         Args:
-            value: Value to set for the answerOptions property.
+            value: Value to set for the answer_options property.
         """
         self._answer_options = value
     
@@ -82,7 +82,7 @@ class MeetingRegistrationQuestion(entity.Entity):
         """
         Sets the displayName property value. Display name of the custom registration question.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -92,10 +92,10 @@ class MeetingRegistrationQuestion(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "answer_input_type": lambda n : setattr(self, 'answer_input_type', n.get_enum_value(answer_input_type.AnswerInputType)),
-            "answer_options": lambda n : setattr(self, 'answer_options', n.get_collection_of_primitive_values(str)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_required": lambda n : setattr(self, 'is_required', n.get_bool_value()),
+            "answerInputType": lambda n : setattr(self, 'answer_input_type', n.get_enum_value(answer_input_type.AnswerInputType)),
+            "answerOptions": lambda n : setattr(self, 'answer_options', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,7 +114,7 @@ class MeetingRegistrationQuestion(entity.Entity):
         """
         Sets the isRequired property value. Indicates whether the question is required. Default value is false.
         Args:
-            value: Value to set for the isRequired property.
+            value: Value to set for the is_required property.
         """
         self._is_required = value
     

@@ -24,7 +24,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the categorySummaries property value. Summary of the updates by category.
         Args:
-            value: Value to set for the categorySummaries property.
+            value: Value to set for the category_summaries property.
         """
         self._category_summaries = value
     
@@ -83,7 +83,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the deviceId property value. The device ID.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -100,7 +100,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the deviceName property value. The device name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -117,7 +117,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the displayName property value. The name of the report
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -134,7 +134,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the failedUpdateCount property value. Number of failed updates on the device.
         Args:
-            value: Value to set for the failedUpdateCount property.
+            value: Value to set for the failed_update_count property.
         """
         self._failed_update_count = value
     
@@ -144,17 +144,17 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "category_summaries": lambda n : setattr(self, 'category_summaries', n.get_collection_of_object_values(mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary)),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "failed_update_count": lambda n : setattr(self, 'failed_update_count', n.get_int_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "successful_update_count": lambda n : setattr(self, 'successful_update_count', n.get_int_value()),
-            "total_update_count": lambda n : setattr(self, 'total_update_count', n.get_int_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "categorySummaries": lambda n : setattr(self, 'category_summaries', n.get_collection_of_object_values(mac_o_s_software_update_category_summary.MacOSSoftwareUpdateCategorySummary)),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "failedUpdateCount": lambda n : setattr(self, 'failed_update_count', n.get_int_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "successfulUpdateCount": lambda n : setattr(self, 'successful_update_count', n.get_int_value()),
+            "totalUpdateCount": lambda n : setattr(self, 'total_update_count', n.get_int_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -173,7 +173,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. Last date time the report for this device was updated.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -190,7 +190,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the osVersion property value. The OS version.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -228,7 +228,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the successfulUpdateCount property value. Number of successful updates on the device.
         Args:
-            value: Value to set for the successfulUpdateCount property.
+            value: Value to set for the successful_update_count property.
         """
         self._successful_update_count = value
     
@@ -245,7 +245,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the totalUpdateCount property value. Number of total updates on the device.
         Args:
-            value: Value to set for the totalUpdateCount property.
+            value: Value to set for the total_update_count property.
         """
         self._total_update_count = value
     
@@ -262,7 +262,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the userId property value. The user ID.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -279,7 +279,7 @@ class MacOSSoftwareUpdateAccountSummary(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

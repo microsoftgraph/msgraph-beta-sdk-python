@@ -23,7 +23,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the antiMalwareVersion property value. Current anti malware version
         Args:
-            value: Value to set for the antiMalwareVersion property.
+            value: Value to set for the anti_malware_version property.
         """
         self._anti_malware_version = value
     
@@ -102,7 +102,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the detectedMalwareState property value. Device malware list
         Args:
-            value: Value to set for the detectedMalwareState property.
+            value: Value to set for the detected_malware_state property.
         """
         self._detected_malware_state = value
     
@@ -119,7 +119,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the deviceState property value. Computer's state (like clean or pending full scan or pending reboot etc). Possible values are: clean, fullScanPending, rebootPending, manualStepsPending, offlineScanPending, critical.
         Args:
-            value: Value to set for the deviceState property.
+            value: Value to set for the device_state property.
         """
         self._device_state = value
     
@@ -136,7 +136,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the engineVersion property value. Current endpoint protection engine's version
         Args:
-            value: Value to set for the engineVersion property.
+            value: Value to set for the engine_version property.
         """
         self._engine_version = value
     
@@ -153,7 +153,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the fullScanOverdue property value. Full scan overdue or not?
         Args:
-            value: Value to set for the fullScanOverdue property.
+            value: Value to set for the full_scan_overdue property.
         """
         self._full_scan_overdue = value
     
@@ -170,7 +170,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the fullScanRequired property value. Full scan required or not?
         Args:
-            value: Value to set for the fullScanRequired property.
+            value: Value to set for the full_scan_required property.
         """
         self._full_scan_required = value
     
@@ -180,27 +180,27 @@ class WindowsProtectionState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "anti_malware_version": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
-            "detected_malware_state": lambda n : setattr(self, 'detected_malware_state', n.get_collection_of_object_values(windows_device_malware_state.WindowsDeviceMalwareState)),
-            "device_state": lambda n : setattr(self, 'device_state', n.get_enum_value(windows_device_health_state.WindowsDeviceHealthState)),
-            "engine_version": lambda n : setattr(self, 'engine_version', n.get_str_value()),
-            "full_scan_overdue": lambda n : setattr(self, 'full_scan_overdue', n.get_bool_value()),
-            "full_scan_required": lambda n : setattr(self, 'full_scan_required', n.get_bool_value()),
-            "is_virtual_machine": lambda n : setattr(self, 'is_virtual_machine', n.get_bool_value()),
-            "last_full_scan_date_time": lambda n : setattr(self, 'last_full_scan_date_time', n.get_datetime_value()),
-            "last_full_scan_signature_version": lambda n : setattr(self, 'last_full_scan_signature_version', n.get_str_value()),
-            "last_quick_scan_date_time": lambda n : setattr(self, 'last_quick_scan_date_time', n.get_datetime_value()),
-            "last_quick_scan_signature_version": lambda n : setattr(self, 'last_quick_scan_signature_version', n.get_str_value()),
-            "last_reported_date_time": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
-            "malware_protection_enabled": lambda n : setattr(self, 'malware_protection_enabled', n.get_bool_value()),
-            "network_inspection_system_enabled": lambda n : setattr(self, 'network_inspection_system_enabled', n.get_bool_value()),
-            "product_status": lambda n : setattr(self, 'product_status', n.get_enum_value(windows_defender_product_status.WindowsDefenderProductStatus)),
-            "quick_scan_overdue": lambda n : setattr(self, 'quick_scan_overdue', n.get_bool_value()),
-            "real_time_protection_enabled": lambda n : setattr(self, 'real_time_protection_enabled', n.get_bool_value()),
-            "reboot_required": lambda n : setattr(self, 'reboot_required', n.get_bool_value()),
-            "signature_update_overdue": lambda n : setattr(self, 'signature_update_overdue', n.get_bool_value()),
-            "signature_version": lambda n : setattr(self, 'signature_version', n.get_str_value()),
-            "tamper_protection_enabled": lambda n : setattr(self, 'tamper_protection_enabled', n.get_bool_value()),
+            "antiMalwareVersion": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
+            "detectedMalwareState": lambda n : setattr(self, 'detected_malware_state', n.get_collection_of_object_values(windows_device_malware_state.WindowsDeviceMalwareState)),
+            "deviceState": lambda n : setattr(self, 'device_state', n.get_enum_value(windows_device_health_state.WindowsDeviceHealthState)),
+            "engineVersion": lambda n : setattr(self, 'engine_version', n.get_str_value()),
+            "fullScanOverdue": lambda n : setattr(self, 'full_scan_overdue', n.get_bool_value()),
+            "fullScanRequired": lambda n : setattr(self, 'full_scan_required', n.get_bool_value()),
+            "isVirtualMachine": lambda n : setattr(self, 'is_virtual_machine', n.get_bool_value()),
+            "lastFullScanDateTime": lambda n : setattr(self, 'last_full_scan_date_time', n.get_datetime_value()),
+            "lastFullScanSignatureVersion": lambda n : setattr(self, 'last_full_scan_signature_version', n.get_str_value()),
+            "lastQuickScanDateTime": lambda n : setattr(self, 'last_quick_scan_date_time', n.get_datetime_value()),
+            "lastQuickScanSignatureVersion": lambda n : setattr(self, 'last_quick_scan_signature_version', n.get_str_value()),
+            "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
+            "malwareProtectionEnabled": lambda n : setattr(self, 'malware_protection_enabled', n.get_bool_value()),
+            "networkInspectionSystemEnabled": lambda n : setattr(self, 'network_inspection_system_enabled', n.get_bool_value()),
+            "productStatus": lambda n : setattr(self, 'product_status', n.get_enum_value(windows_defender_product_status.WindowsDefenderProductStatus)),
+            "quickScanOverdue": lambda n : setattr(self, 'quick_scan_overdue', n.get_bool_value()),
+            "realTimeProtectionEnabled": lambda n : setattr(self, 'real_time_protection_enabled', n.get_bool_value()),
+            "rebootRequired": lambda n : setattr(self, 'reboot_required', n.get_bool_value()),
+            "signatureUpdateOverdue": lambda n : setattr(self, 'signature_update_overdue', n.get_bool_value()),
+            "signatureVersion": lambda n : setattr(self, 'signature_version', n.get_str_value()),
+            "tamperProtectionEnabled": lambda n : setattr(self, 'tamper_protection_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -219,7 +219,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the isVirtualMachine property value. Indicates whether the device is a virtual machine.
         Args:
-            value: Value to set for the isVirtualMachine property.
+            value: Value to set for the is_virtual_machine property.
         """
         self._is_virtual_machine = value
     
@@ -236,7 +236,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastFullScanDateTime property value. Last quick scan datetime
         Args:
-            value: Value to set for the lastFullScanDateTime property.
+            value: Value to set for the last_full_scan_date_time property.
         """
         self._last_full_scan_date_time = value
     
@@ -253,7 +253,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastFullScanSignatureVersion property value. Last full scan signature version
         Args:
-            value: Value to set for the lastFullScanSignatureVersion property.
+            value: Value to set for the last_full_scan_signature_version property.
         """
         self._last_full_scan_signature_version = value
     
@@ -270,7 +270,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastQuickScanDateTime property value. Last quick scan datetime
         Args:
-            value: Value to set for the lastQuickScanDateTime property.
+            value: Value to set for the last_quick_scan_date_time property.
         """
         self._last_quick_scan_date_time = value
     
@@ -287,7 +287,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastQuickScanSignatureVersion property value. Last quick scan signature version
         Args:
-            value: Value to set for the lastQuickScanSignatureVersion property.
+            value: Value to set for the last_quick_scan_signature_version property.
         """
         self._last_quick_scan_signature_version = value
     
@@ -304,7 +304,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the lastReportedDateTime property value. Last device health status reported time
         Args:
-            value: Value to set for the lastReportedDateTime property.
+            value: Value to set for the last_reported_date_time property.
         """
         self._last_reported_date_time = value
     
@@ -321,7 +321,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the malwareProtectionEnabled property value. Anti malware is enabled or not
         Args:
-            value: Value to set for the malwareProtectionEnabled property.
+            value: Value to set for the malware_protection_enabled property.
         """
         self._malware_protection_enabled = value
     
@@ -338,7 +338,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the networkInspectionSystemEnabled property value. Network inspection system enabled or not?
         Args:
-            value: Value to set for the networkInspectionSystemEnabled property.
+            value: Value to set for the network_inspection_system_enabled property.
         """
         self._network_inspection_system_enabled = value
     
@@ -355,7 +355,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the productStatus property value. Product Status of Windows Defender Antivirus. Possible values are: noStatus, serviceNotRunning, serviceStartedWithoutMalwareProtection, pendingFullScanDueToThreatAction, pendingRebootDueToThreatAction, pendingManualStepsDueToThreatAction, avSignaturesOutOfDate, asSignaturesOutOfDate, noQuickScanHappenedForSpecifiedPeriod, noFullScanHappenedForSpecifiedPeriod, systemInitiatedScanInProgress, systemInitiatedCleanInProgress, samplesPendingSubmission, productRunningInEvaluationMode, productRunningInNonGenuineMode, productExpired, offlineScanRequired, serviceShutdownAsPartOfSystemShutdown, threatRemediationFailedCritically, threatRemediationFailedNonCritically, noStatusFlagsSet, platformOutOfDate, platformUpdateInProgress, platformAboutToBeOutdated, signatureOrPlatformEndOfLifeIsPastOrIsImpending, windowsSModeSignaturesInUseOnNonWin10SInstall.
         Args:
-            value: Value to set for the productStatus property.
+            value: Value to set for the product_status property.
         """
         self._product_status = value
     
@@ -372,7 +372,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the quickScanOverdue property value. Quick scan overdue or not?
         Args:
-            value: Value to set for the quickScanOverdue property.
+            value: Value to set for the quick_scan_overdue property.
         """
         self._quick_scan_overdue = value
     
@@ -389,7 +389,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the realTimeProtectionEnabled property value. Real time protection is enabled or not?
         Args:
-            value: Value to set for the realTimeProtectionEnabled property.
+            value: Value to set for the real_time_protection_enabled property.
         """
         self._real_time_protection_enabled = value
     
@@ -406,7 +406,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the rebootRequired property value. Reboot required or not?
         Args:
-            value: Value to set for the rebootRequired property.
+            value: Value to set for the reboot_required property.
         """
         self._reboot_required = value
     
@@ -454,7 +454,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the signatureUpdateOverdue property value. Signature out of date or not?
         Args:
-            value: Value to set for the signatureUpdateOverdue property.
+            value: Value to set for the signature_update_overdue property.
         """
         self._signature_update_overdue = value
     
@@ -471,7 +471,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the signatureVersion property value. Current malware definitions version
         Args:
-            value: Value to set for the signatureVersion property.
+            value: Value to set for the signature_version property.
         """
         self._signature_version = value
     
@@ -488,7 +488,7 @@ class WindowsProtectionState(entity.Entity):
         """
         Sets the tamperProtectionEnabled property value. Indicates whether the Windows Defender tamper protection feature is enabled.
         Args:
-            value: Value to set for the tamperProtectionEnabled property.
+            value: Value to set for the tamper_protection_enabled property.
         """
         self._tamper_protection_enabled = value
     

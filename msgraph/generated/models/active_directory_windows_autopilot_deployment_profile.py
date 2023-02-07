@@ -43,7 +43,7 @@ class ActiveDirectoryWindowsAutopilotDeploymentProfile(windows_autopilot_deploym
         """
         Sets the domainJoinConfiguration property value. Configuration to join Active Directory domain
         Args:
-            value: Value to set for the domainJoinConfiguration property.
+            value: Value to set for the domain_join_configuration property.
         """
         self._domain_join_configuration = value
     
@@ -53,8 +53,8 @@ class ActiveDirectoryWindowsAutopilotDeploymentProfile(windows_autopilot_deploym
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "domain_join_configuration": lambda n : setattr(self, 'domain_join_configuration', n.get_object_value(windows_domain_join_configuration.WindowsDomainJoinConfiguration)),
-            "hybrid_azure_a_d_join_skip_connectivity_check": lambda n : setattr(self, 'hybrid_azure_a_d_join_skip_connectivity_check', n.get_bool_value()),
+            "domainJoinConfiguration": lambda n : setattr(self, 'domain_join_configuration', n.get_object_value(windows_domain_join_configuration.WindowsDomainJoinConfiguration)),
+            "hybridAzureADJoinSkipConnectivityCheck": lambda n : setattr(self, 'hybrid_azure_a_d_join_skip_connectivity_check', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class ActiveDirectoryWindowsAutopilotDeploymentProfile(windows_autopilot_deploym
         """
         Sets the hybridAzureADJoinSkipConnectivityCheck property value. The Autopilot Hybrid Azure AD join flow will continue even if it does not establish domain controller connectivity during OOBE.
         Args:
-            value: Value to set for the hybridAzureADJoinSkipConnectivityCheck property.
+            value: Value to set for the hybrid_azure_a_d_join_skip_connectivity_check property.
         """
         self._hybrid_azure_a_d_join_skip_connectivity_check = value
     

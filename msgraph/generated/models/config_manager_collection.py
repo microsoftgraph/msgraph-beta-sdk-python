@@ -23,7 +23,7 @@ class ConfigManagerCollection(entity.Entity):
         """
         Sets the collectionIdentifier property value. The collection identifier in SCCM.
         Args:
-            value: Value to set for the collectionIdentifier property.
+            value: Value to set for the collection_identifier property.
         """
         self._collection_identifier = value
     
@@ -60,7 +60,7 @@ class ConfigManagerCollection(entity.Entity):
         """
         Sets the createdDateTime property value. The created date.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -89,7 +89,7 @@ class ConfigManagerCollection(entity.Entity):
         """
         Sets the displayName property value. The DisplayName.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -99,12 +99,12 @@ class ConfigManagerCollection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "collection_identifier": lambda n : setattr(self, 'collection_identifier', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "hierarchy_identifier": lambda n : setattr(self, 'hierarchy_identifier', n.get_str_value()),
-            "hierarchy_name": lambda n : setattr(self, 'hierarchy_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "collectionIdentifier": lambda n : setattr(self, 'collection_identifier', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "hierarchyIdentifier": lambda n : setattr(self, 'hierarchy_identifier', n.get_str_value()),
+            "hierarchyName": lambda n : setattr(self, 'hierarchy_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -123,7 +123,7 @@ class ConfigManagerCollection(entity.Entity):
         """
         Sets the hierarchyIdentifier property value. The Hierarchy Identifier.
         Args:
-            value: Value to set for the hierarchyIdentifier property.
+            value: Value to set for the hierarchy_identifier property.
         """
         self._hierarchy_identifier = value
     
@@ -140,7 +140,7 @@ class ConfigManagerCollection(entity.Entity):
         """
         Sets the hierarchyName property value. The HierarchyName.
         Args:
-            value: Value to set for the hierarchyName property.
+            value: Value to set for the hierarchy_name property.
         """
         self._hierarchy_name = value
     
@@ -157,7 +157,7 @@ class ConfigManagerCollection(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The last modified date.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

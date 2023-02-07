@@ -54,7 +54,7 @@ class AssignmentFilterValidationResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_valid_rule": lambda n : setattr(self, 'is_valid_rule', n.get_bool_value()),
+            "isValidRule": lambda n : setattr(self, 'is_valid_rule', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class AssignmentFilterValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the isValidRule property value. Indicator to valid or invalid rule.
         Args:
-            value: Value to set for the isValidRule property.
+            value: Value to set for the is_valid_rule property.
         """
         self._is_valid_rule = value
     
@@ -89,7 +89,7 @@ class AssignmentFilterValidationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

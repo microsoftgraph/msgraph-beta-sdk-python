@@ -14,8 +14,8 @@ privileged_role = lazy_import('msgraph.generated.models.privileged_role')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 assignments_request_builder = lazy_import('msgraph.generated.privileged_roles.item.assignments.assignments_request_builder')
 privileged_role_assignment_item_request_builder = lazy_import('msgraph.generated.privileged_roles.item.assignments.item.privileged_role_assignment_item_request_builder')
-self_activate_request_builder = lazy_import('msgraph.generated.privileged_roles.item.self_activate.self_activate_request_builder')
-self_deactivate_request_builder = lazy_import('msgraph.generated.privileged_roles.item.self_deactivate.self_deactivate_request_builder')
+microsoft_graph_self_activate_request_builder = lazy_import('msgraph.generated.privileged_roles.item.microsoft_graph_self_activate.microsoft_graph_self_activate_request_builder')
+microsoft_graph_self_deactivate_request_builder = lazy_import('msgraph.generated.privileged_roles.item.microsoft_graph_self_deactivate.microsoft_graph_self_deactivate_request_builder')
 settings_request_builder = lazy_import('msgraph.generated.privileged_roles.item.settings.settings_request_builder')
 summary_request_builder = lazy_import('msgraph.generated.privileged_roles.item.summary.summary_request_builder')
 
@@ -31,18 +31,18 @@ class PrivilegedRoleItemRequestBuilder():
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def self_activate(self) -> self_activate_request_builder.SelfActivateRequestBuilder:
+    def microsoft_graph_self_activate(self) -> microsoft_graph_self_activate_request_builder.MicrosoftGraphSelfActivateRequestBuilder:
         """
         Provides operations to call the selfActivate method.
         """
-        return self_activate_request_builder.SelfActivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_self_activate_request_builder.MicrosoftGraphSelfActivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def self_deactivate(self) -> self_deactivate_request_builder.SelfDeactivateRequestBuilder:
+    def microsoft_graph_self_deactivate(self) -> microsoft_graph_self_deactivate_request_builder.MicrosoftGraphSelfDeactivateRequestBuilder:
         """
         Provides operations to call the selfDeactivate method.
         """
-        return self_deactivate_request_builder.SelfDeactivateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_self_deactivate_request_builder.MicrosoftGraphSelfDeactivateRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
@@ -89,12 +89,11 @@ class PrivilegedRoleItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from privilegedRoles
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -105,14 +104,13 @@ class PrivilegedRoleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role.PrivilegedRole]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
         Retrieve the properties and relationships of privilegedRole object. 
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         request_info = self.to_get_request_information(
@@ -124,15 +122,14 @@ class PrivilegedRoleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, error_mapping)
     
-    async def patch(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[PrivilegedRoleItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role.PrivilegedRole]:
+    async def patch(self,body: Optional[privileged_role.PrivilegedRole] = None, request_configuration: Optional[PrivilegedRoleItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_role.PrivilegedRole]:
         """
         Update entity in privilegedRoles
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role.PrivilegedRole]
         """
         if body is None:
@@ -146,7 +143,7 @@ class PrivilegedRoleItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role.PrivilegedRole, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedRoleItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

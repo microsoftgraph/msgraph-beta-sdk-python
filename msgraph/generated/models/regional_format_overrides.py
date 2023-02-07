@@ -87,7 +87,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the firstDayOfWeek property value. The first day of the week to use, e.g., Sunday.Returned by default.
         Args:
-            value: Value to set for the firstDayOfWeek property.
+            value: Value to set for the first_day_of_week property.
         """
         self._first_day_of_week = value
     
@@ -98,13 +98,13 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         fields = {
             "calendar": lambda n : setattr(self, 'calendar', n.get_str_value()),
-            "first_day_of_week": lambda n : setattr(self, 'first_day_of_week', n.get_str_value()),
-            "long_date_format": lambda n : setattr(self, 'long_date_format', n.get_str_value()),
-            "long_time_format": lambda n : setattr(self, 'long_time_format', n.get_str_value()),
+            "firstDayOfWeek": lambda n : setattr(self, 'first_day_of_week', n.get_str_value()),
+            "longDateFormat": lambda n : setattr(self, 'long_date_format', n.get_str_value()),
+            "longTimeFormat": lambda n : setattr(self, 'long_time_format', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "short_date_format": lambda n : setattr(self, 'short_date_format', n.get_str_value()),
-            "short_time_format": lambda n : setattr(self, 'short_time_format', n.get_str_value()),
-            "time_zone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
+            "shortDateFormat": lambda n : setattr(self, 'short_date_format', n.get_str_value()),
+            "shortTimeFormat": lambda n : setattr(self, 'short_time_format', n.get_str_value()),
+            "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
         }
         return fields
     
@@ -121,7 +121,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the longDateFormat property value. The long date time format to be used for displaying dates.Returned by default.
         Args:
-            value: Value to set for the longDateFormat property.
+            value: Value to set for the long_date_format property.
         """
         self._long_date_format = value
     
@@ -138,7 +138,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the longTimeFormat property value. The long time format to be used for displaying time.Returned by default.
         Args:
-            value: Value to set for the longTimeFormat property.
+            value: Value to set for the long_time_format property.
         """
         self._long_time_format = value
     
@@ -155,7 +155,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -190,7 +190,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the shortDateFormat property value. The short date time format to be used for displaying dates.Returned by default.
         Args:
-            value: Value to set for the shortDateFormat property.
+            value: Value to set for the short_date_format property.
         """
         self._short_date_format = value
     
@@ -207,7 +207,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the shortTimeFormat property value. The short time format to be used for displaying time.Returned by default.
         Args:
-            value: Value to set for the shortTimeFormat property.
+            value: Value to set for the short_time_format property.
         """
         self._short_time_format = value
     
@@ -224,7 +224,7 @@ class RegionalFormatOverrides(AdditionalDataHolder, Parsable):
         """
         Sets the timeZone property value. The timezone to be used for displaying time.Returned by default.
         Args:
-            value: Value to set for the timeZone property.
+            value: Value to set for the time_zone property.
         """
         self._time_zone = value
     

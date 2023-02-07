@@ -26,7 +26,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the accessPackage property value. The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the accessPackage property.
+            value: Value to set for the access_package property.
         """
         self._access_package = value
     
@@ -43,7 +43,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the accessPackageAssignment property value. For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.  Supports $expand.
         Args:
-            value: Value to set for the accessPackageAssignment property.
+            value: Value to set for the access_package_assignment property.
         """
         self._access_package_assignment = value
     
@@ -77,7 +77,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the completedDate property value. The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the completedDate property.
+            value: Value to set for the completed_date property.
         """
         self._completed_date = value
     
@@ -106,14 +106,14 @@ class AccessPackageAssignmentRequest(entity.Entity):
         self._justification: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
-        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
         # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
         self._request_state: Optional[str] = None
         # More information on the request processing status. Read-only.
         self._request_status: Optional[str] = None
         # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove or SystemRemove. A request from the user themselves would have requestType of UserAdd, UserUpdate or UserRemove. Read-only.
         self._request_type: Optional[str] = None
+        # The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
+        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
         # The range of dates that access is to be assigned to the requestor. Read-only.
         self._schedule: Optional[request_schedule.RequestSchedule] = None
     
@@ -130,7 +130,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -159,7 +159,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the customExtensionHandlerInstances property value. A collection of custom workflow extension instances being run on an assignment request. Read-only.
         Args:
-            value: Value to set for the customExtensionHandlerInstances property.
+            value: Value to set for the custom_extension_handler_instances property.
         """
         self._custom_extension_handler_instances = value
     
@@ -176,7 +176,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the expirationDateTime property value. The expirationDateTime property
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -186,19 +186,19 @@ class AccessPackageAssignmentRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
-            "access_package_assignment": lambda n : setattr(self, 'access_package_assignment', n.get_object_value(access_package_assignment.AccessPackageAssignment)),
+            "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
+            "accessPackageAssignment": lambda n : setattr(self, 'access_package_assignment', n.get_object_value(access_package_assignment.AccessPackageAssignment)),
             "answers": lambda n : setattr(self, 'answers', n.get_collection_of_object_values(access_package_answer.AccessPackageAnswer)),
-            "completed_date": lambda n : setattr(self, 'completed_date', n.get_datetime_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "custom_extension_handler_instances": lambda n : setattr(self, 'custom_extension_handler_instances', n.get_collection_of_object_values(custom_extension_handler_instance.CustomExtensionHandlerInstance)),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "is_validation_only": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
+            "completedDate": lambda n : setattr(self, 'completed_date', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "customExtensionHandlerInstances": lambda n : setattr(self, 'custom_extension_handler_instances', n.get_collection_of_object_values(custom_extension_handler_instance.CustomExtensionHandlerInstance)),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
             "requestor": lambda n : setattr(self, 'requestor', n.get_object_value(access_package_subject.AccessPackageSubject)),
-            "request_state": lambda n : setattr(self, 'request_state', n.get_str_value()),
-            "request_status": lambda n : setattr(self, 'request_status', n.get_str_value()),
-            "request_type": lambda n : setattr(self, 'request_type', n.get_str_value()),
+            "requestState": lambda n : setattr(self, 'request_state', n.get_str_value()),
+            "requestStatus": lambda n : setattr(self, 'request_status', n.get_str_value()),
+            "requestType": lambda n : setattr(self, 'request_type', n.get_str_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(request_schedule.RequestSchedule)),
         }
         super_fields = super().get_field_deserializers()
@@ -218,7 +218,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the isValidationOnly property value. True if the request is not to be processed for assignment.
         Args:
-            value: Value to set for the isValidationOnly property.
+            value: Value to set for the is_validation_only property.
         """
         self._is_validation_only = value
     
@@ -240,23 +240,6 @@ class AccessPackageAssignmentRequest(entity.Entity):
         self._justification = value
     
     @property
-    def requestor(self,) -> Optional[access_package_subject.AccessPackageSubject]:
-        """
-        Gets the requestor property value. The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
-        Returns: Optional[access_package_subject.AccessPackageSubject]
-        """
-        return self._requestor
-    
-    @requestor.setter
-    def requestor(self,value: Optional[access_package_subject.AccessPackageSubject] = None) -> None:
-        """
-        Sets the requestor property value. The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
-        Args:
-            value: Value to set for the requestor property.
-        """
-        self._requestor = value
-    
-    @property
     def request_state(self,) -> Optional[str]:
         """
         Gets the requestState property value. One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
@@ -269,7 +252,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the requestState property value. One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
         Args:
-            value: Value to set for the requestState property.
+            value: Value to set for the request_state property.
         """
         self._request_state = value
     
@@ -286,7 +269,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the requestStatus property value. More information on the request processing status. Read-only.
         Args:
-            value: Value to set for the requestStatus property.
+            value: Value to set for the request_status property.
         """
         self._request_status = value
     
@@ -303,9 +286,26 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         Sets the requestType property value. One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove or SystemRemove. A request from the user themselves would have requestType of UserAdd, UserUpdate or UserRemove. Read-only.
         Args:
-            value: Value to set for the requestType property.
+            value: Value to set for the request_type property.
         """
         self._request_type = value
+    
+    @property
+    def requestor(self,) -> Optional[access_package_subject.AccessPackageSubject]:
+        """
+        Gets the requestor property value. The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
+        Returns: Optional[access_package_subject.AccessPackageSubject]
+        """
+        return self._requestor
+    
+    @requestor.setter
+    def requestor(self,value: Optional[access_package_subject.AccessPackageSubject] = None) -> None:
+        """
+        Sets the requestor property value. The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
+        Args:
+            value: Value to set for the requestor property.
+        """
+        self._requestor = value
     
     @property
     def schedule(self,) -> Optional[request_schedule.RequestSchedule]:

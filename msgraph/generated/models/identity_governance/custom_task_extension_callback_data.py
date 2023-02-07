@@ -34,7 +34,7 @@ class CustomTaskExtensionCallbackData(custom_extension_data.CustomExtensionData)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "operation_status": lambda n : setattr(self, 'operation_status', n.get_enum_value(custom_task_extension_operation_status.CustomTaskExtensionOperationStatus)),
+            "operationStatus": lambda n : setattr(self, 'operation_status', n.get_enum_value(custom_task_extension_operation_status.CustomTaskExtensionOperationStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class CustomTaskExtensionCallbackData(custom_extension_data.CustomExtensionData)
         """
         Sets the operationStatus property value. Operation status that's provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully or not. Supported values: completed, failed, unknownFutureValue.
         Args:
-            value: Value to set for the operationStatus property.
+            value: Value to set for the operation_status property.
         """
         self._operation_status = value
     

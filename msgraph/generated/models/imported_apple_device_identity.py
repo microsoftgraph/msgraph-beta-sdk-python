@@ -56,7 +56,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the createdDateTime property value. Created Date Time of the device
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -102,7 +102,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the discoverySource property value. The discoverySource property
         Args:
-            value: Value to set for the discoverySource property.
+            value: Value to set for the discovery_source property.
         """
         self._discovery_source = value
     
@@ -119,7 +119,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the enrollmentState property value. The enrollmentState property
         Args:
-            value: Value to set for the enrollmentState property.
+            value: Value to set for the enrollment_state property.
         """
         self._enrollment_state = value
     
@@ -129,17 +129,17 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "discovery_source": lambda n : setattr(self, 'discovery_source', n.get_enum_value(discovery_source.DiscoverySource)),
-            "enrollment_state": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
-            "is_deleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
-            "is_supervised": lambda n : setattr(self, 'is_supervised', n.get_bool_value()),
-            "last_contacted_date_time": lambda n : setattr(self, 'last_contacted_date_time', n.get_datetime_value()),
+            "discoverySource": lambda n : setattr(self, 'discovery_source', n.get_enum_value(discovery_source.DiscoverySource)),
+            "enrollmentState": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
+            "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
+            "isSupervised": lambda n : setattr(self, 'is_supervised', n.get_bool_value()),
+            "lastContactedDateTime": lambda n : setattr(self, 'last_contacted_date_time', n.get_datetime_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(platform.Platform)),
-            "requested_enrollment_profile_assignment_date_time": lambda n : setattr(self, 'requested_enrollment_profile_assignment_date_time', n.get_datetime_value()),
-            "requested_enrollment_profile_id": lambda n : setattr(self, 'requested_enrollment_profile_id', n.get_str_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "requestedEnrollmentProfileAssignmentDateTime": lambda n : setattr(self, 'requested_enrollment_profile_assignment_date_time', n.get_datetime_value()),
+            "requestedEnrollmentProfileId": lambda n : setattr(self, 'requested_enrollment_profile_id', n.get_str_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -158,7 +158,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the isDeleted property value. Indicates if the device is deleted from Apple Business Manager
         Args:
-            value: Value to set for the isDeleted property.
+            value: Value to set for the is_deleted property.
         """
         self._is_deleted = value
     
@@ -175,7 +175,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the isSupervised property value. Indicates if the Apple device is supervised. More information is at: https://support.apple.com/en-us/HT202837
         Args:
-            value: Value to set for the isSupervised property.
+            value: Value to set for the is_supervised property.
         """
         self._is_supervised = value
     
@@ -192,7 +192,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the lastContactedDateTime property value. Last Contacted Date Time of the device
         Args:
-            value: Value to set for the lastContactedDateTime property.
+            value: Value to set for the last_contacted_date_time property.
         """
         self._last_contacted_date_time = value
     
@@ -226,7 +226,7 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the requestedEnrollmentProfileAssignmentDateTime property value. The time enrollment profile was assigned to the device
         Args:
-            value: Value to set for the requestedEnrollmentProfileAssignmentDateTime property.
+            value: Value to set for the requested_enrollment_profile_assignment_date_time property.
         """
         self._requested_enrollment_profile_assignment_date_time = value
     
@@ -243,9 +243,26 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         Sets the requestedEnrollmentProfileId property value. Enrollment profile Id admin intends to apply to the device during next enrollment
         Args:
-            value: Value to set for the requestedEnrollmentProfileId property.
+            value: Value to set for the requested_enrollment_profile_id property.
         """
         self._requested_enrollment_profile_id = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. Device serial number
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. Device serial number
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -267,22 +284,5 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         writer.write_datetime_value("requestedEnrollmentProfileAssignmentDateTime", self.requested_enrollment_profile_assignment_date_time)
         writer.write_str_value("requestedEnrollmentProfileId", self.requested_enrollment_profile_id)
         writer.write_str_value("serialNumber", self.serial_number)
-    
-    @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. Device serial number
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. Device serial number
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
     
 

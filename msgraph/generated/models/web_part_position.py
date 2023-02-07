@@ -34,7 +34,7 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         """
         Sets the columnId property value. Indicates the identifier of the column where the web part is located.
         Args:
-            value: Value to set for the columnId property.
+            value: Value to set for the column_id property.
         """
         self._column_id = value
     
@@ -74,11 +74,11 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "column_id": lambda n : setattr(self, 'column_id', n.get_float_value()),
-            "horizontal_section_id": lambda n : setattr(self, 'horizontal_section_id', n.get_float_value()),
-            "is_in_vertical_section": lambda n : setattr(self, 'is_in_vertical_section', n.get_bool_value()),
+            "columnId": lambda n : setattr(self, 'column_id', n.get_float_value()),
+            "horizontalSectionId": lambda n : setattr(self, 'horizontal_section_id', n.get_float_value()),
+            "isInVerticalSection": lambda n : setattr(self, 'is_in_vertical_section', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "web_part_index": lambda n : setattr(self, 'web_part_index', n.get_float_value()),
+            "webPartIndex": lambda n : setattr(self, 'web_part_index', n.get_float_value()),
         }
         return fields
     
@@ -95,7 +95,7 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         """
         Sets the horizontalSectionId property value. Indicates the horizontal section where the web part is located.
         Args:
-            value: Value to set for the horizontalSectionId property.
+            value: Value to set for the horizontal_section_id property.
         """
         self._horizontal_section_id = value
     
@@ -112,7 +112,7 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         """
         Sets the isInVerticalSection property value. Indicates whether the web part is located in the vertical section.
         Args:
-            value: Value to set for the isInVerticalSection property.
+            value: Value to set for the is_in_vertical_section property.
         """
         self._is_in_vertical_section = value
     
@@ -129,7 +129,7 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -161,7 +161,7 @@ class WebPartPosition(AdditionalDataHolder, Parsable):
         """
         Sets the webPartIndex property value. Index of the current web part. Represents the order of the web part in this column or section.
         Args:
-            value: Value to set for the webPartIndex property.
+            value: Value to set for the web_part_index property.
         """
         self._web_part_index = value
     

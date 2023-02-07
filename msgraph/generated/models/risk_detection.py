@@ -45,7 +45,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the activityDateTime property value. Date and time that the risky activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the activityDateTime property.
+            value: Value to set for the activity_date_time property.
         """
         self._activity_date_time = value
     
@@ -62,7 +62,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the additionalInfo property value. Additional information associated with the risk detection in JSON format.
         Args:
-            value: Value to set for the additionalInfo property.
+            value: Value to set for the additional_info property.
         """
         self._additional_info = value
     
@@ -127,7 +127,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the correlationId property value. Correlation ID of the sign-in associated with the risk detection. This property is null if the risk detection is not associated with a sign-in.
         Args:
-            value: Value to set for the correlationId property.
+            value: Value to set for the correlation_id property.
         """
         self._correlation_id = value
     
@@ -156,7 +156,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the detectedDateTime property value. Date and time that the risk was detected. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the detectedDateTime property.
+            value: Value to set for the detected_date_time property.
         """
         self._detected_date_time = value
     
@@ -173,7 +173,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the detectionTimingType property value. Timing of the detected risk (real-time/offline). The possible values are notDefined, realtime, nearRealtime, offline, unknownFutureValue.
         Args:
-            value: Value to set for the detectionTimingType property.
+            value: Value to set for the detection_timing_type property.
         """
         self._detection_timing_type = value
     
@@ -184,25 +184,25 @@ class RiskDetection(entity.Entity):
         """
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_enum_value(activity_type.ActivityType)),
-            "activity_date_time": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
-            "additional_info": lambda n : setattr(self, 'additional_info', n.get_str_value()),
-            "correlation_id": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
-            "detected_date_time": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
-            "detection_timing_type": lambda n : setattr(self, 'detection_timing_type', n.get_enum_value(risk_detection_timing_type.RiskDetectionTimingType)),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "activityDateTime": lambda n : setattr(self, 'activity_date_time', n.get_datetime_value()),
+            "additionalInfo": lambda n : setattr(self, 'additional_info', n.get_str_value()),
+            "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
+            "detectedDateTime": lambda n : setattr(self, 'detected_date_time', n.get_datetime_value()),
+            "detectionTimingType": lambda n : setattr(self, 'detection_timing_type', n.get_enum_value(risk_detection_timing_type.RiskDetectionTimingType)),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(sign_in_location.SignInLocation)),
-            "request_id": lambda n : setattr(self, 'request_id', n.get_str_value()),
-            "risk_detail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(risk_detail.RiskDetail)),
-            "risk_event_type": lambda n : setattr(self, 'risk_event_type', n.get_str_value()),
-            "risk_level": lambda n : setattr(self, 'risk_level', n.get_enum_value(risk_level.RiskLevel)),
-            "risk_state": lambda n : setattr(self, 'risk_state', n.get_enum_value(risk_state.RiskState)),
-            "risk_type": lambda n : setattr(self, 'risk_type', n.get_enum_value(risk_event_type.RiskEventType)),
+            "requestId": lambda n : setattr(self, 'request_id', n.get_str_value()),
+            "riskDetail": lambda n : setattr(self, 'risk_detail', n.get_enum_value(risk_detail.RiskDetail)),
+            "riskEventType": lambda n : setattr(self, 'risk_event_type', n.get_str_value()),
+            "riskLevel": lambda n : setattr(self, 'risk_level', n.get_enum_value(risk_level.RiskLevel)),
+            "riskState": lambda n : setattr(self, 'risk_state', n.get_enum_value(risk_state.RiskState)),
+            "riskType": lambda n : setattr(self, 'risk_type', n.get_enum_value(risk_event_type.RiskEventType)),
             "source": lambda n : setattr(self, 'source', n.get_str_value()),
-            "token_issuer_type": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(token_issuer_type.TokenIssuerType)),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "tokenIssuerType": lambda n : setattr(self, 'token_issuer_type', n.get_enum_value(token_issuer_type.TokenIssuerType)),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -221,7 +221,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the ipAddress property value. Provides the IP address of the client from where the risk occurred.
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -238,7 +238,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. Date and time that the risk detection was last updated.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -272,7 +272,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the requestId property value. Request ID of the sign-in associated with the risk detection. This property is null if the risk detection is not associated with a sign-in.
         Args:
-            value: Value to set for the requestId property.
+            value: Value to set for the request_id property.
         """
         self._request_id = value
     
@@ -289,7 +289,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the riskDetail property value. Details of the detected risk. The possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal, m365DAdminDismissedDetection. Note that you must use the Prefer: include - unknown -enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal , m365DAdminDismissedDetection. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden.
         Args:
-            value: Value to set for the riskDetail property.
+            value: Value to set for the risk_detail property.
         """
         self._risk_detail = value
     
@@ -306,7 +306,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the riskEventType property value. The type of risk event detected. The possible values are unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence, generic,adminConfirmedUserCompromised, mcasImpossibleTravel, mcasSuspiciousInboxManipulationRules, investigationsThreatIntelligenceSigninLinked, maliciousIPAddressValidCredentialsBlockedIP, and anomalousUserActivity.  For more information about each value, see riskEventType values.
         Args:
-            value: Value to set for the riskEventType property.
+            value: Value to set for the risk_event_type property.
         """
         self._risk_event_type = value
     
@@ -323,7 +323,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the riskLevel property value. Level of the detected risk. The possible values are low, medium, high, hidden, none, unknownFutureValue. Note: Details for this property are only available for Azure AD Premium P2 customers. P1 customers will be returned hidden.
         Args:
-            value: Value to set for the riskLevel property.
+            value: Value to set for the risk_level property.
         """
         self._risk_level = value
     
@@ -340,7 +340,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the riskState property value. The state of a detected risky user or sign-in. The possible values are none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, and unknownFutureValue.
         Args:
-            value: Value to set for the riskState property.
+            value: Value to set for the risk_state property.
         """
         self._risk_state = value
     
@@ -357,7 +357,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the riskType property value. The riskType property
         Args:
-            value: Value to set for the riskType property.
+            value: Value to set for the risk_type property.
         """
         self._risk_type = value
     
@@ -421,7 +421,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the tokenIssuerType property value. Indicates the type of token issuer for the detected sign-in risk. The possible values are AzureAD, ADFederationServices, and unknownFutureValue.
         Args:
-            value: Value to set for the tokenIssuerType property.
+            value: Value to set for the token_issuer_type property.
         """
         self._token_issuer_type = value
     
@@ -438,7 +438,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the userDisplayName property value. Name of the user.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -455,7 +455,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the userId property value. Unique ID of the user.  The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -472,7 +472,7 @@ class RiskDetection(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name (UPN) of the user.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

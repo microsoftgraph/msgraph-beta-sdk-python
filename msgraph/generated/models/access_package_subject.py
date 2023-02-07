@@ -21,7 +21,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the altSecId property value. The altSecId property
         Args:
-            value: Value to set for the altSecId property.
+            value: Value to set for the alt_sec_id property.
         """
         self._alt_sec_id = value
     
@@ -38,7 +38,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the connectedOrganization property value. The connected organization of the subject. Read-only. Nullable.
         Args:
-            value: Value to set for the connectedOrganization property.
+            value: Value to set for the connected_organization property.
         """
         self._connected_organization = value
     
@@ -55,7 +55,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the connectedOrganizationId property value. The identifier of the connected organization of the subject.
         Args:
-            value: Value to set for the connectedOrganizationId property.
+            value: Value to set for the connected_organization_id property.
         """
         self._connected_organization_id = value
     
@@ -112,7 +112,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the displayName property value. The display name of the subject.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -139,15 +139,15 @@ class AccessPackageSubject(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alt_sec_id": lambda n : setattr(self, 'alt_sec_id', n.get_str_value()),
-            "connected_organization": lambda n : setattr(self, 'connected_organization', n.get_object_value(connected_organization.ConnectedOrganization)),
-            "connected_organization_id": lambda n : setattr(self, 'connected_organization_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "altSecId": lambda n : setattr(self, 'alt_sec_id', n.get_str_value()),
+            "connectedOrganization": lambda n : setattr(self, 'connected_organization', n.get_object_value(connected_organization.ConnectedOrganization)),
+            "connectedOrganizationId": lambda n : setattr(self, 'connected_organization_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "object_id": lambda n : setattr(self, 'object_id', n.get_str_value()),
-            "on_premises_security_identifier": lambda n : setattr(self, 'on_premises_security_identifier', n.get_str_value()),
-            "principal_name": lambda n : setattr(self, 'principal_name', n.get_str_value()),
-            "subject_lifecycle": lambda n : setattr(self, 'subject_lifecycle', n.get_enum_value(access_package_subject_lifecycle.AccessPackageSubjectLifecycle)),
+            "objectId": lambda n : setattr(self, 'object_id', n.get_str_value()),
+            "onPremisesSecurityIdentifier": lambda n : setattr(self, 'on_premises_security_identifier', n.get_str_value()),
+            "principalName": lambda n : setattr(self, 'principal_name', n.get_str_value()),
+            "subjectLifecycle": lambda n : setattr(self, 'subject_lifecycle', n.get_enum_value(access_package_subject_lifecycle.AccessPackageSubjectLifecycle)),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -167,7 +167,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the objectId property value. The object identifier of the subject. null if the subject is not yet a user in the tenant.
         Args:
-            value: Value to set for the objectId property.
+            value: Value to set for the object_id property.
         """
         self._object_id = value
     
@@ -184,7 +184,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the onPremisesSecurityIdentifier property value. The onPremisesSecurityIdentifier property
         Args:
-            value: Value to set for the onPremisesSecurityIdentifier property.
+            value: Value to set for the on_premises_security_identifier property.
         """
         self._on_premises_security_identifier = value
     
@@ -201,7 +201,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the principalName property value. The principal name, if known, of the subject.
         Args:
-            value: Value to set for the principalName property.
+            value: Value to set for the principal_name property.
         """
         self._principal_name = value
     
@@ -238,7 +238,7 @@ class AccessPackageSubject(entity.Entity):
         """
         Sets the subjectLifecycle property value. The subjectLifecycle property
         Args:
-            value: Value to set for the subjectLifecycle property.
+            value: Value to set for the subject_lifecycle property.
         """
         self._subject_lifecycle = value
     

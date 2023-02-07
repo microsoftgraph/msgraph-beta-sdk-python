@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_resource_performance.count.count_request_builder')
-summarize_device_resource_performance_with_summarize_by_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_resource_performance.summarize_device_resource_performance_with_summarize_by.summarize_device_resource_performance_with_summarize_by_request_builder')
+microsoft_graph_summarize_device_resource_performance_with_summarize_by_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_resource_performance.microsoft_graph_summarize_device_resource_performance_with_summarize_by.microsoft_graph_summarize_device_resource_performance_with_summarize_by_request_builder')
 user_experience_analytics_resource_performance = lazy_import('msgraph.generated.models.user_experience_analytics_resource_performance')
 user_experience_analytics_resource_performance_collection_response = lazy_import('msgraph.generated.models.user_experience_analytics_resource_performance_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -45,12 +45,11 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse]:
         """
         User experience analytics resource performance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,15 +61,25 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_resource_performance_collection_response.UserExperienceAnalyticsResourcePerformanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance] = None, request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance]:
+    def microsoft_graph_summarize_device_resource_performance_with_summarize_by(self,summarize_by: Optional[str] = None) -> microsoft_graph_summarize_device_resource_performance_with_summarize_by_request_builder.MicrosoftGraphSummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder:
+        """
+        Provides operations to call the summarizeDeviceResourcePerformance method.
+        Args:
+            summarizeBy: Usage: summarizeBy='{summarizeBy}'
+        Returns: microsoft_graph_summarize_device_resource_performance_with_summarize_by_request_builder.MicrosoftGraphSummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder
+        """
+        if summarize_by is None:
+            raise Exception("summarize_by cannot be undefined")
+        return microsoft_graph_summarize_device_resource_performance_with_summarize_by_request_builder.MicrosoftGraphSummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(self.request_adapter, self.path_parameters, summarizeBy)
+    
+    async def post(self,body: Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance] = None, request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance]:
         """
         Create new navigation property to userExperienceAnalyticsResourcePerformance for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance]
         """
         if body is None:
@@ -84,18 +93,7 @@ class UserExperienceAnalyticsResourcePerformanceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance, response_handler, error_mapping)
-    
-    def summarize_device_resource_performance_with_summarize_by(self,summarize_by: Optional[str] = None) -> summarize_device_resource_performance_with_summarize_by_request_builder.SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder:
-        """
-        Provides operations to call the summarizeDeviceResourcePerformance method.
-        Args:
-            summarizeBy: Usage: summarizeBy='{summarizeBy}'
-        Returns: summarize_device_resource_performance_with_summarize_by_request_builder.SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder
-        """
-        if summarize_by is None:
-            raise Exception("summarize_by cannot be undefined")
-        return summarize_device_resource_performance_with_summarize_by_request_builder.SummarizeDeviceResourcePerformanceWithSummarizeByRequestBuilder(self.request_adapter, self.path_parameters, summarizeBy)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_resource_performance.UserExperienceAnalyticsResourcePerformance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsResourcePerformanceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

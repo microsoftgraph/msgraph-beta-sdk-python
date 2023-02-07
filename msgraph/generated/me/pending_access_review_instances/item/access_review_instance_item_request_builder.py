@@ -10,19 +10,19 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-accept_recommendations_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.accept_recommendations.accept_recommendations_request_builder')
-apply_decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.apply_decisions.apply_decisions_request_builder')
-batch_record_decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.batch_record_decisions.batch_record_decisions_request_builder')
 contacted_reviewers_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.contacted_reviewers.contacted_reviewers_request_builder')
 access_review_reviewer_item_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.contacted_reviewers.item.access_review_reviewer_item_request_builder')
 decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.decisions.decisions_request_builder')
 access_review_instance_decision_item_item_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.decisions.item.access_review_instance_decision_item_item_request_builder')
 definition_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.definition.definition_request_builder')
-reset_decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.reset_decisions.reset_decisions_request_builder')
-send_reminder_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.send_reminder.send_reminder_request_builder')
+microsoft_graph_accept_recommendations_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.microsoft_graph_accept_recommendations.microsoft_graph_accept_recommendations_request_builder')
+microsoft_graph_apply_decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.microsoft_graph_apply_decisions.microsoft_graph_apply_decisions_request_builder')
+microsoft_graph_batch_record_decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.microsoft_graph_batch_record_decisions.microsoft_graph_batch_record_decisions_request_builder')
+microsoft_graph_reset_decisions_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.microsoft_graph_reset_decisions.microsoft_graph_reset_decisions_request_builder')
+microsoft_graph_send_reminder_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.microsoft_graph_send_reminder.microsoft_graph_send_reminder_request_builder')
+microsoft_graph_stop_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.microsoft_graph_stop.microsoft_graph_stop_request_builder')
 stages_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.stages.stages_request_builder')
 access_review_stage_item_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.stages.item.access_review_stage_item_request_builder')
-stop_request_builder = lazy_import('msgraph.generated.me.pending_access_review_instances.item.stop.stop_request_builder')
 access_review_instance = lazy_import('msgraph.generated.models.access_review_instance')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -30,27 +30,6 @@ class AccessReviewInstanceItemRequestBuilder():
     """
     Provides operations to manage the pendingAccessReviewInstances property of the microsoft.graph.user entity.
     """
-    @property
-    def accept_recommendations(self) -> accept_recommendations_request_builder.AcceptRecommendationsRequestBuilder:
-        """
-        Provides operations to call the acceptRecommendations method.
-        """
-        return accept_recommendations_request_builder.AcceptRecommendationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def apply_decisions(self) -> apply_decisions_request_builder.ApplyDecisionsRequestBuilder:
-        """
-        Provides operations to call the applyDecisions method.
-        """
-        return apply_decisions_request_builder.ApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def batch_record_decisions(self) -> batch_record_decisions_request_builder.BatchRecordDecisionsRequestBuilder:
-        """
-        Provides operations to call the batchRecordDecisions method.
-        """
-        return batch_record_decisions_request_builder.BatchRecordDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def contacted_reviewers(self) -> contacted_reviewers_request_builder.ContactedReviewersRequestBuilder:
         """
@@ -73,18 +52,46 @@ class AccessReviewInstanceItemRequestBuilder():
         return definition_request_builder.DefinitionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def reset_decisions(self) -> reset_decisions_request_builder.ResetDecisionsRequestBuilder:
+    def microsoft_graph_accept_recommendations(self) -> microsoft_graph_accept_recommendations_request_builder.MicrosoftGraphAcceptRecommendationsRequestBuilder:
+        """
+        Provides operations to call the acceptRecommendations method.
+        """
+        return microsoft_graph_accept_recommendations_request_builder.MicrosoftGraphAcceptRecommendationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_apply_decisions(self) -> microsoft_graph_apply_decisions_request_builder.MicrosoftGraphApplyDecisionsRequestBuilder:
+        """
+        Provides operations to call the applyDecisions method.
+        """
+        return microsoft_graph_apply_decisions_request_builder.MicrosoftGraphApplyDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_batch_record_decisions(self) -> microsoft_graph_batch_record_decisions_request_builder.MicrosoftGraphBatchRecordDecisionsRequestBuilder:
+        """
+        Provides operations to call the batchRecordDecisions method.
+        """
+        return microsoft_graph_batch_record_decisions_request_builder.MicrosoftGraphBatchRecordDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_reset_decisions(self) -> microsoft_graph_reset_decisions_request_builder.MicrosoftGraphResetDecisionsRequestBuilder:
         """
         Provides operations to call the resetDecisions method.
         """
-        return reset_decisions_request_builder.ResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_reset_decisions_request_builder.MicrosoftGraphResetDecisionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_reminder(self) -> send_reminder_request_builder.SendReminderRequestBuilder:
+    def microsoft_graph_send_reminder(self) -> microsoft_graph_send_reminder_request_builder.MicrosoftGraphSendReminderRequestBuilder:
         """
         Provides operations to call the sendReminder method.
         """
-        return send_reminder_request_builder.SendReminderRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_send_reminder_request_builder.MicrosoftGraphSendReminderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_stop(self) -> microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder:
+        """
+        Provides operations to call the stop method.
+        """
+        return microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def stages(self) -> stages_request_builder.StagesRequestBuilder:
@@ -92,13 +99,6 @@ class AccessReviewInstanceItemRequestBuilder():
         Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.
         """
         return stages_request_builder.StagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
-        """
-        Provides operations to call the stop method.
-        """
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -144,12 +144,11 @@ class AccessReviewInstanceItemRequestBuilder():
         url_tpl_params["accessReviewInstanceDecisionItem%2Did"] = id
         return access_review_instance_decision_item_item_request_builder.AccessReviewInstanceDecisionItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property pendingAccessReviewInstances for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -160,14 +159,13 @@ class AccessReviewInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def get(self,request_configuration: Optional[AccessReviewInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
         Navigation property to get list of access reviews pending approval by reviewer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance.AccessReviewInstance]
         """
         request_info = self.to_get_request_information(
@@ -179,15 +177,14 @@ class AccessReviewInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
     
-    async def patch(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_instance.AccessReviewInstance]:
+    async def patch(self,body: Optional[access_review_instance.AccessReviewInstance] = None, request_configuration: Optional[AccessReviewInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_instance.AccessReviewInstance]:
         """
         Update the navigation property pendingAccessReviewInstances in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_instance.AccessReviewInstance]
         """
         if body is None:
@@ -201,7 +198,7 @@ class AccessReviewInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_instance.AccessReviewInstance, error_mapping)
     
     def stages_by_id(self,id: str) -> access_review_stage_item_request_builder.AccessReviewStageItemRequestBuilder:
         """

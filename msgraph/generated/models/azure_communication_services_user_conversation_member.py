@@ -9,7 +9,7 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
     @property
     def azure_communication_services_id(self,) -> Optional[str]:
         """
-        Gets the azureCommunicationServicesId property value. The azureCommunicationServicesId property
+        Gets the azureCommunicationServicesId property value. Azure Communication Services ID of the user.
         Returns: Optional[str]
         """
         return self._azure_communication_services_id
@@ -17,9 +17,9 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
     @azure_communication_services_id.setter
     def azure_communication_services_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the azureCommunicationServicesId property value. The azureCommunicationServicesId property
+        Sets the azureCommunicationServicesId property value. Azure Communication Services ID of the user.
         Args:
-            value: Value to set for the azureCommunicationServicesId property.
+            value: Value to set for the azure_communication_services_id property.
         """
         self._azure_communication_services_id = value
     
@@ -29,7 +29,7 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.azureCommunicationServicesUserConversationMember"
-        # The azureCommunicationServicesId property
+        # Azure Communication Services ID of the user.
         self._azure_communication_services_id: Optional[str] = None
     
     @staticmethod
@@ -50,7 +50,7 @@ class AzureCommunicationServicesUserConversationMember(conversation_member.Conve
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_communication_services_id": lambda n : setattr(self, 'azure_communication_services_id', n.get_str_value()),
+            "azureCommunicationServicesId": lambda n : setattr(self, 'azure_communication_services_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

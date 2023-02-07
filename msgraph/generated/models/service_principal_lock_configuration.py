@@ -34,7 +34,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allProperties property value. Enables locking all sensitive properties. The sensitive properties are keyCredentials, passwordCredentials, and tokenEncryptionKeyId.
         Args:
-            value: Value to set for the allProperties property.
+            value: Value to set for the all_properties property.
         """
         self._all_properties = value
     
@@ -83,7 +83,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the credentialsWithUsageSign property value. Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Sign.
         Args:
-            value: Value to set for the credentialsWithUsageSign property.
+            value: Value to set for the credentials_with_usage_sign property.
         """
         self._credentials_with_usage_sign = value
     
@@ -100,7 +100,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the credentialsWithUsageVerify property value. Locks the keyCredentials and passwordCredentials properties for modification where credential usage type is Verify. This locks OAuth service principals.
         Args:
-            value: Value to set for the credentialsWithUsageVerify property.
+            value: Value to set for the credentials_with_usage_verify property.
         """
         self._credentials_with_usage_verify = value
     
@@ -110,12 +110,12 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "all_properties": lambda n : setattr(self, 'all_properties', n.get_bool_value()),
-            "credentials_with_usage_sign": lambda n : setattr(self, 'credentials_with_usage_sign', n.get_bool_value()),
-            "credentials_with_usage_verify": lambda n : setattr(self, 'credentials_with_usage_verify', n.get_bool_value()),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "allProperties": lambda n : setattr(self, 'all_properties', n.get_bool_value()),
+            "credentialsWithUsageSign": lambda n : setattr(self, 'credentials_with_usage_sign', n.get_bool_value()),
+            "credentialsWithUsageVerify": lambda n : setattr(self, 'credentials_with_usage_verify', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "token_encryption_key_id": lambda n : setattr(self, 'token_encryption_key_id', n.get_bool_value()),
+            "tokenEncryptionKeyId": lambda n : setattr(self, 'token_encryption_key_id', n.get_bool_value()),
         }
         return fields
     
@@ -132,7 +132,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isEnabled property value. Enables or disables service principal lock configuration. To allow the sensitive properties to be updated, update this property to false to disable the lock on the service principal.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -149,7 +149,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -182,7 +182,7 @@ class ServicePrincipalLockConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the tokenEncryptionKeyId property value. Locks the tokenEncryptionKeyId property for modification on the service principal.
         Args:
-            value: Value to set for the tokenEncryptionKeyId property.
+            value: Value to set for the token_encryption_key_id property.
         """
         self._token_encryption_key_id = value
     

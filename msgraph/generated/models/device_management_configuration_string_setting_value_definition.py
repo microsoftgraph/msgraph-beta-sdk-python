@@ -51,7 +51,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         """
         Sets the fileTypes property value. Supported file types for this setting.
         Args:
-            value: Value to set for the fileTypes property.
+            value: Value to set for the file_types property.
         """
         self._file_types = value
     
@@ -78,12 +78,12 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_types": lambda n : setattr(self, 'file_types', n.get_collection_of_primitive_values(str)),
+            "fileTypes": lambda n : setattr(self, 'file_types', n.get_collection_of_primitive_values(str)),
             "format": lambda n : setattr(self, 'format', n.get_enum_value(device_management_configuration_string_format.DeviceManagementConfigurationStringFormat)),
-            "input_validation_schema": lambda n : setattr(self, 'input_validation_schema', n.get_str_value()),
-            "is_secret": lambda n : setattr(self, 'is_secret', n.get_bool_value()),
-            "maximum_length": lambda n : setattr(self, 'maximum_length', n.get_int_value()),
-            "minimum_length": lambda n : setattr(self, 'minimum_length', n.get_int_value()),
+            "inputValidationSchema": lambda n : setattr(self, 'input_validation_schema', n.get_str_value()),
+            "isSecret": lambda n : setattr(self, 'is_secret', n.get_bool_value()),
+            "maximumLength": lambda n : setattr(self, 'maximum_length', n.get_int_value()),
+            "minimumLength": lambda n : setattr(self, 'minimum_length', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         """
         Sets the inputValidationSchema property value. Regular expression or any xml or json schema that the input string should match
         Args:
-            value: Value to set for the inputValidationSchema property.
+            value: Value to set for the input_validation_schema property.
         """
         self._input_validation_schema = value
     
@@ -119,7 +119,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         """
         Sets the isSecret property value. Specifies whether the setting needs to be treated as a secret. Settings marked as yes will be encrypted in transit and at rest and will be displayed as asterisks when represented in the UX.
         Args:
-            value: Value to set for the isSecret property.
+            value: Value to set for the is_secret property.
         """
         self._is_secret = value
     
@@ -136,7 +136,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         """
         Sets the maximumLength property value. Maximum length of string
         Args:
-            value: Value to set for the maximumLength property.
+            value: Value to set for the maximum_length property.
         """
         self._maximum_length = value
     
@@ -153,7 +153,7 @@ class DeviceManagementConfigurationStringSettingValueDefinition(device_managemen
         """
         Sets the minimumLength property value. Minimum length of string
         Args:
-            value: Value to set for the minimumLength property.
+            value: Value to set for the minimum_length property.
         """
         self._minimum_length = value
     

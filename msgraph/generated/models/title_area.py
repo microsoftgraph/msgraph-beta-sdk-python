@@ -38,7 +38,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the alternativeText property value. Alternative text on the title area.
         Args:
-            value: Value to set for the alternativeText property.
+            value: Value to set for the alternative_text property.
         """
         self._alternative_text = value
     
@@ -97,7 +97,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the enableGradientEffect property value. Indicates whether the title area has a gradient effect enabled.
         Args:
-            value: Value to set for the enableGradientEffect property.
+            value: Value to set for the enable_gradient_effect property.
         """
         self._enable_gradient_effect = value
     
@@ -107,17 +107,17 @@ class TitleArea(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alternative_text": lambda n : setattr(self, 'alternative_text', n.get_str_value()),
-            "enable_gradient_effect": lambda n : setattr(self, 'enable_gradient_effect', n.get_bool_value()),
-            "image_web_url": lambda n : setattr(self, 'image_web_url', n.get_str_value()),
+            "alternativeText": lambda n : setattr(self, 'alternative_text', n.get_str_value()),
+            "enableGradientEffect": lambda n : setattr(self, 'enable_gradient_effect', n.get_bool_value()),
+            "imageWebUrl": lambda n : setattr(self, 'image_web_url', n.get_str_value()),
             "layout": lambda n : setattr(self, 'layout', n.get_enum_value(title_area_layout_type.TitleAreaLayoutType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "server_processed_content": lambda n : setattr(self, 'server_processed_content', n.get_object_value(server_processed_content.ServerProcessedContent)),
-            "show_author": lambda n : setattr(self, 'show_author', n.get_bool_value()),
-            "show_published_date": lambda n : setattr(self, 'show_published_date', n.get_bool_value()),
-            "show_text_block_above_title": lambda n : setattr(self, 'show_text_block_above_title', n.get_bool_value()),
-            "text_above_title": lambda n : setattr(self, 'text_above_title', n.get_str_value()),
-            "text_alignment": lambda n : setattr(self, 'text_alignment', n.get_enum_value(title_area_text_alignment_type.TitleAreaTextAlignmentType)),
+            "serverProcessedContent": lambda n : setattr(self, 'server_processed_content', n.get_object_value(server_processed_content.ServerProcessedContent)),
+            "showAuthor": lambda n : setattr(self, 'show_author', n.get_bool_value()),
+            "showPublishedDate": lambda n : setattr(self, 'show_published_date', n.get_bool_value()),
+            "showTextBlockAboveTitle": lambda n : setattr(self, 'show_text_block_above_title', n.get_bool_value()),
+            "textAboveTitle": lambda n : setattr(self, 'text_above_title', n.get_str_value()),
+            "textAlignment": lambda n : setattr(self, 'text_alignment', n.get_enum_value(title_area_text_alignment_type.TitleAreaTextAlignmentType)),
         }
         return fields
     
@@ -134,7 +134,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the imageWebUrl property value. URL of the image in the title area.
         Args:
-            value: Value to set for the imageWebUrl property.
+            value: Value to set for the image_web_url property.
         """
         self._image_web_url = value
     
@@ -168,7 +168,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -206,7 +206,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the serverProcessedContent property value. Contains collections of data that can be processed by server side services like search index and link fixup.
         Args:
-            value: Value to set for the serverProcessedContent property.
+            value: Value to set for the server_processed_content property.
         """
         self._server_processed_content = value
     
@@ -223,7 +223,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the showAuthor property value. Indicates whether the author should be shown in title area.
         Args:
-            value: Value to set for the showAuthor property.
+            value: Value to set for the show_author property.
         """
         self._show_author = value
     
@@ -240,7 +240,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the showPublishedDate property value. Indicates whether the published date should be shown in title area.
         Args:
-            value: Value to set for the showPublishedDate property.
+            value: Value to set for the show_published_date property.
         """
         self._show_published_date = value
     
@@ -257,7 +257,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the showTextBlockAboveTitle property value. Indicates whether the text block above title should be shown in title area.
         Args:
-            value: Value to set for the showTextBlockAboveTitle property.
+            value: Value to set for the show_text_block_above_title property.
         """
         self._show_text_block_above_title = value
     
@@ -274,7 +274,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the textAboveTitle property value. The text above title line.
         Args:
-            value: Value to set for the textAboveTitle property.
+            value: Value to set for the text_above_title property.
         """
         self._text_above_title = value
     
@@ -291,7 +291,7 @@ class TitleArea(AdditionalDataHolder, Parsable):
         """
         Sets the textAlignment property value. Enumeration value that indicates the text alignment of the title area. The possible values are: left, center, unknownFutureValue.
         Args:
-            value: Value to set for the textAlignment property.
+            value: Value to set for the text_alignment property.
         """
         self._text_alignment = value
     

@@ -55,7 +55,7 @@ class DeviceManagementConfigurationSettingInstanceTemplateReference(AdditionalDa
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_instance_template_id": lambda n : setattr(self, 'setting_instance_template_id', n.get_str_value()),
+            "settingInstanceTemplateId": lambda n : setattr(self, 'setting_instance_template_id', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class DeviceManagementConfigurationSettingInstanceTemplateReference(AdditionalDa
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -101,7 +101,7 @@ class DeviceManagementConfigurationSettingInstanceTemplateReference(AdditionalDa
         """
         Sets the settingInstanceTemplateId property value. Setting instance template id
         Args:
-            value: Value to set for the settingInstanceTemplateId property.
+            value: Value to set for the setting_instance_template_id property.
         """
         self._setting_instance_template_id = value
     

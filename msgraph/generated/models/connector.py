@@ -49,7 +49,7 @@ class Connector(entity.Entity):
         """
         Sets the externalIp property value. The external IP address as detected by the the connector server. Read-only.
         Args:
-            value: Value to set for the externalIp property.
+            value: Value to set for the external_ip property.
         """
         self._external_ip = value
     
@@ -59,9 +59,9 @@ class Connector(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "external_ip": lambda n : setattr(self, 'external_ip', n.get_str_value()),
-            "machine_name": lambda n : setattr(self, 'machine_name', n.get_str_value()),
-            "member_of": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(connector_group.ConnectorGroup)),
+            "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
+            "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
+            "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(connector_group.ConnectorGroup)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(connector_status.ConnectorStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -81,7 +81,7 @@ class Connector(entity.Entity):
         """
         Sets the machineName property value. The machine name the connector is installed and running on.
         Args:
-            value: Value to set for the machineName property.
+            value: Value to set for the machine_name property.
         """
         self._machine_name = value
     
@@ -98,7 +98,7 @@ class Connector(entity.Entity):
         """
         Sets the memberOf property value. The connectorGroup that the connector is a member of. Read-only.
         Args:
-            value: Value to set for the memberOf property.
+            value: Value to set for the member_of property.
         """
         self._member_of = value
     

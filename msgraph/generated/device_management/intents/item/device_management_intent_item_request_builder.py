@@ -10,22 +10,22 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.intents.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.intents.item.assignments.assignments_request_builder')
 device_management_intent_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.assignments.item.device_management_intent_assignment_item_request_builder')
 categories_request_builder = lazy_import('msgraph.generated.device_management.intents.item.categories.categories_request_builder')
 device_management_intent_setting_category_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.categories.item.device_management_intent_setting_category_item_request_builder')
-compare_with_template_id_request_builder = lazy_import('msgraph.generated.device_management.intents.item.compare_with_template_id.compare_with_template_id_request_builder')
-create_copy_request_builder = lazy_import('msgraph.generated.device_management.intents.item.create_copy.create_copy_request_builder')
 device_setting_state_summaries_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_setting_state_summaries.device_setting_state_summaries_request_builder')
 device_management_intent_device_setting_state_summary_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_setting_state_summaries.item.device_management_intent_device_setting_state_summary_item_request_builder')
 device_states_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_states.device_states_request_builder')
 device_management_intent_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_states.item.device_management_intent_device_state_item_request_builder')
 device_state_summary_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_state_summary.device_state_summary_request_builder')
-migrate_to_template_request_builder = lazy_import('msgraph.generated.device_management.intents.item.migrate_to_template.migrate_to_template_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.intents.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
+microsoft_graph_compare_with_template_id_request_builder = lazy_import('msgraph.generated.device_management.intents.item.microsoft_graph_compare_with_template_id.microsoft_graph_compare_with_template_id_request_builder')
+microsoft_graph_create_copy_request_builder = lazy_import('msgraph.generated.device_management.intents.item.microsoft_graph_create_copy.microsoft_graph_create_copy_request_builder')
+microsoft_graph_migrate_to_template_request_builder = lazy_import('msgraph.generated.device_management.intents.item.microsoft_graph_migrate_to_template.microsoft_graph_migrate_to_template_request_builder')
+microsoft_graph_update_settings_request_builder = lazy_import('msgraph.generated.device_management.intents.item.microsoft_graph_update_settings.microsoft_graph_update_settings_request_builder')
 settings_request_builder = lazy_import('msgraph.generated.device_management.intents.item.settings.settings_request_builder')
 device_management_setting_instance_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.settings.item.device_management_setting_instance_item_request_builder')
-update_settings_request_builder = lazy_import('msgraph.generated.device_management.intents.item.update_settings.update_settings_request_builder')
 user_states_request_builder = lazy_import('msgraph.generated.device_management.intents.item.user_states.user_states_request_builder')
 device_management_intent_user_state_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.user_states.item.device_management_intent_user_state_item_request_builder')
 user_state_summary_request_builder = lazy_import('msgraph.generated.device_management.intents.item.user_state_summary.user_state_summary_request_builder')
@@ -36,13 +36,6 @@ class DeviceManagementIntentItemRequestBuilder():
     """
     Provides operations to manage the intents property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -56,13 +49,6 @@ class DeviceManagementIntentItemRequestBuilder():
         Provides operations to manage the categories property of the microsoft.graph.deviceManagementIntent entity.
         """
         return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
-        """
-        Provides operations to call the createCopy method.
-        """
-        return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def device_setting_state_summaries(self) -> device_setting_state_summaries_request_builder.DeviceSettingStateSummariesRequestBuilder:
@@ -86,11 +72,32 @@ class DeviceManagementIntentItemRequestBuilder():
         return device_state_summary_request_builder.DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def migrate_to_template(self) -> migrate_to_template_request_builder.MigrateToTemplateRequestBuilder:
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_create_copy(self) -> microsoft_graph_create_copy_request_builder.MicrosoftGraphCreateCopyRequestBuilder:
+        """
+        Provides operations to call the createCopy method.
+        """
+        return microsoft_graph_create_copy_request_builder.MicrosoftGraphCreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_migrate_to_template(self) -> microsoft_graph_migrate_to_template_request_builder.MicrosoftGraphMigrateToTemplateRequestBuilder:
         """
         Provides operations to call the migrateToTemplate method.
         """
-        return migrate_to_template_request_builder.MigrateToTemplateRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_migrate_to_template_request_builder.MicrosoftGraphMigrateToTemplateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_settings(self) -> microsoft_graph_update_settings_request_builder.MicrosoftGraphUpdateSettingsRequestBuilder:
+        """
+        Provides operations to call the updateSettings method.
+        """
+        return microsoft_graph_update_settings_request_builder.MicrosoftGraphUpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def settings(self) -> settings_request_builder.SettingsRequestBuilder:
@@ -98,13 +105,6 @@ class DeviceManagementIntentItemRequestBuilder():
         Provides operations to manage the settings property of the microsoft.graph.deviceManagementIntent entity.
         """
         return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_settings(self) -> update_settings_request_builder.UpdateSettingsRequestBuilder:
-        """
-        Provides operations to call the updateSettings method.
-        """
-        return update_settings_request_builder.UpdateSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_states(self) -> user_states_request_builder.UserStatesRequestBuilder:
@@ -146,17 +146,6 @@ class DeviceManagementIntentItemRequestBuilder():
         url_tpl_params["deviceManagementIntentSettingCategory%2Did"] = id
         return device_management_intent_setting_category_item_request_builder.DeviceManagementIntentSettingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
-        """
-        Provides operations to call the compare method.
-        Args:
-            templateId: Usage: templateId='{templateId}'
-        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
-        """
-        if template_id is None:
-            raise Exception("template_id cannot be undefined")
-        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, templateId)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementIntentItemRequestBuilder and sets the default values.
@@ -175,12 +164,11 @@ class DeviceManagementIntentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property intents for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -191,7 +179,7 @@ class DeviceManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_setting_state_summaries_by_id(self,id: str) -> device_management_intent_device_setting_state_summary_item_request_builder.DeviceManagementIntentDeviceSettingStateSummaryItemRequestBuilder:
         """
@@ -219,12 +207,11 @@ class DeviceManagementIntentItemRequestBuilder():
         url_tpl_params["deviceManagementIntentDeviceState%2Did"] = id
         return device_management_intent_device_state_item_request_builder.DeviceManagementIntentDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
+    async def get(self,request_configuration: Optional[DeviceManagementIntentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
         """
         The device management intents
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent.DeviceManagementIntent]
         """
         request_info = self.to_get_request_information(
@@ -236,15 +223,25 @@ class DeviceManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, error_mapping)
     
-    async def patch(self,body: Optional[device_management_intent.DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
+    def microsoft_graph_compare_with_template_id(self,template_id: Optional[str] = None) -> microsoft_graph_compare_with_template_id_request_builder.MicrosoftGraphCompareWithTemplateIdRequestBuilder:
+        """
+        Provides operations to call the compare method.
+        Args:
+            templateId: Usage: templateId='{templateId}'
+        Returns: microsoft_graph_compare_with_template_id_request_builder.MicrosoftGraphCompareWithTemplateIdRequestBuilder
+        """
+        if template_id is None:
+            raise Exception("template_id cannot be undefined")
+        return microsoft_graph_compare_with_template_id_request_builder.MicrosoftGraphCompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, templateId)
+    
+    async def patch(self,body: Optional[device_management_intent.DeviceManagementIntent] = None, request_configuration: Optional[DeviceManagementIntentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_intent.DeviceManagementIntent]:
         """
         Update the navigation property intents in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_intent.DeviceManagementIntent]
         """
         if body is None:
@@ -258,7 +255,7 @@ class DeviceManagementIntentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_intent.DeviceManagementIntent, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
         """

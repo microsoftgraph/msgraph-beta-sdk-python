@@ -54,7 +54,7 @@ class UserPrint(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recent_printer_shares": lambda n : setattr(self, 'recent_printer_shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
+            "recentPrinterShares": lambda n : setattr(self, 'recent_printer_shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class UserPrint(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -88,7 +88,7 @@ class UserPrint(AdditionalDataHolder, Parsable):
         """
         Sets the recentPrinterShares property value. The recentPrinterShares property
         Args:
-            value: Value to set for the recentPrinterShares property.
+            value: Value to set for the recent_printer_shares property.
         """
         self._recent_printer_shares = value
     

@@ -37,7 +37,7 @@ class SpecifiedCaptiveNetworkPlugins(AdditionalDataHolder, Parsable):
         """
         Sets the allowedBundleIdentifiers property value. Address of the IKEv2 server. Must be a FQDN, UserFQDN, network address, or ASN1DN
         Args:
-            value: Value to set for the allowedBundleIdentifiers property.
+            value: Value to set for the allowed_bundle_identifiers property.
         """
         self._allowed_bundle_identifiers = value
     
@@ -71,7 +71,7 @@ class SpecifiedCaptiveNetworkPlugins(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_bundle_identifiers": lambda n : setattr(self, 'allowed_bundle_identifiers', n.get_collection_of_primitive_values(str)),
+            "allowedBundleIdentifiers": lambda n : setattr(self, 'allowed_bundle_identifiers', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class SpecifiedCaptiveNetworkPlugins(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

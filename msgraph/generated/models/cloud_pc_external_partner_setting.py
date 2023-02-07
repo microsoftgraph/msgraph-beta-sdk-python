@@ -51,7 +51,7 @@ class CloudPcExternalPartnerSetting(entity.Entity):
         """
         Sets the enableConnection property value. Enable or disable the connection to an external partner. If true, an external partner API will accept incoming calls from external partners. Required. Supports $filter (eq).
         Args:
-            value: Value to set for the enableConnection property.
+            value: Value to set for the enable_connection property.
         """
         self._enable_connection = value
     
@@ -61,11 +61,11 @@ class CloudPcExternalPartnerSetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enable_connection": lambda n : setattr(self, 'enable_connection', n.get_bool_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "partner_id": lambda n : setattr(self, 'partner_id', n.get_str_value()),
+            "enableConnection": lambda n : setattr(self, 'enable_connection', n.get_bool_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "partnerId": lambda n : setattr(self, 'partner_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_external_partner_status.CloudPcExternalPartnerStatus)),
-            "status_details": lambda n : setattr(self, 'status_details', n.get_str_value()),
+            "statusDetails": lambda n : setattr(self, 'status_details', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class CloudPcExternalPartnerSetting(entity.Entity):
         """
         Sets the lastSyncDateTime property value. Last data sync time for this external partner. The Timestamp type represents the date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -101,7 +101,7 @@ class CloudPcExternalPartnerSetting(entity.Entity):
         """
         Sets the partnerId property value. The external partner ID.
         Args:
-            value: Value to set for the partnerId property.
+            value: Value to set for the partner_id property.
         """
         self._partner_id = value
     
@@ -150,7 +150,7 @@ class CloudPcExternalPartnerSetting(entity.Entity):
         """
         Sets the statusDetails property value. Status details message.
         Args:
-            value: Value to set for the statusDetails property.
+            value: Value to set for the status_details property.
         """
         self._status_details = value
     

@@ -9,7 +9,7 @@ class CorsConfiguration_v2(entity.Entity):
     @property
     def allowed_headers(self,) -> Optional[List[str]]:
         """
-        Gets the allowedHeaders property value. The allowedHeaders property
+        Gets the allowedHeaders property value. The request headers that the origin domain may specify on the CORS request. The wildcard character * indicates that any header beginning with the specified prefix is allowed.
         Returns: Optional[List[str]]
         """
         return self._allowed_headers
@@ -17,16 +17,16 @@ class CorsConfiguration_v2(entity.Entity):
     @allowed_headers.setter
     def allowed_headers(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the allowedHeaders property value. The allowedHeaders property
+        Sets the allowedHeaders property value. The request headers that the origin domain may specify on the CORS request. The wildcard character * indicates that any header beginning with the specified prefix is allowed.
         Args:
-            value: Value to set for the allowedHeaders property.
+            value: Value to set for the allowed_headers property.
         """
         self._allowed_headers = value
     
     @property
     def allowed_methods(self,) -> Optional[List[str]]:
         """
-        Gets the allowedMethods property value. The allowedMethods property
+        Gets the allowedMethods property value. The HTTP request methods that the origin domain may use for a CORS request.
         Returns: Optional[List[str]]
         """
         return self._allowed_methods
@@ -34,16 +34,16 @@ class CorsConfiguration_v2(entity.Entity):
     @allowed_methods.setter
     def allowed_methods(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the allowedMethods property value. The allowedMethods property
+        Sets the allowedMethods property value. The HTTP request methods that the origin domain may use for a CORS request.
         Args:
-            value: Value to set for the allowedMethods property.
+            value: Value to set for the allowed_methods property.
         """
         self._allowed_methods = value
     
     @property
     def allowed_origins(self,) -> Optional[List[str]]:
         """
-        Gets the allowedOrigins property value. The allowedOrigins property
+        Gets the allowedOrigins property value. The origin domains that are permitted to make a request against the service via CORS. The origin domain is the domain from which the request originates. The origin must be an exact case-sensitive match with the origin that the user agent sends to the service.
         Returns: Optional[List[str]]
         """
         return self._allowed_origins
@@ -51,9 +51,9 @@ class CorsConfiguration_v2(entity.Entity):
     @allowed_origins.setter
     def allowed_origins(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the allowedOrigins property value. The allowedOrigins property
+        Sets the allowedOrigins property value. The origin domains that are permitted to make a request against the service via CORS. The origin domain is the domain from which the request originates. The origin must be an exact case-sensitive match with the origin that the user agent sends to the service.
         Args:
-            value: Value to set for the allowedOrigins property.
+            value: Value to set for the allowed_origins property.
         """
         self._allowed_origins = value
     
@@ -62,17 +62,17 @@ class CorsConfiguration_v2(entity.Entity):
         Instantiates a new corsConfiguration_v2 and sets the default values.
         """
         super().__init__()
-        # The allowedHeaders property
+        # The request headers that the origin domain may specify on the CORS request. The wildcard character * indicates that any header beginning with the specified prefix is allowed.
         self._allowed_headers: Optional[List[str]] = None
-        # The allowedMethods property
+        # The HTTP request methods that the origin domain may use for a CORS request.
         self._allowed_methods: Optional[List[str]] = None
-        # The allowedOrigins property
+        # The origin domains that are permitted to make a request against the service via CORS. The origin domain is the domain from which the request originates. The origin must be an exact case-sensitive match with the origin that the user agent sends to the service.
         self._allowed_origins: Optional[List[str]] = None
-        # The maxAgeInSeconds property
+        # The maximum amount of time that a browser should cache the response to the preflight OPTIONS request.
         self._max_age_in_seconds: Optional[int] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The resource property
+        # Resource within the application segment for which CORS permissions are granted. / grants permission for the whole app segment.
         self._resource: Optional[str] = None
     
     @staticmethod
@@ -93,10 +93,10 @@ class CorsConfiguration_v2(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_headers": lambda n : setattr(self, 'allowed_headers', n.get_collection_of_primitive_values(str)),
-            "allowed_methods": lambda n : setattr(self, 'allowed_methods', n.get_collection_of_primitive_values(str)),
-            "allowed_origins": lambda n : setattr(self, 'allowed_origins', n.get_collection_of_primitive_values(str)),
-            "max_age_in_seconds": lambda n : setattr(self, 'max_age_in_seconds', n.get_int_value()),
+            "allowedHeaders": lambda n : setattr(self, 'allowed_headers', n.get_collection_of_primitive_values(str)),
+            "allowedMethods": lambda n : setattr(self, 'allowed_methods', n.get_collection_of_primitive_values(str)),
+            "allowedOrigins": lambda n : setattr(self, 'allowed_origins', n.get_collection_of_primitive_values(str)),
+            "maxAgeInSeconds": lambda n : setattr(self, 'max_age_in_seconds', n.get_int_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -106,7 +106,7 @@ class CorsConfiguration_v2(entity.Entity):
     @property
     def max_age_in_seconds(self,) -> Optional[int]:
         """
-        Gets the maxAgeInSeconds property value. The maxAgeInSeconds property
+        Gets the maxAgeInSeconds property value. The maximum amount of time that a browser should cache the response to the preflight OPTIONS request.
         Returns: Optional[int]
         """
         return self._max_age_in_seconds
@@ -114,16 +114,16 @@ class CorsConfiguration_v2(entity.Entity):
     @max_age_in_seconds.setter
     def max_age_in_seconds(self,value: Optional[int] = None) -> None:
         """
-        Sets the maxAgeInSeconds property value. The maxAgeInSeconds property
+        Sets the maxAgeInSeconds property value. The maximum amount of time that a browser should cache the response to the preflight OPTIONS request.
         Args:
-            value: Value to set for the maxAgeInSeconds property.
+            value: Value to set for the max_age_in_seconds property.
         """
         self._max_age_in_seconds = value
     
     @property
     def resource(self,) -> Optional[str]:
         """
-        Gets the resource property value. The resource property
+        Gets the resource property value. Resource within the application segment for which CORS permissions are granted. / grants permission for the whole app segment.
         Returns: Optional[str]
         """
         return self._resource
@@ -131,7 +131,7 @@ class CorsConfiguration_v2(entity.Entity):
     @resource.setter
     def resource(self,value: Optional[str] = None) -> None:
         """
-        Sets the resource property value. The resource property
+        Sets the resource property value. Resource within the application segment for which CORS permissions are granted. / grants permission for the whole app segment.
         Args:
             value: Value to set for the resource property.
         """

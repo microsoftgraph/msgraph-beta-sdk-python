@@ -35,7 +35,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         """
         Sets the attackSimDateTime property value. The date and time of the attack simulation.
         Args:
-            value: Value to set for the attackSimDateTime property.
+            value: Value to set for the attack_sim_date_time property.
         """
         self._attack_sim_date_time = value
     
@@ -52,7 +52,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         """
         Sets the attackSimDurationTime property value. The duration (in time) for the attack simulation.
         Args:
-            value: Value to set for the attackSimDurationTime property.
+            value: Value to set for the attack_sim_duration_time property.
         """
         self._attack_sim_duration_time = value
     
@@ -69,7 +69,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         """
         Sets the attackSimId property value. The activity ID for the attack simulation.
         Args:
-            value: Value to set for the attackSimId property.
+            value: Value to set for the attack_sim_id property.
         """
         self._attack_sim_id = value
     
@@ -86,7 +86,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         """
         Sets the attackSimUserId property value. The unique identifier for the user who got the attack simulation email.
         Args:
-            value: Value to set for the attackSimUserId property.
+            value: Value to set for the attack_sim_user_id property.
         """
         self._attack_sim_user_id = value
     
@@ -126,10 +126,10 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attack_sim_date_time": lambda n : setattr(self, 'attack_sim_date_time', n.get_datetime_value()),
-            "attack_sim_duration_time": lambda n : setattr(self, 'attack_sim_duration_time', n.get_object_value(Timedelta)),
-            "attack_sim_id": lambda n : setattr(self, 'attack_sim_id', n.get_object_value(Guid)),
-            "attack_sim_user_id": lambda n : setattr(self, 'attack_sim_user_id', n.get_str_value()),
+            "attackSimDateTime": lambda n : setattr(self, 'attack_sim_date_time', n.get_datetime_value()),
+            "attackSimDurationTime": lambda n : setattr(self, 'attack_sim_duration_time', n.get_object_value(Timedelta)),
+            "attackSimId": lambda n : setattr(self, 'attack_sim_id', n.get_object_value(Guid)),
+            "attackSimUserId": lambda n : setattr(self, 'attack_sim_user_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -147,7 +147,7 @@ class AttackSimulationInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

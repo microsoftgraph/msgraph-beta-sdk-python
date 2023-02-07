@@ -37,7 +37,7 @@ class MacOSFirewallApplication(AdditionalDataHolder, Parsable):
         """
         Sets the allowsIncomingConnections property value. Whether or not incoming connections are allowed.
         Args:
-            value: Value to set for the allowsIncomingConnections property.
+            value: Value to set for the allows_incoming_connections property.
         """
         self._allows_incoming_connections = value
     
@@ -54,7 +54,7 @@ class MacOSFirewallApplication(AdditionalDataHolder, Parsable):
         """
         Sets the bundleId property value. BundleId of the application.
         Args:
-            value: Value to set for the bundleId property.
+            value: Value to set for the bundle_id property.
         """
         self._bundle_id = value
     
@@ -90,8 +90,8 @@ class MacOSFirewallApplication(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allows_incoming_connections": lambda n : setattr(self, 'allows_incoming_connections', n.get_bool_value()),
-            "bundle_id": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
+            "allowsIncomingConnections": lambda n : setattr(self, 'allows_incoming_connections', n.get_bool_value()),
+            "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -109,7 +109,7 @@ class MacOSFirewallApplication(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

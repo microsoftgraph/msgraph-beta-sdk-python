@@ -57,9 +57,9 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "ignored_delimiters": lambda n : setattr(self, 'ignored_delimiters', n.get_collection_of_primitive_values(str)),
-            "is_case_insensitive": lambda n : setattr(self, 'is_case_insensitive', n.get_bool_value()),
-            "is_searchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
+            "ignoredDelimiters": lambda n : setattr(self, 'ignored_delimiters', n.get_collection_of_primitive_values(str)),
+            "isCaseInsensitive": lambda n : setattr(self, 'is_case_insensitive', n.get_bool_value()),
+            "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -78,7 +78,7 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
         """
         Sets the ignoredDelimiters property value. The ignoredDelimiters property
         Args:
-            value: Value to set for the ignoredDelimiters property.
+            value: Value to set for the ignored_delimiters property.
         """
         self._ignored_delimiters = value
     
@@ -95,7 +95,7 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
         """
         Sets the isCaseInsensitive property value. The isCaseInsensitive property
         Args:
-            value: Value to set for the isCaseInsensitive property.
+            value: Value to set for the is_case_insensitive property.
         """
         self._is_case_insensitive = value
     
@@ -112,7 +112,7 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
         """
         Sets the isSearchable property value. The isSearchable property
         Args:
-            value: Value to set for the isSearchable property.
+            value: Value to set for the is_searchable property.
         """
         self._is_searchable = value
     
@@ -146,7 +146,7 @@ class ExactDataMatchStoreColumn(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

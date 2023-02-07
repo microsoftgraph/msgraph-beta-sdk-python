@@ -80,8 +80,6 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         self._work_profile_password_block_trust_agents: Optional[bool] = None
         # Number of days before the work profile password expires. Valid values 1 to 365
         self._work_profile_password_expiration_days: Optional[int] = None
-        # Minimum length of work profile password. Valid values 4 to 16
-        self._work_profile_password_minimum_length: Optional[int] = None
         # Minimum # of letter characters required in work profile password. Valid values 1 to 10
         self._work_profile_password_min_letter_characters: Optional[int] = None
         # Minimum # of lower-case characters required in work profile password. Valid values 1 to 10
@@ -94,6 +92,8 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         self._work_profile_password_min_symbol_characters: Optional[int] = None
         # Minimum # of upper-case characters required in work profile password. Valid values 1 to 10
         self._work_profile_password_min_upper_case_characters: Optional[int] = None
+        # Minimum length of work profile password. Valid values 4 to 16
+        self._work_profile_password_minimum_length: Optional[int] = None
         # Minutes of inactivity before the screen times out.
         self._work_profile_password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
         # Number of previous work profile passwords to block. Valid values 0 to 24
@@ -102,10 +102,10 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         self._work_profile_password_required_type: Optional[android_work_profile_required_password_type.AndroidWorkProfileRequiredPasswordType] = None
         # Number of sign in failures allowed before work profile is removed and all corporate data deleted. Valid values 1 to 16
         self._work_profile_password_sign_in_failure_count_before_factory_reset: Optional[int] = None
-        # The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
-        self._work_profile_required_password_complexity: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity] = None
         # Password is required or not for work profile
         self._work_profile_require_password: Optional[bool] = None
+        # The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
+        self._work_profile_required_password_complexity: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidWorkProfileGeneralDeviceConfiguration:
@@ -125,51 +125,51 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "password_block_face_unlock": lambda n : setattr(self, 'password_block_face_unlock', n.get_bool_value()),
-            "password_block_fingerprint_unlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
-            "password_block_iris_unlock": lambda n : setattr(self, 'password_block_iris_unlock', n.get_bool_value()),
-            "password_block_trust_agents": lambda n : setattr(self, 'password_block_trust_agents', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_work_profile_required_password_type.AndroidWorkProfileRequiredPasswordType)),
-            "password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
-            "required_password_complexity": lambda n : setattr(self, 'required_password_complexity', n.get_enum_value(android_required_password_complexity.AndroidRequiredPasswordComplexity)),
-            "security_require_verify_apps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
-            "vpn_always_on_package_identifier": lambda n : setattr(self, 'vpn_always_on_package_identifier', n.get_str_value()),
-            "vpn_enable_always_on_lockdown_mode": lambda n : setattr(self, 'vpn_enable_always_on_lockdown_mode', n.get_bool_value()),
-            "work_profile_allow_app_installs_from_unknown_sources": lambda n : setattr(self, 'work_profile_allow_app_installs_from_unknown_sources', n.get_bool_value()),
-            "work_profile_allow_widgets": lambda n : setattr(self, 'work_profile_allow_widgets', n.get_bool_value()),
-            "work_profile_block_adding_accounts": lambda n : setattr(self, 'work_profile_block_adding_accounts', n.get_bool_value()),
-            "work_profile_block_camera": lambda n : setattr(self, 'work_profile_block_camera', n.get_bool_value()),
-            "work_profile_block_cross_profile_caller_id": lambda n : setattr(self, 'work_profile_block_cross_profile_caller_id', n.get_bool_value()),
-            "work_profile_block_cross_profile_contacts_search": lambda n : setattr(self, 'work_profile_block_cross_profile_contacts_search', n.get_bool_value()),
-            "work_profile_block_cross_profile_copy_paste": lambda n : setattr(self, 'work_profile_block_cross_profile_copy_paste', n.get_bool_value()),
-            "work_profile_block_notifications_while_device_locked": lambda n : setattr(self, 'work_profile_block_notifications_while_device_locked', n.get_bool_value()),
-            "work_profile_block_personal_app_installs_from_unknown_sources": lambda n : setattr(self, 'work_profile_block_personal_app_installs_from_unknown_sources', n.get_bool_value()),
-            "work_profile_block_screen_capture": lambda n : setattr(self, 'work_profile_block_screen_capture', n.get_bool_value()),
-            "work_profile_bluetooth_enable_contact_sharing": lambda n : setattr(self, 'work_profile_bluetooth_enable_contact_sharing', n.get_bool_value()),
-            "work_profile_data_sharing_type": lambda n : setattr(self, 'work_profile_data_sharing_type', n.get_enum_value(android_work_profile_cross_profile_data_sharing_type.AndroidWorkProfileCrossProfileDataSharingType)),
-            "work_profile_default_app_permission_policy": lambda n : setattr(self, 'work_profile_default_app_permission_policy', n.get_enum_value(android_work_profile_default_app_permission_policy_type.AndroidWorkProfileDefaultAppPermissionPolicyType)),
-            "work_profile_password_block_face_unlock": lambda n : setattr(self, 'work_profile_password_block_face_unlock', n.get_bool_value()),
-            "work_profile_password_block_fingerprint_unlock": lambda n : setattr(self, 'work_profile_password_block_fingerprint_unlock', n.get_bool_value()),
-            "work_profile_password_block_iris_unlock": lambda n : setattr(self, 'work_profile_password_block_iris_unlock', n.get_bool_value()),
-            "work_profile_password_block_trust_agents": lambda n : setattr(self, 'work_profile_password_block_trust_agents', n.get_bool_value()),
-            "work_profile_password_expiration_days": lambda n : setattr(self, 'work_profile_password_expiration_days', n.get_int_value()),
-            "work_profile_password_minimum_length": lambda n : setattr(self, 'work_profile_password_minimum_length', n.get_int_value()),
-            "work_profile_password_min_letter_characters": lambda n : setattr(self, 'work_profile_password_min_letter_characters', n.get_int_value()),
-            "work_profile_password_min_lower_case_characters": lambda n : setattr(self, 'work_profile_password_min_lower_case_characters', n.get_int_value()),
-            "work_profile_password_min_non_letter_characters": lambda n : setattr(self, 'work_profile_password_min_non_letter_characters', n.get_int_value()),
-            "work_profile_password_min_numeric_characters": lambda n : setattr(self, 'work_profile_password_min_numeric_characters', n.get_int_value()),
-            "work_profile_password_min_symbol_characters": lambda n : setattr(self, 'work_profile_password_min_symbol_characters', n.get_int_value()),
-            "work_profile_password_min_upper_case_characters": lambda n : setattr(self, 'work_profile_password_min_upper_case_characters', n.get_int_value()),
-            "work_profile_password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'work_profile_password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "work_profile_password_previous_password_block_count": lambda n : setattr(self, 'work_profile_password_previous_password_block_count', n.get_int_value()),
-            "work_profile_password_required_type": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(android_work_profile_required_password_type.AndroidWorkProfileRequiredPasswordType)),
-            "work_profile_password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'work_profile_password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
-            "work_profile_required_password_complexity": lambda n : setattr(self, 'work_profile_required_password_complexity', n.get_enum_value(android_required_password_complexity.AndroidRequiredPasswordComplexity)),
-            "work_profile_require_password": lambda n : setattr(self, 'work_profile_require_password', n.get_bool_value()),
+            "passwordBlockFaceUnlock": lambda n : setattr(self, 'password_block_face_unlock', n.get_bool_value()),
+            "passwordBlockFingerprintUnlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
+            "passwordBlockIrisUnlock": lambda n : setattr(self, 'password_block_iris_unlock', n.get_bool_value()),
+            "passwordBlockTrustAgents": lambda n : setattr(self, 'password_block_trust_agents', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_work_profile_required_password_type.AndroidWorkProfileRequiredPasswordType)),
+            "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "requiredPasswordComplexity": lambda n : setattr(self, 'required_password_complexity', n.get_enum_value(android_required_password_complexity.AndroidRequiredPasswordComplexity)),
+            "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
+            "vpnAlwaysOnPackageIdentifier": lambda n : setattr(self, 'vpn_always_on_package_identifier', n.get_str_value()),
+            "vpnEnableAlwaysOnLockdownMode": lambda n : setattr(self, 'vpn_enable_always_on_lockdown_mode', n.get_bool_value()),
+            "workProfileAllowAppInstallsFromUnknownSources": lambda n : setattr(self, 'work_profile_allow_app_installs_from_unknown_sources', n.get_bool_value()),
+            "workProfileAllowWidgets": lambda n : setattr(self, 'work_profile_allow_widgets', n.get_bool_value()),
+            "workProfileBlockAddingAccounts": lambda n : setattr(self, 'work_profile_block_adding_accounts', n.get_bool_value()),
+            "workProfileBlockCamera": lambda n : setattr(self, 'work_profile_block_camera', n.get_bool_value()),
+            "workProfileBlockCrossProfileCallerId": lambda n : setattr(self, 'work_profile_block_cross_profile_caller_id', n.get_bool_value()),
+            "workProfileBlockCrossProfileContactsSearch": lambda n : setattr(self, 'work_profile_block_cross_profile_contacts_search', n.get_bool_value()),
+            "workProfileBlockCrossProfileCopyPaste": lambda n : setattr(self, 'work_profile_block_cross_profile_copy_paste', n.get_bool_value()),
+            "workProfileBlockNotificationsWhileDeviceLocked": lambda n : setattr(self, 'work_profile_block_notifications_while_device_locked', n.get_bool_value()),
+            "workProfileBlockPersonalAppInstallsFromUnknownSources": lambda n : setattr(self, 'work_profile_block_personal_app_installs_from_unknown_sources', n.get_bool_value()),
+            "workProfileBlockScreenCapture": lambda n : setattr(self, 'work_profile_block_screen_capture', n.get_bool_value()),
+            "workProfileBluetoothEnableContactSharing": lambda n : setattr(self, 'work_profile_bluetooth_enable_contact_sharing', n.get_bool_value()),
+            "workProfileDataSharingType": lambda n : setattr(self, 'work_profile_data_sharing_type', n.get_enum_value(android_work_profile_cross_profile_data_sharing_type.AndroidWorkProfileCrossProfileDataSharingType)),
+            "workProfileDefaultAppPermissionPolicy": lambda n : setattr(self, 'work_profile_default_app_permission_policy', n.get_enum_value(android_work_profile_default_app_permission_policy_type.AndroidWorkProfileDefaultAppPermissionPolicyType)),
+            "workProfilePasswordBlockFaceUnlock": lambda n : setattr(self, 'work_profile_password_block_face_unlock', n.get_bool_value()),
+            "workProfilePasswordBlockFingerprintUnlock": lambda n : setattr(self, 'work_profile_password_block_fingerprint_unlock', n.get_bool_value()),
+            "workProfilePasswordBlockIrisUnlock": lambda n : setattr(self, 'work_profile_password_block_iris_unlock', n.get_bool_value()),
+            "workProfilePasswordBlockTrustAgents": lambda n : setattr(self, 'work_profile_password_block_trust_agents', n.get_bool_value()),
+            "workProfilePasswordExpirationDays": lambda n : setattr(self, 'work_profile_password_expiration_days', n.get_int_value()),
+            "workProfilePasswordMinimumLength": lambda n : setattr(self, 'work_profile_password_minimum_length', n.get_int_value()),
+            "workProfilePasswordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'work_profile_password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "workProfilePasswordMinLetterCharacters": lambda n : setattr(self, 'work_profile_password_min_letter_characters', n.get_int_value()),
+            "workProfilePasswordMinLowerCaseCharacters": lambda n : setattr(self, 'work_profile_password_min_lower_case_characters', n.get_int_value()),
+            "workProfilePasswordMinNonLetterCharacters": lambda n : setattr(self, 'work_profile_password_min_non_letter_characters', n.get_int_value()),
+            "workProfilePasswordMinNumericCharacters": lambda n : setattr(self, 'work_profile_password_min_numeric_characters', n.get_int_value()),
+            "workProfilePasswordMinSymbolCharacters": lambda n : setattr(self, 'work_profile_password_min_symbol_characters', n.get_int_value()),
+            "workProfilePasswordMinUpperCaseCharacters": lambda n : setattr(self, 'work_profile_password_min_upper_case_characters', n.get_int_value()),
+            "workProfilePasswordPreviousPasswordBlockCount": lambda n : setattr(self, 'work_profile_password_previous_password_block_count', n.get_int_value()),
+            "workProfilePasswordRequiredType": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(android_work_profile_required_password_type.AndroidWorkProfileRequiredPasswordType)),
+            "workProfilePasswordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'work_profile_password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "workProfileRequiredPasswordComplexity": lambda n : setattr(self, 'work_profile_required_password_complexity', n.get_enum_value(android_required_password_complexity.AndroidRequiredPasswordComplexity)),
+            "workProfileRequirePassword": lambda n : setattr(self, 'work_profile_require_password', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -188,7 +188,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordBlockFaceUnlock property value. Indicates whether or not to block face unlock.
         Args:
-            value: Value to set for the passwordBlockFaceUnlock property.
+            value: Value to set for the password_block_face_unlock property.
         """
         self._password_block_face_unlock = value
     
@@ -205,7 +205,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordBlockFingerprintUnlock property value. Indicates whether or not to block fingerprint unlock.
         Args:
-            value: Value to set for the passwordBlockFingerprintUnlock property.
+            value: Value to set for the password_block_fingerprint_unlock property.
         """
         self._password_block_fingerprint_unlock = value
     
@@ -222,7 +222,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordBlockIrisUnlock property value. Indicates whether or not to block iris unlock.
         Args:
-            value: Value to set for the passwordBlockIrisUnlock property.
+            value: Value to set for the password_block_iris_unlock property.
         """
         self._password_block_iris_unlock = value
     
@@ -239,7 +239,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordBlockTrustAgents property value. Indicates whether or not to block Smart Lock and other trust agents.
         Args:
-            value: Value to set for the passwordBlockTrustAgents property.
+            value: Value to set for the password_block_trust_agents property.
         """
         self._password_block_trust_agents = value
     
@@ -256,7 +256,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordExpirationDays property value. Number of days before the password expires. Valid values 1 to 365
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -273,7 +273,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumLength property value. Minimum length of passwords. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -290,7 +290,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -307,7 +307,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordPreviousPasswordBlockCount property value. Number of previous passwords to block. Valid values 0 to 24
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -324,7 +324,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordRequiredType property value. Android Work Profile required password type.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -341,7 +341,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordSignInFailureCountBeforeFactoryReset property value. Number of sign in failures allowed before factory reset. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the password_sign_in_failure_count_before_factory_reset property.
         """
         self._password_sign_in_failure_count_before_factory_reset = value
     
@@ -358,7 +358,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the requiredPasswordComplexity property value. The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
         Args:
-            value: Value to set for the requiredPasswordComplexity property.
+            value: Value to set for the required_password_complexity property.
         """
         self._required_password_complexity = value
     
@@ -375,7 +375,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the securityRequireVerifyApps property value. Require the Android Verify apps feature is turned on.
         Args:
-            value: Value to set for the securityRequireVerifyApps property.
+            value: Value to set for the security_require_verify_apps property.
         """
         self._security_require_verify_apps = value
     
@@ -421,13 +421,13 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         writer.write_bool_value("workProfilePasswordBlockTrustAgents", self.work_profile_password_block_trust_agents)
         writer.write_int_value("workProfilePasswordExpirationDays", self.work_profile_password_expiration_days)
         writer.write_int_value("workProfilePasswordMinimumLength", self.work_profile_password_minimum_length)
+        writer.write_int_value("workProfilePasswordMinutesOfInactivityBeforeScreenTimeout", self.work_profile_password_minutes_of_inactivity_before_screen_timeout)
         writer.write_int_value("workProfilePasswordMinLetterCharacters", self.work_profile_password_min_letter_characters)
         writer.write_int_value("workProfilePasswordMinLowerCaseCharacters", self.work_profile_password_min_lower_case_characters)
         writer.write_int_value("workProfilePasswordMinNonLetterCharacters", self.work_profile_password_min_non_letter_characters)
         writer.write_int_value("workProfilePasswordMinNumericCharacters", self.work_profile_password_min_numeric_characters)
         writer.write_int_value("workProfilePasswordMinSymbolCharacters", self.work_profile_password_min_symbol_characters)
         writer.write_int_value("workProfilePasswordMinUpperCaseCharacters", self.work_profile_password_min_upper_case_characters)
-        writer.write_int_value("workProfilePasswordMinutesOfInactivityBeforeScreenTimeout", self.work_profile_password_minutes_of_inactivity_before_screen_timeout)
         writer.write_int_value("workProfilePasswordPreviousPasswordBlockCount", self.work_profile_password_previous_password_block_count)
         writer.write_enum_value("workProfilePasswordRequiredType", self.work_profile_password_required_type)
         writer.write_int_value("workProfilePasswordSignInFailureCountBeforeFactoryReset", self.work_profile_password_sign_in_failure_count_before_factory_reset)
@@ -447,7 +447,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the vpnAlwaysOnPackageIdentifier property value. Enable lockdown mode for always-on VPN.
         Args:
-            value: Value to set for the vpnAlwaysOnPackageIdentifier property.
+            value: Value to set for the vpn_always_on_package_identifier property.
         """
         self._vpn_always_on_package_identifier = value
     
@@ -464,7 +464,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the vpnEnableAlwaysOnLockdownMode property value. Enable lockdown mode for always-on VPN.
         Args:
-            value: Value to set for the vpnEnableAlwaysOnLockdownMode property.
+            value: Value to set for the vpn_enable_always_on_lockdown_mode property.
         """
         self._vpn_enable_always_on_lockdown_mode = value
     
@@ -481,7 +481,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileAllowAppInstallsFromUnknownSources property value. Indicates whether to allow installation of apps from unknown sources.
         Args:
-            value: Value to set for the workProfileAllowAppInstallsFromUnknownSources property.
+            value: Value to set for the work_profile_allow_app_installs_from_unknown_sources property.
         """
         self._work_profile_allow_app_installs_from_unknown_sources = value
     
@@ -498,7 +498,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileAllowWidgets property value. Allow widgets from work profile apps.
         Args:
-            value: Value to set for the workProfileAllowWidgets property.
+            value: Value to set for the work_profile_allow_widgets property.
         """
         self._work_profile_allow_widgets = value
     
@@ -515,7 +515,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockAddingAccounts property value. Block users from adding/removing accounts in work profile.
         Args:
-            value: Value to set for the workProfileBlockAddingAccounts property.
+            value: Value to set for the work_profile_block_adding_accounts property.
         """
         self._work_profile_block_adding_accounts = value
     
@@ -532,7 +532,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockCamera property value. Block work profile camera.
         Args:
-            value: Value to set for the workProfileBlockCamera property.
+            value: Value to set for the work_profile_block_camera property.
         """
         self._work_profile_block_camera = value
     
@@ -549,7 +549,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockCrossProfileCallerId property value. Block display work profile caller ID in personal profile.
         Args:
-            value: Value to set for the workProfileBlockCrossProfileCallerId property.
+            value: Value to set for the work_profile_block_cross_profile_caller_id property.
         """
         self._work_profile_block_cross_profile_caller_id = value
     
@@ -566,7 +566,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockCrossProfileContactsSearch property value. Block work profile contacts availability in personal profile.
         Args:
-            value: Value to set for the workProfileBlockCrossProfileContactsSearch property.
+            value: Value to set for the work_profile_block_cross_profile_contacts_search property.
         """
         self._work_profile_block_cross_profile_contacts_search = value
     
@@ -583,7 +583,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockCrossProfileCopyPaste property value. Boolean that indicates if the setting disallow cross profile copy/paste is enabled.
         Args:
-            value: Value to set for the workProfileBlockCrossProfileCopyPaste property.
+            value: Value to set for the work_profile_block_cross_profile_copy_paste property.
         """
         self._work_profile_block_cross_profile_copy_paste = value
     
@@ -600,7 +600,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockNotificationsWhileDeviceLocked property value. Indicates whether or not to block notifications while device locked.
         Args:
-            value: Value to set for the workProfileBlockNotificationsWhileDeviceLocked property.
+            value: Value to set for the work_profile_block_notifications_while_device_locked property.
         """
         self._work_profile_block_notifications_while_device_locked = value
     
@@ -617,7 +617,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockPersonalAppInstallsFromUnknownSources property value. Prevent app installations from unknown sources in the personal profile.
         Args:
-            value: Value to set for the workProfileBlockPersonalAppInstallsFromUnknownSources property.
+            value: Value to set for the work_profile_block_personal_app_installs_from_unknown_sources property.
         """
         self._work_profile_block_personal_app_installs_from_unknown_sources = value
     
@@ -634,7 +634,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBlockScreenCapture property value. Block screen capture in work profile.
         Args:
-            value: Value to set for the workProfileBlockScreenCapture property.
+            value: Value to set for the work_profile_block_screen_capture property.
         """
         self._work_profile_block_screen_capture = value
     
@@ -651,7 +651,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileBluetoothEnableContactSharing property value. Allow bluetooth devices to access enterprise contacts.
         Args:
-            value: Value to set for the workProfileBluetoothEnableContactSharing property.
+            value: Value to set for the work_profile_bluetooth_enable_contact_sharing property.
         """
         self._work_profile_bluetooth_enable_contact_sharing = value
     
@@ -668,7 +668,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileDataSharingType property value. Android Work Profile cross profile data sharing type.
         Args:
-            value: Value to set for the workProfileDataSharingType property.
+            value: Value to set for the work_profile_data_sharing_type property.
         """
         self._work_profile_data_sharing_type = value
     
@@ -685,7 +685,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileDefaultAppPermissionPolicy property value. Android Work Profile default app permission policy type.
         Args:
-            value: Value to set for the workProfileDefaultAppPermissionPolicy property.
+            value: Value to set for the work_profile_default_app_permission_policy property.
         """
         self._work_profile_default_app_permission_policy = value
     
@@ -702,7 +702,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordBlockFaceUnlock property value. Indicates whether or not to block face unlock for work profile.
         Args:
-            value: Value to set for the workProfilePasswordBlockFaceUnlock property.
+            value: Value to set for the work_profile_password_block_face_unlock property.
         """
         self._work_profile_password_block_face_unlock = value
     
@@ -719,7 +719,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordBlockFingerprintUnlock property value. Indicates whether or not to block fingerprint unlock for work profile.
         Args:
-            value: Value to set for the workProfilePasswordBlockFingerprintUnlock property.
+            value: Value to set for the work_profile_password_block_fingerprint_unlock property.
         """
         self._work_profile_password_block_fingerprint_unlock = value
     
@@ -736,7 +736,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordBlockIrisUnlock property value. Indicates whether or not to block iris unlock for work profile.
         Args:
-            value: Value to set for the workProfilePasswordBlockIrisUnlock property.
+            value: Value to set for the work_profile_password_block_iris_unlock property.
         """
         self._work_profile_password_block_iris_unlock = value
     
@@ -753,7 +753,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordBlockTrustAgents property value. Indicates whether or not to block Smart Lock and other trust agents for work profile.
         Args:
-            value: Value to set for the workProfilePasswordBlockTrustAgents property.
+            value: Value to set for the work_profile_password_block_trust_agents property.
         """
         self._work_profile_password_block_trust_agents = value
     
@@ -770,26 +770,9 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordExpirationDays property value. Number of days before the work profile password expires. Valid values 1 to 365
         Args:
-            value: Value to set for the workProfilePasswordExpirationDays property.
+            value: Value to set for the work_profile_password_expiration_days property.
         """
         self._work_profile_password_expiration_days = value
-    
-    @property
-    def work_profile_password_minimum_length(self,) -> Optional[int]:
-        """
-        Gets the workProfilePasswordMinimumLength property value. Minimum length of work profile password. Valid values 4 to 16
-        Returns: Optional[int]
-        """
-        return self._work_profile_password_minimum_length
-    
-    @work_profile_password_minimum_length.setter
-    def work_profile_password_minimum_length(self,value: Optional[int] = None) -> None:
-        """
-        Sets the workProfilePasswordMinimumLength property value. Minimum length of work profile password. Valid values 4 to 16
-        Args:
-            value: Value to set for the workProfilePasswordMinimumLength property.
-        """
-        self._work_profile_password_minimum_length = value
     
     @property
     def work_profile_password_min_letter_characters(self,) -> Optional[int]:
@@ -804,7 +787,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinLetterCharacters property value. Minimum # of letter characters required in work profile password. Valid values 1 to 10
         Args:
-            value: Value to set for the workProfilePasswordMinLetterCharacters property.
+            value: Value to set for the work_profile_password_min_letter_characters property.
         """
         self._work_profile_password_min_letter_characters = value
     
@@ -821,7 +804,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinLowerCaseCharacters property value. Minimum # of lower-case characters required in work profile password. Valid values 1 to 10
         Args:
-            value: Value to set for the workProfilePasswordMinLowerCaseCharacters property.
+            value: Value to set for the work_profile_password_min_lower_case_characters property.
         """
         self._work_profile_password_min_lower_case_characters = value
     
@@ -838,7 +821,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinNonLetterCharacters property value. Minimum # of non-letter characters required in work profile password. Valid values 1 to 10
         Args:
-            value: Value to set for the workProfilePasswordMinNonLetterCharacters property.
+            value: Value to set for the work_profile_password_min_non_letter_characters property.
         """
         self._work_profile_password_min_non_letter_characters = value
     
@@ -855,7 +838,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinNumericCharacters property value. Minimum # of numeric characters required in work profile password. Valid values 1 to 10
         Args:
-            value: Value to set for the workProfilePasswordMinNumericCharacters property.
+            value: Value to set for the work_profile_password_min_numeric_characters property.
         """
         self._work_profile_password_min_numeric_characters = value
     
@@ -872,7 +855,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinSymbolCharacters property value. Minimum # of symbols required in work profile password. Valid values 1 to 10
         Args:
-            value: Value to set for the workProfilePasswordMinSymbolCharacters property.
+            value: Value to set for the work_profile_password_min_symbol_characters property.
         """
         self._work_profile_password_min_symbol_characters = value
     
@@ -889,9 +872,26 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinUpperCaseCharacters property value. Minimum # of upper-case characters required in work profile password. Valid values 1 to 10
         Args:
-            value: Value to set for the workProfilePasswordMinUpperCaseCharacters property.
+            value: Value to set for the work_profile_password_min_upper_case_characters property.
         """
         self._work_profile_password_min_upper_case_characters = value
+    
+    @property
+    def work_profile_password_minimum_length(self,) -> Optional[int]:
+        """
+        Gets the workProfilePasswordMinimumLength property value. Minimum length of work profile password. Valid values 4 to 16
+        Returns: Optional[int]
+        """
+        return self._work_profile_password_minimum_length
+    
+    @work_profile_password_minimum_length.setter
+    def work_profile_password_minimum_length(self,value: Optional[int] = None) -> None:
+        """
+        Sets the workProfilePasswordMinimumLength property value. Minimum length of work profile password. Valid values 4 to 16
+        Args:
+            value: Value to set for the work_profile_password_minimum_length property.
+        """
+        self._work_profile_password_minimum_length = value
     
     @property
     def work_profile_password_minutes_of_inactivity_before_screen_timeout(self,) -> Optional[int]:
@@ -906,7 +906,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the workProfilePasswordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the work_profile_password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._work_profile_password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -923,7 +923,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordPreviousPasswordBlockCount property value. Number of previous work profile passwords to block. Valid values 0 to 24
         Args:
-            value: Value to set for the workProfilePasswordPreviousPasswordBlockCount property.
+            value: Value to set for the work_profile_password_previous_password_block_count property.
         """
         self._work_profile_password_previous_password_block_count = value
     
@@ -940,7 +940,7 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordRequiredType property value. Android Work Profile required password type.
         Args:
-            value: Value to set for the workProfilePasswordRequiredType property.
+            value: Value to set for the work_profile_password_required_type property.
         """
         self._work_profile_password_required_type = value
     
@@ -957,26 +957,9 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordSignInFailureCountBeforeFactoryReset property value. Number of sign in failures allowed before work profile is removed and all corporate data deleted. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the work_profile_password_sign_in_failure_count_before_factory_reset property.
         """
         self._work_profile_password_sign_in_failure_count_before_factory_reset = value
-    
-    @property
-    def work_profile_required_password_complexity(self,) -> Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity]:
-        """
-        Gets the workProfileRequiredPasswordComplexity property value. The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
-        Returns: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity]
-        """
-        return self._work_profile_required_password_complexity
-    
-    @work_profile_required_password_complexity.setter
-    def work_profile_required_password_complexity(self,value: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity] = None) -> None:
-        """
-        Sets the workProfileRequiredPasswordComplexity property value. The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
-        Args:
-            value: Value to set for the workProfileRequiredPasswordComplexity property.
-        """
-        self._work_profile_required_password_complexity = value
     
     @property
     def work_profile_require_password(self,) -> Optional[bool]:
@@ -991,8 +974,25 @@ class AndroidWorkProfileGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfileRequirePassword property value. Password is required or not for work profile
         Args:
-            value: Value to set for the workProfileRequirePassword property.
+            value: Value to set for the work_profile_require_password property.
         """
         self._work_profile_require_password = value
+    
+    @property
+    def work_profile_required_password_complexity(self,) -> Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity]:
+        """
+        Gets the workProfileRequiredPasswordComplexity property value. The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
+        Returns: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity]
+        """
+        return self._work_profile_required_password_complexity
+    
+    @work_profile_required_password_complexity.setter
+    def work_profile_required_password_complexity(self,value: Optional[android_required_password_complexity.AndroidRequiredPasswordComplexity] = None) -> None:
+        """
+        Sets the workProfileRequiredPasswordComplexity property value. The password complexity types that can be set on Android. One of: NONE, LOW, MEDIUM, HIGH. This is an API targeted to Android 11+.
+        Args:
+            value: Value to set for the work_profile_required_password_complexity property.
+        """
+        self._work_profile_required_password_complexity = value
     
 

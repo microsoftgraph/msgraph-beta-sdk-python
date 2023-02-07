@@ -51,7 +51,7 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         """
         Sets the contentSharingDisabled property value. The contentSharingDisabled property
         Args:
-            value: Value to set for the contentSharingDisabled property.
+            value: Value to set for the content_sharing_disabled property.
         """
         self._content_sharing_disabled = value
     
@@ -73,9 +73,9 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_sharing_disabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_enum_value(online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason)),
+            "contentSharingDisabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_enum_value(online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "video_disabled": lambda n : setattr(self, 'video_disabled', n.get_enum_value(online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason)),
+            "videoDisabled": lambda n : setattr(self, 'video_disabled', n.get_enum_value(online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -122,7 +122,7 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         """
         Sets the videoDisabled property value. The videoDisabled property
         Args:
-            value: Value to set for the videoDisabled property.
+            value: Value to set for the video_disabled property.
         """
         self._video_disabled = value
     

@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.count.count_request_builder')
-invite_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.invite.invite_request_builder')
-mute_all_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.mute_all.mute_all_request_builder')
+microsoft_graph_invite_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.microsoft_graph_invite.microsoft_graph_invite_request_builder')
+microsoft_graph_mute_all_request_builder = lazy_import('msgraph.generated.app.calls.item.participants.microsoft_graph_mute_all.microsoft_graph_mute_all_request_builder')
 participant = lazy_import('msgraph.generated.models.participant')
 participant_collection_response = lazy_import('msgraph.generated.models.participant_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -29,18 +29,18 @@ class ParticipantsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def invite(self) -> invite_request_builder.InviteRequestBuilder:
+    def microsoft_graph_invite(self) -> microsoft_graph_invite_request_builder.MicrosoftGraphInviteRequestBuilder:
         """
         Provides operations to call the invite method.
         """
-        return invite_request_builder.InviteRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_invite_request_builder.MicrosoftGraphInviteRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def mute_all(self) -> mute_all_request_builder.MuteAllRequestBuilder:
+    def microsoft_graph_mute_all(self) -> microsoft_graph_mute_all_request_builder.MicrosoftGraphMuteAllRequestBuilder:
         """
         Provides operations to call the muteAll method.
         """
-        return mute_all_request_builder.MuteAllRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_mute_all_request_builder.MicrosoftGraphMuteAllRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -60,12 +60,11 @@ class ParticipantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ParticipantsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[participant_collection_response.ParticipantCollectionResponse]:
+    async def get(self,request_configuration: Optional[ParticipantsRequestBuilderGetRequestConfiguration] = None) -> Optional[participant_collection_response.ParticipantCollectionResponse]:
         """
         Retrieve a list of participant objects in the call.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[participant_collection_response.ParticipantCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class ParticipantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, participant_collection_response.ParticipantCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, participant_collection_response.ParticipantCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[participant.Participant] = None, request_configuration: Optional[ParticipantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[participant.Participant]:
+    async def post(self,body: Optional[participant.Participant] = None, request_configuration: Optional[ParticipantsRequestBuilderPostRequestConfiguration] = None) -> Optional[participant.Participant]:
         """
         Create new navigation property to participants for app
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[participant.Participant]
         """
         if body is None:
@@ -99,7 +97,7 @@ class ParticipantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, participant.Participant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, participant.Participant, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ParticipantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

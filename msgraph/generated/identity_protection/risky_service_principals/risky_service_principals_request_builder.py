@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-confirm_compromised_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.confirm_compromised.confirm_compromised_request_builder')
 count_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.count.count_request_builder')
-dismiss_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.dismiss.dismiss_request_builder')
+microsoft_graph_confirm_compromised_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.microsoft_graph_confirm_compromised.microsoft_graph_confirm_compromised_request_builder')
+microsoft_graph_dismiss_request_builder = lazy_import('msgraph.generated.identity_protection.risky_service_principals.microsoft_graph_dismiss.microsoft_graph_dismiss_request_builder')
 risky_service_principal = lazy_import('msgraph.generated.models.risky_service_principal')
 risky_service_principal_collection_response = lazy_import('msgraph.generated.models.risky_service_principal_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -22,13 +22,6 @@ class RiskyServicePrincipalsRequestBuilder():
     Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
     """
     @property
-    def confirm_compromised(self) -> confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder:
-        """
-        Provides operations to call the confirmCompromised method.
-        """
-        return confirm_compromised_request_builder.ConfirmCompromisedRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
@@ -36,11 +29,18 @@ class RiskyServicePrincipalsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def dismiss(self) -> dismiss_request_builder.DismissRequestBuilder:
+    def microsoft_graph_confirm_compromised(self) -> microsoft_graph_confirm_compromised_request_builder.MicrosoftGraphConfirmCompromisedRequestBuilder:
+        """
+        Provides operations to call the confirmCompromised method.
+        """
+        return microsoft_graph_confirm_compromised_request_builder.MicrosoftGraphConfirmCompromisedRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_dismiss(self) -> microsoft_graph_dismiss_request_builder.MicrosoftGraphDismissRequestBuilder:
         """
         Provides operations to call the dismiss method.
         """
-        return dismiss_request_builder.DismissRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_dismiss_request_builder.MicrosoftGraphDismissRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -60,12 +60,11 @@ class RiskyServicePrincipalsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse]:
+    async def get(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> Optional[risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse]:
         """
         Retrieve the properties and relationships of riskyServicePrincipal objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class RiskyServicePrincipalsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, risky_service_principal_collection_response.RiskyServicePrincipalCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[risky_service_principal.RiskyServicePrincipal] = None, request_configuration: Optional[RiskyServicePrincipalsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[risky_service_principal.RiskyServicePrincipal]:
+    async def post(self,body: Optional[risky_service_principal.RiskyServicePrincipal] = None, request_configuration: Optional[RiskyServicePrincipalsRequestBuilderPostRequestConfiguration] = None) -> Optional[risky_service_principal.RiskyServicePrincipal]:
         """
         Create new navigation property to riskyServicePrincipals for identityProtection
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[risky_service_principal.RiskyServicePrincipal]
         """
         if body is None:
@@ -99,7 +97,7 @@ class RiskyServicePrincipalsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, risky_service_principal.RiskyServicePrincipal, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, risky_service_principal.RiskyServicePrincipal, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RiskyServicePrincipalsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

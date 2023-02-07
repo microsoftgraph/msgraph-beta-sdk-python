@@ -22,7 +22,7 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
         """
         Sets the categoryDescriptions property value. An object that specifies the descriptions of the 25 categories that can be associated with tasks in the plan.
         Args:
-            value: Value to set for the categoryDescriptions property.
+            value: Value to set for the category_descriptions property.
         """
         self._category_descriptions = value
     
@@ -53,7 +53,7 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
         """
         Sets the contextDetails property value. A collection of additional information associated with plannerPlanContext entries that are defined for the plannerPlan container. Read-only.
         Args:
-            value: Value to set for the contextDetails property.
+            value: Value to set for the context_details property.
         """
         self._context_details = value
     
@@ -75,9 +75,9 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "category_descriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_category_descriptions.PlannerCategoryDescriptions)),
-            "context_details": lambda n : setattr(self, 'context_details', n.get_object_value(planner_plan_context_details_collection.PlannerPlanContextDetailsCollection)),
-            "shared_with": lambda n : setattr(self, 'shared_with', n.get_object_value(planner_user_ids.PlannerUserIds)),
+            "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_category_descriptions.PlannerCategoryDescriptions)),
+            "contextDetails": lambda n : setattr(self, 'context_details', n.get_object_value(planner_plan_context_details_collection.PlannerPlanContextDetailsCollection)),
+            "sharedWith": lambda n : setattr(self, 'shared_with', n.get_object_value(planner_user_ids.PlannerUserIds)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -109,7 +109,7 @@ class PlannerPlanDetails(planner_delta.PlannerDelta):
         """
         Sets the sharedWith property value. The set of user IDs that this plan is shared with. If you are using Microsoft 365 groups, use the groups API to manage group membership to share the group's plan. You can also add existing members of the group to this collection, although it is not required in order for them to access the plan owned by the group.
         Args:
-            value: Value to set for the sharedWith property.
+            value: Value to set for the shared_with property.
         """
         self._shared_with = value
     

@@ -63,11 +63,11 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "lifetime_in_minutes": lambda n : setattr(self, 'lifetime_in_minutes', n.get_int_value()),
+            "lifetimeInMinutes": lambda n : setattr(self, 'lifetime_in_minutes', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "security_diffie_hellman_group": lambda n : setattr(self, 'security_diffie_hellman_group', n.get_int_value()),
-            "security_encryption_algorithm": lambda n : setattr(self, 'security_encryption_algorithm', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
-            "security_integrity_algorithm": lambda n : setattr(self, 'security_integrity_algorithm', n.get_enum_value(vpn_integrity_algorithm_type.VpnIntegrityAlgorithmType)),
+            "securityDiffieHellmanGroup": lambda n : setattr(self, 'security_diffie_hellman_group', n.get_int_value()),
+            "securityEncryptionAlgorithm": lambda n : setattr(self, 'security_encryption_algorithm', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
+            "securityIntegrityAlgorithm": lambda n : setattr(self, 'security_integrity_algorithm', n.get_enum_value(vpn_integrity_algorithm_type.VpnIntegrityAlgorithmType)),
         }
         return fields
     
@@ -84,7 +84,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the lifetimeInMinutes property value. Lifetime (minutes)
         Args:
-            value: Value to set for the lifetimeInMinutes property.
+            value: Value to set for the lifetime_in_minutes property.
         """
         self._lifetime_in_minutes = value
     
@@ -101,7 +101,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -118,7 +118,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the securityDiffieHellmanGroup property value. Diffie-Hellman Group
         Args:
-            value: Value to set for the securityDiffieHellmanGroup property.
+            value: Value to set for the security_diffie_hellman_group property.
         """
         self._security_diffie_hellman_group = value
     
@@ -135,7 +135,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the securityEncryptionAlgorithm property value. Encryption algorithm. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
         Args:
-            value: Value to set for the securityEncryptionAlgorithm property.
+            value: Value to set for the security_encryption_algorithm property.
         """
         self._security_encryption_algorithm = value
     
@@ -152,7 +152,7 @@ class IosVpnSecurityAssociationParameters(AdditionalDataHolder, Parsable):
         """
         Sets the securityIntegrityAlgorithm property value. Integrity algorithm. Possible values are: sha2_256, sha1_96, sha1_160, sha2_384, sha2_512, md5.
         Args:
-            value: Value to set for the securityIntegrityAlgorithm property.
+            value: Value to set for the security_integrity_algorithm property.
         """
         self._security_integrity_algorithm = value
     

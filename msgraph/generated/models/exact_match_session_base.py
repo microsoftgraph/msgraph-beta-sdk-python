@@ -55,7 +55,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the dataStoreId property value. The dataStoreId property
         Args:
-            value: Value to set for the dataStoreId property.
+            value: Value to set for the data_store_id property.
         """
         self._data_store_id = value
     
@@ -65,14 +65,14 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "data_store_id": lambda n : setattr(self, 'data_store_id', n.get_str_value()),
-            "processing_completion_date_time": lambda n : setattr(self, 'processing_completion_date_time', n.get_datetime_value()),
-            "remaining_block_count": lambda n : setattr(self, 'remaining_block_count', n.get_int_value()),
-            "remaining_job_count": lambda n : setattr(self, 'remaining_job_count', n.get_int_value()),
+            "dataStoreId": lambda n : setattr(self, 'data_store_id', n.get_str_value()),
+            "processingCompletionDateTime": lambda n : setattr(self, 'processing_completion_date_time', n.get_datetime_value()),
+            "remainingBlockCount": lambda n : setattr(self, 'remaining_block_count', n.get_int_value()),
+            "remainingJobCount": lambda n : setattr(self, 'remaining_job_count', n.get_int_value()),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
-            "total_block_count": lambda n : setattr(self, 'total_block_count', n.get_int_value()),
-            "total_job_count": lambda n : setattr(self, 'total_job_count', n.get_int_value()),
-            "upload_completion_date_time": lambda n : setattr(self, 'upload_completion_date_time', n.get_datetime_value()),
+            "totalBlockCount": lambda n : setattr(self, 'total_block_count', n.get_int_value()),
+            "totalJobCount": lambda n : setattr(self, 'total_job_count', n.get_int_value()),
+            "uploadCompletionDateTime": lambda n : setattr(self, 'upload_completion_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -91,7 +91,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the processingCompletionDateTime property value. The processingCompletionDateTime property
         Args:
-            value: Value to set for the processingCompletionDateTime property.
+            value: Value to set for the processing_completion_date_time property.
         """
         self._processing_completion_date_time = value
     
@@ -108,7 +108,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the remainingBlockCount property value. The remainingBlockCount property
         Args:
-            value: Value to set for the remainingBlockCount property.
+            value: Value to set for the remaining_block_count property.
         """
         self._remaining_block_count = value
     
@@ -125,7 +125,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the remainingJobCount property value. The remainingJobCount property
         Args:
-            value: Value to set for the remainingJobCount property.
+            value: Value to set for the remaining_job_count property.
         """
         self._remaining_job_count = value
     
@@ -177,7 +177,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the totalBlockCount property value. The totalBlockCount property
         Args:
-            value: Value to set for the totalBlockCount property.
+            value: Value to set for the total_block_count property.
         """
         self._total_block_count = value
     
@@ -194,7 +194,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the totalJobCount property value. The totalJobCount property
         Args:
-            value: Value to set for the totalJobCount property.
+            value: Value to set for the total_job_count property.
         """
         self._total_job_count = value
     
@@ -211,7 +211,7 @@ class ExactMatchSessionBase(exact_match_job_base.ExactMatchJobBase):
         """
         Sets the uploadCompletionDateTime property value. The uploadCompletionDateTime property
         Args:
-            value: Value to set for the uploadCompletionDateTime property.
+            value: Value to set for the upload_completion_date_time property.
         """
         self._upload_completion_date_time = value
     

@@ -12,26 +12,26 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 tenant_tag = lazy_import('msgraph.generated.models.managed_tenants.tenant_tag')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-assign_tag_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_tags.item.assign_tag.assign_tag_request_builder')
-unassign_tag_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_tags.item.unassign_tag.unassign_tag_request_builder')
+microsoft_graph_managed_tenants_assign_tag_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_tags.item.microsoft_graph_managed_tenants_assign_tag.microsoft_graph_managed_tenants_assign_tag_request_builder')
+microsoft_graph_managed_tenants_unassign_tag_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_tags.item.microsoft_graph_managed_tenants_unassign_tag.microsoft_graph_managed_tenants_unassign_tag_request_builder')
 
 class TenantTagItemRequestBuilder():
     """
     Provides operations to manage the tenantTags property of the microsoft.graph.managedTenants.managedTenant entity.
     """
     @property
-    def assign_tag(self) -> assign_tag_request_builder.AssignTagRequestBuilder:
+    def microsoft_graph_managed_tenants_assign_tag(self) -> microsoft_graph_managed_tenants_assign_tag_request_builder.MicrosoftGraphManagedTenantsAssignTagRequestBuilder:
         """
         Provides operations to call the assignTag method.
         """
-        return assign_tag_request_builder.AssignTagRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_assign_tag_request_builder.MicrosoftGraphManagedTenantsAssignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unassign_tag(self) -> unassign_tag_request_builder.UnassignTagRequestBuilder:
+    def microsoft_graph_managed_tenants_unassign_tag(self) -> microsoft_graph_managed_tenants_unassign_tag_request_builder.MicrosoftGraphManagedTenantsUnassignTagRequestBuilder:
         """
         Provides operations to call the unassignTag method.
         """
-        return unassign_tag_request_builder.UnassignTagRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_managed_tenants_unassign_tag_request_builder.MicrosoftGraphManagedTenantsUnassignTagRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class TenantTagItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property tenantTags for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class TenantTagItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TenantTagItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_tag.TenantTag]:
+    async def get(self,request_configuration: Optional[TenantTagItemRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
         The collection of tenant tags across managed tenants.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_tag.TenantTag]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class TenantTagItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_tag.TenantTag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_tag.TenantTag, error_mapping)
     
-    async def patch(self,body: Optional[tenant_tag.TenantTag] = None, request_configuration: Optional[TenantTagItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_tag.TenantTag]:
+    async def patch(self,body: Optional[tenant_tag.TenantTag] = None, request_configuration: Optional[TenantTagItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_tag.TenantTag]:
         """
         Update the navigation property tenantTags in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_tag.TenantTag]
         """
         if body is None:
@@ -108,7 +105,7 @@ class TenantTagItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_tag.TenantTag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_tag.TenantTag, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TenantTagItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

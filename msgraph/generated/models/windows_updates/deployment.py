@@ -78,7 +78,7 @@ class Deployment(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the deployment was created. Returned by default. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -102,8 +102,8 @@ class Deployment(entity.Entity):
         fields = {
             "audience": lambda n : setattr(self, 'audience', n.get_object_value(deployment_audience.DeploymentAudience)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(deployable_content.DeployableContent)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(deployment_settings.DeploymentSettings)),
             "state": lambda n : setattr(self, 'state', n.get_object_value(deployment_state.DeploymentState)),
         }
@@ -124,7 +124,7 @@ class Deployment(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the deployment was last modified. Returned by default. Read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

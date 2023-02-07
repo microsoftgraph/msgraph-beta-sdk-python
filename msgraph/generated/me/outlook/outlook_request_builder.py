@@ -12,9 +12,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 master_categories_request_builder = lazy_import('msgraph.generated.me.outlook.master_categories.master_categories_request_builder')
 outlook_category_item_request_builder = lazy_import('msgraph.generated.me.outlook.master_categories.item.outlook_category_item_request_builder')
-supported_languages_request_builder = lazy_import('msgraph.generated.me.outlook.supported_languages.supported_languages_request_builder')
-supported_time_zones_request_builder = lazy_import('msgraph.generated.me.outlook.supported_time_zones.supported_time_zones_request_builder')
-supported_time_zones_with_time_zone_standard_request_builder = lazy_import('msgraph.generated.me.outlook.supported_time_zones_with_time_zone_standard.supported_time_zones_with_time_zone_standard_request_builder')
+microsoft_graph_supported_languages_request_builder = lazy_import('msgraph.generated.me.outlook.microsoft_graph_supported_languages.microsoft_graph_supported_languages_request_builder')
+microsoft_graph_supported_time_zones_request_builder = lazy_import('msgraph.generated.me.outlook.microsoft_graph_supported_time_zones.microsoft_graph_supported_time_zones_request_builder')
+microsoft_graph_supported_time_zones_with_time_zone_standard_request_builder = lazy_import('msgraph.generated.me.outlook.microsoft_graph_supported_time_zones_with_time_zone_standard.microsoft_graph_supported_time_zones_with_time_zone_standard_request_builder')
 task_folders_request_builder = lazy_import('msgraph.generated.me.outlook.task_folders.task_folders_request_builder')
 outlook_task_folder_item_request_builder = lazy_import('msgraph.generated.me.outlook.task_folders.item.outlook_task_folder_item_request_builder')
 task_groups_request_builder = lazy_import('msgraph.generated.me.outlook.task_groups.task_groups_request_builder')
@@ -34,6 +34,20 @@ class OutlookRequestBuilder():
         Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
         """
         return master_categories_request_builder.MasterCategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_supported_languages(self) -> microsoft_graph_supported_languages_request_builder.MicrosoftGraphSupportedLanguagesRequestBuilder:
+        """
+        Provides operations to call the supportedLanguages method.
+        """
+        return microsoft_graph_supported_languages_request_builder.MicrosoftGraphSupportedLanguagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_supported_time_zones(self) -> microsoft_graph_supported_time_zones_request_builder.MicrosoftGraphSupportedTimeZonesRequestBuilder:
+        """
+        Provides operations to call the supportedTimeZones method.
+        """
+        return microsoft_graph_supported_time_zones_request_builder.MicrosoftGraphSupportedTimeZonesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def task_folders(self) -> task_folders_request_builder.TaskFoldersRequestBuilder:
@@ -74,12 +88,11 @@ class OutlookRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OutlookRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_user.OutlookUser]:
+    async def get(self,request_configuration: Optional[OutlookRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_user.OutlookUser]:
         """
         Selective Outlook services available to the user. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_user.OutlookUser]
         """
         request_info = self.to_get_request_information(
@@ -91,7 +104,7 @@ class OutlookRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_user.OutlookUser, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_user.OutlookUser, error_mapping)
     
     def master_categories_by_id(self,id: str) -> outlook_category_item_request_builder.OutlookCategoryItemRequestBuilder:
         """
@@ -106,30 +119,16 @@ class OutlookRequestBuilder():
         url_tpl_params["outlookCategory%2Did"] = id
         return outlook_category_item_request_builder.OutlookCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def supported_languages(self,) -> supported_languages_request_builder.SupportedLanguagesRequestBuilder:
-        """
-        Provides operations to call the supportedLanguages method.
-        Returns: supported_languages_request_builder.SupportedLanguagesRequestBuilder
-        """
-        return supported_languages_request_builder.SupportedLanguagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def supported_time_zones(self,) -> supported_time_zones_request_builder.SupportedTimeZonesRequestBuilder:
-        """
-        Provides operations to call the supportedTimeZones method.
-        Returns: supported_time_zones_request_builder.SupportedTimeZonesRequestBuilder
-        """
-        return supported_time_zones_request_builder.SupportedTimeZonesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def supported_time_zones_with_time_zone_standard(self,time_zone_standard: Optional[str] = None) -> supported_time_zones_with_time_zone_standard_request_builder.SupportedTimeZonesWithTimeZoneStandardRequestBuilder:
+    def microsoft_graph_supported_time_zones_with_time_zone_standard(self,time_zone_standard: Optional[str] = None) -> microsoft_graph_supported_time_zones_with_time_zone_standard_request_builder.MicrosoftGraphSupportedTimeZonesWithTimeZoneStandardRequestBuilder:
         """
         Provides operations to call the supportedTimeZones method.
         Args:
             TimeZoneStandard: Usage: TimeZoneStandard='{TimeZoneStandard}'
-        Returns: supported_time_zones_with_time_zone_standard_request_builder.SupportedTimeZonesWithTimeZoneStandardRequestBuilder
+        Returns: microsoft_graph_supported_time_zones_with_time_zone_standard_request_builder.MicrosoftGraphSupportedTimeZonesWithTimeZoneStandardRequestBuilder
         """
         if time_zone_standard is None:
             raise Exception("time_zone_standard cannot be undefined")
-        return supported_time_zones_with_time_zone_standard_request_builder.SupportedTimeZonesWithTimeZoneStandardRequestBuilder(self.request_adapter, self.path_parameters, TimeZoneStandard)
+        return microsoft_graph_supported_time_zones_with_time_zone_standard_request_builder.MicrosoftGraphSupportedTimeZonesWithTimeZoneStandardRequestBuilder(self.request_adapter, self.path_parameters, TimeZoneStandard)
     
     def task_folders_by_id(self,id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
         """

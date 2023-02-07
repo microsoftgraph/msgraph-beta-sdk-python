@@ -75,7 +75,7 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         """
         Sets the creationDateTime property value. DateTime profile was created
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -109,7 +109,7 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         """
         Sets the displayName property value. Profile display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -120,11 +120,11 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment)),
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -144,7 +144,7 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. DateTime profile was last modified
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -161,7 +161,7 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         """
         Sets the roleScopeTagIds property value. Scope Tags
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

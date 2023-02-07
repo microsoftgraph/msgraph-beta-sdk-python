@@ -1,7 +1,7 @@
 from enum import Enum
 
 class EligibilityFilteringEnabledEntities(Enum):
-    None_escaped = "none",
+    None_ = "none",
     SwapRequest = "swapRequest",
     OfferShiftRequest = "offerShiftRequest",
     UnknownFutureValue = "unknownFutureValue",

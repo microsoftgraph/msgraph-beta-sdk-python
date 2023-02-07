@@ -26,9 +26,26 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the alertDisplayName property value. The alertDisplayName property
         Args:
-            value: Value to set for the alertDisplayName property.
+            value: Value to set for the alert_display_name property.
         """
         self._alert_display_name = value
+    
+    @property
+    def alert_t_t_l(self,) -> Optional[int]:
+        """
+        Gets the alertTTL property value. The alertTTL property
+        Returns: Optional[int]
+        """
+        return self._alert_t_t_l
+    
+    @alert_t_t_l.setter
+    def alert_t_t_l(self,value: Optional[int] = None) -> None:
+        """
+        Sets the alertTTL property value. The alertTTL property
+        Args:
+            value: Value to set for the alert_t_t_l property.
+        """
+        self._alert_t_t_l = value
     
     @property
     def alerts(self,) -> Optional[List[managed_tenant_alert.ManagedTenantAlert]]:
@@ -47,23 +64,6 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         self._alerts = value
     
-    @property
-    def alert_t_t_l(self,) -> Optional[int]:
-        """
-        Gets the alertTTL property value. The alertTTL property
-        Returns: Optional[int]
-        """
-        return self._alert_t_t_l
-    
-    @alert_t_t_l.setter
-    def alert_t_t_l(self,value: Optional[int] = None) -> None:
-        """
-        Sets the alertTTL property value. The alertTTL property
-        Args:
-            value: Value to set for the alertTTL property.
-        """
-        self._alert_t_t_l = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managedTenantAlertRule and sets the default values.
@@ -71,10 +71,10 @@ class ManagedTenantAlertRule(entity.Entity):
         super().__init__()
         # The alertDisplayName property
         self._alert_display_name: Optional[str] = None
-        # The alerts property
-        self._alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
         # The alertTTL property
         self._alert_t_t_l: Optional[int] = None
+        # The alerts property
+        self._alerts: Optional[List[managed_tenant_alert.ManagedTenantAlert]] = None
         # The createdByUserId property
         self._created_by_user_id: Optional[str] = None
         # The createdDateTime property
@@ -115,7 +115,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -132,7 +132,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -178,7 +178,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -188,21 +188,21 @@ class ManagedTenantAlertRule(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_display_name": lambda n : setattr(self, 'alert_display_name', n.get_str_value()),
             "alerts": lambda n : setattr(self, 'alerts', n.get_collection_of_object_values(managed_tenant_alert.ManagedTenantAlert)),
-            "alert_t_t_l": lambda n : setattr(self, 'alert_t_t_l', n.get_int_value()),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "alertDisplayName": lambda n : setattr(self, 'alert_display_name', n.get_str_value()),
+            "alertTTL": lambda n : setattr(self, 'alert_t_t_l', n.get_int_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "last_run_date_time": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
-            "notification_final_destinations": lambda n : setattr(self, 'notification_final_destinations', n.get_enum_value(notification_destination.NotificationDestination)),
-            "rule_definition": lambda n : setattr(self, 'rule_definition', n.get_object_value(managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "lastRunDateTime": lambda n : setattr(self, 'last_run_date_time', n.get_datetime_value()),
+            "notificationFinalDestinations": lambda n : setattr(self, 'notification_final_destinations', n.get_enum_value(notification_destination.NotificationDestination)),
+            "ruleDefinition": lambda n : setattr(self, 'rule_definition', n.get_object_value(managed_tenant_alert_rule_definition.ManagedTenantAlertRuleDefinition)),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(alert_severity.AlertSeverity)),
             "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(notification_target.NotificationTarget)),
-            "tenant_ids": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_object_values(tenant_info.TenantInfo)),
+            "tenantIds": lambda n : setattr(self, 'tenant_ids', n.get_collection_of_object_values(tenant_info.TenantInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -221,7 +221,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -238,7 +238,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -255,7 +255,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the lastRunDateTime property value. The lastRunDateTime property
         Args:
-            value: Value to set for the lastRunDateTime property.
+            value: Value to set for the last_run_date_time property.
         """
         self._last_run_date_time = value
     
@@ -272,7 +272,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the notificationFinalDestinations property value. The notificationFinalDestinations property
         Args:
-            value: Value to set for the notificationFinalDestinations property.
+            value: Value to set for the notification_final_destinations property.
         """
         self._notification_final_destinations = value
     
@@ -289,7 +289,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the ruleDefinition property value. The ruleDefinition property
         Args:
-            value: Value to set for the ruleDefinition property.
+            value: Value to set for the rule_definition property.
         """
         self._rule_definition = value
     
@@ -302,8 +302,8 @@ class ManagedTenantAlertRule(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_str_value("alertDisplayName", self.alert_display_name)
         writer.write_collection_of_object_values("alerts", self.alerts)
+        writer.write_str_value("alertDisplayName", self.alert_display_name)
         writer.write_int_value("alertTTL", self.alert_t_t_l)
         writer.write_str_value("createdByUserId", self.created_by_user_id)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
@@ -365,7 +365,7 @@ class ManagedTenantAlertRule(entity.Entity):
         """
         Sets the tenantIds property value. The tenantIds property
         Args:
-            value: Value to set for the tenantIds property.
+            value: Value to set for the tenant_ids property.
         """
         self._tenant_ids = value
     

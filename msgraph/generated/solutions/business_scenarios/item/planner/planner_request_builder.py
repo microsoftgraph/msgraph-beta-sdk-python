@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 business_scenario_planner = lazy_import('msgraph.generated.models.business_scenario_planner')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-get_plan_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.get_plan.get_plan_request_builder')
+microsoft_graph_get_plan_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.microsoft_graph_get_plan.microsoft_graph_get_plan_request_builder')
 plan_configuration_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.plan_configuration.plan_configuration_request_builder')
 task_configuration_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.task_configuration.task_configuration_request_builder')
 tasks_request_builder = lazy_import('msgraph.generated.solutions.business_scenarios.item.planner.tasks.tasks_request_builder')
@@ -23,11 +23,11 @@ class PlannerRequestBuilder():
     Provides operations to manage the planner property of the microsoft.graph.businessScenario entity.
     """
     @property
-    def get_plan(self) -> get_plan_request_builder.GetPlanRequestBuilder:
+    def microsoft_graph_get_plan(self) -> microsoft_graph_get_plan_request_builder.MicrosoftGraphGetPlanRequestBuilder:
         """
         Provides operations to call the getPlan method.
         """
-        return get_plan_request_builder.GetPlanRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_plan_request_builder.MicrosoftGraphGetPlanRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def plan_configuration(self) -> plan_configuration_request_builder.PlanConfigurationRequestBuilder:
@@ -68,12 +68,11 @@ class PlannerRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PlannerRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property planner for solutions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +83,13 @@ class PlannerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
+    async def get(self,request_configuration: Optional[PlannerRequestBuilderGetRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
         """
         Read the properties and relationships of a businessScenarioPlanner object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
         """
         request_info = self.to_get_request_information(
@@ -103,15 +101,14 @@ class PlannerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
     
-    async def patch(self,body: Optional[business_scenario_planner.BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
+    async def patch(self,body: Optional[business_scenario_planner.BusinessScenarioPlanner] = None, request_configuration: Optional[PlannerRequestBuilderPatchRequestConfiguration] = None) -> Optional[business_scenario_planner.BusinessScenarioPlanner]:
         """
         Update the navigation property planner in solutions
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[business_scenario_planner.BusinessScenarioPlanner]
         """
         if body is None:
@@ -125,7 +122,7 @@ class PlannerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, business_scenario_planner.BusinessScenarioPlanner, error_mapping)
     
     def tasks_by_id(self,id: str) -> business_scenario_task_item_request_builder.BusinessScenarioTaskItemRequestBuilder:
         """

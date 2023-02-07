@@ -22,7 +22,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         """
         Sets the brandingOptions property value. Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
         Args:
-            value: Value to set for the brandingOptions property.
+            value: Value to set for the branding_options property.
         """
         self._branding_options = value
     
@@ -70,7 +70,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         """
         Sets the defaultLocale property value. DefaultLocale for the Enrollment Notification
         Args:
-            value: Value to set for the defaultLocale property.
+            value: Value to set for the default_locale property.
         """
         self._default_locale = value
     
@@ -80,12 +80,12 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "branding_options": lambda n : setattr(self, 'branding_options', n.get_enum_value(enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions)),
-            "default_locale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
-            "notification_message_template_id": lambda n : setattr(self, 'notification_message_template_id', n.get_object_value(Guid)),
-            "notification_templates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_primitive_values(str)),
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
-            "template_type": lambda n : setattr(self, 'template_type', n.get_enum_value(enrollment_notification_template_type.EnrollmentNotificationTemplateType)),
+            "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_enum_value(enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions)),
+            "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
+            "notificationMessageTemplateId": lambda n : setattr(self, 'notification_message_template_id', n.get_object_value(Guid)),
+            "notificationTemplates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_primitive_values(str)),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
+            "templateType": lambda n : setattr(self, 'template_type', n.get_enum_value(enrollment_notification_template_type.EnrollmentNotificationTemplateType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -104,7 +104,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         """
         Sets the notificationMessageTemplateId property value. Notification Message Template Id
         Args:
-            value: Value to set for the notificationMessageTemplateId property.
+            value: Value to set for the notification_message_template_id property.
         """
         self._notification_message_template_id = value
     
@@ -121,7 +121,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         """
         Sets the notificationTemplates property value. The list of notification data -
         Args:
-            value: Value to set for the notificationTemplates property.
+            value: Value to set for the notification_templates property.
         """
         self._notification_templates = value
     
@@ -138,7 +138,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         """
         Sets the platformType property value. This enum indicates the platform type for which the enrollment restriction applies.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     
@@ -171,7 +171,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         """
         Sets the templateType property value. This enum indicates the Template type for which the enrollment notification applies.
         Args:
-            value: Value to set for the templateType property.
+            value: Value to set for the template_type property.
         """
         self._template_type = value
     

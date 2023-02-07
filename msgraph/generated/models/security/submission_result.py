@@ -105,7 +105,7 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
         """
         Sets the detectedFiles property value. Specifies the files detected by Microsoft in the submitted emails.
         Args:
-            value: Value to set for the detectedFiles property.
+            value: Value to set for the detected_files property.
         """
         self._detected_files = value
     
@@ -122,7 +122,7 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
         """
         Sets the detectedUrls property value. Specifes the URLs detected by Microsoft in the submitted email.
         Args:
-            value: Value to set for the detectedUrls property.
+            value: Value to set for the detected_urls property.
         """
         self._detected_urls = value
     
@@ -134,10 +134,10 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(submission_result_category.SubmissionResultCategory)),
             "detail": lambda n : setattr(self, 'detail', n.get_enum_value(submission_result_detail.SubmissionResultDetail)),
-            "detected_files": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(submission_detected_file.SubmissionDetectedFile)),
-            "detected_urls": lambda n : setattr(self, 'detected_urls', n.get_collection_of_primitive_values(str)),
+            "detectedFiles": lambda n : setattr(self, 'detected_files', n.get_collection_of_object_values(submission_detected_file.SubmissionDetectedFile)),
+            "detectedUrls": lambda n : setattr(self, 'detected_urls', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_mailbox_setting": lambda n : setattr(self, 'user_mailbox_setting', n.get_enum_value(user_mailbox_setting.UserMailboxSetting)),
+            "userMailboxSetting": lambda n : setattr(self, 'user_mailbox_setting', n.get_enum_value(user_mailbox_setting.UserMailboxSetting)),
         }
         return fields
     
@@ -154,7 +154,7 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -187,7 +187,7 @@ class SubmissionResult(AdditionalDataHolder, Parsable):
         """
         Sets the userMailboxSetting property value. Specifies the setting for user mailbox denoted by a comma-separated string.
         Args:
-            value: Value to set for the userMailboxSetting property.
+            value: Value to set for the user_mailbox_setting property.
         """
         self._user_mailbox_setting = value
     

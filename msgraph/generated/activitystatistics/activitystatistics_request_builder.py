@@ -44,12 +44,11 @@ class ActivitystatisticsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ActivitystatisticsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[activity_statistics_collection_response.ActivityStatisticsCollectionResponse]:
+    async def get(self,request_configuration: Optional[ActivitystatisticsRequestBuilderGetRequestConfiguration] = None) -> Optional[activity_statistics_collection_response.ActivityStatisticsCollectionResponse]:
         """
         Get entities from activitystatistics
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[activity_statistics_collection_response.ActivityStatisticsCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ActivitystatisticsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, activity_statistics_collection_response.ActivityStatisticsCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, activity_statistics_collection_response.ActivityStatisticsCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[activity_statistics.ActivityStatistics] = None, request_configuration: Optional[ActivitystatisticsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[activity_statistics.ActivityStatistics]:
+    async def post(self,body: Optional[activity_statistics.ActivityStatistics] = None, request_configuration: Optional[ActivitystatisticsRequestBuilderPostRequestConfiguration] = None) -> Optional[activity_statistics.ActivityStatistics]:
         """
         Add new entity to activitystatistics
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[activity_statistics.ActivityStatistics]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ActivitystatisticsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, activity_statistics.ActivityStatistics, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, activity_statistics.ActivityStatistics, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ActivitystatisticsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

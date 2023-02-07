@@ -181,7 +181,7 @@ class Profile(entity.Entity):
         """
         Sets the educationalActivities property value. Represents data that a user has supplied related to undergraduate, graduate, postgraduate or other educational activities.
         Args:
-            value: Value to set for the educationalActivities property.
+            value: Value to set for the educational_activities property.
         """
         self._educational_activities = value
     
@@ -213,7 +213,7 @@ class Profile(entity.Entity):
             "anniversaries": lambda n : setattr(self, 'anniversaries', n.get_collection_of_object_values(person_annual_event.PersonAnnualEvent)),
             "awards": lambda n : setattr(self, 'awards', n.get_collection_of_object_values(person_award.PersonAward)),
             "certifications": lambda n : setattr(self, 'certifications', n.get_collection_of_object_values(person_certification.PersonCertification)),
-            "educational_activities": lambda n : setattr(self, 'educational_activities', n.get_collection_of_object_values(educational_activity.EducationalActivity)),
+            "educationalActivities": lambda n : setattr(self, 'educational_activities', n.get_collection_of_object_values(educational_activity.EducationalActivity)),
             "emails": lambda n : setattr(self, 'emails', n.get_collection_of_object_values(item_email.ItemEmail)),
             "interests": lambda n : setattr(self, 'interests', n.get_collection_of_object_values(person_interest.PersonInterest)),
             "languages": lambda n : setattr(self, 'languages', n.get_collection_of_object_values(language_proficiency.LanguageProficiency)),
@@ -225,8 +225,8 @@ class Profile(entity.Entity):
             "projects": lambda n : setattr(self, 'projects', n.get_collection_of_object_values(project_participation.ProjectParticipation)),
             "publications": lambda n : setattr(self, 'publications', n.get_collection_of_object_values(item_publication.ItemPublication)),
             "skills": lambda n : setattr(self, 'skills', n.get_collection_of_object_values(skill_proficiency.SkillProficiency)),
-            "web_accounts": lambda n : setattr(self, 'web_accounts', n.get_collection_of_object_values(web_account.WebAccount)),
             "websites": lambda n : setattr(self, 'websites', n.get_collection_of_object_values(person_website.PersonWebsite)),
+            "webAccounts": lambda n : setattr(self, 'web_accounts', n.get_collection_of_object_values(web_account.WebAccount)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -411,8 +411,8 @@ class Profile(entity.Entity):
         writer.write_collection_of_object_values("projects", self.projects)
         writer.write_collection_of_object_values("publications", self.publications)
         writer.write_collection_of_object_values("skills", self.skills)
-        writer.write_collection_of_object_values("webAccounts", self.web_accounts)
         writer.write_collection_of_object_values("websites", self.websites)
+        writer.write_collection_of_object_values("webAccounts", self.web_accounts)
     
     @property
     def skills(self,) -> Optional[List[skill_proficiency.SkillProficiency]]:
@@ -444,7 +444,7 @@ class Profile(entity.Entity):
         """
         Sets the webAccounts property value. Represents web accounts the user has indicated they use or has added to their user profile.
         Args:
-            value: Value to set for the webAccounts property.
+            value: Value to set for the web_accounts property.
         """
         self._web_accounts = value
     

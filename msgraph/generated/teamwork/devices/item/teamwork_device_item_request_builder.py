@@ -15,11 +15,11 @@ o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error'
 activity_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.activity.activity_request_builder')
 configuration_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.configuration.configuration_request_builder')
 health_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.health.health_request_builder')
+microsoft_graph_restart_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.microsoft_graph_restart.microsoft_graph_restart_request_builder')
+microsoft_graph_run_diagnostics_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.microsoft_graph_run_diagnostics.microsoft_graph_run_diagnostics_request_builder')
+microsoft_graph_update_software_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.microsoft_graph_update_software.microsoft_graph_update_software_request_builder')
 operations_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.operations.operations_request_builder')
 teamwork_device_operation_item_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.operations.item.teamwork_device_operation_item_request_builder')
-restart_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.restart.restart_request_builder')
-run_diagnostics_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.run_diagnostics.run_diagnostics_request_builder')
-update_software_request_builder = lazy_import('msgraph.generated.teamwork.devices.item.update_software.update_software_request_builder')
 
 class TeamworkDeviceItemRequestBuilder():
     """
@@ -47,32 +47,32 @@ class TeamworkDeviceItemRequestBuilder():
         return health_request_builder.HealthRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_restart(self) -> microsoft_graph_restart_request_builder.MicrosoftGraphRestartRequestBuilder:
+        """
+        Provides operations to call the restart method.
+        """
+        return microsoft_graph_restart_request_builder.MicrosoftGraphRestartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_run_diagnostics(self) -> microsoft_graph_run_diagnostics_request_builder.MicrosoftGraphRunDiagnosticsRequestBuilder:
+        """
+        Provides operations to call the runDiagnostics method.
+        """
+        return microsoft_graph_run_diagnostics_request_builder.MicrosoftGraphRunDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_software(self) -> microsoft_graph_update_software_request_builder.MicrosoftGraphUpdateSoftwareRequestBuilder:
+        """
+        Provides operations to call the updateSoftware method.
+        """
+        return microsoft_graph_update_software_request_builder.MicrosoftGraphUpdateSoftwareRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
         """
         Provides operations to manage the operations property of the microsoft.graph.teamworkDevice entity.
         """
         return operations_request_builder.OperationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def restart(self) -> restart_request_builder.RestartRequestBuilder:
-        """
-        Provides operations to call the restart method.
-        """
-        return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def run_diagnostics(self) -> run_diagnostics_request_builder.RunDiagnosticsRequestBuilder:
-        """
-        Provides operations to call the runDiagnostics method.
-        """
-        return run_diagnostics_request_builder.RunDiagnosticsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_software(self) -> update_software_request_builder.UpdateSoftwareRequestBuilder:
-        """
-        Provides operations to call the updateSoftware method.
-        """
-        return update_software_request_builder.UpdateSoftwareRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -92,12 +92,11 @@ class TeamworkDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property devices for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -108,14 +107,13 @@ class TeamworkDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device.TeamworkDevice]:
+    async def get(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
         """
         The Teams devices provisioned for the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device.TeamworkDevice]
         """
         request_info = self.to_get_request_information(
@@ -127,7 +125,7 @@ class TeamworkDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, error_mapping)
     
     def operations_by_id(self,id: str) -> teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder:
         """
@@ -142,13 +140,12 @@ class TeamworkDeviceItemRequestBuilder():
         url_tpl_params["teamworkDeviceOperation%2Did"] = id
         return teamwork_device_operation_item_request_builder.TeamworkDeviceOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[teamwork_device.TeamworkDevice]:
+    async def patch(self,body: Optional[teamwork_device.TeamworkDevice] = None, request_configuration: Optional[TeamworkDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[teamwork_device.TeamworkDevice]:
         """
         Update the navigation property devices in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[teamwork_device.TeamworkDevice]
         """
         if body is None:
@@ -162,7 +159,7 @@ class TeamworkDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, teamwork_device.TeamworkDevice, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TeamworkDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

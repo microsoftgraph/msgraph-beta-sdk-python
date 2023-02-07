@@ -41,7 +41,7 @@ class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
         """
         fields = {
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
-            "restriction_action": lambda n : setattr(self, 'restriction_action', n.get_enum_value(restriction_action.RestrictionAction)),
+            "restrictionAction": lambda n : setattr(self, 'restriction_action', n.get_enum_value(restriction_action.RestrictionAction)),
             "triggers": lambda n : setattr(self, 'triggers', n.get_collection_of_enum_values(restriction_trigger.RestrictionTrigger)),
         }
         super_fields = super().get_field_deserializers()
@@ -78,7 +78,7 @@ class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
         """
         Sets the restrictionAction property value. The restrictionAction property
         Args:
-            value: Value to set for the restrictionAction property.
+            value: Value to set for the restriction_action property.
         """
         self._restriction_action = value
     

@@ -49,7 +49,7 @@ class WindowsUpdateCatalogItem(entity.Entity):
         """
         Sets the displayName property value. The display name for the catalog item.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -66,7 +66,7 @@ class WindowsUpdateCatalogItem(entity.Entity):
         """
         Sets the endOfSupportDate property value. The last supported date for a catalog item
         Args:
-            value: Value to set for the endOfSupportDate property.
+            value: Value to set for the end_of_support_date property.
         """
         self._end_of_support_date = value
     
@@ -76,9 +76,9 @@ class WindowsUpdateCatalogItem(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_of_support_date": lambda n : setattr(self, 'end_of_support_date', n.get_datetime_value()),
-            "release_date_time": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endOfSupportDate": lambda n : setattr(self, 'end_of_support_date', n.get_datetime_value()),
+            "releaseDateTime": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -97,7 +97,7 @@ class WindowsUpdateCatalogItem(entity.Entity):
         """
         Sets the releaseDateTime property value. The date the catalog item was released
         Args:
-            value: Value to set for the releaseDateTime property.
+            value: Value to set for the release_date_time property.
         """
         self._release_date_time = value
     

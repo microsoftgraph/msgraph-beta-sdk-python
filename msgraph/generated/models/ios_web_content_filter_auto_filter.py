@@ -19,7 +19,7 @@ class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFil
         """
         Sets the allowedUrls property value. Additional URLs allowed for access
         Args:
-            value: Value to set for the allowedUrls property.
+            value: Value to set for the allowed_urls property.
         """
         self._allowed_urls = value
     
@@ -36,7 +36,7 @@ class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFil
         """
         Sets the blockedUrls property value. Additional URLs blocked for access
         Args:
-            value: Value to set for the blockedUrls property.
+            value: Value to set for the blocked_urls property.
         """
         self._blocked_urls = value
     
@@ -69,8 +69,8 @@ class IosWebContentFilterAutoFilter(ios_web_content_filter_base.IosWebContentFil
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_urls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
-            "blocked_urls": lambda n : setattr(self, 'blocked_urls', n.get_collection_of_primitive_values(str)),
+            "allowedUrls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
+            "blockedUrls": lambda n : setattr(self, 'blocked_urls', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

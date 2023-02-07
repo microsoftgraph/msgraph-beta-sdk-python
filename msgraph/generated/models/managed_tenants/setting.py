@@ -68,7 +68,7 @@ class Setting(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the setting. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -78,12 +78,12 @@ class Setting(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "json_value": lambda n : setattr(self, 'json_value', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "jsonValue": lambda n : setattr(self, 'json_value', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "overwrite_allowed": lambda n : setattr(self, 'overwrite_allowed', n.get_bool_value()),
-            "setting_id": lambda n : setattr(self, 'setting_id', n.get_str_value()),
-            "value_type": lambda n : setattr(self, 'value_type', n.get_enum_value(management_parameter_value_type.ManagementParameterValueType)),
+            "overwriteAllowed": lambda n : setattr(self, 'overwrite_allowed', n.get_bool_value()),
+            "settingId": lambda n : setattr(self, 'setting_id', n.get_str_value()),
+            "valueType": lambda n : setattr(self, 'value_type', n.get_enum_value(management_parameter_value_type.ManagementParameterValueType)),
         }
         return fields
     
@@ -100,7 +100,7 @@ class Setting(AdditionalDataHolder, Parsable):
         """
         Sets the jsonValue property value. The value for the setting serialized as string of JSON. Required. Read-only.
         Args:
-            value: Value to set for the jsonValue property.
+            value: Value to set for the json_value property.
         """
         self._json_value = value
     
@@ -117,7 +117,7 @@ class Setting(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -134,7 +134,7 @@ class Setting(AdditionalDataHolder, Parsable):
         """
         Sets the overwriteAllowed property value. A flag indicating whether the setting can be override existing configurations when applied. Required. Read-only.
         Args:
-            value: Value to set for the overwriteAllowed property.
+            value: Value to set for the overwrite_allowed property.
         """
         self._overwrite_allowed = value
     
@@ -167,7 +167,7 @@ class Setting(AdditionalDataHolder, Parsable):
         """
         Sets the settingId property value. The settingId property
         Args:
-            value: Value to set for the settingId property.
+            value: Value to set for the setting_id property.
         """
         self._setting_id = value
     
@@ -184,7 +184,7 @@ class Setting(AdditionalDataHolder, Parsable):
         """
         Sets the valueType property value. The valueType property
         Args:
-            value: Value to set for the valueType property.
+            value: Value to set for the value_type property.
         """
         self._value_type = value
     

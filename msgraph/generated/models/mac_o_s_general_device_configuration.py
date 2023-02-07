@@ -24,7 +24,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the addingGameCenterFriendsBlocked property value. Yes prevents users from adding friends to Game Center. Available for devices running macOS versions 10.13 and later.
         Args:
-            value: Value to set for the addingGameCenterFriendsBlocked property.
+            value: Value to set for the adding_game_center_friends_blocked property.
         """
         self._adding_game_center_friends_blocked = value
     
@@ -41,7 +41,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airDropBlocked property value. Indicates whether or not to allow AirDrop.
         Args:
-            value: Value to set for the airDropBlocked property.
+            value: Value to set for the air_drop_blocked property.
         """
         self._air_drop_blocked = value
     
@@ -58,7 +58,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appleWatchBlockAutoUnlock property value. Indicates whether or to block users from unlocking their Mac with Apple Watch.
         Args:
-            value: Value to set for the appleWatchBlockAutoUnlock property.
+            value: Value to set for the apple_watch_block_auto_unlock property.
         """
         self._apple_watch_block_auto_unlock = value
     
@@ -75,7 +75,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cameraBlocked property value. Indicates whether or not to block the user from accessing the camera of the device.
         Args:
-            value: Value to set for the cameraBlocked property.
+            value: Value to set for the camera_blocked property.
         """
         self._camera_blocked = value
     
@@ -92,7 +92,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomAppBlockRemoteScreenObservation property value. Indicates whether or not to allow remote screen observation by Classroom app. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
         Args:
-            value: Value to set for the classroomAppBlockRemoteScreenObservation property.
+            value: Value to set for the classroom_app_block_remote_screen_observation property.
         """
         self._classroom_app_block_remote_screen_observation = value
     
@@ -109,7 +109,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomAppForceUnpromptedScreenObservation property value. Indicates whether or not to automatically give permission to the teacher of a managed course on the Classroom app to view a student's screen without prompting. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
         Args:
-            value: Value to set for the classroomAppForceUnpromptedScreenObservation property.
+            value: Value to set for the classroom_app_force_unprompted_screen_observation property.
         """
         self._classroom_app_force_unprompted_screen_observation = value
     
@@ -126,7 +126,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomForceAutomaticallyJoinClasses property value. Indicates whether or not to automatically give permission to the teacher's requests, without prompting the student. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
         Args:
-            value: Value to set for the classroomForceAutomaticallyJoinClasses property.
+            value: Value to set for the classroom_force_automatically_join_classes property.
         """
         self._classroom_force_automatically_join_classes = value
     
@@ -143,7 +143,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomForceRequestPermissionToLeaveClasses property value. Indicates whether a student enrolled in an unmanaged course via Classroom will be required to request permission from the teacher when attempting to leave the course. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
         Args:
-            value: Value to set for the classroomForceRequestPermissionToLeaveClasses property.
+            value: Value to set for the classroom_force_request_permission_to_leave_classes property.
         """
         self._classroom_force_request_permission_to_leave_classes = value
     
@@ -160,7 +160,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomForceUnpromptedAppAndDeviceLock property value. Indicates whether or not to allow the teacher to lock apps or the device without prompting the student. Requires MDM enrollment via Apple School Manager or Apple Business Manager.
         Args:
-            value: Value to set for the classroomForceUnpromptedAppAndDeviceLock property.
+            value: Value to set for the classroom_force_unprompted_app_and_device_lock property.
         """
         self._classroom_force_unprompted_app_and_device_lock = value
     
@@ -177,7 +177,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the compliantAppListType property value. Possible values of the compliance app list.
         Args:
-            value: Value to set for the compliantAppListType property.
+            value: Value to set for the compliant_app_list_type property.
         """
         self._compliant_app_list_type = value
     
@@ -194,7 +194,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the compliantAppsList property value. List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the compliantAppsList property.
+            value: Value to set for the compliant_apps_list property.
         """
         self._compliant_apps_list = value
     
@@ -336,7 +336,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the contentCachingBlocked property value. Indicates whether or not to allow content caching.
         Args:
-            value: Value to set for the contentCachingBlocked property.
+            value: Value to set for the content_caching_blocked property.
         """
         self._content_caching_blocked = value
     
@@ -365,7 +365,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the definitionLookupBlocked property value. Indicates whether or not to block definition lookup.
         Args:
-            value: Value to set for the definitionLookupBlocked property.
+            value: Value to set for the definition_lookup_blocked property.
         """
         self._definition_lookup_blocked = value
     
@@ -382,7 +382,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the emailInDomainSuffixes property value. An email address lacking a suffix that matches any of these strings will be considered out-of-domain.
         Args:
-            value: Value to set for the emailInDomainSuffixes property.
+            value: Value to set for the email_in_domain_suffixes property.
         """
         self._email_in_domain_suffixes = value
     
@@ -399,7 +399,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the eraseContentAndSettingsBlocked property value. TRUE disables the reset option on supervised devices. FALSE enables the reset option on supervised devices. Available for devices running macOS versions 12.0 and later.
         Args:
-            value: Value to set for the eraseContentAndSettingsBlocked property.
+            value: Value to set for the erase_content_and_settings_blocked property.
         """
         self._erase_content_and_settings_blocked = value
     
@@ -416,7 +416,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the gameCenterBlocked property value. Yes disables Game Center, and the Game Center icon is removed from the Home screen. Available for devices running macOS versions 10.13 and later.
         Args:
-            value: Value to set for the gameCenterBlocked property.
+            value: Value to set for the game_center_blocked property.
         """
         self._game_center_blocked = value
     
@@ -426,65 +426,65 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "adding_game_center_friends_blocked": lambda n : setattr(self, 'adding_game_center_friends_blocked', n.get_bool_value()),
-            "air_drop_blocked": lambda n : setattr(self, 'air_drop_blocked', n.get_bool_value()),
-            "apple_watch_block_auto_unlock": lambda n : setattr(self, 'apple_watch_block_auto_unlock', n.get_bool_value()),
-            "camera_blocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
-            "classroom_app_block_remote_screen_observation": lambda n : setattr(self, 'classroom_app_block_remote_screen_observation', n.get_bool_value()),
-            "classroom_app_force_unprompted_screen_observation": lambda n : setattr(self, 'classroom_app_force_unprompted_screen_observation', n.get_bool_value()),
-            "classroom_force_automatically_join_classes": lambda n : setattr(self, 'classroom_force_automatically_join_classes', n.get_bool_value()),
-            "classroom_force_request_permission_to_leave_classes": lambda n : setattr(self, 'classroom_force_request_permission_to_leave_classes', n.get_bool_value()),
-            "classroom_force_unprompted_app_and_device_lock": lambda n : setattr(self, 'classroom_force_unprompted_app_and_device_lock', n.get_bool_value()),
-            "compliant_app_list_type": lambda n : setattr(self, 'compliant_app_list_type', n.get_enum_value(app_list_type.AppListType)),
-            "compliant_apps_list": lambda n : setattr(self, 'compliant_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "content_caching_blocked": lambda n : setattr(self, 'content_caching_blocked', n.get_bool_value()),
-            "definition_lookup_blocked": lambda n : setattr(self, 'definition_lookup_blocked', n.get_bool_value()),
-            "email_in_domain_suffixes": lambda n : setattr(self, 'email_in_domain_suffixes', n.get_collection_of_primitive_values(str)),
-            "erase_content_and_settings_blocked": lambda n : setattr(self, 'erase_content_and_settings_blocked', n.get_bool_value()),
-            "game_center_blocked": lambda n : setattr(self, 'game_center_blocked', n.get_bool_value()),
-            "i_cloud_block_activity_continuation": lambda n : setattr(self, 'i_cloud_block_activity_continuation', n.get_bool_value()),
-            "i_cloud_block_address_book": lambda n : setattr(self, 'i_cloud_block_address_book', n.get_bool_value()),
-            "i_cloud_block_bookmarks": lambda n : setattr(self, 'i_cloud_block_bookmarks', n.get_bool_value()),
-            "i_cloud_block_calendar": lambda n : setattr(self, 'i_cloud_block_calendar', n.get_bool_value()),
-            "i_cloud_block_document_sync": lambda n : setattr(self, 'i_cloud_block_document_sync', n.get_bool_value()),
-            "i_cloud_block_mail": lambda n : setattr(self, 'i_cloud_block_mail', n.get_bool_value()),
-            "i_cloud_block_notes": lambda n : setattr(self, 'i_cloud_block_notes', n.get_bool_value()),
-            "i_cloud_block_photo_library": lambda n : setattr(self, 'i_cloud_block_photo_library', n.get_bool_value()),
-            "i_cloud_block_reminders": lambda n : setattr(self, 'i_cloud_block_reminders', n.get_bool_value()),
-            "i_cloud_desktop_and_documents_blocked": lambda n : setattr(self, 'i_cloud_desktop_and_documents_blocked', n.get_bool_value()),
-            "i_cloud_private_relay_blocked": lambda n : setattr(self, 'i_cloud_private_relay_blocked', n.get_bool_value()),
-            "i_tunes_block_file_sharing": lambda n : setattr(self, 'i_tunes_block_file_sharing', n.get_bool_value()),
-            "i_tunes_block_music_service": lambda n : setattr(self, 'i_tunes_block_music_service', n.get_bool_value()),
-            "keyboard_block_dictation": lambda n : setattr(self, 'keyboard_block_dictation', n.get_bool_value()),
-            "keychain_block_cloud_sync": lambda n : setattr(self, 'keychain_block_cloud_sync', n.get_bool_value()),
-            "multiplayer_gaming_blocked": lambda n : setattr(self, 'multiplayer_gaming_blocked', n.get_bool_value()),
-            "password_block_air_drop_sharing": lambda n : setattr(self, 'password_block_air_drop_sharing', n.get_bool_value()),
-            "password_block_auto_fill": lambda n : setattr(self, 'password_block_auto_fill', n.get_bool_value()),
-            "password_block_fingerprint_unlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
-            "password_block_modification": lambda n : setattr(self, 'password_block_modification', n.get_bool_value()),
-            "password_block_proximity_requests": lambda n : setattr(self, 'password_block_proximity_requests', n.get_bool_value()),
-            "password_block_simple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_maximum_attempt_count": lambda n : setattr(self, 'password_maximum_attempt_count', n.get_int_value()),
-            "password_minimum_character_set_count": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_lock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
-            "password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "password_minutes_until_failed_login_reset": lambda n : setattr(self, 'password_minutes_until_failed_login_reset', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
-            "privacy_access_controls": lambda n : setattr(self, 'privacy_access_controls', n.get_collection_of_object_values(mac_o_s_privacy_access_control_item.MacOSPrivacyAccessControlItem)),
-            "safari_block_autofill": lambda n : setattr(self, 'safari_block_autofill', n.get_bool_value()),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "software_update_major_o_s_deferred_install_delay_in_days": lambda n : setattr(self, 'software_update_major_o_s_deferred_install_delay_in_days', n.get_int_value()),
-            "software_update_minor_o_s_deferred_install_delay_in_days": lambda n : setattr(self, 'software_update_minor_o_s_deferred_install_delay_in_days', n.get_int_value()),
-            "software_update_non_o_s_deferred_install_delay_in_days": lambda n : setattr(self, 'software_update_non_o_s_deferred_install_delay_in_days', n.get_int_value()),
-            "software_updates_enforced_delay_in_days": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
-            "spotlight_block_internet_results": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
-            "touch_id_timeout_in_hours": lambda n : setattr(self, 'touch_id_timeout_in_hours', n.get_int_value()),
-            "update_delay_policy": lambda n : setattr(self, 'update_delay_policy', n.get_enum_value(mac_o_s_software_update_delay_policy.MacOSSoftwareUpdateDelayPolicy)),
-            "wallpaper_modification_blocked": lambda n : setattr(self, 'wallpaper_modification_blocked', n.get_bool_value()),
+            "addingGameCenterFriendsBlocked": lambda n : setattr(self, 'adding_game_center_friends_blocked', n.get_bool_value()),
+            "airDropBlocked": lambda n : setattr(self, 'air_drop_blocked', n.get_bool_value()),
+            "appleWatchBlockAutoUnlock": lambda n : setattr(self, 'apple_watch_block_auto_unlock', n.get_bool_value()),
+            "cameraBlocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
+            "classroomAppBlockRemoteScreenObservation": lambda n : setattr(self, 'classroom_app_block_remote_screen_observation', n.get_bool_value()),
+            "classroomAppForceUnpromptedScreenObservation": lambda n : setattr(self, 'classroom_app_force_unprompted_screen_observation', n.get_bool_value()),
+            "classroomForceAutomaticallyJoinClasses": lambda n : setattr(self, 'classroom_force_automatically_join_classes', n.get_bool_value()),
+            "classroomForceRequestPermissionToLeaveClasses": lambda n : setattr(self, 'classroom_force_request_permission_to_leave_classes', n.get_bool_value()),
+            "classroomForceUnpromptedAppAndDeviceLock": lambda n : setattr(self, 'classroom_force_unprompted_app_and_device_lock', n.get_bool_value()),
+            "compliantAppsList": lambda n : setattr(self, 'compliant_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "compliantAppListType": lambda n : setattr(self, 'compliant_app_list_type', n.get_enum_value(app_list_type.AppListType)),
+            "contentCachingBlocked": lambda n : setattr(self, 'content_caching_blocked', n.get_bool_value()),
+            "definitionLookupBlocked": lambda n : setattr(self, 'definition_lookup_blocked', n.get_bool_value()),
+            "emailInDomainSuffixes": lambda n : setattr(self, 'email_in_domain_suffixes', n.get_collection_of_primitive_values(str)),
+            "eraseContentAndSettingsBlocked": lambda n : setattr(self, 'erase_content_and_settings_blocked', n.get_bool_value()),
+            "gameCenterBlocked": lambda n : setattr(self, 'game_center_blocked', n.get_bool_value()),
+            "iCloudBlockActivityContinuation": lambda n : setattr(self, 'i_cloud_block_activity_continuation', n.get_bool_value()),
+            "iCloudBlockAddressBook": lambda n : setattr(self, 'i_cloud_block_address_book', n.get_bool_value()),
+            "iCloudBlockBookmarks": lambda n : setattr(self, 'i_cloud_block_bookmarks', n.get_bool_value()),
+            "iCloudBlockCalendar": lambda n : setattr(self, 'i_cloud_block_calendar', n.get_bool_value()),
+            "iCloudBlockDocumentSync": lambda n : setattr(self, 'i_cloud_block_document_sync', n.get_bool_value()),
+            "iCloudBlockMail": lambda n : setattr(self, 'i_cloud_block_mail', n.get_bool_value()),
+            "iCloudBlockNotes": lambda n : setattr(self, 'i_cloud_block_notes', n.get_bool_value()),
+            "iCloudBlockPhotoLibrary": lambda n : setattr(self, 'i_cloud_block_photo_library', n.get_bool_value()),
+            "iCloudBlockReminders": lambda n : setattr(self, 'i_cloud_block_reminders', n.get_bool_value()),
+            "iCloudDesktopAndDocumentsBlocked": lambda n : setattr(self, 'i_cloud_desktop_and_documents_blocked', n.get_bool_value()),
+            "iCloudPrivateRelayBlocked": lambda n : setattr(self, 'i_cloud_private_relay_blocked', n.get_bool_value()),
+            "iTunesBlockFileSharing": lambda n : setattr(self, 'i_tunes_block_file_sharing', n.get_bool_value()),
+            "iTunesBlockMusicService": lambda n : setattr(self, 'i_tunes_block_music_service', n.get_bool_value()),
+            "keyboardBlockDictation": lambda n : setattr(self, 'keyboard_block_dictation', n.get_bool_value()),
+            "keychainBlockCloudSync": lambda n : setattr(self, 'keychain_block_cloud_sync', n.get_bool_value()),
+            "multiplayerGamingBlocked": lambda n : setattr(self, 'multiplayer_gaming_blocked', n.get_bool_value()),
+            "passwordBlockAirDropSharing": lambda n : setattr(self, 'password_block_air_drop_sharing', n.get_bool_value()),
+            "passwordBlockAutoFill": lambda n : setattr(self, 'password_block_auto_fill', n.get_bool_value()),
+            "passwordBlockFingerprintUnlock": lambda n : setattr(self, 'password_block_fingerprint_unlock', n.get_bool_value()),
+            "passwordBlockModification": lambda n : setattr(self, 'password_block_modification', n.get_bool_value()),
+            "passwordBlockProximityRequests": lambda n : setattr(self, 'password_block_proximity_requests', n.get_bool_value()),
+            "passwordBlockSimple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMaximumAttemptCount": lambda n : setattr(self, 'password_maximum_attempt_count', n.get_int_value()),
+            "passwordMinimumCharacterSetCount": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passwordMinutesUntilFailedLoginReset": lambda n : setattr(self, 'password_minutes_until_failed_login_reset', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
+            "privacyAccessControls": lambda n : setattr(self, 'privacy_access_controls', n.get_collection_of_object_values(mac_o_s_privacy_access_control_item.MacOSPrivacyAccessControlItem)),
+            "safariBlockAutofill": lambda n : setattr(self, 'safari_block_autofill', n.get_bool_value()),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "softwareUpdatesEnforcedDelayInDays": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
+            "softwareUpdateMajorOSDeferredInstallDelayInDays": lambda n : setattr(self, 'software_update_major_o_s_deferred_install_delay_in_days', n.get_int_value()),
+            "softwareUpdateMinorOSDeferredInstallDelayInDays": lambda n : setattr(self, 'software_update_minor_o_s_deferred_install_delay_in_days', n.get_int_value()),
+            "softwareUpdateNonOSDeferredInstallDelayInDays": lambda n : setattr(self, 'software_update_non_o_s_deferred_install_delay_in_days', n.get_int_value()),
+            "spotlightBlockInternetResults": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
+            "touchIdTimeoutInHours": lambda n : setattr(self, 'touch_id_timeout_in_hours', n.get_int_value()),
+            "updateDelayPolicy": lambda n : setattr(self, 'update_delay_policy', n.get_enum_value(mac_o_s_software_update_delay_policy.MacOSSoftwareUpdateDelayPolicy)),
+            "wallpaperModificationBlocked": lambda n : setattr(self, 'wallpaper_modification_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -503,7 +503,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockActivityContinuation property value. Indicates whether or not to block the user from continuing work that they started on a MacOS device on another iOS or MacOS device (MacOS 10.15 or later).
         Args:
-            value: Value to set for the iCloudBlockActivityContinuation property.
+            value: Value to set for the i_cloud_block_activity_continuation property.
         """
         self._i_cloud_block_activity_continuation = value
     
@@ -520,7 +520,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockAddressBook property value. Indicates whether or not to block iCloud from syncing contacts.
         Args:
-            value: Value to set for the iCloudBlockAddressBook property.
+            value: Value to set for the i_cloud_block_address_book property.
         """
         self._i_cloud_block_address_book = value
     
@@ -537,7 +537,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockBookmarks property value. Indicates whether or not to block iCloud from syncing bookmarks.
         Args:
-            value: Value to set for the iCloudBlockBookmarks property.
+            value: Value to set for the i_cloud_block_bookmarks property.
         """
         self._i_cloud_block_bookmarks = value
     
@@ -554,7 +554,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockCalendar property value. Indicates whether or not to block iCloud from syncing calendars.
         Args:
-            value: Value to set for the iCloudBlockCalendar property.
+            value: Value to set for the i_cloud_block_calendar property.
         """
         self._i_cloud_block_calendar = value
     
@@ -571,7 +571,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockDocumentSync property value. Indicates whether or not to block iCloud document sync.
         Args:
-            value: Value to set for the iCloudBlockDocumentSync property.
+            value: Value to set for the i_cloud_block_document_sync property.
         """
         self._i_cloud_block_document_sync = value
     
@@ -588,7 +588,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockMail property value. Indicates whether or not to block iCloud from syncing mail.
         Args:
-            value: Value to set for the iCloudBlockMail property.
+            value: Value to set for the i_cloud_block_mail property.
         """
         self._i_cloud_block_mail = value
     
@@ -605,7 +605,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockNotes property value. Indicates whether or not to block iCloud from syncing notes.
         Args:
-            value: Value to set for the iCloudBlockNotes property.
+            value: Value to set for the i_cloud_block_notes property.
         """
         self._i_cloud_block_notes = value
     
@@ -622,7 +622,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockPhotoLibrary property value. Indicates whether or not to block iCloud Photo Library.
         Args:
-            value: Value to set for the iCloudBlockPhotoLibrary property.
+            value: Value to set for the i_cloud_block_photo_library property.
         """
         self._i_cloud_block_photo_library = value
     
@@ -639,7 +639,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockReminders property value. Indicates whether or not to block iCloud from syncing reminders.
         Args:
-            value: Value to set for the iCloudBlockReminders property.
+            value: Value to set for the i_cloud_block_reminders property.
         """
         self._i_cloud_block_reminders = value
     
@@ -656,7 +656,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudDesktopAndDocumentsBlocked property value. When TRUE the synchronization of cloud desktop and documents is blocked. When FALSE, synchronization of the cloud desktop and documents are allowed. Available for devices running macOS 10.12.4 and later.
         Args:
-            value: Value to set for the iCloudDesktopAndDocumentsBlocked property.
+            value: Value to set for the i_cloud_desktop_and_documents_blocked property.
         """
         self._i_cloud_desktop_and_documents_blocked = value
     
@@ -673,7 +673,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudPrivateRelayBlocked property value. iCloud private relay is an iCloud+ service that prevents networks and servers from monitoring a person's activity across the internet. By blocking iCloud private relay, Apple will not encrypt the traffic leaving the device. Available for devices running macOS 12 and later.
         Args:
-            value: Value to set for the iCloudPrivateRelayBlocked property.
+            value: Value to set for the i_cloud_private_relay_blocked property.
         """
         self._i_cloud_private_relay_blocked = value
     
@@ -690,7 +690,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iTunesBlockFileSharing property value. Indicates whether or not to block files from being transferred using iTunes.
         Args:
-            value: Value to set for the iTunesBlockFileSharing property.
+            value: Value to set for the i_tunes_block_file_sharing property.
         """
         self._i_tunes_block_file_sharing = value
     
@@ -707,7 +707,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iTunesBlockMusicService property value. Indicates whether or not to block Music service and revert Music app to classic mode.
         Args:
-            value: Value to set for the iTunesBlockMusicService property.
+            value: Value to set for the i_tunes_block_music_service property.
         """
         self._i_tunes_block_music_service = value
     
@@ -724,7 +724,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keyboardBlockDictation property value. Indicates whether or not to block the user from using dictation input.
         Args:
-            value: Value to set for the keyboardBlockDictation property.
+            value: Value to set for the keyboard_block_dictation property.
         """
         self._keyboard_block_dictation = value
     
@@ -741,7 +741,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keychainBlockCloudSync property value. Indicates whether or not iCloud keychain synchronization is blocked (macOS 10.12 and later).
         Args:
-            value: Value to set for the keychainBlockCloudSync property.
+            value: Value to set for the keychain_block_cloud_sync property.
         """
         self._keychain_block_cloud_sync = value
     
@@ -758,7 +758,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the multiplayerGamingBlocked property value. TRUE prevents multiplayer gaming when using Game Center. FALSE allows multiplayer gaming when using Game Center. Available for devices running macOS versions 10.13 and later.
         Args:
-            value: Value to set for the multiplayerGamingBlocked property.
+            value: Value to set for the multiplayer_gaming_blocked property.
         """
         self._multiplayer_gaming_blocked = value
     
@@ -775,7 +775,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockAirDropSharing property value. Indicates whether or not to block sharing passwords with the AirDrop passwords feature.
         Args:
-            value: Value to set for the passwordBlockAirDropSharing property.
+            value: Value to set for the password_block_air_drop_sharing property.
         """
         self._password_block_air_drop_sharing = value
     
@@ -792,7 +792,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockAutoFill property value. Indicates whether or not to block the AutoFill Passwords feature.
         Args:
-            value: Value to set for the passwordBlockAutoFill property.
+            value: Value to set for the password_block_auto_fill property.
         """
         self._password_block_auto_fill = value
     
@@ -809,7 +809,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockFingerprintUnlock property value. Indicates whether or not to block fingerprint unlock.
         Args:
-            value: Value to set for the passwordBlockFingerprintUnlock property.
+            value: Value to set for the password_block_fingerprint_unlock property.
         """
         self._password_block_fingerprint_unlock = value
     
@@ -826,7 +826,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockModification property value. Indicates whether or not to allow passcode modification.
         Args:
-            value: Value to set for the passwordBlockModification property.
+            value: Value to set for the password_block_modification property.
         """
         self._password_block_modification = value
     
@@ -843,7 +843,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockProximityRequests property value. Indicates whether or not to block requesting passwords from nearby devices.
         Args:
-            value: Value to set for the passwordBlockProximityRequests property.
+            value: Value to set for the password_block_proximity_requests property.
         """
         self._password_block_proximity_requests = value
     
@@ -860,7 +860,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockSimple property value. Block simple passwords.
         Args:
-            value: Value to set for the passwordBlockSimple property.
+            value: Value to set for the password_block_simple property.
         """
         self._password_block_simple = value
     
@@ -877,7 +877,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordExpirationDays property value. Number of days before the password expires.
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -894,7 +894,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMaximumAttemptCount property value. The number of allowed failed attempts to enter the passcode at the device's lock screen. Valid values 2 to 11
         Args:
-            value: Value to set for the passwordMaximumAttemptCount property.
+            value: Value to set for the password_maximum_attempt_count property.
         """
         self._password_maximum_attempt_count = value
     
@@ -911,7 +911,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinimumCharacterSetCount property value. Number of character sets a password must contain. Valid values 0 to 4
         Args:
-            value: Value to set for the passwordMinimumCharacterSetCount property.
+            value: Value to set for the password_minimum_character_set_count property.
         """
         self._password_minimum_character_set_count = value
     
@@ -928,7 +928,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinimumLength property value. Minimum length of passwords.
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -945,7 +945,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinutesOfInactivityBeforeLock property value. Minutes of inactivity required before a password is required.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeLock property.
+            value: Value to set for the password_minutes_of_inactivity_before_lock property.
         """
         self._password_minutes_of_inactivity_before_lock = value
     
@@ -962,7 +962,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity required before the screen times out.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -979,7 +979,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinutesUntilFailedLoginReset property value. The number of minutes before the login is reset after the maximum number of unsuccessful login attempts is reached.
         Args:
-            value: Value to set for the passwordMinutesUntilFailedLoginReset property.
+            value: Value to set for the password_minutes_until_failed_login_reset property.
         """
         self._password_minutes_until_failed_login_reset = value
     
@@ -996,7 +996,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordPreviousPasswordBlockCount property value. Number of previous passwords to block.
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -1013,7 +1013,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordRequired property value. Whether or not to require a password.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -1030,7 +1030,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordRequiredType property value. Possible values of required passwords.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -1047,7 +1047,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyAccessControls property value. List of privacy preference policy controls. This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the privacyAccessControls property.
+            value: Value to set for the privacy_access_controls property.
         """
         self._privacy_access_controls = value
     
@@ -1064,7 +1064,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariBlockAutofill property value. Indicates whether or not to block the user from using Auto fill in Safari.
         Args:
-            value: Value to set for the safariBlockAutofill property.
+            value: Value to set for the safari_block_autofill property.
         """
         self._safari_block_autofill = value
     
@@ -1081,7 +1081,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the screenCaptureBlocked property value. Indicates whether or not to block the user from taking Screenshots.
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -1103,8 +1103,8 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("classroomForceAutomaticallyJoinClasses", self.classroom_force_automatically_join_classes)
         writer.write_bool_value("classroomForceRequestPermissionToLeaveClasses", self.classroom_force_request_permission_to_leave_classes)
         writer.write_bool_value("classroomForceUnpromptedAppAndDeviceLock", self.classroom_force_unprompted_app_and_device_lock)
-        writer.write_enum_value("compliantAppListType", self.compliant_app_list_type)
         writer.write_collection_of_object_values("compliantAppsList", self.compliant_apps_list)
+        writer.write_enum_value("compliantAppListType", self.compliant_app_list_type)
         writer.write_bool_value("contentCachingBlocked", self.content_caching_blocked)
         writer.write_bool_value("definitionLookupBlocked", self.definition_lookup_blocked)
         writer.write_collection_of_primitive_values("emailInDomainSuffixes", self.email_in_domain_suffixes)
@@ -1145,10 +1145,10 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_collection_of_object_values("privacyAccessControls", self.privacy_access_controls)
         writer.write_bool_value("safariBlockAutofill", self.safari_block_autofill)
         writer.write_bool_value("screenCaptureBlocked", self.screen_capture_blocked)
+        writer.write_int_value("softwareUpdatesEnforcedDelayInDays", self.software_updates_enforced_delay_in_days)
         writer.write_int_value("softwareUpdateMajorOSDeferredInstallDelayInDays", self.software_update_major_o_s_deferred_install_delay_in_days)
         writer.write_int_value("softwareUpdateMinorOSDeferredInstallDelayInDays", self.software_update_minor_o_s_deferred_install_delay_in_days)
         writer.write_int_value("softwareUpdateNonOSDeferredInstallDelayInDays", self.software_update_non_o_s_deferred_install_delay_in_days)
-        writer.write_int_value("softwareUpdatesEnforcedDelayInDays", self.software_updates_enforced_delay_in_days)
         writer.write_bool_value("spotlightBlockInternetResults", self.spotlight_block_internet_results)
         writer.write_int_value("touchIdTimeoutInHours", self.touch_id_timeout_in_hours)
         writer.write_enum_value("updateDelayPolicy", self.update_delay_policy)
@@ -1167,7 +1167,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the softwareUpdateMajorOSDeferredInstallDelayInDays property value. Specify the number of days (1-90) to delay visibility of major OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
         Args:
-            value: Value to set for the softwareUpdateMajorOSDeferredInstallDelayInDays property.
+            value: Value to set for the software_update_major_o_s_deferred_install_delay_in_days property.
         """
         self._software_update_major_o_s_deferred_install_delay_in_days = value
     
@@ -1184,7 +1184,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the softwareUpdateMinorOSDeferredInstallDelayInDays property value. Specify the number of days (1-90) to delay visibility of minor OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
         Args:
-            value: Value to set for the softwareUpdateMinorOSDeferredInstallDelayInDays property.
+            value: Value to set for the software_update_minor_o_s_deferred_install_delay_in_days property.
         """
         self._software_update_minor_o_s_deferred_install_delay_in_days = value
     
@@ -1201,7 +1201,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the softwareUpdateNonOSDeferredInstallDelayInDays property value. Specify the number of days (1-90) to delay visibility of non-OS software updates. Available for devices running macOS versions 11.3 and later. Valid values 0 to 90
         Args:
-            value: Value to set for the softwareUpdateNonOSDeferredInstallDelayInDays property.
+            value: Value to set for the software_update_non_o_s_deferred_install_delay_in_days property.
         """
         self._software_update_non_o_s_deferred_install_delay_in_days = value
     
@@ -1218,7 +1218,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the softwareUpdatesEnforcedDelayInDays property value. Sets how many days a software update will be delyed for a supervised device. Valid values 0 to 90
         Args:
-            value: Value to set for the softwareUpdatesEnforcedDelayInDays property.
+            value: Value to set for the software_updates_enforced_delay_in_days property.
         """
         self._software_updates_enforced_delay_in_days = value
     
@@ -1235,7 +1235,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the spotlightBlockInternetResults property value. Indicates whether or not to block Spotlight from returning any results from an Internet search.
         Args:
-            value: Value to set for the spotlightBlockInternetResults property.
+            value: Value to set for the spotlight_block_internet_results property.
         """
         self._spotlight_block_internet_results = value
     
@@ -1252,7 +1252,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the touchIdTimeoutInHours property value. Maximum hours after which the user must enter their password to unlock the device instead of using Touch ID. Available for devices running macOS 12 and later. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the touchIdTimeoutInHours property.
+            value: Value to set for the touch_id_timeout_in_hours property.
         """
         self._touch_id_timeout_in_hours = value
     
@@ -1269,7 +1269,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the updateDelayPolicy property value. Determines whether to delay OS and/or app updates for macOS. Possible values are: none, delayOSUpdateVisibility, delayAppUpdateVisibility, unknownFutureValue, delayMajorOsUpdateVisibility.
         Args:
-            value: Value to set for the updateDelayPolicy property.
+            value: Value to set for the update_delay_policy property.
         """
         self._update_delay_policy = value
     
@@ -1286,7 +1286,7 @@ class MacOSGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wallpaperModificationBlocked property value. TRUE prevents the wallpaper from being changed. FALSE allows the wallpaper to be changed. Available for devices running macOS versions 10.13 and later.
         Args:
-            value: Value to set for the wallpaperModificationBlocked property.
+            value: Value to set for the wallpaper_modification_blocked property.
         """
         self._wallpaper_modification_blocked = value
     

@@ -34,7 +34,7 @@ class UserRegistrationMethodCount(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationMethod property value. Name of authentication method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -70,9 +70,9 @@ class UserRegistrationMethodCount(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_str_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_count": lambda n : setattr(self, 'user_count', n.get_int_value()),
+            "userCount": lambda n : setattr(self, 'user_count', n.get_int_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class UserRegistrationMethodCount(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class UserRegistrationMethodCount(AdditionalDataHolder, Parsable):
         """
         Sets the userCount property value. Number of users registered.
         Args:
-            value: Value to set for the userCount property.
+            value: Value to set for the user_count property.
         """
         self._user_count = value
     

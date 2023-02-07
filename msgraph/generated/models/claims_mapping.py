@@ -66,7 +66,7 @@ class ClaimsMapping(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The claim that provides the display name or full name for the user. It is a required propoerty.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -93,12 +93,12 @@ class ClaimsMapping(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "given_name": lambda n : setattr(self, 'given_name', n.get_str_value()),
+            "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         return fields
     
@@ -115,7 +115,7 @@ class ClaimsMapping(AdditionalDataHolder, Parsable):
         """
         Sets the givenName property value. The claim that provides the first name of the user.
         Args:
-            value: Value to set for the givenName property.
+            value: Value to set for the given_name property.
         """
         self._given_name = value
     
@@ -132,7 +132,7 @@ class ClaimsMapping(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -182,7 +182,7 @@ class ClaimsMapping(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. The claim that provides the unique identifier for the signed-in user. It is a required propoerty.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

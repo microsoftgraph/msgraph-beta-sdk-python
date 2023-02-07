@@ -50,7 +50,7 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         """
         Sets the detectionScriptErrorDeviceCount property value. Number of devices on which the detection script execution encountered an error and did not complete. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the detectionScriptErrorDeviceCount property.
+            value: Value to set for the detection_script_error_device_count property.
         """
         self._detection_script_error_device_count = value
     
@@ -67,7 +67,7 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         """
         Sets the detectionScriptPendingDeviceCount property value. Number of devices which have not yet run the latest version of the device compliance script. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the detectionScriptPendingDeviceCount property.
+            value: Value to set for the detection_script_pending_device_count property.
         """
         self._detection_script_pending_device_count = value
     
@@ -77,11 +77,11 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "detection_script_error_device_count": lambda n : setattr(self, 'detection_script_error_device_count', n.get_int_value()),
-            "detection_script_pending_device_count": lambda n : setattr(self, 'detection_script_pending_device_count', n.get_int_value()),
-            "issue_detected_device_count": lambda n : setattr(self, 'issue_detected_device_count', n.get_int_value()),
-            "last_script_run_date_time": lambda n : setattr(self, 'last_script_run_date_time', n.get_datetime_value()),
-            "no_issue_detected_device_count": lambda n : setattr(self, 'no_issue_detected_device_count', n.get_int_value()),
+            "detectionScriptErrorDeviceCount": lambda n : setattr(self, 'detection_script_error_device_count', n.get_int_value()),
+            "detectionScriptPendingDeviceCount": lambda n : setattr(self, 'detection_script_pending_device_count', n.get_int_value()),
+            "issueDetectedDeviceCount": lambda n : setattr(self, 'issue_detected_device_count', n.get_int_value()),
+            "lastScriptRunDateTime": lambda n : setattr(self, 'last_script_run_date_time', n.get_datetime_value()),
+            "noIssueDetectedDeviceCount": lambda n : setattr(self, 'no_issue_detected_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -100,7 +100,7 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         """
         Sets the issueDetectedDeviceCount property value. Number of devices for which the detection script found an issue. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the issueDetectedDeviceCount property.
+            value: Value to set for the issue_detected_device_count property.
         """
         self._issue_detected_device_count = value
     
@@ -117,7 +117,7 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         """
         Sets the lastScriptRunDateTime property value. Last run time for the script across all devices
         Args:
-            value: Value to set for the lastScriptRunDateTime property.
+            value: Value to set for the last_script_run_date_time property.
         """
         self._last_script_run_date_time = value
     
@@ -134,7 +134,7 @@ class DeviceComplianceScriptRunSummary(entity.Entity):
         """
         Sets the noIssueDetectedDeviceCount property value. Number of devices for which the detection script did not find an issue and the device is healthy. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the noIssueDetectedDeviceCount property.
+            value: Value to set for the no_issue_detected_device_count property.
         """
         self._no_issue_detected_device_count = value
     

@@ -12,7 +12,7 @@ class MacOsLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.macOsLobAppAssignmentSettings"
-        # When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.
+        # Whether or not to uninstall the app when device is removed from Intune.
         self._uninstall_on_device_removal: Optional[bool] = None
     
     @staticmethod
@@ -33,7 +33,7 @@ class MacOsLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "uninstall_on_device_removal": lambda n : setattr(self, 'uninstall_on_device_removal', n.get_bool_value()),
+            "uninstallOnDeviceRemoval": lambda n : setattr(self, 'uninstall_on_device_removal', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class MacOsLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
     @property
     def uninstall_on_device_removal(self,) -> Optional[bool]:
         """
-        Gets the uninstallOnDeviceRemoval property value. When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.
+        Gets the uninstallOnDeviceRemoval property value. Whether or not to uninstall the app when device is removed from Intune.
         Returns: Optional[bool]
         """
         return self._uninstall_on_device_removal
@@ -61,9 +61,9 @@ class MacOsLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
     @uninstall_on_device_removal.setter
     def uninstall_on_device_removal(self,value: Optional[bool] = None) -> None:
         """
-        Sets the uninstallOnDeviceRemoval property value. When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.
+        Sets the uninstallOnDeviceRemoval property value. Whether or not to uninstall the app when device is removed from Intune.
         Args:
-            value: Value to set for the uninstallOnDeviceRemoval property.
+            value: Value to set for the uninstall_on_device_removal property.
         """
         self._uninstall_on_device_removal = value
     

@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.count.count_request_builder')
-has_payload_links_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.has_payload_links.has_payload_links_request_builder')
+microsoft_graph_has_payload_links_request_builder = lazy_import('msgraph.generated.device_app_management.ios_lob_app_provisioning_configurations.microsoft_graph_has_payload_links.microsoft_graph_has_payload_links_request_builder')
 ios_lob_app_provisioning_configuration = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration')
 ios_lob_app_provisioning_configuration_collection_response = lazy_import('msgraph.generated.models.ios_lob_app_provisioning_configuration_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,11 +28,11 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
+    def microsoft_graph_has_payload_links(self) -> microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
-        return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_has_payload_links_request_builder.MicrosoftGraphHasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse]:
         """
         The IOS Lob App Provisioning Configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration_collection_response.IosLobAppProvisioningConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
+    async def post(self,body: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration] = None, request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]:
         """
         Create new navigation property to iosLobAppProvisioningConfigurations for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration]
         """
         if body is None:
@@ -91,7 +89,7 @@ class IosLobAppProvisioningConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ios_lob_app_provisioning_configuration.IosLobAppProvisioningConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IosLobAppProvisioningConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

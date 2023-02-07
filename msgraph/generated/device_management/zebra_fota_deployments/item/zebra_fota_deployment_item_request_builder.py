@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_deployments.item.cancel.cancel_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_deployments.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
 zebra_fota_deployment = lazy_import('msgraph.generated.models.zebra_fota_deployment')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class ZebraFotaDeploymentItemRequestBuilder():
     Provides operations to manage the zebraFotaDeployments property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class ZebraFotaDeploymentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property zebraFotaDeployments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class ZebraFotaDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[zebra_fota_deployment.ZebraFotaDeployment]:
+    async def get(self,request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[zebra_fota_deployment.ZebraFotaDeployment]:
         """
         Collection of ZebraFotaDeployments associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_deployment.ZebraFotaDeployment]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class ZebraFotaDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, zebra_fota_deployment.ZebraFotaDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, zebra_fota_deployment.ZebraFotaDeployment, error_mapping)
     
-    async def patch(self,body: Optional[zebra_fota_deployment.ZebraFotaDeployment] = None, request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[zebra_fota_deployment.ZebraFotaDeployment]:
+    async def patch(self,body: Optional[zebra_fota_deployment.ZebraFotaDeployment] = None, request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[zebra_fota_deployment.ZebraFotaDeployment]:
         """
         Update the navigation property zebraFotaDeployments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[zebra_fota_deployment.ZebraFotaDeployment]
         """
         if body is None:
@@ -100,7 +97,7 @@ class ZebraFotaDeploymentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, zebra_fota_deployment.ZebraFotaDeployment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, zebra_fota_deployment.ZebraFotaDeployment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ZebraFotaDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

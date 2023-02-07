@@ -80,10 +80,10 @@ class OathTokenMetadata(AdditionalDataHolder, Parsable):
         fields = {
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
-            "manufacturer_properties": lambda n : setattr(self, 'manufacturer_properties', n.get_collection_of_object_values(key_value.KeyValue)),
+            "manufacturerProperties": lambda n : setattr(self, 'manufacturer_properties', n.get_collection_of_object_values(key_value.KeyValue)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
-            "token_type": lambda n : setattr(self, 'token_type', n.get_str_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "tokenType": lambda n : setattr(self, 'token_type', n.get_str_value()),
         }
         return fields
     
@@ -117,7 +117,7 @@ class OathTokenMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the manufacturerProperties property value. The manufacturerProperties property
         Args:
-            value: Value to set for the manufacturerProperties property.
+            value: Value to set for the manufacturer_properties property.
         """
         self._manufacturer_properties = value
     
@@ -134,9 +134,26 @@ class OathTokenMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. The serialNumber property
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. The serialNumber property
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -155,23 +172,6 @@ class OathTokenMetadata(AdditionalDataHolder, Parsable):
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. The serialNumber property
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. The serialNumber property
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
-    
-    @property
     def token_type(self,) -> Optional[str]:
         """
         Gets the tokenType property value. The tokenType property
@@ -184,7 +184,7 @@ class OathTokenMetadata(AdditionalDataHolder, Parsable):
         """
         Sets the tokenType property value. The tokenType property
         Args:
-            value: Value to set for the tokenType property.
+            value: Value to set for the token_type property.
         """
         self._token_type = value
     

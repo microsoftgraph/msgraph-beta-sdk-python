@@ -22,7 +22,7 @@ class TeamworkDeviceActivity(entity.Entity):
         """
         Sets the activePeripherals property value. The active peripheral devices attached to the device.
         Args:
-            value: Value to set for the activePeripherals property.
+            value: Value to set for the active_peripherals property.
         """
         self._active_peripherals = value
     
@@ -57,7 +57,7 @@ class TeamworkDeviceActivity(entity.Entity):
         """
         Sets the createdBy property value. Identity of the user who created the device activity document.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -74,7 +74,7 @@ class TeamworkDeviceActivity(entity.Entity):
         """
         Sets the createdDateTime property value. The UTC date and time when the device activity document was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -96,11 +96,11 @@ class TeamworkDeviceActivity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_peripherals": lambda n : setattr(self, 'active_peripherals', n.get_object_value(teamwork_active_peripherals.TeamworkActivePeripherals)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "activePeripherals": lambda n : setattr(self, 'active_peripherals', n.get_object_value(teamwork_active_peripherals.TeamworkActivePeripherals)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -119,7 +119,7 @@ class TeamworkDeviceActivity(entity.Entity):
         """
         Sets the lastModifiedBy property value. Identity of the user who last modified the device activity details.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -136,7 +136,7 @@ class TeamworkDeviceActivity(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The UTC date and time when the device activity detail was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

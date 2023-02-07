@@ -19,7 +19,7 @@ class MacOSTrustedRootCertificate(device_configuration.DeviceConfiguration):
         """
         Sets the certFileName property value. File name to display in UI.
         Args:
-            value: Value to set for the certFileName property.
+            value: Value to set for the cert_file_name property.
         """
         self._cert_file_name = value
     
@@ -52,8 +52,8 @@ class MacOSTrustedRootCertificate(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cert_file_name": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
-            "trusted_root_certificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
+            "certFileName": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
+            "trustedRootCertificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class MacOSTrustedRootCertificate(device_configuration.DeviceConfiguration):
         """
         Sets the trustedRootCertificate property value. Trusted Root Certificate.
         Args:
-            value: Value to set for the trustedRootCertificate property.
+            value: Value to set for the trusted_root_certificate property.
         """
         self._trusted_root_certificate = value
     

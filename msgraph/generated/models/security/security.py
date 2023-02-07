@@ -35,7 +35,7 @@ class Security(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "information_protection": lambda n : setattr(self, 'information_protection', n.get_object_value(information_protection.InformationProtection)),
+            "informationProtection": lambda n : setattr(self, 'information_protection', n.get_object_value(information_protection.InformationProtection)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class Security(entity.Entity):
         """
         Sets the informationProtection property value. The informationProtection property
         Args:
-            value: Value to set for the informationProtection property.
+            value: Value to set for the information_protection property.
         """
         self._information_protection = value
     

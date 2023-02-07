@@ -51,7 +51,7 @@ class UserSet(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_backup": lambda n : setattr(self, 'is_backup', n.get_bool_value()),
+            "isBackup": lambda n : setattr(self, 'is_backup', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class UserSet(AdditionalDataHolder, Parsable):
         """
         Sets the isBackup property value. For a user in an approval stage, this property indicates whether the user is a backup fallback approver.
         Args:
-            value: Value to set for the isBackup property.
+            value: Value to set for the is_backup property.
         """
         self._is_backup = value
     
@@ -86,7 +86,7 @@ class UserSet(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

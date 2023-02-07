@@ -1,0 +1,93 @@
+from __future__ import annotations
+from dataclasses import dataclass
+from kiota_abstractions.get_path_parameters import get_path_parameters
+from kiota_abstractions.method import Method
+from kiota_abstractions.request_adapter import RequestAdapter
+from kiota_abstractions.request_information import RequestInformation
+from kiota_abstractions.request_option import RequestOption
+from kiota_abstractions.response_handler import ResponseHandler
+from kiota_abstractions.serialization import Parsable, ParsableFactory
+from kiota_abstractions.utils import lazy_import
+from typing import Any, Callable, Dict, List, Optional, Union
+
+create_google_play_web_token_post_request_body = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_create_google_play_web_token.create_google_play_web_token_post_request_body')
+create_google_play_web_token_response = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.microsoft_graph_create_google_play_web_token.create_google_play_web_token_response')
+o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+
+class MicrosoftGraphCreateGooglePlayWebTokenRequestBuilder():
+    """
+    Provides operations to call the createGooglePlayWebToken method.
+    """
+    def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
+        """
+        Instantiates a new MicrosoftGraphCreateGooglePlayWebTokenRequestBuilder and sets the default values.
+        Args:
+            pathParameters: The raw url or the Url template parameters for the request.
+            requestAdapter: The request adapter to use to execute the requests.
+        """
+        if path_parameters is None:
+            raise Exception("path_parameters cannot be undefined")
+        if request_adapter is None:
+            raise Exception("request_adapter cannot be undefined")
+        # Url template to use to build the URL for the current request builder
+        self.url_template: str = "{+baseurl}/deviceManagement/androidManagedStoreAccountEnterpriseSettings/microsoft.graph.createGooglePlayWebToken"
+
+        url_tpl_params = get_path_parameters(path_parameters)
+        self.path_parameters = url_tpl_params
+        self.request_adapter = request_adapter
+    
+    async def post(self,body: Optional[create_google_play_web_token_post_request_body.CreateGooglePlayWebTokenPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphCreateGooglePlayWebTokenRequestBuilderPostRequestConfiguration] = None) -> Optional[create_google_play_web_token_response.CreateGooglePlayWebTokenResponse]:
+        """
+        Generates a web token that is used in an embeddable component.
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[create_google_play_web_token_response.CreateGooglePlayWebTokenResponse]
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": o_data_error.ODataError,
+            "5XX": o_data_error.ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_async(request_info, create_google_play_web_token_response.CreateGooglePlayWebTokenResponse, error_mapping)
+    
+    def to_post_request_information(self,body: Optional[create_google_play_web_token_post_request_body.CreateGooglePlayWebTokenPostRequestBody] = None, request_configuration: Optional[MicrosoftGraphCreateGooglePlayWebTokenRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+        """
+        Generates a web token that is used in an embeddable component.
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.POST
+        request_info.headers["Accept"] = "application/json"
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
+        return request_info
+    
+    @dataclass
+    class MicrosoftGraphCreateGooglePlayWebTokenRequestBuilderPostRequestConfiguration():
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request headers
+        headers: Optional[Dict[str, str]] = None
+
+        # Request options
+        options: Optional[List[RequestOption]] = None
+
+    
+

@@ -36,7 +36,7 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
         """
         Sets the appLogDecryptionAlgorithm property value. The appLogDecryptionAlgorithm property
         Args:
-            value: Value to set for the appLogDecryptionAlgorithm property.
+            value: Value to set for the app_log_decryption_algorithm property.
         """
         self._app_log_decryption_algorithm = value
     
@@ -49,9 +49,9 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
 
         # The appLogDecryptionAlgorithm property
         self._app_log_decryption_algorithm: Optional[app_log_decryption_algorithm.AppLogDecryptionAlgorithm] = None
-        # DecryptionKey as string
+        # Decryption key that used to decrypt the log.
         self._decryption_key: Optional[str] = None
-        # Download SAS Url for completed AppLogUploadRequest
+        # Download SAS (Shared Access Signature) Url for completed app log request.
         self._download_url: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -71,7 +71,7 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
     @property
     def decryption_key(self,) -> Optional[str]:
         """
-        Gets the decryptionKey property value. DecryptionKey as string
+        Gets the decryptionKey property value. Decryption key that used to decrypt the log.
         Returns: Optional[str]
         """
         return self._decryption_key
@@ -79,16 +79,16 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
     @decryption_key.setter
     def decryption_key(self,value: Optional[str] = None) -> None:
         """
-        Sets the decryptionKey property value. DecryptionKey as string
+        Sets the decryptionKey property value. Decryption key that used to decrypt the log.
         Args:
-            value: Value to set for the decryptionKey property.
+            value: Value to set for the decryption_key property.
         """
         self._decryption_key = value
     
     @property
     def download_url(self,) -> Optional[str]:
         """
-        Gets the downloadUrl property value. Download SAS Url for completed AppLogUploadRequest
+        Gets the downloadUrl property value. Download SAS (Shared Access Signature) Url for completed app log request.
         Returns: Optional[str]
         """
         return self._download_url
@@ -96,9 +96,9 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
     @download_url.setter
     def download_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the downloadUrl property value. Download SAS Url for completed AppLogUploadRequest
+        Sets the downloadUrl property value. Download SAS (Shared Access Signature) Url for completed app log request.
         Args:
-            value: Value to set for the downloadUrl property.
+            value: Value to set for the download_url property.
         """
         self._download_url = value
     
@@ -108,9 +108,9 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_log_decryption_algorithm": lambda n : setattr(self, 'app_log_decryption_algorithm', n.get_enum_value(app_log_decryption_algorithm.AppLogDecryptionAlgorithm)),
-            "decryption_key": lambda n : setattr(self, 'decryption_key', n.get_str_value()),
-            "download_url": lambda n : setattr(self, 'download_url', n.get_str_value()),
+            "appLogDecryptionAlgorithm": lambda n : setattr(self, 'app_log_decryption_algorithm', n.get_enum_value(app_log_decryption_algorithm.AppLogDecryptionAlgorithm)),
+            "decryptionKey": lambda n : setattr(self, 'decryption_key', n.get_str_value()),
+            "downloadUrl": lambda n : setattr(self, 'download_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -128,7 +128,7 @@ class AppLogCollectionDownloadDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

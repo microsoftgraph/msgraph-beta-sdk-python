@@ -55,8 +55,8 @@ class Media(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_transcription_shown": lambda n : setattr(self, 'is_transcription_shown', n.get_bool_value()),
-            "media_source": lambda n : setattr(self, 'media_source', n.get_object_value(media_source.MediaSource)),
+            "isTranscriptionShown": lambda n : setattr(self, 'is_transcription_shown', n.get_bool_value()),
+            "mediaSource": lambda n : setattr(self, 'media_source', n.get_object_value(media_source.MediaSource)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -74,7 +74,7 @@ class Media(AdditionalDataHolder, Parsable):
         """
         Sets the isTranscriptionShown property value. If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be shown to people during viewing. Read-Write.
         Args:
-            value: Value to set for the isTranscriptionShown property.
+            value: Value to set for the is_transcription_shown property.
         """
         self._is_transcription_shown = value
     
@@ -91,7 +91,7 @@ class Media(AdditionalDataHolder, Parsable):
         """
         Sets the mediaSource property value. Information about the source of media. Read-only.
         Args:
-            value: Value to set for the mediaSource property.
+            value: Value to set for the media_source property.
         """
         self._media_source = value
     
@@ -108,7 +108,7 @@ class Media(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

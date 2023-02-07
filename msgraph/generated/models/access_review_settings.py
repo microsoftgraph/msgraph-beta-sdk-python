@@ -20,7 +20,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the accessRecommendationsEnabled property value. Indicates whether showing recommendations to reviewers is enabled.
         Args:
-            value: Value to set for the accessRecommendationsEnabled property.
+            value: Value to set for the access_recommendations_enabled property.
         """
         self._access_recommendations_enabled = value
     
@@ -37,7 +37,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the activityDurationInDays property value. The number of days of user activities to show to reviewers.
         Args:
-            value: Value to set for the activityDurationInDays property.
+            value: Value to set for the activity_duration_in_days property.
         """
         self._activity_duration_in_days = value
     
@@ -71,7 +71,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the autoApplyReviewResultsEnabled property value. Indicates whether the auto-apply capability, to automatically change the target object access resource, is enabled.  If not enabled, a user must, after the review completes, apply the access review.
         Args:
-            value: Value to set for the autoApplyReviewResultsEnabled property.
+            value: Value to set for the auto_apply_review_results_enabled property.
         """
         self._auto_apply_review_results_enabled = value
     
@@ -88,7 +88,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the autoReviewEnabled property value. Indicates whether a decision should be set if the reviewer did not supply one. For use when auto-apply is enabled. If you don't want to have a review decision recorded unless the reviewer makes an explicit choice, set it to false.
         Args:
-            value: Value to set for the autoReviewEnabled property.
+            value: Value to set for the auto_review_enabled property.
         """
         self._auto_review_enabled = value
     
@@ -105,7 +105,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the autoReviewSettings property value. Detailed settings for how the feature should set the review decision. For use when auto-apply is enabled.
         Args:
-            value: Value to set for the autoReviewSettings property.
+            value: Value to set for the auto_review_settings property.
         """
         self._auto_review_settings = value
     
@@ -155,16 +155,16 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_recommendations_enabled": lambda n : setattr(self, 'access_recommendations_enabled', n.get_bool_value()),
-            "activity_duration_in_days": lambda n : setattr(self, 'activity_duration_in_days', n.get_int_value()),
-            "auto_apply_review_results_enabled": lambda n : setattr(self, 'auto_apply_review_results_enabled', n.get_bool_value()),
-            "auto_review_enabled": lambda n : setattr(self, 'auto_review_enabled', n.get_bool_value()),
-            "auto_review_settings": lambda n : setattr(self, 'auto_review_settings', n.get_object_value(auto_review_settings.AutoReviewSettings)),
-            "justification_required_on_approval": lambda n : setattr(self, 'justification_required_on_approval', n.get_bool_value()),
-            "mail_notifications_enabled": lambda n : setattr(self, 'mail_notifications_enabled', n.get_bool_value()),
+            "accessRecommendationsEnabled": lambda n : setattr(self, 'access_recommendations_enabled', n.get_bool_value()),
+            "activityDurationInDays": lambda n : setattr(self, 'activity_duration_in_days', n.get_int_value()),
+            "autoApplyReviewResultsEnabled": lambda n : setattr(self, 'auto_apply_review_results_enabled', n.get_bool_value()),
+            "autoReviewEnabled": lambda n : setattr(self, 'auto_review_enabled', n.get_bool_value()),
+            "autoReviewSettings": lambda n : setattr(self, 'auto_review_settings', n.get_object_value(auto_review_settings.AutoReviewSettings)),
+            "justificationRequiredOnApproval": lambda n : setattr(self, 'justification_required_on_approval', n.get_bool_value()),
+            "mailNotificationsEnabled": lambda n : setattr(self, 'mail_notifications_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recurrence_settings": lambda n : setattr(self, 'recurrence_settings', n.get_object_value(access_review_recurrence_settings.AccessReviewRecurrenceSettings)),
-            "reminders_enabled": lambda n : setattr(self, 'reminders_enabled', n.get_bool_value()),
+            "recurrenceSettings": lambda n : setattr(self, 'recurrence_settings', n.get_object_value(access_review_recurrence_settings.AccessReviewRecurrenceSettings)),
+            "remindersEnabled": lambda n : setattr(self, 'reminders_enabled', n.get_bool_value()),
         }
         return fields
     
@@ -181,7 +181,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the justificationRequiredOnApproval property value. Indicates whether reviewers are required to provide a justification when reviewing access.
         Args:
-            value: Value to set for the justificationRequiredOnApproval property.
+            value: Value to set for the justification_required_on_approval property.
         """
         self._justification_required_on_approval = value
     
@@ -198,7 +198,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the mailNotificationsEnabled property value. Indicates whether sending mails to reviewers and the review creator is enabled.
         Args:
-            value: Value to set for the mailNotificationsEnabled property.
+            value: Value to set for the mail_notifications_enabled property.
         """
         self._mail_notifications_enabled = value
     
@@ -215,7 +215,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -232,7 +232,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recurrenceSettings property value. Detailed settings for recurrence.
         Args:
-            value: Value to set for the recurrenceSettings property.
+            value: Value to set for the recurrence_settings property.
         """
         self._recurrence_settings = value
     
@@ -249,7 +249,7 @@ class AccessReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the remindersEnabled property value. Indicates whether sending reminder emails to reviewers is enabled.
         Args:
-            value: Value to set for the remindersEnabled property.
+            value: Value to set for the reminders_enabled property.
         """
         self._reminders_enabled = value
     

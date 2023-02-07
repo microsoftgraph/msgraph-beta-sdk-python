@@ -14,12 +14,12 @@ attachments_request_builder = lazy_import('msgraph.generated.groups.item.convers
 attachment_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.attachments.item.attachment_item_request_builder')
 extensions_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.extensions.extensions_request_builder')
 extension_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.extensions.item.extension_item_request_builder')
-forward_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.forward.forward_request_builder')
 mentions_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.mentions.mentions_request_builder')
 mention_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.mentions.item.mention_item_request_builder')
+microsoft_graph_forward_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.microsoft_graph_forward.microsoft_graph_forward_request_builder')
+microsoft_graph_reply_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.microsoft_graph_reply.microsoft_graph_reply_request_builder')
 multi_value_extended_properties_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.multi_value_extended_properties.multi_value_extended_properties_request_builder')
 multi_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.multi_value_extended_properties.item.multi_value_legacy_extended_property_item_request_builder')
-reply_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.reply.reply_request_builder')
 single_value_extended_properties_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.single_value_extended_properties.single_value_extended_properties_request_builder')
 single_value_legacy_extended_property_item_request_builder = lazy_import('msgraph.generated.groups.item.conversations.item.threads.item.posts.item.in_reply_to.single_value_extended_properties.item.single_value_legacy_extended_property_item_request_builder')
 post = lazy_import('msgraph.generated.models.post')
@@ -44,13 +44,6 @@ class InReplyToRequestBuilder():
         return extensions_request_builder.ExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def forward(self) -> forward_request_builder.ForwardRequestBuilder:
-        """
-        Provides operations to call the forward method.
-        """
-        return forward_request_builder.ForwardRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def mentions(self) -> mentions_request_builder.MentionsRequestBuilder:
         """
         Provides operations to manage the mentions property of the microsoft.graph.post entity.
@@ -58,18 +51,25 @@ class InReplyToRequestBuilder():
         return mentions_request_builder.MentionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_forward(self) -> microsoft_graph_forward_request_builder.MicrosoftGraphForwardRequestBuilder:
+        """
+        Provides operations to call the forward method.
+        """
+        return microsoft_graph_forward_request_builder.MicrosoftGraphForwardRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_reply(self) -> microsoft_graph_reply_request_builder.MicrosoftGraphReplyRequestBuilder:
+        """
+        Provides operations to call the reply method.
+        """
+        return microsoft_graph_reply_request_builder.MicrosoftGraphReplyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def multi_value_extended_properties(self) -> multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder:
         """
         Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.
         """
         return multi_value_extended_properties_request_builder.MultiValueExtendedPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reply(self) -> reply_request_builder.ReplyRequestBuilder:
-        """
-        Provides operations to call the reply method.
-        """
-        return reply_request_builder.ReplyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def single_value_extended_properties(self) -> single_value_extended_properties_request_builder.SingleValueExtendedPropertiesRequestBuilder:
@@ -122,12 +122,11 @@ class InReplyToRequestBuilder():
         url_tpl_params["extension%2Did"] = id
         return extension_item_request_builder.ExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[post.Post]:
+    async def get(self,request_configuration: Optional[InReplyToRequestBuilderGetRequestConfiguration] = None) -> Optional[post.Post]:
         """
         The earlier post that this post is replying to in the conversationThread. Read-only. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[post.Post]
         """
         request_info = self.to_get_request_information(
@@ -139,7 +138,7 @@ class InReplyToRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, post.Post, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, post.Post, error_mapping)
     
     def mentions_by_id(self,id: str) -> mention_item_request_builder.MentionItemRequestBuilder:
         """

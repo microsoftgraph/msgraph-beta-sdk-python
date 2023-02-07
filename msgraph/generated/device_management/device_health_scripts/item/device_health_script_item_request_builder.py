@@ -10,15 +10,15 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.assignments.assignments_request_builder')
 device_health_script_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.assignments.item.device_health_script_assignment_item_request_builder')
 device_run_states_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.device_run_states.device_run_states_request_builder')
 device_health_script_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.device_run_states.item.device_health_script_device_state_item_request_builder')
-get_global_script_highest_available_version_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.get_global_script_highest_available_version.get_global_script_highest_available_version_request_builder')
-get_remediation_history_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.get_remediation_history.get_remediation_history_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
+microsoft_graph_get_global_script_highest_available_version_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.microsoft_graph_get_global_script_highest_available_version.microsoft_graph_get_global_script_highest_available_version_request_builder')
+microsoft_graph_get_remediation_history_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.microsoft_graph_get_remediation_history.microsoft_graph_get_remediation_history_request_builder')
+microsoft_graph_update_global_script_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.microsoft_graph_update_global_script.microsoft_graph_update_global_script_request_builder')
 run_summary_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.run_summary.run_summary_request_builder')
-update_global_script_request_builder = lazy_import('msgraph.generated.device_management.device_health_scripts.item.update_global_script.update_global_script_request_builder')
 device_health_script = lazy_import('msgraph.generated.models.device_health_script')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -26,13 +26,6 @@ class DeviceHealthScriptItemRequestBuilder():
     """
     Provides operations to manage the deviceHealthScripts property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -48,11 +41,32 @@ class DeviceHealthScriptItemRequestBuilder():
         return device_run_states_request_builder.DeviceRunStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_global_script_highest_available_version(self) -> get_global_script_highest_available_version_request_builder.GetGlobalScriptHighestAvailableVersionRequestBuilder:
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_global_script_highest_available_version(self) -> microsoft_graph_get_global_script_highest_available_version_request_builder.MicrosoftGraphGetGlobalScriptHighestAvailableVersionRequestBuilder:
         """
         Provides operations to call the getGlobalScriptHighestAvailableVersion method.
         """
-        return get_global_script_highest_available_version_request_builder.GetGlobalScriptHighestAvailableVersionRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_global_script_highest_available_version_request_builder.MicrosoftGraphGetGlobalScriptHighestAvailableVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_remediation_history(self) -> microsoft_graph_get_remediation_history_request_builder.MicrosoftGraphGetRemediationHistoryRequestBuilder:
+        """
+        Provides operations to call the getRemediationHistory method.
+        """
+        return microsoft_graph_get_remediation_history_request_builder.MicrosoftGraphGetRemediationHistoryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_update_global_script(self) -> microsoft_graph_update_global_script_request_builder.MicrosoftGraphUpdateGlobalScriptRequestBuilder:
+        """
+        Provides operations to call the updateGlobalScript method.
+        """
+        return microsoft_graph_update_global_script_request_builder.MicrosoftGraphUpdateGlobalScriptRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
@@ -60,13 +74,6 @@ class DeviceHealthScriptItemRequestBuilder():
         Provides operations to manage the runSummary property of the microsoft.graph.deviceHealthScript entity.
         """
         return run_summary_request_builder.RunSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_global_script(self) -> update_global_script_request_builder.UpdateGlobalScriptRequestBuilder:
-        """
-        Provides operations to call the updateGlobalScript method.
-        """
-        return update_global_script_request_builder.UpdateGlobalScriptRequestBuilder(self.request_adapter, self.path_parameters)
     
     def assignments_by_id(self,id: str) -> device_health_script_assignment_item_request_builder.DeviceHealthScriptAssignmentItemRequestBuilder:
         """
@@ -99,12 +106,11 @@ class DeviceHealthScriptItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceHealthScripts for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -115,7 +121,7 @@ class DeviceHealthScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_run_states_by_id(self,id: str) -> device_health_script_device_state_item_request_builder.DeviceHealthScriptDeviceStateItemRequestBuilder:
         """
@@ -130,12 +136,11 @@ class DeviceHealthScriptItemRequestBuilder():
         url_tpl_params["deviceHealthScriptDeviceState%2Did"] = id
         return device_health_script_device_state_item_request_builder.DeviceHealthScriptDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_health_script.DeviceHealthScript]:
+    async def get(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_health_script.DeviceHealthScript]:
         """
         The list of device health scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_health_script.DeviceHealthScript]
         """
         request_info = self.to_get_request_information(
@@ -147,22 +152,14 @@ class DeviceHealthScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_health_script.DeviceHealthScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_health_script.DeviceHealthScript, error_mapping)
     
-    def get_remediation_history(self,) -> get_remediation_history_request_builder.GetRemediationHistoryRequestBuilder:
-        """
-        Provides operations to call the getRemediationHistory method.
-        Returns: get_remediation_history_request_builder.GetRemediationHistoryRequestBuilder
-        """
-        return get_remediation_history_request_builder.GetRemediationHistoryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[device_health_script.DeviceHealthScript] = None, request_configuration: Optional[DeviceHealthScriptItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_health_script.DeviceHealthScript]:
+    async def patch(self,body: Optional[device_health_script.DeviceHealthScript] = None, request_configuration: Optional[DeviceHealthScriptItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_health_script.DeviceHealthScript]:
         """
         Update the navigation property deviceHealthScripts in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_health_script.DeviceHealthScript]
         """
         if body is None:
@@ -176,7 +173,7 @@ class DeviceHealthScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_health_script.DeviceHealthScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_health_script.DeviceHealthScript, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceHealthScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

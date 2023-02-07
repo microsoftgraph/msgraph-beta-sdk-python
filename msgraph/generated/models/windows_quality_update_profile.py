@@ -68,7 +68,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the createdDateTime property value. The date time that the profile was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -97,7 +97,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the deployableContentDisplayName property value. Friendly display name of the quality update profile deployable content
         Args:
-            value: Value to set for the deployableContentDisplayName property.
+            value: Value to set for the deployable_content_display_name property.
         """
         self._deployable_content_display_name = value
     
@@ -131,7 +131,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the displayName property value. The display name for the profile.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -148,7 +148,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the expeditedUpdateSettings property value. Expedited update settings.
         Args:
-            value: Value to set for the expeditedUpdateSettings property.
+            value: Value to set for the expedited_update_settings property.
         """
         self._expedited_update_settings = value
     
@@ -159,14 +159,14 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deployable_content_display_name": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deployableContentDisplayName": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "expedited_update_settings": lambda n : setattr(self, 'expedited_update_settings', n.get_object_value(expedited_windows_quality_update_settings.ExpeditedWindowsQualityUpdateSettings)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "release_date_display_name": lambda n : setattr(self, 'release_date_display_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "expeditedUpdateSettings": lambda n : setattr(self, 'expedited_update_settings', n.get_object_value(expedited_windows_quality_update_settings.ExpeditedWindowsQualityUpdateSettings)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "releaseDateDisplayName": lambda n : setattr(self, 'release_date_display_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -185,7 +185,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date time that the profile was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -202,7 +202,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the releaseDateDisplayName property value. Friendly release date to display for a Quality Update release
         Args:
-            value: Value to set for the releaseDateDisplayName property.
+            value: Value to set for the release_date_display_name property.
         """
         self._release_date_display_name = value
     
@@ -219,7 +219,7 @@ class WindowsQualityUpdateProfile(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Quality Update entity.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

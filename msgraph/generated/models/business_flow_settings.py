@@ -40,7 +40,7 @@ class BusinessFlowSettings(access_review_settings.AccessReviewSettings):
         """
         Sets the durationInDays property value. The durationInDays property
         Args:
-            value: Value to set for the durationInDays property.
+            value: Value to set for the duration_in_days property.
         """
         self._duration_in_days = value
     
@@ -50,7 +50,7 @@ class BusinessFlowSettings(access_review_settings.AccessReviewSettings):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "duration_in_days": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
+            "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

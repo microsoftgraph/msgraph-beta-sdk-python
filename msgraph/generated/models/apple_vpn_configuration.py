@@ -14,9 +14,6 @@ vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
 vpn_server = lazy_import('msgraph.generated.models.vpn_server')
 
 class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
-    """
-    Apple VPN configuration profile.
-    """
     @property
     def associated_domains(self,) -> Optional[List[str]]:
         """
@@ -30,7 +27,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the associatedDomains property value. Associated Domains
         Args:
-            value: Value to set for the associatedDomains property.
+            value: Value to set for the associated_domains property.
         """
         self._associated_domains = value
     
@@ -47,7 +44,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the authenticationMethod property value. VPN Authentication Method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -64,7 +61,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectionName property value. Connection name displayed to the user.
         Args:
-            value: Value to set for the connectionName property.
+            value: Value to set for the connection_name property.
         """
         self._connection_name = value
     
@@ -81,13 +78,13 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectionType property value. Apple VPN connection type.
         Args:
-            value: Value to set for the connectionType property.
+            value: Value to set for the connection_type property.
         """
         self._connection_type = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new appleVpnConfiguration and sets the default values.
+        Instantiates a new AppleVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.appleVpnConfiguration"
@@ -161,7 +158,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the customData property value. Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customData property.
+            value: Value to set for the custom_data property.
         """
         self._custom_data = value
     
@@ -178,7 +175,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the customKeyValueData property value. Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customKeyValueData property.
+            value: Value to set for the custom_key_value_data property.
         """
         self._custom_key_value_data = value
     
@@ -195,7 +192,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the disableOnDemandUserOverride property value. Toggle to prevent user from disabling automatic VPN in the Settings app
         Args:
-            value: Value to set for the disableOnDemandUserOverride property.
+            value: Value to set for the disable_on_demand_user_override property.
         """
         self._disable_on_demand_user_override = value
     
@@ -212,7 +209,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the disconnectOnIdle property value. Whether to disconnect after on-demand connection idles
         Args:
-            value: Value to set for the disconnectOnIdle property.
+            value: Value to set for the disconnect_on_idle property.
         """
         self._disconnect_on_idle = value
     
@@ -229,7 +226,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the disconnectOnIdleTimerInSeconds property value. The length of time in seconds to wait before disconnecting an on-demand connection. Valid values 0 to 65535
         Args:
-            value: Value to set for the disconnectOnIdleTimerInSeconds property.
+            value: Value to set for the disconnect_on_idle_timer_in_seconds property.
         """
         self._disconnect_on_idle_timer_in_seconds = value
     
@@ -246,7 +243,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enablePerApp property value. Setting this to true creates Per-App VPN payload which can later be associated with Apps that can trigger this VPN conneciton on the end user's iOS device.
         Args:
-            value: Value to set for the enablePerApp property.
+            value: Value to set for the enable_per_app property.
         """
         self._enable_per_app = value
     
@@ -263,7 +260,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enableSplitTunneling property value. Send all network traffic through VPN.
         Args:
-            value: Value to set for the enableSplitTunneling property.
+            value: Value to set for the enable_split_tunneling property.
         """
         self._enable_split_tunneling = value
     
@@ -280,7 +277,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the excludedDomains property value. Domains that are accessed through the public internet instead of through VPN, even when per-app VPN is activated
         Args:
-            value: Value to set for the excludedDomains property.
+            value: Value to set for the excluded_domains property.
         """
         self._excluded_domains = value
     
@@ -290,27 +287,27 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "associated_domains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_primitive_values(str)),
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
-            "connection_name": lambda n : setattr(self, 'connection_name', n.get_str_value()),
-            "connection_type": lambda n : setattr(self, 'connection_type', n.get_enum_value(apple_vpn_connection_type.AppleVpnConnectionType)),
-            "custom_data": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
-            "custom_key_value_data": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "disable_on_demand_user_override": lambda n : setattr(self, 'disable_on_demand_user_override', n.get_bool_value()),
-            "disconnect_on_idle": lambda n : setattr(self, 'disconnect_on_idle', n.get_bool_value()),
-            "disconnect_on_idle_timer_in_seconds": lambda n : setattr(self, 'disconnect_on_idle_timer_in_seconds', n.get_int_value()),
-            "enable_per_app": lambda n : setattr(self, 'enable_per_app', n.get_bool_value()),
-            "enable_split_tunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
-            "excluded_domains": lambda n : setattr(self, 'excluded_domains', n.get_collection_of_primitive_values(str)),
+            "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_primitive_values(str)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
+            "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(apple_vpn_connection_type.AppleVpnConnectionType)),
+            "customData": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
+            "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "disableOnDemandUserOverride": lambda n : setattr(self, 'disable_on_demand_user_override', n.get_bool_value()),
+            "disconnectOnIdle": lambda n : setattr(self, 'disconnect_on_idle', n.get_bool_value()),
+            "disconnectOnIdleTimerInSeconds": lambda n : setattr(self, 'disconnect_on_idle_timer_in_seconds', n.get_int_value()),
+            "enablePerApp": lambda n : setattr(self, 'enable_per_app', n.get_bool_value()),
+            "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
+            "excludedDomains": lambda n : setattr(self, 'excluded_domains', n.get_collection_of_primitive_values(str)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
-            "login_group_or_domain": lambda n : setattr(self, 'login_group_or_domain', n.get_str_value()),
-            "on_demand_rules": lambda n : setattr(self, 'on_demand_rules', n.get_collection_of_object_values(vpn_on_demand_rule.VpnOnDemandRule)),
-            "opt_in_to_device_id_sharing": lambda n : setattr(self, 'opt_in_to_device_id_sharing', n.get_bool_value()),
-            "provider_type": lambda n : setattr(self, 'provider_type', n.get_enum_value(vpn_provider_type.VpnProviderType)),
-            "proxy_server": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
+            "loginGroupOrDomain": lambda n : setattr(self, 'login_group_or_domain', n.get_str_value()),
+            "onDemandRules": lambda n : setattr(self, 'on_demand_rules', n.get_collection_of_object_values(vpn_on_demand_rule.VpnOnDemandRule)),
+            "optInToDeviceIdSharing": lambda n : setattr(self, 'opt_in_to_device_id_sharing', n.get_bool_value()),
+            "providerType": lambda n : setattr(self, 'provider_type', n.get_enum_value(vpn_provider_type.VpnProviderType)),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
-            "safari_domains": lambda n : setattr(self, 'safari_domains', n.get_collection_of_primitive_values(str)),
+            "safariDomains": lambda n : setattr(self, 'safari_domains', n.get_collection_of_primitive_values(str)),
             "server": lambda n : setattr(self, 'server', n.get_object_value(vpn_server.VpnServer)),
         }
         super_fields = super().get_field_deserializers()
@@ -347,7 +344,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the loginGroupOrDomain property value. Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
         Args:
-            value: Value to set for the loginGroupOrDomain property.
+            value: Value to set for the login_group_or_domain property.
         """
         self._login_group_or_domain = value
     
@@ -364,7 +361,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the onDemandRules property value. On-Demand Rules. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the onDemandRules property.
+            value: Value to set for the on_demand_rules property.
         """
         self._on_demand_rules = value
     
@@ -381,7 +378,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the optInToDeviceIdSharing property value. Opt-In to sharing the device's Id to third-party vpn clients for use during network access control validation.
         Args:
-            value: Value to set for the optInToDeviceIdSharing property.
+            value: Value to set for the opt_in_to_device_id_sharing property.
         """
         self._opt_in_to_device_id_sharing = value
     
@@ -398,7 +395,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the providerType property value. Provider type for per-app VPN. Possible values are: notConfigured, appProxy, packetTunnel.
         Args:
-            value: Value to set for the providerType property.
+            value: Value to set for the provider_type property.
         """
         self._provider_type = value
     
@@ -415,7 +412,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyServer property value. Proxy Server.
         Args:
-            value: Value to set for the proxyServer property.
+            value: Value to set for the proxy_server property.
         """
         self._proxy_server = value
     
@@ -466,7 +463,7 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariDomains property value. Safari domains when this VPN per App setting is enabled. In addition to the apps associated with this VPN, Safari domains specified here will also be able to trigger this VPN connection.
         Args:
-            value: Value to set for the safariDomains property.
+            value: Value to set for the safari_domains property.
         """
         self._safari_domains = value
     

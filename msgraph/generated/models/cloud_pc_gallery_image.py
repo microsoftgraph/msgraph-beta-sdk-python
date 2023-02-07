@@ -65,7 +65,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the displayName property value. The official display name of the gallery image. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -82,7 +82,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the endDate property value. The date in which this image is no longer within long-term support. The Cloud PC will continue to provide short-term support. Read-only.
         Args:
-            value: Value to set for the endDate property.
+            value: Value to set for the end_date property.
         """
         self._end_date = value
     
@@ -99,7 +99,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the expirationDate property value. The date when the image is no longer available. Read-only.
         Args:
-            value: Value to set for the expirationDate property.
+            value: Value to set for the expiration_date property.
         """
         self._expiration_date = value
     
@@ -109,17 +109,17 @@ class CloudPcGalleryImage(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_date": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
-            "expiration_date": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endDate": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
+            "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
             "offer": lambda n : setattr(self, 'offer', n.get_str_value()),
-            "offer_display_name": lambda n : setattr(self, 'offer_display_name', n.get_str_value()),
+            "offerDisplayName": lambda n : setattr(self, 'offer_display_name', n.get_str_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "recommended_sku": lambda n : setattr(self, 'recommended_sku', n.get_str_value()),
-            "size_in_g_b": lambda n : setattr(self, 'size_in_g_b', n.get_int_value()),
+            "recommendedSku": lambda n : setattr(self, 'recommended_sku', n.get_str_value()),
+            "sizeInGB": lambda n : setattr(self, 'size_in_g_b', n.get_int_value()),
             "sku": lambda n : setattr(self, 'sku', n.get_str_value()),
-            "sku_display_name": lambda n : setattr(self, 'sku_display_name', n.get_str_value()),
-            "start_date": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
+            "skuDisplayName": lambda n : setattr(self, 'sku_display_name', n.get_str_value()),
+            "startDate": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_gallery_image_status.CloudPcGalleryImageStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -156,7 +156,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the offerDisplayName property value. The official display offer name of the gallery image. For example, Windows 10 Enterprise + OS Optimizations. Read-only.
         Args:
-            value: Value to set for the offerDisplayName property.
+            value: Value to set for the offer_display_name property.
         """
         self._offer_display_name = value
     
@@ -190,7 +190,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the recommendedSku property value. Recommended Cloud PC SKU for this gallery image. Read-only.
         Args:
-            value: Value to set for the recommendedSku property.
+            value: Value to set for the recommended_sku property.
         """
         self._recommended_sku = value
     
@@ -229,7 +229,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the sizeInGB property value. The size of this image in gigabytes. Read-only.
         Args:
-            value: Value to set for the sizeInGB property.
+            value: Value to set for the size_in_g_b property.
         """
         self._size_in_g_b = value
     
@@ -263,7 +263,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the skuDisplayName property value. The official display stock keeping unit (SKU) name of this gallery image. For example, 2004. Read-only.
         Args:
-            value: Value to set for the skuDisplayName property.
+            value: Value to set for the sku_display_name property.
         """
         self._sku_display_name = value
     
@@ -280,7 +280,7 @@ class CloudPcGalleryImage(entity.Entity):
         """
         Sets the startDate property value. The date when the image becomes available. Read-only.
         Args:
-            value: Value to set for the startDate property.
+            value: Value to set for the start_date property.
         """
         self._start_date = value
     

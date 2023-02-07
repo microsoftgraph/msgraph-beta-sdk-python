@@ -34,7 +34,7 @@ class SmsAuthenticationMethodTarget(authentication_method_target.AuthenticationM
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_usable_for_sign_in": lambda n : setattr(self, 'is_usable_for_sign_in', n.get_bool_value()),
+            "isUsableForSignIn": lambda n : setattr(self, 'is_usable_for_sign_in', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class SmsAuthenticationMethodTarget(authentication_method_target.AuthenticationM
         """
         Sets the isUsableForSignIn property value. Determines if users can use this authentication method to sign in to Azure AD. true if users can use this method for primary authentication, otherwise false.
         Args:
-            value: Value to set for the isUsableForSignIn property.
+            value: Value to set for the is_usable_for_sign_in property.
         """
         self._is_usable_for_sign_in = value
     

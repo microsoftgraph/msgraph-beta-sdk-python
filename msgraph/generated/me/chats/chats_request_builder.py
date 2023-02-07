@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-all_messages_request_builder = lazy_import('msgraph.generated.me.chats.all_messages.all_messages_request_builder')
 count_request_builder = lazy_import('msgraph.generated.me.chats.count.count_request_builder')
-get_all_messages_request_builder = lazy_import('msgraph.generated.me.chats.get_all_messages.get_all_messages_request_builder')
+microsoft_graph_all_messages_request_builder = lazy_import('msgraph.generated.me.chats.microsoft_graph_all_messages.microsoft_graph_all_messages_request_builder')
+microsoft_graph_get_all_messages_request_builder = lazy_import('msgraph.generated.me.chats.microsoft_graph_get_all_messages.microsoft_graph_get_all_messages_request_builder')
 chat = lazy_import('msgraph.generated.models.chat')
 chat_collection_response = lazy_import('msgraph.generated.models.chat_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -28,12 +28,19 @@ class ChatsRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def all_messages(self,) -> all_messages_request_builder.AllMessagesRequestBuilder:
+    @property
+    def microsoft_graph_all_messages(self) -> microsoft_graph_all_messages_request_builder.MicrosoftGraphAllMessagesRequestBuilder:
         """
         Provides operations to call the allMessages method.
-        Returns: all_messages_request_builder.AllMessagesRequestBuilder
         """
-        return all_messages_request_builder.AllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_all_messages_request_builder.MicrosoftGraphAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_all_messages(self) -> microsoft_graph_get_all_messages_request_builder.MicrosoftGraphGetAllMessagesRequestBuilder:
+        """
+        Provides operations to call the getAllMessages method.
+        """
+        return microsoft_graph_get_all_messages_request_builder.MicrosoftGraphGetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -53,12 +60,11 @@ class ChatsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_collection_response.ChatCollectionResponse]:
+    async def get(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_collection_response.ChatCollectionResponse]:
         """
         Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_collection_response.ChatCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,22 +76,14 @@ class ChatsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_collection_response.ChatCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_collection_response.ChatCollectionResponse, error_mapping)
     
-    def get_all_messages(self,) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
-        """
-        Provides operations to call the getAllMessages method.
-        Returns: get_all_messages_request_builder.GetAllMessagesRequestBuilder
-        """
-        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[chat.Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat.Chat]:
+    async def post(self,body: Optional[chat.Chat] = None, request_configuration: Optional[ChatsRequestBuilderPostRequestConfiguration] = None) -> Optional[chat.Chat]:
         """
         Create new navigation property to chats for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat.Chat]
         """
         if body is None:
@@ -99,7 +97,7 @@ class ChatsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat.Chat, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat.Chat, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ChatsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -27,7 +27,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the canvasLayout property value. Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical section
         Args:
-            value: Value to set for the canvasLayout property.
+            value: Value to set for the canvas_layout property.
         """
         self._canvas_layout = value
     
@@ -75,7 +75,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the contentType property value. Inherited from baseItem.
         Args:
-            value: Value to set for the contentType property.
+            value: Value to set for the content_type property.
         """
         self._content_type = value
     
@@ -97,18 +97,18 @@ class SitePage(base_item.BaseItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "canvas_layout": lambda n : setattr(self, 'canvas_layout', n.get_object_value(canvas_layout.CanvasLayout)),
-            "content_type": lambda n : setattr(self, 'content_type', n.get_object_value(content_type_info.ContentTypeInfo)),
-            "page_layout": lambda n : setattr(self, 'page_layout', n.get_enum_value(page_layout_type.PageLayoutType)),
-            "promotion_kind": lambda n : setattr(self, 'promotion_kind', n.get_enum_value(page_promotion_type.PagePromotionType)),
-            "publishing_state": lambda n : setattr(self, 'publishing_state', n.get_object_value(publication_facet.PublicationFacet)),
+            "canvasLayout": lambda n : setattr(self, 'canvas_layout', n.get_object_value(canvas_layout.CanvasLayout)),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_object_value(content_type_info.ContentTypeInfo)),
+            "pageLayout": lambda n : setattr(self, 'page_layout', n.get_enum_value(page_layout_type.PageLayoutType)),
+            "promotionKind": lambda n : setattr(self, 'promotion_kind', n.get_enum_value(page_promotion_type.PagePromotionType)),
+            "publishingState": lambda n : setattr(self, 'publishing_state', n.get_object_value(publication_facet.PublicationFacet)),
             "reactions": lambda n : setattr(self, 'reactions', n.get_object_value(reactions_facet.ReactionsFacet)),
-            "show_comments": lambda n : setattr(self, 'show_comments', n.get_bool_value()),
-            "show_recommended_pages": lambda n : setattr(self, 'show_recommended_pages', n.get_bool_value()),
-            "thumbnail_web_url": lambda n : setattr(self, 'thumbnail_web_url', n.get_str_value()),
+            "showComments": lambda n : setattr(self, 'show_comments', n.get_bool_value()),
+            "showRecommendedPages": lambda n : setattr(self, 'show_recommended_pages', n.get_bool_value()),
+            "thumbnailWebUrl": lambda n : setattr(self, 'thumbnail_web_url', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
-            "title_area": lambda n : setattr(self, 'title_area', n.get_object_value(title_area.TitleArea)),
-            "web_parts": lambda n : setattr(self, 'web_parts', n.get_collection_of_object_values(web_part.WebPart)),
+            "titleArea": lambda n : setattr(self, 'title_area', n.get_object_value(title_area.TitleArea)),
+            "webParts": lambda n : setattr(self, 'web_parts', n.get_collection_of_object_values(web_part.WebPart)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,7 +127,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the pageLayout property value. The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.
         Args:
-            value: Value to set for the pageLayout property.
+            value: Value to set for the page_layout property.
         """
         self._page_layout = value
     
@@ -144,7 +144,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the promotionKind property value. Indicates the promotion kind of the sitePage. The possible values are: microsoftReserved, page, newsPost, unknownFutureValue.
         Args:
-            value: Value to set for the promotionKind property.
+            value: Value to set for the promotion_kind property.
         """
         self._promotion_kind = value
     
@@ -161,7 +161,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the publishingState property value. The publishing status and the MM.mm version of the page.
         Args:
-            value: Value to set for the publishingState property.
+            value: Value to set for the publishing_state property.
         """
         self._publishing_state = value
     
@@ -217,7 +217,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the showComments property value. Determines whether or not to show comments at the bottom of the page.
         Args:
-            value: Value to set for the showComments property.
+            value: Value to set for the show_comments property.
         """
         self._show_comments = value
     
@@ -234,7 +234,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the showRecommendedPages property value. Determines whether or not to show recommended pages at the bottom of the page.
         Args:
-            value: Value to set for the showRecommendedPages property.
+            value: Value to set for the show_recommended_pages property.
         """
         self._show_recommended_pages = value
     
@@ -251,7 +251,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the thumbnailWebUrl property value. Url of the sitePage's thumbnail image
         Args:
-            value: Value to set for the thumbnailWebUrl property.
+            value: Value to set for the thumbnail_web_url property.
         """
         self._thumbnail_web_url = value
     
@@ -285,7 +285,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the titleArea property value. Title area on the SharePoint page.
         Args:
-            value: Value to set for the titleArea property.
+            value: Value to set for the title_area property.
         """
         self._title_area = value
     
@@ -302,7 +302,7 @@ class SitePage(base_item.BaseItem):
         """
         Sets the webParts property value. Collection of webparts on the SharePoint page
         Args:
-            value: Value to set for the webParts property.
+            value: Value to set for the web_parts property.
         """
         self._web_parts = value
     

@@ -53,9 +53,9 @@ class RenameAction(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "new_name": lambda n : setattr(self, 'new_name', n.get_str_value()),
+            "newName": lambda n : setattr(self, 'new_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "old_name": lambda n : setattr(self, 'old_name', n.get_str_value()),
+            "oldName": lambda n : setattr(self, 'old_name', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class RenameAction(AdditionalDataHolder, Parsable):
         """
         Sets the newName property value. The new name of the item.
         Args:
-            value: Value to set for the newName property.
+            value: Value to set for the new_name property.
         """
         self._new_name = value
     
@@ -89,7 +89,7 @@ class RenameAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -106,7 +106,7 @@ class RenameAction(AdditionalDataHolder, Parsable):
         """
         Sets the oldName property value. The previous name of the item.
         Args:
-            value: Value to set for the oldName property.
+            value: Value to set for the old_name property.
         """
         self._old_name = value
     

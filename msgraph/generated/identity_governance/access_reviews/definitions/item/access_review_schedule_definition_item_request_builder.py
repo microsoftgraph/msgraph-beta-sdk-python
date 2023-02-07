@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 instances_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.instances_request_builder')
 access_review_instance_item_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.instances.item.access_review_instance_item_request_builder')
-stop_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.stop.stop_request_builder')
+microsoft_graph_stop_request_builder = lazy_import('msgraph.generated.identity_governance.access_reviews.definitions.item.microsoft_graph_stop.microsoft_graph_stop_request_builder')
 access_review_schedule_definition = lazy_import('msgraph.generated.models.access_review_schedule_definition')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -28,11 +28,11 @@ class AccessReviewScheduleDefinitionItemRequestBuilder():
         return instances_request_builder.InstancesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
+    def microsoft_graph_stop(self) -> microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder:
         """
         Provides operations to call the stop method.
         """
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class AccessReviewScheduleDefinitionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property definitions for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +67,13 @@ class AccessReviewScheduleDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]:
+    async def get(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]:
         """
         Represents the template and scheduling for an access review.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]
         """
         request_info = self.to_get_request_information(
@@ -87,7 +85,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_schedule_definition.AccessReviewScheduleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_schedule_definition.AccessReviewScheduleDefinition, error_mapping)
     
     def instances_by_id(self,id: str) -> access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder:
         """
@@ -102,13 +100,12 @@ class AccessReviewScheduleDefinitionItemRequestBuilder():
         url_tpl_params["accessReviewInstance%2Did"] = id
         return access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition] = None, request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]:
+    async def patch(self,body: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition] = None, request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]:
         """
         Update the navigation property definitions in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_schedule_definition.AccessReviewScheduleDefinition]
         """
         if body is None:
@@ -122,7 +119,7 @@ class AccessReviewScheduleDefinitionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_schedule_definition.AccessReviewScheduleDefinition, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_schedule_definition.AccessReviewScheduleDefinition, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessReviewScheduleDefinitionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

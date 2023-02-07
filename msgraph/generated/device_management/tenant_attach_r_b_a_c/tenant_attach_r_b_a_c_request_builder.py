@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-enable_request_builder = lazy_import('msgraph.generated.device_management.tenant_attach_r_b_a_c.enable.enable_request_builder')
-get_state_request_builder = lazy_import('msgraph.generated.device_management.tenant_attach_r_b_a_c.get_state.get_state_request_builder')
+microsoft_graph_enable_request_builder = lazy_import('msgraph.generated.device_management.tenant_attach_r_b_a_c.microsoft_graph_enable.microsoft_graph_enable_request_builder')
+microsoft_graph_get_state_request_builder = lazy_import('msgraph.generated.device_management.tenant_attach_r_b_a_c.microsoft_graph_get_state.microsoft_graph_get_state_request_builder')
 tenant_attach_r_b_a_c = lazy_import('msgraph.generated.models.tenant_attach_r_b_a_c')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,11 +20,18 @@ class TenantAttachRBACRequestBuilder():
     Provides operations to manage the tenantAttachRBAC property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def enable(self) -> enable_request_builder.EnableRequestBuilder:
+    def microsoft_graph_enable(self) -> microsoft_graph_enable_request_builder.MicrosoftGraphEnableRequestBuilder:
         """
         Provides operations to call the enable method.
         """
-        return enable_request_builder.EnableRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_enable_request_builder.MicrosoftGraphEnableRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_get_state(self) -> microsoft_graph_get_state_request_builder.MicrosoftGraphGetStateRequestBuilder:
+        """
+        Provides operations to call the getState method.
+        """
+        return microsoft_graph_get_state_request_builder.MicrosoftGraphGetStateRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -44,12 +51,11 @@ class TenantAttachRBACRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TenantAttachRBACRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TenantAttachRBACRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property tenantAttachRBAC for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +66,13 @@ class TenantAttachRBACRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TenantAttachRBACRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_attach_r_b_a_c.TenantAttachRBAC]:
+    async def get(self,request_configuration: Optional[TenantAttachRBACRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_attach_r_b_a_c.TenantAttachRBAC]:
         """
         TenantAttach RBAC Enablement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_attach_r_b_a_c.TenantAttachRBAC]
         """
         request_info = self.to_get_request_information(
@@ -79,22 +84,14 @@ class TenantAttachRBACRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_attach_r_b_a_c.TenantAttachRBAC, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_attach_r_b_a_c.TenantAttachRBAC, error_mapping)
     
-    def get_state(self,) -> get_state_request_builder.GetStateRequestBuilder:
-        """
-        Provides operations to call the getState method.
-        Returns: get_state_request_builder.GetStateRequestBuilder
-        """
-        return get_state_request_builder.GetStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[tenant_attach_r_b_a_c.TenantAttachRBAC] = None, request_configuration: Optional[TenantAttachRBACRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_attach_r_b_a_c.TenantAttachRBAC]:
+    async def patch(self,body: Optional[tenant_attach_r_b_a_c.TenantAttachRBAC] = None, request_configuration: Optional[TenantAttachRBACRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_attach_r_b_a_c.TenantAttachRBAC]:
         """
         Update the navigation property tenantAttachRBAC in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_attach_r_b_a_c.TenantAttachRBAC]
         """
         if body is None:
@@ -108,7 +105,7 @@ class TenantAttachRBACRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_attach_r_b_a_c.TenantAttachRBAC, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_attach_r_b_a_c.TenantAttachRBAC, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TenantAttachRBACRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

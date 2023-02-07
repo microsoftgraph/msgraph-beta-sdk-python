@@ -38,7 +38,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the adminConfiguration property value. The admin configuration of the policy on the user's authentication app. For a policy that does not impact the success/failure of the authentication, the evaluation defaults to notApplicable. The possible values are: notApplicable, enabled, disabled, unknownFutureValue.
         Args:
-            value: Value to set for the adminConfiguration property.
+            value: Value to set for the admin_configuration property.
         """
         self._admin_configuration = value
     
@@ -55,7 +55,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationEvaluation property value. Evaluates the success/failure of the authentication based on the admin configuration of the policy on the user's client authentication app. The possible values are: success, failure, unknownFutureValue.
         Args:
-            value: Value to set for the authenticationEvaluation property.
+            value: Value to set for the authentication_evaluation property.
         """
         self._authentication_evaluation = value
     
@@ -95,10 +95,10 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admin_configuration": lambda n : setattr(self, 'admin_configuration', n.get_enum_value(authentication_app_admin_configuration.AuthenticationAppAdminConfiguration)),
-            "authentication_evaluation": lambda n : setattr(self, 'authentication_evaluation', n.get_enum_value(authentication_app_evaluation.AuthenticationAppEvaluation)),
+            "adminConfiguration": lambda n : setattr(self, 'admin_configuration', n.get_enum_value(authentication_app_admin_configuration.AuthenticationAppAdminConfiguration)),
+            "authenticationEvaluation": lambda n : setattr(self, 'authentication_evaluation', n.get_enum_value(authentication_app_evaluation.AuthenticationAppEvaluation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "policy_name": lambda n : setattr(self, 'policy_name', n.get_str_value()),
+            "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(authentication_app_policy_status.AuthenticationAppPolicyStatus)),
         }
         return fields
@@ -116,7 +116,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -133,7 +133,7 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         """
         Sets the policyName property value. The name of the policy enforced on the user's authentication app.
         Args:
-            value: Value to set for the policyName property.
+            value: Value to set for the policy_name property.
         """
         self._policy_name = value
     

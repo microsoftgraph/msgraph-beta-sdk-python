@@ -36,8 +36,8 @@ class IosWebContentFilterSpecificWebsitesAccess(ios_web_content_filter_base.IosW
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "specific_websites_only": lambda n : setattr(self, 'specific_websites_only', n.get_collection_of_object_values(ios_bookmark.IosBookmark)),
-            "website_list": lambda n : setattr(self, 'website_list', n.get_collection_of_object_values(ios_bookmark.IosBookmark)),
+            "specificWebsitesOnly": lambda n : setattr(self, 'specific_websites_only', n.get_collection_of_object_values(ios_bookmark.IosBookmark)),
+            "websiteList": lambda n : setattr(self, 'website_list', n.get_collection_of_object_values(ios_bookmark.IosBookmark)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -68,7 +68,7 @@ class IosWebContentFilterSpecificWebsitesAccess(ios_web_content_filter_base.IosW
         """
         Sets the specificWebsitesOnly property value. URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through bookmarks. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the specificWebsitesOnly property.
+            value: Value to set for the specific_websites_only property.
         """
         self._specific_websites_only = value
     
@@ -85,7 +85,7 @@ class IosWebContentFilterSpecificWebsitesAccess(ios_web_content_filter_base.IosW
         """
         Sets the websiteList property value. URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through bookmarks. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the websiteList property.
+            value: Value to set for the website_list property.
         """
         self._website_list = value
     

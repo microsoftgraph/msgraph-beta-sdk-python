@@ -12,50 +12,50 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 presence = lazy_import('msgraph.generated.models.presence')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-clear_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.clear_presence.clear_presence_request_builder')
-clear_user_preferred_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.clear_user_preferred_presence.clear_user_preferred_presence_request_builder')
-set_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.set_presence.set_presence_request_builder')
-set_status_message_request_builder = lazy_import('msgraph.generated.users.item.presence.set_status_message.set_status_message_request_builder')
-set_user_preferred_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.set_user_preferred_presence.set_user_preferred_presence_request_builder')
+microsoft_graph_clear_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.microsoft_graph_clear_presence.microsoft_graph_clear_presence_request_builder')
+microsoft_graph_clear_user_preferred_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.microsoft_graph_clear_user_preferred_presence.microsoft_graph_clear_user_preferred_presence_request_builder')
+microsoft_graph_set_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.microsoft_graph_set_presence.microsoft_graph_set_presence_request_builder')
+microsoft_graph_set_status_message_request_builder = lazy_import('msgraph.generated.users.item.presence.microsoft_graph_set_status_message.microsoft_graph_set_status_message_request_builder')
+microsoft_graph_set_user_preferred_presence_request_builder = lazy_import('msgraph.generated.users.item.presence.microsoft_graph_set_user_preferred_presence.microsoft_graph_set_user_preferred_presence_request_builder')
 
 class PresenceRequestBuilder():
     """
     Provides operations to manage the presence property of the microsoft.graph.user entity.
     """
     @property
-    def clear_presence(self) -> clear_presence_request_builder.ClearPresenceRequestBuilder:
+    def microsoft_graph_clear_presence(self) -> microsoft_graph_clear_presence_request_builder.MicrosoftGraphClearPresenceRequestBuilder:
         """
         Provides operations to call the clearPresence method.
         """
-        return clear_presence_request_builder.ClearPresenceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_clear_presence_request_builder.MicrosoftGraphClearPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def clear_user_preferred_presence(self) -> clear_user_preferred_presence_request_builder.ClearUserPreferredPresenceRequestBuilder:
+    def microsoft_graph_clear_user_preferred_presence(self) -> microsoft_graph_clear_user_preferred_presence_request_builder.MicrosoftGraphClearUserPreferredPresenceRequestBuilder:
         """
         Provides operations to call the clearUserPreferredPresence method.
         """
-        return clear_user_preferred_presence_request_builder.ClearUserPreferredPresenceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_clear_user_preferred_presence_request_builder.MicrosoftGraphClearUserPreferredPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_presence(self) -> set_presence_request_builder.SetPresenceRequestBuilder:
+    def microsoft_graph_set_presence(self) -> microsoft_graph_set_presence_request_builder.MicrosoftGraphSetPresenceRequestBuilder:
         """
         Provides operations to call the setPresence method.
         """
-        return set_presence_request_builder.SetPresenceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_set_presence_request_builder.MicrosoftGraphSetPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_status_message(self) -> set_status_message_request_builder.SetStatusMessageRequestBuilder:
+    def microsoft_graph_set_status_message(self) -> microsoft_graph_set_status_message_request_builder.MicrosoftGraphSetStatusMessageRequestBuilder:
         """
         Provides operations to call the setStatusMessage method.
         """
-        return set_status_message_request_builder.SetStatusMessageRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_set_status_message_request_builder.MicrosoftGraphSetStatusMessageRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def set_user_preferred_presence(self) -> set_user_preferred_presence_request_builder.SetUserPreferredPresenceRequestBuilder:
+    def microsoft_graph_set_user_preferred_presence(self) -> microsoft_graph_set_user_preferred_presence_request_builder.MicrosoftGraphSetUserPreferredPresenceRequestBuilder:
         """
         Provides operations to call the setUserPreferredPresence method.
         """
-        return set_user_preferred_presence_request_builder.SetUserPreferredPresenceRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_set_user_preferred_presence_request_builder.MicrosoftGraphSetUserPreferredPresenceRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -75,12 +75,11 @@ class PresenceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PresenceRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PresenceRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property presence for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -91,14 +90,13 @@ class PresenceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[presence.Presence]:
+    async def get(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None) -> Optional[presence.Presence]:
         """
-        Get a user's presence information.
+        Set a presence status message for a user. An optional expiration date and time can be supplied.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[presence.Presence]
         """
         request_info = self.to_get_request_information(
@@ -110,15 +108,14 @@ class PresenceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, presence.Presence, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, presence.Presence, error_mapping)
     
-    async def patch(self,body: Optional[presence.Presence] = None, request_configuration: Optional[PresenceRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[presence.Presence]:
+    async def patch(self,body: Optional[presence.Presence] = None, request_configuration: Optional[PresenceRequestBuilderPatchRequestConfiguration] = None) -> Optional[presence.Presence]:
         """
         Update the navigation property presence in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[presence.Presence]
         """
         if body is None:
@@ -132,7 +129,7 @@ class PresenceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, presence.Presence, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, presence.Presence, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PresenceRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -152,7 +149,7 @@ class PresenceRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[PresenceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a user's presence information.
+        Set a presence status message for a user. An optional expiration date and time can be supplied.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -204,7 +201,7 @@ class PresenceRequestBuilder():
     @dataclass
     class PresenceRequestBuilderGetQueryParameters():
         """
-        Get a user's presence information.
+        Set a presence status message for a user. An optional expiration date and time can be supplied.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

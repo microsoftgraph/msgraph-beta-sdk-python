@@ -64,7 +64,7 @@ class MetricTimeSeriesDataPoint(AdditionalDataHolder, Parsable):
         """
         Sets the dateTime property value. Time of the metric time series data point
         Args:
-            value: Value to set for the dateTime property.
+            value: Value to set for the date_time property.
         """
         self._date_time = value
     
@@ -74,7 +74,7 @@ class MetricTimeSeriesDataPoint(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "date_time": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
+            "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_int_value()),
         }
@@ -93,7 +93,7 @@ class MetricTimeSeriesDataPoint(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

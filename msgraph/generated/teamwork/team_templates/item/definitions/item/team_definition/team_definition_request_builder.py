@@ -14,11 +14,8 @@ team = lazy_import('msgraph.generated.models.team')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 all_channels_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.all_channels.all_channels_request_builder')
 channel_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.all_channels.item.channel_item_request_builder')
-archive_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.archive.archive_request_builder')
 channels_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.channels.channels_request_builder')
 channel_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.channels.item.channel_item_request_builder')
-clone_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.clone.clone_request_builder')
-complete_migration_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.complete_migration.complete_migration_request_builder')
 group_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.group.group_request_builder')
 incoming_channels_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.incoming_channels.incoming_channels_request_builder')
 channel_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.incoming_channels.item.channel_item_request_builder')
@@ -26,6 +23,11 @@ installed_apps_request_builder = lazy_import('msgraph.generated.teamwork.team_te
 teams_app_installation_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.installed_apps.item.teams_app_installation_item_request_builder')
 members_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.members.members_request_builder')
 conversation_member_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.members.item.conversation_member_item_request_builder')
+microsoft_graph_archive_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.microsoft_graph_archive.microsoft_graph_archive_request_builder')
+microsoft_graph_clone_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.microsoft_graph_clone.microsoft_graph_clone_request_builder')
+microsoft_graph_complete_migration_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.microsoft_graph_complete_migration.microsoft_graph_complete_migration_request_builder')
+microsoft_graph_send_activity_notification_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.microsoft_graph_send_activity_notification.microsoft_graph_send_activity_notification_request_builder')
+microsoft_graph_unarchive_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.microsoft_graph_unarchive.microsoft_graph_unarchive_request_builder')
 operations_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.operations.operations_request_builder')
 teams_async_operation_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.operations.item.teams_async_operation_item_request_builder')
 owners_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.owners.owners_request_builder')
@@ -35,12 +37,10 @@ resource_specific_permission_grant_item_request_builder = lazy_import('msgraph.g
 photo_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.photo.photo_request_builder')
 primary_channel_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.primary_channel.primary_channel_request_builder')
 schedule_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.schedule.schedule_request_builder')
-send_activity_notification_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.send_activity_notification.send_activity_notification_request_builder')
 tags_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.tags.tags_request_builder')
 teamwork_tag_item_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.tags.item.teamwork_tag_item_request_builder')
 template_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.template.template_request_builder')
 template_definition_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.template_definition.template_definition_request_builder')
-unarchive_request_builder = lazy_import('msgraph.generated.teamwork.team_templates.item.definitions.item.team_definition.unarchive.unarchive_request_builder')
 
 class TeamDefinitionRequestBuilder():
     """
@@ -54,32 +54,11 @@ class TeamDefinitionRequestBuilder():
         return all_channels_request_builder.AllChannelsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def archive(self) -> archive_request_builder.ArchiveRequestBuilder:
-        """
-        Provides operations to call the archive method.
-        """
-        return archive_request_builder.ArchiveRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def channels(self) -> channels_request_builder.ChannelsRequestBuilder:
         """
         Provides operations to manage the channels property of the microsoft.graph.team entity.
         """
         return channels_request_builder.ChannelsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def clone(self) -> clone_request_builder.CloneRequestBuilder:
-        """
-        Provides operations to call the clone method.
-        """
-        return clone_request_builder.CloneRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def complete_migration(self) -> complete_migration_request_builder.CompleteMigrationRequestBuilder:
-        """
-        Provides operations to call the completeMigration method.
-        """
-        return complete_migration_request_builder.CompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def group(self) -> group_request_builder.GroupRequestBuilder:
@@ -108,6 +87,41 @@ class TeamDefinitionRequestBuilder():
         Provides operations to manage the members property of the microsoft.graph.team entity.
         """
         return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_archive(self) -> microsoft_graph_archive_request_builder.MicrosoftGraphArchiveRequestBuilder:
+        """
+        Provides operations to call the archive method.
+        """
+        return microsoft_graph_archive_request_builder.MicrosoftGraphArchiveRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_clone(self) -> microsoft_graph_clone_request_builder.MicrosoftGraphCloneRequestBuilder:
+        """
+        Provides operations to call the clone method.
+        """
+        return microsoft_graph_clone_request_builder.MicrosoftGraphCloneRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_complete_migration(self) -> microsoft_graph_complete_migration_request_builder.MicrosoftGraphCompleteMigrationRequestBuilder:
+        """
+        Provides operations to call the completeMigration method.
+        """
+        return microsoft_graph_complete_migration_request_builder.MicrosoftGraphCompleteMigrationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_send_activity_notification(self) -> microsoft_graph_send_activity_notification_request_builder.MicrosoftGraphSendActivityNotificationRequestBuilder:
+        """
+        Provides operations to call the sendActivityNotification method.
+        """
+        return microsoft_graph_send_activity_notification_request_builder.MicrosoftGraphSendActivityNotificationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_unarchive(self) -> microsoft_graph_unarchive_request_builder.MicrosoftGraphUnarchiveRequestBuilder:
+        """
+        Provides operations to call the unarchive method.
+        """
+        return microsoft_graph_unarchive_request_builder.MicrosoftGraphUnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def operations(self) -> operations_request_builder.OperationsRequestBuilder:
@@ -152,13 +166,6 @@ class TeamDefinitionRequestBuilder():
         return schedule_request_builder.ScheduleRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def send_activity_notification(self) -> send_activity_notification_request_builder.SendActivityNotificationRequestBuilder:
-        """
-        Provides operations to call the sendActivityNotification method.
-        """
-        return send_activity_notification_request_builder.SendActivityNotificationRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def tags(self) -> tags_request_builder.TagsRequestBuilder:
         """
         Provides operations to manage the tags property of the microsoft.graph.team entity.
@@ -178,13 +185,6 @@ class TeamDefinitionRequestBuilder():
         Provides operations to manage the templateDefinition property of the microsoft.graph.team entity.
         """
         return template_definition_request_builder.TemplateDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unarchive(self) -> unarchive_request_builder.UnarchiveRequestBuilder:
-        """
-        Provides operations to call the unarchive method.
-        """
-        return unarchive_request_builder.UnarchiveRequestBuilder(self.request_adapter, self.path_parameters)
     
     def all_channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
         """
@@ -230,12 +230,11 @@ class TeamDefinitionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TeamDefinitionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TeamDefinitionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property teamDefinition for teamwork
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -246,14 +245,13 @@ class TeamDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team.Team]:
+    async def get(self,request_configuration: Optional[TeamDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[team.Team]:
         """
         Get the properties of the team associated with a teamTemplateDefinition object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team.Team]
         """
         request_info = self.to_get_request_information(
@@ -265,7 +263,7 @@ class TeamDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team.Team, error_mapping)
     
     def incoming_channels_by_id(self,id: str) -> channel_item_request_builder.ChannelItemRequestBuilder:
         """
@@ -332,13 +330,12 @@ class TeamDefinitionRequestBuilder():
         url_tpl_params["user%2Did"] = id
         return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[team.Team] = None, request_configuration: Optional[TeamDefinitionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team.Team]:
+    async def patch(self,body: Optional[team.Team] = None, request_configuration: Optional[TeamDefinitionRequestBuilderPatchRequestConfiguration] = None) -> Optional[team.Team]:
         """
         Update the navigation property teamDefinition in teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team.Team]
         """
         if body is None:
@@ -352,7 +349,7 @@ class TeamDefinitionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team.Team, error_mapping)
     
     def permission_grants_by_id(self,id: str) -> resource_specific_permission_grant_item_request_builder.ResourceSpecificPermissionGrantItemRequestBuilder:
         """

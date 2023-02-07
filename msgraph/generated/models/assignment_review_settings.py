@@ -21,7 +21,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the accessReviewTimeoutBehavior property value. The default decision to apply if the request is not reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
         Args:
-            value: Value to set for the accessReviewTimeoutBehavior property.
+            value: Value to set for the access_review_timeout_behavior property.
         """
         self._access_review_timeout_behavior = value
     
@@ -63,10 +63,10 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # The interval for recurrence, such as monthly or quarterly.
         self._recurrence_type: Optional[str] = None
-        # If the reviewerType is Reviewers, this collection specifies the users who will be reviewers, either by ID or as members of a group, using a collection of singleUser and groupMembers.
-        self._reviewers: Optional[List[user_set.UserSet]] = None
         # Who should be asked to do the review, either Self or Reviewers.
         self._reviewer_type: Optional[str] = None
+        # If the reviewerType is Reviewers, this collection specifies the users who will be reviewers, either by ID or as members of a group, using a collection of singleUser and groupMembers.
+        self._reviewers: Optional[List[user_set.UserSet]] = None
         # When the first review should start.
         self._start_date_time: Optional[datetime] = None
     
@@ -95,7 +95,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the durationInDays property value. The number of days within which reviewers should provide input.
         Args:
-            value: Value to set for the durationInDays property.
+            value: Value to set for the duration_in_days property.
         """
         self._duration_in_days = value
     
@@ -105,16 +105,16 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_review_timeout_behavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(access_review_timeout_behavior.AccessReviewTimeoutBehavior)),
-            "duration_in_days": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
-            "is_access_recommendation_enabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),
-            "is_approval_justification_required": lambda n : setattr(self, 'is_approval_justification_required', n.get_bool_value()),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "accessReviewTimeoutBehavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(access_review_timeout_behavior.AccessReviewTimeoutBehavior)),
+            "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
+            "isAccessRecommendationEnabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),
+            "isApprovalJustificationRequired": lambda n : setattr(self, 'is_approval_justification_required', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recurrence_type": lambda n : setattr(self, 'recurrence_type', n.get_str_value()),
+            "recurrenceType": lambda n : setattr(self, 'recurrence_type', n.get_str_value()),
             "reviewers": lambda n : setattr(self, 'reviewers', n.get_collection_of_object_values(user_set.UserSet)),
-            "reviewer_type": lambda n : setattr(self, 'reviewer_type', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "reviewerType": lambda n : setattr(self, 'reviewer_type', n.get_str_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -131,7 +131,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the isAccessRecommendationEnabled property value. Specifies whether to display recommendations to the reviewer. The default value is true
         Args:
-            value: Value to set for the isAccessRecommendationEnabled property.
+            value: Value to set for the is_access_recommendation_enabled property.
         """
         self._is_access_recommendation_enabled = value
     
@@ -148,7 +148,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the isApprovalJustificationRequired property value. Specifies whether the reviewer must provide justification for the approval. The default value is true.
         Args:
-            value: Value to set for the isApprovalJustificationRequired property.
+            value: Value to set for the is_approval_justification_required property.
         """
         self._is_approval_justification_required = value
     
@@ -165,7 +165,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the isEnabled property value. If true, access reviews are required for assignments from this policy.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -182,7 +182,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -199,9 +199,26 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recurrenceType property value. The interval for recurrence, such as monthly or quarterly.
         Args:
-            value: Value to set for the recurrenceType property.
+            value: Value to set for the recurrence_type property.
         """
         self._recurrence_type = value
+    
+    @property
+    def reviewer_type(self,) -> Optional[str]:
+        """
+        Gets the reviewerType property value. Who should be asked to do the review, either Self or Reviewers.
+        Returns: Optional[str]
+        """
+        return self._reviewer_type
+    
+    @reviewer_type.setter
+    def reviewer_type(self,value: Optional[str] = None) -> None:
+        """
+        Sets the reviewerType property value. Who should be asked to do the review, either Self or Reviewers.
+        Args:
+            value: Value to set for the reviewer_type property.
+        """
+        self._reviewer_type = value
     
     @property
     def reviewers(self,) -> Optional[List[user_set.UserSet]]:
@@ -219,23 +236,6 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
             value: Value to set for the reviewers property.
         """
         self._reviewers = value
-    
-    @property
-    def reviewer_type(self,) -> Optional[str]:
-        """
-        Gets the reviewerType property value. Who should be asked to do the review, either Self or Reviewers.
-        Returns: Optional[str]
-        """
-        return self._reviewer_type
-    
-    @reviewer_type.setter
-    def reviewer_type(self,value: Optional[str] = None) -> None:
-        """
-        Sets the reviewerType property value. Who should be asked to do the review, either Self or Reviewers.
-        Args:
-            value: Value to set for the reviewerType property.
-        """
-        self._reviewer_type = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -270,7 +270,7 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. When the first review should start.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

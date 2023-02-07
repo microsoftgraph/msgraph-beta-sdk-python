@@ -55,7 +55,7 @@ class AutoLabeling(AdditionalDataHolder, Parsable):
         fields = {
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sensitive_type_ids": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
+            "sensitiveTypeIds": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -89,7 +89,7 @@ class AutoLabeling(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -106,7 +106,7 @@ class AutoLabeling(AdditionalDataHolder, Parsable):
         """
         Sets the sensitiveTypeIds property value. The sensitiveTypeIds property
         Args:
-            value: Value to set for the sensitiveTypeIds property.
+            value: Value to set for the sensitive_type_ids property.
         """
         self._sensitive_type_ids = value
     

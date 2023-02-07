@@ -40,9 +40,9 @@ class WindowsAutopilotSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_manual_sync_trigger_date_time": lambda n : setattr(self, 'last_manual_sync_trigger_date_time', n.get_datetime_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "sync_status": lambda n : setattr(self, 'sync_status', n.get_enum_value(windows_autopilot_sync_status.WindowsAutopilotSyncStatus)),
+            "lastManualSyncTriggerDateTime": lambda n : setattr(self, 'last_manual_sync_trigger_date_time', n.get_datetime_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "syncStatus": lambda n : setattr(self, 'sync_status', n.get_enum_value(windows_autopilot_sync_status.WindowsAutopilotSyncStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -61,7 +61,7 @@ class WindowsAutopilotSettings(entity.Entity):
         """
         Sets the lastManualSyncTriggerDateTime property value. Last data sync date time with DDS service.
         Args:
-            value: Value to set for the lastManualSyncTriggerDateTime property.
+            value: Value to set for the last_manual_sync_trigger_date_time property.
         """
         self._last_manual_sync_trigger_date_time = value
     
@@ -78,7 +78,7 @@ class WindowsAutopilotSettings(entity.Entity):
         """
         Sets the lastSyncDateTime property value. Last data sync date time with DDS service.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -108,7 +108,7 @@ class WindowsAutopilotSettings(entity.Entity):
         """
         Sets the syncStatus property value. The syncStatus property
         Args:
-            value: Value to set for the syncStatus property.
+            value: Value to set for the sync_status property.
         """
         self._sync_status = value
     

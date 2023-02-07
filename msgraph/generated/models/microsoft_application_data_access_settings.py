@@ -43,7 +43,7 @@ class MicrosoftApplicationDataAccessSettings(entity.Entity):
         """
         Sets the disabledForGroup property value. The ID of an Azure Active Directory (Azure AD) security group for which the members are allowed to access Microsoft 365 data using only Microsoft 365 apps, but not other Microsoft apps such as Edge.  This is only applicable if isEnabledForAllMicrosoftApplications is set to true.
         Args:
-            value: Value to set for the disabledForGroup property.
+            value: Value to set for the disabled_for_group property.
         """
         self._disabled_for_group = value
     
@@ -53,8 +53,8 @@ class MicrosoftApplicationDataAccessSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "disabled_for_group": lambda n : setattr(self, 'disabled_for_group', n.get_str_value()),
-            "is_enabled_for_all_microsoft_applications": lambda n : setattr(self, 'is_enabled_for_all_microsoft_applications', n.get_bool_value()),
+            "disabledForGroup": lambda n : setattr(self, 'disabled_for_group', n.get_str_value()),
+            "isEnabledForAllMicrosoftApplications": lambda n : setattr(self, 'is_enabled_for_all_microsoft_applications', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class MicrosoftApplicationDataAccessSettings(entity.Entity):
         """
         Sets the isEnabledForAllMicrosoftApplications property value. When set to true, all users in the organization can access in a Microsoft app any Microsoft 365 data that the user has been authorized to access. The Microsoft app can be a Microsoft 365 app (for example, Excel, Outlook) or non-Microsoft 365 app (for example, Edge). The default is true.  It is possible to disable this access for a subset of users in an Azure AD security group, by specifying the group in the disabledForGroup property.  When set to false, all users can access authorized Microsoft 365 data only in a Microsoft 365 app.
         Args:
-            value: Value to set for the isEnabledForAllMicrosoftApplications property.
+            value: Value to set for the is_enabled_for_all_microsoft_applications property.
         """
         self._is_enabled_for_all_microsoft_applications = value
     

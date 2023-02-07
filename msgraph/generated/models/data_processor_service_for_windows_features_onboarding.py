@@ -37,7 +37,7 @@ class DataProcessorServiceForWindowsFeaturesOnboarding(AdditionalDataHolder, Par
         """
         Sets the areDataProcessorServiceForWindowsFeaturesEnabled property value. Indicates whether the tenant has enabled MEM features utilizing Data Processor Service for Windows (DPSW) data. When TRUE, the tenant has enabled MEM features utilizing Data Processor Service for Windows (DPSW) data. When FALSE, the tenant has not enabled MEM features utilizing Data Processor Service for Windows (DPSW) data. Default value is FALSE.
         Args:
-            value: Value to set for the areDataProcessorServiceForWindowsFeaturesEnabled property.
+            value: Value to set for the are_data_processor_service_for_windows_features_enabled property.
         """
         self._are_data_processor_service_for_windows_features_enabled = value
     
@@ -73,8 +73,8 @@ class DataProcessorServiceForWindowsFeaturesOnboarding(AdditionalDataHolder, Par
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "are_data_processor_service_for_windows_features_enabled": lambda n : setattr(self, 'are_data_processor_service_for_windows_features_enabled', n.get_bool_value()),
-            "has_valid_windows_license": lambda n : setattr(self, 'has_valid_windows_license', n.get_bool_value()),
+            "areDataProcessorServiceForWindowsFeaturesEnabled": lambda n : setattr(self, 'are_data_processor_service_for_windows_features_enabled', n.get_bool_value()),
+            "hasValidWindowsLicense": lambda n : setattr(self, 'has_valid_windows_license', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class DataProcessorServiceForWindowsFeaturesOnboarding(AdditionalDataHolder, Par
         """
         Sets the hasValidWindowsLicense property value. Indicates whether the tenant has required Windows license. When TRUE, the tenant has the required Windows license. When FALSE, the tenant does not have the required Windows license. Default value is FALSE.
         Args:
-            value: Value to set for the hasValidWindowsLicense property.
+            value: Value to set for the has_valid_windows_license property.
         """
         self._has_valid_windows_license = value
     
@@ -109,7 +109,7 @@ class DataProcessorServiceForWindowsFeaturesOnboarding(AdditionalDataHolder, Par
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

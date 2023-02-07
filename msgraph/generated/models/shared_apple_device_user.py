@@ -64,7 +64,7 @@ class SharedAppleDeviceUser(AdditionalDataHolder, Parsable):
         """
         Sets the dataQuota property value. Data quota
         Args:
-            value: Value to set for the dataQuota property.
+            value: Value to set for the data_quota property.
         """
         self._data_quota = value
     
@@ -81,7 +81,7 @@ class SharedAppleDeviceUser(AdditionalDataHolder, Parsable):
         """
         Sets the dataToSync property value. Data to sync
         Args:
-            value: Value to set for the dataToSync property.
+            value: Value to set for the data_to_sync property.
         """
         self._data_to_sync = value
     
@@ -98,7 +98,7 @@ class SharedAppleDeviceUser(AdditionalDataHolder, Parsable):
         """
         Sets the dataUsed property value. Data quota
         Args:
-            value: Value to set for the dataUsed property.
+            value: Value to set for the data_used property.
         """
         self._data_used = value
     
@@ -108,11 +108,11 @@ class SharedAppleDeviceUser(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "data_quota": lambda n : setattr(self, 'data_quota', n.get_int_value()),
-            "data_to_sync": lambda n : setattr(self, 'data_to_sync', n.get_bool_value()),
-            "data_used": lambda n : setattr(self, 'data_used', n.get_int_value()),
+            "dataQuota": lambda n : setattr(self, 'data_quota', n.get_int_value()),
+            "dataToSync": lambda n : setattr(self, 'data_to_sync', n.get_bool_value()),
+            "dataUsed": lambda n : setattr(self, 'data_used', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -129,7 +129,7 @@ class SharedAppleDeviceUser(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -161,7 +161,7 @@ class SharedAppleDeviceUser(AdditionalDataHolder, Parsable):
         """
         Sets the userPrincipalName property value. User name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

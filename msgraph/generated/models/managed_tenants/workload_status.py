@@ -67,7 +67,7 @@ class WorkloadStatus(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the workload. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -77,11 +77,11 @@ class WorkloadStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "offboarded_date_time": lambda n : setattr(self, 'offboarded_date_time', n.get_datetime_value()),
-            "onboarded_date_time": lambda n : setattr(self, 'onboarded_date_time', n.get_datetime_value()),
-            "onboarding_status": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(workload_onboarding_status.WorkloadOnboardingStatus)),
+            "offboardedDateTime": lambda n : setattr(self, 'offboarded_date_time', n.get_datetime_value()),
+            "onboardedDateTime": lambda n : setattr(self, 'onboarded_date_time', n.get_datetime_value()),
+            "onboardingStatus": lambda n : setattr(self, 'onboarding_status', n.get_enum_value(workload_onboarding_status.WorkloadOnboardingStatus)),
         }
         return fields
     
@@ -98,7 +98,7 @@ class WorkloadStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -115,7 +115,7 @@ class WorkloadStatus(AdditionalDataHolder, Parsable):
         """
         Sets the offboardedDateTime property value. The date and time the workload was offboarded. Optional. Read-only.
         Args:
-            value: Value to set for the offboardedDateTime property.
+            value: Value to set for the offboarded_date_time property.
         """
         self._offboarded_date_time = value
     
@@ -132,7 +132,7 @@ class WorkloadStatus(AdditionalDataHolder, Parsable):
         """
         Sets the onboardedDateTime property value. The date and time the workload was onboarded. Optional. Read-only.
         Args:
-            value: Value to set for the onboardedDateTime property.
+            value: Value to set for the onboarded_date_time property.
         """
         self._onboarded_date_time = value
     
@@ -149,7 +149,7 @@ class WorkloadStatus(AdditionalDataHolder, Parsable):
         """
         Sets the onboardingStatus property value. The onboardingStatus property
         Args:
-            value: Value to set for the onboardingStatus property.
+            value: Value to set for the onboarding_status property.
         """
         self._onboarding_status = value
     

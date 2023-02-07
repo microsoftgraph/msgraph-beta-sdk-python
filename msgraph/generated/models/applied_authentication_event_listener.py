@@ -31,11 +31,11 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The eventType property
+        # The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
         self._event_type: Optional[authentication_event_type.AuthenticationEventType] = None
-        # The executedListenerId property
+        # ID of the Event Listener that was executed.
         self._executed_listener_id: Optional[str] = None
-        # The handlerResult property
+        # The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
         self._handler_result: Optional[authentication_event_handler_result.AuthenticationEventHandlerResult] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -55,7 +55,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @property
     def event_type(self,) -> Optional[authentication_event_type.AuthenticationEventType]:
         """
-        Gets the eventType property value. The eventType property
+        Gets the eventType property value. The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
         Returns: Optional[authentication_event_type.AuthenticationEventType]
         """
         return self._event_type
@@ -63,16 +63,16 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @event_type.setter
     def event_type(self,value: Optional[authentication_event_type.AuthenticationEventType] = None) -> None:
         """
-        Sets the eventType property value. The eventType property
+        Sets the eventType property value. The type of authentication event that triggered the custom extension request. The possible values are: tokenIssuanceStart, pageRenderStart, unknownFutureValue.
         Args:
-            value: Value to set for the eventType property.
+            value: Value to set for the event_type property.
         """
         self._event_type = value
     
     @property
     def executed_listener_id(self,) -> Optional[str]:
         """
-        Gets the executedListenerId property value. The executedListenerId property
+        Gets the executedListenerId property value. ID of the Event Listener that was executed.
         Returns: Optional[str]
         """
         return self._executed_listener_id
@@ -80,9 +80,9 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @executed_listener_id.setter
     def executed_listener_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the executedListenerId property value. The executedListenerId property
+        Sets the executedListenerId property value. ID of the Event Listener that was executed.
         Args:
-            value: Value to set for the executedListenerId property.
+            value: Value to set for the executed_listener_id property.
         """
         self._executed_listener_id = value
     
@@ -92,9 +92,9 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "event_type": lambda n : setattr(self, 'event_type', n.get_enum_value(authentication_event_type.AuthenticationEventType)),
-            "executed_listener_id": lambda n : setattr(self, 'executed_listener_id', n.get_str_value()),
-            "handler_result": lambda n : setattr(self, 'handler_result', n.get_object_value(authentication_event_handler_result.AuthenticationEventHandlerResult)),
+            "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(authentication_event_type.AuthenticationEventType)),
+            "executedListenerId": lambda n : setattr(self, 'executed_listener_id', n.get_str_value()),
+            "handlerResult": lambda n : setattr(self, 'handler_result', n.get_object_value(authentication_event_handler_result.AuthenticationEventHandlerResult)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -102,7 +102,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @property
     def handler_result(self,) -> Optional[authentication_event_handler_result.AuthenticationEventHandlerResult]:
         """
-        Gets the handlerResult property value. The handlerResult property
+        Gets the handlerResult property value. The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
         Returns: Optional[authentication_event_handler_result.AuthenticationEventHandlerResult]
         """
         return self._handler_result
@@ -110,9 +110,9 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
     @handler_result.setter
     def handler_result(self,value: Optional[authentication_event_handler_result.AuthenticationEventHandlerResult] = None) -> None:
         """
-        Sets the handlerResult property value. The handlerResult property
+        Sets the handlerResult property value. The result from the listening client, such as an Azure Logic App and Azure Functions, of this authentication event.
         Args:
-            value: Value to set for the handlerResult property.
+            value: Value to set for the handler_result property.
         """
         self._handler_result = value
     
@@ -129,7 +129,7 @@ class AppliedAuthenticationEventListener(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -37,7 +37,7 @@ class IosBookmark(AdditionalDataHolder, Parsable):
         """
         Sets the bookmarkFolder property value. The folder into which the bookmark should be added in Safari
         Args:
-            value: Value to set for the bookmarkFolder property.
+            value: Value to set for the bookmark_folder property.
         """
         self._bookmark_folder = value
     
@@ -82,7 +82,7 @@ class IosBookmark(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name of the bookmark
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -92,8 +92,8 @@ class IosBookmark(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bookmark_folder": lambda n : setattr(self, 'bookmark_folder', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "bookmarkFolder": lambda n : setattr(self, 'bookmark_folder', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
@@ -112,7 +112,7 @@ class IosBookmark(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

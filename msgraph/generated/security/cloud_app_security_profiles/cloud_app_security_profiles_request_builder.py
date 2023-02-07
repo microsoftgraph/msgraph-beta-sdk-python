@@ -44,12 +44,11 @@ class CloudAppSecurityProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CloudAppSecurityProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_app_security_profile_collection_response.CloudAppSecurityProfileCollectionResponse]:
+    async def get(self,request_configuration: Optional[CloudAppSecurityProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_app_security_profile_collection_response.CloudAppSecurityProfileCollectionResponse]:
         """
         Get cloudAppSecurityProfiles from security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_app_security_profile_collection_response.CloudAppSecurityProfileCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CloudAppSecurityProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_app_security_profile_collection_response.CloudAppSecurityProfileCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_app_security_profile_collection_response.CloudAppSecurityProfileCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cloud_app_security_profile.CloudAppSecurityProfile] = None, request_configuration: Optional[CloudAppSecurityProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_app_security_profile.CloudAppSecurityProfile]:
+    async def post(self,body: Optional[cloud_app_security_profile.CloudAppSecurityProfile] = None, request_configuration: Optional[CloudAppSecurityProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[cloud_app_security_profile.CloudAppSecurityProfile]:
         """
         Create new navigation property to cloudAppSecurityProfiles for security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_app_security_profile.CloudAppSecurityProfile]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CloudAppSecurityProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_app_security_profile.CloudAppSecurityProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_app_security_profile.CloudAppSecurityProfile, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CloudAppSecurityProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

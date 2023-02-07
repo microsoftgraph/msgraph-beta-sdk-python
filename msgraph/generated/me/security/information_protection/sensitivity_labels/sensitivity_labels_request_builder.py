@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.count.count_request_builder')
-evaluate_application_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.evaluate_application.evaluate_application_request_builder')
-evaluate_classification_results_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.evaluate_classification_results.evaluate_classification_results_request_builder')
-evaluate_removal_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.evaluate_removal.evaluate_removal_request_builder')
-extract_content_label_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.extract_content_label.extract_content_label_request_builder')
+microsoft_graph_security_evaluate_application_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.microsoft_graph_security_evaluate_application.microsoft_graph_security_evaluate_application_request_builder')
+microsoft_graph_security_evaluate_classification_results_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.microsoft_graph_security_evaluate_classification_results.microsoft_graph_security_evaluate_classification_results_request_builder')
+microsoft_graph_security_evaluate_removal_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.microsoft_graph_security_evaluate_removal.microsoft_graph_security_evaluate_removal_request_builder')
+microsoft_graph_security_extract_content_label_request_builder = lazy_import('msgraph.generated.me.security.information_protection.sensitivity_labels.microsoft_graph_security_extract_content_label.microsoft_graph_security_extract_content_label_request_builder')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 sensitivity_label = lazy_import('msgraph.generated.models.security.sensitivity_label')
 sensitivity_label_collection_response = lazy_import('msgraph.generated.models.security.sensitivity_label_collection_response')
@@ -31,32 +31,32 @@ class SensitivityLabelsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_application(self) -> evaluate_application_request_builder.EvaluateApplicationRequestBuilder:
+    def microsoft_graph_security_evaluate_application(self) -> microsoft_graph_security_evaluate_application_request_builder.MicrosoftGraphSecurityEvaluateApplicationRequestBuilder:
         """
         Provides operations to call the evaluateApplication method.
         """
-        return evaluate_application_request_builder.EvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_evaluate_application_request_builder.MicrosoftGraphSecurityEvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_classification_results(self) -> evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder:
+    def microsoft_graph_security_evaluate_classification_results(self) -> microsoft_graph_security_evaluate_classification_results_request_builder.MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
-        return evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_evaluate_classification_results_request_builder.MicrosoftGraphSecurityEvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_removal(self) -> evaluate_removal_request_builder.EvaluateRemovalRequestBuilder:
+    def microsoft_graph_security_evaluate_removal(self) -> microsoft_graph_security_evaluate_removal_request_builder.MicrosoftGraphSecurityEvaluateRemovalRequestBuilder:
         """
         Provides operations to call the evaluateRemoval method.
         """
-        return evaluate_removal_request_builder.EvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_evaluate_removal_request_builder.MicrosoftGraphSecurityEvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extract_content_label(self) -> extract_content_label_request_builder.ExtractContentLabelRequestBuilder:
+    def microsoft_graph_security_extract_content_label(self) -> microsoft_graph_security_extract_content_label_request_builder.MicrosoftGraphSecurityExtractContentLabelRequestBuilder:
         """
         Provides operations to call the extractContentLabel method.
         """
-        return extract_content_label_request_builder.ExtractContentLabelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_extract_content_label_request_builder.MicrosoftGraphSecurityExtractContentLabelRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -76,12 +76,11 @@ class SensitivityLabelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]:
+    async def get(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]:
         """
         Get a list of sensitivityLabel objects associated with a user or organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sensitivity_label_collection_response.SensitivityLabelCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class SensitivityLabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sensitivity_label_collection_response.SensitivityLabelCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sensitivity_label_collection_response.SensitivityLabelCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sensitivity_label.SensitivityLabel]:
+    async def post(self,body: Optional[sensitivity_label.SensitivityLabel] = None, request_configuration: Optional[SensitivityLabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[sensitivity_label.SensitivityLabel]:
         """
         Create new navigation property to sensitivityLabels for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sensitivity_label.SensitivityLabel]
         """
         if body is None:
@@ -115,7 +113,7 @@ class SensitivityLabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sensitivity_label.SensitivityLabel, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SensitivityLabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

@@ -14,7 +14,7 @@ todo_task_list = lazy_import('msgraph.generated.models.todo_task_list')
 todo_task_list_collection_response = lazy_import('msgraph.generated.models.todo_task_list_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.users.item.todo.lists.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.users.item.todo.lists.delta.delta_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.users.item.todo.lists.microsoft_graph_delta.microsoft_graph_delta_request_builder')
 
 class ListsRequestBuilder():
     """
@@ -26,6 +26,13 @@ class ListsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,19 +52,11 @@ class ListsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[ListsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[todo_task_list_collection_response.TodoTaskListCollectionResponse]:
+    async def get(self,request_configuration: Optional[ListsRequestBuilderGetRequestConfiguration] = None) -> Optional[todo_task_list_collection_response.TodoTaskListCollectionResponse]:
         """
         Get a list of the todoTaskList objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[todo_task_list_collection_response.TodoTaskListCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class ListsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, todo_task_list_collection_response.TodoTaskListCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, todo_task_list_collection_response.TodoTaskListCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[todo_task_list.TodoTaskList] = None, request_configuration: Optional[ListsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[todo_task_list.TodoTaskList]:
+    async def post(self,body: Optional[todo_task_list.TodoTaskList] = None, request_configuration: Optional[ListsRequestBuilderPostRequestConfiguration] = None) -> Optional[todo_task_list.TodoTaskList]:
         """
         Create a new lists object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[todo_task_list.TodoTaskList]
         """
         if body is None:
@@ -91,7 +89,7 @@ class ListsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, todo_task_list.TodoTaskList, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, todo_task_list.TodoTaskList, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ListsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

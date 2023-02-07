@@ -24,7 +24,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the allowedIosDeviceModels property value. Semicolon seperated list of device models allowed, as a string, for the managed app to work.
         Args:
-            value: Value to set for the allowedIosDeviceModels property.
+            value: Value to set for the allowed_ios_device_models property.
         """
         self._allowed_ios_device_models = value
     
@@ -41,7 +41,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the appActionIfIosDeviceModelNotAllowed property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfIosDeviceModelNotAllowed property.
+            value: Value to set for the app_action_if_ios_device_model_not_allowed property.
         """
         self._app_action_if_ios_device_model_not_allowed = value
     
@@ -58,7 +58,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the appDataEncryptionType property value. Represents the level to which app data is encrypted for managed apps
         Args:
-            value: Value to set for the appDataEncryptionType property.
+            value: Value to set for the app_data_encryption_type property.
         """
         self._app_data_encryption_type = value
     
@@ -149,7 +149,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the customBrowserProtocol property value. A custom browser protocol to open weblink on iOS.
         Args:
-            value: Value to set for the customBrowserProtocol property.
+            value: Value to set for the custom_browser_protocol property.
         """
         self._custom_browser_protocol = value
     
@@ -166,7 +166,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the customDialerAppProtocol property value. Protocol of a custom dialer app to click-to-open a phone number on iOS, for example, skype:.
         Args:
-            value: Value to set for the customDialerAppProtocol property.
+            value: Value to set for the custom_dialer_app_protocol property.
         """
         self._custom_dialer_app_protocol = value
     
@@ -183,7 +183,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the deployedAppCount property value. Count of apps to which the current policy is deployed.
         Args:
-            value: Value to set for the deployedAppCount property.
+            value: Value to set for the deployed_app_count property.
         """
         self._deployed_app_count = value
     
@@ -200,7 +200,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the deploymentSummary property value. Navigation property to deployment summary of the configuration.
         Args:
-            value: Value to set for the deploymentSummary property.
+            value: Value to set for the deployment_summary property.
         """
         self._deployment_summary = value
     
@@ -217,7 +217,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the disableProtectionOfManagedOutboundOpenInData property value. Disable protection of data transferred to other apps through IOS OpenIn option. This setting is only allowed to be True when AllowedOutboundDataTransferDestinations is set to ManagedApps.
         Args:
-            value: Value to set for the disableProtectionOfManagedOutboundOpenInData property.
+            value: Value to set for the disable_protection_of_managed_outbound_open_in_data property.
         """
         self._disable_protection_of_managed_outbound_open_in_data = value
     
@@ -234,7 +234,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the exemptedAppProtocols property value. Apps in this list will be exempt from the policy and will be able to receive data from managed apps.
         Args:
-            value: Value to set for the exemptedAppProtocols property.
+            value: Value to set for the exempted_app_protocols property.
         """
         self._exempted_app_protocols = value
     
@@ -251,7 +251,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the exemptedUniversalLinks property value. A list of custom urls that are allowed to invocate an unmanaged app
         Args:
-            value: Value to set for the exemptedUniversalLinks property.
+            value: Value to set for the exempted_universal_links property.
         """
         self._exempted_universal_links = value
     
@@ -268,7 +268,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the faceIdBlocked property value. Indicates whether use of the FaceID is allowed in place of a pin if PinRequired is set to True.
         Args:
-            value: Value to set for the faceIdBlocked property.
+            value: Value to set for the face_id_blocked property.
         """
         self._face_id_blocked = value
     
@@ -285,7 +285,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the filterOpenInToOnlyManagedApps property value. Defines if open-in operation is supported from the managed app to the filesharing locations selected. This setting only applies when AllowedOutboundDataTransferDestinations is set to ManagedApps and DisableProtectionOfManagedOutboundOpenInData is set to False.
         Args:
-            value: Value to set for the filterOpenInToOnlyManagedApps property.
+            value: Value to set for the filter_open_in_to_only_managed_apps property.
         """
         self._filter_open_in_to_only_managed_apps = value
     
@@ -295,25 +295,25 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_ios_device_models": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
-            "app_action_if_ios_device_model_not_allowed": lambda n : setattr(self, 'app_action_if_ios_device_model_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_data_encryption_type": lambda n : setattr(self, 'app_data_encryption_type', n.get_enum_value(managed_app_data_encryption_type.ManagedAppDataEncryptionType)),
+            "allowedIosDeviceModels": lambda n : setattr(self, 'allowed_ios_device_models', n.get_str_value()),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
-            "custom_browser_protocol": lambda n : setattr(self, 'custom_browser_protocol', n.get_str_value()),
-            "custom_dialer_app_protocol": lambda n : setattr(self, 'custom_dialer_app_protocol', n.get_str_value()),
-            "deployed_app_count": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
-            "deployment_summary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary)),
-            "disable_protection_of_managed_outbound_open_in_data": lambda n : setattr(self, 'disable_protection_of_managed_outbound_open_in_data', n.get_bool_value()),
-            "exempted_app_protocols": lambda n : setattr(self, 'exempted_app_protocols', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "exempted_universal_links": lambda n : setattr(self, 'exempted_universal_links', n.get_collection_of_primitive_values(str)),
-            "face_id_blocked": lambda n : setattr(self, 'face_id_blocked', n.get_bool_value()),
-            "filter_open_in_to_only_managed_apps": lambda n : setattr(self, 'filter_open_in_to_only_managed_apps', n.get_bool_value()),
-            "managed_universal_links": lambda n : setattr(self, 'managed_universal_links', n.get_collection_of_primitive_values(str)),
-            "minimum_required_sdk_version": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
-            "minimum_warning_sdk_version": lambda n : setattr(self, 'minimum_warning_sdk_version', n.get_str_value()),
-            "minimum_wipe_sdk_version": lambda n : setattr(self, 'minimum_wipe_sdk_version', n.get_str_value()),
-            "protect_inbound_data_from_unknown_sources": lambda n : setattr(self, 'protect_inbound_data_from_unknown_sources', n.get_bool_value()),
-            "third_party_keyboards_blocked": lambda n : setattr(self, 'third_party_keyboards_blocked', n.get_bool_value()),
+            "appActionIfIosDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_ios_device_model_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appDataEncryptionType": lambda n : setattr(self, 'app_data_encryption_type', n.get_enum_value(managed_app_data_encryption_type.ManagedAppDataEncryptionType)),
+            "customBrowserProtocol": lambda n : setattr(self, 'custom_browser_protocol', n.get_str_value()),
+            "customDialerAppProtocol": lambda n : setattr(self, 'custom_dialer_app_protocol', n.get_str_value()),
+            "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
+            "deploymentSummary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary)),
+            "disableProtectionOfManagedOutboundOpenInData": lambda n : setattr(self, 'disable_protection_of_managed_outbound_open_in_data', n.get_bool_value()),
+            "exemptedAppProtocols": lambda n : setattr(self, 'exempted_app_protocols', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "exemptedUniversalLinks": lambda n : setattr(self, 'exempted_universal_links', n.get_collection_of_primitive_values(str)),
+            "faceIdBlocked": lambda n : setattr(self, 'face_id_blocked', n.get_bool_value()),
+            "filterOpenInToOnlyManagedApps": lambda n : setattr(self, 'filter_open_in_to_only_managed_apps', n.get_bool_value()),
+            "managedUniversalLinks": lambda n : setattr(self, 'managed_universal_links', n.get_collection_of_primitive_values(str)),
+            "minimumRequiredSdkVersion": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
+            "minimumWarningSdkVersion": lambda n : setattr(self, 'minimum_warning_sdk_version', n.get_str_value()),
+            "minimumWipeSdkVersion": lambda n : setattr(self, 'minimum_wipe_sdk_version', n.get_str_value()),
+            "protectInboundDataFromUnknownSources": lambda n : setattr(self, 'protect_inbound_data_from_unknown_sources', n.get_bool_value()),
+            "thirdPartyKeyboardsBlocked": lambda n : setattr(self, 'third_party_keyboards_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -332,7 +332,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the managedUniversalLinks property value. A list of custom urls that are allowed to invocate a managed app
         Args:
-            value: Value to set for the managedUniversalLinks property.
+            value: Value to set for the managed_universal_links property.
         """
         self._managed_universal_links = value
     
@@ -349,7 +349,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the minimumRequiredSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the minimumRequiredSdkVersion property.
+            value: Value to set for the minimum_required_sdk_version property.
         """
         self._minimum_required_sdk_version = value
     
@@ -366,7 +366,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the minimumWarningSdkVersion property value. Versions less than the specified version will result in warning message on the managed app from accessing company data.
         Args:
-            value: Value to set for the minimumWarningSdkVersion property.
+            value: Value to set for the minimum_warning_sdk_version property.
         """
         self._minimum_warning_sdk_version = value
     
@@ -383,7 +383,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the minimumWipeSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data.
         Args:
-            value: Value to set for the minimumWipeSdkVersion property.
+            value: Value to set for the minimum_wipe_sdk_version property.
         """
         self._minimum_wipe_sdk_version = value
     
@@ -400,7 +400,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the protectInboundDataFromUnknownSources property value. Protect incoming data from unknown source. This setting is only allowed to be True when AllowedInboundDataTransferSources is set to AllApps.
         Args:
-            value: Value to set for the protectInboundDataFromUnknownSources property.
+            value: Value to set for the protect_inbound_data_from_unknown_sources property.
         """
         self._protect_inbound_data_from_unknown_sources = value
     
@@ -414,9 +414,9 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("allowedIosDeviceModels", self.allowed_ios_device_models)
+        writer.write_collection_of_object_values("apps", self.apps)
         writer.write_enum_value("appActionIfIosDeviceModelNotAllowed", self.app_action_if_ios_device_model_not_allowed)
         writer.write_enum_value("appDataEncryptionType", self.app_data_encryption_type)
-        writer.write_collection_of_object_values("apps", self.apps)
         writer.write_str_value("customBrowserProtocol", self.custom_browser_protocol)
         writer.write_str_value("customDialerAppProtocol", self.custom_dialer_app_protocol)
         writer.write_int_value("deployedAppCount", self.deployed_app_count)
@@ -446,7 +446,7 @@ class IosManagedAppProtection(targeted_managed_app_protection.TargetedManagedApp
         """
         Sets the thirdPartyKeyboardsBlocked property value. Defines if third party keyboards are allowed while accessing a managed app
         Args:
-            value: Value to set for the thirdPartyKeyboardsBlocked property.
+            value: Value to set for the third_party_keyboards_blocked property.
         """
         self._third_party_keyboards_blocked = value
     

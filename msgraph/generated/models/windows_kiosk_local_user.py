@@ -33,7 +33,7 @@ class WindowsKioskLocalUser(windows_kiosk_user.WindowsKioskUser):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class WindowsKioskLocalUser(windows_kiosk_user.WindowsKioskUser):
         """
         Sets the userName property value. The local user that will be locked to this kiosk configuration
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     

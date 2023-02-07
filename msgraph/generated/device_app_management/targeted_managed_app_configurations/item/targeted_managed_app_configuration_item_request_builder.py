@@ -12,11 +12,11 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 apps_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.apps.apps_request_builder')
 managed_mobile_app_item_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.apps.item.managed_mobile_app_item_request_builder')
-assign_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.assignments.assignments_request_builder')
 targeted_managed_app_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.assignments.item.targeted_managed_app_policy_assignment_item_request_builder')
 deployment_summary_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.deployment_summary.deployment_summary_request_builder')
-target_apps_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.target_apps.target_apps_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
+microsoft_graph_target_apps_request_builder = lazy_import('msgraph.generated.device_app_management.targeted_managed_app_configurations.item.microsoft_graph_target_apps.microsoft_graph_target_apps_request_builder')
 targeted_managed_app_configuration = lazy_import('msgraph.generated.models.targeted_managed_app_configuration')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -30,13 +30,6 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         Provides operations to manage the apps property of the microsoft.graph.targetedManagedAppConfiguration entity.
         """
         return apps_request_builder.AppsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
@@ -53,11 +46,18 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         return deployment_summary_request_builder.DeploymentSummaryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def target_apps(self) -> target_apps_request_builder.TargetAppsRequestBuilder:
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_target_apps(self) -> microsoft_graph_target_apps_request_builder.MicrosoftGraphTargetAppsRequestBuilder:
         """
         Provides operations to call the targetApps method.
         """
-        return target_apps_request_builder.TargetAppsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_target_apps_request_builder.MicrosoftGraphTargetAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def apps_by_id(self,id: str) -> managed_mobile_app_item_request_builder.ManagedMobileAppItemRequestBuilder:
         """
@@ -103,12 +103,11 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property targetedManagedAppConfigurations for deviceAppManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -119,14 +118,13 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]:
+    async def get(self,request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]:
         """
         Targeted managed app configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]
         """
         request_info = self.to_get_request_information(
@@ -138,15 +136,14 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, targeted_managed_app_configuration.TargetedManagedAppConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, targeted_managed_app_configuration.TargetedManagedAppConfiguration, error_mapping)
     
-    async def patch(self,body: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration] = None, request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]:
+    async def patch(self,body: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration] = None, request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]:
         """
         Update the navigation property targetedManagedAppConfigurations in deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[targeted_managed_app_configuration.TargetedManagedAppConfiguration]
         """
         if body is None:
@@ -160,7 +157,7 @@ class TargetedManagedAppConfigurationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, targeted_managed_app_configuration.TargetedManagedAppConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, targeted_managed_app_configuration.TargetedManagedAppConfiguration, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TargetedManagedAppConfigurationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

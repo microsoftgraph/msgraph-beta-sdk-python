@@ -26,7 +26,7 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the accessAssignments property value. The access assignments associated with the delegated admin relationship.
         Args:
-            value: Value to set for the accessAssignments property.
+            value: Value to set for the access_assignments property.
         """
         self._access_assignments = value
     
@@ -43,7 +43,7 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the accessDetails property value. The accessDetails property
         Args:
-            value: Value to set for the accessDetails property.
+            value: Value to set for the access_details property.
         """
         self._access_details = value
     
@@ -60,13 +60,13 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the activatedDateTime property value. The date and time in ISO 8601 format and in UTC time when the relationship became active. Read-only.
         Args:
-            value: Value to set for the activatedDateTime property.
+            value: Value to set for the activated_date_time property.
         """
         self._activated_date_time = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new delegatedAdminRelationship and sets the default values.
+        Instantiates a new DelegatedAdminRelationship and sets the default values.
         """
         super().__init__()
         # The access assignments associated with the delegated admin relationship.
@@ -109,7 +109,7 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time in ISO 8601 format and in UTC time when the relationship was created. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -155,7 +155,7 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the displayName property value. The display name of the relationship used for ease of identification. Must be unique across all delegated admin relationships of the partner. This is set by the partner only when the relationship is in the created status and cannot be changed by the customer.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -189,7 +189,7 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the endDateTime property value. The date and time in ISO 8601 format and in UTC time when the status of relationship changes to either terminated or expired. Calculated as endDateTime = activatedDateTime + duration. Read-only.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -199,15 +199,15 @@ class DelegatedAdminRelationship(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_assignments": lambda n : setattr(self, 'access_assignments', n.get_collection_of_object_values(delegated_admin_access_assignment.DelegatedAdminAccessAssignment)),
-            "access_details": lambda n : setattr(self, 'access_details', n.get_object_value(delegated_admin_access_details.DelegatedAdminAccessDetails)),
-            "activated_date_time": lambda n : setattr(self, 'activated_date_time', n.get_datetime_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "accessAssignments": lambda n : setattr(self, 'access_assignments', n.get_collection_of_object_values(delegated_admin_access_assignment.DelegatedAdminAccessAssignment)),
+            "accessDetails": lambda n : setattr(self, 'access_details', n.get_object_value(delegated_admin_access_details.DelegatedAdminAccessDetails)),
+            "activatedDateTime": lambda n : setattr(self, 'activated_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(delegated_admin_relationship_customer_participant.DelegatedAdminRelationshipCustomerParticipant)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "duration": lambda n : setattr(self, 'duration', n.get_object_value(Timedelta)),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(delegated_admin_relationship_operation.DelegatedAdminRelationshipOperation)),
             "requests": lambda n : setattr(self, 'requests', n.get_collection_of_object_values(delegated_admin_relationship_request.DelegatedAdminRelationshipRequest)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(delegated_admin_relationship_status.DelegatedAdminRelationshipStatus)),
@@ -229,7 +229,7 @@ class DelegatedAdminRelationship(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time in ISO 8601 format and in UTC time when the relationship was last modified. Read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

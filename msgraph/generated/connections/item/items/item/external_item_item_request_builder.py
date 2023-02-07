@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 activities_request_builder = lazy_import('msgraph.generated.connections.item.items.item.activities.activities_request_builder')
 external_activity_item_request_builder = lazy_import('msgraph.generated.connections.item.items.item.activities.item.external_activity_item_request_builder')
-add_activities_request_builder = lazy_import('msgraph.generated.connections.item.items.item.add_activities.add_activities_request_builder')
+microsoft_graph_external_connectors_add_activities_request_builder = lazy_import('msgraph.generated.connections.item.items.item.microsoft_graph_external_connectors_add_activities.microsoft_graph_external_connectors_add_activities_request_builder')
 external_item = lazy_import('msgraph.generated.models.external_connectors.external_item')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -28,11 +28,11 @@ class ExternalItemItemRequestBuilder():
         return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def add_activities(self) -> add_activities_request_builder.AddActivitiesRequestBuilder:
+    def microsoft_graph_external_connectors_add_activities(self) -> microsoft_graph_external_connectors_add_activities_request_builder.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder:
         """
         Provides operations to call the addActivities method.
         """
-        return add_activities_request_builder.AddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_external_connectors_add_activities_request_builder.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def activities_by_id(self,id: str) -> external_activity_item_request_builder.ExternalActivityItemRequestBuilder:
         """
@@ -65,12 +65,11 @@ class ExternalItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property items for connections
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -81,14 +80,13 @@ class ExternalItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ExternalItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_item.ExternalItem]:
+    async def get(self,request_configuration: Optional[ExternalItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[external_item.ExternalItem]:
         """
         Get items from connections
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_item.ExternalItem]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +98,14 @@ class ExternalItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_item.ExternalItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_item.ExternalItem, error_mapping)
     
-    async def patch(self,body: Optional[external_item.ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[external_item.ExternalItem]:
+    async def patch(self,body: Optional[external_item.ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[external_item.ExternalItem]:
         """
         Update the navigation property items in connections
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[external_item.ExternalItem]
         """
         if body is None:
@@ -122,7 +119,7 @@ class ExternalItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, external_item.ExternalItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, external_item.ExternalItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

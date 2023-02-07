@@ -26,7 +26,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedInboundDataTransferSources property value. Data can be transferred from/to these classes of apps
         Args:
-            value: Value to set for the allowedInboundDataTransferSources property.
+            value: Value to set for the allowed_inbound_data_transfer_sources property.
         """
         self._allowed_inbound_data_transfer_sources = value
     
@@ -43,7 +43,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedOutboundClipboardSharingLevel property value. Represents the level to which the device's clipboard may be shared between apps
         Args:
-            value: Value to set for the allowedOutboundClipboardSharingLevel property.
+            value: Value to set for the allowed_outbound_clipboard_sharing_level property.
         """
         self._allowed_outbound_clipboard_sharing_level = value
     
@@ -60,7 +60,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the allowedOutboundDataTransferDestinations property value. Data can be transferred from/to these classes of apps
         Args:
-            value: Value to set for the allowedOutboundDataTransferDestinations property.
+            value: Value to set for the allowed_outbound_data_transfer_destinations property.
         """
         self._allowed_outbound_data_transfer_destinations = value
     
@@ -77,7 +77,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the appActionIfUnableToAuthenticateUser property value. If set, it will specify what action to take in the case where the user is unable to checkin because their authentication token is invalid. This happens when the user is deleted or disabled in AAD. Some possible values are block or wipe. If this property is not set, no action will be taken. Possible values are: block, wipe, warn.
         Args:
-            value: Value to set for the appActionIfUnableToAuthenticateUser property.
+            value: Value to set for the app_action_if_unable_to_authenticate_user property.
         """
         self._app_action_if_unable_to_authenticate_user = value
     
@@ -195,7 +195,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the deployedAppCount property value. Indicates the total number of applications for which the current policy is deployed.
         Args:
-            value: Value to set for the deployedAppCount property.
+            value: Value to set for the deployed_app_count property.
         """
         self._deployed_app_count = value
     
@@ -205,30 +205,30 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_inbound_data_transfer_sources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel)),
-            "allowed_outbound_clipboard_sharing_level": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(windows_managed_app_clipboard_sharing_level.WindowsManagedAppClipboardSharingLevel)),
-            "allowed_outbound_data_transfer_destinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel)),
-            "app_action_if_unable_to_authenticate_user": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "allowedInboundDataTransferSources": lambda n : setattr(self, 'allowed_inbound_data_transfer_sources', n.get_enum_value(windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel)),
+            "allowedOutboundClipboardSharingLevel": lambda n : setattr(self, 'allowed_outbound_clipboard_sharing_level', n.get_enum_value(windows_managed_app_clipboard_sharing_level.WindowsManagedAppClipboardSharingLevel)),
+            "allowedOutboundDataTransferDestinations": lambda n : setattr(self, 'allowed_outbound_data_transfer_destinations', n.get_enum_value(windows_managed_app_data_transfer_level.WindowsManagedAppDataTransferLevel)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
+            "appActionIfUnableToAuthenticateUser": lambda n : setattr(self, 'app_action_if_unable_to_authenticate_user', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment)),
-            "deployed_app_count": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
-            "is_assigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "maximum_allowed_device_threat_level": lambda n : setattr(self, 'maximum_allowed_device_threat_level', n.get_enum_value(managed_app_device_threat_level.ManagedAppDeviceThreatLevel)),
-            "maximum_required_os_version": lambda n : setattr(self, 'maximum_required_os_version', n.get_str_value()),
-            "maximum_warning_os_version": lambda n : setattr(self, 'maximum_warning_os_version', n.get_str_value()),
-            "maximum_wipe_os_version": lambda n : setattr(self, 'maximum_wipe_os_version', n.get_str_value()),
-            "minimum_required_app_version": lambda n : setattr(self, 'minimum_required_app_version', n.get_str_value()),
-            "minimum_required_os_version": lambda n : setattr(self, 'minimum_required_os_version', n.get_str_value()),
-            "minimum_required_sdk_version": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
-            "minimum_warning_app_version": lambda n : setattr(self, 'minimum_warning_app_version', n.get_str_value()),
-            "minimum_warning_os_version": lambda n : setattr(self, 'minimum_warning_os_version', n.get_str_value()),
-            "minimum_wipe_app_version": lambda n : setattr(self, 'minimum_wipe_app_version', n.get_str_value()),
-            "minimum_wipe_os_version": lambda n : setattr(self, 'minimum_wipe_os_version', n.get_str_value()),
-            "minimum_wipe_sdk_version": lambda n : setattr(self, 'minimum_wipe_sdk_version', n.get_str_value()),
-            "mobile_threat_defense_remediation_action": lambda n : setattr(self, 'mobile_threat_defense_remediation_action', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "period_offline_before_access_check": lambda n : setattr(self, 'period_offline_before_access_check', n.get_object_value(Timedelta)),
-            "period_offline_before_wipe_is_enforced": lambda n : setattr(self, 'period_offline_before_wipe_is_enforced', n.get_object_value(Timedelta)),
-            "print_blocked": lambda n : setattr(self, 'print_blocked', n.get_bool_value()),
+            "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
+            "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
+            "maximumAllowedDeviceThreatLevel": lambda n : setattr(self, 'maximum_allowed_device_threat_level', n.get_enum_value(managed_app_device_threat_level.ManagedAppDeviceThreatLevel)),
+            "maximumRequiredOsVersion": lambda n : setattr(self, 'maximum_required_os_version', n.get_str_value()),
+            "maximumWarningOsVersion": lambda n : setattr(self, 'maximum_warning_os_version', n.get_str_value()),
+            "maximumWipeOsVersion": lambda n : setattr(self, 'maximum_wipe_os_version', n.get_str_value()),
+            "minimumRequiredAppVersion": lambda n : setattr(self, 'minimum_required_app_version', n.get_str_value()),
+            "minimumRequiredOsVersion": lambda n : setattr(self, 'minimum_required_os_version', n.get_str_value()),
+            "minimumRequiredSdkVersion": lambda n : setattr(self, 'minimum_required_sdk_version', n.get_str_value()),
+            "minimumWarningAppVersion": lambda n : setattr(self, 'minimum_warning_app_version', n.get_str_value()),
+            "minimumWarningOsVersion": lambda n : setattr(self, 'minimum_warning_os_version', n.get_str_value()),
+            "minimumWipeAppVersion": lambda n : setattr(self, 'minimum_wipe_app_version', n.get_str_value()),
+            "minimumWipeOsVersion": lambda n : setattr(self, 'minimum_wipe_os_version', n.get_str_value()),
+            "minimumWipeSdkVersion": lambda n : setattr(self, 'minimum_wipe_sdk_version', n.get_str_value()),
+            "mobileThreatDefenseRemediationAction": lambda n : setattr(self, 'mobile_threat_defense_remediation_action', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "periodOfflineBeforeAccessCheck": lambda n : setattr(self, 'period_offline_before_access_check', n.get_object_value(Timedelta)),
+            "periodOfflineBeforeWipeIsEnforced": lambda n : setattr(self, 'period_offline_before_wipe_is_enforced', n.get_object_value(Timedelta)),
+            "printBlocked": lambda n : setattr(self, 'print_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -247,7 +247,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the isAssigned property value. When TRUE, indicates that the policy is deployed to some inclusion groups. When FALSE, indicates that the policy is not deployed to any inclusion groups. Default value is FALSE.
         Args:
-            value: Value to set for the isAssigned property.
+            value: Value to set for the is_assigned property.
         """
         self._is_assigned = value
     
@@ -264,7 +264,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumAllowedDeviceThreatLevel property value. The maxium threat level allowed for an app to be compliant.
         Args:
-            value: Value to set for the maximumAllowedDeviceThreatLevel property.
+            value: Value to set for the maximum_allowed_device_threat_level property.
         """
         self._maximum_allowed_device_threat_level = value
     
@@ -281,7 +281,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumRequiredOsVersion property value. Versions bigger than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the maximumRequiredOsVersion property.
+            value: Value to set for the maximum_required_os_version property.
         """
         self._maximum_required_os_version = value
     
@@ -298,7 +298,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumWarningOsVersion property value. Versions bigger than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the maximumWarningOsVersion property.
+            value: Value to set for the maximum_warning_os_version property.
         """
         self._maximum_warning_os_version = value
     
@@ -315,7 +315,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the maximumWipeOsVersion property value. Versions bigger than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the maximumWipeOsVersion property.
+            value: Value to set for the maximum_wipe_os_version property.
         """
         self._maximum_wipe_os_version = value
     
@@ -332,7 +332,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumRequiredAppVersion property value. Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumRequiredAppVersion property.
+            value: Value to set for the minimum_required_app_version property.
         """
         self._minimum_required_app_version = value
     
@@ -349,7 +349,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumRequiredOsVersion property value. Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumRequiredOsVersion property.
+            value: Value to set for the minimum_required_os_version property.
         """
         self._minimum_required_os_version = value
     
@@ -366,7 +366,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumRequiredSdkVersion property value. Versions less than the specified version will block the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumRequiredSdkVersion property.
+            value: Value to set for the minimum_required_sdk_version property.
         """
         self._minimum_required_sdk_version = value
     
@@ -383,7 +383,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWarningAppVersion property value. Versions less than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumWarningAppVersion property.
+            value: Value to set for the minimum_warning_app_version property.
         """
         self._minimum_warning_app_version = value
     
@@ -400,7 +400,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWarningOsVersion property value. Versions less than the specified version will result in warning message on the managed app from accessing company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumWarningOsVersion property.
+            value: Value to set for the minimum_warning_os_version property.
         """
         self._minimum_warning_os_version = value
     
@@ -417,7 +417,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWipeAppVersion property value. Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumWipeAppVersion property.
+            value: Value to set for the minimum_wipe_app_version property.
         """
         self._minimum_wipe_app_version = value
     
@@ -434,7 +434,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWipeOsVersion property value. Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumWipeOsVersion property.
+            value: Value to set for the minimum_wipe_os_version property.
         """
         self._minimum_wipe_os_version = value
     
@@ -451,7 +451,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the minimumWipeSdkVersion property value. Versions less than the specified version will wipe the managed app and the associated company data. For example: '8.1.0' or '13.1.1'.
         Args:
-            value: Value to set for the minimumWipeSdkVersion property.
+            value: Value to set for the minimum_wipe_sdk_version property.
         """
         self._minimum_wipe_sdk_version = value
     
@@ -468,7 +468,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the mobileThreatDefenseRemediationAction property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the mobileThreatDefenseRemediationAction property.
+            value: Value to set for the mobile_threat_defense_remediation_action property.
         """
         self._mobile_threat_defense_remediation_action = value
     
@@ -485,7 +485,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the periodOfflineBeforeAccessCheck property value. The period after which access is checked when the device is not connected to the internet. For example, PT5M indicates that the interval is 5 minutes in duration. A timespan value of PT0S indicates that access will be blocked immediately when the device is not connected to the internet.
         Args:
-            value: Value to set for the periodOfflineBeforeAccessCheck property.
+            value: Value to set for the period_offline_before_access_check property.
         """
         self._period_offline_before_access_check = value
     
@@ -502,7 +502,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the periodOfflineBeforeWipeIsEnforced property value. The amount of time an app is allowed to remain disconnected from the internet before all managed data it is wiped. For example, P5D indicates that the interval is 5 days in duration. A timespan value of PT0S indicates that managed data will never be wiped when the device is not connected to the internet.
         Args:
-            value: Value to set for the periodOfflineBeforeWipeIsEnforced property.
+            value: Value to set for the period_offline_before_wipe_is_enforced property.
         """
         self._period_offline_before_wipe_is_enforced = value
     
@@ -519,7 +519,7 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         """
         Sets the printBlocked property value. When TRUE, indicates that printing is blocked from managed apps. When FALSE, indicates that printing is allowed from managed apps. Default value is FALSE.
         Args:
-            value: Value to set for the printBlocked property.
+            value: Value to set for the print_blocked property.
         """
         self._print_blocked = value
     
@@ -535,8 +535,8 @@ class WindowsManagedAppProtection(managed_app_policy.ManagedAppPolicy):
         writer.write_enum_value("allowedInboundDataTransferSources", self.allowed_inbound_data_transfer_sources)
         writer.write_enum_value("allowedOutboundClipboardSharingLevel", self.allowed_outbound_clipboard_sharing_level)
         writer.write_enum_value("allowedOutboundDataTransferDestinations", self.allowed_outbound_data_transfer_destinations)
-        writer.write_enum_value("appActionIfUnableToAuthenticateUser", self.app_action_if_unable_to_authenticate_user)
         writer.write_collection_of_object_values("apps", self.apps)
+        writer.write_enum_value("appActionIfUnableToAuthenticateUser", self.app_action_if_unable_to_authenticate_user)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_int_value("deployedAppCount", self.deployed_app_count)
         writer.write_bool_value("isAssigned", self.is_assigned)

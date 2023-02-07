@@ -36,8 +36,8 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_count": lambda n : setattr(self, 'maximum_count', n.get_int_value()),
-            "minimum_count": lambda n : setattr(self, 'minimum_count', n.get_int_value()),
+            "maximumCount": lambda n : setattr(self, 'maximum_count', n.get_int_value()),
+            "minimumCount": lambda n : setattr(self, 'minimum_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
         """
         Sets the maximumCount property value. Maximum number of simple settings in the collection. Valid values 1 to 100
         Args:
-            value: Value to set for the maximumCount property.
+            value: Value to set for the maximum_count property.
         """
         self._maximum_count = value
     
@@ -73,7 +73,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
         """
         Sets the minimumCount property value. Minimum number of simple settings in the collection. Valid values 1 to 100
         Args:
-            value: Value to set for the minimumCount property.
+            value: Value to set for the minimum_count property.
         """
         self._minimum_count = value
     

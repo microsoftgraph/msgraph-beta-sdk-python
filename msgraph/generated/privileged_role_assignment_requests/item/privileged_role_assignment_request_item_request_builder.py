@@ -12,7 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 privileged_role_assignment_request = lazy_import('msgraph.generated.models.privileged_role_assignment_request')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-cancel_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.item.cancel.cancel_request_builder')
+microsoft_graph_cancel_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.item.microsoft_graph_cancel.microsoft_graph_cancel_request_builder')
 role_info_request_builder = lazy_import('msgraph.generated.privileged_role_assignment_requests.item.role_info.role_info_request_builder')
 
 class PrivilegedRoleAssignmentRequestItemRequestBuilder():
@@ -20,11 +20,11 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
     Provides operations to manage the collection of privilegedRoleAssignmentRequest entities.
     """
     @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+    def microsoft_graph_cancel(self) -> microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder:
         """
         Provides operations to call the cancel method.
         """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_cancel_request_builder.MicrosoftGraphCancelRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
@@ -51,12 +51,11 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from privilegedRoleAssignmentRequests
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
+    async def get(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
         Get entity from privilegedRoleAssignmentRequests by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, error_mapping)
     
-    async def patch(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
+    async def patch(self,body: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest] = None, request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]:
         """
         Update entity in privilegedRoleAssignmentRequests
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_role_assignment_request.PrivilegedRoleAssignmentRequest]
         """
         if body is None:
@@ -108,7 +105,7 @@ class PrivilegedRoleAssignmentRequestItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_role_assignment_request.PrivilegedRoleAssignmentRequest, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentRequestItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -37,7 +37,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the cloudPC property value. The cloudPC property
         Args:
-            value: Value to set for the cloudPC property.
+            value: Value to set for the cloud_p_c property.
         """
         self._cloud_p_c = value
     
@@ -84,7 +84,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the deviceManagement property value. The RbacApplication for Device Management
         Args:
-            value: Value to set for the deviceManagement property.
+            value: Value to set for the device_management property.
         """
         self._device_management = value
     
@@ -118,7 +118,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the entitlementManagement property value. The RbacApplication for Entitlement Management
         Args:
-            value: Value to set for the entitlementManagement property.
+            value: Value to set for the entitlement_management property.
         """
         self._entitlement_management = value
     
@@ -128,10 +128,10 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_p_c": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
-            "device_management": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
+            "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
+            "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
             "directory": lambda n : setattr(self, 'directory', n.get_object_value(rbac_application.RbacApplication)),
-            "entitlement_management": lambda n : setattr(self, 'entitlement_management', n.get_object_value(rbac_application.RbacApplication)),
+            "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(rbac_application.RbacApplication)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -149,7 +149,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

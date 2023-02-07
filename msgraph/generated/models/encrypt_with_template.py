@@ -19,7 +19,7 @@ class EncryptWithTemplate(encrypt_content.EncryptContent):
         """
         Sets the availableForEncryption property value. The availableForEncryption property
         Args:
-            value: Value to set for the availableForEncryption property.
+            value: Value to set for the available_for_encryption property.
         """
         self._available_for_encryption = value
     
@@ -52,8 +52,8 @@ class EncryptWithTemplate(encrypt_content.EncryptContent):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "available_for_encryption": lambda n : setattr(self, 'available_for_encryption', n.get_bool_value()),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "availableForEncryption": lambda n : setattr(self, 'available_for_encryption', n.get_bool_value()),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class EncryptWithTemplate(encrypt_content.EncryptContent):
         """
         Sets the templateId property value. The templateId property
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     

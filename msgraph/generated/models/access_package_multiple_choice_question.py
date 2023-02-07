@@ -20,7 +20,7 @@ class AccessPackageMultipleChoiceQuestion(access_package_question.AccessPackageQ
         """
         Sets the allowsMultipleSelection property value. Indicates whether requestor can select multiple choices as their answer.
         Args:
-            value: Value to set for the allowsMultipleSelection property.
+            value: Value to set for the allows_multiple_selection property.
         """
         self._allows_multiple_selection = value
     
@@ -70,7 +70,7 @@ class AccessPackageMultipleChoiceQuestion(access_package_question.AccessPackageQ
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allows_multiple_selection": lambda n : setattr(self, 'allows_multiple_selection', n.get_bool_value()),
+            "allowsMultipleSelection": lambda n : setattr(self, 'allows_multiple_selection', n.get_bool_value()),
             "choices": lambda n : setattr(self, 'choices', n.get_collection_of_object_values(access_package_answer_choice.AccessPackageAnswerChoice)),
         }
         super_fields = super().get_field_deserializers()

@@ -63,7 +63,7 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         """
         Sets the creationSourceKind property value. Specifies what kind of creation source the task is created with. The possible values are: external, publication and unknownFutureValue.
         Args:
-            value: Value to set for the creationSourceKind property.
+            value: Value to set for the creation_source_kind property.
         """
         self._creation_source_kind = value
     
@@ -73,9 +73,9 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "creation_source_kind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(planner_creation_source_kind.PlannerCreationSourceKind)),
+            "creationSourceKind": lambda n : setattr(self, 'creation_source_kind', n.get_enum_value(planner_creation_source_kind.PlannerCreationSourceKind)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "teams_publication_info": lambda n : setattr(self, 'teams_publication_info', n.get_object_value(planner_teams_publication_info.PlannerTeamsPublicationInfo)),
+            "teamsPublicationInfo": lambda n : setattr(self, 'teams_publication_info', n.get_object_value(planner_teams_publication_info.PlannerTeamsPublicationInfo)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -122,7 +122,7 @@ class PlannerTaskCreation(AdditionalDataHolder, Parsable):
         """
         Sets the teamsPublicationInfo property value. Information about the publication process that created this task. This field is deprecated and clients should move to using the new inheritance model.
         Args:
-            value: Value to set for the teamsPublicationInfo property.
+            value: Value to set for the teams_publication_info property.
         """
         self._teams_publication_info = value
     

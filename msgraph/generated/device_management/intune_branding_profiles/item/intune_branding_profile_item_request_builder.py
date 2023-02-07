@@ -10,9 +10,9 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.intune_branding_profiles.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.intune_branding_profiles.item.assignments.assignments_request_builder')
 intune_branding_profile_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.intune_branding_profiles.item.assignments.item.intune_branding_profile_assignment_item_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.intune_branding_profiles.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
 intune_branding_profile = lazy_import('msgraph.generated.models.intune_branding_profile')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -21,18 +21,18 @@ class IntuneBrandingProfileItemRequestBuilder():
     Provides operations to manage the intuneBrandingProfiles property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
         Provides operations to manage the assignments property of the microsoft.graph.intuneBrandingProfile entity.
         """
         return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     def assignments_by_id(self,id: str) -> intune_branding_profile_assignment_item_request_builder.IntuneBrandingProfileAssignmentItemRequestBuilder:
         """
@@ -65,12 +65,11 @@ class IntuneBrandingProfileItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property intuneBrandingProfiles for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -81,14 +80,13 @@ class IntuneBrandingProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[intune_branding_profile.IntuneBrandingProfile]:
+    async def get(self,request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderGetRequestConfiguration] = None) -> Optional[intune_branding_profile.IntuneBrandingProfile]:
         """
         Intune branding profiles targeted to AAD groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[intune_branding_profile.IntuneBrandingProfile]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +98,14 @@ class IntuneBrandingProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, intune_branding_profile.IntuneBrandingProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, intune_branding_profile.IntuneBrandingProfile, error_mapping)
     
-    async def patch(self,body: Optional[intune_branding_profile.IntuneBrandingProfile] = None, request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[intune_branding_profile.IntuneBrandingProfile]:
+    async def patch(self,body: Optional[intune_branding_profile.IntuneBrandingProfile] = None, request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[intune_branding_profile.IntuneBrandingProfile]:
         """
         Update the navigation property intuneBrandingProfiles in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[intune_branding_profile.IntuneBrandingProfile]
         """
         if body is None:
@@ -122,7 +119,7 @@ class IntuneBrandingProfileItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, intune_branding_profile.IntuneBrandingProfile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, intune_branding_profile.IntuneBrandingProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IntuneBrandingProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

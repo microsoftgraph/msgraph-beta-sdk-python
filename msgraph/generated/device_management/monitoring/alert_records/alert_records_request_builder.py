@@ -11,7 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_records.count.count_request_builder')
-get_portal_notifications_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_records.get_portal_notifications.get_portal_notifications_request_builder')
+microsoft_graph_device_management_get_portal_notifications_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_records.microsoft_graph_device_management_get_portal_notifications.microsoft_graph_device_management_get_portal_notifications_request_builder')
 alert_record = lazy_import('msgraph.generated.models.device_management.alert_record')
 alert_record_collection_response = lazy_import('msgraph.generated.models.device_management.alert_record_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -26,6 +26,13 @@ class AlertRecordsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_device_management_get_portal_notifications(self) -> microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder:
+        """
+        Provides operations to call the getPortalNotifications method.
+        """
+        return microsoft_graph_device_management_get_portal_notifications_request_builder.MicrosoftGraphDeviceManagementGetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -45,12 +52,11 @@ class AlertRecordsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
+    async def get(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> Optional[alert_record_collection_response.AlertRecordCollectionResponse]:
         """
         Get a list of the alertRecord objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record_collection_response.AlertRecordCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class AlertRecordsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_record_collection_response.AlertRecordCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_record_collection_response.AlertRecordCollectionResponse, error_mapping)
     
-    def get_portal_notifications(self,) -> get_portal_notifications_request_builder.GetPortalNotificationsRequestBuilder:
-        """
-        Provides operations to call the getPortalNotifications method.
-        Returns: get_portal_notifications_request_builder.GetPortalNotificationsRequestBuilder
-        """
-        return get_portal_notifications_request_builder.GetPortalNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[alert_record.AlertRecord]:
+    async def post(self,body: Optional[alert_record.AlertRecord] = None, request_configuration: Optional[AlertRecordsRequestBuilderPostRequestConfiguration] = None) -> Optional[alert_record.AlertRecord]:
         """
         Create new navigation property to alertRecords for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[alert_record.AlertRecord]
         """
         if body is None:
@@ -91,7 +89,7 @@ class AlertRecordsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, alert_record.AlertRecord, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AlertRecordsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

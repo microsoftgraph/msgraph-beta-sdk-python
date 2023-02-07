@@ -31,7 +31,7 @@ class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
         """
         Sets the contentProperties property value. The contentProperties property
         Args:
-            value: Value to set for the contentProperties property.
+            value: Value to set for the content_properties property.
         """
         self._content_properties = value
     
@@ -53,8 +53,8 @@ class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_properties": lambda n : setattr(self, 'content_properties', n.get_object_value(content_properties.ContentProperties)),
-            "shared_by": lambda n : setattr(self, 'shared_by', n.get_str_value()),
+            "contentProperties": lambda n : setattr(self, 'content_properties', n.get_object_value(content_properties.ContentProperties)),
+            "sharedBy": lambda n : setattr(self, 'shared_by', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
         """
         Sets the sharedBy property value. The sharedBy property
         Args:
-            value: Value to set for the sharedBy property.
+            value: Value to set for the shared_by property.
         """
         self._shared_by = value
     

@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-available_provider_types_request_builder = lazy_import('msgraph.generated.identity.identity_providers.available_provider_types.available_provider_types_request_builder')
 count_request_builder = lazy_import('msgraph.generated.identity.identity_providers.count.count_request_builder')
+microsoft_graph_available_provider_types_request_builder = lazy_import('msgraph.generated.identity.identity_providers.microsoft_graph_available_provider_types.microsoft_graph_available_provider_types_request_builder')
 identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
 identity_provider_base_collection_response = lazy_import('msgraph.generated.models.identity_provider_base_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -27,12 +27,12 @@ class IdentityProvidersRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def available_provider_types(self,) -> available_provider_types_request_builder.AvailableProviderTypesRequestBuilder:
+    @property
+    def microsoft_graph_available_provider_types(self) -> microsoft_graph_available_provider_types_request_builder.MicrosoftGraphAvailableProviderTypesRequestBuilder:
         """
         Provides operations to call the availableProviderTypes method.
-        Returns: available_provider_types_request_builder.AvailableProviderTypesRequestBuilder
         """
-        return available_provider_types_request_builder.AvailableProviderTypesRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_available_provider_types_request_builder.MicrosoftGraphAvailableProviderTypesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class IdentityProvidersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_provider_base_collection_response.IdentityProviderBaseCollectionResponse]:
+    async def get(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_provider_base_collection_response.IdentityProviderBaseCollectionResponse]:
         """
         Get a collection of identity provider resources that are configured for a tenant, and that are derived from identityProviderBase. For an Azure AD tenant, the providers can be socialIdentityProviders or builtinIdentityProviders objects. For an Azure AD B2C, the providers can be socialIdentityProvider, openIdConnectIdentityProvider, or appleManagedIdentityProvider objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_provider_base_collection_response.IdentityProviderBaseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class IdentityProvidersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_provider_base_collection_response.IdentityProviderBaseCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_provider_base_collection_response.IdentityProviderBaseCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[identity_provider_base.IdentityProviderBase] = None, request_configuration: Optional[IdentityProvidersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_provider_base.IdentityProviderBase]:
+    async def post(self,body: Optional[identity_provider_base.IdentityProviderBase] = None, request_configuration: Optional[IdentityProvidersRequestBuilderPostRequestConfiguration] = None) -> Optional[identity_provider_base.IdentityProviderBase]:
         """
-        Create an identity provider resource that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, openIdConnectIdentityProvider, or an appleManagedIdentityProvider resource.
+        Create an identity provider object that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, openIdConnectIdentityProvider, or an appleManagedIdentityProvider resource.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_provider_base.IdentityProviderBase]
         """
         if body is None:
@@ -91,7 +89,7 @@ class IdentityProvidersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_provider_base.IdentityProviderBase, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_provider_base.IdentityProviderBase, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IdentityProvidersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -113,7 +111,7 @@ class IdentityProvidersRequestBuilder():
     
     def to_post_request_information(self,body: Optional[identity_provider_base.IdentityProviderBase] = None, request_configuration: Optional[IdentityProvidersRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create an identity provider resource that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, openIdConnectIdentityProvider, or an appleManagedIdentityProvider resource.
+        Create an identity provider object that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, openIdConnectIdentityProvider, or an appleManagedIdentityProvider resource.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_processing_results.item.resume.resume_request_builder')
+microsoft_graph_identity_governance_resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_processing_results.item.microsoft_graph_identity_governance_resume.microsoft_graph_identity_governance_resume_request_builder')
 subject_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_processing_results.item.subject.subject_request_builder')
 task_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.task_reports.item.task_processing_results.item.task.task_request_builder')
 task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
@@ -21,11 +21,11 @@ class TaskProcessingResultItemRequestBuilder():
     Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
     """
     @property
-    def resume(self) -> resume_request_builder.ResumeRequestBuilder:
+    def microsoft_graph_identity_governance_resume(self) -> microsoft_graph_identity_governance_resume_request_builder.MicrosoftGraphIdentityGovernanceResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
-        return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_identity_governance_resume_request_builder.MicrosoftGraphIdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:
@@ -59,12 +59,11 @@ class TaskProcessingResultItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[task_processing_result.TaskProcessingResult]:
+    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[task_processing_result.TaskProcessingResult]:
         """
         The related lifecycle workflow taskProcessingResults.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_processing_result.TaskProcessingResult]
         """
         request_info = self.to_get_request_information(
@@ -76,7 +75,7 @@ class TaskProcessingResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

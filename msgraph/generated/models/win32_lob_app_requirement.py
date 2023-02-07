@@ -65,7 +65,7 @@ class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
         """
         Sets the detectionValue property value. The detection value
         Args:
-            value: Value to set for the detectionValue property.
+            value: Value to set for the detection_value property.
         """
         self._detection_value = value
     
@@ -75,7 +75,7 @@ class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "detection_value": lambda n : setattr(self, 'detection_value', n.get_str_value()),
+            "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(win32_lob_app_detection_operator.Win32LobAppDetectionOperator)),
         }
@@ -94,7 +94,7 @@ class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

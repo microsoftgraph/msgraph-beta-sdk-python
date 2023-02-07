@@ -45,7 +45,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the apiConnectors property value. Represents entry point for API connectors.
         Args:
-            value: Value to set for the apiConnectors property.
+            value: Value to set for the api_connectors property.
         """
         self._api_connectors = value
     
@@ -62,7 +62,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationEventListeners property value. The authenticationEventListeners property
         Args:
-            value: Value to set for the authenticationEventListeners property.
+            value: Value to set for the authentication_event_listeners property.
         """
         self._authentication_event_listeners = value
     
@@ -79,7 +79,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the b2cUserFlows property value. Represents entry point for B2C identity userflows.
         Args:
-            value: Value to set for the b2cUserFlows property.
+            value: Value to set for the b2c_user_flows property.
         """
         self._b2c_user_flows = value
     
@@ -96,7 +96,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the b2xUserFlows property value. Represents entry point for B2X and self-service sign-up identity userflows.
         Args:
-            value: Value to set for the b2xUserFlows property.
+            value: Value to set for the b2x_user_flows property.
         """
         self._b2x_user_flows = value
     
@@ -113,7 +113,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the conditionalAccess property value. the entry point for the Conditional Access (CA) object model.
         Args:
-            value: Value to set for the conditionalAccess property.
+            value: Value to set for the conditional_access property.
         """
         self._conditional_access = value
     
@@ -160,7 +160,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the continuousAccessEvaluationPolicy property value. Represents entry point for continuous access evaluation policy.
         Args:
-            value: Value to set for the continuousAccessEvaluationPolicy property.
+            value: Value to set for the continuous_access_evaluation_policy property.
         """
         self._continuous_access_evaluation_policy = value
     
@@ -189,7 +189,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the customAuthenticationExtensions property value. The customAuthenticationExtensions property
         Args:
-            value: Value to set for the customAuthenticationExtensions property.
+            value: Value to set for the custom_authentication_extensions property.
         """
         self._custom_authentication_extensions = value
     
@@ -199,17 +199,17 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "api_connectors": lambda n : setattr(self, 'api_connectors', n.get_collection_of_object_values(identity_api_connector.IdentityApiConnector)),
-            "authentication_event_listeners": lambda n : setattr(self, 'authentication_event_listeners', n.get_collection_of_object_values(authentication_event_listener.AuthenticationEventListener)),
-            "b2c_user_flows": lambda n : setattr(self, 'b2c_user_flows', n.get_collection_of_object_values(b2c_identity_user_flow.B2cIdentityUserFlow)),
-            "b2x_user_flows": lambda n : setattr(self, 'b2x_user_flows', n.get_collection_of_object_values(b2x_identity_user_flow.B2xIdentityUserFlow)),
-            "conditional_access": lambda n : setattr(self, 'conditional_access', n.get_object_value(conditional_access_root.ConditionalAccessRoot)),
-            "continuous_access_evaluation_policy": lambda n : setattr(self, 'continuous_access_evaluation_policy', n.get_object_value(continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy)),
-            "custom_authentication_extensions": lambda n : setattr(self, 'custom_authentication_extensions', n.get_collection_of_object_values(custom_authentication_extension.CustomAuthenticationExtension)),
-            "identity_providers": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
+            "apiConnectors": lambda n : setattr(self, 'api_connectors', n.get_collection_of_object_values(identity_api_connector.IdentityApiConnector)),
+            "authenticationEventListeners": lambda n : setattr(self, 'authentication_event_listeners', n.get_collection_of_object_values(authentication_event_listener.AuthenticationEventListener)),
+            "b2cUserFlows": lambda n : setattr(self, 'b2c_user_flows', n.get_collection_of_object_values(b2c_identity_user_flow.B2cIdentityUserFlow)),
+            "b2xUserFlows": lambda n : setattr(self, 'b2x_user_flows', n.get_collection_of_object_values(b2x_identity_user_flow.B2xIdentityUserFlow)),
+            "conditionalAccess": lambda n : setattr(self, 'conditional_access', n.get_object_value(conditional_access_root.ConditionalAccessRoot)),
+            "continuousAccessEvaluationPolicy": lambda n : setattr(self, 'continuous_access_evaluation_policy', n.get_object_value(continuous_access_evaluation_policy.ContinuousAccessEvaluationPolicy)),
+            "customAuthenticationExtensions": lambda n : setattr(self, 'custom_authentication_extensions', n.get_collection_of_object_values(custom_authentication_extension.CustomAuthenticationExtension)),
+            "identityProviders": lambda n : setattr(self, 'identity_providers', n.get_collection_of_object_values(identity_provider_base.IdentityProviderBase)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_flow_attributes": lambda n : setattr(self, 'user_flow_attributes', n.get_collection_of_object_values(identity_user_flow_attribute.IdentityUserFlowAttribute)),
-            "user_flows": lambda n : setattr(self, 'user_flows', n.get_collection_of_object_values(identity_user_flow.IdentityUserFlow)),
+            "userFlows": lambda n : setattr(self, 'user_flows', n.get_collection_of_object_values(identity_user_flow.IdentityUserFlow)),
+            "userFlowAttributes": lambda n : setattr(self, 'user_flow_attributes', n.get_collection_of_object_values(identity_user_flow_attribute.IdentityUserFlowAttribute)),
         }
         return fields
     
@@ -226,7 +226,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the identityProviders property value. Represents entry point for identity provider base.
         Args:
-            value: Value to set for the identityProviders property.
+            value: Value to set for the identity_providers property.
         """
         self._identity_providers = value
     
@@ -243,7 +243,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -264,8 +264,8 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         writer.write_collection_of_object_values("customAuthenticationExtensions", self.custom_authentication_extensions)
         writer.write_collection_of_object_values("identityProviders", self.identity_providers)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_collection_of_object_values("userFlowAttributes", self.user_flow_attributes)
         writer.write_collection_of_object_values("userFlows", self.user_flows)
+        writer.write_collection_of_object_values("userFlowAttributes", self.user_flow_attributes)
         writer.write_additional_data_value(self.additional_data)
     
     @property
@@ -281,7 +281,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the userFlowAttributes property value. Represents entry point for identity userflow attributes.
         Args:
-            value: Value to set for the userFlowAttributes property.
+            value: Value to set for the user_flow_attributes property.
         """
         self._user_flow_attributes = value
     
@@ -298,7 +298,7 @@ class IdentityContainer(AdditionalDataHolder, Parsable):
         """
         Sets the userFlows property value. The userFlows property
         Args:
-            value: Value to set for the userFlows property.
+            value: Value to set for the user_flows property.
         """
         self._user_flows = value
     

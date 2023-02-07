@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
-search_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.search.search_request_builder')
+microsoft_graph_filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.microsoft_graph_filter_by_current_user_with_on.microsoft_graph_filter_by_current_user_with_on_request_builder')
+microsoft_graph_search_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.microsoft_graph_search.microsoft_graph_search_request_builder')
 access_package = lazy_import('msgraph.generated.models.access_package')
 access_package_collection_response = lazy_import('msgraph.generated.models.access_package_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -27,6 +27,13 @@ class AccessPackagesRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_search(self) -> microsoft_graph_search_request_builder.MicrosoftGraphSearchRequestBuilder:
+        """
+        Provides operations to call the Search method.
+        """
+        return microsoft_graph_search_request_builder.MicrosoftGraphSearchRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -46,23 +53,11 @@ class AccessPackagesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[AccessPackagesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_collection_response.AccessPackageCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackagesRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_collection_response.AccessPackageCollectionResponse]:
         """
         The access packages in this catalog. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_collection_response.AccessPackageCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -74,15 +69,25 @@ class AccessPackagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_collection_response.AccessPackageCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_collection_response.AccessPackageCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackagesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package.AccessPackage]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[access_package.AccessPackage] = None, request_configuration: Optional[AccessPackagesRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package.AccessPackage]:
         """
         Create new navigation property to accessPackages for identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package.AccessPackage]
         """
         if body is None:
@@ -96,14 +101,7 @@ class AccessPackagesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, response_handler, error_mapping)
-    
-    def search(self,) -> search_request_builder.SearchRequestBuilder:
-        """
-        Provides operations to call the Search method.
-        Returns: search_request_builder.SearchRequestBuilder
-        """
-        return search_request_builder.SearchRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, access_package.AccessPackage, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackagesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

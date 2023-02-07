@@ -23,7 +23,7 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         Sets the accessPackageAssignments property value. The access package assignments resulting in this role assignment. Read-only. Nullable.
         Args:
-            value: Value to set for the accessPackageAssignments property.
+            value: Value to set for the access_package_assignments property.
         """
         self._access_package_assignments = value
     
@@ -40,7 +40,7 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         Sets the accessPackageResourceRole property value. The accessPackageResourceRole property
         Args:
-            value: Value to set for the accessPackageResourceRole property.
+            value: Value to set for the access_package_resource_role property.
         """
         self._access_package_resource_role = value
     
@@ -57,7 +57,7 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         Sets the accessPackageResourceScope property value. The accessPackageResourceScope property
         Args:
-            value: Value to set for the accessPackageResourceScope property.
+            value: Value to set for the access_package_resource_scope property.
         """
         self._access_package_resource_scope = value
     
@@ -74,7 +74,7 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         Sets the accessPackageSubject property value. Read-only. Nullable. Supports $filter (eq) on objectId and $expand query parameters.
         Args:
-            value: Value to set for the accessPackageSubject property.
+            value: Value to set for the access_package_subject property.
         """
         self._access_package_subject = value
     
@@ -118,12 +118,12 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_assignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(access_package_assignment.AccessPackageAssignment)),
-            "access_package_resource_role": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(access_package_resource_role.AccessPackageResourceRole)),
-            "access_package_resource_scope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(access_package_resource_scope.AccessPackageResourceScope)),
-            "access_package_subject": lambda n : setattr(self, 'access_package_subject', n.get_object_value(access_package_subject.AccessPackageSubject)),
-            "origin_id": lambda n : setattr(self, 'origin_id', n.get_str_value()),
-            "origin_system": lambda n : setattr(self, 'origin_system', n.get_str_value()),
+            "accessPackageAssignments": lambda n : setattr(self, 'access_package_assignments', n.get_collection_of_object_values(access_package_assignment.AccessPackageAssignment)),
+            "accessPackageResourceRole": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(access_package_resource_role.AccessPackageResourceRole)),
+            "accessPackageResourceScope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(access_package_resource_scope.AccessPackageResourceScope)),
+            "accessPackageSubject": lambda n : setattr(self, 'access_package_subject', n.get_object_value(access_package_subject.AccessPackageSubject)),
+            "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
+            "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -143,7 +143,7 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         Sets the originId property value. A unique identifier relative to the origin system, corresponding to the originId property of the accessPackageResourceRole.
         Args:
-            value: Value to set for the originId property.
+            value: Value to set for the origin_id property.
         """
         self._origin_id = value
     
@@ -160,7 +160,7 @@ class AccessPackageAssignmentResourceRole(entity.Entity):
         """
         Sets the originSystem property value. The system where the role assignment is to be created or has been created for an access package assignment, such as SharePointOnline, AadGroup or AadApplication, corresponding to the originSystem property of the accessPackageResourceRole.
         Args:
-            value: Value to set for the originSystem property.
+            value: Value to set for the origin_system property.
         """
         self._origin_system = value
     

@@ -35,7 +35,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the appliedPolicies property value. List of policies delivered to the device as last checkin.
         Args:
-            value: Value to set for the appliedPolicies property.
+            value: Value to set for the applied_policies property.
         """
         self._applied_policies = value
     
@@ -52,7 +52,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the checkinDateTime property value. Last device check-in time in UTC.
         Args:
-            value: Value to set for the checkinDateTime property.
+            value: Value to set for the checkin_date_time property.
         """
         self._checkin_date_time = value
     
@@ -109,7 +109,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the deviceName property value. Device name trying to check-in.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -126,7 +126,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the devicePlatform property value. Device platform trying to check-in.
         Args:
-            value: Value to set for the devicePlatform property.
+            value: Value to set for the device_platform property.
         """
         self._device_platform = value
     
@@ -143,7 +143,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the devicePlatformVersion property value. Device platform version trying to check-in.
         Args:
-            value: Value to set for the devicePlatformVersion property.
+            value: Value to set for the device_platform_version property.
         """
         self._device_platform_version = value
     
@@ -160,7 +160,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the errorMessage property value. Error message if any associated for the last checkin.
         Args:
-            value: Value to set for the errorMessage property.
+            value: Value to set for the error_message property.
         """
         self._error_message = value
     
@@ -170,16 +170,16 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applied_policies": lambda n : setattr(self, 'applied_policies', n.get_collection_of_primitive_values(str)),
-            "checkin_date_time": lambda n : setattr(self, 'checkin_date_time', n.get_datetime_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_platform": lambda n : setattr(self, 'device_platform', n.get_str_value()),
-            "device_platform_version": lambda n : setattr(self, 'device_platform_version', n.get_str_value()),
-            "error_message": lambda n : setattr(self, 'error_message', n.get_str_value()),
+            "appliedPolicies": lambda n : setattr(self, 'applied_policies', n.get_collection_of_primitive_values(str)),
+            "checkinDateTime": lambda n : setattr(self, 'checkin_date_time', n.get_datetime_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "devicePlatform": lambda n : setattr(self, 'device_platform', n.get_str_value()),
+            "devicePlatformVersion": lambda n : setattr(self, 'device_platform_version', n.get_str_value()),
+            "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "was_successful": lambda n : setattr(self, 'was_successful', n.get_bool_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "wasSuccessful": lambda n : setattr(self, 'was_successful', n.get_bool_value()),
         }
         return fields
     
@@ -196,7 +196,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -233,7 +233,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. User identifier using the device.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -250,7 +250,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the userPrincipalName property value. User principal name using the device.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -267,7 +267,7 @@ class OfficeClientCheckinStatus(AdditionalDataHolder, Parsable):
         """
         Sets the wasSuccessful property value. If the last checkin was successful.
         Args:
-            value: Value to set for the wasSuccessful property.
+            value: Value to set for the was_successful property.
         """
         self._was_successful = value
     

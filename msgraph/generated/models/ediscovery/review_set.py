@@ -38,7 +38,7 @@ class ReviewSet(entity.Entity):
         """
         Sets the createdBy property value. The user who created the review set. Read-only.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -55,7 +55,7 @@ class ReviewSet(entity.Entity):
         """
         Sets the createdDateTime property value. The datetime when the review set was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -84,7 +84,7 @@ class ReviewSet(entity.Entity):
         """
         Sets the displayName property value. The review set name. The name is unique with a maximum limit of 64 characters.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,9 +94,9 @@ class ReviewSet(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "queries": lambda n : setattr(self, 'queries', n.get_collection_of_object_values(review_set_query.ReviewSetQuery)),
         }
         super_fields = super().get_field_deserializers()

@@ -19,7 +19,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         """
         Sets the authenticationCertificateId property value. ID to the Authentication Certificate
         Args:
-            value: Value to set for the authenticationCertificateId property.
+            value: Value to set for the authentication_certificate_id property.
         """
         self._authentication_certificate_id = value
     
@@ -61,7 +61,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         """
         Sets the customXml property value. Custom XML commands that configures the VPN connection. (UTF8 byte encoding)
         Args:
-            value: Value to set for the customXml property.
+            value: Value to set for the custom_xml property.
         """
         self._custom_xml = value
     
@@ -78,7 +78,7 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         """
         Sets the customXmlFileName property value. Custom Xml file name.
         Args:
-            value: Value to set for the customXmlFileName property.
+            value: Value to set for the custom_xml_file_name property.
         """
         self._custom_xml_file_name = value
     
@@ -88,9 +88,9 @@ class Windows10XWifiConfiguration(device_management_resource_access_profile_base
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_certificate_id": lambda n : setattr(self, 'authentication_certificate_id', n.get_object_value(Guid)),
-            "custom_xml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
-            "custom_xml_file_name": lambda n : setattr(self, 'custom_xml_file_name', n.get_str_value()),
+            "authenticationCertificateId": lambda n : setattr(self, 'authentication_certificate_id', n.get_object_value(Guid)),
+            "customXml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
+            "customXmlFileName": lambda n : setattr(self, 'custom_xml_file_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

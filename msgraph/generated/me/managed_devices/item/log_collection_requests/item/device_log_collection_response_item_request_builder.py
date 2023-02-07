@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-create_download_url_request_builder = lazy_import('msgraph.generated.me.managed_devices.item.log_collection_requests.item.create_download_url.create_download_url_request_builder')
+microsoft_graph_create_download_url_request_builder = lazy_import('msgraph.generated.me.managed_devices.item.log_collection_requests.item.microsoft_graph_create_download_url.microsoft_graph_create_download_url_request_builder')
 device_log_collection_response = lazy_import('msgraph.generated.models.device_log_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -19,11 +19,11 @@ class DeviceLogCollectionResponseItemRequestBuilder():
     Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
     """
     @property
-    def create_download_url(self) -> create_download_url_request_builder.CreateDownloadUrlRequestBuilder:
+    def microsoft_graph_create_download_url(self) -> microsoft_graph_create_download_url_request_builder.MicrosoftGraphCreateDownloadUrlRequestBuilder:
         """
         Provides operations to call the createDownloadUrl method.
         """
-        return create_download_url_request_builder.CreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_create_download_url_request_builder.MicrosoftGraphCreateDownloadUrlRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -43,12 +43,11 @@ class DeviceLogCollectionResponseItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property logCollectionRequests for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class DeviceLogCollectionResponseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
         """
         List of log collection requests
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_log_collection_response.DeviceLogCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class DeviceLogCollectionResponseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, error_mapping)
     
-    async def patch(self,body: Optional[device_log_collection_response.DeviceLogCollectionResponse] = None, request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
+    async def patch(self,body: Optional[device_log_collection_response.DeviceLogCollectionResponse] = None, request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_log_collection_response.DeviceLogCollectionResponse]:
         """
         Update the navigation property logCollectionRequests in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_log_collection_response.DeviceLogCollectionResponse]
         """
         if body is None:
@@ -100,7 +97,7 @@ class DeviceLogCollectionResponseItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_log_collection_response.DeviceLogCollectionResponse, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceLogCollectionResponseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

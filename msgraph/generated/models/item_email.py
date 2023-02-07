@@ -62,7 +62,7 @@ class ItemEmail(item_facet.ItemFacet):
         """
         Sets the displayName property value. The name or label a user has associated with a particular email address.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -73,7 +73,7 @@ class ItemEmail(item_facet.ItemFacet):
         """
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(email_type.EmailType)),
         }
         super_fields = super().get_field_deserializers()

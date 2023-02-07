@@ -33,7 +33,7 @@ class EmailUrlThreatSubmission(email_threat_submission.EmailThreatSubmission):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "message_url": lambda n : setattr(self, 'message_url', n.get_str_value()),
+            "messageUrl": lambda n : setattr(self, 'message_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class EmailUrlThreatSubmission(email_threat_submission.EmailThreatSubmission):
         """
         Sets the messageUrl property value. Specifies the url of the message to be submitted.
         Args:
-            value: Value to set for the messageUrl property.
+            value: Value to set for the message_url property.
         """
         self._message_url = value
     

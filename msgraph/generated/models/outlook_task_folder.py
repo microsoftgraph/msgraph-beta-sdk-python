@@ -22,7 +22,7 @@ class OutlookTaskFolder(entity.Entity):
         """
         Sets the changeKey property value. The version of the task folder.
         Args:
-            value: Value to set for the changeKey property.
+            value: Value to set for the change_key property.
         """
         self._change_key = value
     
@@ -66,12 +66,12 @@ class OutlookTaskFolder(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "change_key": lambda n : setattr(self, 'change_key', n.get_str_value()),
-            "is_default_folder": lambda n : setattr(self, 'is_default_folder', n.get_bool_value()),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
+            "isDefaultFolder": lambda n : setattr(self, 'is_default_folder', n.get_bool_value()),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "parent_group_key": lambda n : setattr(self, 'parent_group_key', n.get_object_value(Guid)),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "parentGroupKey": lambda n : setattr(self, 'parent_group_key', n.get_object_value(Guid)),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(outlook_task.OutlookTask)),
         }
         super_fields = super().get_field_deserializers()
@@ -91,7 +91,7 @@ class OutlookTaskFolder(entity.Entity):
         """
         Sets the isDefaultFolder property value. True if the folder is the default task folder.
         Args:
-            value: Value to set for the isDefaultFolder property.
+            value: Value to set for the is_default_folder property.
         """
         self._is_default_folder = value
     
@@ -108,7 +108,7 @@ class OutlookTaskFolder(entity.Entity):
         """
         Sets the multiValueExtendedProperties property value. The collection of multi-value extended properties defined for the task folder. Read-only. Nullable.
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -142,7 +142,7 @@ class OutlookTaskFolder(entity.Entity):
         """
         Sets the parentGroupKey property value. The unique GUID identifier for the task folder's parent group.
         Args:
-            value: Value to set for the parentGroupKey property.
+            value: Value to set for the parent_group_key property.
         """
         self._parent_group_key = value
     
@@ -176,7 +176,7 @@ class OutlookTaskFolder(entity.Entity):
         """
         Sets the singleValueExtendedProperties property value. The collection of single-value extended properties defined for the task folder. Read-only. Nullable.
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     

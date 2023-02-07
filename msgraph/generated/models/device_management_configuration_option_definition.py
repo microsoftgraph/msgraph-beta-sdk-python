@@ -76,7 +76,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the dependedOnBy property value. List of Settings that depends on this option
         Args:
-            value: Value to set for the dependedOnBy property.
+            value: Value to set for the depended_on_by property.
         """
         self._depended_on_by = value
     
@@ -93,7 +93,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the dependentOn property value. List of dependent settings for this option
         Args:
-            value: Value to set for the dependentOn property.
+            value: Value to set for the dependent_on property.
         """
         self._dependent_on = value
     
@@ -127,7 +127,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the displayName property value. Friendly name of the option
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -137,15 +137,15 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "depended_on_by": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
-            "dependent_on": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),
+            "dependedOnBy": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
+            "dependentOn": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "help_text": lambda n : setattr(self, 'help_text', n.get_str_value()),
-            "item_id": lambda n : setattr(self, 'item_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "helpText": lambda n : setattr(self, 'help_text', n.get_str_value()),
+            "itemId": lambda n : setattr(self, 'item_id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "option_value": lambda n : setattr(self, 'option_value', n.get_object_value(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue)),
+            "optionValue": lambda n : setattr(self, 'option_value', n.get_object_value(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue)),
         }
         return fields
     
@@ -162,7 +162,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the helpText property value. Help text of the option
         Args:
-            value: Value to set for the helpText property.
+            value: Value to set for the help_text property.
         """
         self._help_text = value
     
@@ -179,7 +179,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the itemId property value. Identifier of option
         Args:
-            value: Value to set for the itemId property.
+            value: Value to set for the item_id property.
         """
         self._item_id = value
     
@@ -213,7 +213,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -230,7 +230,7 @@ class DeviceManagementConfigurationOptionDefinition(AdditionalDataHolder, Parsab
         """
         Sets the optionValue property value. Value of the option
         Args:
-            value: Value to set for the optionValue property.
+            value: Value to set for the option_value property.
         """
         self._option_value = value
     

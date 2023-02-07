@@ -15,16 +15,16 @@ o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error'
 bitlocker_request_builder = lazy_import('msgraph.generated.users.item.information_protection.bitlocker.bitlocker_request_builder')
 data_loss_prevention_policies_request_builder = lazy_import('msgraph.generated.users.item.information_protection.data_loss_prevention_policies.data_loss_prevention_policies_request_builder')
 data_loss_prevention_policy_item_request_builder = lazy_import('msgraph.generated.users.item.information_protection.data_loss_prevention_policies.item.data_loss_prevention_policy_item_request_builder')
-decrypt_buffer_request_builder = lazy_import('msgraph.generated.users.item.information_protection.decrypt_buffer.decrypt_buffer_request_builder')
-encrypt_buffer_request_builder = lazy_import('msgraph.generated.users.item.information_protection.encrypt_buffer.encrypt_buffer_request_builder')
+microsoft_graph_decrypt_buffer_request_builder = lazy_import('msgraph.generated.users.item.information_protection.microsoft_graph_decrypt_buffer.microsoft_graph_decrypt_buffer_request_builder')
+microsoft_graph_encrypt_buffer_request_builder = lazy_import('msgraph.generated.users.item.information_protection.microsoft_graph_encrypt_buffer.microsoft_graph_encrypt_buffer_request_builder')
+microsoft_graph_sign_digest_request_builder = lazy_import('msgraph.generated.users.item.information_protection.microsoft_graph_sign_digest.microsoft_graph_sign_digest_request_builder')
+microsoft_graph_verify_signature_request_builder = lazy_import('msgraph.generated.users.item.information_protection.microsoft_graph_verify_signature.microsoft_graph_verify_signature_request_builder')
 policy_request_builder = lazy_import('msgraph.generated.users.item.information_protection.policy.policy_request_builder')
 sensitivity_labels_request_builder = lazy_import('msgraph.generated.users.item.information_protection.sensitivity_labels.sensitivity_labels_request_builder')
 sensitivity_label_item_request_builder = lazy_import('msgraph.generated.users.item.information_protection.sensitivity_labels.item.sensitivity_label_item_request_builder')
 sensitivity_policy_settings_request_builder = lazy_import('msgraph.generated.users.item.information_protection.sensitivity_policy_settings.sensitivity_policy_settings_request_builder')
-sign_digest_request_builder = lazy_import('msgraph.generated.users.item.information_protection.sign_digest.sign_digest_request_builder')
 threat_assessment_requests_request_builder = lazy_import('msgraph.generated.users.item.information_protection.threat_assessment_requests.threat_assessment_requests_request_builder')
 threat_assessment_request_item_request_builder = lazy_import('msgraph.generated.users.item.information_protection.threat_assessment_requests.item.threat_assessment_request_item_request_builder')
-verify_signature_request_builder = lazy_import('msgraph.generated.users.item.information_protection.verify_signature.verify_signature_request_builder')
 
 class InformationProtectionRequestBuilder():
     """
@@ -45,18 +45,32 @@ class InformationProtectionRequestBuilder():
         return data_loss_prevention_policies_request_builder.DataLossPreventionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def decrypt_buffer(self) -> decrypt_buffer_request_builder.DecryptBufferRequestBuilder:
+    def microsoft_graph_decrypt_buffer(self) -> microsoft_graph_decrypt_buffer_request_builder.MicrosoftGraphDecryptBufferRequestBuilder:
         """
         Provides operations to call the decryptBuffer method.
         """
-        return decrypt_buffer_request_builder.DecryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_decrypt_buffer_request_builder.MicrosoftGraphDecryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def encrypt_buffer(self) -> encrypt_buffer_request_builder.EncryptBufferRequestBuilder:
+    def microsoft_graph_encrypt_buffer(self) -> microsoft_graph_encrypt_buffer_request_builder.MicrosoftGraphEncryptBufferRequestBuilder:
         """
         Provides operations to call the encryptBuffer method.
         """
-        return encrypt_buffer_request_builder.EncryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_encrypt_buffer_request_builder.MicrosoftGraphEncryptBufferRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_sign_digest(self) -> microsoft_graph_sign_digest_request_builder.MicrosoftGraphSignDigestRequestBuilder:
+        """
+        Provides operations to call the signDigest method.
+        """
+        return microsoft_graph_sign_digest_request_builder.MicrosoftGraphSignDigestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_verify_signature(self) -> microsoft_graph_verify_signature_request_builder.MicrosoftGraphVerifySignatureRequestBuilder:
+        """
+        Provides operations to call the verifySignature method.
+        """
+        return microsoft_graph_verify_signature_request_builder.MicrosoftGraphVerifySignatureRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def policy(self) -> policy_request_builder.PolicyRequestBuilder:
@@ -80,25 +94,11 @@ class InformationProtectionRequestBuilder():
         return sensitivity_policy_settings_request_builder.SensitivityPolicySettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def sign_digest(self) -> sign_digest_request_builder.SignDigestRequestBuilder:
-        """
-        Provides operations to call the signDigest method.
-        """
-        return sign_digest_request_builder.SignDigestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def threat_assessment_requests(self) -> threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder:
         """
         Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
         """
         return threat_assessment_requests_request_builder.ThreatAssessmentRequestsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def verify_signature(self) -> verify_signature_request_builder.VerifySignatureRequestBuilder:
-        """
-        Provides operations to call the verifySignature method.
-        """
-        return verify_signature_request_builder.VerifySignatureRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -131,12 +131,11 @@ class InformationProtectionRequestBuilder():
         url_tpl_params["dataLossPreventionPolicy%2Did"] = id
         return data_loss_prevention_policy_item_request_builder.DataLossPreventionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[InformationProtectionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property informationProtection for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -147,14 +146,13 @@ class InformationProtectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[InformationProtectionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection.InformationProtection]:
+    async def get(self,request_configuration: Optional[InformationProtectionRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection.InformationProtection]:
         """
         Get informationProtection from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection.InformationProtection]
         """
         request_info = self.to_get_request_information(
@@ -166,15 +164,14 @@ class InformationProtectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
     
-    async def patch(self,body: Optional[information_protection.InformationProtection] = None, request_configuration: Optional[InformationProtectionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection.InformationProtection]:
+    async def patch(self,body: Optional[information_protection.InformationProtection] = None, request_configuration: Optional[InformationProtectionRequestBuilderPatchRequestConfiguration] = None) -> Optional[information_protection.InformationProtection]:
         """
         Update the navigation property informationProtection in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection.InformationProtection]
         """
         if body is None:
@@ -188,7 +185,7 @@ class InformationProtectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection.InformationProtection, error_mapping)
     
     def sensitivity_labels_by_id(self,id: str) -> sensitivity_label_item_request_builder.SensitivityLabelItemRequestBuilder:
         """

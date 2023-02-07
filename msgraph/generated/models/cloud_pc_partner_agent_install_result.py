@@ -60,10 +60,10 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "install_status": lambda n : setattr(self, 'install_status', n.get_enum_value(cloud_pc_partner_agent_install_status.CloudPcPartnerAgentInstallStatus)),
-            "is_third_party_partner": lambda n : setattr(self, 'is_third_party_partner', n.get_bool_value()),
+            "installStatus": lambda n : setattr(self, 'install_status', n.get_enum_value(cloud_pc_partner_agent_install_status.CloudPcPartnerAgentInstallStatus)),
+            "isThirdPartyPartner": lambda n : setattr(self, 'is_third_party_partner', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "partner_agent_name": lambda n : setattr(self, 'partner_agent_name', n.get_enum_value(cloud_pc_partner_agent_name.CloudPcPartnerAgentName)),
+            "partnerAgentName": lambda n : setattr(self, 'partner_agent_name', n.get_enum_value(cloud_pc_partner_agent_name.CloudPcPartnerAgentName)),
             "retriable": lambda n : setattr(self, 'retriable', n.get_bool_value()),
         }
         return fields
@@ -81,7 +81,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
         """
         Sets the installStatus property value. The status of a partner agent installation. Possible values are: installed, installFailed, installing, uninstalling, uninstallFailed and licensed. Read-Only.
         Args:
-            value: Value to set for the installStatus property.
+            value: Value to set for the install_status property.
         """
         self._install_status = value
     
@@ -98,7 +98,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
         """
         Sets the isThirdPartyPartner property value. Indicates if the partner agent is a third party. When 'TRUE', the agent is a third-party (non-Microsoft) agent.  When 'FALSE', the agent is a Microsoft agent or is not known.  The default value is 'FALSE'.
         Args:
-            value: Value to set for the isThirdPartyPartner property.
+            value: Value to set for the is_third_party_partner property.
         """
         self._is_third_party_partner = value
     
@@ -115,7 +115,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -132,7 +132,7 @@ class CloudPcPartnerAgentInstallResult(AdditionalDataHolder, Parsable):
         """
         Sets the partnerAgentName property value. Indicates the name of a partner agent and includes first-party and third-party. Currently, Citrix is the only third-party value. Read-Only.
         Args:
-            value: Value to set for the partnerAgentName property.
+            value: Value to set for the partner_agent_name property.
         """
         self._partner_agent_name = value
     

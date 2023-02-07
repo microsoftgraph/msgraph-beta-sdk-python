@@ -35,12 +35,11 @@ class NotificationItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[NotificationItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[NotificationItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property notifications for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class NotificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[NotificationItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notification.Notification]:
+    async def get(self,request_configuration: Optional[NotificationItemRequestBuilderGetRequestConfiguration] = None) -> Optional[notification.Notification]:
         """
         Get notifications from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notification.Notification]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class NotificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notification.Notification, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, notification.Notification, error_mapping)
     
-    async def patch(self,body: Optional[notification.Notification] = None, request_configuration: Optional[NotificationItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[notification.Notification]:
+    async def patch(self,body: Optional[notification.Notification] = None, request_configuration: Optional[NotificationItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[notification.Notification]:
         """
         Update the navigation property notifications in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[notification.Notification]
         """
         if body is None:
@@ -92,7 +89,7 @@ class NotificationItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, notification.Notification, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, notification.Notification, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[NotificationItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

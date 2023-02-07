@@ -37,7 +37,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the applicationDisplayName property value. Name of the application.
         Args:
-            value: Value to set for the applicationDisplayName property.
+            value: Value to set for the application_display_name property.
         """
         self._application_display_name = value
     
@@ -54,7 +54,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the applicationId property value. Azure AD application ID.
         Args:
-            value: Value to set for the applicationId property.
+            value: Value to set for the application_id property.
         """
         self._application_id = value
     
@@ -108,18 +108,18 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_display_name": lambda n : setattr(self, 'application_display_name', n.get_str_value()),
-            "application_id": lambda n : setattr(self, 'application_id', n.get_str_value()),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "applicationDisplayName": lambda n : setattr(self, 'application_display_name', n.get_str_value()),
+            "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "remote_tenant_id": lambda n : setattr(self, 'remote_tenant_id', n.get_str_value()),
-            "remote_user_id": lambda n : setattr(self, 'remote_user_id', n.get_str_value()),
-            "service_principal_name": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
+            "remoteTenantId": lambda n : setattr(self, 'remote_tenant_id', n.get_str_value()),
+            "remoteUserId": lambda n : setattr(self, 'remote_user_id', n.get_str_value()),
+            "servicePrincipalName": lambda n : setattr(self, 'service_principal_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(cloud_pc_audit_actor_type.CloudPcAuditActorType)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_permissions": lambda n : setattr(self, 'user_permissions', n.get_collection_of_primitive_values(str)),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "user_role_scope_tags": lambda n : setattr(self, 'user_role_scope_tags', n.get_collection_of_object_values(cloud_pc_user_role_scope_tag_info.CloudPcUserRoleScopeTagInfo)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPermissions": lambda n : setattr(self, 'user_permissions', n.get_collection_of_primitive_values(str)),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userRoleScopeTags": lambda n : setattr(self, 'user_role_scope_tags', n.get_collection_of_object_values(cloud_pc_user_role_scope_tag_info.CloudPcUserRoleScopeTagInfo)),
         }
         return fields
     
@@ -136,7 +136,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the ipAddress property value. IP address.
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -153,7 +153,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -170,7 +170,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the remoteTenantId property value. The delegated partner tenant ID.
         Args:
-            value: Value to set for the remoteTenantId property.
+            value: Value to set for the remote_tenant_id property.
         """
         self._remote_tenant_id = value
     
@@ -187,7 +187,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the remoteUserId property value. The delegated partner user ID.
         Args:
-            value: Value to set for the remoteUserId property.
+            value: Value to set for the remote_user_id property.
         """
         self._remote_user_id = value
     
@@ -226,7 +226,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the servicePrincipalName property value. Service Principal Name (SPN).
         Args:
-            value: Value to set for the servicePrincipalName property.
+            value: Value to set for the service_principal_name property.
         """
         self._service_principal_name = value
     
@@ -260,7 +260,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. Azure AD user ID.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -277,7 +277,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the userPermissions property value. List of user permissions and application permissions when the audit event was performed.
         Args:
-            value: Value to set for the userPermissions property.
+            value: Value to set for the user_permissions property.
         """
         self._user_permissions = value
     
@@ -294,7 +294,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the userPrincipalName property value. User Principal Name (UPN).
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -311,7 +311,7 @@ class CloudPcAuditActor(AdditionalDataHolder, Parsable):
         """
         Sets the userRoleScopeTags property value. List of role scope tags.
         Args:
-            value: Value to set for the userRoleScopeTags property.
+            value: Value to set for the user_role_scope_tags property.
         """
         self._user_role_scope_tags = value
     

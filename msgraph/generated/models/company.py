@@ -71,7 +71,7 @@ class Company(entity.Entity):
         """
         Sets the agedAccountsPayable property value. The agedAccountsPayable property
         Args:
-            value: Value to set for the agedAccountsPayable property.
+            value: Value to set for the aged_accounts_payable property.
         """
         self._aged_accounts_payable = value
     
@@ -88,7 +88,7 @@ class Company(entity.Entity):
         """
         Sets the agedAccountsReceivable property value. The agedAccountsReceivable property
         Args:
-            value: Value to set for the agedAccountsReceivable property.
+            value: Value to set for the aged_accounts_receivable property.
         """
         self._aged_accounts_receivable = value
     
@@ -105,7 +105,7 @@ class Company(entity.Entity):
         """
         Sets the businessProfileId property value. The businessProfileId property
         Args:
-            value: Value to set for the businessProfileId property.
+            value: Value to set for the business_profile_id property.
         """
         self._business_profile_id = value
     
@@ -122,7 +122,7 @@ class Company(entity.Entity):
         """
         Sets the companyInformation property value. The companyInformation property
         Args:
-            value: Value to set for the companyInformation property.
+            value: Value to set for the company_information property.
         """
         self._company_information = value
     
@@ -151,10 +151,10 @@ class Company(entity.Entity):
         self._customer_payments: Optional[List[customer_payment.CustomerPayment]] = None
         # The customers property
         self._customers: Optional[List[customer.Customer]] = None
-        # The dimensions property
-        self._dimensions: Optional[List[dimension.Dimension]] = None
         # The dimensionValues property
         self._dimension_values: Optional[List[dimension_value.DimensionValue]] = None
+        # The dimensions property
+        self._dimensions: Optional[List[dimension.Dimension]] = None
         # The displayName property
         self._display_name: Optional[str] = None
         # The employees property
@@ -225,7 +225,7 @@ class Company(entity.Entity):
         """
         Sets the countriesRegions property value. The countriesRegions property
         Args:
-            value: Value to set for the countriesRegions property.
+            value: Value to set for the countries_regions property.
         """
         self._countries_regions = value
     
@@ -271,7 +271,7 @@ class Company(entity.Entity):
         """
         Sets the customerPaymentJournals property value. The customerPaymentJournals property
         Args:
-            value: Value to set for the customerPaymentJournals property.
+            value: Value to set for the customer_payment_journals property.
         """
         self._customer_payment_journals = value
     
@@ -288,7 +288,7 @@ class Company(entity.Entity):
         """
         Sets the customerPayments property value. The customerPayments property
         Args:
-            value: Value to set for the customerPayments property.
+            value: Value to set for the customer_payments property.
         """
         self._customer_payments = value
     
@@ -310,6 +310,23 @@ class Company(entity.Entity):
         self._customers = value
     
     @property
+    def dimension_values(self,) -> Optional[List[dimension_value.DimensionValue]]:
+        """
+        Gets the dimensionValues property value. The dimensionValues property
+        Returns: Optional[List[dimension_value.DimensionValue]]
+        """
+        return self._dimension_values
+    
+    @dimension_values.setter
+    def dimension_values(self,value: Optional[List[dimension_value.DimensionValue]] = None) -> None:
+        """
+        Sets the dimensionValues property value. The dimensionValues property
+        Args:
+            value: Value to set for the dimension_values property.
+        """
+        self._dimension_values = value
+    
+    @property
     def dimensions(self,) -> Optional[List[dimension.Dimension]]:
         """
         Gets the dimensions property value. The dimensions property
@@ -327,23 +344,6 @@ class Company(entity.Entity):
         self._dimensions = value
     
     @property
-    def dimension_values(self,) -> Optional[List[dimension_value.DimensionValue]]:
-        """
-        Gets the dimensionValues property value. The dimensionValues property
-        Returns: Optional[List[dimension_value.DimensionValue]]
-        """
-        return self._dimension_values
-    
-    @dimension_values.setter
-    def dimension_values(self,value: Optional[List[dimension_value.DimensionValue]] = None) -> None:
-        """
-        Sets the dimensionValues property value. The dimensionValues property
-        Args:
-            value: Value to set for the dimensionValues property.
-        """
-        self._dimension_values = value
-    
-    @property
     def display_name(self,) -> Optional[str]:
         """
         Gets the displayName property value. The displayName property
@@ -356,7 +356,7 @@ class Company(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -390,7 +390,7 @@ class Company(entity.Entity):
         """
         Sets the generalLedgerEntries property value. The generalLedgerEntries property
         Args:
-            value: Value to set for the generalLedgerEntries property.
+            value: Value to set for the general_ledger_entries property.
         """
         self._general_ledger_entries = value
     
@@ -401,43 +401,43 @@ class Company(entity.Entity):
         """
         fields = {
             "accounts": lambda n : setattr(self, 'accounts', n.get_collection_of_object_values(account.Account)),
-            "aged_accounts_payable": lambda n : setattr(self, 'aged_accounts_payable', n.get_collection_of_object_values(aged_accounts_payable.AgedAccountsPayable)),
-            "aged_accounts_receivable": lambda n : setattr(self, 'aged_accounts_receivable', n.get_collection_of_object_values(aged_accounts_receivable.AgedAccountsReceivable)),
-            "business_profile_id": lambda n : setattr(self, 'business_profile_id', n.get_str_value()),
-            "company_information": lambda n : setattr(self, 'company_information', n.get_collection_of_object_values(company_information.CompanyInformation)),
-            "countries_regions": lambda n : setattr(self, 'countries_regions', n.get_collection_of_object_values(country_region.CountryRegion)),
+            "agedAccountsPayable": lambda n : setattr(self, 'aged_accounts_payable', n.get_collection_of_object_values(aged_accounts_payable.AgedAccountsPayable)),
+            "agedAccountsReceivable": lambda n : setattr(self, 'aged_accounts_receivable', n.get_collection_of_object_values(aged_accounts_receivable.AgedAccountsReceivable)),
+            "businessProfileId": lambda n : setattr(self, 'business_profile_id', n.get_str_value()),
+            "companyInformation": lambda n : setattr(self, 'company_information', n.get_collection_of_object_values(company_information.CompanyInformation)),
+            "countriesRegions": lambda n : setattr(self, 'countries_regions', n.get_collection_of_object_values(country_region.CountryRegion)),
             "currencies": lambda n : setattr(self, 'currencies', n.get_collection_of_object_values(currency.Currency)),
-            "customer_payment_journals": lambda n : setattr(self, 'customer_payment_journals', n.get_collection_of_object_values(customer_payment_journal.CustomerPaymentJournal)),
-            "customer_payments": lambda n : setattr(self, 'customer_payments', n.get_collection_of_object_values(customer_payment.CustomerPayment)),
             "customers": lambda n : setattr(self, 'customers', n.get_collection_of_object_values(customer.Customer)),
+            "customerPayments": lambda n : setattr(self, 'customer_payments', n.get_collection_of_object_values(customer_payment.CustomerPayment)),
+            "customerPaymentJournals": lambda n : setattr(self, 'customer_payment_journals', n.get_collection_of_object_values(customer_payment_journal.CustomerPaymentJournal)),
             "dimensions": lambda n : setattr(self, 'dimensions', n.get_collection_of_object_values(dimension.Dimension)),
-            "dimension_values": lambda n : setattr(self, 'dimension_values', n.get_collection_of_object_values(dimension_value.DimensionValue)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "dimensionValues": lambda n : setattr(self, 'dimension_values', n.get_collection_of_object_values(dimension_value.DimensionValue)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "employees": lambda n : setattr(self, 'employees', n.get_collection_of_object_values(employee.Employee)),
-            "general_ledger_entries": lambda n : setattr(self, 'general_ledger_entries', n.get_collection_of_object_values(general_ledger_entry.GeneralLedgerEntry)),
-            "item_categories": lambda n : setattr(self, 'item_categories', n.get_collection_of_object_values(item_category.ItemCategory)),
+            "generalLedgerEntries": lambda n : setattr(self, 'general_ledger_entries', n.get_collection_of_object_values(general_ledger_entry.GeneralLedgerEntry)),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(item.Item)),
-            "journal_lines": lambda n : setattr(self, 'journal_lines', n.get_collection_of_object_values(journal_line.JournalLine)),
+            "itemCategories": lambda n : setattr(self, 'item_categories', n.get_collection_of_object_values(item_category.ItemCategory)),
             "journals": lambda n : setattr(self, 'journals', n.get_collection_of_object_values(journal.Journal)),
+            "journalLines": lambda n : setattr(self, 'journal_lines', n.get_collection_of_object_values(journal_line.JournalLine)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "payment_methods": lambda n : setattr(self, 'payment_methods', n.get_collection_of_object_values(payment_method.PaymentMethod)),
-            "payment_terms": lambda n : setattr(self, 'payment_terms', n.get_collection_of_object_values(payment_term.PaymentTerm)),
+            "paymentMethods": lambda n : setattr(self, 'payment_methods', n.get_collection_of_object_values(payment_method.PaymentMethod)),
+            "paymentTerms": lambda n : setattr(self, 'payment_terms', n.get_collection_of_object_values(payment_term.PaymentTerm)),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
-            "purchase_invoice_lines": lambda n : setattr(self, 'purchase_invoice_lines', n.get_collection_of_object_values(purchase_invoice_line.PurchaseInvoiceLine)),
-            "purchase_invoices": lambda n : setattr(self, 'purchase_invoices', n.get_collection_of_object_values(purchase_invoice.PurchaseInvoice)),
-            "sales_credit_memo_lines": lambda n : setattr(self, 'sales_credit_memo_lines', n.get_collection_of_object_values(sales_credit_memo_line.SalesCreditMemoLine)),
-            "sales_credit_memos": lambda n : setattr(self, 'sales_credit_memos', n.get_collection_of_object_values(sales_credit_memo.SalesCreditMemo)),
-            "sales_invoice_lines": lambda n : setattr(self, 'sales_invoice_lines', n.get_collection_of_object_values(sales_invoice_line.SalesInvoiceLine)),
-            "sales_invoices": lambda n : setattr(self, 'sales_invoices', n.get_collection_of_object_values(sales_invoice.SalesInvoice)),
-            "sales_order_lines": lambda n : setattr(self, 'sales_order_lines', n.get_collection_of_object_values(sales_order_line.SalesOrderLine)),
-            "sales_orders": lambda n : setattr(self, 'sales_orders', n.get_collection_of_object_values(sales_order.SalesOrder)),
-            "sales_quote_lines": lambda n : setattr(self, 'sales_quote_lines', n.get_collection_of_object_values(sales_quote_line.SalesQuoteLine)),
-            "sales_quotes": lambda n : setattr(self, 'sales_quotes', n.get_collection_of_object_values(sales_quote.SalesQuote)),
-            "shipment_methods": lambda n : setattr(self, 'shipment_methods', n.get_collection_of_object_values(shipment_method.ShipmentMethod)),
-            "system_version": lambda n : setattr(self, 'system_version', n.get_str_value()),
-            "tax_areas": lambda n : setattr(self, 'tax_areas', n.get_collection_of_object_values(tax_area.TaxArea)),
-            "tax_groups": lambda n : setattr(self, 'tax_groups', n.get_collection_of_object_values(tax_group.TaxGroup)),
-            "units_of_measure": lambda n : setattr(self, 'units_of_measure', n.get_collection_of_object_values(unit_of_measure.UnitOfMeasure)),
+            "purchaseInvoices": lambda n : setattr(self, 'purchase_invoices', n.get_collection_of_object_values(purchase_invoice.PurchaseInvoice)),
+            "purchaseInvoiceLines": lambda n : setattr(self, 'purchase_invoice_lines', n.get_collection_of_object_values(purchase_invoice_line.PurchaseInvoiceLine)),
+            "salesCreditMemos": lambda n : setattr(self, 'sales_credit_memos', n.get_collection_of_object_values(sales_credit_memo.SalesCreditMemo)),
+            "salesCreditMemoLines": lambda n : setattr(self, 'sales_credit_memo_lines', n.get_collection_of_object_values(sales_credit_memo_line.SalesCreditMemoLine)),
+            "salesInvoices": lambda n : setattr(self, 'sales_invoices', n.get_collection_of_object_values(sales_invoice.SalesInvoice)),
+            "salesInvoiceLines": lambda n : setattr(self, 'sales_invoice_lines', n.get_collection_of_object_values(sales_invoice_line.SalesInvoiceLine)),
+            "salesOrders": lambda n : setattr(self, 'sales_orders', n.get_collection_of_object_values(sales_order.SalesOrder)),
+            "salesOrderLines": lambda n : setattr(self, 'sales_order_lines', n.get_collection_of_object_values(sales_order_line.SalesOrderLine)),
+            "salesQuotes": lambda n : setattr(self, 'sales_quotes', n.get_collection_of_object_values(sales_quote.SalesQuote)),
+            "salesQuoteLines": lambda n : setattr(self, 'sales_quote_lines', n.get_collection_of_object_values(sales_quote_line.SalesQuoteLine)),
+            "shipmentMethods": lambda n : setattr(self, 'shipment_methods', n.get_collection_of_object_values(shipment_method.ShipmentMethod)),
+            "systemVersion": lambda n : setattr(self, 'system_version', n.get_str_value()),
+            "taxAreas": lambda n : setattr(self, 'tax_areas', n.get_collection_of_object_values(tax_area.TaxArea)),
+            "taxGroups": lambda n : setattr(self, 'tax_groups', n.get_collection_of_object_values(tax_group.TaxGroup)),
+            "unitsOfMeasure": lambda n : setattr(self, 'units_of_measure', n.get_collection_of_object_values(unit_of_measure.UnitOfMeasure)),
             "vendors": lambda n : setattr(self, 'vendors', n.get_collection_of_object_values(vendor.Vendor)),
         }
         super_fields = super().get_field_deserializers()
@@ -457,7 +457,7 @@ class Company(entity.Entity):
         """
         Sets the itemCategories property value. The itemCategories property
         Args:
-            value: Value to set for the itemCategories property.
+            value: Value to set for the item_categories property.
         """
         self._item_categories = value
     
@@ -491,7 +491,7 @@ class Company(entity.Entity):
         """
         Sets the journalLines property value. The journalLines property
         Args:
-            value: Value to set for the journalLines property.
+            value: Value to set for the journal_lines property.
         """
         self._journal_lines = value
     
@@ -542,7 +542,7 @@ class Company(entity.Entity):
         """
         Sets the paymentMethods property value. The paymentMethods property
         Args:
-            value: Value to set for the paymentMethods property.
+            value: Value to set for the payment_methods property.
         """
         self._payment_methods = value
     
@@ -559,7 +559,7 @@ class Company(entity.Entity):
         """
         Sets the paymentTerms property value. The paymentTerms property
         Args:
-            value: Value to set for the paymentTerms property.
+            value: Value to set for the payment_terms property.
         """
         self._payment_terms = value
     
@@ -593,7 +593,7 @@ class Company(entity.Entity):
         """
         Sets the purchaseInvoiceLines property value. The purchaseInvoiceLines property
         Args:
-            value: Value to set for the purchaseInvoiceLines property.
+            value: Value to set for the purchase_invoice_lines property.
         """
         self._purchase_invoice_lines = value
     
@@ -610,7 +610,7 @@ class Company(entity.Entity):
         """
         Sets the purchaseInvoices property value. The purchaseInvoices property
         Args:
-            value: Value to set for the purchaseInvoices property.
+            value: Value to set for the purchase_invoices property.
         """
         self._purchase_invoices = value
     
@@ -627,7 +627,7 @@ class Company(entity.Entity):
         """
         Sets the salesCreditMemoLines property value. The salesCreditMemoLines property
         Args:
-            value: Value to set for the salesCreditMemoLines property.
+            value: Value to set for the sales_credit_memo_lines property.
         """
         self._sales_credit_memo_lines = value
     
@@ -644,7 +644,7 @@ class Company(entity.Entity):
         """
         Sets the salesCreditMemos property value. The salesCreditMemos property
         Args:
-            value: Value to set for the salesCreditMemos property.
+            value: Value to set for the sales_credit_memos property.
         """
         self._sales_credit_memos = value
     
@@ -661,7 +661,7 @@ class Company(entity.Entity):
         """
         Sets the salesInvoiceLines property value. The salesInvoiceLines property
         Args:
-            value: Value to set for the salesInvoiceLines property.
+            value: Value to set for the sales_invoice_lines property.
         """
         self._sales_invoice_lines = value
     
@@ -678,7 +678,7 @@ class Company(entity.Entity):
         """
         Sets the salesInvoices property value. The salesInvoices property
         Args:
-            value: Value to set for the salesInvoices property.
+            value: Value to set for the sales_invoices property.
         """
         self._sales_invoices = value
     
@@ -695,7 +695,7 @@ class Company(entity.Entity):
         """
         Sets the salesOrderLines property value. The salesOrderLines property
         Args:
-            value: Value to set for the salesOrderLines property.
+            value: Value to set for the sales_order_lines property.
         """
         self._sales_order_lines = value
     
@@ -712,7 +712,7 @@ class Company(entity.Entity):
         """
         Sets the salesOrders property value. The salesOrders property
         Args:
-            value: Value to set for the salesOrders property.
+            value: Value to set for the sales_orders property.
         """
         self._sales_orders = value
     
@@ -729,7 +729,7 @@ class Company(entity.Entity):
         """
         Sets the salesQuoteLines property value. The salesQuoteLines property
         Args:
-            value: Value to set for the salesQuoteLines property.
+            value: Value to set for the sales_quote_lines property.
         """
         self._sales_quote_lines = value
     
@@ -746,7 +746,7 @@ class Company(entity.Entity):
         """
         Sets the salesQuotes property value. The salesQuotes property
         Args:
-            value: Value to set for the salesQuotes property.
+            value: Value to set for the sales_quotes property.
         """
         self._sales_quotes = value
     
@@ -766,32 +766,32 @@ class Company(entity.Entity):
         writer.write_collection_of_object_values("companyInformation", self.company_information)
         writer.write_collection_of_object_values("countriesRegions", self.countries_regions)
         writer.write_collection_of_object_values("currencies", self.currencies)
-        writer.write_collection_of_object_values("customerPaymentJournals", self.customer_payment_journals)
-        writer.write_collection_of_object_values("customerPayments", self.customer_payments)
         writer.write_collection_of_object_values("customers", self.customers)
+        writer.write_collection_of_object_values("customerPayments", self.customer_payments)
+        writer.write_collection_of_object_values("customerPaymentJournals", self.customer_payment_journals)
         writer.write_collection_of_object_values("dimensions", self.dimensions)
         writer.write_collection_of_object_values("dimensionValues", self.dimension_values)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("employees", self.employees)
         writer.write_collection_of_object_values("generalLedgerEntries", self.general_ledger_entries)
-        writer.write_collection_of_object_values("itemCategories", self.item_categories)
         writer.write_collection_of_object_values("items", self.items)
-        writer.write_collection_of_object_values("journalLines", self.journal_lines)
+        writer.write_collection_of_object_values("itemCategories", self.item_categories)
         writer.write_collection_of_object_values("journals", self.journals)
+        writer.write_collection_of_object_values("journalLines", self.journal_lines)
         writer.write_str_value("name", self.name)
         writer.write_collection_of_object_values("paymentMethods", self.payment_methods)
         writer.write_collection_of_object_values("paymentTerms", self.payment_terms)
         writer.write_collection_of_object_values("picture", self.picture)
-        writer.write_collection_of_object_values("purchaseInvoiceLines", self.purchase_invoice_lines)
         writer.write_collection_of_object_values("purchaseInvoices", self.purchase_invoices)
-        writer.write_collection_of_object_values("salesCreditMemoLines", self.sales_credit_memo_lines)
+        writer.write_collection_of_object_values("purchaseInvoiceLines", self.purchase_invoice_lines)
         writer.write_collection_of_object_values("salesCreditMemos", self.sales_credit_memos)
-        writer.write_collection_of_object_values("salesInvoiceLines", self.sales_invoice_lines)
+        writer.write_collection_of_object_values("salesCreditMemoLines", self.sales_credit_memo_lines)
         writer.write_collection_of_object_values("salesInvoices", self.sales_invoices)
-        writer.write_collection_of_object_values("salesOrderLines", self.sales_order_lines)
+        writer.write_collection_of_object_values("salesInvoiceLines", self.sales_invoice_lines)
         writer.write_collection_of_object_values("salesOrders", self.sales_orders)
-        writer.write_collection_of_object_values("salesQuoteLines", self.sales_quote_lines)
+        writer.write_collection_of_object_values("salesOrderLines", self.sales_order_lines)
         writer.write_collection_of_object_values("salesQuotes", self.sales_quotes)
+        writer.write_collection_of_object_values("salesQuoteLines", self.sales_quote_lines)
         writer.write_collection_of_object_values("shipmentMethods", self.shipment_methods)
         writer.write_str_value("systemVersion", self.system_version)
         writer.write_collection_of_object_values("taxAreas", self.tax_areas)
@@ -812,7 +812,7 @@ class Company(entity.Entity):
         """
         Sets the shipmentMethods property value. The shipmentMethods property
         Args:
-            value: Value to set for the shipmentMethods property.
+            value: Value to set for the shipment_methods property.
         """
         self._shipment_methods = value
     
@@ -829,7 +829,7 @@ class Company(entity.Entity):
         """
         Sets the systemVersion property value. The systemVersion property
         Args:
-            value: Value to set for the systemVersion property.
+            value: Value to set for the system_version property.
         """
         self._system_version = value
     
@@ -846,7 +846,7 @@ class Company(entity.Entity):
         """
         Sets the taxAreas property value. The taxAreas property
         Args:
-            value: Value to set for the taxAreas property.
+            value: Value to set for the tax_areas property.
         """
         self._tax_areas = value
     
@@ -863,7 +863,7 @@ class Company(entity.Entity):
         """
         Sets the taxGroups property value. The taxGroups property
         Args:
-            value: Value to set for the taxGroups property.
+            value: Value to set for the tax_groups property.
         """
         self._tax_groups = value
     
@@ -880,7 +880,7 @@ class Company(entity.Entity):
         """
         Sets the unitsOfMeasure property value. The unitsOfMeasure property
         Args:
-            value: Value to set for the unitsOfMeasure property.
+            value: Value to set for the units_of_measure property.
         """
         self._units_of_measure = value
     

@@ -25,7 +25,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the assignmentState property value. Required. The state of the assignment. The possible values are: Eligible (for eligible assignment),  Active (if it is directly assigned), Active (by administrators, or activated on an eligible assignment by the users).
         Args:
-            value: Value to set for the assignmentState property.
+            value: Value to set for the assignment_state property.
         """
         self._assignment_state = value
     
@@ -81,18 +81,18 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_state": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
-            "linked_eligible_role_assignment_id": lambda n : setattr(self, 'linked_eligible_role_assignment_id', n.get_str_value()),
+            "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
+            "linkedEligibleRoleAssignmentId": lambda n : setattr(self, 'linked_eligible_role_assignment_id', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
-            "requested_date_time": lambda n : setattr(self, 'requested_date_time', n.get_datetime_value()),
+            "requestedDateTime": lambda n : setattr(self, 'requested_date_time', n.get_datetime_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(governance_resource.GovernanceResource)),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
-            "role_definition": lambda n : setattr(self, 'role_definition', n.get_object_value(governance_role_definition.GovernanceRoleDefinition)),
-            "role_definition_id": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "roleDefinition": lambda n : setattr(self, 'role_definition', n.get_object_value(governance_role_definition.GovernanceRoleDefinition)),
+            "roleDefinitionId": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(governance_schedule.GovernanceSchedule)),
             "status": lambda n : setattr(self, 'status', n.get_object_value(governance_role_assignment_request_status.GovernanceRoleAssignmentRequestStatus)),
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(governance_subject.GovernanceSubject)),
-            "subject_id": lambda n : setattr(self, 'subject_id', n.get_str_value()),
+            "subjectId": lambda n : setattr(self, 'subject_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -112,7 +112,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the linkedEligibleRoleAssignmentId property value. If this is a request for role activation, it represents the id of the eligible assignment being referred; Otherwise, the value is null.
         Args:
-            value: Value to set for the linkedEligibleRoleAssignmentId property.
+            value: Value to set for the linked_eligible_role_assignment_id property.
         """
         self._linked_eligible_role_assignment_id = value
     
@@ -146,7 +146,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the requestedDateTime property value. Read-only. The request create time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the requestedDateTime property.
+            value: Value to set for the requested_date_time property.
         """
         self._requested_date_time = value
     
@@ -180,7 +180,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the resourceId property value. Required. The unique identifier of the Azure resource that is associated with the role assignment request. Azure resources can include subscriptions, resource groups, virtual machines, and SQL databases.
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     
@@ -197,7 +197,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the roleDefinition property value. Read-only. The role definition that the request aims to.
         Args:
-            value: Value to set for the roleDefinition property.
+            value: Value to set for the role_definition property.
         """
         self._role_definition = value
     
@@ -214,7 +214,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the roleDefinitionId property value. Required. The identifier of the Azure role definition that the role assignment request is associated with.
         Args:
-            value: Value to set for the roleDefinitionId property.
+            value: Value to set for the role_definition_id property.
         """
         self._role_definition_id = value
     
@@ -305,7 +305,7 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         """
         Sets the subjectId property value. Required. The unique identifier of the principal or subject that the role assignment request is associated with. Principals can be users, groups, or service principals.
         Args:
-            value: Value to set for the subjectId property.
+            value: Value to set for the subject_id property.
         """
         self._subject_id = value
     

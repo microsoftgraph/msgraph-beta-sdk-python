@@ -14,7 +14,7 @@ unified_role_assignment_schedule_instance = lazy_import('msgraph.generated.model
 unified_role_assignment_schedule_instance_collection_response = lazy_import('msgraph.generated.models.unified_role_assignment_schedule_instance_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_instances.count.count_request_builder')
-filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_instances.filter_by_current_user_with_on.filter_by_current_user_with_on_request_builder')
+microsoft_graph_filter_by_current_user_with_on_request_builder = lazy_import('msgraph.generated.role_management.directory.role_assignment_schedule_instances.microsoft_graph_filter_by_current_user_with_on.microsoft_graph_filter_by_current_user_with_on_request_builder')
 
 class RoleAssignmentScheduleInstancesRequestBuilder():
     """
@@ -45,23 +45,11 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def filter_by_current_user_with_on(self,on: Optional[str] = None) -> filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder:
-        """
-        Provides operations to call the filterByCurrentUser method.
-        Args:
-            on: Usage: on='{on}'
-        Returns: filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder
-        """
-        if on is None:
-            raise Exception("on cannot be undefined")
-        return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
-    
-    async def get(self,request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse]:
+    async def get(self,request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse]:
         """
         Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +61,25 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_instance_collection_response.UnifiedRoleAssignmentScheduleInstanceCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance] = None, request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance]:
+    def microsoft_graph_filter_by_current_user_with_on(self,on: Optional[str] = None) -> microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder:
+        """
+        Provides operations to call the filterByCurrentUser method.
+        Args:
+            on: Usage: on='{on}'
+        Returns: microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder
+        """
+        if on is None:
+            raise Exception("on cannot be undefined")
+        return microsoft_graph_filter_by_current_user_with_on_request_builder.MicrosoftGraphFilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
+    
+    async def post(self,body: Optional[unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance] = None, request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderPostRequestConfiguration] = None) -> Optional[unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance]:
         """
         Create new navigation property to roleAssignmentScheduleInstances for roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance]
         """
         if body is None:
@@ -95,7 +93,7 @@ class RoleAssignmentScheduleInstancesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unified_role_assignment_schedule_instance.UnifiedRoleAssignmentScheduleInstance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleAssignmentScheduleInstancesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

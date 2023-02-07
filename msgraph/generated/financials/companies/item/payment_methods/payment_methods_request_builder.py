@@ -44,12 +44,11 @@ class PaymentMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PaymentMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payment_method_collection_response.PaymentMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[PaymentMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[payment_method_collection_response.PaymentMethodCollectionResponse]:
         """
         Get paymentMethods from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payment_method_collection_response.PaymentMethodCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class PaymentMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payment_method_collection_response.PaymentMethodCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, payment_method_collection_response.PaymentMethodCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[payment_method.PaymentMethod] = None, request_configuration: Optional[PaymentMethodsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[payment_method.PaymentMethod]:
+    async def post(self,body: Optional[payment_method.PaymentMethod] = None, request_configuration: Optional[PaymentMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[payment_method.PaymentMethod]:
         """
         Create new navigation property to paymentMethods for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[payment_method.PaymentMethod]
         """
         if body is None:
@@ -83,7 +81,7 @@ class PaymentMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, payment_method.PaymentMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, payment_method.PaymentMethod, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PaymentMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

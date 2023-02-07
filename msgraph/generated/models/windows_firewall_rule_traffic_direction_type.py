@@ -6,5 +6,5 @@ class WindowsFirewallRuleTrafficDirectionType(Enum):
     # The rule applies to outbound traffic.
     Out = "out",
     # The rule applies to inbound traffic.
-    In_escaped = "in",
+    In_ = "in",
 

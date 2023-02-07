@@ -14,8 +14,8 @@ list_item = lazy_import('msgraph.generated.models.list_item')
 list_item_collection_response = lazy_import('msgraph.generated.models.list_item_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.shares.item.list.items.count.count_request_builder')
-delta_request_builder = lazy_import('msgraph.generated.shares.item.list.items.delta.delta_request_builder')
-delta_with_token_request_builder = lazy_import('msgraph.generated.shares.item.list.items.delta_with_token.delta_with_token_request_builder')
+microsoft_graph_delta_request_builder = lazy_import('msgraph.generated.shares.item.list.items.microsoft_graph_delta.microsoft_graph_delta_request_builder')
+microsoft_graph_delta_with_token_request_builder = lazy_import('msgraph.generated.shares.item.list.items.microsoft_graph_delta_with_token.microsoft_graph_delta_with_token_request_builder')
 
 class ItemsRequestBuilder():
     """
@@ -27,6 +27,13 @@ class ItemsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_delta(self) -> microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return microsoft_graph_delta_request_builder.MicrosoftGraphDeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -46,30 +53,11 @@ class ItemsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def delta_with_token(self,token: Optional[str] = None) -> delta_with_token_request_builder.DeltaWithTokenRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Args:
-            token: Usage: token='{token}'
-        Returns: delta_with_token_request_builder.DeltaWithTokenRequestBuilder
-        """
-        if token is None:
-            raise Exception("token cannot be undefined")
-        return delta_with_token_request_builder.DeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
-    
-    async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list_item_collection_response.ListItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> Optional[list_item_collection_response.ListItemCollectionResponse]:
         """
         Get the collection of [items][item] in a [list][].
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item_collection_response.ListItemCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -81,15 +69,25 @@ class ItemsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list_item_collection_response.ListItemCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, list_item_collection_response.ListItemCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[list_item.ListItem]:
+    def microsoft_graph_delta_with_token(self,token: Optional[str] = None) -> microsoft_graph_delta_with_token_request_builder.MicrosoftGraphDeltaWithTokenRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        Args:
+            token: Usage: token='{token}'
+        Returns: microsoft_graph_delta_with_token_request_builder.MicrosoftGraphDeltaWithTokenRequestBuilder
+        """
+        if token is None:
+            raise Exception("token cannot be undefined")
+        return microsoft_graph_delta_with_token_request_builder.MicrosoftGraphDeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
+    
+    async def post(self,body: Optional[list_item.ListItem] = None, request_configuration: Optional[ItemsRequestBuilderPostRequestConfiguration] = None) -> Optional[list_item.ListItem]:
         """
         Create a new [listItem][] in a [list][].
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[list_item.ListItem]
         """
         if body is None:
@@ -103,7 +101,7 @@ class ItemsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, list_item.ListItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, list_item.ListItem, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ItemsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

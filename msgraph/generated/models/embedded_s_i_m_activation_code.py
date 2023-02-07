@@ -58,10 +58,10 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "integrated_circuit_card_identifier": lambda n : setattr(self, 'integrated_circuit_card_identifier', n.get_str_value()),
-            "matching_identifier": lambda n : setattr(self, 'matching_identifier', n.get_str_value()),
+            "integratedCircuitCardIdentifier": lambda n : setattr(self, 'integrated_circuit_card_identifier', n.get_str_value()),
+            "matchingIdentifier": lambda n : setattr(self, 'matching_identifier', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "smdp_plus_server_address": lambda n : setattr(self, 'smdp_plus_server_address', n.get_str_value()),
+            "smdpPlusServerAddress": lambda n : setattr(self, 'smdp_plus_server_address', n.get_str_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
         """
         Sets the integratedCircuitCardIdentifier property value. The Integrated Circuit Card Identifier (ICCID) for this embedded SIM activation code as provided by the mobile operator.
         Args:
-            value: Value to set for the integratedCircuitCardIdentifier property.
+            value: Value to set for the integrated_circuit_card_identifier property.
         """
         self._integrated_circuit_card_identifier = value
     
@@ -95,7 +95,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
         """
         Sets the matchingIdentifier property value. The MatchingIdentifier (MatchingID) as specified in the GSMA Association SGP.22 RSP Technical Specification section 4.1.
         Args:
-            value: Value to set for the matchingIdentifier property.
+            value: Value to set for the matching_identifier property.
         """
         self._matching_identifier = value
     
@@ -112,7 +112,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class EmbeddedSIMActivationCode(AdditionalDataHolder, Parsable):
         """
         Sets the smdpPlusServerAddress property value. The fully qualified domain name of the SM-DP+ server as specified in the GSM Association SPG .22 RSP Technical Specification.
         Args:
-            value: Value to set for the smdpPlusServerAddress property.
+            value: Value to set for the smdp_plus_server_address property.
         """
         self._smdp_plus_server_address = value
     

@@ -49,7 +49,7 @@ class ProgramControl(entity.Entity):
         """
         Sets the controlId property value. The controlId of the control, in particular the identifier of an access review. Required on create.
         Args:
-            value: Value to set for the controlId property.
+            value: Value to set for the control_id property.
         """
         self._control_id = value
     
@@ -66,7 +66,7 @@ class ProgramControl(entity.Entity):
         """
         Sets the controlTypeId property value. The programControlType identifies the type of program control - for example, a control linking to guest access reviews. Required on create.
         Args:
-            value: Value to set for the controlTypeId property.
+            value: Value to set for the control_type_id property.
         """
         self._control_type_id = value
     
@@ -83,7 +83,7 @@ class ProgramControl(entity.Entity):
         """
         Sets the createdDateTime property value. The creation date and time of the program control.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -112,7 +112,7 @@ class ProgramControl(entity.Entity):
         """
         Sets the displayName property value. The name of the control.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -122,13 +122,13 @@ class ProgramControl(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "control_id": lambda n : setattr(self, 'control_id', n.get_str_value()),
-            "control_type_id": lambda n : setattr(self, 'control_type_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "controlId": lambda n : setattr(self, 'control_id', n.get_str_value()),
+            "controlTypeId": lambda n : setattr(self, 'control_type_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "owner": lambda n : setattr(self, 'owner', n.get_object_value(user_identity.UserIdentity)),
             "program": lambda n : setattr(self, 'program', n.get_object_value(program.Program)),
-            "program_id": lambda n : setattr(self, 'program_id', n.get_str_value()),
+            "programId": lambda n : setattr(self, 'program_id', n.get_str_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(program_resource.ProgramResource)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
@@ -183,7 +183,7 @@ class ProgramControl(entity.Entity):
         """
         Sets the programId property value. The programId of the program this control is a part of. Required on create.
         Args:
-            value: Value to set for the programId property.
+            value: Value to set for the program_id property.
         """
         self._program_id = value
     

@@ -57,12 +57,11 @@ class AnalyticsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AnalyticsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AnalyticsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property analytics for me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +72,13 @@ class AnalyticsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AnalyticsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_analytics.UserAnalytics]:
+    async def get(self,request_configuration: Optional[AnalyticsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_analytics.UserAnalytics]:
         """
         Get analytics from me
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_analytics.UserAnalytics]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +90,14 @@ class AnalyticsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_analytics.UserAnalytics, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_analytics.UserAnalytics, error_mapping)
     
-    async def patch(self,body: Optional[user_analytics.UserAnalytics] = None, request_configuration: Optional[AnalyticsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_analytics.UserAnalytics]:
+    async def patch(self,body: Optional[user_analytics.UserAnalytics] = None, request_configuration: Optional[AnalyticsRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_analytics.UserAnalytics]:
         """
         Update the navigation property analytics in me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_analytics.UserAnalytics]
         """
         if body is None:
@@ -114,7 +111,7 @@ class AnalyticsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_analytics.UserAnalytics, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_analytics.UserAnalytics, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AnalyticsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-download_apple_push_notification_certificate_signing_request_request_builder = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.download_apple_push_notification_certificate_signing_request.download_apple_push_notification_certificate_signing_request_request_builder')
-generate_apple_push_notification_certificate_signing_request_request_builder = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.generate_apple_push_notification_certificate_signing_request.generate_apple_push_notification_certificate_signing_request_request_builder')
+microsoft_graph_download_apple_push_notification_certificate_signing_request_request_builder = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.microsoft_graph_download_apple_push_notification_certificate_signing_request.microsoft_graph_download_apple_push_notification_certificate_signing_request_request_builder')
+microsoft_graph_generate_apple_push_notification_certificate_signing_request_request_builder = lazy_import('msgraph.generated.device_management.apple_push_notification_certificate.microsoft_graph_generate_apple_push_notification_certificate_signing_request.microsoft_graph_generate_apple_push_notification_certificate_signing_request_request_builder')
 apple_push_notification_certificate = lazy_import('msgraph.generated.models.apple_push_notification_certificate')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,11 +20,18 @@ class ApplePushNotificationCertificateRequestBuilder():
     Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.
     """
     @property
-    def generate_apple_push_notification_certificate_signing_request(self) -> generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
+    def microsoft_graph_download_apple_push_notification_certificate_signing_request(self) -> microsoft_graph_download_apple_push_notification_certificate_signing_request_request_builder.MicrosoftGraphDownloadApplePushNotificationCertificateSigningRequestRequestBuilder:
+        """
+        Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
+        """
+        return microsoft_graph_download_apple_push_notification_certificate_signing_request_request_builder.MicrosoftGraphDownloadApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_generate_apple_push_notification_certificate_signing_request(self) -> microsoft_graph_generate_apple_push_notification_certificate_signing_request_request_builder.MicrosoftGraphGenerateApplePushNotificationCertificateSigningRequestRequestBuilder:
         """
         Provides operations to call the generateApplePushNotificationCertificateSigningRequest method.
         """
-        return generate_apple_push_notification_certificate_signing_request_request_builder.GenerateApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_generate_apple_push_notification_certificate_signing_request_request_builder.MicrosoftGraphGenerateApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -44,12 +51,11 @@ class ApplePushNotificationCertificateRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property applePushNotificationCertificate for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,21 +66,13 @@ class ApplePushNotificationCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    def download_apple_push_notification_certificate_signing_request(self,) -> download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder:
-        """
-        Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
-        Returns: download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder
-        """
-        return download_apple_push_notification_certificate_signing_request_request_builder.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]:
+    async def get(self,request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderGetRequestConfiguration] = None) -> Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]:
         """
         Apple push notification certificate.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class ApplePushNotificationCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, apple_push_notification_certificate.ApplePushNotificationCertificate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, apple_push_notification_certificate.ApplePushNotificationCertificate, error_mapping)
     
-    async def patch(self,body: Optional[apple_push_notification_certificate.ApplePushNotificationCertificate] = None, request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]:
+    async def patch(self,body: Optional[apple_push_notification_certificate.ApplePushNotificationCertificate] = None, request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderPatchRequestConfiguration] = None) -> Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]:
         """
         Update the navigation property applePushNotificationCertificate in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[apple_push_notification_certificate.ApplePushNotificationCertificate]
         """
         if body is None:
@@ -108,7 +105,7 @@ class ApplePushNotificationCertificateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, apple_push_notification_certificate.ApplePushNotificationCertificate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, apple_push_notification_certificate.ApplePushNotificationCertificate, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ApplePushNotificationCertificateRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

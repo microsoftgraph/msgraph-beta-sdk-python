@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.count.count_request_builder')
-evaluate_application_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.evaluate_application.evaluate_application_request_builder')
-evaluate_classification_results_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.evaluate_classification_results.evaluate_classification_results_request_builder')
-evaluate_removal_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.evaluate_removal.evaluate_removal_request_builder')
-extract_label_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.extract_label.extract_label_request_builder')
+microsoft_graph_evaluate_application_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.microsoft_graph_evaluate_application.microsoft_graph_evaluate_application_request_builder')
+microsoft_graph_evaluate_classification_results_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.microsoft_graph_evaluate_classification_results.microsoft_graph_evaluate_classification_results_request_builder')
+microsoft_graph_evaluate_removal_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.microsoft_graph_evaluate_removal.microsoft_graph_evaluate_removal_request_builder')
+microsoft_graph_extract_label_request_builder = lazy_import('msgraph.generated.me.information_protection.policy.labels.microsoft_graph_extract_label.microsoft_graph_extract_label_request_builder')
 information_protection_label = lazy_import('msgraph.generated.models.information_protection_label')
 information_protection_label_collection_response = lazy_import('msgraph.generated.models.information_protection_label_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -31,32 +31,32 @@ class LabelsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_application(self) -> evaluate_application_request_builder.EvaluateApplicationRequestBuilder:
+    def microsoft_graph_evaluate_application(self) -> microsoft_graph_evaluate_application_request_builder.MicrosoftGraphEvaluateApplicationRequestBuilder:
         """
         Provides operations to call the evaluateApplication method.
         """
-        return evaluate_application_request_builder.EvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_evaluate_application_request_builder.MicrosoftGraphEvaluateApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_classification_results(self) -> evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder:
+    def microsoft_graph_evaluate_classification_results(self) -> microsoft_graph_evaluate_classification_results_request_builder.MicrosoftGraphEvaluateClassificationResultsRequestBuilder:
         """
         Provides operations to call the evaluateClassificationResults method.
         """
-        return evaluate_classification_results_request_builder.EvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_evaluate_classification_results_request_builder.MicrosoftGraphEvaluateClassificationResultsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def evaluate_removal(self) -> evaluate_removal_request_builder.EvaluateRemovalRequestBuilder:
+    def microsoft_graph_evaluate_removal(self) -> microsoft_graph_evaluate_removal_request_builder.MicrosoftGraphEvaluateRemovalRequestBuilder:
         """
         Provides operations to call the evaluateRemoval method.
         """
-        return evaluate_removal_request_builder.EvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_evaluate_removal_request_builder.MicrosoftGraphEvaluateRemovalRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def extract_label(self) -> extract_label_request_builder.ExtractLabelRequestBuilder:
+    def microsoft_graph_extract_label(self) -> microsoft_graph_extract_label_request_builder.MicrosoftGraphExtractLabelRequestBuilder:
         """
         Provides operations to call the extractLabel method.
         """
-        return extract_label_request_builder.ExtractLabelRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_extract_label_request_builder.MicrosoftGraphExtractLabelRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -76,12 +76,11 @@ class LabelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
+    async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
         """
         Get a collection of information protection labels available to the user or to the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class LabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection_label_collection_response.InformationProtectionLabelCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection_label_collection_response.InformationProtectionLabelCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[information_protection_label.InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection_label.InformationProtectionLabel]:
+    async def post(self,body: Optional[information_protection_label.InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[information_protection_label.InformationProtectionLabel]:
         """
         Create new navigation property to labels for me
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_label.InformationProtectionLabel]
         """
         if body is None:
@@ -115,7 +113,7 @@ class LabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection_label.InformationProtectionLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection_label.InformationProtectionLabel, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

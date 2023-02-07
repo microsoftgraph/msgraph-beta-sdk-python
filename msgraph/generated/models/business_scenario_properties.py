@@ -66,7 +66,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         """
         Sets the externalBucketId property value. The identifier for the bucketDefinition configured in the plannerPlanConfiguration for the scenario. The task will be placed in the corresponding plannerBucket in the target plan. Required.
         Args:
-            value: Value to set for the externalBucketId property.
+            value: Value to set for the external_bucket_id property.
         """
         self._external_bucket_id = value
     
@@ -83,7 +83,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         """
         Sets the externalContextId property value. The identifier for the context of the task. Context is an application controlled value, and tasks can be queried by their externalContextId. Optional.
         Args:
-            value: Value to set for the externalContextId property.
+            value: Value to set for the external_context_id property.
         """
         self._external_context_id = value
     
@@ -100,7 +100,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         """
         Sets the externalObjectId property value. Application-specific identifier for the task. Every task for the same scenario must have a unique identifier specified for this property. Required.
         Args:
-            value: Value to set for the externalObjectId property.
+            value: Value to set for the external_object_id property.
         """
         self._external_object_id = value
     
@@ -117,7 +117,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         """
         Sets the externalObjectVersion property value. Application-specific version of the task. Optional.
         Args:
-            value: Value to set for the externalObjectVersion property.
+            value: Value to set for the external_object_version property.
         """
         self._external_object_version = value
     
@@ -127,12 +127,12 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "external_bucket_id": lambda n : setattr(self, 'external_bucket_id', n.get_str_value()),
-            "external_context_id": lambda n : setattr(self, 'external_context_id', n.get_str_value()),
-            "external_object_id": lambda n : setattr(self, 'external_object_id', n.get_str_value()),
-            "external_object_version": lambda n : setattr(self, 'external_object_version', n.get_str_value()),
+            "externalBucketId": lambda n : setattr(self, 'external_bucket_id', n.get_str_value()),
+            "externalContextId": lambda n : setattr(self, 'external_context_id', n.get_str_value()),
+            "externalObjectId": lambda n : setattr(self, 'external_object_id', n.get_str_value()),
+            "externalObjectVersion": lambda n : setattr(self, 'external_object_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
     
@@ -149,7 +149,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -182,7 +182,7 @@ class BusinessScenarioProperties(AdditionalDataHolder, Parsable):
         """
         Sets the webUrl property value. The URL to the application-specific experience for this task. Optional.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

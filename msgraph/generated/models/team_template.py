@@ -9,7 +9,7 @@ team_template_definition = lazy_import('msgraph.generated.models.team_template_d
 class TeamTemplate(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new TeamTemplate and sets the default values.
+        Instantiates a new teamTemplate and sets the default values.
         """
         super().__init__()
         # The definitions property

@@ -21,7 +21,7 @@ class EventMessageRequest(event_message.EventMessage):
         """
         Sets the allowNewTimeProposals property value. True if the meeting organizer allows invitees to propose a new time when responding, false otherwise. Optional. Default is true.
         Args:
-            value: Value to set for the allowNewTimeProposals property.
+            value: Value to set for the allow_new_time_proposals property.
         """
         self._allow_new_time_proposals = value
     
@@ -60,11 +60,11 @@ class EventMessageRequest(event_message.EventMessage):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_new_time_proposals": lambda n : setattr(self, 'allow_new_time_proposals', n.get_bool_value()),
-            "previous_end_date_time": lambda n : setattr(self, 'previous_end_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "previous_location": lambda n : setattr(self, 'previous_location', n.get_object_value(location.Location)),
-            "previous_start_date_time": lambda n : setattr(self, 'previous_start_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "response_requested": lambda n : setattr(self, 'response_requested', n.get_bool_value()),
+            "allowNewTimeProposals": lambda n : setattr(self, 'allow_new_time_proposals', n.get_bool_value()),
+            "previousEndDateTime": lambda n : setattr(self, 'previous_end_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "previousLocation": lambda n : setattr(self, 'previous_location', n.get_object_value(location.Location)),
+            "previousStartDateTime": lambda n : setattr(self, 'previous_start_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "responseRequested": lambda n : setattr(self, 'response_requested', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,7 +83,7 @@ class EventMessageRequest(event_message.EventMessage):
         """
         Sets the previousEndDateTime property value. If the meeting update changes the meeting end time, this property specifies the previous meeting end time.
         Args:
-            value: Value to set for the previousEndDateTime property.
+            value: Value to set for the previous_end_date_time property.
         """
         self._previous_end_date_time = value
     
@@ -100,7 +100,7 @@ class EventMessageRequest(event_message.EventMessage):
         """
         Sets the previousLocation property value. If the meeting update changes the meeting location, this property specifies the previous meeting location.
         Args:
-            value: Value to set for the previousLocation property.
+            value: Value to set for the previous_location property.
         """
         self._previous_location = value
     
@@ -117,7 +117,7 @@ class EventMessageRequest(event_message.EventMessage):
         """
         Sets the previousStartDateTime property value. If the meeting update changes the meeting start time, this property specifies the previous meeting start time.
         Args:
-            value: Value to set for the previousStartDateTime property.
+            value: Value to set for the previous_start_date_time property.
         """
         self._previous_start_date_time = value
     
@@ -134,7 +134,7 @@ class EventMessageRequest(event_message.EventMessage):
         """
         Sets the responseRequested property value. Set to true if the sender would like the invitee to send a response to the requested meeting.
         Args:
-            value: Value to set for the responseRequested property.
+            value: Value to set for the response_requested property.
         """
         self._response_requested = value
     

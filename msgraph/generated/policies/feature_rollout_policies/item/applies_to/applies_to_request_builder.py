@@ -14,10 +14,10 @@ directory_object = lazy_import('msgraph.generated.models.directory_object')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.count.count_request_builder')
-get_by_ids_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.get_by_ids.get_by_ids_request_builder')
-get_user_owned_objects_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.get_user_owned_objects.get_user_owned_objects_request_builder')
+microsoft_graph_get_by_ids_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.microsoft_graph_get_by_ids.microsoft_graph_get_by_ids_request_builder')
+microsoft_graph_get_user_owned_objects_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.microsoft_graph_get_user_owned_objects.microsoft_graph_get_user_owned_objects_request_builder')
+microsoft_graph_validate_properties_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.microsoft_graph_validate_properties.microsoft_graph_validate_properties_request_builder')
 ref_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.ref.ref_request_builder')
-validate_properties_request_builder = lazy_import('msgraph.generated.policies.feature_rollout_policies.item.applies_to.validate_properties.validate_properties_request_builder')
 
 class AppliesToRequestBuilder():
     """
@@ -31,18 +31,25 @@ class AppliesToRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
+    def microsoft_graph_get_by_ids(self) -> microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder:
         """
         Provides operations to call the getByIds method.
         """
-        return get_by_ids_request_builder.GetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_by_ids_request_builder.MicrosoftGraphGetByIdsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def get_user_owned_objects(self) -> get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder:
+    def microsoft_graph_get_user_owned_objects(self) -> microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder:
         """
         Provides operations to call the getUserOwnedObjects method.
         """
-        return get_user_owned_objects_request_builder.GetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_get_user_owned_objects_request_builder.MicrosoftGraphGetUserOwnedObjectsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_validate_properties(self) -> microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder:
+        """
+        Provides operations to call the validateProperties method.
+        """
+        return microsoft_graph_validate_properties_request_builder.MicrosoftGraphValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
@@ -50,13 +57,6 @@ class AppliesToRequestBuilder():
         Provides operations to manage the collection of policyRoot entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_properties(self) -> validate_properties_request_builder.ValidatePropertiesRequestBuilder:
-        """
-        Provides operations to call the validateProperties method.
-        """
-        return validate_properties_request_builder.ValidatePropertiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -76,12 +76,11 @@ class AppliesToRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AppliesToRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[AppliesToRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Nullable. Specifies a list of directoryObjects that feature is enabled for.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class AppliesToRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[AppliesToRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def post(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[AppliesToRequestBuilderPostRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Create new navigation property to appliesTo for policies
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         if body is None:
@@ -115,7 +113,7 @@ class AppliesToRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppliesToRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

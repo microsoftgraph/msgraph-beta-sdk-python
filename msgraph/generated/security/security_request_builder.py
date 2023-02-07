@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-security = lazy_import('msgraph.generated.models.security')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+security = lazy_import('msgraph.generated.models.security.security')
 alerts_request_builder = lazy_import('msgraph.generated.security.alerts.alerts_request_builder')
 alerts_v2_request_builder = lazy_import('msgraph.generated.security.alerts_v2.alerts_v2_request_builder')
 alert_item_request_builder = lazy_import('msgraph.generated.security.alerts_v2.item.alert_item_request_builder')
@@ -32,9 +32,9 @@ information_protection_request_builder = lazy_import('msgraph.generated.security
 ip_security_profiles_request_builder = lazy_import('msgraph.generated.security.ip_security_profiles.ip_security_profiles_request_builder')
 ip_security_profile_item_request_builder = lazy_import('msgraph.generated.security.ip_security_profiles.item.ip_security_profile_item_request_builder')
 labels_request_builder = lazy_import('msgraph.generated.security.labels.labels_request_builder')
+microsoft_graph_security_run_hunting_query_request_builder = lazy_import('msgraph.generated.security.microsoft_graph_security_run_hunting_query.microsoft_graph_security_run_hunting_query_request_builder')
 provider_tenant_settings_request_builder = lazy_import('msgraph.generated.security.provider_tenant_settings.provider_tenant_settings_request_builder')
 provider_tenant_setting_item_request_builder = lazy_import('msgraph.generated.security.provider_tenant_settings.item.provider_tenant_setting_item_request_builder')
-run_hunting_query_request_builder = lazy_import('msgraph.generated.security.run_hunting_query.run_hunting_query_request_builder')
 secure_score_control_profiles_request_builder = lazy_import('msgraph.generated.security.secure_score_control_profiles.secure_score_control_profiles_request_builder')
 secure_score_control_profile_item_request_builder = lazy_import('msgraph.generated.security.secure_score_control_profiles.item.secure_score_control_profile_item_request_builder')
 secure_scores_request_builder = lazy_import('msgraph.generated.security.secure_scores.secure_scores_request_builder')
@@ -140,18 +140,18 @@ class SecurityRequestBuilder():
         return labels_request_builder.LabelsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def microsoft_graph_security_run_hunting_query(self) -> microsoft_graph_security_run_hunting_query_request_builder.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder:
+        """
+        Provides operations to call the runHuntingQuery method.
+        """
+        return microsoft_graph_security_run_hunting_query_request_builder.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def provider_tenant_settings(self) -> provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder:
         """
         Provides operations to manage the providerTenantSettings property of the microsoft.graph.security entity.
         """
         return provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def run_hunting_query(self) -> run_hunting_query_request_builder.RunHuntingQueryRequestBuilder:
-        """
-        Provides operations to call the runHuntingQuery method.
-        """
-        return run_hunting_query_request_builder.RunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def secure_score_control_profiles(self) -> secure_score_control_profiles_request_builder.SecureScoreControlProfilesRequestBuilder:
@@ -299,12 +299,11 @@ class SecurityRequestBuilder():
         url_tpl_params["fileSecurityProfile%2Did"] = id
         return file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security.Security]:
+    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> Optional[security.Security]:
         """
         Get security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security.Security]
         """
         request_info = self.to_get_request_information(
@@ -316,7 +315,7 @@ class SecurityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security.Security, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
     
     def host_security_profiles_by_id(self,id: str) -> host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder:
         """
@@ -357,13 +356,12 @@ class SecurityRequestBuilder():
         url_tpl_params["ipSecurityProfile%2Did"] = id
         return ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security.Security]:
+    async def patch(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> Optional[security.Security]:
         """
         Update security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security.Security]
         """
         if body is None:
@@ -377,7 +375,7 @@ class SecurityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security.Security, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
     
     def provider_tenant_settings_by_id(self,id: str) -> provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder:
         """

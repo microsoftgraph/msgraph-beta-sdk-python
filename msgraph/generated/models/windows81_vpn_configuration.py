@@ -21,7 +21,7 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the applyOnlyToWindows81 property value. Value indicating whether this policy only applies to Windows 8.1. This property is read-only.
         Args:
-            value: Value to set for the applyOnlyToWindows81 property.
+            value: Value to set for the apply_only_to_windows81 property.
         """
         self._apply_only_to_windows81 = value
     
@@ -38,7 +38,7 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the connectionType property value. Windows VPN connection type.
         Args:
-            value: Value to set for the connectionType property.
+            value: Value to set for the connection_type property.
         """
         self._connection_type = value
     
@@ -84,7 +84,7 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableSplitTunneling property value. Enable split tunneling for the VPN.
         Args:
-            value: Value to set for the enableSplitTunneling property.
+            value: Value to set for the enable_split_tunneling property.
         """
         self._enable_split_tunneling = value
     
@@ -94,11 +94,11 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apply_only_to_windows81": lambda n : setattr(self, 'apply_only_to_windows81', n.get_bool_value()),
-            "connection_type": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows_vpn_connection_type.WindowsVpnConnectionType)),
-            "enable_split_tunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
-            "login_group_or_domain": lambda n : setattr(self, 'login_group_or_domain', n.get_str_value()),
-            "proxy_server": lambda n : setattr(self, 'proxy_server', n.get_object_value(windows81_vpn_proxy_server.Windows81VpnProxyServer)),
+            "applyOnlyToWindows81": lambda n : setattr(self, 'apply_only_to_windows81', n.get_bool_value()),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows_vpn_connection_type.WindowsVpnConnectionType)),
+            "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
+            "loginGroupOrDomain": lambda n : setattr(self, 'login_group_or_domain', n.get_str_value()),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(windows81_vpn_proxy_server.Windows81VpnProxyServer)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -117,7 +117,7 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the loginGroupOrDomain property value. Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
         Args:
-            value: Value to set for the loginGroupOrDomain property.
+            value: Value to set for the login_group_or_domain property.
         """
         self._login_group_or_domain = value
     
@@ -134,7 +134,7 @@ class Windows81VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the proxyServer property value. Proxy Server.
         Args:
-            value: Value to set for the proxyServer property.
+            value: Value to set for the proxy_server property.
         """
         self._proxy_server = value
     

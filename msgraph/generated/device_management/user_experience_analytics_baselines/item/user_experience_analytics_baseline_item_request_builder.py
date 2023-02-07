@@ -91,12 +91,11 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userExperienceAnalyticsBaselines for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +106,13 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
         """
         User experience analytics baselines
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +124,14 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
     
-    async def patch(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
+    async def patch(self,body: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline] = None, request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]:
         """
         Update the navigation property userExperienceAnalyticsBaselines in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_baseline.UserExperienceAnalyticsBaseline]
         """
         if body is None:
@@ -148,7 +145,7 @@ class UserExperienceAnalyticsBaselineItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_baseline.UserExperienceAnalyticsBaseline, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBaselineItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

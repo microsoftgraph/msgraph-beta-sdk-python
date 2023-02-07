@@ -68,7 +68,7 @@ class DeviceEnrollmentConfiguration(entity.Entity):
         """
         Sets the createdDateTime property value. Created date time in UTC of the device enrollment configuration
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -114,7 +114,7 @@ class DeviceEnrollmentConfiguration(entity.Entity):
         """
         Sets the deviceEnrollmentConfigurationType property value. Describes the TemplateFamily for the Template entity
         Args:
-            value: Value to set for the deviceEnrollmentConfigurationType property.
+            value: Value to set for the device_enrollment_configuration_type property.
         """
         self._device_enrollment_configuration_type = value
     
@@ -131,7 +131,7 @@ class DeviceEnrollmentConfiguration(entity.Entity):
         """
         Sets the displayName property value. The display name of the device enrollment configuration
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -142,13 +142,13 @@ class DeviceEnrollmentConfiguration(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(enrollment_configuration_assignment.EnrollmentConfigurationAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_enrollment_configuration_type": lambda n : setattr(self, 'device_enrollment_configuration_type', n.get_enum_value(device_enrollment_configuration_type.DeviceEnrollmentConfigurationType)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "deviceEnrollmentConfigurationType": lambda n : setattr(self, 'device_enrollment_configuration_type', n.get_enum_value(device_enrollment_configuration_type.DeviceEnrollmentConfigurationType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -168,7 +168,7 @@ class DeviceEnrollmentConfiguration(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modified date time in UTC of the device enrollment configuration
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -202,7 +202,7 @@ class DeviceEnrollmentConfiguration(entity.Entity):
         """
         Sets the roleScopeTagIds property value. Optional role scope tags for the enrollment restrictions.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

@@ -20,7 +20,7 @@ class LearningContent(entity.Entity):
         """
         Sets the additionalTags property value. Keywords, topics, and other tags associated with the learning content. Optional.
         Args:
-            value: Value to set for the additionalTags property.
+            value: Value to set for the additional_tags property.
         """
         self._additional_tags = value
     
@@ -81,7 +81,7 @@ class LearningContent(entity.Entity):
         """
         Sets the contentWebUrl property value. The content web URL for the learning content. Required.
         Args:
-            value: Value to set for the contentWebUrl property.
+            value: Value to set for the content_web_url property.
         """
         self._content_web_url = value
     
@@ -115,7 +115,7 @@ class LearningContent(entity.Entity):
         """
         Sets the createdDateTime property value. The date when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -178,7 +178,7 @@ class LearningContent(entity.Entity):
         """
         Sets the externalId property value. Unique external content ID for the learning content. Required.
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -205,23 +205,23 @@ class LearningContent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_tags": lambda n : setattr(self, 'additional_tags', n.get_collection_of_primitive_values(str)),
-            "content_web_url": lambda n : setattr(self, 'content_web_url', n.get_str_value()),
+            "additionalTags": lambda n : setattr(self, 'additional_tags', n.get_collection_of_primitive_values(str)),
+            "contentWebUrl": lambda n : setattr(self, 'content_web_url', n.get_str_value()),
             "contributors": lambda n : setattr(self, 'contributors', n.get_collection_of_primitive_values(str)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "duration": lambda n : setattr(self, 'duration', n.get_object_value(Timedelta)),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_str_value()),
-            "is_active": lambda n : setattr(self, 'is_active', n.get_bool_value()),
-            "is_premium": lambda n : setattr(self, 'is_premium', n.get_bool_value()),
-            "is_searchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "number_of_pages": lambda n : setattr(self, 'number_of_pages', n.get_int_value()),
-            "skill_tags": lambda n : setattr(self, 'skill_tags', n.get_collection_of_primitive_values(str)),
-            "source_name": lambda n : setattr(self, 'source_name', n.get_str_value()),
-            "thumbnail_web_url": lambda n : setattr(self, 'thumbnail_web_url', n.get_str_value()),
+            "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
+            "isPremium": lambda n : setattr(self, 'is_premium', n.get_bool_value()),
+            "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "numberOfPages": lambda n : setattr(self, 'number_of_pages', n.get_int_value()),
+            "skillTags": lambda n : setattr(self, 'skill_tags', n.get_collection_of_primitive_values(str)),
+            "sourceName": lambda n : setattr(self, 'source_name', n.get_str_value()),
+            "thumbnailWebUrl": lambda n : setattr(self, 'thumbnail_web_url', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -241,7 +241,7 @@ class LearningContent(entity.Entity):
         """
         Sets the isActive property value. Indicates whether the content is active or not. Inactive content will not show up in the UI. The default value is true. Optional.
         Args:
-            value: Value to set for the isActive property.
+            value: Value to set for the is_active property.
         """
         self._is_active = value
     
@@ -258,7 +258,7 @@ class LearningContent(entity.Entity):
         """
         Sets the isPremium property value. Indicates whether the learning content requires the user to sign-in on the learning provider platform or not. The default value is false. Optional.
         Args:
-            value: Value to set for the isPremium property.
+            value: Value to set for the is_premium property.
         """
         self._is_premium = value
     
@@ -275,7 +275,7 @@ class LearningContent(entity.Entity):
         """
         Sets the isSearchable property value. Indicates whether the learning content is searchable or not. The default value is true. Optional.
         Args:
-            value: Value to set for the isSearchable property.
+            value: Value to set for the is_searchable property.
         """
         self._is_searchable = value
     
@@ -292,7 +292,7 @@ class LearningContent(entity.Entity):
         """
         Sets the languageTag property value. The language of the learning content, for example, en-us or fr-fr. Required.
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -309,7 +309,7 @@ class LearningContent(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -326,7 +326,7 @@ class LearningContent(entity.Entity):
         """
         Sets the numberOfPages property value. The number of pages of the learning content, for example, 9. Optional.
         Args:
-            value: Value to set for the numberOfPages property.
+            value: Value to set for the number_of_pages property.
         """
         self._number_of_pages = value
     
@@ -371,7 +371,7 @@ class LearningContent(entity.Entity):
         """
         Sets the skillTags property value. The skills tags associated with the learning content. Optional.
         Args:
-            value: Value to set for the skillTags property.
+            value: Value to set for the skill_tags property.
         """
         self._skill_tags = value
     
@@ -388,7 +388,7 @@ class LearningContent(entity.Entity):
         """
         Sets the sourceName property value. The source name of the learning content, such as LinkedIn Learning or Coursera. Optional.
         Args:
-            value: Value to set for the sourceName property.
+            value: Value to set for the source_name property.
         """
         self._source_name = value
     
@@ -405,7 +405,7 @@ class LearningContent(entity.Entity):
         """
         Sets the thumbnailWebUrl property value. The URL of learning content thumbnail image. Optional.
         Args:
-            value: Value to set for the thumbnailWebUrl property.
+            value: Value to set for the thumbnail_web_url property.
         """
         self._thumbnail_web_url = value
     

@@ -56,8 +56,8 @@ class DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate(Additio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "max_value": lambda n : setattr(self, 'max_value', n.get_int_value()),
-            "min_value": lambda n : setattr(self, 'min_value', n.get_int_value()),
+            "maxValue": lambda n : setattr(self, 'max_value', n.get_int_value()),
+            "minValue": lambda n : setattr(self, 'min_value', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -75,7 +75,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate(Additio
         """
         Sets the maxValue property value. Integer Setting Maximum Value. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the maxValue property.
+            value: Value to set for the max_value property.
         """
         self._max_value = value
     
@@ -92,7 +92,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate(Additio
         """
         Sets the minValue property value. Integer Setting Minimum Value. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the minValue property.
+            value: Value to set for the min_value property.
         """
         self._min_value = value
     
@@ -109,7 +109,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate(Additio
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

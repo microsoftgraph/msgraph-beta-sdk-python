@@ -12,38 +12,59 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 synchronization_job = lazy_import('msgraph.generated.models.synchronization_job')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-pause_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.pause.pause_request_builder')
-provision_on_demand_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.provision_on_demand.provision_on_demand_request_builder')
-restart_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.restart.restart_request_builder')
+microsoft_graph_pause_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.microsoft_graph_pause.microsoft_graph_pause_request_builder')
+microsoft_graph_provision_on_demand_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.microsoft_graph_provision_on_demand.microsoft_graph_provision_on_demand_request_builder')
+microsoft_graph_restart_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.microsoft_graph_restart.microsoft_graph_restart_request_builder')
+microsoft_graph_start_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.microsoft_graph_start.microsoft_graph_start_request_builder')
+microsoft_graph_stop_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.microsoft_graph_stop.microsoft_graph_stop_request_builder')
+microsoft_graph_validate_credentials_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.microsoft_graph_validate_credentials.microsoft_graph_validate_credentials_request_builder')
 schema_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.schema_request_builder')
-start_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.start.start_request_builder')
-stop_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.stop.stop_request_builder')
-validate_credentials_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.validate_credentials.validate_credentials_request_builder')
 
 class SynchronizationJobItemRequestBuilder():
     """
     Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
     """
     @property
-    def pause(self) -> pause_request_builder.PauseRequestBuilder:
+    def microsoft_graph_pause(self) -> microsoft_graph_pause_request_builder.MicrosoftGraphPauseRequestBuilder:
         """
         Provides operations to call the pause method.
         """
-        return pause_request_builder.PauseRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_pause_request_builder.MicrosoftGraphPauseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def provision_on_demand(self) -> provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder:
+    def microsoft_graph_provision_on_demand(self) -> microsoft_graph_provision_on_demand_request_builder.MicrosoftGraphProvisionOnDemandRequestBuilder:
         """
         Provides operations to call the provisionOnDemand method.
         """
-        return provision_on_demand_request_builder.ProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_provision_on_demand_request_builder.MicrosoftGraphProvisionOnDemandRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def restart(self) -> restart_request_builder.RestartRequestBuilder:
+    def microsoft_graph_restart(self) -> microsoft_graph_restart_request_builder.MicrosoftGraphRestartRequestBuilder:
         """
         Provides operations to call the restart method.
         """
-        return restart_request_builder.RestartRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_restart_request_builder.MicrosoftGraphRestartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_start(self) -> microsoft_graph_start_request_builder.MicrosoftGraphStartRequestBuilder:
+        """
+        Provides operations to call the start method.
+        """
+        return microsoft_graph_start_request_builder.MicrosoftGraphStartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_stop(self) -> microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder:
+        """
+        Provides operations to call the stop method.
+        """
+        return microsoft_graph_stop_request_builder.MicrosoftGraphStopRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_validate_credentials(self) -> microsoft_graph_validate_credentials_request_builder.MicrosoftGraphValidateCredentialsRequestBuilder:
+        """
+        Provides operations to call the validateCredentials method.
+        """
+        return microsoft_graph_validate_credentials_request_builder.MicrosoftGraphValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def schema(self) -> schema_request_builder.SchemaRequestBuilder:
@@ -51,27 +72,6 @@ class SynchronizationJobItemRequestBuilder():
         Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
         """
         return schema_request_builder.SchemaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def start(self) -> start_request_builder.StartRequestBuilder:
-        """
-        Provides operations to call the start method.
-        """
-        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def stop(self) -> stop_request_builder.StopRequestBuilder:
-        """
-        Provides operations to call the stop method.
-        """
-        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def validate_credentials(self) -> validate_credentials_request_builder.ValidateCredentialsRequestBuilder:
-        """
-        Provides operations to call the validateCredentials method.
-        """
-        return validate_credentials_request_builder.ValidateCredentialsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -91,12 +91,11 @@ class SynchronizationJobItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property jobs for servicePrincipals
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +106,13 @@ class SynchronizationJobItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_job.SynchronizationJob]:
+    async def get(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
         """
         Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job.SynchronizationJob]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +124,14 @@ class SynchronizationJobItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
     
-    async def patch(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_job.SynchronizationJob]:
+    async def patch(self,body: Optional[synchronization_job.SynchronizationJob] = None, request_configuration: Optional[SynchronizationJobItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_job.SynchronizationJob]:
         """
         Update the navigation property jobs in servicePrincipals
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_job.SynchronizationJob]
         """
         if body is None:
@@ -148,7 +145,7 @@ class SynchronizationJobItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_job.SynchronizationJob, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SynchronizationJobItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

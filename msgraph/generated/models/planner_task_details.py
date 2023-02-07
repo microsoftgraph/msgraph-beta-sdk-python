@@ -83,7 +83,7 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
             "checklist": lambda n : setattr(self, 'checklist', n.get_object_value(planner_checklist_items.PlannerChecklistItems)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
-            "preview_type": lambda n : setattr(self, 'preview_type', n.get_enum_value(planner_preview_type.PlannerPreviewType)),
+            "previewType": lambda n : setattr(self, 'preview_type', n.get_enum_value(planner_preview_type.PlannerPreviewType)),
             "references": lambda n : setattr(self, 'references', n.get_object_value(planner_external_references.PlannerExternalReferences)),
         }
         super_fields = super().get_field_deserializers()
@@ -120,7 +120,7 @@ class PlannerTaskDetails(planner_delta.PlannerDelta):
         """
         Sets the previewType property value. This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
         Args:
-            value: Value to set for the previewType property.
+            value: Value to set for the preview_type property.
         """
         self._preview_type = value
     

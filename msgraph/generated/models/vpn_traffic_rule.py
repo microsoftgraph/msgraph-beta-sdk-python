@@ -42,7 +42,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the appId property value. App identifier, if this traffic rule is triggered by an app.
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
@@ -59,7 +59,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the appType property value. Indicates the type of app that a VPN traffic rule is associated with.
         Args:
-            value: Value to set for the appType property.
+            value: Value to set for the app_type property.
         """
         self._app_type = value
     
@@ -128,17 +128,17 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "app_type": lambda n : setattr(self, 'app_type', n.get_enum_value(vpn_traffic_rule_app_type.VpnTrafficRuleAppType)),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(vpn_traffic_rule_app_type.VpnTrafficRuleAppType)),
             "claims": lambda n : setattr(self, 'claims', n.get_str_value()),
-            "local_address_ranges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_object_values(i_pv4_range.IPv4Range)),
-            "local_port_ranges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_object_values(number_range.NumberRange)),
+            "localAddressRanges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_object_values(i_pv4_range.IPv4Range)),
+            "localPortRanges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_object_values(number_range.NumberRange)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "protocols": lambda n : setattr(self, 'protocols', n.get_int_value()),
-            "remote_address_ranges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_object_values(i_pv4_range.IPv4Range)),
-            "remote_port_ranges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_object_values(number_range.NumberRange)),
-            "routing_policy_type": lambda n : setattr(self, 'routing_policy_type', n.get_enum_value(vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType)),
+            "remoteAddressRanges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_object_values(i_pv4_range.IPv4Range)),
+            "remotePortRanges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_object_values(number_range.NumberRange)),
+            "routingPolicyType": lambda n : setattr(self, 'routing_policy_type', n.get_enum_value(vpn_traffic_rule_routing_policy_type.VpnTrafficRuleRoutingPolicyType)),
         }
         return fields
     
@@ -155,7 +155,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the localAddressRanges property value. Local address range. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the localAddressRanges property.
+            value: Value to set for the local_address_ranges property.
         """
         self._local_address_ranges = value
     
@@ -172,7 +172,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the localPortRanges property value. Local port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the localPortRanges property.
+            value: Value to set for the local_port_ranges property.
         """
         self._local_port_ranges = value
     
@@ -206,7 +206,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -240,7 +240,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the remoteAddressRanges property value. Remote address range. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the remoteAddressRanges property.
+            value: Value to set for the remote_address_ranges property.
         """
         self._remote_address_ranges = value
     
@@ -257,7 +257,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the remotePortRanges property value. Remote port range can be set only when protocol is either TCP or UDP (6 or 17). This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the remotePortRanges property.
+            value: Value to set for the remote_port_ranges property.
         """
         self._remote_port_ranges = value
     
@@ -274,7 +274,7 @@ class VpnTrafficRule(AdditionalDataHolder, Parsable):
         """
         Sets the routingPolicyType property value. Specifies the routing policy for a VPN traffic rule.
         Args:
-            value: Value to set for the routingPolicyType property.
+            value: Value to set for the routing_policy_type property.
         """
         self._routing_policy_type = value
     

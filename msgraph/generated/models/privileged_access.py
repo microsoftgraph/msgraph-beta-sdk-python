@@ -13,7 +13,7 @@ governance_role_setting = lazy_import('msgraph.generated.models.governance_role_
 class PrivilegedAccess(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new privilegedAccess and sets the default values.
+        Instantiates a new PrivilegedAccess and sets the default values.
         """
         super().__init__()
         # The display name of the provider managed by PIM.
@@ -56,7 +56,7 @@ class PrivilegedAccess(entity.Entity):
         """
         Sets the displayName property value. The display name of the provider managed by PIM.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -66,12 +66,12 @@ class PrivilegedAccess(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "resources": lambda n : setattr(self, 'resources', n.get_collection_of_object_values(governance_resource.GovernanceResource)),
-            "role_assignment_requests": lambda n : setattr(self, 'role_assignment_requests', n.get_collection_of_object_values(governance_role_assignment_request.GovernanceRoleAssignmentRequest)),
-            "role_assignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(governance_role_assignment.GovernanceRoleAssignment)),
-            "role_definitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(governance_role_definition.GovernanceRoleDefinition)),
-            "role_settings": lambda n : setattr(self, 'role_settings', n.get_collection_of_object_values(governance_role_setting.GovernanceRoleSetting)),
+            "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(governance_role_assignment.GovernanceRoleAssignment)),
+            "roleAssignmentRequests": lambda n : setattr(self, 'role_assignment_requests', n.get_collection_of_object_values(governance_role_assignment_request.GovernanceRoleAssignmentRequest)),
+            "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(governance_role_definition.GovernanceRoleDefinition)),
+            "roleSettings": lambda n : setattr(self, 'role_settings', n.get_collection_of_object_values(governance_role_setting.GovernanceRoleSetting)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,7 +107,7 @@ class PrivilegedAccess(entity.Entity):
         """
         Sets the roleAssignmentRequests property value. A collection of role assignment requests for the provider.
         Args:
-            value: Value to set for the roleAssignmentRequests property.
+            value: Value to set for the role_assignment_requests property.
         """
         self._role_assignment_requests = value
     
@@ -124,7 +124,7 @@ class PrivilegedAccess(entity.Entity):
         """
         Sets the roleAssignments property value. A collection of role assignments for the provider.
         Args:
-            value: Value to set for the roleAssignments property.
+            value: Value to set for the role_assignments property.
         """
         self._role_assignments = value
     
@@ -141,7 +141,7 @@ class PrivilegedAccess(entity.Entity):
         """
         Sets the roleDefinitions property value. A collection of role defintions for the provider.
         Args:
-            value: Value to set for the roleDefinitions property.
+            value: Value to set for the role_definitions property.
         """
         self._role_definitions = value
     
@@ -158,7 +158,7 @@ class PrivilegedAccess(entity.Entity):
         """
         Sets the roleSettings property value. A collection of role settings for the provider.
         Args:
-            value: Value to set for the roleSettings property.
+            value: Value to set for the role_settings property.
         """
         self._role_settings = value
     
@@ -173,8 +173,8 @@ class PrivilegedAccess(entity.Entity):
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("resources", self.resources)
-        writer.write_collection_of_object_values("roleAssignmentRequests", self.role_assignment_requests)
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)
+        writer.write_collection_of_object_values("roleAssignmentRequests", self.role_assignment_requests)
         writer.write_collection_of_object_values("roleDefinitions", self.role_definitions)
         writer.write_collection_of_object_values("roleSettings", self.role_settings)
     

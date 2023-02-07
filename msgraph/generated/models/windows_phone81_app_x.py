@@ -21,7 +21,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the applicableArchitectures property value. Contains properties for Windows architecture.
         Args:
-            value: Value to set for the applicableArchitectures property.
+            value: Value to set for the applicable_architectures property.
         """
         self._applicable_architectures = value
     
@@ -66,14 +66,14 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applicable_architectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(windows_architecture.WindowsArchitecture)),
-            "identity_name": lambda n : setattr(self, 'identity_name', n.get_str_value()),
-            "identity_publisher_hash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),
-            "identity_resource_identifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
-            "identity_version": lambda n : setattr(self, 'identity_version', n.get_str_value()),
-            "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
-            "phone_product_identifier": lambda n : setattr(self, 'phone_product_identifier', n.get_str_value()),
-            "phone_publisher_id": lambda n : setattr(self, 'phone_publisher_id', n.get_str_value()),
+            "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(windows_architecture.WindowsArchitecture)),
+            "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
+            "identityPublisherHash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),
+            "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
+            "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
+            "phoneProductIdentifier": lambda n : setattr(self, 'phone_product_identifier', n.get_str_value()),
+            "phonePublisherId": lambda n : setattr(self, 'phone_publisher_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -92,7 +92,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the identityName property value. The Identity Name.
         Args:
-            value: Value to set for the identityName property.
+            value: Value to set for the identity_name property.
         """
         self._identity_name = value
     
@@ -109,7 +109,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the identityPublisherHash property value. The Identity Publisher Hash.
         Args:
-            value: Value to set for the identityPublisherHash property.
+            value: Value to set for the identity_publisher_hash property.
         """
         self._identity_publisher_hash = value
     
@@ -126,7 +126,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the identityResourceIdentifier property value. The Identity Resource Identifier.
         Args:
-            value: Value to set for the identityResourceIdentifier property.
+            value: Value to set for the identity_resource_identifier property.
         """
         self._identity_resource_identifier = value
     
@@ -143,7 +143,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the identityVersion property value. The identity version.
         Args:
-            value: Value to set for the identityVersion property.
+            value: Value to set for the identity_version property.
         """
         self._identity_version = value
     
@@ -160,7 +160,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the minimumSupportedOperatingSystem property value. The minimum operating system required for a Windows mobile app.
         Args:
-            value: Value to set for the minimumSupportedOperatingSystem property.
+            value: Value to set for the minimum_supported_operating_system property.
         """
         self._minimum_supported_operating_system = value
     
@@ -177,7 +177,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the phoneProductIdentifier property value. The Phone Product Identifier.
         Args:
-            value: Value to set for the phoneProductIdentifier property.
+            value: Value to set for the phone_product_identifier property.
         """
         self._phone_product_identifier = value
     
@@ -194,7 +194,7 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         Sets the phonePublisherId property value. The Phone Publisher Id.
         Args:
-            value: Value to set for the phonePublisherId property.
+            value: Value to set for the phone_publisher_id property.
         """
         self._phone_publisher_id = value
     

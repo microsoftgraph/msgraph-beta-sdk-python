@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementConfigurationAzureAdTrustType(Enum):
     # No AAD Trust Type specified
-    None_escaped = "none",
+    None_ = "none",
     # AAD Joined Trust Type
     AzureAdJoined = "azureAdJoined",
     # AddWorkAccount

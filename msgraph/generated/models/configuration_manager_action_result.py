@@ -20,7 +20,7 @@ class ConfigurationManagerActionResult(device_action_result.DeviceActionResult):
         """
         Sets the actionDeliveryStatus property value. Delivery state of Configuration Manager device action
         Args:
-            value: Value to set for the actionDeliveryStatus property.
+            value: Value to set for the action_delivery_status property.
         """
         self._action_delivery_status = value
     
@@ -61,7 +61,7 @@ class ConfigurationManagerActionResult(device_action_result.DeviceActionResult):
         """
         Sets the errorCode property value. Error code of Configuration Manager action from client
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -71,8 +71,8 @@ class ConfigurationManagerActionResult(device_action_result.DeviceActionResult):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_delivery_status": lambda n : setattr(self, 'action_delivery_status', n.get_enum_value(configuration_manager_action_delivery_status.ConfigurationManagerActionDeliveryStatus)),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "actionDeliveryStatus": lambda n : setattr(self, 'action_delivery_status', n.get_enum_value(configuration_manager_action_delivery_status.ConfigurationManagerActionDeliveryStatus)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

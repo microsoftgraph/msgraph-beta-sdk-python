@@ -83,7 +83,7 @@ class InstitutionData(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Name of the institution the user studied at.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,10 +94,10 @@ class InstitutionData(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(physical_address.PhysicalAddress)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
     
@@ -131,7 +131,7 @@ class InstitutionData(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -163,7 +163,7 @@ class InstitutionData(AdditionalDataHolder, Parsable):
         """
         Sets the webUrl property value. Link to the institution or department homepage.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

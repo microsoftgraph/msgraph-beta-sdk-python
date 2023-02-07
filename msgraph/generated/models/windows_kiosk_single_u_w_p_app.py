@@ -34,7 +34,7 @@ class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppCo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "uwp_app": lambda n : setattr(self, 'uwp_app', n.get_object_value(windows_kiosk_u_w_p_app.WindowsKioskUWPApp)),
+            "uwpApp": lambda n : setattr(self, 'uwp_app', n.get_object_value(windows_kiosk_u_w_p_app.WindowsKioskUWPApp)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class WindowsKioskSingleUWPApp(windows_kiosk_app_configuration.WindowsKioskAppCo
         """
         Sets the uwpApp property value. The uwpApp property
         Args:
-            value: Value to set for the uwpApp property.
+            value: Value to set for the uwp_app property.
         """
         self._uwp_app = value
     

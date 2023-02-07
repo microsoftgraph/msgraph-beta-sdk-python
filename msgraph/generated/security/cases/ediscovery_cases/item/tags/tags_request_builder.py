@@ -13,8 +13,8 @@ from typing import Any, Callable, Dict, List, Optional, Union
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 ediscovery_review_tag = lazy_import('msgraph.generated.models.security.ediscovery_review_tag')
 ediscovery_review_tag_collection_response = lazy_import('msgraph.generated.models.security.ediscovery_review_tag_collection_response')
-as_hierarchy_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.tags.as_hierarchy.as_hierarchy_request_builder')
 count_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.tags.count.count_request_builder')
+microsoft_graph_security_as_hierarchy_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.tags.microsoft_graph_security_as_hierarchy.microsoft_graph_security_as_hierarchy_request_builder')
 
 class TagsRequestBuilder():
     """
@@ -27,12 +27,12 @@ class TagsRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def as_hierarchy(self,) -> as_hierarchy_request_builder.AsHierarchyRequestBuilder:
+    @property
+    def microsoft_graph_security_as_hierarchy(self) -> microsoft_graph_security_as_hierarchy_request_builder.MicrosoftGraphSecurityAsHierarchyRequestBuilder:
         """
         Provides operations to call the asHierarchy method.
-        Returns: as_hierarchy_request_builder.AsHierarchyRequestBuilder
         """
-        return as_hierarchy_request_builder.AsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_security_as_hierarchy_request_builder.MicrosoftGraphSecurityAsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class TagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse]:
+    async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse]:
         """
         Get a list of eDiscoveryReviewTag objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class TagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_tag_collection_response.EdiscoveryReviewTagCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[ediscovery_review_tag.EdiscoveryReviewTag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
+    async def post(self,body: Optional[ediscovery_review_tag.EdiscoveryReviewTag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[ediscovery_review_tag.EdiscoveryReviewTag]:
         """
         Create a new ediscoveryReviewTag object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_tag.EdiscoveryReviewTag]
         """
         if body is None:
@@ -91,7 +89,7 @@ class TagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_tag.EdiscoveryReviewTag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_tag.EdiscoveryReviewTag, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """

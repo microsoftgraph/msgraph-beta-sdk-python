@@ -10,13 +10,13 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.assignments.assignments_request_builder')
 device_management_script_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.assignments.item.device_management_script_assignment_item_request_builder')
 device_run_states_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.device_run_states.device_run_states_request_builder')
 device_management_script_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.device_run_states.item.device_management_script_device_state_item_request_builder')
 group_assignments_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.group_assignments.group_assignments_request_builder')
 device_management_script_group_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.group_assignments.item.device_management_script_group_assignment_item_request_builder')
+microsoft_graph_assign_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.microsoft_graph_assign.microsoft_graph_assign_request_builder')
 run_summary_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.run_summary.run_summary_request_builder')
 user_run_states_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.user_run_states.user_run_states_request_builder')
 device_management_script_user_state_item_request_builder = lazy_import('msgraph.generated.device_management.device_custom_attribute_shell_scripts.item.user_run_states.item.device_management_script_user_state_item_request_builder')
@@ -27,13 +27,6 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
     """
     Provides operations to manage the deviceCustomAttributeShellScripts property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
         """
@@ -54,6 +47,13 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         Provides operations to manage the groupAssignments property of the microsoft.graph.deviceCustomAttributeShellScript entity.
         """
         return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def microsoft_graph_assign(self) -> microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        return microsoft_graph_assign_request_builder.MicrosoftGraphAssignRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def run_summary(self) -> run_summary_request_builder.RunSummaryRequestBuilder:
@@ -100,12 +100,11 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceCustomAttributeShellScripts for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -116,7 +115,7 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_run_states_by_id(self,id: str) -> device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder:
         """
@@ -131,12 +130,11 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         url_tpl_params["deviceManagementScriptDeviceState%2Did"] = id
         return device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]:
+    async def get(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]:
         """
         The list of device custom attribute shell scripts associated with the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]
         """
         request_info = self.to_get_request_information(
@@ -148,7 +146,7 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_custom_attribute_shell_script.DeviceCustomAttributeShellScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_custom_attribute_shell_script.DeviceCustomAttributeShellScript, error_mapping)
     
     def group_assignments_by_id(self,id: str) -> device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder:
         """
@@ -163,13 +161,12 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         url_tpl_params["deviceManagementScriptGroupAssignment%2Did"] = id
         return device_management_script_group_assignment_item_request_builder.DeviceManagementScriptGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript] = None, request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]:
+    async def patch(self,body: Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript] = None, request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]:
         """
         Update the navigation property deviceCustomAttributeShellScripts in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_custom_attribute_shell_script.DeviceCustomAttributeShellScript]
         """
         if body is None:
@@ -183,7 +180,7 @@ class DeviceCustomAttributeShellScriptItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_custom_attribute_shell_script.DeviceCustomAttributeShellScript, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_custom_attribute_shell_script.DeviceCustomAttributeShellScript, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceCustomAttributeShellScriptItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

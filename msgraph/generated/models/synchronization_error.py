@@ -75,7 +75,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_actionable": lambda n : setattr(self, 'tenant_actionable', n.get_bool_value()),
+            "tenantActionable": lambda n : setattr(self, 'tenant_actionable', n.get_bool_value()),
         }
         return fields
     
@@ -109,7 +109,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -140,7 +140,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
         """
         Sets the tenantActionable property value. The tenantActionable property
         Args:
-            value: Value to set for the tenantActionable property.
+            value: Value to set for the tenant_actionable property.
         """
         self._tenant_actionable = value
     

@@ -89,7 +89,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the deviceId property value. Device ID
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -106,7 +106,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the deviceName property value. Device name
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -123,7 +123,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the displayVersion property value. Human readable version of the application
         Args:
-            value: Value to set for the displayVersion property.
+            value: Value to set for the display_version property.
         """
         self._display_version = value
     
@@ -140,7 +140,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the errorCode property value. The error code for install or uninstall failures.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -151,18 +151,18 @@ class MobileAppInstallStatus(entity.Entity):
         """
         fields = {
             "app": lambda n : setattr(self, 'app', n.get_object_value(mobile_app.MobileApp)),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "display_version": lambda n : setattr(self, 'display_version', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "install_state": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),
-            "install_state_detail": lambda n : setattr(self, 'install_state_detail', n.get_enum_value(resultant_app_state_detail.ResultantAppStateDetail)),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "mobile_app_install_status_value": lambda n : setattr(self, 'mobile_app_install_status_value', n.get_enum_value(resultant_app_state.ResultantAppState)),
-            "os_description": lambda n : setattr(self, 'os_description', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "installState": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),
+            "installStateDetail": lambda n : setattr(self, 'install_state_detail', n.get_enum_value(resultant_app_state_detail.ResultantAppStateDetail)),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "mobileAppInstallStatusValue": lambda n : setattr(self, 'mobile_app_install_status_value', n.get_enum_value(resultant_app_state.ResultantAppState)),
+            "osDescription": lambda n : setattr(self, 'os_description', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -181,7 +181,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the installState property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
         Args:
-            value: Value to set for the installState property.
+            value: Value to set for the install_state property.
         """
         self._install_state = value
     
@@ -198,7 +198,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the installStateDetail property value. Enum indicating additional details regarding why an application has a particular install state.
         Args:
-            value: Value to set for the installStateDetail property.
+            value: Value to set for the install_state_detail property.
         """
         self._install_state_detail = value
     
@@ -215,7 +215,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the lastSyncDateTime property value. Last sync date time
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -232,7 +232,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the mobileAppInstallStatusValue property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
         Args:
-            value: Value to set for the mobileAppInstallStatusValue property.
+            value: Value to set for the mobile_app_install_status_value property.
         """
         self._mobile_app_install_status_value = value
     
@@ -249,7 +249,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the osDescription property value. OS Description
         Args:
-            value: Value to set for the osDescription property.
+            value: Value to set for the os_description property.
         """
         self._os_description = value
     
@@ -266,7 +266,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the osVersion property value. OS Version
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -306,7 +306,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the userName property value. Device User Name
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -323,7 +323,7 @@ class MobileAppInstallStatus(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

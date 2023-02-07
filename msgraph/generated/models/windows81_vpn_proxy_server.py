@@ -19,7 +19,7 @@ class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
         """
         Sets the automaticallyDetectProxySettings property value. Automatically detect proxy settings.
         Args:
-            value: Value to set for the automaticallyDetectProxySettings property.
+            value: Value to set for the automatically_detect_proxy_settings property.
         """
         self._automatically_detect_proxy_settings = value
     
@@ -36,7 +36,7 @@ class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
         """
         Sets the bypassProxyServerForLocalAddress property value. Bypass proxy server for local address.
         Args:
-            value: Value to set for the bypassProxyServerForLocalAddress property.
+            value: Value to set for the bypass_proxy_server_for_local_address property.
         """
         self._bypass_proxy_server_for_local_address = value
     
@@ -69,8 +69,8 @@ class Windows81VpnProxyServer(vpn_proxy_server.VpnProxyServer):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "automatically_detect_proxy_settings": lambda n : setattr(self, 'automatically_detect_proxy_settings', n.get_bool_value()),
-            "bypass_proxy_server_for_local_address": lambda n : setattr(self, 'bypass_proxy_server_for_local_address', n.get_bool_value()),
+            "automaticallyDetectProxySettings": lambda n : setattr(self, 'automatically_detect_proxy_settings', n.get_bool_value()),
+            "bypassProxyServerForLocalAddress": lambda n : setattr(self, 'bypass_proxy_server_for_local_address', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

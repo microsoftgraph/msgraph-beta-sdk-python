@@ -51,12 +51,11 @@ class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property eligibilityScheduleInstances for identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
+    async def get(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
         """
         Get eligibilityScheduleInstances from identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance, error_mapping)
     
-    async def patch(self,body: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance] = None, request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
+    async def patch(self,body: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance] = None, request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]:
         """
         Update the navigation property eligibilityScheduleInstances in identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance]
         """
         if body is None:
@@ -108,7 +105,7 @@ class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

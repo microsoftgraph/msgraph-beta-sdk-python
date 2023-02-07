@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-run_health_checks_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.on_premises_connections.item.run_health_checks.run_health_checks_request_builder')
-update_ad_domain_password_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.on_premises_connections.item.update_ad_domain_password.update_ad_domain_password_request_builder')
+microsoft_graph_run_health_checks_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.on_premises_connections.item.microsoft_graph_run_health_checks.microsoft_graph_run_health_checks_request_builder')
+microsoft_graph_update_ad_domain_password_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.on_premises_connections.item.microsoft_graph_update_ad_domain_password.microsoft_graph_update_ad_domain_password_request_builder')
 cloud_pc_on_premises_connection = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -20,18 +20,18 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
     Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
     """
     @property
-    def run_health_checks(self) -> run_health_checks_request_builder.RunHealthChecksRequestBuilder:
+    def microsoft_graph_run_health_checks(self) -> microsoft_graph_run_health_checks_request_builder.MicrosoftGraphRunHealthChecksRequestBuilder:
         """
         Provides operations to call the runHealthChecks method.
         """
-        return run_health_checks_request_builder.RunHealthChecksRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_run_health_checks_request_builder.MicrosoftGraphRunHealthChecksRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_ad_domain_password(self) -> update_ad_domain_password_request_builder.UpdateAdDomainPasswordRequestBuilder:
+    def microsoft_graph_update_ad_domain_password(self) -> microsoft_graph_update_ad_domain_password_request_builder.MicrosoftGraphUpdateAdDomainPasswordRequestBuilder:
         """
         Provides operations to call the updateAdDomainPassword method.
         """
-        return update_ad_domain_password_request_builder.UpdateAdDomainPasswordRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_update_ad_domain_password_request_builder.MicrosoftGraphUpdateAdDomainPasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property onPremisesConnections for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
+    async def get(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
         A defined collection of Azure resource information that can be used to establish on-premises network connectivity for Cloud PCs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
+    async def patch(self,body: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection] = None, request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]:
         """
         Update the navigation property onPremisesConnections in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_on_premises_connection.CloudPcOnPremisesConnection]
         """
         if body is None:
@@ -108,7 +105,7 @@ class CloudPcOnPremisesConnectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_on_premises_connection.CloudPcOnPremisesConnection, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcOnPremisesConnectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """

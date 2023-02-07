@@ -61,7 +61,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the enrolledByUser property value. The User Principal Name (UPN) of the user that enrolled the device
         Args:
-            value: Value to set for the enrolledByUser property.
+            value: Value to set for the enrolled_by_user property.
         """
         self._enrolled_by_user = value
     
@@ -78,7 +78,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the errorCode property value. The error code, if any. Valid values -9.22337203685478E+18 to 9.22337203685478E+18
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -95,7 +95,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the expirationDateTimeUTC property value. The DateTime of the expiration of the logs
         Args:
-            value: Value to set for the expirationDateTimeUTC property.
+            value: Value to set for the expiration_date_time_u_t_c property.
         """
         self._expiration_date_time_u_t_c = value
     
@@ -105,13 +105,13 @@ class DeviceLogCollectionResponse(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enrolled_by_user": lambda n : setattr(self, 'enrolled_by_user', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "expiration_date_time_u_t_c": lambda n : setattr(self, 'expiration_date_time_u_t_c', n.get_datetime_value()),
-            "initiated_by_user_principal_name": lambda n : setattr(self, 'initiated_by_user_principal_name', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_object_value(Guid)),
-            "received_date_time_u_t_c": lambda n : setattr(self, 'received_date_time_u_t_c', n.get_datetime_value()),
-            "requested_date_time_u_t_c": lambda n : setattr(self, 'requested_date_time_u_t_c', n.get_datetime_value()),
+            "enrolledByUser": lambda n : setattr(self, 'enrolled_by_user', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "expirationDateTimeUTC": lambda n : setattr(self, 'expiration_date_time_u_t_c', n.get_datetime_value()),
+            "initiatedByUserPrincipalName": lambda n : setattr(self, 'initiated_by_user_principal_name', n.get_str_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_object_value(Guid)),
+            "receivedDateTimeUTC": lambda n : setattr(self, 'received_date_time_u_t_c', n.get_datetime_value()),
+            "requestedDateTimeUTC": lambda n : setattr(self, 'requested_date_time_u_t_c', n.get_datetime_value()),
             "size": lambda n : setattr(self, 'size', n.get_float_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
@@ -132,7 +132,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the initiatedByUserPrincipalName property value. The UPN for who initiated the request
         Args:
-            value: Value to set for the initiatedByUserPrincipalName property.
+            value: Value to set for the initiated_by_user_principal_name property.
         """
         self._initiated_by_user_principal_name = value
     
@@ -149,7 +149,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the managedDeviceId property value. The device Id
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -166,7 +166,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the receivedDateTimeUTC property value. The DateTime the request was received
         Args:
-            value: Value to set for the receivedDateTimeUTC property.
+            value: Value to set for the received_date_time_u_t_c property.
         """
         self._received_date_time_u_t_c = value
     
@@ -183,7 +183,7 @@ class DeviceLogCollectionResponse(entity.Entity):
         """
         Sets the requestedDateTimeUTC property value. The DateTime of the request
         Args:
-            value: Value to set for the requestedDateTimeUTC property.
+            value: Value to set for the requested_date_time_u_t_c property.
         """
         self._requested_date_time_u_t_c = value
     

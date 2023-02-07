@@ -22,7 +22,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the compliantCount property value. Number of compliant devices
         Args:
-            value: Value to set for the compliantCount property.
+            value: Value to set for the compliant_count property.
         """
         self._compliant_count = value
     
@@ -39,7 +39,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the conflictCount property value. Number of devices in conflict
         Args:
-            value: Value to set for the conflictCount property.
+            value: Value to set for the conflict_count property.
         """
         self._conflict_count = value
     
@@ -90,7 +90,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the errorCount property value. Number of error devices
         Args:
-            value: Value to set for the errorCount property.
+            value: Value to set for the error_count property.
         """
         self._error_count = value
     
@@ -100,13 +100,13 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliant_count": lambda n : setattr(self, 'compliant_count', n.get_int_value()),
-            "conflict_count": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
-            "error_count": lambda n : setattr(self, 'error_count', n.get_int_value()),
-            "non_compliant_count": lambda n : setattr(self, 'non_compliant_count', n.get_int_value()),
-            "not_applicable_count": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
-            "remediated_count": lambda n : setattr(self, 'remediated_count', n.get_int_value()),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "compliantCount": lambda n : setattr(self, 'compliant_count', n.get_int_value()),
+            "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
+            "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
+            "nonCompliantCount": lambda n : setattr(self, 'non_compliant_count', n.get_int_value()),
+            "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),
+            "remediatedCount": lambda n : setattr(self, 'remediated_count', n.get_int_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the nonCompliantCount property value. Number of non compliant devices
         Args:
-            value: Value to set for the nonCompliantCount property.
+            value: Value to set for the non_compliant_count property.
         """
         self._non_compliant_count = value
     
@@ -142,7 +142,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the notApplicableCount property value. Number of not applicable devices
         Args:
-            value: Value to set for the notApplicableCount property.
+            value: Value to set for the not_applicable_count property.
         """
         self._not_applicable_count = value
     
@@ -159,7 +159,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the remediatedCount property value. Number of remediated devices
         Args:
-            value: Value to set for the remediatedCount property.
+            value: Value to set for the remediated_count property.
         """
         self._remediated_count = value
     
@@ -193,7 +193,7 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         """
         Sets the settingName property value. Name of a setting
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     

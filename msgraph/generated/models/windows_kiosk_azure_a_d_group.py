@@ -42,7 +42,7 @@ class WindowsKioskAzureADGroup(windows_kiosk_user.WindowsKioskUser):
         """
         Sets the displayName property value. The display name of the AzureAD group that will be locked to this kiosk configuration
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -52,8 +52,8 @@ class WindowsKioskAzureADGroup(windows_kiosk_user.WindowsKioskUser):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class WindowsKioskAzureADGroup(windows_kiosk_user.WindowsKioskUser):
         """
         Sets the groupId property value. The ID of the AzureAD group that will be locked to this kiosk configuration
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     

@@ -12,26 +12,26 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 permission = lazy_import('msgraph.generated.models.permission')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-grant_request_builder = lazy_import('msgraph.generated.shares.item.permission.grant.grant_request_builder')
-revoke_grants_request_builder = lazy_import('msgraph.generated.shares.item.permission.revoke_grants.revoke_grants_request_builder')
+microsoft_graph_grant_request_builder = lazy_import('msgraph.generated.shares.item.permission.microsoft_graph_grant.microsoft_graph_grant_request_builder')
+microsoft_graph_revoke_grants_request_builder = lazy_import('msgraph.generated.shares.item.permission.microsoft_graph_revoke_grants.microsoft_graph_revoke_grants_request_builder')
 
 class PermissionRequestBuilder():
     """
     Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.
     """
     @property
-    def grant(self) -> grant_request_builder.GrantRequestBuilder:
+    def microsoft_graph_grant(self) -> microsoft_graph_grant_request_builder.MicrosoftGraphGrantRequestBuilder:
         """
         Provides operations to call the grant method.
         """
-        return grant_request_builder.GrantRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_grant_request_builder.MicrosoftGraphGrantRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def revoke_grants(self) -> revoke_grants_request_builder.RevokeGrantsRequestBuilder:
+    def microsoft_graph_revoke_grants(self) -> microsoft_graph_revoke_grants_request_builder.MicrosoftGraphRevokeGrantsRequestBuilder:
         """
         Provides operations to call the revokeGrants method.
         """
-        return revoke_grants_request_builder.RevokeGrantsRequestBuilder(self.request_adapter, self.path_parameters)
+        return microsoft_graph_revoke_grants_request_builder.MicrosoftGraphRevokeGrantsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -51,12 +51,11 @@ class PermissionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[PermissionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[PermissionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property permission for shares
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -67,14 +66,13 @@ class PermissionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[PermissionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[permission.Permission]:
+    async def get(self,request_configuration: Optional[PermissionRequestBuilderGetRequestConfiguration] = None) -> Optional[permission.Permission]:
         """
         Used to access the permission representing the underlying sharing link
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]
         """
         request_info = self.to_get_request_information(
@@ -86,15 +84,14 @@ class PermissionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, permission.Permission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, permission.Permission, error_mapping)
     
-    async def patch(self,body: Optional[permission.Permission] = None, request_configuration: Optional[PermissionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[permission.Permission]:
+    async def patch(self,body: Optional[permission.Permission] = None, request_configuration: Optional[PermissionRequestBuilderPatchRequestConfiguration] = None) -> Optional[permission.Permission]:
         """
         Update the navigation property permission in shares
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]
         """
         if body is None:
@@ -108,7 +105,7 @@ class PermissionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, permission.Permission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, permission.Permission, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PermissionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
