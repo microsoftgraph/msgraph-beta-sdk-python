@@ -62,8 +62,8 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         """
         fields = {
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "is_answer_editable": lambda n : setattr(self, 'is_answer_editable', n.get_bool_value()),
-            "is_required": lambda n : setattr(self, 'is_required', n.get_bool_value()),
+            "isAnswerEditable": lambda n : setattr(self, 'is_answer_editable', n.get_bool_value()),
+            "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "sequence": lambda n : setattr(self, 'sequence', n.get_int_value()),
             "text": lambda n : setattr(self, 'text', n.get_object_value(access_package_localized_content.AccessPackageLocalizedContent)),
@@ -100,7 +100,7 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         """
         Sets the isAnswerEditable property value. Specifies whether the requestor is allowed to edit answers to questions.
         Args:
-            value: Value to set for the isAnswerEditable property.
+            value: Value to set for the is_answer_editable property.
         """
         self._is_answer_editable = value
     
@@ -117,7 +117,7 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         """
         Sets the isRequired property value. Whether the requestor is required to supply an answer or not.
         Args:
-            value: Value to set for the isRequired property.
+            value: Value to set for the is_required property.
         """
         self._is_required = value
     
@@ -134,7 +134,7 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

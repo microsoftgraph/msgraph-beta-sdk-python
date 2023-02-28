@@ -21,7 +21,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         """
         Sets the childIds property value. Dependent child settings to this group of settings
         Args:
-            value: Value to set for the childIds property.
+            value: Value to set for the child_ids property.
         """
         self._child_ids = value
     
@@ -64,7 +64,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         """
         Sets the dependedOnBy property value. List of child settings that depend on this setting
         Args:
-            value: Value to set for the dependedOnBy property.
+            value: Value to set for the depended_on_by property.
         """
         self._depended_on_by = value
     
@@ -81,7 +81,7 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         """
         Sets the dependentOn property value. List of Dependencies for the setting group
         Args:
-            value: Value to set for the dependentOn property.
+            value: Value to set for the dependent_on property.
         """
         self._dependent_on = value
     
@@ -91,9 +91,9 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "child_ids": lambda n : setattr(self, 'child_ids', n.get_collection_of_primitive_values(str)),
-            "depended_on_by": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
-            "dependent_on": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),
+            "childIds": lambda n : setattr(self, 'child_ids', n.get_collection_of_primitive_values(str)),
+            "dependedOnBy": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
+            "dependentOn": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

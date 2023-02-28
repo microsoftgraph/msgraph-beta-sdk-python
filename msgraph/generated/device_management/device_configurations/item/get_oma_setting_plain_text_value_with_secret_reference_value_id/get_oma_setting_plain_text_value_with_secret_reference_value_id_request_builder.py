@@ -30,19 +30,18 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/microsoft.graph.getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')"
+        self.url_template: str = "{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')"
 
         url_tpl_params = get_path_parameters(path_parameters)
         url_tpl_params[""] = secretReferenceValueId
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_oma_setting_plain_text_value_with_secret_reference_value_id_response.GetOmaSettingPlainTextValueWithSecretReferenceValueIdResponse]:
+    async def get(self,request_configuration: Optional[GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilderGetRequestConfiguration] = None) -> Optional[get_oma_setting_plain_text_value_with_secret_reference_value_id_response.GetOmaSettingPlainTextValueWithSecretReferenceValueIdResponse]:
         """
         Invoke function getOmaSettingPlainTextValue
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_oma_setting_plain_text_value_with_secret_reference_value_id_response.GetOmaSettingPlainTextValueWithSecretReferenceValueIdResponse]
         """
         request_info = self.to_get_request_information(
@@ -54,7 +53,7 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_oma_setting_plain_text_value_with_secret_reference_value_id_response.GetOmaSettingPlainTextValueWithSecretReferenceValueIdResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_oma_setting_plain_text_value_with_secret_reference_value_id_response.GetOmaSettingPlainTextValueWithSecretReferenceValueIdResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -67,7 +66,7 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -79,7 +78,7 @@ class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

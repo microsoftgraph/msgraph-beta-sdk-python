@@ -57,12 +57,11 @@ class ProgramItemRequestBuilder():
         url_tpl_params["programControl%2Did"] = id
         return program_control_item_request_builder.ProgramControlItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         In the Azure AD access reviews feature, delete a program object. Do not delete a program which still has `programControl` linked to it, those access reviews should first be deleted or unlinked from the program and linked to a different program.  Also, please note that the built-in default program cannot be deleted.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +72,13 @@ class ProgramItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ProgramItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program.Program]:
+    async def get(self,request_configuration: Optional[ProgramItemRequestBuilderGetRequestConfiguration] = None) -> Optional[program.Program]:
         """
         Get entity from programs by key
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program.Program]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +90,14 @@ class ProgramItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program.Program, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program.Program, error_mapping)
     
-    async def patch(self,body: Optional[program.Program] = None, request_configuration: Optional[ProgramItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[program.Program]:
+    async def patch(self,body: Optional[program.Program] = None, request_configuration: Optional[ProgramItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[program.Program]:
         """
         In the Azure AD access reviews feature, update an existing program object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[program.Program]
         """
         if body is None:
@@ -114,7 +111,7 @@ class ProgramItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, program.Program, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, program.Program, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ProgramItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -143,7 +140,7 @@ class ProgramItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -164,7 +161,7 @@ class ProgramItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -177,7 +174,7 @@ class ProgramItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -216,7 +213,7 @@ class ProgramItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -231,7 +228,7 @@ class ProgramItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

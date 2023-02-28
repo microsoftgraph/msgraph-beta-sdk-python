@@ -55,8 +55,8 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_device_ids": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
-            "scoped_to_all_devices": lambda n : setattr(self, 'scoped_to_all_devices', n.get_bool_value()),
+            "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
+            "scopedToAllDevices": lambda n : setattr(self, 'scoped_to_all_devices', n.get_bool_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(scheduled_retire_state.ScheduledRetireState)),
         }
         return fields
@@ -74,7 +74,7 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceIds property value. The managedDeviceIds property
         Args:
-            value: Value to set for the managedDeviceIds property.
+            value: Value to set for the managed_device_ids property.
         """
         self._managed_device_ids = value
     
@@ -91,7 +91,7 @@ class SetScheduledRetireStatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the scopedToAllDevices property value. The scopedToAllDevices property
         Args:
-            value: Value to set for the scopedToAllDevices property.
+            value: Value to set for the scoped_to_all_devices property.
         """
         self._scoped_to_all_devices = value
     

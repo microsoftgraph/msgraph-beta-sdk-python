@@ -49,7 +49,7 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "member_id": lambda n : setattr(self, 'member_id', n.get_str_value()),
+            "memberId": lambda n : setattr(self, 'member_id', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the memberId property value. The memberId property
         Args:
-            value: Value to set for the memberId property.
+            value: Value to set for the member_id property.
         """
         self._member_id = value
     

@@ -44,12 +44,11 @@ class SubscriptionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SubscriptionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subscription_collection_response.SubscriptionCollectionResponse]:
+    async def get(self,request_configuration: Optional[SubscriptionsRequestBuilderGetRequestConfiguration] = None) -> Optional[subscription_collection_response.SubscriptionCollectionResponse]:
         """
         The set of subscriptions on the list.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subscription_collection_response.SubscriptionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SubscriptionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subscription_collection_response.SubscriptionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, subscription_collection_response.SubscriptionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[subscription.Subscription] = None, request_configuration: Optional[SubscriptionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[subscription.Subscription]:
+    async def post(self,body: Optional[subscription.Subscription] = None, request_configuration: Optional[SubscriptionsRequestBuilderPostRequestConfiguration] = None) -> Optional[subscription.Subscription]:
         """
         Create new navigation property to subscriptions for drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[subscription.Subscription]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SubscriptionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, subscription.Subscription, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, subscription.Subscription, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SubscriptionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class SubscriptionsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class SubscriptionsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class SubscriptionsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class SubscriptionsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

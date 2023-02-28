@@ -56,7 +56,7 @@ class TrustFramework(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "key_sets": lambda n : setattr(self, 'key_sets', n.get_collection_of_object_values(trust_framework_key_set.TrustFrameworkKeySet)),
+            "keySets": lambda n : setattr(self, 'key_sets', n.get_collection_of_object_values(trust_framework_key_set.TrustFrameworkKeySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(trust_framework_policy.TrustFrameworkPolicy)),
         }
@@ -75,7 +75,7 @@ class TrustFramework(AdditionalDataHolder, Parsable):
         """
         Sets the keySets property value. The keySets property
         Args:
-            value: Value to set for the keySets property.
+            value: Value to set for the key_sets property.
         """
         self._key_sets = value
     
@@ -92,7 +92,7 @@ class TrustFramework(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

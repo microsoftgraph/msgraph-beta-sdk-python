@@ -2,7 +2,7 @@ from enum import Enum
 
 class AndroidRequiredPasswordComplexity(Enum):
     # Device default value, no password.
-    None_escaped = "none",
+    None_ = "none",
     # The required password complexity on the device is of type low as defined by the Android documentation.
     Low = "low",
     # The required password complexity on the device is of type medium as defined by the Android documentation.

@@ -41,9 +41,9 @@ class BusinessScenarioPlanner(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "plan_configuration": lambda n : setattr(self, 'plan_configuration', n.get_object_value(planner_plan_configuration.PlannerPlanConfiguration)),
-            "task_configuration": lambda n : setattr(self, 'task_configuration', n.get_object_value(planner_task_configuration.PlannerTaskConfiguration)),
+            "planConfiguration": lambda n : setattr(self, 'plan_configuration', n.get_object_value(planner_plan_configuration.PlannerPlanConfiguration)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(business_scenario_task.BusinessScenarioTask)),
+            "taskConfiguration": lambda n : setattr(self, 'task_configuration', n.get_object_value(planner_task_configuration.PlannerTaskConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -62,7 +62,7 @@ class BusinessScenarioPlanner(entity.Entity):
         """
         Sets the planConfiguration property value. The configuration of Planner plans that will be created for the scenario.
         Args:
-            value: Value to set for the planConfiguration property.
+            value: Value to set for the plan_configuration property.
         """
         self._plan_configuration = value
     
@@ -76,8 +76,8 @@ class BusinessScenarioPlanner(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("planConfiguration", self.plan_configuration)
-        writer.write_object_value("taskConfiguration", self.task_configuration)
         writer.write_collection_of_object_values("tasks", self.tasks)
+        writer.write_object_value("taskConfiguration", self.task_configuration)
     
     @property
     def task_configuration(self,) -> Optional[planner_task_configuration.PlannerTaskConfiguration]:
@@ -92,7 +92,7 @@ class BusinessScenarioPlanner(entity.Entity):
         """
         Sets the taskConfiguration property value. The configuration of Planner tasks that will be created for the scenario.
         Args:
-            value: Value to set for the taskConfiguration property.
+            value: Value to set for the task_configuration property.
         """
         self._task_configuration = value
     

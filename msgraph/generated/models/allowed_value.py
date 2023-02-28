@@ -34,7 +34,7 @@ class AllowedValue(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_active": lambda n : setattr(self, 'is_active', n.get_bool_value()),
+            "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class AllowedValue(entity.Entity):
         """
         Sets the isActive property value. Indicates whether the predefined value is active or deactivated. If set to false, this predefined value cannot be assigned to any additional supported directory objects.
         Args:
-            value: Value to set for the isActive property.
+            value: Value to set for the is_active property.
         """
         self._is_active = value
     

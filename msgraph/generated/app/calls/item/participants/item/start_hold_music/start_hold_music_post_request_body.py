@@ -36,7 +36,7 @@ class StartHoldMusicPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the clientContext property value. The clientContext property
         Args:
-            value: Value to set for the clientContext property.
+            value: Value to set for the client_context property.
         """
         self._client_context = value
     
@@ -77,7 +77,7 @@ class StartHoldMusicPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the customPrompt property value. The customPrompt property
         Args:
-            value: Value to set for the customPrompt property.
+            value: Value to set for the custom_prompt property.
         """
         self._custom_prompt = value
     
@@ -87,8 +87,8 @@ class StartHoldMusicPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_context": lambda n : setattr(self, 'client_context', n.get_str_value()),
-            "custom_prompt": lambda n : setattr(self, 'custom_prompt', n.get_object_value(prompt.Prompt)),
+            "clientContext": lambda n : setattr(self, 'client_context', n.get_str_value()),
+            "customPrompt": lambda n : setattr(self, 'custom_prompt', n.get_object_value(prompt.Prompt)),
         }
         return fields
     

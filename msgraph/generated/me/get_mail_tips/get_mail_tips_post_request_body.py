@@ -60,7 +60,7 @@ class GetMailTipsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the emailAddresses property value. The EmailAddresses property
         Args:
-            value: Value to set for the EmailAddresses property.
+            value: Value to set for the email_addresses property.
         """
         self._email_addresses = value
     
@@ -70,8 +70,8 @@ class GetMailTipsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "email_addresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_primitive_values(str)),
-            "mail_tips_options": lambda n : setattr(self, 'mail_tips_options', n.get_enum_value(mail_tips_type.MailTipsType)),
+            "EmailAddresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_primitive_values(str)),
+            "MailTipsOptions": lambda n : setattr(self, 'mail_tips_options', n.get_enum_value(mail_tips_type.MailTipsType)),
         }
         return fields
     
@@ -88,7 +88,7 @@ class GetMailTipsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the mailTipsOptions property value. The MailTipsOptions property
         Args:
-            value: Value to set for the MailTipsOptions property.
+            value: Value to set for the mail_tips_options property.
         """
         self._mail_tips_options = value
     

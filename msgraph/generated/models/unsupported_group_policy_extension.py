@@ -51,7 +51,7 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         """
         Sets the extensionType property value. ExtensionType of the unsupported extension.
         Args:
-            value: Value to set for the extensionType property.
+            value: Value to set for the extension_type property.
         """
         self._extension_type = value
     
@@ -61,10 +61,10 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "extension_type": lambda n : setattr(self, 'extension_type', n.get_str_value()),
-            "namespace_url": lambda n : setattr(self, 'namespace_url', n.get_str_value()),
-            "node_name": lambda n : setattr(self, 'node_name', n.get_str_value()),
-            "setting_scope": lambda n : setattr(self, 'setting_scope', n.get_enum_value(group_policy_setting_scope.GroupPolicySettingScope)),
+            "extensionType": lambda n : setattr(self, 'extension_type', n.get_str_value()),
+            "namespaceUrl": lambda n : setattr(self, 'namespace_url', n.get_str_value()),
+            "nodeName": lambda n : setattr(self, 'node_name', n.get_str_value()),
+            "settingScope": lambda n : setattr(self, 'setting_scope', n.get_enum_value(group_policy_setting_scope.GroupPolicySettingScope)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,7 +83,7 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         """
         Sets the namespaceUrl property value. Namespace Url of the unsupported extension.
         Args:
-            value: Value to set for the namespaceUrl property.
+            value: Value to set for the namespace_url property.
         """
         self._namespace_url = value
     
@@ -100,7 +100,7 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         """
         Sets the nodeName property value. Node name of the unsupported extension.
         Args:
-            value: Value to set for the nodeName property.
+            value: Value to set for the node_name property.
         """
         self._node_name = value
     
@@ -131,7 +131,7 @@ class UnsupportedGroupPolicyExtension(entity.Entity):
         """
         Sets the settingScope property value. Scope of the group policy setting.
         Args:
-            value: Value to set for the settingScope property.
+            value: Value to set for the setting_scope property.
         """
         self._setting_scope = value
     

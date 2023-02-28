@@ -64,7 +64,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the durationInDays property value. The duration in days for recurrence.
         Args:
-            value: Value to set for the durationInDays property.
+            value: Value to set for the duration_in_days property.
         """
         self._duration_in_days = value
     
@@ -74,11 +74,11 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "duration_in_days": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
+            "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recurrence_count": lambda n : setattr(self, 'recurrence_count', n.get_int_value()),
-            "recurrence_end_type": lambda n : setattr(self, 'recurrence_end_type', n.get_str_value()),
-            "recurrence_type": lambda n : setattr(self, 'recurrence_type', n.get_str_value()),
+            "recurrenceCount": lambda n : setattr(self, 'recurrence_count', n.get_int_value()),
+            "recurrenceEndType": lambda n : setattr(self, 'recurrence_end_type', n.get_str_value()),
+            "recurrenceType": lambda n : setattr(self, 'recurrence_type', n.get_str_value()),
         }
         return fields
     
@@ -95,7 +95,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,7 +112,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recurrenceCount property value. The count of recurrences, if the value of recurrenceEndType is occurrences, or 0 otherwise.
         Args:
-            value: Value to set for the recurrenceCount property.
+            value: Value to set for the recurrence_count property.
         """
         self._recurrence_count = value
     
@@ -129,7 +129,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recurrenceEndType property value. How the recurrence ends. Possible values: never, endBy, occurrences, or recurrenceCount. If it is never, then there is no explicit end of the recurrence series. If it is endBy, then the recurrence ends at a certain date. If it is occurrences, then the series ends after recurrenceCount instances of the review have completed.
         Args:
-            value: Value to set for the recurrenceEndType property.
+            value: Value to set for the recurrence_end_type property.
         """
         self._recurrence_end_type = value
     
@@ -146,7 +146,7 @@ class AccessReviewRecurrenceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recurrenceType property value. The recurrence interval. Possible vaules: onetime, weekly, monthly, quarterly, halfyearly or annual.
         Args:
-            value: Value to set for the recurrenceType property.
+            value: Value to set for the recurrence_type property.
         """
         self._recurrence_type = value
     

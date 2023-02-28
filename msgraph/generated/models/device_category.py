@@ -6,9 +6,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceCategory(entity.Entity):
-    """
-    Device categories provides a way to organize your devices. Using device categories, company administrators can define their own categories that make sense to their company. These categories can then be applied to a device in the Intune Azure console or selected by a user during device enrollment. You can filter reports and create dynamic Azure Active Directory device groups based on device categories.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new deviceCategory and sets the default values.
@@ -65,7 +62,7 @@ class DeviceCategory(entity.Entity):
         """
         Sets the displayName property value. Display name for the device category.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -76,8 +73,8 @@ class DeviceCategory(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -96,7 +93,7 @@ class DeviceCategory(entity.Entity):
         """
         Sets the roleScopeTagIds property value. Optional role scope tags for the device category.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

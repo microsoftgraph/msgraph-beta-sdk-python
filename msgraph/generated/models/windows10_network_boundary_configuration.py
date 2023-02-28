@@ -34,7 +34,7 @@ class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfigura
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "windows_network_isolation_policy": lambda n : setattr(self, 'windows_network_isolation_policy', n.get_object_value(windows_network_isolation_policy.WindowsNetworkIsolationPolicy)),
+            "windowsNetworkIsolationPolicy": lambda n : setattr(self, 'windows_network_isolation_policy', n.get_object_value(windows_network_isolation_policy.WindowsNetworkIsolationPolicy)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class Windows10NetworkBoundaryConfiguration(device_configuration.DeviceConfigura
         """
         Sets the windowsNetworkIsolationPolicy property value. Windows Network Isolation Policy
         Args:
-            value: Value to set for the windowsNetworkIsolationPolicy property.
+            value: Value to set for the windows_network_isolation_policy property.
         """
         self._windows_network_isolation_policy = value
     

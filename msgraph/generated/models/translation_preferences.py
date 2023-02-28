@@ -58,10 +58,10 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "language_overrides": lambda n : setattr(self, 'language_overrides', n.get_collection_of_object_values(translation_language_override.TranslationLanguageOverride)),
+            "languageOverrides": lambda n : setattr(self, 'language_overrides', n.get_collection_of_object_values(translation_language_override.TranslationLanguageOverride)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "translation_behavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(translation_behavior.TranslationBehavior)),
-            "untranslated_languages": lambda n : setattr(self, 'untranslated_languages', n.get_collection_of_primitive_values(str)),
+            "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(translation_behavior.TranslationBehavior)),
+            "untranslatedLanguages": lambda n : setattr(self, 'untranslated_languages', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -78,7 +78,7 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         """
         Sets the languageOverrides property value. Translation override behavior for languages, if any.Returned by default.
         Args:
-            value: Value to set for the languageOverrides property.
+            value: Value to set for the language_overrides property.
         """
         self._language_overrides = value
     
@@ -95,7 +95,7 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -126,7 +126,7 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         """
         Sets the translationBehavior property value. The user's preferred translation behavior.Returned by default. Not nullable.
         Args:
-            value: Value to set for the translationBehavior property.
+            value: Value to set for the translation_behavior property.
         """
         self._translation_behavior = value
     
@@ -143,7 +143,7 @@ class TranslationPreferences(AdditionalDataHolder, Parsable):
         """
         Sets the untranslatedLanguages property value. The list of languages the user does not need translated. This is computed from the authoringLanguages collection in regionalAndLanguageSettings, and the languageOverrides collection in translationPreferences. The list specifies neutral culture values that include the language code without any country or region association. For example, it would specify 'fr' for the neutral French culture, but not 'fr-FR' for the French culture in France. Returned by default. Read only.
         Args:
-            value: Value to set for the untranslatedLanguages property.
+            value: Value to set for the untranslated_languages property.
         """
         self._untranslated_languages = value
     

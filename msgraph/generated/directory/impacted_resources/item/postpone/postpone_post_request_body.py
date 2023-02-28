@@ -50,7 +50,7 @@ class PostponePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "postpone_until_date_time": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
+            "postponeUntilDateTime": lambda n : setattr(self, 'postpone_until_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -67,7 +67,7 @@ class PostponePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the postponeUntilDateTime property value. The postponeUntilDateTime property
         Args:
-            value: Value to set for the postponeUntilDateTime property.
+            value: Value to set for the postpone_until_date_time property.
         """
         self._postpone_until_date_time = value
     

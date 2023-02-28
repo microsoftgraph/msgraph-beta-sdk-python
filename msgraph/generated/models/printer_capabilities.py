@@ -49,7 +49,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the bottomMargins property value. A list of supported bottom margins(in microns) for the printer.
         Args:
-            value: Value to set for the bottomMargins property.
+            value: Value to set for the bottom_margins property.
         """
         self._bottom_margins = value
     
@@ -83,7 +83,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the colorModes property value. The color modes supported by the printer. Valid values are described in the following table.
         Args:
-            value: Value to set for the colorModes property.
+            value: Value to set for the color_modes property.
         """
         self._color_modes = value
     
@@ -188,7 +188,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the contentTypes property value. A list of supported content (MIME) types that the printer supports. It is not guaranteed that the Universal Print service supports printing all of these MIME types.
         Args:
-            value: Value to set for the contentTypes property.
+            value: Value to set for the content_types property.
         """
         self._content_types = value
     
@@ -205,7 +205,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the copiesPerJob property value. The range of copies per job supported by the printer.
         Args:
-            value: Value to set for the copiesPerJob property.
+            value: Value to set for the copies_per_job property.
         """
         self._copies_per_job = value
     
@@ -251,7 +251,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the duplexModes property value. The list of duplex modes that are supported by the printer. Valid values are described in the following table.
         Args:
-            value: Value to set for the duplexModes property.
+            value: Value to set for the duplex_modes property.
         """
         self._duplex_modes = value
     
@@ -268,7 +268,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the feedDirections property value. The feedDirections property
         Args:
-            value: Value to set for the feedDirections property.
+            value: Value to set for the feed_directions property.
         """
         self._feed_directions = value
     
@@ -285,7 +285,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the feedOrientations property value. The list of feed orientations that are supported by the printer.
         Args:
-            value: Value to set for the feedOrientations property.
+            value: Value to set for the feed_orientations property.
         """
         self._feed_orientations = value
     
@@ -312,46 +312,46 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bottom_margins": lambda n : setattr(self, 'bottom_margins', n.get_collection_of_primitive_values(int)),
+            "bottomMargins": lambda n : setattr(self, 'bottom_margins', n.get_collection_of_primitive_values(int)),
             "collation": lambda n : setattr(self, 'collation', n.get_bool_value()),
-            "color_modes": lambda n : setattr(self, 'color_modes', n.get_collection_of_enum_values(print_color_mode.PrintColorMode)),
-            "content_types": lambda n : setattr(self, 'content_types', n.get_collection_of_primitive_values(str)),
-            "copies_per_job": lambda n : setattr(self, 'copies_per_job', n.get_object_value(integer_range.IntegerRange)),
+            "colorModes": lambda n : setattr(self, 'color_modes', n.get_collection_of_enum_values(print_color_mode.PrintColorMode)),
+            "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_primitive_values(str)),
+            "copiesPerJob": lambda n : setattr(self, 'copies_per_job', n.get_object_value(integer_range.IntegerRange)),
             "dpis": lambda n : setattr(self, 'dpis', n.get_collection_of_primitive_values(int)),
-            "duplex_modes": lambda n : setattr(self, 'duplex_modes', n.get_collection_of_enum_values(print_duplex_mode.PrintDuplexMode)),
-            "feed_directions": lambda n : setattr(self, 'feed_directions', n.get_collection_of_enum_values(printer_feed_direction.PrinterFeedDirection)),
-            "feed_orientations": lambda n : setattr(self, 'feed_orientations', n.get_collection_of_enum_values(printer_feed_orientation.PrinterFeedOrientation)),
+            "duplexModes": lambda n : setattr(self, 'duplex_modes', n.get_collection_of_enum_values(print_duplex_mode.PrintDuplexMode)),
+            "feedDirections": lambda n : setattr(self, 'feed_directions', n.get_collection_of_enum_values(printer_feed_direction.PrinterFeedDirection)),
+            "feedOrientations": lambda n : setattr(self, 'feed_orientations', n.get_collection_of_enum_values(printer_feed_orientation.PrinterFeedOrientation)),
             "finishings": lambda n : setattr(self, 'finishings', n.get_collection_of_enum_values(print_finishing.PrintFinishing)),
-            "input_bins": lambda n : setattr(self, 'input_bins', n.get_collection_of_primitive_values(str)),
-            "is_color_printing_supported": lambda n : setattr(self, 'is_color_printing_supported', n.get_bool_value()),
-            "is_page_range_supported": lambda n : setattr(self, 'is_page_range_supported', n.get_bool_value()),
-            "left_margins": lambda n : setattr(self, 'left_margins', n.get_collection_of_primitive_values(int)),
-            "media_colors": lambda n : setattr(self, 'media_colors', n.get_collection_of_primitive_values(str)),
-            "media_sizes": lambda n : setattr(self, 'media_sizes', n.get_collection_of_primitive_values(str)),
-            "media_types": lambda n : setattr(self, 'media_types', n.get_collection_of_primitive_values(str)),
-            "multipage_layouts": lambda n : setattr(self, 'multipage_layouts', n.get_collection_of_enum_values(print_multipage_layout.PrintMultipageLayout)),
+            "inputBins": lambda n : setattr(self, 'input_bins', n.get_collection_of_primitive_values(str)),
+            "isColorPrintingSupported": lambda n : setattr(self, 'is_color_printing_supported', n.get_bool_value()),
+            "isPageRangeSupported": lambda n : setattr(self, 'is_page_range_supported', n.get_bool_value()),
+            "leftMargins": lambda n : setattr(self, 'left_margins', n.get_collection_of_primitive_values(int)),
+            "mediaColors": lambda n : setattr(self, 'media_colors', n.get_collection_of_primitive_values(str)),
+            "mediaSizes": lambda n : setattr(self, 'media_sizes', n.get_collection_of_primitive_values(str)),
+            "mediaTypes": lambda n : setattr(self, 'media_types', n.get_collection_of_primitive_values(str)),
+            "multipageLayouts": lambda n : setattr(self, 'multipage_layouts', n.get_collection_of_enum_values(print_multipage_layout.PrintMultipageLayout)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "orientations": lambda n : setattr(self, 'orientations', n.get_collection_of_enum_values(print_orientation.PrintOrientation)),
-            "output_bins": lambda n : setattr(self, 'output_bins', n.get_collection_of_primitive_values(str)),
-            "pages_per_sheet": lambda n : setattr(self, 'pages_per_sheet', n.get_collection_of_primitive_values(int)),
+            "outputBins": lambda n : setattr(self, 'output_bins', n.get_collection_of_primitive_values(str)),
+            "pagesPerSheet": lambda n : setattr(self, 'pages_per_sheet', n.get_collection_of_primitive_values(int)),
             "qualities": lambda n : setattr(self, 'qualities', n.get_collection_of_enum_values(print_quality.PrintQuality)),
-            "right_margins": lambda n : setattr(self, 'right_margins', n.get_collection_of_primitive_values(int)),
+            "rightMargins": lambda n : setattr(self, 'right_margins', n.get_collection_of_primitive_values(int)),
             "scalings": lambda n : setattr(self, 'scalings', n.get_collection_of_enum_values(print_scaling.PrintScaling)),
-            "supported_color_configurations": lambda n : setattr(self, 'supported_color_configurations', n.get_collection_of_enum_values(print_color_configuration.PrintColorConfiguration)),
-            "supported_copies_per_job": lambda n : setattr(self, 'supported_copies_per_job', n.get_object_value(integer_range.IntegerRange)),
-            "supported_document_mime_types": lambda n : setattr(self, 'supported_document_mime_types', n.get_collection_of_primitive_values(str)),
-            "supported_duplex_configurations": lambda n : setattr(self, 'supported_duplex_configurations', n.get_collection_of_enum_values(print_duplex_configuration.PrintDuplexConfiguration)),
-            "supported_finishings": lambda n : setattr(self, 'supported_finishings', n.get_collection_of_enum_values(print_finishing.PrintFinishing)),
-            "supported_media_colors": lambda n : setattr(self, 'supported_media_colors', n.get_collection_of_primitive_values(str)),
-            "supported_media_sizes": lambda n : setattr(self, 'supported_media_sizes', n.get_collection_of_primitive_values(str)),
-            "supported_media_types": lambda n : setattr(self, 'supported_media_types', n.get_collection_of_enum_values(print_media_type.PrintMediaType)),
-            "supported_orientations": lambda n : setattr(self, 'supported_orientations', n.get_collection_of_enum_values(print_orientation.PrintOrientation)),
-            "supported_output_bins": lambda n : setattr(self, 'supported_output_bins', n.get_collection_of_primitive_values(str)),
-            "supported_pages_per_sheet": lambda n : setattr(self, 'supported_pages_per_sheet', n.get_object_value(integer_range.IntegerRange)),
-            "supported_presentation_directions": lambda n : setattr(self, 'supported_presentation_directions', n.get_collection_of_enum_values(print_presentation_direction.PrintPresentationDirection)),
-            "supported_print_qualities": lambda n : setattr(self, 'supported_print_qualities', n.get_collection_of_enum_values(print_quality.PrintQuality)),
-            "supports_fit_pdf_to_page": lambda n : setattr(self, 'supports_fit_pdf_to_page', n.get_bool_value()),
-            "top_margins": lambda n : setattr(self, 'top_margins', n.get_collection_of_primitive_values(int)),
+            "supportedColorConfigurations": lambda n : setattr(self, 'supported_color_configurations', n.get_collection_of_enum_values(print_color_configuration.PrintColorConfiguration)),
+            "supportedCopiesPerJob": lambda n : setattr(self, 'supported_copies_per_job', n.get_object_value(integer_range.IntegerRange)),
+            "supportedDocumentMimeTypes": lambda n : setattr(self, 'supported_document_mime_types', n.get_collection_of_primitive_values(str)),
+            "supportedDuplexConfigurations": lambda n : setattr(self, 'supported_duplex_configurations', n.get_collection_of_enum_values(print_duplex_configuration.PrintDuplexConfiguration)),
+            "supportedFinishings": lambda n : setattr(self, 'supported_finishings', n.get_collection_of_enum_values(print_finishing.PrintFinishing)),
+            "supportedMediaColors": lambda n : setattr(self, 'supported_media_colors', n.get_collection_of_primitive_values(str)),
+            "supportedMediaSizes": lambda n : setattr(self, 'supported_media_sizes', n.get_collection_of_primitive_values(str)),
+            "supportedMediaTypes": lambda n : setattr(self, 'supported_media_types', n.get_collection_of_enum_values(print_media_type.PrintMediaType)),
+            "supportedOrientations": lambda n : setattr(self, 'supported_orientations', n.get_collection_of_enum_values(print_orientation.PrintOrientation)),
+            "supportedOutputBins": lambda n : setattr(self, 'supported_output_bins', n.get_collection_of_primitive_values(str)),
+            "supportedPagesPerSheet": lambda n : setattr(self, 'supported_pages_per_sheet', n.get_object_value(integer_range.IntegerRange)),
+            "supportedPresentationDirections": lambda n : setattr(self, 'supported_presentation_directions', n.get_collection_of_enum_values(print_presentation_direction.PrintPresentationDirection)),
+            "supportedPrintQualities": lambda n : setattr(self, 'supported_print_qualities', n.get_collection_of_enum_values(print_quality.PrintQuality)),
+            "supportsFitPdfToPage": lambda n : setattr(self, 'supports_fit_pdf_to_page', n.get_bool_value()),
+            "topMargins": lambda n : setattr(self, 'top_margins', n.get_collection_of_primitive_values(int)),
         }
         return fields
     
@@ -368,7 +368,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the inputBins property value. Supported input bins for the printer.
         Args:
-            value: Value to set for the inputBins property.
+            value: Value to set for the input_bins property.
         """
         self._input_bins = value
     
@@ -385,7 +385,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the isColorPrintingSupported property value. True if color printing is supported by the printer; false otherwise. Read-only.
         Args:
-            value: Value to set for the isColorPrintingSupported property.
+            value: Value to set for the is_color_printing_supported property.
         """
         self._is_color_printing_supported = value
     
@@ -402,7 +402,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the isPageRangeSupported property value. True if the printer supports printing by page ranges; false otherwise.
         Args:
-            value: Value to set for the isPageRangeSupported property.
+            value: Value to set for the is_page_range_supported property.
         """
         self._is_page_range_supported = value
     
@@ -419,7 +419,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the leftMargins property value. A list of supported left margins(in microns) for the printer.
         Args:
-            value: Value to set for the leftMargins property.
+            value: Value to set for the left_margins property.
         """
         self._left_margins = value
     
@@ -436,7 +436,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the mediaColors property value. The media (i.e., paper) colors supported by the printer.
         Args:
-            value: Value to set for the mediaColors property.
+            value: Value to set for the media_colors property.
         """
         self._media_colors = value
     
@@ -453,7 +453,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the mediaSizes property value. The media sizes supported by the printer. Supports standard size names for ISO and ANSI media sizes. Valid values are in the following table.
         Args:
-            value: Value to set for the mediaSizes property.
+            value: Value to set for the media_sizes property.
         """
         self._media_sizes = value
     
@@ -470,7 +470,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the mediaTypes property value. The media types supported by the printer.
         Args:
-            value: Value to set for the mediaTypes property.
+            value: Value to set for the media_types property.
         """
         self._media_types = value
     
@@ -487,7 +487,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the multipageLayouts property value. The presentation directions supported by the printer. Supported values are described in the following table.
         Args:
-            value: Value to set for the multipageLayouts property.
+            value: Value to set for the multipage_layouts property.
         """
         self._multipage_layouts = value
     
@@ -504,7 +504,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -538,7 +538,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the outputBins property value. The printer's supported output bins (trays).
         Args:
-            value: Value to set for the outputBins property.
+            value: Value to set for the output_bins property.
         """
         self._output_bins = value
     
@@ -555,7 +555,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the pagesPerSheet property value. Supported number of Input Pages to impose upon a single Impression.
         Args:
-            value: Value to set for the pagesPerSheet property.
+            value: Value to set for the pages_per_sheet property.
         """
         self._pages_per_sheet = value
     
@@ -589,7 +589,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the rightMargins property value. A list of supported right margins(in microns) for the printer.
         Args:
-            value: Value to set for the rightMargins property.
+            value: Value to set for the right_margins property.
         """
         self._right_margins = value
     
@@ -673,7 +673,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedColorConfigurations property value. The supportedColorConfigurations property
         Args:
-            value: Value to set for the supportedColorConfigurations property.
+            value: Value to set for the supported_color_configurations property.
         """
         self._supported_color_configurations = value
     
@@ -690,7 +690,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedCopiesPerJob property value. The supportedCopiesPerJob property
         Args:
-            value: Value to set for the supportedCopiesPerJob property.
+            value: Value to set for the supported_copies_per_job property.
         """
         self._supported_copies_per_job = value
     
@@ -707,7 +707,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedDocumentMimeTypes property value. The supportedDocumentMimeTypes property
         Args:
-            value: Value to set for the supportedDocumentMimeTypes property.
+            value: Value to set for the supported_document_mime_types property.
         """
         self._supported_document_mime_types = value
     
@@ -724,7 +724,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedDuplexConfigurations property value. The supportedDuplexConfigurations property
         Args:
-            value: Value to set for the supportedDuplexConfigurations property.
+            value: Value to set for the supported_duplex_configurations property.
         """
         self._supported_duplex_configurations = value
     
@@ -741,7 +741,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedFinishings property value. The supportedFinishings property
         Args:
-            value: Value to set for the supportedFinishings property.
+            value: Value to set for the supported_finishings property.
         """
         self._supported_finishings = value
     
@@ -758,7 +758,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedMediaColors property value. The supportedMediaColors property
         Args:
-            value: Value to set for the supportedMediaColors property.
+            value: Value to set for the supported_media_colors property.
         """
         self._supported_media_colors = value
     
@@ -775,7 +775,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedMediaSizes property value. The supportedMediaSizes property
         Args:
-            value: Value to set for the supportedMediaSizes property.
+            value: Value to set for the supported_media_sizes property.
         """
         self._supported_media_sizes = value
     
@@ -792,7 +792,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedMediaTypes property value. The supportedMediaTypes property
         Args:
-            value: Value to set for the supportedMediaTypes property.
+            value: Value to set for the supported_media_types property.
         """
         self._supported_media_types = value
     
@@ -809,7 +809,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedOrientations property value. The supportedOrientations property
         Args:
-            value: Value to set for the supportedOrientations property.
+            value: Value to set for the supported_orientations property.
         """
         self._supported_orientations = value
     
@@ -826,7 +826,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedOutputBins property value. The supportedOutputBins property
         Args:
-            value: Value to set for the supportedOutputBins property.
+            value: Value to set for the supported_output_bins property.
         """
         self._supported_output_bins = value
     
@@ -843,7 +843,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedPagesPerSheet property value. The supportedPagesPerSheet property
         Args:
-            value: Value to set for the supportedPagesPerSheet property.
+            value: Value to set for the supported_pages_per_sheet property.
         """
         self._supported_pages_per_sheet = value
     
@@ -860,7 +860,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedPresentationDirections property value. The supportedPresentationDirections property
         Args:
-            value: Value to set for the supportedPresentationDirections property.
+            value: Value to set for the supported_presentation_directions property.
         """
         self._supported_presentation_directions = value
     
@@ -877,7 +877,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportedPrintQualities property value. The supportedPrintQualities property
         Args:
-            value: Value to set for the supportedPrintQualities property.
+            value: Value to set for the supported_print_qualities property.
         """
         self._supported_print_qualities = value
     
@@ -894,7 +894,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the supportsFitPdfToPage property value. True if the printer supports scaling PDF pages to match the print media size; false otherwise.
         Args:
-            value: Value to set for the supportsFitPdfToPage property.
+            value: Value to set for the supports_fit_pdf_to_page property.
         """
         self._supports_fit_pdf_to_page = value
     
@@ -911,7 +911,7 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         """
         Sets the topMargins property value. A list of supported top margins(in microns) for the printer.
         Args:
-            value: Value to set for the topMargins property.
+            value: Value to set for the top_margins property.
         """
         self._top_margins = value
     

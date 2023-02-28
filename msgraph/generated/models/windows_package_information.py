@@ -8,7 +8,7 @@ windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows
 
 class WindowsPackageInformation(AdditionalDataHolder, Parsable):
     """
-    Contains properties for the package information for a Windows line of business app.
+    Contains properties for the package information for a Windows line of business app. Used as property within windowsPhone81AppXBundle object, which is also being deprecated. This complex type will be deprecated in February 2023.
     """
     @property
     def additional_data(self,) -> Dict[str, Any]:
@@ -40,7 +40,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the applicableArchitecture property value. Contains properties for Windows architecture.
         Args:
-            value: Value to set for the applicableArchitecture property.
+            value: Value to set for the applicable_architecture property.
         """
         self._applicable_architecture = value
     
@@ -93,7 +93,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The Display Name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -103,13 +103,13 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applicable_architecture": lambda n : setattr(self, 'applicable_architecture', n.get_enum_value(windows_architecture.WindowsArchitecture)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "identity_name": lambda n : setattr(self, 'identity_name', n.get_str_value()),
-            "identity_publisher": lambda n : setattr(self, 'identity_publisher', n.get_str_value()),
-            "identity_resource_identifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
-            "identity_version": lambda n : setattr(self, 'identity_version', n.get_str_value()),
-            "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
+            "applicableArchitecture": lambda n : setattr(self, 'applicable_architecture', n.get_enum_value(windows_architecture.WindowsArchitecture)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
+            "identityPublisher": lambda n : setattr(self, 'identity_publisher', n.get_str_value()),
+            "identityResourceIdentifier": lambda n : setattr(self, 'identity_resource_identifier', n.get_str_value()),
+            "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(windows_minimum_operating_system.WindowsMinimumOperatingSystem)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -127,7 +127,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the identityName property value. The Identity Name.
         Args:
-            value: Value to set for the identityName property.
+            value: Value to set for the identity_name property.
         """
         self._identity_name = value
     
@@ -144,7 +144,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the identityPublisher property value. The Identity Publisher.
         Args:
-            value: Value to set for the identityPublisher property.
+            value: Value to set for the identity_publisher property.
         """
         self._identity_publisher = value
     
@@ -161,7 +161,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the identityResourceIdentifier property value. The Identity Resource Identifier.
         Args:
-            value: Value to set for the identityResourceIdentifier property.
+            value: Value to set for the identity_resource_identifier property.
         """
         self._identity_resource_identifier = value
     
@@ -178,7 +178,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the identityVersion property value. The Identity Version.
         Args:
-            value: Value to set for the identityVersion property.
+            value: Value to set for the identity_version property.
         """
         self._identity_version = value
     
@@ -195,7 +195,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
         Args:
-            value: Value to set for the minimumSupportedOperatingSystem property.
+            value: Value to set for the minimum_supported_operating_system property.
         """
         self._minimum_supported_operating_system = value
     
@@ -212,7 +212,7 @@ class WindowsPackageInformation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

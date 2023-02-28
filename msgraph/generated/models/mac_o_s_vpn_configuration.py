@@ -34,7 +34,7 @@ class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     

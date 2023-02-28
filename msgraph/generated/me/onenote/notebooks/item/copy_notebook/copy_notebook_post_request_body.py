@@ -57,11 +57,11 @@ class CopyNotebookPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
-            "notebook_folder": lambda n : setattr(self, 'notebook_folder', n.get_str_value()),
-            "rename_as": lambda n : setattr(self, 'rename_as', n.get_str_value()),
-            "site_collection_id": lambda n : setattr(self, 'site_collection_id', n.get_str_value()),
-            "site_id": lambda n : setattr(self, 'site_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "notebookFolder": lambda n : setattr(self, 'notebook_folder', n.get_str_value()),
+            "renameAs": lambda n : setattr(self, 'rename_as', n.get_str_value()),
+            "siteCollectionId": lambda n : setattr(self, 'site_collection_id', n.get_str_value()),
+            "siteId": lambda n : setattr(self, 'site_id', n.get_str_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class CopyNotebookPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupId property value. The groupId property
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -95,7 +95,7 @@ class CopyNotebookPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the notebookFolder property value. The notebookFolder property
         Args:
-            value: Value to set for the notebookFolder property.
+            value: Value to set for the notebook_folder property.
         """
         self._notebook_folder = value
     
@@ -112,7 +112,7 @@ class CopyNotebookPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the renameAs property value. The renameAs property
         Args:
-            value: Value to set for the renameAs property.
+            value: Value to set for the rename_as property.
         """
         self._rename_as = value
     
@@ -144,7 +144,7 @@ class CopyNotebookPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the siteCollectionId property value. The siteCollectionId property
         Args:
-            value: Value to set for the siteCollectionId property.
+            value: Value to set for the site_collection_id property.
         """
         self._site_collection_id = value
     
@@ -161,7 +161,7 @@ class CopyNotebookPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the siteId property value. The siteId property
         Args:
-            value: Value to set for the siteId property.
+            value: Value to set for the site_id property.
         """
         self._site_id = value
     

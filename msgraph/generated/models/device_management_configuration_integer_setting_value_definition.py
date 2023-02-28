@@ -35,8 +35,8 @@ class DeviceManagementConfigurationIntegerSettingValueDefinition(device_manageme
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_value": lambda n : setattr(self, 'maximum_value', n.get_int_value()),
-            "minimum_value": lambda n : setattr(self, 'minimum_value', n.get_int_value()),
+            "maximumValue": lambda n : setattr(self, 'maximum_value', n.get_int_value()),
+            "minimumValue": lambda n : setattr(self, 'minimum_value', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinition(device_manageme
         """
         Sets the maximumValue property value. Maximum allowed value of the integer
         Args:
-            value: Value to set for the maximumValue property.
+            value: Value to set for the maximum_value property.
         """
         self._maximum_value = value
     
@@ -72,7 +72,7 @@ class DeviceManagementConfigurationIntegerSettingValueDefinition(device_manageme
         """
         Sets the minimumValue property value. Minimum allowed value of the integer
         Args:
-            value: Value to set for the minimumValue property.
+            value: Value to set for the minimum_value property.
         """
         self._minimum_value = value
     

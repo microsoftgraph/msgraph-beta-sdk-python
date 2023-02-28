@@ -20,7 +20,7 @@ class SensitivityPolicySettings(entity.Entity):
         """
         Sets the applicableTo property value. The applicableTo property
         Args:
-            value: Value to set for the applicableTo property.
+            value: Value to set for the applicable_to property.
         """
         self._applicable_to = value
     
@@ -65,7 +65,7 @@ class SensitivityPolicySettings(entity.Entity):
         """
         Sets the downgradeSensitivityRequiresJustification property value. The downgradeSensitivityRequiresJustification property
         Args:
-            value: Value to set for the downgradeSensitivityRequiresJustification property.
+            value: Value to set for the downgrade_sensitivity_requires_justification property.
         """
         self._downgrade_sensitivity_requires_justification = value
     
@@ -75,10 +75,10 @@ class SensitivityPolicySettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applicable_to": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
-            "downgrade_sensitivity_requires_justification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
-            "help_web_url": lambda n : setattr(self, 'help_web_url', n.get_str_value()),
-            "is_mandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
+            "downgradeSensitivityRequiresJustification": lambda n : setattr(self, 'downgrade_sensitivity_requires_justification', n.get_bool_value()),
+            "helpWebUrl": lambda n : setattr(self, 'help_web_url', n.get_str_value()),
+            "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -97,7 +97,7 @@ class SensitivityPolicySettings(entity.Entity):
         """
         Sets the helpWebUrl property value. The helpWebUrl property
         Args:
-            value: Value to set for the helpWebUrl property.
+            value: Value to set for the help_web_url property.
         """
         self._help_web_url = value
     
@@ -114,7 +114,7 @@ class SensitivityPolicySettings(entity.Entity):
         """
         Sets the isMandatory property value. The isMandatory property
         Args:
-            value: Value to set for the isMandatory property.
+            value: Value to set for the is_mandatory property.
         """
         self._is_mandatory = value
     

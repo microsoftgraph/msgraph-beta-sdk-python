@@ -54,7 +54,7 @@ class CopyPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "parent_reference": lambda n : setattr(self, 'parent_reference', n.get_object_value(item_reference.ItemReference)),
+            "parentReference": lambda n : setattr(self, 'parent_reference', n.get_object_value(item_reference.ItemReference)),
         }
         return fields
     
@@ -88,7 +88,7 @@ class CopyPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the parentReference property value. The parentReference property
         Args:
-            value: Value to set for the parentReference property.
+            value: Value to set for the parent_reference property.
         """
         self._parent_reference = value
     

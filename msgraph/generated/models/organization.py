@@ -32,7 +32,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the assignedPlans property value. The collection of service plans associated with the tenant. Not nullable.
         Args:
-            value: Value to set for the assignedPlans property.
+            value: Value to set for the assigned_plans property.
         """
         self._assigned_plans = value
     
@@ -66,7 +66,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the businessPhones property value. Telephone number for the organization. Although this is a string collection, only one number can be set for this property.
         Args:
-            value: Value to set for the businessPhones property.
+            value: Value to set for the business_phones property.
         """
         self._business_phones = value
     
@@ -83,7 +83,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the certificateBasedAuthConfiguration property value. Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
         Args:
-            value: Value to set for the certificateBasedAuthConfiguration property.
+            value: Value to set for the certificate_based_auth_configuration property.
         """
         self._certificate_based_auth_configuration = value
     
@@ -100,7 +100,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the certificateConnectorSetting property value. Certificate connector setting.
         Args:
-            value: Value to set for the certificateConnectorSetting property.
+            value: Value to set for the certificate_connector_setting property.
         """
         self._certificate_connector_setting = value
     
@@ -163,7 +163,7 @@ class Organization(directory_object.DirectoryObject):
         self._on_premises_last_sync_date_time: Optional[datetime] = None
         # true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; Nullable. null if this object has never been synced from an on-premises directory (default).
         self._on_premises_sync_enabled: Optional[bool] = None
-        # The partnerTenantType property
+        # The type of partnership this tenant has with Microsoft. The possible values are: microsoftSupport, syndicatePartner, breadthPartner, breadthPartnerDelegatedAdmin, resellerPartnerDelegatedAdmin, valueAddedResellerPartnerDelegatedAdmin, unknownFutureValue. Nullable. For more information about the possible types, see partnerTenantType values.
         self._partner_tenant_type: Optional[partner_tenant_type.PartnerTenantType] = None
         # Postal code of the address for the organization.
         self._postal_code: Optional[str] = None
@@ -218,7 +218,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the countryLetterCode property value. Country or region abbreviation for the organization in ISO 3166-2 format.
         Args:
-            value: Value to set for the countryLetterCode property.
+            value: Value to set for the country_letter_code property.
         """
         self._country_letter_code = value
     
@@ -235,7 +235,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the createdDateTime property value. Timestamp of when the organization was created. The value cannot be modified and is automatically populated when the organization is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -264,7 +264,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the defaultUsageLocation property value. Two-letter ISO 3166 country code indicating the default service usage location of an organization.
         Args:
-            value: Value to set for the defaultUsageLocation property.
+            value: Value to set for the default_usage_location property.
         """
         self._default_usage_location = value
     
@@ -281,7 +281,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the directorySizeQuota property value. The directory size quota information of an organization.
         Args:
-            value: Value to set for the directorySizeQuota property.
+            value: Value to set for the directory_size_quota property.
         """
         self._directory_size_quota = value
     
@@ -298,7 +298,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the displayName property value. The display name for the tenant.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -325,36 +325,36 @@ class Organization(directory_object.DirectoryObject):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_plans": lambda n : setattr(self, 'assigned_plans', n.get_collection_of_object_values(assigned_plan.AssignedPlan)),
+            "assignedPlans": lambda n : setattr(self, 'assigned_plans', n.get_collection_of_object_values(assigned_plan.AssignedPlan)),
             "branding": lambda n : setattr(self, 'branding', n.get_object_value(organizational_branding.OrganizationalBranding)),
-            "business_phones": lambda n : setattr(self, 'business_phones', n.get_collection_of_primitive_values(str)),
-            "certificate_based_auth_configuration": lambda n : setattr(self, 'certificate_based_auth_configuration', n.get_collection_of_object_values(certificate_based_auth_configuration.CertificateBasedAuthConfiguration)),
-            "certificate_connector_setting": lambda n : setattr(self, 'certificate_connector_setting', n.get_object_value(certificate_connector_setting.CertificateConnectorSetting)),
+            "businessPhones": lambda n : setattr(self, 'business_phones', n.get_collection_of_primitive_values(str)),
+            "certificateBasedAuthConfiguration": lambda n : setattr(self, 'certificate_based_auth_configuration', n.get_collection_of_object_values(certificate_based_auth_configuration.CertificateBasedAuthConfiguration)),
+            "certificateConnectorSetting": lambda n : setattr(self, 'certificate_connector_setting', n.get_object_value(certificate_connector_setting.CertificateConnectorSetting)),
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
             "country": lambda n : setattr(self, 'country', n.get_str_value()),
-            "country_letter_code": lambda n : setattr(self, 'country_letter_code', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "default_usage_location": lambda n : setattr(self, 'default_usage_location', n.get_str_value()),
-            "directory_size_quota": lambda n : setattr(self, 'directory_size_quota', n.get_object_value(directory_size_quota.DirectorySizeQuota)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "countryLetterCode": lambda n : setattr(self, 'country_letter_code', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "defaultUsageLocation": lambda n : setattr(self, 'default_usage_location', n.get_str_value()),
+            "directorySizeQuota": lambda n : setattr(self, 'directory_size_quota', n.get_object_value(directory_size_quota.DirectorySizeQuota)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
-            "is_multiple_data_locations_for_services_enabled": lambda n : setattr(self, 'is_multiple_data_locations_for_services_enabled', n.get_bool_value()),
-            "marketing_notification_emails": lambda n : setattr(self, 'marketing_notification_emails', n.get_collection_of_primitive_values(str)),
-            "mobile_device_management_authority": lambda n : setattr(self, 'mobile_device_management_authority', n.get_enum_value(mdm_authority.MdmAuthority)),
-            "on_premises_last_sync_date_time": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
-            "on_premises_sync_enabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
-            "partner_tenant_type": lambda n : setattr(self, 'partner_tenant_type', n.get_enum_value(partner_tenant_type.PartnerTenantType)),
-            "postal_code": lambda n : setattr(self, 'postal_code', n.get_str_value()),
-            "preferred_language": lambda n : setattr(self, 'preferred_language', n.get_str_value()),
-            "privacy_profile": lambda n : setattr(self, 'privacy_profile', n.get_object_value(privacy_profile.PrivacyProfile)),
-            "provisioned_plans": lambda n : setattr(self, 'provisioned_plans', n.get_collection_of_object_values(provisioned_plan.ProvisionedPlan)),
-            "security_compliance_notification_mails": lambda n : setattr(self, 'security_compliance_notification_mails', n.get_collection_of_primitive_values(str)),
-            "security_compliance_notification_phones": lambda n : setattr(self, 'security_compliance_notification_phones', n.get_collection_of_primitive_values(str)),
+            "isMultipleDataLocationsForServicesEnabled": lambda n : setattr(self, 'is_multiple_data_locations_for_services_enabled', n.get_bool_value()),
+            "marketingNotificationEmails": lambda n : setattr(self, 'marketing_notification_emails', n.get_collection_of_primitive_values(str)),
+            "mobileDeviceManagementAuthority": lambda n : setattr(self, 'mobile_device_management_authority', n.get_enum_value(mdm_authority.MdmAuthority)),
+            "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
+            "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
+            "partnerTenantType": lambda n : setattr(self, 'partner_tenant_type', n.get_enum_value(partner_tenant_type.PartnerTenantType)),
+            "postalCode": lambda n : setattr(self, 'postal_code', n.get_str_value()),
+            "preferredLanguage": lambda n : setattr(self, 'preferred_language', n.get_str_value()),
+            "privacyProfile": lambda n : setattr(self, 'privacy_profile', n.get_object_value(privacy_profile.PrivacyProfile)),
+            "provisionedPlans": lambda n : setattr(self, 'provisioned_plans', n.get_collection_of_object_values(provisioned_plan.ProvisionedPlan)),
+            "securityComplianceNotificationMails": lambda n : setattr(self, 'security_compliance_notification_mails', n.get_collection_of_primitive_values(str)),
+            "securityComplianceNotificationPhones": lambda n : setattr(self, 'security_compliance_notification_phones', n.get_collection_of_primitive_values(str)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(organization_settings.OrganizationSettings)),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
             "street": lambda n : setattr(self, 'street', n.get_str_value()),
-            "technical_notification_mails": lambda n : setattr(self, 'technical_notification_mails', n.get_collection_of_primitive_values(str)),
-            "verified_domains": lambda n : setattr(self, 'verified_domains', n.get_collection_of_object_values(verified_domain.VerifiedDomain)),
+            "technicalNotificationMails": lambda n : setattr(self, 'technical_notification_mails', n.get_collection_of_primitive_values(str)),
+            "verifiedDomains": lambda n : setattr(self, 'verified_domains', n.get_collection_of_object_values(verified_domain.VerifiedDomain)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -373,7 +373,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the isMultipleDataLocationsForServicesEnabled property value. true if organization is Multi-Geo enabled; false if organization is not Multi-Geo enabled; null (default). Read-only. For more information, see OneDrive Online Multi-Geo.
         Args:
-            value: Value to set for the isMultipleDataLocationsForServicesEnabled property.
+            value: Value to set for the is_multiple_data_locations_for_services_enabled property.
         """
         self._is_multiple_data_locations_for_services_enabled = value
     
@@ -390,7 +390,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the marketingNotificationEmails property value. Not nullable.
         Args:
-            value: Value to set for the marketingNotificationEmails property.
+            value: Value to set for the marketing_notification_emails property.
         """
         self._marketing_notification_emails = value
     
@@ -407,7 +407,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the mobileDeviceManagementAuthority property value. Mobile device management authority.
         Args:
-            value: Value to set for the mobileDeviceManagementAuthority property.
+            value: Value to set for the mobile_device_management_authority property.
         """
         self._mobile_device_management_authority = value
     
@@ -424,7 +424,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the onPremisesLastSyncDateTime property value. The time and date at which the tenant was last synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the onPremisesLastSyncDateTime property.
+            value: Value to set for the on_premises_last_sync_date_time property.
         """
         self._on_premises_last_sync_date_time = value
     
@@ -441,14 +441,14 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the onPremisesSyncEnabled property value. true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; Nullable. null if this object has never been synced from an on-premises directory (default).
         Args:
-            value: Value to set for the onPremisesSyncEnabled property.
+            value: Value to set for the on_premises_sync_enabled property.
         """
         self._on_premises_sync_enabled = value
     
     @property
     def partner_tenant_type(self,) -> Optional[partner_tenant_type.PartnerTenantType]:
         """
-        Gets the partnerTenantType property value. The partnerTenantType property
+        Gets the partnerTenantType property value. The type of partnership this tenant has with Microsoft. The possible values are: microsoftSupport, syndicatePartner, breadthPartner, breadthPartnerDelegatedAdmin, resellerPartnerDelegatedAdmin, valueAddedResellerPartnerDelegatedAdmin, unknownFutureValue. Nullable. For more information about the possible types, see partnerTenantType values.
         Returns: Optional[partner_tenant_type.PartnerTenantType]
         """
         return self._partner_tenant_type
@@ -456,9 +456,9 @@ class Organization(directory_object.DirectoryObject):
     @partner_tenant_type.setter
     def partner_tenant_type(self,value: Optional[partner_tenant_type.PartnerTenantType] = None) -> None:
         """
-        Sets the partnerTenantType property value. The partnerTenantType property
+        Sets the partnerTenantType property value. The type of partnership this tenant has with Microsoft. The possible values are: microsoftSupport, syndicatePartner, breadthPartner, breadthPartnerDelegatedAdmin, resellerPartnerDelegatedAdmin, valueAddedResellerPartnerDelegatedAdmin, unknownFutureValue. Nullable. For more information about the possible types, see partnerTenantType values.
         Args:
-            value: Value to set for the partnerTenantType property.
+            value: Value to set for the partner_tenant_type property.
         """
         self._partner_tenant_type = value
     
@@ -475,7 +475,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the postalCode property value. Postal code of the address for the organization.
         Args:
-            value: Value to set for the postalCode property.
+            value: Value to set for the postal_code property.
         """
         self._postal_code = value
     
@@ -492,7 +492,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the preferredLanguage property value. The preferred language for the organization. Should follow ISO 639-1 Code; for example en.
         Args:
-            value: Value to set for the preferredLanguage property.
+            value: Value to set for the preferred_language property.
         """
         self._preferred_language = value
     
@@ -509,7 +509,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the privacyProfile property value. The privacy profile of an organization.
         Args:
-            value: Value to set for the privacyProfile property.
+            value: Value to set for the privacy_profile property.
         """
         self._privacy_profile = value
     
@@ -526,7 +526,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the provisionedPlans property value. Not nullable.
         Args:
-            value: Value to set for the provisionedPlans property.
+            value: Value to set for the provisioned_plans property.
         """
         self._provisioned_plans = value
     
@@ -543,7 +543,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the securityComplianceNotificationMails property value. The securityComplianceNotificationMails property
         Args:
-            value: Value to set for the securityComplianceNotificationMails property.
+            value: Value to set for the security_compliance_notification_mails property.
         """
         self._security_compliance_notification_mails = value
     
@@ -560,7 +560,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the securityComplianceNotificationPhones property value. The securityComplianceNotificationPhones property
         Args:
-            value: Value to set for the securityComplianceNotificationPhones property.
+            value: Value to set for the security_compliance_notification_phones property.
         """
         self._security_compliance_notification_phones = value
     
@@ -668,7 +668,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the technicalNotificationMails property value. Not nullable.
         Args:
-            value: Value to set for the technicalNotificationMails property.
+            value: Value to set for the technical_notification_mails property.
         """
         self._technical_notification_mails = value
     
@@ -685,7 +685,7 @@ class Organization(directory_object.DirectoryObject):
         """
         Sets the verifiedDomains property value. The collection of domains associated with this tenant. Not nullable.
         Args:
-            value: Value to set for the verifiedDomains property.
+            value: Value to set for the verified_domains property.
         """
         self._verified_domains = value
     

@@ -30,19 +30,18 @@ class InstantiateRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/applicationTemplates/{applicationTemplate%2Did}/microsoft.graph.instantiate"
+        self.url_template: str = "{+baseurl}/applicationTemplates/{applicationTemplate%2Did}/instantiate"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[instantiate_post_request_body.InstantiatePostRequestBody] = None, request_configuration: Optional[InstantiateRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[application_service_principal.ApplicationServicePrincipal]:
+    async def post(self,body: Optional[instantiate_post_request_body.InstantiatePostRequestBody] = None, request_configuration: Optional[InstantiateRequestBuilderPostRequestConfiguration] = None) -> Optional[application_service_principal.ApplicationServicePrincipal]:
         """
         Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[application_service_principal.ApplicationServicePrincipal]
         """
         if body is None:
@@ -56,7 +55,7 @@ class InstantiateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, application_service_principal.ApplicationServicePrincipal, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, application_service_principal.ApplicationServicePrincipal, error_mapping)
     
     def to_post_request_information(self,body: Optional[instantiate_post_request_body.InstantiatePostRequestBody] = None, request_configuration: Optional[InstantiateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class InstantiateRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class InstantiateRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

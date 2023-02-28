@@ -39,7 +39,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the certFileName property value. File name to display in UI.
         Args:
-            value: Value to set for the certFileName property.
+            value: Value to set for the cert_file_name property.
         """
         self._cert_file_name = value
     
@@ -56,7 +56,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the certificateTemplateName property value. PKCS Certificate Template Name.
         Args:
-            value: Value to set for the certificateTemplateName property.
+            value: Value to set for the certificate_template_name property.
         """
         self._certificate_template_name = value
     
@@ -73,7 +73,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
         Args:
-            value: Value to set for the certificateValidityPeriodScale property.
+            value: Value to set for the certificate_validity_period_scale property.
         """
         self._certificate_validity_period_scale = value
     
@@ -90,7 +90,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period.
         Args:
-            value: Value to set for the certificateValidityPeriodValue property.
+            value: Value to set for the certificate_validity_period_value property.
         """
         self._certificate_validity_period_value = value
     
@@ -107,7 +107,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the certificationAuthority property value. PKCS Certification Authority.
         Args:
-            value: Value to set for the certificationAuthority property.
+            value: Value to set for the certification_authority property.
         """
         self._certification_authority = value
     
@@ -124,7 +124,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the certificationAuthorityName property value. PKCS Certification Authority Name.
         Args:
-            value: Value to set for the certificationAuthorityName property.
+            value: Value to set for the certification_authority_name property.
         """
         self._certification_authority_name = value
     
@@ -172,15 +172,15 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cert_file_name": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
-            "certificate_template_name": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
-            "certificate_validity_period_scale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
-            "certificate_validity_period_value": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
-            "certification_authority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
-            "certification_authority_name": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
+            "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
+            "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
+            "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
+            "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
+            "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
+            "certFileName": lambda n : setattr(self, 'cert_file_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "trusted_root_certificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
+            "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
+            "trustedRootCertificate": lambda n : setattr(self, 'trusted_root_certificate', n.get_bytes_value()),
         }
         return fields
     
@@ -197,7 +197,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -214,7 +214,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage. Valid values 1 to 99
         Args:
-            value: Value to set for the renewalThresholdPercentage property.
+            value: Value to set for the renewal_threshold_percentage property.
         """
         self._renewal_threshold_percentage = value
     
@@ -226,12 +226,12 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_str_value("certificateTemplateName", self.certificate_template_name)
         writer.write_enum_value("certificateValidityPeriodScale", self.certificate_validity_period_scale)
         writer.write_int_value("certificateValidityPeriodValue", self.certificate_validity_period_value)
         writer.write_str_value("certificationAuthority", self.certification_authority)
         writer.write_str_value("certificationAuthorityName", self.certification_authority_name)
+        writer.write_str_value("certFileName", self.cert_file_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("renewalThresholdPercentage", self.renewal_threshold_percentage)
         writer.write_object_value("trustedRootCertificate", self.trusted_root_certificate)
@@ -250,7 +250,7 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the trustedRootCertificate property value. Trusted Root Certificate.
         Args:
-            value: Value to set for the trustedRootCertificate property.
+            value: Value to set for the trusted_root_certificate property.
         """
         self._trusted_root_certificate = value
     

@@ -20,7 +20,7 @@ class DeviceManagementConfigurationChoiceSettingInstance(device_management_confi
         """
         Sets the choiceSettingValue property value. The choiceSettingValue property
         Args:
-            value: Value to set for the choiceSettingValue property.
+            value: Value to set for the choice_setting_value property.
         """
         self._choice_setting_value = value
     
@@ -51,7 +51,7 @@ class DeviceManagementConfigurationChoiceSettingInstance(device_management_confi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "choice_setting_value": lambda n : setattr(self, 'choice_setting_value', n.get_object_value(device_management_configuration_choice_setting_value.DeviceManagementConfigurationChoiceSettingValue)),
+            "choiceSettingValue": lambda n : setattr(self, 'choice_setting_value', n.get_object_value(device_management_configuration_choice_setting_value.DeviceManagementConfigurationChoiceSettingValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -22,7 +22,7 @@ class CustomCalloutExtension(entity.Entity):
         """
         Sets the authenticationConfiguration property value. Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
         Args:
-            value: Value to set for the authenticationConfiguration property.
+            value: Value to set for the authentication_configuration property.
         """
         self._authentication_configuration = value
     
@@ -39,7 +39,7 @@ class CustomCalloutExtension(entity.Entity):
         """
         Sets the clientConfiguration property value. HTTP connection settings that define how long Azure AD can wait for a connection to a logic app, how many times you can retry a timed-out connection and the exception scenarios when retries are allowed.
         Args:
-            value: Value to set for the clientConfiguration property.
+            value: Value to set for the client_configuration property.
         """
         self._client_configuration = value
     
@@ -103,7 +103,7 @@ class CustomCalloutExtension(entity.Entity):
         """
         Sets the displayName property value. Display name for the customCalloutExtension object.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -120,7 +120,7 @@ class CustomCalloutExtension(entity.Entity):
         """
         Sets the endpointConfiguration property value. The type and details for configuring the endpoint to call the logic app's workflow.
         Args:
-            value: Value to set for the endpointConfiguration property.
+            value: Value to set for the endpoint_configuration property.
         """
         self._endpoint_configuration = value
     
@@ -130,11 +130,11 @@ class CustomCalloutExtension(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_configuration": lambda n : setattr(self, 'authentication_configuration', n.get_object_value(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration)),
-            "client_configuration": lambda n : setattr(self, 'client_configuration', n.get_object_value(custom_extension_client_configuration.CustomExtensionClientConfiguration)),
+            "authenticationConfiguration": lambda n : setattr(self, 'authentication_configuration', n.get_object_value(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration)),
+            "clientConfiguration": lambda n : setattr(self, 'client_configuration', n.get_object_value(custom_extension_client_configuration.CustomExtensionClientConfiguration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "endpoint_configuration": lambda n : setattr(self, 'endpoint_configuration', n.get_object_value(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endpointConfiguration": lambda n : setattr(self, 'endpoint_configuration', n.get_object_value(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -30,19 +30,18 @@ class RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/managedDevices/{managedDevice%2Did}/microsoft.graph.retrieveRemoteHelpSession(sessionKey='{sessionKey}')"
+        self.url_template: str = "{+baseurl}/me/managedDevices/{managedDevice%2Did}/retrieveRemoteHelpSession(sessionKey='{sessionKey}')"
 
         url_tpl_params = get_path_parameters(path_parameters)
         url_tpl_params[""] = sessionKey
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RetrieveRemoteHelpSessionWithSessionKeyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[retrieve_remote_help_session_response.RetrieveRemoteHelpSessionResponse]:
+    async def get(self,request_configuration: Optional[RetrieveRemoteHelpSessionWithSessionKeyRequestBuilderGetRequestConfiguration] = None) -> Optional[retrieve_remote_help_session_response.RetrieveRemoteHelpSessionResponse]:
         """
         Invoke function retrieveRemoteHelpSession
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[retrieve_remote_help_session_response.RetrieveRemoteHelpSessionResponse]
         """
         request_info = self.to_get_request_information(
@@ -54,7 +53,7 @@ class RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, retrieve_remote_help_session_response.RetrieveRemoteHelpSessionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, retrieve_remote_help_session_response.RetrieveRemoteHelpSessionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RetrieveRemoteHelpSessionWithSessionKeyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -67,7 +66,7 @@ class RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -79,7 +78,7 @@ class RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

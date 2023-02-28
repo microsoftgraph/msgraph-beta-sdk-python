@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.count.count_request_builder')
-endpoint_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.endpoint.endpoint_request_builder')
+graph_endpoint_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.graph_endpoint.graph_endpoint_request_builder')
+graph_service_principal_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.graph_service_principal.graph_service_principal_request_builder')
+graph_user_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.graph_user.graph_user_request_builder')
 ref_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.ref.ref_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.service_principal.service_principal_request_builder')
-user_request_builder = lazy_import('msgraph.generated.devices.item.registered_owners.user.user_request_builder')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -30,11 +30,25 @@ class RegisteredOwnersRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def graph_endpoint(self) -> graph_endpoint_request_builder.GraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_endpoint_request_builder.GraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_service_principal(self) -> graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder:
+        """
+        Casts the previous resource to servicePrincipal.
+        """
+        return graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_user(self) -> graph_user_request_builder.GraphUserRequestBuilder:
+        """
+        Casts the previous resource to user.
+        """
+        return graph_user_request_builder.GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
@@ -42,20 +56,6 @@ class RegisteredOwnersRequestBuilder():
         Provides operations to manage the collection of device entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
-        """
-        Casts the previous resource to servicePrincipal.
-        """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
-        """
-        Casts the previous resource to user.
-        """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -75,12 +75,11 @@ class RegisteredOwnersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RegisteredOwnersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[RegisteredOwnersRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -92,7 +91,7 @@ class RegisteredOwnersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RegisteredOwnersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -105,7 +104,7 @@ class RegisteredOwnersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -175,7 +174,7 @@ class RegisteredOwnersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

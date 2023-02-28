@@ -41,8 +41,8 @@ class DeviceManagementConfigurationSetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "setting_definitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition)),
-            "setting_instance": lambda n : setattr(self, 'setting_instance', n.get_object_value(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
+            "settingDefinitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition)),
+            "settingInstance": lambda n : setattr(self, 'setting_instance', n.get_object_value(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class DeviceManagementConfigurationSetting(entity.Entity):
         """
         Sets the settingDefinitions property value. List of related Setting Definitions. This property is read-only.
         Args:
-            value: Value to set for the settingDefinitions property.
+            value: Value to set for the setting_definitions property.
         """
         self._setting_definitions = value
     
@@ -90,7 +90,7 @@ class DeviceManagementConfigurationSetting(entity.Entity):
         """
         Sets the settingInstance property value. Setting instance within policy
         Args:
-            value: Value to set for the settingInstance property.
+            value: Value to set for the setting_instance property.
         """
         self._setting_instance = value
     

@@ -22,7 +22,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the accountName property value. Account name.
         Args:
-            value: Value to set for the accountName property.
+            value: Value to set for the account_name property.
         """
         self._account_name = value
     
@@ -76,7 +76,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the durationOfEmailToSync property value. Possible values for email sync duration.
         Args:
-            value: Value to set for the durationOfEmailToSync property.
+            value: Value to set for the duration_of_email_to_sync property.
         """
         self._duration_of_email_to_sync = value
     
@@ -93,7 +93,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the emailAddressSource property value. Possible values for username source or email source.
         Args:
-            value: Value to set for the emailAddressSource property.
+            value: Value to set for the email_address_source property.
         """
         self._email_address_source = value
     
@@ -110,7 +110,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the emailSyncSchedule property value. Possible values for email sync schedule.
         Args:
-            value: Value to set for the emailSyncSchedule property.
+            value: Value to set for the email_sync_schedule property.
         """
         self._email_sync_schedule = value
     
@@ -120,15 +120,15 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_name": lambda n : setattr(self, 'account_name', n.get_str_value()),
-            "duration_of_email_to_sync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
-            "email_address_source": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
-            "email_sync_schedule": lambda n : setattr(self, 'email_sync_schedule', n.get_enum_value(email_sync_schedule.EmailSyncSchedule)),
-            "host_name": lambda n : setattr(self, 'host_name', n.get_str_value()),
-            "require_ssl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
-            "sync_calendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
-            "sync_contacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
-            "sync_tasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
+            "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
+            "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
+            "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
+            "emailSyncSchedule": lambda n : setattr(self, 'email_sync_schedule', n.get_enum_value(email_sync_schedule.EmailSyncSchedule)),
+            "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
+            "requireSsl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
+            "syncCalendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
+            "syncContacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
+            "syncTasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -147,7 +147,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the hostName property value. Exchange location that (URL) that the native mail app connects to.
         Args:
-            value: Value to set for the hostName property.
+            value: Value to set for the host_name property.
         """
         self._host_name = value
     
@@ -164,7 +164,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the requireSsl property value. Indicates whether or not to use SSL.
         Args:
-            value: Value to set for the requireSsl property.
+            value: Value to set for the require_ssl property.
         """
         self._require_ssl = value
     
@@ -200,7 +200,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the syncCalendar property value. Whether or not to sync the calendar.
         Args:
-            value: Value to set for the syncCalendar property.
+            value: Value to set for the sync_calendar property.
         """
         self._sync_calendar = value
     
@@ -217,7 +217,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the syncContacts property value. Whether or not to sync contacts.
         Args:
-            value: Value to set for the syncContacts property.
+            value: Value to set for the sync_contacts property.
         """
         self._sync_contacts = value
     
@@ -234,7 +234,7 @@ class Windows10EasEmailProfileConfiguration(eas_email_profile_configuration_base
         """
         Sets the syncTasks property value. Whether or not to sync tasks.
         Args:
-            value: Value to set for the syncTasks property.
+            value: Value to set for the sync_tasks property.
         """
         self._sync_tasks = value
     

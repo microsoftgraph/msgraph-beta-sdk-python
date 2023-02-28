@@ -59,7 +59,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the failedDeviceCount property value. Number of Devices that have failed to install this app.
         Args:
-            value: Value to set for the failedDeviceCount property.
+            value: Value to set for the failed_device_count property.
         """
         self._failed_device_count = value
     
@@ -76,7 +76,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the failedUserCount property value. Number of Users that have 1 or more device that failed to install this app.
         Args:
-            value: Value to set for the failedUserCount property.
+            value: Value to set for the failed_user_count property.
         """
         self._failed_user_count = value
     
@@ -86,16 +86,16 @@ class MobileAppInstallSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_device_count": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
-            "failed_user_count": lambda n : setattr(self, 'failed_user_count', n.get_int_value()),
-            "installed_device_count": lambda n : setattr(self, 'installed_device_count', n.get_int_value()),
-            "installed_user_count": lambda n : setattr(self, 'installed_user_count', n.get_int_value()),
-            "not_applicable_device_count": lambda n : setattr(self, 'not_applicable_device_count', n.get_int_value()),
-            "not_applicable_user_count": lambda n : setattr(self, 'not_applicable_user_count', n.get_int_value()),
-            "not_installed_device_count": lambda n : setattr(self, 'not_installed_device_count', n.get_int_value()),
-            "not_installed_user_count": lambda n : setattr(self, 'not_installed_user_count', n.get_int_value()),
-            "pending_install_device_count": lambda n : setattr(self, 'pending_install_device_count', n.get_int_value()),
-            "pending_install_user_count": lambda n : setattr(self, 'pending_install_user_count', n.get_int_value()),
+            "failedDeviceCount": lambda n : setattr(self, 'failed_device_count', n.get_int_value()),
+            "failedUserCount": lambda n : setattr(self, 'failed_user_count', n.get_int_value()),
+            "installedDeviceCount": lambda n : setattr(self, 'installed_device_count', n.get_int_value()),
+            "installedUserCount": lambda n : setattr(self, 'installed_user_count', n.get_int_value()),
+            "notApplicableDeviceCount": lambda n : setattr(self, 'not_applicable_device_count', n.get_int_value()),
+            "notApplicableUserCount": lambda n : setattr(self, 'not_applicable_user_count', n.get_int_value()),
+            "notInstalledDeviceCount": lambda n : setattr(self, 'not_installed_device_count', n.get_int_value()),
+            "notInstalledUserCount": lambda n : setattr(self, 'not_installed_user_count', n.get_int_value()),
+            "pendingInstallDeviceCount": lambda n : setattr(self, 'pending_install_device_count', n.get_int_value()),
+            "pendingInstallUserCount": lambda n : setattr(self, 'pending_install_user_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,7 +114,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the installedDeviceCount property value. Number of Devices that have successfully installed this app.
         Args:
-            value: Value to set for the installedDeviceCount property.
+            value: Value to set for the installed_device_count property.
         """
         self._installed_device_count = value
     
@@ -131,7 +131,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the installedUserCount property value. Number of Users whose devices have all succeeded to install this app.
         Args:
-            value: Value to set for the installedUserCount property.
+            value: Value to set for the installed_user_count property.
         """
         self._installed_user_count = value
     
@@ -148,7 +148,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the notApplicableDeviceCount property value. Number of Devices that are not applicable for this app.
         Args:
-            value: Value to set for the notApplicableDeviceCount property.
+            value: Value to set for the not_applicable_device_count property.
         """
         self._not_applicable_device_count = value
     
@@ -165,7 +165,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the notApplicableUserCount property value. Number of Users whose devices were all not applicable for this app.
         Args:
-            value: Value to set for the notApplicableUserCount property.
+            value: Value to set for the not_applicable_user_count property.
         """
         self._not_applicable_user_count = value
     
@@ -182,7 +182,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the notInstalledDeviceCount property value. Number of Devices that does not have this app installed.
         Args:
-            value: Value to set for the notInstalledDeviceCount property.
+            value: Value to set for the not_installed_device_count property.
         """
         self._not_installed_device_count = value
     
@@ -199,7 +199,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the notInstalledUserCount property value. Number of Users that have 1 or more devices that did not install this app.
         Args:
-            value: Value to set for the notInstalledUserCount property.
+            value: Value to set for the not_installed_user_count property.
         """
         self._not_installed_user_count = value
     
@@ -216,7 +216,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the pendingInstallDeviceCount property value. Number of Devices that have been notified to install this app.
         Args:
-            value: Value to set for the pendingInstallDeviceCount property.
+            value: Value to set for the pending_install_device_count property.
         """
         self._pending_install_device_count = value
     
@@ -233,7 +233,7 @@ class MobileAppInstallSummary(entity.Entity):
         """
         Sets the pendingInstallUserCount property value. Number of Users that have 1 or more device that have been notified to install this app and have 0 devices with failures.
         Args:
-            value: Value to set for the pendingInstallUserCount property.
+            value: Value to set for the pending_install_user_count property.
         """
         self._pending_install_user_count = value
     

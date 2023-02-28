@@ -79,7 +79,7 @@ class DriveItemSource(AdditionalDataHolder, Parsable):
         """
         Sets the externalId property value. The external identifier for the drive item from the source.
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -90,7 +90,7 @@ class DriveItemSource(AdditionalDataHolder, Parsable):
         """
         fields = {
             "application": lambda n : setattr(self, 'application', n.get_enum_value(drive_item_source_application.DriveItemSourceApplication)),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -108,7 +108,7 @@ class DriveItemSource(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

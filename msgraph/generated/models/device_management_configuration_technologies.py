@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementConfigurationTechnologies(Enum):
     # Setting cannot be deployed through any channel
-    None_escaped = "none",
+    None_ = "none",
     # Setting can be deployed through the MDM channel
     Mdm = "mdm",
     # Setting can be deployed through the Windows10XManagement channel

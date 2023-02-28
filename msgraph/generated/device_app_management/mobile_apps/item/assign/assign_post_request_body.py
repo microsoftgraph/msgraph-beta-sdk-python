@@ -51,7 +51,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "mobile_app_assignments": lambda n : setattr(self, 'mobile_app_assignments', n.get_collection_of_object_values(mobile_app_assignment.MobileAppAssignment)),
+            "mobileAppAssignments": lambda n : setattr(self, 'mobile_app_assignments', n.get_collection_of_object_values(mobile_app_assignment.MobileAppAssignment)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the mobileAppAssignments property value. The mobileAppAssignments property
         Args:
-            value: Value to set for the mobileAppAssignments property.
+            value: Value to set for the mobile_app_assignments property.
         """
         self._mobile_app_assignments = value
     

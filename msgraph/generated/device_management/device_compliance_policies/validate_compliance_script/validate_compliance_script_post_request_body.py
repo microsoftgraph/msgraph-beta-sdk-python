@@ -58,7 +58,7 @@ class ValidateComplianceScriptPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceCompliancePolicyScript property value. The deviceCompliancePolicyScript property
         Args:
-            value: Value to set for the deviceCompliancePolicyScript property.
+            value: Value to set for the device_compliance_policy_script property.
         """
         self._device_compliance_policy_script = value
     
@@ -68,7 +68,7 @@ class ValidateComplianceScriptPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_compliance_policy_script": lambda n : setattr(self, 'device_compliance_policy_script', n.get_object_value(device_compliance_policy_script.DeviceCompliancePolicyScript)),
+            "deviceCompliancePolicyScript": lambda n : setattr(self, 'device_compliance_policy_script', n.get_object_value(device_compliance_policy_script.DeviceCompliancePolicyScript)),
         }
         return fields
     

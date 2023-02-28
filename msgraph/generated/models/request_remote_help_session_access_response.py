@@ -59,9 +59,9 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "pub_sub_encryption": lambda n : setattr(self, 'pub_sub_encryption', n.get_str_value()),
-            "pub_sub_encryption_key": lambda n : setattr(self, 'pub_sub_encryption_key', n.get_str_value()),
-            "session_key": lambda n : setattr(self, 'session_key', n.get_str_value()),
+            "pubSubEncryption": lambda n : setattr(self, 'pub_sub_encryption', n.get_str_value()),
+            "pubSubEncryptionKey": lambda n : setattr(self, 'pub_sub_encryption_key', n.get_str_value()),
+            "sessionKey": lambda n : setattr(self, 'session_key', n.get_str_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -95,7 +95,7 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
         """
         Sets the pubSubEncryption property value. AES encryption Initialization Vector for encrypting client messages sent to PubSub
         Args:
-            value: Value to set for the pubSubEncryption property.
+            value: Value to set for the pub_sub_encryption property.
         """
         self._pub_sub_encryption = value
     
@@ -112,7 +112,7 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
         """
         Sets the pubSubEncryptionKey property value. The unique identifier for encrypting client messages sent to PubSub
         Args:
-            value: Value to set for the pubSubEncryptionKey property.
+            value: Value to set for the pub_sub_encryption_key property.
         """
         self._pub_sub_encryption_key = value
     
@@ -143,7 +143,7 @@ class RequestRemoteHelpSessionAccessResponse(AdditionalDataHolder, Parsable):
         """
         Sets the sessionKey property value. The unique identifier for a session
         Args:
-            value: Value to set for the sessionKey property.
+            value: Value to set for the session_key property.
         """
         self._session_key = value
     

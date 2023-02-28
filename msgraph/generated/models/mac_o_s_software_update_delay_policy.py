@@ -2,7 +2,7 @@ from enum import Enum
 
 class MacOSSoftwareUpdateDelayPolicy(Enum):
     # Software update delays will not be enforced.
-    None_escaped = "none",
+    None_ = "none",
     # Force delays for OS software updates.
     DelayOSUpdateVisibility = "delayOSUpdateVisibility",
     # Force delays for app software updates.

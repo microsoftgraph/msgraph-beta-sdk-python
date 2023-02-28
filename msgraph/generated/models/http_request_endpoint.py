@@ -33,7 +33,7 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "target_url": lambda n : setattr(self, 'target_url', n.get_str_value()),
+            "targetUrl": lambda n : setattr(self, 'target_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class HttpRequestEndpoint(custom_extension_endpoint_configuration.CustomExtensio
         """
         Sets the targetUrl property value. The targetUrl property
         Args:
-            value: Value to set for the targetUrl property.
+            value: Value to set for the target_url property.
         """
         self._target_url = value
     

@@ -20,7 +20,7 @@ class AccessPackageResourceRole(entity.Entity):
         """
         Sets the accessPackageResource property value. The accessPackageResource property
         Args:
-            value: Value to set for the accessPackageResource property.
+            value: Value to set for the access_package_resource property.
         """
         self._access_package_resource = value
     
@@ -84,7 +84,7 @@ class AccessPackageResourceRole(entity.Entity):
         """
         Sets the displayName property value. The display name of the resource role such as the role defined by the application.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,11 +94,11 @@ class AccessPackageResourceRole(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_resource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
+            "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "origin_id": lambda n : setattr(self, 'origin_id', n.get_str_value()),
-            "origin_system": lambda n : setattr(self, 'origin_system', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
+            "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -117,7 +117,7 @@ class AccessPackageResourceRole(entity.Entity):
         """
         Sets the originId property value. The unique identifier of the resource role in the origin system. For a SharePoint Online site, the originId will be the sequence number of the role in the site.
         Args:
-            value: Value to set for the originId property.
+            value: Value to set for the origin_id property.
         """
         self._origin_id = value
     
@@ -134,7 +134,7 @@ class AccessPackageResourceRole(entity.Entity):
         """
         Sets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
         Args:
-            value: Value to set for the originSystem property.
+            value: Value to set for the origin_system property.
         """
         self._origin_system = value
     

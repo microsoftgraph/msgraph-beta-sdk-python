@@ -52,7 +52,7 @@ class Picture(entity.Entity):
         """
         Sets the contentType property value. The contentType property
         Args:
-            value: Value to set for the contentType property.
+            value: Value to set for the content_type property.
         """
         self._content_type = value
     
@@ -75,7 +75,7 @@ class Picture(entity.Entity):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "content_type": lambda n : setattr(self, 'content_type', n.get_str_value()),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
             "height": lambda n : setattr(self, 'height', n.get_int_value()),
             "width": lambda n : setattr(self, 'width', n.get_int_value()),
         }

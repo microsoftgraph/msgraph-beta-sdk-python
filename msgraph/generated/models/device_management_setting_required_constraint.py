@@ -33,7 +33,7 @@ class DeviceManagementSettingRequiredConstraint(device_management_constraint.Dev
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "not_configured_value": lambda n : setattr(self, 'not_configured_value', n.get_str_value()),
+            "notConfiguredValue": lambda n : setattr(self, 'not_configured_value', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class DeviceManagementSettingRequiredConstraint(device_management_constraint.Dev
         """
         Sets the notConfiguredValue property value. List of value which means not configured for the setting
         Args:
-            value: Value to set for the notConfiguredValue property.
+            value: Value to set for the not_configured_value property.
         """
         self._not_configured_value = value
     

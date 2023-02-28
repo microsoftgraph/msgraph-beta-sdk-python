@@ -51,8 +51,8 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "new_template_id": lambda n : setattr(self, 'new_template_id', n.get_str_value()),
-            "preserve_custom_values": lambda n : setattr(self, 'preserve_custom_values', n.get_bool_value()),
+            "newTemplateId": lambda n : setattr(self, 'new_template_id', n.get_str_value()),
+            "preserveCustomValues": lambda n : setattr(self, 'preserve_custom_values', n.get_bool_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the newTemplateId property value. The newTemplateId property
         Args:
-            value: Value to set for the newTemplateId property.
+            value: Value to set for the new_template_id property.
         """
         self._new_template_id = value
     
@@ -86,7 +86,7 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the preserveCustomValues property value. The preserveCustomValues property
         Args:
-            value: Value to set for the preserveCustomValues property.
+            value: Value to set for the preserve_custom_values property.
         """
         self._preserve_custom_values = value
     

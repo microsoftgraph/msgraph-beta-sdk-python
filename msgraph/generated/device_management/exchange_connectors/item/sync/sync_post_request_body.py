@@ -51,7 +51,7 @@ class SyncPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "sync_type": lambda n : setattr(self, 'sync_type', n.get_enum_value(device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType)),
+            "syncType": lambda n : setattr(self, 'sync_type', n.get_enum_value(device_management_exchange_connector_sync_type.DeviceManagementExchangeConnectorSyncType)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class SyncPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the syncType property value. The type of Exchange Connector sync requested.
         Args:
-            value: Value to set for the syncType property.
+            value: Value to set for the sync_type property.
         """
         self._sync_type = value
     

@@ -57,11 +57,11 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "keep_enrollment_data": lambda n : setattr(self, 'keep_enrollment_data', n.get_bool_value()),
-            "keep_user_data": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
-            "mac_os_unlock_code": lambda n : setattr(self, 'mac_os_unlock_code', n.get_str_value()),
-            "persist_esim_data_plan": lambda n : setattr(self, 'persist_esim_data_plan', n.get_bool_value()),
-            "use_protected_wipe": lambda n : setattr(self, 'use_protected_wipe', n.get_bool_value()),
+            "keepEnrollmentData": lambda n : setattr(self, 'keep_enrollment_data', n.get_bool_value()),
+            "keepUserData": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
+            "macOsUnlockCode": lambda n : setattr(self, 'mac_os_unlock_code', n.get_str_value()),
+            "persistEsimDataPlan": lambda n : setattr(self, 'persist_esim_data_plan', n.get_bool_value()),
+            "useProtectedWipe": lambda n : setattr(self, 'use_protected_wipe', n.get_bool_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keepEnrollmentData property value. The keepEnrollmentData property
         Args:
-            value: Value to set for the keepEnrollmentData property.
+            value: Value to set for the keep_enrollment_data property.
         """
         self._keep_enrollment_data = value
     
@@ -95,7 +95,7 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keepUserData property value. The keepUserData property
         Args:
-            value: Value to set for the keepUserData property.
+            value: Value to set for the keep_user_data property.
         """
         self._keep_user_data = value
     
@@ -112,7 +112,7 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the macOsUnlockCode property value. The macOsUnlockCode property
         Args:
-            value: Value to set for the macOsUnlockCode property.
+            value: Value to set for the mac_os_unlock_code property.
         """
         self._mac_os_unlock_code = value
     
@@ -129,7 +129,7 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the persistEsimDataPlan property value. The persistEsimDataPlan property
         Args:
-            value: Value to set for the persistEsimDataPlan property.
+            value: Value to set for the persist_esim_data_plan property.
         """
         self._persist_esim_data_plan = value
     
@@ -161,7 +161,7 @@ class WipePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the useProtectedWipe property value. The useProtectedWipe property
         Args:
-            value: Value to set for the useProtectedWipe property.
+            value: Value to set for the use_protected_wipe property.
         """
         self._use_protected_wipe = value
     

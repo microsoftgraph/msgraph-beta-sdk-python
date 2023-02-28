@@ -53,12 +53,11 @@ class VppTokensRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vpp_token_collection_response.VppTokenCollectionResponse]:
+    async def get(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None) -> Optional[vpp_token_collection_response.VppTokenCollectionResponse]:
         """
         List of Vpp tokens for this organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vpp_token_collection_response.VppTokenCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,7 +69,7 @@ class VppTokensRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vpp_token_collection_response.VppTokenCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vpp_token_collection_response.VppTokenCollectionResponse, error_mapping)
     
     def get_licenses_for_app_with_bundle_id(self,bundle_id: Optional[str] = None) -> get_licenses_for_app_with_bundle_id_request_builder.GetLicensesForAppWithBundleIdRequestBuilder:
         """
@@ -83,13 +82,12 @@ class VppTokensRequestBuilder():
             raise Exception("bundle_id cannot be undefined")
         return get_licenses_for_app_with_bundle_id_request_builder.GetLicensesForAppWithBundleIdRequestBuilder(self.request_adapter, self.path_parameters, bundleId)
     
-    async def post(self,body: Optional[vpp_token.VppToken] = None, request_configuration: Optional[VppTokensRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vpp_token.VppToken]:
+    async def post(self,body: Optional[vpp_token.VppToken] = None, request_configuration: Optional[VppTokensRequestBuilderPostRequestConfiguration] = None) -> Optional[vpp_token.VppToken]:
         """
         Create new navigation property to vppTokens for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vpp_token.VppToken]
         """
         if body is None:
@@ -103,7 +101,7 @@ class VppTokensRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vpp_token.VppToken, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vpp_token.VppToken, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[VppTokensRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -116,7 +114,7 @@ class VppTokensRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -137,7 +135,7 @@ class VppTokensRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -207,7 +205,7 @@ class VppTokensRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -222,7 +220,7 @@ class VppTokensRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

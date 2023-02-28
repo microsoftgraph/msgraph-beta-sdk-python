@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.me.owned_devices.count.count_request_builder')
-device_request_builder = lazy_import('msgraph.generated.me.owned_devices.device.device_request_builder')
-endpoint_request_builder = lazy_import('msgraph.generated.me.owned_devices.endpoint.endpoint_request_builder')
+graph_device_request_builder = lazy_import('msgraph.generated.me.owned_devices.graph_device.graph_device_request_builder')
+graph_endpoint_request_builder = lazy_import('msgraph.generated.me.owned_devices.graph_endpoint.graph_endpoint_request_builder')
 directory_object_collection_response = lazy_import('msgraph.generated.models.directory_object_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -28,18 +28,18 @@ class OwnedDevicesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
+    def graph_device(self) -> graph_device_request_builder.GraphDeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
-        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_device_request_builder.GraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def graph_endpoint(self) -> graph_endpoint_request_builder.GraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_endpoint_request_builder.GraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -59,12 +59,11 @@ class OwnedDevicesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[OwnedDevicesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[OwnedDevicesRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Devices that are owned by the user. Read-only. Nullable. Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -76,7 +75,7 @@ class OwnedDevicesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[OwnedDevicesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -89,7 +88,7 @@ class OwnedDevicesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -159,7 +158,7 @@ class OwnedDevicesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

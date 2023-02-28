@@ -23,7 +23,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment or Active if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
         Args:
-            value: Value to set for the assignmentState property.
+            value: Value to set for the assignment_state property.
         """
         self._assignment_state = value
     
@@ -88,7 +88,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the endDateTime property value. For a non-permanent role assignment, this is the time when the role assignment will be expired. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -105,7 +105,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the externalId property value. The external ID the resource that is used to identify the role assignment in the provider.
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -115,20 +115,20 @@ class GovernanceRoleAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_state": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
-            "linked_eligible_role_assignment": lambda n : setattr(self, 'linked_eligible_role_assignment', n.get_object_value(GovernanceRoleAssignment)),
-            "linked_eligible_role_assignment_id": lambda n : setattr(self, 'linked_eligible_role_assignment_id', n.get_str_value()),
-            "member_type": lambda n : setattr(self, 'member_type', n.get_str_value()),
+            "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "linkedEligibleRoleAssignment": lambda n : setattr(self, 'linked_eligible_role_assignment', n.get_object_value(GovernanceRoleAssignment)),
+            "linkedEligibleRoleAssignmentId": lambda n : setattr(self, 'linked_eligible_role_assignment_id', n.get_str_value()),
+            "memberType": lambda n : setattr(self, 'member_type', n.get_str_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(governance_resource.GovernanceResource)),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
-            "role_definition": lambda n : setattr(self, 'role_definition', n.get_object_value(governance_role_definition.GovernanceRoleDefinition)),
-            "role_definition_id": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "roleDefinition": lambda n : setattr(self, 'role_definition', n.get_object_value(governance_role_definition.GovernanceRoleDefinition)),
+            "roleDefinitionId": lambda n : setattr(self, 'role_definition_id', n.get_str_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(governance_subject.GovernanceSubject)),
-            "subject_id": lambda n : setattr(self, 'subject_id', n.get_str_value()),
+            "subjectId": lambda n : setattr(self, 'subject_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -147,7 +147,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the linkedEligibleRoleAssignment property value. Read-only. If this is an active assignment and created due to activation on an eligible assignment, it represents the object of that eligible assignment; Otherwise, the value is null.
         Args:
-            value: Value to set for the linkedEligibleRoleAssignment property.
+            value: Value to set for the linked_eligible_role_assignment property.
         """
         self._linked_eligible_role_assignment = value
     
@@ -164,7 +164,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the linkedEligibleRoleAssignmentId property value. If this is an active assignment and created due to activation on an eligible assignment, it represents the ID of that eligible assignment; Otherwise, the value is null.
         Args:
-            value: Value to set for the linkedEligibleRoleAssignmentId property.
+            value: Value to set for the linked_eligible_role_assignment_id property.
         """
         self._linked_eligible_role_assignment_id = value
     
@@ -181,7 +181,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the memberType property value. The type of member. The value can be: Inherited (if the role assignment is inherited from a parent resource scope), Group (if the role assignment is not inherited, but comes from the membership of a group assignment), or User (if the role assignment is neither inherited nor from a group assignment).
         Args:
-            value: Value to set for the memberType property.
+            value: Value to set for the member_type property.
         """
         self._member_type = value
     
@@ -215,7 +215,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the resourceId property value. Required. The ID of the resource which the role assignment is associated with.
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     
@@ -232,7 +232,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the roleDefinition property value. Read-only. The role definition associated with the role assignment.
         Args:
-            value: Value to set for the roleDefinition property.
+            value: Value to set for the role_definition property.
         """
         self._role_definition = value
     
@@ -249,7 +249,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the roleDefinitionId property value. Required. The ID of the role definition which the role assignment is associated with.
         Args:
-            value: Value to set for the roleDefinitionId property.
+            value: Value to set for the role_definition_id property.
         """
         self._role_definition_id = value
     
@@ -290,7 +290,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the startDateTime property value. The start time of the role assignment. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
@@ -341,7 +341,7 @@ class GovernanceRoleAssignment(entity.Entity):
         """
         Sets the subjectId property value. Required. The ID of the subject which the role assignment is associated with.
         Args:
-            value: Value to set for the subjectId property.
+            value: Value to set for the subject_id property.
         """
         self._subject_id = value
     

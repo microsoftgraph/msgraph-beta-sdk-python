@@ -40,7 +40,7 @@ class FileThreatSubmission(threat_submission.ThreatSubmission):
         """
         Sets the fileName property value. It specifies the file name to be submitted.
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -50,7 +50,7 @@ class FileThreatSubmission(threat_submission.ThreatSubmission):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

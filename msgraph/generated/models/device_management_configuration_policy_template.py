@@ -27,7 +27,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the allowUnmanagedSettings property value. Allow unmanaged setting templates
         Args:
-            value: Value to set for the allowUnmanagedSettings property.
+            value: Value to set for the allow_unmanaged_settings property.
         """
         self._allow_unmanaged_settings = value
     
@@ -44,7 +44,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the baseId property value. Template base identifier
         Args:
-            value: Value to set for the baseId property.
+            value: Value to set for the base_id property.
         """
         self._base_id = value
     
@@ -122,7 +122,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the displayName property value. Template display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -139,7 +139,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the displayVersion property value. Description of template version
         Args:
-            value: Value to set for the displayVersion property.
+            value: Value to set for the display_version property.
         """
         self._display_version = value
     
@@ -149,17 +149,17 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_unmanaged_settings": lambda n : setattr(self, 'allow_unmanaged_settings', n.get_bool_value()),
-            "base_id": lambda n : setattr(self, 'base_id', n.get_str_value()),
+            "allowUnmanagedSettings": lambda n : setattr(self, 'allow_unmanaged_settings', n.get_bool_value()),
+            "baseId": lambda n : setattr(self, 'base_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "display_version": lambda n : setattr(self, 'display_version', n.get_str_value()),
-            "lifecycle_state": lambda n : setattr(self, 'lifecycle_state', n.get_enum_value(device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayVersion": lambda n : setattr(self, 'display_version', n.get_str_value()),
+            "lifecycleState": lambda n : setattr(self, 'lifecycle_state', n.get_enum_value(device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState)),
             "platforms": lambda n : setattr(self, 'platforms', n.get_enum_value(device_management_configuration_platforms.DeviceManagementConfigurationPlatforms)),
-            "setting_template_count": lambda n : setattr(self, 'setting_template_count', n.get_int_value()),
-            "setting_templates": lambda n : setattr(self, 'setting_templates', n.get_collection_of_object_values(device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate)),
+            "settingTemplates": lambda n : setattr(self, 'setting_templates', n.get_collection_of_object_values(device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate)),
+            "settingTemplateCount": lambda n : setattr(self, 'setting_template_count', n.get_int_value()),
             "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(device_management_configuration_technologies.DeviceManagementConfigurationTechnologies)),
-            "template_family": lambda n : setattr(self, 'template_family', n.get_enum_value(device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily)),
+            "templateFamily": lambda n : setattr(self, 'template_family', n.get_enum_value(device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -179,7 +179,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the lifecycleState property value. Describes current lifecycle state of a template
         Args:
-            value: Value to set for the lifecycleState property.
+            value: Value to set for the lifecycle_state property.
         """
         self._lifecycle_state = value
     
@@ -233,7 +233,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the settingTemplateCount property value. Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
         Args:
-            value: Value to set for the settingTemplateCount property.
+            value: Value to set for the setting_template_count property.
         """
         self._setting_template_count = value
     
@@ -250,7 +250,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the settingTemplates property value. Setting templates
         Args:
-            value: Value to set for the settingTemplates property.
+            value: Value to set for the setting_templates property.
         """
         self._setting_templates = value
     
@@ -284,7 +284,7 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         """
         Sets the templateFamily property value. Describes the TemplateFamily for the Template entity
         Args:
-            value: Value to set for the templateFamily property.
+            value: Value to set for the template_family property.
         """
         self._template_family = value
     

@@ -82,7 +82,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the exchangeMailboxStorageUsedInBytes property value. The storage used of the group mailbox.
         Args:
-            value: Value to set for the exchangeMailboxStorageUsedInBytes property.
+            value: Value to set for the exchange_mailbox_storage_used_in_bytes property.
         """
         self._exchange_mailbox_storage_used_in_bytes = value
     
@@ -99,7 +99,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the exchangeMailboxTotalItemCount property value. The number of items in the group mailbox.
         Args:
-            value: Value to set for the exchangeMailboxTotalItemCount property.
+            value: Value to set for the exchange_mailbox_total_item_count property.
         """
         self._exchange_mailbox_total_item_count = value
     
@@ -116,7 +116,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the exchangeReceivedEmailCount property value. The number of email that the group mailbox received.
         Args:
-            value: Value to set for the exchangeReceivedEmailCount property.
+            value: Value to set for the exchange_received_email_count property.
         """
         self._exchange_received_email_count = value
     
@@ -133,7 +133,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the externalMemberCount property value. The group external member count.
         Args:
-            value: Value to set for the externalMemberCount property.
+            value: Value to set for the external_member_count property.
         """
         self._external_member_count = value
     
@@ -143,27 +143,27 @@ class Office365GroupsActivityDetail(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "exchange_mailbox_storage_used_in_bytes": lambda n : setattr(self, 'exchange_mailbox_storage_used_in_bytes', n.get_int_value()),
-            "exchange_mailbox_total_item_count": lambda n : setattr(self, 'exchange_mailbox_total_item_count', n.get_int_value()),
-            "exchange_received_email_count": lambda n : setattr(self, 'exchange_received_email_count', n.get_int_value()),
-            "external_member_count": lambda n : setattr(self, 'external_member_count', n.get_int_value()),
-            "group_display_name": lambda n : setattr(self, 'group_display_name', n.get_str_value()),
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
-            "group_type": lambda n : setattr(self, 'group_type', n.get_str_value()),
-            "is_deleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
-            "last_activity_date": lambda n : setattr(self, 'last_activity_date', n.get_object_value(Date)),
-            "member_count": lambda n : setattr(self, 'member_count', n.get_int_value()),
-            "owner_principal_name": lambda n : setattr(self, 'owner_principal_name', n.get_str_value()),
-            "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
-            "share_point_active_file_count": lambda n : setattr(self, 'share_point_active_file_count', n.get_int_value()),
-            "share_point_site_storage_used_in_bytes": lambda n : setattr(self, 'share_point_site_storage_used_in_bytes', n.get_int_value()),
-            "share_point_total_file_count": lambda n : setattr(self, 'share_point_total_file_count', n.get_int_value()),
-            "teams_channel_messages_count": lambda n : setattr(self, 'teams_channel_messages_count', n.get_int_value()),
-            "teams_meetings_organized_count": lambda n : setattr(self, 'teams_meetings_organized_count', n.get_int_value()),
-            "yammer_liked_message_count": lambda n : setattr(self, 'yammer_liked_message_count', n.get_int_value()),
-            "yammer_posted_message_count": lambda n : setattr(self, 'yammer_posted_message_count', n.get_int_value()),
-            "yammer_read_message_count": lambda n : setattr(self, 'yammer_read_message_count', n.get_int_value()),
+            "exchangeMailboxStorageUsedInBytes": lambda n : setattr(self, 'exchange_mailbox_storage_used_in_bytes', n.get_int_value()),
+            "exchangeMailboxTotalItemCount": lambda n : setattr(self, 'exchange_mailbox_total_item_count', n.get_int_value()),
+            "exchangeReceivedEmailCount": lambda n : setattr(self, 'exchange_received_email_count', n.get_int_value()),
+            "externalMemberCount": lambda n : setattr(self, 'external_member_count', n.get_int_value()),
+            "groupDisplayName": lambda n : setattr(self, 'group_display_name', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupType": lambda n : setattr(self, 'group_type', n.get_str_value()),
+            "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
+            "lastActivityDate": lambda n : setattr(self, 'last_activity_date', n.get_object_value(Date)),
+            "memberCount": lambda n : setattr(self, 'member_count', n.get_int_value()),
+            "ownerPrincipalName": lambda n : setattr(self, 'owner_principal_name', n.get_str_value()),
+            "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "sharePointActiveFileCount": lambda n : setattr(self, 'share_point_active_file_count', n.get_int_value()),
+            "sharePointSiteStorageUsedInBytes": lambda n : setattr(self, 'share_point_site_storage_used_in_bytes', n.get_int_value()),
+            "sharePointTotalFileCount": lambda n : setattr(self, 'share_point_total_file_count', n.get_int_value()),
+            "teamsChannelMessagesCount": lambda n : setattr(self, 'teams_channel_messages_count', n.get_int_value()),
+            "teamsMeetingsOrganizedCount": lambda n : setattr(self, 'teams_meetings_organized_count', n.get_int_value()),
+            "yammerLikedMessageCount": lambda n : setattr(self, 'yammer_liked_message_count', n.get_int_value()),
+            "yammerPostedMessageCount": lambda n : setattr(self, 'yammer_posted_message_count', n.get_int_value()),
+            "yammerReadMessageCount": lambda n : setattr(self, 'yammer_read_message_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -182,7 +182,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the groupDisplayName property value. The display name of the group.
         Args:
-            value: Value to set for the groupDisplayName property.
+            value: Value to set for the group_display_name property.
         """
         self._group_display_name = value
     
@@ -199,7 +199,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the groupId property value. The group id.
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -216,7 +216,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the groupType property value. The group type. Possible values are: Public or Private.
         Args:
-            value: Value to set for the groupType property.
+            value: Value to set for the group_type property.
         """
         self._group_type = value
     
@@ -233,7 +233,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the isDeleted property value. Whether this user has been deleted or soft deleted.
         Args:
-            value: Value to set for the isDeleted property.
+            value: Value to set for the is_deleted property.
         """
         self._is_deleted = value
     
@@ -250,7 +250,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the lastActivityDate property value. The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
         Args:
-            value: Value to set for the lastActivityDate property.
+            value: Value to set for the last_activity_date property.
         """
         self._last_activity_date = value
     
@@ -267,7 +267,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the memberCount property value. The group member count.
         Args:
-            value: Value to set for the memberCount property.
+            value: Value to set for the member_count property.
         """
         self._member_count = value
     
@@ -284,7 +284,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the ownerPrincipalName property value. The group owner principal name.
         Args:
-            value: Value to set for the ownerPrincipalName property.
+            value: Value to set for the owner_principal_name property.
         """
         self._owner_principal_name = value
     
@@ -301,7 +301,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the reportPeriod property value. The number of days the report covers.
         Args:
-            value: Value to set for the reportPeriod property.
+            value: Value to set for the report_period property.
         """
         self._report_period = value
     
@@ -318,7 +318,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     
@@ -366,7 +366,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the sharePointActiveFileCount property value. The number of active files in SharePoint Group site.
         Args:
-            value: Value to set for the sharePointActiveFileCount property.
+            value: Value to set for the share_point_active_file_count property.
         """
         self._share_point_active_file_count = value
     
@@ -383,7 +383,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the sharePointSiteStorageUsedInBytes property value. The storage used by SharePoint Group site.
         Args:
-            value: Value to set for the sharePointSiteStorageUsedInBytes property.
+            value: Value to set for the share_point_site_storage_used_in_bytes property.
         """
         self._share_point_site_storage_used_in_bytes = value
     
@@ -400,7 +400,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the sharePointTotalFileCount property value. The total number of files in SharePoint Group site.
         Args:
-            value: Value to set for the sharePointTotalFileCount property.
+            value: Value to set for the share_point_total_file_count property.
         """
         self._share_point_total_file_count = value
     
@@ -417,7 +417,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
         Args:
-            value: Value to set for the teamsChannelMessagesCount property.
+            value: Value to set for the teams_channel_messages_count property.
         """
         self._teams_channel_messages_count = value
     
@@ -434,7 +434,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
         Args:
-            value: Value to set for the teamsMeetingsOrganizedCount property.
+            value: Value to set for the teams_meetings_organized_count property.
         """
         self._teams_meetings_organized_count = value
     
@@ -451,7 +451,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the yammerLikedMessageCount property value. The number of messages liked in Yammer groups.
         Args:
-            value: Value to set for the yammerLikedMessageCount property.
+            value: Value to set for the yammer_liked_message_count property.
         """
         self._yammer_liked_message_count = value
     
@@ -468,7 +468,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the yammerPostedMessageCount property value. The number of messages posted to Yammer groups.
         Args:
-            value: Value to set for the yammerPostedMessageCount property.
+            value: Value to set for the yammer_posted_message_count property.
         """
         self._yammer_posted_message_count = value
     
@@ -485,7 +485,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         """
         Sets the yammerReadMessageCount property value. The number of messages read in Yammer groups.
         Args:
-            value: Value to set for the yammerReadMessageCount property.
+            value: Value to set for the yammer_read_message_count property.
         """
         self._yammer_read_message_count = value
     

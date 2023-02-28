@@ -42,7 +42,7 @@ class GroupPolicyPresentationListBox(group_policy_uploaded_presentation.GroupPol
         """
         Sets the explicitValue property value. If this option is specified true the user must specify the registry subkey value and the registry subkey name. The list box shows two columns, one for the name and one for the data. The default value is false.
         Args:
-            value: Value to set for the explicitValue property.
+            value: Value to set for the explicit_value property.
         """
         self._explicit_value = value
     
@@ -52,8 +52,8 @@ class GroupPolicyPresentationListBox(group_policy_uploaded_presentation.GroupPol
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "explicit_value": lambda n : setattr(self, 'explicit_value', n.get_bool_value()),
-            "value_prefix": lambda n : setattr(self, 'value_prefix', n.get_str_value()),
+            "explicitValue": lambda n : setattr(self, 'explicit_value', n.get_bool_value()),
+            "valuePrefix": lambda n : setattr(self, 'value_prefix', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class GroupPolicyPresentationListBox(group_policy_uploaded_presentation.GroupPol
         """
         Sets the valuePrefix property value. Not yet documented
         Args:
-            value: Value to set for the valuePrefix property.
+            value: Value to set for the value_prefix property.
         """
         self._value_prefix = value
     

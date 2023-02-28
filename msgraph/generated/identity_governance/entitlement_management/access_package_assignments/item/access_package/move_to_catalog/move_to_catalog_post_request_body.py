@@ -34,7 +34,7 @@ class MoveToCatalogPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the catalogId property value. The catalogId property
         Args:
-            value: Value to set for the catalogId property.
+            value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
     
@@ -66,7 +66,7 @@ class MoveToCatalogPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "catalog_id": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
         }
         return fields
     

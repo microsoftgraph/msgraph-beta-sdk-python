@@ -74,7 +74,7 @@ class UserRegistrationFeatureCount(AdditionalDataHolder, Parsable):
         fields = {
             "feature": lambda n : setattr(self, 'feature', n.get_enum_value(authentication_method_feature.AuthenticationMethodFeature)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_count": lambda n : setattr(self, 'user_count', n.get_int_value()),
+            "userCount": lambda n : setattr(self, 'user_count', n.get_int_value()),
         }
         return fields
     
@@ -91,7 +91,7 @@ class UserRegistrationFeatureCount(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -121,7 +121,7 @@ class UserRegistrationFeatureCount(AdditionalDataHolder, Parsable):
         """
         Sets the userCount property value. Number of users.
         Args:
-            value: Value to set for the userCount property.
+            value: Value to set for the user_count property.
         """
         self._user_count = value
     

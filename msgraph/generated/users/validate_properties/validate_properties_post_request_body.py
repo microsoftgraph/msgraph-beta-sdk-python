@@ -62,7 +62,7 @@ class ValidatePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -79,7 +79,7 @@ class ValidatePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the entityType property value. The entityType property
         Args:
-            value: Value to set for the entityType property.
+            value: Value to set for the entity_type property.
         """
         self._entity_type = value
     
@@ -89,10 +89,10 @@ class ValidatePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "entity_type": lambda n : setattr(self, 'entity_type', n.get_str_value()),
-            "mail_nickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
-            "on_behalf_of_user_id": lambda n : setattr(self, 'on_behalf_of_user_id', n.get_object_value(Guid)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "entityType": lambda n : setattr(self, 'entity_type', n.get_str_value()),
+            "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
+            "onBehalfOfUserId": lambda n : setattr(self, 'on_behalf_of_user_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -109,7 +109,7 @@ class ValidatePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the mailNickname property value. The mailNickname property
         Args:
-            value: Value to set for the mailNickname property.
+            value: Value to set for the mail_nickname property.
         """
         self._mail_nickname = value
     
@@ -126,7 +126,7 @@ class ValidatePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the onBehalfOfUserId property value. The onBehalfOfUserId property
         Args:
-            value: Value to set for the onBehalfOfUserId property.
+            value: Value to set for the on_behalf_of_user_id property.
         """
         self._on_behalf_of_user_id = value
     

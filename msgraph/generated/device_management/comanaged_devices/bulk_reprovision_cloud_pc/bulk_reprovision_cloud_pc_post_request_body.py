@@ -49,7 +49,7 @@ class BulkReprovisionCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_device_ids": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
+            "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class BulkReprovisionCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceIds property value. The managedDeviceIds property
         Args:
-            value: Value to set for the managedDeviceIds property.
+            value: Value to set for the managed_device_ids property.
         """
         self._managed_device_ids = value
     

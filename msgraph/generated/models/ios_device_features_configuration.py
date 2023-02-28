@@ -29,7 +29,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the assetTagTemplate property value. Asset tag information for the device, displayed on the login window and lock screen.
         Args:
-            value: Value to set for the assetTagTemplate property.
+            value: Value to set for the asset_tag_template property.
         """
         self._asset_tag_template = value
     
@@ -83,7 +83,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the contentFilterSettings property value. Gets or sets iOS Web Content Filter settings, supervised mode only
         Args:
-            value: Value to set for the contentFilterSettings property.
+            value: Value to set for the content_filter_settings property.
         """
         self._content_filter_settings = value
     
@@ -105,21 +105,21 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "asset_tag_template": lambda n : setattr(self, 'asset_tag_template', n.get_str_value()),
-            "content_filter_settings": lambda n : setattr(self, 'content_filter_settings', n.get_object_value(ios_web_content_filter_base.IosWebContentFilterBase)),
-            "home_screen_dock_icons": lambda n : setattr(self, 'home_screen_dock_icons', n.get_collection_of_object_values(ios_home_screen_item.IosHomeScreenItem)),
-            "home_screen_grid_height": lambda n : setattr(self, 'home_screen_grid_height', n.get_int_value()),
-            "home_screen_grid_width": lambda n : setattr(self, 'home_screen_grid_width', n.get_int_value()),
-            "home_screen_pages": lambda n : setattr(self, 'home_screen_pages', n.get_collection_of_object_values(ios_home_screen_page.IosHomeScreenPage)),
-            "identity_certificate_for_client_authentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
-            "ios_single_sign_on_extension": lambda n : setattr(self, 'ios_single_sign_on_extension', n.get_object_value(ios_single_sign_on_extension.IosSingleSignOnExtension)),
-            "lock_screen_footnote": lambda n : setattr(self, 'lock_screen_footnote', n.get_str_value()),
-            "notification_settings": lambda n : setattr(self, 'notification_settings', n.get_collection_of_object_values(ios_notification_settings.IosNotificationSettings)),
-            "single_sign_on_extension": lambda n : setattr(self, 'single_sign_on_extension', n.get_object_value(single_sign_on_extension.SingleSignOnExtension)),
-            "single_sign_on_extension_pkinit_certificate": lambda n : setattr(self, 'single_sign_on_extension_pkinit_certificate', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
-            "single_sign_on_settings": lambda n : setattr(self, 'single_sign_on_settings', n.get_object_value(ios_single_sign_on_settings.IosSingleSignOnSettings)),
-            "wallpaper_display_location": lambda n : setattr(self, 'wallpaper_display_location', n.get_enum_value(ios_wallpaper_display_location.IosWallpaperDisplayLocation)),
-            "wallpaper_image": lambda n : setattr(self, 'wallpaper_image', n.get_object_value(mime_content.MimeContent)),
+            "assetTagTemplate": lambda n : setattr(self, 'asset_tag_template', n.get_str_value()),
+            "contentFilterSettings": lambda n : setattr(self, 'content_filter_settings', n.get_object_value(ios_web_content_filter_base.IosWebContentFilterBase)),
+            "homeScreenDockIcons": lambda n : setattr(self, 'home_screen_dock_icons', n.get_collection_of_object_values(ios_home_screen_item.IosHomeScreenItem)),
+            "homeScreenGridHeight": lambda n : setattr(self, 'home_screen_grid_height', n.get_int_value()),
+            "homeScreenGridWidth": lambda n : setattr(self, 'home_screen_grid_width', n.get_int_value()),
+            "homeScreenPages": lambda n : setattr(self, 'home_screen_pages', n.get_collection_of_object_values(ios_home_screen_page.IosHomeScreenPage)),
+            "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
+            "iosSingleSignOnExtension": lambda n : setattr(self, 'ios_single_sign_on_extension', n.get_object_value(ios_single_sign_on_extension.IosSingleSignOnExtension)),
+            "lockScreenFootnote": lambda n : setattr(self, 'lock_screen_footnote', n.get_str_value()),
+            "notificationSettings": lambda n : setattr(self, 'notification_settings', n.get_collection_of_object_values(ios_notification_settings.IosNotificationSettings)),
+            "singleSignOnExtension": lambda n : setattr(self, 'single_sign_on_extension', n.get_object_value(single_sign_on_extension.SingleSignOnExtension)),
+            "singleSignOnExtensionPkinitCertificate": lambda n : setattr(self, 'single_sign_on_extension_pkinit_certificate', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
+            "singleSignOnSettings": lambda n : setattr(self, 'single_sign_on_settings', n.get_object_value(ios_single_sign_on_settings.IosSingleSignOnSettings)),
+            "wallpaperDisplayLocation": lambda n : setattr(self, 'wallpaper_display_location', n.get_enum_value(ios_wallpaper_display_location.IosWallpaperDisplayLocation)),
+            "wallpaperImage": lambda n : setattr(self, 'wallpaper_image', n.get_object_value(mime_content.MimeContent)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -138,7 +138,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the homeScreenDockIcons property value. A list of app and folders to appear on the Home Screen Dock. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the homeScreenDockIcons property.
+            value: Value to set for the home_screen_dock_icons property.
         """
         self._home_screen_dock_icons = value
     
@@ -155,7 +155,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the homeScreenGridHeight property value. Gets or sets the number of rows to render when configuring iOS home screen layout settings. If this value is configured, homeScreenGridWidth must be configured as well.
         Args:
-            value: Value to set for the homeScreenGridHeight property.
+            value: Value to set for the home_screen_grid_height property.
         """
         self._home_screen_grid_height = value
     
@@ -172,7 +172,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the homeScreenGridWidth property value. Gets or sets the number of columns to render when configuring iOS home screen layout settings. If this value is configured, homeScreenGridHeight must be configured as well.
         Args:
-            value: Value to set for the homeScreenGridWidth property.
+            value: Value to set for the home_screen_grid_width property.
         """
         self._home_screen_grid_width = value
     
@@ -189,7 +189,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the homeScreenPages property value. A list of pages on the Home Screen. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the homeScreenPages property.
+            value: Value to set for the home_screen_pages property.
         """
         self._home_screen_pages = value
     
@@ -206,7 +206,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the identityCertificateForClientAuthentication property value. Identity Certificate for the renewal of Kerberos ticket used in single sign-on settings.
         Args:
-            value: Value to set for the identityCertificateForClientAuthentication property.
+            value: Value to set for the identity_certificate_for_client_authentication property.
         """
         self._identity_certificate_for_client_authentication = value
     
@@ -223,7 +223,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the iosSingleSignOnExtension property value. Gets or sets a single sign-on extension profile.
         Args:
-            value: Value to set for the iosSingleSignOnExtension property.
+            value: Value to set for the ios_single_sign_on_extension property.
         """
         self._ios_single_sign_on_extension = value
     
@@ -240,7 +240,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the lockScreenFootnote property value. A footnote displayed on the login window and lock screen. Available in iOS 9.3.1 and later.
         Args:
-            value: Value to set for the lockScreenFootnote property.
+            value: Value to set for the lock_screen_footnote property.
         """
         self._lock_screen_footnote = value
     
@@ -257,7 +257,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the notificationSettings property value. Notification settings for each bundle id. Applicable to devices in supervised mode only (iOS 9.3 and later). This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the notificationSettings property.
+            value: Value to set for the notification_settings property.
         """
         self._notification_settings = value
     
@@ -299,7 +299,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the singleSignOnExtension property value. Gets or sets a single sign-on extension profile. Deprecated: use IOSSingleSignOnExtension instead.
         Args:
-            value: Value to set for the singleSignOnExtension property.
+            value: Value to set for the single_sign_on_extension property.
         """
         self._single_sign_on_extension = value
     
@@ -316,7 +316,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the singleSignOnExtensionPkinitCertificate property value. PKINIT Certificate for the authentication with single sign-on extension settings.
         Args:
-            value: Value to set for the singleSignOnExtensionPkinitCertificate property.
+            value: Value to set for the single_sign_on_extension_pkinit_certificate property.
         """
         self._single_sign_on_extension_pkinit_certificate = value
     
@@ -333,7 +333,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the singleSignOnSettings property value. The Kerberos login settings that enable apps on receiving devices to authenticate smoothly.
         Args:
-            value: Value to set for the singleSignOnSettings property.
+            value: Value to set for the single_sign_on_settings property.
         """
         self._single_sign_on_settings = value
     
@@ -350,7 +350,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the wallpaperDisplayLocation property value. An enum type for wallpaper display location specifier.
         Args:
-            value: Value to set for the wallpaperDisplayLocation property.
+            value: Value to set for the wallpaper_display_location property.
         """
         self._wallpaper_display_location = value
     
@@ -367,7 +367,7 @@ class IosDeviceFeaturesConfiguration(apple_device_features_configuration_base.Ap
         """
         Sets the wallpaperImage property value. A wallpaper image must be in either PNG or JPEG format. It requires a supervised device with iOS 8 or later version.
         Args:
-            value: Value to set for the wallpaperImage property.
+            value: Value to set for the wallpaper_image property.
         """
         self._wallpaper_image = value
     

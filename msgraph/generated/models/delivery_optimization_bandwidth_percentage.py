@@ -35,8 +35,8 @@ class DeliveryOptimizationBandwidthPercentage(delivery_optimization_bandwidth.De
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_background_bandwidth_percentage": lambda n : setattr(self, 'maximum_background_bandwidth_percentage', n.get_int_value()),
-            "maximum_foreground_bandwidth_percentage": lambda n : setattr(self, 'maximum_foreground_bandwidth_percentage', n.get_int_value()),
+            "maximumBackgroundBandwidthPercentage": lambda n : setattr(self, 'maximum_background_bandwidth_percentage', n.get_int_value()),
+            "maximumForegroundBandwidthPercentage": lambda n : setattr(self, 'maximum_foreground_bandwidth_percentage', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class DeliveryOptimizationBandwidthPercentage(delivery_optimization_bandwidth.De
         """
         Sets the maximumBackgroundBandwidthPercentage property value. Specifies the maximum background download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the maximumBackgroundBandwidthPercentage property.
+            value: Value to set for the maximum_background_bandwidth_percentage property.
         """
         self._maximum_background_bandwidth_percentage = value
     
@@ -72,7 +72,7 @@ class DeliveryOptimizationBandwidthPercentage(delivery_optimization_bandwidth.De
         """
         Sets the maximumForegroundBandwidthPercentage property value. Specifies the maximum foreground download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the maximumForegroundBandwidthPercentage property.
+            value: Value to set for the maximum_foreground_bandwidth_percentage property.
         """
         self._maximum_foreground_bandwidth_percentage = value
     

@@ -59,7 +59,7 @@ class LegalHold(entity.Entity):
         """
         Sets the contentQuery property value. KQL query that specifies content to be held in the specified locations. To learn more, see Keyword queries and search conditions for Content Search and eDiscovery.  To hold all content in the specified locations, leave contentQuery blank.
         Args:
-            value: Value to set for the contentQuery property.
+            value: Value to set for the content_query property.
         """
         self._content_query = value
     
@@ -76,7 +76,7 @@ class LegalHold(entity.Entity):
         """
         Sets the createdBy property value. The user who created the legal hold.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -93,7 +93,7 @@ class LegalHold(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the legal hold was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -139,7 +139,7 @@ class LegalHold(entity.Entity):
         """
         Sets the displayName property value. The display name of the legal hold.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -166,19 +166,19 @@ class LegalHold(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_query": lambda n : setattr(self, 'content_query', n.get_str_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_primitive_values(str)),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "site_sources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "siteSources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(legal_hold_status.LegalHoldStatus)),
-            "unified_group_sources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(unified_group_source.UnifiedGroupSource)),
-            "user_sources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
+            "unifiedGroupSources": lambda n : setattr(self, 'unified_group_sources', n.get_collection_of_object_values(unified_group_source.UnifiedGroupSource)),
+            "userSources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -197,7 +197,7 @@ class LegalHold(entity.Entity):
         """
         Sets the isEnabled property value. Indicates whether the hold is enabled and actively holding content.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -214,7 +214,7 @@ class LegalHold(entity.Entity):
         """
         Sets the lastModifiedBy property value. the user who last modified the legal hold.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -231,7 +231,7 @@ class LegalHold(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the legal hold was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -271,7 +271,7 @@ class LegalHold(entity.Entity):
         """
         Sets the siteSources property value. Data source entity for SharePoint sites associated with the legal hold.
         Args:
-            value: Value to set for the siteSources property.
+            value: Value to set for the site_sources property.
         """
         self._site_sources = value
     
@@ -305,7 +305,7 @@ class LegalHold(entity.Entity):
         """
         Sets the unifiedGroupSources property value. The unifiedGroupSources property
         Args:
-            value: Value to set for the unifiedGroupSources property.
+            value: Value to set for the unified_group_sources property.
         """
         self._unified_group_sources = value
     
@@ -322,7 +322,7 @@ class LegalHold(entity.Entity):
         """
         Sets the userSources property value. Data source entity for a the legal hold. This is the container for a mailbox and OneDrive for Business site.
         Args:
-            value: Value to set for the userSources property.
+            value: Value to set for the user_sources property.
         """
         self._user_sources = value
     

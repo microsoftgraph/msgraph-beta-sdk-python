@@ -55,7 +55,7 @@ class CloudPCConnectivityIssue(entity.Entity):
         """
         Sets the deviceId property value. The Intune DeviceId of the device the connection is associated with.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -72,7 +72,7 @@ class CloudPCConnectivityIssue(entity.Entity):
         """
         Sets the errorCode property value. The error code of the connectivity issue.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -89,7 +89,7 @@ class CloudPCConnectivityIssue(entity.Entity):
         """
         Sets the errorDateTime property value. The time that the connection initiated. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC) time.
         Args:
-            value: Value to set for the errorDateTime property.
+            value: Value to set for the error_date_time property.
         """
         self._error_date_time = value
     
@@ -106,7 +106,7 @@ class CloudPCConnectivityIssue(entity.Entity):
         """
         Sets the errorDescription property value. The detailed description of what went wrong.
         Args:
-            value: Value to set for the errorDescription property.
+            value: Value to set for the error_description property.
         """
         self._error_description = value
     
@@ -116,12 +116,12 @@ class CloudPCConnectivityIssue(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_str_value()),
-            "error_date_time": lambda n : setattr(self, 'error_date_time', n.get_datetime_value()),
-            "error_description": lambda n : setattr(self, 'error_description', n.get_str_value()),
-            "recommended_action": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
+            "errorDateTime": lambda n : setattr(self, 'error_date_time', n.get_datetime_value()),
+            "errorDescription": lambda n : setattr(self, 'error_description', n.get_str_value()),
+            "recommendedAction": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -140,7 +140,7 @@ class CloudPCConnectivityIssue(entity.Entity):
         """
         Sets the recommendedAction property value. The recommended action to fix the corresponding error.
         Args:
-            value: Value to set for the recommendedAction property.
+            value: Value to set for the recommended_action property.
         """
         self._recommended_action = value
     
@@ -173,7 +173,7 @@ class CloudPCConnectivityIssue(entity.Entity):
         """
         Sets the userId property value. The unique id of user who initialize the connection.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

@@ -36,7 +36,7 @@ class TimeClockSettings(AdditionalDataHolder, Parsable):
         """
         Sets the approvedLocation property value. The aprroved location of the timeClock.
         Args:
-            value: Value to set for the approvedLocation property.
+            value: Value to set for the approved_location property.
         """
         self._approved_location = value
     
@@ -70,7 +70,7 @@ class TimeClockSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "approved_location": lambda n : setattr(self, 'approved_location', n.get_object_value(geo_coordinates.GeoCoordinates)),
+            "approvedLocation": lambda n : setattr(self, 'approved_location', n.get_object_value(geo_coordinates.GeoCoordinates)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -88,7 +88,7 @@ class TimeClockSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

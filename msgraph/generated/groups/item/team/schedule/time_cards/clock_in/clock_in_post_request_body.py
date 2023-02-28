@@ -36,7 +36,7 @@ class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the atApprovedLocation property value. The atApprovedLocation property
         Args:
-            value: Value to set for the atApprovedLocation property.
+            value: Value to set for the at_approved_location property.
         """
         self._at_approved_location = value
     
@@ -72,9 +72,9 @@ class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "at_approved_location": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
+            "atApprovedLocation": lambda n : setattr(self, 'at_approved_location', n.get_bool_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
-            "on_behalf_of_user_id": lambda n : setattr(self, 'on_behalf_of_user_id', n.get_str_value()),
+            "onBehalfOfUserId": lambda n : setattr(self, 'on_behalf_of_user_id', n.get_str_value()),
         }
         return fields
     
@@ -108,7 +108,7 @@ class ClockInPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the onBehalfOfUserId property value. The onBehalfOfUserId property
         Args:
-            value: Value to set for the onBehalfOfUserId property.
+            value: Value to set for the on_behalf_of_user_id property.
         """
         self._on_behalf_of_user_id = value
     

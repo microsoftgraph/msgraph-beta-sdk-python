@@ -60,7 +60,7 @@ class DeviceLogCollectionRequest(AdditionalDataHolder, Parsable):
         fields = {
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "template_type": lambda n : setattr(self, 'template_type', n.get_enum_value(device_log_collection_template_type.DeviceLogCollectionTemplateType)),
+            "templateType": lambda n : setattr(self, 'template_type', n.get_enum_value(device_log_collection_template_type.DeviceLogCollectionTemplateType)),
         }
         return fields
     
@@ -94,7 +94,7 @@ class DeviceLogCollectionRequest(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -124,7 +124,7 @@ class DeviceLogCollectionRequest(AdditionalDataHolder, Parsable):
         """
         Sets the templateType property value. Enum for the template type used for collecting logs
         Args:
-            value: Value to set for the templateType property.
+            value: Value to set for the template_type property.
         """
         self._template_type = value
     

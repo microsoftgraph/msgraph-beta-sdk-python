@@ -63,7 +63,7 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
         """
         Sets the enrollmentType property value. The enrollmentType property
         Args:
-            value: Value to set for the enrollmentType property.
+            value: Value to set for the enrollment_type property.
         """
         self._enrollment_type = value
     
@@ -73,9 +73,9 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enrollment_type": lambda n : setattr(self, 'enrollment_type', n.get_enum_value(apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType)),
+            "enrollmentType": lambda n : setattr(self, 'enrollment_type', n.get_enum_value(apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "owner_type": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
         """
         Sets the ownerType property value. Owner type of device.
         Args:
-            value: Value to set for the ownerType property.
+            value: Value to set for the owner_type property.
         """
         self._owner_type = value
     

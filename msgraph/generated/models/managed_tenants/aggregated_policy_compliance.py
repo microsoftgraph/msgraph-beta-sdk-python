@@ -20,7 +20,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the compliancePolicyId property value. Identifier for the device compliance policy. Optional. Read-only.
         Args:
-            value: Value to set for the compliancePolicyId property.
+            value: Value to set for the compliance_policy_id property.
         """
         self._compliance_policy_id = value
     
@@ -37,7 +37,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the compliancePolicyName property value. Name of the device compliance policy. Optional. Read-only.
         Args:
-            value: Value to set for the compliancePolicyName property.
+            value: Value to set for the compliance_policy_name property.
         """
         self._compliance_policy_name = value
     
@@ -54,7 +54,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the compliancePolicyPlatform property value. Platform for the device compliance policy. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81, windows81AndLater, windows10AndLater, androidWorkProfile, androidAOSP, all. Optional. Read-only.
         Args:
-            value: Value to set for the compliancePolicyPlatform property.
+            value: Value to set for the compliance_policy_platform property.
         """
         self._compliance_policy_platform = value
     
@@ -71,7 +71,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the compliancePolicyType property value. The type of compliance policy. Optional. Read-only.
         Args:
-            value: Value to set for the compliancePolicyType property.
+            value: Value to set for the compliance_policy_type property.
         """
         self._compliance_policy_type = value
     
@@ -123,17 +123,17 @@ class AggregatedPolicyCompliance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_policy_id": lambda n : setattr(self, 'compliance_policy_id', n.get_str_value()),
-            "compliance_policy_name": lambda n : setattr(self, 'compliance_policy_name', n.get_str_value()),
-            "compliance_policy_platform": lambda n : setattr(self, 'compliance_policy_platform', n.get_str_value()),
-            "compliance_policy_type": lambda n : setattr(self, 'compliance_policy_type', n.get_str_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "number_of_compliant_devices": lambda n : setattr(self, 'number_of_compliant_devices', n.get_int_value()),
-            "number_of_error_devices": lambda n : setattr(self, 'number_of_error_devices', n.get_int_value()),
-            "number_of_non_compliant_devices": lambda n : setattr(self, 'number_of_non_compliant_devices', n.get_int_value()),
-            "policy_modified_date_time": lambda n : setattr(self, 'policy_modified_date_time', n.get_datetime_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "compliancePolicyId": lambda n : setattr(self, 'compliance_policy_id', n.get_str_value()),
+            "compliancePolicyName": lambda n : setattr(self, 'compliance_policy_name', n.get_str_value()),
+            "compliancePolicyPlatform": lambda n : setattr(self, 'compliance_policy_platform', n.get_str_value()),
+            "compliancePolicyType": lambda n : setattr(self, 'compliance_policy_type', n.get_str_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "numberOfCompliantDevices": lambda n : setattr(self, 'number_of_compliant_devices', n.get_int_value()),
+            "numberOfErrorDevices": lambda n : setattr(self, 'number_of_error_devices', n.get_int_value()),
+            "numberOfNonCompliantDevices": lambda n : setattr(self, 'number_of_non_compliant_devices', n.get_int_value()),
+            "policyModifiedDateTime": lambda n : setattr(self, 'policy_modified_date_time', n.get_datetime_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -152,7 +152,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -169,7 +169,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the numberOfCompliantDevices property value. The number of devices that are in a compliant status. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCompliantDevices property.
+            value: Value to set for the number_of_compliant_devices property.
         """
         self._number_of_compliant_devices = value
     
@@ -186,7 +186,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the numberOfErrorDevices property value. The number of devices that are in an error status. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfErrorDevices property.
+            value: Value to set for the number_of_error_devices property.
         """
         self._number_of_error_devices = value
     
@@ -203,7 +203,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the numberOfNonCompliantDevices property value. The number of device that are in a non-compliant status. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfNonCompliantDevices property.
+            value: Value to set for the number_of_non_compliant_devices property.
         """
         self._number_of_non_compliant_devices = value
     
@@ -220,7 +220,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the policyModifiedDateTime property value. The date and time the device policy was last modified. Optional. Read-only.
         Args:
-            value: Value to set for the policyModifiedDateTime property.
+            value: Value to set for the policy_modified_date_time property.
         """
         self._policy_modified_date_time = value
     
@@ -258,7 +258,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -275,7 +275,7 @@ class AggregatedPolicyCompliance(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

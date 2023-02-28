@@ -26,7 +26,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
         Args:
-            value: Value to set for the assignmentFilterIds property.
+            value: Value to set for the assignment_filter_ids property.
         """
         self._assignment_filter_ids = value
     
@@ -87,7 +87,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the detectionState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the detectionState property.
+            value: Value to set for the detection_state property.
         """
         self._detection_state = value
     
@@ -104,7 +104,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the expectedStateUpdateDateTime property value. The next timestamp of when the device health script is expected to execute
         Args:
-            value: Value to set for the expectedStateUpdateDateTime property.
+            value: Value to set for the expected_state_update_date_time property.
         """
         self._expected_state_update_date_time = value
     
@@ -114,18 +114,18 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_filter_ids": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
-            "detection_state": lambda n : setattr(self, 'detection_state', n.get_enum_value(run_state.RunState)),
-            "expected_state_update_date_time": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),
-            "last_state_update_date_time": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "managed_device": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
-            "post_remediation_detection_script_error": lambda n : setattr(self, 'post_remediation_detection_script_error', n.get_str_value()),
-            "post_remediation_detection_script_output": lambda n : setattr(self, 'post_remediation_detection_script_output', n.get_str_value()),
-            "pre_remediation_detection_script_error": lambda n : setattr(self, 'pre_remediation_detection_script_error', n.get_str_value()),
-            "pre_remediation_detection_script_output": lambda n : setattr(self, 'pre_remediation_detection_script_output', n.get_str_value()),
-            "remediation_script_error": lambda n : setattr(self, 'remediation_script_error', n.get_str_value()),
-            "remediation_state": lambda n : setattr(self, 'remediation_state', n.get_enum_value(remediation_state.RemediationState)),
+            "assignmentFilterIds": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
+            "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(run_state.RunState)),
+            "expectedStateUpdateDateTime": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),
+            "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "managedDevice": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
+            "postRemediationDetectionScriptError": lambda n : setattr(self, 'post_remediation_detection_script_error', n.get_str_value()),
+            "postRemediationDetectionScriptOutput": lambda n : setattr(self, 'post_remediation_detection_script_output', n.get_str_value()),
+            "preRemediationDetectionScriptError": lambda n : setattr(self, 'pre_remediation_detection_script_error', n.get_str_value()),
+            "preRemediationDetectionScriptOutput": lambda n : setattr(self, 'pre_remediation_detection_script_output', n.get_str_value()),
+            "remediationScriptError": lambda n : setattr(self, 'remediation_script_error', n.get_str_value()),
+            "remediationState": lambda n : setattr(self, 'remediation_state', n.get_enum_value(remediation_state.RemediationState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -144,7 +144,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the lastStateUpdateDateTime property value. The last timestamp of when the device health script executed
         Args:
-            value: Value to set for the lastStateUpdateDateTime property.
+            value: Value to set for the last_state_update_date_time property.
         """
         self._last_state_update_date_time = value
     
@@ -161,7 +161,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The last time that Intune Managment Extension synced with Intune
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -178,7 +178,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the managedDevice property value. The managed device on which the device health script executed
         Args:
-            value: Value to set for the managedDevice property.
+            value: Value to set for the managed_device property.
         """
         self._managed_device = value
     
@@ -195,7 +195,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the postRemediationDetectionScriptError property value. Error from the detection script after remediation
         Args:
-            value: Value to set for the postRemediationDetectionScriptError property.
+            value: Value to set for the post_remediation_detection_script_error property.
         """
         self._post_remediation_detection_script_error = value
     
@@ -212,7 +212,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the postRemediationDetectionScriptOutput property value. Detection script output after remediation
         Args:
-            value: Value to set for the postRemediationDetectionScriptOutput property.
+            value: Value to set for the post_remediation_detection_script_output property.
         """
         self._post_remediation_detection_script_output = value
     
@@ -229,7 +229,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the preRemediationDetectionScriptError property value. Error from the detection script before remediation
         Args:
-            value: Value to set for the preRemediationDetectionScriptError property.
+            value: Value to set for the pre_remediation_detection_script_error property.
         """
         self._pre_remediation_detection_script_error = value
     
@@ -246,7 +246,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the preRemediationDetectionScriptOutput property value. Output of the detection script before remediation
         Args:
-            value: Value to set for the preRemediationDetectionScriptOutput property.
+            value: Value to set for the pre_remediation_detection_script_output property.
         """
         self._pre_remediation_detection_script_output = value
     
@@ -263,7 +263,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the remediationScriptError property value. Error output of the remediation script
         Args:
-            value: Value to set for the remediationScriptError property.
+            value: Value to set for the remediation_script_error property.
         """
         self._remediation_script_error = value
     
@@ -280,7 +280,7 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         """
         Sets the remediationState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the remediationState property.
+            value: Value to set for the remediation_state property.
         """
         self._remediation_state = value
     

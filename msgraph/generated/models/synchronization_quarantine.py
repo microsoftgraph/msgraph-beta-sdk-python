@@ -72,7 +72,7 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         """
         Sets the currentBegan property value. Date and time when the quarantine was last evaluated and imposed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the currentBegan property.
+            value: Value to set for the current_began property.
         """
         self._current_began = value
     
@@ -99,13 +99,13 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "current_began": lambda n : setattr(self, 'current_began', n.get_datetime_value()),
+            "currentBegan": lambda n : setattr(self, 'current_began', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(synchronization_error.SynchronizationError)),
-            "next_attempt": lambda n : setattr(self, 'next_attempt', n.get_datetime_value()),
+            "nextAttempt": lambda n : setattr(self, 'next_attempt', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_enum_value(quarantine_reason.QuarantineReason)),
-            "series_began": lambda n : setattr(self, 'series_began', n.get_datetime_value()),
-            "series_count": lambda n : setattr(self, 'series_count', n.get_int_value()),
+            "seriesBegan": lambda n : setattr(self, 'series_began', n.get_datetime_value()),
+            "seriesCount": lambda n : setattr(self, 'series_count', n.get_int_value()),
         }
         return fields
     
@@ -122,7 +122,7 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         """
         Sets the nextAttempt property value. Date and time when the next attempt to re-evaluate the quarantine will be made. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the nextAttempt property.
+            value: Value to set for the next_attempt property.
         """
         self._next_attempt = value
     
@@ -139,7 +139,7 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -190,7 +190,7 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         """
         Sets the seriesBegan property value. Date and time when the quarantine was first imposed in this series (a series starts when a quarantine is first imposed, and is reset as soon as the quarantine is lifted). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the seriesBegan property.
+            value: Value to set for the series_began property.
         """
         self._series_began = value
     
@@ -207,7 +207,7 @@ class SynchronizationQuarantine(AdditionalDataHolder, Parsable):
         """
         Sets the seriesCount property value. Number of times in this series the quarantine was re-evaluated and left in effect (a series starts when quarantine is first imposed, and is reset as soon as quarantine is lifted).
         Args:
-            value: Value to set for the seriesCount property.
+            value: Value to set for the series_count property.
         """
         self._series_count = value
     

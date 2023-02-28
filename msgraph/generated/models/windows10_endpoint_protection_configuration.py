@@ -47,6 +47,23 @@ windows_firewall_rule = lazy_import('msgraph.generated.models.windows_firewall_r
 
 class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfiguration):
     @property
+    def app_locker_application_control(self,) -> Optional[app_locker_application_control_type.AppLockerApplicationControlType]:
+        """
+        Gets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
+        Returns: Optional[app_locker_application_control_type.AppLockerApplicationControlType]
+        """
+        return self._app_locker_application_control
+    
+    @app_locker_application_control.setter
+    def app_locker_application_control(self,value: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None) -> None:
+        """
+        Sets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
+        Args:
+            value: Value to set for the app_locker_application_control property.
+        """
+        self._app_locker_application_control = value
+    
+    @property
     def application_guard_allow_camera_microphone_redirection(self,) -> Optional[bool]:
         """
         Gets the applicationGuardAllowCameraMicrophoneRedirection property value. Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
@@ -59,7 +76,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowCameraMicrophoneRedirection property value. Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
         Args:
-            value: Value to set for the applicationGuardAllowCameraMicrophoneRedirection property.
+            value: Value to set for the application_guard_allow_camera_microphone_redirection property.
         """
         self._application_guard_allow_camera_microphone_redirection = value
     
@@ -76,7 +93,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowFileSaveOnHost property value. Allow users to download files from Edge in the application guard container and save them on the host file system
         Args:
-            value: Value to set for the applicationGuardAllowFileSaveOnHost property.
+            value: Value to set for the application_guard_allow_file_save_on_host property.
         """
         self._application_guard_allow_file_save_on_host = value
     
@@ -93,7 +110,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowPersistence property value. Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)
         Args:
-            value: Value to set for the applicationGuardAllowPersistence property.
+            value: Value to set for the application_guard_allow_persistence property.
         """
         self._application_guard_allow_persistence = value
     
@@ -110,7 +127,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowPrintToLocalPrinters property value. Allow printing to Local Printers from Container
         Args:
-            value: Value to set for the applicationGuardAllowPrintToLocalPrinters property.
+            value: Value to set for the application_guard_allow_print_to_local_printers property.
         """
         self._application_guard_allow_print_to_local_printers = value
     
@@ -127,7 +144,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowPrintToNetworkPrinters property value. Allow printing to Network Printers from Container
         Args:
-            value: Value to set for the applicationGuardAllowPrintToNetworkPrinters property.
+            value: Value to set for the application_guard_allow_print_to_network_printers property.
         """
         self._application_guard_allow_print_to_network_printers = value
     
@@ -144,7 +161,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowPrintToPDF property value. Allow printing to PDF from Container
         Args:
-            value: Value to set for the applicationGuardAllowPrintToPDF property.
+            value: Value to set for the application_guard_allow_print_to_p_d_f property.
         """
         self._application_guard_allow_print_to_p_d_f = value
     
@@ -161,7 +178,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowPrintToXPS property value. Allow printing to XPS from Container
         Args:
-            value: Value to set for the applicationGuardAllowPrintToXPS property.
+            value: Value to set for the application_guard_allow_print_to_x_p_s property.
         """
         self._application_guard_allow_print_to_x_p_s = value
     
@@ -178,7 +195,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardAllowVirtualGPU property value. Allow application guard to use virtual GPU
         Args:
-            value: Value to set for the applicationGuardAllowVirtualGPU property.
+            value: Value to set for the application_guard_allow_virtual_g_p_u property.
         """
         self._application_guard_allow_virtual_g_p_u = value
     
@@ -195,7 +212,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardBlockClipboardSharing property value. Possible values for applicationGuardBlockClipboardSharingType
         Args:
-            value: Value to set for the applicationGuardBlockClipboardSharing property.
+            value: Value to set for the application_guard_block_clipboard_sharing property.
         """
         self._application_guard_block_clipboard_sharing = value
     
@@ -212,7 +229,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardBlockFileTransfer property value. Possible values for applicationGuardBlockFileTransfer
         Args:
-            value: Value to set for the applicationGuardBlockFileTransfer property.
+            value: Value to set for the application_guard_block_file_transfer property.
         """
         self._application_guard_block_file_transfer = value
     
@@ -229,7 +246,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardBlockNonEnterpriseContent property value. Block enterprise sites to load non-enterprise content, such as third party plug-ins
         Args:
-            value: Value to set for the applicationGuardBlockNonEnterpriseContent property.
+            value: Value to set for the application_guard_block_non_enterprise_content property.
         """
         self._application_guard_block_non_enterprise_content = value
     
@@ -246,7 +263,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardCertificateThumbprints property value. Allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container.
         Args:
-            value: Value to set for the applicationGuardCertificateThumbprints property.
+            value: Value to set for the application_guard_certificate_thumbprints property.
         """
         self._application_guard_certificate_thumbprints = value
     
@@ -263,7 +280,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardEnabled property value. Enable Windows Defender Application Guard
         Args:
-            value: Value to set for the applicationGuardEnabled property.
+            value: Value to set for the application_guard_enabled property.
         """
         self._application_guard_enabled = value
     
@@ -280,7 +297,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardEnabledOptions property value. Possible values for ApplicationGuardEnabledOptions
         Args:
-            value: Value to set for the applicationGuardEnabledOptions property.
+            value: Value to set for the application_guard_enabled_options property.
         """
         self._application_guard_enabled_options = value
     
@@ -297,26 +314,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the applicationGuardForceAuditing property value. Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
         Args:
-            value: Value to set for the applicationGuardForceAuditing property.
+            value: Value to set for the application_guard_force_auditing property.
         """
         self._application_guard_force_auditing = value
-    
-    @property
-    def app_locker_application_control(self,) -> Optional[app_locker_application_control_type.AppLockerApplicationControlType]:
-        """
-        Gets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
-        Returns: Optional[app_locker_application_control_type.AppLockerApplicationControlType]
-        """
-        return self._app_locker_application_control
-    
-    @app_locker_application_control.setter
-    def app_locker_application_control(self,value: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None) -> None:
-        """
-        Sets the appLockerApplicationControl property value. Possible values of AppLocker Application Control Types
-        Args:
-            value: Value to set for the appLockerApplicationControl property.
-        """
-        self._app_locker_application_control = value
     
     @property
     def bit_locker_allow_standard_user_encryption(self,) -> Optional[bool]:
@@ -331,7 +331,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerAllowStandardUserEncryption property value. Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
         Args:
-            value: Value to set for the bitLockerAllowStandardUserEncryption property.
+            value: Value to set for the bit_locker_allow_standard_user_encryption property.
         """
         self._bit_locker_allow_standard_user_encryption = value
     
@@ -348,7 +348,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerDisableWarningForOtherDiskEncryption property value. Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
         Args:
-            value: Value to set for the bitLockerDisableWarningForOtherDiskEncryption property.
+            value: Value to set for the bit_locker_disable_warning_for_other_disk_encryption property.
         """
         self._bit_locker_disable_warning_for_other_disk_encryption = value
     
@@ -365,7 +365,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerEnableStorageCardEncryptionOnMobile property value. Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.
         Args:
-            value: Value to set for the bitLockerEnableStorageCardEncryptionOnMobile property.
+            value: Value to set for the bit_locker_enable_storage_card_encryption_on_mobile property.
         """
         self._bit_locker_enable_storage_card_encryption_on_mobile = value
     
@@ -382,7 +382,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerEncryptDevice property value. Allows the admin to require encryption to be turned on using BitLocker.
         Args:
-            value: Value to set for the bitLockerEncryptDevice property.
+            value: Value to set for the bit_locker_encrypt_device property.
         """
         self._bit_locker_encrypt_device = value
     
@@ -399,7 +399,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerFixedDrivePolicy property value. BitLocker Fixed Drive Policy.
         Args:
-            value: Value to set for the bitLockerFixedDrivePolicy property.
+            value: Value to set for the bit_locker_fixed_drive_policy property.
         """
         self._bit_locker_fixed_drive_policy = value
     
@@ -416,7 +416,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerRecoveryPasswordRotation property value. BitLocker recovery password rotation type
         Args:
-            value: Value to set for the bitLockerRecoveryPasswordRotation property.
+            value: Value to set for the bit_locker_recovery_password_rotation property.
         """
         self._bit_locker_recovery_password_rotation = value
     
@@ -433,7 +433,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerRemovableDrivePolicy property value. BitLocker Removable Drive Policy.
         Args:
-            value: Value to set for the bitLockerRemovableDrivePolicy property.
+            value: Value to set for the bit_locker_removable_drive_policy property.
         """
         self._bit_locker_removable_drive_policy = value
     
@@ -450,7 +450,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the bitLockerSystemDrivePolicy property value. BitLocker System Drive Policy.
         Args:
-            value: Value to set for the bitLockerSystemDrivePolicy property.
+            value: Value to set for the bit_locker_system_drive_policy property.
         """
         self._bit_locker_system_drive_policy = value
     
@@ -460,6 +460,8 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windows10EndpointProtectionConfiguration"
+        # Possible values of AppLocker Application Control Types
+        self._app_locker_application_control: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None
         # Gets or sets whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone.
         self._application_guard_allow_camera_microphone_redirection: Optional[bool] = None
         # Allow users to download files from Edge in the application guard container and save them on the host file system
@@ -490,8 +492,6 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._application_guard_enabled_options: Optional[application_guard_enabled_options.ApplicationGuardEnabledOptions] = None
         # Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)
         self._application_guard_force_auditing: Optional[bool] = None
-        # Possible values of AppLocker Application Control Types
-        self._app_locker_application_control: Optional[app_locker_application_control_type.AppLockerApplicationControlType] = None
         # Allows the admin to allow standard users to enable encrpytion during Azure AD Join.
         self._bit_locker_allow_standard_user_encryption: Optional[bool] = None
         # Allows the Admin to disable the warning prompt for other disk encryption on the user machines.
@@ -594,10 +594,10 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._defender_file_extensions_to_exclude: Optional[List[str]] = None
         # Files and folder to exclude from scans and real time protection.
         self._defender_files_and_folders_to_exclude: Optional[List[str]] = None
-        # List of paths to exe that are allowed to access protected folders
-        self._defender_guarded_folders_allowed_app_paths: Optional[List[str]] = None
         # Possible values of Folder Protection
         self._defender_guard_my_folders_type: Optional[folder_protection_type.FolderProtectionType] = None
+        # List of paths to exe that are allowed to access protected folders
+        self._defender_guarded_folders_allowed_app_paths: Optional[List[str]] = None
         # Possible values of Defender PUA Protection
         self._defender_network_protection_type: Optional[defender_protection_type.DefenderProtectionType] = None
         # Possible values of Defender PUA Protection
@@ -716,8 +716,6 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._firewall_block_stateful_f_t_p: Optional[bool] = None
         # Possible values for firewallCertificateRevocationListCheckMethod
         self._firewall_certificate_revocation_list_check_method: Optional[firewall_certificate_revocation_list_check_method_type.FirewallCertificateRevocationListCheckMethodType] = None
-        # Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
-        self._firewall_idle_timeout_for_security_association_in_seconds: Optional[int] = None
         # Configures IPSec exemptions to allow both IPv4 and IPv6 DHCP traffic
         self._firewall_i_p_sec_exemptions_allow_d_h_c_p: Optional[bool] = None
         # Configures IPSec exemptions to allow ICMP
@@ -728,6 +726,8 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         self._firewall_i_p_sec_exemptions_allow_router_discovery: Optional[bool] = None
         # Configures IPSec exemptions to no exemptions
         self._firewall_i_p_sec_exemptions_none: Optional[bool] = None
+        # Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
+        self._firewall_idle_timeout_for_security_association_in_seconds: Optional[int] = None
         # If an authentication set is not fully supported by a keying module, direct the module to ignore only unsupported authentication suites rather than the entire set
         self._firewall_merge_keying_module_settings: Optional[bool] = None
         # Possible values for firewallPacketQueueingMethod
@@ -938,7 +938,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAdditionalGuardedFolders property value. List of folder paths to be added to the list of protected folders
         Args:
-            value: Value to set for the defenderAdditionalGuardedFolders property.
+            value: Value to set for the defender_additional_guarded_folders property.
         """
         self._defender_additional_guarded_folders = value
     
@@ -955,7 +955,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAdobeReaderLaunchChildProcess property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderAdobeReaderLaunchChildProcess property.
+            value: Value to set for the defender_adobe_reader_launch_child_process property.
         """
         self._defender_adobe_reader_launch_child_process = value
     
@@ -972,7 +972,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAdvancedRansomewareProtectionType property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderAdvancedRansomewareProtectionType property.
+            value: Value to set for the defender_advanced_ransomeware_protection_type property.
         """
         self._defender_advanced_ransomeware_protection_type = value
     
@@ -989,7 +989,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowBehaviorMonitoring property value. Allows or disallows Windows Defender Behavior Monitoring functionality.
         Args:
-            value: Value to set for the defenderAllowBehaviorMonitoring property.
+            value: Value to set for the defender_allow_behavior_monitoring property.
         """
         self._defender_allow_behavior_monitoring = value
     
@@ -1006,7 +1006,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowCloudProtection property value. To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
         Args:
-            value: Value to set for the defenderAllowCloudProtection property.
+            value: Value to set for the defender_allow_cloud_protection property.
         """
         self._defender_allow_cloud_protection = value
     
@@ -1023,7 +1023,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowEndUserAccess property value. Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
         Args:
-            value: Value to set for the defenderAllowEndUserAccess property.
+            value: Value to set for the defender_allow_end_user_access property.
         """
         self._defender_allow_end_user_access = value
     
@@ -1040,7 +1040,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowIntrusionPreventionSystem property value. Allows or disallows Windows Defender Intrusion Prevention functionality.
         Args:
-            value: Value to set for the defenderAllowIntrusionPreventionSystem property.
+            value: Value to set for the defender_allow_intrusion_prevention_system property.
         """
         self._defender_allow_intrusion_prevention_system = value
     
@@ -1057,7 +1057,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowOnAccessProtection property value. Allows or disallows Windows Defender On Access Protection functionality.
         Args:
-            value: Value to set for the defenderAllowOnAccessProtection property.
+            value: Value to set for the defender_allow_on_access_protection property.
         """
         self._defender_allow_on_access_protection = value
     
@@ -1074,7 +1074,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowRealTimeMonitoring property value. Allows or disallows Windows Defender Realtime Monitoring functionality.
         Args:
-            value: Value to set for the defenderAllowRealTimeMonitoring property.
+            value: Value to set for the defender_allow_real_time_monitoring property.
         """
         self._defender_allow_real_time_monitoring = value
     
@@ -1091,7 +1091,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowScanArchiveFiles property value. Allows or disallows scanning of archives.
         Args:
-            value: Value to set for the defenderAllowScanArchiveFiles property.
+            value: Value to set for the defender_allow_scan_archive_files property.
         """
         self._defender_allow_scan_archive_files = value
     
@@ -1108,7 +1108,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowScanDownloads property value. Allows or disallows Windows Defender IOAVP Protection functionality.
         Args:
-            value: Value to set for the defenderAllowScanDownloads property.
+            value: Value to set for the defender_allow_scan_downloads property.
         """
         self._defender_allow_scan_downloads = value
     
@@ -1125,7 +1125,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowScanNetworkFiles property value. Allows or disallows a scanning of network files.
         Args:
-            value: Value to set for the defenderAllowScanNetworkFiles property.
+            value: Value to set for the defender_allow_scan_network_files property.
         """
         self._defender_allow_scan_network_files = value
     
@@ -1142,7 +1142,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowScanRemovableDrivesDuringFullScan property value. Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
         Args:
-            value: Value to set for the defenderAllowScanRemovableDrivesDuringFullScan property.
+            value: Value to set for the defender_allow_scan_removable_drives_during_full_scan property.
         """
         self._defender_allow_scan_removable_drives_during_full_scan = value
     
@@ -1159,7 +1159,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAllowScanScriptsLoadedInInternetExplorer property value. Allows or disallows Windows Defender Script Scanning functionality.
         Args:
-            value: Value to set for the defenderAllowScanScriptsLoadedInInternetExplorer property.
+            value: Value to set for the defender_allow_scan_scripts_loaded_in_internet_explorer property.
         """
         self._defender_allow_scan_scripts_loaded_in_internet_explorer = value
     
@@ -1176,7 +1176,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderAttackSurfaceReductionExcludedPaths property value. List of exe files and folders to be excluded from attack surface reduction rules
         Args:
-            value: Value to set for the defenderAttackSurfaceReductionExcludedPaths property.
+            value: Value to set for the defender_attack_surface_reduction_excluded_paths property.
         """
         self._defender_attack_surface_reduction_excluded_paths = value
     
@@ -1193,7 +1193,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderBlockEndUserAccess property value. Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
         Args:
-            value: Value to set for the defenderBlockEndUserAccess property.
+            value: Value to set for the defender_block_end_user_access property.
         """
         self._defender_block_end_user_access = value
     
@@ -1210,7 +1210,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderBlockPersistenceThroughWmiType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderBlockPersistenceThroughWmiType property.
+            value: Value to set for the defender_block_persistence_through_wmi_type property.
         """
         self._defender_block_persistence_through_wmi_type = value
     
@@ -1227,7 +1227,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderCheckForSignaturesBeforeRunningScan property value. This policy setting allows you to manage whether a check for new virus and spyware definitions will occur before running a scan.
         Args:
-            value: Value to set for the defenderCheckForSignaturesBeforeRunningScan property.
+            value: Value to set for the defender_check_for_signatures_before_running_scan property.
         """
         self._defender_check_for_signatures_before_running_scan = value
     
@@ -1244,7 +1244,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderCloudBlockLevel property value. Added in Windows 10, version 1709. This policy setting determines how aggressive Windows Defender Antivirus will be in blocking and scanning suspicious files. Value type is integer. This feature requires the 'Join Microsoft MAPS' setting enabled in order to function. Possible values are: notConfigured, high, highPlus, zeroTolerance.
         Args:
-            value: Value to set for the defenderCloudBlockLevel property.
+            value: Value to set for the defender_cloud_block_level property.
         """
         self._defender_cloud_block_level = value
     
@@ -1261,7 +1261,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderCloudExtendedTimeoutInSeconds property value. Added in Windows 10, version 1709. This feature allows Windows Defender Antivirus to block a suspicious file for up to 60 seconds, and scan it in the cloud to make sure it's safe. Value type is integer, range is 0 - 50. This feature depends on three other MAPS settings the must all be enabled- 'Configure the 'Block at First Sight' feature; 'Join Microsoft MAPS'; 'Send file samples when further analysis is required'. Valid values 0 to 50
         Args:
-            value: Value to set for the defenderCloudExtendedTimeoutInSeconds property.
+            value: Value to set for the defender_cloud_extended_timeout_in_seconds property.
         """
         self._defender_cloud_extended_timeout_in_seconds = value
     
@@ -1278,7 +1278,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDaysBeforeDeletingQuarantinedMalware property value. Time period (in days) that quarantine items will be stored on the system. Valid values 0 to 90
         Args:
-            value: Value to set for the defenderDaysBeforeDeletingQuarantinedMalware property.
+            value: Value to set for the defender_days_before_deleting_quarantined_malware property.
         """
         self._defender_days_before_deleting_quarantined_malware = value
     
@@ -1295,7 +1295,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDetectedMalwareActions property value. Allows an administrator to specify any valid threat severity levels and the corresponding default action ID to take.
         Args:
-            value: Value to set for the defenderDetectedMalwareActions property.
+            value: Value to set for the defender_detected_malware_actions property.
         """
         self._defender_detected_malware_actions = value
     
@@ -1312,7 +1312,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableBehaviorMonitoring property value. Allows or disallows Windows Defender Behavior Monitoring functionality.
         Args:
-            value: Value to set for the defenderDisableBehaviorMonitoring property.
+            value: Value to set for the defender_disable_behavior_monitoring property.
         """
         self._defender_disable_behavior_monitoring = value
     
@@ -1329,7 +1329,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableCatchupFullScan property value. This policy setting allows you to configure catch-up scans for scheduled full scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time.
         Args:
-            value: Value to set for the defenderDisableCatchupFullScan property.
+            value: Value to set for the defender_disable_catchup_full_scan property.
         """
         self._defender_disable_catchup_full_scan = value
     
@@ -1346,7 +1346,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableCatchupQuickScan property value. This policy setting allows you to configure catch-up scans for scheduled quick scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time.
         Args:
-            value: Value to set for the defenderDisableCatchupQuickScan property.
+            value: Value to set for the defender_disable_catchup_quick_scan property.
         """
         self._defender_disable_catchup_quick_scan = value
     
@@ -1363,7 +1363,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableCloudProtection property value. To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
         Args:
-            value: Value to set for the defenderDisableCloudProtection property.
+            value: Value to set for the defender_disable_cloud_protection property.
         """
         self._defender_disable_cloud_protection = value
     
@@ -1380,7 +1380,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableIntrusionPreventionSystem property value. Allows or disallows Windows Defender Intrusion Prevention functionality.
         Args:
-            value: Value to set for the defenderDisableIntrusionPreventionSystem property.
+            value: Value to set for the defender_disable_intrusion_prevention_system property.
         """
         self._defender_disable_intrusion_prevention_system = value
     
@@ -1397,7 +1397,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableOnAccessProtection property value. Allows or disallows Windows Defender On Access Protection functionality.
         Args:
-            value: Value to set for the defenderDisableOnAccessProtection property.
+            value: Value to set for the defender_disable_on_access_protection property.
         """
         self._defender_disable_on_access_protection = value
     
@@ -1414,7 +1414,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableRealTimeMonitoring property value. Allows or disallows Windows Defender Realtime Monitoring functionality.
         Args:
-            value: Value to set for the defenderDisableRealTimeMonitoring property.
+            value: Value to set for the defender_disable_real_time_monitoring property.
         """
         self._defender_disable_real_time_monitoring = value
     
@@ -1431,7 +1431,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableScanArchiveFiles property value. Allows or disallows scanning of archives.
         Args:
-            value: Value to set for the defenderDisableScanArchiveFiles property.
+            value: Value to set for the defender_disable_scan_archive_files property.
         """
         self._defender_disable_scan_archive_files = value
     
@@ -1448,7 +1448,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableScanDownloads property value. Allows or disallows Windows Defender IOAVP Protection functionality.
         Args:
-            value: Value to set for the defenderDisableScanDownloads property.
+            value: Value to set for the defender_disable_scan_downloads property.
         """
         self._defender_disable_scan_downloads = value
     
@@ -1465,7 +1465,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableScanNetworkFiles property value. Allows or disallows a scanning of network files.
         Args:
-            value: Value to set for the defenderDisableScanNetworkFiles property.
+            value: Value to set for the defender_disable_scan_network_files property.
         """
         self._defender_disable_scan_network_files = value
     
@@ -1482,7 +1482,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableScanRemovableDrivesDuringFullScan property value. Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
         Args:
-            value: Value to set for the defenderDisableScanRemovableDrivesDuringFullScan property.
+            value: Value to set for the defender_disable_scan_removable_drives_during_full_scan property.
         """
         self._defender_disable_scan_removable_drives_during_full_scan = value
     
@@ -1499,7 +1499,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderDisableScanScriptsLoadedInInternetExplorer property value. Allows or disallows Windows Defender Script Scanning functionality.
         Args:
-            value: Value to set for the defenderDisableScanScriptsLoadedInInternetExplorer property.
+            value: Value to set for the defender_disable_scan_scripts_loaded_in_internet_explorer property.
         """
         self._defender_disable_scan_scripts_loaded_in_internet_explorer = value
     
@@ -1516,7 +1516,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderEmailContentExecution property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderEmailContentExecution property.
+            value: Value to set for the defender_email_content_execution property.
         """
         self._defender_email_content_execution = value
     
@@ -1533,7 +1533,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderEmailContentExecutionType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderEmailContentExecutionType property.
+            value: Value to set for the defender_email_content_execution_type property.
         """
         self._defender_email_content_execution_type = value
     
@@ -1550,7 +1550,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderEnableLowCpuPriority property value. This policy setting allows you to enable or disable low CPU priority for scheduled scans.
         Args:
-            value: Value to set for the defenderEnableLowCpuPriority property.
+            value: Value to set for the defender_enable_low_cpu_priority property.
         """
         self._defender_enable_low_cpu_priority = value
     
@@ -1567,7 +1567,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderEnableScanIncomingMail property value. Allows or disallows scanning of email.
         Args:
-            value: Value to set for the defenderEnableScanIncomingMail property.
+            value: Value to set for the defender_enable_scan_incoming_mail property.
         """
         self._defender_enable_scan_incoming_mail = value
     
@@ -1584,7 +1584,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderEnableScanMappedNetworkDrivesDuringFullScan property value. Allows or disallows a full scan of mapped network drives.
         Args:
-            value: Value to set for the defenderEnableScanMappedNetworkDrivesDuringFullScan property.
+            value: Value to set for the defender_enable_scan_mapped_network_drives_during_full_scan property.
         """
         self._defender_enable_scan_mapped_network_drives_during_full_scan = value
     
@@ -1601,7 +1601,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderExploitProtectionXml property value. Xml content containing information regarding exploit protection details.
         Args:
-            value: Value to set for the defenderExploitProtectionXml property.
+            value: Value to set for the defender_exploit_protection_xml property.
         """
         self._defender_exploit_protection_xml = value
     
@@ -1618,7 +1618,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderExploitProtectionXmlFileName property value. Name of the file from which DefenderExploitProtectionXml was obtained.
         Args:
-            value: Value to set for the defenderExploitProtectionXmlFileName property.
+            value: Value to set for the defender_exploit_protection_xml_file_name property.
         """
         self._defender_exploit_protection_xml_file_name = value
     
@@ -1635,7 +1635,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderFileExtensionsToExclude property value. File extensions to exclude from scans and real time protection.
         Args:
-            value: Value to set for the defenderFileExtensionsToExclude property.
+            value: Value to set for the defender_file_extensions_to_exclude property.
         """
         self._defender_file_extensions_to_exclude = value
     
@@ -1652,26 +1652,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderFilesAndFoldersToExclude property value. Files and folder to exclude from scans and real time protection.
         Args:
-            value: Value to set for the defenderFilesAndFoldersToExclude property.
+            value: Value to set for the defender_files_and_folders_to_exclude property.
         """
         self._defender_files_and_folders_to_exclude = value
-    
-    @property
-    def defender_guarded_folders_allowed_app_paths(self,) -> Optional[List[str]]:
-        """
-        Gets the defenderGuardedFoldersAllowedAppPaths property value. List of paths to exe that are allowed to access protected folders
-        Returns: Optional[List[str]]
-        """
-        return self._defender_guarded_folders_allowed_app_paths
-    
-    @defender_guarded_folders_allowed_app_paths.setter
-    def defender_guarded_folders_allowed_app_paths(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the defenderGuardedFoldersAllowedAppPaths property value. List of paths to exe that are allowed to access protected folders
-        Args:
-            value: Value to set for the defenderGuardedFoldersAllowedAppPaths property.
-        """
-        self._defender_guarded_folders_allowed_app_paths = value
     
     @property
     def defender_guard_my_folders_type(self,) -> Optional[folder_protection_type.FolderProtectionType]:
@@ -1686,9 +1669,26 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderGuardMyFoldersType property value. Possible values of Folder Protection
         Args:
-            value: Value to set for the defenderGuardMyFoldersType property.
+            value: Value to set for the defender_guard_my_folders_type property.
         """
         self._defender_guard_my_folders_type = value
+    
+    @property
+    def defender_guarded_folders_allowed_app_paths(self,) -> Optional[List[str]]:
+        """
+        Gets the defenderGuardedFoldersAllowedAppPaths property value. List of paths to exe that are allowed to access protected folders
+        Returns: Optional[List[str]]
+        """
+        return self._defender_guarded_folders_allowed_app_paths
+    
+    @defender_guarded_folders_allowed_app_paths.setter
+    def defender_guarded_folders_allowed_app_paths(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the defenderGuardedFoldersAllowedAppPaths property value. List of paths to exe that are allowed to access protected folders
+        Args:
+            value: Value to set for the defender_guarded_folders_allowed_app_paths property.
+        """
+        self._defender_guarded_folders_allowed_app_paths = value
     
     @property
     def defender_network_protection_type(self,) -> Optional[defender_protection_type.DefenderProtectionType]:
@@ -1703,7 +1703,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderNetworkProtectionType property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderNetworkProtectionType property.
+            value: Value to set for the defender_network_protection_type property.
         """
         self._defender_network_protection_type = value
     
@@ -1720,7 +1720,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeAppsExecutableContentCreationOrLaunch property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderOfficeAppsExecutableContentCreationOrLaunch property.
+            value: Value to set for the defender_office_apps_executable_content_creation_or_launch property.
         """
         self._defender_office_apps_executable_content_creation_or_launch = value
     
@@ -1737,7 +1737,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeAppsExecutableContentCreationOrLaunchType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderOfficeAppsExecutableContentCreationOrLaunchType property.
+            value: Value to set for the defender_office_apps_executable_content_creation_or_launch_type property.
         """
         self._defender_office_apps_executable_content_creation_or_launch_type = value
     
@@ -1754,7 +1754,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeAppsLaunchChildProcess property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderOfficeAppsLaunchChildProcess property.
+            value: Value to set for the defender_office_apps_launch_child_process property.
         """
         self._defender_office_apps_launch_child_process = value
     
@@ -1771,7 +1771,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeAppsLaunchChildProcessType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderOfficeAppsLaunchChildProcessType property.
+            value: Value to set for the defender_office_apps_launch_child_process_type property.
         """
         self._defender_office_apps_launch_child_process_type = value
     
@@ -1788,7 +1788,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeAppsOtherProcessInjection property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderOfficeAppsOtherProcessInjection property.
+            value: Value to set for the defender_office_apps_other_process_injection property.
         """
         self._defender_office_apps_other_process_injection = value
     
@@ -1805,7 +1805,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeAppsOtherProcessInjectionType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderOfficeAppsOtherProcessInjectionType property.
+            value: Value to set for the defender_office_apps_other_process_injection_type property.
         """
         self._defender_office_apps_other_process_injection_type = value
     
@@ -1822,7 +1822,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeCommunicationAppsLaunchChildProcess property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderOfficeCommunicationAppsLaunchChildProcess property.
+            value: Value to set for the defender_office_communication_apps_launch_child_process property.
         """
         self._defender_office_communication_apps_launch_child_process = value
     
@@ -1839,7 +1839,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeMacroCodeAllowWin32Imports property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderOfficeMacroCodeAllowWin32Imports property.
+            value: Value to set for the defender_office_macro_code_allow_win32_imports property.
         """
         self._defender_office_macro_code_allow_win32_imports = value
     
@@ -1856,7 +1856,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderOfficeMacroCodeAllowWin32ImportsType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderOfficeMacroCodeAllowWin32ImportsType property.
+            value: Value to set for the defender_office_macro_code_allow_win32_imports_type property.
         """
         self._defender_office_macro_code_allow_win32_imports_type = value
     
@@ -1873,7 +1873,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderPotentiallyUnwantedAppAction property value. Added in Windows 10, version 1607. Specifies the level of detection for potentially unwanted applications (PUAs). Windows Defender alerts you when potentially unwanted software is being downloaded or attempts to install itself on your computer. Possible values are: userDefined, enable, auditMode, warn, notConfigured.
         Args:
-            value: Value to set for the defenderPotentiallyUnwantedAppAction property.
+            value: Value to set for the defender_potentially_unwanted_app_action property.
         """
         self._defender_potentially_unwanted_app_action = value
     
@@ -1890,7 +1890,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderPreventCredentialStealingType property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderPreventCredentialStealingType property.
+            value: Value to set for the defender_prevent_credential_stealing_type property.
         """
         self._defender_prevent_credential_stealing_type = value
     
@@ -1907,7 +1907,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderProcessCreation property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderProcessCreation property.
+            value: Value to set for the defender_process_creation property.
         """
         self._defender_process_creation = value
     
@@ -1924,7 +1924,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderProcessCreationType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderProcessCreationType property.
+            value: Value to set for the defender_process_creation_type property.
         """
         self._defender_process_creation_type = value
     
@@ -1941,7 +1941,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderProcessesToExclude property value. Processes to exclude from scans and real time protection.
         Args:
-            value: Value to set for the defenderProcessesToExclude property.
+            value: Value to set for the defender_processes_to_exclude property.
         """
         self._defender_processes_to_exclude = value
     
@@ -1958,7 +1958,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScanDirection property value. Controls which sets of files should be monitored. Possible values are: monitorAllFiles, monitorIncomingFilesOnly, monitorOutgoingFilesOnly.
         Args:
-            value: Value to set for the defenderScanDirection property.
+            value: Value to set for the defender_scan_direction property.
         """
         self._defender_scan_direction = value
     
@@ -1975,7 +1975,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScanMaxCpuPercentage property value. Represents the average CPU load factor for the Windows Defender scan (in percent). The default value is 50. Valid values 0 to 100
         Args:
-            value: Value to set for the defenderScanMaxCpuPercentage property.
+            value: Value to set for the defender_scan_max_cpu_percentage property.
         """
         self._defender_scan_max_cpu_percentage = value
     
@@ -1992,7 +1992,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScanType property value. Selects whether to perform a quick scan or full scan. Possible values are: userDefined, disabled, quick, full.
         Args:
-            value: Value to set for the defenderScanType property.
+            value: Value to set for the defender_scan_type property.
         """
         self._defender_scan_type = value
     
@@ -2009,7 +2009,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScheduledQuickScanTime property value. Selects the time of day that the Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
         Args:
-            value: Value to set for the defenderScheduledQuickScanTime property.
+            value: Value to set for the defender_scheduled_quick_scan_time property.
         """
         self._defender_scheduled_quick_scan_time = value
     
@@ -2026,7 +2026,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScheduledScanDay property value. Selects the day that the Windows Defender scan should run. Possible values are: userDefined, everyday, sunday, monday, tuesday, wednesday, thursday, friday, saturday, noScheduledScan.
         Args:
-            value: Value to set for the defenderScheduledScanDay property.
+            value: Value to set for the defender_scheduled_scan_day property.
         """
         self._defender_scheduled_scan_day = value
     
@@ -2043,7 +2043,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScheduledScanTime property value. Selects the time of day that the Windows Defender scan should run.
         Args:
-            value: Value to set for the defenderScheduledScanTime property.
+            value: Value to set for the defender_scheduled_scan_time property.
         """
         self._defender_scheduled_scan_time = value
     
@@ -2060,7 +2060,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScriptDownloadedPayloadExecution property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderScriptDownloadedPayloadExecution property.
+            value: Value to set for the defender_script_downloaded_payload_execution property.
         """
         self._defender_script_downloaded_payload_execution = value
     
@@ -2077,7 +2077,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScriptDownloadedPayloadExecutionType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderScriptDownloadedPayloadExecutionType property.
+            value: Value to set for the defender_script_downloaded_payload_execution_type property.
         """
         self._defender_script_downloaded_payload_execution_type = value
     
@@ -2094,7 +2094,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScriptObfuscatedMacroCode property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderScriptObfuscatedMacroCode property.
+            value: Value to set for the defender_script_obfuscated_macro_code property.
         """
         self._defender_script_obfuscated_macro_code = value
     
@@ -2111,7 +2111,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderScriptObfuscatedMacroCodeType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderScriptObfuscatedMacroCodeType property.
+            value: Value to set for the defender_script_obfuscated_macro_code_type property.
         """
         self._defender_script_obfuscated_macro_code_type = value
     
@@ -2128,7 +2128,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterBlockExploitProtectionOverride property value. Indicates whether or not to block user from overriding Exploit Protection settings.
         Args:
-            value: Value to set for the defenderSecurityCenterBlockExploitProtectionOverride property.
+            value: Value to set for the defender_security_center_block_exploit_protection_override property.
         """
         self._defender_security_center_block_exploit_protection_override = value
     
@@ -2145,7 +2145,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableAccountUI property value. Used to disable the display of the account protection area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableAccountUI property.
+            value: Value to set for the defender_security_center_disable_account_u_i property.
         """
         self._defender_security_center_disable_account_u_i = value
     
@@ -2162,7 +2162,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableAppBrowserUI property value. Used to disable the display of the app and browser protection area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableAppBrowserUI property.
+            value: Value to set for the defender_security_center_disable_app_browser_u_i property.
         """
         self._defender_security_center_disable_app_browser_u_i = value
     
@@ -2179,7 +2179,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableClearTpmUI property value. Used to disable the display of the Clear TPM button.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableClearTpmUI property.
+            value: Value to set for the defender_security_center_disable_clear_tpm_u_i property.
         """
         self._defender_security_center_disable_clear_tpm_u_i = value
     
@@ -2196,7 +2196,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableFamilyUI property value. Used to disable the display of the family options area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableFamilyUI property.
+            value: Value to set for the defender_security_center_disable_family_u_i property.
         """
         self._defender_security_center_disable_family_u_i = value
     
@@ -2213,7 +2213,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableHardwareUI property value. Used to disable the display of the hardware protection area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableHardwareUI property.
+            value: Value to set for the defender_security_center_disable_hardware_u_i property.
         """
         self._defender_security_center_disable_hardware_u_i = value
     
@@ -2230,7 +2230,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableHealthUI property value. Used to disable the display of the device performance and health area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableHealthUI property.
+            value: Value to set for the defender_security_center_disable_health_u_i property.
         """
         self._defender_security_center_disable_health_u_i = value
     
@@ -2247,7 +2247,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableNetworkUI property value. Used to disable the display of the firewall and network protection area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableNetworkUI property.
+            value: Value to set for the defender_security_center_disable_network_u_i property.
         """
         self._defender_security_center_disable_network_u_i = value
     
@@ -2264,7 +2264,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableNotificationAreaUI property value. Used to disable the display of the notification area control. The user needs to either sign out and sign in or reboot the computer for this setting to take effect.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableNotificationAreaUI property.
+            value: Value to set for the defender_security_center_disable_notification_area_u_i property.
         """
         self._defender_security_center_disable_notification_area_u_i = value
     
@@ -2281,7 +2281,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableRansomwareUI property value. Used to disable the display of the ransomware protection area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableRansomwareUI property.
+            value: Value to set for the defender_security_center_disable_ransomware_u_i property.
         """
         self._defender_security_center_disable_ransomware_u_i = value
     
@@ -2298,7 +2298,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableSecureBootUI property value. Used to disable the display of the secure boot area under Device security.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableSecureBootUI property.
+            value: Value to set for the defender_security_center_disable_secure_boot_u_i property.
         """
         self._defender_security_center_disable_secure_boot_u_i = value
     
@@ -2315,7 +2315,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableTroubleshootingUI property value. Used to disable the display of the security process troubleshooting under Device security.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableTroubleshootingUI property.
+            value: Value to set for the defender_security_center_disable_troubleshooting_u_i property.
         """
         self._defender_security_center_disable_troubleshooting_u_i = value
     
@@ -2332,7 +2332,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableVirusUI property value. Used to disable the display of the virus and threat protection area.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableVirusUI property.
+            value: Value to set for the defender_security_center_disable_virus_u_i property.
         """
         self._defender_security_center_disable_virus_u_i = value
     
@@ -2349,7 +2349,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI property value. Used to disable the display of update TPM Firmware when a vulnerable firmware is detected.
         Args:
-            value: Value to set for the defenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI property.
+            value: Value to set for the defender_security_center_disable_vulnerable_tpm_firmware_update_u_i property.
         """
         self._defender_security_center_disable_vulnerable_tpm_firmware_update_u_i = value
     
@@ -2366,7 +2366,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterHelpEmail property value. The email address that is displayed to users.
         Args:
-            value: Value to set for the defenderSecurityCenterHelpEmail property.
+            value: Value to set for the defender_security_center_help_email property.
         """
         self._defender_security_center_help_email = value
     
@@ -2383,7 +2383,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterHelpPhone property value. The phone number or Skype ID that is displayed to users.
         Args:
-            value: Value to set for the defenderSecurityCenterHelpPhone property.
+            value: Value to set for the defender_security_center_help_phone property.
         """
         self._defender_security_center_help_phone = value
     
@@ -2400,7 +2400,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterHelpURL property value. The help portal URL this is displayed to users.
         Args:
-            value: Value to set for the defenderSecurityCenterHelpURL property.
+            value: Value to set for the defender_security_center_help_u_r_l property.
         """
         self._defender_security_center_help_u_r_l = value
     
@@ -2417,7 +2417,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterITContactDisplay property value. Possible values for defenderSecurityCenterITContactDisplay
         Args:
-            value: Value to set for the defenderSecurityCenterITContactDisplay property.
+            value: Value to set for the defender_security_center_i_t_contact_display property.
         """
         self._defender_security_center_i_t_contact_display = value
     
@@ -2434,7 +2434,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterNotificationsFromApp property value. Possible values for defenderSecurityCenterNotificationsFromApp
         Args:
-            value: Value to set for the defenderSecurityCenterNotificationsFromApp property.
+            value: Value to set for the defender_security_center_notifications_from_app property.
         """
         self._defender_security_center_notifications_from_app = value
     
@@ -2451,7 +2451,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSecurityCenterOrganizationDisplayName property value. The company name that is displayed to the users.
         Args:
-            value: Value to set for the defenderSecurityCenterOrganizationDisplayName property.
+            value: Value to set for the defender_security_center_organization_display_name property.
         """
         self._defender_security_center_organization_display_name = value
     
@@ -2468,7 +2468,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSignatureUpdateIntervalInHours property value. Specifies the interval (in hours) that will be used to check for signatures, so instead of using the ScheduleDay and ScheduleTime the check for new signatures will be set according to the interval. Valid values 0 to 24
         Args:
-            value: Value to set for the defenderSignatureUpdateIntervalInHours property.
+            value: Value to set for the defender_signature_update_interval_in_hours property.
         """
         self._defender_signature_update_interval_in_hours = value
     
@@ -2485,7 +2485,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderSubmitSamplesConsentType property value. Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
         Args:
-            value: Value to set for the defenderSubmitSamplesConsentType property.
+            value: Value to set for the defender_submit_samples_consent_type property.
         """
         self._defender_submit_samples_consent_type = value
     
@@ -2502,7 +2502,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderUntrustedExecutable property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderUntrustedExecutable property.
+            value: Value to set for the defender_untrusted_executable property.
         """
         self._defender_untrusted_executable = value
     
@@ -2519,7 +2519,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderUntrustedExecutableType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderUntrustedExecutableType property.
+            value: Value to set for the defender_untrusted_executable_type property.
         """
         self._defender_untrusted_executable_type = value
     
@@ -2536,7 +2536,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderUntrustedUSBProcess property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderUntrustedUSBProcess property.
+            value: Value to set for the defender_untrusted_u_s_b_process property.
         """
         self._defender_untrusted_u_s_b_process = value
     
@@ -2553,7 +2553,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the defenderUntrustedUSBProcessType property value. Possible values of Defender Attack Surface Reduction Rules
         Args:
-            value: Value to set for the defenderUntrustedUSBProcessType property.
+            value: Value to set for the defender_untrusted_u_s_b_process_type property.
         """
         self._defender_untrusted_u_s_b_process_type = value
     
@@ -2570,7 +2570,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the deviceGuardEnableSecureBootWithDMA property value. This property will be deprecated in May 2019 and will be replaced with property DeviceGuardSecureBootWithDMA. Specifies whether Platform Security Level is enabled at next reboot.
         Args:
-            value: Value to set for the deviceGuardEnableSecureBootWithDMA property.
+            value: Value to set for the device_guard_enable_secure_boot_with_d_m_a property.
         """
         self._device_guard_enable_secure_boot_with_d_m_a = value
     
@@ -2587,7 +2587,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the deviceGuardEnableVirtualizationBasedSecurity property value. Turns On Virtualization Based Security(VBS).
         Args:
-            value: Value to set for the deviceGuardEnableVirtualizationBasedSecurity property.
+            value: Value to set for the device_guard_enable_virtualization_based_security property.
         """
         self._device_guard_enable_virtualization_based_security = value
     
@@ -2604,7 +2604,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the deviceGuardLaunchSystemGuard property value. Possible values of a property
         Args:
-            value: Value to set for the deviceGuardLaunchSystemGuard property.
+            value: Value to set for the device_guard_launch_system_guard property.
         """
         self._device_guard_launch_system_guard = value
     
@@ -2621,7 +2621,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the deviceGuardLocalSystemAuthorityCredentialGuardSettings property value. Possible values of Credential Guard settings.
         Args:
-            value: Value to set for the deviceGuardLocalSystemAuthorityCredentialGuardSettings property.
+            value: Value to set for the device_guard_local_system_authority_credential_guard_settings property.
         """
         self._device_guard_local_system_authority_credential_guard_settings = value
     
@@ -2638,7 +2638,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the deviceGuardSecureBootWithDMA property value. Possible values of Secure Boot with DMA
         Args:
-            value: Value to set for the deviceGuardSecureBootWithDMA property.
+            value: Value to set for the device_guard_secure_boot_with_d_m_a property.
         """
         self._device_guard_secure_boot_with_d_m_a = value
     
@@ -2655,7 +2655,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the dmaGuardDeviceEnumerationPolicy property value. Possible values of the DmaGuardDeviceEnumerationPolicy.
         Args:
-            value: Value to set for the dmaGuardDeviceEnumerationPolicy property.
+            value: Value to set for the dma_guard_device_enumeration_policy property.
         """
         self._dma_guard_device_enumeration_policy = value
     
@@ -2672,7 +2672,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallBlockStatefulFTP property value. Blocks stateful FTP connections to the device
         Args:
-            value: Value to set for the firewallBlockStatefulFTP property.
+            value: Value to set for the firewall_block_stateful_f_t_p property.
         """
         self._firewall_block_stateful_f_t_p = value
     
@@ -2689,26 +2689,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallCertificateRevocationListCheckMethod property value. Possible values for firewallCertificateRevocationListCheckMethod
         Args:
-            value: Value to set for the firewallCertificateRevocationListCheckMethod property.
+            value: Value to set for the firewall_certificate_revocation_list_check_method property.
         """
         self._firewall_certificate_revocation_list_check_method = value
-    
-    @property
-    def firewall_idle_timeout_for_security_association_in_seconds(self,) -> Optional[int]:
-        """
-        Gets the firewallIdleTimeoutForSecurityAssociationInSeconds property value. Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
-        Returns: Optional[int]
-        """
-        return self._firewall_idle_timeout_for_security_association_in_seconds
-    
-    @firewall_idle_timeout_for_security_association_in_seconds.setter
-    def firewall_idle_timeout_for_security_association_in_seconds(self,value: Optional[int] = None) -> None:
-        """
-        Sets the firewallIdleTimeoutForSecurityAssociationInSeconds property value. Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
-        Args:
-            value: Value to set for the firewallIdleTimeoutForSecurityAssociationInSeconds property.
-        """
-        self._firewall_idle_timeout_for_security_association_in_seconds = value
     
     @property
     def firewall_i_p_sec_exemptions_allow_d_h_c_p(self,) -> Optional[bool]:
@@ -2723,7 +2706,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallIPSecExemptionsAllowDHCP property value. Configures IPSec exemptions to allow both IPv4 and IPv6 DHCP traffic
         Args:
-            value: Value to set for the firewallIPSecExemptionsAllowDHCP property.
+            value: Value to set for the firewall_i_p_sec_exemptions_allow_d_h_c_p property.
         """
         self._firewall_i_p_sec_exemptions_allow_d_h_c_p = value
     
@@ -2740,7 +2723,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallIPSecExemptionsAllowICMP property value. Configures IPSec exemptions to allow ICMP
         Args:
-            value: Value to set for the firewallIPSecExemptionsAllowICMP property.
+            value: Value to set for the firewall_i_p_sec_exemptions_allow_i_c_m_p property.
         """
         self._firewall_i_p_sec_exemptions_allow_i_c_m_p = value
     
@@ -2757,7 +2740,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallIPSecExemptionsAllowNeighborDiscovery property value. Configures IPSec exemptions to allow neighbor discovery IPv6 ICMP type-codes
         Args:
-            value: Value to set for the firewallIPSecExemptionsAllowNeighborDiscovery property.
+            value: Value to set for the firewall_i_p_sec_exemptions_allow_neighbor_discovery property.
         """
         self._firewall_i_p_sec_exemptions_allow_neighbor_discovery = value
     
@@ -2774,7 +2757,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallIPSecExemptionsAllowRouterDiscovery property value. Configures IPSec exemptions to allow router discovery IPv6 ICMP type-codes
         Args:
-            value: Value to set for the firewallIPSecExemptionsAllowRouterDiscovery property.
+            value: Value to set for the firewall_i_p_sec_exemptions_allow_router_discovery property.
         """
         self._firewall_i_p_sec_exemptions_allow_router_discovery = value
     
@@ -2791,9 +2774,26 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallIPSecExemptionsNone property value. Configures IPSec exemptions to no exemptions
         Args:
-            value: Value to set for the firewallIPSecExemptionsNone property.
+            value: Value to set for the firewall_i_p_sec_exemptions_none property.
         """
         self._firewall_i_p_sec_exemptions_none = value
+    
+    @property
+    def firewall_idle_timeout_for_security_association_in_seconds(self,) -> Optional[int]:
+        """
+        Gets the firewallIdleTimeoutForSecurityAssociationInSeconds property value. Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
+        Returns: Optional[int]
+        """
+        return self._firewall_idle_timeout_for_security_association_in_seconds
+    
+    @firewall_idle_timeout_for_security_association_in_seconds.setter
+    def firewall_idle_timeout_for_security_association_in_seconds(self,value: Optional[int] = None) -> None:
+        """
+        Sets the firewallIdleTimeoutForSecurityAssociationInSeconds property value. Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600
+        Args:
+            value: Value to set for the firewall_idle_timeout_for_security_association_in_seconds property.
+        """
+        self._firewall_idle_timeout_for_security_association_in_seconds = value
     
     @property
     def firewall_merge_keying_module_settings(self,) -> Optional[bool]:
@@ -2808,7 +2808,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallMergeKeyingModuleSettings property value. If an authentication set is not fully supported by a keying module, direct the module to ignore only unsupported authentication suites rather than the entire set
         Args:
-            value: Value to set for the firewallMergeKeyingModuleSettings property.
+            value: Value to set for the firewall_merge_keying_module_settings property.
         """
         self._firewall_merge_keying_module_settings = value
     
@@ -2825,7 +2825,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallPacketQueueingMethod property value. Possible values for firewallPacketQueueingMethod
         Args:
-            value: Value to set for the firewallPacketQueueingMethod property.
+            value: Value to set for the firewall_packet_queueing_method property.
         """
         self._firewall_packet_queueing_method = value
     
@@ -2842,7 +2842,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallPreSharedKeyEncodingMethod property value. Possible values for firewallPreSharedKeyEncodingMethod
         Args:
-            value: Value to set for the firewallPreSharedKeyEncodingMethod property.
+            value: Value to set for the firewall_pre_shared_key_encoding_method property.
         """
         self._firewall_pre_shared_key_encoding_method = value
     
@@ -2859,7 +2859,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallProfileDomain property value. Configures the firewall profile settings for domain networks
         Args:
-            value: Value to set for the firewallProfileDomain property.
+            value: Value to set for the firewall_profile_domain property.
         """
         self._firewall_profile_domain = value
     
@@ -2876,7 +2876,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallProfilePrivate property value. Configures the firewall profile settings for private networks
         Args:
-            value: Value to set for the firewallProfilePrivate property.
+            value: Value to set for the firewall_profile_private property.
         """
         self._firewall_profile_private = value
     
@@ -2893,7 +2893,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallProfilePublic property value. Configures the firewall profile settings for public networks
         Args:
-            value: Value to set for the firewallProfilePublic property.
+            value: Value to set for the firewall_profile_public property.
         """
         self._firewall_profile_public = value
     
@@ -2910,7 +2910,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the firewallRules property value. Configures the firewall rule settings. This collection can contain a maximum of 150 elements.
         Args:
-            value: Value to set for the firewallRules property.
+            value: Value to set for the firewall_rules property.
         """
         self._firewall_rules = value
     
@@ -2920,232 +2920,232 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_guard_allow_camera_microphone_redirection": lambda n : setattr(self, 'application_guard_allow_camera_microphone_redirection', n.get_bool_value()),
-            "application_guard_allow_file_save_on_host": lambda n : setattr(self, 'application_guard_allow_file_save_on_host', n.get_bool_value()),
-            "application_guard_allow_persistence": lambda n : setattr(self, 'application_guard_allow_persistence', n.get_bool_value()),
-            "application_guard_allow_print_to_local_printers": lambda n : setattr(self, 'application_guard_allow_print_to_local_printers', n.get_bool_value()),
-            "application_guard_allow_print_to_network_printers": lambda n : setattr(self, 'application_guard_allow_print_to_network_printers', n.get_bool_value()),
-            "application_guard_allow_print_to_p_d_f": lambda n : setattr(self, 'application_guard_allow_print_to_p_d_f', n.get_bool_value()),
-            "application_guard_allow_print_to_x_p_s": lambda n : setattr(self, 'application_guard_allow_print_to_x_p_s', n.get_bool_value()),
-            "application_guard_allow_virtual_g_p_u": lambda n : setattr(self, 'application_guard_allow_virtual_g_p_u', n.get_bool_value()),
-            "application_guard_block_clipboard_sharing": lambda n : setattr(self, 'application_guard_block_clipboard_sharing', n.get_enum_value(application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType)),
-            "application_guard_block_file_transfer": lambda n : setattr(self, 'application_guard_block_file_transfer', n.get_enum_value(application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType)),
-            "application_guard_block_non_enterprise_content": lambda n : setattr(self, 'application_guard_block_non_enterprise_content', n.get_bool_value()),
-            "application_guard_certificate_thumbprints": lambda n : setattr(self, 'application_guard_certificate_thumbprints', n.get_collection_of_primitive_values(str)),
-            "application_guard_enabled": lambda n : setattr(self, 'application_guard_enabled', n.get_bool_value()),
-            "application_guard_enabled_options": lambda n : setattr(self, 'application_guard_enabled_options', n.get_enum_value(application_guard_enabled_options.ApplicationGuardEnabledOptions)),
-            "application_guard_force_auditing": lambda n : setattr(self, 'application_guard_force_auditing', n.get_bool_value()),
-            "app_locker_application_control": lambda n : setattr(self, 'app_locker_application_control', n.get_enum_value(app_locker_application_control_type.AppLockerApplicationControlType)),
-            "bit_locker_allow_standard_user_encryption": lambda n : setattr(self, 'bit_locker_allow_standard_user_encryption', n.get_bool_value()),
-            "bit_locker_disable_warning_for_other_disk_encryption": lambda n : setattr(self, 'bit_locker_disable_warning_for_other_disk_encryption', n.get_bool_value()),
-            "bit_locker_enable_storage_card_encryption_on_mobile": lambda n : setattr(self, 'bit_locker_enable_storage_card_encryption_on_mobile', n.get_bool_value()),
-            "bit_locker_encrypt_device": lambda n : setattr(self, 'bit_locker_encrypt_device', n.get_bool_value()),
-            "bit_locker_fixed_drive_policy": lambda n : setattr(self, 'bit_locker_fixed_drive_policy', n.get_object_value(bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy)),
-            "bit_locker_recovery_password_rotation": lambda n : setattr(self, 'bit_locker_recovery_password_rotation', n.get_enum_value(bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType)),
-            "bit_locker_removable_drive_policy": lambda n : setattr(self, 'bit_locker_removable_drive_policy', n.get_object_value(bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy)),
-            "bit_locker_system_drive_policy": lambda n : setattr(self, 'bit_locker_system_drive_policy', n.get_object_value(bit_locker_system_drive_policy.BitLockerSystemDrivePolicy)),
-            "defender_additional_guarded_folders": lambda n : setattr(self, 'defender_additional_guarded_folders', n.get_collection_of_primitive_values(str)),
-            "defender_adobe_reader_launch_child_process": lambda n : setattr(self, 'defender_adobe_reader_launch_child_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_advanced_ransomeware_protection_type": lambda n : setattr(self, 'defender_advanced_ransomeware_protection_type', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_allow_behavior_monitoring": lambda n : setattr(self, 'defender_allow_behavior_monitoring', n.get_bool_value()),
-            "defender_allow_cloud_protection": lambda n : setattr(self, 'defender_allow_cloud_protection', n.get_bool_value()),
-            "defender_allow_end_user_access": lambda n : setattr(self, 'defender_allow_end_user_access', n.get_bool_value()),
-            "defender_allow_intrusion_prevention_system": lambda n : setattr(self, 'defender_allow_intrusion_prevention_system', n.get_bool_value()),
-            "defender_allow_on_access_protection": lambda n : setattr(self, 'defender_allow_on_access_protection', n.get_bool_value()),
-            "defender_allow_real_time_monitoring": lambda n : setattr(self, 'defender_allow_real_time_monitoring', n.get_bool_value()),
-            "defender_allow_scan_archive_files": lambda n : setattr(self, 'defender_allow_scan_archive_files', n.get_bool_value()),
-            "defender_allow_scan_downloads": lambda n : setattr(self, 'defender_allow_scan_downloads', n.get_bool_value()),
-            "defender_allow_scan_network_files": lambda n : setattr(self, 'defender_allow_scan_network_files', n.get_bool_value()),
-            "defender_allow_scan_removable_drives_during_full_scan": lambda n : setattr(self, 'defender_allow_scan_removable_drives_during_full_scan', n.get_bool_value()),
-            "defender_allow_scan_scripts_loaded_in_internet_explorer": lambda n : setattr(self, 'defender_allow_scan_scripts_loaded_in_internet_explorer', n.get_bool_value()),
-            "defender_attack_surface_reduction_excluded_paths": lambda n : setattr(self, 'defender_attack_surface_reduction_excluded_paths', n.get_collection_of_primitive_values(str)),
-            "defender_block_end_user_access": lambda n : setattr(self, 'defender_block_end_user_access', n.get_bool_value()),
-            "defender_block_persistence_through_wmi_type": lambda n : setattr(self, 'defender_block_persistence_through_wmi_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_check_for_signatures_before_running_scan": lambda n : setattr(self, 'defender_check_for_signatures_before_running_scan', n.get_bool_value()),
-            "defender_cloud_block_level": lambda n : setattr(self, 'defender_cloud_block_level', n.get_enum_value(defender_cloud_block_level_type.DefenderCloudBlockLevelType)),
-            "defender_cloud_extended_timeout_in_seconds": lambda n : setattr(self, 'defender_cloud_extended_timeout_in_seconds', n.get_int_value()),
-            "defender_days_before_deleting_quarantined_malware": lambda n : setattr(self, 'defender_days_before_deleting_quarantined_malware', n.get_int_value()),
-            "defender_detected_malware_actions": lambda n : setattr(self, 'defender_detected_malware_actions', n.get_object_value(defender_detected_malware_actions.DefenderDetectedMalwareActions)),
-            "defender_disable_behavior_monitoring": lambda n : setattr(self, 'defender_disable_behavior_monitoring', n.get_bool_value()),
-            "defender_disable_catchup_full_scan": lambda n : setattr(self, 'defender_disable_catchup_full_scan', n.get_bool_value()),
-            "defender_disable_catchup_quick_scan": lambda n : setattr(self, 'defender_disable_catchup_quick_scan', n.get_bool_value()),
-            "defender_disable_cloud_protection": lambda n : setattr(self, 'defender_disable_cloud_protection', n.get_bool_value()),
-            "defender_disable_intrusion_prevention_system": lambda n : setattr(self, 'defender_disable_intrusion_prevention_system', n.get_bool_value()),
-            "defender_disable_on_access_protection": lambda n : setattr(self, 'defender_disable_on_access_protection', n.get_bool_value()),
-            "defender_disable_real_time_monitoring": lambda n : setattr(self, 'defender_disable_real_time_monitoring', n.get_bool_value()),
-            "defender_disable_scan_archive_files": lambda n : setattr(self, 'defender_disable_scan_archive_files', n.get_bool_value()),
-            "defender_disable_scan_downloads": lambda n : setattr(self, 'defender_disable_scan_downloads', n.get_bool_value()),
-            "defender_disable_scan_network_files": lambda n : setattr(self, 'defender_disable_scan_network_files', n.get_bool_value()),
-            "defender_disable_scan_removable_drives_during_full_scan": lambda n : setattr(self, 'defender_disable_scan_removable_drives_during_full_scan', n.get_bool_value()),
-            "defender_disable_scan_scripts_loaded_in_internet_explorer": lambda n : setattr(self, 'defender_disable_scan_scripts_loaded_in_internet_explorer', n.get_bool_value()),
-            "defender_email_content_execution": lambda n : setattr(self, 'defender_email_content_execution', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_email_content_execution_type": lambda n : setattr(self, 'defender_email_content_execution_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_enable_low_cpu_priority": lambda n : setattr(self, 'defender_enable_low_cpu_priority', n.get_bool_value()),
-            "defender_enable_scan_incoming_mail": lambda n : setattr(self, 'defender_enable_scan_incoming_mail', n.get_bool_value()),
-            "defender_enable_scan_mapped_network_drives_during_full_scan": lambda n : setattr(self, 'defender_enable_scan_mapped_network_drives_during_full_scan', n.get_bool_value()),
-            "defender_exploit_protection_xml": lambda n : setattr(self, 'defender_exploit_protection_xml', n.get_bytes_value()),
-            "defender_exploit_protection_xml_file_name": lambda n : setattr(self, 'defender_exploit_protection_xml_file_name', n.get_str_value()),
-            "defender_file_extensions_to_exclude": lambda n : setattr(self, 'defender_file_extensions_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defender_files_and_folders_to_exclude": lambda n : setattr(self, 'defender_files_and_folders_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defender_guarded_folders_allowed_app_paths": lambda n : setattr(self, 'defender_guarded_folders_allowed_app_paths', n.get_collection_of_primitive_values(str)),
-            "defender_guard_my_folders_type": lambda n : setattr(self, 'defender_guard_my_folders_type', n.get_enum_value(folder_protection_type.FolderProtectionType)),
-            "defender_network_protection_type": lambda n : setattr(self, 'defender_network_protection_type', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_office_apps_executable_content_creation_or_launch": lambda n : setattr(self, 'defender_office_apps_executable_content_creation_or_launch', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_office_apps_executable_content_creation_or_launch_type": lambda n : setattr(self, 'defender_office_apps_executable_content_creation_or_launch_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_office_apps_launch_child_process": lambda n : setattr(self, 'defender_office_apps_launch_child_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_office_apps_launch_child_process_type": lambda n : setattr(self, 'defender_office_apps_launch_child_process_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_office_apps_other_process_injection": lambda n : setattr(self, 'defender_office_apps_other_process_injection', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_office_apps_other_process_injection_type": lambda n : setattr(self, 'defender_office_apps_other_process_injection_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_office_communication_apps_launch_child_process": lambda n : setattr(self, 'defender_office_communication_apps_launch_child_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_office_macro_code_allow_win32_imports": lambda n : setattr(self, 'defender_office_macro_code_allow_win32_imports', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_office_macro_code_allow_win32_imports_type": lambda n : setattr(self, 'defender_office_macro_code_allow_win32_imports_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_potentially_unwanted_app_action": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_prevent_credential_stealing_type": lambda n : setattr(self, 'defender_prevent_credential_stealing_type', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_process_creation": lambda n : setattr(self, 'defender_process_creation', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_process_creation_type": lambda n : setattr(self, 'defender_process_creation_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_processes_to_exclude": lambda n : setattr(self, 'defender_processes_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defender_scan_direction": lambda n : setattr(self, 'defender_scan_direction', n.get_enum_value(defender_realtime_scan_direction.DefenderRealtimeScanDirection)),
-            "defender_scan_max_cpu_percentage": lambda n : setattr(self, 'defender_scan_max_cpu_percentage', n.get_int_value()),
-            "defender_scan_type": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(defender_scan_type.DefenderScanType)),
-            "defender_scheduled_quick_scan_time": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_object_value(Time)),
-            "defender_scheduled_scan_day": lambda n : setattr(self, 'defender_scheduled_scan_day', n.get_enum_value(weekly_schedule.WeeklySchedule)),
-            "defender_scheduled_scan_time": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_object_value(Time)),
-            "defender_script_downloaded_payload_execution": lambda n : setattr(self, 'defender_script_downloaded_payload_execution', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_script_downloaded_payload_execution_type": lambda n : setattr(self, 'defender_script_downloaded_payload_execution_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_script_obfuscated_macro_code": lambda n : setattr(self, 'defender_script_obfuscated_macro_code', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_script_obfuscated_macro_code_type": lambda n : setattr(self, 'defender_script_obfuscated_macro_code_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_security_center_block_exploit_protection_override": lambda n : setattr(self, 'defender_security_center_block_exploit_protection_override', n.get_bool_value()),
-            "defender_security_center_disable_account_u_i": lambda n : setattr(self, 'defender_security_center_disable_account_u_i', n.get_bool_value()),
-            "defender_security_center_disable_app_browser_u_i": lambda n : setattr(self, 'defender_security_center_disable_app_browser_u_i', n.get_bool_value()),
-            "defender_security_center_disable_clear_tpm_u_i": lambda n : setattr(self, 'defender_security_center_disable_clear_tpm_u_i', n.get_bool_value()),
-            "defender_security_center_disable_family_u_i": lambda n : setattr(self, 'defender_security_center_disable_family_u_i', n.get_bool_value()),
-            "defender_security_center_disable_hardware_u_i": lambda n : setattr(self, 'defender_security_center_disable_hardware_u_i', n.get_bool_value()),
-            "defender_security_center_disable_health_u_i": lambda n : setattr(self, 'defender_security_center_disable_health_u_i', n.get_bool_value()),
-            "defender_security_center_disable_network_u_i": lambda n : setattr(self, 'defender_security_center_disable_network_u_i', n.get_bool_value()),
-            "defender_security_center_disable_notification_area_u_i": lambda n : setattr(self, 'defender_security_center_disable_notification_area_u_i', n.get_bool_value()),
-            "defender_security_center_disable_ransomware_u_i": lambda n : setattr(self, 'defender_security_center_disable_ransomware_u_i', n.get_bool_value()),
-            "defender_security_center_disable_secure_boot_u_i": lambda n : setattr(self, 'defender_security_center_disable_secure_boot_u_i', n.get_bool_value()),
-            "defender_security_center_disable_troubleshooting_u_i": lambda n : setattr(self, 'defender_security_center_disable_troubleshooting_u_i', n.get_bool_value()),
-            "defender_security_center_disable_virus_u_i": lambda n : setattr(self, 'defender_security_center_disable_virus_u_i', n.get_bool_value()),
-            "defender_security_center_disable_vulnerable_tpm_firmware_update_u_i": lambda n : setattr(self, 'defender_security_center_disable_vulnerable_tpm_firmware_update_u_i', n.get_bool_value()),
-            "defender_security_center_help_email": lambda n : setattr(self, 'defender_security_center_help_email', n.get_str_value()),
-            "defender_security_center_help_phone": lambda n : setattr(self, 'defender_security_center_help_phone', n.get_str_value()),
-            "defender_security_center_help_u_r_l": lambda n : setattr(self, 'defender_security_center_help_u_r_l', n.get_str_value()),
-            "defender_security_center_i_t_contact_display": lambda n : setattr(self, 'defender_security_center_i_t_contact_display', n.get_enum_value(defender_security_center_i_t_contact_display_type.DefenderSecurityCenterITContactDisplayType)),
-            "defender_security_center_notifications_from_app": lambda n : setattr(self, 'defender_security_center_notifications_from_app', n.get_enum_value(defender_security_center_notifications_from_app_type.DefenderSecurityCenterNotificationsFromAppType)),
-            "defender_security_center_organization_display_name": lambda n : setattr(self, 'defender_security_center_organization_display_name', n.get_str_value()),
-            "defender_signature_update_interval_in_hours": lambda n : setattr(self, 'defender_signature_update_interval_in_hours', n.get_int_value()),
-            "defender_submit_samples_consent_type": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(defender_submit_samples_consent_type.DefenderSubmitSamplesConsentType)),
-            "defender_untrusted_executable": lambda n : setattr(self, 'defender_untrusted_executable', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_untrusted_executable_type": lambda n : setattr(self, 'defender_untrusted_executable_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "defender_untrusted_u_s_b_process": lambda n : setattr(self, 'defender_untrusted_u_s_b_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_untrusted_u_s_b_process_type": lambda n : setattr(self, 'defender_untrusted_u_s_b_process_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
-            "device_guard_enable_secure_boot_with_d_m_a": lambda n : setattr(self, 'device_guard_enable_secure_boot_with_d_m_a', n.get_bool_value()),
-            "device_guard_enable_virtualization_based_security": lambda n : setattr(self, 'device_guard_enable_virtualization_based_security', n.get_bool_value()),
-            "device_guard_launch_system_guard": lambda n : setattr(self, 'device_guard_launch_system_guard', n.get_enum_value(enablement.Enablement)),
-            "device_guard_local_system_authority_credential_guard_settings": lambda n : setattr(self, 'device_guard_local_system_authority_credential_guard_settings', n.get_enum_value(device_guard_local_system_authority_credential_guard_type.DeviceGuardLocalSystemAuthorityCredentialGuardType)),
-            "device_guard_secure_boot_with_d_m_a": lambda n : setattr(self, 'device_guard_secure_boot_with_d_m_a', n.get_enum_value(secure_boot_with_d_m_a_type.SecureBootWithDMAType)),
-            "dma_guard_device_enumeration_policy": lambda n : setattr(self, 'dma_guard_device_enumeration_policy', n.get_enum_value(dma_guard_device_enumeration_policy_type.DmaGuardDeviceEnumerationPolicyType)),
-            "firewall_block_stateful_f_t_p": lambda n : setattr(self, 'firewall_block_stateful_f_t_p', n.get_bool_value()),
-            "firewall_certificate_revocation_list_check_method": lambda n : setattr(self, 'firewall_certificate_revocation_list_check_method', n.get_enum_value(firewall_certificate_revocation_list_check_method_type.FirewallCertificateRevocationListCheckMethodType)),
-            "firewall_idle_timeout_for_security_association_in_seconds": lambda n : setattr(self, 'firewall_idle_timeout_for_security_association_in_seconds', n.get_int_value()),
-            "firewall_i_p_sec_exemptions_allow_d_h_c_p": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_d_h_c_p', n.get_bool_value()),
-            "firewall_i_p_sec_exemptions_allow_i_c_m_p": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_i_c_m_p', n.get_bool_value()),
-            "firewall_i_p_sec_exemptions_allow_neighbor_discovery": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_neighbor_discovery', n.get_bool_value()),
-            "firewall_i_p_sec_exemptions_allow_router_discovery": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_router_discovery', n.get_bool_value()),
-            "firewall_i_p_sec_exemptions_none": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_none', n.get_bool_value()),
-            "firewall_merge_keying_module_settings": lambda n : setattr(self, 'firewall_merge_keying_module_settings', n.get_bool_value()),
-            "firewall_packet_queueing_method": lambda n : setattr(self, 'firewall_packet_queueing_method', n.get_enum_value(firewall_packet_queueing_method_type.FirewallPacketQueueingMethodType)),
-            "firewall_pre_shared_key_encoding_method": lambda n : setattr(self, 'firewall_pre_shared_key_encoding_method', n.get_enum_value(firewall_pre_shared_key_encoding_method_type.FirewallPreSharedKeyEncodingMethodType)),
-            "firewall_profile_domain": lambda n : setattr(self, 'firewall_profile_domain', n.get_object_value(windows_firewall_network_profile.WindowsFirewallNetworkProfile)),
-            "firewall_profile_private": lambda n : setattr(self, 'firewall_profile_private', n.get_object_value(windows_firewall_network_profile.WindowsFirewallNetworkProfile)),
-            "firewall_profile_public": lambda n : setattr(self, 'firewall_profile_public', n.get_object_value(windows_firewall_network_profile.WindowsFirewallNetworkProfile)),
-            "firewall_rules": lambda n : setattr(self, 'firewall_rules', n.get_collection_of_object_values(windows_firewall_rule.WindowsFirewallRule)),
-            "lan_manager_authentication_level": lambda n : setattr(self, 'lan_manager_authentication_level', n.get_enum_value(lan_manager_authentication_level.LanManagerAuthenticationLevel)),
-            "lan_manager_workstation_disable_insecure_guest_logons": lambda n : setattr(self, 'lan_manager_workstation_disable_insecure_guest_logons', n.get_bool_value()),
-            "local_security_options_administrator_account_name": lambda n : setattr(self, 'local_security_options_administrator_account_name', n.get_str_value()),
-            "local_security_options_administrator_elevation_prompt_behavior": lambda n : setattr(self, 'local_security_options_administrator_elevation_prompt_behavior', n.get_enum_value(local_security_options_administrator_elevation_prompt_behavior_type.LocalSecurityOptionsAdministratorElevationPromptBehaviorType)),
-            "local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares": lambda n : setattr(self, 'local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares', n.get_bool_value()),
-            "local_security_options_allow_p_k_u2_u_authentication_requests": lambda n : setattr(self, 'local_security_options_allow_p_k_u2_u_authentication_requests', n.get_bool_value()),
-            "local_security_options_allow_remote_calls_to_security_accounts_manager": lambda n : setattr(self, 'local_security_options_allow_remote_calls_to_security_accounts_manager', n.get_str_value()),
-            "local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool": lambda n : setattr(self, 'local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool', n.get_bool_value()),
-            "local_security_options_allow_system_to_be_shut_down_without_having_to_log_on": lambda n : setattr(self, 'local_security_options_allow_system_to_be_shut_down_without_having_to_log_on', n.get_bool_value()),
-            "local_security_options_allow_u_i_access_application_elevation": lambda n : setattr(self, 'local_security_options_allow_u_i_access_application_elevation', n.get_bool_value()),
-            "local_security_options_allow_u_i_access_applications_for_secure_locations": lambda n : setattr(self, 'local_security_options_allow_u_i_access_applications_for_secure_locations', n.get_bool_value()),
-            "local_security_options_allow_undock_without_having_to_logon": lambda n : setattr(self, 'local_security_options_allow_undock_without_having_to_logon', n.get_bool_value()),
-            "local_security_options_block_microsoft_accounts": lambda n : setattr(self, 'local_security_options_block_microsoft_accounts', n.get_bool_value()),
-            "local_security_options_block_remote_logon_with_blank_password": lambda n : setattr(self, 'local_security_options_block_remote_logon_with_blank_password', n.get_bool_value()),
-            "local_security_options_block_remote_optical_drive_access": lambda n : setattr(self, 'local_security_options_block_remote_optical_drive_access', n.get_bool_value()),
-            "local_security_options_block_users_installing_printer_drivers": lambda n : setattr(self, 'local_security_options_block_users_installing_printer_drivers', n.get_bool_value()),
-            "local_security_options_clear_virtual_memory_page_file": lambda n : setattr(self, 'local_security_options_clear_virtual_memory_page_file', n.get_bool_value()),
-            "local_security_options_client_digitally_sign_communications_always": lambda n : setattr(self, 'local_security_options_client_digitally_sign_communications_always', n.get_bool_value()),
-            "local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers": lambda n : setattr(self, 'local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers', n.get_bool_value()),
-            "local_security_options_detect_application_installations_and_prompt_for_elevation": lambda n : setattr(self, 'local_security_options_detect_application_installations_and_prompt_for_elevation', n.get_bool_value()),
-            "local_security_options_disable_administrator_account": lambda n : setattr(self, 'local_security_options_disable_administrator_account', n.get_bool_value()),
-            "local_security_options_disable_client_digitally_sign_communications_if_server_agrees": lambda n : setattr(self, 'local_security_options_disable_client_digitally_sign_communications_if_server_agrees', n.get_bool_value()),
-            "local_security_options_disable_guest_account": lambda n : setattr(self, 'local_security_options_disable_guest_account', n.get_bool_value()),
-            "local_security_options_disable_server_digitally_sign_communications_always": lambda n : setattr(self, 'local_security_options_disable_server_digitally_sign_communications_always', n.get_bool_value()),
-            "local_security_options_disable_server_digitally_sign_communications_if_client_agrees": lambda n : setattr(self, 'local_security_options_disable_server_digitally_sign_communications_if_client_agrees', n.get_bool_value()),
-            "local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts": lambda n : setattr(self, 'local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts', n.get_bool_value()),
-            "local_security_options_do_not_require_ctrl_alt_del": lambda n : setattr(self, 'local_security_options_do_not_require_ctrl_alt_del', n.get_bool_value()),
-            "local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change": lambda n : setattr(self, 'local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change', n.get_bool_value()),
-            "local_security_options_format_and_eject_of_removable_media_allowed_user": lambda n : setattr(self, 'local_security_options_format_and_eject_of_removable_media_allowed_user', n.get_enum_value(local_security_options_format_and_eject_of_removable_media_allowed_user_type.LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType)),
-            "local_security_options_guest_account_name": lambda n : setattr(self, 'local_security_options_guest_account_name', n.get_str_value()),
-            "local_security_options_hide_last_signed_in_user": lambda n : setattr(self, 'local_security_options_hide_last_signed_in_user', n.get_bool_value()),
-            "local_security_options_hide_username_at_sign_in": lambda n : setattr(self, 'local_security_options_hide_username_at_sign_in', n.get_bool_value()),
-            "local_security_options_information_displayed_on_lock_screen": lambda n : setattr(self, 'local_security_options_information_displayed_on_lock_screen', n.get_enum_value(local_security_options_information_displayed_on_lock_screen_type.LocalSecurityOptionsInformationDisplayedOnLockScreenType)),
-            "local_security_options_information_shown_on_lock_screen": lambda n : setattr(self, 'local_security_options_information_shown_on_lock_screen', n.get_enum_value(local_security_options_information_shown_on_lock_screen_type.LocalSecurityOptionsInformationShownOnLockScreenType)),
-            "local_security_options_log_on_message_text": lambda n : setattr(self, 'local_security_options_log_on_message_text', n.get_str_value()),
-            "local_security_options_log_on_message_title": lambda n : setattr(self, 'local_security_options_log_on_message_title', n.get_str_value()),
-            "local_security_options_machine_inactivity_limit": lambda n : setattr(self, 'local_security_options_machine_inactivity_limit', n.get_int_value()),
-            "local_security_options_machine_inactivity_limit_in_minutes": lambda n : setattr(self, 'local_security_options_machine_inactivity_limit_in_minutes', n.get_int_value()),
-            "local_security_options_minimum_session_security_for_ntlm_ssp_based_clients": lambda n : setattr(self, 'local_security_options_minimum_session_security_for_ntlm_ssp_based_clients', n.get_enum_value(local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity)),
-            "local_security_options_minimum_session_security_for_ntlm_ssp_based_servers": lambda n : setattr(self, 'local_security_options_minimum_session_security_for_ntlm_ssp_based_servers', n.get_enum_value(local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity)),
-            "local_security_options_only_elevate_signed_executables": lambda n : setattr(self, 'local_security_options_only_elevate_signed_executables', n.get_bool_value()),
-            "local_security_options_restrict_anonymous_access_to_named_pipes_and_shares": lambda n : setattr(self, 'local_security_options_restrict_anonymous_access_to_named_pipes_and_shares', n.get_bool_value()),
-            "local_security_options_smart_card_removal_behavior": lambda n : setattr(self, 'local_security_options_smart_card_removal_behavior', n.get_enum_value(local_security_options_smart_card_removal_behavior_type.LocalSecurityOptionsSmartCardRemovalBehaviorType)),
-            "local_security_options_standard_user_elevation_prompt_behavior": lambda n : setattr(self, 'local_security_options_standard_user_elevation_prompt_behavior', n.get_enum_value(local_security_options_standard_user_elevation_prompt_behavior_type.LocalSecurityOptionsStandardUserElevationPromptBehaviorType)),
-            "local_security_options_switch_to_secure_desktop_when_prompting_for_elevation": lambda n : setattr(self, 'local_security_options_switch_to_secure_desktop_when_prompting_for_elevation', n.get_bool_value()),
-            "local_security_options_use_admin_approval_mode": lambda n : setattr(self, 'local_security_options_use_admin_approval_mode', n.get_bool_value()),
-            "local_security_options_use_admin_approval_mode_for_administrators": lambda n : setattr(self, 'local_security_options_use_admin_approval_mode_for_administrators', n.get_bool_value()),
-            "local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations": lambda n : setattr(self, 'local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations', n.get_bool_value()),
-            "smart_screen_block_override_for_files": lambda n : setattr(self, 'smart_screen_block_override_for_files', n.get_bool_value()),
-            "smart_screen_enable_in_shell": lambda n : setattr(self, 'smart_screen_enable_in_shell', n.get_bool_value()),
-            "user_rights_access_credential_manager_as_trusted_caller": lambda n : setattr(self, 'user_rights_access_credential_manager_as_trusted_caller', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_act_as_part_of_the_operating_system": lambda n : setattr(self, 'user_rights_act_as_part_of_the_operating_system', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_allow_access_from_network": lambda n : setattr(self, 'user_rights_allow_access_from_network', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_backup_data": lambda n : setattr(self, 'user_rights_backup_data', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_block_access_from_network": lambda n : setattr(self, 'user_rights_block_access_from_network', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_change_system_time": lambda n : setattr(self, 'user_rights_change_system_time', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_create_global_objects": lambda n : setattr(self, 'user_rights_create_global_objects', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_create_page_file": lambda n : setattr(self, 'user_rights_create_page_file', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_create_permanent_shared_objects": lambda n : setattr(self, 'user_rights_create_permanent_shared_objects', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_create_symbolic_links": lambda n : setattr(self, 'user_rights_create_symbolic_links', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_create_token": lambda n : setattr(self, 'user_rights_create_token', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_debug_programs": lambda n : setattr(self, 'user_rights_debug_programs', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_delegation": lambda n : setattr(self, 'user_rights_delegation', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_deny_local_log_on": lambda n : setattr(self, 'user_rights_deny_local_log_on', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_generate_security_audits": lambda n : setattr(self, 'user_rights_generate_security_audits', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_impersonate_client": lambda n : setattr(self, 'user_rights_impersonate_client', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_increase_scheduling_priority": lambda n : setattr(self, 'user_rights_increase_scheduling_priority', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_load_unload_drivers": lambda n : setattr(self, 'user_rights_load_unload_drivers', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_local_log_on": lambda n : setattr(self, 'user_rights_local_log_on', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_lock_memory": lambda n : setattr(self, 'user_rights_lock_memory', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_manage_auditing_and_security_logs": lambda n : setattr(self, 'user_rights_manage_auditing_and_security_logs', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_manage_volumes": lambda n : setattr(self, 'user_rights_manage_volumes', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_modify_firmware_environment": lambda n : setattr(self, 'user_rights_modify_firmware_environment', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_modify_object_labels": lambda n : setattr(self, 'user_rights_modify_object_labels', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_profile_single_process": lambda n : setattr(self, 'user_rights_profile_single_process', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_remote_desktop_services_log_on": lambda n : setattr(self, 'user_rights_remote_desktop_services_log_on', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_remote_shutdown": lambda n : setattr(self, 'user_rights_remote_shutdown', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_restore_data": lambda n : setattr(self, 'user_rights_restore_data', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "user_rights_take_ownership": lambda n : setattr(self, 'user_rights_take_ownership', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
-            "windows_defender_tamper_protection": lambda n : setattr(self, 'windows_defender_tamper_protection', n.get_enum_value(windows_defender_tamper_protection_options.WindowsDefenderTamperProtectionOptions)),
-            "xbox_services_accessory_management_service_startup_mode": lambda n : setattr(self, 'xbox_services_accessory_management_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
-            "xbox_services_enable_xbox_game_save_task": lambda n : setattr(self, 'xbox_services_enable_xbox_game_save_task', n.get_bool_value()),
-            "xbox_services_live_auth_manager_service_startup_mode": lambda n : setattr(self, 'xbox_services_live_auth_manager_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
-            "xbox_services_live_game_save_service_startup_mode": lambda n : setattr(self, 'xbox_services_live_game_save_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
-            "xbox_services_live_networking_service_startup_mode": lambda n : setattr(self, 'xbox_services_live_networking_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
+            "applicationGuardAllowCameraMicrophoneRedirection": lambda n : setattr(self, 'application_guard_allow_camera_microphone_redirection', n.get_bool_value()),
+            "applicationGuardAllowFileSaveOnHost": lambda n : setattr(self, 'application_guard_allow_file_save_on_host', n.get_bool_value()),
+            "applicationGuardAllowPersistence": lambda n : setattr(self, 'application_guard_allow_persistence', n.get_bool_value()),
+            "applicationGuardAllowPrintToLocalPrinters": lambda n : setattr(self, 'application_guard_allow_print_to_local_printers', n.get_bool_value()),
+            "applicationGuardAllowPrintToNetworkPrinters": lambda n : setattr(self, 'application_guard_allow_print_to_network_printers', n.get_bool_value()),
+            "applicationGuardAllowPrintToPDF": lambda n : setattr(self, 'application_guard_allow_print_to_p_d_f', n.get_bool_value()),
+            "applicationGuardAllowPrintToXPS": lambda n : setattr(self, 'application_guard_allow_print_to_x_p_s', n.get_bool_value()),
+            "applicationGuardAllowVirtualGPU": lambda n : setattr(self, 'application_guard_allow_virtual_g_p_u', n.get_bool_value()),
+            "applicationGuardBlockClipboardSharing": lambda n : setattr(self, 'application_guard_block_clipboard_sharing', n.get_enum_value(application_guard_block_clipboard_sharing_type.ApplicationGuardBlockClipboardSharingType)),
+            "applicationGuardBlockFileTransfer": lambda n : setattr(self, 'application_guard_block_file_transfer', n.get_enum_value(application_guard_block_file_transfer_type.ApplicationGuardBlockFileTransferType)),
+            "applicationGuardBlockNonEnterpriseContent": lambda n : setattr(self, 'application_guard_block_non_enterprise_content', n.get_bool_value()),
+            "applicationGuardCertificateThumbprints": lambda n : setattr(self, 'application_guard_certificate_thumbprints', n.get_collection_of_primitive_values(str)),
+            "applicationGuardEnabled": lambda n : setattr(self, 'application_guard_enabled', n.get_bool_value()),
+            "applicationGuardEnabledOptions": lambda n : setattr(self, 'application_guard_enabled_options', n.get_enum_value(application_guard_enabled_options.ApplicationGuardEnabledOptions)),
+            "applicationGuardForceAuditing": lambda n : setattr(self, 'application_guard_force_auditing', n.get_bool_value()),
+            "appLockerApplicationControl": lambda n : setattr(self, 'app_locker_application_control', n.get_enum_value(app_locker_application_control_type.AppLockerApplicationControlType)),
+            "bitLockerAllowStandardUserEncryption": lambda n : setattr(self, 'bit_locker_allow_standard_user_encryption', n.get_bool_value()),
+            "bitLockerDisableWarningForOtherDiskEncryption": lambda n : setattr(self, 'bit_locker_disable_warning_for_other_disk_encryption', n.get_bool_value()),
+            "bitLockerEnableStorageCardEncryptionOnMobile": lambda n : setattr(self, 'bit_locker_enable_storage_card_encryption_on_mobile', n.get_bool_value()),
+            "bitLockerEncryptDevice": lambda n : setattr(self, 'bit_locker_encrypt_device', n.get_bool_value()),
+            "bitLockerFixedDrivePolicy": lambda n : setattr(self, 'bit_locker_fixed_drive_policy', n.get_object_value(bit_locker_fixed_drive_policy.BitLockerFixedDrivePolicy)),
+            "bitLockerRecoveryPasswordRotation": lambda n : setattr(self, 'bit_locker_recovery_password_rotation', n.get_enum_value(bit_locker_recovery_password_rotation_type.BitLockerRecoveryPasswordRotationType)),
+            "bitLockerRemovableDrivePolicy": lambda n : setattr(self, 'bit_locker_removable_drive_policy', n.get_object_value(bit_locker_removable_drive_policy.BitLockerRemovableDrivePolicy)),
+            "bitLockerSystemDrivePolicy": lambda n : setattr(self, 'bit_locker_system_drive_policy', n.get_object_value(bit_locker_system_drive_policy.BitLockerSystemDrivePolicy)),
+            "defenderAdditionalGuardedFolders": lambda n : setattr(self, 'defender_additional_guarded_folders', n.get_collection_of_primitive_values(str)),
+            "defenderAdobeReaderLaunchChildProcess": lambda n : setattr(self, 'defender_adobe_reader_launch_child_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderAdvancedRansomewareProtectionType": lambda n : setattr(self, 'defender_advanced_ransomeware_protection_type', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderAllowBehaviorMonitoring": lambda n : setattr(self, 'defender_allow_behavior_monitoring', n.get_bool_value()),
+            "defenderAllowCloudProtection": lambda n : setattr(self, 'defender_allow_cloud_protection', n.get_bool_value()),
+            "defenderAllowEndUserAccess": lambda n : setattr(self, 'defender_allow_end_user_access', n.get_bool_value()),
+            "defenderAllowIntrusionPreventionSystem": lambda n : setattr(self, 'defender_allow_intrusion_prevention_system', n.get_bool_value()),
+            "defenderAllowOnAccessProtection": lambda n : setattr(self, 'defender_allow_on_access_protection', n.get_bool_value()),
+            "defenderAllowRealTimeMonitoring": lambda n : setattr(self, 'defender_allow_real_time_monitoring', n.get_bool_value()),
+            "defenderAllowScanArchiveFiles": lambda n : setattr(self, 'defender_allow_scan_archive_files', n.get_bool_value()),
+            "defenderAllowScanDownloads": lambda n : setattr(self, 'defender_allow_scan_downloads', n.get_bool_value()),
+            "defenderAllowScanNetworkFiles": lambda n : setattr(self, 'defender_allow_scan_network_files', n.get_bool_value()),
+            "defenderAllowScanRemovableDrivesDuringFullScan": lambda n : setattr(self, 'defender_allow_scan_removable_drives_during_full_scan', n.get_bool_value()),
+            "defenderAllowScanScriptsLoadedInInternetExplorer": lambda n : setattr(self, 'defender_allow_scan_scripts_loaded_in_internet_explorer', n.get_bool_value()),
+            "defenderAttackSurfaceReductionExcludedPaths": lambda n : setattr(self, 'defender_attack_surface_reduction_excluded_paths', n.get_collection_of_primitive_values(str)),
+            "defenderBlockEndUserAccess": lambda n : setattr(self, 'defender_block_end_user_access', n.get_bool_value()),
+            "defenderBlockPersistenceThroughWmiType": lambda n : setattr(self, 'defender_block_persistence_through_wmi_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderCheckForSignaturesBeforeRunningScan": lambda n : setattr(self, 'defender_check_for_signatures_before_running_scan', n.get_bool_value()),
+            "defenderCloudBlockLevel": lambda n : setattr(self, 'defender_cloud_block_level', n.get_enum_value(defender_cloud_block_level_type.DefenderCloudBlockLevelType)),
+            "defenderCloudExtendedTimeoutInSeconds": lambda n : setattr(self, 'defender_cloud_extended_timeout_in_seconds', n.get_int_value()),
+            "defenderDaysBeforeDeletingQuarantinedMalware": lambda n : setattr(self, 'defender_days_before_deleting_quarantined_malware', n.get_int_value()),
+            "defenderDetectedMalwareActions": lambda n : setattr(self, 'defender_detected_malware_actions', n.get_object_value(defender_detected_malware_actions.DefenderDetectedMalwareActions)),
+            "defenderDisableBehaviorMonitoring": lambda n : setattr(self, 'defender_disable_behavior_monitoring', n.get_bool_value()),
+            "defenderDisableCatchupFullScan": lambda n : setattr(self, 'defender_disable_catchup_full_scan', n.get_bool_value()),
+            "defenderDisableCatchupQuickScan": lambda n : setattr(self, 'defender_disable_catchup_quick_scan', n.get_bool_value()),
+            "defenderDisableCloudProtection": lambda n : setattr(self, 'defender_disable_cloud_protection', n.get_bool_value()),
+            "defenderDisableIntrusionPreventionSystem": lambda n : setattr(self, 'defender_disable_intrusion_prevention_system', n.get_bool_value()),
+            "defenderDisableOnAccessProtection": lambda n : setattr(self, 'defender_disable_on_access_protection', n.get_bool_value()),
+            "defenderDisableRealTimeMonitoring": lambda n : setattr(self, 'defender_disable_real_time_monitoring', n.get_bool_value()),
+            "defenderDisableScanArchiveFiles": lambda n : setattr(self, 'defender_disable_scan_archive_files', n.get_bool_value()),
+            "defenderDisableScanDownloads": lambda n : setattr(self, 'defender_disable_scan_downloads', n.get_bool_value()),
+            "defenderDisableScanNetworkFiles": lambda n : setattr(self, 'defender_disable_scan_network_files', n.get_bool_value()),
+            "defenderDisableScanRemovableDrivesDuringFullScan": lambda n : setattr(self, 'defender_disable_scan_removable_drives_during_full_scan', n.get_bool_value()),
+            "defenderDisableScanScriptsLoadedInInternetExplorer": lambda n : setattr(self, 'defender_disable_scan_scripts_loaded_in_internet_explorer', n.get_bool_value()),
+            "defenderEmailContentExecution": lambda n : setattr(self, 'defender_email_content_execution', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderEmailContentExecutionType": lambda n : setattr(self, 'defender_email_content_execution_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderEnableLowCpuPriority": lambda n : setattr(self, 'defender_enable_low_cpu_priority', n.get_bool_value()),
+            "defenderEnableScanIncomingMail": lambda n : setattr(self, 'defender_enable_scan_incoming_mail', n.get_bool_value()),
+            "defenderEnableScanMappedNetworkDrivesDuringFullScan": lambda n : setattr(self, 'defender_enable_scan_mapped_network_drives_during_full_scan', n.get_bool_value()),
+            "defenderExploitProtectionXml": lambda n : setattr(self, 'defender_exploit_protection_xml', n.get_bytes_value()),
+            "defenderExploitProtectionXmlFileName": lambda n : setattr(self, 'defender_exploit_protection_xml_file_name', n.get_str_value()),
+            "defenderFilesAndFoldersToExclude": lambda n : setattr(self, 'defender_files_and_folders_to_exclude', n.get_collection_of_primitive_values(str)),
+            "defenderFileExtensionsToExclude": lambda n : setattr(self, 'defender_file_extensions_to_exclude', n.get_collection_of_primitive_values(str)),
+            "defenderGuardedFoldersAllowedAppPaths": lambda n : setattr(self, 'defender_guarded_folders_allowed_app_paths', n.get_collection_of_primitive_values(str)),
+            "defenderGuardMyFoldersType": lambda n : setattr(self, 'defender_guard_my_folders_type', n.get_enum_value(folder_protection_type.FolderProtectionType)),
+            "defenderNetworkProtectionType": lambda n : setattr(self, 'defender_network_protection_type', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderOfficeAppsExecutableContentCreationOrLaunch": lambda n : setattr(self, 'defender_office_apps_executable_content_creation_or_launch', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderOfficeAppsExecutableContentCreationOrLaunchType": lambda n : setattr(self, 'defender_office_apps_executable_content_creation_or_launch_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderOfficeAppsLaunchChildProcess": lambda n : setattr(self, 'defender_office_apps_launch_child_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderOfficeAppsLaunchChildProcessType": lambda n : setattr(self, 'defender_office_apps_launch_child_process_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderOfficeAppsOtherProcessInjection": lambda n : setattr(self, 'defender_office_apps_other_process_injection', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderOfficeAppsOtherProcessInjectionType": lambda n : setattr(self, 'defender_office_apps_other_process_injection_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderOfficeCommunicationAppsLaunchChildProcess": lambda n : setattr(self, 'defender_office_communication_apps_launch_child_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderOfficeMacroCodeAllowWin32Imports": lambda n : setattr(self, 'defender_office_macro_code_allow_win32_imports', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderOfficeMacroCodeAllowWin32ImportsType": lambda n : setattr(self, 'defender_office_macro_code_allow_win32_imports_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderPotentiallyUnwantedAppAction": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderPreventCredentialStealingType": lambda n : setattr(self, 'defender_prevent_credential_stealing_type', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderProcessesToExclude": lambda n : setattr(self, 'defender_processes_to_exclude', n.get_collection_of_primitive_values(str)),
+            "defenderProcessCreation": lambda n : setattr(self, 'defender_process_creation', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderProcessCreationType": lambda n : setattr(self, 'defender_process_creation_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderScanDirection": lambda n : setattr(self, 'defender_scan_direction', n.get_enum_value(defender_realtime_scan_direction.DefenderRealtimeScanDirection)),
+            "defenderScanMaxCpuPercentage": lambda n : setattr(self, 'defender_scan_max_cpu_percentage', n.get_int_value()),
+            "defenderScanType": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(defender_scan_type.DefenderScanType)),
+            "defenderScheduledQuickScanTime": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_object_value(Time)),
+            "defenderScheduledScanDay": lambda n : setattr(self, 'defender_scheduled_scan_day', n.get_enum_value(weekly_schedule.WeeklySchedule)),
+            "defenderScheduledScanTime": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_object_value(Time)),
+            "defenderScriptDownloadedPayloadExecution": lambda n : setattr(self, 'defender_script_downloaded_payload_execution', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderScriptDownloadedPayloadExecutionType": lambda n : setattr(self, 'defender_script_downloaded_payload_execution_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderScriptObfuscatedMacroCode": lambda n : setattr(self, 'defender_script_obfuscated_macro_code', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderScriptObfuscatedMacroCodeType": lambda n : setattr(self, 'defender_script_obfuscated_macro_code_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderSecurityCenterBlockExploitProtectionOverride": lambda n : setattr(self, 'defender_security_center_block_exploit_protection_override', n.get_bool_value()),
+            "defenderSecurityCenterDisableAccountUI": lambda n : setattr(self, 'defender_security_center_disable_account_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableAppBrowserUI": lambda n : setattr(self, 'defender_security_center_disable_app_browser_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableClearTpmUI": lambda n : setattr(self, 'defender_security_center_disable_clear_tpm_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableFamilyUI": lambda n : setattr(self, 'defender_security_center_disable_family_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableHardwareUI": lambda n : setattr(self, 'defender_security_center_disable_hardware_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableHealthUI": lambda n : setattr(self, 'defender_security_center_disable_health_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableNetworkUI": lambda n : setattr(self, 'defender_security_center_disable_network_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableNotificationAreaUI": lambda n : setattr(self, 'defender_security_center_disable_notification_area_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableRansomwareUI": lambda n : setattr(self, 'defender_security_center_disable_ransomware_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableSecureBootUI": lambda n : setattr(self, 'defender_security_center_disable_secure_boot_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableTroubleshootingUI": lambda n : setattr(self, 'defender_security_center_disable_troubleshooting_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableVirusUI": lambda n : setattr(self, 'defender_security_center_disable_virus_u_i', n.get_bool_value()),
+            "defenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI": lambda n : setattr(self, 'defender_security_center_disable_vulnerable_tpm_firmware_update_u_i', n.get_bool_value()),
+            "defenderSecurityCenterHelpEmail": lambda n : setattr(self, 'defender_security_center_help_email', n.get_str_value()),
+            "defenderSecurityCenterHelpPhone": lambda n : setattr(self, 'defender_security_center_help_phone', n.get_str_value()),
+            "defenderSecurityCenterHelpURL": lambda n : setattr(self, 'defender_security_center_help_u_r_l', n.get_str_value()),
+            "defenderSecurityCenterITContactDisplay": lambda n : setattr(self, 'defender_security_center_i_t_contact_display', n.get_enum_value(defender_security_center_i_t_contact_display_type.DefenderSecurityCenterITContactDisplayType)),
+            "defenderSecurityCenterNotificationsFromApp": lambda n : setattr(self, 'defender_security_center_notifications_from_app', n.get_enum_value(defender_security_center_notifications_from_app_type.DefenderSecurityCenterNotificationsFromAppType)),
+            "defenderSecurityCenterOrganizationDisplayName": lambda n : setattr(self, 'defender_security_center_organization_display_name', n.get_str_value()),
+            "defenderSignatureUpdateIntervalInHours": lambda n : setattr(self, 'defender_signature_update_interval_in_hours', n.get_int_value()),
+            "defenderSubmitSamplesConsentType": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(defender_submit_samples_consent_type.DefenderSubmitSamplesConsentType)),
+            "defenderUntrustedExecutable": lambda n : setattr(self, 'defender_untrusted_executable', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderUntrustedExecutableType": lambda n : setattr(self, 'defender_untrusted_executable_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "defenderUntrustedUSBProcess": lambda n : setattr(self, 'defender_untrusted_u_s_b_process', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderUntrustedUSBProcessType": lambda n : setattr(self, 'defender_untrusted_u_s_b_process_type', n.get_enum_value(defender_attack_surface_type.DefenderAttackSurfaceType)),
+            "deviceGuardEnableSecureBootWithDMA": lambda n : setattr(self, 'device_guard_enable_secure_boot_with_d_m_a', n.get_bool_value()),
+            "deviceGuardEnableVirtualizationBasedSecurity": lambda n : setattr(self, 'device_guard_enable_virtualization_based_security', n.get_bool_value()),
+            "deviceGuardLaunchSystemGuard": lambda n : setattr(self, 'device_guard_launch_system_guard', n.get_enum_value(enablement.Enablement)),
+            "deviceGuardLocalSystemAuthorityCredentialGuardSettings": lambda n : setattr(self, 'device_guard_local_system_authority_credential_guard_settings', n.get_enum_value(device_guard_local_system_authority_credential_guard_type.DeviceGuardLocalSystemAuthorityCredentialGuardType)),
+            "deviceGuardSecureBootWithDMA": lambda n : setattr(self, 'device_guard_secure_boot_with_d_m_a', n.get_enum_value(secure_boot_with_d_m_a_type.SecureBootWithDMAType)),
+            "dmaGuardDeviceEnumerationPolicy": lambda n : setattr(self, 'dma_guard_device_enumeration_policy', n.get_enum_value(dma_guard_device_enumeration_policy_type.DmaGuardDeviceEnumerationPolicyType)),
+            "firewallBlockStatefulFTP": lambda n : setattr(self, 'firewall_block_stateful_f_t_p', n.get_bool_value()),
+            "firewallCertificateRevocationListCheckMethod": lambda n : setattr(self, 'firewall_certificate_revocation_list_check_method', n.get_enum_value(firewall_certificate_revocation_list_check_method_type.FirewallCertificateRevocationListCheckMethodType)),
+            "firewallIdleTimeoutForSecurityAssociationInSeconds": lambda n : setattr(self, 'firewall_idle_timeout_for_security_association_in_seconds', n.get_int_value()),
+            "firewallIPSecExemptionsAllowDHCP": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_d_h_c_p', n.get_bool_value()),
+            "firewallIPSecExemptionsAllowICMP": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_i_c_m_p', n.get_bool_value()),
+            "firewallIPSecExemptionsAllowNeighborDiscovery": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_neighbor_discovery', n.get_bool_value()),
+            "firewallIPSecExemptionsAllowRouterDiscovery": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_allow_router_discovery', n.get_bool_value()),
+            "firewallIPSecExemptionsNone": lambda n : setattr(self, 'firewall_i_p_sec_exemptions_none', n.get_bool_value()),
+            "firewallMergeKeyingModuleSettings": lambda n : setattr(self, 'firewall_merge_keying_module_settings', n.get_bool_value()),
+            "firewallPacketQueueingMethod": lambda n : setattr(self, 'firewall_packet_queueing_method', n.get_enum_value(firewall_packet_queueing_method_type.FirewallPacketQueueingMethodType)),
+            "firewallPreSharedKeyEncodingMethod": lambda n : setattr(self, 'firewall_pre_shared_key_encoding_method', n.get_enum_value(firewall_pre_shared_key_encoding_method_type.FirewallPreSharedKeyEncodingMethodType)),
+            "firewallProfileDomain": lambda n : setattr(self, 'firewall_profile_domain', n.get_object_value(windows_firewall_network_profile.WindowsFirewallNetworkProfile)),
+            "firewallProfilePrivate": lambda n : setattr(self, 'firewall_profile_private', n.get_object_value(windows_firewall_network_profile.WindowsFirewallNetworkProfile)),
+            "firewallProfilePublic": lambda n : setattr(self, 'firewall_profile_public', n.get_object_value(windows_firewall_network_profile.WindowsFirewallNetworkProfile)),
+            "firewallRules": lambda n : setattr(self, 'firewall_rules', n.get_collection_of_object_values(windows_firewall_rule.WindowsFirewallRule)),
+            "lanManagerAuthenticationLevel": lambda n : setattr(self, 'lan_manager_authentication_level', n.get_enum_value(lan_manager_authentication_level.LanManagerAuthenticationLevel)),
+            "lanManagerWorkstationDisableInsecureGuestLogons": lambda n : setattr(self, 'lan_manager_workstation_disable_insecure_guest_logons', n.get_bool_value()),
+            "localSecurityOptionsAdministratorAccountName": lambda n : setattr(self, 'local_security_options_administrator_account_name', n.get_str_value()),
+            "localSecurityOptionsAdministratorElevationPromptBehavior": lambda n : setattr(self, 'local_security_options_administrator_elevation_prompt_behavior', n.get_enum_value(local_security_options_administrator_elevation_prompt_behavior_type.LocalSecurityOptionsAdministratorElevationPromptBehaviorType)),
+            "localSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares": lambda n : setattr(self, 'local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares', n.get_bool_value()),
+            "localSecurityOptionsAllowPKU2UAuthenticationRequests": lambda n : setattr(self, 'local_security_options_allow_p_k_u2_u_authentication_requests', n.get_bool_value()),
+            "localSecurityOptionsAllowRemoteCallsToSecurityAccountsManager": lambda n : setattr(self, 'local_security_options_allow_remote_calls_to_security_accounts_manager', n.get_str_value()),
+            "localSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool": lambda n : setattr(self, 'local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool', n.get_bool_value()),
+            "localSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn": lambda n : setattr(self, 'local_security_options_allow_system_to_be_shut_down_without_having_to_log_on', n.get_bool_value()),
+            "localSecurityOptionsAllowUndockWithoutHavingToLogon": lambda n : setattr(self, 'local_security_options_allow_undock_without_having_to_logon', n.get_bool_value()),
+            "localSecurityOptionsAllowUIAccessApplicationsForSecureLocations": lambda n : setattr(self, 'local_security_options_allow_u_i_access_applications_for_secure_locations', n.get_bool_value()),
+            "localSecurityOptionsAllowUIAccessApplicationElevation": lambda n : setattr(self, 'local_security_options_allow_u_i_access_application_elevation', n.get_bool_value()),
+            "localSecurityOptionsBlockMicrosoftAccounts": lambda n : setattr(self, 'local_security_options_block_microsoft_accounts', n.get_bool_value()),
+            "localSecurityOptionsBlockRemoteLogonWithBlankPassword": lambda n : setattr(self, 'local_security_options_block_remote_logon_with_blank_password', n.get_bool_value()),
+            "localSecurityOptionsBlockRemoteOpticalDriveAccess": lambda n : setattr(self, 'local_security_options_block_remote_optical_drive_access', n.get_bool_value()),
+            "localSecurityOptionsBlockUsersInstallingPrinterDrivers": lambda n : setattr(self, 'local_security_options_block_users_installing_printer_drivers', n.get_bool_value()),
+            "localSecurityOptionsClearVirtualMemoryPageFile": lambda n : setattr(self, 'local_security_options_clear_virtual_memory_page_file', n.get_bool_value()),
+            "localSecurityOptionsClientDigitallySignCommunicationsAlways": lambda n : setattr(self, 'local_security_options_client_digitally_sign_communications_always', n.get_bool_value()),
+            "localSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers": lambda n : setattr(self, 'local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers', n.get_bool_value()),
+            "localSecurityOptionsDetectApplicationInstallationsAndPromptForElevation": lambda n : setattr(self, 'local_security_options_detect_application_installations_and_prompt_for_elevation', n.get_bool_value()),
+            "localSecurityOptionsDisableAdministratorAccount": lambda n : setattr(self, 'local_security_options_disable_administrator_account', n.get_bool_value()),
+            "localSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees": lambda n : setattr(self, 'local_security_options_disable_client_digitally_sign_communications_if_server_agrees', n.get_bool_value()),
+            "localSecurityOptionsDisableGuestAccount": lambda n : setattr(self, 'local_security_options_disable_guest_account', n.get_bool_value()),
+            "localSecurityOptionsDisableServerDigitallySignCommunicationsAlways": lambda n : setattr(self, 'local_security_options_disable_server_digitally_sign_communications_always', n.get_bool_value()),
+            "localSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees": lambda n : setattr(self, 'local_security_options_disable_server_digitally_sign_communications_if_client_agrees', n.get_bool_value()),
+            "localSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts": lambda n : setattr(self, 'local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts', n.get_bool_value()),
+            "localSecurityOptionsDoNotRequireCtrlAltDel": lambda n : setattr(self, 'local_security_options_do_not_require_ctrl_alt_del', n.get_bool_value()),
+            "localSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange": lambda n : setattr(self, 'local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change', n.get_bool_value()),
+            "localSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser": lambda n : setattr(self, 'local_security_options_format_and_eject_of_removable_media_allowed_user', n.get_enum_value(local_security_options_format_and_eject_of_removable_media_allowed_user_type.LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUserType)),
+            "localSecurityOptionsGuestAccountName": lambda n : setattr(self, 'local_security_options_guest_account_name', n.get_str_value()),
+            "localSecurityOptionsHideLastSignedInUser": lambda n : setattr(self, 'local_security_options_hide_last_signed_in_user', n.get_bool_value()),
+            "localSecurityOptionsHideUsernameAtSignIn": lambda n : setattr(self, 'local_security_options_hide_username_at_sign_in', n.get_bool_value()),
+            "localSecurityOptionsInformationDisplayedOnLockScreen": lambda n : setattr(self, 'local_security_options_information_displayed_on_lock_screen', n.get_enum_value(local_security_options_information_displayed_on_lock_screen_type.LocalSecurityOptionsInformationDisplayedOnLockScreenType)),
+            "localSecurityOptionsInformationShownOnLockScreen": lambda n : setattr(self, 'local_security_options_information_shown_on_lock_screen', n.get_enum_value(local_security_options_information_shown_on_lock_screen_type.LocalSecurityOptionsInformationShownOnLockScreenType)),
+            "localSecurityOptionsLogOnMessageText": lambda n : setattr(self, 'local_security_options_log_on_message_text', n.get_str_value()),
+            "localSecurityOptionsLogOnMessageTitle": lambda n : setattr(self, 'local_security_options_log_on_message_title', n.get_str_value()),
+            "localSecurityOptionsMachineInactivityLimit": lambda n : setattr(self, 'local_security_options_machine_inactivity_limit', n.get_int_value()),
+            "localSecurityOptionsMachineInactivityLimitInMinutes": lambda n : setattr(self, 'local_security_options_machine_inactivity_limit_in_minutes', n.get_int_value()),
+            "localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedClients": lambda n : setattr(self, 'local_security_options_minimum_session_security_for_ntlm_ssp_based_clients', n.get_enum_value(local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity)),
+            "localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers": lambda n : setattr(self, 'local_security_options_minimum_session_security_for_ntlm_ssp_based_servers', n.get_enum_value(local_security_options_minimum_session_security.LocalSecurityOptionsMinimumSessionSecurity)),
+            "localSecurityOptionsOnlyElevateSignedExecutables": lambda n : setattr(self, 'local_security_options_only_elevate_signed_executables', n.get_bool_value()),
+            "localSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares": lambda n : setattr(self, 'local_security_options_restrict_anonymous_access_to_named_pipes_and_shares', n.get_bool_value()),
+            "localSecurityOptionsSmartCardRemovalBehavior": lambda n : setattr(self, 'local_security_options_smart_card_removal_behavior', n.get_enum_value(local_security_options_smart_card_removal_behavior_type.LocalSecurityOptionsSmartCardRemovalBehaviorType)),
+            "localSecurityOptionsStandardUserElevationPromptBehavior": lambda n : setattr(self, 'local_security_options_standard_user_elevation_prompt_behavior', n.get_enum_value(local_security_options_standard_user_elevation_prompt_behavior_type.LocalSecurityOptionsStandardUserElevationPromptBehaviorType)),
+            "localSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation": lambda n : setattr(self, 'local_security_options_switch_to_secure_desktop_when_prompting_for_elevation', n.get_bool_value()),
+            "localSecurityOptionsUseAdminApprovalMode": lambda n : setattr(self, 'local_security_options_use_admin_approval_mode', n.get_bool_value()),
+            "localSecurityOptionsUseAdminApprovalModeForAdministrators": lambda n : setattr(self, 'local_security_options_use_admin_approval_mode_for_administrators', n.get_bool_value()),
+            "localSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations": lambda n : setattr(self, 'local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations', n.get_bool_value()),
+            "smartScreenBlockOverrideForFiles": lambda n : setattr(self, 'smart_screen_block_override_for_files', n.get_bool_value()),
+            "smartScreenEnableInShell": lambda n : setattr(self, 'smart_screen_enable_in_shell', n.get_bool_value()),
+            "userRightsAccessCredentialManagerAsTrustedCaller": lambda n : setattr(self, 'user_rights_access_credential_manager_as_trusted_caller', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsActAsPartOfTheOperatingSystem": lambda n : setattr(self, 'user_rights_act_as_part_of_the_operating_system', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsAllowAccessFromNetwork": lambda n : setattr(self, 'user_rights_allow_access_from_network', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsBackupData": lambda n : setattr(self, 'user_rights_backup_data', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsBlockAccessFromNetwork": lambda n : setattr(self, 'user_rights_block_access_from_network', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsChangeSystemTime": lambda n : setattr(self, 'user_rights_change_system_time', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsCreateGlobalObjects": lambda n : setattr(self, 'user_rights_create_global_objects', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsCreatePageFile": lambda n : setattr(self, 'user_rights_create_page_file', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsCreatePermanentSharedObjects": lambda n : setattr(self, 'user_rights_create_permanent_shared_objects', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsCreateSymbolicLinks": lambda n : setattr(self, 'user_rights_create_symbolic_links', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsCreateToken": lambda n : setattr(self, 'user_rights_create_token', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsDebugPrograms": lambda n : setattr(self, 'user_rights_debug_programs', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsDelegation": lambda n : setattr(self, 'user_rights_delegation', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsDenyLocalLogOn": lambda n : setattr(self, 'user_rights_deny_local_log_on', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsGenerateSecurityAudits": lambda n : setattr(self, 'user_rights_generate_security_audits', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsImpersonateClient": lambda n : setattr(self, 'user_rights_impersonate_client', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsIncreaseSchedulingPriority": lambda n : setattr(self, 'user_rights_increase_scheduling_priority', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsLoadUnloadDrivers": lambda n : setattr(self, 'user_rights_load_unload_drivers', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsLocalLogOn": lambda n : setattr(self, 'user_rights_local_log_on', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsLockMemory": lambda n : setattr(self, 'user_rights_lock_memory', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsManageAuditingAndSecurityLogs": lambda n : setattr(self, 'user_rights_manage_auditing_and_security_logs', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsManageVolumes": lambda n : setattr(self, 'user_rights_manage_volumes', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsModifyFirmwareEnvironment": lambda n : setattr(self, 'user_rights_modify_firmware_environment', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsModifyObjectLabels": lambda n : setattr(self, 'user_rights_modify_object_labels', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsProfileSingleProcess": lambda n : setattr(self, 'user_rights_profile_single_process', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsRemoteDesktopServicesLogOn": lambda n : setattr(self, 'user_rights_remote_desktop_services_log_on', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsRemoteShutdown": lambda n : setattr(self, 'user_rights_remote_shutdown', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsRestoreData": lambda n : setattr(self, 'user_rights_restore_data', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "userRightsTakeOwnership": lambda n : setattr(self, 'user_rights_take_ownership', n.get_object_value(device_management_user_rights_setting.DeviceManagementUserRightsSetting)),
+            "windowsDefenderTamperProtection": lambda n : setattr(self, 'windows_defender_tamper_protection', n.get_enum_value(windows_defender_tamper_protection_options.WindowsDefenderTamperProtectionOptions)),
+            "xboxServicesAccessoryManagementServiceStartupMode": lambda n : setattr(self, 'xbox_services_accessory_management_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
+            "xboxServicesEnableXboxGameSaveTask": lambda n : setattr(self, 'xbox_services_enable_xbox_game_save_task', n.get_bool_value()),
+            "xboxServicesLiveAuthManagerServiceStartupMode": lambda n : setattr(self, 'xbox_services_live_auth_manager_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
+            "xboxServicesLiveGameSaveServiceStartupMode": lambda n : setattr(self, 'xbox_services_live_game_save_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
+            "xboxServicesLiveNetworkingServiceStartupMode": lambda n : setattr(self, 'xbox_services_live_networking_service_startup_mode', n.get_enum_value(service_start_type.ServiceStartType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -3164,7 +3164,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the lanManagerAuthenticationLevel property value. Possible values for LanManagerAuthenticationLevel
         Args:
-            value: Value to set for the lanManagerAuthenticationLevel property.
+            value: Value to set for the lan_manager_authentication_level property.
         """
         self._lan_manager_authentication_level = value
     
@@ -3181,7 +3181,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the lanManagerWorkstationDisableInsecureGuestLogons property value. If enabled,the SMB client will allow insecure guest logons. If not configured, the SMB client will reject insecure guest logons.
         Args:
-            value: Value to set for the lanManagerWorkstationDisableInsecureGuestLogons property.
+            value: Value to set for the lan_manager_workstation_disable_insecure_guest_logons property.
         """
         self._lan_manager_workstation_disable_insecure_guest_logons = value
     
@@ -3198,7 +3198,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAdministratorAccountName property value. Define a different account name to be associated with the security identifier (SID) for the account 'Administrator'.
         Args:
-            value: Value to set for the localSecurityOptionsAdministratorAccountName property.
+            value: Value to set for the local_security_options_administrator_account_name property.
         """
         self._local_security_options_administrator_account_name = value
     
@@ -3215,7 +3215,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAdministratorElevationPromptBehavior property value. Possible values for LocalSecurityOptionsAdministratorElevationPromptBehavior
         Args:
-            value: Value to set for the localSecurityOptionsAdministratorElevationPromptBehavior property.
+            value: Value to set for the local_security_options_administrator_elevation_prompt_behavior property.
         """
         self._local_security_options_administrator_elevation_prompt_behavior = value
     
@@ -3232,7 +3232,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares property value. This security setting determines whether to allows anonymous users to perform certain activities, such as enumerating the names of domain accounts and network shares.
         Args:
-            value: Value to set for the localSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares property.
+            value: Value to set for the local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares property.
         """
         self._local_security_options_allow_anonymous_enumeration_of_s_a_m_accounts_and_shares = value
     
@@ -3249,7 +3249,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowPKU2UAuthenticationRequests property value. Block PKU2U authentication requests to this device to use online identities.
         Args:
-            value: Value to set for the localSecurityOptionsAllowPKU2UAuthenticationRequests property.
+            value: Value to set for the local_security_options_allow_p_k_u2_u_authentication_requests property.
         """
         self._local_security_options_allow_p_k_u2_u_authentication_requests = value
     
@@ -3266,7 +3266,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowRemoteCallsToSecurityAccountsManager property value. Edit the default Security Descriptor Definition Language string to allow or deny users and groups to make remote calls to the SAM.
         Args:
-            value: Value to set for the localSecurityOptionsAllowRemoteCallsToSecurityAccountsManager property.
+            value: Value to set for the local_security_options_allow_remote_calls_to_security_accounts_manager property.
         """
         self._local_security_options_allow_remote_calls_to_security_accounts_manager = value
     
@@ -3283,7 +3283,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool property value. UI helper boolean for LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager entity
         Args:
-            value: Value to set for the localSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool property.
+            value: Value to set for the local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool property.
         """
         self._local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool = value
     
@@ -3300,7 +3300,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn property value. This security setting determines whether a computer can be shut down without having to log on to Windows.
         Args:
-            value: Value to set for the localSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn property.
+            value: Value to set for the local_security_options_allow_system_to_be_shut_down_without_having_to_log_on property.
         """
         self._local_security_options_allow_system_to_be_shut_down_without_having_to_log_on = value
     
@@ -3317,7 +3317,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowUIAccessApplicationElevation property value. Allow UIAccess apps to prompt for elevation without using the secure desktop.
         Args:
-            value: Value to set for the localSecurityOptionsAllowUIAccessApplicationElevation property.
+            value: Value to set for the local_security_options_allow_u_i_access_application_elevation property.
         """
         self._local_security_options_allow_u_i_access_application_elevation = value
     
@@ -3334,7 +3334,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowUIAccessApplicationsForSecureLocations property value. Allow UIAccess apps to prompt for elevation without using the secure desktop.Default is enabled
         Args:
-            value: Value to set for the localSecurityOptionsAllowUIAccessApplicationsForSecureLocations property.
+            value: Value to set for the local_security_options_allow_u_i_access_applications_for_secure_locations property.
         """
         self._local_security_options_allow_u_i_access_applications_for_secure_locations = value
     
@@ -3351,7 +3351,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsAllowUndockWithoutHavingToLogon property value. Prevent a portable computer from being undocked without having to log in.
         Args:
-            value: Value to set for the localSecurityOptionsAllowUndockWithoutHavingToLogon property.
+            value: Value to set for the local_security_options_allow_undock_without_having_to_logon property.
         """
         self._local_security_options_allow_undock_without_having_to_logon = value
     
@@ -3368,7 +3368,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsBlockMicrosoftAccounts property value. Prevent users from adding new Microsoft accounts to this computer.
         Args:
-            value: Value to set for the localSecurityOptionsBlockMicrosoftAccounts property.
+            value: Value to set for the local_security_options_block_microsoft_accounts property.
         """
         self._local_security_options_block_microsoft_accounts = value
     
@@ -3385,7 +3385,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsBlockRemoteLogonWithBlankPassword property value. Enable Local accounts that are not password protected to log on from locations other than the physical device.Default is enabled
         Args:
-            value: Value to set for the localSecurityOptionsBlockRemoteLogonWithBlankPassword property.
+            value: Value to set for the local_security_options_block_remote_logon_with_blank_password property.
         """
         self._local_security_options_block_remote_logon_with_blank_password = value
     
@@ -3402,7 +3402,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsBlockRemoteOpticalDriveAccess property value. Enabling this settings allows only interactively logged on user to access CD-ROM media.
         Args:
-            value: Value to set for the localSecurityOptionsBlockRemoteOpticalDriveAccess property.
+            value: Value to set for the local_security_options_block_remote_optical_drive_access property.
         """
         self._local_security_options_block_remote_optical_drive_access = value
     
@@ -3419,7 +3419,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsBlockUsersInstallingPrinterDrivers property value. Restrict installing printer drivers as part of connecting to a shared printer to admins only.
         Args:
-            value: Value to set for the localSecurityOptionsBlockUsersInstallingPrinterDrivers property.
+            value: Value to set for the local_security_options_block_users_installing_printer_drivers property.
         """
         self._local_security_options_block_users_installing_printer_drivers = value
     
@@ -3436,7 +3436,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsClearVirtualMemoryPageFile property value. This security setting determines whether the virtual memory pagefile is cleared when the system is shut down.
         Args:
-            value: Value to set for the localSecurityOptionsClearVirtualMemoryPageFile property.
+            value: Value to set for the local_security_options_clear_virtual_memory_page_file property.
         """
         self._local_security_options_clear_virtual_memory_page_file = value
     
@@ -3453,7 +3453,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsClientDigitallySignCommunicationsAlways property value. This security setting determines whether packet signing is required by the SMB client component.
         Args:
-            value: Value to set for the localSecurityOptionsClientDigitallySignCommunicationsAlways property.
+            value: Value to set for the local_security_options_client_digitally_sign_communications_always property.
         """
         self._local_security_options_client_digitally_sign_communications_always = value
     
@@ -3470,7 +3470,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers property value. If this security setting is enabled, the Server Message Block (SMB) redirector is allowed to send plaintext passwords to non-Microsoft SMB servers that do not support password encryption during authentication.
         Args:
-            value: Value to set for the localSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers property.
+            value: Value to set for the local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers property.
         """
         self._local_security_options_client_send_unencrypted_password_to_third_party_s_m_b_servers = value
     
@@ -3487,7 +3487,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDetectApplicationInstallationsAndPromptForElevation property value. App installations requiring elevated privileges will prompt for admin credentials.Default is enabled
         Args:
-            value: Value to set for the localSecurityOptionsDetectApplicationInstallationsAndPromptForElevation property.
+            value: Value to set for the local_security_options_detect_application_installations_and_prompt_for_elevation property.
         """
         self._local_security_options_detect_application_installations_and_prompt_for_elevation = value
     
@@ -3504,7 +3504,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDisableAdministratorAccount property value. Determines whether the Local Administrator account is enabled or disabled.
         Args:
-            value: Value to set for the localSecurityOptionsDisableAdministratorAccount property.
+            value: Value to set for the local_security_options_disable_administrator_account property.
         """
         self._local_security_options_disable_administrator_account = value
     
@@ -3521,7 +3521,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees property value. This security setting determines whether the SMB client attempts to negotiate SMB packet signing.
         Args:
-            value: Value to set for the localSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees property.
+            value: Value to set for the local_security_options_disable_client_digitally_sign_communications_if_server_agrees property.
         """
         self._local_security_options_disable_client_digitally_sign_communications_if_server_agrees = value
     
@@ -3538,7 +3538,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDisableGuestAccount property value. Determines if the Guest account is enabled or disabled.
         Args:
-            value: Value to set for the localSecurityOptionsDisableGuestAccount property.
+            value: Value to set for the local_security_options_disable_guest_account property.
         """
         self._local_security_options_disable_guest_account = value
     
@@ -3555,7 +3555,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDisableServerDigitallySignCommunicationsAlways property value. This security setting determines whether packet signing is required by the SMB server component.
         Args:
-            value: Value to set for the localSecurityOptionsDisableServerDigitallySignCommunicationsAlways property.
+            value: Value to set for the local_security_options_disable_server_digitally_sign_communications_always property.
         """
         self._local_security_options_disable_server_digitally_sign_communications_always = value
     
@@ -3572,7 +3572,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees property value. This security setting determines whether the SMB server will negotiate SMB packet signing with clients that request it.
         Args:
-            value: Value to set for the localSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees property.
+            value: Value to set for the local_security_options_disable_server_digitally_sign_communications_if_client_agrees property.
         """
         self._local_security_options_disable_server_digitally_sign_communications_if_client_agrees = value
     
@@ -3589,7 +3589,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts property value. This security setting determines what additional permissions will be granted for anonymous connections to the computer.
         Args:
-            value: Value to set for the localSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts property.
+            value: Value to set for the local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts property.
         """
         self._local_security_options_do_not_allow_anonymous_enumeration_of_s_a_m_accounts = value
     
@@ -3606,7 +3606,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDoNotRequireCtrlAltDel property value. Require CTRL+ALT+DEL to be pressed before a user can log on.
         Args:
-            value: Value to set for the localSecurityOptionsDoNotRequireCtrlAltDel property.
+            value: Value to set for the local_security_options_do_not_require_ctrl_alt_del property.
         """
         self._local_security_options_do_not_require_ctrl_alt_del = value
     
@@ -3623,7 +3623,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange property value. This security setting determines if, at the next password change, the LAN Manager (LM) hash value for the new password is stored. It’s not stored by default.
         Args:
-            value: Value to set for the localSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange property.
+            value: Value to set for the local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change property.
         """
         self._local_security_options_do_not_store_l_a_n_manager_hash_value_on_next_password_change = value
     
@@ -3640,7 +3640,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser property value. Possible values for LocalSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser
         Args:
-            value: Value to set for the localSecurityOptionsFormatAndEjectOfRemovableMediaAllowedUser property.
+            value: Value to set for the local_security_options_format_and_eject_of_removable_media_allowed_user property.
         """
         self._local_security_options_format_and_eject_of_removable_media_allowed_user = value
     
@@ -3657,7 +3657,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsGuestAccountName property value. Define a different account name to be associated with the security identifier (SID) for the account 'Guest'.
         Args:
-            value: Value to set for the localSecurityOptionsGuestAccountName property.
+            value: Value to set for the local_security_options_guest_account_name property.
         """
         self._local_security_options_guest_account_name = value
     
@@ -3674,7 +3674,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsHideLastSignedInUser property value. Do not display the username of the last person who signed in on this device.
         Args:
-            value: Value to set for the localSecurityOptionsHideLastSignedInUser property.
+            value: Value to set for the local_security_options_hide_last_signed_in_user property.
         """
         self._local_security_options_hide_last_signed_in_user = value
     
@@ -3691,7 +3691,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsHideUsernameAtSignIn property value. Do not display the username of the person signing in to this device after credentials are entered and before the device’s desktop is shown.
         Args:
-            value: Value to set for the localSecurityOptionsHideUsernameAtSignIn property.
+            value: Value to set for the local_security_options_hide_username_at_sign_in property.
         """
         self._local_security_options_hide_username_at_sign_in = value
     
@@ -3708,7 +3708,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsInformationDisplayedOnLockScreen property value. Possible values for LocalSecurityOptionsInformationDisplayedOnLockScreen
         Args:
-            value: Value to set for the localSecurityOptionsInformationDisplayedOnLockScreen property.
+            value: Value to set for the local_security_options_information_displayed_on_lock_screen property.
         """
         self._local_security_options_information_displayed_on_lock_screen = value
     
@@ -3725,7 +3725,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsInformationShownOnLockScreen property value. Possible values for LocalSecurityOptionsInformationShownOnLockScreenType
         Args:
-            value: Value to set for the localSecurityOptionsInformationShownOnLockScreen property.
+            value: Value to set for the local_security_options_information_shown_on_lock_screen property.
         """
         self._local_security_options_information_shown_on_lock_screen = value
     
@@ -3742,7 +3742,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsLogOnMessageText property value. Set message text for users attempting to log in.
         Args:
-            value: Value to set for the localSecurityOptionsLogOnMessageText property.
+            value: Value to set for the local_security_options_log_on_message_text property.
         """
         self._local_security_options_log_on_message_text = value
     
@@ -3759,7 +3759,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsLogOnMessageTitle property value. Set message title for users attempting to log in.
         Args:
-            value: Value to set for the localSecurityOptionsLogOnMessageTitle property.
+            value: Value to set for the local_security_options_log_on_message_title property.
         """
         self._local_security_options_log_on_message_title = value
     
@@ -3776,7 +3776,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsMachineInactivityLimit property value. Define maximum minutes of inactivity on the interactive desktop’s login screen until the screen saver runs. Valid values 0 to 9999
         Args:
-            value: Value to set for the localSecurityOptionsMachineInactivityLimit property.
+            value: Value to set for the local_security_options_machine_inactivity_limit property.
         """
         self._local_security_options_machine_inactivity_limit = value
     
@@ -3793,7 +3793,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsMachineInactivityLimitInMinutes property value. Define maximum minutes of inactivity on the interactive desktop’s login screen until the screen saver runs. Valid values 0 to 9999
         Args:
-            value: Value to set for the localSecurityOptionsMachineInactivityLimitInMinutes property.
+            value: Value to set for the local_security_options_machine_inactivity_limit_in_minutes property.
         """
         self._local_security_options_machine_inactivity_limit_in_minutes = value
     
@@ -3810,7 +3810,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedClients property value. Possible values for LocalSecurityOptionsMinimumSessionSecurity
         Args:
-            value: Value to set for the localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedClients property.
+            value: Value to set for the local_security_options_minimum_session_security_for_ntlm_ssp_based_clients property.
         """
         self._local_security_options_minimum_session_security_for_ntlm_ssp_based_clients = value
     
@@ -3827,7 +3827,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers property value. Possible values for LocalSecurityOptionsMinimumSessionSecurity
         Args:
-            value: Value to set for the localSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers property.
+            value: Value to set for the local_security_options_minimum_session_security_for_ntlm_ssp_based_servers property.
         """
         self._local_security_options_minimum_session_security_for_ntlm_ssp_based_servers = value
     
@@ -3844,7 +3844,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsOnlyElevateSignedExecutables property value. Enforce PKI certification path validation for a given executable file before it is permitted to run.
         Args:
-            value: Value to set for the localSecurityOptionsOnlyElevateSignedExecutables property.
+            value: Value to set for the local_security_options_only_elevate_signed_executables property.
         """
         self._local_security_options_only_elevate_signed_executables = value
     
@@ -3861,7 +3861,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares property value. By default, this security setting restricts anonymous access to shares and pipes to the settings for named pipes that can be accessed anonymously and Shares that can be accessed anonymously
         Args:
-            value: Value to set for the localSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares property.
+            value: Value to set for the local_security_options_restrict_anonymous_access_to_named_pipes_and_shares property.
         """
         self._local_security_options_restrict_anonymous_access_to_named_pipes_and_shares = value
     
@@ -3878,7 +3878,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsSmartCardRemovalBehavior property value. Possible values for LocalSecurityOptionsSmartCardRemovalBehaviorType
         Args:
-            value: Value to set for the localSecurityOptionsSmartCardRemovalBehavior property.
+            value: Value to set for the local_security_options_smart_card_removal_behavior property.
         """
         self._local_security_options_smart_card_removal_behavior = value
     
@@ -3895,7 +3895,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsStandardUserElevationPromptBehavior property value. Possible values for LocalSecurityOptionsStandardUserElevationPromptBehavior
         Args:
-            value: Value to set for the localSecurityOptionsStandardUserElevationPromptBehavior property.
+            value: Value to set for the local_security_options_standard_user_elevation_prompt_behavior property.
         """
         self._local_security_options_standard_user_elevation_prompt_behavior = value
     
@@ -3912,7 +3912,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation property value. Enable all elevation requests to go to the interactive user's desktop rather than the secure desktop. Prompt behavior policy settings for admins and standard users are used.
         Args:
-            value: Value to set for the localSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation property.
+            value: Value to set for the local_security_options_switch_to_secure_desktop_when_prompting_for_elevation property.
         """
         self._local_security_options_switch_to_secure_desktop_when_prompting_for_elevation = value
     
@@ -3929,7 +3929,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsUseAdminApprovalMode property value. Defines whether the built-in admin account uses Admin Approval Mode or runs all apps with full admin privileges.Default is enabled
         Args:
-            value: Value to set for the localSecurityOptionsUseAdminApprovalMode property.
+            value: Value to set for the local_security_options_use_admin_approval_mode property.
         """
         self._local_security_options_use_admin_approval_mode = value
     
@@ -3946,7 +3946,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsUseAdminApprovalModeForAdministrators property value. Define whether Admin Approval Mode and all UAC policy settings are enabled, default is enabled
         Args:
-            value: Value to set for the localSecurityOptionsUseAdminApprovalModeForAdministrators property.
+            value: Value to set for the local_security_options_use_admin_approval_mode_for_administrators property.
         """
         self._local_security_options_use_admin_approval_mode_for_administrators = value
     
@@ -3963,7 +3963,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the localSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations property value. Virtualize file and registry write failures to per user locations
         Args:
-            value: Value to set for the localSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations property.
+            value: Value to set for the local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations property.
         """
         self._local_security_options_virtualize_file_and_registry_write_failures_to_per_user_locations = value
     
@@ -4041,8 +4041,8 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         writer.write_bool_value("defenderEnableScanMappedNetworkDrivesDuringFullScan", self.defender_enable_scan_mapped_network_drives_during_full_scan)
         writer.write_object_value("defenderExploitProtectionXml", self.defender_exploit_protection_xml)
         writer.write_str_value("defenderExploitProtectionXmlFileName", self.defender_exploit_protection_xml_file_name)
-        writer.write_collection_of_primitive_values("defenderFileExtensionsToExclude", self.defender_file_extensions_to_exclude)
         writer.write_collection_of_primitive_values("defenderFilesAndFoldersToExclude", self.defender_files_and_folders_to_exclude)
+        writer.write_collection_of_primitive_values("defenderFileExtensionsToExclude", self.defender_file_extensions_to_exclude)
         writer.write_collection_of_primitive_values("defenderGuardedFoldersAllowedAppPaths", self.defender_guarded_folders_allowed_app_paths)
         writer.write_enum_value("defenderGuardMyFoldersType", self.defender_guard_my_folders_type)
         writer.write_enum_value("defenderNetworkProtectionType", self.defender_network_protection_type)
@@ -4057,9 +4057,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         writer.write_enum_value("defenderOfficeMacroCodeAllowWin32ImportsType", self.defender_office_macro_code_allow_win32_imports_type)
         writer.write_enum_value("defenderPotentiallyUnwantedAppAction", self.defender_potentially_unwanted_app_action)
         writer.write_enum_value("defenderPreventCredentialStealingType", self.defender_prevent_credential_stealing_type)
+        writer.write_collection_of_primitive_values("defenderProcessesToExclude", self.defender_processes_to_exclude)
         writer.write_enum_value("defenderProcessCreation", self.defender_process_creation)
         writer.write_enum_value("defenderProcessCreationType", self.defender_process_creation_type)
-        writer.write_collection_of_primitive_values("defenderProcessesToExclude", self.defender_processes_to_exclude)
         writer.write_enum_value("defenderScanDirection", self.defender_scan_direction)
         writer.write_int_value("defenderScanMaxCpuPercentage", self.defender_scan_max_cpu_percentage)
         writer.write_enum_value("defenderScanType", self.defender_scan_type)
@@ -4126,9 +4126,9 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         writer.write_str_value("localSecurityOptionsAllowRemoteCallsToSecurityAccountsManager", self.local_security_options_allow_remote_calls_to_security_accounts_manager)
         writer.write_bool_value("localSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool", self.local_security_options_allow_remote_calls_to_security_accounts_manager_helper_bool)
         writer.write_bool_value("localSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn", self.local_security_options_allow_system_to_be_shut_down_without_having_to_log_on)
-        writer.write_bool_value("localSecurityOptionsAllowUIAccessApplicationElevation", self.local_security_options_allow_u_i_access_application_elevation)
-        writer.write_bool_value("localSecurityOptionsAllowUIAccessApplicationsForSecureLocations", self.local_security_options_allow_u_i_access_applications_for_secure_locations)
         writer.write_bool_value("localSecurityOptionsAllowUndockWithoutHavingToLogon", self.local_security_options_allow_undock_without_having_to_logon)
+        writer.write_bool_value("localSecurityOptionsAllowUIAccessApplicationsForSecureLocations", self.local_security_options_allow_u_i_access_applications_for_secure_locations)
+        writer.write_bool_value("localSecurityOptionsAllowUIAccessApplicationElevation", self.local_security_options_allow_u_i_access_application_elevation)
         writer.write_bool_value("localSecurityOptionsBlockMicrosoftAccounts", self.local_security_options_block_microsoft_accounts)
         writer.write_bool_value("localSecurityOptionsBlockRemoteLogonWithBlankPassword", self.local_security_options_block_remote_logon_with_blank_password)
         writer.write_bool_value("localSecurityOptionsBlockRemoteOpticalDriveAccess", self.local_security_options_block_remote_optical_drive_access)
@@ -4216,7 +4216,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the smartScreenBlockOverrideForFiles property value. Allows IT Admins to control whether users can can ignore SmartScreen warnings and run malicious files.
         Args:
-            value: Value to set for the smartScreenBlockOverrideForFiles property.
+            value: Value to set for the smart_screen_block_override_for_files property.
         """
         self._smart_screen_block_override_for_files = value
     
@@ -4233,7 +4233,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the smartScreenEnableInShell property value. Allows IT Admins to configure SmartScreen for Windows.
         Args:
-            value: Value to set for the smartScreenEnableInShell property.
+            value: Value to set for the smart_screen_enable_in_shell property.
         """
         self._smart_screen_enable_in_shell = value
     
@@ -4250,7 +4250,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsAccessCredentialManagerAsTrustedCaller property value. This user right is used by Credential Manager during Backup/Restore. Users' saved credentials might be compromised if this privilege is given to other entities. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsAccessCredentialManagerAsTrustedCaller property.
+            value: Value to set for the user_rights_access_credential_manager_as_trusted_caller property.
         """
         self._user_rights_access_credential_manager_as_trusted_caller = value
     
@@ -4267,7 +4267,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsActAsPartOfTheOperatingSystem property value. This user right allows a process to impersonate any user without authentication. The process can therefore gain access to the same local resources as that user. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsActAsPartOfTheOperatingSystem property.
+            value: Value to set for the user_rights_act_as_part_of_the_operating_system property.
         """
         self._user_rights_act_as_part_of_the_operating_system = value
     
@@ -4284,7 +4284,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsAllowAccessFromNetwork property value. This user right determines which users and groups are allowed to connect to the computer over the network. State Allowed is supported.
         Args:
-            value: Value to set for the userRightsAllowAccessFromNetwork property.
+            value: Value to set for the user_rights_allow_access_from_network property.
         """
         self._user_rights_allow_access_from_network = value
     
@@ -4301,7 +4301,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsBackupData property value. This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when backing up files and directories. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsBackupData property.
+            value: Value to set for the user_rights_backup_data property.
         """
         self._user_rights_backup_data = value
     
@@ -4318,7 +4318,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsBlockAccessFromNetwork property value. This user right determines which users and groups are block from connecting to the computer over the network. State Block is supported.
         Args:
-            value: Value to set for the userRightsBlockAccessFromNetwork property.
+            value: Value to set for the user_rights_block_access_from_network property.
         """
         self._user_rights_block_access_from_network = value
     
@@ -4335,7 +4335,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsChangeSystemTime property value. This user right determines which users and groups can change the time and date on the internal clock of the computer. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsChangeSystemTime property.
+            value: Value to set for the user_rights_change_system_time property.
         """
         self._user_rights_change_system_time = value
     
@@ -4352,7 +4352,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsCreateGlobalObjects property value. This security setting determines whether users can create global objects that are available to all sessions. Users who can create global objects could affect processes that run under other users' sessions, which could lead to application failure or data corruption. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsCreateGlobalObjects property.
+            value: Value to set for the user_rights_create_global_objects property.
         """
         self._user_rights_create_global_objects = value
     
@@ -4369,7 +4369,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsCreatePageFile property value. This user right determines which users and groups can call an internal API to create and change the size of a page file. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsCreatePageFile property.
+            value: Value to set for the user_rights_create_page_file property.
         """
         self._user_rights_create_page_file = value
     
@@ -4386,7 +4386,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsCreatePermanentSharedObjects property value. This user right determines which accounts can be used by processes to create a directory object using the object manager. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsCreatePermanentSharedObjects property.
+            value: Value to set for the user_rights_create_permanent_shared_objects property.
         """
         self._user_rights_create_permanent_shared_objects = value
     
@@ -4403,7 +4403,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsCreateSymbolicLinks property value. This user right determines if the user can create a symbolic link from the computer to which they are logged on. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsCreateSymbolicLinks property.
+            value: Value to set for the user_rights_create_symbolic_links property.
         """
         self._user_rights_create_symbolic_links = value
     
@@ -4420,7 +4420,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsCreateToken property value. This user right determines which users/groups can be used by processes to create a token that can then be used to get access to any local resources when the process uses an internal API to create an access token. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsCreateToken property.
+            value: Value to set for the user_rights_create_token property.
         """
         self._user_rights_create_token = value
     
@@ -4437,7 +4437,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsDebugPrograms property value. This user right determines which users can attach a debugger to any process or to the kernel. Only states NotConfigured and Allowed are supported
         Args:
-            value: Value to set for the userRightsDebugPrograms property.
+            value: Value to set for the user_rights_debug_programs property.
         """
         self._user_rights_debug_programs = value
     
@@ -4454,7 +4454,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsDelegation property value. This user right determines which users can set the Trusted for Delegation setting on a user or computer object. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsDelegation property.
+            value: Value to set for the user_rights_delegation property.
         """
         self._user_rights_delegation = value
     
@@ -4471,7 +4471,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsDenyLocalLogOn property value. This user right determines which users cannot log on to the computer. States NotConfigured, Blocked are supported
         Args:
-            value: Value to set for the userRightsDenyLocalLogOn property.
+            value: Value to set for the user_rights_deny_local_log_on property.
         """
         self._user_rights_deny_local_log_on = value
     
@@ -4488,7 +4488,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsGenerateSecurityAudits property value. This user right determines which accounts can be used by a process to add entries to the security log. The security log is used to trace unauthorized system access.  Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsGenerateSecurityAudits property.
+            value: Value to set for the user_rights_generate_security_audits property.
         """
         self._user_rights_generate_security_audits = value
     
@@ -4505,7 +4505,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsImpersonateClient property value. Assigning this user right to a user allows programs running on behalf of that user to impersonate a client. Requiring this user right for this kind of impersonation prevents an unauthorized user from convincing a client to connect to a service that they have created and then impersonating that client, which can elevate the unauthorized user's permissions to administrative or system levels. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsImpersonateClient property.
+            value: Value to set for the user_rights_impersonate_client property.
         """
         self._user_rights_impersonate_client = value
     
@@ -4522,7 +4522,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsIncreaseSchedulingPriority property value. This user right determines which accounts can use a process with Write Property access to another process to increase the execution priority assigned to the other process. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsIncreaseSchedulingPriority property.
+            value: Value to set for the user_rights_increase_scheduling_priority property.
         """
         self._user_rights_increase_scheduling_priority = value
     
@@ -4539,7 +4539,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsLoadUnloadDrivers property value. This user right determines which users can dynamically load and unload device drivers or other code in to kernel mode. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsLoadUnloadDrivers property.
+            value: Value to set for the user_rights_load_unload_drivers property.
         """
         self._user_rights_load_unload_drivers = value
     
@@ -4556,7 +4556,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsLocalLogOn property value. This user right determines which users can log on to the computer. States NotConfigured, Allowed are supported
         Args:
-            value: Value to set for the userRightsLocalLogOn property.
+            value: Value to set for the user_rights_local_log_on property.
         """
         self._user_rights_local_log_on = value
     
@@ -4573,7 +4573,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsLockMemory property value. This user right determines which accounts can use a process to keep data in physical memory, which prevents the system from paging the data to virtual memory on disk. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsLockMemory property.
+            value: Value to set for the user_rights_lock_memory property.
         """
         self._user_rights_lock_memory = value
     
@@ -4590,7 +4590,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsManageAuditingAndSecurityLogs property value. This user right determines which users can specify object access auditing options for individual resources, such as files, Active Directory objects, and registry keys. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsManageAuditingAndSecurityLogs property.
+            value: Value to set for the user_rights_manage_auditing_and_security_logs property.
         """
         self._user_rights_manage_auditing_and_security_logs = value
     
@@ -4607,7 +4607,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsManageVolumes property value. This user right determines which users and groups can run maintenance tasks on a volume, such as remote defragmentation. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsManageVolumes property.
+            value: Value to set for the user_rights_manage_volumes property.
         """
         self._user_rights_manage_volumes = value
     
@@ -4624,7 +4624,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsModifyFirmwareEnvironment property value. This user right determines who can modify firmware environment values. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsModifyFirmwareEnvironment property.
+            value: Value to set for the user_rights_modify_firmware_environment property.
         """
         self._user_rights_modify_firmware_environment = value
     
@@ -4641,7 +4641,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsModifyObjectLabels property value. This user right determines which user accounts can modify the integrity label of objects, such as files, registry keys, or processes owned by other users. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsModifyObjectLabels property.
+            value: Value to set for the user_rights_modify_object_labels property.
         """
         self._user_rights_modify_object_labels = value
     
@@ -4658,7 +4658,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsProfileSingleProcess property value. This user right determines which users can use performance monitoring tools to monitor the performance of system processes. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsProfileSingleProcess property.
+            value: Value to set for the user_rights_profile_single_process property.
         """
         self._user_rights_profile_single_process = value
     
@@ -4675,7 +4675,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsRemoteDesktopServicesLogOn property value. This user right determines which users and groups are prohibited from logging on as a Remote Desktop Services client. Only states NotConfigured and Blocked are supported
         Args:
-            value: Value to set for the userRightsRemoteDesktopServicesLogOn property.
+            value: Value to set for the user_rights_remote_desktop_services_log_on property.
         """
         self._user_rights_remote_desktop_services_log_on = value
     
@@ -4692,7 +4692,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsRemoteShutdown property value. This user right determines which users are allowed to shut down a computer from a remote location on the network. Misuse of this user right can result in a denial of service. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsRemoteShutdown property.
+            value: Value to set for the user_rights_remote_shutdown property.
         """
         self._user_rights_remote_shutdown = value
     
@@ -4709,7 +4709,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsRestoreData property value. This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when restoring backed up files and directories, and determines which users can set any valid security principal as the owner of an object. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsRestoreData property.
+            value: Value to set for the user_rights_restore_data property.
         """
         self._user_rights_restore_data = value
     
@@ -4726,7 +4726,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the userRightsTakeOwnership property value. This user right determines which users can take ownership of any securable object in the system, including Active Directory objects, files and folders, printers, registry keys, processes, and threads. Only states NotConfigured and Allowed are supported.
         Args:
-            value: Value to set for the userRightsTakeOwnership property.
+            value: Value to set for the user_rights_take_ownership property.
         """
         self._user_rights_take_ownership = value
     
@@ -4743,7 +4743,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the windowsDefenderTamperProtection property value. Defender TamperProtection setting options
         Args:
-            value: Value to set for the windowsDefenderTamperProtection property.
+            value: Value to set for the windows_defender_tamper_protection property.
         """
         self._windows_defender_tamper_protection = value
     
@@ -4760,7 +4760,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the xboxServicesAccessoryManagementServiceStartupMode property value. Possible values of xbox service start type
         Args:
-            value: Value to set for the xboxServicesAccessoryManagementServiceStartupMode property.
+            value: Value to set for the xbox_services_accessory_management_service_startup_mode property.
         """
         self._xbox_services_accessory_management_service_startup_mode = value
     
@@ -4777,7 +4777,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the xboxServicesEnableXboxGameSaveTask property value. This setting determines whether xbox game save is enabled (1) or disabled (0).
         Args:
-            value: Value to set for the xboxServicesEnableXboxGameSaveTask property.
+            value: Value to set for the xbox_services_enable_xbox_game_save_task property.
         """
         self._xbox_services_enable_xbox_game_save_task = value
     
@@ -4794,7 +4794,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the xboxServicesLiveAuthManagerServiceStartupMode property value. Possible values of xbox service start type
         Args:
-            value: Value to set for the xboxServicesLiveAuthManagerServiceStartupMode property.
+            value: Value to set for the xbox_services_live_auth_manager_service_startup_mode property.
         """
         self._xbox_services_live_auth_manager_service_startup_mode = value
     
@@ -4811,7 +4811,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the xboxServicesLiveGameSaveServiceStartupMode property value. Possible values of xbox service start type
         Args:
-            value: Value to set for the xboxServicesLiveGameSaveServiceStartupMode property.
+            value: Value to set for the xbox_services_live_game_save_service_startup_mode property.
         """
         self._xbox_services_live_game_save_service_startup_mode = value
     
@@ -4828,7 +4828,7 @@ class Windows10EndpointProtectionConfiguration(device_configuration.DeviceConfig
         """
         Sets the xboxServicesLiveNetworkingServiceStartupMode property value. Possible values of xbox service start type
         Args:
-            value: Value to set for the xboxServicesLiveNetworkingServiceStartupMode property.
+            value: Value to set for the xbox_services_live_networking_service_startup_mode property.
         """
         self._xbox_services_live_networking_service_startup_mode = value
     

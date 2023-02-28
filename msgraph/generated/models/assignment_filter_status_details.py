@@ -72,7 +72,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the deviceProperties property value. Device properties used for filter evaluation during device check-in time.
         Args:
-            value: Value to set for the deviceProperties property.
+            value: Value to set for the device_properties property.
         """
         self._device_properties = value
     
@@ -89,7 +89,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the evalutionSummaries property value. Evaluation result summaries for each filter associated to device and payload
         Args:
-            value: Value to set for the evalutionSummaries property.
+            value: Value to set for the evalution_summaries property.
         """
         self._evalution_summaries = value
     
@@ -99,12 +99,12 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_properties": lambda n : setattr(self, 'device_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "evalution_summaries": lambda n : setattr(self, 'evalution_summaries', n.get_collection_of_object_values(assignment_filter_evaluation_summary.AssignmentFilterEvaluationSummary)),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "deviceProperties": lambda n : setattr(self, 'device_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "evalutionSummaries": lambda n : setattr(self, 'evalution_summaries', n.get_collection_of_object_values(assignment_filter_evaluation_summary.AssignmentFilterEvaluationSummary)),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "payload_id": lambda n : setattr(self, 'payload_id', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         return fields
     
@@ -121,7 +121,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceId property value. Unique identifier for the device object.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -138,7 +138,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -155,7 +155,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the payloadId property value. Unique identifier for payload object.
         Args:
-            value: Value to set for the payloadId property.
+            value: Value to set for the payload_id property.
         """
         self._payload_id = value
     
@@ -188,7 +188,7 @@ class AssignmentFilterStatusDetails(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. Unique identifier for UserId object. Can be null
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

@@ -19,7 +19,7 @@ class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
         """
         Sets the allowAdHocPermissions property value. The allowAdHocPermissions property
         Args:
-            value: Value to set for the allowAdHocPermissions property.
+            value: Value to set for the allow_ad_hoc_permissions property.
         """
         self._allow_ad_hoc_permissions = value
     
@@ -36,7 +36,7 @@ class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
         """
         Sets the allowMailForwarding property value. The allowMailForwarding property
         Args:
-            value: Value to set for the allowMailForwarding property.
+            value: Value to set for the allow_mail_forwarding property.
         """
         self._allow_mail_forwarding = value
     
@@ -78,7 +78,7 @@ class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
         """
         Sets the decryptionRightsManagementTemplateId property value. The decryptionRightsManagementTemplateId property
         Args:
-            value: Value to set for the decryptionRightsManagementTemplateId property.
+            value: Value to set for the decryption_rights_management_template_id property.
         """
         self._decryption_rights_management_template_id = value
     
@@ -88,9 +88,9 @@ class EncryptWithUserDefinedRights(encrypt_content.EncryptContent):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_ad_hoc_permissions": lambda n : setattr(self, 'allow_ad_hoc_permissions', n.get_bool_value()),
-            "allow_mail_forwarding": lambda n : setattr(self, 'allow_mail_forwarding', n.get_bool_value()),
-            "decryption_rights_management_template_id": lambda n : setattr(self, 'decryption_rights_management_template_id', n.get_str_value()),
+            "allowAdHocPermissions": lambda n : setattr(self, 'allow_ad_hoc_permissions', n.get_bool_value()),
+            "allowMailForwarding": lambda n : setattr(self, 'allow_mail_forwarding', n.get_bool_value()),
+            "decryptionRightsManagementTemplateId": lambda n : setattr(self, 'decryption_rights_management_template_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -34,7 +34,7 @@ class CheckinPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the checkInAs property value. The checkInAs property
         Args:
-            value: Value to set for the checkInAs property.
+            value: Value to set for the check_in_as property.
         """
         self._check_in_as = value
     
@@ -85,7 +85,7 @@ class CheckinPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "check_in_as": lambda n : setattr(self, 'check_in_as', n.get_str_value()),
+            "checkInAs": lambda n : setattr(self, 'check_in_as', n.get_str_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
         }
         return fields

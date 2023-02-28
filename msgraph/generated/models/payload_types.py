@@ -56,8 +56,8 @@ class PayloadTypes(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "raw_content": lambda n : setattr(self, 'raw_content', n.get_str_value()),
-            "visual_content": lambda n : setattr(self, 'visual_content', n.get_object_value(visual_properties.VisualProperties)),
+            "rawContent": lambda n : setattr(self, 'raw_content', n.get_str_value()),
+            "visualContent": lambda n : setattr(self, 'visual_content', n.get_object_value(visual_properties.VisualProperties)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class PayloadTypes(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -91,7 +91,7 @@ class PayloadTypes(AdditionalDataHolder, Parsable):
         """
         Sets the rawContent property value. The notification content of a raw user notification that will be delivered to and consumed by the app client on all supported platforms (Windows, iOS, Android or WebPush) receiving this notification. At least one of Payload.RawContent or Payload.VisualContent needs to be valid for a POST Notification request.
         Args:
-            value: Value to set for the rawContent property.
+            value: Value to set for the raw_content property.
         """
         self._raw_content = value
     
@@ -121,7 +121,7 @@ class PayloadTypes(AdditionalDataHolder, Parsable):
         """
         Sets the visualContent property value. The visual content of a visual user notification, which will be consumed by the notification platform on each supported platform (Windows, iOS and Android only) and rendered for the user. At least one of Payload.RawContent or Payload.VisualContent needs to be valid for a POST Notification request.
         Args:
-            value: Value to set for the visualContent property.
+            value: Value to set for the visual_content property.
         """
         self._visual_content = value
     

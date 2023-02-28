@@ -58,7 +58,7 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         """
         Sets the endDateTime property value. The end time of the logs collected
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -75,7 +75,7 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         """
         Sets the expiryDateTime property value. The time when the log collection is expired
         Args:
-            value: Value to set for the expiryDateTime property.
+            value: Value to set for the expiry_date_time property.
         """
         self._expiry_date_time = value
     
@@ -85,12 +85,12 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "expiry_date_time": lambda n : setattr(self, 'expiry_date_time', n.get_datetime_value()),
-            "request_date_time": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
-            "server_id": lambda n : setattr(self, 'server_id', n.get_str_value()),
-            "size_in_bytes": lambda n : setattr(self, 'size_in_bytes', n.get_int_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "expiryDateTime": lambda n : setattr(self, 'expiry_date_time', n.get_datetime_value()),
+            "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
+            "serverId": lambda n : setattr(self, 'server_id', n.get_str_value()),
+            "sizeInBytes": lambda n : setattr(self, 'size_in_bytes', n.get_int_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(microsoft_tunnel_log_collection_status.MicrosoftTunnelLogCollectionStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -110,7 +110,7 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         """
         Sets the requestDateTime property value. The time when the log collection was requested
         Args:
-            value: Value to set for the requestDateTime property.
+            value: Value to set for the request_date_time property.
         """
         self._request_date_time = value
     
@@ -144,7 +144,7 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         """
         Sets the serverId property value. ID of the server the log collection is requested upon
         Args:
-            value: Value to set for the serverId property.
+            value: Value to set for the server_id property.
         """
         self._server_id = value
     
@@ -161,7 +161,7 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         """
         Sets the sizeInBytes property value. The size of the logs in bytes
         Args:
-            value: Value to set for the sizeInBytes property.
+            value: Value to set for the size_in_bytes property.
         """
         self._size_in_bytes = value
     
@@ -178,7 +178,7 @@ class MicrosoftTunnelServerLogCollectionResponse(entity.Entity):
         """
         Sets the startDateTime property value. The start time of the logs collected
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

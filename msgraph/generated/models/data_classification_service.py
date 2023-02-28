@@ -24,7 +24,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the classifyFileJobs property value. The classifyFileJobs property
         Args:
-            value: Value to set for the classifyFileJobs property.
+            value: Value to set for the classify_file_jobs property.
         """
         self._classify_file_jobs = value
     
@@ -41,7 +41,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the classifyTextJobs property value. The classifyTextJobs property
         Args:
-            value: Value to set for the classifyTextJobs property.
+            value: Value to set for the classify_text_jobs property.
         """
         self._classify_text_jobs = value
     
@@ -96,7 +96,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the evaluateDlpPoliciesJobs property value. The evaluateDlpPoliciesJobs property
         Args:
-            value: Value to set for the evaluateDlpPoliciesJobs property.
+            value: Value to set for the evaluate_dlp_policies_jobs property.
         """
         self._evaluate_dlp_policies_jobs = value
     
@@ -113,7 +113,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the evaluateLabelJobs property value. The evaluateLabelJobs property
         Args:
-            value: Value to set for the evaluateLabelJobs property.
+            value: Value to set for the evaluate_label_jobs property.
         """
         self._evaluate_label_jobs = value
     
@@ -130,7 +130,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the exactMatchDataStores property value. The exactMatchDataStores property
         Args:
-            value: Value to set for the exactMatchDataStores property.
+            value: Value to set for the exact_match_data_stores property.
         """
         self._exact_match_data_stores = value
     
@@ -147,7 +147,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the exactMatchUploadAgents property value. The exactMatchUploadAgents property
         Args:
-            value: Value to set for the exactMatchUploadAgents property.
+            value: Value to set for the exact_match_upload_agents property.
         """
         self._exact_match_upload_agents = value
     
@@ -157,15 +157,15 @@ class DataClassificationService(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classify_file_jobs": lambda n : setattr(self, 'classify_file_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
-            "classify_text_jobs": lambda n : setattr(self, 'classify_text_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
-            "evaluate_dlp_policies_jobs": lambda n : setattr(self, 'evaluate_dlp_policies_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
-            "evaluate_label_jobs": lambda n : setattr(self, 'evaluate_label_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
-            "exact_match_data_stores": lambda n : setattr(self, 'exact_match_data_stores', n.get_collection_of_object_values(exact_match_data_store.ExactMatchDataStore)),
-            "exact_match_upload_agents": lambda n : setattr(self, 'exact_match_upload_agents', n.get_collection_of_object_values(exact_match_upload_agent.ExactMatchUploadAgent)),
+            "classifyFileJobs": lambda n : setattr(self, 'classify_file_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
+            "classifyTextJobs": lambda n : setattr(self, 'classify_text_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
+            "evaluateDlpPoliciesJobs": lambda n : setattr(self, 'evaluate_dlp_policies_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
+            "evaluateLabelJobs": lambda n : setattr(self, 'evaluate_label_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
+            "exactMatchDataStores": lambda n : setattr(self, 'exact_match_data_stores', n.get_collection_of_object_values(exact_match_data_store.ExactMatchDataStore)),
+            "exactMatchUploadAgents": lambda n : setattr(self, 'exact_match_upload_agents', n.get_collection_of_object_values(exact_match_upload_agent.ExactMatchUploadAgent)),
             "jobs": lambda n : setattr(self, 'jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
-            "sensitive_types": lambda n : setattr(self, 'sensitive_types', n.get_collection_of_object_values(sensitive_type.SensitiveType)),
-            "sensitivity_labels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
+            "sensitiveTypes": lambda n : setattr(self, 'sensitive_types', n.get_collection_of_object_values(sensitive_type.SensitiveType)),
+            "sensitivityLabels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -201,7 +201,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the sensitiveTypes property value. The sensitiveTypes property
         Args:
-            value: Value to set for the sensitiveTypes property.
+            value: Value to set for the sensitive_types property.
         """
         self._sensitive_types = value
     
@@ -218,7 +218,7 @@ class DataClassificationService(entity.Entity):
         """
         Sets the sensitivityLabels property value. The sensitivityLabels property
         Args:
-            value: Value to set for the sensitivityLabels property.
+            value: Value to set for the sensitivity_labels property.
         """
         self._sensitivity_labels = value
     

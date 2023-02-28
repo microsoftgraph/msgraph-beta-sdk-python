@@ -118,7 +118,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -131,15 +131,15 @@ class TeamTemplateDefinition(entity.Entity):
             "audience": lambda n : setattr(self, 'audience', n.get_enum_value(team_template_audience.TeamTemplateAudience)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "icon_url": lambda n : setattr(self, 'icon_url', n.get_str_value()),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "parent_template_id": lambda n : setattr(self, 'parent_template_id', n.get_str_value()),
-            "publisher_name": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
-            "short_description": lambda n : setattr(self, 'short_description', n.get_str_value()),
-            "team_definition": lambda n : setattr(self, 'team_definition', n.get_object_value(team.Team)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "iconUrl": lambda n : setattr(self, 'icon_url', n.get_str_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "parentTemplateId": lambda n : setattr(self, 'parent_template_id', n.get_str_value()),
+            "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
+            "shortDescription": lambda n : setattr(self, 'short_description', n.get_str_value()),
+            "teamDefinition": lambda n : setattr(self, 'team_definition', n.get_object_value(team.Team)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -158,7 +158,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the iconUrl property value. The iconUrl property
         Args:
-            value: Value to set for the iconUrl property.
+            value: Value to set for the icon_url property.
         """
         self._icon_url = value
     
@@ -175,7 +175,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the languageTag property value. The languageTag property
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -192,7 +192,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the lastModifiedBy property value. The lastModifiedBy property
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -209,7 +209,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -226,7 +226,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the parentTemplateId property value. The parentTemplateId property
         Args:
-            value: Value to set for the parentTemplateId property.
+            value: Value to set for the parent_template_id property.
         """
         self._parent_template_id = value
     
@@ -243,7 +243,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the publisherName property value. The publisherName property
         Args:
-            value: Value to set for the publisherName property.
+            value: Value to set for the publisher_name property.
         """
         self._publisher_name = value
     
@@ -282,7 +282,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the shortDescription property value. The shortDescription property
         Args:
-            value: Value to set for the shortDescription property.
+            value: Value to set for the short_description property.
         """
         self._short_description = value
     
@@ -299,7 +299,7 @@ class TeamTemplateDefinition(entity.Entity):
         """
         Sets the teamDefinition property value. The teamDefinition property
         Args:
-            value: Value to set for the teamDefinition property.
+            value: Value to set for the team_definition property.
         """
         self._team_definition = value
     

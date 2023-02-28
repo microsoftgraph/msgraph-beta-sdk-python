@@ -33,7 +33,7 @@ class DeliveryOptimizationGroupIdCustom(delivery_optimization_group_id_source.De
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id_custom": lambda n : setattr(self, 'group_id_custom', n.get_str_value()),
+            "groupIdCustom": lambda n : setattr(self, 'group_id_custom', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class DeliveryOptimizationGroupIdCustom(delivery_optimization_group_id_source.De
         """
         Sets the groupIdCustom property value. Specifies an arbitrary group ID that the device belongs to
         Args:
-            value: Value to set for the groupIdCustom property.
+            value: Value to set for the group_id_custom property.
         """
         self._group_id_custom = value
     

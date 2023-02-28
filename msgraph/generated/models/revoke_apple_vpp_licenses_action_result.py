@@ -43,7 +43,7 @@ class RevokeAppleVppLicensesActionResult(device_action_result.DeviceActionResult
         """
         Sets the failedLicensesCount property value. Total number of Apple Vpp licenses that failed to revoke
         Args:
-            value: Value to set for the failedLicensesCount property.
+            value: Value to set for the failed_licenses_count property.
         """
         self._failed_licenses_count = value
     
@@ -53,8 +53,8 @@ class RevokeAppleVppLicensesActionResult(device_action_result.DeviceActionResult
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_licenses_count": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
-            "total_licenses_count": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
+            "failedLicensesCount": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
+            "totalLicensesCount": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class RevokeAppleVppLicensesActionResult(device_action_result.DeviceActionResult
         """
         Sets the totalLicensesCount property value. Total number of Apple Vpp licenses associated
         Args:
-            value: Value to set for the totalLicensesCount property.
+            value: Value to set for the total_licenses_count property.
         """
         self._total_licenses_count = value
     

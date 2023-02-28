@@ -21,7 +21,7 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         """
         Sets the aggregatedEventDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the aggregatedEventDateTime property.
+            value: Value to set for the aggregated_event_date_time property.
         """
         self._aggregated_event_date_time = value
     
@@ -38,7 +38,7 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         """
         Sets the appDisplayName property value. Name of the application that the user signed in to.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -55,13 +55,13 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         """
         Sets the appId property value. ID of the application that the user signed in to.
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new ApplicationSignInDetailedSummary and sets the default values.
+        Instantiates a new applicationSignInDetailedSummary and sets the default values.
         """
         super().__init__()
         # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
@@ -95,10 +95,10 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "aggregated_event_date_time": lambda n : setattr(self, 'aggregated_event_date_time', n.get_datetime_value()),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "sign_in_count": lambda n : setattr(self, 'sign_in_count', n.get_int_value()),
+            "aggregatedEventDateTime": lambda n : setattr(self, 'aggregated_event_date_time', n.get_datetime_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "signInCount": lambda n : setattr(self, 'sign_in_count', n.get_int_value()),
             "status": lambda n : setattr(self, 'status', n.get_object_value(sign_in_status.SignInStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -133,7 +133,7 @@ class ApplicationSignInDetailedSummary(entity.Entity):
         """
         Sets the signInCount property value. Count of sign-ins made by the application.
         Args:
-            value: Value to set for the signInCount property.
+            value: Value to set for the sign_in_count property.
         """
         self._sign_in_count = value
     

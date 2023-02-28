@@ -37,43 +37,9 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the callDurationSource property value. The source of the call duration data. If the call uses a third-party telecommunications operator via the Operator Connect Program, the operator may provide their own call duration data. In this case, the property value is operator. Otherwise, the value is microsoft.
         Args:
-            value: Value to set for the callDurationSource property.
+            value: Value to set for the call_duration_source property.
         """
         self._call_duration_source = value
-    
-    @property
-    def callee_number(self,) -> Optional[str]:
-        """
-        Gets the calleeNumber property value. Number dialed in E.164 format.
-        Returns: Optional[str]
-        """
-        return self._callee_number
-    
-    @callee_number.setter
-    def callee_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the calleeNumber property value. Number dialed in E.164 format.
-        Args:
-            value: Value to set for the calleeNumber property.
-        """
-        self._callee_number = value
-    
-    @property
-    def caller_number(self,) -> Optional[str]:
-        """
-        Gets the callerNumber property value. Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
-        Returns: Optional[str]
-        """
-        return self._caller_number
-    
-    @caller_number.setter
-    def caller_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the callerNumber property value. Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
-        Args:
-            value: Value to set for the callerNumber property.
-        """
-        self._caller_number = value
     
     @property
     def call_id(self,) -> Optional[str]:
@@ -88,7 +54,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the callId property value. Call identifier. Not guaranteed to be unique.
         Args:
-            value: Value to set for the callId property.
+            value: Value to set for the call_id property.
         """
         self._call_id = value
     
@@ -105,9 +71,43 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the callType property value. Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
         Args:
-            value: Value to set for the callType property.
+            value: Value to set for the call_type property.
         """
         self._call_type = value
+    
+    @property
+    def callee_number(self,) -> Optional[str]:
+        """
+        Gets the calleeNumber property value. Number dialed in E.164 format.
+        Returns: Optional[str]
+        """
+        return self._callee_number
+    
+    @callee_number.setter
+    def callee_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the calleeNumber property value. Number dialed in E.164 format.
+        Args:
+            value: Value to set for the callee_number property.
+        """
+        self._callee_number = value
+    
+    @property
+    def caller_number(self,) -> Optional[str]:
+        """
+        Gets the callerNumber property value. Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
+        Returns: Optional[str]
+        """
+        return self._caller_number
+    
+    @caller_number.setter
+    def caller_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the callerNumber property value. Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
+        Args:
+            value: Value to set for the caller_number property.
+        """
+        self._caller_number = value
     
     @property
     def charge(self,) -> Optional[float]:
@@ -139,7 +139,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the conferenceId property value. ID of the audio conference.
         Args:
-            value: Value to set for the conferenceId property.
+            value: Value to set for the conference_id property.
         """
         self._conference_id = value
     
@@ -156,7 +156,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the connectionCharge property value. Connection fee price.
         Args:
-            value: Value to set for the connectionCharge property.
+            value: Value to set for the connection_charge property.
         """
         self._connection_charge = value
     
@@ -169,21 +169,21 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
 
         # The source of the call duration data. If the call uses a third-party telecommunications operator via the Operator Connect Program, the operator may provide their own call duration data. In this case, the property value is operator. Otherwise, the value is microsoft.
         self._call_duration_source: Optional[pstn_call_duration_source.PstnCallDurationSource] = None
-        # Number dialed in E.164 format.
-        self._callee_number: Optional[str] = None
-        # Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
-        self._caller_number: Optional[str] = None
         # Call identifier. Not guaranteed to be unique.
         self._call_id: Optional[str] = None
         # Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.
         self._call_type: Optional[str] = None
+        # Number dialed in E.164 format.
+        self._callee_number: Optional[str] = None
+        # Number that received the call for inbound calls or the number dialed for outbound calls. E.164 format.
+        self._caller_number: Optional[str] = None
         # Amount of money or cost of the call that is charged to your account.
         self._charge: Optional[float] = None
         # ID of the audio conference.
         self._conference_id: Optional[str] = None
         # Connection fee price.
         self._connection_charge: Optional[float] = None
-        # Type of currency used to calculate the cost of the call (ISO 4217).
+        # Type of currency used to calculate the cost of the call. For details, see ISO 4217.
         self._currency: Optional[str] = None
         # Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user's location.
         self._destination_context: Optional[str] = None
@@ -205,15 +205,15 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         self._operator: Optional[str] = None
         # Call start time.
         self._start_date_time: Optional[datetime] = None
-        # Country code of the tenant, ISO 3166-1 alpha-2.
+        # Country code of the tenant. For details, see ISO 3166-1 alpha-2.
         self._tenant_country_code: Optional[str] = None
-        # Country code of the user, ISO 3166-1 alpha-2.
+        # Country code of the user. For details, see ISO 3166-1 alpha-2.
         self._usage_country_code: Optional[str] = None
         # Display name of the user.
         self._user_display_name: Optional[str] = None
         # Calling user's ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
         self._user_id: Optional[str] = None
-        # UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user's SIP Address, and can be same as user's e-mail address.
+        # The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         self._user_principal_name: Optional[str] = None
     
     @staticmethod
@@ -231,7 +231,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @property
     def currency(self,) -> Optional[str]:
         """
-        Gets the currency property value. Type of currency used to calculate the cost of the call (ISO 4217).
+        Gets the currency property value. Type of currency used to calculate the cost of the call. For details, see ISO 4217.
         Returns: Optional[str]
         """
         return self._currency
@@ -239,7 +239,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @currency.setter
     def currency(self,value: Optional[str] = None) -> None:
         """
-        Sets the currency property value. Type of currency used to calculate the cost of the call (ISO 4217).
+        Sets the currency property value. Type of currency used to calculate the cost of the call. For details, see ISO 4217.
         Args:
             value: Value to set for the currency property.
         """
@@ -258,7 +258,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the destinationContext property value. Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user's location.
         Args:
-            value: Value to set for the destinationContext property.
+            value: Value to set for the destination_context property.
         """
         self._destination_context = value
     
@@ -275,7 +275,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the destinationName property value. Country or region dialed.
         Args:
-            value: Value to set for the destinationName property.
+            value: Value to set for the destination_name property.
         """
         self._destination_name = value
     
@@ -309,7 +309,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. Call end time.
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -319,30 +319,30 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "call_duration_source": lambda n : setattr(self, 'call_duration_source', n.get_enum_value(pstn_call_duration_source.PstnCallDurationSource)),
-            "callee_number": lambda n : setattr(self, 'callee_number', n.get_str_value()),
-            "caller_number": lambda n : setattr(self, 'caller_number', n.get_str_value()),
-            "call_id": lambda n : setattr(self, 'call_id', n.get_str_value()),
-            "call_type": lambda n : setattr(self, 'call_type', n.get_str_value()),
+            "calleeNumber": lambda n : setattr(self, 'callee_number', n.get_str_value()),
+            "callerNumber": lambda n : setattr(self, 'caller_number', n.get_str_value()),
+            "callDurationSource": lambda n : setattr(self, 'call_duration_source', n.get_enum_value(pstn_call_duration_source.PstnCallDurationSource)),
+            "callId": lambda n : setattr(self, 'call_id', n.get_str_value()),
+            "callType": lambda n : setattr(self, 'call_type', n.get_str_value()),
             "charge": lambda n : setattr(self, 'charge', n.get_float_value()),
-            "conference_id": lambda n : setattr(self, 'conference_id', n.get_str_value()),
-            "connection_charge": lambda n : setattr(self, 'connection_charge', n.get_float_value()),
+            "conferenceId": lambda n : setattr(self, 'conference_id', n.get_str_value()),
+            "connectionCharge": lambda n : setattr(self, 'connection_charge', n.get_float_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_str_value()),
-            "destination_context": lambda n : setattr(self, 'destination_context', n.get_str_value()),
-            "destination_name": lambda n : setattr(self, 'destination_name', n.get_str_value()),
+            "destinationContext": lambda n : setattr(self, 'destination_context', n.get_str_value()),
+            "destinationName": lambda n : setattr(self, 'destination_name', n.get_str_value()),
             "duration": lambda n : setattr(self, 'duration', n.get_int_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "inventory_type": lambda n : setattr(self, 'inventory_type', n.get_str_value()),
-            "license_capability": lambda n : setattr(self, 'license_capability', n.get_str_value()),
+            "inventoryType": lambda n : setattr(self, 'inventory_type', n.get_str_value()),
+            "licenseCapability": lambda n : setattr(self, 'license_capability', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
-            "tenant_country_code": lambda n : setattr(self, 'tenant_country_code', n.get_str_value()),
-            "usage_country_code": lambda n : setattr(self, 'usage_country_code', n.get_str_value()),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "tenantCountryCode": lambda n : setattr(self, 'tenant_country_code', n.get_str_value()),
+            "usageCountryCode": lambda n : setattr(self, 'usage_country_code', n.get_str_value()),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -376,7 +376,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the inventoryType property value. User's phone number type, such as a service of toll-free number.
         Args:
-            value: Value to set for the inventoryType property.
+            value: Value to set for the inventory_type property.
         """
         self._inventory_type = value
     
@@ -393,7 +393,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the licenseCapability property value. The license used for the call.
         Args:
-            value: Value to set for the licenseCapability property.
+            value: Value to set for the license_capability property.
         """
         self._license_capability = value
     
@@ -410,7 +410,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -439,9 +439,9 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_enum_value("callDurationSource", self.call_duration_source)
         writer.write_str_value("calleeNumber", self.callee_number)
         writer.write_str_value("callerNumber", self.caller_number)
+        writer.write_enum_value("callDurationSource", self.call_duration_source)
         writer.write_str_value("callId", self.call_id)
         writer.write_str_value("callType", self.call_type)
         writer.write_float_value("charge", self.charge)
@@ -478,14 +478,14 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. Call start time.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
     @property
     def tenant_country_code(self,) -> Optional[str]:
         """
-        Gets the tenantCountryCode property value. Country code of the tenant, ISO 3166-1 alpha-2.
+        Gets the tenantCountryCode property value. Country code of the tenant. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._tenant_country_code
@@ -493,16 +493,16 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @tenant_country_code.setter
     def tenant_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the tenantCountryCode property value. Country code of the tenant, ISO 3166-1 alpha-2.
+        Sets the tenantCountryCode property value. Country code of the tenant. For details, see ISO 3166-1 alpha-2.
         Args:
-            value: Value to set for the tenantCountryCode property.
+            value: Value to set for the tenant_country_code property.
         """
         self._tenant_country_code = value
     
     @property
     def usage_country_code(self,) -> Optional[str]:
         """
-        Gets the usageCountryCode property value. Country code of the user, ISO 3166-1 alpha-2.
+        Gets the usageCountryCode property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Returns: Optional[str]
         """
         return self._usage_country_code
@@ -510,9 +510,9 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @usage_country_code.setter
     def usage_country_code(self,value: Optional[str] = None) -> None:
         """
-        Sets the usageCountryCode property value. Country code of the user, ISO 3166-1 alpha-2.
+        Sets the usageCountryCode property value. Country code of the user. For details, see ISO 3166-1 alpha-2.
         Args:
-            value: Value to set for the usageCountryCode property.
+            value: Value to set for the usage_country_code property.
         """
         self._usage_country_code = value
     
@@ -529,7 +529,7 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the userDisplayName property value. Display name of the user.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -546,14 +546,14 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. Calling user's ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucap_in, ucap_out).
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
     @property
     def user_principal_name(self,) -> Optional[str]:
         """
-        Gets the userPrincipalName property value. UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user's SIP Address, and can be same as user's e-mail address.
+        Gets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Returns: Optional[str]
         """
         return self._user_principal_name
@@ -561,9 +561,9 @@ class PstnCallLogRow(AdditionalDataHolder, Parsable):
     @user_principal_name.setter
     def user_principal_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the userPrincipalName property value. UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user's SIP Address, and can be same as user's e-mail address.
+        Sets the userPrincipalName property value. The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user's SIP address, and can be same as the user's e-mail address.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

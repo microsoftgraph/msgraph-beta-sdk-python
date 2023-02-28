@@ -57,9 +57,9 @@ class LoggedOnUser(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_log_on_date_time": lambda n : setattr(self, 'last_log_on_date_time', n.get_datetime_value()),
+            "lastLogOnDateTime": lambda n : setattr(self, 'last_log_on_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         return fields
     
@@ -76,7 +76,7 @@ class LoggedOnUser(AdditionalDataHolder, Parsable):
         """
         Sets the lastLogOnDateTime property value. Date time when user logs on
         Args:
-            value: Value to set for the lastLogOnDateTime property.
+            value: Value to set for the last_log_on_date_time property.
         """
         self._last_log_on_date_time = value
     
@@ -93,7 +93,7 @@ class LoggedOnUser(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -123,7 +123,7 @@ class LoggedOnUser(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. User id
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

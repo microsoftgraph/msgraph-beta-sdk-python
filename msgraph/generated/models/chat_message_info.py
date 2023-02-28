@@ -40,7 +40,7 @@ class ChatMessageInfo(entity.Entity):
         # Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.
         self._event_detail: Optional[event_message_detail.EventMessageDetail] = None
         # Information about the sender of the message.
-        self._from_escaped: Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet] = None
+        self._from_: Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet] = None
         # If set to true, the original message has been deleted.
         self._is_deleted: Optional[bool] = None
         # The messageType property
@@ -61,7 +61,7 @@ class ChatMessageInfo(entity.Entity):
         """
         Sets the createdDateTime property value. Date time object representing the time at which message was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -90,26 +90,26 @@ class ChatMessageInfo(entity.Entity):
         """
         Sets the eventDetail property value. Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.
         Args:
-            value: Value to set for the eventDetail property.
+            value: Value to set for the event_detail property.
         """
         self._event_detail = value
     
     @property
-    def from_escaped(self,) -> Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet]:
+    def from_(self,) -> Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet]:
         """
         Gets the from property value. Information about the sender of the message.
         Returns: Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet]
         """
-        return self._from_escaped
+        return self._from_
     
-    @from_escaped.setter
-    def from_escaped(self,value: Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet] = None) -> None:
+    @from_.setter
+    def from_(self,value: Optional[chat_message_from_identity_set.ChatMessageFromIdentitySet] = None) -> None:
         """
         Sets the from property value. Information about the sender of the message.
         Args:
-            value: Value to set for the from_escaped property.
+            value: Value to set for the from_ property.
         """
-        self._from_escaped = value
+        self._from_ = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -118,11 +118,11 @@ class ChatMessageInfo(entity.Entity):
         """
         fields = {
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "event_detail": lambda n : setattr(self, 'event_detail', n.get_object_value(event_message_detail.EventMessageDetail)),
-            "from": lambda n : setattr(self, 'from_escaped', n.get_object_value(chat_message_from_identity_set.ChatMessageFromIdentitySet)),
-            "is_deleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
-            "message_type": lambda n : setattr(self, 'message_type', n.get_enum_value(chat_message_type.ChatMessageType)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "eventDetail": lambda n : setattr(self, 'event_detail', n.get_object_value(event_message_detail.EventMessageDetail)),
+            "from": lambda n : setattr(self, 'from_', n.get_object_value(chat_message_from_identity_set.ChatMessageFromIdentitySet)),
+            "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
+            "messageType": lambda n : setattr(self, 'message_type', n.get_enum_value(chat_message_type.ChatMessageType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -141,7 +141,7 @@ class ChatMessageInfo(entity.Entity):
         """
         Sets the isDeleted property value. If set to true, the original message has been deleted.
         Args:
-            value: Value to set for the isDeleted property.
+            value: Value to set for the is_deleted property.
         """
         self._is_deleted = value
     
@@ -158,7 +158,7 @@ class ChatMessageInfo(entity.Entity):
         """
         Sets the messageType property value. The messageType property
         Args:
-            value: Value to set for the messageType property.
+            value: Value to set for the message_type property.
         """
         self._message_type = value
     
@@ -174,7 +174,7 @@ class ChatMessageInfo(entity.Entity):
         writer.write_object_value("body", self.body)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("eventDetail", self.event_detail)
-        writer.write_object_value("from", self.from_escaped)
+        writer.write_object_value("from", self.from_)
         writer.write_bool_value("isDeleted", self.is_deleted)
         writer.write_enum_value("messageType", self.message_type)
     

@@ -88,7 +88,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the currentValue property value. Current value of setting on device
         Args:
-            value: Value to set for the currentValue property.
+            value: Value to set for the current_value property.
         """
         self._current_value = value
     
@@ -105,7 +105,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the errorCode property value. Error code for the setting
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -122,7 +122,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the errorDescription property value. Error description
         Args:
-            value: Value to set for the errorDescription property.
+            value: Value to set for the error_description property.
         """
         self._error_description = value
     
@@ -132,20 +132,20 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "current_value": lambda n : setattr(self, 'current_value', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "error_description": lambda n : setattr(self, 'error_description', n.get_str_value()),
-            "instance_display_name": lambda n : setattr(self, 'instance_display_name', n.get_str_value()),
+            "currentValue": lambda n : setattr(self, 'current_value', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "errorDescription": lambda n : setattr(self, 'error_description', n.get_str_value()),
+            "instanceDisplayName": lambda n : setattr(self, 'instance_display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "setting": lambda n : setattr(self, 'setting', n.get_str_value()),
-            "setting_instance_id": lambda n : setattr(self, 'setting_instance_id', n.get_str_value()),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "settingInstanceId": lambda n : setattr(self, 'setting_instance_id', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
             "sources": lambda n : setattr(self, 'sources', n.get_collection_of_object_values(setting_source.SettingSource)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(compliance_status.ComplianceStatus)),
-            "user_email": lambda n : setattr(self, 'user_email', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userEmail": lambda n : setattr(self, 'user_email', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -162,7 +162,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the instanceDisplayName property value. Name of setting instance that is being reported.
         Args:
-            value: Value to set for the instanceDisplayName property.
+            value: Value to set for the instance_display_name property.
         """
         self._instance_display_name = value
     
@@ -179,7 +179,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -237,7 +237,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the settingInstanceId property value. SettingInstanceId
         Args:
-            value: Value to set for the settingInstanceId property.
+            value: Value to set for the setting_instance_id property.
         """
         self._setting_instance_id = value
     
@@ -254,7 +254,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the settingName property value. Localized/user friendly setting name that is being reported
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     
@@ -305,7 +305,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the userEmail property value. UserEmail
         Args:
-            value: Value to set for the userEmail property.
+            value: Value to set for the user_email property.
         """
         self._user_email = value
     
@@ -322,7 +322,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the userId property value. UserId
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -339,7 +339,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the userName property value. UserName
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -356,7 +356,7 @@ class ManagedDeviceMobileAppConfigurationSettingState(AdditionalDataHolder, Pars
         """
         Sets the userPrincipalName property value. UserPrincipalName.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

@@ -60,8 +60,8 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable)
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "os_edition_types": lambda n : setattr(self, 'os_edition_types', n.get_collection_of_enum_values(windows10_edition_type.Windows10EditionType)),
-            "rule_type": lambda n : setattr(self, 'rule_type', n.get_enum_value(device_management_applicability_rule_type.DeviceManagementApplicabilityRuleType)),
+            "osEditionTypes": lambda n : setattr(self, 'os_edition_types', n.get_collection_of_enum_values(windows10_edition_type.Windows10EditionType)),
+            "ruleType": lambda n : setattr(self, 'rule_type', n.get_enum_value(device_management_applicability_rule_type.DeviceManagementApplicabilityRuleType)),
         }
         return fields
     
@@ -95,7 +95,7 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable)
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,7 +112,7 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable)
         """
         Sets the osEditionTypes property value. Applicability rule OS edition type.
         Args:
-            value: Value to set for the osEditionTypes property.
+            value: Value to set for the os_edition_types property.
         """
         self._os_edition_types = value
     
@@ -129,7 +129,7 @@ class DeviceManagementApplicabilityRuleOsEdition(AdditionalDataHolder, Parsable)
         """
         Sets the ruleType property value. Supported Applicability rule types for Device Configuration
         Args:
-            value: Value to set for the ruleType property.
+            value: Value to set for the rule_type property.
         """
         self._rule_type = value
     

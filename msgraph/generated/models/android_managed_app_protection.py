@@ -26,7 +26,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the allowedAndroidDeviceManufacturers property value. Semicolon seperated list of device manufacturers allowed, as a string, for the managed app to work.
         Args:
-            value: Value to set for the allowedAndroidDeviceManufacturers property.
+            value: Value to set for the allowed_android_device_manufacturers property.
         """
         self._allowed_android_device_manufacturers = value
     
@@ -43,7 +43,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the allowedAndroidDeviceModels property value. List of device models allowed, as a string, for the managed app to work.
         Args:
-            value: Value to set for the allowedAndroidDeviceModels property.
+            value: Value to set for the allowed_android_device_models property.
         """
         self._allowed_android_device_models = value
     
@@ -60,7 +60,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfAndroidDeviceManufacturerNotAllowed property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfAndroidDeviceManufacturerNotAllowed property.
+            value: Value to set for the app_action_if_android_device_manufacturer_not_allowed property.
         """
         self._app_action_if_android_device_manufacturer_not_allowed = value
     
@@ -77,7 +77,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfAndroidDeviceModelNotAllowed property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfAndroidDeviceModelNotAllowed property.
+            value: Value to set for the app_action_if_android_device_model_not_allowed property.
         """
         self._app_action_if_android_device_model_not_allowed = value
     
@@ -94,7 +94,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfAndroidSafetyNetAppsVerificationFailed property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfAndroidSafetyNetAppsVerificationFailed property.
+            value: Value to set for the app_action_if_android_safety_net_apps_verification_failed property.
         """
         self._app_action_if_android_safety_net_apps_verification_failed = value
     
@@ -111,7 +111,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfAndroidSafetyNetDeviceAttestationFailed property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfAndroidSafetyNetDeviceAttestationFailed property.
+            value: Value to set for the app_action_if_android_safety_net_device_attestation_failed property.
         """
         self._app_action_if_android_safety_net_device_attestation_failed = value
     
@@ -128,7 +128,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfDeviceLockNotSet property value. An admin initiated action to be applied on a managed app.
         Args:
-            value: Value to set for the appActionIfDeviceLockNotSet property.
+            value: Value to set for the app_action_if_device_lock_not_set property.
         """
         self._app_action_if_device_lock_not_set = value
     
@@ -145,7 +145,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfDevicePasscodeComplexityLessThanHigh property value. If the device does not have a passcode of high complexity or higher, trigger the stored action.
         Args:
-            value: Value to set for the appActionIfDevicePasscodeComplexityLessThanHigh property.
+            value: Value to set for the app_action_if_device_passcode_complexity_less_than_high property.
         """
         self._app_action_if_device_passcode_complexity_less_than_high = value
     
@@ -162,7 +162,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfDevicePasscodeComplexityLessThanLow property value. If the device does not have a passcode of low complexity or higher, trigger the stored action.
         Args:
-            value: Value to set for the appActionIfDevicePasscodeComplexityLessThanLow property.
+            value: Value to set for the app_action_if_device_passcode_complexity_less_than_low property.
         """
         self._app_action_if_device_passcode_complexity_less_than_low = value
     
@@ -179,7 +179,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the appActionIfDevicePasscodeComplexityLessThanMedium property value. If the device does not have a passcode of medium complexity or higher, trigger the stored action.
         Args:
-            value: Value to set for the appActionIfDevicePasscodeComplexityLessThanMedium property.
+            value: Value to set for the app_action_if_device_passcode_complexity_less_than_medium property.
         """
         self._app_action_if_device_passcode_complexity_less_than_medium = value
     
@@ -196,7 +196,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the approvedKeyboards property value. If Keyboard Restriction is enabled, only keyboards in this approved list will be allowed. A key should be Android package id for a keyboard and value should be a friendly name
         Args:
-            value: Value to set for the approvedKeyboards property.
+            value: Value to set for the approved_keyboards property.
         """
         self._approved_keyboards = value
     
@@ -230,7 +230,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the biometricAuthenticationBlocked property value. Indicates whether use of the biometric authentication is allowed in place of a pin if PinRequired is set to True.
         Args:
-            value: Value to set for the biometricAuthenticationBlocked property.
+            value: Value to set for the biometric_authentication_blocked property.
         """
         self._biometric_authentication_blocked = value
     
@@ -247,7 +247,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the blockAfterCompanyPortalUpdateDeferralInDays property value. Maximum number of days Company Portal update can be deferred on the device or app access will be blocked.
         Args:
-            value: Value to set for the blockAfterCompanyPortalUpdateDeferralInDays property.
+            value: Value to set for the block_after_company_portal_update_deferral_in_days property.
         """
         self._block_after_company_portal_update_deferral_in_days = value
     
@@ -264,7 +264,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the connectToVpnOnLaunch property value. Whether the app should connect to the configured VPN on launch.
         Args:
-            value: Value to set for the connectToVpnOnLaunch property.
+            value: Value to set for the connect_to_vpn_on_launch property.
         """
         self._connect_to_vpn_on_launch = value
     
@@ -342,14 +342,14 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         self._minimum_wipe_patch_version: Optional[str] = None
         # Require user to apply Class 3 Biometrics on their Android device.
         self._require_class3_biometrics: Optional[bool] = None
+        # A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
+        self._require_pin_after_biometric_change: Optional[bool] = None
         # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
         self._required_android_safety_net_apps_verification_type: Optional[android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType] = None
         # An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
         self._required_android_safety_net_device_attestation_type: Optional[android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType] = None
         # An admin enforced Android SafetyNet evaluation type requirement on a managed app.
         self._required_android_safety_net_evaluation_type: Optional[android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType] = None
-        # A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
-        self._require_pin_after_biometric_change: Optional[bool] = None
         # Indicates whether a managed user can take screen captures of managed apps
         self._screen_capture_blocked: Optional[bool] = None
         # Maximum number of days Company Portal update can be deferred on the device or the user will receive the warning
@@ -382,7 +382,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the customBrowserDisplayName property value. Friendly name of the preferred custom browser to open weblink on Android.
         Args:
-            value: Value to set for the customBrowserDisplayName property.
+            value: Value to set for the custom_browser_display_name property.
         """
         self._custom_browser_display_name = value
     
@@ -399,7 +399,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the customBrowserPackageId property value. Unique identifier of a custom browser to open weblink on Android.
         Args:
-            value: Value to set for the customBrowserPackageId property.
+            value: Value to set for the custom_browser_package_id property.
         """
         self._custom_browser_package_id = value
     
@@ -416,7 +416,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the customDialerAppDisplayName property value. Friendly name of a custom dialer app to click-to-open a phone number on Android.
         Args:
-            value: Value to set for the customDialerAppDisplayName property.
+            value: Value to set for the custom_dialer_app_display_name property.
         """
         self._custom_dialer_app_display_name = value
     
@@ -433,7 +433,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the customDialerAppPackageId property value. PackageId of a custom dialer app to click-to-open a phone number on Android.
         Args:
-            value: Value to set for the customDialerAppPackageId property.
+            value: Value to set for the custom_dialer_app_package_id property.
         """
         self._custom_dialer_app_package_id = value
     
@@ -450,7 +450,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the deployedAppCount property value. Count of apps to which the current policy is deployed.
         Args:
-            value: Value to set for the deployedAppCount property.
+            value: Value to set for the deployed_app_count property.
         """
         self._deployed_app_count = value
     
@@ -467,7 +467,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the deploymentSummary property value. Navigation property to deployment summary of the configuration.
         Args:
-            value: Value to set for the deploymentSummary property.
+            value: Value to set for the deployment_summary property.
         """
         self._deployment_summary = value
     
@@ -484,7 +484,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the deviceLockRequired property value. Defines if any kind of lock must be required on android device
         Args:
-            value: Value to set for the deviceLockRequired property.
+            value: Value to set for the device_lock_required property.
         """
         self._device_lock_required = value
     
@@ -501,7 +501,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the disableAppEncryptionIfDeviceEncryptionIsEnabled property value. When this setting is enabled, app level encryption is disabled if device level encryption is enabled
         Args:
-            value: Value to set for the disableAppEncryptionIfDeviceEncryptionIsEnabled property.
+            value: Value to set for the disable_app_encryption_if_device_encryption_is_enabled property.
         """
         self._disable_app_encryption_if_device_encryption_is_enabled = value
     
@@ -518,7 +518,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the encryptAppData property value. Indicates whether application data for managed apps should be encrypted
         Args:
-            value: Value to set for the encryptAppData property.
+            value: Value to set for the encrypt_app_data property.
         """
         self._encrypt_app_data = value
     
@@ -535,7 +535,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the exemptedAppPackages property value. App packages in this list will be exempt from the policy and will be able to receive data from managed apps.
         Args:
-            value: Value to set for the exemptedAppPackages property.
+            value: Value to set for the exempted_app_packages property.
         """
         self._exempted_app_packages = value
     
@@ -552,7 +552,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the fingerprintAndBiometricEnabled property value. If null, this setting will be ignored. If false both fingerprints and biometrics will not be enabled. If true, both fingerprints and biometrics will be enabled.
         Args:
-            value: Value to set for the fingerprintAndBiometricEnabled property.
+            value: Value to set for the fingerprint_and_biometric_enabled property.
         """
         self._fingerprint_and_biometric_enabled = value
     
@@ -562,47 +562,47 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_android_device_manufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
-            "allowed_android_device_models": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
-            "app_action_if_android_device_manufacturer_not_allowed": lambda n : setattr(self, 'app_action_if_android_device_manufacturer_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_android_device_model_not_allowed": lambda n : setattr(self, 'app_action_if_android_device_model_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_android_safety_net_apps_verification_failed": lambda n : setattr(self, 'app_action_if_android_safety_net_apps_verification_failed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_android_safety_net_device_attestation_failed": lambda n : setattr(self, 'app_action_if_android_safety_net_device_attestation_failed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_device_lock_not_set": lambda n : setattr(self, 'app_action_if_device_lock_not_set', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_device_passcode_complexity_less_than_high": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_device_passcode_complexity_less_than_low": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "app_action_if_device_passcode_complexity_less_than_medium": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_medium', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
-            "approved_keyboards": lambda n : setattr(self, 'approved_keyboards', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "allowedAndroidDeviceManufacturers": lambda n : setattr(self, 'allowed_android_device_manufacturers', n.get_str_value()),
+            "allowedAndroidDeviceModels": lambda n : setattr(self, 'allowed_android_device_models', n.get_collection_of_primitive_values(str)),
+            "approvedKeyboards": lambda n : setattr(self, 'approved_keyboards', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
-            "biometric_authentication_blocked": lambda n : setattr(self, 'biometric_authentication_blocked', n.get_bool_value()),
-            "block_after_company_portal_update_deferral_in_days": lambda n : setattr(self, 'block_after_company_portal_update_deferral_in_days', n.get_int_value()),
-            "connect_to_vpn_on_launch": lambda n : setattr(self, 'connect_to_vpn_on_launch', n.get_bool_value()),
-            "custom_browser_display_name": lambda n : setattr(self, 'custom_browser_display_name', n.get_str_value()),
-            "custom_browser_package_id": lambda n : setattr(self, 'custom_browser_package_id', n.get_str_value()),
-            "custom_dialer_app_display_name": lambda n : setattr(self, 'custom_dialer_app_display_name', n.get_str_value()),
-            "custom_dialer_app_package_id": lambda n : setattr(self, 'custom_dialer_app_package_id', n.get_str_value()),
-            "deployed_app_count": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
-            "deployment_summary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary)),
-            "device_lock_required": lambda n : setattr(self, 'device_lock_required', n.get_bool_value()),
-            "disable_app_encryption_if_device_encryption_is_enabled": lambda n : setattr(self, 'disable_app_encryption_if_device_encryption_is_enabled', n.get_bool_value()),
-            "encrypt_app_data": lambda n : setattr(self, 'encrypt_app_data', n.get_bool_value()),
-            "exempted_app_packages": lambda n : setattr(self, 'exempted_app_packages', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "fingerprint_and_biometric_enabled": lambda n : setattr(self, 'fingerprint_and_biometric_enabled', n.get_bool_value()),
-            "keyboards_restricted": lambda n : setattr(self, 'keyboards_restricted', n.get_bool_value()),
-            "minimum_required_company_portal_version": lambda n : setattr(self, 'minimum_required_company_portal_version', n.get_str_value()),
-            "minimum_required_patch_version": lambda n : setattr(self, 'minimum_required_patch_version', n.get_str_value()),
-            "minimum_warning_company_portal_version": lambda n : setattr(self, 'minimum_warning_company_portal_version', n.get_str_value()),
-            "minimum_warning_patch_version": lambda n : setattr(self, 'minimum_warning_patch_version', n.get_str_value()),
-            "minimum_wipe_company_portal_version": lambda n : setattr(self, 'minimum_wipe_company_portal_version', n.get_str_value()),
-            "minimum_wipe_patch_version": lambda n : setattr(self, 'minimum_wipe_patch_version', n.get_str_value()),
-            "require_class3_biometrics": lambda n : setattr(self, 'require_class3_biometrics', n.get_bool_value()),
-            "required_android_safety_net_apps_verification_type": lambda n : setattr(self, 'required_android_safety_net_apps_verification_type', n.get_enum_value(android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType)),
-            "required_android_safety_net_device_attestation_type": lambda n : setattr(self, 'required_android_safety_net_device_attestation_type', n.get_enum_value(android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType)),
-            "required_android_safety_net_evaluation_type": lambda n : setattr(self, 'required_android_safety_net_evaluation_type', n.get_enum_value(android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType)),
-            "require_pin_after_biometric_change": lambda n : setattr(self, 'require_pin_after_biometric_change', n.get_bool_value()),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "warn_after_company_portal_update_deferral_in_days": lambda n : setattr(self, 'warn_after_company_portal_update_deferral_in_days', n.get_int_value()),
-            "wipe_after_company_portal_update_deferral_in_days": lambda n : setattr(self, 'wipe_after_company_portal_update_deferral_in_days', n.get_int_value()),
+            "appActionIfAndroidDeviceManufacturerNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_manufacturer_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfAndroidDeviceModelNotAllowed": lambda n : setattr(self, 'app_action_if_android_device_model_not_allowed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfAndroidSafetyNetAppsVerificationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_apps_verification_failed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfAndroidSafetyNetDeviceAttestationFailed": lambda n : setattr(self, 'app_action_if_android_safety_net_device_attestation_failed', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfDeviceLockNotSet": lambda n : setattr(self, 'app_action_if_device_lock_not_set', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfDevicePasscodeComplexityLessThanHigh": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_high', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfDevicePasscodeComplexityLessThanLow": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_low', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "appActionIfDevicePasscodeComplexityLessThanMedium": lambda n : setattr(self, 'app_action_if_device_passcode_complexity_less_than_medium', n.get_enum_value(managed_app_remediation_action.ManagedAppRemediationAction)),
+            "biometricAuthenticationBlocked": lambda n : setattr(self, 'biometric_authentication_blocked', n.get_bool_value()),
+            "blockAfterCompanyPortalUpdateDeferralInDays": lambda n : setattr(self, 'block_after_company_portal_update_deferral_in_days', n.get_int_value()),
+            "connectToVpnOnLaunch": lambda n : setattr(self, 'connect_to_vpn_on_launch', n.get_bool_value()),
+            "customBrowserDisplayName": lambda n : setattr(self, 'custom_browser_display_name', n.get_str_value()),
+            "customBrowserPackageId": lambda n : setattr(self, 'custom_browser_package_id', n.get_str_value()),
+            "customDialerAppDisplayName": lambda n : setattr(self, 'custom_dialer_app_display_name', n.get_str_value()),
+            "customDialerAppPackageId": lambda n : setattr(self, 'custom_dialer_app_package_id', n.get_str_value()),
+            "deployedAppCount": lambda n : setattr(self, 'deployed_app_count', n.get_int_value()),
+            "deploymentSummary": lambda n : setattr(self, 'deployment_summary', n.get_object_value(managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary)),
+            "deviceLockRequired": lambda n : setattr(self, 'device_lock_required', n.get_bool_value()),
+            "disableAppEncryptionIfDeviceEncryptionIsEnabled": lambda n : setattr(self, 'disable_app_encryption_if_device_encryption_is_enabled', n.get_bool_value()),
+            "encryptAppData": lambda n : setattr(self, 'encrypt_app_data', n.get_bool_value()),
+            "exemptedAppPackages": lambda n : setattr(self, 'exempted_app_packages', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "fingerprintAndBiometricEnabled": lambda n : setattr(self, 'fingerprint_and_biometric_enabled', n.get_bool_value()),
+            "keyboardsRestricted": lambda n : setattr(self, 'keyboards_restricted', n.get_bool_value()),
+            "minimumRequiredCompanyPortalVersion": lambda n : setattr(self, 'minimum_required_company_portal_version', n.get_str_value()),
+            "minimumRequiredPatchVersion": lambda n : setattr(self, 'minimum_required_patch_version', n.get_str_value()),
+            "minimumWarningCompanyPortalVersion": lambda n : setattr(self, 'minimum_warning_company_portal_version', n.get_str_value()),
+            "minimumWarningPatchVersion": lambda n : setattr(self, 'minimum_warning_patch_version', n.get_str_value()),
+            "minimumWipeCompanyPortalVersion": lambda n : setattr(self, 'minimum_wipe_company_portal_version', n.get_str_value()),
+            "minimumWipePatchVersion": lambda n : setattr(self, 'minimum_wipe_patch_version', n.get_str_value()),
+            "requiredAndroidSafetyNetAppsVerificationType": lambda n : setattr(self, 'required_android_safety_net_apps_verification_type', n.get_enum_value(android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType)),
+            "requiredAndroidSafetyNetDeviceAttestationType": lambda n : setattr(self, 'required_android_safety_net_device_attestation_type', n.get_enum_value(android_managed_app_safety_net_device_attestation_type.AndroidManagedAppSafetyNetDeviceAttestationType)),
+            "requiredAndroidSafetyNetEvaluationType": lambda n : setattr(self, 'required_android_safety_net_evaluation_type', n.get_enum_value(android_managed_app_safety_net_evaluation_type.AndroidManagedAppSafetyNetEvaluationType)),
+            "requireClass3Biometrics": lambda n : setattr(self, 'require_class3_biometrics', n.get_bool_value()),
+            "requirePinAfterBiometricChange": lambda n : setattr(self, 'require_pin_after_biometric_change', n.get_bool_value()),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "warnAfterCompanyPortalUpdateDeferralInDays": lambda n : setattr(self, 'warn_after_company_portal_update_deferral_in_days', n.get_int_value()),
+            "wipeAfterCompanyPortalUpdateDeferralInDays": lambda n : setattr(self, 'wipe_after_company_portal_update_deferral_in_days', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -621,7 +621,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the keyboardsRestricted property value. Indicates if keyboard restriction is enabled. If enabled list of approved keyboards must be provided as well.
         Args:
-            value: Value to set for the keyboardsRestricted property.
+            value: Value to set for the keyboards_restricted property.
         """
         self._keyboards_restricted = value
     
@@ -638,7 +638,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the minimumRequiredCompanyPortalVersion property value. Minimum version of the Company portal that must be installed on the device or app access will be blocked
         Args:
-            value: Value to set for the minimumRequiredCompanyPortalVersion property.
+            value: Value to set for the minimum_required_company_portal_version property.
         """
         self._minimum_required_company_portal_version = value
     
@@ -655,7 +655,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the minimumRequiredPatchVersion property value. Define the oldest required Android security patch level a user can have to gain secure access to the app.
         Args:
-            value: Value to set for the minimumRequiredPatchVersion property.
+            value: Value to set for the minimum_required_patch_version property.
         """
         self._minimum_required_patch_version = value
     
@@ -672,7 +672,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the minimumWarningCompanyPortalVersion property value. Minimum version of the Company portal that must be installed on the device or the user will receive a warning
         Args:
-            value: Value to set for the minimumWarningCompanyPortalVersion property.
+            value: Value to set for the minimum_warning_company_portal_version property.
         """
         self._minimum_warning_company_portal_version = value
     
@@ -689,7 +689,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the minimumWarningPatchVersion property value. Define the oldest recommended Android security patch level a user can have for secure access to the app.
         Args:
-            value: Value to set for the minimumWarningPatchVersion property.
+            value: Value to set for the minimum_warning_patch_version property.
         """
         self._minimum_warning_patch_version = value
     
@@ -706,7 +706,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the minimumWipeCompanyPortalVersion property value. Minimum version of the Company portal that must be installed on the device or the company data on the app will be wiped
         Args:
-            value: Value to set for the minimumWipeCompanyPortalVersion property.
+            value: Value to set for the minimum_wipe_company_portal_version property.
         """
         self._minimum_wipe_company_portal_version = value
     
@@ -723,7 +723,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the minimumWipePatchVersion property value. Android security patch level  less than or equal to the specified value will wipe the managed app and the associated company data.
         Args:
-            value: Value to set for the minimumWipePatchVersion property.
+            value: Value to set for the minimum_wipe_patch_version property.
         """
         self._minimum_wipe_patch_version = value
     
@@ -740,9 +740,26 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the requireClass3Biometrics property value. Require user to apply Class 3 Biometrics on their Android device.
         Args:
-            value: Value to set for the requireClass3Biometrics property.
+            value: Value to set for the require_class3_biometrics property.
         """
         self._require_class3_biometrics = value
+    
+    @property
+    def require_pin_after_biometric_change(self,) -> Optional[bool]:
+        """
+        Gets the requirePinAfterBiometricChange property value. A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
+        Returns: Optional[bool]
+        """
+        return self._require_pin_after_biometric_change
+    
+    @require_pin_after_biometric_change.setter
+    def require_pin_after_biometric_change(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the requirePinAfterBiometricChange property value. A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
+        Args:
+            value: Value to set for the require_pin_after_biometric_change property.
+        """
+        self._require_pin_after_biometric_change = value
     
     @property
     def required_android_safety_net_apps_verification_type(self,) -> Optional[android_managed_app_safety_net_apps_verification_type.AndroidManagedAppSafetyNetAppsVerificationType]:
@@ -757,7 +774,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the requiredAndroidSafetyNetAppsVerificationType property value. An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
         Args:
-            value: Value to set for the requiredAndroidSafetyNetAppsVerificationType property.
+            value: Value to set for the required_android_safety_net_apps_verification_type property.
         """
         self._required_android_safety_net_apps_verification_type = value
     
@@ -774,7 +791,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the requiredAndroidSafetyNetDeviceAttestationType property value. An admin enforced Android SafetyNet Device Attestation requirement on a managed app.
         Args:
-            value: Value to set for the requiredAndroidSafetyNetDeviceAttestationType property.
+            value: Value to set for the required_android_safety_net_device_attestation_type property.
         """
         self._required_android_safety_net_device_attestation_type = value
     
@@ -791,26 +808,9 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the requiredAndroidSafetyNetEvaluationType property value. An admin enforced Android SafetyNet evaluation type requirement on a managed app.
         Args:
-            value: Value to set for the requiredAndroidSafetyNetEvaluationType property.
+            value: Value to set for the required_android_safety_net_evaluation_type property.
         """
         self._required_android_safety_net_evaluation_type = value
-    
-    @property
-    def require_pin_after_biometric_change(self,) -> Optional[bool]:
-        """
-        Gets the requirePinAfterBiometricChange property value. A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
-        Returns: Optional[bool]
-        """
-        return self._require_pin_after_biometric_change
-    
-    @require_pin_after_biometric_change.setter
-    def require_pin_after_biometric_change(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the requirePinAfterBiometricChange property value. A PIN prompt will override biometric prompts if class 3 biometrics are updated on the device.
-        Args:
-            value: Value to set for the requirePinAfterBiometricChange property.
-        """
-        self._require_pin_after_biometric_change = value
     
     @property
     def screen_capture_blocked(self,) -> Optional[bool]:
@@ -825,7 +825,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the screenCaptureBlocked property value. Indicates whether a managed user can take screen captures of managed apps
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -840,6 +840,8 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         super().serialize(writer)
         writer.write_str_value("allowedAndroidDeviceManufacturers", self.allowed_android_device_manufacturers)
         writer.write_collection_of_primitive_values("allowedAndroidDeviceModels", self.allowed_android_device_models)
+        writer.write_collection_of_object_values("approvedKeyboards", self.approved_keyboards)
+        writer.write_collection_of_object_values("apps", self.apps)
         writer.write_enum_value("appActionIfAndroidDeviceManufacturerNotAllowed", self.app_action_if_android_device_manufacturer_not_allowed)
         writer.write_enum_value("appActionIfAndroidDeviceModelNotAllowed", self.app_action_if_android_device_model_not_allowed)
         writer.write_enum_value("appActionIfAndroidSafetyNetAppsVerificationFailed", self.app_action_if_android_safety_net_apps_verification_failed)
@@ -848,8 +850,6 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         writer.write_enum_value("appActionIfDevicePasscodeComplexityLessThanHigh", self.app_action_if_device_passcode_complexity_less_than_high)
         writer.write_enum_value("appActionIfDevicePasscodeComplexityLessThanLow", self.app_action_if_device_passcode_complexity_less_than_low)
         writer.write_enum_value("appActionIfDevicePasscodeComplexityLessThanMedium", self.app_action_if_device_passcode_complexity_less_than_medium)
-        writer.write_collection_of_object_values("approvedKeyboards", self.approved_keyboards)
-        writer.write_collection_of_object_values("apps", self.apps)
         writer.write_bool_value("biometricAuthenticationBlocked", self.biometric_authentication_blocked)
         writer.write_int_value("blockAfterCompanyPortalUpdateDeferralInDays", self.block_after_company_portal_update_deferral_in_days)
         writer.write_bool_value("connectToVpnOnLaunch", self.connect_to_vpn_on_launch)
@@ -871,10 +871,10 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         writer.write_str_value("minimumWarningPatchVersion", self.minimum_warning_patch_version)
         writer.write_str_value("minimumWipeCompanyPortalVersion", self.minimum_wipe_company_portal_version)
         writer.write_str_value("minimumWipePatchVersion", self.minimum_wipe_patch_version)
-        writer.write_bool_value("requireClass3Biometrics", self.require_class3_biometrics)
         writer.write_enum_value("requiredAndroidSafetyNetAppsVerificationType", self.required_android_safety_net_apps_verification_type)
         writer.write_enum_value("requiredAndroidSafetyNetDeviceAttestationType", self.required_android_safety_net_device_attestation_type)
         writer.write_enum_value("requiredAndroidSafetyNetEvaluationType", self.required_android_safety_net_evaluation_type)
+        writer.write_bool_value("requireClass3Biometrics", self.require_class3_biometrics)
         writer.write_bool_value("requirePinAfterBiometricChange", self.require_pin_after_biometric_change)
         writer.write_bool_value("screenCaptureBlocked", self.screen_capture_blocked)
         writer.write_int_value("warnAfterCompanyPortalUpdateDeferralInDays", self.warn_after_company_portal_update_deferral_in_days)
@@ -893,7 +893,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the warnAfterCompanyPortalUpdateDeferralInDays property value. Maximum number of days Company Portal update can be deferred on the device or the user will receive the warning
         Args:
-            value: Value to set for the warnAfterCompanyPortalUpdateDeferralInDays property.
+            value: Value to set for the warn_after_company_portal_update_deferral_in_days property.
         """
         self._warn_after_company_portal_update_deferral_in_days = value
     
@@ -910,7 +910,7 @@ class AndroidManagedAppProtection(targeted_managed_app_protection.TargetedManage
         """
         Sets the wipeAfterCompanyPortalUpdateDeferralInDays property value. Maximum number of days Company Portal update can be deferred on the device or the company data on the app will be wiped
         Args:
-            value: Value to set for the wipeAfterCompanyPortalUpdateDeferralInDays property.
+            value: Value to set for the wipe_after_company_portal_update_deferral_in_days property.
         """
         self._wipe_after_company_portal_update_deferral_in_days = value
     

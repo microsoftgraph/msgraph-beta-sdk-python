@@ -72,7 +72,7 @@ class InvitePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDateTime property value. The expirationDateTime property
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -82,14 +82,14 @@ class InvitePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_str_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(drive_recipient.DriveRecipient)),
-            "require_sign_in": lambda n : setattr(self, 'require_sign_in', n.get_bool_value()),
-            "retain_inherited_permissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
+            "requireSignIn": lambda n : setattr(self, 'require_sign_in', n.get_bool_value()),
+            "retainInheritedPermissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
             "roles": lambda n : setattr(self, 'roles', n.get_collection_of_primitive_values(str)),
-            "send_invitation": lambda n : setattr(self, 'send_invitation', n.get_bool_value()),
+            "sendInvitation": lambda n : setattr(self, 'send_invitation', n.get_bool_value()),
         }
         return fields
     
@@ -157,7 +157,7 @@ class InvitePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the requireSignIn property value. The requireSignIn property
         Args:
-            value: Value to set for the requireSignIn property.
+            value: Value to set for the require_sign_in property.
         """
         self._require_sign_in = value
     
@@ -174,7 +174,7 @@ class InvitePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the retainInheritedPermissions property value. The retainInheritedPermissions property
         Args:
-            value: Value to set for the retainInheritedPermissions property.
+            value: Value to set for the retain_inherited_permissions property.
         """
         self._retain_inherited_permissions = value
     
@@ -208,7 +208,7 @@ class InvitePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sendInvitation property value. The sendInvitation property
         Args:
-            value: Value to set for the sendInvitation property.
+            value: Value to set for the send_invitation property.
         """
         self._send_invitation = value
     

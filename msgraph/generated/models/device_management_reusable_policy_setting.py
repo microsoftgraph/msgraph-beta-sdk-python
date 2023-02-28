@@ -51,7 +51,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the createdDateTime property value. reusable setting creation date and time. This property is read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -97,7 +97,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the displayName property value. reusable setting display name supplied by user.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -107,14 +107,14 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "referencing_configuration_policies": lambda n : setattr(self, 'referencing_configuration_policies', n.get_collection_of_object_values(device_management_configuration_policy.DeviceManagementConfigurationPolicy)),
-            "referencing_configuration_policy_count": lambda n : setattr(self, 'referencing_configuration_policy_count', n.get_int_value()),
-            "setting_definition_id": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
-            "setting_instance": lambda n : setattr(self, 'setting_instance', n.get_object_value(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "referencingConfigurationPolicies": lambda n : setattr(self, 'referencing_configuration_policies', n.get_collection_of_object_values(device_management_configuration_policy.DeviceManagementConfigurationPolicy)),
+            "referencingConfigurationPolicyCount": lambda n : setattr(self, 'referencing_configuration_policy_count', n.get_int_value()),
+            "settingDefinitionId": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
+            "settingInstance": lambda n : setattr(self, 'setting_instance', n.get_object_value(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -134,7 +134,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. date and time when reusable setting was last modified. This property is read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -151,7 +151,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the referencingConfigurationPolicies property value. configuration policies referencing the current reusable setting. This property is read-only.
         Args:
-            value: Value to set for the referencingConfigurationPolicies property.
+            value: Value to set for the referencing_configuration_policies property.
         """
         self._referencing_configuration_policies = value
     
@@ -168,7 +168,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the referencingConfigurationPolicyCount property value. count of configuration policies referencing the current reusable setting. Valid values 0 to 2147483647. This property is read-only.
         Args:
-            value: Value to set for the referencingConfigurationPolicyCount property.
+            value: Value to set for the referencing_configuration_policy_count property.
         """
         self._referencing_configuration_policy_count = value
     
@@ -200,7 +200,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the settingDefinitionId property value. setting definition id associated with this reusable setting.
         Args:
-            value: Value to set for the settingDefinitionId property.
+            value: Value to set for the setting_definition_id property.
         """
         self._setting_definition_id = value
     
@@ -217,7 +217,7 @@ class DeviceManagementReusablePolicySetting(entity.Entity):
         """
         Sets the settingInstance property value. reusable setting configuration instance
         Args:
-            value: Value to set for the settingInstance property.
+            value: Value to set for the setting_instance property.
         """
         self._setting_instance = value
     

@@ -130,7 +130,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name of the rule. Does not need to be unique.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -147,7 +147,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the edgeTraversal property value. State Management Setting.
         Args:
-            value: Value to set for the edgeTraversal property.
+            value: Value to set for the edge_traversal property.
         """
         self._edge_traversal = value
     
@@ -164,7 +164,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the filePath property value. The full file path of an app that's affected by the firewall rule.
         Args:
-            value: Value to set for the filePath property.
+            value: Value to set for the file_path property.
         """
         self._file_path = value
     
@@ -176,21 +176,21 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(state_management_setting.StateManagementSetting)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "edge_traversal": lambda n : setattr(self, 'edge_traversal', n.get_enum_value(state_management_setting.StateManagementSetting)),
-            "file_path": lambda n : setattr(self, 'file_path', n.get_str_value()),
-            "interface_types": lambda n : setattr(self, 'interface_types', n.get_enum_value(windows_firewall_rule_interface_types.WindowsFirewallRuleInterfaceTypes)),
-            "local_address_ranges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_primitive_values(str)),
-            "local_port_ranges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_primitive_values(str)),
-            "local_user_authorizations": lambda n : setattr(self, 'local_user_authorizations', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "edgeTraversal": lambda n : setattr(self, 'edge_traversal', n.get_enum_value(state_management_setting.StateManagementSetting)),
+            "filePath": lambda n : setattr(self, 'file_path', n.get_str_value()),
+            "interfaceTypes": lambda n : setattr(self, 'interface_types', n.get_enum_value(windows_firewall_rule_interface_types.WindowsFirewallRuleInterfaceTypes)),
+            "localAddressRanges": lambda n : setattr(self, 'local_address_ranges', n.get_collection_of_primitive_values(str)),
+            "localPortRanges": lambda n : setattr(self, 'local_port_ranges', n.get_collection_of_primitive_values(str)),
+            "localUserAuthorizations": lambda n : setattr(self, 'local_user_authorizations', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "package_family_name": lambda n : setattr(self, 'package_family_name', n.get_str_value()),
-            "profile_types": lambda n : setattr(self, 'profile_types', n.get_enum_value(windows_firewall_rule_network_profile_types.WindowsFirewallRuleNetworkProfileTypes)),
+            "packageFamilyName": lambda n : setattr(self, 'package_family_name', n.get_str_value()),
+            "profileTypes": lambda n : setattr(self, 'profile_types', n.get_enum_value(windows_firewall_rule_network_profile_types.WindowsFirewallRuleNetworkProfileTypes)),
             "protocol": lambda n : setattr(self, 'protocol', n.get_int_value()),
-            "remote_address_ranges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_primitive_values(str)),
-            "remote_port_ranges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_primitive_values(str)),
-            "service_name": lambda n : setattr(self, 'service_name', n.get_str_value()),
-            "traffic_direction": lambda n : setattr(self, 'traffic_direction', n.get_enum_value(windows_firewall_rule_traffic_direction_type.WindowsFirewallRuleTrafficDirectionType)),
+            "remoteAddressRanges": lambda n : setattr(self, 'remote_address_ranges', n.get_collection_of_primitive_values(str)),
+            "remotePortRanges": lambda n : setattr(self, 'remote_port_ranges', n.get_collection_of_primitive_values(str)),
+            "serviceName": lambda n : setattr(self, 'service_name', n.get_str_value()),
+            "trafficDirection": lambda n : setattr(self, 'traffic_direction', n.get_enum_value(windows_firewall_rule_traffic_direction_type.WindowsFirewallRuleTrafficDirectionType)),
         }
         return fields
     
@@ -207,7 +207,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the interfaceTypes property value. Flags representing firewall rule interface types.
         Args:
-            value: Value to set for the interfaceTypes property.
+            value: Value to set for the interface_types property.
         """
         self._interface_types = value
     
@@ -224,7 +224,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the localAddressRanges property value. List of local addresses covered by the rule. Default is any address. Valid tokens include:'' indicates any local address. If present, this must be the only token included.A subnet can be specified using either the subnet mask or network prefix notation. If neither a subnet mask nor a network prefix is specified, the subnet mask defaults to 255.255.255.255.A valid IPv6 address.An IPv4 address range in the format of 'start address - end address' with no spaces included.An IPv6 address range in the format of 'start address - end address' with no spaces included.
         Args:
-            value: Value to set for the localAddressRanges property.
+            value: Value to set for the local_address_ranges property.
         """
         self._local_address_ranges = value
     
@@ -241,7 +241,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the localPortRanges property value. List of local port ranges. For example, '100-120', '200', '300-320'. If not specified, the default is All.
         Args:
-            value: Value to set for the localPortRanges property.
+            value: Value to set for the local_port_ranges property.
         """
         self._local_port_ranges = value
     
@@ -258,7 +258,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the localUserAuthorizations property value. Specifies the list of authorized local users for the app container. This is a string in Security Descriptor Definition Language (SDDL) format.
         Args:
-            value: Value to set for the localUserAuthorizations property.
+            value: Value to set for the local_user_authorizations property.
         """
         self._local_user_authorizations = value
     
@@ -275,7 +275,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -292,7 +292,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the packageFamilyName property value. The package family name of a Microsoft Store application that's affected by the firewall rule.
         Args:
-            value: Value to set for the packageFamilyName property.
+            value: Value to set for the package_family_name property.
         """
         self._package_family_name = value
     
@@ -309,7 +309,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the profileTypes property value. Flags representing which network profile types apply to a firewall rule.
         Args:
-            value: Value to set for the profileTypes property.
+            value: Value to set for the profile_types property.
         """
         self._profile_types = value
     
@@ -343,7 +343,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the remoteAddressRanges property value. List of tokens specifying the remote addresses covered by the rule. Tokens are case insensitive. Default is any address. Valid tokens include:'' indicates any remote address. If present, this must be the only token included.'Defaultgateway''DHCP''DNS''WINS''Intranet' (supported on Windows versions 1809+)'RmtIntranet' (supported on Windows versions 1809+)'Internet' (supported on Windows versions 1809+)'Ply2Renders' (supported on Windows versions 1809+)'LocalSubnet' indicates any local address on the local subnet.A subnet can be specified using either the subnet mask or network prefix notation. If neither a subnet mask nor a network prefix is specified, the subnet mask defaults to 255.255.255.255.A valid IPv6 address.An IPv4 address range in the format of 'start address - end address' with no spaces included.An IPv6 address range in the format of 'start address - end address' with no spaces included.
         Args:
-            value: Value to set for the remoteAddressRanges property.
+            value: Value to set for the remote_address_ranges property.
         """
         self._remote_address_ranges = value
     
@@ -360,7 +360,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the remotePortRanges property value. List of remote port ranges. For example, '100-120', '200', '300-320'. If not specified, the default is All.
         Args:
-            value: Value to set for the remotePortRanges property.
+            value: Value to set for the remote_port_ranges property.
         """
         self._remote_port_ranges = value
     
@@ -404,7 +404,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the serviceName property value. The name used in cases when a service, not an application, is sending or receiving traffic.
         Args:
-            value: Value to set for the serviceName property.
+            value: Value to set for the service_name property.
         """
         self._service_name = value
     
@@ -421,7 +421,7 @@ class WindowsFirewallRule(AdditionalDataHolder, Parsable):
         """
         Sets the trafficDirection property value. Firewall rule traffic directions.
         Args:
-            value: Value to set for the trafficDirection property.
+            value: Value to set for the traffic_direction property.
         """
         self._traffic_direction = value
     

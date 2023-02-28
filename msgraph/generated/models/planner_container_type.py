@@ -5,4 +5,5 @@ class PlannerContainerType(Enum):
     UnknownFutureValue = "unknownFutureValue",
     Roster = "roster",
     Project = "project",
+    DriveItem = "driveItem",
 

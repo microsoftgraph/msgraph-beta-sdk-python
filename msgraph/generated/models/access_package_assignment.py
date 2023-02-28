@@ -26,7 +26,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the accessPackage property value. Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         Args:
-            value: Value to set for the accessPackage property.
+            value: Value to set for the access_package property.
         """
         self._access_package = value
     
@@ -43,7 +43,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the accessPackageAssignmentPolicy property value. Read-only. Nullable. Supports $filter (eq) on the id property
         Args:
-            value: Value to set for the accessPackageAssignmentPolicy property.
+            value: Value to set for the access_package_assignment_policy property.
         """
         self._access_package_assignment_policy = value
     
@@ -60,7 +60,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the accessPackageAssignmentRequests property value. The accessPackageAssignmentRequests property
         Args:
-            value: Value to set for the accessPackageAssignmentRequests property.
+            value: Value to set for the access_package_assignment_requests property.
         """
         self._access_package_assignment_requests = value
     
@@ -77,7 +77,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the accessPackageAssignmentResourceRoles property value. The resource roles delivered to the target user for this assignment. Read-only. Nullable.
         Args:
-            value: Value to set for the accessPackageAssignmentResourceRoles property.
+            value: Value to set for the access_package_assignment_resource_roles property.
         """
         self._access_package_assignment_resource_roles = value
     
@@ -94,7 +94,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the accessPackageId property value. The identifier of the access package. Read-only.
         Args:
-            value: Value to set for the accessPackageId property.
+            value: Value to set for the access_package_id property.
         """
         self._access_package_id = value
     
@@ -111,7 +111,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the assignmentPolicyId property value. The identifier of the access package assignment policy. Read-only.
         Args:
-            value: Value to set for the assignmentPolicyId property.
+            value: Value to set for the assignment_policy_id property.
         """
         self._assignment_policy_id = value
     
@@ -128,7 +128,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the assignmentState property value. The state of the access package assignment. Possible values are Delivering, Delivered, or Expired. Read-only. Supports $filter (eq).
         Args:
-            value: Value to set for the assignmentState property.
+            value: Value to set for the assignment_state property.
         """
         self._assignment_state = value
     
@@ -145,7 +145,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the assignmentStatus property value. More information about the assignment lifecycle.  Possible values include Delivering, Delivered, NearExpiry1DayNotificationTriggered, or ExpiredNotificationTriggered.  Read-only.
         Args:
-            value: Value to set for the assignmentStatus property.
+            value: Value to set for the assignment_status property.
         """
         self._assignment_status = value
     
@@ -162,7 +162,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the catalogId property value. The identifier of the catalog containing the access package. Read-only.
         Args:
-            value: Value to set for the catalogId property.
+            value: Value to set for the catalog_id property.
         """
         self._catalog_id = value
     
@@ -227,7 +227,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the expiredDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the expiredDateTime property.
+            value: Value to set for the expired_date_time property.
         """
         self._expired_date_time = value
     
@@ -237,20 +237,20 @@ class AccessPackageAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
-            "access_package_assignment_policy": lambda n : setattr(self, 'access_package_assignment_policy', n.get_object_value(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
-            "access_package_assignment_requests": lambda n : setattr(self, 'access_package_assignment_requests', n.get_collection_of_object_values(access_package_assignment_request.AccessPackageAssignmentRequest)),
-            "access_package_assignment_resource_roles": lambda n : setattr(self, 'access_package_assignment_resource_roles', n.get_collection_of_object_values(access_package_assignment_resource_role.AccessPackageAssignmentResourceRole)),
-            "access_package_id": lambda n : setattr(self, 'access_package_id', n.get_str_value()),
-            "assignment_policy_id": lambda n : setattr(self, 'assignment_policy_id', n.get_str_value()),
-            "assignment_state": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
-            "assignment_status": lambda n : setattr(self, 'assignment_status', n.get_str_value()),
-            "catalog_id": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
-            "expired_date_time": lambda n : setattr(self, 'expired_date_time', n.get_datetime_value()),
-            "is_extended": lambda n : setattr(self, 'is_extended', n.get_bool_value()),
+            "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
+            "accessPackageAssignmentPolicy": lambda n : setattr(self, 'access_package_assignment_policy', n.get_object_value(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
+            "accessPackageAssignmentRequests": lambda n : setattr(self, 'access_package_assignment_requests', n.get_collection_of_object_values(access_package_assignment_request.AccessPackageAssignmentRequest)),
+            "accessPackageAssignmentResourceRoles": lambda n : setattr(self, 'access_package_assignment_resource_roles', n.get_collection_of_object_values(access_package_assignment_resource_role.AccessPackageAssignmentResourceRole)),
+            "accessPackageId": lambda n : setattr(self, 'access_package_id', n.get_str_value()),
+            "assignmentPolicyId": lambda n : setattr(self, 'assignment_policy_id', n.get_str_value()),
+            "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
+            "assignmentStatus": lambda n : setattr(self, 'assignment_status', n.get_str_value()),
+            "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "expiredDateTime": lambda n : setattr(self, 'expired_date_time', n.get_datetime_value()),
+            "isExtended": lambda n : setattr(self, 'is_extended', n.get_bool_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(request_schedule.RequestSchedule)),
             "target": lambda n : setattr(self, 'target', n.get_object_value(access_package_subject.AccessPackageSubject)),
-            "target_id": lambda n : setattr(self, 'target_id', n.get_str_value()),
+            "targetId": lambda n : setattr(self, 'target_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -269,7 +269,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the isExtended property value. Indicates whether the access package assignment is extended. Read-only.
         Args:
-            value: Value to set for the isExtended property.
+            value: Value to set for the is_extended property.
         """
         self._is_extended = value
     
@@ -344,7 +344,7 @@ class AccessPackageAssignment(entity.Entity):
         """
         Sets the targetId property value. The ID of the subject with the assignment. Read-only.
         Args:
-            value: Value to set for the targetId property.
+            value: Value to set for the target_id property.
         """
         self._target_id = value
     

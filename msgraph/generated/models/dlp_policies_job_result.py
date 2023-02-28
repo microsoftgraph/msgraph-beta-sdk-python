@@ -37,7 +37,7 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the auditCorrelationId property value. The auditCorrelationId property
         Args:
-            value: Value to set for the auditCorrelationId property.
+            value: Value to set for the audit_correlation_id property.
         """
         self._audit_correlation_id = value
     
@@ -82,7 +82,7 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationDateTime property value. The evaluationDateTime property
         Args:
-            value: Value to set for the evaluationDateTime property.
+            value: Value to set for the evaluation_date_time property.
         """
         self._evaluation_date_time = value
     
@@ -92,9 +92,9 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "audit_correlation_id": lambda n : setattr(self, 'audit_correlation_id', n.get_str_value()),
-            "evaluation_date_time": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
-            "matching_rules": lambda n : setattr(self, 'matching_rules', n.get_collection_of_object_values(matching_dlp_rule.MatchingDlpRule)),
+            "auditCorrelationId": lambda n : setattr(self, 'audit_correlation_id', n.get_str_value()),
+            "evaluationDateTime": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
+            "matchingRules": lambda n : setattr(self, 'matching_rules', n.get_collection_of_object_values(matching_dlp_rule.MatchingDlpRule)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -112,7 +112,7 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the matchingRules property value. The matchingRules property
         Args:
-            value: Value to set for the matchingRules property.
+            value: Value to set for the matching_rules property.
         """
         self._matching_rules = value
     
@@ -129,7 +129,7 @@ class DlpPoliciesJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

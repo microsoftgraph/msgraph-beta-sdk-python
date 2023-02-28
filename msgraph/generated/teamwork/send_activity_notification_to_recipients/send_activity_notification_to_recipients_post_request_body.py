@@ -22,7 +22,7 @@ class SendActivityNotificationToRecipientsPostRequestBody(AdditionalDataHolder, 
         """
         Sets the activityType property value. The activityType property
         Args:
-            value: Value to set for the activityType property.
+            value: Value to set for the activity_type property.
         """
         self._activity_type = value
     
@@ -56,7 +56,7 @@ class SendActivityNotificationToRecipientsPostRequestBody(AdditionalDataHolder, 
         """
         Sets the chainId property value. The chainId property
         Args:
-            value: Value to set for the chainId property.
+            value: Value to set for the chain_id property.
         """
         self._chain_id = value
     
@@ -100,12 +100,12 @@ class SendActivityNotificationToRecipientsPostRequestBody(AdditionalDataHolder, 
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_type": lambda n : setattr(self, 'activity_type', n.get_str_value()),
-            "chain_id": lambda n : setattr(self, 'chain_id', n.get_int_value()),
-            "preview_text": lambda n : setattr(self, 'preview_text', n.get_object_value(item_body.ItemBody)),
+            "activityType": lambda n : setattr(self, 'activity_type', n.get_str_value()),
+            "chainId": lambda n : setattr(self, 'chain_id', n.get_int_value()),
+            "previewText": lambda n : setattr(self, 'preview_text', n.get_object_value(item_body.ItemBody)),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(teamwork_notification_recipient.TeamworkNotificationRecipient)),
-            "teams_app_id": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
-            "template_parameters": lambda n : setattr(self, 'template_parameters', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "teamsAppId": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
+            "templateParameters": lambda n : setattr(self, 'template_parameters', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "topic": lambda n : setattr(self, 'topic', n.get_object_value(teamwork_activity_topic.TeamworkActivityTopic)),
         }
         return fields
@@ -123,7 +123,7 @@ class SendActivityNotificationToRecipientsPostRequestBody(AdditionalDataHolder, 
         """
         Sets the previewText property value. The previewText property
         Args:
-            value: Value to set for the previewText property.
+            value: Value to set for the preview_text property.
         """
         self._preview_text = value
     
@@ -174,7 +174,7 @@ class SendActivityNotificationToRecipientsPostRequestBody(AdditionalDataHolder, 
         """
         Sets the teamsAppId property value. The teamsAppId property
         Args:
-            value: Value to set for the teamsAppId property.
+            value: Value to set for the teams_app_id property.
         """
         self._teams_app_id = value
     
@@ -191,7 +191,7 @@ class SendActivityNotificationToRecipientsPostRequestBody(AdditionalDataHolder, 
         """
         Sets the templateParameters property value. The templateParameters property
         Args:
-            value: Value to set for the templateParameters property.
+            value: Value to set for the template_parameters property.
         """
         self._template_parameters = value
     

@@ -74,7 +74,7 @@ class InformationProtection(entity.Entity):
         """
         Sets the dataLossPreventionPolicies property value. The dataLossPreventionPolicies property
         Args:
-            value: Value to set for the dataLossPreventionPolicies property.
+            value: Value to set for the data_loss_prevention_policies property.
         """
         self._data_loss_prevention_policies = value
     
@@ -85,11 +85,11 @@ class InformationProtection(entity.Entity):
         """
         fields = {
             "bitlocker": lambda n : setattr(self, 'bitlocker', n.get_object_value(bitlocker.Bitlocker)),
-            "data_loss_prevention_policies": lambda n : setattr(self, 'data_loss_prevention_policies', n.get_collection_of_object_values(data_loss_prevention_policy.DataLossPreventionPolicy)),
+            "dataLossPreventionPolicies": lambda n : setattr(self, 'data_loss_prevention_policies', n.get_collection_of_object_values(data_loss_prevention_policy.DataLossPreventionPolicy)),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(information_protection_policy.InformationProtectionPolicy)),
-            "sensitivity_labels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
-            "sensitivity_policy_settings": lambda n : setattr(self, 'sensitivity_policy_settings', n.get_object_value(sensitivity_policy_settings.SensitivityPolicySettings)),
-            "threat_assessment_requests": lambda n : setattr(self, 'threat_assessment_requests', n.get_collection_of_object_values(threat_assessment_request.ThreatAssessmentRequest)),
+            "sensitivityLabels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
+            "sensitivityPolicySettings": lambda n : setattr(self, 'sensitivity_policy_settings', n.get_object_value(sensitivity_policy_settings.SensitivityPolicySettings)),
+            "threatAssessmentRequests": lambda n : setattr(self, 'threat_assessment_requests', n.get_collection_of_object_values(threat_assessment_request.ThreatAssessmentRequest)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class InformationProtection(entity.Entity):
         """
         Sets the sensitivityLabels property value. The sensitivityLabels property
         Args:
-            value: Value to set for the sensitivityLabels property.
+            value: Value to set for the sensitivity_labels property.
         """
         self._sensitivity_labels = value
     
@@ -142,7 +142,7 @@ class InformationProtection(entity.Entity):
         """
         Sets the sensitivityPolicySettings property value. The sensitivityPolicySettings property
         Args:
-            value: Value to set for the sensitivityPolicySettings property.
+            value: Value to set for the sensitivity_policy_settings property.
         """
         self._sensitivity_policy_settings = value
     
@@ -175,7 +175,7 @@ class InformationProtection(entity.Entity):
         """
         Sets the threatAssessmentRequests property value. The threatAssessmentRequests property
         Args:
-            value: Value to set for the threatAssessmentRequests property.
+            value: Value to set for the threat_assessment_requests property.
         """
         self._threat_assessment_requests = value
     

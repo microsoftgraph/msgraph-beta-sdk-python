@@ -23,7 +23,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the batteryAgeInDays property value. Estimated battery age. Unit in days. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the batteryAgeInDays property.
+            value: Value to set for the battery_age_in_days property.
         """
         self._battery_age_in_days = value
     
@@ -78,7 +78,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceBatteryHealthScore property value. A weighted average of a device’s maximum capacity score and runtime estimate score. Values range from 0-100. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the deviceBatteryHealthScore property.
+            value: Value to set for the device_battery_health_score property.
         """
         self._device_battery_health_score = value
     
@@ -95,7 +95,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceId property value. The unique identifier of the device, Intune DeviceID.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -112,7 +112,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceName property value. Device friendly name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -129,7 +129,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the estimatedRuntimeInMinutes property value. The estimated runtime of the device when the battery is fully charged. Unit in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the estimatedRuntimeInMinutes property.
+            value: Value to set for the estimated_runtime_in_minutes property.
         """
         self._estimated_runtime_in_minutes = value
     
@@ -139,14 +139,14 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "battery_age_in_days": lambda n : setattr(self, 'battery_age_in_days', n.get_int_value()),
-            "device_battery_health_score": lambda n : setattr(self, 'device_battery_health_score', n.get_int_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "estimated_runtime_in_minutes": lambda n : setattr(self, 'estimated_runtime_in_minutes', n.get_int_value()),
-            "health_status": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
+            "batteryAgeInDays": lambda n : setattr(self, 'battery_age_in_days', n.get_int_value()),
+            "deviceBatteryHealthScore": lambda n : setattr(self, 'device_battery_health_score', n.get_int_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "estimatedRuntimeInMinutes": lambda n : setattr(self, 'estimated_runtime_in_minutes', n.get_int_value()),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
-            "max_capacity_percentage": lambda n : setattr(self, 'max_capacity_percentage', n.get_int_value()),
+            "maxCapacityPercentage": lambda n : setattr(self, 'max_capacity_percentage', n.get_int_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -166,7 +166,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the healthStatus property value. The healthStatus property
         Args:
-            value: Value to set for the healthStatus property.
+            value: Value to set for the health_status property.
         """
         self._health_status = value
     
@@ -200,7 +200,7 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         """
         Sets the maxCapacityPercentage property value. Ratio of current capacity and design capacity of the battery with the lowest capacity. Unit in percentage and values range from 0-100. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the maxCapacityPercentage property.
+            value: Value to set for the max_capacity_percentage property.
         """
         self._max_capacity_percentage = value
     

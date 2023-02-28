@@ -20,7 +20,7 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the classicAppPath property value. This is the classicapppath to be used by v4 Win32 app while in Kiosk Mode
         Args:
-            value: Value to set for the classicAppPath property.
+            value: Value to set for the classic_app_path property.
         """
         self._classic_app_path = value
     
@@ -66,7 +66,7 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the edgeKiosk property value. Edge kiosk (url) for Edge kiosk mode
         Args:
-            value: Value to set for the edgeKiosk property.
+            value: Value to set for the edge_kiosk property.
         """
         self._edge_kiosk = value
     
@@ -83,7 +83,7 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the edgeKioskIdleTimeoutMinutes property value. Edge kiosk idle timeout in minutes for Edge kiosk mode. Valid values 0 to 1440
         Args:
-            value: Value to set for the edgeKioskIdleTimeoutMinutes property.
+            value: Value to set for the edge_kiosk_idle_timeout_minutes property.
         """
         self._edge_kiosk_idle_timeout_minutes = value
     
@@ -100,7 +100,7 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the edgeKioskType property value. Edge kiosk type
         Args:
-            value: Value to set for the edgeKioskType property.
+            value: Value to set for the edge_kiosk_type property.
         """
         self._edge_kiosk_type = value
     
@@ -117,7 +117,7 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the edgeNoFirstRun property value. Edge first run flag for Edge kiosk mode
         Args:
-            value: Value to set for the edgeNoFirstRun property.
+            value: Value to set for the edge_no_first_run property.
         """
         self._edge_no_first_run = value
     
@@ -127,11 +127,11 @@ class WindowsKioskWin32App(windows_kiosk_app_base.WindowsKioskAppBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classic_app_path": lambda n : setattr(self, 'classic_app_path', n.get_str_value()),
-            "edge_kiosk": lambda n : setattr(self, 'edge_kiosk', n.get_str_value()),
-            "edge_kiosk_idle_timeout_minutes": lambda n : setattr(self, 'edge_kiosk_idle_timeout_minutes', n.get_int_value()),
-            "edge_kiosk_type": lambda n : setattr(self, 'edge_kiosk_type', n.get_enum_value(windows_edge_kiosk_type.WindowsEdgeKioskType)),
-            "edge_no_first_run": lambda n : setattr(self, 'edge_no_first_run', n.get_bool_value()),
+            "classicAppPath": lambda n : setattr(self, 'classic_app_path', n.get_str_value()),
+            "edgeKiosk": lambda n : setattr(self, 'edge_kiosk', n.get_str_value()),
+            "edgeKioskIdleTimeoutMinutes": lambda n : setattr(self, 'edge_kiosk_idle_timeout_minutes', n.get_int_value()),
+            "edgeKioskType": lambda n : setattr(self, 'edge_kiosk_type', n.get_enum_value(windows_edge_kiosk_type.WindowsEdgeKioskType)),
+            "edgeNoFirstRun": lambda n : setattr(self, 'edge_no_first_run', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

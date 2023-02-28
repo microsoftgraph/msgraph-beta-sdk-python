@@ -9,7 +9,7 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
     @property
     def app_url(self,) -> Optional[str]:
         """
-        Gets the appUrl property value. The web app URL.
+        Gets the appUrl property value. Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
         Returns: Optional[str]
         """
         return self._app_url
@@ -17,9 +17,9 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
     @app_url.setter
     def app_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the appUrl property value. The web app URL.
+        Sets the appUrl property value. Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
         Args:
-            value: Value to set for the appUrl property.
+            value: Value to set for the app_url property.
         """
         self._app_url = value
     
@@ -29,9 +29,9 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.iosiPadOSWebClip"
-        # The web app URL.
+        # Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
         self._app_url: Optional[str] = None
-        # Whether or not to use managed browser. When true, the app will be required to be opened in an Intune-protected browser. When false, the app will not be required to be opened in an Intune-protected browser.
+        # Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
         self._use_managed_browser: Optional[bool] = None
     
     @staticmethod
@@ -52,8 +52,8 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_url": lambda n : setattr(self, 'app_url', n.get_str_value()),
-            "use_managed_browser": lambda n : setattr(self, 'use_managed_browser', n.get_bool_value()),
+            "appUrl": lambda n : setattr(self, 'app_url', n.get_str_value()),
+            "useManagedBrowser": lambda n : setattr(self, 'use_managed_browser', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,7 +74,7 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
     @property
     def use_managed_browser(self,) -> Optional[bool]:
         """
-        Gets the useManagedBrowser property value. Whether or not to use managed browser. When true, the app will be required to be opened in an Intune-protected browser. When false, the app will not be required to be opened in an Intune-protected browser.
+        Gets the useManagedBrowser property value. Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
         Returns: Optional[bool]
         """
         return self._use_managed_browser
@@ -82,9 +82,9 @@ class IosiPadOSWebClip(mobile_app.MobileApp):
     @use_managed_browser.setter
     def use_managed_browser(self,value: Optional[bool] = None) -> None:
         """
-        Sets the useManagedBrowser property value. Whether or not to use managed browser. When true, the app will be required to be opened in an Intune-protected browser. When false, the app will not be required to be opened in an Intune-protected browser.
+        Sets the useManagedBrowser property value. Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
         Args:
-            value: Value to set for the useManagedBrowser property.
+            value: Value to set for the use_managed_browser property.
         """
         self._use_managed_browser = value
     

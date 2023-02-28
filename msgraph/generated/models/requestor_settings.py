@@ -19,7 +19,7 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         """
         Sets the acceptRequests property value. Indicates whether new requests are accepted on this policy.
         Args:
-            value: Value to set for the acceptRequests property.
+            value: Value to set for the accept_requests property.
         """
         self._accept_requests = value
     
@@ -53,7 +53,7 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowedRequestors property value. The users who are allowed to request on this policy, which can be singleUser, groupMembers, and connectedOrganizationMembers.
         Args:
-            value: Value to set for the allowedRequestors property.
+            value: Value to set for the allowed_requestors property.
         """
         self._allowed_requestors = value
     
@@ -91,10 +91,10 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accept_requests": lambda n : setattr(self, 'accept_requests', n.get_bool_value()),
-            "allowed_requestors": lambda n : setattr(self, 'allowed_requestors', n.get_collection_of_object_values(user_set.UserSet)),
+            "acceptRequests": lambda n : setattr(self, 'accept_requests', n.get_bool_value()),
+            "allowedRequestors": lambda n : setattr(self, 'allowed_requestors', n.get_collection_of_object_values(user_set.UserSet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "scope_type": lambda n : setattr(self, 'scope_type', n.get_str_value()),
+            "scopeType": lambda n : setattr(self, 'scope_type', n.get_str_value()),
         }
         return fields
     
@@ -111,7 +111,7 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -128,7 +128,7 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         """
         Sets the scopeType property value. Who can request. One of NoSubjects, SpecificDirectorySubjects, SpecificConnectedOrganizationSubjects, AllConfiguredConnectedOrganizationSubjects, AllExistingConnectedOrganizationSubjects, AllExistingDirectoryMemberUsers, AllExistingDirectorySubjects or AllExternalSubjects.
         Args:
-            value: Value to set for the scopeType property.
+            value: Value to set for the scope_type property.
         """
         self._scope_type = value
     

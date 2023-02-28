@@ -59,9 +59,9 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "review_by": lambda n : setattr(self, 'review_by', n.get_str_value()),
-            "review_date_time": lambda n : setattr(self, 'review_date_time', n.get_datetime_value()),
-            "review_result": lambda n : setattr(self, 'review_result', n.get_enum_value(submission_result_category.SubmissionResultCategory)),
+            "reviewBy": lambda n : setattr(self, 'review_by', n.get_str_value()),
+            "reviewDateTime": lambda n : setattr(self, 'review_date_time', n.get_datetime_value()),
+            "reviewResult": lambda n : setattr(self, 'review_result', n.get_enum_value(submission_result_category.SubmissionResultCategory)),
         }
         return fields
     
@@ -78,7 +78,7 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -95,7 +95,7 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
         """
         Sets the reviewBy property value. Specifies who reviewed the email. The identification is an email ID or other identity strings.
         Args:
-            value: Value to set for the reviewBy property.
+            value: Value to set for the review_by property.
         """
         self._review_by = value
     
@@ -112,7 +112,7 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
         """
         Sets the reviewDateTime property value. Specifies the date time when the review occurred.
         Args:
-            value: Value to set for the reviewDateTime property.
+            value: Value to set for the review_date_time property.
         """
         self._review_date_time = value
     
@@ -129,7 +129,7 @@ class SubmissionAdminReview(AdditionalDataHolder, Parsable):
         """
         Sets the reviewResult property value. Specifies what the review result was. The possible values are: notJunk, spam, phishing, malware, allowedByPolicy, blockedByPolicy, spoof, unknown, noResultAvailable, and unknownFutureValue.
         Args:
-            value: Value to set for the reviewResult property.
+            value: Value to set for the review_result property.
         """
         self._review_result = value
     

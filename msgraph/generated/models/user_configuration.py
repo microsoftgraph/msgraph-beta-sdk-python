@@ -19,7 +19,7 @@ class UserConfiguration(entity.Entity):
         """
         Sets the binaryData property value. The binaryData property
         Args:
-            value: Value to set for the binaryData property.
+            value: Value to set for the binary_data property.
         """
         self._binary_data = value
     
@@ -51,7 +51,7 @@ class UserConfiguration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "binary_data": lambda n : setattr(self, 'binary_data', n.get_bytes_value()),
+            "binaryData": lambda n : setattr(self, 'binary_data', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

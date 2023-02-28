@@ -19,7 +19,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the appleIdDisabled property value. Indicates if Apple id setup pane is disabled
         Args:
-            value: Value to set for the appleIdDisabled property.
+            value: Value to set for the apple_id_disabled property.
         """
         self._apple_id_disabled = value
     
@@ -36,7 +36,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the applePayDisabled property value. Indicates if Apple pay setup pane is disabled
         Args:
-            value: Value to set for the applePayDisabled property.
+            value: Value to set for the apple_pay_disabled property.
         """
         self._apple_pay_disabled = value
     
@@ -53,7 +53,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the configurationWebUrl property value. URL for setup assistant login
         Args:
-            value: Value to set for the configurationWebUrl property.
+            value: Value to set for the configuration_web_url property.
         """
         self._configuration_web_url = value
     
@@ -93,7 +93,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         self._screen_time_screen_disabled: Optional[bool] = None
         # Indicates if siri setup pane is disabled
         self._siri_disabled: Optional[bool] = None
-        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         self._supervised_mode_enabled: Optional[bool] = None
         # Support department information
         self._support_department: Optional[str] = None
@@ -129,7 +129,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the deviceNameTemplate property value. Sets a literal or name pattern.
         Args:
-            value: Value to set for the deviceNameTemplate property.
+            value: Value to set for the device_name_template property.
         """
         self._device_name_template = value
     
@@ -146,7 +146,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the diagnosticsDisabled property value. Indicates if diagnostics setup pane is disabled
         Args:
-            value: Value to set for the diagnosticsDisabled property.
+            value: Value to set for the diagnostics_disabled property.
         """
         self._diagnostics_disabled = value
     
@@ -163,7 +163,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the displayToneSetupDisabled property value. Indicates if displaytone setup screen is disabled
         Args:
-            value: Value to set for the displayToneSetupDisabled property.
+            value: Value to set for the display_tone_setup_disabled property.
         """
         self._display_tone_setup_disabled = value
     
@@ -180,7 +180,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the enabledSkipKeys property value. enabledSkipKeys contains all the enabled skip keys as strings
         Args:
-            value: Value to set for the enabledSkipKeys property.
+            value: Value to set for the enabled_skip_keys property.
         """
         self._enabled_skip_keys = value
     
@@ -190,26 +190,26 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apple_id_disabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
-            "apple_pay_disabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
-            "configuration_web_url": lambda n : setattr(self, 'configuration_web_url', n.get_bool_value()),
-            "device_name_template": lambda n : setattr(self, 'device_name_template', n.get_str_value()),
-            "diagnostics_disabled": lambda n : setattr(self, 'diagnostics_disabled', n.get_bool_value()),
-            "display_tone_setup_disabled": lambda n : setattr(self, 'display_tone_setup_disabled', n.get_bool_value()),
-            "enabled_skip_keys": lambda n : setattr(self, 'enabled_skip_keys', n.get_collection_of_primitive_values(str)),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
-            "is_mandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
-            "location_disabled": lambda n : setattr(self, 'location_disabled', n.get_bool_value()),
-            "privacy_pane_disabled": lambda n : setattr(self, 'privacy_pane_disabled', n.get_bool_value()),
-            "profile_removal_disabled": lambda n : setattr(self, 'profile_removal_disabled', n.get_bool_value()),
-            "restore_blocked": lambda n : setattr(self, 'restore_blocked', n.get_bool_value()),
-            "screen_time_screen_disabled": lambda n : setattr(self, 'screen_time_screen_disabled', n.get_bool_value()),
-            "siri_disabled": lambda n : setattr(self, 'siri_disabled', n.get_bool_value()),
-            "supervised_mode_enabled": lambda n : setattr(self, 'supervised_mode_enabled', n.get_bool_value()),
-            "support_department": lambda n : setattr(self, 'support_department', n.get_str_value()),
-            "support_phone_number": lambda n : setattr(self, 'support_phone_number', n.get_str_value()),
-            "terms_and_conditions_disabled": lambda n : setattr(self, 'terms_and_conditions_disabled', n.get_bool_value()),
-            "touch_id_disabled": lambda n : setattr(self, 'touch_id_disabled', n.get_bool_value()),
+            "appleIdDisabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
+            "applePayDisabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
+            "configurationWebUrl": lambda n : setattr(self, 'configuration_web_url', n.get_bool_value()),
+            "deviceNameTemplate": lambda n : setattr(self, 'device_name_template', n.get_str_value()),
+            "diagnosticsDisabled": lambda n : setattr(self, 'diagnostics_disabled', n.get_bool_value()),
+            "displayToneSetupDisabled": lambda n : setattr(self, 'display_tone_setup_disabled', n.get_bool_value()),
+            "enabledSkipKeys": lambda n : setattr(self, 'enabled_skip_keys', n.get_collection_of_primitive_values(str)),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
+            "locationDisabled": lambda n : setattr(self, 'location_disabled', n.get_bool_value()),
+            "privacyPaneDisabled": lambda n : setattr(self, 'privacy_pane_disabled', n.get_bool_value()),
+            "profileRemovalDisabled": lambda n : setattr(self, 'profile_removal_disabled', n.get_bool_value()),
+            "restoreBlocked": lambda n : setattr(self, 'restore_blocked', n.get_bool_value()),
+            "screenTimeScreenDisabled": lambda n : setattr(self, 'screen_time_screen_disabled', n.get_bool_value()),
+            "siriDisabled": lambda n : setattr(self, 'siri_disabled', n.get_bool_value()),
+            "supervisedModeEnabled": lambda n : setattr(self, 'supervised_mode_enabled', n.get_bool_value()),
+            "supportDepartment": lambda n : setattr(self, 'support_department', n.get_str_value()),
+            "supportPhoneNumber": lambda n : setattr(self, 'support_phone_number', n.get_str_value()),
+            "termsAndConditionsDisabled": lambda n : setattr(self, 'terms_and_conditions_disabled', n.get_bool_value()),
+            "touchIdDisabled": lambda n : setattr(self, 'touch_id_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -228,7 +228,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the isDefault property value. Indicates if this is the default profile
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     
@@ -245,7 +245,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the isMandatory property value. Indicates if the profile is mandatory
         Args:
-            value: Value to set for the isMandatory property.
+            value: Value to set for the is_mandatory property.
         """
         self._is_mandatory = value
     
@@ -262,7 +262,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the locationDisabled property value. Indicates if Location service setup pane is disabled
         Args:
-            value: Value to set for the locationDisabled property.
+            value: Value to set for the location_disabled property.
         """
         self._location_disabled = value
     
@@ -279,7 +279,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the privacyPaneDisabled property value. Indicates if privacy screen is disabled
         Args:
-            value: Value to set for the privacyPaneDisabled property.
+            value: Value to set for the privacy_pane_disabled property.
         """
         self._privacy_pane_disabled = value
     
@@ -296,7 +296,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the profileRemovalDisabled property value. Indicates if the profile removal option is disabled
         Args:
-            value: Value to set for the profileRemovalDisabled property.
+            value: Value to set for the profile_removal_disabled property.
         """
         self._profile_removal_disabled = value
     
@@ -313,7 +313,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the restoreBlocked property value. Indicates if Restore setup pane is blocked
         Args:
-            value: Value to set for the restoreBlocked property.
+            value: Value to set for the restore_blocked property.
         """
         self._restore_blocked = value
     
@@ -330,7 +330,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the screenTimeScreenDisabled property value. Indicates if screen timeout setup is disabled
         Args:
-            value: Value to set for the screenTimeScreenDisabled property.
+            value: Value to set for the screen_time_screen_disabled property.
         """
         self._screen_time_screen_disabled = value
     
@@ -377,14 +377,14 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the siriDisabled property value. Indicates if siri setup pane is disabled
         Args:
-            value: Value to set for the siriDisabled property.
+            value: Value to set for the siri_disabled property.
         """
         self._siri_disabled = value
     
     @property
     def supervised_mode_enabled(self,) -> Optional[bool]:
         """
-        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Returns: Optional[bool]
         """
         return self._supervised_mode_enabled
@@ -392,9 +392,9 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
     @supervised_mode_enabled.setter
     def supervised_mode_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Args:
-            value: Value to set for the supervisedModeEnabled property.
+            value: Value to set for the supervised_mode_enabled property.
         """
         self._supervised_mode_enabled = value
     
@@ -411,7 +411,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the supportDepartment property value. Support department information
         Args:
-            value: Value to set for the supportDepartment property.
+            value: Value to set for the support_department property.
         """
         self._support_department = value
     
@@ -428,7 +428,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the supportPhoneNumber property value. Support phone number
         Args:
-            value: Value to set for the supportPhoneNumber property.
+            value: Value to set for the support_phone_number property.
         """
         self._support_phone_number = value
     
@@ -445,7 +445,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the termsAndConditionsDisabled property value. Indicates if 'Terms and Conditions' setup pane is disabled
         Args:
-            value: Value to set for the termsAndConditionsDisabled property.
+            value: Value to set for the terms_and_conditions_disabled property.
         """
         self._terms_and_conditions_disabled = value
     
@@ -462,7 +462,7 @@ class DepEnrollmentBaseProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the touchIdDisabled property value. Indicates if touch id setup pane is disabled
         Args:
-            value: Value to set for the touchIdDisabled property.
+            value: Value to set for the touch_id_disabled property.
         """
         self._touch_id_disabled = value
     

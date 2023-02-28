@@ -51,7 +51,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the createdBy property value. UPN of the user who created this resource. Read-only.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -68,7 +68,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -114,7 +114,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the displayName property value. The display name of the connected organization. Supports $filter (eq).
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -131,7 +131,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the externalSponsors property value. The externalSponsors property
         Args:
-            value: Value to set for the externalSponsors property.
+            value: Value to set for the external_sponsors property.
         """
         self._external_sponsors = value
     
@@ -141,15 +141,15 @@ class ConnectedOrganization(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_by": lambda n : setattr(self, 'created_by', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "external_sponsors": lambda n : setattr(self, 'external_sponsors', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "identity_sources": lambda n : setattr(self, 'identity_sources', n.get_collection_of_object_values(identity_source.IdentitySource)),
-            "internal_sponsors": lambda n : setattr(self, 'internal_sponsors', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "modified_by": lambda n : setattr(self, 'modified_by', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "externalSponsors": lambda n : setattr(self, 'external_sponsors', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "identitySources": lambda n : setattr(self, 'identity_sources', n.get_collection_of_object_values(identity_source.IdentitySource)),
+            "internalSponsors": lambda n : setattr(self, 'internal_sponsors', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(connected_organization_state.ConnectedOrganizationState)),
         }
         super_fields = super().get_field_deserializers()
@@ -169,7 +169,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the identitySources property value. The identity sources in this connected organization, one of azureActiveDirectoryTenant, crossCloudAzureActiveDirectoryTenant, domainIdentitySource or externalDomainFederation. Read-only. Nullable. Supports $select and $filter(eq). To filter by the derived types, you must declare the resource using its full OData cast, for example, $filter=identitySources/any(is:is/microsoft.graph.azureActiveDirectoryTenant/tenantId eq 'bcfdfff4-cbc3-43f2-9000-ba7b7515054f').
         Args:
-            value: Value to set for the identitySources property.
+            value: Value to set for the identity_sources property.
         """
         self._identity_sources = value
     
@@ -186,7 +186,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the internalSponsors property value. The internalSponsors property
         Args:
-            value: Value to set for the internalSponsors property.
+            value: Value to set for the internal_sponsors property.
         """
         self._internal_sponsors = value
     
@@ -203,7 +203,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the modifiedBy property value. UPN of the user who last modified this resource. Read-only.
         Args:
-            value: Value to set for the modifiedBy property.
+            value: Value to set for the modified_by property.
         """
         self._modified_by = value
     
@@ -220,7 +220,7 @@ class ConnectedOrganization(entity.Entity):
         """
         Sets the modifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     

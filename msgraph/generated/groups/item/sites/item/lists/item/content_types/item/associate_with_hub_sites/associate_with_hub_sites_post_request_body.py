@@ -51,8 +51,8 @@ class AssociateWithHubSitesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "hub_site_urls": lambda n : setattr(self, 'hub_site_urls', n.get_collection_of_primitive_values(str)),
-            "propagate_to_existing_lists": lambda n : setattr(self, 'propagate_to_existing_lists', n.get_bool_value()),
+            "hubSiteUrls": lambda n : setattr(self, 'hub_site_urls', n.get_collection_of_primitive_values(str)),
+            "propagateToExistingLists": lambda n : setattr(self, 'propagate_to_existing_lists', n.get_bool_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class AssociateWithHubSitesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the hubSiteUrls property value. The hubSiteUrls property
         Args:
-            value: Value to set for the hubSiteUrls property.
+            value: Value to set for the hub_site_urls property.
         """
         self._hub_site_urls = value
     
@@ -86,7 +86,7 @@ class AssociateWithHubSitesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the propagateToExistingLists property value. The propagateToExistingLists property
         Args:
-            value: Value to set for the propagateToExistingLists property.
+            value: Value to set for the propagate_to_existing_lists property.
         """
         self._propagate_to_existing_lists = value
     

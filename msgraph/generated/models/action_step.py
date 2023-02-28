@@ -9,7 +9,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
     @property
     def action_url(self,) -> Optional[action_url.ActionUrl]:
         """
-        Gets the actionUrl property value. The actionUrl property
+        Gets the actionUrl property value. A link to the documentation or Azure portal page that is associated with the action step.
         Returns: Optional[action_url.ActionUrl]
         """
         return self._action_url
@@ -17,9 +17,9 @@ class ActionStep(AdditionalDataHolder, Parsable):
     @action_url.setter
     def action_url(self,value: Optional[action_url.ActionUrl] = None) -> None:
         """
-        Sets the actionUrl property value. The actionUrl property
+        Sets the actionUrl property value. A link to the documentation or Azure portal page that is associated with the action step.
         Args:
-            value: Value to set for the actionUrl property.
+            value: Value to set for the action_url property.
         """
         self._action_url = value
     
@@ -47,13 +47,13 @@ class ActionStep(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The actionUrl property
+        # A link to the documentation or Azure portal page that is associated with the action step.
         self._action_url: Optional[action_url.ActionUrl] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The stepNumber property
+        # Indicates the position for this action in the order of the collection of actions to be taken.
         self._step_number: Optional[int] = None
-        # The text property
+        # Friendly description of the action to take.
         self._text: Optional[str] = None
     
     @staticmethod
@@ -74,9 +74,9 @@ class ActionStep(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_url": lambda n : setattr(self, 'action_url', n.get_object_value(action_url.ActionUrl)),
+            "actionUrl": lambda n : setattr(self, 'action_url', n.get_object_value(action_url.ActionUrl)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "step_number": lambda n : setattr(self, 'step_number', n.get_int_value()),
+            "stepNumber": lambda n : setattr(self, 'step_number', n.get_int_value()),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }
         return fields
@@ -94,7 +94,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -115,7 +115,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
     @property
     def step_number(self,) -> Optional[int]:
         """
-        Gets the stepNumber property value. The stepNumber property
+        Gets the stepNumber property value. Indicates the position for this action in the order of the collection of actions to be taken.
         Returns: Optional[int]
         """
         return self._step_number
@@ -123,16 +123,16 @@ class ActionStep(AdditionalDataHolder, Parsable):
     @step_number.setter
     def step_number(self,value: Optional[int] = None) -> None:
         """
-        Sets the stepNumber property value. The stepNumber property
+        Sets the stepNumber property value. Indicates the position for this action in the order of the collection of actions to be taken.
         Args:
-            value: Value to set for the stepNumber property.
+            value: Value to set for the step_number property.
         """
         self._step_number = value
     
     @property
     def text(self,) -> Optional[str]:
         """
-        Gets the text property value. The text property
+        Gets the text property value. Friendly description of the action to take.
         Returns: Optional[str]
         """
         return self._text
@@ -140,7 +140,7 @@ class ActionStep(AdditionalDataHolder, Parsable):
     @text.setter
     def text(self,value: Optional[str] = None) -> None:
         """
-        Sets the text property value. The text property
+        Sets the text property value. Friendly description of the action to take.
         Args:
             value: Value to set for the text property.
         """

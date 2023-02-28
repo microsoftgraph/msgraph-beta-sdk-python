@@ -72,9 +72,9 @@ class DeclinePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "proposed_new_time": lambda n : setattr(self, 'proposed_new_time', n.get_object_value(time_slot.TimeSlot)),
-            "send_response": lambda n : setattr(self, 'send_response', n.get_bool_value()),
+            "Comment": lambda n : setattr(self, 'comment', n.get_str_value()),
+            "ProposedNewTime": lambda n : setattr(self, 'proposed_new_time', n.get_object_value(time_slot.TimeSlot)),
+            "SendResponse": lambda n : setattr(self, 'send_response', n.get_bool_value()),
         }
         return fields
     
@@ -91,7 +91,7 @@ class DeclinePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the proposedNewTime property value. The ProposedNewTime property
         Args:
-            value: Value to set for the ProposedNewTime property.
+            value: Value to set for the proposed_new_time property.
         """
         self._proposed_new_time = value
     
@@ -108,7 +108,7 @@ class DeclinePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sendResponse property value. The SendResponse property
         Args:
-            value: Value to set for the SendResponse property.
+            value: Value to set for the send_response property.
         """
         self._send_response = value
     

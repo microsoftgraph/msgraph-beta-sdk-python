@@ -23,7 +23,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the appCrashCount property value. The number of crashes for the app. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the appCrashCount property.
+            value: Value to set for the app_crash_count property.
         """
         self._app_crash_count = value
     
@@ -40,7 +40,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the appDisplayName property value. The friendly name of the application.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -57,7 +57,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the appName property value. The name of the application.
         Args:
-            value: Value to set for the appName property.
+            value: Value to set for the app_name property.
         """
         self._app_name = value
     
@@ -74,7 +74,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the appPublisher property value. The publisher of the application.
         Args:
-            value: Value to set for the appPublisher property.
+            value: Value to set for the app_publisher property.
         """
         self._app_publisher = value
     
@@ -91,7 +91,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the appVersion property value. The version of the application.
         Args:
-            value: Value to set for the appVersion property.
+            value: Value to set for the app_version property.
         """
         self._app_version = value
     
@@ -144,7 +144,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the deviceDisplayName property value. The name of the device.
         Args:
-            value: Value to set for the deviceDisplayName property.
+            value: Value to set for the device_display_name property.
         """
         self._device_display_name = value
     
@@ -161,7 +161,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the deviceId property value. The id of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -171,14 +171,14 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_crash_count": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_name": lambda n : setattr(self, 'app_name', n.get_str_value()),
-            "app_publisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "app_version": lambda n : setattr(self, 'app_version', n.get_str_value()),
-            "device_display_name": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "processed_date_time": lambda n : setattr(self, 'processed_date_time', n.get_datetime_value()),
+            "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
+            "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
+            "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),
+            "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "processedDateTime": lambda n : setattr(self, 'processed_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -197,7 +197,7 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId(entity.
         """
         Sets the processedDateTime property value. The date and time when the statistics were last computed.
         Args:
-            value: Value to set for the processedDateTime property.
+            value: Value to set for the processed_date_time property.
         """
         self._processed_date_time = value
     

@@ -94,7 +94,7 @@ class VpnServer(AdditionalDataHolder, Parsable):
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_default_server": lambda n : setattr(self, 'is_default_server', n.get_bool_value()),
+            "isDefaultServer": lambda n : setattr(self, 'is_default_server', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -112,7 +112,7 @@ class VpnServer(AdditionalDataHolder, Parsable):
         """
         Sets the isDefaultServer property value. Default server.
         Args:
-            value: Value to set for the isDefaultServer property.
+            value: Value to set for the is_default_server property.
         """
         self._is_default_server = value
     
@@ -129,7 +129,7 @@ class VpnServer(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

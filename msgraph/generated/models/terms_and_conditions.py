@@ -10,9 +10,6 @@ terms_and_conditions_assignment = lazy_import('msgraph.generated.models.terms_an
 terms_and_conditions_group_assignment = lazy_import('msgraph.generated.models.terms_and_conditions_group_assignment')
 
 class TermsAndConditions(entity.Entity):
-    """
-    A termsAndConditions entity represents the metadata and contents of a given Terms and Conditions (T&C) policy. T&C policies’ contents are presented to users upon their first attempt to enroll into Intune and subsequently upon edits where an administrator has required re-acceptance. They enable administrators to communicate the provisions to which a user must agree in order to have devices enrolled into Intune.
-    """
     @property
     def acceptance_statement(self,) -> Optional[str]:
         """
@@ -26,7 +23,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the acceptanceStatement property value. Administrator-supplied explanation of the terms and conditions, typically describing what it means to accept the terms and conditions set out in the T&C policy. This is shown to the user on prompts to accept the T&C policy.
         Args:
-            value: Value to set for the acceptanceStatement property.
+            value: Value to set for the acceptance_statement property.
         """
         self._acceptance_statement = value
     
@@ -43,7 +40,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the acceptanceStatuses property value. The list of acceptance statuses for this T&C policy.
         Args:
-            value: Value to set for the acceptanceStatuses property.
+            value: Value to set for the acceptance_statuses property.
         """
         self._acceptance_statuses = value
     
@@ -77,7 +74,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the bodyText property value. Administrator-supplied body text of the terms and conditions, typically the terms themselves. This is shown to the user on prompts to accept the T&C policy.
         Args:
-            value: Value to set for the bodyText property.
+            value: Value to set for the body_text property.
         """
         self._body_text = value
     
@@ -128,7 +125,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the createdDateTime property value. DateTime the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -174,7 +171,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the displayName property value. Administrator-supplied name for the T&C policy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -184,17 +181,17 @@ class TermsAndConditions(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "acceptance_statement": lambda n : setattr(self, 'acceptance_statement', n.get_str_value()),
-            "acceptance_statuses": lambda n : setattr(self, 'acceptance_statuses', n.get_collection_of_object_values(terms_and_conditions_acceptance_status.TermsAndConditionsAcceptanceStatus)),
+            "acceptanceStatement": lambda n : setattr(self, 'acceptance_statement', n.get_str_value()),
+            "acceptanceStatuses": lambda n : setattr(self, 'acceptance_statuses', n.get_collection_of_object_values(terms_and_conditions_acceptance_status.TermsAndConditionsAcceptanceStatus)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(terms_and_conditions_assignment.TermsAndConditionsAssignment)),
-            "body_text": lambda n : setattr(self, 'body_text', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "bodyText": lambda n : setattr(self, 'body_text', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "group_assignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(terms_and_conditions_group_assignment.TermsAndConditionsGroupAssignment)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "groupAssignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(terms_and_conditions_group_assignment.TermsAndConditionsGroupAssignment)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
@@ -215,7 +212,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the groupAssignments property value. The list of group assignments for this T&C policy.
         Args:
-            value: Value to set for the groupAssignments property.
+            value: Value to set for the group_assignments property.
         """
         self._group_assignments = value
     
@@ -232,7 +229,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. DateTime the object was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -249,7 +246,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the modifiedDateTime property value. DateTime the object was last modified.
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -266,7 +263,7 @@ class TermsAndConditions(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

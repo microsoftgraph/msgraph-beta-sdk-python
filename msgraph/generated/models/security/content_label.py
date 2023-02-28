@@ -37,7 +37,7 @@ class ContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentMethod property value. The assignmentMethod property
         Args:
-            value: Value to set for the assignmentMethod property.
+            value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
     
@@ -70,7 +70,7 @@ class ContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -92,10 +92,10 @@ class ContentLabel(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_method": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sensitivity_label_id": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
+            "sensitivityLabelId": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
         }
         return fields
     
@@ -112,7 +112,7 @@ class ContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -129,7 +129,7 @@ class ContentLabel(AdditionalDataHolder, Parsable):
         """
         Sets the sensitivityLabelId property value. The sensitivityLabelId property
         Args:
-            value: Value to set for the sensitivityLabelId property.
+            value: Value to set for the sensitivity_label_id property.
         """
         self._sensitivity_label_id = value
     

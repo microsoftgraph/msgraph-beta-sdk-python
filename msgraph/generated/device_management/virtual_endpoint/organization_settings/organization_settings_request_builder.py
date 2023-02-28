@@ -35,12 +35,11 @@ class OrganizationSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OrganizationSettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OrganizationSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property organizationSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class OrganizationSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OrganizationSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
+    async def get(self,request_configuration: Optional[OrganizationSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
         """
         Read the properties and relationships of the cloudPcOrganizationSettings from the current tenant. A tenant has only one **cloudPcOrganizationSettings** object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class OrganizationSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_organization_settings.CloudPcOrganizationSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_organization_settings.CloudPcOrganizationSettings, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings] = None, request_configuration: Optional[OrganizationSettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
+    async def patch(self,body: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings] = None, request_configuration: Optional[OrganizationSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]:
         """
         Update the properties of the cloudPcOrganizationSettings object in a tenant.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_organization_settings.CloudPcOrganizationSettings]
         """
         if body is None:
@@ -92,7 +89,7 @@ class OrganizationSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_organization_settings.CloudPcOrganizationSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_organization_settings.CloudPcOrganizationSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[OrganizationSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -121,7 +118,7 @@ class OrganizationSettingsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -142,7 +139,7 @@ class OrganizationSettingsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -155,7 +152,7 @@ class OrganizationSettingsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -194,7 +191,7 @@ class OrganizationSettingsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -209,7 +206,7 @@ class OrganizationSettingsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

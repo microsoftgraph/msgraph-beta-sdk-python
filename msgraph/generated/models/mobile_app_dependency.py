@@ -45,7 +45,7 @@ class MobileAppDependency(mobile_app_relationship.MobileAppRelationship):
         """
         Sets the dependencyType property value. Indicates the dependency type associated with a relationship between two mobile apps.
         Args:
-            value: Value to set for the dependencyType property.
+            value: Value to set for the dependency_type property.
         """
         self._dependency_type = value
     
@@ -62,7 +62,7 @@ class MobileAppDependency(mobile_app_relationship.MobileAppRelationship):
         """
         Sets the dependentAppCount property value. The total number of apps that directly or indirectly depend on the parent app.
         Args:
-            value: Value to set for the dependentAppCount property.
+            value: Value to set for the dependent_app_count property.
         """
         self._dependent_app_count = value
     
@@ -79,7 +79,7 @@ class MobileAppDependency(mobile_app_relationship.MobileAppRelationship):
         """
         Sets the dependsOnAppCount property value. The total number of apps the child app directly or indirectly depends on.
         Args:
-            value: Value to set for the dependsOnAppCount property.
+            value: Value to set for the depends_on_app_count property.
         """
         self._depends_on_app_count = value
     
@@ -89,9 +89,9 @@ class MobileAppDependency(mobile_app_relationship.MobileAppRelationship):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "dependency_type": lambda n : setattr(self, 'dependency_type', n.get_enum_value(mobile_app_dependency_type.MobileAppDependencyType)),
-            "dependent_app_count": lambda n : setattr(self, 'dependent_app_count', n.get_int_value()),
-            "depends_on_app_count": lambda n : setattr(self, 'depends_on_app_count', n.get_int_value()),
+            "dependencyType": lambda n : setattr(self, 'dependency_type', n.get_enum_value(mobile_app_dependency_type.MobileAppDependencyType)),
+            "dependentAppCount": lambda n : setattr(self, 'dependent_app_count', n.get_int_value()),
+            "dependsOnAppCount": lambda n : setattr(self, 'depends_on_app_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

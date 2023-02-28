@@ -44,7 +44,7 @@ class GroupPolicyPresentationTextBox(group_policy_uploaded_presentation.GroupPol
         """
         Sets the defaultValue property value. Localized default string displayed in the text box. The default value is empty.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -54,8 +54,8 @@ class GroupPolicyPresentationTextBox(group_policy_uploaded_presentation.GroupPol
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_str_value()),
-            "max_length": lambda n : setattr(self, 'max_length', n.get_int_value()),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_str_value()),
+            "maxLength": lambda n : setattr(self, 'max_length', n.get_int_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -75,7 +75,7 @@ class GroupPolicyPresentationTextBox(group_policy_uploaded_presentation.GroupPol
         """
         Sets the maxLength property value. An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
         Args:
-            value: Value to set for the maxLength property.
+            value: Value to set for the max_length property.
         """
         self._max_length = value
     

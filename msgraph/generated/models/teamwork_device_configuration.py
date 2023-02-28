@@ -29,7 +29,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the cameraConfiguration property value. The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
         Args:
-            value: Value to set for the cameraConfiguration property.
+            value: Value to set for the camera_configuration property.
         """
         self._camera_configuration = value
     
@@ -78,7 +78,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the createdBy property value. Identity of the user who created the device configuration document.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -95,7 +95,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the createdDateTime property value. The UTC date and time when the device configuration document was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -124,7 +124,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the displayConfiguration property value. The display configuration.
         Args:
-            value: Value to set for the displayConfiguration property.
+            value: Value to set for the display_configuration property.
         """
         self._display_configuration = value
     
@@ -134,18 +134,18 @@ class TeamworkDeviceConfiguration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "camera_configuration": lambda n : setattr(self, 'camera_configuration', n.get_object_value(teamwork_camera_configuration.TeamworkCameraConfiguration)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_configuration": lambda n : setattr(self, 'display_configuration', n.get_object_value(teamwork_display_configuration.TeamworkDisplayConfiguration)),
-            "hardware_configuration": lambda n : setattr(self, 'hardware_configuration', n.get_object_value(teamwork_hardware_configuration.TeamworkHardwareConfiguration)),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "microphone_configuration": lambda n : setattr(self, 'microphone_configuration', n.get_object_value(teamwork_microphone_configuration.TeamworkMicrophoneConfiguration)),
-            "software_versions": lambda n : setattr(self, 'software_versions', n.get_object_value(teamwork_device_software_versions.TeamworkDeviceSoftwareVersions)),
-            "speaker_configuration": lambda n : setattr(self, 'speaker_configuration', n.get_object_value(teamwork_speaker_configuration.TeamworkSpeakerConfiguration)),
-            "system_configuration": lambda n : setattr(self, 'system_configuration', n.get_object_value(teamwork_system_configuration.TeamworkSystemConfiguration)),
-            "teams_client_configuration": lambda n : setattr(self, 'teams_client_configuration', n.get_object_value(teamwork_teams_client_configuration.TeamworkTeamsClientConfiguration)),
+            "cameraConfiguration": lambda n : setattr(self, 'camera_configuration', n.get_object_value(teamwork_camera_configuration.TeamworkCameraConfiguration)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayConfiguration": lambda n : setattr(self, 'display_configuration', n.get_object_value(teamwork_display_configuration.TeamworkDisplayConfiguration)),
+            "hardwareConfiguration": lambda n : setattr(self, 'hardware_configuration', n.get_object_value(teamwork_hardware_configuration.TeamworkHardwareConfiguration)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "microphoneConfiguration": lambda n : setattr(self, 'microphone_configuration', n.get_object_value(teamwork_microphone_configuration.TeamworkMicrophoneConfiguration)),
+            "softwareVersions": lambda n : setattr(self, 'software_versions', n.get_object_value(teamwork_device_software_versions.TeamworkDeviceSoftwareVersions)),
+            "speakerConfiguration": lambda n : setattr(self, 'speaker_configuration', n.get_object_value(teamwork_speaker_configuration.TeamworkSpeakerConfiguration)),
+            "systemConfiguration": lambda n : setattr(self, 'system_configuration', n.get_object_value(teamwork_system_configuration.TeamworkSystemConfiguration)),
+            "teamsClientConfiguration": lambda n : setattr(self, 'teams_client_configuration', n.get_object_value(teamwork_teams_client_configuration.TeamworkTeamsClientConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -164,7 +164,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the hardwareConfiguration property value. The hardware configuration. Applicable only for Teams Rooms-enabled devices.
         Args:
-            value: Value to set for the hardwareConfiguration property.
+            value: Value to set for the hardware_configuration property.
         """
         self._hardware_configuration = value
     
@@ -181,7 +181,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the lastModifiedBy property value. Identity of the user who last modified the device configuration.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -198,7 +198,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The UTC date and time when the device configuration was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -215,7 +215,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the microphoneConfiguration property value. The microphone configuration. Applicable only for Teams Rooms-enabled devices.
         Args:
-            value: Value to set for the microphoneConfiguration property.
+            value: Value to set for the microphone_configuration property.
         """
         self._microphone_configuration = value
     
@@ -254,7 +254,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the softwareVersions property value. Information related to software versions for the device, such as firmware, operating system, Teams client, and admin agent.
         Args:
-            value: Value to set for the softwareVersions property.
+            value: Value to set for the software_versions property.
         """
         self._software_versions = value
     
@@ -271,7 +271,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the speakerConfiguration property value. The speaker configuration. Applicable only for Teams Rooms-enabled devices.
         Args:
-            value: Value to set for the speakerConfiguration property.
+            value: Value to set for the speaker_configuration property.
         """
         self._speaker_configuration = value
     
@@ -288,7 +288,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the systemConfiguration property value. The system configuration. Not applicable for Teams Rooms-enabled devices.
         Args:
-            value: Value to set for the systemConfiguration property.
+            value: Value to set for the system_configuration property.
         """
         self._system_configuration = value
     
@@ -305,7 +305,7 @@ class TeamworkDeviceConfiguration(entity.Entity):
         """
         Sets the teamsClientConfiguration property value. The Teams client configuration. Applicable only for Teams Rooms-enabled devices.
         Args:
-            value: Value to set for the teamsClientConfiguration property.
+            value: Value to set for the teams_client_configuration property.
         """
         self._teams_client_configuration = value
     

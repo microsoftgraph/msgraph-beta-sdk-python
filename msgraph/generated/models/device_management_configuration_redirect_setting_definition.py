@@ -45,7 +45,7 @@ class DeviceManagementConfigurationRedirectSettingDefinition(device_management_c
         """
         Sets the deepLink property value. A deep link that points to the specific location in the Intune console where feature support must be managed from.
         Args:
-            value: Value to set for the deepLink property.
+            value: Value to set for the deep_link property.
         """
         self._deep_link = value
     
@@ -55,9 +55,9 @@ class DeviceManagementConfigurationRedirectSettingDefinition(device_management_c
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deep_link": lambda n : setattr(self, 'deep_link', n.get_str_value()),
-            "redirect_message": lambda n : setattr(self, 'redirect_message', n.get_str_value()),
-            "redirect_reason": lambda n : setattr(self, 'redirect_reason', n.get_str_value()),
+            "deepLink": lambda n : setattr(self, 'deep_link', n.get_str_value()),
+            "redirectMessage": lambda n : setattr(self, 'redirect_message', n.get_str_value()),
+            "redirectReason": lambda n : setattr(self, 'redirect_reason', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -76,7 +76,7 @@ class DeviceManagementConfigurationRedirectSettingDefinition(device_management_c
         """
         Sets the redirectMessage property value. A message that explains that clicking the link will redirect the user to a supported page to manage the settings.
         Args:
-            value: Value to set for the redirectMessage property.
+            value: Value to set for the redirect_message property.
         """
         self._redirect_message = value
     
@@ -93,7 +93,7 @@ class DeviceManagementConfigurationRedirectSettingDefinition(device_management_c
         """
         Sets the redirectReason property value. Indicates the reason for redirecting the user to an alternative location in the console.  For example: WiFi profiles are not supported in the settings catalog and must be created with a template policy.
         Args:
-            value: Value to set for the redirectReason property.
+            value: Value to set for the redirect_reason property.
         """
         self._redirect_reason = value
     

@@ -36,7 +36,7 @@ class RequestSignatureVerification(AdditionalDataHolder, Parsable):
         """
         Sets the allowedWeakAlgorithms property value. Specifies whether this application accepts weak algorithms.  The possible values are: rsaSha1, unknownFutureValue.
         Args:
-            value: Value to set for the allowedWeakAlgorithms property.
+            value: Value to set for the allowed_weak_algorithms property.
         """
         self._allowed_weak_algorithms = value
     
@@ -72,8 +72,8 @@ class RequestSignatureVerification(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_weak_algorithms": lambda n : setattr(self, 'allowed_weak_algorithms', n.get_enum_value(weak_algorithms.WeakAlgorithms)),
-            "is_signed_request_required": lambda n : setattr(self, 'is_signed_request_required', n.get_bool_value()),
+            "allowedWeakAlgorithms": lambda n : setattr(self, 'allowed_weak_algorithms', n.get_enum_value(weak_algorithms.WeakAlgorithms)),
+            "isSignedRequestRequired": lambda n : setattr(self, 'is_signed_request_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -91,7 +91,7 @@ class RequestSignatureVerification(AdditionalDataHolder, Parsable):
         """
         Sets the isSignedRequestRequired property value. Specifies whether signed authentication requests for this application should be required.
         Args:
-            value: Value to set for the isSignedRequestRequired property.
+            value: Value to set for the is_signed_request_required property.
         """
         self._is_signed_request_required = value
     
@@ -108,7 +108,7 @@ class RequestSignatureVerification(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

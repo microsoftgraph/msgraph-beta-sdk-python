@@ -29,7 +29,7 @@ class OnenoteEntitySchemaObjectModel(onenote_entity_base_model.OnenoteEntityBase
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -51,7 +51,7 @@ class OnenoteEntitySchemaObjectModel(onenote_entity_base_model.OnenoteEntityBase
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

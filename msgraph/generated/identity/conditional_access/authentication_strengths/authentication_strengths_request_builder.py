@@ -66,12 +66,11 @@ class AuthenticationStrengthsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationStrengths for identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -82,14 +81,13 @@ class AuthenticationStrengthsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
+    async def get(self,request_configuration: Optional[AuthenticationStrengthsRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
         """
         Defines the authentication strength policies, valid authentication method combinations, and authentication method mode details that can be required by a conditional access policy .
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]
         """
         request_info = self.to_get_request_information(
@@ -101,15 +99,14 @@ class AuthenticationStrengthsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, error_mapping)
     
-    async def patch(self,body: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None, request_configuration: Optional[AuthenticationStrengthsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
+    async def patch(self,body: Optional[authentication_strength_root.AuthenticationStrengthRoot] = None, request_configuration: Optional[AuthenticationStrengthsRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_strength_root.AuthenticationStrengthRoot]:
         """
         Update the navigation property authenticationStrengths in identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_strength_root.AuthenticationStrengthRoot]
         """
         if body is None:
@@ -123,7 +120,7 @@ class AuthenticationStrengthsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_strength_root.AuthenticationStrengthRoot, error_mapping)
     
     def policies_by_id(self,id: str) -> authentication_strength_policy_item_request_builder.AuthenticationStrengthPolicyItemRequestBuilder:
         """
@@ -165,7 +162,7 @@ class AuthenticationStrengthsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -186,7 +183,7 @@ class AuthenticationStrengthsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -199,7 +196,7 @@ class AuthenticationStrengthsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -238,7 +235,7 @@ class AuthenticationStrengthsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -253,7 +250,7 @@ class AuthenticationStrengthsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

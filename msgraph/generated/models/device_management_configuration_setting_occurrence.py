@@ -53,8 +53,8 @@ class DeviceManagementConfigurationSettingOccurrence(AdditionalDataHolder, Parsa
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "max_device_occurrence": lambda n : setattr(self, 'max_device_occurrence', n.get_int_value()),
-            "min_device_occurrence": lambda n : setattr(self, 'min_device_occurrence', n.get_int_value()),
+            "maxDeviceOccurrence": lambda n : setattr(self, 'max_device_occurrence', n.get_int_value()),
+            "minDeviceOccurrence": lambda n : setattr(self, 'min_device_occurrence', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class DeviceManagementConfigurationSettingOccurrence(AdditionalDataHolder, Parsa
         """
         Sets the maxDeviceOccurrence property value. Maximum times setting can be set on device.
         Args:
-            value: Value to set for the maxDeviceOccurrence property.
+            value: Value to set for the max_device_occurrence property.
         """
         self._max_device_occurrence = value
     
@@ -89,7 +89,7 @@ class DeviceManagementConfigurationSettingOccurrence(AdditionalDataHolder, Parsa
         """
         Sets the minDeviceOccurrence property value. Minimum times setting can be set on device. A MinDeviceOccurrence of 0 means setting is optional
         Args:
-            value: Value to set for the minDeviceOccurrence property.
+            value: Value to set for the min_device_occurrence property.
         """
         self._min_device_occurrence = value
     
@@ -106,7 +106,7 @@ class DeviceManagementConfigurationSettingOccurrence(AdditionalDataHolder, Parsa
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

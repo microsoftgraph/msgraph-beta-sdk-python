@@ -70,7 +70,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the createdDateTime property value. The date time that the profile was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -99,7 +99,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the deployableContentDisplayName property value. Friendly display name of the quality update profile deployable content
         Args:
-            value: Value to set for the deployableContentDisplayName property.
+            value: Value to set for the deployable_content_display_name property.
         """
         self._deployable_content_display_name = value
     
@@ -133,7 +133,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the displayName property value. The display name of the profile.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -150,7 +150,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the endOfSupportDate property value. The last supported date for a feature update
         Args:
-            value: Value to set for the endOfSupportDate property.
+            value: Value to set for the end_of_support_date property.
         """
         self._end_of_support_date = value
     
@@ -167,7 +167,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the featureUpdateVersion property value. The feature update version that will be deployed to the devices targeted by this profile. The version could be any supported version for example 1709, 1803 or 1809 and so on.
         Args:
-            value: Value to set for the featureUpdateVersion property.
+            value: Value to set for the feature_update_version property.
         """
         self._feature_update_version = value
     
@@ -178,15 +178,15 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_feature_update_profile_assignment.WindowsFeatureUpdateProfileAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deployable_content_display_name": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deployableContentDisplayName": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_of_support_date": lambda n : setattr(self, 'end_of_support_date', n.get_datetime_value()),
-            "feature_update_version": lambda n : setattr(self, 'feature_update_version', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "rollout_settings": lambda n : setattr(self, 'rollout_settings', n.get_object_value(windows_update_rollout_settings.WindowsUpdateRolloutSettings)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endOfSupportDate": lambda n : setattr(self, 'end_of_support_date', n.get_datetime_value()),
+            "featureUpdateVersion": lambda n : setattr(self, 'feature_update_version', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "rolloutSettings": lambda n : setattr(self, 'rollout_settings', n.get_object_value(windows_update_rollout_settings.WindowsUpdateRolloutSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -205,7 +205,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date time that the profile was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -222,7 +222,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Feature Update entity.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -239,7 +239,7 @@ class WindowsFeatureUpdateProfile(entity.Entity):
         """
         Sets the rolloutSettings property value. The windows update rollout settings, including offer start date time, offer end date time, and days between each set of offers.
         Args:
-            value: Value to set for the rolloutSettings property.
+            value: Value to set for the rollout_settings property.
         """
         self._rollout_settings = value
     

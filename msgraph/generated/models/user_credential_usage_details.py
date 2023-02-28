@@ -22,7 +22,7 @@ class UserCredentialUsageDetails(entity.Entity):
         """
         Sets the authMethod property value. The authMethod property
         Args:
-            value: Value to set for the authMethod property.
+            value: Value to set for the auth_method property.
         """
         self._auth_method = value
     
@@ -73,7 +73,7 @@ class UserCredentialUsageDetails(entity.Entity):
         """
         Sets the eventDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the eventDateTime property.
+            value: Value to set for the event_date_time property.
         """
         self._event_date_time = value
     
@@ -90,7 +90,7 @@ class UserCredentialUsageDetails(entity.Entity):
         """
         Sets the failureReason property value. Provides the failure reason for the corresponding reset or registration workflow.
         Args:
-            value: Value to set for the failureReason property.
+            value: Value to set for the failure_reason property.
         """
         self._failure_reason = value
     
@@ -117,13 +117,13 @@ class UserCredentialUsageDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auth_method": lambda n : setattr(self, 'auth_method', n.get_enum_value(usage_auth_method.UsageAuthMethod)),
-            "event_date_time": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "failure_reason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),
+            "authMethod": lambda n : setattr(self, 'auth_method', n.get_enum_value(usage_auth_method.UsageAuthMethod)),
+            "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
+            "failureReason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),
             "feature": lambda n : setattr(self, 'feature', n.get_enum_value(feature_type.FeatureType)),
-            "is_success": lambda n : setattr(self, 'is_success', n.get_bool_value()),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "isSuccess": lambda n : setattr(self, 'is_success', n.get_bool_value()),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -142,7 +142,7 @@ class UserCredentialUsageDetails(entity.Entity):
         """
         Sets the isSuccess property value. Indicates success or failure of the workflow.
         Args:
-            value: Value to set for the isSuccess property.
+            value: Value to set for the is_success property.
         """
         self._is_success = value
     
@@ -176,7 +176,7 @@ class UserCredentialUsageDetails(entity.Entity):
         """
         Sets the userDisplayName property value. User name of the user performing the reset or registration workflow.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -193,7 +193,7 @@ class UserCredentialUsageDetails(entity.Entity):
         """
         Sets the userPrincipalName property value. User principal name of the user performing the reset or registration workflow.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

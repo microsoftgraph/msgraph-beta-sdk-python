@@ -77,9 +77,9 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
         """
         fields = {
             "date": lambda n : setattr(self, 'date', n.get_object_value(Date)),
-            "no_issue_device_count": lambda n : setattr(self, 'no_issue_device_count', n.get_int_value()),
+            "noIssueDeviceCount": lambda n : setattr(self, 'no_issue_device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "remediated_device_count": lambda n : setattr(self, 'remediated_device_count', n.get_int_value()),
+            "remediatedDeviceCount": lambda n : setattr(self, 'remediated_device_count', n.get_int_value()),
         }
         return fields
     
@@ -96,7 +96,7 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
         """
         Sets the noIssueDeviceCount property value. The number of devices that were found to have no issue by the device health script.
         Args:
-            value: Value to set for the noIssueDeviceCount property.
+            value: Value to set for the no_issue_device_count property.
         """
         self._no_issue_device_count = value
     
@@ -113,7 +113,7 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -130,7 +130,7 @@ class DeviceHealthScriptRemediationHistoryData(AdditionalDataHolder, Parsable):
         """
         Sets the remediatedDeviceCount property value. The number of devices remediated by the device health script.
         Args:
-            value: Value to set for the remediatedDeviceCount property.
+            value: Value to set for the remediated_device_count property.
         """
         self._remediated_device_count = value
     

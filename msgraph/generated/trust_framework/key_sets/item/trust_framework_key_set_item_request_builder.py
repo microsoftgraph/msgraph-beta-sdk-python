@@ -30,6 +30,13 @@ class TrustFrameworkKeySetItemRequestBuilder():
         return generate_key_request_builder.GenerateKeyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_active_key(self) -> get_active_key_request_builder.GetActiveKeyRequestBuilder:
+        """
+        Provides operations to call the getActiveKey method.
+        """
+        return get_active_key_request_builder.GetActiveKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def upload_certificate(self) -> upload_certificate_request_builder.UploadCertificateRequestBuilder:
         """
         Provides operations to call the uploadCertificate method.
@@ -68,12 +75,11 @@ class TrustFrameworkKeySetItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property keySets for trustFramework
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +90,13 @@ class TrustFrameworkKeySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def get(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderGetRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
         Get keySets from trustFramework
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
         """
         request_info = self.to_get_request_information(
@@ -103,22 +108,14 @@ class TrustFrameworkKeySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
     
-    def get_active_key(self,) -> get_active_key_request_builder.GetActiveKeyRequestBuilder:
-        """
-        Provides operations to call the getActiveKey method.
-        Returns: get_active_key_request_builder.GetActiveKeyRequestBuilder
-        """
-        return get_active_key_request_builder.GetActiveKeyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
+    async def patch(self,body: Optional[trust_framework_key_set.TrustFrameworkKeySet] = None, request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[trust_framework_key_set.TrustFrameworkKeySet]:
         """
         Update the navigation property keySets in trustFramework
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key_set.TrustFrameworkKeySet]
         """
         if body is None:
@@ -132,7 +129,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key_set.TrustFrameworkKeySet, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TrustFrameworkKeySetItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -161,7 +158,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -182,7 +179,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +192,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -234,7 +231,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -249,7 +246,7 @@ class TrustFrameworkKeySetItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

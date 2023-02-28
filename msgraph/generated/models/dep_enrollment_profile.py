@@ -21,7 +21,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the appleIdDisabled property value. Indicates if Apple id setup pane is disabled
         Args:
-            value: Value to set for the appleIdDisabled property.
+            value: Value to set for the apple_id_disabled property.
         """
         self._apple_id_disabled = value
     
@@ -38,7 +38,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the applePayDisabled property value. Indicates if Apple pay setup pane is disabled
         Args:
-            value: Value to set for the applePayDisabled property.
+            value: Value to set for the apple_pay_disabled property.
         """
         self._apple_pay_disabled = value
     
@@ -55,7 +55,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the awaitDeviceConfiguredConfirmation property value. Indicates if the device will need to wait for configured confirmation
         Args:
-            value: Value to set for the awaitDeviceConfiguredConfirmation property.
+            value: Value to set for the await_device_configured_confirmation property.
         """
         self._await_device_configured_confirmation = value
     
@@ -75,12 +75,12 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         self._diagnostics_disabled: Optional[bool] = None
         # This indicates whether the device is to be enrolled in a mode which enables multi user scenarios. Only applicable in shared iPads.
         self._enable_shared_i_pad: Optional[bool] = None
+        # The iTunesPairingMode property
+        self._i_tunes_pairing_mode: Optional[i_tunes_pairing_mode.ITunesPairingMode] = None
         # Indicates if this is the default profile
         self._is_default: Optional[bool] = None
         # Indicates if the profile is mandatory
         self._is_mandatory: Optional[bool] = None
-        # The iTunesPairingMode property
-        self._i_tunes_pairing_mode: Optional[i_tunes_pairing_mode.ITunesPairingMode] = None
         # Indicates if Location service setup pane is disabled
         self._location_disabled: Optional[bool] = None
         # Indicates if Mac OS file vault is disabled
@@ -101,7 +101,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         self._shared_i_pad_maximum_user_count: Optional[int] = None
         # Indicates if siri setup pane is disabled
         self._siri_disabled: Optional[bool] = None
-        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        # Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         self._supervised_mode_enabled: Optional[bool] = None
         # Support department information
         self._support_department: Optional[str] = None
@@ -139,7 +139,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the diagnosticsDisabled property value. Indicates if diagnostics setup pane is disabled
         Args:
-            value: Value to set for the diagnosticsDisabled property.
+            value: Value to set for the diagnostics_disabled property.
         """
         self._diagnostics_disabled = value
     
@@ -156,7 +156,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the enableSharedIPad property value. This indicates whether the device is to be enrolled in a mode which enables multi user scenarios. Only applicable in shared iPads.
         Args:
-            value: Value to set for the enableSharedIPad property.
+            value: Value to set for the enable_shared_i_pad property.
         """
         self._enable_shared_i_pad = value
     
@@ -166,34 +166,51 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apple_id_disabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
-            "apple_pay_disabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
-            "await_device_configured_confirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),
-            "diagnostics_disabled": lambda n : setattr(self, 'diagnostics_disabled', n.get_bool_value()),
-            "enable_shared_i_pad": lambda n : setattr(self, 'enable_shared_i_pad', n.get_bool_value()),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
-            "is_mandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
-            "i_tunes_pairing_mode": lambda n : setattr(self, 'i_tunes_pairing_mode', n.get_enum_value(i_tunes_pairing_mode.ITunesPairingMode)),
-            "location_disabled": lambda n : setattr(self, 'location_disabled', n.get_bool_value()),
-            "mac_o_s_file_vault_disabled": lambda n : setattr(self, 'mac_o_s_file_vault_disabled', n.get_bool_value()),
-            "mac_o_s_registration_disabled": lambda n : setattr(self, 'mac_o_s_registration_disabled', n.get_bool_value()),
-            "management_certificates": lambda n : setattr(self, 'management_certificates', n.get_collection_of_object_values(management_certificate_with_thumbprint.ManagementCertificateWithThumbprint)),
-            "pass_code_disabled": lambda n : setattr(self, 'pass_code_disabled', n.get_bool_value()),
-            "profile_removal_disabled": lambda n : setattr(self, 'profile_removal_disabled', n.get_bool_value()),
-            "restore_blocked": lambda n : setattr(self, 'restore_blocked', n.get_bool_value()),
-            "restore_from_android_disabled": lambda n : setattr(self, 'restore_from_android_disabled', n.get_bool_value()),
-            "shared_i_pad_maximum_user_count": lambda n : setattr(self, 'shared_i_pad_maximum_user_count', n.get_int_value()),
-            "siri_disabled": lambda n : setattr(self, 'siri_disabled', n.get_bool_value()),
-            "supervised_mode_enabled": lambda n : setattr(self, 'supervised_mode_enabled', n.get_bool_value()),
-            "support_department": lambda n : setattr(self, 'support_department', n.get_str_value()),
-            "support_phone_number": lambda n : setattr(self, 'support_phone_number', n.get_str_value()),
-            "terms_and_conditions_disabled": lambda n : setattr(self, 'terms_and_conditions_disabled', n.get_bool_value()),
-            "touch_id_disabled": lambda n : setattr(self, 'touch_id_disabled', n.get_bool_value()),
-            "zoom_disabled": lambda n : setattr(self, 'zoom_disabled', n.get_bool_value()),
+            "appleIdDisabled": lambda n : setattr(self, 'apple_id_disabled', n.get_bool_value()),
+            "applePayDisabled": lambda n : setattr(self, 'apple_pay_disabled', n.get_bool_value()),
+            "awaitDeviceConfiguredConfirmation": lambda n : setattr(self, 'await_device_configured_confirmation', n.get_bool_value()),
+            "diagnosticsDisabled": lambda n : setattr(self, 'diagnostics_disabled', n.get_bool_value()),
+            "enableSharedIPad": lambda n : setattr(self, 'enable_shared_i_pad', n.get_bool_value()),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "isMandatory": lambda n : setattr(self, 'is_mandatory', n.get_bool_value()),
+            "iTunesPairingMode": lambda n : setattr(self, 'i_tunes_pairing_mode', n.get_enum_value(i_tunes_pairing_mode.ITunesPairingMode)),
+            "locationDisabled": lambda n : setattr(self, 'location_disabled', n.get_bool_value()),
+            "macOSFileVaultDisabled": lambda n : setattr(self, 'mac_o_s_file_vault_disabled', n.get_bool_value()),
+            "macOSRegistrationDisabled": lambda n : setattr(self, 'mac_o_s_registration_disabled', n.get_bool_value()),
+            "managementCertificates": lambda n : setattr(self, 'management_certificates', n.get_collection_of_object_values(management_certificate_with_thumbprint.ManagementCertificateWithThumbprint)),
+            "passCodeDisabled": lambda n : setattr(self, 'pass_code_disabled', n.get_bool_value()),
+            "profileRemovalDisabled": lambda n : setattr(self, 'profile_removal_disabled', n.get_bool_value()),
+            "restoreBlocked": lambda n : setattr(self, 'restore_blocked', n.get_bool_value()),
+            "restoreFromAndroidDisabled": lambda n : setattr(self, 'restore_from_android_disabled', n.get_bool_value()),
+            "sharedIPadMaximumUserCount": lambda n : setattr(self, 'shared_i_pad_maximum_user_count', n.get_int_value()),
+            "siriDisabled": lambda n : setattr(self, 'siri_disabled', n.get_bool_value()),
+            "supervisedModeEnabled": lambda n : setattr(self, 'supervised_mode_enabled', n.get_bool_value()),
+            "supportDepartment": lambda n : setattr(self, 'support_department', n.get_str_value()),
+            "supportPhoneNumber": lambda n : setattr(self, 'support_phone_number', n.get_str_value()),
+            "termsAndConditionsDisabled": lambda n : setattr(self, 'terms_and_conditions_disabled', n.get_bool_value()),
+            "touchIdDisabled": lambda n : setattr(self, 'touch_id_disabled', n.get_bool_value()),
+            "zoomDisabled": lambda n : setattr(self, 'zoom_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def i_tunes_pairing_mode(self,) -> Optional[i_tunes_pairing_mode.ITunesPairingMode]:
+        """
+        Gets the iTunesPairingMode property value. The iTunesPairingMode property
+        Returns: Optional[i_tunes_pairing_mode.ITunesPairingMode]
+        """
+        return self._i_tunes_pairing_mode
+    
+    @i_tunes_pairing_mode.setter
+    def i_tunes_pairing_mode(self,value: Optional[i_tunes_pairing_mode.ITunesPairingMode] = None) -> None:
+        """
+        Sets the iTunesPairingMode property value. The iTunesPairingMode property
+        Args:
+            value: Value to set for the i_tunes_pairing_mode property.
+        """
+        self._i_tunes_pairing_mode = value
     
     @property
     def is_default(self,) -> Optional[bool]:
@@ -208,7 +225,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the isDefault property value. Indicates if this is the default profile
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     
@@ -225,26 +242,9 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the isMandatory property value. Indicates if the profile is mandatory
         Args:
-            value: Value to set for the isMandatory property.
+            value: Value to set for the is_mandatory property.
         """
         self._is_mandatory = value
-    
-    @property
-    def i_tunes_pairing_mode(self,) -> Optional[i_tunes_pairing_mode.ITunesPairingMode]:
-        """
-        Gets the iTunesPairingMode property value. The iTunesPairingMode property
-        Returns: Optional[i_tunes_pairing_mode.ITunesPairingMode]
-        """
-        return self._i_tunes_pairing_mode
-    
-    @i_tunes_pairing_mode.setter
-    def i_tunes_pairing_mode(self,value: Optional[i_tunes_pairing_mode.ITunesPairingMode] = None) -> None:
-        """
-        Sets the iTunesPairingMode property value. The iTunesPairingMode property
-        Args:
-            value: Value to set for the iTunesPairingMode property.
-        """
-        self._i_tunes_pairing_mode = value
     
     @property
     def location_disabled(self,) -> Optional[bool]:
@@ -259,7 +259,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the locationDisabled property value. Indicates if Location service setup pane is disabled
         Args:
-            value: Value to set for the locationDisabled property.
+            value: Value to set for the location_disabled property.
         """
         self._location_disabled = value
     
@@ -276,7 +276,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the macOSFileVaultDisabled property value. Indicates if Mac OS file vault is disabled
         Args:
-            value: Value to set for the macOSFileVaultDisabled property.
+            value: Value to set for the mac_o_s_file_vault_disabled property.
         """
         self._mac_o_s_file_vault_disabled = value
     
@@ -293,7 +293,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the macOSRegistrationDisabled property value. Indicates if Mac OS registration is disabled
         Args:
-            value: Value to set for the macOSRegistrationDisabled property.
+            value: Value to set for the mac_o_s_registration_disabled property.
         """
         self._mac_o_s_registration_disabled = value
     
@@ -310,7 +310,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the managementCertificates property value. Management certificates for Apple Configurator
         Args:
-            value: Value to set for the managementCertificates property.
+            value: Value to set for the management_certificates property.
         """
         self._management_certificates = value
     
@@ -327,7 +327,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the passCodeDisabled property value. Indicates if Passcode setup pane is disabled
         Args:
-            value: Value to set for the passCodeDisabled property.
+            value: Value to set for the pass_code_disabled property.
         """
         self._pass_code_disabled = value
     
@@ -344,7 +344,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the profileRemovalDisabled property value. Indicates if the profile removal option is disabled
         Args:
-            value: Value to set for the profileRemovalDisabled property.
+            value: Value to set for the profile_removal_disabled property.
         """
         self._profile_removal_disabled = value
     
@@ -361,7 +361,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the restoreBlocked property value. Indicates if Restore setup pane is blocked
         Args:
-            value: Value to set for the restoreBlocked property.
+            value: Value to set for the restore_blocked property.
         """
         self._restore_blocked = value
     
@@ -378,7 +378,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the restoreFromAndroidDisabled property value. Indicates if Restore from Android is disabled
         Args:
-            value: Value to set for the restoreFromAndroidDisabled property.
+            value: Value to set for the restore_from_android_disabled property.
         """
         self._restore_from_android_disabled = value
     
@@ -429,7 +429,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the sharedIPadMaximumUserCount property value. This specifies the maximum number of users that can use a shared iPad. Only applicable in shared iPad mode.
         Args:
-            value: Value to set for the sharedIPadMaximumUserCount property.
+            value: Value to set for the shared_i_pad_maximum_user_count property.
         """
         self._shared_i_pad_maximum_user_count = value
     
@@ -446,14 +446,14 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the siriDisabled property value. Indicates if siri setup pane is disabled
         Args:
-            value: Value to set for the siriDisabled property.
+            value: Value to set for the siri_disabled property.
         """
         self._siri_disabled = value
     
     @property
     def supervised_mode_enabled(self,) -> Optional[bool]:
         """
-        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Gets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Returns: Optional[bool]
         """
         return self._supervised_mode_enabled
@@ -461,9 +461,9 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
     @supervised_mode_enabled.setter
     def supervised_mode_enabled(self,value: Optional[bool] = None) -> None:
         """
-        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/en-us/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
+        Sets the supervisedModeEnabled property value. Supervised mode, True to enable, false otherwise. See https://learn.microsoft.com/intune/deploy-use/enroll-devices-in-microsoft-intune for additional information.
         Args:
-            value: Value to set for the supervisedModeEnabled property.
+            value: Value to set for the supervised_mode_enabled property.
         """
         self._supervised_mode_enabled = value
     
@@ -480,7 +480,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the supportDepartment property value. Support department information
         Args:
-            value: Value to set for the supportDepartment property.
+            value: Value to set for the support_department property.
         """
         self._support_department = value
     
@@ -497,7 +497,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the supportPhoneNumber property value. Support phone number
         Args:
-            value: Value to set for the supportPhoneNumber property.
+            value: Value to set for the support_phone_number property.
         """
         self._support_phone_number = value
     
@@ -514,7 +514,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the termsAndConditionsDisabled property value. Indicates if 'Terms and Conditions' setup pane is disabled
         Args:
-            value: Value to set for the termsAndConditionsDisabled property.
+            value: Value to set for the terms_and_conditions_disabled property.
         """
         self._terms_and_conditions_disabled = value
     
@@ -531,7 +531,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the touchIdDisabled property value. Indicates if touch id setup pane is disabled
         Args:
-            value: Value to set for the touchIdDisabled property.
+            value: Value to set for the touch_id_disabled property.
         """
         self._touch_id_disabled = value
     
@@ -548,7 +548,7 @@ class DepEnrollmentProfile(enrollment_profile.EnrollmentProfile):
         """
         Sets the zoomDisabled property value. Indicates if zoom setup pane is disabled
         Args:
-            value: Value to set for the zoomDisabled property.
+            value: Value to set for the zoom_disabled property.
         """
         self._zoom_disabled = value
     

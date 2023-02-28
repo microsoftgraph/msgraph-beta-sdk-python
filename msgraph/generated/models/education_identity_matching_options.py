@@ -36,7 +36,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the appliesTo property value. The appliesTo property
         Args:
-            value: Value to set for the appliesTo property.
+            value: Value to set for the applies_to property.
         """
         self._applies_to = value
     
@@ -76,11 +76,11 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applies_to": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
+            "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(education_user_role.EducationUserRole)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "source_property_name": lambda n : setattr(self, 'source_property_name', n.get_str_value()),
-            "target_domain": lambda n : setattr(self, 'target_domain', n.get_str_value()),
-            "target_property_name": lambda n : setattr(self, 'target_property_name', n.get_str_value()),
+            "sourcePropertyName": lambda n : setattr(self, 'source_property_name', n.get_str_value()),
+            "targetDomain": lambda n : setattr(self, 'target_domain', n.get_str_value()),
+            "targetPropertyName": lambda n : setattr(self, 'target_property_name', n.get_str_value()),
         }
         return fields
     
@@ -97,7 +97,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -129,7 +129,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the sourcePropertyName property value. The name of the source property, which should be a field name in the source data. This property is case-sensitive.
         Args:
-            value: Value to set for the sourcePropertyName property.
+            value: Value to set for the source_property_name property.
         """
         self._source_property_name = value
     
@@ -146,7 +146,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the targetDomain property value. The domain to suffix with the source property to match on the target. If provided as null, the source property will be used to match with the target property.
         Args:
-            value: Value to set for the targetDomain property.
+            value: Value to set for the target_domain property.
         """
         self._target_domain = value
     
@@ -163,7 +163,7 @@ class EducationIdentityMatchingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the targetPropertyName property value. The name of the target property, which should be a valid property in Azure AD. This property is case-sensitive.
         Args:
-            value: Value to set for the targetPropertyName property.
+            value: Value to set for the target_property_name property.
         """
         self._target_property_name = value
     

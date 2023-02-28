@@ -37,7 +37,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         Sets the attributeDestination property value. Information about how to set the attribute, currently a accessPackageUserDirectoryAttributeStore object type.
         Args:
-            value: Value to set for the attributeDestination property.
+            value: Value to set for the attribute_destination property.
         """
         self._attribute_destination = value
     
@@ -54,7 +54,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         Sets the attributeName property value. The name of the attribute in the end system. If the destination is accessPackageUserDirectoryAttributeStore, then a user property such as jobTitle or a directory schema extension for the user object type, such as extension_2b676109c7c74ae2b41549205f1947ed_personalTitle.
         Args:
-            value: Value to set for the attributeName property.
+            value: Value to set for the attribute_name property.
         """
         self._attribute_name = value
     
@@ -71,7 +71,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         Sets the attributeSource property value. Information about how to populate the attribute value when an accessPackageAssignmentRequest is being fulfilled, currently a accessPackageResourceAttributeQuestion object type.
         Args:
-            value: Value to set for the attributeSource property.
+            value: Value to set for the attribute_source property.
         """
         self._attribute_source = value
     
@@ -115,12 +115,12 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attribute_destination": lambda n : setattr(self, 'attribute_destination', n.get_object_value(access_package_resource_attribute_destination.AccessPackageResourceAttributeDestination)),
-            "attribute_name": lambda n : setattr(self, 'attribute_name', n.get_str_value()),
-            "attribute_source": lambda n : setattr(self, 'attribute_source', n.get_object_value(access_package_resource_attribute_source.AccessPackageResourceAttributeSource)),
+            "attributeDestination": lambda n : setattr(self, 'attribute_destination', n.get_object_value(access_package_resource_attribute_destination.AccessPackageResourceAttributeDestination)),
+            "attributeName": lambda n : setattr(self, 'attribute_name', n.get_str_value()),
+            "attributeSource": lambda n : setattr(self, 'attribute_source', n.get_object_value(access_package_resource_attribute_source.AccessPackageResourceAttributeSource)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "is_editable": lambda n : setattr(self, 'is_editable', n.get_bool_value()),
-            "is_persisted_on_assignment_removal": lambda n : setattr(self, 'is_persisted_on_assignment_removal', n.get_bool_value()),
+            "isEditable": lambda n : setattr(self, 'is_editable', n.get_bool_value()),
+            "isPersistedOnAssignmentRemoval": lambda n : setattr(self, 'is_persisted_on_assignment_removal', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -155,7 +155,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         Sets the isEditable property value. Specifies whether or not an existing attribute value can be edited by the requester.
         Args:
-            value: Value to set for the isEditable property.
+            value: Value to set for the is_editable property.
         """
         self._is_editable = value
     
@@ -172,7 +172,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         Sets the isPersistedOnAssignmentRemoval property value. Specifies whether the attribute will remain in the end system after an assignment ends.
         Args:
-            value: Value to set for the isPersistedOnAssignmentRemoval property.
+            value: Value to set for the is_persisted_on_assignment_removal property.
         """
         self._is_persisted_on_assignment_removal = value
     
@@ -189,7 +189,7 @@ class AccessPackageResourceAttribute(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

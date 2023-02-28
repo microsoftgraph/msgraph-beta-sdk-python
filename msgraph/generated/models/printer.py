@@ -23,7 +23,7 @@ class Printer(printer_base.PrinterBase):
         """
         Sets the acceptingJobs property value. The acceptingJobs property
         Args:
-            value: Value to set for the acceptingJobs property.
+            value: Value to set for the accepting_jobs property.
         """
         self._accepting_jobs = value
     
@@ -87,15 +87,15 @@ class Printer(printer_base.PrinterBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accepting_jobs": lambda n : setattr(self, 'accepting_jobs', n.get_bool_value()),
+            "acceptingJobs": lambda n : setattr(self, 'accepting_jobs', n.get_bool_value()),
             "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(print_connector.PrintConnector)),
-            "has_physical_device": lambda n : setattr(self, 'has_physical_device', n.get_bool_value()),
-            "is_shared": lambda n : setattr(self, 'is_shared', n.get_bool_value()),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "registered_date_time": lambda n : setattr(self, 'registered_date_time', n.get_datetime_value()),
+            "hasPhysicalDevice": lambda n : setattr(self, 'has_physical_device', n.get_bool_value()),
+            "isShared": lambda n : setattr(self, 'is_shared', n.get_bool_value()),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "registeredDateTime": lambda n : setattr(self, 'registered_date_time', n.get_datetime_value()),
             "share": lambda n : setattr(self, 'share', n.get_object_value(printer_share.PrinterShare)),
             "shares": lambda n : setattr(self, 'shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
-            "task_triggers": lambda n : setattr(self, 'task_triggers', n.get_collection_of_object_values(print_task_trigger.PrintTaskTrigger)),
+            "taskTriggers": lambda n : setattr(self, 'task_triggers', n.get_collection_of_object_values(print_task_trigger.PrintTaskTrigger)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,7 +114,7 @@ class Printer(printer_base.PrinterBase):
         """
         Sets the hasPhysicalDevice property value. True if the printer has a physical device for printing. Read-only.
         Args:
-            value: Value to set for the hasPhysicalDevice property.
+            value: Value to set for the has_physical_device property.
         """
         self._has_physical_device = value
     
@@ -131,7 +131,7 @@ class Printer(printer_base.PrinterBase):
         """
         Sets the isShared property value. True if the printer is shared; false otherwise. Read-only.
         Args:
-            value: Value to set for the isShared property.
+            value: Value to set for the is_shared property.
         """
         self._is_shared = value
     
@@ -148,7 +148,7 @@ class Printer(printer_base.PrinterBase):
         """
         Sets the lastSeenDateTime property value. The most recent dateTimeOffset when a printer interacted with Universal Print. Read-only.
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -165,7 +165,7 @@ class Printer(printer_base.PrinterBase):
         """
         Sets the registeredDateTime property value. The DateTimeOffset when the printer was registered. Read-only.
         Args:
-            value: Value to set for the registeredDateTime property.
+            value: Value to set for the registered_date_time property.
         """
         self._registered_date_time = value
     
@@ -235,7 +235,7 @@ class Printer(printer_base.PrinterBase):
         """
         Sets the taskTriggers property value. A list of task triggers that are associated with the printer.
         Args:
-            value: Value to set for the taskTriggers property.
+            value: Value to set for the task_triggers property.
         """
         self._task_triggers = value
     

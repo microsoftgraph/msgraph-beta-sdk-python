@@ -36,7 +36,7 @@ class CreateUploadSessionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the attachmentItem property value. The AttachmentItem property
         Args:
-            value: Value to set for the AttachmentItem property.
+            value: Value to set for the attachment_item property.
         """
         self._attachment_item = value
     
@@ -68,7 +68,7 @@ class CreateUploadSessionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "attachment_item": lambda n : setattr(self, 'attachment_item', n.get_object_value(attachment_item.AttachmentItem)),
+            "AttachmentItem": lambda n : setattr(self, 'attachment_item', n.get_object_value(attachment_item.AttachmentItem)),
         }
         return fields
     

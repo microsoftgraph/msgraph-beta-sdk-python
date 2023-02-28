@@ -36,7 +36,7 @@ class TeamworkHardwareHealth(AdditionalDataHolder, Parsable):
         """
         Sets the computeHealth property value. The system health details for a teamworkDevice.
         Args:
-            value: Value to set for the computeHealth property.
+            value: Value to set for the compute_health property.
         """
         self._compute_health = value
     
@@ -72,8 +72,8 @@ class TeamworkHardwareHealth(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compute_health": lambda n : setattr(self, 'compute_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
-            "hdmi_ingest_health": lambda n : setattr(self, 'hdmi_ingest_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "computeHealth": lambda n : setattr(self, 'compute_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
+            "hdmiIngestHealth": lambda n : setattr(self, 'hdmi_ingest_health', n.get_object_value(teamwork_peripheral_health.TeamworkPeripheralHealth)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -91,7 +91,7 @@ class TeamworkHardwareHealth(AdditionalDataHolder, Parsable):
         """
         Sets the hdmiIngestHealth property value. The health details about the HDMI ingest of a device.
         Args:
-            value: Value to set for the hdmiIngestHealth property.
+            value: Value to set for the hdmi_ingest_health property.
         """
         self._hdmi_ingest_health = value
     
@@ -108,7 +108,7 @@ class TeamworkHardwareHealth(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

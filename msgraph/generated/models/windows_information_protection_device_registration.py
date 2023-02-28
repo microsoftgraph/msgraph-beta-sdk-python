@@ -55,7 +55,7 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         """
         Sets the deviceMacAddress property value. Device Mac address.
         Args:
-            value: Value to set for the deviceMacAddress property.
+            value: Value to set for the device_mac_address property.
         """
         self._device_mac_address = value
     
@@ -72,7 +72,7 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         """
         Sets the deviceName property value. Device name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -89,7 +89,7 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         """
         Sets the deviceRegistrationId property value. Device identifier for this device registration record.
         Args:
-            value: Value to set for the deviceRegistrationId property.
+            value: Value to set for the device_registration_id property.
         """
         self._device_registration_id = value
     
@@ -106,7 +106,7 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         """
         Sets the deviceType property value. Device type, for example, Windows laptop VS Windows phone.
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -116,12 +116,12 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_mac_address": lambda n : setattr(self, 'device_mac_address', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_registration_id": lambda n : setattr(self, 'device_registration_id', n.get_str_value()),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_str_value()),
-            "last_check_in_date_time": lambda n : setattr(self, 'last_check_in_date_time', n.get_datetime_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "deviceMacAddress": lambda n : setattr(self, 'device_mac_address', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceRegistrationId": lambda n : setattr(self, 'device_registration_id', n.get_str_value()),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_str_value()),
+            "lastCheckInDateTime": lambda n : setattr(self, 'last_check_in_date_time', n.get_datetime_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -140,7 +140,7 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         """
         Sets the lastCheckInDateTime property value. Last checkin time of the device.
         Args:
-            value: Value to set for the lastCheckInDateTime property.
+            value: Value to set for the last_check_in_date_time property.
         """
         self._last_check_in_date_time = value
     
@@ -173,7 +173,7 @@ class WindowsInformationProtectionDeviceRegistration(entity.Entity):
         """
         Sets the userId property value. UserId associated with this device registration record.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

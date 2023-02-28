@@ -34,7 +34,7 @@ class ReactionsFacet(AdditionalDataHolder, Parsable):
         """
         Sets the commentCount property value. Count of comments.
         Args:
-            value: Value to set for the commentCount property.
+            value: Value to set for the comment_count property.
         """
         self._comment_count = value
     
@@ -72,10 +72,10 @@ class ReactionsFacet(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comment_count": lambda n : setattr(self, 'comment_count', n.get_int_value()),
-            "like_count": lambda n : setattr(self, 'like_count', n.get_int_value()),
+            "commentCount": lambda n : setattr(self, 'comment_count', n.get_int_value()),
+            "likeCount": lambda n : setattr(self, 'like_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "share_count": lambda n : setattr(self, 'share_count', n.get_int_value()),
+            "shareCount": lambda n : setattr(self, 'share_count', n.get_int_value()),
         }
         return fields
     
@@ -92,7 +92,7 @@ class ReactionsFacet(AdditionalDataHolder, Parsable):
         """
         Sets the likeCount property value. Count of likes.
         Args:
-            value: Value to set for the likeCount property.
+            value: Value to set for the like_count property.
         """
         self._like_count = value
     
@@ -109,7 +109,7 @@ class ReactionsFacet(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -140,7 +140,7 @@ class ReactionsFacet(AdditionalDataHolder, Parsable):
         """
         Sets the shareCount property value. Count of shares.
         Args:
-            value: Value to set for the shareCount property.
+            value: Value to set for the share_count property.
         """
         self._share_count = value
     

@@ -57,8 +57,8 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
         """
         fields = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(planner_plan_configuration_bucket_localization.PlannerPlanConfigurationBucketLocalization)),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
-            "plan_title": lambda n : setattr(self, 'plan_title', n.get_str_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "planTitle": lambda n : setattr(self, 'plan_title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
         """
         Sets the languageTag property value. The language code associated with the localized names in this object.
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -94,7 +94,7 @@ class PlannerPlanConfigurationLocalization(entity.Entity):
         """
         Sets the planTitle property value. Localized title of the plan.
         Args:
-            value: Value to set for the planTitle property.
+            value: Value to set for the plan_title property.
         """
         self._plan_title = value
     

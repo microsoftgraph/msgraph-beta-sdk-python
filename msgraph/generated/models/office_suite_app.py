@@ -25,7 +25,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the autoAcceptEula property value. The value to accept the EULA automatically on the enduser's device.
         Args:
-            value: Value to set for the autoAcceptEula property.
+            value: Value to set for the auto_accept_eula property.
         """
         self._auto_accept_eula = value
     
@@ -87,7 +87,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the excludedApps property value. The property to represent the apps which are excluded from the selected Office365 Product Id.
         Args:
-            value: Value to set for the excludedApps property.
+            value: Value to set for the excluded_apps property.
         """
         self._excluded_apps = value
     
@@ -97,19 +97,19 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auto_accept_eula": lambda n : setattr(self, 'auto_accept_eula', n.get_bool_value()),
-            "excluded_apps": lambda n : setattr(self, 'excluded_apps', n.get_object_value(excluded_apps.ExcludedApps)),
-            "install_progress_display_level": lambda n : setattr(self, 'install_progress_display_level', n.get_enum_value(office_suite_install_progress_display_level.OfficeSuiteInstallProgressDisplayLevel)),
-            "locales_to_install": lambda n : setattr(self, 'locales_to_install', n.get_collection_of_primitive_values(str)),
-            "office_configuration_xml": lambda n : setattr(self, 'office_configuration_xml', n.get_bytes_value()),
-            "office_platform_architecture": lambda n : setattr(self, 'office_platform_architecture', n.get_enum_value(windows_architecture.WindowsArchitecture)),
-            "office_suite_app_default_file_format": lambda n : setattr(self, 'office_suite_app_default_file_format', n.get_enum_value(office_suite_default_file_format_type.OfficeSuiteDefaultFileFormatType)),
-            "product_ids": lambda n : setattr(self, 'product_ids', n.get_collection_of_enum_values(office_product_id.OfficeProductId)),
-            "should_uninstall_older_versions_of_office": lambda n : setattr(self, 'should_uninstall_older_versions_of_office', n.get_bool_value()),
-            "target_version": lambda n : setattr(self, 'target_version', n.get_str_value()),
-            "update_channel": lambda n : setattr(self, 'update_channel', n.get_enum_value(office_update_channel.OfficeUpdateChannel)),
-            "update_version": lambda n : setattr(self, 'update_version', n.get_str_value()),
-            "use_shared_computer_activation": lambda n : setattr(self, 'use_shared_computer_activation', n.get_bool_value()),
+            "autoAcceptEula": lambda n : setattr(self, 'auto_accept_eula', n.get_bool_value()),
+            "excludedApps": lambda n : setattr(self, 'excluded_apps', n.get_object_value(excluded_apps.ExcludedApps)),
+            "installProgressDisplayLevel": lambda n : setattr(self, 'install_progress_display_level', n.get_enum_value(office_suite_install_progress_display_level.OfficeSuiteInstallProgressDisplayLevel)),
+            "localesToInstall": lambda n : setattr(self, 'locales_to_install', n.get_collection_of_primitive_values(str)),
+            "officeConfigurationXml": lambda n : setattr(self, 'office_configuration_xml', n.get_bytes_value()),
+            "officePlatformArchitecture": lambda n : setattr(self, 'office_platform_architecture', n.get_enum_value(windows_architecture.WindowsArchitecture)),
+            "officeSuiteAppDefaultFileFormat": lambda n : setattr(self, 'office_suite_app_default_file_format', n.get_enum_value(office_suite_default_file_format_type.OfficeSuiteDefaultFileFormatType)),
+            "productIds": lambda n : setattr(self, 'product_ids', n.get_collection_of_enum_values(office_product_id.OfficeProductId)),
+            "shouldUninstallOlderVersionsOfOffice": lambda n : setattr(self, 'should_uninstall_older_versions_of_office', n.get_bool_value()),
+            "targetVersion": lambda n : setattr(self, 'target_version', n.get_str_value()),
+            "updateChannel": lambda n : setattr(self, 'update_channel', n.get_enum_value(office_update_channel.OfficeUpdateChannel)),
+            "updateVersion": lambda n : setattr(self, 'update_version', n.get_str_value()),
+            "useSharedComputerActivation": lambda n : setattr(self, 'use_shared_computer_activation', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -128,7 +128,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the installProgressDisplayLevel property value. The Enum to specify the level of display for the Installation Progress Setup UI on the Device.
         Args:
-            value: Value to set for the installProgressDisplayLevel property.
+            value: Value to set for the install_progress_display_level property.
         """
         self._install_progress_display_level = value
     
@@ -145,7 +145,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the localesToInstall property value. The property to represent the locales which are installed when the apps from Office365 is installed. It uses standard RFC 6033. Ref: https://technet.microsoft.com/library/cc179219(v=office.16).aspx
         Args:
-            value: Value to set for the localesToInstall property.
+            value: Value to set for the locales_to_install property.
         """
         self._locales_to_install = value
     
@@ -162,7 +162,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the officeConfigurationXml property value. The property to represent the XML configuration file that can be specified for Office ProPlus Apps. Takes precedence over all other properties. When present, the XML configuration file will be used to create the app.
         Args:
-            value: Value to set for the officeConfigurationXml property.
+            value: Value to set for the office_configuration_xml property.
         """
         self._office_configuration_xml = value
     
@@ -179,7 +179,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the officePlatformArchitecture property value. Contains properties for Windows architecture.
         Args:
-            value: Value to set for the officePlatformArchitecture property.
+            value: Value to set for the office_platform_architecture property.
         """
         self._office_platform_architecture = value
     
@@ -196,7 +196,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the officeSuiteAppDefaultFileFormat property value. Describes the OfficeSuiteApp file format types that can be selected.
         Args:
-            value: Value to set for the officeSuiteAppDefaultFileFormat property.
+            value: Value to set for the office_suite_app_default_file_format property.
         """
         self._office_suite_app_default_file_format = value
     
@@ -213,7 +213,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the productIds property value. The Product Ids that represent the Office365 Suite SKU.
         Args:
-            value: Value to set for the productIds property.
+            value: Value to set for the product_ids property.
         """
         self._product_ids = value
     
@@ -253,7 +253,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the shouldUninstallOlderVersionsOfOffice property value. The property to determine whether to uninstall existing Office MSI if an Office365 app suite is deployed to the device or not.
         Args:
-            value: Value to set for the shouldUninstallOlderVersionsOfOffice property.
+            value: Value to set for the should_uninstall_older_versions_of_office property.
         """
         self._should_uninstall_older_versions_of_office = value
     
@@ -270,7 +270,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the targetVersion property value. The property to represent the specific target version for the Office365 app suite that should be remained deployed on the devices.
         Args:
-            value: Value to set for the targetVersion property.
+            value: Value to set for the target_version property.
         """
         self._target_version = value
     
@@ -287,7 +287,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the updateChannel property value. The Enum to specify the Office365 Updates Channel.
         Args:
-            value: Value to set for the updateChannel property.
+            value: Value to set for the update_channel property.
         """
         self._update_channel = value
     
@@ -304,7 +304,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the updateVersion property value. The property to represent the update version in which the specific target version is available for the Office365 app suite.
         Args:
-            value: Value to set for the updateVersion property.
+            value: Value to set for the update_version property.
         """
         self._update_version = value
     
@@ -321,7 +321,7 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         """
         Sets the useSharedComputerActivation property value. The property to represent that whether the shared computer activation is used not for Office365 app suite.
         Args:
-            value: Value to set for the useSharedComputerActivation property.
+            value: Value to set for the use_shared_computer_activation property.
         """
         self._use_shared_computer_activation = value
     

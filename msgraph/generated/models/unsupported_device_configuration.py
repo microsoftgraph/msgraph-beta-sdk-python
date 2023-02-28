@@ -54,7 +54,7 @@ class UnsupportedDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         fields = {
             "details": lambda n : setattr(self, 'details', n.get_collection_of_object_values(unsupported_device_configuration_detail.UnsupportedDeviceConfigurationDetail)),
-            "original_entity_type_name": lambda n : setattr(self, 'original_entity_type_name', n.get_str_value()),
+            "originalEntityTypeName": lambda n : setattr(self, 'original_entity_type_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class UnsupportedDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the originalEntityTypeName property value. The type of entity that would be returned otherwise.
         Args:
-            value: Value to set for the originalEntityTypeName property.
+            value: Value to set for the original_entity_type_name property.
         """
         self._original_entity_type_name = value
     

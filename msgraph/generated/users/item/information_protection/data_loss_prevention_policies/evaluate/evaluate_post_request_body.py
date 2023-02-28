@@ -63,7 +63,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationInput property value. The evaluationInput property
         Args:
-            value: Value to set for the evaluationInput property.
+            value: Value to set for the evaluation_input property.
         """
         self._evaluation_input = value
     
@@ -73,8 +73,8 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "evaluation_input": lambda n : setattr(self, 'evaluation_input', n.get_object_value(dlp_evaluation_input.DlpEvaluationInput)),
-            "notification_info": lambda n : setattr(self, 'notification_info', n.get_object_value(dlp_notification.DlpNotification)),
+            "evaluationInput": lambda n : setattr(self, 'evaluation_input', n.get_object_value(dlp_evaluation_input.DlpEvaluationInput)),
+            "notificationInfo": lambda n : setattr(self, 'notification_info', n.get_object_value(dlp_notification.DlpNotification)),
             "target": lambda n : setattr(self, 'target', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the notificationInfo property value. The notificationInfo property
         Args:
-            value: Value to set for the notificationInfo property.
+            value: Value to set for the notification_info property.
         """
         self._notification_info = value
     

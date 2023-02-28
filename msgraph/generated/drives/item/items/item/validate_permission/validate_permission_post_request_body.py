@@ -34,7 +34,7 @@ class ValidatePermissionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the challengeToken property value. The challengeToken property
         Args:
-            value: Value to set for the challengeToken property.
+            value: Value to set for the challenge_token property.
         """
         self._challenge_token = value
     
@@ -68,7 +68,7 @@ class ValidatePermissionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "challenge_token": lambda n : setattr(self, 'challenge_token', n.get_str_value()),
+            "challengeToken": lambda n : setattr(self, 'challenge_token', n.get_str_value()),
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
         }
         return fields

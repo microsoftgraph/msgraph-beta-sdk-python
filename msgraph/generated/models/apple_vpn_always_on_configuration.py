@@ -41,7 +41,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the airPrintExceptionAction property value. Determine whether AirPrint service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
         Args:
-            value: Value to set for the airPrintExceptionAction property.
+            value: Value to set for the air_print_exception_action property.
         """
         self._air_print_exception_action = value
     
@@ -58,7 +58,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowAllCaptiveNetworkPlugins property value. Specifies whether traffic from all captive network plugins should be allowed outside the vpn
         Args:
-            value: Value to set for the allowAllCaptiveNetworkPlugins property.
+            value: Value to set for the allow_all_captive_network_plugins property.
         """
         self._allow_all_captive_network_plugins = value
     
@@ -75,7 +75,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowCaptiveWebSheet property value. Determines whether traffic from the Websheet app is allowed outside of the VPN
         Args:
-            value: Value to set for the allowCaptiveWebSheet property.
+            value: Value to set for the allow_captive_web_sheet property.
         """
         self._allow_captive_web_sheet = value
     
@@ -92,7 +92,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the allowedCaptiveNetworkPlugins property value. Determines whether all, some, or no non-native captive networking apps are allowed
         Args:
-            value: Value to set for the allowedCaptiveNetworkPlugins property.
+            value: Value to set for the allowed_captive_network_plugins property.
         """
         self._allowed_captive_network_plugins = value
     
@@ -109,7 +109,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the cellularExceptionAction property value. Determine whether Cellular service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
         Args:
-            value: Value to set for the cellularExceptionAction property.
+            value: Value to set for the cellular_exception_action property.
         """
         self._cellular_exception_action = value
     
@@ -161,17 +161,17 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "air_print_exception_action": lambda n : setattr(self, 'air_print_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
-            "allow_all_captive_network_plugins": lambda n : setattr(self, 'allow_all_captive_network_plugins', n.get_bool_value()),
-            "allow_captive_web_sheet": lambda n : setattr(self, 'allow_captive_web_sheet', n.get_bool_value()),
-            "allowed_captive_network_plugins": lambda n : setattr(self, 'allowed_captive_network_plugins', n.get_object_value(specified_captive_network_plugins.SpecifiedCaptiveNetworkPlugins)),
-            "cellular_exception_action": lambda n : setattr(self, 'cellular_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
-            "nat_keep_alive_interval_in_seconds": lambda n : setattr(self, 'nat_keep_alive_interval_in_seconds', n.get_int_value()),
-            "nat_keep_alive_offload_enable": lambda n : setattr(self, 'nat_keep_alive_offload_enable', n.get_bool_value()),
+            "airPrintExceptionAction": lambda n : setattr(self, 'air_print_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
+            "allowedCaptiveNetworkPlugins": lambda n : setattr(self, 'allowed_captive_network_plugins', n.get_object_value(specified_captive_network_plugins.SpecifiedCaptiveNetworkPlugins)),
+            "allowAllCaptiveNetworkPlugins": lambda n : setattr(self, 'allow_all_captive_network_plugins', n.get_bool_value()),
+            "allowCaptiveWebSheet": lambda n : setattr(self, 'allow_captive_web_sheet', n.get_bool_value()),
+            "cellularExceptionAction": lambda n : setattr(self, 'cellular_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
+            "natKeepAliveIntervalInSeconds": lambda n : setattr(self, 'nat_keep_alive_interval_in_seconds', n.get_int_value()),
+            "natKeepAliveOffloadEnable": lambda n : setattr(self, 'nat_keep_alive_offload_enable', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tunnel_configuration": lambda n : setattr(self, 'tunnel_configuration', n.get_enum_value(vpn_tunnel_configuration_type.VpnTunnelConfigurationType)),
-            "user_toggle_enabled": lambda n : setattr(self, 'user_toggle_enabled', n.get_bool_value()),
-            "voicemail_exception_action": lambda n : setattr(self, 'voicemail_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
+            "tunnelConfiguration": lambda n : setattr(self, 'tunnel_configuration', n.get_enum_value(vpn_tunnel_configuration_type.VpnTunnelConfigurationType)),
+            "userToggleEnabled": lambda n : setattr(self, 'user_toggle_enabled', n.get_bool_value()),
+            "voicemailExceptionAction": lambda n : setattr(self, 'voicemail_exception_action', n.get_enum_value(vpn_service_exception_action.VpnServiceExceptionAction)),
         }
         return fields
     
@@ -188,7 +188,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the natKeepAliveIntervalInSeconds property value. Specifies how often in seconds to send a network address translation keepalive package through the VPN
         Args:
-            value: Value to set for the natKeepAliveIntervalInSeconds property.
+            value: Value to set for the nat_keep_alive_interval_in_seconds property.
         """
         self._nat_keep_alive_interval_in_seconds = value
     
@@ -205,7 +205,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the natKeepAliveOffloadEnable property value. Enable hardware offloading of NAT keepalive signals when the device is asleep
         Args:
-            value: Value to set for the natKeepAliveOffloadEnable property.
+            value: Value to set for the nat_keep_alive_offload_enable property.
         """
         self._nat_keep_alive_offload_enable = value
     
@@ -222,7 +222,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -235,9 +235,9 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_enum_value("airPrintExceptionAction", self.air_print_exception_action)
+        writer.write_object_value("allowedCaptiveNetworkPlugins", self.allowed_captive_network_plugins)
         writer.write_bool_value("allowAllCaptiveNetworkPlugins", self.allow_all_captive_network_plugins)
         writer.write_bool_value("allowCaptiveWebSheet", self.allow_captive_web_sheet)
-        writer.write_object_value("allowedCaptiveNetworkPlugins", self.allowed_captive_network_plugins)
         writer.write_enum_value("cellularExceptionAction", self.cellular_exception_action)
         writer.write_int_value("natKeepAliveIntervalInSeconds", self.nat_keep_alive_interval_in_seconds)
         writer.write_bool_value("natKeepAliveOffloadEnable", self.nat_keep_alive_offload_enable)
@@ -260,7 +260,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the tunnelConfiguration property value. The type of tunnels that will be present to the VPN client for configuration
         Args:
-            value: Value to set for the tunnelConfiguration property.
+            value: Value to set for the tunnel_configuration property.
         """
         self._tunnel_configuration = value
     
@@ -277,7 +277,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the userToggleEnabled property value. Allow the user to toggle the VPN configuration using the UI
         Args:
-            value: Value to set for the userToggleEnabled property.
+            value: Value to set for the user_toggle_enabled property.
         """
         self._user_toggle_enabled = value
     
@@ -294,7 +294,7 @@ class AppleVpnAlwaysOnConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the voicemailExceptionAction property value. Determine whether voicemail service will be exempt from the always-on VPN connection. Possible values are: forceTrafficViaVPN, allowTrafficOutside, dropTraffic.
         Args:
-            value: Value to set for the voicemailExceptionAction property.
+            value: Value to set for the voicemail_exception_action property.
         """
         self._voicemail_exception_action = value
     

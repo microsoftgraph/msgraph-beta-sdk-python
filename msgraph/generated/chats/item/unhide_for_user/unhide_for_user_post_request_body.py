@@ -53,7 +53,7 @@ class UnhideForUserPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "user": lambda n : setattr(self, 'user', n.get_object_value(teamwork_user_identity.TeamworkUserIdentity)),
         }
         return fields
@@ -83,7 +83,7 @@ class UnhideForUserPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the tenantId property value. The tenantId property
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

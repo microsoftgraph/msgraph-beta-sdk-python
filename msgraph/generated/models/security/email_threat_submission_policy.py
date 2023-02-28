@@ -65,7 +65,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the customizedNotificationSenderEmailAddress property value. Specifies the email address of the sender from which email notifications will be sent to end users to inform them whether an email is spam, phish or clean. The default value is null. Optional for creation.
         Args:
-            value: Value to set for the customizedNotificationSenderEmailAddress property.
+            value: Value to set for the customized_notification_sender_email_address property.
         """
         self._customized_notification_sender_email_address = value
     
@@ -82,7 +82,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the customizedReportRecipientEmailAddress property value. Specifies the destination where the reported messages from end users will land whenever they report something as phish, junk or not junk. The default value is null. Optional for creation.
         Args:
-            value: Value to set for the customizedReportRecipientEmailAddress property.
+            value: Value to set for the customized_report_recipient_email_address property.
         """
         self._customized_report_recipient_email_address = value
     
@@ -92,19 +92,19 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "customized_notification_sender_email_address": lambda n : setattr(self, 'customized_notification_sender_email_address', n.get_str_value()),
-            "customized_report_recipient_email_address": lambda n : setattr(self, 'customized_report_recipient_email_address', n.get_str_value()),
-            "is_always_report_enabled_for_users": lambda n : setattr(self, 'is_always_report_enabled_for_users', n.get_bool_value()),
-            "is_ask_me_enabled_for_users": lambda n : setattr(self, 'is_ask_me_enabled_for_users', n.get_bool_value()),
-            "is_customized_message_enabled": lambda n : setattr(self, 'is_customized_message_enabled', n.get_bool_value()),
-            "is_customized_message_enabled_for_phishing": lambda n : setattr(self, 'is_customized_message_enabled_for_phishing', n.get_bool_value()),
-            "is_customized_notification_sender_enabled": lambda n : setattr(self, 'is_customized_notification_sender_enabled', n.get_bool_value()),
-            "is_never_report_enabled_for_users": lambda n : setattr(self, 'is_never_report_enabled_for_users', n.get_bool_value()),
-            "is_organization_branding_enabled": lambda n : setattr(self, 'is_organization_branding_enabled', n.get_bool_value()),
-            "is_report_from_quarantine_enabled": lambda n : setattr(self, 'is_report_from_quarantine_enabled', n.get_bool_value()),
-            "is_report_to_customized_email_address_enabled": lambda n : setattr(self, 'is_report_to_customized_email_address_enabled', n.get_bool_value()),
-            "is_report_to_microsoft_enabled": lambda n : setattr(self, 'is_report_to_microsoft_enabled', n.get_bool_value()),
-            "is_review_email_notification_enabled": lambda n : setattr(self, 'is_review_email_notification_enabled', n.get_bool_value()),
+            "customizedNotificationSenderEmailAddress": lambda n : setattr(self, 'customized_notification_sender_email_address', n.get_str_value()),
+            "customizedReportRecipientEmailAddress": lambda n : setattr(self, 'customized_report_recipient_email_address', n.get_str_value()),
+            "isAlwaysReportEnabledForUsers": lambda n : setattr(self, 'is_always_report_enabled_for_users', n.get_bool_value()),
+            "isAskMeEnabledForUsers": lambda n : setattr(self, 'is_ask_me_enabled_for_users', n.get_bool_value()),
+            "isCustomizedMessageEnabled": lambda n : setattr(self, 'is_customized_message_enabled', n.get_bool_value()),
+            "isCustomizedMessageEnabledForPhishing": lambda n : setattr(self, 'is_customized_message_enabled_for_phishing', n.get_bool_value()),
+            "isCustomizedNotificationSenderEnabled": lambda n : setattr(self, 'is_customized_notification_sender_enabled', n.get_bool_value()),
+            "isNeverReportEnabledForUsers": lambda n : setattr(self, 'is_never_report_enabled_for_users', n.get_bool_value()),
+            "isOrganizationBrandingEnabled": lambda n : setattr(self, 'is_organization_branding_enabled', n.get_bool_value()),
+            "isReportFromQuarantineEnabled": lambda n : setattr(self, 'is_report_from_quarantine_enabled', n.get_bool_value()),
+            "isReportToCustomizedEmailAddressEnabled": lambda n : setattr(self, 'is_report_to_customized_email_address_enabled', n.get_bool_value()),
+            "isReportToMicrosoftEnabled": lambda n : setattr(self, 'is_report_to_microsoft_enabled', n.get_bool_value()),
+            "isReviewEmailNotificationEnabled": lambda n : setattr(self, 'is_review_email_notification_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -123,7 +123,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isAlwaysReportEnabledForUsers property value. Indicates whether end users can report a message as spam, phish or junk directly without a confirmation(popup). The default value is true.  Optional for creation.
         Args:
-            value: Value to set for the isAlwaysReportEnabledForUsers property.
+            value: Value to set for the is_always_report_enabled_for_users property.
         """
         self._is_always_report_enabled_for_users = value
     
@@ -140,7 +140,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isAskMeEnabledForUsers property value. Indicates whether end users can confirm using a popup before reporting messages as spam, phish or not junk. The default value is true.  Optional for creation.
         Args:
-            value: Value to set for the isAskMeEnabledForUsers property.
+            value: Value to set for the is_ask_me_enabled_for_users property.
         """
         self._is_ask_me_enabled_for_users = value
     
@@ -157,7 +157,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isCustomizedMessageEnabled property value. Indicates whether the email notifications sent to end users to inform them if an email is phish, spam or junk is customized or not. The default value is false. Optional for creation.
         Args:
-            value: Value to set for the isCustomizedMessageEnabled property.
+            value: Value to set for the is_customized_message_enabled property.
         """
         self._is_customized_message_enabled = value
     
@@ -174,7 +174,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isCustomizedMessageEnabledForPhishing property value. If enabled, customized message only shows when email is reported as phishing. The default value is false. Optional for creation.
         Args:
-            value: Value to set for the isCustomizedMessageEnabledForPhishing property.
+            value: Value to set for the is_customized_message_enabled_for_phishing property.
         """
         self._is_customized_message_enabled_for_phishing = value
     
@@ -191,7 +191,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isCustomizedNotificationSenderEnabled property value. Indicates whether to use the sender email address set using customizedNotificationSenderEmailAddress for sending email notifications to end users. The default value is false. Optional for creation.
         Args:
-            value: Value to set for the isCustomizedNotificationSenderEnabled property.
+            value: Value to set for the is_customized_notification_sender_enabled property.
         """
         self._is_customized_notification_sender_enabled = value
     
@@ -208,7 +208,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isNeverReportEnabledForUsers property value. Indicates whether end users can simply move the message from one folder to another based on the action of spam, phish or not junk without actually reporting it. The default value is true. Optional for creation.
         Args:
-            value: Value to set for the isNeverReportEnabledForUsers property.
+            value: Value to set for the is_never_report_enabled_for_users property.
         """
         self._is_never_report_enabled_for_users = value
     
@@ -225,7 +225,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isOrganizationBrandingEnabled property value. Indicates whether the branding logo should be used in the email notifications sent to end users. The default value is false. Optional for creation.
         Args:
-            value: Value to set for the isOrganizationBrandingEnabled property.
+            value: Value to set for the is_organization_branding_enabled property.
         """
         self._is_organization_branding_enabled = value
     
@@ -242,7 +242,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isReportFromQuarantineEnabled property value. Indicates whether end users can submit from the quarantine page. The default value is true. Optional for creation.
         Args:
-            value: Value to set for the isReportFromQuarantineEnabled property.
+            value: Value to set for the is_report_from_quarantine_enabled property.
         """
         self._is_report_from_quarantine_enabled = value
     
@@ -259,7 +259,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isReportToCustomizedEmailAddressEnabled property value. Indicates whether emails reported by end users should be send to the custom mailbox configured using customizedReportRecipientEmailAddress.  The default value is false. Optional for creation.
         Args:
-            value: Value to set for the isReportToCustomizedEmailAddressEnabled property.
+            value: Value to set for the is_report_to_customized_email_address_enabled property.
         """
         self._is_report_to_customized_email_address_enabled = value
     
@@ -276,7 +276,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isReportToMicrosoftEnabled property value. If enabled, the email will be sent to Microsoft for analysis. The default value is false. Required for creation.
         Args:
-            value: Value to set for the isReportToMicrosoftEnabled property.
+            value: Value to set for the is_report_to_microsoft_enabled property.
         """
         self._is_report_to_microsoft_enabled = value
     
@@ -293,7 +293,7 @@ class EmailThreatSubmissionPolicy(entity.Entity):
         """
         Sets the isReviewEmailNotificationEnabled property value. Indicates whether an email notification is sent to the end user who reported the email when it has been reviewed by the admin. The default value is false. Optional for creation.
         Args:
-            value: Value to set for the isReviewEmailNotificationEnabled property.
+            value: Value to set for the is_review_email_notification_enabled property.
         """
         self._is_review_email_notification_enabled = value
     

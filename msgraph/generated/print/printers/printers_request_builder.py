@@ -52,12 +52,11 @@ class PrintersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[printer_collection_response.PrinterCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None) -> Optional[printer_collection_response.PrinterCollectionResponse]:
         """
         Retrieve the list of **printers** that are registered in the tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer_collection_response.PrinterCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class PrintersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, printer_collection_response.PrinterCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, printer_collection_response.PrinterCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrintersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[printer.Printer]:
+    async def post(self,body: Optional[printer.Printer] = None, request_configuration: Optional[PrintersRequestBuilderPostRequestConfiguration] = None) -> Optional[printer.Printer]:
         """
         Create new navigation property to printers for print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[printer.Printer]
         """
         if body is None:
@@ -91,7 +89,7 @@ class PrintersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, printer.Printer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, printer.Printer, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrintersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +102,7 @@ class PrintersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -125,7 +123,7 @@ class PrintersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +193,7 @@ class PrintersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -210,7 +208,7 @@ class PrintersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

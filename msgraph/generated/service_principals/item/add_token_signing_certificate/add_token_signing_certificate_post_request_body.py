@@ -59,7 +59,7 @@ class AddTokenSigningCertificatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -76,7 +76,7 @@ class AddTokenSigningCertificatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. The endDateTime property
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -86,8 +86,8 @@ class AddTokenSigningCertificatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
         }
         return fields
     

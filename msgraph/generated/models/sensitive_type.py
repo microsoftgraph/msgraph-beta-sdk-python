@@ -22,7 +22,7 @@ class SensitiveType(entity.Entity):
         """
         Sets the classificationMethod property value. The classificationMethod property
         Args:
-            value: Value to set for the classificationMethod property.
+            value: Value to set for the classification_method property.
         """
         self._classification_method = value
     
@@ -87,14 +87,14 @@ class SensitiveType(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classification_method": lambda n : setattr(self, 'classification_method', n.get_enum_value(classification_method.ClassificationMethod)),
+            "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(classification_method.ClassificationMethod)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "publisher_name": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
-            "rule_package_id": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
-            "rule_package_type": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
+            "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
+            "rulePackageId": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
+            "rulePackageType": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_enum_value(sensitive_type_scope.SensitiveTypeScope)),
-            "sensitive_type_source": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(sensitive_type_source.SensitiveTypeSource)),
+            "sensitiveTypeSource": lambda n : setattr(self, 'sensitive_type_source', n.get_enum_value(sensitive_type_source.SensitiveTypeSource)),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -131,7 +131,7 @@ class SensitiveType(entity.Entity):
         """
         Sets the publisherName property value. The publisherName property
         Args:
-            value: Value to set for the publisherName property.
+            value: Value to set for the publisher_name property.
         """
         self._publisher_name = value
     
@@ -148,7 +148,7 @@ class SensitiveType(entity.Entity):
         """
         Sets the rulePackageId property value. The rulePackageId property
         Args:
-            value: Value to set for the rulePackageId property.
+            value: Value to set for the rule_package_id property.
         """
         self._rule_package_id = value
     
@@ -165,7 +165,7 @@ class SensitiveType(entity.Entity):
         """
         Sets the rulePackageType property value. The rulePackageType property
         Args:
-            value: Value to set for the rulePackageType property.
+            value: Value to set for the rule_package_type property.
         """
         self._rule_package_type = value
     
@@ -199,7 +199,7 @@ class SensitiveType(entity.Entity):
         """
         Sets the sensitiveTypeSource property value. The sensitiveTypeSource property
         Args:
-            value: Value to set for the sensitiveTypeSource property.
+            value: Value to set for the sensitive_type_source property.
         """
         self._sensitive_type_source = value
     

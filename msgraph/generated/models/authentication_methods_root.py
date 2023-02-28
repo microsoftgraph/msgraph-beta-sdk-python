@@ -35,7 +35,7 @@ class AuthenticationMethodsRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_registration_details": lambda n : setattr(self, 'user_registration_details', n.get_collection_of_object_values(user_registration_details.UserRegistrationDetails)),
+            "userRegistrationDetails": lambda n : setattr(self, 'user_registration_details', n.get_collection_of_object_values(user_registration_details.UserRegistrationDetails)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -65,7 +65,7 @@ class AuthenticationMethodsRoot(entity.Entity):
         """
         Sets the userRegistrationDetails property value. Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
         Args:
-            value: Value to set for the userRegistrationDetails property.
+            value: Value to set for the user_registration_details property.
         """
         self._user_registration_details = value
     

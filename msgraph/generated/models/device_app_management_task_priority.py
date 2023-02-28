@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceAppManagementTaskPriority(Enum):
     # No priority set.
-    None_escaped = "none",
+    None_ = "none",
     # High priority.
     High = "high",
     # Low priority.

@@ -34,7 +34,7 @@ class MfaDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authDetail property value. Indicates the MFA auth detail for the corresponding Sign-in activity when the MFA Required is 'Yes'.
         Args:
-            value: Value to set for the authDetail property.
+            value: Value to set for the auth_detail property.
         """
         self._auth_detail = value
     
@@ -51,7 +51,7 @@ class MfaDetail(AdditionalDataHolder, Parsable):
         """
         Sets the authMethod property value. Indicates the MFA Auth methods (SMS, Phone, Authenticator App are some of the value) for the corresponding sign-in activity when the MFA Required field is 'Yes'.
         Args:
-            value: Value to set for the authMethod property.
+            value: Value to set for the auth_method property.
         """
         self._auth_method = value
     
@@ -87,8 +87,8 @@ class MfaDetail(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "auth_detail": lambda n : setattr(self, 'auth_detail', n.get_str_value()),
-            "auth_method": lambda n : setattr(self, 'auth_method', n.get_str_value()),
+            "authDetail": lambda n : setattr(self, 'auth_detail', n.get_str_value()),
+            "authMethod": lambda n : setattr(self, 'auth_method', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -106,7 +106,7 @@ class MfaDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

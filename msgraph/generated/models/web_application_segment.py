@@ -10,7 +10,7 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @property
     def alternate_url(self,) -> Optional[str]:
         """
-        Gets the alternateUrl property value. The alternateUrl property
+        Gets the alternateUrl property value. If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.
         Returns: Optional[str]
         """
         return self._alternate_url
@@ -18,9 +18,9 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @alternate_url.setter
     def alternate_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the alternateUrl property value. The alternateUrl property
+        Sets the alternateUrl property value. If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.
         Args:
-            value: Value to set for the alternateUrl property.
+            value: Value to set for the alternate_url property.
         """
         self._alternate_url = value
     
@@ -30,19 +30,19 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.webApplicationSegment"
-        # The alternateUrl property
+        # If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.
         self._alternate_url: Optional[str] = None
-        # The corsConfigurations property
+        # A collection of CORS Rule definitions for a particular application segment.
         self._cors_configurations: Optional[List[cors_configuration_v2.CorsConfiguration_v2]] = None
-        # The externalUrl property
+        # The published external URL for the application segment; for example, https://intranet.contoso.com/.
         self._external_url: Optional[str] = None
-        # The internalUrl property
+        # The internal URL of the application segment; for example, https://intranet/.
         self._internal_url: Optional[str] = None
     
     @property
     def cors_configurations(self,) -> Optional[List[cors_configuration_v2.CorsConfiguration_v2]]:
         """
-        Gets the corsConfigurations property value. The corsConfigurations property
+        Gets the corsConfigurations property value. A collection of CORS Rule definitions for a particular application segment.
         Returns: Optional[List[cors_configuration_v2.CorsConfiguration_v2]]
         """
         return self._cors_configurations
@@ -50,9 +50,9 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @cors_configurations.setter
     def cors_configurations(self,value: Optional[List[cors_configuration_v2.CorsConfiguration_v2]] = None) -> None:
         """
-        Sets the corsConfigurations property value. The corsConfigurations property
+        Sets the corsConfigurations property value. A collection of CORS Rule definitions for a particular application segment.
         Args:
-            value: Value to set for the corsConfigurations property.
+            value: Value to set for the cors_configurations property.
         """
         self._cors_configurations = value
     
@@ -71,7 +71,7 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @property
     def external_url(self,) -> Optional[str]:
         """
-        Gets the externalUrl property value. The externalUrl property
+        Gets the externalUrl property value. The published external URL for the application segment; for example, https://intranet.contoso.com/.
         Returns: Optional[str]
         """
         return self._external_url
@@ -79,9 +79,9 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @external_url.setter
     def external_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the externalUrl property value. The externalUrl property
+        Sets the externalUrl property value. The published external URL for the application segment; for example, https://intranet.contoso.com/.
         Args:
-            value: Value to set for the externalUrl property.
+            value: Value to set for the external_url property.
         """
         self._external_url = value
     
@@ -91,10 +91,10 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alternate_url": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
-            "cors_configurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(cors_configuration_v2.CorsConfiguration_v2)),
-            "external_url": lambda n : setattr(self, 'external_url', n.get_str_value()),
-            "internal_url": lambda n : setattr(self, 'internal_url', n.get_str_value()),
+            "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
+            "corsConfigurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(cors_configuration_v2.CorsConfiguration_v2)),
+            "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),
+            "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -103,7 +103,7 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @property
     def internal_url(self,) -> Optional[str]:
         """
-        Gets the internalUrl property value. The internalUrl property
+        Gets the internalUrl property value. The internal URL of the application segment; for example, https://intranet/.
         Returns: Optional[str]
         """
         return self._internal_url
@@ -111,9 +111,9 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
     @internal_url.setter
     def internal_url(self,value: Optional[str] = None) -> None:
         """
-        Sets the internalUrl property value. The internalUrl property
+        Sets the internalUrl property value. The internal URL of the application segment; for example, https://intranet/.
         Args:
-            value: Value to set for the internalUrl property.
+            value: Value to set for the internal_url property.
         """
         self._internal_url = value
     

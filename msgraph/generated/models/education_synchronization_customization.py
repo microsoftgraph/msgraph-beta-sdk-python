@@ -35,7 +35,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         """
         Sets the allowDisplayNameUpdate property value. Indicates whether the display name of the resource can be overwritten by the sync.
         Args:
-            value: Value to set for the allowDisplayNameUpdate property.
+            value: Value to set for the allow_display_name_update property.
         """
         self._allow_display_name_update = value
     
@@ -75,11 +75,11 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_display_name_update": lambda n : setattr(self, 'allow_display_name_update', n.get_bool_value()),
-            "is_sync_deferred": lambda n : setattr(self, 'is_sync_deferred', n.get_bool_value()),
+            "allowDisplayNameUpdate": lambda n : setattr(self, 'allow_display_name_update', n.get_bool_value()),
+            "isSyncDeferred": lambda n : setattr(self, 'is_sync_deferred', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "optional_properties_to_sync": lambda n : setattr(self, 'optional_properties_to_sync', n.get_collection_of_primitive_values(str)),
-            "synchronization_start_date": lambda n : setattr(self, 'synchronization_start_date', n.get_datetime_value()),
+            "optionalPropertiesToSync": lambda n : setattr(self, 'optional_properties_to_sync', n.get_collection_of_primitive_values(str)),
+            "synchronizationStartDate": lambda n : setattr(self, 'synchronization_start_date', n.get_datetime_value()),
         }
         return fields
     
@@ -96,7 +96,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         """
         Sets the isSyncDeferred property value. Indicates whether synchronization of the parent entity is deferred to a later date.
         Args:
-            value: Value to set for the isSyncDeferred property.
+            value: Value to set for the is_sync_deferred property.
         """
         self._is_sync_deferred = value
     
@@ -113,7 +113,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -130,7 +130,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         """
         Sets the optionalPropertiesToSync property value. The collection of property names to sync. If set to null, all properties will be synchronized. Does not apply to Student Enrollments or Teacher Rosters
         Args:
-            value: Value to set for the optionalPropertiesToSync property.
+            value: Value to set for the optional_properties_to_sync property.
         """
         self._optional_properties_to_sync = value
     
@@ -162,7 +162,7 @@ class EducationSynchronizationCustomization(AdditionalDataHolder, Parsable):
         """
         Sets the synchronizationStartDate property value. The date that the synchronization should start. This value should be set to a future date. If set to null, the resource will be synchronized when the profile setup completes. Only applies to Student Enrollments
         Args:
-            value: Value to set for the synchronizationStartDate property.
+            value: Value to set for the synchronization_start_date property.
         """
         self._synchronization_start_date = value
     

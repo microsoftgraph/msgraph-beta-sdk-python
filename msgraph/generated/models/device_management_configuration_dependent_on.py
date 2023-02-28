@@ -60,7 +60,7 @@ class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
         """
         Sets the dependentOn property value. Identifier of parent setting/ parent setting option dependent on
         Args:
-            value: Value to set for the dependentOn property.
+            value: Value to set for the dependent_on property.
         """
         self._dependent_on = value
     
@@ -70,9 +70,9 @@ class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "dependent_on": lambda n : setattr(self, 'dependent_on', n.get_str_value()),
+            "dependentOn": lambda n : setattr(self, 'dependent_on', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "parent_setting_id": lambda n : setattr(self, 'parent_setting_id', n.get_str_value()),
+            "parentSettingId": lambda n : setattr(self, 'parent_setting_id', n.get_str_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -106,7 +106,7 @@ class DeviceManagementConfigurationDependentOn(AdditionalDataHolder, Parsable):
         """
         Sets the parentSettingId property value. Identifier of parent setting/ parent setting id dependent on
         Args:
-            value: Value to set for the parentSettingId property.
+            value: Value to set for the parent_setting_id property.
         """
         self._parent_setting_id = value
     

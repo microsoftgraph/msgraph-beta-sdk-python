@@ -23,7 +23,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -66,7 +66,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the createdBy property value. Identity of the user who created the device operation.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -83,7 +83,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the createdDateTime property value. The UTC date and time when the device operation was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -122,14 +122,14 @@ class TeamworkDeviceOperation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(operation_error.OperationError)),
-            "last_action_by": lambda n : setattr(self, 'last_action_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "operation_type": lambda n : setattr(self, 'operation_type', n.get_enum_value(teamwork_device_operation_type.TeamworkDeviceOperationType)),
-            "started_date_time": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
+            "lastActionBy": lambda n : setattr(self, 'last_action_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "operationType": lambda n : setattr(self, 'operation_type', n.get_enum_value(teamwork_device_operation_type.TeamworkDeviceOperationType)),
+            "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -149,7 +149,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the lastActionBy property value. Identity of the user who last modified the device operation.
         Args:
-            value: Value to set for the lastActionBy property.
+            value: Value to set for the last_action_by property.
         """
         self._last_action_by = value
     
@@ -166,7 +166,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the lastActionDateTime property value. The UTC date and time when the device operation was last modified.
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -183,7 +183,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the operationType property value. The operationType property
         Args:
-            value: Value to set for the operationType property.
+            value: Value to set for the operation_type property.
         """
         self._operation_type = value
     
@@ -219,7 +219,7 @@ class TeamworkDeviceOperation(entity.Entity):
         """
         Sets the startedDateTime property value. Time at which the operation was started.
         Args:
-            value: Value to set for the startedDateTime property.
+            value: Value to set for the started_date_time property.
         """
         self._started_date_time = value
     

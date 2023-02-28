@@ -73,26 +73,26 @@ class CloudPcOverview(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "number_of_cloud_pc_connection_status_failed": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_failed', n.get_int_value()),
-            "number_of_cloud_pc_connection_status_passed": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_passed', n.get_int_value()),
-            "number_of_cloud_pc_connection_status_pending": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_pending', n.get_int_value()),
-            "number_of_cloud_pc_connection_status_running": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_running', n.get_int_value()),
-            "number_of_cloud_pc_connection_status_unkown_future_value": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_unkown_future_value', n.get_int_value()),
-            "number_of_cloud_pc_status_deprovisioning": lambda n : setattr(self, 'number_of_cloud_pc_status_deprovisioning', n.get_int_value()),
-            "number_of_cloud_pc_status_failed": lambda n : setattr(self, 'number_of_cloud_pc_status_failed', n.get_int_value()),
-            "number_of_cloud_pc_status_in_grace_period": lambda n : setattr(self, 'number_of_cloud_pc_status_in_grace_period', n.get_int_value()),
-            "number_of_cloud_pc_status_not_provisioned": lambda n : setattr(self, 'number_of_cloud_pc_status_not_provisioned', n.get_int_value()),
-            "number_of_cloud_pc_status_provisioned": lambda n : setattr(self, 'number_of_cloud_pc_status_provisioned', n.get_int_value()),
-            "number_of_cloud_pc_status_provisioning": lambda n : setattr(self, 'number_of_cloud_pc_status_provisioning', n.get_int_value()),
-            "number_of_cloud_pc_status_unknown": lambda n : setattr(self, 'number_of_cloud_pc_status_unknown', n.get_int_value()),
-            "number_of_cloud_pc_status_upgrading": lambda n : setattr(self, 'number_of_cloud_pc_status_upgrading', n.get_int_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "total_business_licenses": lambda n : setattr(self, 'total_business_licenses', n.get_int_value()),
-            "total_cloud_pc_connection_status": lambda n : setattr(self, 'total_cloud_pc_connection_status', n.get_int_value()),
-            "total_cloud_pc_status": lambda n : setattr(self, 'total_cloud_pc_status', n.get_int_value()),
-            "total_enterprise_licenses": lambda n : setattr(self, 'total_enterprise_licenses', n.get_int_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "numberOfCloudPcConnectionStatusFailed": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_failed', n.get_int_value()),
+            "numberOfCloudPcConnectionStatusPassed": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_passed', n.get_int_value()),
+            "numberOfCloudPcConnectionStatusPending": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_pending', n.get_int_value()),
+            "numberOfCloudPcConnectionStatusRunning": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_running', n.get_int_value()),
+            "numberOfCloudPcConnectionStatusUnkownFutureValue": lambda n : setattr(self, 'number_of_cloud_pc_connection_status_unkown_future_value', n.get_int_value()),
+            "numberOfCloudPcStatusDeprovisioning": lambda n : setattr(self, 'number_of_cloud_pc_status_deprovisioning', n.get_int_value()),
+            "numberOfCloudPcStatusFailed": lambda n : setattr(self, 'number_of_cloud_pc_status_failed', n.get_int_value()),
+            "numberOfCloudPcStatusInGracePeriod": lambda n : setattr(self, 'number_of_cloud_pc_status_in_grace_period', n.get_int_value()),
+            "numberOfCloudPcStatusNotProvisioned": lambda n : setattr(self, 'number_of_cloud_pc_status_not_provisioned', n.get_int_value()),
+            "numberOfCloudPcStatusProvisioned": lambda n : setattr(self, 'number_of_cloud_pc_status_provisioned', n.get_int_value()),
+            "numberOfCloudPcStatusProvisioning": lambda n : setattr(self, 'number_of_cloud_pc_status_provisioning', n.get_int_value()),
+            "numberOfCloudPcStatusUnknown": lambda n : setattr(self, 'number_of_cloud_pc_status_unknown', n.get_int_value()),
+            "numberOfCloudPcStatusUpgrading": lambda n : setattr(self, 'number_of_cloud_pc_status_upgrading', n.get_int_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "totalBusinessLicenses": lambda n : setattr(self, 'total_business_licenses', n.get_int_value()),
+            "totalCloudPcConnectionStatus": lambda n : setattr(self, 'total_cloud_pc_connection_status', n.get_int_value()),
+            "totalCloudPcStatus": lambda n : setattr(self, 'total_cloud_pc_status', n.get_int_value()),
+            "totalEnterpriseLicenses": lambda n : setattr(self, 'total_enterprise_licenses', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -111,7 +111,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -128,7 +128,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcConnectionStatusFailed property value. The number of cloud PC connections that have a status of failed. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcConnectionStatusFailed property.
+            value: Value to set for the number_of_cloud_pc_connection_status_failed property.
         """
         self._number_of_cloud_pc_connection_status_failed = value
     
@@ -145,7 +145,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcConnectionStatusPassed property value. The number of cloud PC connections that have a status of passed. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcConnectionStatusPassed property.
+            value: Value to set for the number_of_cloud_pc_connection_status_passed property.
         """
         self._number_of_cloud_pc_connection_status_passed = value
     
@@ -162,7 +162,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcConnectionStatusPending property value. The number of cloud PC connections that have a status of pending. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcConnectionStatusPending property.
+            value: Value to set for the number_of_cloud_pc_connection_status_pending property.
         """
         self._number_of_cloud_pc_connection_status_pending = value
     
@@ -179,7 +179,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcConnectionStatusRunning property value. The number of cloud PC connections that have a status of running. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcConnectionStatusRunning property.
+            value: Value to set for the number_of_cloud_pc_connection_status_running property.
         """
         self._number_of_cloud_pc_connection_status_running = value
     
@@ -196,7 +196,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcConnectionStatusUnkownFutureValue property value. The number of cloud PC connections that have a status of unknownFutureValue. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcConnectionStatusUnkownFutureValue property.
+            value: Value to set for the number_of_cloud_pc_connection_status_unkown_future_value property.
         """
         self._number_of_cloud_pc_connection_status_unkown_future_value = value
     
@@ -213,7 +213,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusDeprovisioning property value. The number of cloud PCs that have a status of deprovisioning. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusDeprovisioning property.
+            value: Value to set for the number_of_cloud_pc_status_deprovisioning property.
         """
         self._number_of_cloud_pc_status_deprovisioning = value
     
@@ -230,7 +230,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusFailed property value. The number of cloud PCs that have a status of failed. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusFailed property.
+            value: Value to set for the number_of_cloud_pc_status_failed property.
         """
         self._number_of_cloud_pc_status_failed = value
     
@@ -247,7 +247,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusInGracePeriod property value. The number of cloud PCs that have a status of inGracePeriod. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusInGracePeriod property.
+            value: Value to set for the number_of_cloud_pc_status_in_grace_period property.
         """
         self._number_of_cloud_pc_status_in_grace_period = value
     
@@ -264,7 +264,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusNotProvisioned property value. The number of cloud PCs that have a status of notProvisioned. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusNotProvisioned property.
+            value: Value to set for the number_of_cloud_pc_status_not_provisioned property.
         """
         self._number_of_cloud_pc_status_not_provisioned = value
     
@@ -281,7 +281,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusProvisioned property value. The number of cloud PCs that have a status of provisioned. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusProvisioned property.
+            value: Value to set for the number_of_cloud_pc_status_provisioned property.
         """
         self._number_of_cloud_pc_status_provisioned = value
     
@@ -298,7 +298,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusProvisioning property value. The number of cloud PCs that have a status of provisioning. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusProvisioning property.
+            value: Value to set for the number_of_cloud_pc_status_provisioning property.
         """
         self._number_of_cloud_pc_status_provisioning = value
     
@@ -315,7 +315,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusUnknown property value. The number of cloud PCs that have a status of unknown. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusUnknown property.
+            value: Value to set for the number_of_cloud_pc_status_unknown property.
         """
         self._number_of_cloud_pc_status_unknown = value
     
@@ -332,7 +332,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the numberOfCloudPcStatusUpgrading property value. The number of cloud PCs that have a status of upgrading. Optional. Read-only.
         Args:
-            value: Value to set for the numberOfCloudPcStatusUpgrading property.
+            value: Value to set for the number_of_cloud_pc_status_upgrading property.
         """
         self._number_of_cloud_pc_status_upgrading = value
     
@@ -379,7 +379,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -396,7 +396,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the tenantId property value. The tenantId property
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -413,7 +413,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the totalBusinessLicenses property value. The total number of cloud PC devices that have the Business SKU. Optional. Read-only.
         Args:
-            value: Value to set for the totalBusinessLicenses property.
+            value: Value to set for the total_business_licenses property.
         """
         self._total_business_licenses = value
     
@@ -430,7 +430,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the totalCloudPcConnectionStatus property value. The total number of cloud PC connection statuses for the given managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the totalCloudPcConnectionStatus property.
+            value: Value to set for the total_cloud_pc_connection_status property.
         """
         self._total_cloud_pc_connection_status = value
     
@@ -447,7 +447,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the totalCloudPcStatus property value. The total number of cloud PC statues for the given managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the totalCloudPcStatus property.
+            value: Value to set for the total_cloud_pc_status property.
         """
         self._total_cloud_pc_status = value
     
@@ -464,7 +464,7 @@ class CloudPcOverview(entity.Entity):
         """
         Sets the totalEnterpriseLicenses property value. The total number of cloud PC devices that have the Enterprise SKU. Optional. Read-only.
         Args:
-            value: Value to set for the totalEnterpriseLicenses property.
+            value: Value to set for the total_enterprise_licenses property.
         """
         self._total_enterprise_licenses = value
     

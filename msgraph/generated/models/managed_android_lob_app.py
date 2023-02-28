@@ -13,9 +13,9 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.managedAndroidLobApp"
-        # The Identity Name.
+        # The Identity Name. This property is deprecated starting in February 2023 (Release 2302).
         self._identity_name: Optional[str] = None
-        # The identity version.
+        # The identity version. This property is deprecated starting in February 2023 (Release 2302).
         self._identity_version: Optional[str] = None
         # The value for the minimum applicable operating system.
         self._minimum_supported_operating_system: Optional[android_minimum_operating_system.AndroidMinimumOperatingSystem] = None
@@ -44,12 +44,12 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "identity_name": lambda n : setattr(self, 'identity_name', n.get_str_value()),
-            "identity_version": lambda n : setattr(self, 'identity_version', n.get_str_value()),
-            "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(android_minimum_operating_system.AndroidMinimumOperatingSystem)),
-            "package_id": lambda n : setattr(self, 'package_id', n.get_str_value()),
-            "version_code": lambda n : setattr(self, 'version_code', n.get_str_value()),
-            "version_name": lambda n : setattr(self, 'version_name', n.get_str_value()),
+            "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
+            "identityVersion": lambda n : setattr(self, 'identity_version', n.get_str_value()),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(android_minimum_operating_system.AndroidMinimumOperatingSystem)),
+            "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),
+            "versionCode": lambda n : setattr(self, 'version_code', n.get_str_value()),
+            "versionName": lambda n : setattr(self, 'version_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -58,7 +58,7 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
     @property
     def identity_name(self,) -> Optional[str]:
         """
-        Gets the identityName property value. The Identity Name.
+        Gets the identityName property value. The Identity Name. This property is deprecated starting in February 2023 (Release 2302).
         Returns: Optional[str]
         """
         return self._identity_name
@@ -66,16 +66,16 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
     @identity_name.setter
     def identity_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityName property value. The Identity Name.
+        Sets the identityName property value. The Identity Name. This property is deprecated starting in February 2023 (Release 2302).
         Args:
-            value: Value to set for the identityName property.
+            value: Value to set for the identity_name property.
         """
         self._identity_name = value
     
     @property
     def identity_version(self,) -> Optional[str]:
         """
-        Gets the identityVersion property value. The identity version.
+        Gets the identityVersion property value. The identity version. This property is deprecated starting in February 2023 (Release 2302).
         Returns: Optional[str]
         """
         return self._identity_version
@@ -83,9 +83,9 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
     @identity_version.setter
     def identity_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityVersion property value. The identity version.
+        Sets the identityVersion property value. The identity version. This property is deprecated starting in February 2023 (Release 2302).
         Args:
-            value: Value to set for the identityVersion property.
+            value: Value to set for the identity_version property.
         """
         self._identity_version = value
     
@@ -102,7 +102,7 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
         """
         Sets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
         Args:
-            value: Value to set for the minimumSupportedOperatingSystem property.
+            value: Value to set for the minimum_supported_operating_system property.
         """
         self._minimum_supported_operating_system = value
     
@@ -119,7 +119,7 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
         """
         Sets the packageId property value. The package identifier.
         Args:
-            value: Value to set for the packageId property.
+            value: Value to set for the package_id property.
         """
         self._package_id = value
     
@@ -152,7 +152,7 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
         """
         Sets the versionCode property value. The version code of managed Android Line of Business (LoB) app.
         Args:
-            value: Value to set for the versionCode property.
+            value: Value to set for the version_code property.
         """
         self._version_code = value
     
@@ -169,7 +169,7 @@ class ManagedAndroidLobApp(managed_mobile_lob_app.ManagedMobileLobApp):
         """
         Sets the versionName property value. The version name of managed Android Line of Business (LoB) app.
         Args:
-            value: Value to set for the versionName property.
+            value: Value to set for the version_name property.
         """
         self._version_name = value
     

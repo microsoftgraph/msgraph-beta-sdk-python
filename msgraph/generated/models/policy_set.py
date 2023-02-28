@@ -72,7 +72,7 @@ class PolicySet(entity.Entity):
         """
         Sets the createdDateTime property value. Creation time of the PolicySet.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -118,7 +118,7 @@ class PolicySet(entity.Entity):
         """
         Sets the displayName property value. DisplayName of the PolicySet.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -135,7 +135,7 @@ class PolicySet(entity.Entity):
         """
         Sets the errorCode property value. The errorCode property
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -146,14 +146,14 @@ class PolicySet(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(policy_set_assignment.PolicySetAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_enum_value(error_code.ErrorCode)),
-            "guided_deployment_tags": lambda n : setattr(self, 'guided_deployment_tags', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(error_code.ErrorCode)),
+            "guidedDeploymentTags": lambda n : setattr(self, 'guided_deployment_tags', n.get_collection_of_primitive_values(str)),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(policy_set_item.PolicySetItem)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "role_scope_tags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_primitive_values(str)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "roleScopeTags": lambda n : setattr(self, 'role_scope_tags', n.get_collection_of_primitive_values(str)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(policy_set_status.PolicySetStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -173,7 +173,7 @@ class PolicySet(entity.Entity):
         """
         Sets the guidedDeploymentTags property value. Tags of the guided deployment
         Args:
-            value: Value to set for the guidedDeploymentTags property.
+            value: Value to set for the guided_deployment_tags property.
         """
         self._guided_deployment_tags = value
     
@@ -207,7 +207,7 @@ class PolicySet(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modified time of the PolicySet.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -224,7 +224,7 @@ class PolicySet(entity.Entity):
         """
         Sets the roleScopeTags property value. RoleScopeTags of the PolicySet
         Args:
-            value: Value to set for the roleScopeTags property.
+            value: Value to set for the role_scope_tags property.
         """
         self._role_scope_tags = value
     

@@ -74,7 +74,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, Parsable):
         fields = {
             "detail": lambda n : setattr(self, 'detail', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "requirement_provider": lambda n : setattr(self, 'requirement_provider', n.get_enum_value(requirement_provider.RequirementProvider)),
+            "requirementProvider": lambda n : setattr(self, 'requirement_provider', n.get_enum_value(requirement_provider.RequirementProvider)),
         }
         return fields
     
@@ -91,7 +91,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -108,7 +108,7 @@ class AuthenticationRequirementPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the requirementProvider property value. Identifies what Azure AD feature requires MFA in this policy. Possible values are: user, request, servicePrincipal, v1ConditionalAccess, multiConditionalAccess, tenantSessionRiskPolicy, accountCompromisePolicies, v1ConditionalAccessDependency, v1ConditionalAccessPolicyIdRequested, mfaRegistrationRequiredByIdentityProtectionPolicy, baselineProtection, mfaRegistrationRequiredByBaselineProtection, mfaRegistrationRequiredByMultiConditionalAccess, enforcedForCspAdmins, securityDefaults, mfaRegistrationRequiredBySecurityDefaults, proofUpCodeRequest, crossTenantOutboundRule, gpsLocationCondition, riskBasedPolicy, unknownFutureValue.
         Args:
-            value: Value to set for the requirementProvider property.
+            value: Value to set for the requirement_provider property.
         """
         self._requirement_provider = value
     

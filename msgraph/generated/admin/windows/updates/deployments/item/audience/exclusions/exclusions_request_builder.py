@@ -11,10 +11,10 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.count.count_request_builder')
-enroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.enroll_assets.enroll_assets_request_builder')
-enroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.enroll_assets_by_id.enroll_assets_by_id_request_builder')
-unenroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.unenroll_assets.unenroll_assets_request_builder')
-unenroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.unenroll_assets_by_id.unenroll_assets_by_id_request_builder')
+windows_updates_enroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.windows_updates_enroll_assets.windows_updates_enroll_assets_request_builder')
+windows_updates_enroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.windows_updates_enroll_assets_by_id.windows_updates_enroll_assets_by_id_request_builder')
+windows_updates_unenroll_assets_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.windows_updates_unenroll_assets.windows_updates_unenroll_assets_request_builder')
+windows_updates_unenroll_assets_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.windows_updates_unenroll_assets_by_id.windows_updates_unenroll_assets_by_id_request_builder')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
 updatable_asset_collection_response = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_collection_response')
@@ -31,32 +31,32 @@ class ExclusionsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_assets(self) -> enroll_assets_request_builder.EnrollAssetsRequestBuilder:
+    def windows_updates_enroll_assets(self) -> windows_updates_enroll_assets_request_builder.WindowsUpdatesEnrollAssetsRequestBuilder:
         """
         Provides operations to call the enrollAssets method.
         """
-        return enroll_assets_request_builder.EnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return windows_updates_enroll_assets_request_builder.WindowsUpdatesEnrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def enroll_assets_by_id(self) -> enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder:
+    def windows_updates_enroll_assets_by_id(self) -> windows_updates_enroll_assets_by_id_request_builder.WindowsUpdatesEnrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the enrollAssetsById method.
         """
-        return enroll_assets_by_id_request_builder.EnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return windows_updates_enroll_assets_by_id_request_builder.WindowsUpdatesEnrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unenroll_assets(self) -> unenroll_assets_request_builder.UnenrollAssetsRequestBuilder:
+    def windows_updates_unenroll_assets(self) -> windows_updates_unenroll_assets_request_builder.WindowsUpdatesUnenrollAssetsRequestBuilder:
         """
         Provides operations to call the unenrollAssets method.
         """
-        return unenroll_assets_request_builder.UnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
+        return windows_updates_unenroll_assets_request_builder.WindowsUpdatesUnenrollAssetsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def unenroll_assets_by_id(self) -> unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder:
+    def windows_updates_unenroll_assets_by_id(self) -> windows_updates_unenroll_assets_by_id_request_builder.WindowsUpdatesUnenrollAssetsByIdRequestBuilder:
         """
         Provides operations to call the unenrollAssetsById method.
         """
-        return unenroll_assets_by_id_request_builder.UnenrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return windows_updates_unenroll_assets_by_id_request_builder.WindowsUpdatesUnenrollAssetsByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -76,12 +76,11 @@ class ExclusionsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
+    async def get(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]:
         """
         List the updatableAsset resources that are excluded from a deploymentAudience.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset_collection_response.UpdatableAssetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class ExclusionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset_collection_response.UpdatableAssetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[ExclusionsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[updatable_asset.UpdatableAsset]:
+    async def post(self,body: Optional[updatable_asset.UpdatableAsset] = None, request_configuration: Optional[ExclusionsRequestBuilderPostRequestConfiguration] = None) -> Optional[updatable_asset.UpdatableAsset]:
         """
         Create new navigation property to exclusions for admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[updatable_asset.UpdatableAsset]
         """
         if body is None:
@@ -115,7 +113,7 @@ class ExclusionsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, updatable_asset.UpdatableAsset, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExclusionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -128,7 +126,7 @@ class ExclusionsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -149,7 +147,7 @@ class ExclusionsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -219,7 +217,7 @@ class ExclusionsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -234,7 +232,7 @@ class ExclusionsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

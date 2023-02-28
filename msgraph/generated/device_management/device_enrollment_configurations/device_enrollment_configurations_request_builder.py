@@ -60,12 +60,11 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse]:
         """
         The list of device enrollment configurations
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_enrollment_configuration_collection_response.DeviceEnrollmentConfigurationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration] = None, request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration]:
+    async def post(self,body: Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration] = None, request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration]:
         """
         Create new navigation property to deviceEnrollmentConfigurations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_enrollment_configuration.DeviceEnrollmentConfiguration]
         """
         if body is None:
@@ -99,7 +97,7 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_enrollment_configuration.DeviceEnrollmentConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_enrollment_configuration.DeviceEnrollmentConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,7 +110,7 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -133,7 +131,7 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -203,7 +201,7 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -218,7 +216,7 @@ class DeviceEnrollmentConfigurationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

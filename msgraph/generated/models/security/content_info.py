@@ -55,7 +55,7 @@ class ContentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the contentFormat property value. The format of the content to be labeled. Possible values are: file, email.
         Args:
-            value: Value to set for the contentFormat property.
+            value: Value to set for the content_format property.
         """
         self._content_format = value
     
@@ -77,7 +77,7 @@ class ContentInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_format": lambda n : setattr(self, 'content_format', n.get_str_value()),
+            "contentFormat": lambda n : setattr(self, 'content_format', n.get_str_value()),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -132,7 +132,7 @@ class ContentInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

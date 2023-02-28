@@ -19,7 +19,7 @@ class CommunicationsApplicationIdentity(identity.Identity):
         """
         Sets the applicationType property value. First party Microsoft application presenting this identity.
         Args:
-            value: Value to set for the applicationType property.
+            value: Value to set for the application_type property.
         """
         self._application_type = value
     
@@ -52,7 +52,7 @@ class CommunicationsApplicationIdentity(identity.Identity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_type": lambda n : setattr(self, 'application_type', n.get_str_value()),
+            "applicationType": lambda n : setattr(self, 'application_type', n.get_str_value()),
             "hidden": lambda n : setattr(self, 'hidden', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

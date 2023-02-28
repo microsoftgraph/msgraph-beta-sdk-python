@@ -44,7 +44,7 @@ class MobileAppTroubleshootingAppPolicyCreationHistory(mobile_app_troubleshootin
         """
         Sets the errorCode property value. Error code for the failure, empty if no failure.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -54,8 +54,8 @@ class MobileAppTroubleshootingAppPolicyCreationHistory(mobile_app_troubleshootin
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_code": lambda n : setattr(self, 'error_code', n.get_str_value()),
-            "run_state": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
+            "runState": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,7 +74,7 @@ class MobileAppTroubleshootingAppPolicyCreationHistory(mobile_app_troubleshootin
         """
         Sets the runState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the runState property.
+            value: Value to set for the run_state property.
         """
         self._run_state = value
     

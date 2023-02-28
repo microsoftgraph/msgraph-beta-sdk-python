@@ -14,9 +14,9 @@ class CloudPcOrganizationSettings(entity.Entity):
         Instantiates a new CloudPcOrganizationSettings and sets the default values.
         """
         super().__init__()
-        # Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager(MEM). The default value is false.
+        # Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager (MEM). The default value is false.
         self._enable_m_e_m_auto_enroll: Optional[bool] = None
-        # The enableSingleSignOn property
+        # True if the provisioned Cloud PC can be accessed by single sign-on. False indicates that the provisioned Cloud PC doesn't support this feature. Default value is false. Windows 365 users can use single sign-on to authenticate to Azure Active Directory (Azure AD) with passwordless options (for example, FIDO keys) to access their Cloud PC. Optional.
         self._enable_single_sign_on: Optional[bool] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -42,7 +42,7 @@ class CloudPcOrganizationSettings(entity.Entity):
     @property
     def enable_m_e_m_auto_enroll(self,) -> Optional[bool]:
         """
-        Gets the enableMEMAutoEnroll property value. Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager(MEM). The default value is false.
+        Gets the enableMEMAutoEnroll property value. Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager (MEM). The default value is false.
         Returns: Optional[bool]
         """
         return self._enable_m_e_m_auto_enroll
@@ -50,16 +50,16 @@ class CloudPcOrganizationSettings(entity.Entity):
     @enable_m_e_m_auto_enroll.setter
     def enable_m_e_m_auto_enroll(self,value: Optional[bool] = None) -> None:
         """
-        Sets the enableMEMAutoEnroll property value. Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager(MEM). The default value is false.
+        Sets the enableMEMAutoEnroll property value. Specifies whether new Cloud PCs will be automatically enrolled in Microsoft Endpoint Manager (MEM). The default value is false.
         Args:
-            value: Value to set for the enableMEMAutoEnroll property.
+            value: Value to set for the enable_m_e_m_auto_enroll property.
         """
         self._enable_m_e_m_auto_enroll = value
     
     @property
     def enable_single_sign_on(self,) -> Optional[bool]:
         """
-        Gets the enableSingleSignOn property value. The enableSingleSignOn property
+        Gets the enableSingleSignOn property value. True if the provisioned Cloud PC can be accessed by single sign-on. False indicates that the provisioned Cloud PC doesn't support this feature. Default value is false. Windows 365 users can use single sign-on to authenticate to Azure Active Directory (Azure AD) with passwordless options (for example, FIDO keys) to access their Cloud PC. Optional.
         Returns: Optional[bool]
         """
         return self._enable_single_sign_on
@@ -67,9 +67,9 @@ class CloudPcOrganizationSettings(entity.Entity):
     @enable_single_sign_on.setter
     def enable_single_sign_on(self,value: Optional[bool] = None) -> None:
         """
-        Sets the enableSingleSignOn property value. The enableSingleSignOn property
+        Sets the enableSingleSignOn property value. True if the provisioned Cloud PC can be accessed by single sign-on. False indicates that the provisioned Cloud PC doesn't support this feature. Default value is false. Windows 365 users can use single sign-on to authenticate to Azure Active Directory (Azure AD) with passwordless options (for example, FIDO keys) to access their Cloud PC. Optional.
         Args:
-            value: Value to set for the enableSingleSignOn property.
+            value: Value to set for the enable_single_sign_on property.
         """
         self._enable_single_sign_on = value
     
@@ -79,11 +79,11 @@ class CloudPcOrganizationSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enable_m_e_m_auto_enroll": lambda n : setattr(self, 'enable_m_e_m_auto_enroll', n.get_bool_value()),
-            "enable_single_sign_on": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
-            "user_account_type": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
-            "windows_settings": lambda n : setattr(self, 'windows_settings', n.get_object_value(cloud_pc_windows_settings.CloudPcWindowsSettings)),
+            "enableMEMAutoEnroll": lambda n : setattr(self, 'enable_m_e_m_auto_enroll', n.get_bool_value()),
+            "enableSingleSignOn": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
+            "windowsSettings": lambda n : setattr(self, 'windows_settings', n.get_object_value(cloud_pc_windows_settings.CloudPcWindowsSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class CloudPcOrganizationSettings(entity.Entity):
         """
         Sets the osVersion property value. The version of the operating system (OS) to provision on Cloud PCs. The possible values are: windows10, windows11, unknownFutureValue.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -134,7 +134,7 @@ class CloudPcOrganizationSettings(entity.Entity):
         """
         Sets the userAccountType property value. The account type of the user on provisioned Cloud PCs. The possible values are: standardUser, administrator, unknownFutureValue.
         Args:
-            value: Value to set for the userAccountType property.
+            value: Value to set for the user_account_type property.
         """
         self._user_account_type = value
     
@@ -151,7 +151,7 @@ class CloudPcOrganizationSettings(entity.Entity):
         """
         Sets the windowsSettings property value. Represents the Cloud PC organization settings for a tenant. A tenant has only one cloudPcOrganizationSettings object. The default language value en-US.
         Args:
-            value: Value to set for the windowsSettings property.
+            value: Value to set for the windows_settings property.
         """
         self._windows_settings = value
     

@@ -68,7 +68,7 @@ class ItemPublication(item_facet.ItemFacet):
         """
         Sets the displayName property value. Title of the publication.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -79,11 +79,11 @@ class ItemPublication(item_facet.ItemFacet):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "published_date": lambda n : setattr(self, 'published_date', n.get_object_value(Date)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "publishedDate": lambda n : setattr(self, 'published_date', n.get_object_value(Date)),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class ItemPublication(item_facet.ItemFacet):
         """
         Sets the publishedDate property value. The date that the publication was published.
         Args:
-            value: Value to set for the publishedDate property.
+            value: Value to set for the published_date property.
         """
         self._published_date = value
     
@@ -152,7 +152,7 @@ class ItemPublication(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. URL referencing a thumbnail of the publication.
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     
@@ -169,7 +169,7 @@ class ItemPublication(item_facet.ItemFacet):
         """
         Sets the webUrl property value. URL referencing the publication.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

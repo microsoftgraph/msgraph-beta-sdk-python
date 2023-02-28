@@ -57,12 +57,11 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property advancedThreatProtectionOnboardingStateSummary for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -73,14 +72,13 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary]:
+    async def get(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderGetRequestConfiguration] = None) -> Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary]:
         """
         The summary state of ATP onboarding state for this account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +90,14 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary, error_mapping)
     
-    async def patch(self,body: Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary] = None, request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary]:
+    async def patch(self,body: Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary] = None, request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderPatchRequestConfiguration] = None) -> Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary]:
         """
         Update the navigation property advancedThreatProtectionOnboardingStateSummary in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary]
         """
         if body is None:
@@ -114,7 +111,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, advanced_threat_protection_onboarding_state_summary.AdvancedThreatProtectionOnboardingStateSummary, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AdvancedThreatProtectionOnboardingStateSummaryRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -143,7 +140,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -164,7 +161,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -177,7 +174,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -216,7 +213,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -231,7 +228,7 @@ class AdvancedThreatProtectionOnboardingStateSummaryRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

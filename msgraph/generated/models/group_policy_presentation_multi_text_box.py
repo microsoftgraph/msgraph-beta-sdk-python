@@ -37,8 +37,8 @@ class GroupPolicyPresentationMultiTextBox(group_policy_uploaded_presentation.Gro
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "max_length": lambda n : setattr(self, 'max_length', n.get_int_value()),
-            "max_strings": lambda n : setattr(self, 'max_strings', n.get_int_value()),
+            "maxLength": lambda n : setattr(self, 'max_length', n.get_int_value()),
+            "maxStrings": lambda n : setattr(self, 'max_strings', n.get_int_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -58,7 +58,7 @@ class GroupPolicyPresentationMultiTextBox(group_policy_uploaded_presentation.Gro
         """
         Sets the maxLength property value. An unsigned integer that specifies the maximum number of text characters. Default value is 1023.
         Args:
-            value: Value to set for the maxLength property.
+            value: Value to set for the max_length property.
         """
         self._max_length = value
     
@@ -75,7 +75,7 @@ class GroupPolicyPresentationMultiTextBox(group_policy_uploaded_presentation.Gro
         """
         Sets the maxStrings property value. An unsigned integer that specifies the maximum number of strings. Default value is 0.
         Args:
-            value: Value to set for the maxStrings property.
+            value: Value to set for the max_strings property.
         """
         self._max_strings = value
     

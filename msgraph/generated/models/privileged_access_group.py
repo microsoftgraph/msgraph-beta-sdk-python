@@ -25,7 +25,7 @@ class PrivilegedAccessGroup(entity.Entity):
         """
         Sets the assignmentScheduleInstances property value. The assignmentScheduleInstances property
         Args:
-            value: Value to set for the assignmentScheduleInstances property.
+            value: Value to set for the assignment_schedule_instances property.
         """
         self._assignment_schedule_instances = value
     
@@ -42,7 +42,7 @@ class PrivilegedAccessGroup(entity.Entity):
         """
         Sets the assignmentScheduleRequests property value. The assignmentScheduleRequests property
         Args:
-            value: Value to set for the assignmentScheduleRequests property.
+            value: Value to set for the assignment_schedule_requests property.
         """
         self._assignment_schedule_requests = value
     
@@ -59,7 +59,7 @@ class PrivilegedAccessGroup(entity.Entity):
         """
         Sets the assignmentSchedules property value. The assignmentSchedules property
         Args:
-            value: Value to set for the assignmentSchedules property.
+            value: Value to set for the assignment_schedules property.
         """
         self._assignment_schedules = value
     
@@ -108,7 +108,7 @@ class PrivilegedAccessGroup(entity.Entity):
         """
         Sets the eligibilityScheduleInstances property value. The eligibilityScheduleInstances property
         Args:
-            value: Value to set for the eligibilityScheduleInstances property.
+            value: Value to set for the eligibility_schedule_instances property.
         """
         self._eligibility_schedule_instances = value
     
@@ -125,7 +125,7 @@ class PrivilegedAccessGroup(entity.Entity):
         """
         Sets the eligibilityScheduleRequests property value. The eligibilityScheduleRequests property
         Args:
-            value: Value to set for the eligibilityScheduleRequests property.
+            value: Value to set for the eligibility_schedule_requests property.
         """
         self._eligibility_schedule_requests = value
     
@@ -142,7 +142,7 @@ class PrivilegedAccessGroup(entity.Entity):
         """
         Sets the eligibilitySchedules property value. The eligibilitySchedules property
         Args:
-            value: Value to set for the eligibilitySchedules property.
+            value: Value to set for the eligibility_schedules property.
         """
         self._eligibility_schedules = value
     
@@ -152,12 +152,12 @@ class PrivilegedAccessGroup(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_schedule_instances": lambda n : setattr(self, 'assignment_schedule_instances', n.get_collection_of_object_values(privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance)),
-            "assignment_schedule_requests": lambda n : setattr(self, 'assignment_schedule_requests', n.get_collection_of_object_values(privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest)),
-            "assignment_schedules": lambda n : setattr(self, 'assignment_schedules', n.get_collection_of_object_values(privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule)),
-            "eligibility_schedule_instances": lambda n : setattr(self, 'eligibility_schedule_instances', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance)),
-            "eligibility_schedule_requests": lambda n : setattr(self, 'eligibility_schedule_requests', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest)),
-            "eligibility_schedules": lambda n : setattr(self, 'eligibility_schedules', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
+            "assignmentSchedules": lambda n : setattr(self, 'assignment_schedules', n.get_collection_of_object_values(privileged_access_group_assignment_schedule.PrivilegedAccessGroupAssignmentSchedule)),
+            "assignmentScheduleInstances": lambda n : setattr(self, 'assignment_schedule_instances', n.get_collection_of_object_values(privileged_access_group_assignment_schedule_instance.PrivilegedAccessGroupAssignmentScheduleInstance)),
+            "assignmentScheduleRequests": lambda n : setattr(self, 'assignment_schedule_requests', n.get_collection_of_object_values(privileged_access_group_assignment_schedule_request.PrivilegedAccessGroupAssignmentScheduleRequest)),
+            "eligibilitySchedules": lambda n : setattr(self, 'eligibility_schedules', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
+            "eligibilityScheduleInstances": lambda n : setattr(self, 'eligibility_schedule_instances', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule_instance.PrivilegedAccessGroupEligibilityScheduleInstance)),
+            "eligibilityScheduleRequests": lambda n : setattr(self, 'eligibility_schedule_requests', n.get_collection_of_object_values(privileged_access_group_eligibility_schedule_request.PrivilegedAccessGroupEligibilityScheduleRequest)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -172,11 +172,11 @@ class PrivilegedAccessGroup(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("assignmentSchedules", self.assignment_schedules)
         writer.write_collection_of_object_values("assignmentScheduleInstances", self.assignment_schedule_instances)
         writer.write_collection_of_object_values("assignmentScheduleRequests", self.assignment_schedule_requests)
-        writer.write_collection_of_object_values("assignmentSchedules", self.assignment_schedules)
+        writer.write_collection_of_object_values("eligibilitySchedules", self.eligibility_schedules)
         writer.write_collection_of_object_values("eligibilityScheduleInstances", self.eligibility_schedule_instances)
         writer.write_collection_of_object_values("eligibilityScheduleRequests", self.eligibility_schedule_requests)
-        writer.write_collection_of_object_values("eligibilitySchedules", self.eligibility_schedules)
     
 

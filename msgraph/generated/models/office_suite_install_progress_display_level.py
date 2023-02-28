@@ -1,6 +1,6 @@
 from enum import Enum
 
 class OfficeSuiteInstallProgressDisplayLevel(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Full = "full",
 

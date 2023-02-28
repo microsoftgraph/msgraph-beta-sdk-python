@@ -51,8 +51,8 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "member_id": lambda n : setattr(self, 'member_id', n.get_str_value()),
-            "membership_rule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
+            "membershipRule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
+            "memberId": lambda n : setattr(self, 'member_id', n.get_str_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the memberId property value. The memberId property
         Args:
-            value: Value to set for the memberId property.
+            value: Value to set for the member_id property.
         """
         self._member_id = value
     
@@ -86,7 +86,7 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the membershipRule property value. The membershipRule property
         Args:
-            value: Value to set for the membershipRule property.
+            value: Value to set for the membership_rule property.
         """
         self._membership_rule = value
     
@@ -98,8 +98,8 @@ class EvaluateDynamicMembershipPostRequestBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_str_value("memberId", self.member_id)
         writer.write_str_value("membershipRule", self.membership_rule)
+        writer.write_str_value("memberId", self.member_id)
         writer.write_additional_data_value(self.additional_data)
     
 

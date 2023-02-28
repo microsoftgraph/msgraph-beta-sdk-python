@@ -55,9 +55,9 @@ class TranslateExchangeIdsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "input_ids": lambda n : setattr(self, 'input_ids', n.get_collection_of_primitive_values(str)),
-            "source_id_type": lambda n : setattr(self, 'source_id_type', n.get_enum_value(exchange_id_format.ExchangeIdFormat)),
-            "target_id_type": lambda n : setattr(self, 'target_id_type', n.get_enum_value(exchange_id_format.ExchangeIdFormat)),
+            "InputIds": lambda n : setattr(self, 'input_ids', n.get_collection_of_primitive_values(str)),
+            "SourceIdType": lambda n : setattr(self, 'source_id_type', n.get_enum_value(exchange_id_format.ExchangeIdFormat)),
+            "TargetIdType": lambda n : setattr(self, 'target_id_type', n.get_enum_value(exchange_id_format.ExchangeIdFormat)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class TranslateExchangeIdsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the inputIds property value. The InputIds property
         Args:
-            value: Value to set for the InputIds property.
+            value: Value to set for the input_ids property.
         """
         self._input_ids = value
     
@@ -104,7 +104,7 @@ class TranslateExchangeIdsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sourceIdType property value. The SourceIdType property
         Args:
-            value: Value to set for the SourceIdType property.
+            value: Value to set for the source_id_type property.
         """
         self._source_id_type = value
     
@@ -121,7 +121,7 @@ class TranslateExchangeIdsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the targetIdType property value. The TargetIdType property
         Args:
-            value: Value to set for the TargetIdType property.
+            value: Value to set for the target_id_type property.
         """
         self._target_id_type = value
     

@@ -57,8 +57,8 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "on_premises_calendar_sync_configuration": lambda n : setattr(self, 'on_premises_calendar_sync_configuration', n.get_object_value(teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration)),
-            "supported_client": lambda n : setattr(self, 'supported_client', n.get_enum_value(teamwork_supported_client.TeamworkSupportedClient)),
+            "onPremisesCalendarSyncConfiguration": lambda n : setattr(self, 'on_premises_calendar_sync_configuration', n.get_object_value(teamwork_on_premises_calendar_sync_configuration.TeamworkOnPremisesCalendarSyncConfiguration)),
+            "supportedClient": lambda n : setattr(self, 'supported_client', n.get_enum_value(teamwork_supported_client.TeamworkSupportedClient)),
         }
         return fields
     
@@ -75,7 +75,7 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -92,7 +92,7 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the onPremisesCalendarSyncConfiguration property value. The account used to sync the calendar.
         Args:
-            value: Value to set for the onPremisesCalendarSyncConfiguration property.
+            value: Value to set for the on_premises_calendar_sync_configuration property.
         """
         self._on_premises_calendar_sync_configuration = value
     
@@ -122,7 +122,7 @@ class TeamworkAccountConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the supportedClient property value. The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams, teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
         Args:
-            value: Value to set for the supportedClient property.
+            value: Value to set for the supported_client property.
         """
         self._supported_client = value
     

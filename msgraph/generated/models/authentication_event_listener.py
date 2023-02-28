@@ -20,7 +20,7 @@ class AuthenticationEventListener(entity.Entity):
         """
         Sets the authenticationEventsFlowId property value. The authenticationEventsFlowId property
         Args:
-            value: Value to set for the authenticationEventsFlowId property.
+            value: Value to set for the authentication_events_flow_id property.
         """
         self._authentication_events_flow_id = value
     
@@ -43,7 +43,7 @@ class AuthenticationEventListener(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AuthenticationEventListener and sets the default values.
+        Instantiates a new authenticationEventListener and sets the default values.
         """
         super().__init__()
         # The authenticationEventsFlowId property
@@ -73,7 +73,7 @@ class AuthenticationEventListener(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_events_flow_id": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),
+            "authenticationEventsFlowId": lambda n : setattr(self, 'authentication_events_flow_id', n.get_str_value()),
             "conditions": lambda n : setattr(self, 'conditions', n.get_object_value(authentication_conditions.AuthenticationConditions)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
         }

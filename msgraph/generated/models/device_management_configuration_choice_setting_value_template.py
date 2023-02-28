@@ -70,7 +70,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         Sets the defaultValue property value. Choice Setting Value Default Template.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -80,11 +80,11 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_choice_setting_value_default_template.DeviceManagementConfigurationChoiceSettingValueDefaultTemplate)),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_choice_setting_value_default_template.DeviceManagementConfigurationChoiceSettingValueDefaultTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recommended_value_definition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(device_management_configuration_choice_setting_value_definition_template.DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
-            "required_value_definition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(device_management_configuration_choice_setting_value_definition_template.DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
-            "setting_value_template_id": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
+            "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(device_management_configuration_choice_setting_value_definition_template.DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
+            "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(device_management_configuration_choice_setting_value_definition_template.DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate)),
+            "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
         }
         return fields
     
@@ -101,7 +101,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -118,7 +118,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         Sets the recommendedValueDefinition property value. Recommended definition override.
         Args:
-            value: Value to set for the recommendedValueDefinition property.
+            value: Value to set for the recommended_value_definition property.
         """
         self._recommended_value_definition = value
     
@@ -135,7 +135,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         Sets the requiredValueDefinition property value. Required definition override.
         Args:
-            value: Value to set for the requiredValueDefinition property.
+            value: Value to set for the required_value_definition property.
         """
         self._required_value_definition = value
     
@@ -167,7 +167,7 @@ class DeviceManagementConfigurationChoiceSettingValueTemplate(AdditionalDataHold
         """
         Sets the settingValueTemplateId property value. Setting Value Template Id
         Args:
-            value: Value to set for the settingValueTemplateId property.
+            value: Value to set for the setting_value_template_id property.
         """
         self._setting_value_template_id = value
     

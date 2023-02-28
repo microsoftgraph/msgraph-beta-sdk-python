@@ -53,9 +53,9 @@ class SiteSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "time_zone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
+            "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class SiteSettings(AdditionalDataHolder, Parsable):
         """
         Sets the languageTag property value. The language tag for the language used on this site.
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -89,7 +89,7 @@ class SiteSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class SiteSettings(AdditionalDataHolder, Parsable):
         """
         Sets the timeZone property value. Indicates the time offset for the time zone of the site from Coordinated Universal Time (UTC).
         Args:
-            value: Value to set for the timeZone property.
+            value: Value to set for the time_zone property.
         """
         self._time_zone = value
     

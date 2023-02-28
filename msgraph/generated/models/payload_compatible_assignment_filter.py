@@ -34,7 +34,7 @@ class PayloadCompatibleAssignmentFilter(device_and_app_management_assignment_fil
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "payload_type": lambda n : setattr(self, 'payload_type', n.get_enum_value(assignment_filter_payload_type.AssignmentFilterPayloadType)),
+            "payloadType": lambda n : setattr(self, 'payload_type', n.get_enum_value(assignment_filter_payload_type.AssignmentFilterPayloadType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class PayloadCompatibleAssignmentFilter(device_and_app_management_assignment_fil
         """
         Sets the payloadType property value. Represents the payload type AssignmentFilter is being assigned to.
         Args:
-            value: Value to set for the payloadType property.
+            value: Value to set for the payload_type property.
         """
         self._payload_type = value
     

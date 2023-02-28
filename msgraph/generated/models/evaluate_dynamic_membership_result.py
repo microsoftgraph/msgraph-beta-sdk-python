@@ -57,9 +57,9 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "membership_rule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
-            "membership_rule_evaluation_details": lambda n : setattr(self, 'membership_rule_evaluation_details', n.get_object_value(expression_evaluation_details.ExpressionEvaluationDetails)),
-            "membership_rule_evaluation_result": lambda n : setattr(self, 'membership_rule_evaluation_result', n.get_bool_value()),
+            "membershipRule": lambda n : setattr(self, 'membership_rule', n.get_str_value()),
+            "membershipRuleEvaluationDetails": lambda n : setattr(self, 'membership_rule_evaluation_details', n.get_object_value(expression_evaluation_details.ExpressionEvaluationDetails)),
+            "membershipRuleEvaluationResult": lambda n : setattr(self, 'membership_rule_evaluation_result', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -77,7 +77,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, Parsable):
         """
         Sets the membershipRule property value. If a group ID is provided, the value is the membership rule for the group. If a group ID is not provided, the value is the membership rule that was provided as a parameter. For more information, see Dynamic membership rules for groups in Azure Active Directory.
         Args:
-            value: Value to set for the membershipRule property.
+            value: Value to set for the membership_rule property.
         """
         self._membership_rule = value
     
@@ -94,7 +94,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, Parsable):
         """
         Sets the membershipRuleEvaluationDetails property value. Provides a detailed anaylsis of the membership evaluation result.
         Args:
-            value: Value to set for the membershipRuleEvaluationDetails property.
+            value: Value to set for the membership_rule_evaluation_details property.
         """
         self._membership_rule_evaluation_details = value
     
@@ -111,7 +111,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, Parsable):
         """
         Sets the membershipRuleEvaluationResult property value. The value is true if the user or device is a member of the group. The value can also be true if a membership rule was provided and the user or device passes the rule evaluation; otherwise false.
         Args:
-            value: Value to set for the membershipRuleEvaluationResult property.
+            value: Value to set for the membership_rule_evaluation_result property.
         """
         self._membership_rule_evaluation_result = value
     
@@ -128,7 +128,7 @@ class EvaluateDynamicMembershipResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

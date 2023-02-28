@@ -44,7 +44,7 @@ class AddCopyPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the contentType property value. The contentType property
         Args:
-            value: Value to set for the contentType property.
+            value: Value to set for the content_type property.
         """
         self._content_type = value
     
@@ -66,7 +66,7 @@ class AddCopyPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_type": lambda n : setattr(self, 'content_type', n.get_str_value()),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
         }
         return fields
     

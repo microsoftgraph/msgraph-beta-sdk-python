@@ -34,7 +34,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the comanagedCount property value. Count of devices already Co-Managed
         Args:
-            value: Value to set for the comanagedCount property.
+            value: Value to set for the comanaged_count property.
         """
         self._comanaged_count = value
     
@@ -85,7 +85,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the eligibleButNotAzureAdJoinedCount property value. Count of devices eligible for Co-Management but not yet joined to Azure Active Directory
         Args:
-            value: Value to set for the eligibleButNotAzureAdJoinedCount property.
+            value: Value to set for the eligible_but_not_azure_ad_joined_count property.
         """
         self._eligible_but_not_azure_ad_joined_count = value
     
@@ -102,7 +102,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the eligibleCount property value. Count of devices fully eligible for Co-Management
         Args:
-            value: Value to set for the eligibleCount property.
+            value: Value to set for the eligible_count property.
         """
         self._eligible_count = value
     
@@ -112,13 +112,13 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comanaged_count": lambda n : setattr(self, 'comanaged_count', n.get_int_value()),
-            "eligible_but_not_azure_ad_joined_count": lambda n : setattr(self, 'eligible_but_not_azure_ad_joined_count', n.get_int_value()),
-            "eligible_count": lambda n : setattr(self, 'eligible_count', n.get_int_value()),
-            "ineligible_count": lambda n : setattr(self, 'ineligible_count', n.get_int_value()),
-            "needs_os_update_count": lambda n : setattr(self, 'needs_os_update_count', n.get_int_value()),
+            "comanagedCount": lambda n : setattr(self, 'comanaged_count', n.get_int_value()),
+            "eligibleButNotAzureAdJoinedCount": lambda n : setattr(self, 'eligible_but_not_azure_ad_joined_count', n.get_int_value()),
+            "eligibleCount": lambda n : setattr(self, 'eligible_count', n.get_int_value()),
+            "ineligibleCount": lambda n : setattr(self, 'ineligible_count', n.get_int_value()),
+            "needsOsUpdateCount": lambda n : setattr(self, 'needs_os_update_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "scheduled_for_enrollment_count": lambda n : setattr(self, 'scheduled_for_enrollment_count', n.get_int_value()),
+            "scheduledForEnrollmentCount": lambda n : setattr(self, 'scheduled_for_enrollment_count', n.get_int_value()),
         }
         return fields
     
@@ -135,7 +135,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the ineligibleCount property value. Count of devices ineligible for Co-Management
         Args:
-            value: Value to set for the ineligibleCount property.
+            value: Value to set for the ineligible_count property.
         """
         self._ineligible_count = value
     
@@ -152,7 +152,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the needsOsUpdateCount property value. Count of devices that will be eligible for Co-Management after an OS update
         Args:
-            value: Value to set for the needsOsUpdateCount property.
+            value: Value to set for the needs_os_update_count property.
         """
         self._needs_os_update_count = value
     
@@ -169,7 +169,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -186,7 +186,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         """
         Sets the scheduledForEnrollmentCount property value. Count of devices scheduled for Co-Management enrollment. Valid values 0 to 9999999
         Args:
-            value: Value to set for the scheduledForEnrollmentCount property.
+            value: Value to set for the scheduled_for_enrollment_count property.
         """
         self._scheduled_for_enrollment_count = value
     

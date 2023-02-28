@@ -2,7 +2,7 @@ from enum import Enum
 
 class LocalSecurityOptionsMinimumSessionSecurity(Enum):
     # Send LM & NTLM responses
-    None_escaped = "none",
+    None_ = "none",
     # Send LM & NTLM-use NTLMv2 session security if negotiated
     RequireNtmlV2SessionSecurity = "requireNtmlV2SessionSecurity",
     # Send LM & NTLM responses only

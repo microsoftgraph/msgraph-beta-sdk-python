@@ -50,7 +50,7 @@ class CloudPcConnection(entity.Entity):
         """
         Sets the displayName property value. The display name of the cloud PC connection. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -60,11 +60,11 @@ class CloudPcConnection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "health_check_status": lambda n : setattr(self, 'health_check_status', n.get_str_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "healthCheckStatus": lambda n : setattr(self, 'health_check_status', n.get_str_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,7 +83,7 @@ class CloudPcConnection(entity.Entity):
         """
         Sets the healthCheckStatus property value. The health status of the cloud PC connection. Possible values are: pending, running, passed, failed, unknownFutureValue.  Required. Read-only.
         Args:
-            value: Value to set for the healthCheckStatus property.
+            value: Value to set for the health_check_status property.
         """
         self._health_check_status = value
     
@@ -100,7 +100,7 @@ class CloudPcConnection(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Required. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -132,7 +132,7 @@ class CloudPcConnection(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -149,7 +149,7 @@ class CloudPcConnection(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

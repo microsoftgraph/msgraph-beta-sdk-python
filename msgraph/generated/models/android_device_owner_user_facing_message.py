@@ -65,7 +65,7 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
         """
         Sets the defaultMessage property value. The default message displayed if the user's locale doesn't match with any of the localized messages
         Args:
-            value: Value to set for the defaultMessage property.
+            value: Value to set for the default_message property.
         """
         self._default_message = value
     
@@ -75,8 +75,8 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_message": lambda n : setattr(self, 'default_message', n.get_str_value()),
-            "localized_messages": lambda n : setattr(self, 'localized_messages', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "defaultMessage": lambda n : setattr(self, 'default_message', n.get_str_value()),
+            "localizedMessages": lambda n : setattr(self, 'localized_messages', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -94,7 +94,7 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
         """
         Sets the localizedMessages property value. The list of <locale, message> pairs. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the localizedMessages property.
+            value: Value to set for the localized_messages property.
         """
         self._localized_messages = value
     
@@ -111,7 +111,7 @@ class AndroidDeviceOwnerUserFacingMessage(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

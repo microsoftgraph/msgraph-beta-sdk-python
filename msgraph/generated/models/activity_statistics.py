@@ -85,7 +85,7 @@ class ActivityStatistics(entity.Entity):
         """
         Sets the endDate property value. Date when the activity ended, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-03' that follows the YYYY-MM-DD format.
         Args:
-            value: Value to set for the endDate property.
+            value: Value to set for the end_date property.
         """
         self._end_date = value
     
@@ -97,9 +97,9 @@ class ActivityStatistics(entity.Entity):
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_enum_value(analytics_activity_type.AnalyticsActivityType)),
             "duration": lambda n : setattr(self, 'duration', n.get_object_value(Timedelta)),
-            "end_date": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
-            "start_date": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
-            "time_zone_used": lambda n : setattr(self, 'time_zone_used', n.get_str_value()),
+            "endDate": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
+            "startDate": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
+            "timeZoneUsed": lambda n : setattr(self, 'time_zone_used', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -133,7 +133,7 @@ class ActivityStatistics(entity.Entity):
         """
         Sets the startDate property value. Date when the activity started, expressed in ISO 8601 format for calendar dates. For example, the property value could be '2019-07-04' that follows the YYYY-MM-DD format.
         Args:
-            value: Value to set for the startDate property.
+            value: Value to set for the start_date property.
         """
         self._start_date = value
     
@@ -150,7 +150,7 @@ class ActivityStatistics(entity.Entity):
         """
         Sets the timeZoneUsed property value. The time zone that the user sets in Microsoft Outlook is used for the computation. For example, the property value could be 'Pacific Standard Time.'
         Args:
-            value: Value to set for the timeZoneUsed property.
+            value: Value to set for the time_zone_used property.
         """
         self._time_zone_used = value
     

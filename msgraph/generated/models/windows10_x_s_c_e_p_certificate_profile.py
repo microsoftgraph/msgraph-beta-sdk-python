@@ -27,7 +27,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the certificateStore property value. CertificateStore types
         Args:
-            value: Value to set for the certificateStore property.
+            value: Value to set for the certificate_store property.
         """
         self._certificate_store = value
     
@@ -44,7 +44,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
         Args:
-            value: Value to set for the certificateValidityPeriodScale property.
+            value: Value to set for the certificate_validity_period_scale property.
         """
         self._certificate_validity_period_scale = value
     
@@ -61,7 +61,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the certificateValidityPeriodValue property value. Value for the Certificate Validity Period
         Args:
-            value: Value to set for the certificateValidityPeriodValue property.
+            value: Value to set for the certificate_validity_period_value property.
         """
         self._certificate_validity_period_value = value
     
@@ -123,7 +123,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings.
         Args:
-            value: Value to set for the extendedKeyUsages property.
+            value: Value to set for the extended_key_usages property.
         """
         self._extended_key_usages = value
     
@@ -133,19 +133,19 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_store": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
-            "certificate_validity_period_scale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
-            "certificate_validity_period_value": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
-            "extended_key_usages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
-            "hash_algorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(hash_algorithms.HashAlgorithms)),
-            "key_size": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
-            "key_storage_provider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
-            "key_usage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
-            "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "root_certificate_id": lambda n : setattr(self, 'root_certificate_id', n.get_object_value(Guid)),
-            "scep_server_urls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
-            "subject_alternative_name_formats": lambda n : setattr(self, 'subject_alternative_name_formats', n.get_collection_of_object_values(windows10_x_custom_subject_alternative_name.Windows10XCustomSubjectAlternativeName)),
-            "subject_name_format_string": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
+            "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
+            "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
+            "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_collection_of_enum_values(hash_algorithms.HashAlgorithms)),
+            "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
+            "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
+            "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
+            "rootCertificateId": lambda n : setattr(self, 'root_certificate_id', n.get_object_value(Guid)),
+            "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
+            "subjectAlternativeNameFormats": lambda n : setattr(self, 'subject_alternative_name_formats', n.get_collection_of_object_values(windows10_x_custom_subject_alternative_name.Windows10XCustomSubjectAlternativeName)),
+            "subjectNameFormatString": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -164,7 +164,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the hashAlgorithm property value. SCEP Hash Algorithm.
         Args:
-            value: Value to set for the hashAlgorithm property.
+            value: Value to set for the hash_algorithm property.
         """
         self._hash_algorithm = value
     
@@ -181,7 +181,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the keySize property value. Key Size Options.
         Args:
-            value: Value to set for the keySize property.
+            value: Value to set for the key_size property.
         """
         self._key_size = value
     
@@ -198,7 +198,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
         Args:
-            value: Value to set for the keyStorageProvider property.
+            value: Value to set for the key_storage_provider property.
         """
         self._key_storage_provider = value
     
@@ -215,7 +215,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the keyUsage property value. Key Usage Options.
         Args:
-            value: Value to set for the keyUsage property.
+            value: Value to set for the key_usage property.
         """
         self._key_usage = value
     
@@ -232,7 +232,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage
         Args:
-            value: Value to set for the renewalThresholdPercentage property.
+            value: Value to set for the renewal_threshold_percentage property.
         """
         self._renewal_threshold_percentage = value
     
@@ -249,7 +249,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the rootCertificateId property value. Trusted Root Certificate ID
         Args:
-            value: Value to set for the rootCertificateId property.
+            value: Value to set for the root_certificate_id property.
         """
         self._root_certificate_id = value
     
@@ -266,7 +266,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the scepServerUrls property value. SCEP Server Url(s).
         Args:
-            value: Value to set for the scepServerUrls property.
+            value: Value to set for the scep_server_urls property.
         """
         self._scep_server_urls = value
     
@@ -306,7 +306,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the subjectAlternativeNameFormats property value. Custom AAD Attributes.
         Args:
-            value: Value to set for the subjectAlternativeNameFormats property.
+            value: Value to set for the subject_alternative_name_formats property.
         """
         self._subject_alternative_name_formats = value
     
@@ -323,7 +323,7 @@ class Windows10XSCEPCertificateProfile(windows10_x_certificate_profile.Windows10
         """
         Sets the subjectNameFormatString property value. Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         Args:
-            value: Value to set for the subjectNameFormatString property.
+            value: Value to set for the subject_name_format_string property.
         """
         self._subject_name_format_string = value
     

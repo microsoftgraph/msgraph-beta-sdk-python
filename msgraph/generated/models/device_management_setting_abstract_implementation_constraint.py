@@ -19,7 +19,7 @@ class DeviceManagementSettingAbstractImplementationConstraint(device_management_
         """
         Sets the allowedAbstractImplementationDefinitionIds property value. List of value which means not configured for the setting
         Args:
-            value: Value to set for the allowedAbstractImplementationDefinitionIds property.
+            value: Value to set for the allowed_abstract_implementation_definition_ids property.
         """
         self._allowed_abstract_implementation_definition_ids = value
     
@@ -50,7 +50,7 @@ class DeviceManagementSettingAbstractImplementationConstraint(device_management_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_abstract_implementation_definition_ids": lambda n : setattr(self, 'allowed_abstract_implementation_definition_ids', n.get_collection_of_primitive_values(str)),
+            "allowedAbstractImplementationDefinitionIds": lambda n : setattr(self, 'allowed_abstract_implementation_definition_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

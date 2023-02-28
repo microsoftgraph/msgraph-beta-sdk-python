@@ -60,7 +60,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedUserCount property value. Total failed user check ins for the last 3 months.
         Args:
-            value: Value to set for the failedUserCount property.
+            value: Value to set for the failed_user_count property.
         """
         self._failed_user_count = value
     
@@ -70,9 +70,9 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_user_count": lambda n : setattr(self, 'failed_user_count', n.get_int_value()),
+            "failedUserCount": lambda n : setattr(self, 'failed_user_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "succeeded_user_count": lambda n : setattr(self, 'succeeded_user_count', n.get_int_value()),
+            "succeededUserCount": lambda n : setattr(self, 'succeeded_user_count', n.get_int_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class OfficeUserCheckinSummary(AdditionalDataHolder, Parsable):
         """
         Sets the succeededUserCount property value. Total successful user check ins for the last 3 months.
         Args:
-            value: Value to set for the succeededUserCount property.
+            value: Value to set for the succeeded_user_count property.
         """
         self._succeeded_user_count = value
     

@@ -38,9 +38,9 @@ class WinGetApp(mobile_app.MobileApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "install_experience": lambda n : setattr(self, 'install_experience', n.get_object_value(win_get_app_install_experience.WinGetAppInstallExperience)),
-            "manifest_hash": lambda n : setattr(self, 'manifest_hash', n.get_str_value()),
-            "package_identifier": lambda n : setattr(self, 'package_identifier', n.get_str_value()),
+            "installExperience": lambda n : setattr(self, 'install_experience', n.get_object_value(win_get_app_install_experience.WinGetAppInstallExperience)),
+            "manifestHash": lambda n : setattr(self, 'manifest_hash', n.get_str_value()),
+            "packageIdentifier": lambda n : setattr(self, 'package_identifier', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -59,7 +59,7 @@ class WinGetApp(mobile_app.MobileApp):
         """
         Sets the installExperience property value. The install experience settings associated with this application, which are used to ensure the desired install experiences on the target device are taken into account. This includes the account type (System or User) that actions should be run as on target devices. Required at creation time.
         Args:
-            value: Value to set for the installExperience property.
+            value: Value to set for the install_experience property.
         """
         self._install_experience = value
     
@@ -76,7 +76,7 @@ class WinGetApp(mobile_app.MobileApp):
         """
         Sets the manifestHash property value. Hash of package metadata properties used to validate that the application matches the metadata in the source repository.
         Args:
-            value: Value to set for the manifestHash property.
+            value: Value to set for the manifest_hash property.
         """
         self._manifest_hash = value
     
@@ -93,7 +93,7 @@ class WinGetApp(mobile_app.MobileApp):
         """
         Sets the packageIdentifier property value. The PackageIdentifier from the WinGet source repository REST API. This also maps to the Id when using the WinGet client command line application. Required at creation time, cannot be modified on existing objects.
         Args:
-            value: Value to set for the packageIdentifier property.
+            value: Value to set for the package_identifier property.
         """
         self._package_identifier = value
     

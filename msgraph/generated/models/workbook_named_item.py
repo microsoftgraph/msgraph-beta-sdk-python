@@ -40,7 +40,7 @@ class WorkbookNamedItem(entity.Entity):
         self._scope: Optional[str] = None
         # Indicates what type of reference is associated with the name. Possible values are: String, Integer, Double, Boolean, Range. Read-only.
         self._type: Optional[str] = None
-        # Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
+        # Represents the formula that the name is defined to refer to. For example, =Sheet14!$B$2:$H$12 and =4.75. Read-only.
         self._value: Optional[json.Json] = None
         # Specifies whether the object is visible or not.
         self._visible: Optional[bool] = None
@@ -148,7 +148,7 @@ class WorkbookNamedItem(entity.Entity):
     @property
     def value(self,) -> Optional[json.Json]:
         """
-        Gets the value property value. Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
+        Gets the value property value. Represents the formula that the name is defined to refer to. For example, =Sheet14!$B$2:$H$12 and =4.75. Read-only.
         Returns: Optional[json.Json]
         """
         return self._value
@@ -156,7 +156,7 @@ class WorkbookNamedItem(entity.Entity):
     @value.setter
     def value(self,value: Optional[json.Json] = None) -> None:
         """
-        Sets the value property value. Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
+        Sets the value property value. Represents the formula that the name is defined to refer to. For example, =Sheet14!$B$2:$H$12 and =4.75. Read-only.
         Args:
             value: Value to set for the value property.
         """

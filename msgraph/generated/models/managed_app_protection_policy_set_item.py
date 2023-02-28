@@ -33,7 +33,7 @@ class ManagedAppProtectionPolicySetItem(policy_set_item.PolicySetItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "targeted_app_management_levels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_str_value()),
+            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class ManagedAppProtectionPolicySetItem(policy_set_item.PolicySetItem):
         """
         Sets the targetedAppManagementLevels property value. TargetedAppManagementLevels of the ManagedAppPolicySetItem.
         Args:
-            value: Value to set for the targetedAppManagementLevels property.
+            value: Value to set for the targeted_app_management_levels property.
         """
         self._targeted_app_management_levels = value
     

@@ -29,6 +29,13 @@ class CategoriesRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
         """
         Provides operations to manage the collection of educationRoot entities.
@@ -53,19 +60,11 @@ class CategoriesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_category_collection_response.EducationCategoryCollectionResponse]:
+    async def get(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None) -> Optional[education_category_collection_response.EducationCategoryCollectionResponse]:
         """
         List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_category_collection_response.EducationCategoryCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class CategoriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_category_collection_response.EducationCategoryCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_category_collection_response.EducationCategoryCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[education_category.EducationCategory] = None, request_configuration: Optional[CategoriesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[education_category.EducationCategory]:
+    async def post(self,body: Optional[education_category.EducationCategory] = None, request_configuration: Optional[CategoriesRequestBuilderPostRequestConfiguration] = None) -> Optional[education_category.EducationCategory]:
         """
         Create new navigation property to categories for education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[education_category.EducationCategory]
         """
         if body is None:
@@ -99,7 +97,7 @@ class CategoriesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, education_category.EducationCategory, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, education_category.EducationCategory, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CategoriesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,7 +110,7 @@ class CategoriesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -133,7 +131,7 @@ class CategoriesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -203,7 +201,7 @@ class CategoriesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -218,7 +216,7 @@ class CategoriesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

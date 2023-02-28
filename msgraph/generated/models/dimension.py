@@ -66,7 +66,7 @@ class Dimension(entity.Entity):
         """
         Sets the dimensionValues property value. The dimensionValues property
         Args:
-            value: Value to set for the dimensionValues property.
+            value: Value to set for the dimension_values property.
         """
         self._dimension_values = value
     
@@ -83,7 +83,7 @@ class Dimension(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,9 +94,9 @@ class Dimension(entity.Entity):
         """
         fields = {
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
-            "dimension_values": lambda n : setattr(self, 'dimension_values', n.get_collection_of_object_values(dimension_value.DimensionValue)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "dimensionValues": lambda n : setattr(self, 'dimension_values', n.get_collection_of_object_values(dimension_value.DimensionValue)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -115,7 +115,7 @@ class Dimension(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

@@ -70,8 +70,8 @@ class CreateReplyAllPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "message": lambda n : setattr(self, 'message', n.get_object_value(message.Message)),
+            "Comment": lambda n : setattr(self, 'comment', n.get_str_value()),
+            "Message": lambda n : setattr(self, 'message', n.get_object_value(message.Message)),
         }
         return fields
     

@@ -35,8 +35,8 @@ class MacOsVppAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "uninstall_on_device_removal": lambda n : setattr(self, 'uninstall_on_device_removal', n.get_bool_value()),
-            "use_device_licensing": lambda n : setattr(self, 'use_device_licensing', n.get_bool_value()),
+            "uninstallOnDeviceRemoval": lambda n : setattr(self, 'uninstall_on_device_removal', n.get_bool_value()),
+            "useDeviceLicensing": lambda n : setattr(self, 'use_device_licensing', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -67,7 +67,7 @@ class MacOsVppAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
         """
         Sets the uninstallOnDeviceRemoval property value. Whether or not to uninstall the app when device is removed from Intune.
         Args:
-            value: Value to set for the uninstallOnDeviceRemoval property.
+            value: Value to set for the uninstall_on_device_removal property.
         """
         self._uninstall_on_device_removal = value
     
@@ -84,7 +84,7 @@ class MacOsVppAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssi
         """
         Sets the useDeviceLicensing property value. Whether or not to use device licensing.
         Args:
-            value: Value to set for the useDeviceLicensing property.
+            value: Value to set for the use_device_licensing property.
         """
         self._use_device_licensing = value
     

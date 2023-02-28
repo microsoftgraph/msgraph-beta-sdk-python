@@ -53,8 +53,8 @@ class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsabl
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "imported_apple_device_identities": lambda n : setattr(self, 'imported_apple_device_identities', n.get_collection_of_object_values(imported_apple_device_identity.ImportedAppleDeviceIdentity)),
-            "overwrite_imported_device_identities": lambda n : setattr(self, 'overwrite_imported_device_identities', n.get_bool_value()),
+            "importedAppleDeviceIdentities": lambda n : setattr(self, 'imported_apple_device_identities', n.get_collection_of_object_values(imported_apple_device_identity.ImportedAppleDeviceIdentity)),
+            "overwriteImportedDeviceIdentities": lambda n : setattr(self, 'overwrite_imported_device_identities', n.get_bool_value()),
         }
         return fields
     
@@ -71,7 +71,7 @@ class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the importedAppleDeviceIdentities property value. The importedAppleDeviceIdentities property
         Args:
-            value: Value to set for the importedAppleDeviceIdentities property.
+            value: Value to set for the imported_apple_device_identities property.
         """
         self._imported_apple_device_identities = value
     
@@ -88,7 +88,7 @@ class ImportAppleDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the overwriteImportedDeviceIdentities property value. The overwriteImportedDeviceIdentities property
         Args:
-            value: Value to set for the overwriteImportedDeviceIdentities property.
+            value: Value to set for the overwrite_imported_device_identities property.
         """
         self._overwrite_imported_device_identities = value
     

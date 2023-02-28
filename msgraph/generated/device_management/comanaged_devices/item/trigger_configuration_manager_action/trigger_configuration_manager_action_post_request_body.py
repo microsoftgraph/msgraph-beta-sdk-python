@@ -36,7 +36,7 @@ class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Par
         """
         Sets the configurationManagerAction property value. Parameter for action triggerConfigurationManagerAction
         Args:
-            value: Value to set for the configurationManagerAction property.
+            value: Value to set for the configuration_manager_action property.
         """
         self._configuration_manager_action = value
     
@@ -68,7 +68,7 @@ class TriggerConfigurationManagerActionPostRequestBody(AdditionalDataHolder, Par
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_manager_action": lambda n : setattr(self, 'configuration_manager_action', n.get_object_value(configuration_manager_action.ConfigurationManagerAction)),
+            "configurationManagerAction": lambda n : setattr(self, 'configuration_manager_action', n.get_object_value(configuration_manager_action.ConfigurationManagerAction)),
         }
         return fields
     

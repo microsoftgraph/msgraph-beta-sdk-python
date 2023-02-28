@@ -27,7 +27,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the certificateAccessType property value. Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
         Args:
-            value: Value to set for the certificateAccessType property.
+            value: Value to set for the certificate_access_type property.
         """
         self._certificate_access_type = value
     
@@ -44,7 +44,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
         Args:
-            value: Value to set for the certificateStore property.
+            value: Value to set for the certificate_store property.
         """
         self._certificate_store = value
     
@@ -102,7 +102,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the customSubjectAlternativeNames property value. Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the customSubjectAlternativeNames property.
+            value: Value to set for the custom_subject_alternative_names property.
         """
         self._custom_subject_alternative_names = value
     
@@ -112,17 +112,17 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_access_type": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
-            "certificate_store": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
-            "custom_subject_alternative_names": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
-            "hash_algorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(hash_algorithms.HashAlgorithms)),
-            "key_size": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
-            "key_usage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
-            "scep_server_urls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
-            "silent_certificate_access_details": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess)),
-            "subject_alternative_name_format_string": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
-            "subject_name_format_string": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
+            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
+            "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
+            "hashAlgorithm": lambda n : setattr(self, 'hash_algorithm', n.get_enum_value(hash_algorithms.HashAlgorithms)),
+            "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
+            "silentCertificateAccessDetails": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess)),
+            "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
+            "subjectNameFormatString": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -141,7 +141,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the hashAlgorithm property value. Hash Algorithm Options.
         Args:
-            value: Value to set for the hashAlgorithm property.
+            value: Value to set for the hash_algorithm property.
         """
         self._hash_algorithm = value
     
@@ -158,7 +158,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the keySize property value. Key Size Options.
         Args:
-            value: Value to set for the keySize property.
+            value: Value to set for the key_size property.
         """
         self._key_size = value
     
@@ -175,7 +175,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the keyUsage property value. Key Usage Options.
         Args:
-            value: Value to set for the keyUsage property.
+            value: Value to set for the key_usage property.
         """
         self._key_usage = value
     
@@ -192,7 +192,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     
@@ -209,7 +209,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the scepServerUrls property value. SCEP Server Url(s)
         Args:
-            value: Value to set for the scepServerUrls property.
+            value: Value to set for the scep_server_urls property.
         """
         self._scep_server_urls = value
     
@@ -247,7 +247,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the silentCertificateAccessDetails property value. Certificate access information. This collection can contain a maximum of 50 elements.
         Args:
-            value: Value to set for the silentCertificateAccessDetails property.
+            value: Value to set for the silent_certificate_access_details property.
         """
         self._silent_certificate_access_details = value
     
@@ -264,7 +264,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the subjectAlternativeNameFormatString property value. Custom String that defines the AAD Attribute.
         Args:
-            value: Value to set for the subjectAlternativeNameFormatString property.
+            value: Value to set for the subject_alternative_name_format_string property.
         """
         self._subject_alternative_name_format_string = value
     
@@ -281,7 +281,7 @@ class AndroidDeviceOwnerScepCertificateProfile(android_device_owner_certificate_
         """
         Sets the subjectNameFormatString property value. Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         Args:
-            value: Value to set for the subjectNameFormatString property.
+            value: Value to set for the subject_name_format_string property.
         """
         self._subject_name_format_string = value
     

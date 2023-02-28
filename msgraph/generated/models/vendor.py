@@ -151,7 +151,7 @@ class Vendor(entity.Entity):
         """
         Sets the currencyCode property value. The currencyCode property
         Args:
-            value: Value to set for the currencyCode property.
+            value: Value to set for the currency_code property.
         """
         self._currency_code = value
     
@@ -168,7 +168,7 @@ class Vendor(entity.Entity):
         """
         Sets the currencyId property value. The currencyId property
         Args:
-            value: Value to set for the currencyId property.
+            value: Value to set for the currency_id property.
         """
         self._currency_id = value
     
@@ -185,7 +185,7 @@ class Vendor(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -216,20 +216,20 @@ class Vendor(entity.Entity):
             "balance": lambda n : setattr(self, 'balance', n.get_float_value()),
             "blocked": lambda n : setattr(self, 'blocked', n.get_str_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
-            "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
+            "currencyId": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "payment_method": lambda n : setattr(self, 'payment_method', n.get_object_value(payment_method.PaymentMethod)),
-            "payment_method_id": lambda n : setattr(self, 'payment_method_id', n.get_object_value(Guid)),
-            "payment_term": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "paymentMethod": lambda n : setattr(self, 'payment_method', n.get_object_value(payment_method.PaymentMethod)),
+            "paymentMethodId": lambda n : setattr(self, 'payment_method_id', n.get_object_value(Guid)),
+            "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
+            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
-            "tax_liable": lambda n : setattr(self, 'tax_liable', n.get_bool_value()),
-            "tax_registration_number": lambda n : setattr(self, 'tax_registration_number', n.get_str_value()),
+            "taxLiable": lambda n : setattr(self, 'tax_liable', n.get_bool_value()),
+            "taxRegistrationNumber": lambda n : setattr(self, 'tax_registration_number', n.get_str_value()),
             "website": lambda n : setattr(self, 'website', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -249,7 +249,7 @@ class Vendor(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -283,7 +283,7 @@ class Vendor(entity.Entity):
         """
         Sets the paymentMethod property value. The paymentMethod property
         Args:
-            value: Value to set for the paymentMethod property.
+            value: Value to set for the payment_method property.
         """
         self._payment_method = value
     
@@ -300,7 +300,7 @@ class Vendor(entity.Entity):
         """
         Sets the paymentMethodId property value. The paymentMethodId property
         Args:
-            value: Value to set for the paymentMethodId property.
+            value: Value to set for the payment_method_id property.
         """
         self._payment_method_id = value
     
@@ -317,7 +317,7 @@ class Vendor(entity.Entity):
         """
         Sets the paymentTerm property value. The paymentTerm property
         Args:
-            value: Value to set for the paymentTerm property.
+            value: Value to set for the payment_term property.
         """
         self._payment_term = value
     
@@ -334,7 +334,7 @@ class Vendor(entity.Entity):
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
-            value: Value to set for the paymentTermsId property.
+            value: Value to set for the payment_terms_id property.
         """
         self._payment_terms_id = value
     
@@ -351,7 +351,7 @@ class Vendor(entity.Entity):
         """
         Sets the phoneNumber property value. The phoneNumber property
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -414,7 +414,7 @@ class Vendor(entity.Entity):
         """
         Sets the taxLiable property value. The taxLiable property
         Args:
-            value: Value to set for the taxLiable property.
+            value: Value to set for the tax_liable property.
         """
         self._tax_liable = value
     
@@ -431,7 +431,7 @@ class Vendor(entity.Entity):
         """
         Sets the taxRegistrationNumber property value. The taxRegistrationNumber property
         Args:
-            value: Value to set for the taxRegistrationNumber property.
+            value: Value to set for the tax_registration_number property.
         """
         self._tax_registration_number = value
     

@@ -34,7 +34,7 @@ class CancelPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the cancellationMessage property value. The cancellationMessage property
         Args:
-            value: Value to set for the cancellationMessage property.
+            value: Value to set for the cancellation_message property.
         """
         self._cancellation_message = value
     
@@ -66,7 +66,7 @@ class CancelPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cancellation_message": lambda n : setattr(self, 'cancellation_message', n.get_str_value()),
+            "cancellationMessage": lambda n : setattr(self, 'cancellation_message', n.get_str_value()),
         }
         return fields
     

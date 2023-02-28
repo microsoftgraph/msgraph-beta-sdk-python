@@ -81,7 +81,7 @@ class CreateInstancePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -92,9 +92,9 @@ class CreateInstancePostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "settings_delta": lambda n : setattr(self, 'settings_delta', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "settingsDelta": lambda n : setattr(self, 'settings_delta', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
         }
         return fields
     
@@ -111,7 +111,7 @@ class CreateInstancePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the roleScopeTagIds property value. The roleScopeTagIds property
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -142,7 +142,7 @@ class CreateInstancePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the settingsDelta property value. The settingsDelta property
         Args:
-            value: Value to set for the settingsDelta property.
+            value: Value to set for the settings_delta property.
         """
         self._settings_delta = value
     

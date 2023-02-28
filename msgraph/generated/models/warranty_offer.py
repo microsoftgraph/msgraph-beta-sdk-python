@@ -87,7 +87,7 @@ class WarrantyOffer(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. Warranty offer end date
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -98,9 +98,9 @@ class WarrantyOffer(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(warranty_type.WarrantyType)),
         }
         return fields
@@ -118,7 +118,7 @@ class WarrantyOffer(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -150,7 +150,7 @@ class WarrantyOffer(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. Warranty offer start date
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

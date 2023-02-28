@@ -26,7 +26,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
         Args:
-            value: Value to set for the certificateStore property.
+            value: Value to set for the certificate_store property.
         """
         self._certificate_store = value
     
@@ -82,7 +82,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the customSubjectAlternativeNames property value. Custom Subject Alternative Name Settings. The OnPremisesUserPrincipalName variable is support as well as others documented here: https://go.microsoft.com/fwlink/?LinkId=2027630. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the customSubjectAlternativeNames property.
+            value: Value to set for the custom_subject_alternative_names property.
         """
         self._custom_subject_alternative_names = value
     
@@ -99,7 +99,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the extendedKeyUsages property.
+            value: Value to set for the extended_key_usages property.
         """
         self._extended_key_usages = value
     
@@ -109,16 +109,16 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_store": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
-            "custom_subject_alternative_names": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
-            "extended_key_usages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
-            "key_size": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
-            "key_usage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
-            "root_certificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(ios_trusted_root_certificate.IosTrustedRootCertificate)),
-            "scep_server_urls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
-            "subject_alternative_name_format_string": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
-            "subject_name_format_string": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
+            "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
+            "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
+            "keySize": lambda n : setattr(self, 'key_size', n.get_enum_value(key_size.KeySize)),
+            "keyUsage": lambda n : setattr(self, 'key_usage', n.get_enum_value(key_usages.KeyUsages)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "rootCertificate": lambda n : setattr(self, 'root_certificate', n.get_object_value(ios_trusted_root_certificate.IosTrustedRootCertificate)),
+            "scepServerUrls": lambda n : setattr(self, 'scep_server_urls', n.get_collection_of_primitive_values(str)),
+            "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
+            "subjectNameFormatString": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -137,7 +137,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the keySize property value. Key Size Options.
         Args:
-            value: Value to set for the keySize property.
+            value: Value to set for the key_size property.
         """
         self._key_size = value
     
@@ -154,7 +154,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the keyUsage property value. Key Usage Options.
         Args:
-            value: Value to set for the keyUsage property.
+            value: Value to set for the key_usage property.
         """
         self._key_usage = value
     
@@ -171,7 +171,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     
@@ -188,7 +188,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the rootCertificate property value. Trusted Root Certificate.
         Args:
-            value: Value to set for the rootCertificate property.
+            value: Value to set for the root_certificate property.
         """
         self._root_certificate = value
     
@@ -205,7 +205,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the scepServerUrls property value. SCEP Server Url(s).
         Args:
-            value: Value to set for the scepServerUrls property.
+            value: Value to set for the scep_server_urls property.
         """
         self._scep_server_urls = value
     
@@ -242,7 +242,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the subjectAlternativeNameFormatString property value. Custom String that defines the AAD Attribute.
         Args:
-            value: Value to set for the subjectAlternativeNameFormatString property.
+            value: Value to set for the subject_alternative_name_format_string property.
         """
         self._subject_alternative_name_format_string = value
     
@@ -259,7 +259,7 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         """
         Sets the subjectNameFormatString property value. Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         Args:
-            value: Value to set for the subjectNameFormatString property.
+            value: Value to set for the subject_name_format_string property.
         """
         self._subject_name_format_string = value
     

@@ -54,7 +54,7 @@ class StandardWebPart(web_part.WebPart):
         """
         fields = {
             "data": lambda n : setattr(self, 'data', n.get_object_value(web_part_data.WebPartData)),
-            "web_part_type": lambda n : setattr(self, 'web_part_type', n.get_str_value()),
+            "webPartType": lambda n : setattr(self, 'web_part_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class StandardWebPart(web_part.WebPart):
         """
         Sets the webPartType property value. A Guid which indicates the type of the webParts
         Args:
-            value: Value to set for the webPartType property.
+            value: Value to set for the web_part_type property.
         """
         self._web_part_type = value
     

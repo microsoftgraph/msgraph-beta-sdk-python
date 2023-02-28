@@ -29,18 +29,17 @@ class InvalidateAllRefreshTokensRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/microsoft.graph.invalidateAllRefreshTokens"
+        self.url_template: str = "{+baseurl}/me/invalidateAllRefreshTokens"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[InvalidateAllRefreshTokensRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[invalidate_all_refresh_tokens_response.InvalidateAllRefreshTokensResponse]:
+    async def post(self,request_configuration: Optional[InvalidateAllRefreshTokensRequestBuilderPostRequestConfiguration] = None) -> Optional[invalidate_all_refresh_tokens_response.InvalidateAllRefreshTokensResponse]:
         """
         Invalidates all of the user's refresh tokens issued to applications (as well as session cookies in a user's browser), by resetting the **refreshTokensValidFromDateTime** user property to the current date-time. Typically, this operation is performed (by the user or an administrator) if the user has a lost or stolen device.  This operation would prevent access to any of the organization's data accessed through applications on the device without the user first being required to sign in again. In fact, this operation would force the user to sign in again for all applications that they have previously consented to, independent of device. For developers, if the application attempts to redeem a delegated access token for this user by using an invalidated refresh token, the application will get an error. If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint, which will force the user to sign in.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[invalidate_all_refresh_tokens_response.InvalidateAllRefreshTokensResponse]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class InvalidateAllRefreshTokensRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, invalidate_all_refresh_tokens_response.InvalidateAllRefreshTokensResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, invalidate_all_refresh_tokens_response.InvalidateAllRefreshTokensResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[InvalidateAllRefreshTokensRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -65,7 +64,7 @@ class InvalidateAllRefreshTokensRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -77,7 +76,7 @@ class InvalidateAllRefreshTokensRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

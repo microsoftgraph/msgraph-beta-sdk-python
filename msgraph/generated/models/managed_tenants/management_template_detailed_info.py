@@ -83,7 +83,7 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the management template. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,8 +94,8 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
         """
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "management_template_id": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
@@ -114,7 +114,7 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementTemplateId property value. The unique identifier for the management template. Required. Read-only.
         Args:
-            value: Value to set for the managementTemplateId property.
+            value: Value to set for the management_template_id property.
         """
         self._management_template_id = value
     
@@ -131,7 +131,7 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

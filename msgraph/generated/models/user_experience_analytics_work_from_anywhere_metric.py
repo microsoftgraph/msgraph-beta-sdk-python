@@ -38,7 +38,7 @@ class UserExperienceAnalyticsWorkFromAnywhereMetric(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "metric_devices": lambda n : setattr(self, 'metric_devices', n.get_collection_of_object_values(user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice)),
+            "metricDevices": lambda n : setattr(self, 'metric_devices', n.get_collection_of_object_values(user_experience_analytics_work_from_anywhere_device.UserExperienceAnalyticsWorkFromAnywhereDevice)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,7 +57,7 @@ class UserExperienceAnalyticsWorkFromAnywhereMetric(entity.Entity):
         """
         Sets the metricDevices property value. The work from anywhere metric devices.
         Args:
-            value: Value to set for the metricDevices property.
+            value: Value to set for the metric_devices property.
         """
         self._metric_devices = value
     

@@ -34,7 +34,7 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, Parsable)
         """
         Sets the clientId property value. Client ID used to connect to the provider.
         Args:
-            value: Value to set for the clientId property.
+            value: Value to set for the client_id property.
         """
         self._client_id = value
     
@@ -51,7 +51,7 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, Parsable)
         """
         Sets the clientSecret property value. Client secret to authenticate the connection to the provider.
         Args:
-            value: Value to set for the clientSecret property.
+            value: Value to set for the client_secret property.
         """
         self._client_secret = value
     
@@ -87,8 +87,8 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, Parsable)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_id": lambda n : setattr(self, 'client_id', n.get_str_value()),
-            "client_secret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
+            "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
+            "clientSecret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -106,7 +106,7 @@ class EducationSynchronizationConnectionSettings(AdditionalDataHolder, Parsable)
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

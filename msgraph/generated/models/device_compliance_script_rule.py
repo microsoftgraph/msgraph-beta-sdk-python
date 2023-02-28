@@ -35,10 +35,10 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
 
         # Data types for rules.
         self._data_type: Optional[data_type.DataType] = None
-        # Data types for rules.
-        self._device_compliance_script_rule_data_type: Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType] = None
         # Operator for rules.
         self._device_compliance_script_rul_operator: Optional[device_compliance_script_rul_operator.DeviceComplianceScriptRulOperator] = None
+        # Data types for rules.
+        self._device_compliance_script_rule_data_type: Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
         # Operand specified in the rule.
@@ -73,26 +73,9 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         """
         Sets the dataType property value. Data types for rules.
         Args:
-            value: Value to set for the dataType property.
+            value: Value to set for the data_type property.
         """
         self._data_type = value
-    
-    @property
-    def device_compliance_script_rule_data_type(self,) -> Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType]:
-        """
-        Gets the deviceComplianceScriptRuleDataType property value. Data types for rules.
-        Returns: Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType]
-        """
-        return self._device_compliance_script_rule_data_type
-    
-    @device_compliance_script_rule_data_type.setter
-    def device_compliance_script_rule_data_type(self,value: Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType] = None) -> None:
-        """
-        Sets the deviceComplianceScriptRuleDataType property value. Data types for rules.
-        Args:
-            value: Value to set for the deviceComplianceScriptRuleDataType property.
-        """
-        self._device_compliance_script_rule_data_type = value
     
     @property
     def device_compliance_script_rul_operator(self,) -> Optional[device_compliance_script_rul_operator.DeviceComplianceScriptRulOperator]:
@@ -107,9 +90,26 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         """
         Sets the deviceComplianceScriptRulOperator property value. Operator for rules.
         Args:
-            value: Value to set for the deviceComplianceScriptRulOperator property.
+            value: Value to set for the device_compliance_script_rul_operator property.
         """
         self._device_compliance_script_rul_operator = value
+    
+    @property
+    def device_compliance_script_rule_data_type(self,) -> Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType]:
+        """
+        Gets the deviceComplianceScriptRuleDataType property value. Data types for rules.
+        Returns: Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType]
+        """
+        return self._device_compliance_script_rule_data_type
+    
+    @device_compliance_script_rule_data_type.setter
+    def device_compliance_script_rule_data_type(self,value: Optional[device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType] = None) -> None:
+        """
+        Sets the deviceComplianceScriptRuleDataType property value. Data types for rules.
+        Args:
+            value: Value to set for the device_compliance_script_rule_data_type property.
+        """
+        self._device_compliance_script_rule_data_type = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -117,13 +117,13 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "data_type": lambda n : setattr(self, 'data_type', n.get_enum_value(data_type.DataType)),
-            "device_compliance_script_rule_data_type": lambda n : setattr(self, 'device_compliance_script_rule_data_type', n.get_enum_value(device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType)),
-            "device_compliance_script_rul_operator": lambda n : setattr(self, 'device_compliance_script_rul_operator', n.get_enum_value(device_compliance_script_rul_operator.DeviceComplianceScriptRulOperator)),
+            "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(data_type.DataType)),
+            "deviceComplianceScriptRuleDataType": lambda n : setattr(self, 'device_compliance_script_rule_data_type', n.get_enum_value(device_compliance_script_rule_data_type.DeviceComplianceScriptRuleDataType)),
+            "deviceComplianceScriptRulOperator": lambda n : setattr(self, 'device_compliance_script_rul_operator', n.get_enum_value(device_compliance_script_rul_operator.DeviceComplianceScriptRulOperator)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operand": lambda n : setattr(self, 'operand', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(operator.Operator)),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
         }
         return fields
     
@@ -140,7 +140,7 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -208,7 +208,7 @@ class DeviceComplianceScriptRule(AdditionalDataHolder, Parsable):
         """
         Sets the settingName property value. Setting name specified in the rule.
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     

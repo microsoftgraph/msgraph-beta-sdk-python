@@ -23,7 +23,7 @@ class DeviceManagementExchangeAccessRule(AdditionalDataHolder, Parsable):
         """
         Sets the accessLevel property value. Access Level in Exchange.
         Args:
-            value: Value to set for the accessLevel property.
+            value: Value to set for the access_level property.
         """
         self._access_level = value
     
@@ -83,7 +83,7 @@ class DeviceManagementExchangeAccessRule(AdditionalDataHolder, Parsable):
         """
         Sets the deviceClass property value. Device Class which will be impacted by this rule.
         Args:
-            value: Value to set for the deviceClass property.
+            value: Value to set for the device_class property.
         """
         self._device_class = value
     
@@ -93,8 +93,8 @@ class DeviceManagementExchangeAccessRule(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_level": lambda n : setattr(self, 'access_level', n.get_enum_value(device_management_exchange_access_level.DeviceManagementExchangeAccessLevel)),
-            "device_class": lambda n : setattr(self, 'device_class', n.get_object_value(device_management_exchange_device_class.DeviceManagementExchangeDeviceClass)),
+            "accessLevel": lambda n : setattr(self, 'access_level', n.get_enum_value(device_management_exchange_access_level.DeviceManagementExchangeAccessLevel)),
+            "deviceClass": lambda n : setattr(self, 'device_class', n.get_object_value(device_management_exchange_device_class.DeviceManagementExchangeDeviceClass)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -112,7 +112,7 @@ class DeviceManagementExchangeAccessRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -55,7 +55,7 @@ class UserExperienceAnalyticsWindows10DevicesSummary(AdditionalDataHolder, Parsa
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "unsupported_o_sversion_device_count": lambda n : setattr(self, 'unsupported_o_sversion_device_count', n.get_int_value()),
+            "unsupportedOSversionDeviceCount": lambda n : setattr(self, 'unsupported_o_sversion_device_count', n.get_int_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class UserExperienceAnalyticsWindows10DevicesSummary(AdditionalDataHolder, Parsa
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -101,7 +101,7 @@ class UserExperienceAnalyticsWindows10DevicesSummary(AdditionalDataHolder, Parsa
         """
         Sets the unsupportedOSversionDeviceCount property value. The count of Windows 10 devices that have unsupported OS versions.
         Args:
-            value: Value to set for the unsupportedOSversionDeviceCount property.
+            value: Value to set for the unsupported_o_sversion_device_count property.
         """
         self._unsupported_o_sversion_device_count = value
     

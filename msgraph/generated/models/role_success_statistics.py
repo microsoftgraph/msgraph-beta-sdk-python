@@ -68,15 +68,15 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "permanent_fail": lambda n : setattr(self, 'permanent_fail', n.get_int_value()),
-            "permanent_success": lambda n : setattr(self, 'permanent_success', n.get_int_value()),
-            "remove_fail": lambda n : setattr(self, 'remove_fail', n.get_int_value()),
-            "remove_success": lambda n : setattr(self, 'remove_success', n.get_int_value()),
-            "role_id": lambda n : setattr(self, 'role_id', n.get_str_value()),
-            "role_name": lambda n : setattr(self, 'role_name', n.get_str_value()),
-            "temporary_fail": lambda n : setattr(self, 'temporary_fail', n.get_int_value()),
-            "temporary_success": lambda n : setattr(self, 'temporary_success', n.get_int_value()),
-            "unknown_fail": lambda n : setattr(self, 'unknown_fail', n.get_int_value()),
+            "permanentFail": lambda n : setattr(self, 'permanent_fail', n.get_int_value()),
+            "permanentSuccess": lambda n : setattr(self, 'permanent_success', n.get_int_value()),
+            "removeFail": lambda n : setattr(self, 'remove_fail', n.get_int_value()),
+            "removeSuccess": lambda n : setattr(self, 'remove_success', n.get_int_value()),
+            "roleId": lambda n : setattr(self, 'role_id', n.get_str_value()),
+            "roleName": lambda n : setattr(self, 'role_name', n.get_str_value()),
+            "temporaryFail": lambda n : setattr(self, 'temporary_fail', n.get_int_value()),
+            "temporarySuccess": lambda n : setattr(self, 'temporary_success', n.get_int_value()),
+            "unknownFail": lambda n : setattr(self, 'unknown_fail', n.get_int_value()),
         }
         return fields
     
@@ -93,7 +93,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -110,7 +110,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the permanentFail property value. The permanentFail property
         Args:
-            value: Value to set for the permanentFail property.
+            value: Value to set for the permanent_fail property.
         """
         self._permanent_fail = value
     
@@ -127,7 +127,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the permanentSuccess property value. The permanentSuccess property
         Args:
-            value: Value to set for the permanentSuccess property.
+            value: Value to set for the permanent_success property.
         """
         self._permanent_success = value
     
@@ -144,7 +144,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the removeFail property value. The removeFail property
         Args:
-            value: Value to set for the removeFail property.
+            value: Value to set for the remove_fail property.
         """
         self._remove_fail = value
     
@@ -161,7 +161,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the removeSuccess property value. The removeSuccess property
         Args:
-            value: Value to set for the removeSuccess property.
+            value: Value to set for the remove_success property.
         """
         self._remove_success = value
     
@@ -178,7 +178,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the roleId property value. The roleId property
         Args:
-            value: Value to set for the roleId property.
+            value: Value to set for the role_id property.
         """
         self._role_id = value
     
@@ -195,7 +195,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the roleName property value. The roleName property
         Args:
-            value: Value to set for the roleName property.
+            value: Value to set for the role_name property.
         """
         self._role_name = value
     
@@ -232,7 +232,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the temporaryFail property value. The temporaryFail property
         Args:
-            value: Value to set for the temporaryFail property.
+            value: Value to set for the temporary_fail property.
         """
         self._temporary_fail = value
     
@@ -249,7 +249,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the temporarySuccess property value. The temporarySuccess property
         Args:
-            value: Value to set for the temporarySuccess property.
+            value: Value to set for the temporary_success property.
         """
         self._temporary_success = value
     
@@ -266,7 +266,7 @@ class RoleSuccessStatistics(AdditionalDataHolder, Parsable):
         """
         Sets the unknownFail property value. The unknownFail property
         Args:
-            value: Value to set for the unknownFail property.
+            value: Value to set for the unknown_fail property.
         """
         self._unknown_fail = value
     

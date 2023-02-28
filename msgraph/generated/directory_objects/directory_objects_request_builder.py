@@ -11,6 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.directory_objects.count.count_request_builder')
+delta_request_builder = lazy_import('msgraph.generated.directory_objects.delta.delta_request_builder')
 get_by_ids_request_builder = lazy_import('msgraph.generated.directory_objects.get_by_ids.get_by_ids_request_builder')
 get_user_owned_objects_request_builder = lazy_import('msgraph.generated.directory_objects.get_user_owned_objects.get_user_owned_objects_request_builder')
 validate_properties_request_builder = lazy_import('msgraph.generated.directory_objects.validate_properties.validate_properties_request_builder')
@@ -28,6 +29,13 @@ class DirectoryObjectsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
@@ -68,12 +76,11 @@ class DirectoryObjectsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DirectoryObjectsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
+    async def get(self,request_configuration: Optional[DirectoryObjectsRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]:
         """
         Get entities from directoryObjects
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object_collection_response.DirectoryObjectCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +92,14 @@ class DirectoryObjectsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object_collection_response.DirectoryObjectCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[DirectoryObjectsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def post(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[DirectoryObjectsRequestBuilderPostRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Add new entity to directoryObjects
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         if body is None:
@@ -107,7 +113,7 @@ class DirectoryObjectsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DirectoryObjectsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -120,7 +126,7 @@ class DirectoryObjectsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -141,7 +147,7 @@ class DirectoryObjectsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -211,7 +217,7 @@ class DirectoryObjectsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -226,7 +232,7 @@ class DirectoryObjectsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

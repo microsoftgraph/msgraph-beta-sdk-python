@@ -20,7 +20,7 @@ class TeamworkTeamsClientConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the accountConfiguration property value. The configuration of the Microsoft Teams client user account for a device.
         Args:
-            value: Value to set for the accountConfiguration property.
+            value: Value to set for the account_configuration property.
         """
         self._account_configuration = value
     
@@ -80,7 +80,7 @@ class TeamworkTeamsClientConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the featuresConfiguration property value. The configuration of Microsoft Teams client features for a device.
         Args:
-            value: Value to set for the featuresConfiguration property.
+            value: Value to set for the features_configuration property.
         """
         self._features_configuration = value
     
@@ -90,8 +90,8 @@ class TeamworkTeamsClientConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_configuration": lambda n : setattr(self, 'account_configuration', n.get_object_value(teamwork_account_configuration.TeamworkAccountConfiguration)),
-            "features_configuration": lambda n : setattr(self, 'features_configuration', n.get_object_value(teamwork_features_configuration.TeamworkFeaturesConfiguration)),
+            "accountConfiguration": lambda n : setattr(self, 'account_configuration', n.get_object_value(teamwork_account_configuration.TeamworkAccountConfiguration)),
+            "featuresConfiguration": lambda n : setattr(self, 'features_configuration', n.get_object_value(teamwork_features_configuration.TeamworkFeaturesConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -109,7 +109,7 @@ class TeamworkTeamsClientConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

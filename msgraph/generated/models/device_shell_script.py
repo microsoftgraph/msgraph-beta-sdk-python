@@ -46,7 +46,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the blockExecutionNotifications property value. Does not notify the user a script is being executed
         Args:
-            value: Value to set for the blockExecutionNotifications property.
+            value: Value to set for the block_execution_notifications property.
         """
         self._block_execution_notifications = value
     
@@ -103,7 +103,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the device management script was created. This property is read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -149,7 +149,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the deviceRunStates property value. List of run states for this script across all devices.
         Args:
-            value: Value to set for the deviceRunStates property.
+            value: Value to set for the device_run_states property.
         """
         self._device_run_states = value
     
@@ -166,7 +166,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the displayName property value. Name of the device management script.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -183,7 +183,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the executionFrequency property value. The interval for script to run. If not defined the script will run once
         Args:
-            value: Value to set for the executionFrequency property.
+            value: Value to set for the execution_frequency property.
         """
         self._execution_frequency = value
     
@@ -200,7 +200,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the fileName property value. Script file name.
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -211,21 +211,21 @@ class DeviceShellScript(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_script_assignment.DeviceManagementScriptAssignment)),
-            "block_execution_notifications": lambda n : setattr(self, 'block_execution_notifications', n.get_bool_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "blockExecutionNotifications": lambda n : setattr(self, 'block_execution_notifications', n.get_bool_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_run_states": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_management_script_device_state.DeviceManagementScriptDeviceState)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "execution_frequency": lambda n : setattr(self, 'execution_frequency', n.get_object_value(Timedelta)),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
-            "group_assignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(device_management_script_group_assignment.DeviceManagementScriptGroupAssignment)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "retry_count": lambda n : setattr(self, 'retry_count', n.get_int_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "run_as_account": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
-            "run_summary": lambda n : setattr(self, 'run_summary', n.get_object_value(device_management_script_run_summary.DeviceManagementScriptRunSummary)),
-            "script_content": lambda n : setattr(self, 'script_content', n.get_bytes_value()),
-            "user_run_states": lambda n : setattr(self, 'user_run_states', n.get_collection_of_object_values(device_management_script_user_state.DeviceManagementScriptUserState)),
+            "deviceRunStates": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_management_script_device_state.DeviceManagementScriptDeviceState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "executionFrequency": lambda n : setattr(self, 'execution_frequency', n.get_object_value(Timedelta)),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "groupAssignments": lambda n : setattr(self, 'group_assignments', n.get_collection_of_object_values(device_management_script_group_assignment.DeviceManagementScriptGroupAssignment)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "retryCount": lambda n : setattr(self, 'retry_count', n.get_int_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "runAsAccount": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
+            "runSummary": lambda n : setattr(self, 'run_summary', n.get_object_value(device_management_script_run_summary.DeviceManagementScriptRunSummary)),
+            "scriptContent": lambda n : setattr(self, 'script_content', n.get_bytes_value()),
+            "userRunStates": lambda n : setattr(self, 'user_run_states', n.get_collection_of_object_values(device_management_script_user_state.DeviceManagementScriptUserState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -244,7 +244,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the groupAssignments property value. The list of group assignments for the device management script.
         Args:
-            value: Value to set for the groupAssignments property.
+            value: Value to set for the group_assignments property.
         """
         self._group_assignments = value
     
@@ -261,7 +261,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the device management script was last modified. This property is read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -278,7 +278,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the retryCount property value. Number of times for the script to be retried if it fails
         Args:
-            value: Value to set for the retryCount property.
+            value: Value to set for the retry_count property.
         """
         self._retry_count = value
     
@@ -295,7 +295,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tag IDs for this PowerShellScript instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -312,7 +312,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the runAsAccount property value. Indicates the type of execution context the app runs in.
         Args:
-            value: Value to set for the runAsAccount property.
+            value: Value to set for the run_as_account property.
         """
         self._run_as_account = value
     
@@ -329,7 +329,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the runSummary property value. Run summary for device management script.
         Args:
-            value: Value to set for the runSummary property.
+            value: Value to set for the run_summary property.
         """
         self._run_summary = value
     
@@ -346,7 +346,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the scriptContent property value. The script content.
         Args:
-            value: Value to set for the scriptContent property.
+            value: Value to set for the script_content property.
         """
         self._script_content = value
     
@@ -387,7 +387,7 @@ class DeviceShellScript(entity.Entity):
         """
         Sets the userRunStates property value. List of run states for this script across all users.
         Args:
-            value: Value to set for the userRunStates property.
+            value: Value to set for the user_run_states property.
         """
         self._user_run_states = value
     

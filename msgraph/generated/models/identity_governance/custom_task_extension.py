@@ -22,7 +22,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         """
         Sets the callbackConfiguration property value. The callback configuration for a custom extension.
         Args:
-            value: Value to set for the callbackConfiguration property.
+            value: Value to set for the callback_configuration property.
         """
         self._callback_configuration = value
     
@@ -56,7 +56,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         """
         Sets the createdBy property value. The unique identifier of the Azure AD user that created the custom task extension.Supports $filter(eq, ne) and $expand.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -73,7 +73,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         """
         Sets the createdDateTime property value. When the custom task extension was created.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -95,11 +95,11 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "callback_configuration": lambda n : setattr(self, 'callback_configuration', n.get_object_value(custom_extension_callback_configuration.CustomExtensionCallbackConfiguration)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(user.User)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(user.User)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "callbackConfiguration": lambda n : setattr(self, 'callback_configuration', n.get_object_value(custom_extension_callback_configuration.CustomExtensionCallbackConfiguration)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user.User)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(user.User)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -118,7 +118,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         """
         Sets the lastModifiedBy property value. The unique identifier of the Azure AD user that modified the custom task extension last.Supports $filter(eq, ne) and $expand.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -135,7 +135,7 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         """
         Sets the lastModifiedDateTime property value. When the custom extension was last modified.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

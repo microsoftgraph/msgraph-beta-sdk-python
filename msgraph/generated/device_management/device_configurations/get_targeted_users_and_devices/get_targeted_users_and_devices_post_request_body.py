@@ -56,7 +56,7 @@ class GetTargetedUsersAndDevicesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceConfigurationIds property value. The deviceConfigurationIds property
         Args:
-            value: Value to set for the deviceConfigurationIds property.
+            value: Value to set for the device_configuration_ids property.
         """
         self._device_configuration_ids = value
     
@@ -66,7 +66,7 @@ class GetTargetedUsersAndDevicesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_configuration_ids": lambda n : setattr(self, 'device_configuration_ids', n.get_collection_of_primitive_values(str)),
+            "deviceConfigurationIds": lambda n : setattr(self, 'device_configuration_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     

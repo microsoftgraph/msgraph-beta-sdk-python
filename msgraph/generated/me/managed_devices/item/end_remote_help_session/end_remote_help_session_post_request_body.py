@@ -49,7 +49,7 @@ class EndRemoteHelpSessionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "session_key": lambda n : setattr(self, 'session_key', n.get_str_value()),
+            "sessionKey": lambda n : setattr(self, 'session_key', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class EndRemoteHelpSessionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sessionKey property value. The sessionKey property
         Args:
-            value: Value to set for the sessionKey property.
+            value: Value to set for the session_key property.
         """
         self._session_key = value
     

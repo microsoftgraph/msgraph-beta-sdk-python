@@ -90,7 +90,7 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         """
         Sets the countryOrRegionCode property value. The countryOrRegionCode property
         Args:
-            value: Value to set for the countryOrRegionCode property.
+            value: Value to set for the country_or_region_code property.
         """
         self._country_or_region_code = value
     
@@ -114,7 +114,7 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         fields = {
             "asn": lambda n : setattr(self, 'asn', n.get_int_value()),
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
-            "country_or_region_code": lambda n : setattr(self, 'country_or_region_code', n.get_str_value()),
+            "countryOrRegionCode": lambda n : setattr(self, 'country_or_region_code', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "organization": lambda n : setattr(self, 'organization', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_str_value()),
@@ -135,7 +135,7 @@ class IpReferenceData(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

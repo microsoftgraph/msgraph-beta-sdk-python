@@ -44,12 +44,11 @@ class ThumbnailsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ThumbnailsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[thumbnail_set_collection_response.ThumbnailSetCollectionResponse]:
+    async def get(self,request_configuration: Optional[ThumbnailsRequestBuilderGetRequestConfiguration] = None) -> Optional[thumbnail_set_collection_response.ThumbnailSetCollectionResponse]:
         """
         Retrieve a collection of ThumbnailSet resources for a DriveItem resource. A DriveItem can be represented by zero or more ThumbnailSet resources.Each **thumbnailSet** can have one or more **thumbnail** objects, which are images that represent the item.For example, a **thumbnailSet** may include **thumbnail** objects, such as common ones including `small`, `medium`, or `large`. There are many ways to work with thumbnails on OneDrive.Here are the most common ones:
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[thumbnail_set_collection_response.ThumbnailSetCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ThumbnailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, thumbnail_set_collection_response.ThumbnailSetCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, thumbnail_set_collection_response.ThumbnailSetCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[thumbnail_set.ThumbnailSet] = None, request_configuration: Optional[ThumbnailsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[thumbnail_set.ThumbnailSet]:
+    async def post(self,body: Optional[thumbnail_set.ThumbnailSet] = None, request_configuration: Optional[ThumbnailsRequestBuilderPostRequestConfiguration] = None) -> Optional[thumbnail_set.ThumbnailSet]:
         """
         Create new navigation property to thumbnails for drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[thumbnail_set.ThumbnailSet]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ThumbnailsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, thumbnail_set.ThumbnailSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, thumbnail_set.ThumbnailSet, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ThumbnailsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class ThumbnailsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class ThumbnailsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class ThumbnailsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class ThumbnailsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

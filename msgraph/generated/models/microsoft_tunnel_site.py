@@ -86,7 +86,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the displayName property value. The display name for the site. This property is required when a site is created.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -97,17 +97,17 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "internal_network_probe_url": lambda n : setattr(self, 'internal_network_probe_url', n.get_str_value()),
-            "microsoft_tunnel_configuration": lambda n : setattr(self, 'microsoft_tunnel_configuration', n.get_object_value(microsoft_tunnel_configuration.MicrosoftTunnelConfiguration)),
-            "microsoft_tunnel_servers": lambda n : setattr(self, 'microsoft_tunnel_servers', n.get_collection_of_object_values(microsoft_tunnel_server.MicrosoftTunnelServer)),
-            "public_address": lambda n : setattr(self, 'public_address', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "upgrade_automatically": lambda n : setattr(self, 'upgrade_automatically', n.get_bool_value()),
-            "upgrade_available": lambda n : setattr(self, 'upgrade_available', n.get_bool_value()),
-            "upgrade_window_end_time": lambda n : setattr(self, 'upgrade_window_end_time', n.get_object_value(Time)),
-            "upgrade_window_start_time": lambda n : setattr(self, 'upgrade_window_start_time', n.get_object_value(Time)),
-            "upgrade_window_utc_offset_in_minutes": lambda n : setattr(self, 'upgrade_window_utc_offset_in_minutes', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "internalNetworkProbeUrl": lambda n : setattr(self, 'internal_network_probe_url', n.get_str_value()),
+            "microsoftTunnelConfiguration": lambda n : setattr(self, 'microsoft_tunnel_configuration', n.get_object_value(microsoft_tunnel_configuration.MicrosoftTunnelConfiguration)),
+            "microsoftTunnelServers": lambda n : setattr(self, 'microsoft_tunnel_servers', n.get_collection_of_object_values(microsoft_tunnel_server.MicrosoftTunnelServer)),
+            "publicAddress": lambda n : setattr(self, 'public_address', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "upgradeAutomatically": lambda n : setattr(self, 'upgrade_automatically', n.get_bool_value()),
+            "upgradeAvailable": lambda n : setattr(self, 'upgrade_available', n.get_bool_value()),
+            "upgradeWindowEndTime": lambda n : setattr(self, 'upgrade_window_end_time', n.get_object_value(Time)),
+            "upgradeWindowStartTime": lambda n : setattr(self, 'upgrade_window_start_time', n.get_object_value(Time)),
+            "upgradeWindowUtcOffsetInMinutes": lambda n : setattr(self, 'upgrade_window_utc_offset_in_minutes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -126,7 +126,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the internalNetworkProbeUrl property value. The site's Internal Network Access Probe URL
         Args:
-            value: Value to set for the internalNetworkProbeUrl property.
+            value: Value to set for the internal_network_probe_url property.
         """
         self._internal_network_probe_url = value
     
@@ -143,7 +143,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the microsoftTunnelConfiguration property value. The MicrosoftTunnelConfiguration that has been applied to this MicrosoftTunnelSite
         Args:
-            value: Value to set for the microsoftTunnelConfiguration property.
+            value: Value to set for the microsoft_tunnel_configuration property.
         """
         self._microsoft_tunnel_configuration = value
     
@@ -160,7 +160,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the microsoftTunnelServers property value. A list of MicrosoftTunnelServers that are registered to this MicrosoftTunnelSite
         Args:
-            value: Value to set for the microsoftTunnelServers property.
+            value: Value to set for the microsoft_tunnel_servers property.
         """
         self._microsoft_tunnel_servers = value
     
@@ -177,7 +177,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the publicAddress property value. The site's public domain name or IP address
         Args:
-            value: Value to set for the publicAddress property.
+            value: Value to set for the public_address property.
         """
         self._public_address = value
     
@@ -194,7 +194,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -233,7 +233,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the upgradeAutomatically property value. The site's automatic upgrade setting. True for automatic upgrades, false for manual control
         Args:
-            value: Value to set for the upgradeAutomatically property.
+            value: Value to set for the upgrade_automatically property.
         """
         self._upgrade_automatically = value
     
@@ -250,7 +250,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the upgradeAvailable property value. The site provides the state of when an upgrade is available
         Args:
-            value: Value to set for the upgradeAvailable property.
+            value: Value to set for the upgrade_available property.
         """
         self._upgrade_available = value
     
@@ -267,7 +267,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the upgradeWindowEndTime property value. The site's upgrade window end time of day
         Args:
-            value: Value to set for the upgradeWindowEndTime property.
+            value: Value to set for the upgrade_window_end_time property.
         """
         self._upgrade_window_end_time = value
     
@@ -284,7 +284,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the upgradeWindowStartTime property value. The site's upgrade window start time of day
         Args:
-            value: Value to set for the upgradeWindowStartTime property.
+            value: Value to set for the upgrade_window_start_time property.
         """
         self._upgrade_window_start_time = value
     
@@ -301,7 +301,7 @@ class MicrosoftTunnelSite(entity.Entity):
         """
         Sets the upgradeWindowUtcOffsetInMinutes property value. The site's timezone represented as a minute offset from UTC
         Args:
-            value: Value to set for the upgradeWindowUtcOffsetInMinutes property.
+            value: Value to set for the upgrade_window_utc_offset_in_minutes property.
         """
         self._upgrade_window_utc_offset_in_minutes = value
     

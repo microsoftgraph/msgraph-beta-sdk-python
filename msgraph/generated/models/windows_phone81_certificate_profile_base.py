@@ -24,7 +24,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the certificateValidityPeriodScale property value. Certificate Validity Period Options.
         Args:
-            value: Value to set for the certificateValidityPeriodScale property.
+            value: Value to set for the certificate_validity_period_scale property.
         """
         self._certificate_validity_period_scale = value
     
@@ -41,7 +41,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the certificateValidityPeriodValue property value. Value for the Certificate Validtiy Period.
         Args:
-            value: Value to set for the certificateValidityPeriodValue property.
+            value: Value to set for the certificate_validity_period_value property.
         """
         self._certificate_validity_period_value = value
     
@@ -91,7 +91,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the extendedKeyUsages property value. Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the extendedKeyUsages property.
+            value: Value to set for the extended_key_usages property.
         """
         self._extended_key_usages = value
     
@@ -101,13 +101,13 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_validity_period_scale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
-            "certificate_validity_period_value": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
-            "extended_key_usages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
-            "key_storage_provider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
-            "renewal_threshold_percentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
-            "subject_alternative_name_type": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
-            "subject_name_format": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(subject_name_format.SubjectNameFormat)),
+            "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
+            "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
+            "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),
+            "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
+            "renewalThresholdPercentage": lambda n : setattr(self, 'renewal_threshold_percentage', n.get_int_value()),
+            "subjectAlternativeNameType": lambda n : setattr(self, 'subject_alternative_name_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
+            "subjectNameFormat": lambda n : setattr(self, 'subject_name_format', n.get_enum_value(subject_name_format.SubjectNameFormat)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -126,7 +126,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
         Args:
-            value: Value to set for the keyStorageProvider property.
+            value: Value to set for the key_storage_provider property.
         """
         self._key_storage_provider = value
     
@@ -143,7 +143,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the renewalThresholdPercentage property value. Certificate renewal threshold percentage.
         Args:
-            value: Value to set for the renewalThresholdPercentage property.
+            value: Value to set for the renewal_threshold_percentage property.
         """
         self._renewal_threshold_percentage = value
     
@@ -177,7 +177,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the subjectAlternativeNameType property value. Subject Alternative Name Options.
         Args:
-            value: Value to set for the subjectAlternativeNameType property.
+            value: Value to set for the subject_alternative_name_type property.
         """
         self._subject_alternative_name_type = value
     
@@ -194,7 +194,7 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         Sets the subjectNameFormat property value. Subject Name Format Options.
         Args:
-            value: Value to set for the subjectNameFormat property.
+            value: Value to set for the subject_name_format property.
         """
         self._subject_name_format = value
     

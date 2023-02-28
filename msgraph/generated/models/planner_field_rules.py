@@ -62,7 +62,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
         """
         Sets the defaultRules property value. The default rules that apply if no override matches to the current data.
         Args:
-            value: Value to set for the defaultRules property.
+            value: Value to set for the default_rules property.
         """
         self._default_rules = value
     
@@ -72,7 +72,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_rules": lambda n : setattr(self, 'default_rules', n.get_collection_of_primitive_values(str)),
+            "defaultRules": lambda n : setattr(self, 'default_rules', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "overrides": lambda n : setattr(self, 'overrides', n.get_collection_of_object_values(planner_rule_override.PlannerRuleOverride)),
         }
@@ -91,7 +91,7 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

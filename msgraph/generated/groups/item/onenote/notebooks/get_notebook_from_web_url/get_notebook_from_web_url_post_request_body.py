@@ -49,7 +49,7 @@ class GetNotebookFromWebUrlPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class GetNotebookFromWebUrlPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the webUrl property value. The webUrl property
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

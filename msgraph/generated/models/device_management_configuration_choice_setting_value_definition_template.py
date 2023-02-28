@@ -39,7 +39,7 @@ class DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate(Addition
         """
         Sets the allowedOptions property value. Choice Setting Allowed Options
         Args:
-            value: Value to set for the allowedOptions property.
+            value: Value to set for the allowed_options property.
         """
         self._allowed_options = value
     
@@ -73,7 +73,7 @@ class DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate(Addition
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_options": lambda n : setattr(self, 'allowed_options', n.get_collection_of_object_values(device_management_configuration_option_definition_template.DeviceManagementConfigurationOptionDefinitionTemplate)),
+            "allowedOptions": lambda n : setattr(self, 'allowed_options', n.get_collection_of_object_values(device_management_configuration_option_definition_template.DeviceManagementConfigurationOptionDefinitionTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -91,7 +91,7 @@ class DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate(Addition
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

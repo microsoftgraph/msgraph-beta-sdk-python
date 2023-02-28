@@ -38,7 +38,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the alertImpact property value. The associated alert impact.
         Args:
-            value: Value to set for the alertImpact property.
+            value: Value to set for the alert_impact property.
         """
         self._alert_impact = value
     
@@ -55,7 +55,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the alertRecordId property value. The associated alert record ID.
         Args:
-            value: Value to set for the alertRecordId property.
+            value: Value to set for the alert_record_id property.
         """
         self._alert_record_id = value
     
@@ -72,7 +72,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the alertRuleId property value. The associated alert rule ID.
         Args:
-            value: Value to set for the alertRuleId property.
+            value: Value to set for the alert_rule_id property.
         """
         self._alert_rule_id = value
     
@@ -89,7 +89,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the alertRuleName property value. The associated alert rule name.
         Args:
-            value: Value to set for the alertRuleName property.
+            value: Value to set for the alert_rule_name property.
         """
         self._alert_rule_name = value
     
@@ -106,7 +106,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the alertRuleTemplate property value. The associated alert rule template. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
         Args:
-            value: Value to set for the alertRuleTemplate property.
+            value: Value to set for the alert_rule_template property.
         """
         self._alert_rule_template = value
     
@@ -154,13 +154,13 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_impact": lambda n : setattr(self, 'alert_impact', n.get_object_value(alert_impact.AlertImpact)),
-            "alert_record_id": lambda n : setattr(self, 'alert_record_id', n.get_str_value()),
-            "alert_rule_id": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
-            "alert_rule_name": lambda n : setattr(self, 'alert_rule_name', n.get_str_value()),
-            "alert_rule_template": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
+            "alertImpact": lambda n : setattr(self, 'alert_impact', n.get_object_value(alert_impact.AlertImpact)),
+            "alertRecordId": lambda n : setattr(self, 'alert_record_id', n.get_str_value()),
+            "alertRuleId": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
+            "alertRuleName": lambda n : setattr(self, 'alert_rule_name', n.get_str_value()),
+            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "is_portal_notification_sent": lambda n : setattr(self, 'is_portal_notification_sent', n.get_bool_value()),
+            "isPortalNotificationSent": lambda n : setattr(self, 'is_portal_notification_sent', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(rule_severity_type.RuleSeverityType)),
         }
@@ -196,7 +196,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the isPortalNotificationSent property value. true if the portal notification has already been sent to the user; false otherwise.
         Args:
-            value: Value to set for the isPortalNotificationSent property.
+            value: Value to set for the is_portal_notification_sent property.
         """
         self._is_portal_notification_sent = value
     
@@ -213,7 +213,7 @@ class PortalNotification(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

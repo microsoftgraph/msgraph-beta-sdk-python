@@ -30,19 +30,18 @@ class GetAuditActivityTypesWithCategoryRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/auditEvents/microsoft.graph.getAuditActivityTypes(category='{category}'){?%24top,%24skip,%24search,%24filter,%24count}"
+        self.url_template: str = "{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24top,%24skip,%24search,%24filter,%24count}"
 
         url_tpl_params = get_path_parameters(path_parameters)
         url_tpl_params[""] = category
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_audit_activity_types_with_category_response.GetAuditActivityTypesWithCategoryResponse]:
+    async def get(self,request_configuration: Optional[GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration] = None) -> Optional[get_audit_activity_types_with_category_response.GetAuditActivityTypesWithCategoryResponse]:
         """
         Invoke function getAuditActivityTypes
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_audit_activity_types_with_category_response.GetAuditActivityTypesWithCategoryResponse]
         """
         request_info = self.to_get_request_information(
@@ -54,7 +53,7 @@ class GetAuditActivityTypesWithCategoryRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_audit_activity_types_with_category_response.GetAuditActivityTypesWithCategoryResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_audit_activity_types_with_category_response.GetAuditActivityTypesWithCategoryResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -67,7 +66,7 @@ class GetAuditActivityTypesWithCategoryRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -122,7 +121,7 @@ class GetAuditActivityTypesWithCategoryRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

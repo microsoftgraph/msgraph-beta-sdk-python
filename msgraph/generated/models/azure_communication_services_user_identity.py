@@ -19,7 +19,7 @@ class AzureCommunicationServicesUserIdentity(identity.Identity):
         """
         Sets the azureCommunicationServicesResourceId property value. The Azure Communication Services resource ID associated with the user.
         Args:
-            value: Value to set for the azureCommunicationServicesResourceId property.
+            value: Value to set for the azure_communication_services_resource_id property.
         """
         self._azure_communication_services_resource_id = value
     
@@ -50,7 +50,7 @@ class AzureCommunicationServicesUserIdentity(identity.Identity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_communication_services_resource_id": lambda n : setattr(self, 'azure_communication_services_resource_id', n.get_str_value()),
+            "azureCommunicationServicesResourceId": lambda n : setattr(self, 'azure_communication_services_resource_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -35,12 +35,11 @@ class AdministrativeUnitRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[administrative_unit.AdministrativeUnit]:
+    async def get(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None) -> Optional[administrative_unit.AdministrativeUnit]:
         """
         Retrieve the simple directory **administrativeUnit** that corresponds to this **educationSchool**.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[administrative_unit.AdministrativeUnit]
         """
         request_info = self.to_get_request_information(
@@ -52,15 +51,14 @@ class AdministrativeUnitRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, error_mapping)
     
-    async def patch(self,body: Optional[administrative_unit.AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[administrative_unit.AdministrativeUnit]:
+    async def patch(self,body: Optional[administrative_unit.AdministrativeUnit] = None, request_configuration: Optional[AdministrativeUnitRequestBuilderPatchRequestConfiguration] = None) -> Optional[administrative_unit.AdministrativeUnit]:
         """
         Update the navigation property administrativeUnit in education
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[administrative_unit.AdministrativeUnit]
         """
         if body is None:
@@ -74,7 +72,7 @@ class AdministrativeUnitRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, administrative_unit.AdministrativeUnit, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AdministrativeUnitRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -87,7 +85,7 @@ class AdministrativeUnitRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -108,7 +106,7 @@ class AdministrativeUnitRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -148,7 +146,7 @@ class AdministrativeUnitRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -163,7 +161,7 @@ class AdministrativeUnitRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

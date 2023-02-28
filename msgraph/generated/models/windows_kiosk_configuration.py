@@ -16,10 +16,10 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         self.odata_type = "#microsoft.graph.windowsKioskConfiguration"
         # Enable public browsing kiosk mode for the Microsoft Edge browser. The Default is false.
         self._edge_kiosk_enable_public_browsing: Optional[bool] = None
-        # Specify URLs that the kiosk browser is allowed to navigate to
-        self._kiosk_browser_blocked_url_exceptions: Optional[List[str]] = None
         # Specify URLs that the kiosk browsers should not navigate to
         self._kiosk_browser_blocked_u_r_ls: Optional[List[str]] = None
+        # Specify URLs that the kiosk browser is allowed to navigate to
+        self._kiosk_browser_blocked_url_exceptions: Optional[List[str]] = None
         # Specify the default URL the browser should navigate to on launch.
         self._kiosk_browser_default_url: Optional[str] = None
         # Enable the kiosk browser's end session button. By default, the end session button is disabled.
@@ -60,7 +60,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeKioskEnablePublicBrowsing property value. Enable public browsing kiosk mode for the Microsoft Edge browser. The Default is false.
         Args:
-            value: Value to set for the edgeKioskEnablePublicBrowsing property.
+            value: Value to set for the edge_kiosk_enable_public_browsing property.
         """
         self._edge_kiosk_enable_public_browsing = value
     
@@ -70,37 +70,20 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "edge_kiosk_enable_public_browsing": lambda n : setattr(self, 'edge_kiosk_enable_public_browsing', n.get_bool_value()),
-            "kiosk_browser_blocked_url_exceptions": lambda n : setattr(self, 'kiosk_browser_blocked_url_exceptions', n.get_collection_of_primitive_values(str)),
-            "kiosk_browser_blocked_u_r_ls": lambda n : setattr(self, 'kiosk_browser_blocked_u_r_ls', n.get_collection_of_primitive_values(str)),
-            "kiosk_browser_default_url": lambda n : setattr(self, 'kiosk_browser_default_url', n.get_str_value()),
-            "kiosk_browser_enable_end_session_button": lambda n : setattr(self, 'kiosk_browser_enable_end_session_button', n.get_bool_value()),
-            "kiosk_browser_enable_home_button": lambda n : setattr(self, 'kiosk_browser_enable_home_button', n.get_bool_value()),
-            "kiosk_browser_enable_navigation_buttons": lambda n : setattr(self, 'kiosk_browser_enable_navigation_buttons', n.get_bool_value()),
-            "kiosk_browser_restart_on_idle_time_in_minutes": lambda n : setattr(self, 'kiosk_browser_restart_on_idle_time_in_minutes', n.get_int_value()),
-            "kiosk_profiles": lambda n : setattr(self, 'kiosk_profiles', n.get_collection_of_object_values(windows_kiosk_profile.WindowsKioskProfile)),
-            "windows_kiosk_force_update_schedule": lambda n : setattr(self, 'windows_kiosk_force_update_schedule', n.get_object_value(windows_kiosk_force_update_schedule.WindowsKioskForceUpdateSchedule)),
+            "edgeKioskEnablePublicBrowsing": lambda n : setattr(self, 'edge_kiosk_enable_public_browsing', n.get_bool_value()),
+            "kioskBrowserBlockedUrlExceptions": lambda n : setattr(self, 'kiosk_browser_blocked_url_exceptions', n.get_collection_of_primitive_values(str)),
+            "kioskBrowserBlockedURLs": lambda n : setattr(self, 'kiosk_browser_blocked_u_r_ls', n.get_collection_of_primitive_values(str)),
+            "kioskBrowserDefaultUrl": lambda n : setattr(self, 'kiosk_browser_default_url', n.get_str_value()),
+            "kioskBrowserEnableEndSessionButton": lambda n : setattr(self, 'kiosk_browser_enable_end_session_button', n.get_bool_value()),
+            "kioskBrowserEnableHomeButton": lambda n : setattr(self, 'kiosk_browser_enable_home_button', n.get_bool_value()),
+            "kioskBrowserEnableNavigationButtons": lambda n : setattr(self, 'kiosk_browser_enable_navigation_buttons', n.get_bool_value()),
+            "kioskBrowserRestartOnIdleTimeInMinutes": lambda n : setattr(self, 'kiosk_browser_restart_on_idle_time_in_minutes', n.get_int_value()),
+            "kioskProfiles": lambda n : setattr(self, 'kiosk_profiles', n.get_collection_of_object_values(windows_kiosk_profile.WindowsKioskProfile)),
+            "windowsKioskForceUpdateSchedule": lambda n : setattr(self, 'windows_kiosk_force_update_schedule', n.get_object_value(windows_kiosk_force_update_schedule.WindowsKioskForceUpdateSchedule)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def kiosk_browser_blocked_url_exceptions(self,) -> Optional[List[str]]:
-        """
-        Gets the kioskBrowserBlockedUrlExceptions property value. Specify URLs that the kiosk browser is allowed to navigate to
-        Returns: Optional[List[str]]
-        """
-        return self._kiosk_browser_blocked_url_exceptions
-    
-    @kiosk_browser_blocked_url_exceptions.setter
-    def kiosk_browser_blocked_url_exceptions(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the kioskBrowserBlockedUrlExceptions property value. Specify URLs that the kiosk browser is allowed to navigate to
-        Args:
-            value: Value to set for the kioskBrowserBlockedUrlExceptions property.
-        """
-        self._kiosk_browser_blocked_url_exceptions = value
     
     @property
     def kiosk_browser_blocked_u_r_ls(self,) -> Optional[List[str]]:
@@ -115,9 +98,26 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskBrowserBlockedURLs property value. Specify URLs that the kiosk browsers should not navigate to
         Args:
-            value: Value to set for the kioskBrowserBlockedURLs property.
+            value: Value to set for the kiosk_browser_blocked_u_r_ls property.
         """
         self._kiosk_browser_blocked_u_r_ls = value
+    
+    @property
+    def kiosk_browser_blocked_url_exceptions(self,) -> Optional[List[str]]:
+        """
+        Gets the kioskBrowserBlockedUrlExceptions property value. Specify URLs that the kiosk browser is allowed to navigate to
+        Returns: Optional[List[str]]
+        """
+        return self._kiosk_browser_blocked_url_exceptions
+    
+    @kiosk_browser_blocked_url_exceptions.setter
+    def kiosk_browser_blocked_url_exceptions(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the kioskBrowserBlockedUrlExceptions property value. Specify URLs that the kiosk browser is allowed to navigate to
+        Args:
+            value: Value to set for the kiosk_browser_blocked_url_exceptions property.
+        """
+        self._kiosk_browser_blocked_url_exceptions = value
     
     @property
     def kiosk_browser_default_url(self,) -> Optional[str]:
@@ -132,7 +132,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskBrowserDefaultUrl property value. Specify the default URL the browser should navigate to on launch.
         Args:
-            value: Value to set for the kioskBrowserDefaultUrl property.
+            value: Value to set for the kiosk_browser_default_url property.
         """
         self._kiosk_browser_default_url = value
     
@@ -149,7 +149,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskBrowserEnableEndSessionButton property value. Enable the kiosk browser's end session button. By default, the end session button is disabled.
         Args:
-            value: Value to set for the kioskBrowserEnableEndSessionButton property.
+            value: Value to set for the kiosk_browser_enable_end_session_button property.
         """
         self._kiosk_browser_enable_end_session_button = value
     
@@ -166,7 +166,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskBrowserEnableHomeButton property value. Enable the kiosk browser's home button. By default, the home button is disabled.
         Args:
-            value: Value to set for the kioskBrowserEnableHomeButton property.
+            value: Value to set for the kiosk_browser_enable_home_button property.
         """
         self._kiosk_browser_enable_home_button = value
     
@@ -183,7 +183,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskBrowserEnableNavigationButtons property value. Enable the kiosk browser's navigation buttons(forward/back). By default, the navigation buttons are disabled.
         Args:
-            value: Value to set for the kioskBrowserEnableNavigationButtons property.
+            value: Value to set for the kiosk_browser_enable_navigation_buttons property.
         """
         self._kiosk_browser_enable_navigation_buttons = value
     
@@ -200,7 +200,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskBrowserRestartOnIdleTimeInMinutes property value. Specify the number of minutes the session is idle until the kiosk browser restarts in a fresh state.  Valid values are 1-1440. Valid values 1 to 1440
         Args:
-            value: Value to set for the kioskBrowserRestartOnIdleTimeInMinutes property.
+            value: Value to set for the kiosk_browser_restart_on_idle_time_in_minutes property.
         """
         self._kiosk_browser_restart_on_idle_time_in_minutes = value
     
@@ -217,7 +217,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskProfiles property value. This policy setting allows to define a list of Kiosk profiles for a Kiosk configuration. This collection can contain a maximum of 3 elements.
         Args:
-            value: Value to set for the kioskProfiles property.
+            value: Value to set for the kiosk_profiles property.
         """
         self._kiosk_profiles = value
     
@@ -254,7 +254,7 @@ class WindowsKioskConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsKioskForceUpdateSchedule property value. force update schedule for Kiosk devices.
         Args:
-            value: Value to set for the windowsKioskForceUpdateSchedule property.
+            value: Value to set for the windows_kiosk_force_update_schedule property.
         """
         self._windows_kiosk_force_update_schedule = value
     

@@ -24,7 +24,7 @@ class TaskReport(entity.Entity):
         """
         Sets the completedDateTime property value. The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -85,7 +85,7 @@ class TaskReport(entity.Entity):
         """
         Sets the failedUsersCount property value. The number of users in the run execution for which the associated task failed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the failedUsersCount property.
+            value: Value to set for the failed_users_count property.
         """
         self._failed_users_count = value
     
@@ -95,18 +95,18 @@ class TaskReport(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "failed_users_count": lambda n : setattr(self, 'failed_users_count', n.get_int_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "processing_status": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
-            "run_id": lambda n : setattr(self, 'run_id', n.get_str_value()),
-            "started_date_time": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
-            "successful_users_count": lambda n : setattr(self, 'successful_users_count', n.get_int_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "failedUsersCount": lambda n : setattr(self, 'failed_users_count', n.get_int_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
+            "runId": lambda n : setattr(self, 'run_id', n.get_str_value()),
+            "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
+            "successfulUsersCount": lambda n : setattr(self, 'successful_users_count', n.get_int_value()),
             "task": lambda n : setattr(self, 'task', n.get_object_value(task.Task)),
-            "task_definition": lambda n : setattr(self, 'task_definition', n.get_object_value(task_definition.TaskDefinition)),
-            "task_processing_results": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
-            "total_users_count": lambda n : setattr(self, 'total_users_count', n.get_int_value()),
-            "unprocessed_users_count": lambda n : setattr(self, 'unprocessed_users_count', n.get_int_value()),
+            "taskDefinition": lambda n : setattr(self, 'task_definition', n.get_object_value(task_definition.TaskDefinition)),
+            "taskProcessingResults": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
+            "totalUsersCount": lambda n : setattr(self, 'total_users_count', n.get_int_value()),
+            "unprocessedUsersCount": lambda n : setattr(self, 'unprocessed_users_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class TaskReport(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. The date and time that the task report was last updated.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -142,7 +142,7 @@ class TaskReport(entity.Entity):
         """
         Sets the processingStatus property value. The processingStatus property
         Args:
-            value: Value to set for the processingStatus property.
+            value: Value to set for the processing_status property.
         """
         self._processing_status = value
     
@@ -159,7 +159,7 @@ class TaskReport(entity.Entity):
         """
         Sets the runId property value. The unique identifier of the associated run.
         Args:
-            value: Value to set for the runId property.
+            value: Value to set for the run_id property.
         """
         self._run_id = value
     
@@ -198,7 +198,7 @@ class TaskReport(entity.Entity):
         """
         Sets the startedDateTime property value. The date time that the associated run started. Value is null if the run has not started.
         Args:
-            value: Value to set for the startedDateTime property.
+            value: Value to set for the started_date_time property.
         """
         self._started_date_time = value
     
@@ -215,7 +215,7 @@ class TaskReport(entity.Entity):
         """
         Sets the successfulUsersCount property value. The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the successfulUsersCount property.
+            value: Value to set for the successful_users_count property.
         """
         self._successful_users_count = value
     
@@ -249,7 +249,7 @@ class TaskReport(entity.Entity):
         """
         Sets the taskDefinition property value. The taskDefinition property
         Args:
-            value: Value to set for the taskDefinition property.
+            value: Value to set for the task_definition property.
         """
         self._task_definition = value
     
@@ -266,7 +266,7 @@ class TaskReport(entity.Entity):
         """
         Sets the taskProcessingResults property value. The related lifecycle workflow taskProcessingResults.
         Args:
-            value: Value to set for the taskProcessingResults property.
+            value: Value to set for the task_processing_results property.
         """
         self._task_processing_results = value
     
@@ -283,7 +283,7 @@ class TaskReport(entity.Entity):
         """
         Sets the totalUsersCount property value. The total number of users in the run execution for which the associated task was scheduled to execute.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the totalUsersCount property.
+            value: Value to set for the total_users_count property.
         """
         self._total_users_count = value
     
@@ -300,7 +300,7 @@ class TaskReport(entity.Entity):
         """
         Sets the unprocessedUsersCount property value. The number of users in the run execution for which the associated task is queued, in progress, or canceled.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the unprocessedUsersCount property.
+            value: Value to set for the unprocessed_users_count property.
         """
         self._unprocessed_users_count = value
     

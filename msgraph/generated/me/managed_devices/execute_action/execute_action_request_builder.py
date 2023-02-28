@@ -30,19 +30,18 @@ class ExecuteActionRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/managedDevices/microsoft.graph.executeAction"
+        self.url_template: str = "{+baseurl}/me/managedDevices/executeAction"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[execute_action_post_request_body.ExecuteActionPostRequestBody] = None, request_configuration: Optional[ExecuteActionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[bulk_managed_device_action_result.BulkManagedDeviceActionResult]:
+    async def post(self,body: Optional[execute_action_post_request_body.ExecuteActionPostRequestBody] = None, request_configuration: Optional[ExecuteActionRequestBuilderPostRequestConfiguration] = None) -> Optional[bulk_managed_device_action_result.BulkManagedDeviceActionResult]:
         """
         Invoke action executeAction
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[bulk_managed_device_action_result.BulkManagedDeviceActionResult]
         """
         if body is None:
@@ -56,7 +55,7 @@ class ExecuteActionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, bulk_managed_device_action_result.BulkManagedDeviceActionResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, bulk_managed_device_action_result.BulkManagedDeviceActionResult, error_mapping)
     
     def to_post_request_information(self,body: Optional[execute_action_post_request_body.ExecuteActionPostRequestBody] = None, request_configuration: Optional[ExecuteActionRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class ExecuteActionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class ExecuteActionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

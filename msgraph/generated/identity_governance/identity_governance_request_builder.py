@@ -15,8 +15,9 @@ app_consent_request_builder = lazy_import('msgraph.generated.identity_governance
 entitlement_management_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.entitlement_management_request_builder')
 lifecycle_workflows_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.lifecycle_workflows_request_builder')
 privileged_access_request_builder = lazy_import('msgraph.generated.identity_governance.privileged_access.privileged_access_request_builder')
+role_management_alerts_request_builder = lazy_import('msgraph.generated.identity_governance.role_management_alerts.role_management_alerts_request_builder')
 terms_of_use_request_builder = lazy_import('msgraph.generated.identity_governance.terms_of_use.terms_of_use_request_builder')
-identity_governance = lazy_import('msgraph.generated.models.identity_governance')
+identity_governance = lazy_import('msgraph.generated.models.identity_governance.identity_governance')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class IdentityGovernanceRequestBuilder():
@@ -59,6 +60,13 @@ class IdentityGovernanceRequestBuilder():
         return privileged_access_request_builder.PrivilegedAccessRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def role_management_alerts(self) -> role_management_alerts_request_builder.RoleManagementAlertsRequestBuilder:
+        """
+        Provides operations to manage the roleManagementAlerts property of the microsoft.graph.identityGovernance entity.
+        """
+        return role_management_alerts_request_builder.RoleManagementAlertsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def terms_of_use(self) -> terms_of_use_request_builder.TermsOfUseRequestBuilder:
         """
         Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.
@@ -83,12 +91,11 @@ class IdentityGovernanceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[IdentityGovernanceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_governance.IdentityGovernance]:
+    async def get(self,request_configuration: Optional[IdentityGovernanceRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_governance.IdentityGovernance]:
         """
         Get identityGovernance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_governance.IdentityGovernance]
         """
         request_info = self.to_get_request_information(
@@ -100,15 +107,14 @@ class IdentityGovernanceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_governance.IdentityGovernance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_governance.IdentityGovernance, error_mapping)
     
-    async def patch(self,body: Optional[identity_governance.IdentityGovernance] = None, request_configuration: Optional[IdentityGovernanceRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_governance.IdentityGovernance]:
+    async def patch(self,body: Optional[identity_governance.IdentityGovernance] = None, request_configuration: Optional[IdentityGovernanceRequestBuilderPatchRequestConfiguration] = None) -> Optional[identity_governance.IdentityGovernance]:
         """
         Update identityGovernance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_governance.IdentityGovernance]
         """
         if body is None:
@@ -122,7 +128,7 @@ class IdentityGovernanceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_governance.IdentityGovernance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_governance.IdentityGovernance, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IdentityGovernanceRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -135,7 +141,7 @@ class IdentityGovernanceRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -156,7 +162,7 @@ class IdentityGovernanceRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -196,7 +202,7 @@ class IdentityGovernanceRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -211,7 +217,7 @@ class IdentityGovernanceRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -61,7 +61,7 @@ class DeviceConfigurationState(entity.Entity):
         """
         Sets the displayName property value. The name of the policy for this policyBase
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -71,13 +71,13 @@ class DeviceConfigurationState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
-            "setting_count": lambda n : setattr(self, 'setting_count', n.get_int_value()),
-            "setting_states": lambda n : setattr(self, 'setting_states', n.get_collection_of_object_values(device_configuration_setting_state.DeviceConfigurationSettingState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
+            "settingCount": lambda n : setattr(self, 'setting_count', n.get_int_value()),
+            "settingStates": lambda n : setattr(self, 'setting_states', n.get_collection_of_object_values(device_configuration_setting_state.DeviceConfigurationSettingState)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(compliance_status.ComplianceStatus)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -97,7 +97,7 @@ class DeviceConfigurationState(entity.Entity):
         """
         Sets the platformType property value. Supported platform types for policies.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     
@@ -132,7 +132,7 @@ class DeviceConfigurationState(entity.Entity):
         """
         Sets the settingCount property value. Count of how many setting a policy holds
         Args:
-            value: Value to set for the settingCount property.
+            value: Value to set for the setting_count property.
         """
         self._setting_count = value
     
@@ -149,7 +149,7 @@ class DeviceConfigurationState(entity.Entity):
         """
         Sets the settingStates property value. The settingStates property
         Args:
-            value: Value to set for the settingStates property.
+            value: Value to set for the setting_states property.
         """
         self._setting_states = value
     
@@ -183,7 +183,7 @@ class DeviceConfigurationState(entity.Entity):
         """
         Sets the userId property value. User unique identifier, must be Guid
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -200,7 +200,7 @@ class DeviceConfigurationState(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

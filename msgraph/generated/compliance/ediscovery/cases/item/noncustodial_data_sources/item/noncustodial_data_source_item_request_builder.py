@@ -10,11 +10,11 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-apply_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.apply_hold.apply_hold_request_builder')
 data_source_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.data_source.data_source_request_builder')
-release_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.release.release_request_builder')
-remove_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.remove_hold.remove_hold_request_builder')
-update_index_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.update_index.update_index_request_builder')
+ediscovery_apply_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.ediscovery_apply_hold.ediscovery_apply_hold_request_builder')
+ediscovery_release_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.ediscovery_release.ediscovery_release_request_builder')
+ediscovery_remove_hold_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.ediscovery_remove_hold.ediscovery_remove_hold_request_builder')
+ediscovery_update_index_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.noncustodial_data_sources.item.ediscovery_update_index.ediscovery_update_index_request_builder')
 noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -23,13 +23,6 @@ class NoncustodialDataSourceItemRequestBuilder():
     Provides operations to manage the noncustodialDataSources property of the microsoft.graph.ediscovery.case entity.
     """
     @property
-    def apply_hold(self) -> apply_hold_request_builder.ApplyHoldRequestBuilder:
-        """
-        Provides operations to call the applyHold method.
-        """
-        return apply_hold_request_builder.ApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def data_source(self) -> data_source_request_builder.DataSourceRequestBuilder:
         """
         Provides operations to manage the dataSource property of the microsoft.graph.ediscovery.noncustodialDataSource entity.
@@ -37,25 +30,32 @@ class NoncustodialDataSourceItemRequestBuilder():
         return data_source_request_builder.DataSourceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def release(self) -> release_request_builder.ReleaseRequestBuilder:
+    def ediscovery_apply_hold(self) -> ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder:
+        """
+        Provides operations to call the applyHold method.
+        """
+        return ediscovery_apply_hold_request_builder.EdiscoveryApplyHoldRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_release(self) -> ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder:
         """
         Provides operations to call the release method.
         """
-        return release_request_builder.ReleaseRequestBuilder(self.request_adapter, self.path_parameters)
+        return ediscovery_release_request_builder.EdiscoveryReleaseRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def remove_hold(self) -> remove_hold_request_builder.RemoveHoldRequestBuilder:
+    def ediscovery_remove_hold(self) -> ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder:
         """
         Provides operations to call the removeHold method.
         """
-        return remove_hold_request_builder.RemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
+        return ediscovery_remove_hold_request_builder.EdiscoveryRemoveHoldRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_index(self) -> update_index_request_builder.UpdateIndexRequestBuilder:
+    def ediscovery_update_index(self) -> ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder:
         """
         Provides operations to call the updateIndex method.
         """
-        return update_index_request_builder.UpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
+        return ediscovery_update_index_request_builder.EdiscoveryUpdateIndexRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -75,12 +75,11 @@ class NoncustodialDataSourceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property noncustodialDataSources for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -91,14 +90,13 @@ class NoncustodialDataSourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
+    async def get(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
         """
         Returns a list of case noncustodialDataSource objects for this case.  Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[noncustodial_data_source.NoncustodialDataSource]
         """
         request_info = self.to_get_request_information(
@@ -110,15 +108,14 @@ class NoncustodialDataSourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, noncustodial_data_source.NoncustodialDataSource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, noncustodial_data_source.NoncustodialDataSource, error_mapping)
     
-    async def patch(self,body: Optional[noncustodial_data_source.NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
+    async def patch(self,body: Optional[noncustodial_data_source.NoncustodialDataSource] = None, request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[noncustodial_data_source.NoncustodialDataSource]:
         """
         Update the navigation property noncustodialDataSources in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[noncustodial_data_source.NoncustodialDataSource]
         """
         if body is None:
@@ -132,7 +129,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, noncustodial_data_source.NoncustodialDataSource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, noncustodial_data_source.NoncustodialDataSource, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[NoncustodialDataSourceItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -161,7 +158,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -182,7 +179,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +192,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -234,7 +231,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -249,7 +246,7 @@ class NoncustodialDataSourceItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

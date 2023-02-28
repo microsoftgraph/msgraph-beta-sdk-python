@@ -26,6 +26,7 @@ device_compliance_policy_states_request_builder = lazy_import('msgraph.generated
 device_compliance_policy_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_compliance_policy_states.item.device_compliance_policy_state_item_request_builder')
 device_configuration_states_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_configuration_states.device_configuration_states_request_builder')
 device_configuration_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_configuration_states.item.device_configuration_state_item_request_builder')
+device_health_script_states_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.device_health_script_states.device_health_script_states_request_builder')
 disable_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.disable.disable_request_builder')
 disable_lost_mode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.disable_lost_mode.disable_lost_mode_request_builder')
 enable_lost_mode_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.enable_lost_mode.enable_lost_mode_request_builder')
@@ -37,6 +38,7 @@ get_file_vault_key_request_builder = lazy_import('msgraph.generated.device_manag
 get_non_compliant_settings_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_non_compliant_settings.get_non_compliant_settings_request_builder')
 get_oem_warranty_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.get_oem_warranty.get_oem_warranty_request_builder')
 initiate_mobile_device_management_key_recovery_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.initiate_mobile_device_management_key_recovery.initiate_mobile_device_management_key_recovery_request_builder')
+initiate_on_demand_proactive_remediation_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.initiate_on_demand_proactive_remediation.initiate_on_demand_proactive_remediation_request_builder')
 locate_device_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.locate_device.locate_device_request_builder')
 log_collection_requests_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.log_collection_requests.log_collection_requests_request_builder')
 device_log_collection_response_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.log_collection_requests.item.device_log_collection_response_item_request_builder')
@@ -167,6 +169,13 @@ class ManagedDeviceItemRequestBuilder():
         return device_configuration_states_request_builder.DeviceConfigurationStatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def device_health_script_states(self) -> device_health_script_states_request_builder.DeviceHealthScriptStatesRequestBuilder:
+        """
+        Provides operations to manage the deviceHealthScriptStates property of the microsoft.graph.managedDevice entity.
+        """
+        return device_health_script_states_request_builder.DeviceHealthScriptStatesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def disable(self) -> disable_request_builder.DisableRequestBuilder:
         """
         Provides operations to call the disable method.
@@ -202,11 +211,53 @@ class ManagedDeviceItemRequestBuilder():
         return enroll_now_action_request_builder.EnrollNowActionRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_cloud_pc_remote_action_results(self) -> get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder:
+        """
+        Provides operations to call the getCloudPcRemoteActionResults method.
+        """
+        return get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_cloud_pc_review_status(self) -> get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder:
+        """
+        Provides operations to call the getCloudPcReviewStatus method.
+        """
+        return get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_file_vault_key(self) -> get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder:
+        """
+        Provides operations to call the getFileVaultKey method.
+        """
+        return get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_non_compliant_settings(self) -> get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder:
+        """
+        Provides operations to call the getNonCompliantSettings method.
+        """
+        return get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_oem_warranty(self) -> get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder:
+        """
+        Provides operations to call the getOemWarranty method.
+        """
+        return get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def initiate_mobile_device_management_key_recovery(self) -> initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder:
         """
         Provides operations to call the initiateMobileDeviceManagementKeyRecovery method.
         """
         return initiate_mobile_device_management_key_recovery_request_builder.InitiateMobileDeviceManagementKeyRecoveryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def initiate_on_demand_proactive_remediation(self) -> initiate_on_demand_proactive_remediation_request_builder.InitiateOnDemandProactiveRemediationRequestBuilder:
+        """
+        Provides operations to call the initiateOnDemandProactiveRemediation method.
+        """
+        return initiate_on_demand_proactive_remediation_request_builder.InitiateOnDemandProactiveRemediationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def locate_device(self) -> locate_device_request_builder.LocateDeviceRequestBuilder:
@@ -477,12 +528,11 @@ class ManagedDeviceItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property comanagedDevices for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -493,7 +543,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def detected_apps_by_id(self,id: str) -> detected_app_item_request_builder.DetectedAppItemRequestBuilder:
         """
@@ -534,12 +584,11 @@ class ManagedDeviceItemRequestBuilder():
         url_tpl_params["deviceConfigurationState%2Did"] = id
         return device_configuration_state_item_request_builder.DeviceConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device.ManagedDevice]:
+    async def get(self,request_configuration: Optional[ManagedDeviceItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
         """
         The list of co-managed devices report
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]
         """
         request_info = self.to_get_request_information(
@@ -551,42 +600,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, response_handler, error_mapping)
-    
-    def get_cloud_pc_remote_action_results(self,) -> get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder:
-        """
-        Provides operations to call the getCloudPcRemoteActionResults method.
-        Returns: get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder
-        """
-        return get_cloud_pc_remote_action_results_request_builder.GetCloudPcRemoteActionResultsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_cloud_pc_review_status(self,) -> get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder:
-        """
-        Provides operations to call the getCloudPcReviewStatus method.
-        Returns: get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder
-        """
-        return get_cloud_pc_review_status_request_builder.GetCloudPcReviewStatusRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_file_vault_key(self,) -> get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder:
-        """
-        Provides operations to call the getFileVaultKey method.
-        Returns: get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder
-        """
-        return get_file_vault_key_request_builder.GetFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_non_compliant_settings(self,) -> get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder:
-        """
-        Provides operations to call the getNonCompliantSettings method.
-        Returns: get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder
-        """
-        return get_non_compliant_settings_request_builder.GetNonCompliantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_oem_warranty(self,) -> get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder:
-        """
-        Provides operations to call the getOemWarranty method.
-        Returns: get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder
-        """
-        return get_oem_warranty_request_builder.GetOemWarrantyRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
     
     def log_collection_requests_by_id(self,id: str) -> device_log_collection_response_item_request_builder.DeviceLogCollectionResponseItemRequestBuilder:
         """
@@ -614,13 +628,12 @@ class ManagedDeviceItemRequestBuilder():
         url_tpl_params["managedDeviceMobileAppConfigurationState%2Did"] = id
         return managed_device_mobile_app_configuration_state_item_request_builder.ManagedDeviceMobileAppConfigurationStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_device.ManagedDevice]:
+    async def patch(self,body: Optional[managed_device.ManagedDevice] = None, request_configuration: Optional[ManagedDeviceItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_device.ManagedDevice]:
         """
         Update the navigation property comanagedDevices in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_device.ManagedDevice]
         """
         if body is None:
@@ -634,7 +647,7 @@ class ManagedDeviceItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_device.ManagedDevice, error_mapping)
     
     def retrieve_remote_help_session_with_session_key(self,session_key: Optional[str] = None) -> retrieve_remote_help_session_with_session_key_request_builder.RetrieveRemoteHelpSessionWithSessionKeyRequestBuilder:
         """
@@ -687,7 +700,7 @@ class ManagedDeviceItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -708,7 +721,7 @@ class ManagedDeviceItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -721,7 +734,7 @@ class ManagedDeviceItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -760,7 +773,7 @@ class ManagedDeviceItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -775,7 +788,7 @@ class ManagedDeviceItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

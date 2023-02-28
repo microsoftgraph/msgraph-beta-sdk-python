@@ -62,7 +62,7 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, Parsable):
         """
         Sets the defaultText property value. The fallback string, which is used when a requested localization is not available. Required.
         Args:
-            value: Value to set for the defaultText property.
+            value: Value to set for the default_text property.
         """
         self._default_text = value
     
@@ -72,8 +72,8 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_text": lambda n : setattr(self, 'default_text', n.get_str_value()),
-            "localized_texts": lambda n : setattr(self, 'localized_texts', n.get_collection_of_object_values(access_package_localized_text.AccessPackageLocalizedText)),
+            "defaultText": lambda n : setattr(self, 'default_text', n.get_str_value()),
+            "localizedTexts": lambda n : setattr(self, 'localized_texts', n.get_collection_of_object_values(access_package_localized_text.AccessPackageLocalizedText)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -91,7 +91,7 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, Parsable):
         """
         Sets the localizedTexts property value. Content represented in a format for a specific locale.
         Args:
-            value: Value to set for the localizedTexts property.
+            value: Value to set for the localized_texts property.
         """
         self._localized_texts = value
     
@@ -108,7 +108,7 @@ class AccessPackageLocalizedContent(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

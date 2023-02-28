@@ -31,10 +31,10 @@ class TransferPostRequestBody(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The transferee property
-        self._transferee: Optional[participant_info.ParticipantInfo] = None
         # The transferTarget property
         self._transfer_target: Optional[invitation_participant_info.InvitationParticipantInfo] = None
+        # The transferee property
+        self._transferee: Optional[participant_info.ParticipantInfo] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TransferPostRequestBody:
@@ -55,7 +55,7 @@ class TransferPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "transferee": lambda n : setattr(self, 'transferee', n.get_object_value(participant_info.ParticipantInfo)),
-            "transfer_target": lambda n : setattr(self, 'transfer_target', n.get_object_value(invitation_participant_info.InvitationParticipantInfo)),
+            "transferTarget": lambda n : setattr(self, 'transfer_target', n.get_object_value(invitation_participant_info.InvitationParticipantInfo)),
         }
         return fields
     
@@ -70,6 +70,23 @@ class TransferPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_object_value("transferee", self.transferee)
         writer.write_object_value("transferTarget", self.transfer_target)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def transfer_target(self,) -> Optional[invitation_participant_info.InvitationParticipantInfo]:
+        """
+        Gets the transferTarget property value. The transferTarget property
+        Returns: Optional[invitation_participant_info.InvitationParticipantInfo]
+        """
+        return self._transfer_target
+    
+    @transfer_target.setter
+    def transfer_target(self,value: Optional[invitation_participant_info.InvitationParticipantInfo] = None) -> None:
+        """
+        Sets the transferTarget property value. The transferTarget property
+        Args:
+            value: Value to set for the transfer_target property.
+        """
+        self._transfer_target = value
     
     @property
     def transferee(self,) -> Optional[participant_info.ParticipantInfo]:
@@ -87,22 +104,5 @@ class TransferPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the transferee property.
         """
         self._transferee = value
-    
-    @property
-    def transfer_target(self,) -> Optional[invitation_participant_info.InvitationParticipantInfo]:
-        """
-        Gets the transferTarget property value. The transferTarget property
-        Returns: Optional[invitation_participant_info.InvitationParticipantInfo]
-        """
-        return self._transfer_target
-    
-    @transfer_target.setter
-    def transfer_target(self,value: Optional[invitation_participant_info.InvitationParticipantInfo] = None) -> None:
-        """
-        Sets the transferTarget property value. The transferTarget property
-        Args:
-            value: Value to set for the transferTarget property.
-        """
-        self._transfer_target = value
     
 

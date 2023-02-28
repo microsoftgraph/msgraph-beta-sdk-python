@@ -37,7 +37,7 @@ class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, P
         """
         Sets the authenticationConfiguration property value. The authenticationConfiguration property
         Args:
-            value: Value to set for the authenticationConfiguration property.
+            value: Value to set for the authentication_configuration property.
         """
         self._authentication_configuration = value
     
@@ -78,7 +78,7 @@ class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, P
         """
         Sets the endpointConfiguration property value. The endpointConfiguration property
         Args:
-            value: Value to set for the endpointConfiguration property.
+            value: Value to set for the endpoint_configuration property.
         """
         self._endpoint_configuration = value
     
@@ -88,8 +88,8 @@ class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, P
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_configuration": lambda n : setattr(self, 'authentication_configuration', n.get_object_value(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration)),
-            "endpoint_configuration": lambda n : setattr(self, 'endpoint_configuration', n.get_object_value(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration)),
+            "authenticationConfiguration": lambda n : setattr(self, 'authentication_configuration', n.get_object_value(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration)),
+            "endpointConfiguration": lambda n : setattr(self, 'endpoint_configuration', n.get_object_value(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration)),
         }
         return fields
     

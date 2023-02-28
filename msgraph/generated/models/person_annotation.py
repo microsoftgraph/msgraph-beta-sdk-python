@@ -62,7 +62,7 @@ class PersonAnnotation(item_facet.ItemFacet):
         """
         Sets the displayName property value. Contains a friendly name for the note.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -73,8 +73,8 @@ class PersonAnnotation(item_facet.ItemFacet):
         """
         fields = {
             "detail": lambda n : setattr(self, 'detail', n.get_object_value(item_body.ItemBody)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -106,7 +106,7 @@ class PersonAnnotation(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. The thumbnailUrl property
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     

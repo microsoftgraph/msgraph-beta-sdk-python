@@ -27,7 +27,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the alwaysOn property value. Whether or not to enable always-on VPN connection.
         Args:
-            value: Value to set for the alwaysOn property.
+            value: Value to set for the always_on property.
         """
         self._always_on = value
     
@@ -44,7 +44,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the alwaysOnLockdown property value. If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
         Args:
-            value: Value to set for the alwaysOnLockdown property.
+            value: Value to set for the always_on_lockdown property.
         """
         self._always_on_lockdown = value
     
@@ -61,7 +61,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the authenticationMethod property value. VPN Authentication Method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -78,7 +78,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the connectionName property value. Connection name displayed to the user.
         Args:
-            value: Value to set for the connectionName property.
+            value: Value to set for the connection_name property.
         """
         self._connection_name = value
     
@@ -95,7 +95,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the connectionType property value. Android Work Profile VPN connection type.
         Args:
-            value: Value to set for the connectionType property.
+            value: Value to set for the connection_type property.
         """
         self._connection_type = value
     
@@ -163,7 +163,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the customData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customData property.
+            value: Value to set for the custom_data property.
         """
         self._custom_data = value
     
@@ -180,7 +180,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the customKeyValueData property value. Custom data when connection type is set to Citrix. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customKeyValueData property.
+            value: Value to set for the custom_key_value_data property.
         """
         self._custom_key_value_data = value
     
@@ -207,22 +207,22 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "always_on": lambda n : setattr(self, 'always_on', n.get_bool_value()),
-            "always_on_lockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
-            "connection_name": lambda n : setattr(self, 'connection_name', n.get_str_value()),
-            "connection_type": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_work_profile_vpn_connection_type.AndroidWorkProfileVpnConnectionType)),
-            "custom_data": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
-            "custom_key_value_data": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "alwaysOn": lambda n : setattr(self, 'always_on', n.get_bool_value()),
+            "alwaysOnLockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
+            "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_work_profile_vpn_connection_type.AndroidWorkProfileVpnConnectionType)),
+            "customData": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
+            "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "fingerprint": lambda n : setattr(self, 'fingerprint', n.get_str_value()),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_work_profile_certificate_profile_base.AndroidWorkProfileCertificateProfileBase)),
-            "microsoft_tunnel_site_id": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
-            "proxy_server": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_work_profile_certificate_profile_base.AndroidWorkProfileCertificateProfileBase)),
+            "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_object_values(vpn_server.VpnServer)),
-            "targeted_mobile_apps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "targeted_package_ids": lambda n : setattr(self, 'targeted_package_ids', n.get_collection_of_primitive_values(str)),
+            "targetedMobileApps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "targetedPackageIds": lambda n : setattr(self, 'targeted_package_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -241,7 +241,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -258,7 +258,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the microsoftTunnelSiteId property value. Microsoft Tunnel site ID.
         Args:
-            value: Value to set for the microsoftTunnelSiteId property.
+            value: Value to set for the microsoft_tunnel_site_id property.
         """
         self._microsoft_tunnel_site_id = value
     
@@ -275,7 +275,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the proxyServer property value. Proxy server.
         Args:
-            value: Value to set for the proxyServer property.
+            value: Value to set for the proxy_server property.
         """
         self._proxy_server = value
     
@@ -369,7 +369,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the targetedMobileApps property value. Targeted mobile apps. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the targetedMobileApps property.
+            value: Value to set for the targeted_mobile_apps property.
         """
         self._targeted_mobile_apps = value
     
@@ -386,7 +386,7 @@ class AndroidWorkProfileVpnConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the targetedPackageIds property value. Targeted App package IDs.
         Args:
-            value: Value to set for the targetedPackageIds property.
+            value: Value to set for the targeted_package_ids property.
         """
         self._targeted_package_ids = value
     

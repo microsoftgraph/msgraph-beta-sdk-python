@@ -44,12 +44,11 @@ class PhoneMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PhoneMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[PhoneMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse]:
         """
         Retrieve a list of phone authentication method objects. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class PhoneMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, phone_authentication_method_collection_response.PhoneAuthenticationMethodCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[phone_authentication_method.PhoneAuthenticationMethod] = None, request_configuration: Optional[PhoneMethodsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[phone_authentication_method.PhoneAuthenticationMethod]:
+    async def post(self,body: Optional[phone_authentication_method.PhoneAuthenticationMethod] = None, request_configuration: Optional[PhoneMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[phone_authentication_method.PhoneAuthenticationMethod]:
         """
         Add a new phone authentication method. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[phone_authentication_method.PhoneAuthenticationMethod]
         """
         if body is None:
@@ -83,7 +81,7 @@ class PhoneMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, phone_authentication_method.PhoneAuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, phone_authentication_method.PhoneAuthenticationMethod, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PhoneMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class PhoneMethodsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class PhoneMethodsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class PhoneMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class PhoneMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

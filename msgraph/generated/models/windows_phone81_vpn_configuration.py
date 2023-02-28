@@ -21,7 +21,7 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         Sets the authenticationMethod property value. VPN Authentication Method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -38,7 +38,7 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         Sets the bypassVpnOnCompanyWifi property value. Bypass VPN on company Wi-Fi.
         Args:
-            value: Value to set for the bypassVpnOnCompanyWifi property.
+            value: Value to set for the bypass_vpn_on_company_wifi property.
         """
         self._bypass_vpn_on_company_wifi = value
     
@@ -55,7 +55,7 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         Sets the bypassVpnOnHomeWifi property value. Bypass VPN on home Wi-Fi.
         Args:
-            value: Value to set for the bypassVpnOnHomeWifi property.
+            value: Value to set for the bypass_vpn_on_home_wifi property.
         """
         self._bypass_vpn_on_home_wifi = value
     
@@ -103,7 +103,7 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         Sets the dnsSuffixSearchList property value. DNS suffix search list.
         Args:
-            value: Value to set for the dnsSuffixSearchList property.
+            value: Value to set for the dns_suffix_search_list property.
         """
         self._dns_suffix_search_list = value
     
@@ -113,12 +113,12 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
-            "bypass_vpn_on_company_wifi": lambda n : setattr(self, 'bypass_vpn_on_company_wifi', n.get_bool_value()),
-            "bypass_vpn_on_home_wifi": lambda n : setattr(self, 'bypass_vpn_on_home_wifi', n.get_bool_value()),
-            "dns_suffix_search_list": lambda n : setattr(self, 'dns_suffix_search_list', n.get_collection_of_primitive_values(str)),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(windows_phone81_certificate_profile_base.WindowsPhone81CertificateProfileBase)),
-            "remember_user_credentials": lambda n : setattr(self, 'remember_user_credentials', n.get_bool_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
+            "bypassVpnOnCompanyWifi": lambda n : setattr(self, 'bypass_vpn_on_company_wifi', n.get_bool_value()),
+            "bypassVpnOnHomeWifi": lambda n : setattr(self, 'bypass_vpn_on_home_wifi', n.get_bool_value()),
+            "dnsSuffixSearchList": lambda n : setattr(self, 'dns_suffix_search_list', n.get_collection_of_primitive_values(str)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(windows_phone81_certificate_profile_base.WindowsPhone81CertificateProfileBase)),
+            "rememberUserCredentials": lambda n : setattr(self, 'remember_user_credentials', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -137,7 +137,7 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -154,7 +154,7 @@ class WindowsPhone81VpnConfiguration(windows81_vpn_configuration.Windows81VpnCon
         """
         Sets the rememberUserCredentials property value. Remember user credentials.
         Args:
-            value: Value to set for the rememberUserCredentials property.
+            value: Value to set for the remember_user_credentials property.
         """
         self._remember_user_credentials = value
     

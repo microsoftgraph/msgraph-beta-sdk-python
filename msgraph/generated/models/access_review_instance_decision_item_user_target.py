@@ -37,9 +37,9 @@ class AccessReviewInstanceDecisionItemUserTarget(access_review_instance_decision
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -71,7 +71,7 @@ class AccessReviewInstanceDecisionItemUserTarget(access_review_instance_decision
         """
         Sets the userDisplayName property value. The name of user.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -88,7 +88,7 @@ class AccessReviewInstanceDecisionItemUserTarget(access_review_instance_decision
         """
         Sets the userId property value. The identifier of user.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -105,7 +105,7 @@ class AccessReviewInstanceDecisionItemUserTarget(access_review_instance_decision
         """
         Sets the userPrincipalName property value. The user principal name.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

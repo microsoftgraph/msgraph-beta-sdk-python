@@ -61,7 +61,7 @@ class PersonName(item_facet.ItemFacet):
         """
         Sets the displayName property value. Provides an ordered rendering of firstName and lastName depending on the locale of the user or their device.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -88,10 +88,10 @@ class PersonName(item_facet.ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "first": lambda n : setattr(self, 'first', n.get_str_value()),
             "initials": lambda n : setattr(self, 'initials', n.get_str_value()),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "last": lambda n : setattr(self, 'last', n.get_str_value()),
             "maiden": lambda n : setattr(self, 'maiden', n.get_str_value()),
             "middle": lambda n : setattr(self, 'middle', n.get_str_value()),
@@ -134,7 +134,7 @@ class PersonName(item_facet.ItemFacet):
         """
         Sets the languageTag property value. Contains the name for the language (en-US, no-NB, en-AU) following IETF BCP47 format.
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     

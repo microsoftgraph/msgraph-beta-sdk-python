@@ -56,8 +56,8 @@ class AddKeyPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "key_credential": lambda n : setattr(self, 'key_credential', n.get_object_value(key_credential.KeyCredential)),
-            "password_credential": lambda n : setattr(self, 'password_credential', n.get_object_value(password_credential.PasswordCredential)),
+            "keyCredential": lambda n : setattr(self, 'key_credential', n.get_object_value(key_credential.KeyCredential)),
+            "passwordCredential": lambda n : setattr(self, 'password_credential', n.get_object_value(password_credential.PasswordCredential)),
             "proof": lambda n : setattr(self, 'proof', n.get_str_value()),
         }
         return fields
@@ -75,7 +75,7 @@ class AddKeyPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keyCredential property value. The keyCredential property
         Args:
-            value: Value to set for the keyCredential property.
+            value: Value to set for the key_credential property.
         """
         self._key_credential = value
     
@@ -92,7 +92,7 @@ class AddKeyPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the passwordCredential property value. The passwordCredential property
         Args:
-            value: Value to set for the passwordCredential property.
+            value: Value to set for the password_credential property.
         """
         self._password_credential = value
     

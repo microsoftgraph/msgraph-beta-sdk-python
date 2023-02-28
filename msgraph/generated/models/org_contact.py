@@ -40,7 +40,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the companyName property value. Name of the company that this organizational contact belong to. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values).
         Args:
-            value: Value to set for the companyName property.
+            value: Value to set for the company_name property.
         """
         self._company_name = value
     
@@ -131,7 +131,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the directReports property value. The contact's direct reports. (The users and contacts that have their manager property set to this contact.) Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the directReports property.
+            value: Value to set for the direct_reports property.
         """
         self._direct_reports = value
     
@@ -148,7 +148,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the displayName property value. Display name for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values), $search, and $orderBy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -159,24 +159,24 @@ class OrgContact(directory_object.DirectoryObject):
         """
         fields = {
             "addresses": lambda n : setattr(self, 'addresses', n.get_collection_of_object_values(physical_office_address.PhysicalOfficeAddress)),
-            "company_name": lambda n : setattr(self, 'company_name', n.get_str_value()),
+            "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
-            "direct_reports": lambda n : setattr(self, 'direct_reports', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "given_name": lambda n : setattr(self, 'given_name', n.get_str_value()),
-            "job_title": lambda n : setattr(self, 'job_title', n.get_str_value()),
+            "directReports": lambda n : setattr(self, 'direct_reports', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
+            "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "mail": lambda n : setattr(self, 'mail', n.get_str_value()),
-            "mail_nickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
+            "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
             "manager": lambda n : setattr(self, 'manager', n.get_object_value(directory_object.DirectoryObject)),
-            "member_of": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "on_premises_last_sync_date_time": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
-            "on_premises_provisioning_errors": lambda n : setattr(self, 'on_premises_provisioning_errors', n.get_collection_of_object_values(on_premises_provisioning_error.OnPremisesProvisioningError)),
-            "on_premises_sync_enabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
+            "memberOf": lambda n : setattr(self, 'member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "onPremisesLastSyncDateTime": lambda n : setattr(self, 'on_premises_last_sync_date_time', n.get_datetime_value()),
+            "onPremisesProvisioningErrors": lambda n : setattr(self, 'on_premises_provisioning_errors', n.get_collection_of_object_values(on_premises_provisioning_error.OnPremisesProvisioningError)),
+            "onPremisesSyncEnabled": lambda n : setattr(self, 'on_premises_sync_enabled', n.get_bool_value()),
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(phone.Phone)),
-            "proxy_addresses": lambda n : setattr(self, 'proxy_addresses', n.get_collection_of_primitive_values(str)),
+            "proxyAddresses": lambda n : setattr(self, 'proxy_addresses', n.get_collection_of_primitive_values(str)),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
-            "transitive_member_of": lambda n : setattr(self, 'transitive_member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
-            "transitive_reports": lambda n : setattr(self, 'transitive_reports', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "transitiveMemberOf": lambda n : setattr(self, 'transitive_member_of', n.get_collection_of_object_values(directory_object.DirectoryObject)),
+            "transitiveReports": lambda n : setattr(self, 'transitive_reports', n.get_collection_of_object_values(directory_object.DirectoryObject)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -195,7 +195,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the givenName property value. First name for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values).
         Args:
-            value: Value to set for the givenName property.
+            value: Value to set for the given_name property.
         """
         self._given_name = value
     
@@ -212,7 +212,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the jobTitle property value. Job title for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values).
         Args:
-            value: Value to set for the jobTitle property.
+            value: Value to set for the job_title property.
         """
         self._job_title = value
     
@@ -246,7 +246,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the mailNickname property value. Email alias (portion of email address pre-pending the @ symbol) for this organizational contact. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq for null values).
         Args:
-            value: Value to set for the mailNickname property.
+            value: Value to set for the mail_nickname property.
         """
         self._mail_nickname = value
     
@@ -280,7 +280,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the memberOf property value. Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the memberOf property.
+            value: Value to set for the member_of property.
         """
         self._member_of = value
     
@@ -297,7 +297,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the onPremisesLastSyncDateTime property value. Date and time when this organizational contact was last synchronized from on-premises AD. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ne, not, ge, le, in).
         Args:
-            value: Value to set for the onPremisesLastSyncDateTime property.
+            value: Value to set for the on_premises_last_sync_date_time property.
         """
         self._on_premises_last_sync_date_time = value
     
@@ -314,7 +314,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the onPremisesProvisioningErrors property value. List of any synchronization provisioning errors for this organizational contact. Supports $filter (eq, not for category and propertyCausingError), /$count eq 0, /$count ne 0.
         Args:
-            value: Value to set for the onPremisesProvisioningErrors property.
+            value: Value to set for the on_premises_provisioning_errors property.
         """
         self._on_premises_provisioning_errors = value
     
@@ -331,7 +331,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the onPremisesSyncEnabled property value. true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced and now mastered in Exchange; null if this object has never been synced from an on-premises directory (default).  Supports $filter (eq, ne, not, in, and eq for null values).
         Args:
-            value: Value to set for the onPremisesSyncEnabled property.
+            value: Value to set for the on_premises_sync_enabled property.
         """
         self._on_premises_sync_enabled = value
     
@@ -365,7 +365,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the proxyAddresses property value. For example: 'SMTP: bob@contoso.com', 'smtp: bob@sales.contoso.com'. The any operator is required for filter expressions on multi-valued properties. Supports $filter (eq, not, ge, le, startsWith, /$count eq 0, /$count ne 0).
         Args:
-            value: Value to set for the proxyAddresses property.
+            value: Value to set for the proxy_addresses property.
         """
         self._proxy_addresses = value
     
@@ -428,7 +428,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the transitiveMemberOf property value. The transitiveMemberOf property
         Args:
-            value: Value to set for the transitiveMemberOf property.
+            value: Value to set for the transitive_member_of property.
         """
         self._transitive_member_of = value
     
@@ -445,7 +445,7 @@ class OrgContact(directory_object.DirectoryObject):
         """
         Sets the transitiveReports property value. The transitive reports for a contact. Read-only.
         Args:
-            value: Value to set for the transitiveReports property.
+            value: Value to set for the transitive_reports property.
         """
         self._transitive_reports = value
     

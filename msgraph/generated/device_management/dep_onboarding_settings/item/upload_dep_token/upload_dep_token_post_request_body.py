@@ -34,7 +34,7 @@ class UploadDepTokenPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the appleId property value. The appleId property
         Args:
-            value: Value to set for the appleId property.
+            value: Value to set for the apple_id property.
         """
         self._apple_id = value
     
@@ -75,7 +75,7 @@ class UploadDepTokenPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the depToken property value. The depToken property
         Args:
-            value: Value to set for the depToken property.
+            value: Value to set for the dep_token property.
         """
         self._dep_token = value
     
@@ -85,8 +85,8 @@ class UploadDepTokenPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apple_id": lambda n : setattr(self, 'apple_id', n.get_str_value()),
-            "dep_token": lambda n : setattr(self, 'dep_token', n.get_str_value()),
+            "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
+            "depToken": lambda n : setattr(self, 'dep_token', n.get_str_value()),
         }
         return fields
     

@@ -56,9 +56,9 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_device_ids": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
-            "restore_point_date_time": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
-            "time_range": lambda n : setattr(self, 'time_range', n.get_enum_value(restore_time_range.RestoreTimeRange)),
+            "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
+            "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
+            "timeRange": lambda n : setattr(self, 'time_range', n.get_enum_value(restore_time_range.RestoreTimeRange)),
         }
         return fields
     
@@ -75,7 +75,7 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceIds property value. The managedDeviceIds property
         Args:
-            value: Value to set for the managedDeviceIds property.
+            value: Value to set for the managed_device_ids property.
         """
         self._managed_device_ids = value
     
@@ -92,7 +92,7 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the restorePointDateTime property value. The restorePointDateTime property
         Args:
-            value: Value to set for the restorePointDateTime property.
+            value: Value to set for the restore_point_date_time property.
         """
         self._restore_point_date_time = value
     
@@ -122,7 +122,7 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the timeRange property value. The timeRange property
         Args:
-            value: Value to set for the timeRange property.
+            value: Value to set for the time_range property.
         """
         self._time_range = value
     

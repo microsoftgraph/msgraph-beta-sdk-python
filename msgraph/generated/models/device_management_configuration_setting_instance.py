@@ -59,8 +59,8 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_definition_id": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
-            "setting_instance_template_reference": lambda n : setattr(self, 'setting_instance_template_reference', n.get_object_value(device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference)),
+            "settingDefinitionId": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
+            "settingInstanceTemplateReference": lambda n : setattr(self, 'setting_instance_template_reference', n.get_object_value(device_management_configuration_setting_instance_template_reference.DeviceManagementConfigurationSettingInstanceTemplateReference)),
         }
         return fields
     
@@ -77,7 +77,7 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -107,7 +107,7 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         """
         Sets the settingDefinitionId property value. Setting Definition Id
         Args:
-            value: Value to set for the settingDefinitionId property.
+            value: Value to set for the setting_definition_id property.
         """
         self._setting_definition_id = value
     
@@ -124,7 +124,7 @@ class DeviceManagementConfigurationSettingInstance(AdditionalDataHolder, Parsabl
         """
         Sets the settingInstanceTemplateReference property value. Setting Instance Template Reference
         Args:
-            value: Value to set for the settingInstanceTemplateReference property.
+            value: Value to set for the setting_instance_template_reference property.
         """
         self._setting_instance_template_reference = value
     

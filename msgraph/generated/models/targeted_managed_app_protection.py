@@ -22,7 +22,7 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         """
         Sets the appGroupType property value. Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
         Args:
-            value: Value to set for the appGroupType property.
+            value: Value to set for the app_group_type property.
         """
         self._app_group_type = value
     
@@ -76,10 +76,10 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_group_type": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
+            "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment)),
-            "is_assigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
-            "targeted_app_management_levels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(app_management_level.AppManagementLevel)),
+            "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
+            "targetedAppManagementLevels": lambda n : setattr(self, 'targeted_app_management_levels', n.get_enum_value(app_management_level.AppManagementLevel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -98,7 +98,7 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         """
         Sets the isAssigned property value. Indicates if the policy is deployed to any inclusion groups or not.
         Args:
-            value: Value to set for the isAssigned property.
+            value: Value to set for the is_assigned property.
         """
         self._is_assigned = value
     
@@ -129,7 +129,7 @@ class TargetedManagedAppProtection(managed_app_protection.ManagedAppProtection):
         """
         Sets the targetedAppManagementLevels property value. Management levels for apps
         Args:
-            value: Value to set for the targetedAppManagementLevels property.
+            value: Value to set for the targeted_app_management_levels property.
         """
         self._targeted_app_management_levels = value
     

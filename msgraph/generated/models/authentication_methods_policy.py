@@ -5,6 +5,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
+authentication_methods_policy_migration_state = lazy_import('msgraph.generated.models.authentication_methods_policy_migration_state')
 entity = lazy_import('msgraph.generated.models.entity')
 registration_enforcement = lazy_import('msgraph.generated.models.registration_enforcement')
 
@@ -22,7 +23,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
         Args:
-            value: Value to set for the authenticationMethodConfigurations property.
+            value: Value to set for the authentication_method_configurations property.
         """
         self._authentication_method_configurations = value
     
@@ -41,6 +42,8 @@ class AuthenticationMethodsPolicy(entity.Entity):
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+        self._policy_migration_state: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState] = None
         # The version of the policy in use.
         self._policy_version: Optional[str] = None
         # Days before the user will be asked to reconfirm their method.
@@ -90,7 +93,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the displayName property value. The name of the policy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -100,13 +103,14 @@ class AuthenticationMethodsPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method_configurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(authentication_method_configuration.AuthenticationMethodConfiguration)),
+            "authenticationMethodConfigurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(authentication_method_configuration.AuthenticationMethodConfiguration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "policy_version": lambda n : setattr(self, 'policy_version', n.get_str_value()),
-            "reconfirmation_in_days": lambda n : setattr(self, 'reconfirmation_in_days', n.get_int_value()),
-            "registration_enforcement": lambda n : setattr(self, 'registration_enforcement', n.get_object_value(registration_enforcement.RegistrationEnforcement)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "policyMigrationState": lambda n : setattr(self, 'policy_migration_state', n.get_enum_value(authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState)),
+            "policyVersion": lambda n : setattr(self, 'policy_version', n.get_str_value()),
+            "reconfirmationInDays": lambda n : setattr(self, 'reconfirmation_in_days', n.get_int_value()),
+            "registrationEnforcement": lambda n : setattr(self, 'registration_enforcement', n.get_object_value(registration_enforcement.RegistrationEnforcement)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,9 +129,26 @@ class AuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time of the last update to the policy.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
+    
+    @property
+    def policy_migration_state(self,) -> Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState]:
+        """
+        Gets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+        Returns: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState]
+        """
+        return self._policy_migration_state
+    
+    @policy_migration_state.setter
+    def policy_migration_state(self,value: Optional[authentication_methods_policy_migration_state.AuthenticationMethodsPolicyMigrationState] = None) -> None:
+        """
+        Sets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authenication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+        Args:
+            value: Value to set for the policy_migration_state property.
+        """
+        self._policy_migration_state = value
     
     @property
     def policy_version(self,) -> Optional[str]:
@@ -142,7 +163,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the policyVersion property value. The version of the policy in use.
         Args:
-            value: Value to set for the policyVersion property.
+            value: Value to set for the policy_version property.
         """
         self._policy_version = value
     
@@ -159,7 +180,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the reconfirmationInDays property value. Days before the user will be asked to reconfirm their method.
         Args:
-            value: Value to set for the reconfirmationInDays property.
+            value: Value to set for the reconfirmation_in_days property.
         """
         self._reconfirmation_in_days = value
     
@@ -176,7 +197,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the registrationEnforcement property value. Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
         Args:
-            value: Value to set for the registrationEnforcement property.
+            value: Value to set for the registration_enforcement property.
         """
         self._registration_enforcement = value
     
@@ -193,6 +214,7 @@ class AuthenticationMethodsPolicy(entity.Entity):
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
+        writer.write_enum_value("policyMigrationState", self.policy_migration_state)
         writer.write_str_value("policyVersion", self.policy_version)
         writer.write_int_value("reconfirmationInDays", self.reconfirmation_in_days)
         writer.write_object_value("registrationEnforcement", self.registration_enforcement)

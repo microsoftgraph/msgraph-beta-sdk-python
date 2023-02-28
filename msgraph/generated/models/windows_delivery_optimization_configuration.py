@@ -25,7 +25,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the backgroundDownloadFromHttpDelayInSeconds property value. Specifies number of seconds to delay an HTTP source in a background download that is allowed to use peer-to-peer. Valid values 0 to 4294967295
         Args:
-            value: Value to set for the backgroundDownloadFromHttpDelayInSeconds property.
+            value: Value to set for the background_download_from_http_delay_in_seconds property.
         """
         self._background_download_from_http_delay_in_seconds = value
     
@@ -42,7 +42,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the bandwidthMode property value. Specifies foreground and background bandwidth usage using percentages, absolutes, or hours.
         Args:
-            value: Value to set for the bandwidthMode property.
+            value: Value to set for the bandwidth_mode property.
         """
         self._bandwidth_mode = value
     
@@ -59,7 +59,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds property value. Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a background download. Valid values 0 to 2592000.
         Args:
-            value: Value to set for the cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds property.
+            value: Value to set for the cache_server_background_download_fallback_to_http_delay_in_seconds property.
         """
         self._cache_server_background_download_fallback_to_http_delay_in_seconds = value
     
@@ -76,7 +76,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the cacheServerForegroundDownloadFallbackToHttpDelayInSeconds property value. Specifies number of seconds to delay a fall back from cache servers to an HTTP source for a foreground download. Valid values 0 to 2592000.​
         Args:
-            value: Value to set for the cacheServerForegroundDownloadFallbackToHttpDelayInSeconds property.
+            value: Value to set for the cache_server_foreground_download_fallback_to_http_delay_in_seconds property.
         """
         self._cache_server_foreground_download_fallback_to_http_delay_in_seconds = value
     
@@ -93,7 +93,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the cacheServerHostNames property value. Specifies cache servers host names.
         Args:
-            value: Value to set for the cacheServerHostNames property.
+            value: Value to set for the cache_server_host_names property.
         """
         self._cache_server_host_names = value
     
@@ -163,7 +163,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the deliveryOptimizationMode property value. Delivery optimization mode for peer distribution
         Args:
-            value: Value to set for the deliveryOptimizationMode property.
+            value: Value to set for the delivery_optimization_mode property.
         """
         self._delivery_optimization_mode = value
     
@@ -180,7 +180,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the foregroundDownloadFromHttpDelayInSeconds property value. Specifies number of seconds to delay an HTTP source in a foreground download that is allowed to use peer-to-peer (0-86400). Valid values 0 to 86400
         Args:
-            value: Value to set for the foregroundDownloadFromHttpDelayInSeconds property.
+            value: Value to set for the foreground_download_from_http_delay_in_seconds property.
         """
         self._foreground_download_from_http_delay_in_seconds = value
     
@@ -190,23 +190,23 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "background_download_from_http_delay_in_seconds": lambda n : setattr(self, 'background_download_from_http_delay_in_seconds', n.get_int_value()),
-            "bandwidth_mode": lambda n : setattr(self, 'bandwidth_mode', n.get_object_value(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth)),
-            "cache_server_background_download_fallback_to_http_delay_in_seconds": lambda n : setattr(self, 'cache_server_background_download_fallback_to_http_delay_in_seconds', n.get_int_value()),
-            "cache_server_foreground_download_fallback_to_http_delay_in_seconds": lambda n : setattr(self, 'cache_server_foreground_download_fallback_to_http_delay_in_seconds', n.get_int_value()),
-            "cache_server_host_names": lambda n : setattr(self, 'cache_server_host_names', n.get_collection_of_primitive_values(str)),
-            "delivery_optimization_mode": lambda n : setattr(self, 'delivery_optimization_mode', n.get_enum_value(windows_delivery_optimization_mode.WindowsDeliveryOptimizationMode)),
-            "foreground_download_from_http_delay_in_seconds": lambda n : setattr(self, 'foreground_download_from_http_delay_in_seconds', n.get_int_value()),
-            "group_id_source": lambda n : setattr(self, 'group_id_source', n.get_object_value(delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource)),
-            "maximum_cache_age_in_days": lambda n : setattr(self, 'maximum_cache_age_in_days', n.get_int_value()),
-            "maximum_cache_size": lambda n : setattr(self, 'maximum_cache_size', n.get_object_value(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize)),
-            "minimum_battery_percentage_allowed_to_upload": lambda n : setattr(self, 'minimum_battery_percentage_allowed_to_upload', n.get_int_value()),
-            "minimum_disk_size_allowed_to_peer_in_gigabytes": lambda n : setattr(self, 'minimum_disk_size_allowed_to_peer_in_gigabytes', n.get_int_value()),
-            "minimum_file_size_to_cache_in_megabytes": lambda n : setattr(self, 'minimum_file_size_to_cache_in_megabytes', n.get_int_value()),
-            "minimum_ram_allowed_to_peer_in_gigabytes": lambda n : setattr(self, 'minimum_ram_allowed_to_peer_in_gigabytes', n.get_int_value()),
-            "modify_cache_location": lambda n : setattr(self, 'modify_cache_location', n.get_str_value()),
-            "restrict_peer_selection_by": lambda n : setattr(self, 'restrict_peer_selection_by', n.get_enum_value(delivery_optimization_restrict_peer_selection_by_options.DeliveryOptimizationRestrictPeerSelectionByOptions)),
-            "vpn_peer_caching": lambda n : setattr(self, 'vpn_peer_caching', n.get_enum_value(enablement.Enablement)),
+            "backgroundDownloadFromHttpDelayInSeconds": lambda n : setattr(self, 'background_download_from_http_delay_in_seconds', n.get_int_value()),
+            "bandwidthMode": lambda n : setattr(self, 'bandwidth_mode', n.get_object_value(delivery_optimization_bandwidth.DeliveryOptimizationBandwidth)),
+            "cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds": lambda n : setattr(self, 'cache_server_background_download_fallback_to_http_delay_in_seconds', n.get_int_value()),
+            "cacheServerForegroundDownloadFallbackToHttpDelayInSeconds": lambda n : setattr(self, 'cache_server_foreground_download_fallback_to_http_delay_in_seconds', n.get_int_value()),
+            "cacheServerHostNames": lambda n : setattr(self, 'cache_server_host_names', n.get_collection_of_primitive_values(str)),
+            "deliveryOptimizationMode": lambda n : setattr(self, 'delivery_optimization_mode', n.get_enum_value(windows_delivery_optimization_mode.WindowsDeliveryOptimizationMode)),
+            "foregroundDownloadFromHttpDelayInSeconds": lambda n : setattr(self, 'foreground_download_from_http_delay_in_seconds', n.get_int_value()),
+            "groupIdSource": lambda n : setattr(self, 'group_id_source', n.get_object_value(delivery_optimization_group_id_source.DeliveryOptimizationGroupIdSource)),
+            "maximumCacheAgeInDays": lambda n : setattr(self, 'maximum_cache_age_in_days', n.get_int_value()),
+            "maximumCacheSize": lambda n : setattr(self, 'maximum_cache_size', n.get_object_value(delivery_optimization_max_cache_size.DeliveryOptimizationMaxCacheSize)),
+            "minimumBatteryPercentageAllowedToUpload": lambda n : setattr(self, 'minimum_battery_percentage_allowed_to_upload', n.get_int_value()),
+            "minimumDiskSizeAllowedToPeerInGigabytes": lambda n : setattr(self, 'minimum_disk_size_allowed_to_peer_in_gigabytes', n.get_int_value()),
+            "minimumFileSizeToCacheInMegabytes": lambda n : setattr(self, 'minimum_file_size_to_cache_in_megabytes', n.get_int_value()),
+            "minimumRamAllowedToPeerInGigabytes": lambda n : setattr(self, 'minimum_ram_allowed_to_peer_in_gigabytes', n.get_int_value()),
+            "modifyCacheLocation": lambda n : setattr(self, 'modify_cache_location', n.get_str_value()),
+            "restrictPeerSelectionBy": lambda n : setattr(self, 'restrict_peer_selection_by', n.get_enum_value(delivery_optimization_restrict_peer_selection_by_options.DeliveryOptimizationRestrictPeerSelectionByOptions)),
+            "vpnPeerCaching": lambda n : setattr(self, 'vpn_peer_caching', n.get_enum_value(enablement.Enablement)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -225,7 +225,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the groupIdSource property value. Specifies to restrict peer selection to a specfic source.
         Args:
-            value: Value to set for the groupIdSource property.
+            value: Value to set for the group_id_source property.
         """
         self._group_id_source = value
     
@@ -242,7 +242,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the maximumCacheAgeInDays property value. Specifies the maximum time in days that each file is held in the Delivery Optimization cache after downloading successfully (0-3650). Valid values 0 to 3650
         Args:
-            value: Value to set for the maximumCacheAgeInDays property.
+            value: Value to set for the maximum_cache_age_in_days property.
         """
         self._maximum_cache_age_in_days = value
     
@@ -259,7 +259,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the maximumCacheSize property value. Specifies the maximum cache size that Delivery Optimization either as a percentage or in GB.
         Args:
-            value: Value to set for the maximumCacheSize property.
+            value: Value to set for the maximum_cache_size property.
         """
         self._maximum_cache_size = value
     
@@ -276,7 +276,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the minimumBatteryPercentageAllowedToUpload property value. Specifies the minimum battery percentage to allow the device to upload data (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the minimumBatteryPercentageAllowedToUpload property.
+            value: Value to set for the minimum_battery_percentage_allowed_to_upload property.
         """
         self._minimum_battery_percentage_allowed_to_upload = value
     
@@ -293,7 +293,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the minimumDiskSizeAllowedToPeerInGigabytes property value. Specifies the minimum disk size in GB to use Peer Caching (1-100000). Valid values 1 to 100000
         Args:
-            value: Value to set for the minimumDiskSizeAllowedToPeerInGigabytes property.
+            value: Value to set for the minimum_disk_size_allowed_to_peer_in_gigabytes property.
         """
         self._minimum_disk_size_allowed_to_peer_in_gigabytes = value
     
@@ -310,7 +310,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the minimumFileSizeToCacheInMegabytes property value. Specifies the minimum content file size in MB enabled to use Peer Caching (1-100000). Valid values 1 to 100000
         Args:
-            value: Value to set for the minimumFileSizeToCacheInMegabytes property.
+            value: Value to set for the minimum_file_size_to_cache_in_megabytes property.
         """
         self._minimum_file_size_to_cache_in_megabytes = value
     
@@ -327,7 +327,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the minimumRamAllowedToPeerInGigabytes property value. Specifies the minimum RAM size in GB to use Peer Caching (1-100000). Valid values 1 to 100000
         Args:
-            value: Value to set for the minimumRamAllowedToPeerInGigabytes property.
+            value: Value to set for the minimum_ram_allowed_to_peer_in_gigabytes property.
         """
         self._minimum_ram_allowed_to_peer_in_gigabytes = value
     
@@ -344,7 +344,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the modifyCacheLocation property value. Specifies the drive that Delivery Optimization should use for its cache.
         Args:
-            value: Value to set for the modifyCacheLocation property.
+            value: Value to set for the modify_cache_location property.
         """
         self._modify_cache_location = value
     
@@ -361,7 +361,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the restrictPeerSelectionBy property value. Values to restrict peer selection by.
         Args:
-            value: Value to set for the restrictPeerSelectionBy property.
+            value: Value to set for the restrict_peer_selection_by property.
         """
         self._restrict_peer_selection_by = value
     
@@ -405,7 +405,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
         """
         Sets the vpnPeerCaching property value. Possible values of a property
         Args:
-            value: Value to set for the vpnPeerCaching property.
+            value: Value to set for the vpn_peer_caching property.
         """
         self._vpn_peer_caching = value
     

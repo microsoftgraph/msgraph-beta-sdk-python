@@ -68,7 +68,7 @@ class PersonAward(item_facet.ItemFacet):
         """
         Sets the displayName property value. Name of the award or honor.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -79,11 +79,11 @@ class PersonAward(item_facet.ItemFacet):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "issued_date": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
-            "issuing_authority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
+            "issuingAuthority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class PersonAward(item_facet.ItemFacet):
         """
         Sets the issuedDate property value. The date that the award or honor was granted.
         Args:
-            value: Value to set for the issuedDate property.
+            value: Value to set for the issued_date property.
         """
         self._issued_date = value
     
@@ -119,7 +119,7 @@ class PersonAward(item_facet.ItemFacet):
         """
         Sets the issuingAuthority property value. Authority which granted the award or honor.
         Args:
-            value: Value to set for the issuingAuthority property.
+            value: Value to set for the issuing_authority property.
         """
         self._issuing_authority = value
     
@@ -152,7 +152,7 @@ class PersonAward(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. URL referencing a thumbnail of the award or honor.
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     
@@ -169,7 +169,7 @@ class PersonAward(item_facet.ItemFacet):
         """
         Sets the webUrl property value. URL referencing the award or honor.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

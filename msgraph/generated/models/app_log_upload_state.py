@@ -1,10 +1,12 @@
 from enum import Enum
 
 class AppLogUploadState(Enum):
-    # Request is waiting to be processed or under processing
+    # Default. Indicates that request is waiting to be processed or under processing.
     Pending = "pending",
-    # Request is completed with file uploaded to Azure blob for download.
+    # Indicates that request is completed with file uploaded to Azure blob for download.
     Completed = "completed",
-    # Request finished processing and in error state.
+    # Indicates that request is completed with file uploaded to Azure blob for download.
     Failed = "failed",
+    # Evolvable enumeration sentinel value. Do not use.
+    UnknownFutureValue = "unknownFutureValue",
 

@@ -42,6 +42,7 @@ unfollow_request_builder = lazy_import('msgraph.generated.drives.item.items.item
 validate_permission_request_builder = lazy_import('msgraph.generated.drives.item.items.item.validate_permission.validate_permission_request_builder')
 versions_request_builder = lazy_import('msgraph.generated.drives.item.items.item.versions.versions_request_builder')
 drive_item_version_item_request_builder = lazy_import('msgraph.generated.drives.item.items.item.versions.item.drive_item_version_item_request_builder')
+workbook_request_builder = lazy_import('msgraph.generated.drives.item.items.item.workbook.workbook_request_builder')
 drive_item = lazy_import('msgraph.generated.models.drive_item')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -118,6 +119,13 @@ class DriveItemItemRequestBuilder():
         Provides operations to call the createUploadSession method.
         """
         return create_upload_session_request_builder.CreateUploadSessionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def extract_sensitivity_labels(self) -> extract_sensitivity_labels_request_builder.ExtractSensitivityLabelsRequestBuilder:
@@ -203,6 +211,13 @@ class DriveItemItemRequestBuilder():
         """
         return versions_request_builder.VersionsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def workbook(self) -> workbook_request_builder.WorkbookRequestBuilder:
+        """
+        Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.
+        """
+        return workbook_request_builder.WorkbookRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def activities_by_id(self,id: str) -> item_activity_o_l_d_item_request_builder.ItemActivityOLDItemRequestBuilder:
         """
         Provides operations to manage the activities property of the microsoft.graph.driveItem entity.
@@ -247,12 +262,11 @@ class DriveItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DriveItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property items for drives
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -263,14 +277,7 @@ class DriveItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
-    
-    def delta(self,) -> delta_request_builder.DeltaRequestBuilder:
-        """
-        Provides operations to call the delta method.
-        Returns: delta_request_builder.DeltaRequestBuilder
-        """
-        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def delta_with_token(self,token: Optional[str] = None) -> delta_with_token_request_builder.DeltaWithTokenRequestBuilder:
         """
@@ -283,12 +290,11 @@ class DriveItemItemRequestBuilder():
             raise Exception("token cannot be undefined")
         return delta_with_token_request_builder.DeltaWithTokenRequestBuilder(self.request_adapter, self.path_parameters, token)
     
-    async def get(self,request_configuration: Optional[DriveItemItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive_item.DriveItem]:
+    async def get(self,request_configuration: Optional[DriveItemItemRequestBuilderGetRequestConfiguration] = None) -> Optional[drive_item.DriveItem]:
         """
         All items contained in the drive. Read-only. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive_item.DriveItem]
         """
         request_info = self.to_get_request_information(
@@ -300,7 +306,7 @@ class DriveItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, error_mapping)
     
     def get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval(self,end_date_time: Optional[str] = None, interval: Optional[str] = None, start_date_time: Optional[str] = None) -> get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder:
         """
@@ -319,13 +325,12 @@ class DriveItemItemRequestBuilder():
             raise Exception("start_date_time cannot be undefined")
         return get_activities_by_interval_with_start_date_time_with_end_date_time_with_interval_request_builder.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, interval, startDateTime)
     
-    async def patch(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive_item.DriveItem]:
+    async def patch(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[DriveItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[drive_item.DriveItem]:
         """
         Update the navigation property items in drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive_item.DriveItem]
         """
         if body is None:
@@ -339,7 +344,7 @@ class DriveItemItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, error_mapping)
     
     def permissions_by_id(self,id: str) -> permission_item_request_builder.PermissionItemRequestBuilder:
         """
@@ -418,7 +423,7 @@ class DriveItemItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -439,7 +444,7 @@ class DriveItemItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -465,7 +470,7 @@ class DriveItemItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -504,7 +509,7 @@ class DriveItemItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -519,7 +524,7 @@ class DriveItemItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

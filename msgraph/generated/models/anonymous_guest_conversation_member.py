@@ -19,7 +19,7 @@ class AnonymousGuestConversationMember(conversation_member.ConversationMember):
         """
         Sets the anonymousGuestId property value. Unique ID that represents the user. Note: This ID can change if the user leaves and rejoins the meeting, or joins from a different device.
         Args:
-            value: Value to set for the anonymousGuestId property.
+            value: Value to set for the anonymous_guest_id property.
         """
         self._anonymous_guest_id = value
     
@@ -50,7 +50,7 @@ class AnonymousGuestConversationMember(conversation_member.ConversationMember):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "anonymous_guest_id": lambda n : setattr(self, 'anonymous_guest_id', n.get_str_value()),
+            "anonymousGuestId": lambda n : setattr(self, 'anonymous_guest_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

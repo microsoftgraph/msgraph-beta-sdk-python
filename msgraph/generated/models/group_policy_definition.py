@@ -42,7 +42,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the categoryPath property value. The localized full category path for the policy.
         Args:
-            value: Value to set for the categoryPath property.
+            value: Value to set for the category_path property.
         """
         self._category_path = value
     
@@ -59,7 +59,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the classType property value. Group Policy Definition Class Type.
         Args:
-            value: Value to set for the classType property.
+            value: Value to set for the class_type property.
         """
         self._class_type = value
     
@@ -130,7 +130,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the definitionFile property value. The group policy file associated with the definition.
         Args:
-            value: Value to set for the definitionFile property.
+            value: Value to set for the definition_file property.
         """
         self._definition_file = value
     
@@ -147,7 +147,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the displayName property value. The localized policy name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -164,7 +164,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the explainText property value. The localized explanation or help text associated with the policy. The default value is empty.
         Args:
-            value: Value to set for the explainText property.
+            value: Value to set for the explain_text property.
         """
         self._explain_text = value
     
@@ -175,21 +175,21 @@ class GroupPolicyDefinition(entity.Entity):
         """
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_object_value(group_policy_category.GroupPolicyCategory)),
-            "category_path": lambda n : setattr(self, 'category_path', n.get_str_value()),
-            "class_type": lambda n : setattr(self, 'class_type', n.get_enum_value(group_policy_definition_class_type.GroupPolicyDefinitionClassType)),
-            "definition_file": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "explain_text": lambda n : setattr(self, 'explain_text', n.get_str_value()),
-            "group_policy_category_id": lambda n : setattr(self, 'group_policy_category_id', n.get_object_value(Guid)),
-            "has_related_definitions": lambda n : setattr(self, 'has_related_definitions', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "min_device_csp_version": lambda n : setattr(self, 'min_device_csp_version', n.get_str_value()),
-            "min_user_csp_version": lambda n : setattr(self, 'min_user_csp_version', n.get_str_value()),
-            "next_version_definition": lambda n : setattr(self, 'next_version_definition', n.get_object_value(GroupPolicyDefinition)),
-            "policy_type": lambda n : setattr(self, 'policy_type', n.get_enum_value(group_policy_type.GroupPolicyType)),
+            "categoryPath": lambda n : setattr(self, 'category_path', n.get_str_value()),
+            "classType": lambda n : setattr(self, 'class_type', n.get_enum_value(group_policy_definition_class_type.GroupPolicyDefinitionClassType)),
+            "definitionFile": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "explainText": lambda n : setattr(self, 'explain_text', n.get_str_value()),
+            "groupPolicyCategoryId": lambda n : setattr(self, 'group_policy_category_id', n.get_object_value(Guid)),
+            "hasRelatedDefinitions": lambda n : setattr(self, 'has_related_definitions', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "minDeviceCspVersion": lambda n : setattr(self, 'min_device_csp_version', n.get_str_value()),
+            "minUserCspVersion": lambda n : setattr(self, 'min_user_csp_version', n.get_str_value()),
+            "nextVersionDefinition": lambda n : setattr(self, 'next_version_definition', n.get_object_value(GroupPolicyDefinition)),
+            "policyType": lambda n : setattr(self, 'policy_type', n.get_enum_value(group_policy_type.GroupPolicyType)),
             "presentations": lambda n : setattr(self, 'presentations', n.get_collection_of_object_values(group_policy_presentation.GroupPolicyPresentation)),
-            "previous_version_definition": lambda n : setattr(self, 'previous_version_definition', n.get_object_value(GroupPolicyDefinition)),
-            "supported_on": lambda n : setattr(self, 'supported_on', n.get_str_value()),
+            "previousVersionDefinition": lambda n : setattr(self, 'previous_version_definition', n.get_object_value(GroupPolicyDefinition)),
+            "supportedOn": lambda n : setattr(self, 'supported_on', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -209,7 +209,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the groupPolicyCategoryId property value. The category id of the parent category
         Args:
-            value: Value to set for the groupPolicyCategoryId property.
+            value: Value to set for the group_policy_category_id property.
         """
         self._group_policy_category_id = value
     
@@ -226,7 +226,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the hasRelatedDefinitions property value. Signifies whether or not there are related definitions to this definition
         Args:
-            value: Value to set for the hasRelatedDefinitions property.
+            value: Value to set for the has_related_definitions property.
         """
         self._has_related_definitions = value
     
@@ -243,7 +243,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -260,7 +260,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the minDeviceCspVersion property value. Minimum required CSP version for device configuration in this definition
         Args:
-            value: Value to set for the minDeviceCspVersion property.
+            value: Value to set for the min_device_csp_version property.
         """
         self._min_device_csp_version = value
     
@@ -277,7 +277,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the minUserCspVersion property value. Minimum required CSP version for user configuration in this definition
         Args:
-            value: Value to set for the minUserCspVersion property.
+            value: Value to set for the min_user_csp_version property.
         """
         self._min_user_csp_version = value
     
@@ -294,7 +294,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the nextVersionDefinition property value. Definition of the next version of this definition
         Args:
-            value: Value to set for the nextVersionDefinition property.
+            value: Value to set for the next_version_definition property.
         """
         self._next_version_definition = value
     
@@ -311,7 +311,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the policyType property value. Type of Group Policy File or Definition.
         Args:
-            value: Value to set for the policyType property.
+            value: Value to set for the policy_type property.
         """
         self._policy_type = value
     
@@ -345,7 +345,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the previousVersionDefinition property value. Definition of the previous version of this definition
         Args:
-            value: Value to set for the previousVersionDefinition property.
+            value: Value to set for the previous_version_definition property.
         """
         self._previous_version_definition = value
     
@@ -389,7 +389,7 @@ class GroupPolicyDefinition(entity.Entity):
         """
         Sets the supportedOn property value. Localized string used to specify what operating system or application version is affected by the policy.
         Args:
-            value: Value to set for the supportedOn property.
+            value: Value to set for the supported_on property.
         """
         self._supported_on = value
     

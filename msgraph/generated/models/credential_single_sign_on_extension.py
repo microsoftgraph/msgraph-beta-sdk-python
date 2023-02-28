@@ -83,7 +83,7 @@ class CredentialSingleSignOnExtension(single_sign_on_extension.SingleSignOnExten
         """
         Sets the extensionIdentifier property value. Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
         Args:
-            value: Value to set for the extensionIdentifier property.
+            value: Value to set for the extension_identifier property.
         """
         self._extension_identifier = value
     
@@ -95,9 +95,9 @@ class CredentialSingleSignOnExtension(single_sign_on_extension.SingleSignOnExten
         fields = {
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(key_typed_value_pair.KeyTypedValuePair)),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
-            "extension_identifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),
+            "extensionIdentifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
-            "team_identifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
+            "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -148,7 +148,7 @@ class CredentialSingleSignOnExtension(single_sign_on_extension.SingleSignOnExten
         """
         Sets the teamIdentifier property value. Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
         Args:
-            value: Value to set for the teamIdentifier property.
+            value: Value to set for the team_identifier property.
         """
         self._team_identifier = value
     

@@ -36,7 +36,7 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         """
         Sets the additionalInformation property value. Information about why the updateAllowedCombinations action was successful or failed.
         Args:
-            value: Value to set for the additionalInformation property.
+            value: Value to set for the additional_information property.
         """
         self._additional_information = value
     
@@ -53,7 +53,7 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         """
         Sets the conditionalAccessReferences property value. References to existing Conditional Access policies that use this authentication strength.
         Args:
-            value: Value to set for the conditionalAccessReferences property.
+            value: Value to set for the conditional_access_references property.
         """
         self._conditional_access_references = value
     
@@ -100,7 +100,7 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         """
         Sets the currentCombinations property value. The list of current authentication method combinations allowed by the authentication strength.
         Args:
-            value: Value to set for the currentCombinations property.
+            value: Value to set for the current_combinations property.
         """
         self._current_combinations = value
     
@@ -110,11 +110,11 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_information": lambda n : setattr(self, 'additional_information', n.get_str_value()),
-            "conditional_access_references": lambda n : setattr(self, 'conditional_access_references', n.get_collection_of_primitive_values(str)),
-            "current_combinations": lambda n : setattr(self, 'current_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
+            "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
+            "conditionalAccessReferences": lambda n : setattr(self, 'conditional_access_references', n.get_collection_of_primitive_values(str)),
+            "currentCombinations": lambda n : setattr(self, 'current_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "previous_combinations": lambda n : setattr(self, 'previous_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
+            "previousCombinations": lambda n : setattr(self, 'previous_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
         }
         return fields
     
@@ -131,7 +131,7 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -148,7 +148,7 @@ class UpdateAllowedCombinationsResult(AdditionalDataHolder, Parsable):
         """
         Sets the previousCombinations property value. The list of former authentication method combinations allowed by the authentication strength before they were updated through the updateAllowedCombinations action.
         Args:
-            value: Value to set for the previousCombinations property.
+            value: Value to set for the previous_combinations property.
         """
         self._previous_combinations = value
     

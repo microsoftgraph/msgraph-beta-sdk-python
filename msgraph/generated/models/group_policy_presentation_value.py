@@ -41,7 +41,7 @@ class GroupPolicyPresentationValue(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the object was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -70,7 +70,7 @@ class GroupPolicyPresentationValue(entity.Entity):
         """
         Sets the definitionValue property value. The group policy definition value associated with the presentation value.
         Args:
-            value: Value to set for the definitionValue property.
+            value: Value to set for the definition_value property.
         """
         self._definition_value = value
     
@@ -80,9 +80,9 @@ class GroupPolicyPresentationValue(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "definition_value": lambda n : setattr(self, 'definition_value', n.get_object_value(group_policy_definition_value.GroupPolicyDefinitionValue)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "definitionValue": lambda n : setattr(self, 'definition_value', n.get_object_value(group_policy_definition_value.GroupPolicyDefinitionValue)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "presentation": lambda n : setattr(self, 'presentation', n.get_object_value(group_policy_presentation.GroupPolicyPresentation)),
         }
         super_fields = super().get_field_deserializers()
@@ -102,7 +102,7 @@ class GroupPolicyPresentationValue(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the object was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

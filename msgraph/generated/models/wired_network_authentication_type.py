@@ -2,7 +2,7 @@ from enum import Enum
 
 class WiredNetworkAuthenticationType(Enum):
     # None
-    None_escaped = "none",
+    None_ = "none",
     # User Authentication
     User = "user",
     # Machine Authentication

@@ -36,7 +36,7 @@ class TypedEmailAddress(email_address.EmailAddress):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "other_label": lambda n : setattr(self, 'other_label', n.get_str_value()),
+            "otherLabel": lambda n : setattr(self, 'other_label', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(email_type.EmailType)),
         }
         super_fields = super().get_field_deserializers()
@@ -56,7 +56,7 @@ class TypedEmailAddress(email_address.EmailAddress):
         """
         Sets the otherLabel property value. To specify a custom type of email address, set type to other, and assign otherLabel to a custom string. For example, you may use a specific email address for your volunteer activities. Set type to other, and set otherLabel to a custom string such as Volunteer work.
         Args:
-            value: Value to set for the otherLabel property.
+            value: Value to set for the other_label property.
         """
         self._other_label = value
     

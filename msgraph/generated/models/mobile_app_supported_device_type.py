@@ -60,8 +60,8 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_operating_system_version": lambda n : setattr(self, 'maximum_operating_system_version', n.get_str_value()),
-            "minimum_operating_system_version": lambda n : setattr(self, 'minimum_operating_system_version', n.get_str_value()),
+            "maximumOperatingSystemVersion": lambda n : setattr(self, 'maximum_operating_system_version', n.get_str_value()),
+            "minimumOperatingSystemVersion": lambda n : setattr(self, 'minimum_operating_system_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(device_type.DeviceType)),
         }
@@ -80,7 +80,7 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
         """
         Sets the maximumOperatingSystemVersion property value. Maximum OS version
         Args:
-            value: Value to set for the maximumOperatingSystemVersion property.
+            value: Value to set for the maximum_operating_system_version property.
         """
         self._maximum_operating_system_version = value
     
@@ -97,7 +97,7 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
         """
         Sets the minimumOperatingSystemVersion property value. Minimum OS version
         Args:
-            value: Value to set for the minimumOperatingSystemVersion property.
+            value: Value to set for the minimum_operating_system_version property.
         """
         self._minimum_operating_system_version = value
     
@@ -114,7 +114,7 @@ class MobileAppSupportedDeviceType(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -60,12 +60,11 @@ class SignInsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sign_in_collection_response.SignInCollectionResponse]:
+    async def get(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None) -> Optional[sign_in_collection_response.SignInCollectionResponse]:
         """
         Get a list of signIn objects. The list contains the user sign-ins for your Azure Active Directory tenant. Sign-ins where a username and password are passed as part of authorization token, and successful federated sign-ins are currently included in the sign-in logs. The maximum and default page size is 1,000 objects and by default, the most recent sign-ins are returned first. Only sign-in events that occurred within the Azure Active Directory (Azure AD) default retention period are available.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sign_in_collection_response.SignInCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -77,15 +76,14 @@ class SignInsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sign_in_collection_response.SignInCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sign_in_collection_response.SignInCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[sign_in.SignIn] = None, request_configuration: Optional[SignInsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sign_in.SignIn]:
+    async def post(self,body: Optional[sign_in.SignIn] = None, request_configuration: Optional[SignInsRequestBuilderPostRequestConfiguration] = None) -> Optional[sign_in.SignIn]:
         """
         Create new navigation property to signIns for auditLogs
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sign_in.SignIn]
         """
         if body is None:
@@ -99,7 +97,7 @@ class SignInsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sign_in.SignIn, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sign_in.SignIn, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SignInsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,7 +110,7 @@ class SignInsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -133,7 +131,7 @@ class SignInsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -203,7 +201,7 @@ class SignInsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -218,7 +216,7 @@ class SignInsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

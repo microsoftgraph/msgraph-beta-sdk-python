@@ -38,7 +38,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the clientConfigurations property value. List of office Client configuration.
         Args:
-            value: Value to set for the clientConfigurations property.
+            value: Value to set for the client_configurations property.
         """
         self._client_configurations = value
     
@@ -76,10 +76,10 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_configurations": lambda n : setattr(self, 'client_configurations', n.get_collection_of_object_values(office_client_configuration.OfficeClientConfiguration)),
+            "clientConfigurations": lambda n : setattr(self, 'client_configurations', n.get_collection_of_object_values(office_client_configuration.OfficeClientConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_checkin_statuses": lambda n : setattr(self, 'tenant_checkin_statuses', n.get_collection_of_object_values(office_client_checkin_status.OfficeClientCheckinStatus)),
-            "tenant_user_checkin_summary": lambda n : setattr(self, 'tenant_user_checkin_summary', n.get_object_value(office_user_checkin_summary.OfficeUserCheckinSummary)),
+            "tenantCheckinStatuses": lambda n : setattr(self, 'tenant_checkin_statuses', n.get_collection_of_object_values(office_client_checkin_status.OfficeClientCheckinStatus)),
+            "tenantUserCheckinSummary": lambda n : setattr(self, 'tenant_user_checkin_summary', n.get_object_value(office_user_checkin_summary.OfficeUserCheckinSummary)),
         }
         return fields
     
@@ -96,7 +96,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -127,7 +127,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the tenantCheckinStatuses property value. List of office Client check-in status.
         Args:
-            value: Value to set for the tenantCheckinStatuses property.
+            value: Value to set for the tenant_checkin_statuses property.
         """
         self._tenant_checkin_statuses = value
     
@@ -144,7 +144,7 @@ class OfficeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the tenantUserCheckinSummary property value. Entity that describes tenant check-in statues
         Args:
-            value: Value to set for the tenantUserCheckinSummary property.
+            value: Value to set for the tenant_user_checkin_summary property.
         """
         self._tenant_user_checkin_summary = value
     

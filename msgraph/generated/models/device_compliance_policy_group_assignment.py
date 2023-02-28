@@ -46,7 +46,7 @@ class DeviceCompliancePolicyGroupAssignment(entity.Entity):
         """
         Sets the deviceCompliancePolicy property value. The navigation link to the  device compliance polic targeted.
         Args:
-            value: Value to set for the deviceCompliancePolicy property.
+            value: Value to set for the device_compliance_policy property.
         """
         self._device_compliance_policy = value
     
@@ -63,7 +63,7 @@ class DeviceCompliancePolicyGroupAssignment(entity.Entity):
         """
         Sets the excludeGroup property value. Indicates if this group is should be excluded. Defaults that the group should be included
         Args:
-            value: Value to set for the excludeGroup property.
+            value: Value to set for the exclude_group property.
         """
         self._exclude_group = value
     
@@ -73,9 +73,9 @@ class DeviceCompliancePolicyGroupAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_compliance_policy": lambda n : setattr(self, 'device_compliance_policy', n.get_object_value(device_compliance_policy.DeviceCompliancePolicy)),
-            "exclude_group": lambda n : setattr(self, 'exclude_group', n.get_bool_value()),
-            "target_group_id": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
+            "deviceCompliancePolicy": lambda n : setattr(self, 'device_compliance_policy', n.get_object_value(device_compliance_policy.DeviceCompliancePolicy)),
+            "excludeGroup": lambda n : setattr(self, 'exclude_group', n.get_bool_value()),
+            "targetGroupId": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -107,7 +107,7 @@ class DeviceCompliancePolicyGroupAssignment(entity.Entity):
         """
         Sets the targetGroupId property value. The Id of the AAD group we are targeting the device compliance policy to.
         Args:
-            value: Value to set for the targetGroupId property.
+            value: Value to set for the target_group_id property.
         """
         self._target_group_id = value
     

@@ -26,7 +26,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the accessTypes property value. The accessTypes property
         Args:
-            value: Value to set for the accessTypes property.
+            value: Value to set for the access_types property.
         """
         self._access_types = value
     
@@ -60,7 +60,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the baseUri property value. Base CSP Path
         Args:
-            value: Value to set for the baseUri property.
+            value: Value to set for the base_uri property.
         """
         self._base_uri = value
     
@@ -77,7 +77,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the categoryId property value. Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
         Args:
-            value: Value to set for the categoryId property.
+            value: Value to set for the category_id property.
         """
         self._category_id = value
     
@@ -167,7 +167,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the displayName property value. Display name of the item
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -177,22 +177,22 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_types": lambda n : setattr(self, 'access_types', n.get_enum_value(device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes)),
+            "accessTypes": lambda n : setattr(self, 'access_types', n.get_enum_value(device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes)),
             "applicability": lambda n : setattr(self, 'applicability', n.get_object_value(device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability)),
-            "base_uri": lambda n : setattr(self, 'base_uri', n.get_str_value()),
-            "category_id": lambda n : setattr(self, 'category_id', n.get_str_value()),
+            "baseUri": lambda n : setattr(self, 'base_uri', n.get_str_value()),
+            "categoryId": lambda n : setattr(self, 'category_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "help_text": lambda n : setattr(self, 'help_text', n.get_str_value()),
-            "info_urls": lambda n : setattr(self, 'info_urls', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "helpText": lambda n : setattr(self, 'help_text', n.get_str_value()),
+            "infoUrls": lambda n : setattr(self, 'info_urls', n.get_collection_of_primitive_values(str)),
             "keywords": lambda n : setattr(self, 'keywords', n.get_collection_of_primitive_values(str)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "occurrence": lambda n : setattr(self, 'occurrence', n.get_object_value(device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence)),
-            "offset_uri": lambda n : setattr(self, 'offset_uri', n.get_str_value()),
-            "referred_setting_information_list": lambda n : setattr(self, 'referred_setting_information_list', n.get_collection_of_object_values(device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation)),
-            "root_definition_id": lambda n : setattr(self, 'root_definition_id', n.get_str_value()),
-            "setting_usage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage)),
-            "ux_behavior": lambda n : setattr(self, 'ux_behavior', n.get_enum_value(device_management_configuration_control_type.DeviceManagementConfigurationControlType)),
+            "offsetUri": lambda n : setattr(self, 'offset_uri', n.get_str_value()),
+            "referredSettingInformationList": lambda n : setattr(self, 'referred_setting_information_list', n.get_collection_of_object_values(device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation)),
+            "rootDefinitionId": lambda n : setattr(self, 'root_definition_id', n.get_str_value()),
+            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage)),
+            "uxBehavior": lambda n : setattr(self, 'ux_behavior', n.get_enum_value(device_management_configuration_control_type.DeviceManagementConfigurationControlType)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility)),
         }
@@ -213,7 +213,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the helpText property value. Help text of the item
         Args:
-            value: Value to set for the helpText property.
+            value: Value to set for the help_text property.
         """
         self._help_text = value
     
@@ -230,7 +230,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the infoUrls property value. List of links more info for the setting can be found at
         Args:
-            value: Value to set for the infoUrls property.
+            value: Value to set for the info_urls property.
         """
         self._info_urls = value
     
@@ -298,7 +298,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the offsetUri property value. Offset CSP Path from Base
         Args:
-            value: Value to set for the offsetUri property.
+            value: Value to set for the offset_uri property.
         """
         self._offset_uri = value
     
@@ -315,7 +315,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the referredSettingInformationList property value. List of referred setting information.
         Args:
-            value: Value to set for the referredSettingInformationList property.
+            value: Value to set for the referred_setting_information_list property.
         """
         self._referred_setting_information_list = value
     
@@ -332,7 +332,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the rootDefinitionId property value. Root setting definition if the setting is a child setting.
         Args:
-            value: Value to set for the rootDefinitionId property.
+            value: Value to set for the root_definition_id property.
         """
         self._root_definition_id = value
     
@@ -377,7 +377,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the settingUsage property value. Supported setting types
         Args:
-            value: Value to set for the settingUsage property.
+            value: Value to set for the setting_usage property.
         """
         self._setting_usage = value
     
@@ -394,7 +394,7 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         Sets the uxBehavior property value. Setting control type representation in the UX
         Args:
-            value: Value to set for the uxBehavior property.
+            value: Value to set for the ux_behavior property.
         """
         self._ux_behavior = value
     

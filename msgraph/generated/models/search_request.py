@@ -43,7 +43,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the aggregationFilters property value. Contains one or more filters to obtain search results aggregated and filtered to a specific value of a field. Optional.Build this filter based on a prior search that aggregates by the same field. From the response of the prior search, identify the searchBucket that filters results to the specific value of the field, use the string in its aggregationFilterToken property, and build an aggregation filter string in the format '{field}:/'{aggregationFilterToken}/''. If multiple values for the same field need to be provided, use the strings in its aggregationFilterToken property and build an aggregation filter string in the format '{field}:or(/'{aggregationFilterToken1}/',/'{aggregationFilterToken2}/')'. For example, searching and aggregating drive items by file type returns a searchBucket for the file type docx in the response. You can conveniently use the aggregationFilterToken returned for this searchBucket in a subsequent search query and filter matches down to drive items of the docx file type. Example 1 and example 2 show the actual requests and responses.
         Args:
-            value: Value to set for the aggregationFilters property.
+            value: Value to set for the aggregation_filters property.
         """
         self._aggregation_filters = value
     
@@ -77,7 +77,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the collapseProperties property value. Contains the ordered collection of fields and limit to collapse results. Optional.
         Args:
-            value: Value to set for the collapseProperties property.
+            value: Value to set for the collapse_properties property.
         """
         self._collapse_properties = value
     
@@ -103,7 +103,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         # Contains the fields to be returned for each resource object specified in entityTypes, allowing customization of the fields returned by default otherwise, including additional fields such as custom managed properties from SharePoint and OneDrive, or custom fields in externalItem from content that Microsoft Graph connectors bring in. The fields property can be using the semantic labels applied to properties. For example, if a property is label as title, you can retrieve it using the following syntax : label_title.Optional.
         self._fields: Optional[List[str]] = None
         # Specifies the offset for the search results. Offset 0 returns the very first result. Optional.
-        self._from_escaped: Optional[int] = None
+        self._from_: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
         # The query property
@@ -138,7 +138,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the contentSources property value. Contains the connection to be targeted. Respects the following format : /external/connections/connectionid where connectionid is the ConnectionId defined in the Connectors Administration.  Note: contentSource is only applicable when entityType=externalItem. Optional.
         Args:
-            value: Value to set for the contentSources property.
+            value: Value to set for the content_sources property.
         """
         self._content_sources = value
     
@@ -167,7 +167,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the enableTopResults property value. This triggers hybrid sort for messages: the first 3 messages are the most relevant. This property is only applicable to entityType=message. Optional.
         Args:
-            value: Value to set for the enableTopResults property.
+            value: Value to set for the enable_top_results property.
         """
         self._enable_top_results = value
     
@@ -184,7 +184,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the entityTypes property value. One or more types of resources expected in the response. Possible values are: list, site, listItem, message, event, drive, driveItem, person, externalItem, acronym, bookmark, chatMessage. For details about combinations of two or more entity types that are supported in the same search request, see known limitations. Required.
         Args:
-            value: Value to set for the entityTypes property.
+            value: Value to set for the entity_types property.
         """
         self._entity_types = value
     
@@ -206,21 +206,21 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         self._fields = value
     
     @property
-    def from_escaped(self,) -> Optional[int]:
+    def from_(self,) -> Optional[int]:
         """
         Gets the from property value. Specifies the offset for the search results. Offset 0 returns the very first result. Optional.
         Returns: Optional[int]
         """
-        return self._from_escaped
+        return self._from_
     
-    @from_escaped.setter
-    def from_escaped(self,value: Optional[int] = None) -> None:
+    @from_.setter
+    def from_(self,value: Optional[int] = None) -> None:
         """
         Sets the from property value. Specifies the offset for the search results. Offset 0 returns the very first result. Optional.
         Args:
-            value: Value to set for the from_escaped property.
+            value: Value to set for the from_ property.
         """
-        self._from_escaped = value
+        self._from_ = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -228,24 +228,24 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "aggregation_filters": lambda n : setattr(self, 'aggregation_filters', n.get_collection_of_primitive_values(str)),
             "aggregations": lambda n : setattr(self, 'aggregations', n.get_collection_of_object_values(aggregation_option.AggregationOption)),
-            "collapse_properties": lambda n : setattr(self, 'collapse_properties', n.get_collection_of_object_values(collapse_property.CollapseProperty)),
-            "content_sources": lambda n : setattr(self, 'content_sources', n.get_collection_of_primitive_values(str)),
-            "enable_top_results": lambda n : setattr(self, 'enable_top_results', n.get_bool_value()),
-            "entity_types": lambda n : setattr(self, 'entity_types', n.get_collection_of_enum_values(entity_type.EntityType)),
+            "aggregationFilters": lambda n : setattr(self, 'aggregation_filters', n.get_collection_of_primitive_values(str)),
+            "collapseProperties": lambda n : setattr(self, 'collapse_properties', n.get_collection_of_object_values(collapse_property.CollapseProperty)),
+            "contentSources": lambda n : setattr(self, 'content_sources', n.get_collection_of_primitive_values(str)),
+            "enableTopResults": lambda n : setattr(self, 'enable_top_results', n.get_bool_value()),
+            "entityTypes": lambda n : setattr(self, 'entity_types', n.get_collection_of_enum_values(entity_type.EntityType)),
             "fields": lambda n : setattr(self, 'fields', n.get_collection_of_primitive_values(str)),
-            "from": lambda n : setattr(self, 'from_escaped', n.get_int_value()),
+            "from": lambda n : setattr(self, 'from_', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "query": lambda n : setattr(self, 'query', n.get_object_value(search_query.SearchQuery)),
-            "query_alteration_options": lambda n : setattr(self, 'query_alteration_options', n.get_object_value(search_alteration_options.SearchAlterationOptions)),
+            "queryAlterationOptions": lambda n : setattr(self, 'query_alteration_options', n.get_object_value(search_alteration_options.SearchAlterationOptions)),
             "region": lambda n : setattr(self, 'region', n.get_str_value()),
-            "result_template_options": lambda n : setattr(self, 'result_template_options', n.get_object_value(result_template_option.ResultTemplateOption)),
-            "share_point_one_drive_options": lambda n : setattr(self, 'share_point_one_drive_options', n.get_object_value(share_point_one_drive_options.SharePointOneDriveOptions)),
+            "resultTemplateOptions": lambda n : setattr(self, 'result_template_options', n.get_object_value(result_template_option.ResultTemplateOption)),
+            "sharePointOneDriveOptions": lambda n : setattr(self, 'share_point_one_drive_options', n.get_object_value(share_point_one_drive_options.SharePointOneDriveOptions)),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "sort_properties": lambda n : setattr(self, 'sort_properties', n.get_collection_of_object_values(sort_property.SortProperty)),
+            "sortProperties": lambda n : setattr(self, 'sort_properties', n.get_collection_of_object_values(sort_property.SortProperty)),
             "stored_fields": lambda n : setattr(self, 'stored_fields', n.get_collection_of_primitive_values(str)),
-            "trim_duplicates": lambda n : setattr(self, 'trim_duplicates', n.get_bool_value()),
+            "trimDuplicates": lambda n : setattr(self, 'trim_duplicates', n.get_bool_value()),
         }
         return fields
     
@@ -262,7 +262,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -296,7 +296,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the queryAlterationOptions property value. Provides query alteration options formatted as a JSON blob that contains two optional flags related to spelling correction. Optional.
         Args:
-            value: Value to set for the queryAlterationOptions property.
+            value: Value to set for the query_alteration_options property.
         """
         self._query_alteration_options = value
     
@@ -330,7 +330,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the resultTemplateOptions property value. Provides the search result templates options for rendering connectors search results.
         Args:
-            value: Value to set for the resultTemplateOptions property.
+            value: Value to set for the result_template_options property.
         """
         self._result_template_options = value
     
@@ -342,14 +342,14 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_collection_of_primitive_values("aggregationFilters", self.aggregation_filters)
         writer.write_collection_of_object_values("aggregations", self.aggregations)
+        writer.write_collection_of_primitive_values("aggregationFilters", self.aggregation_filters)
         writer.write_collection_of_object_values("collapseProperties", self.collapse_properties)
         writer.write_collection_of_primitive_values("contentSources", self.content_sources)
         writer.write_bool_value("enableTopResults", self.enable_top_results)
         writer.write_enum_value("entityTypes", self.entity_types)
         writer.write_collection_of_primitive_values("fields", self.fields)
-        writer.write_int_value("from", self.from_escaped)
+        writer.write_int_value("from", self.from_)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_object_value("query", self.query)
         writer.write_object_value("queryAlterationOptions", self.query_alteration_options)
@@ -375,7 +375,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the sharePointOneDriveOptions property value. Indicates the kind of contents to be searched when a search is performed using application permissions. Optional.
         Args:
-            value: Value to set for the sharePointOneDriveOptions property.
+            value: Value to set for the share_point_one_drive_options property.
         """
         self._share_point_one_drive_options = value
     
@@ -409,7 +409,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the sortProperties property value. Contains the ordered collection of fields and direction to sort results. There can be at most 5 sort properties in the collection. Optional.
         Args:
-            value: Value to set for the sortProperties property.
+            value: Value to set for the sort_properties property.
         """
         self._sort_properties = value
     
@@ -443,7 +443,7 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         """
         Sets the trimDuplicates property value. Indicates whether to trim away the duplicate SharePoint files from search results. Default value is false. Optional.
         Args:
-            value: Value to set for the trimDuplicates property.
+            value: Value to set for the trim_duplicates property.
         """
         self._trim_duplicates = value
     

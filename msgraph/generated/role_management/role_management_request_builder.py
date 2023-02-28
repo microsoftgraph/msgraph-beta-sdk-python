@@ -16,6 +16,7 @@ cloud_p_c_request_builder = lazy_import('msgraph.generated.role_management.cloud
 device_management_request_builder = lazy_import('msgraph.generated.role_management.device_management.device_management_request_builder')
 directory_request_builder = lazy_import('msgraph.generated.role_management.directory.directory_request_builder')
 entitlement_management_request_builder = lazy_import('msgraph.generated.role_management.entitlement_management.entitlement_management_request_builder')
+exchange_request_builder = lazy_import('msgraph.generated.role_management.exchange.exchange_request_builder')
 
 class RoleManagementRequestBuilder():
     """
@@ -49,6 +50,13 @@ class RoleManagementRequestBuilder():
         """
         return entitlement_management_request_builder.EntitlementManagementRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def exchange(self) -> exchange_request_builder.ExchangeRequestBuilder:
+        """
+        Provides operations to manage the exchange property of the microsoft.graph.roleManagement entity.
+        """
+        return exchange_request_builder.ExchangeRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new RoleManagementRequestBuilder and sets the default values.
@@ -67,12 +75,11 @@ class RoleManagementRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[RoleManagementRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_management.RoleManagement]:
+    async def get(self,request_configuration: Optional[RoleManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[role_management.RoleManagement]:
         """
         Get roleManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_management.RoleManagement]
         """
         request_info = self.to_get_request_information(
@@ -84,15 +91,14 @@ class RoleManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_management.RoleManagement, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_management.RoleManagement, error_mapping)
     
-    async def patch(self,body: Optional[role_management.RoleManagement] = None, request_configuration: Optional[RoleManagementRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[role_management.RoleManagement]:
+    async def patch(self,body: Optional[role_management.RoleManagement] = None, request_configuration: Optional[RoleManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[role_management.RoleManagement]:
         """
         Update roleManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[role_management.RoleManagement]
         """
         if body is None:
@@ -106,7 +112,7 @@ class RoleManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, role_management.RoleManagement, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, role_management.RoleManagement, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[RoleManagementRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -119,7 +125,7 @@ class RoleManagementRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -140,7 +146,7 @@ class RoleManagementRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -180,7 +186,7 @@ class RoleManagementRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -195,7 +201,7 @@ class RoleManagementRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

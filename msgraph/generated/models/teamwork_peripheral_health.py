@@ -76,7 +76,7 @@ class TeamworkPeripheralHealth(AdditionalDataHolder, Parsable):
         """
         fields = {
             "connection": lambda n : setattr(self, 'connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
-            "is_optional": lambda n : setattr(self, 'is_optional', n.get_bool_value()),
+            "isOptional": lambda n : setattr(self, 'is_optional', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "peripheral": lambda n : setattr(self, 'peripheral', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
         }
@@ -95,7 +95,7 @@ class TeamworkPeripheralHealth(AdditionalDataHolder, Parsable):
         """
         Sets the isOptional property value. True if the peripheral is optional. Used for health computation.
         Args:
-            value: Value to set for the isOptional property.
+            value: Value to set for the is_optional property.
         """
         self._is_optional = value
     
@@ -112,7 +112,7 @@ class TeamworkPeripheralHealth(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

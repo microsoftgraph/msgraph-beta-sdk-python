@@ -35,12 +35,11 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property credentialUserRegistrationDetails for print
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[credential_user_registration_details.CredentialUserRegistrationDetails]:
+    async def get(self,request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderGetRequestConfiguration] = None) -> Optional[credential_user_registration_details.CredentialUserRegistrationDetails]:
         """
         Details of the usage of self-service password reset and multi-factor authentication (MFA) for all registered users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[credential_user_registration_details.CredentialUserRegistrationDetails]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, credential_user_registration_details.CredentialUserRegistrationDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, credential_user_registration_details.CredentialUserRegistrationDetails, error_mapping)
     
-    async def patch(self,body: Optional[credential_user_registration_details.CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[credential_user_registration_details.CredentialUserRegistrationDetails]:
+    async def patch(self,body: Optional[credential_user_registration_details.CredentialUserRegistrationDetails] = None, request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[credential_user_registration_details.CredentialUserRegistrationDetails]:
         """
         Update the navigation property credentialUserRegistrationDetails in print
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[credential_user_registration_details.CredentialUserRegistrationDetails]
         """
         if body is None:
@@ -92,7 +89,7 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, credential_user_registration_details.CredentialUserRegistrationDetails, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, credential_user_registration_details.CredentialUserRegistrationDetails, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CredentialUserRegistrationDetailsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -121,7 +118,7 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -142,7 +139,7 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -155,7 +152,7 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -194,7 +191,7 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -209,7 +206,7 @@ class CredentialUserRegistrationDetailsItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

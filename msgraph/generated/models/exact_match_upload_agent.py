@@ -44,7 +44,7 @@ class ExactMatchUploadAgent(entity.Entity):
         """
         Sets the creationDateTime property value. The creationDateTime property
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -71,7 +71,7 @@ class ExactMatchUploadAgent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

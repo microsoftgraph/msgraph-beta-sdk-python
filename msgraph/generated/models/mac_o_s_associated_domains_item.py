@@ -37,7 +37,7 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
         """
         Sets the applicationIdentifier property value. The application identifier of the app to associate domains with.
         Args:
-            value: Value to set for the applicationIdentifier property.
+            value: Value to set for the application_identifier property.
         """
         self._application_identifier = value
     
@@ -82,7 +82,7 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
         """
         Sets the directDownloadsEnabled property value. Determines whether data should be downloaded directly or via a CDN.
         Args:
-            value: Value to set for the directDownloadsEnabled property.
+            value: Value to set for the direct_downloads_enabled property.
         """
         self._direct_downloads_enabled = value
     
@@ -109,8 +109,8 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_identifier": lambda n : setattr(self, 'application_identifier', n.get_str_value()),
-            "direct_downloads_enabled": lambda n : setattr(self, 'direct_downloads_enabled', n.get_bool_value()),
+            "applicationIdentifier": lambda n : setattr(self, 'application_identifier', n.get_str_value()),
+            "directDownloadsEnabled": lambda n : setattr(self, 'direct_downloads_enabled', n.get_bool_value()),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -129,7 +129,7 @@ class MacOSAssociatedDomainsItem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

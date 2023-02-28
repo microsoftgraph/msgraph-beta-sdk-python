@@ -34,7 +34,7 @@ class AssignResourceAccountToDevicePostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the addressableUserName property value. The addressableUserName property
         Args:
-            value: Value to set for the addressableUserName property.
+            value: Value to set for the addressable_user_name property.
         """
         self._addressable_user_name = value
     
@@ -70,9 +70,9 @@ class AssignResourceAccountToDevicePostRequestBody(AdditionalDataHolder, Parsabl
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "addressable_user_name": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
-            "resource_account_name": lambda n : setattr(self, 'resource_account_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "addressableUserName": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
+            "resourceAccountName": lambda n : setattr(self, 'resource_account_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class AssignResourceAccountToDevicePostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the resourceAccountName property value. The resourceAccountName property
         Args:
-            value: Value to set for the resourceAccountName property.
+            value: Value to set for the resource_account_name property.
         """
         self._resource_account_name = value
     
@@ -119,7 +119,7 @@ class AssignResourceAccountToDevicePostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the userPrincipalName property value. The userPrincipalName property
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

@@ -27,6 +27,13 @@ class PrivilegedApprovalRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def my_requests(self) -> my_requests_request_builder.MyRequestsRequestBuilder:
+        """
+        Provides operations to call the myRequests method.
+        """
+        return my_requests_request_builder.MyRequestsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedApprovalRequestBuilder and sets the default values.
@@ -45,12 +52,11 @@ class PrivilegedApprovalRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]:
         """
         Retrieve a list of privilegedapproval objects. To filter the results from the query, use the standard OData ``$filter`` expressions in the URIs.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_approval_collection_response.PrivilegedApprovalCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,22 +68,14 @@ class PrivilegedApprovalRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_approval_collection_response.PrivilegedApprovalCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_approval_collection_response.PrivilegedApprovalCollectionResponse, error_mapping)
     
-    def my_requests(self,) -> my_requests_request_builder.MyRequestsRequestBuilder:
-        """
-        Provides operations to call the myRequests method.
-        Returns: my_requests_request_builder.MyRequestsRequestBuilder
-        """
-        return my_requests_request_builder.MyRequestsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_approval.PrivilegedApproval]:
+    async def post(self,body: Optional[privileged_approval.PrivilegedApproval] = None, request_configuration: Optional[PrivilegedApprovalRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_approval.PrivilegedApproval]:
         """
         Use this API to create a new privilegedApproval.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_approval.PrivilegedApproval]
         """
         if body is None:
@@ -91,7 +89,7 @@ class PrivilegedApprovalRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_approval.PrivilegedApproval, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_approval.PrivilegedApproval, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedApprovalRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +102,7 @@ class PrivilegedApprovalRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -125,7 +123,7 @@ class PrivilegedApprovalRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +193,7 @@ class PrivilegedApprovalRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -210,7 +208,7 @@ class PrivilegedApprovalRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

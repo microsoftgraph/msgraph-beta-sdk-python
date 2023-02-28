@@ -21,7 +21,7 @@ class WindowsManagementApp(entity.Entity):
         """
         Sets the availableVersion property value. Windows management app available version.
         Args:
-            value: Value to set for the availableVersion property.
+            value: Value to set for the available_version property.
         """
         self._available_version = value
     
@@ -59,10 +59,10 @@ class WindowsManagementApp(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "available_version": lambda n : setattr(self, 'available_version', n.get_str_value()),
-            "health_states": lambda n : setattr(self, 'health_states', n.get_collection_of_object_values(windows_management_app_health_state.WindowsManagementAppHealthState)),
-            "managed_installer": lambda n : setattr(self, 'managed_installer', n.get_enum_value(managed_installer_status.ManagedInstallerStatus)),
-            "managed_installer_configured_date_time": lambda n : setattr(self, 'managed_installer_configured_date_time', n.get_str_value()),
+            "availableVersion": lambda n : setattr(self, 'available_version', n.get_str_value()),
+            "healthStates": lambda n : setattr(self, 'health_states', n.get_collection_of_object_values(windows_management_app_health_state.WindowsManagementAppHealthState)),
+            "managedInstaller": lambda n : setattr(self, 'managed_installer', n.get_enum_value(managed_installer_status.ManagedInstallerStatus)),
+            "managedInstallerConfiguredDateTime": lambda n : setattr(self, 'managed_installer_configured_date_time', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -81,7 +81,7 @@ class WindowsManagementApp(entity.Entity):
         """
         Sets the healthStates property value. The list of health states for installed Windows management app.
         Args:
-            value: Value to set for the healthStates property.
+            value: Value to set for the health_states property.
         """
         self._health_states = value
     
@@ -98,7 +98,7 @@ class WindowsManagementApp(entity.Entity):
         """
         Sets the managedInstaller property value. ManagedInstallerStatus
         Args:
-            value: Value to set for the managedInstaller property.
+            value: Value to set for the managed_installer property.
         """
         self._managed_installer = value
     
@@ -115,7 +115,7 @@ class WindowsManagementApp(entity.Entity):
         """
         Sets the managedInstallerConfiguredDateTime property value. Managed Installer Configured Date Time
         Args:
-            value: Value to set for the managedInstallerConfiguredDateTime property.
+            value: Value to set for the managed_installer_configured_date_time property.
         """
         self._managed_installer_configured_date_time = value
     

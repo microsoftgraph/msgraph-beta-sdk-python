@@ -52,12 +52,11 @@ class ConversationThreadItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ConversationThreadItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ConversationThreadItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property threads for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +67,13 @@ class ConversationThreadItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[ConversationThreadItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conversation_thread.ConversationThread]:
+    async def get(self,request_configuration: Optional[ConversationThreadItemRequestBuilderGetRequestConfiguration] = None) -> Optional[conversation_thread.ConversationThread]:
         """
         The group's conversation threads. Nullable.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_thread.ConversationThread]
         """
         request_info = self.to_get_request_information(
@@ -87,15 +85,14 @@ class ConversationThreadItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, error_mapping)
     
-    async def patch(self,body: Optional[conversation_thread.ConversationThread] = None, request_configuration: Optional[ConversationThreadItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[conversation_thread.ConversationThread]:
+    async def patch(self,body: Optional[conversation_thread.ConversationThread] = None, request_configuration: Optional[ConversationThreadItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[conversation_thread.ConversationThread]:
         """
         Update the navigation property threads in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[conversation_thread.ConversationThread]
         """
         if body is None:
@@ -109,7 +106,7 @@ class ConversationThreadItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, conversation_thread.ConversationThread, error_mapping)
     
     def posts_by_id(self,id: str) -> post_item_request_builder.PostItemRequestBuilder:
         """
@@ -151,7 +148,7 @@ class ConversationThreadItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -172,7 +169,7 @@ class ConversationThreadItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -185,7 +182,7 @@ class ConversationThreadItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -219,7 +216,7 @@ class ConversationThreadItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -234,7 +231,7 @@ class ConversationThreadItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

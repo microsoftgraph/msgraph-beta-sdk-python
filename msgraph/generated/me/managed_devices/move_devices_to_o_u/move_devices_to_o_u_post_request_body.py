@@ -58,7 +58,7 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceIds property value. The deviceIds property
         Args:
-            value: Value to set for the deviceIds property.
+            value: Value to set for the device_ids property.
         """
         self._device_ids = value
     
@@ -68,8 +68,8 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_ids": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(guid)),
-            "organizational_unit_path": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
+            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(guid)),
+            "organizationalUnitPath": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
         }
         return fields
     
@@ -86,7 +86,7 @@ class MoveDevicesToOUPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the organizationalUnitPath property value. The organizationalUnitPath property
         Args:
-            value: Value to set for the organizationalUnitPath property.
+            value: Value to set for the organizational_unit_path property.
         """
         self._organizational_unit_path = value
     

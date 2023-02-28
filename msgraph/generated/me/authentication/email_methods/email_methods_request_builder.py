@@ -44,12 +44,11 @@ class EmailMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EmailMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse]:
+    async def get(self,request_configuration: Optional[EmailMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse]:
         """
         Retrieve a list of a user's email Authentication Method objects and their properties. This call will only return a single object as only one email method can be set on users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class EmailMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, email_authentication_method_collection_response.EmailAuthenticationMethodCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[email_authentication_method.EmailAuthenticationMethod] = None, request_configuration: Optional[EmailMethodsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[email_authentication_method.EmailAuthenticationMethod]:
+    async def post(self,body: Optional[email_authentication_method.EmailAuthenticationMethod] = None, request_configuration: Optional[EmailMethodsRequestBuilderPostRequestConfiguration] = None) -> Optional[email_authentication_method.EmailAuthenticationMethod]:
         """
         Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[email_authentication_method.EmailAuthenticationMethod]
         """
         if body is None:
@@ -83,7 +81,7 @@ class EmailMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, email_authentication_method.EmailAuthenticationMethod, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, email_authentication_method.EmailAuthenticationMethod, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EmailMethodsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class EmailMethodsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class EmailMethodsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class EmailMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class EmailMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

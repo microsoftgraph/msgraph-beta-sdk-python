@@ -22,7 +22,7 @@ class AccessPackageResourceRoleScope(entity.Entity):
         """
         Sets the accessPackageResourceRole property value. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the accessPackageResourceRole property.
+            value: Value to set for the access_package_resource_role property.
         """
         self._access_package_resource_role = value
     
@@ -39,7 +39,7 @@ class AccessPackageResourceRoleScope(entity.Entity):
         """
         Sets the accessPackageResourceScope property value. The accessPackageResourceScope property
         Args:
-            value: Value to set for the accessPackageResourceScope property.
+            value: Value to set for the access_package_resource_scope property.
         """
         self._access_package_resource_scope = value
     
@@ -76,7 +76,7 @@ class AccessPackageResourceRoleScope(entity.Entity):
         """
         Sets the createdBy property value. The createdBy property
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -93,7 +93,7 @@ class AccessPackageResourceRoleScope(entity.Entity):
         """
         Sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -115,12 +115,12 @@ class AccessPackageResourceRoleScope(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_resource_role": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(access_package_resource_role.AccessPackageResourceRole)),
-            "access_package_resource_scope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(access_package_resource_scope.AccessPackageResourceScope)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "modified_by": lambda n : setattr(self, 'modified_by', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "accessPackageResourceRole": lambda n : setattr(self, 'access_package_resource_role', n.get_object_value(access_package_resource_role.AccessPackageResourceRole)),
+            "accessPackageResourceScope": lambda n : setattr(self, 'access_package_resource_scope', n.get_object_value(access_package_resource_scope.AccessPackageResourceScope)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "modifiedBy": lambda n : setattr(self, 'modified_by', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -139,7 +139,7 @@ class AccessPackageResourceRoleScope(entity.Entity):
         """
         Sets the modifiedBy property value. The modifiedBy property
         Args:
-            value: Value to set for the modifiedBy property.
+            value: Value to set for the modified_by property.
         """
         self._modified_by = value
     
@@ -156,7 +156,7 @@ class AccessPackageResourceRoleScope(entity.Entity):
         """
         Sets the modifiedDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     

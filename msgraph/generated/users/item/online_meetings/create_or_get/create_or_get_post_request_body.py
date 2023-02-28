@@ -38,7 +38,7 @@ class CreateOrGetPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the chatInfo property value. The chatInfo property
         Args:
-            value: Value to set for the chatInfo property.
+            value: Value to set for the chat_info property.
         """
         self._chat_info = value
     
@@ -87,7 +87,7 @@ class CreateOrGetPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. The endDateTime property
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -104,7 +104,7 @@ class CreateOrGetPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the externalId property value. The externalId property
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -114,11 +114,11 @@ class CreateOrGetPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "chat_info": lambda n : setattr(self, 'chat_info', n.get_object_value(chat_info.ChatInfo)),
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "chatInfo": lambda n : setattr(self, 'chat_info', n.get_object_value(chat_info.ChatInfo)),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "participants": lambda n : setattr(self, 'participants', n.get_object_value(meeting_participants.MeetingParticipants)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
         return fields
@@ -169,7 +169,7 @@ class CreateOrGetPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. The startDateTime property
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

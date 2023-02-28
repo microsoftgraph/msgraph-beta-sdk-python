@@ -34,7 +34,7 @@ class UrlMatchInfo(AdditionalDataHolder, Parsable):
         """
         Sets the baseUrls property value. A list of the URL prefixes that must match URLs to be processed by this URL-to-item-resolver.
         Args:
-            value: Value to set for the baseUrls property.
+            value: Value to set for the base_urls property.
         """
         self._base_urls = value
     
@@ -70,9 +70,9 @@ class UrlMatchInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "base_urls": lambda n : setattr(self, 'base_urls', n.get_collection_of_primitive_values(str)),
+            "baseUrls": lambda n : setattr(self, 'base_urls', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "url_pattern": lambda n : setattr(self, 'url_pattern', n.get_str_value()),
+            "urlPattern": lambda n : setattr(self, 'url_pattern', n.get_str_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class UrlMatchInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class UrlMatchInfo(AdditionalDataHolder, Parsable):
         """
         Sets the urlPattern property value. A regular expression that will be matched towards the URL that is processed by this URL-to-item-resolver. The ECMAScript specification for regular expressions (ECMA-262) is used for the evaluation. The named groups defined by the regular expression will be used later to extract values from the URL.
         Args:
-            value: Value to set for the urlPattern property.
+            value: Value to set for the url_pattern property.
         """
         self._url_pattern = value
     

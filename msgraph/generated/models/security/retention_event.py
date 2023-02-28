@@ -57,7 +57,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the createdBy property value. The user who created the retentionEvent.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -74,7 +74,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the createdDateTime property value. The date time when the retentionEvent was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -120,7 +120,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the displayName property value. Name of the event.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -137,7 +137,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the eventPropagationResults property value. The eventPropagationResults property
         Args:
-            value: Value to set for the eventPropagationResults property.
+            value: Value to set for the event_propagation_results property.
         """
         self._event_propagation_results = value
     
@@ -154,7 +154,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the eventQueries property value. Represents the workload (SharePoint Online, OneDrive for Business, Exchange Online) and identification information associated with a retention event.
         Args:
-            value: Value to set for the eventQueries property.
+            value: Value to set for the event_queries property.
         """
         self._event_queries = value
     
@@ -171,7 +171,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the eventStatus property value. The eventStatus property
         Args:
-            value: Value to set for the eventStatus property.
+            value: Value to set for the event_status property.
         """
         self._event_status = value
     
@@ -188,7 +188,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the eventTriggerDateTime property value. Optional time when the event should be triggered.
         Args:
-            value: Value to set for the eventTriggerDateTime property.
+            value: Value to set for the event_trigger_date_time property.
         """
         self._event_trigger_date_time = value
     
@@ -198,18 +198,18 @@ class RetentionEvent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "event_propagation_results": lambda n : setattr(self, 'event_propagation_results', n.get_collection_of_object_values(event_propagation_result.EventPropagationResult)),
-            "event_queries": lambda n : setattr(self, 'event_queries', n.get_collection_of_object_values(event_query.EventQuery)),
-            "event_status": lambda n : setattr(self, 'event_status', n.get_object_value(retention_event_status.RetentionEventStatus)),
-            "event_trigger_date_time": lambda n : setattr(self, 'event_trigger_date_time', n.get_datetime_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "last_status_update_date_time": lambda n : setattr(self, 'last_status_update_date_time', n.get_datetime_value()),
-            "retention_event_type": lambda n : setattr(self, 'retention_event_type', n.get_object_value(retention_event_type.RetentionEventType)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "eventPropagationResults": lambda n : setattr(self, 'event_propagation_results', n.get_collection_of_object_values(event_propagation_result.EventPropagationResult)),
+            "eventQueries": lambda n : setattr(self, 'event_queries', n.get_collection_of_object_values(event_query.EventQuery)),
+            "eventStatus": lambda n : setattr(self, 'event_status', n.get_object_value(retention_event_status.RetentionEventStatus)),
+            "eventTriggerDateTime": lambda n : setattr(self, 'event_trigger_date_time', n.get_datetime_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastStatusUpdateDateTime": lambda n : setattr(self, 'last_status_update_date_time', n.get_datetime_value()),
+            "retentionEventType": lambda n : setattr(self, 'retention_event_type', n.get_object_value(retention_event_type.RetentionEventType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -228,7 +228,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the lastModifiedBy property value. The user who last modified the retentionEvent.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -245,7 +245,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The latest date time when the retentionEvent was modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -262,7 +262,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the lastStatusUpdateDateTime property value. Last time the status of the event was updated.
         Args:
-            value: Value to set for the lastStatusUpdateDateTime property.
+            value: Value to set for the last_status_update_date_time property.
         """
         self._last_status_update_date_time = value
     
@@ -279,7 +279,7 @@ class RetentionEvent(entity.Entity):
         """
         Sets the retentionEventType property value. Specifies the event that will start the retention period for labels that use this event type when an event is created.
         Args:
-            value: Value to set for the retentionEventType property.
+            value: Value to set for the retention_event_type property.
         """
         self._retention_event_type = value
     

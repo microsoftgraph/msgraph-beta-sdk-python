@@ -36,7 +36,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(authentication_meth
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -65,7 +65,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(authentication_meth
         """
         Sets the creationDateTime property value. The timestamp when this method was registered to the user.
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -99,7 +99,7 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(authentication_meth
         """
         Sets the displayName property value. The display name of the mobile device as given by the user.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -109,10 +109,10 @@ class PasswordlessMicrosoftAuthenticatorAuthenticationMethod(authentication_meth
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "device": lambda n : setattr(self, 'device', n.get_object_value(device.Device)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

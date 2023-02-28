@@ -64,7 +64,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, Parsable):
         """
         Sets the customizedLabel property value. Title/label override for customization.
         Args:
-            value: Value to set for the customizedLabel property.
+            value: Value to set for the customized_label property.
         """
         self._customized_label = value
     
@@ -81,7 +81,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, Parsable):
         """
         Sets the defaultLabel property value. Label that would be used if no customizedLabel is provided. Read only.
         Args:
-            value: Value to set for the defaultLabel property.
+            value: Value to set for the default_label property.
         """
         self._default_label = value
     
@@ -98,7 +98,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, Parsable):
         """
         Sets the fieldId property value. Id used to identity the field type. This is an internal id and possible values are param_1, param_2, param_userName, param_password.
         Args:
-            value: Value to set for the fieldId property.
+            value: Value to set for the field_id property.
         """
         self._field_id = value
     
@@ -108,9 +108,9 @@ class PasswordSingleSignOnField(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "customized_label": lambda n : setattr(self, 'customized_label', n.get_str_value()),
-            "default_label": lambda n : setattr(self, 'default_label', n.get_str_value()),
-            "field_id": lambda n : setattr(self, 'field_id', n.get_str_value()),
+            "customizedLabel": lambda n : setattr(self, 'customized_label', n.get_str_value()),
+            "defaultLabel": lambda n : setattr(self, 'default_label', n.get_str_value()),
+            "fieldId": lambda n : setattr(self, 'field_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
@@ -129,7 +129,7 @@ class PasswordSingleSignOnField(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

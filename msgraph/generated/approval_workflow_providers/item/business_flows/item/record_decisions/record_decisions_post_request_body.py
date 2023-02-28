@@ -52,7 +52,7 @@ class RecordDecisionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
-            "review_result": lambda n : setattr(self, 'review_result', n.get_str_value()),
+            "reviewResult": lambda n : setattr(self, 'review_result', n.get_str_value()),
         }
         return fields
     
@@ -86,7 +86,7 @@ class RecordDecisionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the reviewResult property value. The reviewResult property
         Args:
-            value: Value to set for the reviewResult property.
+            value: Value to set for the review_result property.
         """
         self._review_result = value
     

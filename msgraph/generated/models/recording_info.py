@@ -59,10 +59,10 @@ class RecordingInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "initiated_by": lambda n : setattr(self, 'initiated_by', n.get_object_value(participant_info.ParticipantInfo)),
+            "initiatedBy": lambda n : setattr(self, 'initiated_by', n.get_object_value(participant_info.ParticipantInfo)),
             "initiator": lambda n : setattr(self, 'initiator', n.get_object_value(identity_set.IdentitySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recording_status": lambda n : setattr(self, 'recording_status', n.get_enum_value(recording_status.RecordingStatus)),
+            "recordingStatus": lambda n : setattr(self, 'recording_status', n.get_enum_value(recording_status.RecordingStatus)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class RecordingInfo(AdditionalDataHolder, Parsable):
         """
         Sets the initiatedBy property value. The participant who initiated the recording.
         Args:
-            value: Value to set for the initiatedBy property.
+            value: Value to set for the initiated_by property.
         """
         self._initiated_by = value
     
@@ -113,7 +113,7 @@ class RecordingInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -130,7 +130,7 @@ class RecordingInfo(AdditionalDataHolder, Parsable):
         """
         Sets the recordingStatus property value. The recordingStatus property
         Args:
-            value: Value to set for the recordingStatus property.
+            value: Value to set for the recording_status property.
         """
         self._recording_status = value
     

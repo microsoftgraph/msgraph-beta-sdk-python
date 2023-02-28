@@ -20,7 +20,7 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
         """
         Sets the conditionalAccessPolicyState property value. The state for the conditional access policy. Possible values are: enabled, disabled, enabledForReportingButNotEnforced. Required. Read-only.
         Args:
-            value: Value to set for the conditionalAccessPolicyState property.
+            value: Value to set for the conditional_access_policy_state property.
         """
         self._conditional_access_policy_state = value
     
@@ -58,10 +58,10 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "conditional_access_policy_state": lambda n : setattr(self, 'conditional_access_policy_state', n.get_str_value()),
-            "latest_policy_modified_date_time": lambda n : setattr(self, 'latest_policy_modified_date_time', n.get_datetime_value()),
-            "requires_device_compliance": lambda n : setattr(self, 'requires_device_compliance', n.get_bool_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "conditionalAccessPolicyState": lambda n : setattr(self, 'conditional_access_policy_state', n.get_str_value()),
+            "latestPolicyModifiedDateTime": lambda n : setattr(self, 'latest_policy_modified_date_time', n.get_datetime_value()),
+            "requiresDeviceCompliance": lambda n : setattr(self, 'requires_device_compliance', n.get_bool_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,7 +80,7 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
         """
         Sets the latestPolicyModifiedDateTime property value. The date and time the conditional access policy was last modified. Required. Read-only.
         Args:
-            value: Value to set for the latestPolicyModifiedDateTime property.
+            value: Value to set for the latest_policy_modified_date_time property.
         """
         self._latest_policy_modified_date_time = value
     
@@ -97,7 +97,7 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
         """
         Sets the requiresDeviceCompliance property value. A flag indicating whether the conditional access policy requires device compliance. Required. Read-only.
         Args:
-            value: Value to set for the requiresDeviceCompliance property.
+            value: Value to set for the requires_device_compliance property.
         """
         self._requires_device_compliance = value
     
@@ -128,7 +128,7 @@ class ConditionalAccessPolicyCoverage(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     

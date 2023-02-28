@@ -51,7 +51,7 @@ class SetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "review_status": lambda n : setattr(self, 'review_status', n.get_object_value(cloud_pc_review_status.CloudPcReviewStatus)),
+            "reviewStatus": lambda n : setattr(self, 'review_status', n.get_object_value(cloud_pc_review_status.CloudPcReviewStatus)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class SetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the reviewStatus property value. The reviewStatus property
         Args:
-            value: Value to set for the reviewStatus property.
+            value: Value to set for the review_status property.
         """
         self._review_status = value
     

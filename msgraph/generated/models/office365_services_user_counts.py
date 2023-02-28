@@ -72,7 +72,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the exchangeActive property value. The number of active users on Exchange. Any user who can read and send email is considered an active user.
         Args:
-            value: Value to set for the exchangeActive property.
+            value: Value to set for the exchange_active property.
         """
         self._exchange_active = value
     
@@ -89,7 +89,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the exchangeInactive property value. The number of inactive users on Exchange.
         Args:
-            value: Value to set for the exchangeInactive property.
+            value: Value to set for the exchange_inactive property.
         """
         self._exchange_inactive = value
     
@@ -99,22 +99,22 @@ class Office365ServicesUserCounts(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "exchange_active": lambda n : setattr(self, 'exchange_active', n.get_int_value()),
-            "exchange_inactive": lambda n : setattr(self, 'exchange_inactive', n.get_int_value()),
-            "office365_active": lambda n : setattr(self, 'office365_active', n.get_int_value()),
-            "office365_inactive": lambda n : setattr(self, 'office365_inactive', n.get_int_value()),
-            "one_drive_active": lambda n : setattr(self, 'one_drive_active', n.get_int_value()),
-            "one_drive_inactive": lambda n : setattr(self, 'one_drive_inactive', n.get_int_value()),
-            "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
-            "share_point_active": lambda n : setattr(self, 'share_point_active', n.get_int_value()),
-            "share_point_inactive": lambda n : setattr(self, 'share_point_inactive', n.get_int_value()),
-            "skype_for_business_active": lambda n : setattr(self, 'skype_for_business_active', n.get_int_value()),
-            "skype_for_business_inactive": lambda n : setattr(self, 'skype_for_business_inactive', n.get_int_value()),
-            "teams_active": lambda n : setattr(self, 'teams_active', n.get_int_value()),
-            "teams_inactive": lambda n : setattr(self, 'teams_inactive', n.get_int_value()),
-            "yammer_active": lambda n : setattr(self, 'yammer_active', n.get_int_value()),
-            "yammer_inactive": lambda n : setattr(self, 'yammer_inactive', n.get_int_value()),
+            "exchangeActive": lambda n : setattr(self, 'exchange_active', n.get_int_value()),
+            "exchangeInactive": lambda n : setattr(self, 'exchange_inactive', n.get_int_value()),
+            "office365Active": lambda n : setattr(self, 'office365_active', n.get_int_value()),
+            "office365Inactive": lambda n : setattr(self, 'office365_inactive', n.get_int_value()),
+            "oneDriveActive": lambda n : setattr(self, 'one_drive_active', n.get_int_value()),
+            "oneDriveInactive": lambda n : setattr(self, 'one_drive_inactive', n.get_int_value()),
+            "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "sharePointActive": lambda n : setattr(self, 'share_point_active', n.get_int_value()),
+            "sharePointInactive": lambda n : setattr(self, 'share_point_inactive', n.get_int_value()),
+            "skypeForBusinessActive": lambda n : setattr(self, 'skype_for_business_active', n.get_int_value()),
+            "skypeForBusinessInactive": lambda n : setattr(self, 'skype_for_business_inactive', n.get_int_value()),
+            "teamsActive": lambda n : setattr(self, 'teams_active', n.get_int_value()),
+            "teamsInactive": lambda n : setattr(self, 'teams_inactive', n.get_int_value()),
+            "yammerActive": lambda n : setattr(self, 'yammer_active', n.get_int_value()),
+            "yammerInactive": lambda n : setattr(self, 'yammer_inactive', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -133,7 +133,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the office365Active property value. The number of active users on Microsoft 365.
         Args:
-            value: Value to set for the office365Active property.
+            value: Value to set for the office365_active property.
         """
         self._office365_active = value
     
@@ -150,7 +150,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the office365Inactive property value. The number of inactive users on Microsoft 365.
         Args:
-            value: Value to set for the office365Inactive property.
+            value: Value to set for the office365_inactive property.
         """
         self._office365_inactive = value
     
@@ -167,7 +167,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the oneDriveActive property value. The number of active users on OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
         Args:
-            value: Value to set for the oneDriveActive property.
+            value: Value to set for the one_drive_active property.
         """
         self._one_drive_active = value
     
@@ -184,7 +184,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the oneDriveInactive property value. The number of inactive users on OneDrive.
         Args:
-            value: Value to set for the oneDriveInactive property.
+            value: Value to set for the one_drive_inactive property.
         """
         self._one_drive_inactive = value
     
@@ -201,7 +201,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the reportPeriod property value. The number of days the report covers.
         Args:
-            value: Value to set for the reportPeriod property.
+            value: Value to set for the report_period property.
         """
         self._report_period = value
     
@@ -218,7 +218,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     
@@ -261,7 +261,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the sharePointActive property value. The number of active users on SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
         Args:
-            value: Value to set for the sharePointActive property.
+            value: Value to set for the share_point_active property.
         """
         self._share_point_active = value
     
@@ -278,7 +278,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the sharePointInactive property value. The number of inactive users on SharePoint.
         Args:
-            value: Value to set for the sharePointInactive property.
+            value: Value to set for the share_point_inactive property.
         """
         self._share_point_inactive = value
     
@@ -295,7 +295,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the skypeForBusinessActive property value. The number of active users on Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
         Args:
-            value: Value to set for the skypeForBusinessActive property.
+            value: Value to set for the skype_for_business_active property.
         """
         self._skype_for_business_active = value
     
@@ -312,7 +312,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the skypeForBusinessInactive property value. The number of inactive users on Skype For Business.
         Args:
-            value: Value to set for the skypeForBusinessInactive property.
+            value: Value to set for the skype_for_business_inactive property.
         """
         self._skype_for_business_inactive = value
     
@@ -329,7 +329,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the teamsActive property value. The number of active users on Microsoft Teams. Any user who posted messages in team channels, sent messages in private chat sessions, or participated in meetings or calls is considered an active user.
         Args:
-            value: Value to set for the teamsActive property.
+            value: Value to set for the teams_active property.
         """
         self._teams_active = value
     
@@ -346,7 +346,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the teamsInactive property value. The number of inactive users on Microsoft Teams.
         Args:
-            value: Value to set for the teamsInactive property.
+            value: Value to set for the teams_inactive property.
         """
         self._teams_inactive = value
     
@@ -363,7 +363,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the yammerActive property value. The number of active users on Yammer. Any user who can post, read, or like messages is considered an active user.
         Args:
-            value: Value to set for the yammerActive property.
+            value: Value to set for the yammer_active property.
         """
         self._yammer_active = value
     
@@ -380,7 +380,7 @@ class Office365ServicesUserCounts(entity.Entity):
         """
         Sets the yammerInactive property value. The number of inactive users on Yammer.
         Args:
-            value: Value to set for the yammerInactive property.
+            value: Value to set for the yammer_inactive property.
         """
         self._yammer_inactive = value
     

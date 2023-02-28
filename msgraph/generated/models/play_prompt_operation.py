@@ -20,7 +20,7 @@ class PlayPromptOperation(comms_operation.CommsOperation):
         """
         Sets the completionReason property value. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled.
         Args:
-            value: Value to set for the completionReason property.
+            value: Value to set for the completion_reason property.
         """
         self._completion_reason = value
     
@@ -52,7 +52,7 @@ class PlayPromptOperation(comms_operation.CommsOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completion_reason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(play_prompt_completion_reason.PlayPromptCompletionReason)),
+            "completionReason": lambda n : setattr(self, 'completion_reason', n.get_enum_value(play_prompt_completion_reason.PlayPromptCompletionReason)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

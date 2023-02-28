@@ -27,6 +27,13 @@ class AccessPackageCatalogsRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def search(self) -> search_request_builder.SearchRequestBuilder:
+        """
+        Provides operations to call the Search method.
+        """
+        return search_request_builder.SearchRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AccessPackageCatalogsRequestBuilder and sets the default values.
@@ -45,12 +52,11 @@ class AccessPackageCatalogsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]:
+    async def get(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]:
         """
         Retrieve a list of accessPackageCatalog objects.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,15 +68,14 @@ class AccessPackageCatalogsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_catalog_collection_response.AccessPackageCatalogCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
+    async def post(self,body: Optional[access_package_catalog.AccessPackageCatalog] = None, request_configuration: Optional[AccessPackageCatalogsRequestBuilderPostRequestConfiguration] = None) -> Optional[access_package_catalog.AccessPackageCatalog]:
         """
         Create a new accessPackageCatalog object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_catalog.AccessPackageCatalog]
         """
         if body is None:
@@ -84,14 +89,7 @@ class AccessPackageCatalogsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, response_handler, error_mapping)
-    
-    def search(self,) -> search_request_builder.SearchRequestBuilder:
-        """
-        Provides operations to call the Search method.
-        Returns: search_request_builder.SearchRequestBuilder
-        """
-        return search_request_builder.SearchRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, access_package_catalog.AccessPackageCatalog, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageCatalogsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +102,7 @@ class AccessPackageCatalogsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -125,7 +123,7 @@ class AccessPackageCatalogsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +193,7 @@ class AccessPackageCatalogsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -210,7 +208,7 @@ class AccessPackageCatalogsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

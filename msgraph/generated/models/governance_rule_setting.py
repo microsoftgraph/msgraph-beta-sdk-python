@@ -54,7 +54,7 @@ class GovernanceRuleSetting(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "rule_identifier": lambda n : setattr(self, 'rule_identifier', n.get_str_value()),
+            "ruleIdentifier": lambda n : setattr(self, 'rule_identifier', n.get_str_value()),
             "setting": lambda n : setattr(self, 'setting', n.get_str_value()),
         }
         return fields
@@ -72,7 +72,7 @@ class GovernanceRuleSetting(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -89,7 +89,7 @@ class GovernanceRuleSetting(AdditionalDataHolder, Parsable):
         """
         Sets the ruleIdentifier property value. The id of the rule. For example, ExpirationRule and MfaRule.
         Args:
-            value: Value to set for the ruleIdentifier property.
+            value: Value to set for the rule_identifier property.
         """
         self._rule_identifier = value
     

@@ -54,7 +54,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the accountsBlockAddingNonMicrosoftAccountEmail property value. Indicates whether or not to Block the user from adding email accounts to the device that are not associated with a Microsoft account.
         Args:
-            value: Value to set for the accountsBlockAddingNonMicrosoftAccountEmail property.
+            value: Value to set for the accounts_block_adding_non_microsoft_account_email property.
         """
         self._accounts_block_adding_non_microsoft_account_email = value
     
@@ -71,7 +71,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the activateAppsWithVoice property value. Possible values of a property
         Args:
-            value: Value to set for the activateAppsWithVoice property.
+            value: Value to set for the activate_apps_with_voice property.
         """
         self._activate_apps_with_voice = value
     
@@ -88,7 +88,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the antiTheftModeBlocked property value. Indicates whether or not to block the user from selecting an AntiTheft mode preference (Windows 10 Mobile only).
         Args:
-            value: Value to set for the antiTheftModeBlocked property.
+            value: Value to set for the anti_theft_mode_blocked property.
         """
         self._anti_theft_mode_blocked = value
     
@@ -105,7 +105,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appManagementMSIAllowUserControlOverInstall property value. This policy setting permits users to change installation options that typically are available only to system administrators.
         Args:
-            value: Value to set for the appManagementMSIAllowUserControlOverInstall property.
+            value: Value to set for the app_management_m_s_i_allow_user_control_over_install property.
         """
         self._app_management_m_s_i_allow_user_control_over_install = value
     
@@ -122,7 +122,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appManagementMSIAlwaysInstallWithElevatedPrivileges property value. This policy setting directs Windows Installer to use elevated permissions when it installs any program on the system.
         Args:
-            value: Value to set for the appManagementMSIAlwaysInstallWithElevatedPrivileges property.
+            value: Value to set for the app_management_m_s_i_always_install_with_elevated_privileges property.
         """
         self._app_management_m_s_i_always_install_with_elevated_privileges = value
     
@@ -139,7 +139,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appManagementPackageFamilyNamesToLaunchAfterLogOn property value. List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are to be launched after logon.​
         Args:
-            value: Value to set for the appManagementPackageFamilyNamesToLaunchAfterLogOn property.
+            value: Value to set for the app_management_package_family_names_to_launch_after_log_on property.
         """
         self._app_management_package_family_names_to_launch_after_log_on = value
     
@@ -156,7 +156,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appsAllowTrustedAppsSideloading property value. State Management Setting.
         Args:
-            value: Value to set for the appsAllowTrustedAppsSideloading property.
+            value: Value to set for the apps_allow_trusted_apps_sideloading property.
         """
         self._apps_allow_trusted_apps_sideloading = value
     
@@ -173,7 +173,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appsBlockWindowsStoreOriginatedApps property value. Indicates whether or not to disable the launch of all apps from Windows Store that came pre-installed or were downloaded.
         Args:
-            value: Value to set for the appsBlockWindowsStoreOriginatedApps property.
+            value: Value to set for the apps_block_windows_store_originated_apps property.
         """
         self._apps_block_windows_store_originated_apps = value
     
@@ -190,7 +190,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the authenticationAllowSecondaryDevice property value. Allows secondary authentication devices to work with Windows.
         Args:
-            value: Value to set for the authenticationAllowSecondaryDevice property.
+            value: Value to set for the authentication_allow_secondary_device property.
         """
         self._authentication_allow_secondary_device = value
     
@@ -207,7 +207,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the authenticationPreferredAzureADTenantDomainName property value. Specifies the preferred domain among available domains in the Azure AD tenant.
         Args:
-            value: Value to set for the authenticationPreferredAzureADTenantDomainName property.
+            value: Value to set for the authentication_preferred_azure_a_d_tenant_domain_name property.
         """
         self._authentication_preferred_azure_a_d_tenant_domain_name = value
     
@@ -224,7 +224,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the authenticationWebSignIn property value. Possible values of a property
         Args:
-            value: Value to set for the authenticationWebSignIn property.
+            value: Value to set for the authentication_web_sign_in property.
         """
         self._authentication_web_sign_in = value
     
@@ -241,7 +241,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bluetoothAllowedServices property value. Specify a list of allowed Bluetooth services and profiles in hex formatted strings.
         Args:
-            value: Value to set for the bluetoothAllowedServices property.
+            value: Value to set for the bluetooth_allowed_services property.
         """
         self._bluetooth_allowed_services = value
     
@@ -258,7 +258,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bluetoothBlockAdvertising property value. Whether or not to Block the user from using bluetooth advertising.
         Args:
-            value: Value to set for the bluetoothBlockAdvertising property.
+            value: Value to set for the bluetooth_block_advertising property.
         """
         self._bluetooth_block_advertising = value
     
@@ -275,26 +275,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bluetoothBlockDiscoverableMode property value. Whether or not to Block the user from using bluetooth discoverable mode.
         Args:
-            value: Value to set for the bluetoothBlockDiscoverableMode property.
+            value: Value to set for the bluetooth_block_discoverable_mode property.
         """
         self._bluetooth_block_discoverable_mode = value
-    
-    @property
-    def bluetooth_blocked(self,) -> Optional[bool]:
-        """
-        Gets the bluetoothBlocked property value. Whether or not to Block the user from using bluetooth.
-        Returns: Optional[bool]
-        """
-        return self._bluetooth_blocked
-    
-    @bluetooth_blocked.setter
-    def bluetooth_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the bluetoothBlocked property value. Whether or not to Block the user from using bluetooth.
-        Args:
-            value: Value to set for the bluetoothBlocked property.
-        """
-        self._bluetooth_blocked = value
     
     @property
     def bluetooth_block_pre_pairing(self,) -> Optional[bool]:
@@ -309,7 +292,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bluetoothBlockPrePairing property value. Whether or not to block specific bundled Bluetooth peripherals to automatically pair with the host device.
         Args:
-            value: Value to set for the bluetoothBlockPrePairing property.
+            value: Value to set for the bluetooth_block_pre_pairing property.
         """
         self._bluetooth_block_pre_pairing = value
     
@@ -326,9 +309,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bluetoothBlockPromptedProximalConnections property value. Whether or not to block the users from using Swift Pair and other proximity based scenarios.
         Args:
-            value: Value to set for the bluetoothBlockPromptedProximalConnections property.
+            value: Value to set for the bluetooth_block_prompted_proximal_connections property.
         """
         self._bluetooth_block_prompted_proximal_connections = value
+    
+    @property
+    def bluetooth_blocked(self,) -> Optional[bool]:
+        """
+        Gets the bluetoothBlocked property value. Whether or not to Block the user from using bluetooth.
+        Returns: Optional[bool]
+        """
+        return self._bluetooth_blocked
+    
+    @bluetooth_blocked.setter
+    def bluetooth_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the bluetoothBlocked property value. Whether or not to Block the user from using bluetooth.
+        Args:
+            value: Value to set for the bluetooth_blocked property.
+        """
+        self._bluetooth_blocked = value
     
     @property
     def camera_blocked(self,) -> Optional[bool]:
@@ -343,7 +343,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cameraBlocked property value. Whether or not to Block the user from accessing the camera of the device.
         Args:
-            value: Value to set for the cameraBlocked property.
+            value: Value to set for the camera_blocked property.
         """
         self._camera_blocked = value
     
@@ -360,7 +360,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockDataWhenRoaming property value. Whether or not to Block the user from using data over cellular while roaming.
         Args:
-            value: Value to set for the cellularBlockDataWhenRoaming property.
+            value: Value to set for the cellular_block_data_when_roaming property.
         """
         self._cellular_block_data_when_roaming = value
     
@@ -377,7 +377,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockVpn property value. Whether or not to Block the user from using VPN over cellular.
         Args:
-            value: Value to set for the cellularBlockVpn property.
+            value: Value to set for the cellular_block_vpn property.
         """
         self._cellular_block_vpn = value
     
@@ -394,7 +394,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockVpnWhenRoaming property value. Whether or not to Block the user from using VPN when roaming over cellular.
         Args:
-            value: Value to set for the cellularBlockVpnWhenRoaming property.
+            value: Value to set for the cellular_block_vpn_when_roaming property.
         """
         self._cellular_block_vpn_when_roaming = value
     
@@ -411,7 +411,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularData property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the cellularData property.
+            value: Value to set for the cellular_data property.
         """
         self._cellular_data = value
     
@@ -428,7 +428,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the certificatesBlockManualRootCertificateInstallation property value. Whether or not to Block the user from doing manual root certificate installation.
         Args:
-            value: Value to set for the certificatesBlockManualRootCertificateInstallation property.
+            value: Value to set for the certificates_block_manual_root_certificate_installation property.
         """
         self._certificates_block_manual_root_certificate_installation = value
     
@@ -445,7 +445,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the configureTimeZone property value. Specifies the time zone to be applied to the device. This is the standard Windows name for the target time zone.
         Args:
-            value: Value to set for the configureTimeZone property.
+            value: Value to set for the configure_time_zone property.
         """
         self._configure_time_zone = value
     
@@ -462,7 +462,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectedDevicesServiceBlocked property value. Whether or not to block Connected Devices Service which enables discovery and connection to other devices, remote messaging, remote app sessions and other cross-device experiences.
         Args:
-            value: Value to set for the connectedDevicesServiceBlocked property.
+            value: Value to set for the connected_devices_service_blocked property.
         """
         self._connected_devices_service_blocked = value
     
@@ -500,12 +500,12 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._bluetooth_block_advertising: Optional[bool] = None
         # Whether or not to Block the user from using bluetooth discoverable mode.
         self._bluetooth_block_discoverable_mode: Optional[bool] = None
-        # Whether or not to Block the user from using bluetooth.
-        self._bluetooth_blocked: Optional[bool] = None
         # Whether or not to block specific bundled Bluetooth peripherals to automatically pair with the host device.
         self._bluetooth_block_pre_pairing: Optional[bool] = None
         # Whether or not to block the users from using Swift Pair and other proximity based scenarios.
         self._bluetooth_block_prompted_proximal_connections: Optional[bool] = None
+        # Whether or not to Block the user from using bluetooth.
+        self._bluetooth_blocked: Optional[bool] = None
         # Whether or not to Block the user from accessing the camera of the device.
         self._camera_blocked: Optional[bool] = None
         # Whether or not to Block the user from using data over cellular while roaming.
@@ -588,12 +588,12 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._defender_scan_scripts_loaded_in_internet_explorer: Optional[bool] = None
         # Possible values for system scan type.
         self._defender_scan_type: Optional[defender_scan_type.DefenderScanType] = None
+        # When enabled, low CPU priority will be used during scheduled scans.
+        self._defender_schedule_scan_enable_low_cpu_priority: Optional[bool] = None
         # The time to perform a daily quick scan.
         self._defender_scheduled_quick_scan_time: Optional[Time] = None
         # The defender time for the system scan.
         self._defender_scheduled_scan_time: Optional[Time] = None
-        # When enabled, low CPU priority will be used during scheduled scans.
-        self._defender_schedule_scan_enable_low_cpu_priority: Optional[bool] = None
         # The signature update interval in hours. Specify 0 not to check. Valid values 0 to 24
         self._defender_signature_update_interval_in_hours: Optional[int] = None
         # Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
@@ -624,8 +624,6 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._edge_block_compatibility_list: Optional[bool] = None
         # Indicates whether or not to block developer tools in the Edge browser.
         self._edge_block_developer_tools: Optional[bool] = None
-        # Indicates whether or not to Block the user from using the Edge browser.
-        self._edge_blocked: Optional[bool] = None
         # Indicates whether or not to Block the user from making changes to Favorites.
         self._edge_block_edit_favorites: Optional[bool] = None
         # Indicates whether or not to block extensions in the Edge browser.
@@ -662,6 +660,8 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._edge_block_tab_preloading: Optional[bool] = None
         # Configure to load a blank page in Edge instead of the default New tab page and prevent users from changing it.
         self._edge_block_web_content_on_new_tab_page: Optional[bool] = None
+        # Indicates whether or not to Block the user from using the Edge browser.
+        self._edge_blocked: Optional[bool] = None
         # Clear browsing data on exiting Microsoft Edge.
         self._edge_clear_browsing_data_on_exit: Optional[bool] = None
         # Possible values to specify which cookies are allowed in Microsoft Edge.
@@ -692,10 +692,10 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._edge_opens_with: Optional[edge_open_options.EdgeOpenOptions] = None
         # Allow or prevent users from overriding certificate errors.
         self._edge_prevent_certificate_error_override: Optional[bool] = None
-        # Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
-        self._edge_required_extension_package_family_names: Optional[List[str]] = None
         # Indicates whether or not to Require the user to use the smart screen filter.
         self._edge_require_smart_screen: Optional[bool] = None
+        # Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
+        self._edge_required_extension_package_family_names: Optional[List[str]] = None
         # Allows IT admins to set a default search engine for MDM-Controlled devices. Users can override this and change their default search engine provided the AllowSearchEngineCustomization policy is not set.
         self._edge_search_engine: Optional[edge_search_engine_base.EdgeSearchEngineBase] = None
         # Indicates whether or not to switch the intranet traffic from Edge to Internet Explorer.
@@ -766,10 +766,10 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._messaging_block_rich_communication_services: Optional[bool] = None
         # Indicates whether or not to block text message back up and restore and Messaging Everywhere.
         self._messaging_block_sync: Optional[bool] = None
-        # Indicates whether or not to Block a Microsoft account.
-        self._microsoft_account_blocked: Optional[bool] = None
         # Indicates whether or not to Block Microsoft account settings sync.
         self._microsoft_account_block_settings_sync: Optional[bool] = None
+        # Indicates whether or not to Block a Microsoft account.
+        self._microsoft_account_blocked: Optional[bool] = None
         # Values for the SignInAssistantSettings.
         self._microsoft_account_sign_in_assistant_settings: Optional[sign_in_assistant_options.SignInAssistantOptions] = None
         # If set, proxy settings will be applied to all processes and accounts in the device. Otherwise, it will be applied to the user account that’s enrolled into MDM.
@@ -798,12 +798,12 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
         # The number of previous passwords to prevent reuse of. Valid values 0 to 50
         self._password_previous_password_block_count: Optional[int] = None
+        # Indicates whether or not to require a password upon resuming from an idle state.
+        self._password_require_when_resume_from_idle_state: Optional[bool] = None
         # Indicates whether or not to require the user to have a password.
         self._password_required: Optional[bool] = None
         # Possible values of required passwords.
         self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
-        # Indicates whether or not to require a password upon resuming from an idle state.
-        self._password_require_when_resume_from_idle_state: Optional[bool] = None
         # The number of sign in failures before factory reset. Valid values 0 to 999
         self._password_sign_in_failure_count_before_factory_reset: Optional[int] = None
         # A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Desktop Image or a file Url to a local image on the file system that needs to used as the Desktop Image.
@@ -1002,18 +1002,14 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._web_rtc_block_localhost_ip_address: Optional[bool] = None
         # Indicating whether or not to block automatically connecting to Wi-Fi hotspots. Has no impact if Wi-Fi is blocked.
         self._wi_fi_block_automatic_connect_hotspots: Optional[bool] = None
-        # Indicates whether or not to Block the user from using Wi-Fi.
-        self._wi_fi_blocked: Optional[bool] = None
         # Indicates whether or not to Block the user from using Wi-Fi manual configuration.
         self._wi_fi_block_manual_configuration: Optional[bool] = None
+        # Indicates whether or not to Block the user from using Wi-Fi.
+        self._wi_fi_blocked: Optional[bool] = None
         # Specify how often devices scan for Wi-Fi networks. Supported values are 1-500, where 100 = default, and 500 = low frequency. Valid values 1 to 500
         self._wi_fi_scan_interval: Optional[int] = None
-        # Windows 10 force update schedule for Apps.
-        self._windows10_apps_force_update_schedule: Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule] = None
         # Allows IT admins to block experiences that are typically for consumers only, such as Start suggestions, Membership notifications, Post-OOBE app install and redirect tiles.
         self._windows_spotlight_block_consumer_specific_features: Optional[bool] = None
-        # Allows IT admins to turn off all Windows Spotlight features
-        self._windows_spotlight_blocked: Optional[bool] = None
         # Block suggestions from Microsoft that show after each OS clean install, upgrade or in an on-going basis to introduce users to what is new or changed
         self._windows_spotlight_block_on_action_center: Optional[bool] = None
         # Block personalized content in Windows spotlight based on user’s device usage.
@@ -1024,6 +1020,8 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._windows_spotlight_block_welcome_experience: Optional[bool] = None
         # Allows IT admins to turn off the popup of Windows Tips.
         self._windows_spotlight_block_windows_tips: Optional[bool] = None
+        # Allows IT admins to turn off all Windows Spotlight features
+        self._windows_spotlight_blocked: Optional[bool] = None
         # Allows IT admind to set a predefined default search engine for MDM-Controlled devices
         self._windows_spotlight_configure_on_lock_screen: Optional[windows_spotlight_enablement_settings.WindowsSpotlightEnablementSettings] = None
         # Indicates whether or not to block automatic update of apps from Windows Store.
@@ -1032,6 +1030,8 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         self._windows_store_blocked: Optional[bool] = None
         # Indicates whether or not to enable Private Store Only.
         self._windows_store_enable_private_store_only: Optional[bool] = None
+        # Windows 10 force update schedule for Apps.
+        self._windows10_apps_force_update_schedule: Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule] = None
         # Indicates whether or not to allow other devices from discovering this PC for projection.
         self._wireless_display_block_projection_to_this_device: Optional[bool] = None
         # Indicates whether or not to allow user input from wireless display receiver.
@@ -1052,7 +1052,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the copyPasteBlocked property value. Whether or not to Block the user from using copy paste.
         Args:
-            value: Value to set for the copyPasteBlocked property.
+            value: Value to set for the copy_paste_blocked property.
         """
         self._copy_paste_blocked = value
     
@@ -1069,7 +1069,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cortanaBlocked property value. Whether or not to Block the user from using Cortana.
         Args:
-            value: Value to set for the cortanaBlocked property.
+            value: Value to set for the cortana_blocked property.
         """
         self._cortana_blocked = value
     
@@ -1098,7 +1098,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cryptographyAllowFipsAlgorithmPolicy property value. Specify whether to allow or disallow the Federal Information Processing Standard (FIPS) policy.
         Args:
-            value: Value to set for the cryptographyAllowFipsAlgorithmPolicy property.
+            value: Value to set for the cryptography_allow_fips_algorithm_policy property.
         """
         self._cryptography_allow_fips_algorithm_policy = value
     
@@ -1115,7 +1115,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the dataProtectionBlockDirectMemoryAccess property value. This policy setting allows you to block direct memory access (DMA) for all hot pluggable PCI downstream ports until a user logs into Windows.
         Args:
-            value: Value to set for the dataProtectionBlockDirectMemoryAccess property.
+            value: Value to set for the data_protection_block_direct_memory_access property.
         """
         self._data_protection_block_direct_memory_access = value
     
@@ -1132,7 +1132,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderBlockEndUserAccess property value. Whether or not to block end user access to Defender.
         Args:
-            value: Value to set for the defenderBlockEndUserAccess property.
+            value: Value to set for the defender_block_end_user_access property.
         """
         self._defender_block_end_user_access = value
     
@@ -1149,7 +1149,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderBlockOnAccessProtection property value. Allows or disallows Windows Defender On Access Protection functionality.
         Args:
-            value: Value to set for the defenderBlockOnAccessProtection property.
+            value: Value to set for the defender_block_on_access_protection property.
         """
         self._defender_block_on_access_protection = value
     
@@ -1166,7 +1166,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderCloudBlockLevel property value. Possible values of Cloud Block Level
         Args:
-            value: Value to set for the defenderCloudBlockLevel property.
+            value: Value to set for the defender_cloud_block_level property.
         """
         self._defender_cloud_block_level = value
     
@@ -1183,7 +1183,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderCloudExtendedTimeout property value. Timeout extension for file scanning by the cloud. Valid values 0 to 50
         Args:
-            value: Value to set for the defenderCloudExtendedTimeout property.
+            value: Value to set for the defender_cloud_extended_timeout property.
         """
         self._defender_cloud_extended_timeout = value
     
@@ -1200,7 +1200,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderCloudExtendedTimeoutInSeconds property value. Timeout extension for file scanning by the cloud. Valid values 0 to 50
         Args:
-            value: Value to set for the defenderCloudExtendedTimeoutInSeconds property.
+            value: Value to set for the defender_cloud_extended_timeout_in_seconds property.
         """
         self._defender_cloud_extended_timeout_in_seconds = value
     
@@ -1217,7 +1217,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderDaysBeforeDeletingQuarantinedMalware property value. Number of days before deleting quarantined malware. Valid values 0 to 90
         Args:
-            value: Value to set for the defenderDaysBeforeDeletingQuarantinedMalware property.
+            value: Value to set for the defender_days_before_deleting_quarantined_malware property.
         """
         self._defender_days_before_deleting_quarantined_malware = value
     
@@ -1234,7 +1234,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderDetectedMalwareActions property value. Gets or sets Defender’s actions to take on detected Malware per threat level.
         Args:
-            value: Value to set for the defenderDetectedMalwareActions property.
+            value: Value to set for the defender_detected_malware_actions property.
         """
         self._defender_detected_malware_actions = value
     
@@ -1251,7 +1251,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderDisableCatchupFullScan property value. When blocked, catch-up scans for scheduled full scans will be turned off.
         Args:
-            value: Value to set for the defenderDisableCatchupFullScan property.
+            value: Value to set for the defender_disable_catchup_full_scan property.
         """
         self._defender_disable_catchup_full_scan = value
     
@@ -1268,7 +1268,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderDisableCatchupQuickScan property value. When blocked, catch-up scans for scheduled quick scans will be turned off.
         Args:
-            value: Value to set for the defenderDisableCatchupQuickScan property.
+            value: Value to set for the defender_disable_catchup_quick_scan property.
         """
         self._defender_disable_catchup_quick_scan = value
     
@@ -1285,7 +1285,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderFileExtensionsToExclude property value. File extensions to exclude from scans and real time protection.
         Args:
-            value: Value to set for the defenderFileExtensionsToExclude property.
+            value: Value to set for the defender_file_extensions_to_exclude property.
         """
         self._defender_file_extensions_to_exclude = value
     
@@ -1302,7 +1302,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderFilesAndFoldersToExclude property value. Files and folder to exclude from scans and real time protection.
         Args:
-            value: Value to set for the defenderFilesAndFoldersToExclude property.
+            value: Value to set for the defender_files_and_folders_to_exclude property.
         """
         self._defender_files_and_folders_to_exclude = value
     
@@ -1319,7 +1319,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderMonitorFileActivity property value. Possible values for monitoring file activity.
         Args:
-            value: Value to set for the defenderMonitorFileActivity property.
+            value: Value to set for the defender_monitor_file_activity property.
         """
         self._defender_monitor_file_activity = value
     
@@ -1336,7 +1336,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderPotentiallyUnwantedAppAction property value. Gets or sets Defender’s action to take on Potentially Unwanted Application (PUA), which includes software with behaviors of ad-injection, software bundling, persistent solicitation for payment or subscription, etc. Defender alerts user when PUA is being downloaded or attempts to install itself. Added in Windows 10 for desktop. Possible values are: deviceDefault, block, audit.
         Args:
-            value: Value to set for the defenderPotentiallyUnwantedAppAction property.
+            value: Value to set for the defender_potentially_unwanted_app_action property.
         """
         self._defender_potentially_unwanted_app_action = value
     
@@ -1353,7 +1353,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderPotentiallyUnwantedAppActionSetting property value. Possible values of Defender PUA Protection
         Args:
-            value: Value to set for the defenderPotentiallyUnwantedAppActionSetting property.
+            value: Value to set for the defender_potentially_unwanted_app_action_setting property.
         """
         self._defender_potentially_unwanted_app_action_setting = value
     
@@ -1370,7 +1370,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderProcessesToExclude property value. Processes to exclude from scans and real time protection.
         Args:
-            value: Value to set for the defenderProcessesToExclude property.
+            value: Value to set for the defender_processes_to_exclude property.
         """
         self._defender_processes_to_exclude = value
     
@@ -1387,7 +1387,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderPromptForSampleSubmission property value. Possible values for prompting user for samples submission.
         Args:
-            value: Value to set for the defenderPromptForSampleSubmission property.
+            value: Value to set for the defender_prompt_for_sample_submission property.
         """
         self._defender_prompt_for_sample_submission = value
     
@@ -1404,7 +1404,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderRequireBehaviorMonitoring property value. Indicates whether or not to require behavior monitoring.
         Args:
-            value: Value to set for the defenderRequireBehaviorMonitoring property.
+            value: Value to set for the defender_require_behavior_monitoring property.
         """
         self._defender_require_behavior_monitoring = value
     
@@ -1421,7 +1421,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderRequireCloudProtection property value. Indicates whether or not to require cloud protection.
         Args:
-            value: Value to set for the defenderRequireCloudProtection property.
+            value: Value to set for the defender_require_cloud_protection property.
         """
         self._defender_require_cloud_protection = value
     
@@ -1438,7 +1438,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderRequireNetworkInspectionSystem property value. Indicates whether or not to require network inspection system.
         Args:
-            value: Value to set for the defenderRequireNetworkInspectionSystem property.
+            value: Value to set for the defender_require_network_inspection_system property.
         """
         self._defender_require_network_inspection_system = value
     
@@ -1455,7 +1455,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderRequireRealTimeMonitoring property value. Indicates whether or not to require real time monitoring.
         Args:
-            value: Value to set for the defenderRequireRealTimeMonitoring property.
+            value: Value to set for the defender_require_real_time_monitoring property.
         """
         self._defender_require_real_time_monitoring = value
     
@@ -1472,7 +1472,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanArchiveFiles property value. Indicates whether or not to scan archive files.
         Args:
-            value: Value to set for the defenderScanArchiveFiles property.
+            value: Value to set for the defender_scan_archive_files property.
         """
         self._defender_scan_archive_files = value
     
@@ -1489,7 +1489,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanDownloads property value. Indicates whether or not to scan downloads.
         Args:
-            value: Value to set for the defenderScanDownloads property.
+            value: Value to set for the defender_scan_downloads property.
         """
         self._defender_scan_downloads = value
     
@@ -1506,7 +1506,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanIncomingMail property value. Indicates whether or not to scan incoming mail messages.
         Args:
-            value: Value to set for the defenderScanIncomingMail property.
+            value: Value to set for the defender_scan_incoming_mail property.
         """
         self._defender_scan_incoming_mail = value
     
@@ -1523,7 +1523,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanMappedNetworkDrivesDuringFullScan property value. Indicates whether or not to scan mapped network drives during full scan.
         Args:
-            value: Value to set for the defenderScanMappedNetworkDrivesDuringFullScan property.
+            value: Value to set for the defender_scan_mapped_network_drives_during_full_scan property.
         """
         self._defender_scan_mapped_network_drives_during_full_scan = value
     
@@ -1540,7 +1540,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanMaxCpu property value. Max CPU usage percentage during scan. Valid values 0 to 100
         Args:
-            value: Value to set for the defenderScanMaxCpu property.
+            value: Value to set for the defender_scan_max_cpu property.
         """
         self._defender_scan_max_cpu = value
     
@@ -1557,7 +1557,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanNetworkFiles property value. Indicates whether or not to scan files opened from a network folder.
         Args:
-            value: Value to set for the defenderScanNetworkFiles property.
+            value: Value to set for the defender_scan_network_files property.
         """
         self._defender_scan_network_files = value
     
@@ -1574,7 +1574,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanRemovableDrivesDuringFullScan property value. Indicates whether or not to scan removable drives during full scan.
         Args:
-            value: Value to set for the defenderScanRemovableDrivesDuringFullScan property.
+            value: Value to set for the defender_scan_removable_drives_during_full_scan property.
         """
         self._defender_scan_removable_drives_during_full_scan = value
     
@@ -1591,7 +1591,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanScriptsLoadedInInternetExplorer property value. Indicates whether or not to scan scripts loaded in Internet Explorer browser.
         Args:
-            value: Value to set for the defenderScanScriptsLoadedInInternetExplorer property.
+            value: Value to set for the defender_scan_scripts_loaded_in_internet_explorer property.
         """
         self._defender_scan_scripts_loaded_in_internet_explorer = value
     
@@ -1608,9 +1608,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScanType property value. Possible values for system scan type.
         Args:
-            value: Value to set for the defenderScanType property.
+            value: Value to set for the defender_scan_type property.
         """
         self._defender_scan_type = value
+    
+    @property
+    def defender_schedule_scan_enable_low_cpu_priority(self,) -> Optional[bool]:
+        """
+        Gets the defenderScheduleScanEnableLowCpuPriority property value. When enabled, low CPU priority will be used during scheduled scans.
+        Returns: Optional[bool]
+        """
+        return self._defender_schedule_scan_enable_low_cpu_priority
+    
+    @defender_schedule_scan_enable_low_cpu_priority.setter
+    def defender_schedule_scan_enable_low_cpu_priority(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the defenderScheduleScanEnableLowCpuPriority property value. When enabled, low CPU priority will be used during scheduled scans.
+        Args:
+            value: Value to set for the defender_schedule_scan_enable_low_cpu_priority property.
+        """
+        self._defender_schedule_scan_enable_low_cpu_priority = value
     
     @property
     def defender_scheduled_quick_scan_time(self,) -> Optional[Time]:
@@ -1625,7 +1642,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScheduledQuickScanTime property value. The time to perform a daily quick scan.
         Args:
-            value: Value to set for the defenderScheduledQuickScanTime property.
+            value: Value to set for the defender_scheduled_quick_scan_time property.
         """
         self._defender_scheduled_quick_scan_time = value
     
@@ -1642,26 +1659,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderScheduledScanTime property value. The defender time for the system scan.
         Args:
-            value: Value to set for the defenderScheduledScanTime property.
+            value: Value to set for the defender_scheduled_scan_time property.
         """
         self._defender_scheduled_scan_time = value
-    
-    @property
-    def defender_schedule_scan_enable_low_cpu_priority(self,) -> Optional[bool]:
-        """
-        Gets the defenderScheduleScanEnableLowCpuPriority property value. When enabled, low CPU priority will be used during scheduled scans.
-        Returns: Optional[bool]
-        """
-        return self._defender_schedule_scan_enable_low_cpu_priority
-    
-    @defender_schedule_scan_enable_low_cpu_priority.setter
-    def defender_schedule_scan_enable_low_cpu_priority(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the defenderScheduleScanEnableLowCpuPriority property value. When enabled, low CPU priority will be used during scheduled scans.
-        Args:
-            value: Value to set for the defenderScheduleScanEnableLowCpuPriority property.
-        """
-        self._defender_schedule_scan_enable_low_cpu_priority = value
     
     @property
     def defender_signature_update_interval_in_hours(self,) -> Optional[int]:
@@ -1676,7 +1676,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderSignatureUpdateIntervalInHours property value. The signature update interval in hours. Specify 0 not to check. Valid values 0 to 24
         Args:
-            value: Value to set for the defenderSignatureUpdateIntervalInHours property.
+            value: Value to set for the defender_signature_update_interval_in_hours property.
         """
         self._defender_signature_update_interval_in_hours = value
     
@@ -1693,7 +1693,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderSubmitSamplesConsentType property value. Checks for the user consent level in Windows Defender to send data. Possible values are: sendSafeSamplesAutomatically, alwaysPrompt, neverSend, sendAllSamplesAutomatically.
         Args:
-            value: Value to set for the defenderSubmitSamplesConsentType property.
+            value: Value to set for the defender_submit_samples_consent_type property.
         """
         self._defender_submit_samples_consent_type = value
     
@@ -1710,7 +1710,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the defenderSystemScanSchedule property value. Possible values for a weekly schedule.
         Args:
-            value: Value to set for the defenderSystemScanSchedule property.
+            value: Value to set for the defender_system_scan_schedule property.
         """
         self._defender_system_scan_schedule = value
     
@@ -1727,7 +1727,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the developerUnlockSetting property value. State Management Setting.
         Args:
-            value: Value to set for the developerUnlockSetting property.
+            value: Value to set for the developer_unlock_setting property.
         """
         self._developer_unlock_setting = value
     
@@ -1744,7 +1744,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the deviceManagementBlockFactoryResetOnMobile property value. Indicates whether or not to Block the user from resetting their phone.
         Args:
-            value: Value to set for the deviceManagementBlockFactoryResetOnMobile property.
+            value: Value to set for the device_management_block_factory_reset_on_mobile property.
         """
         self._device_management_block_factory_reset_on_mobile = value
     
@@ -1761,7 +1761,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the deviceManagementBlockManualUnenroll property value. Indicates whether or not to Block the user from doing manual un-enrollment from device management.
         Args:
-            value: Value to set for the deviceManagementBlockManualUnenroll property.
+            value: Value to set for the device_management_block_manual_unenroll property.
         """
         self._device_management_block_manual_unenroll = value
     
@@ -1778,7 +1778,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the diagnosticsDataSubmissionMode property value. Allow the device to send diagnostic and usage telemetry data, such as Watson.
         Args:
-            value: Value to set for the diagnosticsDataSubmissionMode property.
+            value: Value to set for the diagnostics_data_submission_mode property.
         """
         self._diagnostics_data_submission_mode = value
     
@@ -1795,7 +1795,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the displayAppListWithGdiDPIScalingTurnedOff property value. List of legacy applications that have GDI DPI Scaling turned off.
         Args:
-            value: Value to set for the displayAppListWithGdiDPIScalingTurnedOff property.
+            value: Value to set for the display_app_list_with_gdi_d_p_i_scaling_turned_off property.
         """
         self._display_app_list_with_gdi_d_p_i_scaling_turned_off = value
     
@@ -1812,7 +1812,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the displayAppListWithGdiDPIScalingTurnedOn property value. List of legacy applications that have GDI DPI Scaling turned on.
         Args:
-            value: Value to set for the displayAppListWithGdiDPIScalingTurnedOn property.
+            value: Value to set for the display_app_list_with_gdi_d_p_i_scaling_turned_on property.
         """
         self._display_app_list_with_gdi_d_p_i_scaling_turned_on = value
     
@@ -1829,7 +1829,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeAllowStartPagesModification property value. Allow users to change Start pages on Edge. Use the EdgeHomepageUrls to specify the Start pages that the user would see by default when they open Edge.
         Args:
-            value: Value to set for the edgeAllowStartPagesModification property.
+            value: Value to set for the edge_allow_start_pages_modification property.
         """
         self._edge_allow_start_pages_modification = value
     
@@ -1846,7 +1846,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockAccessToAboutFlags property value. Indicates whether or not to prevent access to about flags on Edge browser.
         Args:
-            value: Value to set for the edgeBlockAccessToAboutFlags property.
+            value: Value to set for the edge_block_access_to_about_flags property.
         """
         self._edge_block_access_to_about_flags = value
     
@@ -1863,7 +1863,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockAddressBarDropdown property value. Block the address bar dropdown functionality in Microsoft Edge. Disable this settings to minimize network connections from Microsoft Edge to Microsoft services.
         Args:
-            value: Value to set for the edgeBlockAddressBarDropdown property.
+            value: Value to set for the edge_block_address_bar_dropdown property.
         """
         self._edge_block_address_bar_dropdown = value
     
@@ -1880,7 +1880,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockAutofill property value. Indicates whether or not to block auto fill.
         Args:
-            value: Value to set for the edgeBlockAutofill property.
+            value: Value to set for the edge_block_autofill property.
         """
         self._edge_block_autofill = value
     
@@ -1897,7 +1897,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockCompatibilityList property value. Block Microsoft compatibility list in Microsoft Edge. This list from Microsoft helps Edge properly display sites with known compatibility issues.
         Args:
-            value: Value to set for the edgeBlockCompatibilityList property.
+            value: Value to set for the edge_block_compatibility_list property.
         """
         self._edge_block_compatibility_list = value
     
@@ -1914,26 +1914,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockDeveloperTools property value. Indicates whether or not to block developer tools in the Edge browser.
         Args:
-            value: Value to set for the edgeBlockDeveloperTools property.
+            value: Value to set for the edge_block_developer_tools property.
         """
         self._edge_block_developer_tools = value
-    
-    @property
-    def edge_blocked(self,) -> Optional[bool]:
-        """
-        Gets the edgeBlocked property value. Indicates whether or not to Block the user from using the Edge browser.
-        Returns: Optional[bool]
-        """
-        return self._edge_blocked
-    
-    @edge_blocked.setter
-    def edge_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the edgeBlocked property value. Indicates whether or not to Block the user from using the Edge browser.
-        Args:
-            value: Value to set for the edgeBlocked property.
-        """
-        self._edge_blocked = value
     
     @property
     def edge_block_edit_favorites(self,) -> Optional[bool]:
@@ -1948,7 +1931,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockEditFavorites property value. Indicates whether or not to Block the user from making changes to Favorites.
         Args:
-            value: Value to set for the edgeBlockEditFavorites property.
+            value: Value to set for the edge_block_edit_favorites property.
         """
         self._edge_block_edit_favorites = value
     
@@ -1965,7 +1948,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockExtensions property value. Indicates whether or not to block extensions in the Edge browser.
         Args:
-            value: Value to set for the edgeBlockExtensions property.
+            value: Value to set for the edge_block_extensions property.
         """
         self._edge_block_extensions = value
     
@@ -1982,7 +1965,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockFullScreenMode property value. Allow or prevent Edge from entering the full screen mode.
         Args:
-            value: Value to set for the edgeBlockFullScreenMode property.
+            value: Value to set for the edge_block_full_screen_mode property.
         """
         self._edge_block_full_screen_mode = value
     
@@ -1999,7 +1982,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockInPrivateBrowsing property value. Indicates whether or not to block InPrivate browsing on corporate networks, in the Edge browser.
         Args:
-            value: Value to set for the edgeBlockInPrivateBrowsing property.
+            value: Value to set for the edge_block_in_private_browsing property.
         """
         self._edge_block_in_private_browsing = value
     
@@ -2016,7 +1999,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockJavaScript property value. Indicates whether or not to Block the user from using JavaScript.
         Args:
-            value: Value to set for the edgeBlockJavaScript property.
+            value: Value to set for the edge_block_java_script property.
         """
         self._edge_block_java_script = value
     
@@ -2033,7 +2016,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockLiveTileDataCollection property value. Block the collection of information by Microsoft for live tile creation when users pin a site to Start from Microsoft Edge.
         Args:
-            value: Value to set for the edgeBlockLiveTileDataCollection property.
+            value: Value to set for the edge_block_live_tile_data_collection property.
         """
         self._edge_block_live_tile_data_collection = value
     
@@ -2050,7 +2033,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockPasswordManager property value. Indicates whether or not to Block password manager.
         Args:
-            value: Value to set for the edgeBlockPasswordManager property.
+            value: Value to set for the edge_block_password_manager property.
         """
         self._edge_block_password_manager = value
     
@@ -2067,7 +2050,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockPopups property value. Indicates whether or not to block popups.
         Args:
-            value: Value to set for the edgeBlockPopups property.
+            value: Value to set for the edge_block_popups property.
         """
         self._edge_block_popups = value
     
@@ -2084,7 +2067,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockPrelaunch property value. Decide whether Microsoft Edge is prelaunched at Windows startup.
         Args:
-            value: Value to set for the edgeBlockPrelaunch property.
+            value: Value to set for the edge_block_prelaunch property.
         """
         self._edge_block_prelaunch = value
     
@@ -2101,7 +2084,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockPrinting property value. Configure Edge to allow or block printing.
         Args:
-            value: Value to set for the edgeBlockPrinting property.
+            value: Value to set for the edge_block_printing property.
         """
         self._edge_block_printing = value
     
@@ -2118,7 +2101,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockSavingHistory property value. Configure Edge to allow browsing history to be saved or to never save browsing history.
         Args:
-            value: Value to set for the edgeBlockSavingHistory property.
+            value: Value to set for the edge_block_saving_history property.
         """
         self._edge_block_saving_history = value
     
@@ -2135,7 +2118,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockSearchEngineCustomization property value. Indicates whether or not to block the user from adding new search engine or changing the default search engine.
         Args:
-            value: Value to set for the edgeBlockSearchEngineCustomization property.
+            value: Value to set for the edge_block_search_engine_customization property.
         """
         self._edge_block_search_engine_customization = value
     
@@ -2152,7 +2135,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockSearchSuggestions property value. Indicates whether or not to block the user from using the search suggestions in the address bar.
         Args:
-            value: Value to set for the edgeBlockSearchSuggestions property.
+            value: Value to set for the edge_block_search_suggestions property.
         """
         self._edge_block_search_suggestions = value
     
@@ -2169,7 +2152,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockSendingDoNotTrackHeader property value. Indicates whether or not to Block the user from sending the do not track header.
         Args:
-            value: Value to set for the edgeBlockSendingDoNotTrackHeader property.
+            value: Value to set for the edge_block_sending_do_not_track_header property.
         """
         self._edge_block_sending_do_not_track_header = value
     
@@ -2186,7 +2169,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockSendingIntranetTrafficToInternetExplorer property value. Indicates whether or not to switch the intranet traffic from Edge to Internet Explorer. Note: the name of this property is misleading; the property is obsolete, use EdgeSendIntranetTrafficToInternetExplorer instead.
         Args:
-            value: Value to set for the edgeBlockSendingIntranetTrafficToInternetExplorer property.
+            value: Value to set for the edge_block_sending_intranet_traffic_to_internet_explorer property.
         """
         self._edge_block_sending_intranet_traffic_to_internet_explorer = value
     
@@ -2203,7 +2186,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockSideloadingExtensions property value. Indicates whether the user can sideload extensions.
         Args:
-            value: Value to set for the edgeBlockSideloadingExtensions property.
+            value: Value to set for the edge_block_sideloading_extensions property.
         """
         self._edge_block_sideloading_extensions = value
     
@@ -2220,7 +2203,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockTabPreloading property value. Configure whether Edge preloads the new tab page at Windows startup.
         Args:
-            value: Value to set for the edgeBlockTabPreloading property.
+            value: Value to set for the edge_block_tab_preloading property.
         """
         self._edge_block_tab_preloading = value
     
@@ -2237,9 +2220,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeBlockWebContentOnNewTabPage property value. Configure to load a blank page in Edge instead of the default New tab page and prevent users from changing it.
         Args:
-            value: Value to set for the edgeBlockWebContentOnNewTabPage property.
+            value: Value to set for the edge_block_web_content_on_new_tab_page property.
         """
         self._edge_block_web_content_on_new_tab_page = value
+    
+    @property
+    def edge_blocked(self,) -> Optional[bool]:
+        """
+        Gets the edgeBlocked property value. Indicates whether or not to Block the user from using the Edge browser.
+        Returns: Optional[bool]
+        """
+        return self._edge_blocked
+    
+    @edge_blocked.setter
+    def edge_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the edgeBlocked property value. Indicates whether or not to Block the user from using the Edge browser.
+        Args:
+            value: Value to set for the edge_blocked property.
+        """
+        self._edge_blocked = value
     
     @property
     def edge_clear_browsing_data_on_exit(self,) -> Optional[bool]:
@@ -2254,7 +2254,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeClearBrowsingDataOnExit property value. Clear browsing data on exiting Microsoft Edge.
         Args:
-            value: Value to set for the edgeClearBrowsingDataOnExit property.
+            value: Value to set for the edge_clear_browsing_data_on_exit property.
         """
         self._edge_clear_browsing_data_on_exit = value
     
@@ -2271,7 +2271,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeCookiePolicy property value. Possible values to specify which cookies are allowed in Microsoft Edge.
         Args:
-            value: Value to set for the edgeCookiePolicy property.
+            value: Value to set for the edge_cookie_policy property.
         """
         self._edge_cookie_policy = value
     
@@ -2288,7 +2288,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeDisableFirstRunPage property value. Block the Microsoft web page that opens on the first use of Microsoft Edge. This policy allows enterprises, like those enrolled in zero emissions configurations, to block this page.
         Args:
-            value: Value to set for the edgeDisableFirstRunPage property.
+            value: Value to set for the edge_disable_first_run_page property.
         """
         self._edge_disable_first_run_page = value
     
@@ -2305,7 +2305,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeEnterpriseModeSiteListLocation property value. Indicates the enterprise mode site list location. Could be a local file, local network or http location.
         Args:
-            value: Value to set for the edgeEnterpriseModeSiteListLocation property.
+            value: Value to set for the edge_enterprise_mode_site_list_location property.
         """
         self._edge_enterprise_mode_site_list_location = value
     
@@ -2322,7 +2322,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeFavoritesBarVisibility property value. Generic visibility state.
         Args:
-            value: Value to set for the edgeFavoritesBarVisibility property.
+            value: Value to set for the edge_favorites_bar_visibility property.
         """
         self._edge_favorites_bar_visibility = value
     
@@ -2339,7 +2339,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeFavoritesListLocation property value. The location of the favorites list to provision. Could be a local file, local network or http location.
         Args:
-            value: Value to set for the edgeFavoritesListLocation property.
+            value: Value to set for the edge_favorites_list_location property.
         """
         self._edge_favorites_list_location = value
     
@@ -2356,7 +2356,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeFirstRunUrl property value. The first run URL for when Edge browser is opened for the first time.
         Args:
-            value: Value to set for the edgeFirstRunUrl property.
+            value: Value to set for the edge_first_run_url property.
         """
         self._edge_first_run_url = value
     
@@ -2373,7 +2373,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeHomeButtonConfiguration property value. Causes the Home button to either hide, load the default Start page, load a New tab page, or a custom URL
         Args:
-            value: Value to set for the edgeHomeButtonConfiguration property.
+            value: Value to set for the edge_home_button_configuration property.
         """
         self._edge_home_button_configuration = value
     
@@ -2390,7 +2390,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeHomeButtonConfigurationEnabled property value. Enable the Home button configuration.
         Args:
-            value: Value to set for the edgeHomeButtonConfigurationEnabled property.
+            value: Value to set for the edge_home_button_configuration_enabled property.
         """
         self._edge_home_button_configuration_enabled = value
     
@@ -2407,7 +2407,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeHomepageUrls property value. The list of URLs for homepages shodwn on MDM-enrolled devices on Edge browser.
         Args:
-            value: Value to set for the edgeHomepageUrls property.
+            value: Value to set for the edge_homepage_urls property.
         """
         self._edge_homepage_urls = value
     
@@ -2424,7 +2424,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeKioskModeRestriction property value. Specify how the Microsoft Edge settings are restricted based on kiosk mode.
         Args:
-            value: Value to set for the edgeKioskModeRestriction property.
+            value: Value to set for the edge_kiosk_mode_restriction property.
         """
         self._edge_kiosk_mode_restriction = value
     
@@ -2441,7 +2441,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeKioskResetAfterIdleTimeInMinutes property value. Specifies the time in minutes from the last user activity before Microsoft Edge kiosk resets.  Valid values are 0-1440. The default is 5. 0 indicates no reset. Valid values 0 to 1440
         Args:
-            value: Value to set for the edgeKioskResetAfterIdleTimeInMinutes property.
+            value: Value to set for the edge_kiosk_reset_after_idle_time_in_minutes property.
         """
         self._edge_kiosk_reset_after_idle_time_in_minutes = value
     
@@ -2458,7 +2458,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeNewTabPageURL property value. Specify the page opened when new tabs are created.
         Args:
-            value: Value to set for the edgeNewTabPageURL property.
+            value: Value to set for the edge_new_tab_page_u_r_l property.
         """
         self._edge_new_tab_page_u_r_l = value
     
@@ -2475,7 +2475,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeOpensWith property value. Possible values for the EdgeOpensWith setting.
         Args:
-            value: Value to set for the edgeOpensWith property.
+            value: Value to set for the edge_opens_with property.
         """
         self._edge_opens_with = value
     
@@ -2492,26 +2492,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgePreventCertificateErrorOverride property value. Allow or prevent users from overriding certificate errors.
         Args:
-            value: Value to set for the edgePreventCertificateErrorOverride property.
+            value: Value to set for the edge_prevent_certificate_error_override property.
         """
         self._edge_prevent_certificate_error_override = value
-    
-    @property
-    def edge_required_extension_package_family_names(self,) -> Optional[List[str]]:
-        """
-        Gets the edgeRequiredExtensionPackageFamilyNames property value. Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
-        Returns: Optional[List[str]]
-        """
-        return self._edge_required_extension_package_family_names
-    
-    @edge_required_extension_package_family_names.setter
-    def edge_required_extension_package_family_names(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the edgeRequiredExtensionPackageFamilyNames property value. Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
-        Args:
-            value: Value to set for the edgeRequiredExtensionPackageFamilyNames property.
-        """
-        self._edge_required_extension_package_family_names = value
     
     @property
     def edge_require_smart_screen(self,) -> Optional[bool]:
@@ -2526,9 +2509,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeRequireSmartScreen property value. Indicates whether or not to Require the user to use the smart screen filter.
         Args:
-            value: Value to set for the edgeRequireSmartScreen property.
+            value: Value to set for the edge_require_smart_screen property.
         """
         self._edge_require_smart_screen = value
+    
+    @property
+    def edge_required_extension_package_family_names(self,) -> Optional[List[str]]:
+        """
+        Gets the edgeRequiredExtensionPackageFamilyNames property value. Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
+        Returns: Optional[List[str]]
+        """
+        return self._edge_required_extension_package_family_names
+    
+    @edge_required_extension_package_family_names.setter
+    def edge_required_extension_package_family_names(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the edgeRequiredExtensionPackageFamilyNames property value. Specify the list of package family names of browser extensions that are required and cannot be turned off by the user.
+        Args:
+            value: Value to set for the edge_required_extension_package_family_names property.
+        """
+        self._edge_required_extension_package_family_names = value
     
     @property
     def edge_search_engine(self,) -> Optional[edge_search_engine_base.EdgeSearchEngineBase]:
@@ -2543,7 +2543,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeSearchEngine property value. Allows IT admins to set a default search engine for MDM-Controlled devices. Users can override this and change their default search engine provided the AllowSearchEngineCustomization policy is not set.
         Args:
-            value: Value to set for the edgeSearchEngine property.
+            value: Value to set for the edge_search_engine property.
         """
         self._edge_search_engine = value
     
@@ -2560,7 +2560,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeSendIntranetTrafficToInternetExplorer property value. Indicates whether or not to switch the intranet traffic from Edge to Internet Explorer.
         Args:
-            value: Value to set for the edgeSendIntranetTrafficToInternetExplorer property.
+            value: Value to set for the edge_send_intranet_traffic_to_internet_explorer property.
         """
         self._edge_send_intranet_traffic_to_internet_explorer = value
     
@@ -2577,7 +2577,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeShowMessageWhenOpeningInternetExplorerSites property value. What message will be displayed by Edge before switching to Internet Explorer.
         Args:
-            value: Value to set for the edgeShowMessageWhenOpeningInternetExplorerSites property.
+            value: Value to set for the edge_show_message_when_opening_internet_explorer_sites property.
         """
         self._edge_show_message_when_opening_internet_explorer_sites = value
     
@@ -2594,7 +2594,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeSyncFavoritesWithInternetExplorer property value. Enable favorites sync between Internet Explorer and Microsoft Edge. Additions, deletions, modifications and order changes to favorites are shared between browsers.
         Args:
-            value: Value to set for the edgeSyncFavoritesWithInternetExplorer property.
+            value: Value to set for the edge_sync_favorites_with_internet_explorer property.
         """
         self._edge_sync_favorites_with_internet_explorer = value
     
@@ -2611,7 +2611,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the edgeTelemetryForMicrosoft365Analytics property value. Type of browsing data sent to Microsoft 365 analytics
         Args:
-            value: Value to set for the edgeTelemetryForMicrosoft365Analytics property.
+            value: Value to set for the edge_telemetry_for_microsoft365_analytics property.
         """
         self._edge_telemetry_for_microsoft365_analytics = value
     
@@ -2628,7 +2628,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enableAutomaticRedeployment property value. Allow users with administrative rights to delete all user data and settings using CTRL + Win + R at the device lock screen so that the device can be automatically re-configured and re-enrolled into management.
         Args:
-            value: Value to set for the enableAutomaticRedeployment property.
+            value: Value to set for the enable_automatic_redeployment property.
         """
         self._enable_automatic_redeployment = value
     
@@ -2645,7 +2645,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the energySaverOnBatteryThresholdPercentage property value. This setting allows you to specify battery charge level at which Energy Saver is turned on. While on battery, Energy Saver is automatically turned on at (and below) the specified battery charge level. Valid input range (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the energySaverOnBatteryThresholdPercentage property.
+            value: Value to set for the energy_saver_on_battery_threshold_percentage property.
         """
         self._energy_saver_on_battery_threshold_percentage = value
     
@@ -2662,7 +2662,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the energySaverPluggedInThresholdPercentage property value. This setting allows you to specify battery charge level at which Energy Saver is turned on. While plugged in, Energy Saver is automatically turned on at (and below) the specified battery charge level. Valid input range (0-100). Valid values 0 to 100
         Args:
-            value: Value to set for the energySaverPluggedInThresholdPercentage property.
+            value: Value to set for the energy_saver_plugged_in_threshold_percentage property.
         """
         self._energy_saver_plugged_in_threshold_percentage = value
     
@@ -2679,7 +2679,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseCloudPrintDiscoveryEndPoint property value. Endpoint for discovering cloud printers.
         Args:
-            value: Value to set for the enterpriseCloudPrintDiscoveryEndPoint property.
+            value: Value to set for the enterprise_cloud_print_discovery_end_point property.
         """
         self._enterprise_cloud_print_discovery_end_point = value
     
@@ -2696,7 +2696,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseCloudPrintDiscoveryMaxLimit property value. Maximum number of printers that should be queried from a discovery endpoint. This is a mobile only setting. Valid values 1 to 65535
         Args:
-            value: Value to set for the enterpriseCloudPrintDiscoveryMaxLimit property.
+            value: Value to set for the enterprise_cloud_print_discovery_max_limit property.
         """
         self._enterprise_cloud_print_discovery_max_limit = value
     
@@ -2713,7 +2713,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseCloudPrintMopriaDiscoveryResourceIdentifier property value. OAuth resource URI for printer discovery service as configured in Azure portal.
         Args:
-            value: Value to set for the enterpriseCloudPrintMopriaDiscoveryResourceIdentifier property.
+            value: Value to set for the enterprise_cloud_print_mopria_discovery_resource_identifier property.
         """
         self._enterprise_cloud_print_mopria_discovery_resource_identifier = value
     
@@ -2730,7 +2730,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseCloudPrintOAuthAuthority property value. Authentication endpoint for acquiring OAuth tokens.
         Args:
-            value: Value to set for the enterpriseCloudPrintOAuthAuthority property.
+            value: Value to set for the enterprise_cloud_print_o_auth_authority property.
         """
         self._enterprise_cloud_print_o_auth_authority = value
     
@@ -2747,7 +2747,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseCloudPrintOAuthClientIdentifier property value. GUID of a client application authorized to retrieve OAuth tokens from the OAuth Authority.
         Args:
-            value: Value to set for the enterpriseCloudPrintOAuthClientIdentifier property.
+            value: Value to set for the enterprise_cloud_print_o_auth_client_identifier property.
         """
         self._enterprise_cloud_print_o_auth_client_identifier = value
     
@@ -2764,7 +2764,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseCloudPrintResourceIdentifier property value. OAuth resource URI for print service as configured in the Azure portal.
         Args:
-            value: Value to set for the enterpriseCloudPrintResourceIdentifier property.
+            value: Value to set for the enterprise_cloud_print_resource_identifier property.
         """
         self._enterprise_cloud_print_resource_identifier = value
     
@@ -2781,7 +2781,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the experienceBlockDeviceDiscovery property value. Indicates whether or not to enable device discovery UX.
         Args:
-            value: Value to set for the experienceBlockDeviceDiscovery property.
+            value: Value to set for the experience_block_device_discovery property.
         """
         self._experience_block_device_discovery = value
     
@@ -2798,7 +2798,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the experienceBlockErrorDialogWhenNoSIM property value. Indicates whether or not to allow the error dialog from displaying if no SIM card is detected.
         Args:
-            value: Value to set for the experienceBlockErrorDialogWhenNoSIM property.
+            value: Value to set for the experience_block_error_dialog_when_no_s_i_m property.
         """
         self._experience_block_error_dialog_when_no_s_i_m = value
     
@@ -2815,7 +2815,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the experienceBlockTaskSwitcher property value. Indicates whether or not to enable task switching on the device.
         Args:
-            value: Value to set for the experienceBlockTaskSwitcher property.
+            value: Value to set for the experience_block_task_switcher property.
         """
         self._experience_block_task_switcher = value
     
@@ -2832,7 +2832,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the experienceDoNotSyncBrowserSettings property value. Allow(Not Configured) or prevent(Block) the syncing of Microsoft Edge Browser settings. Option to prevent syncing across devices, but allow user override.
         Args:
-            value: Value to set for the experienceDoNotSyncBrowserSettings property.
+            value: Value to set for the experience_do_not_sync_browser_settings property.
         """
         self._experience_do_not_sync_browser_settings = value
     
@@ -2849,7 +2849,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the findMyFiles property value. Possible values of a property
         Args:
-            value: Value to set for the findMyFiles property.
+            value: Value to set for the find_my_files property.
         """
         self._find_my_files = value
     
@@ -2866,7 +2866,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the gameDvrBlocked property value. Indicates whether or not to block DVR and broadcasting.
         Args:
-            value: Value to set for the gameDvrBlocked property.
+            value: Value to set for the game_dvr_blocked property.
         """
         self._game_dvr_blocked = value
     
@@ -2876,289 +2876,289 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accounts_block_adding_non_microsoft_account_email": lambda n : setattr(self, 'accounts_block_adding_non_microsoft_account_email', n.get_bool_value()),
-            "activate_apps_with_voice": lambda n : setattr(self, 'activate_apps_with_voice', n.get_enum_value(enablement.Enablement)),
-            "anti_theft_mode_blocked": lambda n : setattr(self, 'anti_theft_mode_blocked', n.get_bool_value()),
-            "app_management_m_s_i_allow_user_control_over_install": lambda n : setattr(self, 'app_management_m_s_i_allow_user_control_over_install', n.get_bool_value()),
-            "app_management_m_s_i_always_install_with_elevated_privileges": lambda n : setattr(self, 'app_management_m_s_i_always_install_with_elevated_privileges', n.get_bool_value()),
-            "app_management_package_family_names_to_launch_after_log_on": lambda n : setattr(self, 'app_management_package_family_names_to_launch_after_log_on', n.get_collection_of_primitive_values(str)),
-            "apps_allow_trusted_apps_sideloading": lambda n : setattr(self, 'apps_allow_trusted_apps_sideloading', n.get_enum_value(state_management_setting.StateManagementSetting)),
-            "apps_block_windows_store_originated_apps": lambda n : setattr(self, 'apps_block_windows_store_originated_apps', n.get_bool_value()),
-            "authentication_allow_secondary_device": lambda n : setattr(self, 'authentication_allow_secondary_device', n.get_bool_value()),
-            "authentication_preferred_azure_a_d_tenant_domain_name": lambda n : setattr(self, 'authentication_preferred_azure_a_d_tenant_domain_name', n.get_str_value()),
-            "authentication_web_sign_in": lambda n : setattr(self, 'authentication_web_sign_in', n.get_enum_value(enablement.Enablement)),
-            "bluetooth_allowed_services": lambda n : setattr(self, 'bluetooth_allowed_services', n.get_collection_of_primitive_values(str)),
-            "bluetooth_block_advertising": lambda n : setattr(self, 'bluetooth_block_advertising', n.get_bool_value()),
-            "bluetooth_block_discoverable_mode": lambda n : setattr(self, 'bluetooth_block_discoverable_mode', n.get_bool_value()),
-            "bluetooth_blocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
-            "bluetooth_block_pre_pairing": lambda n : setattr(self, 'bluetooth_block_pre_pairing', n.get_bool_value()),
-            "bluetooth_block_prompted_proximal_connections": lambda n : setattr(self, 'bluetooth_block_prompted_proximal_connections', n.get_bool_value()),
-            "camera_blocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
-            "cellular_block_data_when_roaming": lambda n : setattr(self, 'cellular_block_data_when_roaming', n.get_bool_value()),
-            "cellular_block_vpn": lambda n : setattr(self, 'cellular_block_vpn', n.get_bool_value()),
-            "cellular_block_vpn_when_roaming": lambda n : setattr(self, 'cellular_block_vpn_when_roaming', n.get_bool_value()),
-            "cellular_data": lambda n : setattr(self, 'cellular_data', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "certificates_block_manual_root_certificate_installation": lambda n : setattr(self, 'certificates_block_manual_root_certificate_installation', n.get_bool_value()),
-            "configure_time_zone": lambda n : setattr(self, 'configure_time_zone', n.get_str_value()),
-            "connected_devices_service_blocked": lambda n : setattr(self, 'connected_devices_service_blocked', n.get_bool_value()),
-            "copy_paste_blocked": lambda n : setattr(self, 'copy_paste_blocked', n.get_bool_value()),
-            "cortana_blocked": lambda n : setattr(self, 'cortana_blocked', n.get_bool_value()),
-            "cryptography_allow_fips_algorithm_policy": lambda n : setattr(self, 'cryptography_allow_fips_algorithm_policy', n.get_bool_value()),
-            "data_protection_block_direct_memory_access": lambda n : setattr(self, 'data_protection_block_direct_memory_access', n.get_bool_value()),
-            "defender_block_end_user_access": lambda n : setattr(self, 'defender_block_end_user_access', n.get_bool_value()),
-            "defender_block_on_access_protection": lambda n : setattr(self, 'defender_block_on_access_protection', n.get_bool_value()),
-            "defender_cloud_block_level": lambda n : setattr(self, 'defender_cloud_block_level', n.get_enum_value(defender_cloud_block_level_type.DefenderCloudBlockLevelType)),
-            "defender_cloud_extended_timeout": lambda n : setattr(self, 'defender_cloud_extended_timeout', n.get_int_value()),
-            "defender_cloud_extended_timeout_in_seconds": lambda n : setattr(self, 'defender_cloud_extended_timeout_in_seconds', n.get_int_value()),
-            "defender_days_before_deleting_quarantined_malware": lambda n : setattr(self, 'defender_days_before_deleting_quarantined_malware', n.get_int_value()),
-            "defender_detected_malware_actions": lambda n : setattr(self, 'defender_detected_malware_actions', n.get_object_value(defender_detected_malware_actions.DefenderDetectedMalwareActions)),
-            "defender_disable_catchup_full_scan": lambda n : setattr(self, 'defender_disable_catchup_full_scan', n.get_bool_value()),
-            "defender_disable_catchup_quick_scan": lambda n : setattr(self, 'defender_disable_catchup_quick_scan', n.get_bool_value()),
-            "defender_file_extensions_to_exclude": lambda n : setattr(self, 'defender_file_extensions_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defender_files_and_folders_to_exclude": lambda n : setattr(self, 'defender_files_and_folders_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defender_monitor_file_activity": lambda n : setattr(self, 'defender_monitor_file_activity', n.get_enum_value(defender_monitor_file_activity.DefenderMonitorFileActivity)),
-            "defender_potentially_unwanted_app_action": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(defender_potentially_unwanted_app_action.DefenderPotentiallyUnwantedAppAction)),
-            "defender_potentially_unwanted_app_action_setting": lambda n : setattr(self, 'defender_potentially_unwanted_app_action_setting', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
-            "defender_processes_to_exclude": lambda n : setattr(self, 'defender_processes_to_exclude', n.get_collection_of_primitive_values(str)),
-            "defender_prompt_for_sample_submission": lambda n : setattr(self, 'defender_prompt_for_sample_submission', n.get_enum_value(defender_prompt_for_sample_submission.DefenderPromptForSampleSubmission)),
-            "defender_require_behavior_monitoring": lambda n : setattr(self, 'defender_require_behavior_monitoring', n.get_bool_value()),
-            "defender_require_cloud_protection": lambda n : setattr(self, 'defender_require_cloud_protection', n.get_bool_value()),
-            "defender_require_network_inspection_system": lambda n : setattr(self, 'defender_require_network_inspection_system', n.get_bool_value()),
-            "defender_require_real_time_monitoring": lambda n : setattr(self, 'defender_require_real_time_monitoring', n.get_bool_value()),
-            "defender_scan_archive_files": lambda n : setattr(self, 'defender_scan_archive_files', n.get_bool_value()),
-            "defender_scan_downloads": lambda n : setattr(self, 'defender_scan_downloads', n.get_bool_value()),
-            "defender_scan_incoming_mail": lambda n : setattr(self, 'defender_scan_incoming_mail', n.get_bool_value()),
-            "defender_scan_mapped_network_drives_during_full_scan": lambda n : setattr(self, 'defender_scan_mapped_network_drives_during_full_scan', n.get_bool_value()),
-            "defender_scan_max_cpu": lambda n : setattr(self, 'defender_scan_max_cpu', n.get_int_value()),
-            "defender_scan_network_files": lambda n : setattr(self, 'defender_scan_network_files', n.get_bool_value()),
-            "defender_scan_removable_drives_during_full_scan": lambda n : setattr(self, 'defender_scan_removable_drives_during_full_scan', n.get_bool_value()),
-            "defender_scan_scripts_loaded_in_internet_explorer": lambda n : setattr(self, 'defender_scan_scripts_loaded_in_internet_explorer', n.get_bool_value()),
-            "defender_scan_type": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(defender_scan_type.DefenderScanType)),
-            "defender_scheduled_quick_scan_time": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_object_value(Time)),
-            "defender_scheduled_scan_time": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_object_value(Time)),
-            "defender_schedule_scan_enable_low_cpu_priority": lambda n : setattr(self, 'defender_schedule_scan_enable_low_cpu_priority', n.get_bool_value()),
-            "defender_signature_update_interval_in_hours": lambda n : setattr(self, 'defender_signature_update_interval_in_hours', n.get_int_value()),
-            "defender_submit_samples_consent_type": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(defender_submit_samples_consent_type.DefenderSubmitSamplesConsentType)),
-            "defender_system_scan_schedule": lambda n : setattr(self, 'defender_system_scan_schedule', n.get_enum_value(weekly_schedule.WeeklySchedule)),
-            "developer_unlock_setting": lambda n : setattr(self, 'developer_unlock_setting', n.get_enum_value(state_management_setting.StateManagementSetting)),
-            "device_management_block_factory_reset_on_mobile": lambda n : setattr(self, 'device_management_block_factory_reset_on_mobile', n.get_bool_value()),
-            "device_management_block_manual_unenroll": lambda n : setattr(self, 'device_management_block_manual_unenroll', n.get_bool_value()),
-            "diagnostics_data_submission_mode": lambda n : setattr(self, 'diagnostics_data_submission_mode', n.get_enum_value(diagnostic_data_submission_mode.DiagnosticDataSubmissionMode)),
-            "display_app_list_with_gdi_d_p_i_scaling_turned_off": lambda n : setattr(self, 'display_app_list_with_gdi_d_p_i_scaling_turned_off', n.get_collection_of_primitive_values(str)),
-            "display_app_list_with_gdi_d_p_i_scaling_turned_on": lambda n : setattr(self, 'display_app_list_with_gdi_d_p_i_scaling_turned_on', n.get_collection_of_primitive_values(str)),
-            "edge_allow_start_pages_modification": lambda n : setattr(self, 'edge_allow_start_pages_modification', n.get_bool_value()),
-            "edge_block_access_to_about_flags": lambda n : setattr(self, 'edge_block_access_to_about_flags', n.get_bool_value()),
-            "edge_block_address_bar_dropdown": lambda n : setattr(self, 'edge_block_address_bar_dropdown', n.get_bool_value()),
-            "edge_block_autofill": lambda n : setattr(self, 'edge_block_autofill', n.get_bool_value()),
-            "edge_block_compatibility_list": lambda n : setattr(self, 'edge_block_compatibility_list', n.get_bool_value()),
-            "edge_block_developer_tools": lambda n : setattr(self, 'edge_block_developer_tools', n.get_bool_value()),
-            "edge_blocked": lambda n : setattr(self, 'edge_blocked', n.get_bool_value()),
-            "edge_block_edit_favorites": lambda n : setattr(self, 'edge_block_edit_favorites', n.get_bool_value()),
-            "edge_block_extensions": lambda n : setattr(self, 'edge_block_extensions', n.get_bool_value()),
-            "edge_block_full_screen_mode": lambda n : setattr(self, 'edge_block_full_screen_mode', n.get_bool_value()),
-            "edge_block_in_private_browsing": lambda n : setattr(self, 'edge_block_in_private_browsing', n.get_bool_value()),
-            "edge_block_java_script": lambda n : setattr(self, 'edge_block_java_script', n.get_bool_value()),
-            "edge_block_live_tile_data_collection": lambda n : setattr(self, 'edge_block_live_tile_data_collection', n.get_bool_value()),
-            "edge_block_password_manager": lambda n : setattr(self, 'edge_block_password_manager', n.get_bool_value()),
-            "edge_block_popups": lambda n : setattr(self, 'edge_block_popups', n.get_bool_value()),
-            "edge_block_prelaunch": lambda n : setattr(self, 'edge_block_prelaunch', n.get_bool_value()),
-            "edge_block_printing": lambda n : setattr(self, 'edge_block_printing', n.get_bool_value()),
-            "edge_block_saving_history": lambda n : setattr(self, 'edge_block_saving_history', n.get_bool_value()),
-            "edge_block_search_engine_customization": lambda n : setattr(self, 'edge_block_search_engine_customization', n.get_bool_value()),
-            "edge_block_search_suggestions": lambda n : setattr(self, 'edge_block_search_suggestions', n.get_bool_value()),
-            "edge_block_sending_do_not_track_header": lambda n : setattr(self, 'edge_block_sending_do_not_track_header', n.get_bool_value()),
-            "edge_block_sending_intranet_traffic_to_internet_explorer": lambda n : setattr(self, 'edge_block_sending_intranet_traffic_to_internet_explorer', n.get_bool_value()),
-            "edge_block_sideloading_extensions": lambda n : setattr(self, 'edge_block_sideloading_extensions', n.get_bool_value()),
-            "edge_block_tab_preloading": lambda n : setattr(self, 'edge_block_tab_preloading', n.get_bool_value()),
-            "edge_block_web_content_on_new_tab_page": lambda n : setattr(self, 'edge_block_web_content_on_new_tab_page', n.get_bool_value()),
-            "edge_clear_browsing_data_on_exit": lambda n : setattr(self, 'edge_clear_browsing_data_on_exit', n.get_bool_value()),
-            "edge_cookie_policy": lambda n : setattr(self, 'edge_cookie_policy', n.get_enum_value(edge_cookie_policy.EdgeCookiePolicy)),
-            "edge_disable_first_run_page": lambda n : setattr(self, 'edge_disable_first_run_page', n.get_bool_value()),
-            "edge_enterprise_mode_site_list_location": lambda n : setattr(self, 'edge_enterprise_mode_site_list_location', n.get_str_value()),
-            "edge_favorites_bar_visibility": lambda n : setattr(self, 'edge_favorites_bar_visibility', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "edge_favorites_list_location": lambda n : setattr(self, 'edge_favorites_list_location', n.get_str_value()),
-            "edge_first_run_url": lambda n : setattr(self, 'edge_first_run_url', n.get_str_value()),
-            "edge_home_button_configuration": lambda n : setattr(self, 'edge_home_button_configuration', n.get_object_value(edge_home_button_configuration.EdgeHomeButtonConfiguration)),
-            "edge_home_button_configuration_enabled": lambda n : setattr(self, 'edge_home_button_configuration_enabled', n.get_bool_value()),
-            "edge_homepage_urls": lambda n : setattr(self, 'edge_homepage_urls', n.get_collection_of_primitive_values(str)),
-            "edge_kiosk_mode_restriction": lambda n : setattr(self, 'edge_kiosk_mode_restriction', n.get_enum_value(edge_kiosk_mode_restriction_type.EdgeKioskModeRestrictionType)),
-            "edge_kiosk_reset_after_idle_time_in_minutes": lambda n : setattr(self, 'edge_kiosk_reset_after_idle_time_in_minutes', n.get_int_value()),
-            "edge_new_tab_page_u_r_l": lambda n : setattr(self, 'edge_new_tab_page_u_r_l', n.get_str_value()),
-            "edge_opens_with": lambda n : setattr(self, 'edge_opens_with', n.get_enum_value(edge_open_options.EdgeOpenOptions)),
-            "edge_prevent_certificate_error_override": lambda n : setattr(self, 'edge_prevent_certificate_error_override', n.get_bool_value()),
-            "edge_required_extension_package_family_names": lambda n : setattr(self, 'edge_required_extension_package_family_names', n.get_collection_of_primitive_values(str)),
-            "edge_require_smart_screen": lambda n : setattr(self, 'edge_require_smart_screen', n.get_bool_value()),
-            "edge_search_engine": lambda n : setattr(self, 'edge_search_engine', n.get_object_value(edge_search_engine_base.EdgeSearchEngineBase)),
-            "edge_send_intranet_traffic_to_internet_explorer": lambda n : setattr(self, 'edge_send_intranet_traffic_to_internet_explorer', n.get_bool_value()),
-            "edge_show_message_when_opening_internet_explorer_sites": lambda n : setattr(self, 'edge_show_message_when_opening_internet_explorer_sites', n.get_enum_value(internet_explorer_message_setting.InternetExplorerMessageSetting)),
-            "edge_sync_favorites_with_internet_explorer": lambda n : setattr(self, 'edge_sync_favorites_with_internet_explorer', n.get_bool_value()),
-            "edge_telemetry_for_microsoft365_analytics": lambda n : setattr(self, 'edge_telemetry_for_microsoft365_analytics', n.get_enum_value(edge_telemetry_mode.EdgeTelemetryMode)),
-            "enable_automatic_redeployment": lambda n : setattr(self, 'enable_automatic_redeployment', n.get_bool_value()),
-            "energy_saver_on_battery_threshold_percentage": lambda n : setattr(self, 'energy_saver_on_battery_threshold_percentage', n.get_int_value()),
-            "energy_saver_plugged_in_threshold_percentage": lambda n : setattr(self, 'energy_saver_plugged_in_threshold_percentage', n.get_int_value()),
-            "enterprise_cloud_print_discovery_end_point": lambda n : setattr(self, 'enterprise_cloud_print_discovery_end_point', n.get_str_value()),
-            "enterprise_cloud_print_discovery_max_limit": lambda n : setattr(self, 'enterprise_cloud_print_discovery_max_limit', n.get_int_value()),
-            "enterprise_cloud_print_mopria_discovery_resource_identifier": lambda n : setattr(self, 'enterprise_cloud_print_mopria_discovery_resource_identifier', n.get_str_value()),
-            "enterprise_cloud_print_o_auth_authority": lambda n : setattr(self, 'enterprise_cloud_print_o_auth_authority', n.get_str_value()),
-            "enterprise_cloud_print_o_auth_client_identifier": lambda n : setattr(self, 'enterprise_cloud_print_o_auth_client_identifier', n.get_str_value()),
-            "enterprise_cloud_print_resource_identifier": lambda n : setattr(self, 'enterprise_cloud_print_resource_identifier', n.get_str_value()),
-            "experience_block_device_discovery": lambda n : setattr(self, 'experience_block_device_discovery', n.get_bool_value()),
-            "experience_block_error_dialog_when_no_s_i_m": lambda n : setattr(self, 'experience_block_error_dialog_when_no_s_i_m', n.get_bool_value()),
-            "experience_block_task_switcher": lambda n : setattr(self, 'experience_block_task_switcher', n.get_bool_value()),
-            "experience_do_not_sync_browser_settings": lambda n : setattr(self, 'experience_do_not_sync_browser_settings', n.get_enum_value(browser_sync_setting.BrowserSyncSetting)),
-            "find_my_files": lambda n : setattr(self, 'find_my_files', n.get_enum_value(enablement.Enablement)),
-            "game_dvr_blocked": lambda n : setattr(self, 'game_dvr_blocked', n.get_bool_value()),
-            "ink_workspace_access": lambda n : setattr(self, 'ink_workspace_access', n.get_enum_value(ink_access_setting.InkAccessSetting)),
-            "ink_workspace_access_state": lambda n : setattr(self, 'ink_workspace_access_state', n.get_enum_value(state_management_setting.StateManagementSetting)),
-            "ink_workspace_block_suggested_apps": lambda n : setattr(self, 'ink_workspace_block_suggested_apps', n.get_bool_value()),
-            "internet_sharing_blocked": lambda n : setattr(self, 'internet_sharing_blocked', n.get_bool_value()),
-            "location_services_blocked": lambda n : setattr(self, 'location_services_blocked', n.get_bool_value()),
-            "lock_screen_activate_apps_with_voice": lambda n : setattr(self, 'lock_screen_activate_apps_with_voice', n.get_enum_value(enablement.Enablement)),
-            "lock_screen_allow_timeout_configuration": lambda n : setattr(self, 'lock_screen_allow_timeout_configuration', n.get_bool_value()),
-            "lock_screen_block_action_center_notifications": lambda n : setattr(self, 'lock_screen_block_action_center_notifications', n.get_bool_value()),
-            "lock_screen_block_cortana": lambda n : setattr(self, 'lock_screen_block_cortana', n.get_bool_value()),
-            "lock_screen_block_toast_notifications": lambda n : setattr(self, 'lock_screen_block_toast_notifications', n.get_bool_value()),
-            "lock_screen_timeout_in_seconds": lambda n : setattr(self, 'lock_screen_timeout_in_seconds', n.get_int_value()),
-            "logon_block_fast_user_switching": lambda n : setattr(self, 'logon_block_fast_user_switching', n.get_bool_value()),
-            "messaging_block_m_m_s": lambda n : setattr(self, 'messaging_block_m_m_s', n.get_bool_value()),
-            "messaging_block_rich_communication_services": lambda n : setattr(self, 'messaging_block_rich_communication_services', n.get_bool_value()),
-            "messaging_block_sync": lambda n : setattr(self, 'messaging_block_sync', n.get_bool_value()),
-            "microsoft_account_blocked": lambda n : setattr(self, 'microsoft_account_blocked', n.get_bool_value()),
-            "microsoft_account_block_settings_sync": lambda n : setattr(self, 'microsoft_account_block_settings_sync', n.get_bool_value()),
-            "microsoft_account_sign_in_assistant_settings": lambda n : setattr(self, 'microsoft_account_sign_in_assistant_settings', n.get_enum_value(sign_in_assistant_options.SignInAssistantOptions)),
-            "network_proxy_apply_settings_device_wide": lambda n : setattr(self, 'network_proxy_apply_settings_device_wide', n.get_bool_value()),
-            "network_proxy_automatic_configuration_url": lambda n : setattr(self, 'network_proxy_automatic_configuration_url', n.get_str_value()),
-            "network_proxy_disable_auto_detect": lambda n : setattr(self, 'network_proxy_disable_auto_detect', n.get_bool_value()),
-            "network_proxy_server": lambda n : setattr(self, 'network_proxy_server', n.get_object_value(windows10_network_proxy_server.Windows10NetworkProxyServer)),
-            "nfc_blocked": lambda n : setattr(self, 'nfc_blocked', n.get_bool_value()),
-            "one_drive_disable_file_sync": lambda n : setattr(self, 'one_drive_disable_file_sync', n.get_bool_value()),
-            "password_block_simple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_age_in_days": lambda n : setattr(self, 'password_minimum_age_in_days', n.get_int_value()),
-            "password_minimum_character_set_count": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
-            "password_require_when_resume_from_idle_state": lambda n : setattr(self, 'password_require_when_resume_from_idle_state', n.get_bool_value()),
-            "password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
-            "personalization_desktop_image_url": lambda n : setattr(self, 'personalization_desktop_image_url', n.get_str_value()),
-            "personalization_lock_screen_image_url": lambda n : setattr(self, 'personalization_lock_screen_image_url', n.get_str_value()),
-            "power_button_action_on_battery": lambda n : setattr(self, 'power_button_action_on_battery', n.get_enum_value(power_action_type.PowerActionType)),
-            "power_button_action_plugged_in": lambda n : setattr(self, 'power_button_action_plugged_in', n.get_enum_value(power_action_type.PowerActionType)),
-            "power_hybrid_sleep_on_battery": lambda n : setattr(self, 'power_hybrid_sleep_on_battery', n.get_enum_value(enablement.Enablement)),
-            "power_hybrid_sleep_plugged_in": lambda n : setattr(self, 'power_hybrid_sleep_plugged_in', n.get_enum_value(enablement.Enablement)),
-            "power_lid_close_action_on_battery": lambda n : setattr(self, 'power_lid_close_action_on_battery', n.get_enum_value(power_action_type.PowerActionType)),
-            "power_lid_close_action_plugged_in": lambda n : setattr(self, 'power_lid_close_action_plugged_in', n.get_enum_value(power_action_type.PowerActionType)),
-            "power_sleep_button_action_on_battery": lambda n : setattr(self, 'power_sleep_button_action_on_battery', n.get_enum_value(power_action_type.PowerActionType)),
-            "power_sleep_button_action_plugged_in": lambda n : setattr(self, 'power_sleep_button_action_plugged_in', n.get_enum_value(power_action_type.PowerActionType)),
-            "printer_block_addition": lambda n : setattr(self, 'printer_block_addition', n.get_bool_value()),
-            "printer_default_name": lambda n : setattr(self, 'printer_default_name', n.get_str_value()),
-            "printer_names": lambda n : setattr(self, 'printer_names', n.get_collection_of_primitive_values(str)),
-            "privacy_access_controls": lambda n : setattr(self, 'privacy_access_controls', n.get_collection_of_object_values(windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem)),
-            "privacy_advertising_id": lambda n : setattr(self, 'privacy_advertising_id', n.get_enum_value(state_management_setting.StateManagementSetting)),
-            "privacy_auto_accept_pairing_and_consent_prompts": lambda n : setattr(self, 'privacy_auto_accept_pairing_and_consent_prompts', n.get_bool_value()),
-            "privacy_block_activity_feed": lambda n : setattr(self, 'privacy_block_activity_feed', n.get_bool_value()),
-            "privacy_block_input_personalization": lambda n : setattr(self, 'privacy_block_input_personalization', n.get_bool_value()),
-            "privacy_block_publish_user_activities": lambda n : setattr(self, 'privacy_block_publish_user_activities', n.get_bool_value()),
-            "privacy_disable_launch_experience": lambda n : setattr(self, 'privacy_disable_launch_experience', n.get_bool_value()),
-            "reset_protection_mode_blocked": lambda n : setattr(self, 'reset_protection_mode_blocked', n.get_bool_value()),
-            "safe_search_filter": lambda n : setattr(self, 'safe_search_filter', n.get_enum_value(safe_search_filter_type.SafeSearchFilterType)),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "search_block_diacritics": lambda n : setattr(self, 'search_block_diacritics', n.get_bool_value()),
-            "search_block_web_results": lambda n : setattr(self, 'search_block_web_results', n.get_bool_value()),
-            "search_disable_auto_language_detection": lambda n : setattr(self, 'search_disable_auto_language_detection', n.get_bool_value()),
-            "search_disable_indexer_backoff": lambda n : setattr(self, 'search_disable_indexer_backoff', n.get_bool_value()),
-            "search_disable_indexing_encrypted_items": lambda n : setattr(self, 'search_disable_indexing_encrypted_items', n.get_bool_value()),
-            "search_disable_indexing_removable_drive": lambda n : setattr(self, 'search_disable_indexing_removable_drive', n.get_bool_value()),
-            "search_disable_location": lambda n : setattr(self, 'search_disable_location', n.get_bool_value()),
-            "search_disable_use_location": lambda n : setattr(self, 'search_disable_use_location', n.get_bool_value()),
-            "search_enable_automatic_index_size_manangement": lambda n : setattr(self, 'search_enable_automatic_index_size_manangement', n.get_bool_value()),
-            "search_enable_remote_queries": lambda n : setattr(self, 'search_enable_remote_queries', n.get_bool_value()),
-            "security_block_azure_a_d_joined_devices_auto_encryption": lambda n : setattr(self, 'security_block_azure_a_d_joined_devices_auto_encryption', n.get_bool_value()),
-            "settings_block_accounts_page": lambda n : setattr(self, 'settings_block_accounts_page', n.get_bool_value()),
-            "settings_block_add_provisioning_package": lambda n : setattr(self, 'settings_block_add_provisioning_package', n.get_bool_value()),
-            "settings_block_apps_page": lambda n : setattr(self, 'settings_block_apps_page', n.get_bool_value()),
-            "settings_block_change_language": lambda n : setattr(self, 'settings_block_change_language', n.get_bool_value()),
-            "settings_block_change_power_sleep": lambda n : setattr(self, 'settings_block_change_power_sleep', n.get_bool_value()),
-            "settings_block_change_region": lambda n : setattr(self, 'settings_block_change_region', n.get_bool_value()),
-            "settings_block_change_system_time": lambda n : setattr(self, 'settings_block_change_system_time', n.get_bool_value()),
-            "settings_block_devices_page": lambda n : setattr(self, 'settings_block_devices_page', n.get_bool_value()),
-            "settings_block_ease_of_access_page": lambda n : setattr(self, 'settings_block_ease_of_access_page', n.get_bool_value()),
-            "settings_block_edit_device_name": lambda n : setattr(self, 'settings_block_edit_device_name', n.get_bool_value()),
-            "settings_block_gaming_page": lambda n : setattr(self, 'settings_block_gaming_page', n.get_bool_value()),
-            "settings_block_network_internet_page": lambda n : setattr(self, 'settings_block_network_internet_page', n.get_bool_value()),
-            "settings_block_personalization_page": lambda n : setattr(self, 'settings_block_personalization_page', n.get_bool_value()),
-            "settings_block_privacy_page": lambda n : setattr(self, 'settings_block_privacy_page', n.get_bool_value()),
-            "settings_block_remove_provisioning_package": lambda n : setattr(self, 'settings_block_remove_provisioning_package', n.get_bool_value()),
-            "settings_block_settings_app": lambda n : setattr(self, 'settings_block_settings_app', n.get_bool_value()),
-            "settings_block_system_page": lambda n : setattr(self, 'settings_block_system_page', n.get_bool_value()),
-            "settings_block_time_language_page": lambda n : setattr(self, 'settings_block_time_language_page', n.get_bool_value()),
-            "settings_block_update_security_page": lambda n : setattr(self, 'settings_block_update_security_page', n.get_bool_value()),
-            "shared_user_app_data_allowed": lambda n : setattr(self, 'shared_user_app_data_allowed', n.get_bool_value()),
-            "smart_screen_app_install_control": lambda n : setattr(self, 'smart_screen_app_install_control', n.get_enum_value(app_install_control_type.AppInstallControlType)),
-            "smart_screen_block_prompt_override": lambda n : setattr(self, 'smart_screen_block_prompt_override', n.get_bool_value()),
-            "smart_screen_block_prompt_override_for_files": lambda n : setattr(self, 'smart_screen_block_prompt_override_for_files', n.get_bool_value()),
-            "smart_screen_enable_app_install_control": lambda n : setattr(self, 'smart_screen_enable_app_install_control', n.get_bool_value()),
-            "start_block_unpinning_apps_from_taskbar": lambda n : setattr(self, 'start_block_unpinning_apps_from_taskbar', n.get_bool_value()),
-            "start_menu_app_list_visibility": lambda n : setattr(self, 'start_menu_app_list_visibility', n.get_enum_value(windows_start_menu_app_list_visibility_type.WindowsStartMenuAppListVisibilityType)),
-            "start_menu_hide_change_account_settings": lambda n : setattr(self, 'start_menu_hide_change_account_settings', n.get_bool_value()),
-            "start_menu_hide_frequently_used_apps": lambda n : setattr(self, 'start_menu_hide_frequently_used_apps', n.get_bool_value()),
-            "start_menu_hide_hibernate": lambda n : setattr(self, 'start_menu_hide_hibernate', n.get_bool_value()),
-            "start_menu_hide_lock": lambda n : setattr(self, 'start_menu_hide_lock', n.get_bool_value()),
-            "start_menu_hide_power_button": lambda n : setattr(self, 'start_menu_hide_power_button', n.get_bool_value()),
-            "start_menu_hide_recent_jump_lists": lambda n : setattr(self, 'start_menu_hide_recent_jump_lists', n.get_bool_value()),
-            "start_menu_hide_recently_added_apps": lambda n : setattr(self, 'start_menu_hide_recently_added_apps', n.get_bool_value()),
-            "start_menu_hide_restart_options": lambda n : setattr(self, 'start_menu_hide_restart_options', n.get_bool_value()),
-            "start_menu_hide_shut_down": lambda n : setattr(self, 'start_menu_hide_shut_down', n.get_bool_value()),
-            "start_menu_hide_sign_out": lambda n : setattr(self, 'start_menu_hide_sign_out', n.get_bool_value()),
-            "start_menu_hide_sleep": lambda n : setattr(self, 'start_menu_hide_sleep', n.get_bool_value()),
-            "start_menu_hide_switch_account": lambda n : setattr(self, 'start_menu_hide_switch_account', n.get_bool_value()),
-            "start_menu_hide_user_tile": lambda n : setattr(self, 'start_menu_hide_user_tile', n.get_bool_value()),
-            "start_menu_layout_edge_assets_xml": lambda n : setattr(self, 'start_menu_layout_edge_assets_xml', n.get_bytes_value()),
-            "start_menu_layout_xml": lambda n : setattr(self, 'start_menu_layout_xml', n.get_bytes_value()),
-            "start_menu_mode": lambda n : setattr(self, 'start_menu_mode', n.get_enum_value(windows_start_menu_mode_type.WindowsStartMenuModeType)),
-            "start_menu_pinned_folder_documents": lambda n : setattr(self, 'start_menu_pinned_folder_documents', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_downloads": lambda n : setattr(self, 'start_menu_pinned_folder_downloads', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_file_explorer": lambda n : setattr(self, 'start_menu_pinned_folder_file_explorer', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_home_group": lambda n : setattr(self, 'start_menu_pinned_folder_home_group', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_music": lambda n : setattr(self, 'start_menu_pinned_folder_music', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_network": lambda n : setattr(self, 'start_menu_pinned_folder_network', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_personal_folder": lambda n : setattr(self, 'start_menu_pinned_folder_personal_folder', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_pictures": lambda n : setattr(self, 'start_menu_pinned_folder_pictures', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_settings": lambda n : setattr(self, 'start_menu_pinned_folder_settings', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "start_menu_pinned_folder_videos": lambda n : setattr(self, 'start_menu_pinned_folder_videos', n.get_enum_value(visibility_setting.VisibilitySetting)),
-            "storage_block_removable_storage": lambda n : setattr(self, 'storage_block_removable_storage', n.get_bool_value()),
-            "storage_require_mobile_device_encryption": lambda n : setattr(self, 'storage_require_mobile_device_encryption', n.get_bool_value()),
-            "storage_restrict_app_data_to_system_volume": lambda n : setattr(self, 'storage_restrict_app_data_to_system_volume', n.get_bool_value()),
-            "storage_restrict_app_install_to_system_volume": lambda n : setattr(self, 'storage_restrict_app_install_to_system_volume', n.get_bool_value()),
-            "system_telemetry_proxy_server": lambda n : setattr(self, 'system_telemetry_proxy_server', n.get_str_value()),
-            "task_manager_block_end_task": lambda n : setattr(self, 'task_manager_block_end_task', n.get_bool_value()),
-            "tenant_lockdown_require_network_during_out_of_box_experience": lambda n : setattr(self, 'tenant_lockdown_require_network_during_out_of_box_experience', n.get_bool_value()),
-            "uninstall_built_in_apps": lambda n : setattr(self, 'uninstall_built_in_apps', n.get_bool_value()),
-            "usb_blocked": lambda n : setattr(self, 'usb_blocked', n.get_bool_value()),
-            "voice_recording_blocked": lambda n : setattr(self, 'voice_recording_blocked', n.get_bool_value()),
-            "web_rtc_block_localhost_ip_address": lambda n : setattr(self, 'web_rtc_block_localhost_ip_address', n.get_bool_value()),
-            "wi_fi_block_automatic_connect_hotspots": lambda n : setattr(self, 'wi_fi_block_automatic_connect_hotspots', n.get_bool_value()),
-            "wi_fi_blocked": lambda n : setattr(self, 'wi_fi_blocked', n.get_bool_value()),
-            "wi_fi_block_manual_configuration": lambda n : setattr(self, 'wi_fi_block_manual_configuration', n.get_bool_value()),
-            "wi_fi_scan_interval": lambda n : setattr(self, 'wi_fi_scan_interval', n.get_int_value()),
-            "windows10_apps_force_update_schedule": lambda n : setattr(self, 'windows10_apps_force_update_schedule', n.get_object_value(windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule)),
-            "windows_spotlight_block_consumer_specific_features": lambda n : setattr(self, 'windows_spotlight_block_consumer_specific_features', n.get_bool_value()),
-            "windows_spotlight_blocked": lambda n : setattr(self, 'windows_spotlight_blocked', n.get_bool_value()),
-            "windows_spotlight_block_on_action_center": lambda n : setattr(self, 'windows_spotlight_block_on_action_center', n.get_bool_value()),
-            "windows_spotlight_block_tailored_experiences": lambda n : setattr(self, 'windows_spotlight_block_tailored_experiences', n.get_bool_value()),
-            "windows_spotlight_block_third_party_notifications": lambda n : setattr(self, 'windows_spotlight_block_third_party_notifications', n.get_bool_value()),
-            "windows_spotlight_block_welcome_experience": lambda n : setattr(self, 'windows_spotlight_block_welcome_experience', n.get_bool_value()),
-            "windows_spotlight_block_windows_tips": lambda n : setattr(self, 'windows_spotlight_block_windows_tips', n.get_bool_value()),
-            "windows_spotlight_configure_on_lock_screen": lambda n : setattr(self, 'windows_spotlight_configure_on_lock_screen', n.get_enum_value(windows_spotlight_enablement_settings.WindowsSpotlightEnablementSettings)),
-            "windows_store_block_auto_update": lambda n : setattr(self, 'windows_store_block_auto_update', n.get_bool_value()),
-            "windows_store_blocked": lambda n : setattr(self, 'windows_store_blocked', n.get_bool_value()),
-            "windows_store_enable_private_store_only": lambda n : setattr(self, 'windows_store_enable_private_store_only', n.get_bool_value()),
-            "wireless_display_block_projection_to_this_device": lambda n : setattr(self, 'wireless_display_block_projection_to_this_device', n.get_bool_value()),
-            "wireless_display_block_user_input_from_receiver": lambda n : setattr(self, 'wireless_display_block_user_input_from_receiver', n.get_bool_value()),
-            "wireless_display_require_pin_for_pairing": lambda n : setattr(self, 'wireless_display_require_pin_for_pairing', n.get_bool_value()),
+            "accountsBlockAddingNonMicrosoftAccountEmail": lambda n : setattr(self, 'accounts_block_adding_non_microsoft_account_email', n.get_bool_value()),
+            "activateAppsWithVoice": lambda n : setattr(self, 'activate_apps_with_voice', n.get_enum_value(enablement.Enablement)),
+            "antiTheftModeBlocked": lambda n : setattr(self, 'anti_theft_mode_blocked', n.get_bool_value()),
+            "appsAllowTrustedAppsSideloading": lambda n : setattr(self, 'apps_allow_trusted_apps_sideloading', n.get_enum_value(state_management_setting.StateManagementSetting)),
+            "appsBlockWindowsStoreOriginatedApps": lambda n : setattr(self, 'apps_block_windows_store_originated_apps', n.get_bool_value()),
+            "appManagementMSIAllowUserControlOverInstall": lambda n : setattr(self, 'app_management_m_s_i_allow_user_control_over_install', n.get_bool_value()),
+            "appManagementMSIAlwaysInstallWithElevatedPrivileges": lambda n : setattr(self, 'app_management_m_s_i_always_install_with_elevated_privileges', n.get_bool_value()),
+            "appManagementPackageFamilyNamesToLaunchAfterLogOn": lambda n : setattr(self, 'app_management_package_family_names_to_launch_after_log_on', n.get_collection_of_primitive_values(str)),
+            "authenticationAllowSecondaryDevice": lambda n : setattr(self, 'authentication_allow_secondary_device', n.get_bool_value()),
+            "authenticationPreferredAzureADTenantDomainName": lambda n : setattr(self, 'authentication_preferred_azure_a_d_tenant_domain_name', n.get_str_value()),
+            "authenticationWebSignIn": lambda n : setattr(self, 'authentication_web_sign_in', n.get_enum_value(enablement.Enablement)),
+            "bluetoothAllowedServices": lambda n : setattr(self, 'bluetooth_allowed_services', n.get_collection_of_primitive_values(str)),
+            "bluetoothBlocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
+            "bluetoothBlockAdvertising": lambda n : setattr(self, 'bluetooth_block_advertising', n.get_bool_value()),
+            "bluetoothBlockDiscoverableMode": lambda n : setattr(self, 'bluetooth_block_discoverable_mode', n.get_bool_value()),
+            "bluetoothBlockPrePairing": lambda n : setattr(self, 'bluetooth_block_pre_pairing', n.get_bool_value()),
+            "bluetoothBlockPromptedProximalConnections": lambda n : setattr(self, 'bluetooth_block_prompted_proximal_connections', n.get_bool_value()),
+            "cameraBlocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
+            "cellularBlockDataWhenRoaming": lambda n : setattr(self, 'cellular_block_data_when_roaming', n.get_bool_value()),
+            "cellularBlockVpn": lambda n : setattr(self, 'cellular_block_vpn', n.get_bool_value()),
+            "cellularBlockVpnWhenRoaming": lambda n : setattr(self, 'cellular_block_vpn_when_roaming', n.get_bool_value()),
+            "cellularData": lambda n : setattr(self, 'cellular_data', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "certificatesBlockManualRootCertificateInstallation": lambda n : setattr(self, 'certificates_block_manual_root_certificate_installation', n.get_bool_value()),
+            "configureTimeZone": lambda n : setattr(self, 'configure_time_zone', n.get_str_value()),
+            "connectedDevicesServiceBlocked": lambda n : setattr(self, 'connected_devices_service_blocked', n.get_bool_value()),
+            "copyPasteBlocked": lambda n : setattr(self, 'copy_paste_blocked', n.get_bool_value()),
+            "cortanaBlocked": lambda n : setattr(self, 'cortana_blocked', n.get_bool_value()),
+            "cryptographyAllowFipsAlgorithmPolicy": lambda n : setattr(self, 'cryptography_allow_fips_algorithm_policy', n.get_bool_value()),
+            "dataProtectionBlockDirectMemoryAccess": lambda n : setattr(self, 'data_protection_block_direct_memory_access', n.get_bool_value()),
+            "defenderBlockEndUserAccess": lambda n : setattr(self, 'defender_block_end_user_access', n.get_bool_value()),
+            "defenderBlockOnAccessProtection": lambda n : setattr(self, 'defender_block_on_access_protection', n.get_bool_value()),
+            "defenderCloudBlockLevel": lambda n : setattr(self, 'defender_cloud_block_level', n.get_enum_value(defender_cloud_block_level_type.DefenderCloudBlockLevelType)),
+            "defenderCloudExtendedTimeout": lambda n : setattr(self, 'defender_cloud_extended_timeout', n.get_int_value()),
+            "defenderCloudExtendedTimeoutInSeconds": lambda n : setattr(self, 'defender_cloud_extended_timeout_in_seconds', n.get_int_value()),
+            "defenderDaysBeforeDeletingQuarantinedMalware": lambda n : setattr(self, 'defender_days_before_deleting_quarantined_malware', n.get_int_value()),
+            "defenderDetectedMalwareActions": lambda n : setattr(self, 'defender_detected_malware_actions', n.get_object_value(defender_detected_malware_actions.DefenderDetectedMalwareActions)),
+            "defenderDisableCatchupFullScan": lambda n : setattr(self, 'defender_disable_catchup_full_scan', n.get_bool_value()),
+            "defenderDisableCatchupQuickScan": lambda n : setattr(self, 'defender_disable_catchup_quick_scan', n.get_bool_value()),
+            "defenderFilesAndFoldersToExclude": lambda n : setattr(self, 'defender_files_and_folders_to_exclude', n.get_collection_of_primitive_values(str)),
+            "defenderFileExtensionsToExclude": lambda n : setattr(self, 'defender_file_extensions_to_exclude', n.get_collection_of_primitive_values(str)),
+            "defenderMonitorFileActivity": lambda n : setattr(self, 'defender_monitor_file_activity', n.get_enum_value(defender_monitor_file_activity.DefenderMonitorFileActivity)),
+            "defenderPotentiallyUnwantedAppAction": lambda n : setattr(self, 'defender_potentially_unwanted_app_action', n.get_enum_value(defender_potentially_unwanted_app_action.DefenderPotentiallyUnwantedAppAction)),
+            "defenderPotentiallyUnwantedAppActionSetting": lambda n : setattr(self, 'defender_potentially_unwanted_app_action_setting', n.get_enum_value(defender_protection_type.DefenderProtectionType)),
+            "defenderProcessesToExclude": lambda n : setattr(self, 'defender_processes_to_exclude', n.get_collection_of_primitive_values(str)),
+            "defenderPromptForSampleSubmission": lambda n : setattr(self, 'defender_prompt_for_sample_submission', n.get_enum_value(defender_prompt_for_sample_submission.DefenderPromptForSampleSubmission)),
+            "defenderRequireBehaviorMonitoring": lambda n : setattr(self, 'defender_require_behavior_monitoring', n.get_bool_value()),
+            "defenderRequireCloudProtection": lambda n : setattr(self, 'defender_require_cloud_protection', n.get_bool_value()),
+            "defenderRequireNetworkInspectionSystem": lambda n : setattr(self, 'defender_require_network_inspection_system', n.get_bool_value()),
+            "defenderRequireRealTimeMonitoring": lambda n : setattr(self, 'defender_require_real_time_monitoring', n.get_bool_value()),
+            "defenderScanArchiveFiles": lambda n : setattr(self, 'defender_scan_archive_files', n.get_bool_value()),
+            "defenderScanDownloads": lambda n : setattr(self, 'defender_scan_downloads', n.get_bool_value()),
+            "defenderScanIncomingMail": lambda n : setattr(self, 'defender_scan_incoming_mail', n.get_bool_value()),
+            "defenderScanMappedNetworkDrivesDuringFullScan": lambda n : setattr(self, 'defender_scan_mapped_network_drives_during_full_scan', n.get_bool_value()),
+            "defenderScanMaxCpu": lambda n : setattr(self, 'defender_scan_max_cpu', n.get_int_value()),
+            "defenderScanNetworkFiles": lambda n : setattr(self, 'defender_scan_network_files', n.get_bool_value()),
+            "defenderScanRemovableDrivesDuringFullScan": lambda n : setattr(self, 'defender_scan_removable_drives_during_full_scan', n.get_bool_value()),
+            "defenderScanScriptsLoadedInInternetExplorer": lambda n : setattr(self, 'defender_scan_scripts_loaded_in_internet_explorer', n.get_bool_value()),
+            "defenderScanType": lambda n : setattr(self, 'defender_scan_type', n.get_enum_value(defender_scan_type.DefenderScanType)),
+            "defenderScheduledQuickScanTime": lambda n : setattr(self, 'defender_scheduled_quick_scan_time', n.get_object_value(Time)),
+            "defenderScheduledScanTime": lambda n : setattr(self, 'defender_scheduled_scan_time', n.get_object_value(Time)),
+            "defenderScheduleScanEnableLowCpuPriority": lambda n : setattr(self, 'defender_schedule_scan_enable_low_cpu_priority', n.get_bool_value()),
+            "defenderSignatureUpdateIntervalInHours": lambda n : setattr(self, 'defender_signature_update_interval_in_hours', n.get_int_value()),
+            "defenderSubmitSamplesConsentType": lambda n : setattr(self, 'defender_submit_samples_consent_type', n.get_enum_value(defender_submit_samples_consent_type.DefenderSubmitSamplesConsentType)),
+            "defenderSystemScanSchedule": lambda n : setattr(self, 'defender_system_scan_schedule', n.get_enum_value(weekly_schedule.WeeklySchedule)),
+            "developerUnlockSetting": lambda n : setattr(self, 'developer_unlock_setting', n.get_enum_value(state_management_setting.StateManagementSetting)),
+            "deviceManagementBlockFactoryResetOnMobile": lambda n : setattr(self, 'device_management_block_factory_reset_on_mobile', n.get_bool_value()),
+            "deviceManagementBlockManualUnenroll": lambda n : setattr(self, 'device_management_block_manual_unenroll', n.get_bool_value()),
+            "diagnosticsDataSubmissionMode": lambda n : setattr(self, 'diagnostics_data_submission_mode', n.get_enum_value(diagnostic_data_submission_mode.DiagnosticDataSubmissionMode)),
+            "displayAppListWithGdiDPIScalingTurnedOff": lambda n : setattr(self, 'display_app_list_with_gdi_d_p_i_scaling_turned_off', n.get_collection_of_primitive_values(str)),
+            "displayAppListWithGdiDPIScalingTurnedOn": lambda n : setattr(self, 'display_app_list_with_gdi_d_p_i_scaling_turned_on', n.get_collection_of_primitive_values(str)),
+            "edgeAllowStartPagesModification": lambda n : setattr(self, 'edge_allow_start_pages_modification', n.get_bool_value()),
+            "edgeBlocked": lambda n : setattr(self, 'edge_blocked', n.get_bool_value()),
+            "edgeBlockAccessToAboutFlags": lambda n : setattr(self, 'edge_block_access_to_about_flags', n.get_bool_value()),
+            "edgeBlockAddressBarDropdown": lambda n : setattr(self, 'edge_block_address_bar_dropdown', n.get_bool_value()),
+            "edgeBlockAutofill": lambda n : setattr(self, 'edge_block_autofill', n.get_bool_value()),
+            "edgeBlockCompatibilityList": lambda n : setattr(self, 'edge_block_compatibility_list', n.get_bool_value()),
+            "edgeBlockDeveloperTools": lambda n : setattr(self, 'edge_block_developer_tools', n.get_bool_value()),
+            "edgeBlockEditFavorites": lambda n : setattr(self, 'edge_block_edit_favorites', n.get_bool_value()),
+            "edgeBlockExtensions": lambda n : setattr(self, 'edge_block_extensions', n.get_bool_value()),
+            "edgeBlockFullScreenMode": lambda n : setattr(self, 'edge_block_full_screen_mode', n.get_bool_value()),
+            "edgeBlockInPrivateBrowsing": lambda n : setattr(self, 'edge_block_in_private_browsing', n.get_bool_value()),
+            "edgeBlockJavaScript": lambda n : setattr(self, 'edge_block_java_script', n.get_bool_value()),
+            "edgeBlockLiveTileDataCollection": lambda n : setattr(self, 'edge_block_live_tile_data_collection', n.get_bool_value()),
+            "edgeBlockPasswordManager": lambda n : setattr(self, 'edge_block_password_manager', n.get_bool_value()),
+            "edgeBlockPopups": lambda n : setattr(self, 'edge_block_popups', n.get_bool_value()),
+            "edgeBlockPrelaunch": lambda n : setattr(self, 'edge_block_prelaunch', n.get_bool_value()),
+            "edgeBlockPrinting": lambda n : setattr(self, 'edge_block_printing', n.get_bool_value()),
+            "edgeBlockSavingHistory": lambda n : setattr(self, 'edge_block_saving_history', n.get_bool_value()),
+            "edgeBlockSearchEngineCustomization": lambda n : setattr(self, 'edge_block_search_engine_customization', n.get_bool_value()),
+            "edgeBlockSearchSuggestions": lambda n : setattr(self, 'edge_block_search_suggestions', n.get_bool_value()),
+            "edgeBlockSendingDoNotTrackHeader": lambda n : setattr(self, 'edge_block_sending_do_not_track_header', n.get_bool_value()),
+            "edgeBlockSendingIntranetTrafficToInternetExplorer": lambda n : setattr(self, 'edge_block_sending_intranet_traffic_to_internet_explorer', n.get_bool_value()),
+            "edgeBlockSideloadingExtensions": lambda n : setattr(self, 'edge_block_sideloading_extensions', n.get_bool_value()),
+            "edgeBlockTabPreloading": lambda n : setattr(self, 'edge_block_tab_preloading', n.get_bool_value()),
+            "edgeBlockWebContentOnNewTabPage": lambda n : setattr(self, 'edge_block_web_content_on_new_tab_page', n.get_bool_value()),
+            "edgeClearBrowsingDataOnExit": lambda n : setattr(self, 'edge_clear_browsing_data_on_exit', n.get_bool_value()),
+            "edgeCookiePolicy": lambda n : setattr(self, 'edge_cookie_policy', n.get_enum_value(edge_cookie_policy.EdgeCookiePolicy)),
+            "edgeDisableFirstRunPage": lambda n : setattr(self, 'edge_disable_first_run_page', n.get_bool_value()),
+            "edgeEnterpriseModeSiteListLocation": lambda n : setattr(self, 'edge_enterprise_mode_site_list_location', n.get_str_value()),
+            "edgeFavoritesBarVisibility": lambda n : setattr(self, 'edge_favorites_bar_visibility', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "edgeFavoritesListLocation": lambda n : setattr(self, 'edge_favorites_list_location', n.get_str_value()),
+            "edgeFirstRunUrl": lambda n : setattr(self, 'edge_first_run_url', n.get_str_value()),
+            "edgeHomepageUrls": lambda n : setattr(self, 'edge_homepage_urls', n.get_collection_of_primitive_values(str)),
+            "edgeHomeButtonConfiguration": lambda n : setattr(self, 'edge_home_button_configuration', n.get_object_value(edge_home_button_configuration.EdgeHomeButtonConfiguration)),
+            "edgeHomeButtonConfigurationEnabled": lambda n : setattr(self, 'edge_home_button_configuration_enabled', n.get_bool_value()),
+            "edgeKioskModeRestriction": lambda n : setattr(self, 'edge_kiosk_mode_restriction', n.get_enum_value(edge_kiosk_mode_restriction_type.EdgeKioskModeRestrictionType)),
+            "edgeKioskResetAfterIdleTimeInMinutes": lambda n : setattr(self, 'edge_kiosk_reset_after_idle_time_in_minutes', n.get_int_value()),
+            "edgeNewTabPageURL": lambda n : setattr(self, 'edge_new_tab_page_u_r_l', n.get_str_value()),
+            "edgeOpensWith": lambda n : setattr(self, 'edge_opens_with', n.get_enum_value(edge_open_options.EdgeOpenOptions)),
+            "edgePreventCertificateErrorOverride": lambda n : setattr(self, 'edge_prevent_certificate_error_override', n.get_bool_value()),
+            "edgeRequiredExtensionPackageFamilyNames": lambda n : setattr(self, 'edge_required_extension_package_family_names', n.get_collection_of_primitive_values(str)),
+            "edgeRequireSmartScreen": lambda n : setattr(self, 'edge_require_smart_screen', n.get_bool_value()),
+            "edgeSearchEngine": lambda n : setattr(self, 'edge_search_engine', n.get_object_value(edge_search_engine_base.EdgeSearchEngineBase)),
+            "edgeSendIntranetTrafficToInternetExplorer": lambda n : setattr(self, 'edge_send_intranet_traffic_to_internet_explorer', n.get_bool_value()),
+            "edgeShowMessageWhenOpeningInternetExplorerSites": lambda n : setattr(self, 'edge_show_message_when_opening_internet_explorer_sites', n.get_enum_value(internet_explorer_message_setting.InternetExplorerMessageSetting)),
+            "edgeSyncFavoritesWithInternetExplorer": lambda n : setattr(self, 'edge_sync_favorites_with_internet_explorer', n.get_bool_value()),
+            "edgeTelemetryForMicrosoft365Analytics": lambda n : setattr(self, 'edge_telemetry_for_microsoft365_analytics', n.get_enum_value(edge_telemetry_mode.EdgeTelemetryMode)),
+            "enableAutomaticRedeployment": lambda n : setattr(self, 'enable_automatic_redeployment', n.get_bool_value()),
+            "energySaverOnBatteryThresholdPercentage": lambda n : setattr(self, 'energy_saver_on_battery_threshold_percentage', n.get_int_value()),
+            "energySaverPluggedInThresholdPercentage": lambda n : setattr(self, 'energy_saver_plugged_in_threshold_percentage', n.get_int_value()),
+            "enterpriseCloudPrintDiscoveryEndPoint": lambda n : setattr(self, 'enterprise_cloud_print_discovery_end_point', n.get_str_value()),
+            "enterpriseCloudPrintDiscoveryMaxLimit": lambda n : setattr(self, 'enterprise_cloud_print_discovery_max_limit', n.get_int_value()),
+            "enterpriseCloudPrintMopriaDiscoveryResourceIdentifier": lambda n : setattr(self, 'enterprise_cloud_print_mopria_discovery_resource_identifier', n.get_str_value()),
+            "enterpriseCloudPrintOAuthAuthority": lambda n : setattr(self, 'enterprise_cloud_print_o_auth_authority', n.get_str_value()),
+            "enterpriseCloudPrintOAuthClientIdentifier": lambda n : setattr(self, 'enterprise_cloud_print_o_auth_client_identifier', n.get_str_value()),
+            "enterpriseCloudPrintResourceIdentifier": lambda n : setattr(self, 'enterprise_cloud_print_resource_identifier', n.get_str_value()),
+            "experienceBlockDeviceDiscovery": lambda n : setattr(self, 'experience_block_device_discovery', n.get_bool_value()),
+            "experienceBlockErrorDialogWhenNoSIM": lambda n : setattr(self, 'experience_block_error_dialog_when_no_s_i_m', n.get_bool_value()),
+            "experienceBlockTaskSwitcher": lambda n : setattr(self, 'experience_block_task_switcher', n.get_bool_value()),
+            "experienceDoNotSyncBrowserSettings": lambda n : setattr(self, 'experience_do_not_sync_browser_settings', n.get_enum_value(browser_sync_setting.BrowserSyncSetting)),
+            "findMyFiles": lambda n : setattr(self, 'find_my_files', n.get_enum_value(enablement.Enablement)),
+            "gameDvrBlocked": lambda n : setattr(self, 'game_dvr_blocked', n.get_bool_value()),
+            "inkWorkspaceAccess": lambda n : setattr(self, 'ink_workspace_access', n.get_enum_value(ink_access_setting.InkAccessSetting)),
+            "inkWorkspaceAccessState": lambda n : setattr(self, 'ink_workspace_access_state', n.get_enum_value(state_management_setting.StateManagementSetting)),
+            "inkWorkspaceBlockSuggestedApps": lambda n : setattr(self, 'ink_workspace_block_suggested_apps', n.get_bool_value()),
+            "internetSharingBlocked": lambda n : setattr(self, 'internet_sharing_blocked', n.get_bool_value()),
+            "locationServicesBlocked": lambda n : setattr(self, 'location_services_blocked', n.get_bool_value()),
+            "lockScreenActivateAppsWithVoice": lambda n : setattr(self, 'lock_screen_activate_apps_with_voice', n.get_enum_value(enablement.Enablement)),
+            "lockScreenAllowTimeoutConfiguration": lambda n : setattr(self, 'lock_screen_allow_timeout_configuration', n.get_bool_value()),
+            "lockScreenBlockActionCenterNotifications": lambda n : setattr(self, 'lock_screen_block_action_center_notifications', n.get_bool_value()),
+            "lockScreenBlockCortana": lambda n : setattr(self, 'lock_screen_block_cortana', n.get_bool_value()),
+            "lockScreenBlockToastNotifications": lambda n : setattr(self, 'lock_screen_block_toast_notifications', n.get_bool_value()),
+            "lockScreenTimeoutInSeconds": lambda n : setattr(self, 'lock_screen_timeout_in_seconds', n.get_int_value()),
+            "logonBlockFastUserSwitching": lambda n : setattr(self, 'logon_block_fast_user_switching', n.get_bool_value()),
+            "messagingBlockMMS": lambda n : setattr(self, 'messaging_block_m_m_s', n.get_bool_value()),
+            "messagingBlockRichCommunicationServices": lambda n : setattr(self, 'messaging_block_rich_communication_services', n.get_bool_value()),
+            "messagingBlockSync": lambda n : setattr(self, 'messaging_block_sync', n.get_bool_value()),
+            "microsoftAccountBlocked": lambda n : setattr(self, 'microsoft_account_blocked', n.get_bool_value()),
+            "microsoftAccountBlockSettingsSync": lambda n : setattr(self, 'microsoft_account_block_settings_sync', n.get_bool_value()),
+            "microsoftAccountSignInAssistantSettings": lambda n : setattr(self, 'microsoft_account_sign_in_assistant_settings', n.get_enum_value(sign_in_assistant_options.SignInAssistantOptions)),
+            "networkProxyApplySettingsDeviceWide": lambda n : setattr(self, 'network_proxy_apply_settings_device_wide', n.get_bool_value()),
+            "networkProxyAutomaticConfigurationUrl": lambda n : setattr(self, 'network_proxy_automatic_configuration_url', n.get_str_value()),
+            "networkProxyDisableAutoDetect": lambda n : setattr(self, 'network_proxy_disable_auto_detect', n.get_bool_value()),
+            "networkProxyServer": lambda n : setattr(self, 'network_proxy_server', n.get_object_value(windows10_network_proxy_server.Windows10NetworkProxyServer)),
+            "nfcBlocked": lambda n : setattr(self, 'nfc_blocked', n.get_bool_value()),
+            "oneDriveDisableFileSync": lambda n : setattr(self, 'one_drive_disable_file_sync', n.get_bool_value()),
+            "passwordBlockSimple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumAgeInDays": lambda n : setattr(self, 'password_minimum_age_in_days', n.get_int_value()),
+            "passwordMinimumCharacterSetCount": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
+            "passwordRequireWhenResumeFromIdleState": lambda n : setattr(self, 'password_require_when_resume_from_idle_state', n.get_bool_value()),
+            "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "personalizationDesktopImageUrl": lambda n : setattr(self, 'personalization_desktop_image_url', n.get_str_value()),
+            "personalizationLockScreenImageUrl": lambda n : setattr(self, 'personalization_lock_screen_image_url', n.get_str_value()),
+            "powerButtonActionOnBattery": lambda n : setattr(self, 'power_button_action_on_battery', n.get_enum_value(power_action_type.PowerActionType)),
+            "powerButtonActionPluggedIn": lambda n : setattr(self, 'power_button_action_plugged_in', n.get_enum_value(power_action_type.PowerActionType)),
+            "powerHybridSleepOnBattery": lambda n : setattr(self, 'power_hybrid_sleep_on_battery', n.get_enum_value(enablement.Enablement)),
+            "powerHybridSleepPluggedIn": lambda n : setattr(self, 'power_hybrid_sleep_plugged_in', n.get_enum_value(enablement.Enablement)),
+            "powerLidCloseActionOnBattery": lambda n : setattr(self, 'power_lid_close_action_on_battery', n.get_enum_value(power_action_type.PowerActionType)),
+            "powerLidCloseActionPluggedIn": lambda n : setattr(self, 'power_lid_close_action_plugged_in', n.get_enum_value(power_action_type.PowerActionType)),
+            "powerSleepButtonActionOnBattery": lambda n : setattr(self, 'power_sleep_button_action_on_battery', n.get_enum_value(power_action_type.PowerActionType)),
+            "powerSleepButtonActionPluggedIn": lambda n : setattr(self, 'power_sleep_button_action_plugged_in', n.get_enum_value(power_action_type.PowerActionType)),
+            "printerBlockAddition": lambda n : setattr(self, 'printer_block_addition', n.get_bool_value()),
+            "printerDefaultName": lambda n : setattr(self, 'printer_default_name', n.get_str_value()),
+            "printerNames": lambda n : setattr(self, 'printer_names', n.get_collection_of_primitive_values(str)),
+            "privacyAccessControls": lambda n : setattr(self, 'privacy_access_controls', n.get_collection_of_object_values(windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem)),
+            "privacyAdvertisingId": lambda n : setattr(self, 'privacy_advertising_id', n.get_enum_value(state_management_setting.StateManagementSetting)),
+            "privacyAutoAcceptPairingAndConsentPrompts": lambda n : setattr(self, 'privacy_auto_accept_pairing_and_consent_prompts', n.get_bool_value()),
+            "privacyBlockActivityFeed": lambda n : setattr(self, 'privacy_block_activity_feed', n.get_bool_value()),
+            "privacyBlockInputPersonalization": lambda n : setattr(self, 'privacy_block_input_personalization', n.get_bool_value()),
+            "privacyBlockPublishUserActivities": lambda n : setattr(self, 'privacy_block_publish_user_activities', n.get_bool_value()),
+            "privacyDisableLaunchExperience": lambda n : setattr(self, 'privacy_disable_launch_experience', n.get_bool_value()),
+            "resetProtectionModeBlocked": lambda n : setattr(self, 'reset_protection_mode_blocked', n.get_bool_value()),
+            "safeSearchFilter": lambda n : setattr(self, 'safe_search_filter', n.get_enum_value(safe_search_filter_type.SafeSearchFilterType)),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "searchBlockDiacritics": lambda n : setattr(self, 'search_block_diacritics', n.get_bool_value()),
+            "searchBlockWebResults": lambda n : setattr(self, 'search_block_web_results', n.get_bool_value()),
+            "searchDisableAutoLanguageDetection": lambda n : setattr(self, 'search_disable_auto_language_detection', n.get_bool_value()),
+            "searchDisableIndexerBackoff": lambda n : setattr(self, 'search_disable_indexer_backoff', n.get_bool_value()),
+            "searchDisableIndexingEncryptedItems": lambda n : setattr(self, 'search_disable_indexing_encrypted_items', n.get_bool_value()),
+            "searchDisableIndexingRemovableDrive": lambda n : setattr(self, 'search_disable_indexing_removable_drive', n.get_bool_value()),
+            "searchDisableLocation": lambda n : setattr(self, 'search_disable_location', n.get_bool_value()),
+            "searchDisableUseLocation": lambda n : setattr(self, 'search_disable_use_location', n.get_bool_value()),
+            "searchEnableAutomaticIndexSizeManangement": lambda n : setattr(self, 'search_enable_automatic_index_size_manangement', n.get_bool_value()),
+            "searchEnableRemoteQueries": lambda n : setattr(self, 'search_enable_remote_queries', n.get_bool_value()),
+            "securityBlockAzureADJoinedDevicesAutoEncryption": lambda n : setattr(self, 'security_block_azure_a_d_joined_devices_auto_encryption', n.get_bool_value()),
+            "settingsBlockAccountsPage": lambda n : setattr(self, 'settings_block_accounts_page', n.get_bool_value()),
+            "settingsBlockAddProvisioningPackage": lambda n : setattr(self, 'settings_block_add_provisioning_package', n.get_bool_value()),
+            "settingsBlockAppsPage": lambda n : setattr(self, 'settings_block_apps_page', n.get_bool_value()),
+            "settingsBlockChangeLanguage": lambda n : setattr(self, 'settings_block_change_language', n.get_bool_value()),
+            "settingsBlockChangePowerSleep": lambda n : setattr(self, 'settings_block_change_power_sleep', n.get_bool_value()),
+            "settingsBlockChangeRegion": lambda n : setattr(self, 'settings_block_change_region', n.get_bool_value()),
+            "settingsBlockChangeSystemTime": lambda n : setattr(self, 'settings_block_change_system_time', n.get_bool_value()),
+            "settingsBlockDevicesPage": lambda n : setattr(self, 'settings_block_devices_page', n.get_bool_value()),
+            "settingsBlockEaseOfAccessPage": lambda n : setattr(self, 'settings_block_ease_of_access_page', n.get_bool_value()),
+            "settingsBlockEditDeviceName": lambda n : setattr(self, 'settings_block_edit_device_name', n.get_bool_value()),
+            "settingsBlockGamingPage": lambda n : setattr(self, 'settings_block_gaming_page', n.get_bool_value()),
+            "settingsBlockNetworkInternetPage": lambda n : setattr(self, 'settings_block_network_internet_page', n.get_bool_value()),
+            "settingsBlockPersonalizationPage": lambda n : setattr(self, 'settings_block_personalization_page', n.get_bool_value()),
+            "settingsBlockPrivacyPage": lambda n : setattr(self, 'settings_block_privacy_page', n.get_bool_value()),
+            "settingsBlockRemoveProvisioningPackage": lambda n : setattr(self, 'settings_block_remove_provisioning_package', n.get_bool_value()),
+            "settingsBlockSettingsApp": lambda n : setattr(self, 'settings_block_settings_app', n.get_bool_value()),
+            "settingsBlockSystemPage": lambda n : setattr(self, 'settings_block_system_page', n.get_bool_value()),
+            "settingsBlockTimeLanguagePage": lambda n : setattr(self, 'settings_block_time_language_page', n.get_bool_value()),
+            "settingsBlockUpdateSecurityPage": lambda n : setattr(self, 'settings_block_update_security_page', n.get_bool_value()),
+            "sharedUserAppDataAllowed": lambda n : setattr(self, 'shared_user_app_data_allowed', n.get_bool_value()),
+            "smartScreenAppInstallControl": lambda n : setattr(self, 'smart_screen_app_install_control', n.get_enum_value(app_install_control_type.AppInstallControlType)),
+            "smartScreenBlockPromptOverride": lambda n : setattr(self, 'smart_screen_block_prompt_override', n.get_bool_value()),
+            "smartScreenBlockPromptOverrideForFiles": lambda n : setattr(self, 'smart_screen_block_prompt_override_for_files', n.get_bool_value()),
+            "smartScreenEnableAppInstallControl": lambda n : setattr(self, 'smart_screen_enable_app_install_control', n.get_bool_value()),
+            "startBlockUnpinningAppsFromTaskbar": lambda n : setattr(self, 'start_block_unpinning_apps_from_taskbar', n.get_bool_value()),
+            "startMenuAppListVisibility": lambda n : setattr(self, 'start_menu_app_list_visibility', n.get_enum_value(windows_start_menu_app_list_visibility_type.WindowsStartMenuAppListVisibilityType)),
+            "startMenuHideChangeAccountSettings": lambda n : setattr(self, 'start_menu_hide_change_account_settings', n.get_bool_value()),
+            "startMenuHideFrequentlyUsedApps": lambda n : setattr(self, 'start_menu_hide_frequently_used_apps', n.get_bool_value()),
+            "startMenuHideHibernate": lambda n : setattr(self, 'start_menu_hide_hibernate', n.get_bool_value()),
+            "startMenuHideLock": lambda n : setattr(self, 'start_menu_hide_lock', n.get_bool_value()),
+            "startMenuHidePowerButton": lambda n : setattr(self, 'start_menu_hide_power_button', n.get_bool_value()),
+            "startMenuHideRecentlyAddedApps": lambda n : setattr(self, 'start_menu_hide_recently_added_apps', n.get_bool_value()),
+            "startMenuHideRecentJumpLists": lambda n : setattr(self, 'start_menu_hide_recent_jump_lists', n.get_bool_value()),
+            "startMenuHideRestartOptions": lambda n : setattr(self, 'start_menu_hide_restart_options', n.get_bool_value()),
+            "startMenuHideShutDown": lambda n : setattr(self, 'start_menu_hide_shut_down', n.get_bool_value()),
+            "startMenuHideSignOut": lambda n : setattr(self, 'start_menu_hide_sign_out', n.get_bool_value()),
+            "startMenuHideSleep": lambda n : setattr(self, 'start_menu_hide_sleep', n.get_bool_value()),
+            "startMenuHideSwitchAccount": lambda n : setattr(self, 'start_menu_hide_switch_account', n.get_bool_value()),
+            "startMenuHideUserTile": lambda n : setattr(self, 'start_menu_hide_user_tile', n.get_bool_value()),
+            "startMenuLayoutEdgeAssetsXml": lambda n : setattr(self, 'start_menu_layout_edge_assets_xml', n.get_bytes_value()),
+            "startMenuLayoutXml": lambda n : setattr(self, 'start_menu_layout_xml', n.get_bytes_value()),
+            "startMenuMode": lambda n : setattr(self, 'start_menu_mode', n.get_enum_value(windows_start_menu_mode_type.WindowsStartMenuModeType)),
+            "startMenuPinnedFolderDocuments": lambda n : setattr(self, 'start_menu_pinned_folder_documents', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderDownloads": lambda n : setattr(self, 'start_menu_pinned_folder_downloads', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderFileExplorer": lambda n : setattr(self, 'start_menu_pinned_folder_file_explorer', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderHomeGroup": lambda n : setattr(self, 'start_menu_pinned_folder_home_group', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderMusic": lambda n : setattr(self, 'start_menu_pinned_folder_music', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderNetwork": lambda n : setattr(self, 'start_menu_pinned_folder_network', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderPersonalFolder": lambda n : setattr(self, 'start_menu_pinned_folder_personal_folder', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderPictures": lambda n : setattr(self, 'start_menu_pinned_folder_pictures', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderSettings": lambda n : setattr(self, 'start_menu_pinned_folder_settings', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "startMenuPinnedFolderVideos": lambda n : setattr(self, 'start_menu_pinned_folder_videos', n.get_enum_value(visibility_setting.VisibilitySetting)),
+            "storageBlockRemovableStorage": lambda n : setattr(self, 'storage_block_removable_storage', n.get_bool_value()),
+            "storageRequireMobileDeviceEncryption": lambda n : setattr(self, 'storage_require_mobile_device_encryption', n.get_bool_value()),
+            "storageRestrictAppDataToSystemVolume": lambda n : setattr(self, 'storage_restrict_app_data_to_system_volume', n.get_bool_value()),
+            "storageRestrictAppInstallToSystemVolume": lambda n : setattr(self, 'storage_restrict_app_install_to_system_volume', n.get_bool_value()),
+            "systemTelemetryProxyServer": lambda n : setattr(self, 'system_telemetry_proxy_server', n.get_str_value()),
+            "taskManagerBlockEndTask": lambda n : setattr(self, 'task_manager_block_end_task', n.get_bool_value()),
+            "tenantLockdownRequireNetworkDuringOutOfBoxExperience": lambda n : setattr(self, 'tenant_lockdown_require_network_during_out_of_box_experience', n.get_bool_value()),
+            "uninstallBuiltInApps": lambda n : setattr(self, 'uninstall_built_in_apps', n.get_bool_value()),
+            "usbBlocked": lambda n : setattr(self, 'usb_blocked', n.get_bool_value()),
+            "voiceRecordingBlocked": lambda n : setattr(self, 'voice_recording_blocked', n.get_bool_value()),
+            "webRtcBlockLocalhostIpAddress": lambda n : setattr(self, 'web_rtc_block_localhost_ip_address', n.get_bool_value()),
+            "windows10AppsForceUpdateSchedule": lambda n : setattr(self, 'windows10_apps_force_update_schedule', n.get_object_value(windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule)),
+            "windowsSpotlightBlocked": lambda n : setattr(self, 'windows_spotlight_blocked', n.get_bool_value()),
+            "windowsSpotlightBlockConsumerSpecificFeatures": lambda n : setattr(self, 'windows_spotlight_block_consumer_specific_features', n.get_bool_value()),
+            "windowsSpotlightBlockOnActionCenter": lambda n : setattr(self, 'windows_spotlight_block_on_action_center', n.get_bool_value()),
+            "windowsSpotlightBlockTailoredExperiences": lambda n : setattr(self, 'windows_spotlight_block_tailored_experiences', n.get_bool_value()),
+            "windowsSpotlightBlockThirdPartyNotifications": lambda n : setattr(self, 'windows_spotlight_block_third_party_notifications', n.get_bool_value()),
+            "windowsSpotlightBlockWelcomeExperience": lambda n : setattr(self, 'windows_spotlight_block_welcome_experience', n.get_bool_value()),
+            "windowsSpotlightBlockWindowsTips": lambda n : setattr(self, 'windows_spotlight_block_windows_tips', n.get_bool_value()),
+            "windowsSpotlightConfigureOnLockScreen": lambda n : setattr(self, 'windows_spotlight_configure_on_lock_screen', n.get_enum_value(windows_spotlight_enablement_settings.WindowsSpotlightEnablementSettings)),
+            "windowsStoreBlocked": lambda n : setattr(self, 'windows_store_blocked', n.get_bool_value()),
+            "windowsStoreBlockAutoUpdate": lambda n : setattr(self, 'windows_store_block_auto_update', n.get_bool_value()),
+            "windowsStoreEnablePrivateStoreOnly": lambda n : setattr(self, 'windows_store_enable_private_store_only', n.get_bool_value()),
+            "wirelessDisplayBlockProjectionToThisDevice": lambda n : setattr(self, 'wireless_display_block_projection_to_this_device', n.get_bool_value()),
+            "wirelessDisplayBlockUserInputFromReceiver": lambda n : setattr(self, 'wireless_display_block_user_input_from_receiver', n.get_bool_value()),
+            "wirelessDisplayRequirePinForPairing": lambda n : setattr(self, 'wireless_display_require_pin_for_pairing', n.get_bool_value()),
+            "wiFiBlocked": lambda n : setattr(self, 'wi_fi_blocked', n.get_bool_value()),
+            "wiFiBlockAutomaticConnectHotspots": lambda n : setattr(self, 'wi_fi_block_automatic_connect_hotspots', n.get_bool_value()),
+            "wiFiBlockManualConfiguration": lambda n : setattr(self, 'wi_fi_block_manual_configuration', n.get_bool_value()),
+            "wiFiScanInterval": lambda n : setattr(self, 'wi_fi_scan_interval', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -3177,7 +3177,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the inkWorkspaceAccess property value. Values for the InkWorkspaceAccess setting.
         Args:
-            value: Value to set for the inkWorkspaceAccess property.
+            value: Value to set for the ink_workspace_access property.
         """
         self._ink_workspace_access = value
     
@@ -3194,7 +3194,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the inkWorkspaceAccessState property value. State Management Setting.
         Args:
-            value: Value to set for the inkWorkspaceAccessState property.
+            value: Value to set for the ink_workspace_access_state property.
         """
         self._ink_workspace_access_state = value
     
@@ -3211,7 +3211,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the inkWorkspaceBlockSuggestedApps property value. Specify whether to show recommended app suggestions in the ink workspace.
         Args:
-            value: Value to set for the inkWorkspaceBlockSuggestedApps property.
+            value: Value to set for the ink_workspace_block_suggested_apps property.
         """
         self._ink_workspace_block_suggested_apps = value
     
@@ -3228,7 +3228,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the internetSharingBlocked property value. Indicates whether or not to Block the user from using internet sharing.
         Args:
-            value: Value to set for the internetSharingBlocked property.
+            value: Value to set for the internet_sharing_blocked property.
         """
         self._internet_sharing_blocked = value
     
@@ -3245,7 +3245,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the locationServicesBlocked property value. Indicates whether or not to Block the user from location services.
         Args:
-            value: Value to set for the locationServicesBlocked property.
+            value: Value to set for the location_services_blocked property.
         """
         self._location_services_blocked = value
     
@@ -3262,7 +3262,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenActivateAppsWithVoice property value. Possible values of a property
         Args:
-            value: Value to set for the lockScreenActivateAppsWithVoice property.
+            value: Value to set for the lock_screen_activate_apps_with_voice property.
         """
         self._lock_screen_activate_apps_with_voice = value
     
@@ -3279,7 +3279,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenAllowTimeoutConfiguration property value. Specify whether to show a user-configurable setting to control the screen timeout while on the lock screen of Windows 10 Mobile devices. If this policy is set to Allow, the value set by lockScreenTimeoutInSeconds is ignored.
         Args:
-            value: Value to set for the lockScreenAllowTimeoutConfiguration property.
+            value: Value to set for the lock_screen_allow_timeout_configuration property.
         """
         self._lock_screen_allow_timeout_configuration = value
     
@@ -3296,7 +3296,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockActionCenterNotifications property value. Indicates whether or not to block action center notifications over lock screen.
         Args:
-            value: Value to set for the lockScreenBlockActionCenterNotifications property.
+            value: Value to set for the lock_screen_block_action_center_notifications property.
         """
         self._lock_screen_block_action_center_notifications = value
     
@@ -3313,7 +3313,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockCortana property value. Indicates whether or not the user can interact with Cortana using speech while the system is locked.
         Args:
-            value: Value to set for the lockScreenBlockCortana property.
+            value: Value to set for the lock_screen_block_cortana property.
         """
         self._lock_screen_block_cortana = value
     
@@ -3330,7 +3330,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockToastNotifications property value. Indicates whether to allow toast notifications above the device lock screen.
         Args:
-            value: Value to set for the lockScreenBlockToastNotifications property.
+            value: Value to set for the lock_screen_block_toast_notifications property.
         """
         self._lock_screen_block_toast_notifications = value
     
@@ -3347,7 +3347,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenTimeoutInSeconds property value. Set the duration (in seconds) from the screen locking to the screen turning off for Windows 10 Mobile devices. Supported values are 11-1800. Valid values 11 to 1800
         Args:
-            value: Value to set for the lockScreenTimeoutInSeconds property.
+            value: Value to set for the lock_screen_timeout_in_seconds property.
         """
         self._lock_screen_timeout_in_seconds = value
     
@@ -3364,7 +3364,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the logonBlockFastUserSwitching property value. Disables the ability to quickly switch between users that are logged on simultaneously without logging off.
         Args:
-            value: Value to set for the logonBlockFastUserSwitching property.
+            value: Value to set for the logon_block_fast_user_switching property.
         """
         self._logon_block_fast_user_switching = value
     
@@ -3381,7 +3381,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the messagingBlockMMS property value. Indicates whether or not to block the MMS send/receive functionality on the device.
         Args:
-            value: Value to set for the messagingBlockMMS property.
+            value: Value to set for the messaging_block_m_m_s property.
         """
         self._messaging_block_m_m_s = value
     
@@ -3398,7 +3398,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the messagingBlockRichCommunicationServices property value. Indicates whether or not to block the RCS send/receive functionality on the device.
         Args:
-            value: Value to set for the messagingBlockRichCommunicationServices property.
+            value: Value to set for the messaging_block_rich_communication_services property.
         """
         self._messaging_block_rich_communication_services = value
     
@@ -3415,26 +3415,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the messagingBlockSync property value. Indicates whether or not to block text message back up and restore and Messaging Everywhere.
         Args:
-            value: Value to set for the messagingBlockSync property.
+            value: Value to set for the messaging_block_sync property.
         """
         self._messaging_block_sync = value
-    
-    @property
-    def microsoft_account_blocked(self,) -> Optional[bool]:
-        """
-        Gets the microsoftAccountBlocked property value. Indicates whether or not to Block a Microsoft account.
-        Returns: Optional[bool]
-        """
-        return self._microsoft_account_blocked
-    
-    @microsoft_account_blocked.setter
-    def microsoft_account_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the microsoftAccountBlocked property value. Indicates whether or not to Block a Microsoft account.
-        Args:
-            value: Value to set for the microsoftAccountBlocked property.
-        """
-        self._microsoft_account_blocked = value
     
     @property
     def microsoft_account_block_settings_sync(self,) -> Optional[bool]:
@@ -3449,9 +3432,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the microsoftAccountBlockSettingsSync property value. Indicates whether or not to Block Microsoft account settings sync.
         Args:
-            value: Value to set for the microsoftAccountBlockSettingsSync property.
+            value: Value to set for the microsoft_account_block_settings_sync property.
         """
         self._microsoft_account_block_settings_sync = value
+    
+    @property
+    def microsoft_account_blocked(self,) -> Optional[bool]:
+        """
+        Gets the microsoftAccountBlocked property value. Indicates whether or not to Block a Microsoft account.
+        Returns: Optional[bool]
+        """
+        return self._microsoft_account_blocked
+    
+    @microsoft_account_blocked.setter
+    def microsoft_account_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the microsoftAccountBlocked property value. Indicates whether or not to Block a Microsoft account.
+        Args:
+            value: Value to set for the microsoft_account_blocked property.
+        """
+        self._microsoft_account_blocked = value
     
     @property
     def microsoft_account_sign_in_assistant_settings(self,) -> Optional[sign_in_assistant_options.SignInAssistantOptions]:
@@ -3466,7 +3466,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the microsoftAccountSignInAssistantSettings property value. Values for the SignInAssistantSettings.
         Args:
-            value: Value to set for the microsoftAccountSignInAssistantSettings property.
+            value: Value to set for the microsoft_account_sign_in_assistant_settings property.
         """
         self._microsoft_account_sign_in_assistant_settings = value
     
@@ -3483,7 +3483,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkProxyApplySettingsDeviceWide property value. If set, proxy settings will be applied to all processes and accounts in the device. Otherwise, it will be applied to the user account that’s enrolled into MDM.
         Args:
-            value: Value to set for the networkProxyApplySettingsDeviceWide property.
+            value: Value to set for the network_proxy_apply_settings_device_wide property.
         """
         self._network_proxy_apply_settings_device_wide = value
     
@@ -3500,7 +3500,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkProxyAutomaticConfigurationUrl property value. Address to the proxy auto-config (PAC) script you want to use.
         Args:
-            value: Value to set for the networkProxyAutomaticConfigurationUrl property.
+            value: Value to set for the network_proxy_automatic_configuration_url property.
         """
         self._network_proxy_automatic_configuration_url = value
     
@@ -3517,7 +3517,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkProxyDisableAutoDetect property value. Disable automatic detection of settings. If enabled, the system will try to find the path to a proxy auto-config (PAC) script.
         Args:
-            value: Value to set for the networkProxyDisableAutoDetect property.
+            value: Value to set for the network_proxy_disable_auto_detect property.
         """
         self._network_proxy_disable_auto_detect = value
     
@@ -3534,7 +3534,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkProxyServer property value. Specifies manual proxy server settings.
         Args:
-            value: Value to set for the networkProxyServer property.
+            value: Value to set for the network_proxy_server property.
         """
         self._network_proxy_server = value
     
@@ -3551,7 +3551,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the nfcBlocked property value. Indicates whether or not to Block the user from using near field communication.
         Args:
-            value: Value to set for the nfcBlocked property.
+            value: Value to set for the nfc_blocked property.
         """
         self._nfc_blocked = value
     
@@ -3568,7 +3568,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the oneDriveDisableFileSync property value. Gets or sets a value allowing IT admins to prevent apps and features from working with files on OneDrive.
         Args:
-            value: Value to set for the oneDriveDisableFileSync property.
+            value: Value to set for the one_drive_disable_file_sync property.
         """
         self._one_drive_disable_file_sync = value
     
@@ -3585,7 +3585,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockSimple property value. Specify whether PINs or passwords such as '1111' or '1234' are allowed. For Windows 10 desktops, it also controls the use of picture passwords.
         Args:
-            value: Value to set for the passwordBlockSimple property.
+            value: Value to set for the password_block_simple property.
         """
         self._password_block_simple = value
     
@@ -3602,7 +3602,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordExpirationDays property value. The password expiration in days. Valid values 0 to 730
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -3619,7 +3619,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinimumAgeInDays property value. This security setting determines the period of time (in days) that a password must be used before the user can change it. Valid values 0 to 998
         Args:
-            value: Value to set for the passwordMinimumAgeInDays property.
+            value: Value to set for the password_minimum_age_in_days property.
         """
         self._password_minimum_age_in_days = value
     
@@ -3636,7 +3636,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinimumCharacterSetCount property value. The number of character sets required in the password.
         Args:
-            value: Value to set for the passwordMinimumCharacterSetCount property.
+            value: Value to set for the password_minimum_character_set_count property.
         """
         self._password_minimum_character_set_count = value
     
@@ -3653,7 +3653,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinimumLength property value. The minimum password length. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -3670,7 +3670,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordMinutesOfInactivityBeforeScreenTimeout property value. The minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -3687,9 +3687,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordPreviousPasswordBlockCount property value. The number of previous passwords to prevent reuse of. Valid values 0 to 50
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
+    
+    @property
+    def password_require_when_resume_from_idle_state(self,) -> Optional[bool]:
+        """
+        Gets the passwordRequireWhenResumeFromIdleState property value. Indicates whether or not to require a password upon resuming from an idle state.
+        Returns: Optional[bool]
+        """
+        return self._password_require_when_resume_from_idle_state
+    
+    @password_require_when_resume_from_idle_state.setter
+    def password_require_when_resume_from_idle_state(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the passwordRequireWhenResumeFromIdleState property value. Indicates whether or not to require a password upon resuming from an idle state.
+        Args:
+            value: Value to set for the password_require_when_resume_from_idle_state property.
+        """
+        self._password_require_when_resume_from_idle_state = value
     
     @property
     def password_required(self,) -> Optional[bool]:
@@ -3704,7 +3721,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordRequired property value. Indicates whether or not to require the user to have a password.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -3721,26 +3738,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordRequiredType property value. Possible values of required passwords.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
-    
-    @property
-    def password_require_when_resume_from_idle_state(self,) -> Optional[bool]:
-        """
-        Gets the passwordRequireWhenResumeFromIdleState property value. Indicates whether or not to require a password upon resuming from an idle state.
-        Returns: Optional[bool]
-        """
-        return self._password_require_when_resume_from_idle_state
-    
-    @password_require_when_resume_from_idle_state.setter
-    def password_require_when_resume_from_idle_state(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the passwordRequireWhenResumeFromIdleState property value. Indicates whether or not to require a password upon resuming from an idle state.
-        Args:
-            value: Value to set for the passwordRequireWhenResumeFromIdleState property.
-        """
-        self._password_require_when_resume_from_idle_state = value
     
     @property
     def password_sign_in_failure_count_before_factory_reset(self,) -> Optional[int]:
@@ -3755,7 +3755,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordSignInFailureCountBeforeFactoryReset property value. The number of sign in failures before factory reset. Valid values 0 to 999
         Args:
-            value: Value to set for the passwordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the password_sign_in_failure_count_before_factory_reset property.
         """
         self._password_sign_in_failure_count_before_factory_reset = value
     
@@ -3772,7 +3772,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the personalizationDesktopImageUrl property value. A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Desktop Image or a file Url to a local image on the file system that needs to used as the Desktop Image.
         Args:
-            value: Value to set for the personalizationDesktopImageUrl property.
+            value: Value to set for the personalization_desktop_image_url property.
         """
         self._personalization_desktop_image_url = value
     
@@ -3789,7 +3789,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the personalizationLockScreenImageUrl property value. A http or https Url to a jpg, jpeg or png image that neeeds to be downloaded and used as the Lock Screen Image or a file Url to a local image on the file system that needs to be used as the Lock Screen Image.
         Args:
-            value: Value to set for the personalizationLockScreenImageUrl property.
+            value: Value to set for the personalization_lock_screen_image_url property.
         """
         self._personalization_lock_screen_image_url = value
     
@@ -3806,7 +3806,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerButtonActionOnBattery property value. Power action types
         Args:
-            value: Value to set for the powerButtonActionOnBattery property.
+            value: Value to set for the power_button_action_on_battery property.
         """
         self._power_button_action_on_battery = value
     
@@ -3823,7 +3823,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerButtonActionPluggedIn property value. Power action types
         Args:
-            value: Value to set for the powerButtonActionPluggedIn property.
+            value: Value to set for the power_button_action_plugged_in property.
         """
         self._power_button_action_plugged_in = value
     
@@ -3840,7 +3840,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerHybridSleepOnBattery property value. Possible values of a property
         Args:
-            value: Value to set for the powerHybridSleepOnBattery property.
+            value: Value to set for the power_hybrid_sleep_on_battery property.
         """
         self._power_hybrid_sleep_on_battery = value
     
@@ -3857,7 +3857,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerHybridSleepPluggedIn property value. Possible values of a property
         Args:
-            value: Value to set for the powerHybridSleepPluggedIn property.
+            value: Value to set for the power_hybrid_sleep_plugged_in property.
         """
         self._power_hybrid_sleep_plugged_in = value
     
@@ -3874,7 +3874,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerLidCloseActionOnBattery property value. Power action types
         Args:
-            value: Value to set for the powerLidCloseActionOnBattery property.
+            value: Value to set for the power_lid_close_action_on_battery property.
         """
         self._power_lid_close_action_on_battery = value
     
@@ -3891,7 +3891,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerLidCloseActionPluggedIn property value. Power action types
         Args:
-            value: Value to set for the powerLidCloseActionPluggedIn property.
+            value: Value to set for the power_lid_close_action_plugged_in property.
         """
         self._power_lid_close_action_plugged_in = value
     
@@ -3908,7 +3908,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerSleepButtonActionOnBattery property value. Power action types
         Args:
-            value: Value to set for the powerSleepButtonActionOnBattery property.
+            value: Value to set for the power_sleep_button_action_on_battery property.
         """
         self._power_sleep_button_action_on_battery = value
     
@@ -3925,7 +3925,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the powerSleepButtonActionPluggedIn property value. Power action types
         Args:
-            value: Value to set for the powerSleepButtonActionPluggedIn property.
+            value: Value to set for the power_sleep_button_action_plugged_in property.
         """
         self._power_sleep_button_action_plugged_in = value
     
@@ -3942,7 +3942,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the printerBlockAddition property value. Prevent user installation of additional printers from printers settings.
         Args:
-            value: Value to set for the printerBlockAddition property.
+            value: Value to set for the printer_block_addition property.
         """
         self._printer_block_addition = value
     
@@ -3959,7 +3959,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the printerDefaultName property value. Name (network host name) of an installed printer.
         Args:
-            value: Value to set for the printerDefaultName property.
+            value: Value to set for the printer_default_name property.
         """
         self._printer_default_name = value
     
@@ -3976,7 +3976,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the printerNames property value. Automatically provision printers based on their names (network host names).
         Args:
-            value: Value to set for the printerNames property.
+            value: Value to set for the printer_names property.
         """
         self._printer_names = value
     
@@ -3993,7 +3993,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyAccessControls property value. Indicates a list of applications with their access control levels over privacy data categories, and/or the default access levels per category. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the privacyAccessControls property.
+            value: Value to set for the privacy_access_controls property.
         """
         self._privacy_access_controls = value
     
@@ -4010,7 +4010,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyAdvertisingId property value. State Management Setting.
         Args:
-            value: Value to set for the privacyAdvertisingId property.
+            value: Value to set for the privacy_advertising_id property.
         """
         self._privacy_advertising_id = value
     
@@ -4027,7 +4027,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyAutoAcceptPairingAndConsentPrompts property value. Indicates whether or not to allow the automatic acceptance of the pairing and privacy user consent dialog when launching apps.
         Args:
-            value: Value to set for the privacyAutoAcceptPairingAndConsentPrompts property.
+            value: Value to set for the privacy_auto_accept_pairing_and_consent_prompts property.
         """
         self._privacy_auto_accept_pairing_and_consent_prompts = value
     
@@ -4044,7 +4044,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyBlockActivityFeed property value. Blocks the usage of cloud based speech services for Cortana, Dictation, or Store applications.
         Args:
-            value: Value to set for the privacyBlockActivityFeed property.
+            value: Value to set for the privacy_block_activity_feed property.
         """
         self._privacy_block_activity_feed = value
     
@@ -4061,7 +4061,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyBlockInputPersonalization property value. Indicates whether or not to block the usage of cloud based speech services for Cortana, Dictation, or Store applications.
         Args:
-            value: Value to set for the privacyBlockInputPersonalization property.
+            value: Value to set for the privacy_block_input_personalization property.
         """
         self._privacy_block_input_personalization = value
     
@@ -4078,7 +4078,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyBlockPublishUserActivities property value. Blocks the shared experiences/discovery of recently used resources in task switcher etc.
         Args:
-            value: Value to set for the privacyBlockPublishUserActivities property.
+            value: Value to set for the privacy_block_publish_user_activities property.
         """
         self._privacy_block_publish_user_activities = value
     
@@ -4095,7 +4095,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyDisableLaunchExperience property value. This policy prevents the privacy experience from launching during user logon for new and upgraded users.​
         Args:
-            value: Value to set for the privacyDisableLaunchExperience property.
+            value: Value to set for the privacy_disable_launch_experience property.
         """
         self._privacy_disable_launch_experience = value
     
@@ -4112,7 +4112,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the resetProtectionModeBlocked property value. Indicates whether or not to Block the user from reset protection mode.
         Args:
-            value: Value to set for the resetProtectionModeBlocked property.
+            value: Value to set for the reset_protection_mode_blocked property.
         """
         self._reset_protection_mode_blocked = value
     
@@ -4129,7 +4129,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safeSearchFilter property value. Specifies what level of safe search (filtering adult content) is required
         Args:
-            value: Value to set for the safeSearchFilter property.
+            value: Value to set for the safe_search_filter property.
         """
         self._safe_search_filter = value
     
@@ -4146,7 +4146,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the screenCaptureBlocked property value. Indicates whether or not to Block the user from taking Screenshots.
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -4163,7 +4163,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchBlockDiacritics property value. Specifies if search can use diacritics.
         Args:
-            value: Value to set for the searchBlockDiacritics property.
+            value: Value to set for the search_block_diacritics property.
         """
         self._search_block_diacritics = value
     
@@ -4180,7 +4180,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchBlockWebResults property value. Indicates whether or not to block the web search.
         Args:
-            value: Value to set for the searchBlockWebResults property.
+            value: Value to set for the search_block_web_results property.
         """
         self._search_block_web_results = value
     
@@ -4197,7 +4197,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchDisableAutoLanguageDetection property value. Specifies whether to use automatic language detection when indexing content and properties.
         Args:
-            value: Value to set for the searchDisableAutoLanguageDetection property.
+            value: Value to set for the search_disable_auto_language_detection property.
         """
         self._search_disable_auto_language_detection = value
     
@@ -4214,7 +4214,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchDisableIndexerBackoff property value. Indicates whether or not to disable the search indexer backoff feature.
         Args:
-            value: Value to set for the searchDisableIndexerBackoff property.
+            value: Value to set for the search_disable_indexer_backoff property.
         """
         self._search_disable_indexer_backoff = value
     
@@ -4231,7 +4231,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchDisableIndexingEncryptedItems property value. Indicates whether or not to block indexing of WIP-protected items to prevent them from appearing in search results for Cortana or Explorer.
         Args:
-            value: Value to set for the searchDisableIndexingEncryptedItems property.
+            value: Value to set for the search_disable_indexing_encrypted_items property.
         """
         self._search_disable_indexing_encrypted_items = value
     
@@ -4248,7 +4248,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchDisableIndexingRemovableDrive property value. Indicates whether or not to allow users to add locations on removable drives to libraries and to be indexed.
         Args:
-            value: Value to set for the searchDisableIndexingRemovableDrive property.
+            value: Value to set for the search_disable_indexing_removable_drive property.
         """
         self._search_disable_indexing_removable_drive = value
     
@@ -4265,7 +4265,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchDisableLocation property value. Specifies if search can use location information.
         Args:
-            value: Value to set for the searchDisableLocation property.
+            value: Value to set for the search_disable_location property.
         """
         self._search_disable_location = value
     
@@ -4282,7 +4282,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchDisableUseLocation property value. Specifies if search can use location information.
         Args:
-            value: Value to set for the searchDisableUseLocation property.
+            value: Value to set for the search_disable_use_location property.
         """
         self._search_disable_use_location = value
     
@@ -4299,7 +4299,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchEnableAutomaticIndexSizeManangement property value. Specifies minimum amount of hard drive space on the same drive as the index location before indexing stops.
         Args:
-            value: Value to set for the searchEnableAutomaticIndexSizeManangement property.
+            value: Value to set for the search_enable_automatic_index_size_manangement property.
         """
         self._search_enable_automatic_index_size_manangement = value
     
@@ -4316,7 +4316,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the searchEnableRemoteQueries property value. Indicates whether or not to block remote queries of this computer’s index.
         Args:
-            value: Value to set for the searchEnableRemoteQueries property.
+            value: Value to set for the search_enable_remote_queries property.
         """
         self._search_enable_remote_queries = value
     
@@ -4333,7 +4333,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the securityBlockAzureADJoinedDevicesAutoEncryption property value. Specify whether to allow automatic device encryption during OOBE when the device is Azure AD joined (desktop only).
         Args:
-            value: Value to set for the securityBlockAzureADJoinedDevicesAutoEncryption property.
+            value: Value to set for the security_block_azure_a_d_joined_devices_auto_encryption property.
         """
         self._security_block_azure_a_d_joined_devices_auto_encryption = value
     
@@ -4349,18 +4349,18 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("accountsBlockAddingNonMicrosoftAccountEmail", self.accounts_block_adding_non_microsoft_account_email)
         writer.write_enum_value("activateAppsWithVoice", self.activate_apps_with_voice)
         writer.write_bool_value("antiTheftModeBlocked", self.anti_theft_mode_blocked)
+        writer.write_enum_value("appsAllowTrustedAppsSideloading", self.apps_allow_trusted_apps_sideloading)
+        writer.write_bool_value("appsBlockWindowsStoreOriginatedApps", self.apps_block_windows_store_originated_apps)
         writer.write_bool_value("appManagementMSIAllowUserControlOverInstall", self.app_management_m_s_i_allow_user_control_over_install)
         writer.write_bool_value("appManagementMSIAlwaysInstallWithElevatedPrivileges", self.app_management_m_s_i_always_install_with_elevated_privileges)
         writer.write_collection_of_primitive_values("appManagementPackageFamilyNamesToLaunchAfterLogOn", self.app_management_package_family_names_to_launch_after_log_on)
-        writer.write_enum_value("appsAllowTrustedAppsSideloading", self.apps_allow_trusted_apps_sideloading)
-        writer.write_bool_value("appsBlockWindowsStoreOriginatedApps", self.apps_block_windows_store_originated_apps)
         writer.write_bool_value("authenticationAllowSecondaryDevice", self.authentication_allow_secondary_device)
         writer.write_str_value("authenticationPreferredAzureADTenantDomainName", self.authentication_preferred_azure_a_d_tenant_domain_name)
         writer.write_enum_value("authenticationWebSignIn", self.authentication_web_sign_in)
         writer.write_collection_of_primitive_values("bluetoothAllowedServices", self.bluetooth_allowed_services)
+        writer.write_bool_value("bluetoothBlocked", self.bluetooth_blocked)
         writer.write_bool_value("bluetoothBlockAdvertising", self.bluetooth_block_advertising)
         writer.write_bool_value("bluetoothBlockDiscoverableMode", self.bluetooth_block_discoverable_mode)
-        writer.write_bool_value("bluetoothBlocked", self.bluetooth_blocked)
         writer.write_bool_value("bluetoothBlockPrePairing", self.bluetooth_block_pre_pairing)
         writer.write_bool_value("bluetoothBlockPromptedProximalConnections", self.bluetooth_block_prompted_proximal_connections)
         writer.write_bool_value("cameraBlocked", self.camera_blocked)
@@ -4384,8 +4384,8 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         writer.write_object_value("defenderDetectedMalwareActions", self.defender_detected_malware_actions)
         writer.write_bool_value("defenderDisableCatchupFullScan", self.defender_disable_catchup_full_scan)
         writer.write_bool_value("defenderDisableCatchupQuickScan", self.defender_disable_catchup_quick_scan)
-        writer.write_collection_of_primitive_values("defenderFileExtensionsToExclude", self.defender_file_extensions_to_exclude)
         writer.write_collection_of_primitive_values("defenderFilesAndFoldersToExclude", self.defender_files_and_folders_to_exclude)
+        writer.write_collection_of_primitive_values("defenderFileExtensionsToExclude", self.defender_file_extensions_to_exclude)
         writer.write_enum_value("defenderMonitorFileActivity", self.defender_monitor_file_activity)
         writer.write_enum_value("defenderPotentiallyUnwantedAppAction", self.defender_potentially_unwanted_app_action)
         writer.write_enum_value("defenderPotentiallyUnwantedAppActionSetting", self.defender_potentially_unwanted_app_action_setting)
@@ -4417,12 +4417,12 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         writer.write_collection_of_primitive_values("displayAppListWithGdiDPIScalingTurnedOff", self.display_app_list_with_gdi_d_p_i_scaling_turned_off)
         writer.write_collection_of_primitive_values("displayAppListWithGdiDPIScalingTurnedOn", self.display_app_list_with_gdi_d_p_i_scaling_turned_on)
         writer.write_bool_value("edgeAllowStartPagesModification", self.edge_allow_start_pages_modification)
+        writer.write_bool_value("edgeBlocked", self.edge_blocked)
         writer.write_bool_value("edgeBlockAccessToAboutFlags", self.edge_block_access_to_about_flags)
         writer.write_bool_value("edgeBlockAddressBarDropdown", self.edge_block_address_bar_dropdown)
         writer.write_bool_value("edgeBlockAutofill", self.edge_block_autofill)
         writer.write_bool_value("edgeBlockCompatibilityList", self.edge_block_compatibility_list)
         writer.write_bool_value("edgeBlockDeveloperTools", self.edge_block_developer_tools)
-        writer.write_bool_value("edgeBlocked", self.edge_blocked)
         writer.write_bool_value("edgeBlockEditFavorites", self.edge_block_edit_favorites)
         writer.write_bool_value("edgeBlockExtensions", self.edge_block_extensions)
         writer.write_bool_value("edgeBlockFullScreenMode", self.edge_block_full_screen_mode)
@@ -4448,9 +4448,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         writer.write_enum_value("edgeFavoritesBarVisibility", self.edge_favorites_bar_visibility)
         writer.write_str_value("edgeFavoritesListLocation", self.edge_favorites_list_location)
         writer.write_str_value("edgeFirstRunUrl", self.edge_first_run_url)
+        writer.write_collection_of_primitive_values("edgeHomepageUrls", self.edge_homepage_urls)
         writer.write_object_value("edgeHomeButtonConfiguration", self.edge_home_button_configuration)
         writer.write_bool_value("edgeHomeButtonConfigurationEnabled", self.edge_home_button_configuration_enabled)
-        writer.write_collection_of_primitive_values("edgeHomepageUrls", self.edge_homepage_urls)
         writer.write_enum_value("edgeKioskModeRestriction", self.edge_kiosk_mode_restriction)
         writer.write_int_value("edgeKioskResetAfterIdleTimeInMinutes", self.edge_kiosk_reset_after_idle_time_in_minutes)
         writer.write_str_value("edgeNewTabPageURL", self.edge_new_tab_page_u_r_l)
@@ -4578,8 +4578,8 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("startMenuHideHibernate", self.start_menu_hide_hibernate)
         writer.write_bool_value("startMenuHideLock", self.start_menu_hide_lock)
         writer.write_bool_value("startMenuHidePowerButton", self.start_menu_hide_power_button)
-        writer.write_bool_value("startMenuHideRecentJumpLists", self.start_menu_hide_recent_jump_lists)
         writer.write_bool_value("startMenuHideRecentlyAddedApps", self.start_menu_hide_recently_added_apps)
+        writer.write_bool_value("startMenuHideRecentJumpLists", self.start_menu_hide_recent_jump_lists)
         writer.write_bool_value("startMenuHideRestartOptions", self.start_menu_hide_restart_options)
         writer.write_bool_value("startMenuHideShutDown", self.start_menu_hide_shut_down)
         writer.write_bool_value("startMenuHideSignOut", self.start_menu_hide_sign_out)
@@ -4610,25 +4610,25 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("usbBlocked", self.usb_blocked)
         writer.write_bool_value("voiceRecordingBlocked", self.voice_recording_blocked)
         writer.write_bool_value("webRtcBlockLocalhostIpAddress", self.web_rtc_block_localhost_ip_address)
-        writer.write_bool_value("wiFiBlockAutomaticConnectHotspots", self.wi_fi_block_automatic_connect_hotspots)
-        writer.write_bool_value("wiFiBlocked", self.wi_fi_blocked)
-        writer.write_bool_value("wiFiBlockManualConfiguration", self.wi_fi_block_manual_configuration)
-        writer.write_int_value("wiFiScanInterval", self.wi_fi_scan_interval)
         writer.write_object_value("windows10AppsForceUpdateSchedule", self.windows10_apps_force_update_schedule)
-        writer.write_bool_value("windowsSpotlightBlockConsumerSpecificFeatures", self.windows_spotlight_block_consumer_specific_features)
         writer.write_bool_value("windowsSpotlightBlocked", self.windows_spotlight_blocked)
+        writer.write_bool_value("windowsSpotlightBlockConsumerSpecificFeatures", self.windows_spotlight_block_consumer_specific_features)
         writer.write_bool_value("windowsSpotlightBlockOnActionCenter", self.windows_spotlight_block_on_action_center)
         writer.write_bool_value("windowsSpotlightBlockTailoredExperiences", self.windows_spotlight_block_tailored_experiences)
         writer.write_bool_value("windowsSpotlightBlockThirdPartyNotifications", self.windows_spotlight_block_third_party_notifications)
         writer.write_bool_value("windowsSpotlightBlockWelcomeExperience", self.windows_spotlight_block_welcome_experience)
         writer.write_bool_value("windowsSpotlightBlockWindowsTips", self.windows_spotlight_block_windows_tips)
         writer.write_enum_value("windowsSpotlightConfigureOnLockScreen", self.windows_spotlight_configure_on_lock_screen)
-        writer.write_bool_value("windowsStoreBlockAutoUpdate", self.windows_store_block_auto_update)
         writer.write_bool_value("windowsStoreBlocked", self.windows_store_blocked)
+        writer.write_bool_value("windowsStoreBlockAutoUpdate", self.windows_store_block_auto_update)
         writer.write_bool_value("windowsStoreEnablePrivateStoreOnly", self.windows_store_enable_private_store_only)
         writer.write_bool_value("wirelessDisplayBlockProjectionToThisDevice", self.wireless_display_block_projection_to_this_device)
         writer.write_bool_value("wirelessDisplayBlockUserInputFromReceiver", self.wireless_display_block_user_input_from_receiver)
         writer.write_bool_value("wirelessDisplayRequirePinForPairing", self.wireless_display_require_pin_for_pairing)
+        writer.write_bool_value("wiFiBlocked", self.wi_fi_blocked)
+        writer.write_bool_value("wiFiBlockAutomaticConnectHotspots", self.wi_fi_block_automatic_connect_hotspots)
+        writer.write_bool_value("wiFiBlockManualConfiguration", self.wi_fi_block_manual_configuration)
+        writer.write_int_value("wiFiScanInterval", self.wi_fi_scan_interval)
     
     @property
     def settings_block_accounts_page(self,) -> Optional[bool]:
@@ -4643,7 +4643,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockAccountsPage property value. Indicates whether or not to block access to Accounts in Settings app.
         Args:
-            value: Value to set for the settingsBlockAccountsPage property.
+            value: Value to set for the settings_block_accounts_page property.
         """
         self._settings_block_accounts_page = value
     
@@ -4660,7 +4660,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockAddProvisioningPackage property value. Indicates whether or not to block the user from installing provisioning packages.
         Args:
-            value: Value to set for the settingsBlockAddProvisioningPackage property.
+            value: Value to set for the settings_block_add_provisioning_package property.
         """
         self._settings_block_add_provisioning_package = value
     
@@ -4677,7 +4677,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockAppsPage property value. Indicates whether or not to block access to Apps in Settings app.
         Args:
-            value: Value to set for the settingsBlockAppsPage property.
+            value: Value to set for the settings_block_apps_page property.
         """
         self._settings_block_apps_page = value
     
@@ -4694,7 +4694,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockChangeLanguage property value. Indicates whether or not to block the user from changing the language settings.
         Args:
-            value: Value to set for the settingsBlockChangeLanguage property.
+            value: Value to set for the settings_block_change_language property.
         """
         self._settings_block_change_language = value
     
@@ -4711,7 +4711,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockChangePowerSleep property value. Indicates whether or not to block the user from changing power and sleep settings.
         Args:
-            value: Value to set for the settingsBlockChangePowerSleep property.
+            value: Value to set for the settings_block_change_power_sleep property.
         """
         self._settings_block_change_power_sleep = value
     
@@ -4728,7 +4728,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockChangeRegion property value. Indicates whether or not to block the user from changing the region settings.
         Args:
-            value: Value to set for the settingsBlockChangeRegion property.
+            value: Value to set for the settings_block_change_region property.
         """
         self._settings_block_change_region = value
     
@@ -4745,7 +4745,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockChangeSystemTime property value. Indicates whether or not to block the user from changing date and time settings.
         Args:
-            value: Value to set for the settingsBlockChangeSystemTime property.
+            value: Value to set for the settings_block_change_system_time property.
         """
         self._settings_block_change_system_time = value
     
@@ -4762,7 +4762,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockDevicesPage property value. Indicates whether or not to block access to Devices in Settings app.
         Args:
-            value: Value to set for the settingsBlockDevicesPage property.
+            value: Value to set for the settings_block_devices_page property.
         """
         self._settings_block_devices_page = value
     
@@ -4779,7 +4779,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockEaseOfAccessPage property value. Indicates whether or not to block access to Ease of Access in Settings app.
         Args:
-            value: Value to set for the settingsBlockEaseOfAccessPage property.
+            value: Value to set for the settings_block_ease_of_access_page property.
         """
         self._settings_block_ease_of_access_page = value
     
@@ -4796,7 +4796,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockEditDeviceName property value. Indicates whether or not to block the user from editing the device name.
         Args:
-            value: Value to set for the settingsBlockEditDeviceName property.
+            value: Value to set for the settings_block_edit_device_name property.
         """
         self._settings_block_edit_device_name = value
     
@@ -4813,7 +4813,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockGamingPage property value. Indicates whether or not to block access to Gaming in Settings app.
         Args:
-            value: Value to set for the settingsBlockGamingPage property.
+            value: Value to set for the settings_block_gaming_page property.
         """
         self._settings_block_gaming_page = value
     
@@ -4830,7 +4830,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockNetworkInternetPage property value. Indicates whether or not to block access to Network & Internet in Settings app.
         Args:
-            value: Value to set for the settingsBlockNetworkInternetPage property.
+            value: Value to set for the settings_block_network_internet_page property.
         """
         self._settings_block_network_internet_page = value
     
@@ -4847,7 +4847,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockPersonalizationPage property value. Indicates whether or not to block access to Personalization in Settings app.
         Args:
-            value: Value to set for the settingsBlockPersonalizationPage property.
+            value: Value to set for the settings_block_personalization_page property.
         """
         self._settings_block_personalization_page = value
     
@@ -4864,7 +4864,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockPrivacyPage property value. Indicates whether or not to block access to Privacy in Settings app.
         Args:
-            value: Value to set for the settingsBlockPrivacyPage property.
+            value: Value to set for the settings_block_privacy_page property.
         """
         self._settings_block_privacy_page = value
     
@@ -4881,7 +4881,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockRemoveProvisioningPackage property value. Indicates whether or not to block the runtime configuration agent from removing provisioning packages.
         Args:
-            value: Value to set for the settingsBlockRemoveProvisioningPackage property.
+            value: Value to set for the settings_block_remove_provisioning_package property.
         """
         self._settings_block_remove_provisioning_package = value
     
@@ -4898,7 +4898,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockSettingsApp property value. Indicates whether or not to block access to Settings app.
         Args:
-            value: Value to set for the settingsBlockSettingsApp property.
+            value: Value to set for the settings_block_settings_app property.
         """
         self._settings_block_settings_app = value
     
@@ -4915,7 +4915,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockSystemPage property value. Indicates whether or not to block access to System in Settings app.
         Args:
-            value: Value to set for the settingsBlockSystemPage property.
+            value: Value to set for the settings_block_system_page property.
         """
         self._settings_block_system_page = value
     
@@ -4932,7 +4932,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockTimeLanguagePage property value. Indicates whether or not to block access to Time & Language in Settings app.
         Args:
-            value: Value to set for the settingsBlockTimeLanguagePage property.
+            value: Value to set for the settings_block_time_language_page property.
         """
         self._settings_block_time_language_page = value
     
@@ -4949,7 +4949,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the settingsBlockUpdateSecurityPage property value. Indicates whether or not to block access to Update & Security in Settings app.
         Args:
-            value: Value to set for the settingsBlockUpdateSecurityPage property.
+            value: Value to set for the settings_block_update_security_page property.
         """
         self._settings_block_update_security_page = value
     
@@ -4966,7 +4966,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the sharedUserAppDataAllowed property value. Indicates whether or not to block multiple users of the same app to share data.
         Args:
-            value: Value to set for the sharedUserAppDataAllowed property.
+            value: Value to set for the shared_user_app_data_allowed property.
         """
         self._shared_user_app_data_allowed = value
     
@@ -4983,7 +4983,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the smartScreenAppInstallControl property value. App Install control Setting
         Args:
-            value: Value to set for the smartScreenAppInstallControl property.
+            value: Value to set for the smart_screen_app_install_control property.
         """
         self._smart_screen_app_install_control = value
     
@@ -5000,7 +5000,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the smartScreenBlockPromptOverride property value. Indicates whether or not users can override SmartScreen Filter warnings about potentially malicious websites.
         Args:
-            value: Value to set for the smartScreenBlockPromptOverride property.
+            value: Value to set for the smart_screen_block_prompt_override property.
         """
         self._smart_screen_block_prompt_override = value
     
@@ -5017,7 +5017,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the smartScreenBlockPromptOverrideForFiles property value. Indicates whether or not users can override the SmartScreen Filter warnings about downloading unverified files
         Args:
-            value: Value to set for the smartScreenBlockPromptOverrideForFiles property.
+            value: Value to set for the smart_screen_block_prompt_override_for_files property.
         """
         self._smart_screen_block_prompt_override_for_files = value
     
@@ -5034,7 +5034,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the smartScreenEnableAppInstallControl property value. This property will be deprecated in July 2019 and will be replaced by property SmartScreenAppInstallControl. Allows IT Admins to control whether users are allowed to install apps from places other than the Store.
         Args:
-            value: Value to set for the smartScreenEnableAppInstallControl property.
+            value: Value to set for the smart_screen_enable_app_install_control property.
         """
         self._smart_screen_enable_app_install_control = value
     
@@ -5051,7 +5051,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startBlockUnpinningAppsFromTaskbar property value. Indicates whether or not to block the user from unpinning apps from taskbar.
         Args:
-            value: Value to set for the startBlockUnpinningAppsFromTaskbar property.
+            value: Value to set for the start_block_unpinning_apps_from_taskbar property.
         """
         self._start_block_unpinning_apps_from_taskbar = value
     
@@ -5068,7 +5068,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuAppListVisibility property value. Type of start menu app list visibility.
         Args:
-            value: Value to set for the startMenuAppListVisibility property.
+            value: Value to set for the start_menu_app_list_visibility property.
         """
         self._start_menu_app_list_visibility = value
     
@@ -5085,7 +5085,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideChangeAccountSettings property value. Enabling this policy hides the change account setting from appearing in the user tile in the start menu.
         Args:
-            value: Value to set for the startMenuHideChangeAccountSettings property.
+            value: Value to set for the start_menu_hide_change_account_settings property.
         """
         self._start_menu_hide_change_account_settings = value
     
@@ -5102,7 +5102,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideFrequentlyUsedApps property value. Enabling this policy hides the most used apps from appearing on the start menu and disables the corresponding toggle in the Settings app.
         Args:
-            value: Value to set for the startMenuHideFrequentlyUsedApps property.
+            value: Value to set for the start_menu_hide_frequently_used_apps property.
         """
         self._start_menu_hide_frequently_used_apps = value
     
@@ -5119,7 +5119,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideHibernate property value. Enabling this policy hides hibernate from appearing in the power button in the start menu.
         Args:
-            value: Value to set for the startMenuHideHibernate property.
+            value: Value to set for the start_menu_hide_hibernate property.
         """
         self._start_menu_hide_hibernate = value
     
@@ -5136,7 +5136,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideLock property value. Enabling this policy hides lock from appearing in the user tile in the start menu.
         Args:
-            value: Value to set for the startMenuHideLock property.
+            value: Value to set for the start_menu_hide_lock property.
         """
         self._start_menu_hide_lock = value
     
@@ -5153,7 +5153,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHidePowerButton property value. Enabling this policy hides the power button from appearing in the start menu.
         Args:
-            value: Value to set for the startMenuHidePowerButton property.
+            value: Value to set for the start_menu_hide_power_button property.
         """
         self._start_menu_hide_power_button = value
     
@@ -5170,7 +5170,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideRecentJumpLists property value. Enabling this policy hides recent jump lists from appearing on the start menu/taskbar and disables the corresponding toggle in the Settings app.
         Args:
-            value: Value to set for the startMenuHideRecentJumpLists property.
+            value: Value to set for the start_menu_hide_recent_jump_lists property.
         """
         self._start_menu_hide_recent_jump_lists = value
     
@@ -5187,7 +5187,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideRecentlyAddedApps property value. Enabling this policy hides recently added apps from appearing on the start menu and disables the corresponding toggle in the Settings app.
         Args:
-            value: Value to set for the startMenuHideRecentlyAddedApps property.
+            value: Value to set for the start_menu_hide_recently_added_apps property.
         """
         self._start_menu_hide_recently_added_apps = value
     
@@ -5204,7 +5204,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideRestartOptions property value. Enabling this policy hides 'Restart/Update and Restart' from appearing in the power button in the start menu.
         Args:
-            value: Value to set for the startMenuHideRestartOptions property.
+            value: Value to set for the start_menu_hide_restart_options property.
         """
         self._start_menu_hide_restart_options = value
     
@@ -5221,7 +5221,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideShutDown property value. Enabling this policy hides shut down/update and shut down from appearing in the power button in the start menu.
         Args:
-            value: Value to set for the startMenuHideShutDown property.
+            value: Value to set for the start_menu_hide_shut_down property.
         """
         self._start_menu_hide_shut_down = value
     
@@ -5238,7 +5238,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideSignOut property value. Enabling this policy hides sign out from appearing in the user tile in the start menu.
         Args:
-            value: Value to set for the startMenuHideSignOut property.
+            value: Value to set for the start_menu_hide_sign_out property.
         """
         self._start_menu_hide_sign_out = value
     
@@ -5255,7 +5255,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideSleep property value. Enabling this policy hides sleep from appearing in the power button in the start menu.
         Args:
-            value: Value to set for the startMenuHideSleep property.
+            value: Value to set for the start_menu_hide_sleep property.
         """
         self._start_menu_hide_sleep = value
     
@@ -5272,7 +5272,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideSwitchAccount property value. Enabling this policy hides switch account from appearing in the user tile in the start menu.
         Args:
-            value: Value to set for the startMenuHideSwitchAccount property.
+            value: Value to set for the start_menu_hide_switch_account property.
         """
         self._start_menu_hide_switch_account = value
     
@@ -5289,7 +5289,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuHideUserTile property value. Enabling this policy hides the user tile from appearing in the start menu.
         Args:
-            value: Value to set for the startMenuHideUserTile property.
+            value: Value to set for the start_menu_hide_user_tile property.
         """
         self._start_menu_hide_user_tile = value
     
@@ -5306,7 +5306,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuLayoutEdgeAssetsXml property value. This policy setting allows you to import Edge assets to be used with startMenuLayoutXml policy. Start layout can contain secondary tile from Edge app which looks for Edge local asset file. Edge local asset would not exist and cause Edge secondary tile to appear empty in this case. This policy only gets applied when startMenuLayoutXml policy is modified. The value should be a UTF-8 Base64 encoded byte array.
         Args:
-            value: Value to set for the startMenuLayoutEdgeAssetsXml property.
+            value: Value to set for the start_menu_layout_edge_assets_xml property.
         """
         self._start_menu_layout_edge_assets_xml = value
     
@@ -5323,7 +5323,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuLayoutXml property value. Allows admins to override the default Start menu layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in a UTF8 encoded byte array format.
         Args:
-            value: Value to set for the startMenuLayoutXml property.
+            value: Value to set for the start_menu_layout_xml property.
         """
         self._start_menu_layout_xml = value
     
@@ -5340,7 +5340,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuMode property value. Type of display modes for the start menu.
         Args:
-            value: Value to set for the startMenuMode property.
+            value: Value to set for the start_menu_mode property.
         """
         self._start_menu_mode = value
     
@@ -5357,7 +5357,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderDocuments property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderDocuments property.
+            value: Value to set for the start_menu_pinned_folder_documents property.
         """
         self._start_menu_pinned_folder_documents = value
     
@@ -5374,7 +5374,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderDownloads property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderDownloads property.
+            value: Value to set for the start_menu_pinned_folder_downloads property.
         """
         self._start_menu_pinned_folder_downloads = value
     
@@ -5391,7 +5391,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderFileExplorer property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderFileExplorer property.
+            value: Value to set for the start_menu_pinned_folder_file_explorer property.
         """
         self._start_menu_pinned_folder_file_explorer = value
     
@@ -5408,7 +5408,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderHomeGroup property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderHomeGroup property.
+            value: Value to set for the start_menu_pinned_folder_home_group property.
         """
         self._start_menu_pinned_folder_home_group = value
     
@@ -5425,7 +5425,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderMusic property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderMusic property.
+            value: Value to set for the start_menu_pinned_folder_music property.
         """
         self._start_menu_pinned_folder_music = value
     
@@ -5442,7 +5442,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderNetwork property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderNetwork property.
+            value: Value to set for the start_menu_pinned_folder_network property.
         """
         self._start_menu_pinned_folder_network = value
     
@@ -5459,7 +5459,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderPersonalFolder property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderPersonalFolder property.
+            value: Value to set for the start_menu_pinned_folder_personal_folder property.
         """
         self._start_menu_pinned_folder_personal_folder = value
     
@@ -5476,7 +5476,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderPictures property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderPictures property.
+            value: Value to set for the start_menu_pinned_folder_pictures property.
         """
         self._start_menu_pinned_folder_pictures = value
     
@@ -5493,7 +5493,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderSettings property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderSettings property.
+            value: Value to set for the start_menu_pinned_folder_settings property.
         """
         self._start_menu_pinned_folder_settings = value
     
@@ -5510,7 +5510,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the startMenuPinnedFolderVideos property value. Generic visibility state.
         Args:
-            value: Value to set for the startMenuPinnedFolderVideos property.
+            value: Value to set for the start_menu_pinned_folder_videos property.
         """
         self._start_menu_pinned_folder_videos = value
     
@@ -5527,7 +5527,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the storageBlockRemovableStorage property value. Indicates whether or not to Block the user from using removable storage.
         Args:
-            value: Value to set for the storageBlockRemovableStorage property.
+            value: Value to set for the storage_block_removable_storage property.
         """
         self._storage_block_removable_storage = value
     
@@ -5544,7 +5544,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the storageRequireMobileDeviceEncryption property value. Indicating whether or not to require encryption on a mobile device.
         Args:
-            value: Value to set for the storageRequireMobileDeviceEncryption property.
+            value: Value to set for the storage_require_mobile_device_encryption property.
         """
         self._storage_require_mobile_device_encryption = value
     
@@ -5561,7 +5561,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the storageRestrictAppDataToSystemVolume property value. Indicates whether application data is restricted to the system drive.
         Args:
-            value: Value to set for the storageRestrictAppDataToSystemVolume property.
+            value: Value to set for the storage_restrict_app_data_to_system_volume property.
         """
         self._storage_restrict_app_data_to_system_volume = value
     
@@ -5578,7 +5578,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the storageRestrictAppInstallToSystemVolume property value. Indicates whether the installation of applications is restricted to the system drive.
         Args:
-            value: Value to set for the storageRestrictAppInstallToSystemVolume property.
+            value: Value to set for the storage_restrict_app_install_to_system_volume property.
         """
         self._storage_restrict_app_install_to_system_volume = value
     
@@ -5595,7 +5595,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the systemTelemetryProxyServer property value. Gets or sets the fully qualified domain name (FQDN) or IP address of a proxy server to forward Connected User Experiences and Telemetry requests.
         Args:
-            value: Value to set for the systemTelemetryProxyServer property.
+            value: Value to set for the system_telemetry_proxy_server property.
         """
         self._system_telemetry_proxy_server = value
     
@@ -5612,7 +5612,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the taskManagerBlockEndTask property value. Specify whether non-administrators can use Task Manager to end tasks.
         Args:
-            value: Value to set for the taskManagerBlockEndTask property.
+            value: Value to set for the task_manager_block_end_task property.
         """
         self._task_manager_block_end_task = value
     
@@ -5629,7 +5629,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the tenantLockdownRequireNetworkDuringOutOfBoxExperience property value. Whether the device is required to connect to the network.
         Args:
-            value: Value to set for the tenantLockdownRequireNetworkDuringOutOfBoxExperience property.
+            value: Value to set for the tenant_lockdown_require_network_during_out_of_box_experience property.
         """
         self._tenant_lockdown_require_network_during_out_of_box_experience = value
     
@@ -5646,7 +5646,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the uninstallBuiltInApps property value. Indicates whether or not to uninstall a fixed list of built-in Windows apps.
         Args:
-            value: Value to set for the uninstallBuiltInApps property.
+            value: Value to set for the uninstall_built_in_apps property.
         """
         self._uninstall_built_in_apps = value
     
@@ -5663,7 +5663,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the usbBlocked property value. Indicates whether or not to Block the user from USB connection.
         Args:
-            value: Value to set for the usbBlocked property.
+            value: Value to set for the usb_blocked property.
         """
         self._usb_blocked = value
     
@@ -5680,7 +5680,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the voiceRecordingBlocked property value. Indicates whether or not to Block the user from voice recording.
         Args:
-            value: Value to set for the voiceRecordingBlocked property.
+            value: Value to set for the voice_recording_blocked property.
         """
         self._voice_recording_blocked = value
     
@@ -5697,7 +5697,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the webRtcBlockLocalhostIpAddress property value. Indicates whether or not user's localhost IP address is displayed while making phone calls using the WebRTC
         Args:
-            value: Value to set for the webRtcBlockLocalhostIpAddress property.
+            value: Value to set for the web_rtc_block_localhost_ip_address property.
         """
         self._web_rtc_block_localhost_ip_address = value
     
@@ -5714,26 +5714,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wiFiBlockAutomaticConnectHotspots property value. Indicating whether or not to block automatically connecting to Wi-Fi hotspots. Has no impact if Wi-Fi is blocked.
         Args:
-            value: Value to set for the wiFiBlockAutomaticConnectHotspots property.
+            value: Value to set for the wi_fi_block_automatic_connect_hotspots property.
         """
         self._wi_fi_block_automatic_connect_hotspots = value
-    
-    @property
-    def wi_fi_blocked(self,) -> Optional[bool]:
-        """
-        Gets the wiFiBlocked property value. Indicates whether or not to Block the user from using Wi-Fi.
-        Returns: Optional[bool]
-        """
-        return self._wi_fi_blocked
-    
-    @wi_fi_blocked.setter
-    def wi_fi_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the wiFiBlocked property value. Indicates whether or not to Block the user from using Wi-Fi.
-        Args:
-            value: Value to set for the wiFiBlocked property.
-        """
-        self._wi_fi_blocked = value
     
     @property
     def wi_fi_block_manual_configuration(self,) -> Optional[bool]:
@@ -5748,9 +5731,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wiFiBlockManualConfiguration property value. Indicates whether or not to Block the user from using Wi-Fi manual configuration.
         Args:
-            value: Value to set for the wiFiBlockManualConfiguration property.
+            value: Value to set for the wi_fi_block_manual_configuration property.
         """
         self._wi_fi_block_manual_configuration = value
+    
+    @property
+    def wi_fi_blocked(self,) -> Optional[bool]:
+        """
+        Gets the wiFiBlocked property value. Indicates whether or not to Block the user from using Wi-Fi.
+        Returns: Optional[bool]
+        """
+        return self._wi_fi_blocked
+    
+    @wi_fi_blocked.setter
+    def wi_fi_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the wiFiBlocked property value. Indicates whether or not to Block the user from using Wi-Fi.
+        Args:
+            value: Value to set for the wi_fi_blocked property.
+        """
+        self._wi_fi_blocked = value
     
     @property
     def wi_fi_scan_interval(self,) -> Optional[int]:
@@ -5765,26 +5765,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wiFiScanInterval property value. Specify how often devices scan for Wi-Fi networks. Supported values are 1-500, where 100 = default, and 500 = low frequency. Valid values 1 to 500
         Args:
-            value: Value to set for the wiFiScanInterval property.
+            value: Value to set for the wi_fi_scan_interval property.
         """
         self._wi_fi_scan_interval = value
-    
-    @property
-    def windows10_apps_force_update_schedule(self,) -> Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule]:
-        """
-        Gets the windows10AppsForceUpdateSchedule property value. Windows 10 force update schedule for Apps.
-        Returns: Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule]
-        """
-        return self._windows10_apps_force_update_schedule
-    
-    @windows10_apps_force_update_schedule.setter
-    def windows10_apps_force_update_schedule(self,value: Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule] = None) -> None:
-        """
-        Sets the windows10AppsForceUpdateSchedule property value. Windows 10 force update schedule for Apps.
-        Args:
-            value: Value to set for the windows10AppsForceUpdateSchedule property.
-        """
-        self._windows10_apps_force_update_schedule = value
     
     @property
     def windows_spotlight_block_consumer_specific_features(self,) -> Optional[bool]:
@@ -5799,26 +5782,9 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightBlockConsumerSpecificFeatures property value. Allows IT admins to block experiences that are typically for consumers only, such as Start suggestions, Membership notifications, Post-OOBE app install and redirect tiles.
         Args:
-            value: Value to set for the windowsSpotlightBlockConsumerSpecificFeatures property.
+            value: Value to set for the windows_spotlight_block_consumer_specific_features property.
         """
         self._windows_spotlight_block_consumer_specific_features = value
-    
-    @property
-    def windows_spotlight_blocked(self,) -> Optional[bool]:
-        """
-        Gets the windowsSpotlightBlocked property value. Allows IT admins to turn off all Windows Spotlight features
-        Returns: Optional[bool]
-        """
-        return self._windows_spotlight_blocked
-    
-    @windows_spotlight_blocked.setter
-    def windows_spotlight_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the windowsSpotlightBlocked property value. Allows IT admins to turn off all Windows Spotlight features
-        Args:
-            value: Value to set for the windowsSpotlightBlocked property.
-        """
-        self._windows_spotlight_blocked = value
     
     @property
     def windows_spotlight_block_on_action_center(self,) -> Optional[bool]:
@@ -5833,7 +5799,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightBlockOnActionCenter property value. Block suggestions from Microsoft that show after each OS clean install, upgrade or in an on-going basis to introduce users to what is new or changed
         Args:
-            value: Value to set for the windowsSpotlightBlockOnActionCenter property.
+            value: Value to set for the windows_spotlight_block_on_action_center property.
         """
         self._windows_spotlight_block_on_action_center = value
     
@@ -5850,7 +5816,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightBlockTailoredExperiences property value. Block personalized content in Windows spotlight based on user’s device usage.
         Args:
-            value: Value to set for the windowsSpotlightBlockTailoredExperiences property.
+            value: Value to set for the windows_spotlight_block_tailored_experiences property.
         """
         self._windows_spotlight_block_tailored_experiences = value
     
@@ -5867,7 +5833,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightBlockThirdPartyNotifications property value. Block third party content delivered via Windows Spotlight
         Args:
-            value: Value to set for the windowsSpotlightBlockThirdPartyNotifications property.
+            value: Value to set for the windows_spotlight_block_third_party_notifications property.
         """
         self._windows_spotlight_block_third_party_notifications = value
     
@@ -5884,7 +5850,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightBlockWelcomeExperience property value. Block Windows Spotlight Windows welcome experience
         Args:
-            value: Value to set for the windowsSpotlightBlockWelcomeExperience property.
+            value: Value to set for the windows_spotlight_block_welcome_experience property.
         """
         self._windows_spotlight_block_welcome_experience = value
     
@@ -5901,9 +5867,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightBlockWindowsTips property value. Allows IT admins to turn off the popup of Windows Tips.
         Args:
-            value: Value to set for the windowsSpotlightBlockWindowsTips property.
+            value: Value to set for the windows_spotlight_block_windows_tips property.
         """
         self._windows_spotlight_block_windows_tips = value
+    
+    @property
+    def windows_spotlight_blocked(self,) -> Optional[bool]:
+        """
+        Gets the windowsSpotlightBlocked property value. Allows IT admins to turn off all Windows Spotlight features
+        Returns: Optional[bool]
+        """
+        return self._windows_spotlight_blocked
+    
+    @windows_spotlight_blocked.setter
+    def windows_spotlight_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the windowsSpotlightBlocked property value. Allows IT admins to turn off all Windows Spotlight features
+        Args:
+            value: Value to set for the windows_spotlight_blocked property.
+        """
+        self._windows_spotlight_blocked = value
     
     @property
     def windows_spotlight_configure_on_lock_screen(self,) -> Optional[windows_spotlight_enablement_settings.WindowsSpotlightEnablementSettings]:
@@ -5918,7 +5901,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsSpotlightConfigureOnLockScreen property value. Allows IT admind to set a predefined default search engine for MDM-Controlled devices
         Args:
-            value: Value to set for the windowsSpotlightConfigureOnLockScreen property.
+            value: Value to set for the windows_spotlight_configure_on_lock_screen property.
         """
         self._windows_spotlight_configure_on_lock_screen = value
     
@@ -5935,7 +5918,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsStoreBlockAutoUpdate property value. Indicates whether or not to block automatic update of apps from Windows Store.
         Args:
-            value: Value to set for the windowsStoreBlockAutoUpdate property.
+            value: Value to set for the windows_store_block_auto_update property.
         """
         self._windows_store_block_auto_update = value
     
@@ -5952,7 +5935,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsStoreBlocked property value. Indicates whether or not to Block the user from using the Windows store.
         Args:
-            value: Value to set for the windowsStoreBlocked property.
+            value: Value to set for the windows_store_blocked property.
         """
         self._windows_store_blocked = value
     
@@ -5969,9 +5952,26 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the windowsStoreEnablePrivateStoreOnly property value. Indicates whether or not to enable Private Store Only.
         Args:
-            value: Value to set for the windowsStoreEnablePrivateStoreOnly property.
+            value: Value to set for the windows_store_enable_private_store_only property.
         """
         self._windows_store_enable_private_store_only = value
+    
+    @property
+    def windows10_apps_force_update_schedule(self,) -> Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule]:
+        """
+        Gets the windows10AppsForceUpdateSchedule property value. Windows 10 force update schedule for Apps.
+        Returns: Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule]
+        """
+        return self._windows10_apps_force_update_schedule
+    
+    @windows10_apps_force_update_schedule.setter
+    def windows10_apps_force_update_schedule(self,value: Optional[windows10_apps_force_update_schedule.Windows10AppsForceUpdateSchedule] = None) -> None:
+        """
+        Sets the windows10AppsForceUpdateSchedule property value. Windows 10 force update schedule for Apps.
+        Args:
+            value: Value to set for the windows10_apps_force_update_schedule property.
+        """
+        self._windows10_apps_force_update_schedule = value
     
     @property
     def wireless_display_block_projection_to_this_device(self,) -> Optional[bool]:
@@ -5986,7 +5986,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wirelessDisplayBlockProjectionToThisDevice property value. Indicates whether or not to allow other devices from discovering this PC for projection.
         Args:
-            value: Value to set for the wirelessDisplayBlockProjectionToThisDevice property.
+            value: Value to set for the wireless_display_block_projection_to_this_device property.
         """
         self._wireless_display_block_projection_to_this_device = value
     
@@ -6003,7 +6003,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wirelessDisplayBlockUserInputFromReceiver property value. Indicates whether or not to allow user input from wireless display receiver.
         Args:
-            value: Value to set for the wirelessDisplayBlockUserInputFromReceiver property.
+            value: Value to set for the wireless_display_block_user_input_from_receiver property.
         """
         self._wireless_display_block_user_input_from_receiver = value
     
@@ -6020,7 +6020,7 @@ class Windows10GeneralConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wirelessDisplayRequirePinForPairing property value. Indicates whether or not to require a PIN for new devices to initiate pairing.
         Args:
-            value: Value to set for the wirelessDisplayRequirePinForPairing property.
+            value: Value to set for the wireless_display_require_pin_for_pairing property.
         """
         self._wireless_display_require_pin_for_pairing = value
     

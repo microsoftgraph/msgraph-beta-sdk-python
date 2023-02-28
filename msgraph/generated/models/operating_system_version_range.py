@@ -76,8 +76,8 @@ class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "highest_version": lambda n : setattr(self, 'highest_version', n.get_str_value()),
-            "lowest_version": lambda n : setattr(self, 'lowest_version', n.get_str_value()),
+            "highestVersion": lambda n : setattr(self, 'highest_version', n.get_str_value()),
+            "lowestVersion": lambda n : setattr(self, 'lowest_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -95,7 +95,7 @@ class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
         """
         Sets the highestVersion property value. The highest inclusive version that this range contains.
         Args:
-            value: Value to set for the highestVersion property.
+            value: Value to set for the highest_version property.
         """
         self._highest_version = value
     
@@ -112,7 +112,7 @@ class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
         """
         Sets the lowestVersion property value. The lowest inclusive version that this range contains.
         Args:
-            value: Value to set for the lowestVersion property.
+            value: Value to set for the lowest_version property.
         """
         self._lowest_version = value
     
@@ -129,7 +129,7 @@ class OperatingSystemVersionRange(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

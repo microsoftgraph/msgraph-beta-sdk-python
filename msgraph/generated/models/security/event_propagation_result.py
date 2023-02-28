@@ -61,9 +61,9 @@ class EventPropagationResult(AdditionalDataHolder, Parsable):
         fields = {
             "location": lambda n : setattr(self, 'location', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "service_name": lambda n : setattr(self, 'service_name', n.get_str_value()),
+            "serviceName": lambda n : setattr(self, 'service_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(event_propagation_status.EventPropagationStatus)),
-            "status_information": lambda n : setattr(self, 'status_information', n.get_str_value()),
+            "statusInformation": lambda n : setattr(self, 'status_information', n.get_str_value()),
         }
         return fields
     
@@ -97,7 +97,7 @@ class EventPropagationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -129,7 +129,7 @@ class EventPropagationResult(AdditionalDataHolder, Parsable):
         """
         Sets the serviceName property value. The name of the workload associated with the event.
         Args:
-            value: Value to set for the serviceName property.
+            value: Value to set for the service_name property.
         """
         self._service_name = value
     
@@ -163,7 +163,7 @@ class EventPropagationResult(AdditionalDataHolder, Parsable):
         """
         Sets the statusInformation property value. Additional information about the status of the event creation request.
         Args:
-            value: Value to set for the statusInformation property.
+            value: Value to set for the status_information property.
         """
         self._status_information = value
     

@@ -57,7 +57,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the apiExpressions property value. The apiExpressions property
         Args:
-            value: Value to set for the apiExpressions property.
+            value: Value to set for the api_expressions property.
         """
         self._api_expressions = value
     
@@ -74,7 +74,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the caseExact property value. true if value of this attribute should be treated as case-sensitive. This setting affects how the synchronization engine detects changes for the attribute.
         Args:
-            value: Value to set for the caseExact property.
+            value: Value to set for the case_exact property.
         """
         self._case_exact = value
     
@@ -137,7 +137,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the defaultValue property value. The defaultValue property
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -154,7 +154,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the flowNullValues property value. 'true' to allow null values for attributes.
         Args:
-            value: Value to set for the flowNullValues property.
+            value: Value to set for the flow_null_values property.
         """
         self._flow_null_values = value
     
@@ -165,16 +165,16 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         fields = {
             "anchor": lambda n : setattr(self, 'anchor', n.get_bool_value()),
-            "api_expressions": lambda n : setattr(self, 'api_expressions', n.get_collection_of_object_values(string_key_string_value_pair.StringKeyStringValuePair)),
-            "case_exact": lambda n : setattr(self, 'case_exact', n.get_bool_value()),
-            "default_value": lambda n : setattr(self, 'default_value', n.get_str_value()),
-            "flow_null_values": lambda n : setattr(self, 'flow_null_values', n.get_bool_value()),
+            "apiExpressions": lambda n : setattr(self, 'api_expressions', n.get_collection_of_object_values(string_key_string_value_pair.StringKeyStringValuePair)),
+            "caseExact": lambda n : setattr(self, 'case_exact', n.get_bool_value()),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_str_value()),
+            "flowNullValues": lambda n : setattr(self, 'flow_null_values', n.get_bool_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
             "multivalued": lambda n : setattr(self, 'multivalued', n.get_bool_value()),
             "mutability": lambda n : setattr(self, 'mutability', n.get_enum_value(mutability.Mutability)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "referenced_objects": lambda n : setattr(self, 'referenced_objects', n.get_collection_of_object_values(referenced_object.ReferencedObject)),
+            "referencedObjects": lambda n : setattr(self, 'referenced_objects', n.get_collection_of_object_values(referenced_object.ReferencedObject)),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(attribute_type.AttributeType)),
         }
@@ -261,7 +261,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -278,7 +278,7 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         Sets the referencedObjects property value. For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).
         Args:
-            value: Value to set for the referencedObjects property.
+            value: Value to set for the referenced_objects property.
         """
         self._referenced_objects = value
     

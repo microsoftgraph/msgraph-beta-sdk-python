@@ -49,7 +49,7 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         """
         Sets the customDomainName property value. Custom domain name value used while generating an email profile before installing on the device.
         Args:
-            value: Value to set for the customDomainName property.
+            value: Value to set for the custom_domain_name property.
         """
         self._custom_domain_name = value
     
@@ -59,10 +59,10 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_domain_name": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
-            "user_domain_name_source": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(domain_name_source.DomainNameSource)),
-            "username_a_a_d_source": lambda n : setattr(self, 'username_a_a_d_source', n.get_enum_value(username_source.UsernameSource)),
-            "username_source": lambda n : setattr(self, 'username_source', n.get_enum_value(user_email_source.UserEmailSource)),
+            "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
+            "usernameAADSource": lambda n : setattr(self, 'username_a_a_d_source', n.get_enum_value(username_source.UsernameSource)),
+            "usernameSource": lambda n : setattr(self, 'username_source', n.get_enum_value(user_email_source.UserEmailSource)),
+            "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(domain_name_source.DomainNameSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -78,9 +78,9 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("customDomainName", self.custom_domain_name)
-        writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
         writer.write_enum_value("usernameAADSource", self.username_a_a_d_source)
         writer.write_enum_value("usernameSource", self.username_source)
+        writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
     
     @property
     def user_domain_name_source(self,) -> Optional[domain_name_source.DomainNameSource]:
@@ -95,7 +95,7 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         """
         Sets the userDomainNameSource property value. UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
         Args:
-            value: Value to set for the userDomainNameSource property.
+            value: Value to set for the user_domain_name_source property.
         """
         self._user_domain_name_source = value
     
@@ -112,7 +112,7 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         """
         Sets the usernameAADSource property value. Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are: userPrincipalName, primarySmtpAddress, samAccountName.
         Args:
-            value: Value to set for the usernameAADSource property.
+            value: Value to set for the username_a_a_d_source property.
         """
         self._username_a_a_d_source = value
     
@@ -129,7 +129,7 @@ class EasEmailProfileConfigurationBase(device_configuration.DeviceConfiguration)
         """
         Sets the usernameSource property value. Possible values for username source or email source.
         Args:
-            value: Value to set for the usernameSource property.
+            value: Value to set for the username_source property.
         """
         self._username_source = value
     

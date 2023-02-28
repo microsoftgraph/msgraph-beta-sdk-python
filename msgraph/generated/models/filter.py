@@ -36,7 +36,7 @@ class Filter(AdditionalDataHolder, Parsable):
         """
         Sets the categoryFilterGroups property value. *Experimental* Filter group set used to decide whether given object belongs and should be processed as part of this object mapping. An object is considered in scope if ANY of the groups in the collection is evaluated to true.
         Args:
-            value: Value to set for the categoryFilterGroups property.
+            value: Value to set for the category_filter_groups property.
         """
         self._category_filter_groups = value
     
@@ -74,9 +74,9 @@ class Filter(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "category_filter_groups": lambda n : setattr(self, 'category_filter_groups', n.get_collection_of_object_values(filter_group.FilterGroup)),
+            "categoryFilterGroups": lambda n : setattr(self, 'category_filter_groups', n.get_collection_of_object_values(filter_group.FilterGroup)),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(filter_group.FilterGroup)),
-            "input_filter_groups": lambda n : setattr(self, 'input_filter_groups', n.get_collection_of_object_values(filter_group.FilterGroup)),
+            "inputFilterGroups": lambda n : setattr(self, 'input_filter_groups', n.get_collection_of_object_values(filter_group.FilterGroup)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -111,7 +111,7 @@ class Filter(AdditionalDataHolder, Parsable):
         """
         Sets the inputFilterGroups property value. *Experimental* Filter group set used to filter out objects at the early stage of reading them from the directory. If an object doesn't satisfy this filter it will not be processed further. Important to understand is that if an object used to satisfy this filter at a given moment, and then the object or the filter was changed so that filter is no longer satisfied, such object will NOT get de-provisioned. An object is considered in scope if ANY of the groups in the collection is evaluated to true.
         Args:
-            value: Value to set for the inputFilterGroups property.
+            value: Value to set for the input_filter_groups property.
         """
         self._input_filter_groups = value
     
@@ -128,7 +128,7 @@ class Filter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

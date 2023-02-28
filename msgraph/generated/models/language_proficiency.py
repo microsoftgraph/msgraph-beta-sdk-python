@@ -53,7 +53,7 @@ class LanguageProficiency(item_facet.ItemFacet):
         """
         Sets the displayName property value. Contains the long-form name for the language.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -63,12 +63,12 @@ class LanguageProficiency(item_facet.ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "proficiency": lambda n : setattr(self, 'proficiency', n.get_enum_value(language_proficiency_level.LanguageProficiencyLevel)),
             "reading": lambda n : setattr(self, 'reading', n.get_enum_value(language_proficiency_level.LanguageProficiencyLevel)),
             "spoken": lambda n : setattr(self, 'spoken', n.get_enum_value(language_proficiency_level.LanguageProficiencyLevel)),
             "tag": lambda n : setattr(self, 'tag', n.get_str_value()),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
             "written": lambda n : setattr(self, 'written', n.get_enum_value(language_proficiency_level.LanguageProficiencyLevel)),
         }
         super_fields = super().get_field_deserializers()
@@ -173,7 +173,7 @@ class LanguageProficiency(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. The thumbnailUrl property
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     

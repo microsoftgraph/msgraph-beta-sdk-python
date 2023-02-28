@@ -20,7 +20,7 @@ class TenantAppManagementPolicy(policy_base.PolicyBase):
         """
         Sets the applicationRestrictions property value. Restrictions that apply as default to all application objects in the tenant.
         Args:
-            value: Value to set for the applicationRestrictions property.
+            value: Value to set for the application_restrictions property.
         """
         self._application_restrictions = value
     
@@ -55,9 +55,9 @@ class TenantAppManagementPolicy(policy_base.PolicyBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_restrictions": lambda n : setattr(self, 'application_restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "service_principal_restrictions": lambda n : setattr(self, 'service_principal_restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),
+            "applicationRestrictions": lambda n : setattr(self, 'application_restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "servicePrincipalRestrictions": lambda n : setattr(self, 'service_principal_restrictions', n.get_object_value(app_management_configuration.AppManagementConfiguration)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -76,7 +76,7 @@ class TenantAppManagementPolicy(policy_base.PolicyBase):
         """
         Sets the isEnabled property value. Denotes whether the policy is enabled. Default value is false.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -106,7 +106,7 @@ class TenantAppManagementPolicy(policy_base.PolicyBase):
         """
         Sets the servicePrincipalRestrictions property value. Restrictions that apply as default to all service principal objects in the tenant.
         Args:
-            value: Value to set for the servicePrincipalRestrictions property.
+            value: Value to set for the service_principal_restrictions property.
         """
         self._service_principal_restrictions = value
     

@@ -33,7 +33,7 @@ class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessSce
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class BusinessScenarioGroupTarget(business_scenario_task_target_base.BusinessSce
         """
         Sets the groupId property value. The unique identifier for the group.
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     

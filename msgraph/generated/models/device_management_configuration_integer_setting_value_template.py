@@ -46,7 +46,7 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(device_management
         """
         Sets the defaultValue property value. Integer Setting Value Default Template.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -56,9 +56,9 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(device_management
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_integer_setting_value_default_template.DeviceManagementConfigurationIntegerSettingValueDefaultTemplate)),
-            "recommended_value_definition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(device_management_configuration_integer_setting_value_definition_template.DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
-            "required_value_definition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(device_management_configuration_integer_setting_value_definition_template.DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_integer_setting_value_default_template.DeviceManagementConfigurationIntegerSettingValueDefaultTemplate)),
+            "recommendedValueDefinition": lambda n : setattr(self, 'recommended_value_definition', n.get_object_value(device_management_configuration_integer_setting_value_definition_template.DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
+            "requiredValueDefinition": lambda n : setattr(self, 'required_value_definition', n.get_object_value(device_management_configuration_integer_setting_value_definition_template.DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(device_management
         """
         Sets the recommendedValueDefinition property value. Recommended value definition.
         Args:
-            value: Value to set for the recommendedValueDefinition property.
+            value: Value to set for the recommended_value_definition property.
         """
         self._recommended_value_definition = value
     
@@ -94,7 +94,7 @@ class DeviceManagementConfigurationIntegerSettingValueTemplate(device_management
         """
         Sets the requiredValueDefinition property value. Required value definition.
         Args:
-            value: Value to set for the requiredValueDefinition property.
+            value: Value to set for the required_value_definition property.
         """
         self._required_value_definition = value
     

@@ -56,7 +56,7 @@ class PlayLostModeSoundPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the durationInMinutes property value. The durationInMinutes property
         Args:
-            value: Value to set for the durationInMinutes property.
+            value: Value to set for the duration_in_minutes property.
         """
         self._duration_in_minutes = value
     
@@ -66,7 +66,7 @@ class PlayLostModeSoundPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "duration_in_minutes": lambda n : setattr(self, 'duration_in_minutes', n.get_str_value()),
+            "durationInMinutes": lambda n : setattr(self, 'duration_in_minutes', n.get_str_value()),
         }
         return fields
     

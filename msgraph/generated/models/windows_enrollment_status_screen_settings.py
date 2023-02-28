@@ -37,7 +37,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowDeviceUseBeforeProfileAndAppInstallComplete property value. Allow or block user to use device before profile and app installation complete
         Args:
-            value: Value to set for the allowDeviceUseBeforeProfileAndAppInstallComplete property.
+            value: Value to set for the allow_device_use_before_profile_and_app_install_complete property.
         """
         self._allow_device_use_before_profile_and_app_install_complete = value
     
@@ -54,7 +54,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowDeviceUseOnInstallFailure property value. Allow the user to continue using the device on installation failure
         Args:
-            value: Value to set for the allowDeviceUseOnInstallFailure property.
+            value: Value to set for the allow_device_use_on_install_failure property.
         """
         self._allow_device_use_on_install_failure = value
     
@@ -71,7 +71,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowLogCollectionOnInstallFailure property value. Allow or block log collection on installation failure
         Args:
-            value: Value to set for the allowLogCollectionOnInstallFailure property.
+            value: Value to set for the allow_log_collection_on_install_failure property.
         """
         self._allow_log_collection_on_install_failure = value
     
@@ -88,7 +88,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the blockDeviceSetupRetryByUser property value. Allow the user to retry the setup on installation failure
         Args:
-            value: Value to set for the blockDeviceSetupRetryByUser property.
+            value: Value to set for the block_device_setup_retry_by_user property.
         """
         self._block_device_setup_retry_by_user = value
     
@@ -141,7 +141,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the customErrorMessage property value. Set custom error message to show upon installation failure
         Args:
-            value: Value to set for the customErrorMessage property.
+            value: Value to set for the custom_error_message property.
         """
         self._custom_error_message = value
     
@@ -151,13 +151,13 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_device_use_before_profile_and_app_install_complete": lambda n : setattr(self, 'allow_device_use_before_profile_and_app_install_complete', n.get_bool_value()),
-            "allow_device_use_on_install_failure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
-            "allow_log_collection_on_install_failure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),
-            "block_device_setup_retry_by_user": lambda n : setattr(self, 'block_device_setup_retry_by_user', n.get_bool_value()),
-            "custom_error_message": lambda n : setattr(self, 'custom_error_message', n.get_str_value()),
-            "hide_installation_progress": lambda n : setattr(self, 'hide_installation_progress', n.get_bool_value()),
-            "install_progress_timeout_in_minutes": lambda n : setattr(self, 'install_progress_timeout_in_minutes', n.get_int_value()),
+            "allowDeviceUseBeforeProfileAndAppInstallComplete": lambda n : setattr(self, 'allow_device_use_before_profile_and_app_install_complete', n.get_bool_value()),
+            "allowDeviceUseOnInstallFailure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
+            "allowLogCollectionOnInstallFailure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),
+            "blockDeviceSetupRetryByUser": lambda n : setattr(self, 'block_device_setup_retry_by_user', n.get_bool_value()),
+            "customErrorMessage": lambda n : setattr(self, 'custom_error_message', n.get_str_value()),
+            "hideInstallationProgress": lambda n : setattr(self, 'hide_installation_progress', n.get_bool_value()),
+            "installProgressTimeoutInMinutes": lambda n : setattr(self, 'install_progress_timeout_in_minutes', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -175,7 +175,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideInstallationProgress property value. Show or hide installation progress to user
         Args:
-            value: Value to set for the hideInstallationProgress property.
+            value: Value to set for the hide_installation_progress property.
         """
         self._hide_installation_progress = value
     
@@ -192,7 +192,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the installProgressTimeoutInMinutes property value. Set installation progress timeout in minutes
         Args:
-            value: Value to set for the installProgressTimeoutInMinutes property.
+            value: Value to set for the install_progress_timeout_in_minutes property.
         """
         self._install_progress_timeout_in_minutes = value
     
@@ -209,7 +209,7 @@ class WindowsEnrollmentStatusScreenSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

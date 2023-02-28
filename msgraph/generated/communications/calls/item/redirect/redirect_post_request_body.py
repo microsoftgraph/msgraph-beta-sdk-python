@@ -37,7 +37,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the callbackUri property value. The callbackUri property
         Args:
-            value: Value to set for the callbackUri property.
+            value: Value to set for the callback_uri property.
         """
         self._callback_uri = value
     
@@ -79,11 +79,11 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "callback_uri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
-            "mask_callee": lambda n : setattr(self, 'mask_callee', n.get_bool_value()),
-            "mask_caller": lambda n : setattr(self, 'mask_caller', n.get_bool_value()),
-            "target_disposition": lambda n : setattr(self, 'target_disposition', n.get_enum_value(call_disposition.CallDisposition)),
+            "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
+            "maskCallee": lambda n : setattr(self, 'mask_callee', n.get_bool_value()),
+            "maskCaller": lambda n : setattr(self, 'mask_caller', n.get_bool_value()),
             "targets": lambda n : setattr(self, 'targets', n.get_collection_of_object_values(invitation_participant_info.InvitationParticipantInfo)),
+            "targetDisposition": lambda n : setattr(self, 'target_disposition', n.get_enum_value(call_disposition.CallDisposition)),
             "timeout": lambda n : setattr(self, 'timeout', n.get_int_value()),
         }
         return fields
@@ -101,7 +101,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the maskCallee property value. The maskCallee property
         Args:
-            value: Value to set for the maskCallee property.
+            value: Value to set for the mask_callee property.
         """
         self._mask_callee = value
     
@@ -118,7 +118,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the maskCaller property value. The maskCaller property
         Args:
-            value: Value to set for the maskCaller property.
+            value: Value to set for the mask_caller property.
         """
         self._mask_caller = value
     
@@ -133,8 +133,8 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_str_value("callbackUri", self.callback_uri)
         writer.write_bool_value("maskCallee", self.mask_callee)
         writer.write_bool_value("maskCaller", self.mask_caller)
-        writer.write_enum_value("targetDisposition", self.target_disposition)
         writer.write_collection_of_object_values("targets", self.targets)
+        writer.write_enum_value("targetDisposition", self.target_disposition)
         writer.write_int_value("timeout", self.timeout)
         writer.write_additional_data_value(self.additional_data)
     
@@ -151,7 +151,7 @@ class RedirectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the targetDisposition property value. The targetDisposition property
         Args:
-            value: Value to set for the targetDisposition property.
+            value: Value to set for the target_disposition property.
         """
         self._target_disposition = value
     

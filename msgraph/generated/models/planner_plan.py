@@ -11,6 +11,7 @@ planner_plan_container = lazy_import('msgraph.generated.models.planner_plan_cont
 planner_plan_context_collection = lazy_import('msgraph.generated.models.planner_plan_context_collection')
 planner_plan_creation = lazy_import('msgraph.generated.models.planner_plan_creation')
 planner_plan_details = lazy_import('msgraph.generated.models.planner_plan_details')
+planner_shared_with_container = lazy_import('msgraph.generated.models.planner_shared_with_container')
 planner_task = lazy_import('msgraph.generated.models.planner_task')
 
 class PlannerPlan(planner_delta.PlannerDelta):
@@ -54,6 +55,8 @@ class PlannerPlan(planner_delta.PlannerDelta):
         self.odata_type: Optional[str] = None
         # The owner property
         self._owner: Optional[str] = None
+        # The sharedWithContainers property
+        self._shared_with_containers: Optional[List[planner_shared_with_container.PlannerSharedWithContainer]] = None
         # Collection of tasks in the plan. Read-only. Nullable.
         self._tasks: Optional[List[planner_task.PlannerTask]] = None
         # Required. Title of the plan.
@@ -106,7 +109,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
         """
         Sets the createdBy property value. Read-only. The user who created the plan.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -123,7 +126,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
         """
         Sets the createdDateTime property value. Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -152,7 +155,7 @@ class PlannerPlan(planner_delta.PlannerDelta):
         """
         Sets the creationSource property value. Contains information about the origin of the plan.
         Args:
-            value: Value to set for the creationSource property.
+            value: Value to set for the creation_source property.
         """
         self._creation_source = value
     
@@ -182,11 +185,12 @@ class PlannerPlan(planner_delta.PlannerDelta):
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(planner_bucket.PlannerBucket)),
             "container": lambda n : setattr(self, 'container', n.get_object_value(planner_plan_container.PlannerPlanContainer)),
             "contexts": lambda n : setattr(self, 'contexts', n.get_object_value(planner_plan_context_collection.PlannerPlanContextCollection)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "creation_source": lambda n : setattr(self, 'creation_source', n.get_object_value(planner_plan_creation.PlannerPlanCreation)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "creationSource": lambda n : setattr(self, 'creation_source', n.get_object_value(planner_plan_creation.PlannerPlanCreation)),
             "details": lambda n : setattr(self, 'details', n.get_object_value(planner_plan_details.PlannerPlanDetails)),
             "owner": lambda n : setattr(self, 'owner', n.get_str_value()),
+            "sharedWithContainers": lambda n : setattr(self, 'shared_with_containers', n.get_collection_of_object_values(planner_shared_with_container.PlannerSharedWithContainer)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(planner_task.PlannerTask)),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
         }
@@ -228,8 +232,26 @@ class PlannerPlan(planner_delta.PlannerDelta):
         writer.write_object_value("creationSource", self.creation_source)
         writer.write_object_value("details", self.details)
         writer.write_str_value("owner", self.owner)
+        writer.write_collection_of_object_values("sharedWithContainers", self.shared_with_containers)
         writer.write_collection_of_object_values("tasks", self.tasks)
         writer.write_str_value("title", self.title)
+    
+    @property
+    def shared_with_containers(self,) -> Optional[List[planner_shared_with_container.PlannerSharedWithContainer]]:
+        """
+        Gets the sharedWithContainers property value. The sharedWithContainers property
+        Returns: Optional[List[planner_shared_with_container.PlannerSharedWithContainer]]
+        """
+        return self._shared_with_containers
+    
+    @shared_with_containers.setter
+    def shared_with_containers(self,value: Optional[List[planner_shared_with_container.PlannerSharedWithContainer]] = None) -> None:
+        """
+        Sets the sharedWithContainers property value. The sharedWithContainers property
+        Args:
+            value: Value to set for the shared_with_containers property.
+        """
+        self._shared_with_containers = value
     
     @property
     def tasks(self,) -> Optional[List[planner_task.PlannerTask]]:

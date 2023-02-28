@@ -55,9 +55,9 @@ class PasswordValidationInformation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_valid": lambda n : setattr(self, 'is_valid', n.get_bool_value()),
+            "isValid": lambda n : setattr(self, 'is_valid', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "validation_results": lambda n : setattr(self, 'validation_results', n.get_collection_of_object_values(validation_result.ValidationResult)),
+            "validationResults": lambda n : setattr(self, 'validation_results', n.get_collection_of_object_values(validation_result.ValidationResult)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class PasswordValidationInformation(AdditionalDataHolder, Parsable):
         """
         Sets the isValid property value. Specifies whether the password is valid based on the calculation of the results in the validationResults property. Not nullable. Read-only.
         Args:
-            value: Value to set for the isValid property.
+            value: Value to set for the is_valid property.
         """
         self._is_valid = value
     
@@ -91,7 +91,7 @@ class PasswordValidationInformation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -121,7 +121,7 @@ class PasswordValidationInformation(AdditionalDataHolder, Parsable):
         """
         Sets the validationResults property value. The list of password validation rules and whether the password passed those rules. Not nullable. Read-only.
         Args:
-            value: Value to set for the validationResults property.
+            value: Value to set for the validation_results property.
         """
         self._validation_results = value
     

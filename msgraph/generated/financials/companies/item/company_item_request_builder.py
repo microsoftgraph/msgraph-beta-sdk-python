@@ -519,12 +519,11 @@ class CompanyItemRequestBuilder():
         url_tpl_params["generalLedgerEntry%2Did"] = id
         return general_ledger_entry_item_request_builder.GeneralLedgerEntryItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[company.Company]:
+    async def get(self,request_configuration: Optional[CompanyItemRequestBuilderGetRequestConfiguration] = None) -> Optional[company.Company]:
         """
         Get companies from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[company.Company]
         """
         request_info = self.to_get_request_information(
@@ -536,7 +535,7 @@ class CompanyItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, company.Company, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, company.Company, error_mapping)
     
     def item_categories_by_id(self,id: str) -> item_category_item_request_builder.ItemCategoryItemRequestBuilder:
         """
@@ -809,7 +808,7 @@ class CompanyItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -875,7 +874,7 @@ class CompanyItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

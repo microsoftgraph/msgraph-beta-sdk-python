@@ -2,7 +2,7 @@ from enum import Enum
 
 class UserPfxPaddingScheme(Enum):
     # Unknown padding Scheme.
-    None_escaped = "none",
+    None_ = "none",
     # Pkcs1 is no longer supported
     Pkcs1 = "pkcs1",
     # OaepSha1 is no longer supported

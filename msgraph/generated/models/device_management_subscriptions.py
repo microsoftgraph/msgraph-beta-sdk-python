@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceManagementSubscriptions(Enum):
     # None
-    None_escaped = "none",
+    None_ = "none",
     # Microsoft Intune Subscription
     Intune = "intune",
     # Office365 Subscription

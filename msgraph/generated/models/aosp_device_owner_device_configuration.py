@@ -20,7 +20,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the appsBlockInstallFromUnknownSources property value. Indicates whether or not the user is allowed to enable unknown sources setting. When set to true, user is not allowed to enable unknown sources settings.
         Args:
-            value: Value to set for the appsBlockInstallFromUnknownSources property.
+            value: Value to set for the apps_block_install_from_unknown_sources property.
         """
         self._apps_block_install_from_unknown_sources = value
     
@@ -37,7 +37,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the bluetoothBlockConfiguration property value. Indicates whether or not to block a user from configuring bluetooth.
         Args:
-            value: Value to set for the bluetoothBlockConfiguration property.
+            value: Value to set for the bluetooth_block_configuration property.
         """
         self._bluetooth_block_configuration = value
     
@@ -54,7 +54,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the bluetoothBlocked property value. Indicates whether or not to disable the use of bluetooth. When set to true, bluetooth cannot be enabled on the device.
         Args:
-            value: Value to set for the bluetoothBlocked property.
+            value: Value to set for the bluetooth_blocked property.
         """
         self._bluetooth_blocked = value
     
@@ -71,7 +71,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the cameraBlocked property value. Indicates whether or not to disable the use of the camera.
         Args:
-            value: Value to set for the cameraBlocked property.
+            value: Value to set for the camera_blocked property.
         """
         self._camera_blocked = value
     
@@ -135,7 +135,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the factoryResetBlocked property value. Indicates whether or not the factory reset option in settings is disabled.
         Args:
-            value: Value to set for the factoryResetBlocked property.
+            value: Value to set for the factory_reset_blocked property.
         """
         self._factory_reset_blocked = value
     
@@ -145,20 +145,20 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apps_block_install_from_unknown_sources": lambda n : setattr(self, 'apps_block_install_from_unknown_sources', n.get_bool_value()),
-            "bluetooth_block_configuration": lambda n : setattr(self, 'bluetooth_block_configuration', n.get_bool_value()),
-            "bluetooth_blocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
-            "camera_blocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
-            "factory_reset_blocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
-            "password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "security_allow_debugging_features": lambda n : setattr(self, 'security_allow_debugging_features', n.get_bool_value()),
-            "storage_block_external_media": lambda n : setattr(self, 'storage_block_external_media', n.get_bool_value()),
-            "storage_block_usb_file_transfer": lambda n : setattr(self, 'storage_block_usb_file_transfer', n.get_bool_value()),
-            "wifi_block_edit_configurations": lambda n : setattr(self, 'wifi_block_edit_configurations', n.get_bool_value()),
+            "appsBlockInstallFromUnknownSources": lambda n : setattr(self, 'apps_block_install_from_unknown_sources', n.get_bool_value()),
+            "bluetoothBlocked": lambda n : setattr(self, 'bluetooth_blocked', n.get_bool_value()),
+            "bluetoothBlockConfiguration": lambda n : setattr(self, 'bluetooth_block_configuration', n.get_bool_value()),
+            "cameraBlocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
+            "factoryResetBlocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
+            "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "securityAllowDebuggingFeatures": lambda n : setattr(self, 'security_allow_debugging_features', n.get_bool_value()),
+            "storageBlockExternalMedia": lambda n : setattr(self, 'storage_block_external_media', n.get_bool_value()),
+            "storageBlockUsbFileTransfer": lambda n : setattr(self, 'storage_block_usb_file_transfer', n.get_bool_value()),
+            "wifiBlockEditConfigurations": lambda n : setattr(self, 'wifi_block_edit_configurations', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -177,7 +177,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the passwordMinimumLength property value. Indicates the minimum length of the password required on the device. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -194,7 +194,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the passwordMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -211,7 +211,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the passwordRequiredType property value. Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -228,7 +228,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the passwordSignInFailureCountBeforeFactoryReset property value. Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
         Args:
-            value: Value to set for the passwordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the password_sign_in_failure_count_before_factory_reset property.
         """
         self._password_sign_in_failure_count_before_factory_reset = value
     
@@ -245,7 +245,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the screenCaptureBlocked property value. Indicates whether or not to disable the capability to take screenshots.
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -262,7 +262,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the securityAllowDebuggingFeatures property value. Indicates whether or not to block the user from enabling debugging features on the device.
         Args:
-            value: Value to set for the securityAllowDebuggingFeatures property.
+            value: Value to set for the security_allow_debugging_features property.
         """
         self._security_allow_debugging_features = value
     
@@ -276,8 +276,8 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("appsBlockInstallFromUnknownSources", self.apps_block_install_from_unknown_sources)
-        writer.write_bool_value("bluetoothBlockConfiguration", self.bluetooth_block_configuration)
         writer.write_bool_value("bluetoothBlocked", self.bluetooth_blocked)
+        writer.write_bool_value("bluetoothBlockConfiguration", self.bluetooth_block_configuration)
         writer.write_bool_value("cameraBlocked", self.camera_blocked)
         writer.write_bool_value("factoryResetBlocked", self.factory_reset_blocked)
         writer.write_int_value("passwordMinimumLength", self.password_minimum_length)
@@ -303,7 +303,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the storageBlockExternalMedia property value. Indicates whether or not to block external media.
         Args:
-            value: Value to set for the storageBlockExternalMedia property.
+            value: Value to set for the storage_block_external_media property.
         """
         self._storage_block_external_media = value
     
@@ -320,7 +320,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the storageBlockUsbFileTransfer property value. Indicates whether or not to block USB file transfer.
         Args:
-            value: Value to set for the storageBlockUsbFileTransfer property.
+            value: Value to set for the storage_block_usb_file_transfer property.
         """
         self._storage_block_usb_file_transfer = value
     
@@ -337,7 +337,7 @@ class AospDeviceOwnerDeviceConfiguration(device_configuration.DeviceConfiguratio
         """
         Sets the wifiBlockEditConfigurations property value. Indicates whether or not to block the user from editing the wifi connection settings.
         Args:
-            value: Value to set for the wifiBlockEditConfigurations property.
+            value: Value to set for the wifi_block_edit_configurations property.
         """
         self._wifi_block_edit_configurations = value
     

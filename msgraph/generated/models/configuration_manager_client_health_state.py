@@ -68,7 +68,7 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
         """
         Sets the errorCode property value. Error code for failed state.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -78,8 +78,8 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(configuration_manager_client_state.ConfigurationManagerClientState)),
         }
@@ -98,7 +98,7 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
         """
         Sets the lastSyncDateTime property value. Datetime for last sync with configuration manager management point.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -115,7 +115,7 @@ class ConfigurationManagerClientHealthState(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

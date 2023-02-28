@@ -14,7 +14,7 @@ tenant_group = lazy_import('msgraph.generated.models.managed_tenants.tenant_grou
 tenant_group_collection_response = lazy_import('msgraph.generated.models.managed_tenants.tenant_group_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 count_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_groups.count.count_request_builder')
-tenant_search_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_groups.tenant_search.tenant_search_request_builder')
+managed_tenants_tenant_search_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.tenant_groups.managed_tenants_tenant_search.managed_tenants_tenant_search_request_builder')
 
 class TenantGroupsRequestBuilder():
     """
@@ -28,11 +28,11 @@ class TenantGroupsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def tenant_search(self) -> tenant_search_request_builder.TenantSearchRequestBuilder:
+    def managed_tenants_tenant_search(self) -> managed_tenants_tenant_search_request_builder.ManagedTenantsTenantSearchRequestBuilder:
         """
         Provides operations to call the tenantSearch method.
         """
-        return tenant_search_request_builder.TenantSearchRequestBuilder(self.request_adapter, self.path_parameters)
+        return managed_tenants_tenant_search_request_builder.ManagedTenantsTenantSearchRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class TenantGroupsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
+    async def get(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_group_collection_response.TenantGroupCollectionResponse]:
         """
         Get a list of the tenantGroup objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_group_collection_response.TenantGroupCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class TenantGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_group_collection_response.TenantGroupCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_group_collection_response.TenantGroupCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[tenant_group.TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_group.TenantGroup]:
+    async def post(self,body: Optional[tenant_group.TenantGroup] = None, request_configuration: Optional[TenantGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[tenant_group.TenantGroup]:
         """
         Create new navigation property to tenantGroups for tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_group.TenantGroup]
         """
         if body is None:
@@ -91,7 +89,7 @@ class TenantGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_group.TenantGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_group.TenantGroup, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantGroupsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +102,7 @@ class TenantGroupsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -125,7 +123,7 @@ class TenantGroupsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +193,7 @@ class TenantGroupsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -210,7 +208,7 @@ class TenantGroupsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

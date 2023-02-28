@@ -36,7 +36,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the adminAgentSoftwareUpdateStatus property value. The software update available for the admin agent.
         Args:
-            value: Value to set for the adminAgentSoftwareUpdateStatus property.
+            value: Value to set for the admin_agent_software_update_status property.
         """
         self._admin_agent_software_update_status = value
     
@@ -53,7 +53,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the companyPortalSoftwareUpdateStatus property value. The software update available for the company portal.
         Args:
-            value: Value to set for the companyPortalSoftwareUpdateStatus property.
+            value: Value to set for the company_portal_software_update_status property.
         """
         self._company_portal_software_update_status = value
     
@@ -104,7 +104,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the firmwareSoftwareUpdateStatus property value. The software update available for the firmware.
         Args:
-            value: Value to set for the firmwareSoftwareUpdateStatus property.
+            value: Value to set for the firmware_software_update_status property.
         """
         self._firmware_software_update_status = value
     
@@ -114,13 +114,13 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admin_agent_software_update_status": lambda n : setattr(self, 'admin_agent_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
-            "company_portal_software_update_status": lambda n : setattr(self, 'company_portal_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
-            "firmware_software_update_status": lambda n : setattr(self, 'firmware_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
+            "adminAgentSoftwareUpdateStatus": lambda n : setattr(self, 'admin_agent_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
+            "companyPortalSoftwareUpdateStatus": lambda n : setattr(self, 'company_portal_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
+            "firmwareSoftwareUpdateStatus": lambda n : setattr(self, 'firmware_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "operating_system_software_update_status": lambda n : setattr(self, 'operating_system_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
-            "partner_agent_software_update_status": lambda n : setattr(self, 'partner_agent_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
-            "teams_client_software_update_status": lambda n : setattr(self, 'teams_client_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
+            "operatingSystemSoftwareUpdateStatus": lambda n : setattr(self, 'operating_system_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
+            "partnerAgentSoftwareUpdateStatus": lambda n : setattr(self, 'partner_agent_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
+            "teamsClientSoftwareUpdateStatus": lambda n : setattr(self, 'teams_client_software_update_status', n.get_object_value(teamwork_software_update_status.TeamworkSoftwareUpdateStatus)),
         }
         return fields
     
@@ -137,7 +137,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -154,7 +154,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the operatingSystemSoftwareUpdateStatus property value. The software update available for the operating system.
         Args:
-            value: Value to set for the operatingSystemSoftwareUpdateStatus property.
+            value: Value to set for the operating_system_software_update_status property.
         """
         self._operating_system_software_update_status = value
     
@@ -171,7 +171,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the partnerAgentSoftwareUpdateStatus property value. The software update available for the partner agent.
         Args:
-            value: Value to set for the partnerAgentSoftwareUpdateStatus property.
+            value: Value to set for the partner_agent_software_update_status property.
         """
         self._partner_agent_software_update_status = value
     
@@ -205,7 +205,7 @@ class TeamworkSoftwareUpdateHealth(AdditionalDataHolder, Parsable):
         """
         Sets the teamsClientSoftwareUpdateStatus property value. The software update available for the Teams client.
         Args:
-            value: Value to set for the teamsClientSoftwareUpdateStatus property.
+            value: Value to set for the teams_client_software_update_status property.
         """
         self._teams_client_software_update_status = value
     

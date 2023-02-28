@@ -36,7 +36,7 @@ class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the applicationIdentifier property value. The applicationIdentifier property
         Args:
-            value: Value to set for the applicationIdentifier property.
+            value: Value to set for the application_identifier property.
         """
         self._application_identifier = value
     
@@ -91,10 +91,10 @@ class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_identifier": lambda n : setattr(self, 'application_identifier', n.get_str_value()),
+            "applicationIdentifier": lambda n : setattr(self, 'application_identifier', n.get_str_value()),
             "credentials": lambda n : setattr(self, 'credentials', n.get_collection_of_object_values(synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair)),
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
-            "use_saved_credentials": lambda n : setattr(self, 'use_saved_credentials', n.get_bool_value()),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "useSavedCredentials": lambda n : setattr(self, 'use_saved_credentials', n.get_bool_value()),
         }
         return fields
     
@@ -125,7 +125,7 @@ class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the templateId property value. The templateId property
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     
@@ -142,7 +142,7 @@ class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the useSavedCredentials property value. The useSavedCredentials property
         Args:
-            value: Value to set for the useSavedCredentials property.
+            value: Value to set for the use_saved_credentials property.
         """
         self._use_saved_credentials = value
     

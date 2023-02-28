@@ -54,7 +54,7 @@ class TimeCardEntry(AdditionalDataHolder, Parsable):
         """
         Sets the clockInEvent property value. The clock-in event of the timeCard.
         Args:
-            value: Value to set for the clockInEvent property.
+            value: Value to set for the clock_in_event property.
         """
         self._clock_in_event = value
     
@@ -71,7 +71,7 @@ class TimeCardEntry(AdditionalDataHolder, Parsable):
         """
         Sets the clockOutEvent property value. The clock-out event of the timeCard.
         Args:
-            value: Value to set for the clockOutEvent property.
+            value: Value to set for the clock_out_event property.
         """
         self._clock_out_event = value
     
@@ -110,8 +110,8 @@ class TimeCardEntry(AdditionalDataHolder, Parsable):
         """
         fields = {
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(time_card_break.TimeCardBreak)),
-            "clock_in_event": lambda n : setattr(self, 'clock_in_event', n.get_object_value(time_card_event.TimeCardEvent)),
-            "clock_out_event": lambda n : setattr(self, 'clock_out_event', n.get_object_value(time_card_event.TimeCardEvent)),
+            "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(time_card_event.TimeCardEvent)),
+            "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(time_card_event.TimeCardEvent)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -129,7 +129,7 @@ class TimeCardEntry(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

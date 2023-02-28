@@ -34,7 +34,7 @@ class MeetingRegistrantBase(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "join_web_url": lambda n : setattr(self, 'join_web_url', n.get_str_value()),
+            "joinWebUrl": lambda n : setattr(self, 'join_web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class MeetingRegistrantBase(entity.Entity):
         """
         Sets the joinWebUrl property value. A unique web URL for the registrant to join the meeting. Read-only.
         Args:
-            value: Value to set for the joinWebUrl property.
+            value: Value to set for the join_web_url property.
         """
         self._join_web_url = value
     

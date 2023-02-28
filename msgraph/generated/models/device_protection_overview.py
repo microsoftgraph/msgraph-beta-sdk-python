@@ -37,7 +37,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the cleanDeviceCount property value. Clean device count.
         Args:
-            value: Value to set for the cleanDeviceCount property.
+            value: Value to set for the clean_device_count property.
         """
         self._clean_device_count = value
     
@@ -98,7 +98,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the criticalFailuresDeviceCount property value. Critical failures device count.
         Args:
-            value: Value to set for the criticalFailuresDeviceCount property.
+            value: Value to set for the critical_failures_device_count property.
         """
         self._critical_failures_device_count = value
     
@@ -108,18 +108,18 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "clean_device_count": lambda n : setattr(self, 'clean_device_count', n.get_int_value()),
-            "critical_failures_device_count": lambda n : setattr(self, 'critical_failures_device_count', n.get_int_value()),
-            "inactive_threat_agent_device_count": lambda n : setattr(self, 'inactive_threat_agent_device_count', n.get_int_value()),
+            "cleanDeviceCount": lambda n : setattr(self, 'clean_device_count', n.get_int_value()),
+            "criticalFailuresDeviceCount": lambda n : setattr(self, 'critical_failures_device_count', n.get_int_value()),
+            "inactiveThreatAgentDeviceCount": lambda n : setattr(self, 'inactive_threat_agent_device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "pending_full_scan_device_count": lambda n : setattr(self, 'pending_full_scan_device_count', n.get_int_value()),
-            "pending_manual_steps_device_count": lambda n : setattr(self, 'pending_manual_steps_device_count', n.get_int_value()),
-            "pending_offline_scan_device_count": lambda n : setattr(self, 'pending_offline_scan_device_count', n.get_int_value()),
-            "pending_quick_scan_device_count": lambda n : setattr(self, 'pending_quick_scan_device_count', n.get_int_value()),
-            "pending_restart_device_count": lambda n : setattr(self, 'pending_restart_device_count', n.get_int_value()),
-            "pending_signature_update_device_count": lambda n : setattr(self, 'pending_signature_update_device_count', n.get_int_value()),
-            "total_reported_device_count": lambda n : setattr(self, 'total_reported_device_count', n.get_int_value()),
-            "unknown_state_threat_agent_device_count": lambda n : setattr(self, 'unknown_state_threat_agent_device_count', n.get_int_value()),
+            "pendingFullScanDeviceCount": lambda n : setattr(self, 'pending_full_scan_device_count', n.get_int_value()),
+            "pendingManualStepsDeviceCount": lambda n : setattr(self, 'pending_manual_steps_device_count', n.get_int_value()),
+            "pendingOfflineScanDeviceCount": lambda n : setattr(self, 'pending_offline_scan_device_count', n.get_int_value()),
+            "pendingQuickScanDeviceCount": lambda n : setattr(self, 'pending_quick_scan_device_count', n.get_int_value()),
+            "pendingRestartDeviceCount": lambda n : setattr(self, 'pending_restart_device_count', n.get_int_value()),
+            "pendingSignatureUpdateDeviceCount": lambda n : setattr(self, 'pending_signature_update_device_count', n.get_int_value()),
+            "totalReportedDeviceCount": lambda n : setattr(self, 'total_reported_device_count', n.get_int_value()),
+            "unknownStateThreatAgentDeviceCount": lambda n : setattr(self, 'unknown_state_threat_agent_device_count', n.get_int_value()),
         }
         return fields
     
@@ -136,7 +136,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the inactiveThreatAgentDeviceCount property value. Device with inactive threat agent count
         Args:
-            value: Value to set for the inactiveThreatAgentDeviceCount property.
+            value: Value to set for the inactive_threat_agent_device_count property.
         """
         self._inactive_threat_agent_device_count = value
     
@@ -153,7 +153,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -170,7 +170,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the pendingFullScanDeviceCount property value. Pending full scan device count.
         Args:
-            value: Value to set for the pendingFullScanDeviceCount property.
+            value: Value to set for the pending_full_scan_device_count property.
         """
         self._pending_full_scan_device_count = value
     
@@ -187,7 +187,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the pendingManualStepsDeviceCount property value. Pending manual steps device count.
         Args:
-            value: Value to set for the pendingManualStepsDeviceCount property.
+            value: Value to set for the pending_manual_steps_device_count property.
         """
         self._pending_manual_steps_device_count = value
     
@@ -204,7 +204,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the pendingOfflineScanDeviceCount property value. Pending offline scan device count.
         Args:
-            value: Value to set for the pendingOfflineScanDeviceCount property.
+            value: Value to set for the pending_offline_scan_device_count property.
         """
         self._pending_offline_scan_device_count = value
     
@@ -221,7 +221,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the pendingQuickScanDeviceCount property value. Pending quick scan device count. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the pendingQuickScanDeviceCount property.
+            value: Value to set for the pending_quick_scan_device_count property.
         """
         self._pending_quick_scan_device_count = value
     
@@ -238,7 +238,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the pendingRestartDeviceCount property value. Pending restart device count.
         Args:
-            value: Value to set for the pendingRestartDeviceCount property.
+            value: Value to set for the pending_restart_device_count property.
         """
         self._pending_restart_device_count = value
     
@@ -255,7 +255,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the pendingSignatureUpdateDeviceCount property value. Device with old signature count.
         Args:
-            value: Value to set for the pendingSignatureUpdateDeviceCount property.
+            value: Value to set for the pending_signature_update_device_count property.
         """
         self._pending_signature_update_device_count = value
     
@@ -294,7 +294,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the totalReportedDeviceCount property value. Total device count.
         Args:
-            value: Value to set for the totalReportedDeviceCount property.
+            value: Value to set for the total_reported_device_count property.
         """
         self._total_reported_device_count = value
     
@@ -311,7 +311,7 @@ class DeviceProtectionOverview(AdditionalDataHolder, Parsable):
         """
         Sets the unknownStateThreatAgentDeviceCount property value. Device with threat agent state as unknown count.
         Args:
-            value: Value to set for the unknownStateThreatAgentDeviceCount property.
+            value: Value to set for the unknown_state_threat_agent_device_count property.
         """
         self._unknown_state_threat_agent_device_count = value
     

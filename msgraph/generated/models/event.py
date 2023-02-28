@@ -38,7 +38,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the allowNewTimeProposals property value. true if the meeting organizer allows invitees to propose a new time when responding; otherwise false. Optional. Default is true.
         Args:
-            value: Value to set for the allowNewTimeProposals property.
+            value: Value to set for the allow_new_time_proposals property.
         """
         self._allow_new_time_proposals = value
     
@@ -106,7 +106,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the bodyPreview property value. The preview of the message associated with the event. It is in text format.
         Args:
-            value: Value to set for the bodyPreview property.
+            value: Value to set for the body_preview property.
         """
         self._body_preview = value
     
@@ -140,7 +140,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the cancelledOccurrences property value. Contains occurrenceId property values of cancelled instances in a recurring series, if the event is the series master. Instances in a recurring series that are cancelled are called cancelledOccurences.Returned only on $select in a Get operation which specifies the id of a series master event (that is, the seriesMasterId property value).
         Args:
-            value: Value to set for the cancelledOccurrences property.
+            value: Value to set for the cancelled_occurrences property.
         """
         self._cancelled_occurrences = value
     
@@ -283,7 +283,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the exceptionOccurrences property value. The exceptionOccurrences property
         Args:
-            value: Value to set for the exceptionOccurrences property.
+            value: Value to set for the exception_occurrences property.
         """
         self._exception_occurrences = value
     
@@ -310,51 +310,51 @@ class Event(outlook_item.OutlookItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_new_time_proposals": lambda n : setattr(self, 'allow_new_time_proposals', n.get_bool_value()),
+            "allowNewTimeProposals": lambda n : setattr(self, 'allow_new_time_proposals', n.get_bool_value()),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
             "attendees": lambda n : setattr(self, 'attendees', n.get_collection_of_object_values(attendee.Attendee)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
-            "body_preview": lambda n : setattr(self, 'body_preview', n.get_str_value()),
+            "bodyPreview": lambda n : setattr(self, 'body_preview', n.get_str_value()),
             "calendar": lambda n : setattr(self, 'calendar', n.get_object_value(calendar.Calendar)),
-            "cancelled_occurrences": lambda n : setattr(self, 'cancelled_occurrences', n.get_collection_of_primitive_values(str)),
+            "cancelledOccurrences": lambda n : setattr(self, 'cancelled_occurrences', n.get_collection_of_primitive_values(str)),
             "end": lambda n : setattr(self, 'end', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "exception_occurrences": lambda n : setattr(self, 'exception_occurrences', n.get_collection_of_object_values(event.Event)),
+            "exceptionOccurrences": lambda n : setattr(self, 'exception_occurrences', n.get_collection_of_object_values(event.Event)),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
-            "has_attachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
-            "hide_attendees": lambda n : setattr(self, 'hide_attendees', n.get_bool_value()),
+            "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
+            "hideAttendees": lambda n : setattr(self, 'hide_attendees', n.get_bool_value()),
             "importance": lambda n : setattr(self, 'importance', n.get_enum_value(importance.Importance)),
             "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(event.Event)),
-            "is_all_day": lambda n : setattr(self, 'is_all_day', n.get_bool_value()),
-            "is_cancelled": lambda n : setattr(self, 'is_cancelled', n.get_bool_value()),
-            "is_draft": lambda n : setattr(self, 'is_draft', n.get_bool_value()),
-            "is_online_meeting": lambda n : setattr(self, 'is_online_meeting', n.get_bool_value()),
-            "is_organizer": lambda n : setattr(self, 'is_organizer', n.get_bool_value()),
-            "is_reminder_on": lambda n : setattr(self, 'is_reminder_on', n.get_bool_value()),
+            "isAllDay": lambda n : setattr(self, 'is_all_day', n.get_bool_value()),
+            "isCancelled": lambda n : setattr(self, 'is_cancelled', n.get_bool_value()),
+            "isDraft": lambda n : setattr(self, 'is_draft', n.get_bool_value()),
+            "isOnlineMeeting": lambda n : setattr(self, 'is_online_meeting', n.get_bool_value()),
+            "isOrganizer": lambda n : setattr(self, 'is_organizer', n.get_bool_value()),
+            "isReminderOn": lambda n : setattr(self, 'is_reminder_on', n.get_bool_value()),
             "location": lambda n : setattr(self, 'location', n.get_object_value(location.Location)),
             "locations": lambda n : setattr(self, 'locations', n.get_collection_of_object_values(location.Location)),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
-            "occurrence_id": lambda n : setattr(self, 'occurrence_id', n.get_str_value()),
-            "online_meeting": lambda n : setattr(self, 'online_meeting', n.get_object_value(online_meeting_info.OnlineMeetingInfo)),
-            "online_meeting_provider": lambda n : setattr(self, 'online_meeting_provider', n.get_enum_value(online_meeting_provider_type.OnlineMeetingProviderType)),
-            "online_meeting_url": lambda n : setattr(self, 'online_meeting_url', n.get_str_value()),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "occurrenceId": lambda n : setattr(self, 'occurrence_id', n.get_str_value()),
+            "onlineMeeting": lambda n : setattr(self, 'online_meeting', n.get_object_value(online_meeting_info.OnlineMeetingInfo)),
+            "onlineMeetingProvider": lambda n : setattr(self, 'online_meeting_provider', n.get_enum_value(online_meeting_provider_type.OnlineMeetingProviderType)),
+            "onlineMeetingUrl": lambda n : setattr(self, 'online_meeting_url', n.get_str_value()),
             "organizer": lambda n : setattr(self, 'organizer', n.get_object_value(recipient.Recipient)),
-            "original_end_time_zone": lambda n : setattr(self, 'original_end_time_zone', n.get_str_value()),
-            "original_start": lambda n : setattr(self, 'original_start', n.get_datetime_value()),
-            "original_start_time_zone": lambda n : setattr(self, 'original_start_time_zone', n.get_str_value()),
+            "originalEndTimeZone": lambda n : setattr(self, 'original_end_time_zone', n.get_str_value()),
+            "originalStart": lambda n : setattr(self, 'original_start', n.get_datetime_value()),
+            "originalStartTimeZone": lambda n : setattr(self, 'original_start_time_zone', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(patterned_recurrence.PatternedRecurrence)),
-            "reminder_minutes_before_start": lambda n : setattr(self, 'reminder_minutes_before_start', n.get_int_value()),
-            "response_requested": lambda n : setattr(self, 'response_requested', n.get_bool_value()),
-            "response_status": lambda n : setattr(self, 'response_status', n.get_object_value(response_status.ResponseStatus)),
+            "reminderMinutesBeforeStart": lambda n : setattr(self, 'reminder_minutes_before_start', n.get_int_value()),
+            "responseRequested": lambda n : setattr(self, 'response_requested', n.get_bool_value()),
+            "responseStatus": lambda n : setattr(self, 'response_status', n.get_object_value(response_status.ResponseStatus)),
             "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_enum_value(sensitivity.Sensitivity)),
-            "series_master_id": lambda n : setattr(self, 'series_master_id', n.get_str_value()),
-            "show_as": lambda n : setattr(self, 'show_as', n.get_enum_value(free_busy_status.FreeBusyStatus)),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "seriesMasterId": lambda n : setattr(self, 'series_master_id', n.get_str_value()),
+            "showAs": lambda n : setattr(self, 'show_as', n.get_enum_value(free_busy_status.FreeBusyStatus)),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
             "start": lambda n : setattr(self, 'start', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
-            "transaction_id": lambda n : setattr(self, 'transaction_id', n.get_str_value()),
+            "transactionId": lambda n : setattr(self, 'transaction_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(event_type.EventType)),
             "uid": lambda n : setattr(self, 'uid', n.get_str_value()),
-            "web_link": lambda n : setattr(self, 'web_link', n.get_str_value()),
+            "webLink": lambda n : setattr(self, 'web_link', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -373,7 +373,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the hasAttachments property value. Set to true if the event has attachments.
         Args:
-            value: Value to set for the hasAttachments property.
+            value: Value to set for the has_attachments property.
         """
         self._has_attachments = value
     
@@ -390,7 +390,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the hideAttendees property value. When set to true, each attendee only sees themselves in the meeting request and meeting Tracking list. Default is false.
         Args:
-            value: Value to set for the hideAttendees property.
+            value: Value to set for the hide_attendees property.
         """
         self._hide_attendees = value
     
@@ -441,7 +441,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the isAllDay property value. The isAllDay property
         Args:
-            value: Value to set for the isAllDay property.
+            value: Value to set for the is_all_day property.
         """
         self._is_all_day = value
     
@@ -458,7 +458,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the isCancelled property value. The isCancelled property
         Args:
-            value: Value to set for the isCancelled property.
+            value: Value to set for the is_cancelled property.
         """
         self._is_cancelled = value
     
@@ -475,7 +475,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the isDraft property value. The isDraft property
         Args:
-            value: Value to set for the isDraft property.
+            value: Value to set for the is_draft property.
         """
         self._is_draft = value
     
@@ -492,7 +492,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the isOnlineMeeting property value. The isOnlineMeeting property
         Args:
-            value: Value to set for the isOnlineMeeting property.
+            value: Value to set for the is_online_meeting property.
         """
         self._is_online_meeting = value
     
@@ -509,7 +509,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the isOrganizer property value. The isOrganizer property
         Args:
-            value: Value to set for the isOrganizer property.
+            value: Value to set for the is_organizer property.
         """
         self._is_organizer = value
     
@@ -526,7 +526,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the isReminderOn property value. The isReminderOn property
         Args:
-            value: Value to set for the isReminderOn property.
+            value: Value to set for the is_reminder_on property.
         """
         self._is_reminder_on = value
     
@@ -577,7 +577,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the multiValueExtendedProperties property value. The collection of multi-value extended properties defined for the event. Read-only. Nullable.
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -594,7 +594,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the occurrenceId property value. The occurrenceId property
         Args:
-            value: Value to set for the occurrenceId property.
+            value: Value to set for the occurrence_id property.
         """
         self._occurrence_id = value
     
@@ -611,7 +611,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the onlineMeeting property value. The onlineMeeting property
         Args:
-            value: Value to set for the onlineMeeting property.
+            value: Value to set for the online_meeting property.
         """
         self._online_meeting = value
     
@@ -628,7 +628,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the onlineMeetingProvider property value. The onlineMeetingProvider property
         Args:
-            value: Value to set for the onlineMeetingProvider property.
+            value: Value to set for the online_meeting_provider property.
         """
         self._online_meeting_provider = value
     
@@ -645,7 +645,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the onlineMeetingUrl property value. The onlineMeetingUrl property
         Args:
-            value: Value to set for the onlineMeetingUrl property.
+            value: Value to set for the online_meeting_url property.
         """
         self._online_meeting_url = value
     
@@ -679,7 +679,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the originalEndTimeZone property value. The originalEndTimeZone property
         Args:
-            value: Value to set for the originalEndTimeZone property.
+            value: Value to set for the original_end_time_zone property.
         """
         self._original_end_time_zone = value
     
@@ -696,7 +696,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the originalStart property value. The originalStart property
         Args:
-            value: Value to set for the originalStart property.
+            value: Value to set for the original_start property.
         """
         self._original_start = value
     
@@ -713,7 +713,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the originalStartTimeZone property value. The originalStartTimeZone property
         Args:
-            value: Value to set for the originalStartTimeZone property.
+            value: Value to set for the original_start_time_zone property.
         """
         self._original_start_time_zone = value
     
@@ -747,7 +747,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the reminderMinutesBeforeStart property value. The reminderMinutesBeforeStart property
         Args:
-            value: Value to set for the reminderMinutesBeforeStart property.
+            value: Value to set for the reminder_minutes_before_start property.
         """
         self._reminder_minutes_before_start = value
     
@@ -764,7 +764,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the responseRequested property value. The responseRequested property
         Args:
-            value: Value to set for the responseRequested property.
+            value: Value to set for the response_requested property.
         """
         self._response_requested = value
     
@@ -781,7 +781,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the responseStatus property value. The responseStatus property
         Args:
-            value: Value to set for the responseStatus property.
+            value: Value to set for the response_status property.
         """
         self._response_status = value
     
@@ -870,7 +870,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the seriesMasterId property value. The seriesMasterId property
         Args:
-            value: Value to set for the seriesMasterId property.
+            value: Value to set for the series_master_id property.
         """
         self._series_master_id = value
     
@@ -887,7 +887,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the showAs property value. The showAs property
         Args:
-            value: Value to set for the showAs property.
+            value: Value to set for the show_as property.
         """
         self._show_as = value
     
@@ -904,7 +904,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the singleValueExtendedProperties property value. The collection of single-value extended properties defined for the event. Read-only. Nullable.
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     
@@ -955,7 +955,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the transactionId property value. The transactionId property
         Args:
-            value: Value to set for the transactionId property.
+            value: Value to set for the transaction_id property.
         """
         self._transaction_id = value
     
@@ -1006,7 +1006,7 @@ class Event(outlook_item.OutlookItem):
         """
         Sets the webLink property value. The webLink property
         Args:
-            value: Value to set for the webLink property.
+            value: Value to set for the web_link property.
         """
         self._web_link = value
     

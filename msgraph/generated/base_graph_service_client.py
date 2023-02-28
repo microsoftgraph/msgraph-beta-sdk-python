@@ -80,7 +80,6 @@ domain_dns_records_request_builder = lazy_import('msgraph.generated.domain_dns_r
 domain_dns_record_item_request_builder = lazy_import('msgraph.generated.domain_dns_records.item.domain_dns_record_item_request_builder')
 domains_request_builder = lazy_import('msgraph.generated.domains.domains_request_builder')
 domain_item_request_builder = lazy_import('msgraph.generated.domains.item.domain_item_request_builder')
-drive_request_builder = lazy_import('msgraph.generated.drive.drive_request_builder')
 drives_request_builder = lazy_import('msgraph.generated.drives.drives_request_builder')
 drive_item_request_builder = lazy_import('msgraph.generated.drives.item.drive_item_request_builder')
 education_request_builder = lazy_import('msgraph.generated.education.education_request_builder')
@@ -201,8 +200,6 @@ threat_submission_request_builder = lazy_import('msgraph.generated.threat_submis
 trust_framework_request_builder = lazy_import('msgraph.generated.trust_framework.trust_framework_request_builder')
 users_request_builder = lazy_import('msgraph.generated.users.users_request_builder')
 user_item_request_builder = lazy_import('msgraph.generated.users.item.user_item_request_builder')
-workbooks_request_builder = lazy_import('msgraph.generated.workbooks.workbooks_request_builder')
-drive_item_item_request_builder = lazy_import('msgraph.generated.workbooks.item.drive_item_item_request_builder')
 
 class BaseGraphServiceClient():
     """
@@ -496,13 +493,6 @@ class BaseGraphServiceClient():
         return domains_request_builder.DomainsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def drive(self) -> drive_request_builder.DriveRequestBuilder:
-        """
-        Provides operations to manage the drive singleton.
-        """
-        return drive_request_builder.DriveRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def drives(self) -> drives_request_builder.DrivesRequestBuilder:
         """
         Provides operations to manage the collection of drive entities.
@@ -736,7 +726,7 @@ class BaseGraphServiceClient():
     @property
     def places(self) -> places_request_builder.PlacesRequestBuilder:
         """
-        Provides operations to manage the collection of place entities.
+        The places property
         """
         return places_request_builder.PlacesRequestBuilder(self.request_adapter, self.path_parameters)
     
@@ -1013,13 +1003,6 @@ class BaseGraphServiceClient():
         """
         return users_request_builder.UsersRequestBuilder(self.request_adapter, self.path_parameters)
     
-    @property
-    def workbooks(self) -> workbooks_request_builder.WorkbooksRequestBuilder:
-        """
-        Provides operations to manage the collection of driveItem entities.
-        """
-        return workbooks_request_builder.WorkbooksRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def access_review_decisions_by_id(self,id: str) -> access_review_decision_item_request_builder.AccessReviewDecisionItemRequestBuilder:
         """
         Provides operations to manage the collection of accessReviewDecision entities.
@@ -1286,8 +1269,9 @@ class BaseGraphServiceClient():
         register_default_serializer(TextSerializationWriterFactory)
         register_default_deserializer(JsonParseNodeFactory)
         register_default_deserializer(TextParseNodeFactory)
-        if not request_adapter.base_url:
-            request_adapter.base_url = "https://graph.microsoft.com/beta"
+        if not self.request_adapter.base_url:
+            self.request_adapter.base_url = "https://graph.microsoft.com/beta"
+        self.path_parameters["base_url"] = self.request_adapter.base_url
     
     def contacts_by_id(self,id: str) -> org_contact_item_request_builder.OrgContactItemRequestBuilder:
         """
@@ -2029,18 +2013,5 @@ class BaseGraphServiceClient():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["user%2Did"] = id
         return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def workbooks_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
-        """
-        Provides operations to manage the collection of driveItem entities.
-        Args:
-            id: Unique identifier of the item
-        Returns: drive_item_item_request_builder.DriveItemItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["driveItem%2Did"] = id
-        return drive_item_item_request_builder.DriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
 

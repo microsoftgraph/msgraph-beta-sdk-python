@@ -22,7 +22,7 @@ class AuthenticationStrengthRoot(entity.Entity):
         """
         Sets the authenticationCombinations property value. A collection of all valid authentication method combinations in the system.
         Args:
-            value: Value to set for the authenticationCombinations property.
+            value: Value to set for the authentication_combinations property.
         """
         self._authentication_combinations = value
     
@@ -39,9 +39,26 @@ class AuthenticationStrengthRoot(entity.Entity):
         """
         Sets the authenticationMethodModes property value. Names and descriptions of all valid authentication method modes in the system.
         Args:
-            value: Value to set for the authenticationMethodModes property.
+            value: Value to set for the authentication_method_modes property.
         """
         self._authentication_method_modes = value
+    
+    @property
+    def combinations(self,) -> Optional[List[authentication_method_modes.AuthenticationMethodModes]]:
+        """
+        Gets the combinations property value. The combinations property
+        Returns: Optional[List[authentication_method_modes.AuthenticationMethodModes]]
+        """
+        return self._combinations
+    
+    @combinations.setter
+    def combinations(self,value: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None) -> None:
+        """
+        Sets the combinations property value. The combinations property
+        Args:
+            value: Value to set for the combinations property.
+        """
+        self._combinations = value
     
     def __init__(self,) -> None:
         """
@@ -52,6 +69,8 @@ class AuthenticationStrengthRoot(entity.Entity):
         self._authentication_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
         # Names and descriptions of all valid authentication method modes in the system.
         self._authentication_method_modes: Optional[List[authentication_method_mode_detail.AuthenticationMethodModeDetail]] = None
+        # The combinations property
+        self._combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
@@ -75,8 +94,9 @@ class AuthenticationStrengthRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_combinations": lambda n : setattr(self, 'authentication_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
-            "authentication_method_modes": lambda n : setattr(self, 'authentication_method_modes', n.get_collection_of_object_values(authentication_method_mode_detail.AuthenticationMethodModeDetail)),
+            "authenticationCombinations": lambda n : setattr(self, 'authentication_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
+            "authenticationMethodModes": lambda n : setattr(self, 'authentication_method_modes', n.get_collection_of_object_values(authentication_method_mode_detail.AuthenticationMethodModeDetail)),
+            "combinations": lambda n : setattr(self, 'combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
             "policies": lambda n : setattr(self, 'policies', n.get_collection_of_object_values(authentication_strength_policy.AuthenticationStrengthPolicy)),
         }
         super_fields = super().get_field_deserializers()
@@ -111,6 +131,7 @@ class AuthenticationStrengthRoot(entity.Entity):
         super().serialize(writer)
         writer.write_enum_value("authenticationCombinations", self.authentication_combinations)
         writer.write_collection_of_object_values("authenticationMethodModes", self.authentication_method_modes)
+        writer.write_enum_value("combinations", self.combinations)
         writer.write_collection_of_object_values("policies", self.policies)
     
 

@@ -44,12 +44,11 @@ class ReviewersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]:
+    async def get(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None) -> Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]:
         """
         In the Azure AD access reviews feature, retrieve the reviewers of an accessReview object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class ReviewersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_reviewer_collection_response.AccessReviewReviewerCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[access_review_reviewer.AccessReviewReviewer] = None, request_configuration: Optional[ReviewersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_reviewer.AccessReviewReviewer]:
+    async def post(self,body: Optional[access_review_reviewer.AccessReviewReviewer] = None, request_configuration: Optional[ReviewersRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_reviewer.AccessReviewReviewer]:
         """
         In the Azure AD access reviews feature, update an existing accessReview object to add another user as a reviewer.  This operation is only permitted for an access review that is not yet completed, and only for an access review where the reviewers are explicitly specified. This operation is not permitted for an access review in which users review their own access, and not intended for an access review in which the group owners are assigned as the reviewers. 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_reviewer.AccessReviewReviewer]
         """
         if body is None:
@@ -83,7 +81,7 @@ class ReviewersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_reviewer.AccessReviewReviewer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_reviewer.AccessReviewReviewer, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ReviewersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class ReviewersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class ReviewersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class ReviewersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class ReviewersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

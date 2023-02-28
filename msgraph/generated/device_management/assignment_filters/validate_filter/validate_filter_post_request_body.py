@@ -58,7 +58,7 @@ class ValidateFilterPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceAndAppManagementAssignmentFilter property value. The deviceAndAppManagementAssignmentFilter property
         Args:
-            value: Value to set for the deviceAndAppManagementAssignmentFilter property.
+            value: Value to set for the device_and_app_management_assignment_filter property.
         """
         self._device_and_app_management_assignment_filter = value
     
@@ -68,7 +68,7 @@ class ValidateFilterPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_and_app_management_assignment_filter": lambda n : setattr(self, 'device_and_app_management_assignment_filter', n.get_object_value(device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter)),
+            "deviceAndAppManagementAssignmentFilter": lambda n : setattr(self, 'device_and_app_management_assignment_filter', n.get_object_value(device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter)),
         }
         return fields
     

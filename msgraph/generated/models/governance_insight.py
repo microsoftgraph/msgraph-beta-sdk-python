@@ -35,7 +35,7 @@ class GovernanceInsight(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "insight_created_date_time": lambda n : setattr(self, 'insight_created_date_time', n.get_datetime_value()),
+            "insightCreatedDateTime": lambda n : setattr(self, 'insight_created_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class GovernanceInsight(entity.Entity):
         """
         Sets the insightCreatedDateTime property value. Indicates when the insight was created.
         Args:
-            value: Value to set for the insightCreatedDateTime property.
+            value: Value to set for the insight_created_date_time property.
         """
         self._insight_created_date_time = value
     

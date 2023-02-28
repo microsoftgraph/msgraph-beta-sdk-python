@@ -59,8 +59,8 @@ class AdminConsent(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "share_a_p_n_s_data": lambda n : setattr(self, 'share_a_p_n_s_data', n.get_enum_value(admin_consent_state.AdminConsentState)),
-            "share_user_experience_analytics_data": lambda n : setattr(self, 'share_user_experience_analytics_data', n.get_enum_value(admin_consent_state.AdminConsentState)),
+            "shareAPNSData": lambda n : setattr(self, 'share_a_p_n_s_data', n.get_enum_value(admin_consent_state.AdminConsentState)),
+            "shareUserExperienceAnalyticsData": lambda n : setattr(self, 'share_user_experience_analytics_data', n.get_enum_value(admin_consent_state.AdminConsentState)),
         }
         return fields
     
@@ -77,7 +77,7 @@ class AdminConsent(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -107,7 +107,7 @@ class AdminConsent(AdditionalDataHolder, Parsable):
         """
         Sets the shareAPNSData property value. Admin consent state.
         Args:
-            value: Value to set for the shareAPNSData property.
+            value: Value to set for the share_a_p_n_s_data property.
         """
         self._share_a_p_n_s_data = value
     
@@ -124,7 +124,7 @@ class AdminConsent(AdditionalDataHolder, Parsable):
         """
         Sets the shareUserExperienceAnalyticsData property value. Admin consent state.
         Args:
-            value: Value to set for the shareUserExperienceAnalyticsData property.
+            value: Value to set for the share_user_experience_analytics_data property.
         """
         self._share_user_experience_analytics_data = value
     

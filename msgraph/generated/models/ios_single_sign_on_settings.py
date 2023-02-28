@@ -39,7 +39,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowedAppsList property value. List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the allowedAppsList property.
+            value: Value to set for the allowed_apps_list property.
         """
         self._allowed_apps_list = value
     
@@ -56,7 +56,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowedUrls property value. List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
         Args:
-            value: Value to set for the allowedUrls property.
+            value: Value to set for the allowed_urls property.
         """
         self._allowed_urls = value
     
@@ -105,7 +105,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name of login settings shown on the receiving device.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -115,11 +115,11 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_apps_list": lambda n : setattr(self, 'allowed_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "allowed_urls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "kerberos_principal_name": lambda n : setattr(self, 'kerberos_principal_name', n.get_str_value()),
-            "kerberos_realm": lambda n : setattr(self, 'kerberos_realm', n.get_str_value()),
+            "allowedAppsList": lambda n : setattr(self, 'allowed_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "allowedUrls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "kerberosPrincipalName": lambda n : setattr(self, 'kerberos_principal_name', n.get_str_value()),
+            "kerberosRealm": lambda n : setattr(self, 'kerberos_realm', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -137,7 +137,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the kerberosPrincipalName property value. A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
         Args:
-            value: Value to set for the kerberosPrincipalName property.
+            value: Value to set for the kerberos_principal_name property.
         """
         self._kerberos_principal_name = value
     
@@ -154,7 +154,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the kerberosRealm property value. A Kerberos realm name. Case sensitive.
         Args:
-            value: Value to set for the kerberosRealm property.
+            value: Value to set for the kerberos_realm property.
         """
         self._kerberos_realm = value
     
@@ -171,7 +171,7 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

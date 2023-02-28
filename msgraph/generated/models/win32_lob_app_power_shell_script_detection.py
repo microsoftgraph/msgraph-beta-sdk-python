@@ -44,7 +44,7 @@ class Win32LobAppPowerShellScriptDetection(win32_lob_app_detection.Win32LobAppDe
         """
         Sets the enforceSignatureCheck property value. A value indicating whether signature check is enforced
         Args:
-            value: Value to set for the enforceSignatureCheck property.
+            value: Value to set for the enforce_signature_check property.
         """
         self._enforce_signature_check = value
     
@@ -54,9 +54,9 @@ class Win32LobAppPowerShellScriptDetection(win32_lob_app_detection.Win32LobAppDe
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enforce_signature_check": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
-            "run_as32_bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
-            "script_content": lambda n : setattr(self, 'script_content', n.get_str_value()),
+            "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
+            "runAs32Bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
+            "scriptContent": lambda n : setattr(self, 'script_content', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -75,7 +75,7 @@ class Win32LobAppPowerShellScriptDetection(win32_lob_app_detection.Win32LobAppDe
         """
         Sets the runAs32Bit property value. A value indicating whether this script should run as 32-bit
         Args:
-            value: Value to set for the runAs32Bit property.
+            value: Value to set for the run_as32_bit property.
         """
         self._run_as32_bit = value
     
@@ -92,7 +92,7 @@ class Win32LobAppPowerShellScriptDetection(win32_lob_app_detection.Win32LobAppDe
         """
         Sets the scriptContent property value. The base64 encoded script content to detect Win32 Line of Business (LoB) app
         Args:
-            value: Value to set for the scriptContent property.
+            value: Value to set for the script_content property.
         """
         self._script_content = value
     

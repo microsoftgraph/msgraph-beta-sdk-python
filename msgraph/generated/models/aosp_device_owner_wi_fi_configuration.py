@@ -20,7 +20,7 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the connectAutomatically property value. Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
         Args:
-            value: Value to set for the connectAutomatically property.
+            value: Value to set for the connect_automatically property.
         """
         self._connect_automatically = value
     
@@ -37,7 +37,7 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the connectWhenNetworkNameIsHidden property value. When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
         Args:
-            value: Value to set for the connectWhenNetworkNameIsHidden property.
+            value: Value to set for the connect_when_network_name_is_hidden property.
         """
         self._connect_when_network_name_is_hidden = value
     
@@ -80,13 +80,13 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connect_automatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
-            "connect_when_network_name_is_hidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
-            "network_name": lambda n : setattr(self, 'network_name', n.get_str_value()),
-            "pre_shared_key": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
-            "pre_shared_key_is_set": lambda n : setattr(self, 'pre_shared_key_is_set', n.get_bool_value()),
+            "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
+            "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
+            "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
+            "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
+            "preSharedKeyIsSet": lambda n : setattr(self, 'pre_shared_key_is_set', n.get_bool_value()),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
-            "wi_fi_security_type": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(aosp_device_owner_wi_fi_security_type.AospDeviceOwnerWiFiSecurityType)),
+            "wiFiSecurityType": lambda n : setattr(self, 'wi_fi_security_type', n.get_enum_value(aosp_device_owner_wi_fi_security_type.AospDeviceOwnerWiFiSecurityType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -105,7 +105,7 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the networkName property value. Network Name
         Args:
-            value: Value to set for the networkName property.
+            value: Value to set for the network_name property.
         """
         self._network_name = value
     
@@ -122,7 +122,7 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the preSharedKey property value. This is the pre-shared key for WPA Personal Wi-Fi network.
         Args:
-            value: Value to set for the preSharedKey property.
+            value: Value to set for the pre_shared_key property.
         """
         self._pre_shared_key = value
     
@@ -139,7 +139,7 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the preSharedKeyIsSet property value. This is the pre-shared key for WPA Personal Wi-Fi network.
         Args:
-            value: Value to set for the preSharedKeyIsSet property.
+            value: Value to set for the pre_shared_key_is_set property.
         """
         self._pre_shared_key_is_set = value
     
@@ -190,7 +190,7 @@ class AospDeviceOwnerWiFiConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the wiFiSecurityType property value. Wi-Fi Security Types for AOSP Device Owner.
         Args:
-            value: Value to set for the wiFiSecurityType property.
+            value: Value to set for the wi_fi_security_type property.
         """
         self._wi_fi_security_type = value
     

@@ -35,7 +35,7 @@ class InternetExplorerMode(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "site_lists": lambda n : setattr(self, 'site_lists', n.get_collection_of_object_values(browser_site_list.BrowserSiteList)),
+            "siteLists": lambda n : setattr(self, 'site_lists', n.get_collection_of_object_values(browser_site_list.BrowserSiteList)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -65,7 +65,7 @@ class InternetExplorerMode(entity.Entity):
         """
         Sets the siteLists property value. A collection of site lists to support Internet Explorer mode.
         Args:
-            value: Value to set for the siteLists property.
+            value: Value to set for the site_lists property.
         """
         self._site_lists = value
     

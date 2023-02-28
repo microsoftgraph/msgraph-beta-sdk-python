@@ -35,7 +35,7 @@ class LabelsRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "retention_labels": lambda n : setattr(self, 'retention_labels', n.get_collection_of_object_values(retention_label.RetentionLabel)),
+            "retentionLabels": lambda n : setattr(self, 'retention_labels', n.get_collection_of_object_values(retention_label.RetentionLabel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class LabelsRoot(entity.Entity):
         """
         Sets the retentionLabels property value. The retentionLabels property
         Args:
-            value: Value to set for the retentionLabels property.
+            value: Value to set for the retention_labels property.
         """
         self._retention_labels = value
     

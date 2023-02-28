@@ -60,7 +60,7 @@ class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "san_type": lambda n : setattr(self, 'san_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
+            "sanType": lambda n : setattr(self, 'san_type', n.get_enum_value(subject_alternative_name_type.SubjectAlternativeNameType)),
         }
         return fields
     
@@ -94,7 +94,7 @@ class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -111,7 +111,7 @@ class Windows10XCustomSubjectAlternativeName(AdditionalDataHolder, Parsable):
         """
         Sets the sanType property value. Subject Alternative Name Options.
         Args:
-            value: Value to set for the sanType property.
+            value: Value to set for the san_type property.
         """
         self._san_type = value
     

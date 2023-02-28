@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 rbac_application = lazy_import('msgraph.generated.models.rbac_application')
 rbac_application_multiple = lazy_import('msgraph.generated.models.rbac_application_multiple')
+unified_rbac_application = lazy_import('msgraph.generated.models.unified_rbac_application')
 
 class RoleManagement(AdditionalDataHolder, Parsable):
     @property
@@ -37,7 +38,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the cloudPC property value. The cloudPC property
         Args:
-            value: Value to set for the cloudPC property.
+            value: Value to set for the cloud_p_c property.
         """
         self._cloud_p_c = value
     
@@ -56,6 +57,8 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         self._directory: Optional[rbac_application.RbacApplication] = None
         # The RbacApplication for Entitlement Management
         self._entitlement_management: Optional[rbac_application.RbacApplication] = None
+        # The exchange property
+        self._exchange: Optional[unified_rbac_application.UnifiedRbacApplication] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
     
@@ -84,7 +87,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the deviceManagement property value. The RbacApplication for Device Management
         Args:
-            value: Value to set for the deviceManagement property.
+            value: Value to set for the device_management property.
         """
         self._device_management = value
     
@@ -118,9 +121,26 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the entitlementManagement property value. The RbacApplication for Entitlement Management
         Args:
-            value: Value to set for the entitlementManagement property.
+            value: Value to set for the entitlement_management property.
         """
         self._entitlement_management = value
+    
+    @property
+    def exchange(self,) -> Optional[unified_rbac_application.UnifiedRbacApplication]:
+        """
+        Gets the exchange property value. The exchange property
+        Returns: Optional[unified_rbac_application.UnifiedRbacApplication]
+        """
+        return self._exchange
+    
+    @exchange.setter
+    def exchange(self,value: Optional[unified_rbac_application.UnifiedRbacApplication] = None) -> None:
+        """
+        Sets the exchange property value. The exchange property
+        Args:
+            value: Value to set for the exchange property.
+        """
+        self._exchange = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -128,10 +148,11 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_p_c": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
-            "device_management": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
+            "cloudPC": lambda n : setattr(self, 'cloud_p_c', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
+            "deviceManagement": lambda n : setattr(self, 'device_management', n.get_object_value(rbac_application_multiple.RbacApplicationMultiple)),
             "directory": lambda n : setattr(self, 'directory', n.get_object_value(rbac_application.RbacApplication)),
-            "entitlement_management": lambda n : setattr(self, 'entitlement_management', n.get_object_value(rbac_application.RbacApplication)),
+            "entitlementManagement": lambda n : setattr(self, 'entitlement_management', n.get_object_value(rbac_application.RbacApplication)),
+            "exchange": lambda n : setattr(self, 'exchange', n.get_object_value(unified_rbac_application.UnifiedRbacApplication)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -149,7 +170,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -165,6 +186,7 @@ class RoleManagement(AdditionalDataHolder, Parsable):
         writer.write_object_value("deviceManagement", self.device_management)
         writer.write_object_value("directory", self.directory)
         writer.write_object_value("entitlementManagement", self.entitlement_management)
+        writer.write_object_value("exchange", self.exchange)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -71,7 +71,7 @@ class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicy
         """
         Sets the defaultLanguageCode property value. The default language of the uploaded ADMX file.
         Args:
-            value: Value to set for the defaultLanguageCode property.
+            value: Value to set for the default_language_code property.
         """
         self._default_language_code = value
     
@@ -82,11 +82,11 @@ class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicy
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "default_language_code": lambda n : setattr(self, 'default_language_code', n.get_str_value()),
-            "group_policy_operations": lambda n : setattr(self, 'group_policy_operations', n.get_collection_of_object_values(group_policy_operation.GroupPolicyOperation)),
-            "group_policy_uploaded_language_files": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
+            "defaultLanguageCode": lambda n : setattr(self, 'default_language_code', n.get_str_value()),
+            "groupPolicyOperations": lambda n : setattr(self, 'group_policy_operations', n.get_collection_of_object_values(group_policy_operation.GroupPolicyOperation)),
+            "groupPolicyUploadedLanguageFiles": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(group_policy_uploaded_definition_file_status.GroupPolicyUploadedDefinitionFileStatus)),
-            "upload_date_time": lambda n : setattr(self, 'upload_date_time', n.get_datetime_value()),
+            "uploadDateTime": lambda n : setattr(self, 'upload_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -105,7 +105,7 @@ class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicy
         """
         Sets the groupPolicyOperations property value. The list of operations on the uploaded ADMX file.
         Args:
-            value: Value to set for the groupPolicyOperations property.
+            value: Value to set for the group_policy_operations property.
         """
         self._group_policy_operations = value
     
@@ -122,7 +122,7 @@ class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicy
         """
         Sets the groupPolicyUploadedLanguageFiles property value. The list of ADML files associated with the uploaded ADMX file.
         Args:
-            value: Value to set for the groupPolicyUploadedLanguageFiles property.
+            value: Value to set for the group_policy_uploaded_language_files property.
         """
         self._group_policy_uploaded_language_files = value
     
@@ -172,7 +172,7 @@ class GroupPolicyUploadedDefinitionFile(group_policy_definition_file.GroupPolicy
         """
         Sets the uploadDateTime property value. The uploaded time of the uploaded ADMX file.
         Args:
-            value: Value to set for the uploadDateTime property.
+            value: Value to set for the upload_date_time property.
         """
         self._upload_date_time = value
     

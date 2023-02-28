@@ -51,8 +51,8 @@ class RevokeLicensesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "notify_managed_devices": lambda n : setattr(self, 'notify_managed_devices', n.get_bool_value()),
-            "revoke_untracked_licenses": lambda n : setattr(self, 'revoke_untracked_licenses', n.get_bool_value()),
+            "notifyManagedDevices": lambda n : setattr(self, 'notify_managed_devices', n.get_bool_value()),
+            "revokeUntrackedLicenses": lambda n : setattr(self, 'revoke_untracked_licenses', n.get_bool_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class RevokeLicensesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the notifyManagedDevices property value. The notifyManagedDevices property
         Args:
-            value: Value to set for the notifyManagedDevices property.
+            value: Value to set for the notify_managed_devices property.
         """
         self._notify_managed_devices = value
     
@@ -86,7 +86,7 @@ class RevokeLicensesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the revokeUntrackedLicenses property value. The revokeUntrackedLicenses property
         Args:
-            value: Value to set for the revokeUntrackedLicenses property.
+            value: Value to set for the revoke_untracked_licenses property.
         """
         self._revoke_untracked_licenses = value
     

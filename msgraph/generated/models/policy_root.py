@@ -44,7 +44,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the accessReviewPolicy property value. The policy that contains directory-level access review settings.
         Args:
-            value: Value to set for the accessReviewPolicy property.
+            value: Value to set for the access_review_policy property.
         """
         self._access_review_policy = value
     
@@ -61,7 +61,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the activityBasedTimeoutPolicies property value. The policy that controls the idle time out for web sessions for applications.
         Args:
-            value: Value to set for the activityBasedTimeoutPolicies property.
+            value: Value to set for the activity_based_timeout_policies property.
         """
         self._activity_based_timeout_policies = value
     
@@ -95,7 +95,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the adminConsentRequestPolicy property value. The policy by which consent requests are created and managed for the entire tenant.
         Args:
-            value: Value to set for the adminConsentRequestPolicy property.
+            value: Value to set for the admin_consent_request_policy property.
         """
         self._admin_consent_request_policy = value
     
@@ -112,7 +112,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the appManagementPolicies property value. The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         Args:
-            value: Value to set for the appManagementPolicies property.
+            value: Value to set for the app_management_policies property.
         """
         self._app_management_policies = value
     
@@ -129,7 +129,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationFlowsPolicy property value. The policy configuration of the self-service sign-up experience of external users.
         Args:
-            value: Value to set for the authenticationFlowsPolicy property.
+            value: Value to set for the authentication_flows_policy property.
         """
         self._authentication_flows_policy = value
     
@@ -146,7 +146,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
         Args:
-            value: Value to set for the authenticationMethodsPolicy property.
+            value: Value to set for the authentication_methods_policy property.
         """
         self._authentication_methods_policy = value
     
@@ -163,7 +163,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the authenticationStrengthPolicies property value. The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
         Args:
-            value: Value to set for the authenticationStrengthPolicies property.
+            value: Value to set for the authentication_strength_policies property.
         """
         self._authentication_strength_policies = value
     
@@ -180,7 +180,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the authorizationPolicy property value. The policy that controls Azure AD authorization settings.
         Args:
-            value: Value to set for the authorizationPolicy property.
+            value: Value to set for the authorization_policy property.
         """
         self._authorization_policy = value
     
@@ -197,7 +197,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the b2cAuthenticationMethodsPolicy property value. The Azure AD B2C policies that define how end users register via local accounts.
         Args:
-            value: Value to set for the b2cAuthenticationMethodsPolicy property.
+            value: Value to set for the b2c_authentication_methods_policy property.
         """
         self._b2c_authentication_methods_policy = value
     
@@ -214,7 +214,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the claimsMappingPolicies property value. The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
         Args:
-            value: Value to set for the claimsMappingPolicies property.
+            value: Value to set for the claims_mapping_policies property.
         """
         self._claims_mapping_policies = value
     
@@ -231,7 +231,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the conditionalAccessPolicies property value. The custom rules that define an access scenario.
         Args:
-            value: Value to set for the conditionalAccessPolicies property.
+            value: Value to set for the conditional_access_policies property.
         """
         self._conditional_access_policies = value
     
@@ -324,7 +324,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the crossTenantAccessPolicy property value. The custom rules that define an access scenario when interacting with external Azure AD tenants.
         Args:
-            value: Value to set for the crossTenantAccessPolicy property.
+            value: Value to set for the cross_tenant_access_policy property.
         """
         self._cross_tenant_access_policy = value
     
@@ -341,7 +341,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the defaultAppManagementPolicy property value. The tenant-wide policy that enforces app management restrictions for all applications and service principals.
         Args:
-            value: Value to set for the defaultAppManagementPolicy property.
+            value: Value to set for the default_app_management_policy property.
         """
         self._default_app_management_policy = value
     
@@ -358,7 +358,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the deviceRegistrationPolicy property value. The deviceRegistrationPolicy property
         Args:
-            value: Value to set for the deviceRegistrationPolicy property.
+            value: Value to set for the device_registration_policy property.
         """
         self._device_registration_policy = value
     
@@ -375,7 +375,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the directoryRoleAccessReviewPolicy property value. The directoryRoleAccessReviewPolicy property
         Args:
-            value: Value to set for the directoryRoleAccessReviewPolicy property.
+            value: Value to set for the directory_role_access_review_policy property.
         """
         self._directory_role_access_review_policy = value
     
@@ -392,7 +392,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the externalIdentitiesPolicy property value. Represents the tenant-wide policy that controls whether external users can leave an Azure AD tenant via self-service controls.
         Args:
-            value: Value to set for the externalIdentitiesPolicy property.
+            value: Value to set for the external_identities_policy property.
         """
         self._external_identities_policy = value
     
@@ -409,7 +409,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the featureRolloutPolicies property value. The feature rollout policy associated with a directory object.
         Args:
-            value: Value to set for the featureRolloutPolicies property.
+            value: Value to set for the feature_rollout_policies property.
         """
         self._feature_rollout_policies = value
     
@@ -419,34 +419,34 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_review_policy": lambda n : setattr(self, 'access_review_policy', n.get_object_value(access_review_policy.AccessReviewPolicy)),
-            "activity_based_timeout_policies": lambda n : setattr(self, 'activity_based_timeout_policies', n.get_collection_of_object_values(activity_based_timeout_policy.ActivityBasedTimeoutPolicy)),
-            "admin_consent_request_policy": lambda n : setattr(self, 'admin_consent_request_policy', n.get_object_value(admin_consent_request_policy.AdminConsentRequestPolicy)),
-            "app_management_policies": lambda n : setattr(self, 'app_management_policies', n.get_collection_of_object_values(app_management_policy.AppManagementPolicy)),
-            "authentication_flows_policy": lambda n : setattr(self, 'authentication_flows_policy', n.get_object_value(authentication_flows_policy.AuthenticationFlowsPolicy)),
-            "authentication_methods_policy": lambda n : setattr(self, 'authentication_methods_policy', n.get_object_value(authentication_methods_policy.AuthenticationMethodsPolicy)),
-            "authentication_strength_policies": lambda n : setattr(self, 'authentication_strength_policies', n.get_collection_of_object_values(authentication_strength_policy.AuthenticationStrengthPolicy)),
-            "authorization_policy": lambda n : setattr(self, 'authorization_policy', n.get_collection_of_object_values(authorization_policy.AuthorizationPolicy)),
-            "b2c_authentication_methods_policy": lambda n : setattr(self, 'b2c_authentication_methods_policy', n.get_object_value(b2c_authentication_methods_policy.B2cAuthenticationMethodsPolicy)),
-            "claims_mapping_policies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(claims_mapping_policy.ClaimsMappingPolicy)),
-            "conditional_access_policies": lambda n : setattr(self, 'conditional_access_policies', n.get_collection_of_object_values(conditional_access_policy.ConditionalAccessPolicy)),
-            "cross_tenant_access_policy": lambda n : setattr(self, 'cross_tenant_access_policy', n.get_object_value(cross_tenant_access_policy.CrossTenantAccessPolicy)),
-            "default_app_management_policy": lambda n : setattr(self, 'default_app_management_policy', n.get_object_value(tenant_app_management_policy.TenantAppManagementPolicy)),
-            "device_registration_policy": lambda n : setattr(self, 'device_registration_policy', n.get_object_value(device_registration_policy.DeviceRegistrationPolicy)),
-            "directory_role_access_review_policy": lambda n : setattr(self, 'directory_role_access_review_policy', n.get_object_value(directory_role_access_review_policy.DirectoryRoleAccessReviewPolicy)),
-            "external_identities_policy": lambda n : setattr(self, 'external_identities_policy', n.get_object_value(external_identities_policy.ExternalIdentitiesPolicy)),
-            "feature_rollout_policies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(feature_rollout_policy.FeatureRolloutPolicy)),
-            "home_realm_discovery_policies": lambda n : setattr(self, 'home_realm_discovery_policies', n.get_collection_of_object_values(home_realm_discovery_policy.HomeRealmDiscoveryPolicy)),
-            "identity_security_defaults_enforcement_policy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(identity_security_defaults_enforcement_policy.IdentitySecurityDefaultsEnforcementPolicy)),
-            "mobile_app_management_policies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(mobility_management_policy.MobilityManagementPolicy)),
-            "mobile_device_management_policies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(mobility_management_policy.MobilityManagementPolicy)),
+            "accessReviewPolicy": lambda n : setattr(self, 'access_review_policy', n.get_object_value(access_review_policy.AccessReviewPolicy)),
+            "activityBasedTimeoutPolicies": lambda n : setattr(self, 'activity_based_timeout_policies', n.get_collection_of_object_values(activity_based_timeout_policy.ActivityBasedTimeoutPolicy)),
+            "adminConsentRequestPolicy": lambda n : setattr(self, 'admin_consent_request_policy', n.get_object_value(admin_consent_request_policy.AdminConsentRequestPolicy)),
+            "appManagementPolicies": lambda n : setattr(self, 'app_management_policies', n.get_collection_of_object_values(app_management_policy.AppManagementPolicy)),
+            "authenticationFlowsPolicy": lambda n : setattr(self, 'authentication_flows_policy', n.get_object_value(authentication_flows_policy.AuthenticationFlowsPolicy)),
+            "authenticationMethodsPolicy": lambda n : setattr(self, 'authentication_methods_policy', n.get_object_value(authentication_methods_policy.AuthenticationMethodsPolicy)),
+            "authenticationStrengthPolicies": lambda n : setattr(self, 'authentication_strength_policies', n.get_collection_of_object_values(authentication_strength_policy.AuthenticationStrengthPolicy)),
+            "authorizationPolicy": lambda n : setattr(self, 'authorization_policy', n.get_collection_of_object_values(authorization_policy.AuthorizationPolicy)),
+            "b2cAuthenticationMethodsPolicy": lambda n : setattr(self, 'b2c_authentication_methods_policy', n.get_object_value(b2c_authentication_methods_policy.B2cAuthenticationMethodsPolicy)),
+            "claimsMappingPolicies": lambda n : setattr(self, 'claims_mapping_policies', n.get_collection_of_object_values(claims_mapping_policy.ClaimsMappingPolicy)),
+            "conditionalAccessPolicies": lambda n : setattr(self, 'conditional_access_policies', n.get_collection_of_object_values(conditional_access_policy.ConditionalAccessPolicy)),
+            "crossTenantAccessPolicy": lambda n : setattr(self, 'cross_tenant_access_policy', n.get_object_value(cross_tenant_access_policy.CrossTenantAccessPolicy)),
+            "defaultAppManagementPolicy": lambda n : setattr(self, 'default_app_management_policy', n.get_object_value(tenant_app_management_policy.TenantAppManagementPolicy)),
+            "deviceRegistrationPolicy": lambda n : setattr(self, 'device_registration_policy', n.get_object_value(device_registration_policy.DeviceRegistrationPolicy)),
+            "directoryRoleAccessReviewPolicy": lambda n : setattr(self, 'directory_role_access_review_policy', n.get_object_value(directory_role_access_review_policy.DirectoryRoleAccessReviewPolicy)),
+            "externalIdentitiesPolicy": lambda n : setattr(self, 'external_identities_policy', n.get_object_value(external_identities_policy.ExternalIdentitiesPolicy)),
+            "featureRolloutPolicies": lambda n : setattr(self, 'feature_rollout_policies', n.get_collection_of_object_values(feature_rollout_policy.FeatureRolloutPolicy)),
+            "homeRealmDiscoveryPolicies": lambda n : setattr(self, 'home_realm_discovery_policies', n.get_collection_of_object_values(home_realm_discovery_policy.HomeRealmDiscoveryPolicy)),
+            "identitySecurityDefaultsEnforcementPolicy": lambda n : setattr(self, 'identity_security_defaults_enforcement_policy', n.get_object_value(identity_security_defaults_enforcement_policy.IdentitySecurityDefaultsEnforcementPolicy)),
+            "mobileAppManagementPolicies": lambda n : setattr(self, 'mobile_app_management_policies', n.get_collection_of_object_values(mobility_management_policy.MobilityManagementPolicy)),
+            "mobileDeviceManagementPolicies": lambda n : setattr(self, 'mobile_device_management_policies', n.get_collection_of_object_values(mobility_management_policy.MobilityManagementPolicy)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "permission_grant_policies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(permission_grant_policy.PermissionGrantPolicy)),
-            "role_management_policies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(unified_role_management_policy.UnifiedRoleManagementPolicy)),
-            "role_management_policy_assignments": lambda n : setattr(self, 'role_management_policy_assignments', n.get_collection_of_object_values(unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment)),
-            "service_principal_creation_policies": lambda n : setattr(self, 'service_principal_creation_policies', n.get_collection_of_object_values(service_principal_creation_policy.ServicePrincipalCreationPolicy)),
-            "token_issuance_policies": lambda n : setattr(self, 'token_issuance_policies', n.get_collection_of_object_values(token_issuance_policy.TokenIssuancePolicy)),
-            "token_lifetime_policies": lambda n : setattr(self, 'token_lifetime_policies', n.get_collection_of_object_values(token_lifetime_policy.TokenLifetimePolicy)),
+            "permissionGrantPolicies": lambda n : setattr(self, 'permission_grant_policies', n.get_collection_of_object_values(permission_grant_policy.PermissionGrantPolicy)),
+            "roleManagementPolicies": lambda n : setattr(self, 'role_management_policies', n.get_collection_of_object_values(unified_role_management_policy.UnifiedRoleManagementPolicy)),
+            "roleManagementPolicyAssignments": lambda n : setattr(self, 'role_management_policy_assignments', n.get_collection_of_object_values(unified_role_management_policy_assignment.UnifiedRoleManagementPolicyAssignment)),
+            "servicePrincipalCreationPolicies": lambda n : setattr(self, 'service_principal_creation_policies', n.get_collection_of_object_values(service_principal_creation_policy.ServicePrincipalCreationPolicy)),
+            "tokenIssuancePolicies": lambda n : setattr(self, 'token_issuance_policies', n.get_collection_of_object_values(token_issuance_policy.TokenIssuancePolicy)),
+            "tokenLifetimePolicies": lambda n : setattr(self, 'token_lifetime_policies', n.get_collection_of_object_values(token_lifetime_policy.TokenLifetimePolicy)),
         }
         return fields
     
@@ -463,7 +463,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the homeRealmDiscoveryPolicies property value. The policy to control Azure AD authentication behavior for federated users.
         Args:
-            value: Value to set for the homeRealmDiscoveryPolicies property.
+            value: Value to set for the home_realm_discovery_policies property.
         """
         self._home_realm_discovery_policies = value
     
@@ -480,7 +480,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the identitySecurityDefaultsEnforcementPolicy property value. The policy that represents the security defaults that protect against common attacks.
         Args:
-            value: Value to set for the identitySecurityDefaultsEnforcementPolicy property.
+            value: Value to set for the identity_security_defaults_enforcement_policy property.
         """
         self._identity_security_defaults_enforcement_policy = value
     
@@ -497,7 +497,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the mobileAppManagementPolicies property value. The policy that defines auto-enrollment configuration for a mobility management (MDM or MAM) application.
         Args:
-            value: Value to set for the mobileAppManagementPolicies property.
+            value: Value to set for the mobile_app_management_policies property.
         """
         self._mobile_app_management_policies = value
     
@@ -514,7 +514,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the mobileDeviceManagementPolicies property value. The mobileDeviceManagementPolicies property
         Args:
-            value: Value to set for the mobileDeviceManagementPolicies property.
+            value: Value to set for the mobile_device_management_policies property.
         """
         self._mobile_device_management_policies = value
     
@@ -531,7 +531,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -548,7 +548,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the permissionGrantPolicies property value. The policy that specifies the conditions under which consent can be granted.
         Args:
-            value: Value to set for the permissionGrantPolicies property.
+            value: Value to set for the permission_grant_policies property.
         """
         self._permission_grant_policies = value
     
@@ -565,7 +565,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the roleManagementPolicies property value. Represents the role management policies.
         Args:
-            value: Value to set for the roleManagementPolicies property.
+            value: Value to set for the role_management_policies property.
         """
         self._role_management_policies = value
     
@@ -582,7 +582,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the roleManagementPolicyAssignments property value. Represents the role management policy assignments.
         Args:
-            value: Value to set for the roleManagementPolicyAssignments property.
+            value: Value to set for the role_management_policy_assignments property.
         """
         self._role_management_policy_assignments = value
     
@@ -637,7 +637,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the servicePrincipalCreationPolicies property value. The servicePrincipalCreationPolicies property
         Args:
-            value: Value to set for the servicePrincipalCreationPolicies property.
+            value: Value to set for the service_principal_creation_policies property.
         """
         self._service_principal_creation_policies = value
     
@@ -654,7 +654,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the tokenIssuancePolicies property value. The policy that specifies the characteristics of SAML tokens issued by Azure AD.
         Args:
-            value: Value to set for the tokenIssuancePolicies property.
+            value: Value to set for the token_issuance_policies property.
         """
         self._token_issuance_policies = value
     
@@ -671,7 +671,7 @@ class PolicyRoot(AdditionalDataHolder, Parsable):
         """
         Sets the tokenLifetimePolicies property value. The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
         Args:
-            value: Value to set for the tokenLifetimePolicies property.
+            value: Value to set for the token_lifetime_policies property.
         """
         self._token_lifetime_policies = value
     

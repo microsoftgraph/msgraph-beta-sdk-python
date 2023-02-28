@@ -2,7 +2,7 @@ from enum import Enum
 
 class GroupPolicyOperationType(Enum):
     # Group Policy invalid operation type.
-    None_escaped = "none",
+    None_ = "none",
     # Group Policy upload operation type.
     Upload = "upload",
     # Group Policy upload new version operation type.

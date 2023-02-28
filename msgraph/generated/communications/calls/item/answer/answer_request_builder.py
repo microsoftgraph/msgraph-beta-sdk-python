@@ -29,19 +29,18 @@ class AnswerRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/communications/calls/{call%2Did}/microsoft.graph.answer"
+        self.url_template: str = "{+baseurl}/communications/calls/{call%2Did}/answer"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[answer_post_request_body.AnswerPostRequestBody] = None, request_configuration: Optional[AnswerRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def post(self,body: Optional[answer_post_request_body.AnswerPostRequestBody] = None, request_configuration: Optional[AnswerRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Enable a bot to answer an incoming call. The incoming call request can be an invite from a participant in a group call or a peer-to-peer call. If an invite to a group call is received, the notification will contain the chatInfo and meetingInfo parameters. The bot is expected to answer, reject or redirect the call before the call times out. The current timeout value is 15 seconds. The current timeout value is 15 seconds for regular scenarios, and 5 seconds for policy-based recording scenarios.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -54,7 +53,7 @@ class AnswerRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def to_post_request_information(self,body: Optional[answer_post_request_body.AnswerPostRequestBody] = None, request_configuration: Optional[AnswerRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -82,7 +81,7 @@ class AnswerRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

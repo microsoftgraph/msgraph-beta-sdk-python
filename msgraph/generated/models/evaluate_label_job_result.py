@@ -60,9 +60,9 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "responsible_policy": lambda n : setattr(self, 'responsible_policy', n.get_object_value(responsible_policy.ResponsiblePolicy)),
-            "responsible_sensitive_types": lambda n : setattr(self, 'responsible_sensitive_types', n.get_collection_of_object_values(responsible_sensitive_type.ResponsibleSensitiveType)),
-            "sensitivity_label": lambda n : setattr(self, 'sensitivity_label', n.get_object_value(matching_label.MatchingLabel)),
+            "responsiblePolicy": lambda n : setattr(self, 'responsible_policy', n.get_object_value(responsible_policy.ResponsiblePolicy)),
+            "responsibleSensitiveTypes": lambda n : setattr(self, 'responsible_sensitive_types', n.get_collection_of_object_values(responsible_sensitive_type.ResponsibleSensitiveType)),
+            "sensitivityLabel": lambda n : setattr(self, 'sensitivity_label', n.get_object_value(matching_label.MatchingLabel)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -96,7 +96,7 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the responsiblePolicy property value. The responsiblePolicy property
         Args:
-            value: Value to set for the responsiblePolicy property.
+            value: Value to set for the responsible_policy property.
         """
         self._responsible_policy = value
     
@@ -113,7 +113,7 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the responsibleSensitiveTypes property value. The responsibleSensitiveTypes property
         Args:
-            value: Value to set for the responsibleSensitiveTypes property.
+            value: Value to set for the responsible_sensitive_types property.
         """
         self._responsible_sensitive_types = value
     
@@ -130,7 +130,7 @@ class EvaluateLabelJobResult(AdditionalDataHolder, Parsable):
         """
         Sets the sensitivityLabel property value. The sensitivityLabel property
         Args:
-            value: Value to set for the sensitivityLabel property.
+            value: Value to set for the sensitivity_label property.
         """
         self._sensitivity_label = value
     

@@ -83,12 +83,12 @@ class GetAllCertificatesReportPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
-            "group_by": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
+            "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "order_by": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
+            "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
-            "session_id": lambda n : setattr(self, 'session_id', n.get_str_value()),
+            "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),
             "top": lambda n : setattr(self, 'top', n.get_int_value()),
         }
@@ -107,7 +107,7 @@ class GetAllCertificatesReportPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupBy property value. The groupBy property
         Args:
-            value: Value to set for the groupBy property.
+            value: Value to set for the group_by property.
         """
         self._group_by = value
     
@@ -141,7 +141,7 @@ class GetAllCertificatesReportPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the orderBy property value. The orderBy property
         Args:
-            value: Value to set for the orderBy property.
+            value: Value to set for the order_by property.
         """
         self._order_by = value
     
@@ -211,7 +211,7 @@ class GetAllCertificatesReportPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sessionId property value. The sessionId property
         Args:
-            value: Value to set for the sessionId property.
+            value: Value to set for the session_id property.
         """
         self._session_id = value
     

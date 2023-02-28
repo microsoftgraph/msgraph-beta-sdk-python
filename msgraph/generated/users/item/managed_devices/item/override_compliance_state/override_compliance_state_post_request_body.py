@@ -36,7 +36,7 @@ class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the complianceState property value. Administrator configured device compliance state Enum
         Args:
-            value: Value to set for the complianceState property.
+            value: Value to set for the compliance_state property.
         """
         self._compliance_state = value
     
@@ -70,8 +70,8 @@ class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_state": lambda n : setattr(self, 'compliance_state', n.get_enum_value(administrator_configured_device_compliance_state.AdministratorConfiguredDeviceComplianceState)),
-            "remediation_url": lambda n : setattr(self, 'remediation_url', n.get_str_value()),
+            "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(administrator_configured_device_compliance_state.AdministratorConfiguredDeviceComplianceState)),
+            "remediationUrl": lambda n : setattr(self, 'remediation_url', n.get_str_value()),
         }
         return fields
     
@@ -88,7 +88,7 @@ class OverrideComplianceStatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the remediationUrl property value. The remediationUrl property
         Args:
-            value: Value to set for the remediationUrl property.
+            value: Value to set for the remediation_url property.
         """
         self._remediation_url = value
     

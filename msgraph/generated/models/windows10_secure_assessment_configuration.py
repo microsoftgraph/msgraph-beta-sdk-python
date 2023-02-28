@@ -20,7 +20,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the allowPrinting property value. Indicates whether or not to allow the app from printing during the test.
         Args:
-            value: Value to set for the allowPrinting property.
+            value: Value to set for the allow_printing property.
         """
         self._allow_printing = value
     
@@ -37,7 +37,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the allowScreenCapture property value. Indicates whether or not to allow screen capture capability during a test.
         Args:
-            value: Value to set for the allowScreenCapture property.
+            value: Value to set for the allow_screen_capture property.
         """
         self._allow_screen_capture = value
     
@@ -54,7 +54,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the allowTextSuggestion property value. Indicates whether or not to allow text suggestions during the test.
         Args:
-            value: Value to set for the allowTextSuggestion property.
+            value: Value to set for the allow_text_suggestion property.
         """
         self._allow_text_suggestion = value
     
@@ -71,7 +71,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the assessmentAppUserModelId property value. Specifies the application user model ID of the assessment app launched when a user signs in to a secure assessment with a local guest account. Important notice: this property must be set with localGuestAccountName in order to make the local guest account sign-in experience work properly for secure assessments.
         Args:
-            value: Value to set for the assessmentAppUserModelId property.
+            value: Value to set for the assessment_app_user_model_id property.
         """
         self._assessment_app_user_model_id = value
     
@@ -88,7 +88,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the configurationAccount property value. The account used to configure the Windows device for taking the test. The user can be a domain account (domain/user), an AAD account (username@tenant.com) or a local account (username).
         Args:
-            value: Value to set for the configurationAccount property.
+            value: Value to set for the configuration_account property.
         """
         self._configuration_account = value
     
@@ -105,7 +105,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the configurationAccountType property value. Type of accounts that are allowed for Windows10SecureAssessment ConfigurationAccount.
         Args:
-            value: Value to set for the configurationAccountType property.
+            value: Value to set for the configuration_account_type property.
         """
         self._configuration_account_type = value
     
@@ -150,14 +150,14 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_printing": lambda n : setattr(self, 'allow_printing', n.get_bool_value()),
-            "allow_screen_capture": lambda n : setattr(self, 'allow_screen_capture', n.get_bool_value()),
-            "allow_text_suggestion": lambda n : setattr(self, 'allow_text_suggestion', n.get_bool_value()),
-            "assessment_app_user_model_id": lambda n : setattr(self, 'assessment_app_user_model_id', n.get_str_value()),
-            "configuration_account": lambda n : setattr(self, 'configuration_account', n.get_str_value()),
-            "configuration_account_type": lambda n : setattr(self, 'configuration_account_type', n.get_enum_value(secure_assessment_account_type.SecureAssessmentAccountType)),
-            "launch_uri": lambda n : setattr(self, 'launch_uri', n.get_str_value()),
-            "local_guest_account_name": lambda n : setattr(self, 'local_guest_account_name', n.get_str_value()),
+            "allowPrinting": lambda n : setattr(self, 'allow_printing', n.get_bool_value()),
+            "allowScreenCapture": lambda n : setattr(self, 'allow_screen_capture', n.get_bool_value()),
+            "allowTextSuggestion": lambda n : setattr(self, 'allow_text_suggestion', n.get_bool_value()),
+            "assessmentAppUserModelId": lambda n : setattr(self, 'assessment_app_user_model_id', n.get_str_value()),
+            "configurationAccount": lambda n : setattr(self, 'configuration_account', n.get_str_value()),
+            "configurationAccountType": lambda n : setattr(self, 'configuration_account_type', n.get_enum_value(secure_assessment_account_type.SecureAssessmentAccountType)),
+            "launchUri": lambda n : setattr(self, 'launch_uri', n.get_str_value()),
+            "localGuestAccountName": lambda n : setattr(self, 'local_guest_account_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -176,7 +176,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the launchUri property value. Url link to an assessment that's automatically loaded when the secure assessment browser is launched. It has to be a valid Url (http[s]://msdn.microsoft.com/).
         Args:
-            value: Value to set for the launchUri property.
+            value: Value to set for the launch_uri property.
         """
         self._launch_uri = value
     
@@ -193,7 +193,7 @@ class Windows10SecureAssessmentConfiguration(device_configuration.DeviceConfigur
         """
         Sets the localGuestAccountName property value. Specifies the display text for the local guest account shown on the sign-in screen. Typically is the name of an assessment. When the user clicks the local guest account on the sign-in screen, an assessment app is launched with a specified assessment URL. Secure assessments can only be configured with local guest account sign-in on devices running Windows 10, version 1903 or later. Important notice: this property must be set with assessmentAppUserModelID in order to make the local guest account sign-in experience work properly for secure assessments.
         Args:
-            value: Value to set for the localGuestAccountName property.
+            value: Value to set for the local_guest_account_name property.
         """
         self._local_guest_account_name = value
     

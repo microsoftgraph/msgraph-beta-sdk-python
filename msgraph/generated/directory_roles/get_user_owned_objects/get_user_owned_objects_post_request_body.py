@@ -52,7 +52,7 @@ class GetUserOwnedObjectsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         return fields
     
@@ -98,7 +98,7 @@ class GetUserOwnedObjectsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. The userId property
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

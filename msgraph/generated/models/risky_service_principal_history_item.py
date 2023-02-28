@@ -57,8 +57,8 @@ class RiskyServicePrincipalHistoryItem(risky_service_principal.RiskyServicePrinc
         """
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_object_value(risk_service_principal_activity.RiskServicePrincipalActivity)),
-            "initiated_by": lambda n : setattr(self, 'initiated_by', n.get_str_value()),
-            "service_principal_id": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
+            "initiatedBy": lambda n : setattr(self, 'initiated_by', n.get_str_value()),
+            "servicePrincipalId": lambda n : setattr(self, 'service_principal_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class RiskyServicePrincipalHistoryItem(risky_service_principal.RiskyServicePrinc
         """
         Sets the initiatedBy property value. The identifier of the actor of the operation.
         Args:
-            value: Value to set for the initiatedBy property.
+            value: Value to set for the initiated_by property.
         """
         self._initiated_by = value
     
@@ -107,7 +107,7 @@ class RiskyServicePrincipalHistoryItem(risky_service_principal.RiskyServicePrinc
         """
         Sets the servicePrincipalId property value. The identifier of the service principal.
         Args:
-            value: Value to set for the servicePrincipalId property.
+            value: Value to set for the service_principal_id property.
         """
         self._service_principal_id = value
     

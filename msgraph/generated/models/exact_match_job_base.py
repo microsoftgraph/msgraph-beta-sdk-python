@@ -21,7 +21,7 @@ class ExactMatchJobBase(entity.Entity):
         """
         Sets the completionDateTime property value. The completionDateTime property
         Args:
-            value: Value to set for the completionDateTime property.
+            value: Value to set for the completion_date_time property.
         """
         self._completion_date_time = value
     
@@ -68,7 +68,7 @@ class ExactMatchJobBase(entity.Entity):
         """
         Sets the creationDateTime property value. The creationDateTime property
         Args:
-            value: Value to set for the creationDateTime property.
+            value: Value to set for the creation_date_time property.
         """
         self._creation_date_time = value
     
@@ -95,11 +95,11 @@ class ExactMatchJobBase(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completion_date_time": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
-            "creation_date_time": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
+            "completionDateTime": lambda n : setattr(self, 'completion_date_time', n.get_datetime_value()),
+            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "error": lambda n : setattr(self, 'error', n.get_object_value(classification_error.ClassificationError)),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -118,7 +118,7 @@ class ExactMatchJobBase(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. The lastUpdatedDateTime property
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -150,7 +150,7 @@ class ExactMatchJobBase(entity.Entity):
         """
         Sets the startDateTime property value. The startDateTime property
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

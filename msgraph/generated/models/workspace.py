@@ -90,7 +90,7 @@ class Workspace(place.Place):
         """
         Sets the emailAddress property value. Email address of the workspace.
         Args:
-            value: Value to set for the emailAddress property.
+            value: Value to set for the email_address property.
         """
         self._email_address = value
     
@@ -107,7 +107,7 @@ class Workspace(place.Place):
         """
         Sets the floorLabel property value. Specifies a descriptive label for the floor, for example, P.
         Args:
-            value: Value to set for the floorLabel property.
+            value: Value to set for the floor_label property.
         """
         self._floor_label = value
     
@@ -124,7 +124,7 @@ class Workspace(place.Place):
         """
         Sets the floorNumber property value. Specifies the floor number that the workspace is on.
         Args:
-            value: Value to set for the floorNumber property.
+            value: Value to set for the floor_number property.
         """
         self._floor_number = value
     
@@ -136,10 +136,10 @@ class Workspace(place.Place):
         fields = {
             "building": lambda n : setattr(self, 'building', n.get_str_value()),
             "capacity": lambda n : setattr(self, 'capacity', n.get_int_value()),
-            "email_address": lambda n : setattr(self, 'email_address', n.get_str_value()),
-            "floor_label": lambda n : setattr(self, 'floor_label', n.get_str_value()),
-            "floor_number": lambda n : setattr(self, 'floor_number', n.get_int_value()),
-            "is_wheel_chair_accessible": lambda n : setattr(self, 'is_wheel_chair_accessible', n.get_bool_value()),
+            "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "floorLabel": lambda n : setattr(self, 'floor_label', n.get_str_value()),
+            "floorNumber": lambda n : setattr(self, 'floor_number', n.get_int_value()),
+            "isWheelChairAccessible": lambda n : setattr(self, 'is_wheel_chair_accessible', n.get_bool_value()),
             "label": lambda n : setattr(self, 'label', n.get_str_value()),
             "nickname": lambda n : setattr(self, 'nickname', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
@@ -161,7 +161,7 @@ class Workspace(place.Place):
         """
         Sets the isWheelChairAccessible property value. Specifies whether the workspace is wheelchair accessible.
         Args:
-            value: Value to set for the isWheelChairAccessible property.
+            value: Value to set for the is_wheel_chair_accessible property.
         """
         self._is_wheel_chair_accessible = value
     

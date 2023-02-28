@@ -49,7 +49,7 @@ class RequestSignupUrlPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "host_name": lambda n : setattr(self, 'host_name', n.get_str_value()),
+            "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class RequestSignupUrlPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the hostName property value. The hostName property
         Args:
-            value: Value to set for the hostName property.
+            value: Value to set for the host_name property.
         """
         self._host_name = value
     

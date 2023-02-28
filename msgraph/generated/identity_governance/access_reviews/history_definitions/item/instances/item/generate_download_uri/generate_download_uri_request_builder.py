@@ -29,18 +29,17 @@ class GenerateDownloadUriRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/identityGovernance/accessReviews/historyDefinitions/{accessReviewHistoryDefinition%2Did}/instances/{accessReviewHistoryInstance%2Did}/microsoft.graph.generateDownloadUri"
+        self.url_template: str = "{+baseurl}/identityGovernance/accessReviews/historyDefinitions/{accessReviewHistoryDefinition%2Did}/instances/{accessReviewHistoryInstance%2Did}/generateDownloadUri"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[GenerateDownloadUriRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_review_history_instance.AccessReviewHistoryInstance]:
+    async def post(self,request_configuration: Optional[GenerateDownloadUriRequestBuilderPostRequestConfiguration] = None) -> Optional[access_review_history_instance.AccessReviewHistoryInstance]:
         """
         Generates a URI for an accessReviewHistoryInstance object the **status** for which is `done`. Each URI can be used to retrieve the instance's review history data. Each URI is valid for 24 hours and can be retrieved by fetching the **downloadUri** property from the accessReviewHistoryInstance object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_review_history_instance.AccessReviewHistoryInstance]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class GenerateDownloadUriRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_review_history_instance.AccessReviewHistoryInstance, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_review_history_instance.AccessReviewHistoryInstance, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[GenerateDownloadUriRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -65,7 +64,7 @@ class GenerateDownloadUriRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -77,7 +76,7 @@ class GenerateDownloadUriRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

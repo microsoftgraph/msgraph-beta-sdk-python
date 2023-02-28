@@ -196,6 +196,8 @@ role_scope_tags_request_builder = lazy_import('msgraph.generated.device_manageme
 role_scope_tag_item_request_builder = lazy_import('msgraph.generated.device_management.role_scope_tags.item.role_scope_tag_item_request_builder')
 scoped_for_resource_with_resource_request_builder = lazy_import('msgraph.generated.device_management.scoped_for_resource_with_resource.scoped_for_resource_with_resource_request_builder')
 send_custom_notification_to_company_portal_request_builder = lazy_import('msgraph.generated.device_management.send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder')
+service_now_connections_request_builder = lazy_import('msgraph.generated.device_management.service_now_connections.service_now_connections_request_builder')
+service_now_connection_item_request_builder = lazy_import('msgraph.generated.device_management.service_now_connections.item.service_now_connection_item_request_builder')
 setting_definitions_request_builder = lazy_import('msgraph.generated.device_management.setting_definitions.setting_definitions_request_builder')
 device_management_setting_definition_item_request_builder = lazy_import('msgraph.generated.device_management.setting_definitions.item.device_management_setting_definition_item_request_builder')
 software_update_status_summary_request_builder = lazy_import('msgraph.generated.device_management.software_update_status_summary.software_update_status_summary_request_builder')
@@ -268,8 +270,8 @@ user_experience_analytics_device_startup_process_performance_request_builder = l
 user_experience_analytics_device_startup_process_performance_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_startup_process_performance.item.user_experience_analytics_device_startup_process_performance_item_request_builder')
 user_experience_analytics_devices_without_cloud_identity_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_devices_without_cloud_identity.user_experience_analytics_devices_without_cloud_identity_request_builder')
 user_experience_analytics_device_without_cloud_identity_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_devices_without_cloud_identity.item.user_experience_analytics_device_without_cloud_identity_item_request_builder')
-user_experience_analytics_device_timeline_events_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_events.user_experience_analytics_device_timeline_events_request_builder')
-user_experience_analytics_device_timeline_events_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_events.item.user_experience_analytics_device_timeline_events_item_request_builder')
+user_experience_analytics_device_timeline_event_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_event.user_experience_analytics_device_timeline_event_request_builder')
+user_experience_analytics_device_timeline_event_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_timeline_event.item.user_experience_analytics_device_timeline_event_item_request_builder')
 user_experience_analytics_impacting_process_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_impacting_process.user_experience_analytics_impacting_process_request_builder')
 user_experience_analytics_impacting_process_item_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_impacting_process.item.user_experience_analytics_impacting_process_item_request_builder')
 user_experience_analytics_metric_history_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_metric_history.user_experience_analytics_metric_history_request_builder')
@@ -320,7 +322,7 @@ zebra_fota_artifact_item_request_builder = lazy_import('msgraph.generated.device
 zebra_fota_connector_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_connector.zebra_fota_connector_request_builder')
 zebra_fota_deployments_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_deployments.zebra_fota_deployments_request_builder')
 zebra_fota_deployment_item_request_builder = lazy_import('msgraph.generated.device_management.zebra_fota_deployments.item.zebra_fota_deployment_item_request_builder')
-device_management = lazy_import('msgraph.generated.models.device_management')
+device_management = lazy_import('msgraph.generated.models.device_management.device_management')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class DeviceManagementRequestBuilder():
@@ -741,11 +743,39 @@ class DeviceManagementRequestBuilder():
         return exchange_on_premises_policy_request_builder.ExchangeOnPremisesPolicyRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_assigned_role_details(self) -> get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder:
+        """
+        Provides operations to call the getAssignedRoleDetails method.
+        """
+        return get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_assignment_filters_status_details(self) -> get_assignment_filters_status_details_request_builder.GetAssignmentFiltersStatusDetailsRequestBuilder:
         """
         Provides operations to call the getAssignmentFiltersStatusDetails method.
         """
         return get_assignment_filters_status_details_request_builder.GetAssignmentFiltersStatusDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_comanaged_devices_summary(self) -> get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder:
+        """
+        Provides operations to call the getComanagedDevicesSummary method.
+        """
+        return get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_comanagement_eligible_devices_summary(self) -> get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder:
+        """
+        Provides operations to call the getComanagementEligibleDevicesSummary method.
+        """
+        return get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_effective_permissions(self) -> get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder:
+        """
+        Provides operations to call the getEffectivePermissions method.
+        """
+        return get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def group_policy_categories(self) -> group_policy_categories_request_builder.GroupPolicyCategoriesRequestBuilder:
@@ -1012,6 +1042,13 @@ class DeviceManagementRequestBuilder():
         Provides operations to call the sendCustomNotificationToCompanyPortal method.
         """
         return send_custom_notification_to_company_portal_request_builder.SendCustomNotificationToCompanyPortalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def service_now_connections(self) -> service_now_connections_request_builder.ServiceNowConnectionsRequestBuilder:
+        """
+        Provides operations to manage the serviceNowConnections property of the microsoft.graph.deviceManagement entity.
+        """
+        return service_now_connections_request_builder.ServiceNowConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def setting_definitions(self) -> setting_definitions_request_builder.SettingDefinitionsRequestBuilder:
@@ -1287,11 +1324,11 @@ class DeviceManagementRequestBuilder():
         return user_experience_analytics_devices_without_cloud_identity_request_builder.UserExperienceAnalyticsDevicesWithoutCloudIdentityRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def user_experience_analytics_device_timeline_events(self) -> user_experience_analytics_device_timeline_events_request_builder.UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder:
+    def user_experience_analytics_device_timeline_event(self) -> user_experience_analytics_device_timeline_event_request_builder.UserExperienceAnalyticsDeviceTimelineEventRequestBuilder:
         """
-        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvents property of the microsoft.graph.deviceManagement entity.
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvent property of the microsoft.graph.deviceManagement entity.
         """
-        return user_experience_analytics_device_timeline_events_request_builder.UserExperienceAnalyticsDeviceTimelineEventsRequestBuilder(self.request_adapter, self.path_parameters)
+        return user_experience_analytics_device_timeline_event_request_builder.UserExperienceAnalyticsDeviceTimelineEventRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_impacting_process(self) -> user_experience_analytics_impacting_process_request_builder.UserExperienceAnalyticsImpactingProcessRequestBuilder:
@@ -1348,6 +1385,20 @@ class DeviceManagementRequestBuilder():
         Provides operations to manage the userExperienceAnalyticsScoreHistory property of the microsoft.graph.deviceManagement entity.
         """
         return user_experience_analytics_score_history_request_builder.UserExperienceAnalyticsScoreHistoryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_summarized_device_scopes(self) -> user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
+        """
+        Provides operations to call the userExperienceAnalyticsSummarizedDeviceScopes method.
+        """
+        return user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_experience_analytics_summarize_work_from_anywhere_devices(self) -> user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder:
+        """
+        Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
+        """
+        return user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def user_experience_analytics_work_from_anywhere_hardware_readiness_metric(self) -> user_experience_analytics_work_from_anywhere_hardware_readiness_metric_request_builder.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder:
@@ -2091,12 +2142,11 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["deviceManagementExchangeOnPremisesPolicy%2Did"] = id
         return device_management_exchange_on_premises_policy_item_request_builder.DeviceManagementExchangeOnPremisesPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management.DeviceManagement]:
+    async def get(self,request_configuration: Optional[DeviceManagementRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management.DeviceManagement]:
         """
         Get deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management.DeviceManagement]
         """
         request_info = self.to_get_request_information(
@@ -2108,35 +2158,7 @@ class DeviceManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, response_handler, error_mapping)
-    
-    def get_assigned_role_details(self,) -> get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder:
-        """
-        Provides operations to call the getAssignedRoleDetails method.
-        Returns: get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder
-        """
-        return get_assigned_role_details_request_builder.GetAssignedRoleDetailsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_comanaged_devices_summary(self,) -> get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder:
-        """
-        Provides operations to call the getComanagedDevicesSummary method.
-        Returns: get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder
-        """
-        return get_comanaged_devices_summary_request_builder.GetComanagedDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_comanagement_eligible_devices_summary(self,) -> get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder:
-        """
-        Provides operations to call the getComanagementEligibleDevicesSummary method.
-        Returns: get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder
-        """
-        return get_comanagement_eligible_devices_summary_request_builder.GetComanagementEligibleDevicesSummaryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_effective_permissions(self,) -> get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder:
-        """
-        Provides operations to call the getEffectivePermissions method.
-        Returns: get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder
-        """
-        return get_effective_permissions_request_builder.GetEffectivePermissionsRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, error_mapping)
     
     def get_effective_permissions_with_scope(self,scope: Optional[str] = None) -> get_effective_permissions_with_scope_request_builder.GetEffectivePermissionsWithScopeRequestBuilder:
         """
@@ -2494,13 +2516,12 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["oemWarrantyInformationOnboarding%2Did"] = id
         return oem_warranty_information_onboarding_item_request_builder.OemWarrantyInformationOnboardingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[device_management.DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management.DeviceManagement]:
+    async def patch(self,body: Optional[device_management.DeviceManagement] = None, request_configuration: Optional[DeviceManagementRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management.DeviceManagement]:
         """
         Update deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management.DeviceManagement]
         """
         if body is None:
@@ -2514,7 +2535,7 @@ class DeviceManagementRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management.DeviceManagement, error_mapping)
     
     def remote_action_audits_by_id(self,id: str) -> remote_action_audit_item_request_builder.RemoteActionAuditItemRequestBuilder:
         """
@@ -2644,6 +2665,19 @@ class DeviceManagementRequestBuilder():
             raise Exception("resource cannot be undefined")
         return scoped_for_resource_with_resource_request_builder.ScopedForResourceWithResourceRequestBuilder(self.request_adapter, self.path_parameters, resource)
     
+    def service_now_connections_by_id(self,id: str) -> service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder:
+        """
+        Provides operations to manage the serviceNowConnections property of the microsoft.graph.deviceManagement entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["serviceNowConnection%2Did"] = id
+        return service_now_connection_item_request_builder.ServiceNowConnectionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def setting_definitions_by_id(self,id: str) -> device_management_setting_definition_item_request_builder.DeviceManagementSettingDefinitionItemRequestBuilder:
         """
         Provides operations to manage the settingDefinitions property of the microsoft.graph.deviceManagement entity.
@@ -2720,7 +2754,7 @@ class DeviceManagementRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -2741,7 +2775,7 @@ class DeviceManagementRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -3112,18 +3146,18 @@ class DeviceManagementRequestBuilder():
         url_tpl_params["userExperienceAnalyticsDeviceWithoutCloudIdentity%2Did"] = id
         return user_experience_analytics_device_without_cloud_identity_item_request_builder.UserExperienceAnalyticsDeviceWithoutCloudIdentityItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def user_experience_analytics_device_timeline_events_by_id(self,id: str) -> user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder:
+    def user_experience_analytics_device_timeline_event_by_id(self,id: str) -> user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder:
         """
-        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvents property of the microsoft.graph.deviceManagement entity.
+        Provides operations to manage the userExperienceAnalyticsDeviceTimelineEvent property of the microsoft.graph.deviceManagement entity.
         Args:
             id: Unique identifier of the item
-        Returns: user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder
+        Returns: user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder
         """
         if id is None:
             raise Exception("id cannot be undefined")
         url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["userExperienceAnalyticsDeviceTimelineEvents%2Did"] = id
-        return user_experience_analytics_device_timeline_events_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventsItemRequestBuilder(self.request_adapter, url_tpl_params)
+        url_tpl_params["userExperienceAnalyticsDeviceTimelineEvent%2Did"] = id
+        return user_experience_analytics_device_timeline_event_item_request_builder.UserExperienceAnalyticsDeviceTimelineEventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def user_experience_analytics_impacting_process_by_id(self,id: str) -> user_experience_analytics_impacting_process_item_request_builder.UserExperienceAnalyticsImpactingProcessItemRequestBuilder:
         """
@@ -3215,20 +3249,6 @@ class DeviceManagementRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userExperienceAnalyticsScoreHistory%2Did"] = id
         return user_experience_analytics_score_history_item_request_builder.UserExperienceAnalyticsScoreHistoryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def user_experience_analytics_summarized_device_scopes(self,) -> user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder:
-        """
-        Provides operations to call the userExperienceAnalyticsSummarizedDeviceScopes method.
-        Returns: user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder
-        """
-        return user_experience_analytics_summarized_device_scopes_request_builder.UserExperienceAnalyticsSummarizedDeviceScopesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def user_experience_analytics_summarize_work_from_anywhere_devices(self,) -> user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder:
-        """
-        Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
-        Returns: user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder
-        """
-        return user_experience_analytics_summarize_work_from_anywhere_devices_request_builder.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def user_experience_analytics_work_from_anywhere_metrics_by_id(self,id: str) -> user_experience_analytics_work_from_anywhere_metric_item_request_builder.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder:
         """
@@ -3456,7 +3476,7 @@ class DeviceManagementRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -3471,7 +3491,7 @@ class DeviceManagementRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

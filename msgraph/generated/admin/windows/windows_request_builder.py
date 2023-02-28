@@ -11,8 +11,8 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 updates_request_builder = lazy_import('msgraph.generated.admin.windows.updates.updates_request_builder')
+admin_windows = lazy_import('msgraph.generated.models.admin_windows')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-windows = lazy_import('msgraph.generated.models.windows_updates.windows')
 
 class WindowsRequestBuilder():
     """
@@ -21,7 +21,7 @@ class WindowsRequestBuilder():
     @property
     def updates(self) -> updates_request_builder.UpdatesRequestBuilder:
         """
-        Provides operations to manage the updates property of the microsoft.graph.windowsUpdates.windows entity.
+        Provides operations to manage the updates property of the microsoft.graph.adminWindows entity.
         """
         return updates_request_builder.UpdatesRequestBuilder(self.request_adapter, self.path_parameters)
     
@@ -43,12 +43,11 @@ class WindowsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[WindowsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[WindowsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property windows for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,15 +58,14 @@ class WindowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[WindowsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows.Windows]:
+    async def get(self,request_configuration: Optional[WindowsRequestBuilderGetRequestConfiguration] = None) -> Optional[admin_windows.AdminWindows]:
         """
-        A container for all Windows Update for Business deployment service functionality. Read-only.
+        A container for all Windows administrator functionalities. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[windows.Windows]
+        Returns: Optional[admin_windows.AdminWindows]
         """
         request_info = self.to_get_request_information(
             request_configuration
@@ -78,16 +76,15 @@ class WindowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows.Windows, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin_windows.AdminWindows, error_mapping)
     
-    async def patch(self,body: Optional[windows.Windows] = None, request_configuration: Optional[WindowsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[windows.Windows]:
+    async def patch(self,body: Optional[admin_windows.AdminWindows] = None, request_configuration: Optional[WindowsRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin_windows.AdminWindows]:
         """
         Update the navigation property windows in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[windows.Windows]
+        Returns: Optional[admin_windows.AdminWindows]
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -100,7 +97,7 @@ class WindowsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, windows.Windows, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin_windows.AdminWindows, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -120,7 +117,7 @@ class WindowsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[WindowsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A container for all Windows Update for Business deployment service functionality. Read-only.
+        A container for all Windows administrator functionalities. Read-only.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -129,14 +126,14 @@ class WindowsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[windows.Windows] = None, request_configuration: Optional[WindowsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_patch_request_information(self,body: Optional[admin_windows.AdminWindows] = None, request_configuration: Optional[WindowsRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property windows in admin
         Args:
@@ -150,7 +147,7 @@ class WindowsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -163,7 +160,7 @@ class WindowsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -172,7 +169,7 @@ class WindowsRequestBuilder():
     @dataclass
     class WindowsRequestBuilderGetQueryParameters():
         """
-        A container for all Windows Update for Business deployment service functionality. Read-only.
+        A container for all Windows administrator functionalities. Read-only.
         """
         # Expand related entities
         expand: Optional[List[str]] = None
@@ -202,7 +199,7 @@ class WindowsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -217,7 +214,7 @@ class WindowsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

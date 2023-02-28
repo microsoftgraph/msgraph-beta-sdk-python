@@ -18,7 +18,7 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         """
         Sets the activityId property value. The activityId property
         Args:
-            value: Value to set for the activityId property.
+            value: Value to set for the activity_id property.
         """
         self._activity_id = value
     
@@ -52,7 +52,7 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         """
         Sets the clientRequestId property value. The clientRequestId property
         Args:
-            value: Value to set for the clientRequestId property.
+            value: Value to set for the client_request_id property.
         """
         self._client_request_id = value
     
@@ -116,7 +116,7 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         """
         Sets the errorDateTime property value. The errorDateTime property
         Args:
-            value: Value to set for the errorDateTime property.
+            value: Value to set for the error_date_time property.
         """
         self._error_date_time = value
     
@@ -126,10 +126,10 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_id": lambda n : setattr(self, 'activity_id', n.get_str_value()),
-            "client_request_id": lambda n : setattr(self, 'client_request_id', n.get_str_value()),
+            "activityId": lambda n : setattr(self, 'activity_id', n.get_str_value()),
+            "clientRequestId": lambda n : setattr(self, 'client_request_id', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
-            "error_date_time": lambda n : setattr(self, 'error_date_time', n.get_datetime_value()),
+            "errorDateTime": lambda n : setattr(self, 'error_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -147,7 +147,7 @@ class ClassificationInnerError(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

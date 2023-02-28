@@ -23,7 +23,7 @@ class Settings(entity.Entity):
         """
         Sets the allowedDomainGuidsForSyncApp property value. Collection of trusted domain GUIDs for the OneDrive sync app.
         Args:
-            value: Value to set for the allowedDomainGuidsForSyncApp property.
+            value: Value to set for the allowed_domain_guids_for_sync_app property.
         """
         self._allowed_domain_guids_for_sync_app = value
     
@@ -40,7 +40,7 @@ class Settings(entity.Entity):
         """
         Sets the availableManagedPathsForSiteCreation property value. Collection of managed paths available for site creation. Read-only.
         Args:
-            value: Value to set for the availableManagedPathsForSiteCreation property.
+            value: Value to set for the available_managed_paths_for_site_creation property.
         """
         self._available_managed_paths_for_site_creation = value
     
@@ -135,7 +135,7 @@ class Settings(entity.Entity):
         """
         Sets the deletedUserPersonalSiteRetentionPeriodInDays property value. The number of days for preserving a deleted user's OneDrive.
         Args:
-            value: Value to set for the deletedUserPersonalSiteRetentionPeriodInDays property.
+            value: Value to set for the deleted_user_personal_site_retention_period_in_days property.
         """
         self._deleted_user_personal_site_retention_period_in_days = value
     
@@ -152,7 +152,7 @@ class Settings(entity.Entity):
         """
         Sets the excludedFileExtensionsForSyncApp property value. Collection of file extensions not uploaded by the OneDrive sync app.
         Args:
-            value: Value to set for the excludedFileExtensionsForSyncApp property.
+            value: Value to set for the excluded_file_extensions_for_sync_app property.
         """
         self._excluded_file_extensions_for_sync_app = value
     
@@ -162,35 +162,35 @@ class Settings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_domain_guids_for_sync_app": lambda n : setattr(self, 'allowed_domain_guids_for_sync_app', n.get_collection_of_primitive_values(guid)),
-            "available_managed_paths_for_site_creation": lambda n : setattr(self, 'available_managed_paths_for_site_creation', n.get_collection_of_primitive_values(str)),
-            "deleted_user_personal_site_retention_period_in_days": lambda n : setattr(self, 'deleted_user_personal_site_retention_period_in_days', n.get_int_value()),
-            "excluded_file_extensions_for_sync_app": lambda n : setattr(self, 'excluded_file_extensions_for_sync_app', n.get_collection_of_primitive_values(str)),
-            "idle_session_sign_out": lambda n : setattr(self, 'idle_session_sign_out', n.get_object_value(idle_session_sign_out.IdleSessionSignOut)),
-            "image_tagging_option": lambda n : setattr(self, 'image_tagging_option', n.get_enum_value(image_tagging_choice.ImageTaggingChoice)),
-            "is_commenting_on_site_pages_enabled": lambda n : setattr(self, 'is_commenting_on_site_pages_enabled', n.get_bool_value()),
-            "is_file_activity_notification_enabled": lambda n : setattr(self, 'is_file_activity_notification_enabled', n.get_bool_value()),
-            "is_legacy_auth_protocols_enabled": lambda n : setattr(self, 'is_legacy_auth_protocols_enabled', n.get_bool_value()),
-            "is_loop_enabled": lambda n : setattr(self, 'is_loop_enabled', n.get_bool_value()),
-            "is_mac_sync_app_enabled": lambda n : setattr(self, 'is_mac_sync_app_enabled', n.get_bool_value()),
-            "is_require_accepting_user_to_match_invited_user_enabled": lambda n : setattr(self, 'is_require_accepting_user_to_match_invited_user_enabled', n.get_bool_value()),
-            "is_resharing_by_external_users_enabled": lambda n : setattr(self, 'is_resharing_by_external_users_enabled', n.get_bool_value()),
-            "is_share_point_mobile_notification_enabled": lambda n : setattr(self, 'is_share_point_mobile_notification_enabled', n.get_bool_value()),
-            "is_share_point_newsfeed_enabled": lambda n : setattr(self, 'is_share_point_newsfeed_enabled', n.get_bool_value()),
-            "is_site_creation_enabled": lambda n : setattr(self, 'is_site_creation_enabled', n.get_bool_value()),
-            "is_site_creation_u_i_enabled": lambda n : setattr(self, 'is_site_creation_u_i_enabled', n.get_bool_value()),
-            "is_site_pages_creation_enabled": lambda n : setattr(self, 'is_site_pages_creation_enabled', n.get_bool_value()),
-            "is_sites_storage_limit_automatic": lambda n : setattr(self, 'is_sites_storage_limit_automatic', n.get_bool_value()),
-            "is_sync_button_hidden_on_personal_site": lambda n : setattr(self, 'is_sync_button_hidden_on_personal_site', n.get_bool_value()),
-            "is_unmanaged_sync_app_for_tenant_restricted": lambda n : setattr(self, 'is_unmanaged_sync_app_for_tenant_restricted', n.get_bool_value()),
-            "personal_site_default_storage_limit_in_m_b": lambda n : setattr(self, 'personal_site_default_storage_limit_in_m_b', n.get_int_value()),
-            "sharing_allowed_domain_list": lambda n : setattr(self, 'sharing_allowed_domain_list', n.get_collection_of_primitive_values(str)),
-            "sharing_blocked_domain_list": lambda n : setattr(self, 'sharing_blocked_domain_list', n.get_collection_of_primitive_values(str)),
-            "sharing_capability": lambda n : setattr(self, 'sharing_capability', n.get_enum_value(sharing_capabilities.SharingCapabilities)),
-            "sharing_domain_restriction_mode": lambda n : setattr(self, 'sharing_domain_restriction_mode', n.get_enum_value(sharing_domain_restriction_mode.SharingDomainRestrictionMode)),
-            "site_creation_default_managed_path": lambda n : setattr(self, 'site_creation_default_managed_path', n.get_str_value()),
-            "site_creation_default_storage_limit_in_m_b": lambda n : setattr(self, 'site_creation_default_storage_limit_in_m_b', n.get_int_value()),
-            "tenant_default_timezone": lambda n : setattr(self, 'tenant_default_timezone', n.get_str_value()),
+            "allowedDomainGuidsForSyncApp": lambda n : setattr(self, 'allowed_domain_guids_for_sync_app', n.get_collection_of_primitive_values(guid)),
+            "availableManagedPathsForSiteCreation": lambda n : setattr(self, 'available_managed_paths_for_site_creation', n.get_collection_of_primitive_values(str)),
+            "deletedUserPersonalSiteRetentionPeriodInDays": lambda n : setattr(self, 'deleted_user_personal_site_retention_period_in_days', n.get_int_value()),
+            "excludedFileExtensionsForSyncApp": lambda n : setattr(self, 'excluded_file_extensions_for_sync_app', n.get_collection_of_primitive_values(str)),
+            "idleSessionSignOut": lambda n : setattr(self, 'idle_session_sign_out', n.get_object_value(idle_session_sign_out.IdleSessionSignOut)),
+            "imageTaggingOption": lambda n : setattr(self, 'image_tagging_option', n.get_enum_value(image_tagging_choice.ImageTaggingChoice)),
+            "isCommentingOnSitePagesEnabled": lambda n : setattr(self, 'is_commenting_on_site_pages_enabled', n.get_bool_value()),
+            "isFileActivityNotificationEnabled": lambda n : setattr(self, 'is_file_activity_notification_enabled', n.get_bool_value()),
+            "isLegacyAuthProtocolsEnabled": lambda n : setattr(self, 'is_legacy_auth_protocols_enabled', n.get_bool_value()),
+            "isLoopEnabled": lambda n : setattr(self, 'is_loop_enabled', n.get_bool_value()),
+            "isMacSyncAppEnabled": lambda n : setattr(self, 'is_mac_sync_app_enabled', n.get_bool_value()),
+            "isRequireAcceptingUserToMatchInvitedUserEnabled": lambda n : setattr(self, 'is_require_accepting_user_to_match_invited_user_enabled', n.get_bool_value()),
+            "isResharingByExternalUsersEnabled": lambda n : setattr(self, 'is_resharing_by_external_users_enabled', n.get_bool_value()),
+            "isSharePointMobileNotificationEnabled": lambda n : setattr(self, 'is_share_point_mobile_notification_enabled', n.get_bool_value()),
+            "isSharePointNewsfeedEnabled": lambda n : setattr(self, 'is_share_point_newsfeed_enabled', n.get_bool_value()),
+            "isSitesStorageLimitAutomatic": lambda n : setattr(self, 'is_sites_storage_limit_automatic', n.get_bool_value()),
+            "isSiteCreationEnabled": lambda n : setattr(self, 'is_site_creation_enabled', n.get_bool_value()),
+            "isSiteCreationUIEnabled": lambda n : setattr(self, 'is_site_creation_u_i_enabled', n.get_bool_value()),
+            "isSitePagesCreationEnabled": lambda n : setattr(self, 'is_site_pages_creation_enabled', n.get_bool_value()),
+            "isSyncButtonHiddenOnPersonalSite": lambda n : setattr(self, 'is_sync_button_hidden_on_personal_site', n.get_bool_value()),
+            "isUnmanagedSyncAppForTenantRestricted": lambda n : setattr(self, 'is_unmanaged_sync_app_for_tenant_restricted', n.get_bool_value()),
+            "personalSiteDefaultStorageLimitInMB": lambda n : setattr(self, 'personal_site_default_storage_limit_in_m_b', n.get_int_value()),
+            "sharingAllowedDomainList": lambda n : setattr(self, 'sharing_allowed_domain_list', n.get_collection_of_primitive_values(str)),
+            "sharingBlockedDomainList": lambda n : setattr(self, 'sharing_blocked_domain_list', n.get_collection_of_primitive_values(str)),
+            "sharingCapability": lambda n : setattr(self, 'sharing_capability', n.get_enum_value(sharing_capabilities.SharingCapabilities)),
+            "sharingDomainRestrictionMode": lambda n : setattr(self, 'sharing_domain_restriction_mode', n.get_enum_value(sharing_domain_restriction_mode.SharingDomainRestrictionMode)),
+            "siteCreationDefaultManagedPath": lambda n : setattr(self, 'site_creation_default_managed_path', n.get_str_value()),
+            "siteCreationDefaultStorageLimitInMB": lambda n : setattr(self, 'site_creation_default_storage_limit_in_m_b', n.get_int_value()),
+            "tenantDefaultTimezone": lambda n : setattr(self, 'tenant_default_timezone', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -209,7 +209,7 @@ class Settings(entity.Entity):
         """
         Sets the idleSessionSignOut property value. Specifies the idle session sign-out policies for the tenant.
         Args:
-            value: Value to set for the idleSessionSignOut property.
+            value: Value to set for the idle_session_sign_out property.
         """
         self._idle_session_sign_out = value
     
@@ -226,7 +226,7 @@ class Settings(entity.Entity):
         """
         Sets the imageTaggingOption property value. Specifies the image tagging option for the tenant. Possible values are: disabled, basic, enhanced.
         Args:
-            value: Value to set for the imageTaggingOption property.
+            value: Value to set for the image_tagging_option property.
         """
         self._image_tagging_option = value
     
@@ -243,7 +243,7 @@ class Settings(entity.Entity):
         """
         Sets the isCommentingOnSitePagesEnabled property value. Indicates whether comments are allowed on modern site pages in SharePoint.
         Args:
-            value: Value to set for the isCommentingOnSitePagesEnabled property.
+            value: Value to set for the is_commenting_on_site_pages_enabled property.
         """
         self._is_commenting_on_site_pages_enabled = value
     
@@ -260,7 +260,7 @@ class Settings(entity.Entity):
         """
         Sets the isFileActivityNotificationEnabled property value. Indicates whether push notifications are enabled for OneDrive events.
         Args:
-            value: Value to set for the isFileActivityNotificationEnabled property.
+            value: Value to set for the is_file_activity_notification_enabled property.
         """
         self._is_file_activity_notification_enabled = value
     
@@ -277,7 +277,7 @@ class Settings(entity.Entity):
         """
         Sets the isLegacyAuthProtocolsEnabled property value. Indicates whether legacy authentication protocols are enabled for the tenant.
         Args:
-            value: Value to set for the isLegacyAuthProtocolsEnabled property.
+            value: Value to set for the is_legacy_auth_protocols_enabled property.
         """
         self._is_legacy_auth_protocols_enabled = value
     
@@ -294,7 +294,7 @@ class Settings(entity.Entity):
         """
         Sets the isLoopEnabled property value. Indicates whetherif Fluid Framework is allowed on SharePoint sites.
         Args:
-            value: Value to set for the isLoopEnabled property.
+            value: Value to set for the is_loop_enabled property.
         """
         self._is_loop_enabled = value
     
@@ -311,7 +311,7 @@ class Settings(entity.Entity):
         """
         Sets the isMacSyncAppEnabled property value. Indicates whether files can be synced using the OneDrive sync app for Mac.
         Args:
-            value: Value to set for the isMacSyncAppEnabled property.
+            value: Value to set for the is_mac_sync_app_enabled property.
         """
         self._is_mac_sync_app_enabled = value
     
@@ -328,7 +328,7 @@ class Settings(entity.Entity):
         """
         Sets the isRequireAcceptingUserToMatchInvitedUserEnabled property value. Indicates whether guests must sign in using the same account to which sharing invitations are sent.
         Args:
-            value: Value to set for the isRequireAcceptingUserToMatchInvitedUserEnabled property.
+            value: Value to set for the is_require_accepting_user_to_match_invited_user_enabled property.
         """
         self._is_require_accepting_user_to_match_invited_user_enabled = value
     
@@ -345,7 +345,7 @@ class Settings(entity.Entity):
         """
         Sets the isResharingByExternalUsersEnabled property value. Indicates whether guests are allowed to reshare files, folders, and sites they don't own.
         Args:
-            value: Value to set for the isResharingByExternalUsersEnabled property.
+            value: Value to set for the is_resharing_by_external_users_enabled property.
         """
         self._is_resharing_by_external_users_enabled = value
     
@@ -362,7 +362,7 @@ class Settings(entity.Entity):
         """
         Sets the isSharePointMobileNotificationEnabled property value. Indicates whether mobile push notifications are enabled for SharePoint.
         Args:
-            value: Value to set for the isSharePointMobileNotificationEnabled property.
+            value: Value to set for the is_share_point_mobile_notification_enabled property.
         """
         self._is_share_point_mobile_notification_enabled = value
     
@@ -379,7 +379,7 @@ class Settings(entity.Entity):
         """
         Sets the isSharePointNewsfeedEnabled property value. Indicates whether the newsfeed is allowed on the modern site pages in SharePoint.
         Args:
-            value: Value to set for the isSharePointNewsfeedEnabled property.
+            value: Value to set for the is_share_point_newsfeed_enabled property.
         """
         self._is_share_point_newsfeed_enabled = value
     
@@ -396,7 +396,7 @@ class Settings(entity.Entity):
         """
         Sets the isSiteCreationEnabled property value. Indicates whether users are allowed to create sites.
         Args:
-            value: Value to set for the isSiteCreationEnabled property.
+            value: Value to set for the is_site_creation_enabled property.
         """
         self._is_site_creation_enabled = value
     
@@ -413,7 +413,7 @@ class Settings(entity.Entity):
         """
         Sets the isSiteCreationUIEnabled property value. Indicates whether the UI commands for creating sites are shown.
         Args:
-            value: Value to set for the isSiteCreationUIEnabled property.
+            value: Value to set for the is_site_creation_u_i_enabled property.
         """
         self._is_site_creation_u_i_enabled = value
     
@@ -430,7 +430,7 @@ class Settings(entity.Entity):
         """
         Sets the isSitePagesCreationEnabled property value. Indicates whether creating new modern pages is allowed on SharePoint sites.
         Args:
-            value: Value to set for the isSitePagesCreationEnabled property.
+            value: Value to set for the is_site_pages_creation_enabled property.
         """
         self._is_site_pages_creation_enabled = value
     
@@ -447,7 +447,7 @@ class Settings(entity.Entity):
         """
         Sets the isSitesStorageLimitAutomatic property value. Indicates whether site storage space is automatically managed or if specific storage limits are set per site.
         Args:
-            value: Value to set for the isSitesStorageLimitAutomatic property.
+            value: Value to set for the is_sites_storage_limit_automatic property.
         """
         self._is_sites_storage_limit_automatic = value
     
@@ -464,7 +464,7 @@ class Settings(entity.Entity):
         """
         Sets the isSyncButtonHiddenOnPersonalSite property value. Indicates whether the sync button in OneDrive is hidden.
         Args:
-            value: Value to set for the isSyncButtonHiddenOnPersonalSite property.
+            value: Value to set for the is_sync_button_hidden_on_personal_site property.
         """
         self._is_sync_button_hidden_on_personal_site = value
     
@@ -481,7 +481,7 @@ class Settings(entity.Entity):
         """
         Sets the isUnmanagedSyncAppForTenantRestricted property value. Indicates whether users are allowed to sync files only on PCs joined to specific domains.
         Args:
-            value: Value to set for the isUnmanagedSyncAppForTenantRestricted property.
+            value: Value to set for the is_unmanaged_sync_app_for_tenant_restricted property.
         """
         self._is_unmanaged_sync_app_for_tenant_restricted = value
     
@@ -498,7 +498,7 @@ class Settings(entity.Entity):
         """
         Sets the personalSiteDefaultStorageLimitInMB property value. The default OneDrive storage limit for all new and existing users who are assigned a qualifying license. Measured in megabytes (MB).
         Args:
-            value: Value to set for the personalSiteDefaultStorageLimitInMB property.
+            value: Value to set for the personal_site_default_storage_limit_in_m_b property.
         """
         self._personal_site_default_storage_limit_in_m_b = value
     
@@ -526,10 +526,10 @@ class Settings(entity.Entity):
         writer.write_bool_value("isResharingByExternalUsersEnabled", self.is_resharing_by_external_users_enabled)
         writer.write_bool_value("isSharePointMobileNotificationEnabled", self.is_share_point_mobile_notification_enabled)
         writer.write_bool_value("isSharePointNewsfeedEnabled", self.is_share_point_newsfeed_enabled)
+        writer.write_bool_value("isSitesStorageLimitAutomatic", self.is_sites_storage_limit_automatic)
         writer.write_bool_value("isSiteCreationEnabled", self.is_site_creation_enabled)
         writer.write_bool_value("isSiteCreationUIEnabled", self.is_site_creation_u_i_enabled)
         writer.write_bool_value("isSitePagesCreationEnabled", self.is_site_pages_creation_enabled)
-        writer.write_bool_value("isSitesStorageLimitAutomatic", self.is_sites_storage_limit_automatic)
         writer.write_bool_value("isSyncButtonHiddenOnPersonalSite", self.is_sync_button_hidden_on_personal_site)
         writer.write_bool_value("isUnmanagedSyncAppForTenantRestricted", self.is_unmanaged_sync_app_for_tenant_restricted)
         writer.write_int_value("personalSiteDefaultStorageLimitInMB", self.personal_site_default_storage_limit_in_m_b)
@@ -554,7 +554,7 @@ class Settings(entity.Entity):
         """
         Sets the sharingAllowedDomainList property value. Collection of email domains that are allowed for sharing outside the organization.
         Args:
-            value: Value to set for the sharingAllowedDomainList property.
+            value: Value to set for the sharing_allowed_domain_list property.
         """
         self._sharing_allowed_domain_list = value
     
@@ -571,7 +571,7 @@ class Settings(entity.Entity):
         """
         Sets the sharingBlockedDomainList property value. Collection of email domains that are blocked for sharing outside the organization.
         Args:
-            value: Value to set for the sharingBlockedDomainList property.
+            value: Value to set for the sharing_blocked_domain_list property.
         """
         self._sharing_blocked_domain_list = value
     
@@ -588,7 +588,7 @@ class Settings(entity.Entity):
         """
         Sets the sharingCapability property value. Sharing capability for the tenant. Possible values are: disabled, externalUserSharingOnly, externalUserAndGuestSharing, existingExternalUserSharingOnly.
         Args:
-            value: Value to set for the sharingCapability property.
+            value: Value to set for the sharing_capability property.
         """
         self._sharing_capability = value
     
@@ -605,7 +605,7 @@ class Settings(entity.Entity):
         """
         Sets the sharingDomainRestrictionMode property value. Specifies the external sharing mode for domains. Possible values are: none, allowList, blockList.
         Args:
-            value: Value to set for the sharingDomainRestrictionMode property.
+            value: Value to set for the sharing_domain_restriction_mode property.
         """
         self._sharing_domain_restriction_mode = value
     
@@ -622,7 +622,7 @@ class Settings(entity.Entity):
         """
         Sets the siteCreationDefaultManagedPath property value. The value of the team site managed path. This is the path under which new team sites will be created.
         Args:
-            value: Value to set for the siteCreationDefaultManagedPath property.
+            value: Value to set for the site_creation_default_managed_path property.
         """
         self._site_creation_default_managed_path = value
     
@@ -639,7 +639,7 @@ class Settings(entity.Entity):
         """
         Sets the siteCreationDefaultStorageLimitInMB property value. The default storage quota for a new site upon creation. Measured in megabytes (MB).
         Args:
-            value: Value to set for the siteCreationDefaultStorageLimitInMB property.
+            value: Value to set for the site_creation_default_storage_limit_in_m_b property.
         """
         self._site_creation_default_storage_limit_in_m_b = value
     
@@ -656,7 +656,7 @@ class Settings(entity.Entity):
         """
         Sets the tenantDefaultTimezone property value. The default timezone of a tenant for newly created sites. For a list of possible values, see SPRegionalSettings.TimeZones property.
         Args:
-            value: Value to set for the tenantDefaultTimezone property.
+            value: Value to set for the tenant_default_timezone property.
         """
         self._tenant_default_timezone = value
     

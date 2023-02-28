@@ -34,7 +34,7 @@ class Configuration(AdditionalDataHolder, Parsable):
         """
         Sets the authorizedAppIds property value. The authorizedAppIds property
         Args:
-            value: Value to set for the authorizedAppIds property.
+            value: Value to set for the authorized_app_ids property.
         """
         self._authorized_app_ids = value
     
@@ -51,7 +51,7 @@ class Configuration(AdditionalDataHolder, Parsable):
         """
         Sets the authorizedApps property value. The authorizedApps property
         Args:
-            value: Value to set for the authorizedApps property.
+            value: Value to set for the authorized_apps property.
         """
         self._authorized_apps = value
     
@@ -87,8 +87,8 @@ class Configuration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authorized_app_ids": lambda n : setattr(self, 'authorized_app_ids', n.get_collection_of_primitive_values(str)),
-            "authorized_apps": lambda n : setattr(self, 'authorized_apps', n.get_collection_of_primitive_values(str)),
+            "authorizedApps": lambda n : setattr(self, 'authorized_apps', n.get_collection_of_primitive_values(str)),
+            "authorizedAppIds": lambda n : setattr(self, 'authorized_app_ids', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -106,7 +106,7 @@ class Configuration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -118,8 +118,8 @@ class Configuration(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_collection_of_primitive_values("authorizedAppIds", self.authorized_app_ids)
         writer.write_collection_of_primitive_values("authorizedApps", self.authorized_apps)
+        writer.write_collection_of_primitive_values("authorizedAppIds", self.authorized_app_ids)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

@@ -56,7 +56,7 @@ class ForceDeletePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the disableUserAccounts property value. The disableUserAccounts property
         Args:
-            value: Value to set for the disableUserAccounts property.
+            value: Value to set for the disable_user_accounts property.
         """
         self._disable_user_accounts = value
     
@@ -66,7 +66,7 @@ class ForceDeletePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "disable_user_accounts": lambda n : setattr(self, 'disable_user_accounts', n.get_bool_value()),
+            "disableUserAccounts": lambda n : setattr(self, 'disable_user_accounts', n.get_bool_value()),
         }
         return fields
     

@@ -53,7 +53,7 @@ class AccessPackageLocalizedText(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "language_code": lambda n : setattr(self, 'language_code', n.get_str_value()),
+            "languageCode": lambda n : setattr(self, 'language_code', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }
@@ -72,7 +72,7 @@ class AccessPackageLocalizedText(AdditionalDataHolder, Parsable):
         """
         Sets the languageCode property value. The ISO code for the intended language. Required.
         Args:
-            value: Value to set for the languageCode property.
+            value: Value to set for the language_code property.
         """
         self._language_code = value
     
@@ -89,7 +89,7 @@ class AccessPackageLocalizedText(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

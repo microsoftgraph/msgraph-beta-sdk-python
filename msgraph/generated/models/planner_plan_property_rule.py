@@ -37,7 +37,7 @@ class PlannerPlanPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the categoryDescriptions property value. The categoryDescriptions property
         Args:
-            value: Value to set for the categoryDescriptions property.
+            value: Value to set for the category_descriptions property.
         """
         self._category_descriptions = value
     
@@ -75,7 +75,7 @@ class PlannerPlanPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         fields = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_primitive_values(str)),
-            "category_descriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_field_rules.PlannerFieldRules)),
+            "categoryDescriptions": lambda n : setattr(self, 'category_descriptions', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_primitive_values(str)),
             "title": lambda n : setattr(self, 'title', n.get_object_value(planner_field_rules.PlannerFieldRules)),
         }

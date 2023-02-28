@@ -79,7 +79,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the deviceId property value. The corresponding device id.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -96,7 +96,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the errorCode property value. The error code for install or uninstall failures of target app.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -106,15 +106,15 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "install_state": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),
-            "install_state_detail": lambda n : setattr(self, 'install_state_detail', n.get_enum_value(resultant_app_state_detail.ResultantAppStateDetail)),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "installState": lambda n : setattr(self, 'install_state', n.get_enum_value(resultant_app_state.ResultantAppState)),
+            "installStateDetail": lambda n : setattr(self, 'install_state_detail', n.get_enum_value(resultant_app_state_detail.ResultantAppStateDetail)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "source_ids": lambda n : setattr(self, 'source_ids', n.get_collection_of_primitive_values(str)),
-            "target_display_name": lambda n : setattr(self, 'target_display_name', n.get_str_value()),
-            "target_id": lambda n : setattr(self, 'target_id', n.get_str_value()),
-            "target_last_sync_date_time": lambda n : setattr(self, 'target_last_sync_date_time', n.get_datetime_value()),
+            "sourceIds": lambda n : setattr(self, 'source_ids', n.get_collection_of_primitive_values(str)),
+            "targetDisplayName": lambda n : setattr(self, 'target_display_name', n.get_str_value()),
+            "targetId": lambda n : setattr(self, 'target_id', n.get_str_value()),
+            "targetLastSyncDateTime": lambda n : setattr(self, 'target_last_sync_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -131,7 +131,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the installState property value. A list of possible states for application status on an individual device. When devices contact the Intune service and find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the Graph API. Since the application status is identified during device interaction with the Intune service, status records do not immediately appear upon application group assignment; it is created only after the assignment is evaluated in the service and devices start receiving the policy during check-ins.
         Args:
-            value: Value to set for the installState property.
+            value: Value to set for the install_state property.
         """
         self._install_state = value
     
@@ -148,7 +148,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the installStateDetail property value. Enum indicating additional details regarding why an application has a particular install state.
         Args:
-            value: Value to set for the installStateDetail property.
+            value: Value to set for the install_state_detail property.
         """
         self._install_state_detail = value
     
@@ -165,7 +165,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -201,7 +201,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the sourceIds property value. The collection of source mobile app's ids.
         Args:
-            value: Value to set for the sourceIds property.
+            value: Value to set for the source_ids property.
         """
         self._source_ids = value
     
@@ -218,7 +218,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the targetDisplayName property value. The related target app's display name.
         Args:
-            value: Value to set for the targetDisplayName property.
+            value: Value to set for the target_display_name property.
         """
         self._target_display_name = value
     
@@ -235,7 +235,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the targetId property value. The related target app's id.
         Args:
-            value: Value to set for the targetId property.
+            value: Value to set for the target_id property.
         """
         self._target_id = value
     
@@ -252,7 +252,7 @@ class MobileAppRelationshipState(AdditionalDataHolder, Parsable):
         """
         Sets the targetLastSyncDateTime property value. The last sync time of the target app.
         Args:
-            value: Value to set for the targetLastSyncDateTime property.
+            value: Value to set for the target_last_sync_date_time property.
         """
         self._target_last_sync_date_time = value
     

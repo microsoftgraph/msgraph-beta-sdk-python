@@ -19,6 +19,7 @@ device_compliance_policy_state = lazy_import('msgraph.generated.models.device_co
 device_configuration_state = lazy_import('msgraph.generated.models.device_configuration_state')
 device_enrollment_type = lazy_import('msgraph.generated.models.device_enrollment_type')
 device_health_attestation_state = lazy_import('msgraph.generated.models.device_health_attestation_state')
+device_health_script_policy_state = lazy_import('msgraph.generated.models.device_health_script_policy_state')
 device_log_collection_response = lazy_import('msgraph.generated.models.device_log_collection_response')
 device_management_exchange_access_state = lazy_import('msgraph.generated.models.device_management_exchange_access_state')
 device_management_exchange_access_state_reason = lazy_import('msgraph.generated.models.device_management_exchange_access_state_reason')
@@ -42,6 +43,9 @@ user = lazy_import('msgraph.generated.models.user')
 windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
 
 class ManagedDevice(entity.Entity):
+    """
+    Devices that are managed or pre-enrolled through Intune
+    """
     @property
     def aad_registered(self,) -> Optional[bool]:
         """
@@ -55,7 +59,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the aadRegistered property value. Whether the device is Azure Active Directory registered. This property is read-only.
         Args:
-            value: Value to set for the aadRegistered property.
+            value: Value to set for the aad_registered property.
         """
         self._aad_registered = value
     
@@ -72,7 +76,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
-            value: Value to set for the activationLockBypassCode property.
+            value: Value to set for the activation_lock_bypass_code property.
         """
         self._activation_lock_bypass_code = value
     
@@ -89,7 +93,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the androidSecurityPatchLevel property value. Android security patch level. This property is read-only.
         Args:
-            value: Value to set for the androidSecurityPatchLevel property.
+            value: Value to set for the android_security_patch_level property.
         """
         self._android_security_patch_level = value
     
@@ -106,7 +110,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the assignmentFilterEvaluationStatusDetails property value. Managed device mobile app configuration states for this device.
         Args:
-            value: Value to set for the assignmentFilterEvaluationStatusDetails property.
+            value: Value to set for the assignment_filter_evaluation_status_details property.
         """
         self._assignment_filter_evaluation_status_details = value
     
@@ -123,26 +127,9 @@ class ManagedDevice(entity.Entity):
         """
         Sets the autopilotEnrolled property value. Reports if the managed device is enrolled via auto-pilot. This property is read-only.
         Args:
-            value: Value to set for the autopilotEnrolled property.
+            value: Value to set for the autopilot_enrolled property.
         """
         self._autopilot_enrolled = value
-    
-    @property
-    def azure_active_directory_device_id(self,) -> Optional[str]:
-        """
-        Gets the azureActiveDirectoryDeviceId property value. The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
-        Returns: Optional[str]
-        """
-        return self._azure_active_directory_device_id
-    
-    @azure_active_directory_device_id.setter
-    def azure_active_directory_device_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureActiveDirectoryDeviceId property value. The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
-        Args:
-            value: Value to set for the azureActiveDirectoryDeviceId property.
-        """
-        self._azure_active_directory_device_id = value
     
     @property
     def azure_a_d_device_id(self,) -> Optional[str]:
@@ -157,7 +144,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the azureADDeviceId property value. The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
         Args:
-            value: Value to set for the azureADDeviceId property.
+            value: Value to set for the azure_a_d_device_id property.
         """
         self._azure_a_d_device_id = value
     
@@ -174,9 +161,26 @@ class ManagedDevice(entity.Entity):
         """
         Sets the azureADRegistered property value. Whether the device is Azure Active Directory registered. This property is read-only.
         Args:
-            value: Value to set for the azureADRegistered property.
+            value: Value to set for the azure_a_d_registered property.
         """
         self._azure_a_d_registered = value
+    
+    @property
+    def azure_active_directory_device_id(self,) -> Optional[str]:
+        """
+        Gets the azureActiveDirectoryDeviceId property value. The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
+        Returns: Optional[str]
+        """
+        return self._azure_active_directory_device_id
+    
+    @azure_active_directory_device_id.setter
+    def azure_active_directory_device_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the azureActiveDirectoryDeviceId property value. The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
+        Args:
+            value: Value to set for the azure_active_directory_device_id property.
+        """
+        self._azure_active_directory_device_id = value
     
     @property
     def bootstrap_token_escrowed(self,) -> Optional[bool]:
@@ -191,7 +195,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the bootstrapTokenEscrowed property value. Reports if the managed device has an escrowed Bootstrap Token. This is only for macOS devices. To get, include BootstrapTokenEscrowed in the select clause and query with a device id. If FALSE, no bootstrap token is escrowed. If TRUE, the device has escrowed a bootstrap token with Intune. This property is read-only.
         Args:
-            value: Value to set for the bootstrapTokenEscrowed property.
+            value: Value to set for the bootstrap_token_escrowed property.
         """
         self._bootstrap_token_escrowed = value
     
@@ -208,7 +212,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the chassisType property value. Chassis type.
         Args:
-            value: Value to set for the chassisType property.
+            value: Value to set for the chassis_type property.
         """
         self._chassis_type = value
     
@@ -225,7 +229,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the chromeOSDeviceInfo property value. List of properties of the ChromeOS Device.
         Args:
-            value: Value to set for the chromeOSDeviceInfo property.
+            value: Value to set for the chrome_o_s_device_info property.
         """
         self._chrome_o_s_device_info = value
     
@@ -242,7 +246,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the cloudPcRemoteActionResults property value. The cloudPcRemoteActionResults property
         Args:
-            value: Value to set for the cloudPcRemoteActionResults property.
+            value: Value to set for the cloud_pc_remote_action_results property.
         """
         self._cloud_pc_remote_action_results = value
     
@@ -259,7 +263,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the complianceGracePeriodExpirationDateTime property value. The DateTime when device compliance grace period expires. This property is read-only.
         Args:
-            value: Value to set for the complianceGracePeriodExpirationDateTime property.
+            value: Value to set for the compliance_grace_period_expiration_date_time property.
         """
         self._compliance_grace_period_expiration_date_time = value
     
@@ -276,7 +280,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the complianceState property value. Compliance state.
         Args:
-            value: Value to set for the complianceState property.
+            value: Value to set for the compliance_state property.
         """
         self._compliance_state = value
     
@@ -293,7 +297,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the configurationManagerClientEnabledFeatures property value. ConfigrMgr client enabled features. This property is read-only.
         Args:
-            value: Value to set for the configurationManagerClientEnabledFeatures property.
+            value: Value to set for the configuration_manager_client_enabled_features property.
         """
         self._configuration_manager_client_enabled_features = value
     
@@ -310,7 +314,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the configurationManagerClientHealthState property value. Configuration manager client health state, valid only for devices managed by MDM/ConfigMgr Agent
         Args:
-            value: Value to set for the configurationManagerClientHealthState property.
+            value: Value to set for the configuration_manager_client_health_state property.
         """
         self._configuration_manager_client_health_state = value
     
@@ -327,7 +331,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the configurationManagerClientInformation property value. Configuration manager client information, valid only for devices managed, duel-managed or tri-managed by ConfigMgr Agent
         Args:
-            value: Value to set for the configurationManagerClientInformation property.
+            value: Value to set for the configuration_manager_client_information property.
         """
         self._configuration_manager_client_information = value
     
@@ -347,11 +351,11 @@ class ManagedDevice(entity.Entity):
         # Reports if the managed device is enrolled via auto-pilot. This property is read-only.
         self._autopilot_enrolled: Optional[bool] = None
         # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
-        self._azure_active_directory_device_id: Optional[str] = None
-        # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
         self._azure_a_d_device_id: Optional[str] = None
         # Whether the device is Azure Active Directory registered. This property is read-only.
         self._azure_a_d_registered: Optional[bool] = None
+        # The unique identifier for the Azure Active Directory device. Read only. This property is read-only.
+        self._azure_active_directory_device_id: Optional[str] = None
         # Reports if the managed device has an escrowed Bootstrap Token. This is only for macOS devices. To get, include BootstrapTokenEscrowed in the select clause and query with a device id. If FALSE, no bootstrap token is escrowed. If TRUE, the device has escrowed a bootstrap token with Intune. This property is read-only.
         self._bootstrap_token_escrowed: Optional[bool] = None
         # Chassis type.
@@ -388,6 +392,8 @@ class ManagedDevice(entity.Entity):
         self._device_firmware_configuration_interface_managed: Optional[bool] = None
         # The device health attestation state. This property is read-only.
         self._device_health_attestation_state: Optional[device_health_attestation_state.DeviceHealthAttestationState] = None
+        # Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
+        self._device_health_script_states: Optional[List[device_health_script_policy_state.DeviceHealthScriptPolicyState]] = None
         # Name of the device. This property is read-only.
         self._device_name: Optional[str] = None
         # Device registration status.
@@ -406,7 +412,7 @@ class ManagedDevice(entity.Entity):
         self._enrolled_date_time: Optional[datetime] = None
         # Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
         self._enrollment_profile_name: Optional[str] = None
-        # Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        # Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
         self._ethernet_mac_address: Optional[str] = None
         # Device Exchange Access State.
         self._exchange_access_state: Optional[device_management_exchange_access_state.DeviceManagementExchangeAccessState] = None
@@ -492,7 +498,7 @@ class ManagedDevice(entity.Entity):
         self._serial_number: Optional[str] = None
         # Device sku family
         self._sku_family: Optional[str] = None
-        # Device sku number, see also: https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        # Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
         self._sku_number: Optional[int] = None
         # Specification version. This property is read-only.
         self._specification_version: Optional[str] = None
@@ -546,7 +552,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the detectedApps property value. All applications currently installed on the device
         Args:
-            value: Value to set for the detectedApps property.
+            value: Value to set for the detected_apps property.
         """
         self._detected_apps = value
     
@@ -563,7 +569,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceActionResults property value. List of ComplexType deviceActionResult objects. This property is read-only.
         Args:
-            value: Value to set for the deviceActionResults property.
+            value: Value to set for the device_action_results property.
         """
         self._device_action_results = value
     
@@ -580,7 +586,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceCategory property value. Device category
         Args:
-            value: Value to set for the deviceCategory property.
+            value: Value to set for the device_category property.
         """
         self._device_category = value
     
@@ -597,7 +603,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceCategoryDisplayName property value. Device category display name. This property is read-only.
         Args:
-            value: Value to set for the deviceCategoryDisplayName property.
+            value: Value to set for the device_category_display_name property.
         """
         self._device_category_display_name = value
     
@@ -614,7 +620,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceCompliancePolicyStates property value. Device compliance policy states for this device.
         Args:
-            value: Value to set for the deviceCompliancePolicyStates property.
+            value: Value to set for the device_compliance_policy_states property.
         """
         self._device_compliance_policy_states = value
     
@@ -631,7 +637,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceConfigurationStates property value. Device configuration states for this device.
         Args:
-            value: Value to set for the deviceConfigurationStates property.
+            value: Value to set for the device_configuration_states property.
         """
         self._device_configuration_states = value
     
@@ -648,7 +654,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceEnrollmentType property value. Possible ways of adding a mobile device to management.
         Args:
-            value: Value to set for the deviceEnrollmentType property.
+            value: Value to set for the device_enrollment_type property.
         """
         self._device_enrollment_type = value
     
@@ -665,7 +671,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceFirmwareConfigurationInterfaceManaged property value. Indicates whether the device is DFCI managed. When TRUE the device is DFCI managed. When FALSE, the device is not DFCI managed. The default value is FALSE.
         Args:
-            value: Value to set for the deviceFirmwareConfigurationInterfaceManaged property.
+            value: Value to set for the device_firmware_configuration_interface_managed property.
         """
         self._device_firmware_configuration_interface_managed = value
     
@@ -682,9 +688,26 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceHealthAttestationState property value. The device health attestation state. This property is read-only.
         Args:
-            value: Value to set for the deviceHealthAttestationState property.
+            value: Value to set for the device_health_attestation_state property.
         """
         self._device_health_attestation_state = value
+    
+    @property
+    def device_health_script_states(self,) -> Optional[List[device_health_script_policy_state.DeviceHealthScriptPolicyState]]:
+        """
+        Gets the deviceHealthScriptStates property value. Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
+        Returns: Optional[List[device_health_script_policy_state.DeviceHealthScriptPolicyState]]
+        """
+        return self._device_health_script_states
+    
+    @device_health_script_states.setter
+    def device_health_script_states(self,value: Optional[List[device_health_script_policy_state.DeviceHealthScriptPolicyState]] = None) -> None:
+        """
+        Sets the deviceHealthScriptStates property value. Results of device health scripts that ran for this device. Default is empty list. This property is read-only.
+        Args:
+            value: Value to set for the device_health_script_states property.
+        """
+        self._device_health_script_states = value
     
     @property
     def device_name(self,) -> Optional[str]:
@@ -699,7 +722,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceName property value. Name of the device. This property is read-only.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -716,7 +739,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceRegistrationState property value. Device registration status.
         Args:
-            value: Value to set for the deviceRegistrationState property.
+            value: Value to set for the device_registration_state property.
         """
         self._device_registration_state = value
     
@@ -733,7 +756,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the deviceType property value. Device type.
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -750,7 +773,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the easActivated property value. Whether the device is Exchange ActiveSync activated. This property is read-only.
         Args:
-            value: Value to set for the easActivated property.
+            value: Value to set for the eas_activated property.
         """
         self._eas_activated = value
     
@@ -767,7 +790,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the easActivationDateTime property value. Exchange ActivationSync activation time of the device. This property is read-only.
         Args:
-            value: Value to set for the easActivationDateTime property.
+            value: Value to set for the eas_activation_date_time property.
         """
         self._eas_activation_date_time = value
     
@@ -784,7 +807,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the easDeviceId property value. Exchange ActiveSync Id of the device. This property is read-only.
         Args:
-            value: Value to set for the easDeviceId property.
+            value: Value to set for the eas_device_id property.
         """
         self._eas_device_id = value
     
@@ -801,7 +824,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the emailAddress property value. Email(s) for the user associated with the device. This property is read-only.
         Args:
-            value: Value to set for the emailAddress property.
+            value: Value to set for the email_address property.
         """
         self._email_address = value
     
@@ -818,7 +841,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the enrolledDateTime property value. Enrollment time of the device. This property is read-only.
         Args:
-            value: Value to set for the enrolledDateTime property.
+            value: Value to set for the enrolled_date_time property.
         """
         self._enrolled_date_time = value
     
@@ -835,14 +858,14 @@ class ManagedDevice(entity.Entity):
         """
         Sets the enrollmentProfileName property value. Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
         Args:
-            value: Value to set for the enrollmentProfileName property.
+            value: Value to set for the enrollment_profile_name property.
         """
         self._enrollment_profile_name = value
     
     @property
     def ethernet_mac_address(self,) -> Optional[str]:
         """
-        Gets the ethernetMacAddress property value. Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Gets the ethernetMacAddress property value. Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Returns: Optional[str]
         """
         return self._ethernet_mac_address
@@ -850,9 +873,9 @@ class ManagedDevice(entity.Entity):
     @ethernet_mac_address.setter
     def ethernet_mac_address(self,value: Optional[str] = None) -> None:
         """
-        Sets the ethernetMacAddress property value. Ethernet MAC. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
+        Sets the ethernetMacAddress property value. Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
-            value: Value to set for the ethernetMacAddress property.
+            value: Value to set for the ethernet_mac_address property.
         """
         self._ethernet_mac_address = value
     
@@ -869,7 +892,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the exchangeAccessState property value. Device Exchange Access State.
         Args:
-            value: Value to set for the exchangeAccessState property.
+            value: Value to set for the exchange_access_state property.
         """
         self._exchange_access_state = value
     
@@ -886,7 +909,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the exchangeAccessStateReason property value. Device Exchange Access State Reason.
         Args:
-            value: Value to set for the exchangeAccessStateReason property.
+            value: Value to set for the exchange_access_state_reason property.
         """
         self._exchange_access_state_reason = value
     
@@ -903,7 +926,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the exchangeLastSuccessfulSyncDateTime property value. Last time the device contacted Exchange. This property is read-only.
         Args:
-            value: Value to set for the exchangeLastSuccessfulSyncDateTime property.
+            value: Value to set for the exchange_last_successful_sync_date_time property.
         """
         self._exchange_last_successful_sync_date_time = value
     
@@ -920,7 +943,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the freeStorageSpaceInBytes property value. Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.
         Args:
-            value: Value to set for the freeStorageSpaceInBytes property.
+            value: Value to set for the free_storage_space_in_bytes property.
         """
         self._free_storage_space_in_bytes = value
     
@@ -930,97 +953,98 @@ class ManagedDevice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "aad_registered": lambda n : setattr(self, 'aad_registered', n.get_bool_value()),
-            "activation_lock_bypass_code": lambda n : setattr(self, 'activation_lock_bypass_code', n.get_str_value()),
-            "android_security_patch_level": lambda n : setattr(self, 'android_security_patch_level', n.get_str_value()),
-            "assignment_filter_evaluation_status_details": lambda n : setattr(self, 'assignment_filter_evaluation_status_details', n.get_collection_of_object_values(assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails)),
-            "autopilot_enrolled": lambda n : setattr(self, 'autopilot_enrolled', n.get_bool_value()),
-            "azure_active_directory_device_id": lambda n : setattr(self, 'azure_active_directory_device_id', n.get_str_value()),
-            "azure_a_d_device_id": lambda n : setattr(self, 'azure_a_d_device_id', n.get_str_value()),
-            "azure_a_d_registered": lambda n : setattr(self, 'azure_a_d_registered', n.get_bool_value()),
-            "bootstrap_token_escrowed": lambda n : setattr(self, 'bootstrap_token_escrowed', n.get_bool_value()),
-            "chassis_type": lambda n : setattr(self, 'chassis_type', n.get_enum_value(chassis_type.ChassisType)),
-            "chrome_o_s_device_info": lambda n : setattr(self, 'chrome_o_s_device_info', n.get_collection_of_object_values(chrome_o_s_device_property.ChromeOSDeviceProperty)),
-            "cloud_pc_remote_action_results": lambda n : setattr(self, 'cloud_pc_remote_action_results', n.get_collection_of_object_values(cloud_pc_remote_action_result.CloudPcRemoteActionResult)),
-            "compliance_grace_period_expiration_date_time": lambda n : setattr(self, 'compliance_grace_period_expiration_date_time', n.get_datetime_value()),
-            "compliance_state": lambda n : setattr(self, 'compliance_state', n.get_enum_value(compliance_state.ComplianceState)),
-            "configuration_manager_client_enabled_features": lambda n : setattr(self, 'configuration_manager_client_enabled_features', n.get_object_value(configuration_manager_client_enabled_features.ConfigurationManagerClientEnabledFeatures)),
-            "configuration_manager_client_health_state": lambda n : setattr(self, 'configuration_manager_client_health_state', n.get_object_value(configuration_manager_client_health_state.ConfigurationManagerClientHealthState)),
-            "configuration_manager_client_information": lambda n : setattr(self, 'configuration_manager_client_information', n.get_object_value(configuration_manager_client_information.ConfigurationManagerClientInformation)),
-            "detected_apps": lambda n : setattr(self, 'detected_apps', n.get_collection_of_object_values(detected_app.DetectedApp)),
-            "device_action_results": lambda n : setattr(self, 'device_action_results', n.get_collection_of_object_values(device_action_result.DeviceActionResult)),
-            "device_category": lambda n : setattr(self, 'device_category', n.get_object_value(device_category.DeviceCategory)),
-            "device_category_display_name": lambda n : setattr(self, 'device_category_display_name', n.get_str_value()),
-            "device_compliance_policy_states": lambda n : setattr(self, 'device_compliance_policy_states', n.get_collection_of_object_values(device_compliance_policy_state.DeviceCompliancePolicyState)),
-            "device_configuration_states": lambda n : setattr(self, 'device_configuration_states', n.get_collection_of_object_values(device_configuration_state.DeviceConfigurationState)),
-            "device_enrollment_type": lambda n : setattr(self, 'device_enrollment_type', n.get_enum_value(device_enrollment_type.DeviceEnrollmentType)),
-            "device_firmware_configuration_interface_managed": lambda n : setattr(self, 'device_firmware_configuration_interface_managed', n.get_bool_value()),
-            "device_health_attestation_state": lambda n : setattr(self, 'device_health_attestation_state', n.get_object_value(device_health_attestation_state.DeviceHealthAttestationState)),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_registration_state": lambda n : setattr(self, 'device_registration_state', n.get_enum_value(device_registration_state.DeviceRegistrationState)),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
-            "eas_activated": lambda n : setattr(self, 'eas_activated', n.get_bool_value()),
-            "eas_activation_date_time": lambda n : setattr(self, 'eas_activation_date_time', n.get_datetime_value()),
-            "eas_device_id": lambda n : setattr(self, 'eas_device_id', n.get_str_value()),
-            "email_address": lambda n : setattr(self, 'email_address', n.get_str_value()),
-            "enrolled_date_time": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),
-            "enrollment_profile_name": lambda n : setattr(self, 'enrollment_profile_name', n.get_str_value()),
-            "ethernet_mac_address": lambda n : setattr(self, 'ethernet_mac_address', n.get_str_value()),
-            "exchange_access_state": lambda n : setattr(self, 'exchange_access_state', n.get_enum_value(device_management_exchange_access_state.DeviceManagementExchangeAccessState)),
-            "exchange_access_state_reason": lambda n : setattr(self, 'exchange_access_state_reason', n.get_enum_value(device_management_exchange_access_state_reason.DeviceManagementExchangeAccessStateReason)),
-            "exchange_last_successful_sync_date_time": lambda n : setattr(self, 'exchange_last_successful_sync_date_time', n.get_datetime_value()),
-            "free_storage_space_in_bytes": lambda n : setattr(self, 'free_storage_space_in_bytes', n.get_int_value()),
-            "hardware_information": lambda n : setattr(self, 'hardware_information', n.get_object_value(hardware_information.HardwareInformation)),
+            "aadRegistered": lambda n : setattr(self, 'aad_registered', n.get_bool_value()),
+            "activationLockBypassCode": lambda n : setattr(self, 'activation_lock_bypass_code', n.get_str_value()),
+            "androidSecurityPatchLevel": lambda n : setattr(self, 'android_security_patch_level', n.get_str_value()),
+            "assignmentFilterEvaluationStatusDetails": lambda n : setattr(self, 'assignment_filter_evaluation_status_details', n.get_collection_of_object_values(assignment_filter_evaluation_status_details.AssignmentFilterEvaluationStatusDetails)),
+            "autopilotEnrolled": lambda n : setattr(self, 'autopilot_enrolled', n.get_bool_value()),
+            "azureActiveDirectoryDeviceId": lambda n : setattr(self, 'azure_active_directory_device_id', n.get_str_value()),
+            "azureADDeviceId": lambda n : setattr(self, 'azure_a_d_device_id', n.get_str_value()),
+            "azureADRegistered": lambda n : setattr(self, 'azure_a_d_registered', n.get_bool_value()),
+            "bootstrapTokenEscrowed": lambda n : setattr(self, 'bootstrap_token_escrowed', n.get_bool_value()),
+            "chassisType": lambda n : setattr(self, 'chassis_type', n.get_enum_value(chassis_type.ChassisType)),
+            "chromeOSDeviceInfo": lambda n : setattr(self, 'chrome_o_s_device_info', n.get_collection_of_object_values(chrome_o_s_device_property.ChromeOSDeviceProperty)),
+            "cloudPcRemoteActionResults": lambda n : setattr(self, 'cloud_pc_remote_action_results', n.get_collection_of_object_values(cloud_pc_remote_action_result.CloudPcRemoteActionResult)),
+            "complianceGracePeriodExpirationDateTime": lambda n : setattr(self, 'compliance_grace_period_expiration_date_time', n.get_datetime_value()),
+            "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(compliance_state.ComplianceState)),
+            "configurationManagerClientEnabledFeatures": lambda n : setattr(self, 'configuration_manager_client_enabled_features', n.get_object_value(configuration_manager_client_enabled_features.ConfigurationManagerClientEnabledFeatures)),
+            "configurationManagerClientHealthState": lambda n : setattr(self, 'configuration_manager_client_health_state', n.get_object_value(configuration_manager_client_health_state.ConfigurationManagerClientHealthState)),
+            "configurationManagerClientInformation": lambda n : setattr(self, 'configuration_manager_client_information', n.get_object_value(configuration_manager_client_information.ConfigurationManagerClientInformation)),
+            "detectedApps": lambda n : setattr(self, 'detected_apps', n.get_collection_of_object_values(detected_app.DetectedApp)),
+            "deviceActionResults": lambda n : setattr(self, 'device_action_results', n.get_collection_of_object_values(device_action_result.DeviceActionResult)),
+            "deviceCategory": lambda n : setattr(self, 'device_category', n.get_object_value(device_category.DeviceCategory)),
+            "deviceCategoryDisplayName": lambda n : setattr(self, 'device_category_display_name', n.get_str_value()),
+            "deviceCompliancePolicyStates": lambda n : setattr(self, 'device_compliance_policy_states', n.get_collection_of_object_values(device_compliance_policy_state.DeviceCompliancePolicyState)),
+            "deviceConfigurationStates": lambda n : setattr(self, 'device_configuration_states', n.get_collection_of_object_values(device_configuration_state.DeviceConfigurationState)),
+            "deviceEnrollmentType": lambda n : setattr(self, 'device_enrollment_type', n.get_enum_value(device_enrollment_type.DeviceEnrollmentType)),
+            "deviceFirmwareConfigurationInterfaceManaged": lambda n : setattr(self, 'device_firmware_configuration_interface_managed', n.get_bool_value()),
+            "deviceHealthAttestationState": lambda n : setattr(self, 'device_health_attestation_state', n.get_object_value(device_health_attestation_state.DeviceHealthAttestationState)),
+            "deviceHealthScriptStates": lambda n : setattr(self, 'device_health_script_states', n.get_collection_of_object_values(device_health_script_policy_state.DeviceHealthScriptPolicyState)),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceRegistrationState": lambda n : setattr(self, 'device_registration_state', n.get_enum_value(device_registration_state.DeviceRegistrationState)),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_type.DeviceType)),
+            "easActivated": lambda n : setattr(self, 'eas_activated', n.get_bool_value()),
+            "easActivationDateTime": lambda n : setattr(self, 'eas_activation_date_time', n.get_datetime_value()),
+            "easDeviceId": lambda n : setattr(self, 'eas_device_id', n.get_str_value()),
+            "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "enrolledDateTime": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),
+            "enrollmentProfileName": lambda n : setattr(self, 'enrollment_profile_name', n.get_str_value()),
+            "ethernetMacAddress": lambda n : setattr(self, 'ethernet_mac_address', n.get_str_value()),
+            "exchangeAccessState": lambda n : setattr(self, 'exchange_access_state', n.get_enum_value(device_management_exchange_access_state.DeviceManagementExchangeAccessState)),
+            "exchangeAccessStateReason": lambda n : setattr(self, 'exchange_access_state_reason', n.get_enum_value(device_management_exchange_access_state_reason.DeviceManagementExchangeAccessStateReason)),
+            "exchangeLastSuccessfulSyncDateTime": lambda n : setattr(self, 'exchange_last_successful_sync_date_time', n.get_datetime_value()),
+            "freeStorageSpaceInBytes": lambda n : setattr(self, 'free_storage_space_in_bytes', n.get_int_value()),
+            "hardwareInformation": lambda n : setattr(self, 'hardware_information', n.get_object_value(hardware_information.HardwareInformation)),
             "iccid": lambda n : setattr(self, 'iccid', n.get_str_value()),
             "imei": lambda n : setattr(self, 'imei', n.get_str_value()),
-            "is_encrypted": lambda n : setattr(self, 'is_encrypted', n.get_bool_value()),
-            "is_supervised": lambda n : setattr(self, 'is_supervised', n.get_bool_value()),
-            "jail_broken": lambda n : setattr(self, 'jail_broken', n.get_str_value()),
-            "join_type": lambda n : setattr(self, 'join_type', n.get_enum_value(join_type.JoinType)),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "log_collection_requests": lambda n : setattr(self, 'log_collection_requests', n.get_collection_of_object_values(device_log_collection_response.DeviceLogCollectionResponse)),
-            "lost_mode_state": lambda n : setattr(self, 'lost_mode_state', n.get_enum_value(lost_mode_state.LostModeState)),
-            "managed_device_mobile_app_configuration_states": lambda n : setattr(self, 'managed_device_mobile_app_configuration_states', n.get_collection_of_object_values(managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState)),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "managed_device_owner_type": lambda n : setattr(self, 'managed_device_owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
-            "management_agent": lambda n : setattr(self, 'management_agent', n.get_enum_value(management_agent_type.ManagementAgentType)),
-            "management_certificate_expiration_date": lambda n : setattr(self, 'management_certificate_expiration_date', n.get_datetime_value()),
-            "management_features": lambda n : setattr(self, 'management_features', n.get_enum_value(managed_device_management_features.ManagedDeviceManagementFeatures)),
-            "management_state": lambda n : setattr(self, 'management_state', n.get_enum_value(management_state.ManagementState)),
+            "isEncrypted": lambda n : setattr(self, 'is_encrypted', n.get_bool_value()),
+            "isSupervised": lambda n : setattr(self, 'is_supervised', n.get_bool_value()),
+            "jailBroken": lambda n : setattr(self, 'jail_broken', n.get_str_value()),
+            "joinType": lambda n : setattr(self, 'join_type', n.get_enum_value(join_type.JoinType)),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "logCollectionRequests": lambda n : setattr(self, 'log_collection_requests', n.get_collection_of_object_values(device_log_collection_response.DeviceLogCollectionResponse)),
+            "lostModeState": lambda n : setattr(self, 'lost_mode_state', n.get_enum_value(lost_mode_state.LostModeState)),
+            "managedDeviceMobileAppConfigurationStates": lambda n : setattr(self, 'managed_device_mobile_app_configuration_states', n.get_collection_of_object_values(managed_device_mobile_app_configuration_state.ManagedDeviceMobileAppConfigurationState)),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "managedDeviceOwnerType": lambda n : setattr(self, 'managed_device_owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),
+            "managementAgent": lambda n : setattr(self, 'management_agent', n.get_enum_value(management_agent_type.ManagementAgentType)),
+            "managementCertificateExpirationDate": lambda n : setattr(self, 'management_certificate_expiration_date', n.get_datetime_value()),
+            "managementFeatures": lambda n : setattr(self, 'management_features', n.get_enum_value(managed_device_management_features.ManagedDeviceManagementFeatures)),
+            "managementState": lambda n : setattr(self, 'management_state', n.get_enum_value(management_state.ManagementState)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "meid": lambda n : setattr(self, 'meid', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
-            "operating_system": lambda n : setattr(self, 'operating_system', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "owner_type": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),
-            "partner_reported_threat_state": lambda n : setattr(self, 'partner_reported_threat_state', n.get_enum_value(managed_device_partner_reported_health_state.ManagedDevicePartnerReportedHealthState)),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
-            "physical_memory_in_bytes": lambda n : setattr(self, 'physical_memory_in_bytes', n.get_int_value()),
-            "prefer_mdm_over_group_policy_applied_date_time": lambda n : setattr(self, 'prefer_mdm_over_group_policy_applied_date_time', n.get_datetime_value()),
-            "processor_architecture": lambda n : setattr(self, 'processor_architecture', n.get_enum_value(managed_device_architecture.ManagedDeviceArchitecture)),
-            "remote_assistance_session_error_details": lambda n : setattr(self, 'remote_assistance_session_error_details', n.get_str_value()),
-            "remote_assistance_session_url": lambda n : setattr(self, 'remote_assistance_session_url', n.get_str_value()),
-            "require_user_enrollment_approval": lambda n : setattr(self, 'require_user_enrollment_approval', n.get_bool_value()),
-            "retire_after_date_time": lambda n : setattr(self, 'retire_after_date_time', n.get_datetime_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "security_baseline_states": lambda n : setattr(self, 'security_baseline_states', n.get_collection_of_object_values(security_baseline_state.SecurityBaselineState)),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
-            "sku_family": lambda n : setattr(self, 'sku_family', n.get_str_value()),
-            "sku_number": lambda n : setattr(self, 'sku_number', n.get_int_value()),
-            "specification_version": lambda n : setattr(self, 'specification_version', n.get_str_value()),
-            "subscriber_carrier": lambda n : setattr(self, 'subscriber_carrier', n.get_str_value()),
-            "total_storage_space_in_bytes": lambda n : setattr(self, 'total_storage_space_in_bytes', n.get_int_value()),
+            "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),
+            "partnerReportedThreatState": lambda n : setattr(self, 'partner_reported_threat_state', n.get_enum_value(managed_device_partner_reported_health_state.ManagedDevicePartnerReportedHealthState)),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "physicalMemoryInBytes": lambda n : setattr(self, 'physical_memory_in_bytes', n.get_int_value()),
+            "preferMdmOverGroupPolicyAppliedDateTime": lambda n : setattr(self, 'prefer_mdm_over_group_policy_applied_date_time', n.get_datetime_value()),
+            "processorArchitecture": lambda n : setattr(self, 'processor_architecture', n.get_enum_value(managed_device_architecture.ManagedDeviceArchitecture)),
+            "remoteAssistanceSessionErrorDetails": lambda n : setattr(self, 'remote_assistance_session_error_details', n.get_str_value()),
+            "remoteAssistanceSessionUrl": lambda n : setattr(self, 'remote_assistance_session_url', n.get_str_value()),
+            "requireUserEnrollmentApproval": lambda n : setattr(self, 'require_user_enrollment_approval', n.get_bool_value()),
+            "retireAfterDateTime": lambda n : setattr(self, 'retire_after_date_time', n.get_datetime_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "securityBaselineStates": lambda n : setattr(self, 'security_baseline_states', n.get_collection_of_object_values(security_baseline_state.SecurityBaselineState)),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "skuFamily": lambda n : setattr(self, 'sku_family', n.get_str_value()),
+            "skuNumber": lambda n : setattr(self, 'sku_number', n.get_int_value()),
+            "specificationVersion": lambda n : setattr(self, 'specification_version', n.get_str_value()),
+            "subscriberCarrier": lambda n : setattr(self, 'subscriber_carrier', n.get_str_value()),
+            "totalStorageSpaceInBytes": lambda n : setattr(self, 'total_storage_space_in_bytes', n.get_int_value()),
             "udid": lambda n : setattr(self, 'udid', n.get_str_value()),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_object_values(user.User)),
-            "users_logged_on": lambda n : setattr(self, 'users_logged_on', n.get_collection_of_object_values(logged_on_user.LoggedOnUser)),
-            "wi_fi_mac_address": lambda n : setattr(self, 'wi_fi_mac_address', n.get_str_value()),
-            "windows_active_malware_count": lambda n : setattr(self, 'windows_active_malware_count', n.get_int_value()),
-            "windows_protection_state": lambda n : setattr(self, 'windows_protection_state', n.get_object_value(windows_protection_state.WindowsProtectionState)),
-            "windows_remediated_malware_count": lambda n : setattr(self, 'windows_remediated_malware_count', n.get_int_value()),
+            "usersLoggedOn": lambda n : setattr(self, 'users_logged_on', n.get_collection_of_object_values(logged_on_user.LoggedOnUser)),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "windowsActiveMalwareCount": lambda n : setattr(self, 'windows_active_malware_count', n.get_int_value()),
+            "windowsProtectionState": lambda n : setattr(self, 'windows_protection_state', n.get_object_value(windows_protection_state.WindowsProtectionState)),
+            "windowsRemediatedMalwareCount": lambda n : setattr(self, 'windows_remediated_malware_count', n.get_int_value()),
+            "wiFiMacAddress": lambda n : setattr(self, 'wi_fi_mac_address', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -1039,7 +1063,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the hardwareInformation property value. The hardward details for the device.  Includes information such as storage space, manufacturer, serial number, etc. Return default value in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
         Args:
-            value: Value to set for the hardwareInformation property.
+            value: Value to set for the hardware_information property.
         """
         self._hardware_information = value
     
@@ -1090,7 +1114,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the isEncrypted property value. Device encryption status. This property is read-only.
         Args:
-            value: Value to set for the isEncrypted property.
+            value: Value to set for the is_encrypted property.
         """
         self._is_encrypted = value
     
@@ -1107,7 +1131,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the isSupervised property value. Device supervised status. This property is read-only.
         Args:
-            value: Value to set for the isSupervised property.
+            value: Value to set for the is_supervised property.
         """
         self._is_supervised = value
     
@@ -1124,7 +1148,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the jailBroken property value. whether the device is jail broken or rooted. This property is read-only.
         Args:
-            value: Value to set for the jailBroken property.
+            value: Value to set for the jail_broken property.
         """
         self._jail_broken = value
     
@@ -1141,7 +1165,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the joinType property value. Device enrollment join type.
         Args:
-            value: Value to set for the joinType property.
+            value: Value to set for the join_type property.
         """
         self._join_type = value
     
@@ -1158,7 +1182,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. This property is read-only.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -1175,7 +1199,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the logCollectionRequests property value. List of log collection requests
         Args:
-            value: Value to set for the logCollectionRequests property.
+            value: Value to set for the log_collection_requests property.
         """
         self._log_collection_requests = value
     
@@ -1192,7 +1216,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the lostModeState property value. State of lost mode, indicating if lost mode is enabled or disabled
         Args:
-            value: Value to set for the lostModeState property.
+            value: Value to set for the lost_mode_state property.
         """
         self._lost_mode_state = value
     
@@ -1209,7 +1233,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managedDeviceMobileAppConfigurationStates property value. Managed device mobile app configuration states for this device.
         Args:
-            value: Value to set for the managedDeviceMobileAppConfigurationStates property.
+            value: Value to set for the managed_device_mobile_app_configuration_states property.
         """
         self._managed_device_mobile_app_configuration_states = value
     
@@ -1226,7 +1250,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managedDeviceName property value. Automatically generated name to identify a device. Can be overwritten to a user friendly name.
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -1243,7 +1267,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managedDeviceOwnerType property value. Owner type of device.
         Args:
-            value: Value to set for the managedDeviceOwnerType property.
+            value: Value to set for the managed_device_owner_type property.
         """
         self._managed_device_owner_type = value
     
@@ -1260,7 +1284,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managementAgent property value. Management agent type.
         Args:
-            value: Value to set for the managementAgent property.
+            value: Value to set for the management_agent property.
         """
         self._management_agent = value
     
@@ -1277,7 +1301,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managementCertificateExpirationDate property value. Reports device management certificate expiration date. This property is read-only.
         Args:
-            value: Value to set for the managementCertificateExpirationDate property.
+            value: Value to set for the management_certificate_expiration_date property.
         """
         self._management_certificate_expiration_date = value
     
@@ -1294,7 +1318,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managementFeatures property value. Device management features.
         Args:
-            value: Value to set for the managementFeatures property.
+            value: Value to set for the management_features property.
         """
         self._management_features = value
     
@@ -1311,7 +1335,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the managementState property value. Management state of device in Microsoft Intune.
         Args:
-            value: Value to set for the managementState property.
+            value: Value to set for the management_state property.
         """
         self._management_state = value
     
@@ -1396,7 +1420,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the operatingSystem property value. Operating system of the device. Windows, iOS, etc. This property is read-only.
         Args:
-            value: Value to set for the operatingSystem property.
+            value: Value to set for the operating_system property.
         """
         self._operating_system = value
     
@@ -1413,7 +1437,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the osVersion property value. Operating system version of the device. This property is read-only.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -1430,7 +1454,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the ownerType property value. Owner type of device.
         Args:
-            value: Value to set for the ownerType property.
+            value: Value to set for the owner_type property.
         """
         self._owner_type = value
     
@@ -1447,7 +1471,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the partnerReportedThreatState property value. Available health states for the Device Health API
         Args:
-            value: Value to set for the partnerReportedThreatState property.
+            value: Value to set for the partner_reported_threat_state property.
         """
         self._partner_reported_threat_state = value
     
@@ -1464,7 +1488,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the phoneNumber property value. Phone number of the device. This property is read-only.
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -1481,7 +1505,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the physicalMemoryInBytes property value. Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
         Args:
-            value: Value to set for the physicalMemoryInBytes property.
+            value: Value to set for the physical_memory_in_bytes property.
         """
         self._physical_memory_in_bytes = value
     
@@ -1498,7 +1522,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the preferMdmOverGroupPolicyAppliedDateTime property value. Reports the DateTime the preferMdmOverGroupPolicy setting was set.  When set, the Intune MDM settings will override Group Policy settings if there is a conflict. Read Only. This property is read-only.
         Args:
-            value: Value to set for the preferMdmOverGroupPolicyAppliedDateTime property.
+            value: Value to set for the prefer_mdm_over_group_policy_applied_date_time property.
         """
         self._prefer_mdm_over_group_policy_applied_date_time = value
     
@@ -1515,7 +1539,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the processorArchitecture property value. Processor architecture
         Args:
-            value: Value to set for the processorArchitecture property.
+            value: Value to set for the processor_architecture property.
         """
         self._processor_architecture = value
     
@@ -1532,7 +1556,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the remoteAssistanceSessionErrorDetails property value. An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.
         Args:
-            value: Value to set for the remoteAssistanceSessionErrorDetails property.
+            value: Value to set for the remote_assistance_session_error_details property.
         """
         self._remote_assistance_session_error_details = value
     
@@ -1549,7 +1573,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. This property is read-only.
         Args:
-            value: Value to set for the remoteAssistanceSessionUrl property.
+            value: Value to set for the remote_assistance_session_url property.
         """
         self._remote_assistance_session_url = value
     
@@ -1566,7 +1590,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the requireUserEnrollmentApproval property value. Reports if the managed iOS device is user approval enrollment. This property is read-only.
         Args:
-            value: Value to set for the requireUserEnrollmentApproval property.
+            value: Value to set for the require_user_enrollment_approval property.
         """
         self._require_user_enrollment_approval = value
     
@@ -1583,7 +1607,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the retireAfterDateTime property value. Indicates the time after when a device will be auto retired because of scheduled action. This property is read-only.
         Args:
-            value: Value to set for the retireAfterDateTime property.
+            value: Value to set for the retire_after_date_time property.
         """
         self._retire_after_date_time = value
     
@@ -1600,7 +1624,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tag IDs for this Device instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -1617,9 +1641,26 @@ class ManagedDevice(entity.Entity):
         """
         Sets the securityBaselineStates property value. Security baseline states for this device.
         Args:
-            value: Value to set for the securityBaselineStates property.
+            value: Value to set for the security_baseline_states property.
         """
         self._security_baseline_states = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. SerialNumber. This property is read-only.
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. SerialNumber. This property is read-only.
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -1643,6 +1684,7 @@ class ManagedDevice(entity.Entity):
         writer.write_collection_of_object_values("deviceConfigurationStates", self.device_configuration_states)
         writer.write_enum_value("deviceEnrollmentType", self.device_enrollment_type)
         writer.write_bool_value("deviceFirmwareConfigurationInterfaceManaged", self.device_firmware_configuration_interface_managed)
+        writer.write_collection_of_object_values("deviceHealthScriptStates", self.device_health_script_states)
         writer.write_enum_value("deviceRegistrationState", self.device_registration_state)
         writer.write_enum_value("deviceType", self.device_type)
         writer.write_enum_value("exchangeAccessState", self.exchange_access_state)
@@ -1667,23 +1709,6 @@ class ManagedDevice(entity.Entity):
         writer.write_object_value("windowsProtectionState", self.windows_protection_state)
     
     @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. SerialNumber. This property is read-only.
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. SerialNumber. This property is read-only.
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
-    
-    @property
     def sku_family(self,) -> Optional[str]:
         """
         Gets the skuFamily property value. Device sku family
@@ -1696,14 +1721,14 @@ class ManagedDevice(entity.Entity):
         """
         Sets the skuFamily property value. Device sku family
         Args:
-            value: Value to set for the skuFamily property.
+            value: Value to set for the sku_family property.
         """
         self._sku_family = value
     
     @property
     def sku_number(self,) -> Optional[int]:
         """
-        Gets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        Gets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
         Returns: Optional[int]
         """
         return self._sku_number
@@ -1711,9 +1736,9 @@ class ManagedDevice(entity.Entity):
     @sku_number.setter
     def sku_number(self,value: Optional[int] = None) -> None:
         """
-        Sets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
+        Sets the skuNumber property value. Device sku number, see also: https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo. Valid values 0 to 2147483647. This property is read-only.
         Args:
-            value: Value to set for the skuNumber property.
+            value: Value to set for the sku_number property.
         """
         self._sku_number = value
     
@@ -1730,7 +1755,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the specificationVersion property value. Specification version. This property is read-only.
         Args:
-            value: Value to set for the specificationVersion property.
+            value: Value to set for the specification_version property.
         """
         self._specification_version = value
     
@@ -1747,7 +1772,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the subscriberCarrier property value. Subscriber Carrier. This property is read-only.
         Args:
-            value: Value to set for the subscriberCarrier property.
+            value: Value to set for the subscriber_carrier property.
         """
         self._subscriber_carrier = value
     
@@ -1764,7 +1789,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the totalStorageSpaceInBytes property value. Total Storage in Bytes. This property is read-only.
         Args:
-            value: Value to set for the totalStorageSpaceInBytes property.
+            value: Value to set for the total_storage_space_in_bytes property.
         """
         self._total_storage_space_in_bytes = value
     
@@ -1798,7 +1823,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the userDisplayName property value. User display name. This property is read-only.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -1815,7 +1840,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the userId property value. Unique Identifier for the user associated with the device. This property is read-only.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -1832,7 +1857,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the userPrincipalName property value. Device user principal name. This property is read-only.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -1866,7 +1891,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the usersLoggedOn property value. Indicates the last logged on users of a device. This property is read-only.
         Args:
-            value: Value to set for the usersLoggedOn property.
+            value: Value to set for the users_logged_on property.
         """
         self._users_logged_on = value
     
@@ -1883,7 +1908,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the wiFiMacAddress property value. Wi-Fi MAC. This property is read-only.
         Args:
-            value: Value to set for the wiFiMacAddress property.
+            value: Value to set for the wi_fi_mac_address property.
         """
         self._wi_fi_mac_address = value
     
@@ -1900,7 +1925,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the windowsActiveMalwareCount property value. Count of active malware for this windows device. This property is read-only.
         Args:
-            value: Value to set for the windowsActiveMalwareCount property.
+            value: Value to set for the windows_active_malware_count property.
         """
         self._windows_active_malware_count = value
     
@@ -1917,7 +1942,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the windowsProtectionState property value. The device protection status. This property is read-only.
         Args:
-            value: Value to set for the windowsProtectionState property.
+            value: Value to set for the windows_protection_state property.
         """
         self._windows_protection_state = value
     
@@ -1934,7 +1959,7 @@ class ManagedDevice(entity.Entity):
         """
         Sets the windowsRemediatedMalwareCount property value. Count of remediated malware for this windows device. This property is read-only.
         Args:
-            value: Value to set for the windowsRemediatedMalwareCount property.
+            value: Value to set for the windows_remediated_malware_count property.
         """
         self._windows_remediated_malware_count = value
     

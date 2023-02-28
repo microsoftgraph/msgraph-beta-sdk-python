@@ -69,7 +69,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDateTime property value. The expirationDateTime property
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -79,10 +79,10 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(drive_recipient.DriveRecipient)),
-            "retain_inherited_permissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
+            "retainInheritedPermissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
@@ -135,7 +135,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the retainInheritedPermissions property value. The retainInheritedPermissions property
         Args:
-            value: Value to set for the retainInheritedPermissions property.
+            value: Value to set for the retain_inherited_permissions property.
         """
         self._retain_inherited_permissions = value
     

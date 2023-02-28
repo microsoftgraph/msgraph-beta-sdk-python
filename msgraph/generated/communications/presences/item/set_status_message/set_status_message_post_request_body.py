@@ -51,7 +51,7 @@ class SetStatusMessagePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "status_message": lambda n : setattr(self, 'status_message', n.get_object_value(presence_status_message.PresenceStatusMessage)),
+            "statusMessage": lambda n : setattr(self, 'status_message', n.get_object_value(presence_status_message.PresenceStatusMessage)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class SetStatusMessagePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the statusMessage property value. The statusMessage property
         Args:
-            value: Value to set for the statusMessage property.
+            value: Value to set for the status_message property.
         """
         self._status_message = value
     

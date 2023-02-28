@@ -60,10 +60,10 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "high_severity_anomaly_count": lambda n : setattr(self, 'high_severity_anomaly_count', n.get_int_value()),
-            "informational_severity_anomaly_count": lambda n : setattr(self, 'informational_severity_anomaly_count', n.get_int_value()),
-            "low_severity_anomaly_count": lambda n : setattr(self, 'low_severity_anomaly_count', n.get_int_value()),
-            "medium_severity_anomaly_count": lambda n : setattr(self, 'medium_severity_anomaly_count', n.get_int_value()),
+            "highSeverityAnomalyCount": lambda n : setattr(self, 'high_severity_anomaly_count', n.get_int_value()),
+            "informationalSeverityAnomalyCount": lambda n : setattr(self, 'informational_severity_anomaly_count', n.get_int_value()),
+            "lowSeverityAnomalyCount": lambda n : setattr(self, 'low_severity_anomaly_count', n.get_int_value()),
+            "mediumSeverityAnomalyCount": lambda n : setattr(self, 'medium_severity_anomaly_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -81,7 +81,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         """
         Sets the highSeverityAnomalyCount property value. Indicates count of high severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the highSeverityAnomalyCount property.
+            value: Value to set for the high_severity_anomaly_count property.
         """
         self._high_severity_anomaly_count = value
     
@@ -98,7 +98,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         """
         Sets the informationalSeverityAnomalyCount property value. Indicates count of informational severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the informationalSeverityAnomalyCount property.
+            value: Value to set for the informational_severity_anomaly_count property.
         """
         self._informational_severity_anomaly_count = value
     
@@ -115,7 +115,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         """
         Sets the lowSeverityAnomalyCount property value. Indicates count of low severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the lowSeverityAnomalyCount property.
+            value: Value to set for the low_severity_anomaly_count property.
         """
         self._low_severity_anomaly_count = value
     
@@ -132,7 +132,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         """
         Sets the mediumSeverityAnomalyCount property value. Indicates count of medium severity anomalies which have been detected. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the mediumSeverityAnomalyCount property.
+            value: Value to set for the medium_severity_anomaly_count property.
         """
         self._medium_severity_anomaly_count = value
     
@@ -149,7 +149,7 @@ class UserExperienceAnalyticsAnomalySeverityOverview(AdditionalDataHolder, Parsa
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -23,7 +23,7 @@ class TaskProcessingResult(entity.Entity):
         """
         Sets the completedDateTime property value. The date time when taskProcessingResult execution ended. Value is null if task execution is still in progress.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -62,7 +62,7 @@ class TaskProcessingResult(entity.Entity):
         """
         Sets the createdDateTime property value. The date time when the taskProcessingResult was created.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -91,7 +91,7 @@ class TaskProcessingResult(entity.Entity):
         """
         Sets the failureReason property value. Describes why the taskProcessingResult has failed.
         Args:
-            value: Value to set for the failureReason property.
+            value: Value to set for the failure_reason property.
         """
         self._failure_reason = value
     
@@ -101,11 +101,11 @@ class TaskProcessingResult(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "failure_reason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),
-            "processing_status": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
-            "started_date_time": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "failureReason": lambda n : setattr(self, 'failure_reason', n.get_str_value()),
+            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
+            "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_object_value(user.User)),
             "task": lambda n : setattr(self, 'task', n.get_object_value(task.Task)),
         }
@@ -126,7 +126,7 @@ class TaskProcessingResult(entity.Entity):
         """
         Sets the processingStatus property value. The processingStatus property
         Args:
-            value: Value to set for the processingStatus property.
+            value: Value to set for the processing_status property.
         """
         self._processing_status = value
     
@@ -160,7 +160,7 @@ class TaskProcessingResult(entity.Entity):
         """
         Sets the startedDateTime property value. The date time when taskProcessingResult execution started. Value is null if task execution has not yet started.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the startedDateTime property.
+            value: Value to set for the started_date_time property.
         """
         self._started_date_time = value
     

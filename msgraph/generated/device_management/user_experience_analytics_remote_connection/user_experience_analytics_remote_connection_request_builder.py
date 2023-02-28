@@ -45,12 +45,11 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsRemoteConnectionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_remote_connection_collection_response.UserExperienceAnalyticsRemoteConnectionCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsRemoteConnectionRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_remote_connection_collection_response.UserExperienceAnalyticsRemoteConnectionCollectionResponse]:
         """
         User experience analytics remote connection
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_remote_connection_collection_response.UserExperienceAnalyticsRemoteConnectionCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,15 +61,14 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_remote_connection_collection_response.UserExperienceAnalyticsRemoteConnectionCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_remote_connection_collection_response.UserExperienceAnalyticsRemoteConnectionCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection] = None, request_configuration: Optional[UserExperienceAnalyticsRemoteConnectionRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection]:
+    async def post(self,body: Optional[user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection] = None, request_configuration: Optional[UserExperienceAnalyticsRemoteConnectionRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection]:
         """
         Create new navigation property to userExperienceAnalyticsRemoteConnection for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection]
         """
         if body is None:
@@ -84,7 +82,7 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_remote_connection.UserExperienceAnalyticsRemoteConnection, error_mapping)
     
     def summarize_device_remote_connection_with_summarize_by(self,summarize_by: Optional[str] = None) -> summarize_device_remote_connection_with_summarize_by_request_builder.SummarizeDeviceRemoteConnectionWithSummarizeByRequestBuilder:
         """
@@ -108,7 +106,7 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -129,7 +127,7 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -199,7 +197,7 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -214,7 +212,7 @@ class UserExperienceAnalyticsRemoteConnectionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

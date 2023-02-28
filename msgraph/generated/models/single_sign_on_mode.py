@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SingleSignOnMode(Enum):
-    None_escaped = "none",
+    None_ = "none",
     OnPremisesKerberos = "onPremisesKerberos",
     Saml = "saml",
     PingHeaderBased = "pingHeaderBased",

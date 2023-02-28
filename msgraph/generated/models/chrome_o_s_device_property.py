@@ -64,7 +64,7 @@ class ChromeOSDeviceProperty(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "updatable": lambda n : setattr(self, 'updatable', n.get_bool_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
-            "value_type": lambda n : setattr(self, 'value_type', n.get_str_value()),
+            "valueType": lambda n : setattr(self, 'value_type', n.get_str_value()),
         }
         return fields
     
@@ -98,7 +98,7 @@ class ChromeOSDeviceProperty(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -164,7 +164,7 @@ class ChromeOSDeviceProperty(AdditionalDataHolder, Parsable):
         """
         Sets the valueType property value. Type of the value
         Args:
-            value: Value to set for the valueType property.
+            value: Value to set for the value_type property.
         """
         self._value_type = value
     

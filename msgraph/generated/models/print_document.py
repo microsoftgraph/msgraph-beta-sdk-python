@@ -58,7 +58,7 @@ class PrintDocument(entity.Entity):
         """
         Sets the contentType property value. The document's content (MIME) type. Read-only.
         Args:
-            value: Value to set for the contentType property.
+            value: Value to set for the content_type property.
         """
         self._content_type = value
     
@@ -87,7 +87,7 @@ class PrintDocument(entity.Entity):
         """
         Sets the displayName property value. The document's name. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -104,7 +104,7 @@ class PrintDocument(entity.Entity):
         """
         Sets the downloadedDateTime property value. The downloadedDateTime property
         Args:
-            value: Value to set for the downloadedDateTime property.
+            value: Value to set for the downloaded_date_time property.
         """
         self._downloaded_date_time = value
     
@@ -115,11 +115,11 @@ class PrintDocument(entity.Entity):
         """
         fields = {
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(printer_document_configuration.PrinterDocumentConfiguration)),
-            "content_type": lambda n : setattr(self, 'content_type', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "downloaded_date_time": lambda n : setattr(self, 'downloaded_date_time', n.get_datetime_value()),
+            "contentType": lambda n : setattr(self, 'content_type', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "downloadedDateTime": lambda n : setattr(self, 'downloaded_date_time', n.get_datetime_value()),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "uploaded_date_time": lambda n : setattr(self, 'uploaded_date_time', n.get_datetime_value()),
+            "uploadedDateTime": lambda n : setattr(self, 'uploaded_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -171,7 +171,7 @@ class PrintDocument(entity.Entity):
         """
         Sets the uploadedDateTime property value. The uploadedDateTime property
         Args:
-            value: Value to set for the uploadedDateTime property.
+            value: Value to set for the uploaded_date_time property.
         """
         self._uploaded_date_time = value
     

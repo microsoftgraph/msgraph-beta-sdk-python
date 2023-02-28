@@ -21,7 +21,7 @@ class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection)
         """
         Sets the check32BitOn64System property value. A value indicating whether this registry path is for checking 32-bit app on 64-bit system
         Args:
-            value: Value to set for the check32BitOn64System property.
+            value: Value to set for the check32_bit_on64_system property.
         """
         self._check32_bit_on64_system = value
     
@@ -69,7 +69,7 @@ class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection)
         """
         Sets the detectionType property value. Contains all supported registry data detection type.
         Args:
-            value: Value to set for the detectionType property.
+            value: Value to set for the detection_type property.
         """
         self._detection_type = value
     
@@ -86,7 +86,7 @@ class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection)
         """
         Sets the detectionValue property value. The registry detection value
         Args:
-            value: Value to set for the detectionValue property.
+            value: Value to set for the detection_value property.
         """
         self._detection_value = value
     
@@ -96,12 +96,12 @@ class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "check32_bit_on64_system": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
-            "detection_type": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType)),
-            "detection_value": lambda n : setattr(self, 'detection_value', n.get_str_value()),
-            "key_path": lambda n : setattr(self, 'key_path', n.get_str_value()),
+            "check32BitOn64System": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
+            "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_registry_detection_type.Win32LobAppRegistryDetectionType)),
+            "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
+            "keyPath": lambda n : setattr(self, 'key_path', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(win32_lob_app_detection_operator.Win32LobAppDetectionOperator)),
-            "value_name": lambda n : setattr(self, 'value_name', n.get_str_value()),
+            "valueName": lambda n : setattr(self, 'value_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -120,7 +120,7 @@ class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection)
         """
         Sets the keyPath property value. The registry key path to detect Win32 Line of Business (LoB) app
         Args:
-            value: Value to set for the keyPath property.
+            value: Value to set for the key_path property.
         """
         self._key_path = value
     
@@ -170,7 +170,7 @@ class Win32LobAppRegistryDetection(win32_lob_app_detection.Win32LobAppDetection)
         """
         Sets the valueName property value. The registry value name
         Args:
-            value: Value to set for the valueName property.
+            value: Value to set for the value_name property.
         """
         self._value_name = value
     

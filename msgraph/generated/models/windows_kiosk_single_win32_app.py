@@ -34,7 +34,7 @@ class WindowsKioskSingleWin32App(windows_kiosk_app_configuration.WindowsKioskApp
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "win32_app": lambda n : setattr(self, 'win32_app', n.get_object_value(windows_kiosk_win32_app.WindowsKioskWin32App)),
+            "win32App": lambda n : setattr(self, 'win32_app', n.get_object_value(windows_kiosk_win32_app.WindowsKioskWin32App)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class WindowsKioskSingleWin32App(windows_kiosk_app_configuration.WindowsKioskApp
         """
         Sets the win32App property value. The win32App property
         Args:
-            value: Value to set for the win32App property.
+            value: Value to set for the win32_app property.
         """
         self._win32_app = value
     

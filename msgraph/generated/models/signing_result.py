@@ -55,7 +55,7 @@ class SigningResult(AdditionalDataHolder, Parsable):
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "signature": lambda n : setattr(self, 'signature', n.get_bytes_value()),
-            "signing_key_id": lambda n : setattr(self, 'signing_key_id', n.get_str_value()),
+            "signingKeyId": lambda n : setattr(self, 'signing_key_id', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class SigningResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class SigningResult(AdditionalDataHolder, Parsable):
         """
         Sets the signingKeyId property value. The signingKeyId property
         Args:
-            value: Value to set for the signingKeyId property.
+            value: Value to set for the signing_key_id property.
         """
         self._signing_key_id = value
     

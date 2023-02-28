@@ -56,7 +56,7 @@ class ProjectParticipation(item_facet.ItemFacet):
         """
         Sets the collaborationTags property value. Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
         Args:
-            value: Value to set for the collaborationTags property.
+            value: Value to set for the collaboration_tags property.
         """
         self._collaboration_tags = value
     
@@ -142,7 +142,7 @@ class ProjectParticipation(item_facet.ItemFacet):
         """
         Sets the displayName property value. Contains a friendly name for the project.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -154,12 +154,12 @@ class ProjectParticipation(item_facet.ItemFacet):
         fields = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "client": lambda n : setattr(self, 'client', n.get_object_value(company_detail.CompanyDetail)),
-            "collaboration_tags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
+            "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),
             "colleagues": lambda n : setattr(self, 'colleagues', n.get_collection_of_object_values(related_person.RelatedPerson)),
             "detail": lambda n : setattr(self, 'detail', n.get_object_value(position_detail.PositionDetail)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "sponsors": lambda n : setattr(self, 'sponsors', n.get_collection_of_object_values(related_person.RelatedPerson)),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -213,7 +213,7 @@ class ProjectParticipation(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. The thumbnailUrl property
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     

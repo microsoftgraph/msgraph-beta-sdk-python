@@ -25,7 +25,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the allowDefaultChildSecurityAssociationParameters property value. Allows the use of child security association parameters by setting all parameters to the device's default unless explicitly specified.
         Args:
-            value: Value to set for the allowDefaultChildSecurityAssociationParameters property.
+            value: Value to set for the allow_default_child_security_association_parameters property.
         """
         self._allow_default_child_security_association_parameters = value
     
@@ -42,7 +42,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the allowDefaultSecurityAssociationParameters property value. Allows the use of security association parameters by setting all parameters to the device's default unless explicitly specified.
         Args:
-            value: Value to set for the allowDefaultSecurityAssociationParameters property.
+            value: Value to set for the allow_default_security_association_parameters property.
         """
         self._allow_default_security_association_parameters = value
     
@@ -59,7 +59,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the alwaysOnConfiguration property value. AlwaysOn Configuration
         Args:
-            value: Value to set for the alwaysOnConfiguration property.
+            value: Value to set for the always_on_configuration property.
         """
         self._always_on_configuration = value
     
@@ -76,7 +76,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the childSecurityAssociationParameters property value. Child Security Association Parameters
         Args:
-            value: Value to set for the childSecurityAssociationParameters property.
+            value: Value to set for the child_security_association_parameters property.
         """
         self._child_security_association_parameters = value
     
@@ -93,7 +93,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the clientAuthenticationType property value. The type of VPN client authentication type
         Args:
-            value: Value to set for the clientAuthenticationType property.
+            value: Value to set for the client_authentication_type property.
         """
         self._client_authentication_type = value
     
@@ -175,7 +175,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the deadPeerDetectionRate property value. Determine how often to check if a peer connection is still active. . Possible values are: medium, none, low, high.
         Args:
-            value: Value to set for the deadPeerDetectionRate property.
+            value: Value to set for the dead_peer_detection_rate property.
         """
         self._dead_peer_detection_rate = value
     
@@ -192,7 +192,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the disableMobilityAndMultihoming property value. Disable MOBIKE
         Args:
-            value: Value to set for the disableMobilityAndMultihoming property.
+            value: Value to set for the disable_mobility_and_multihoming property.
         """
         self._disable_mobility_and_multihoming = value
     
@@ -209,7 +209,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the disableRedirect property value. Disable Redirect
         Args:
-            value: Value to set for the disableRedirect property.
+            value: Value to set for the disable_redirect property.
         """
         self._disable_redirect = value
     
@@ -226,7 +226,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the enableAlwaysOnConfiguration property value. Determines if Always on VPN is enabled
         Args:
-            value: Value to set for the enableAlwaysOnConfiguration property.
+            value: Value to set for the enable_always_on_configuration property.
         """
         self._enable_always_on_configuration = value
     
@@ -243,7 +243,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the enableCertificateRevocationCheck property value. Enables a best-effort revocation check; server response timeouts will not cause it to fail
         Args:
-            value: Value to set for the enableCertificateRevocationCheck property.
+            value: Value to set for the enable_certificate_revocation_check property.
         """
         self._enable_certificate_revocation_check = value
     
@@ -260,7 +260,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the enableEAP property value. Enables EAP only authentication
         Args:
-            value: Value to set for the enableEAP property.
+            value: Value to set for the enable_e_a_p property.
         """
         self._enable_e_a_p = value
     
@@ -277,7 +277,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the enablePerfectForwardSecrecy property value. Enable Perfect Forward Secrecy (PFS).
         Args:
-            value: Value to set for the enablePerfectForwardSecrecy property.
+            value: Value to set for the enable_perfect_forward_secrecy property.
         """
         self._enable_perfect_forward_secrecy = value
     
@@ -294,7 +294,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the enableUseInternalSubnetAttributes property value. Enable Use Internal Subnet Attributes.
         Args:
-            value: Value to set for the enableUseInternalSubnetAttributes property.
+            value: Value to set for the enable_use_internal_subnet_attributes property.
         """
         self._enable_use_internal_subnet_attributes = value
     
@@ -304,29 +304,29 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_default_child_security_association_parameters": lambda n : setattr(self, 'allow_default_child_security_association_parameters', n.get_bool_value()),
-            "allow_default_security_association_parameters": lambda n : setattr(self, 'allow_default_security_association_parameters', n.get_bool_value()),
-            "always_on_configuration": lambda n : setattr(self, 'always_on_configuration', n.get_object_value(apple_vpn_always_on_configuration.AppleVpnAlwaysOnConfiguration)),
-            "child_security_association_parameters": lambda n : setattr(self, 'child_security_association_parameters', n.get_object_value(ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters)),
-            "client_authentication_type": lambda n : setattr(self, 'client_authentication_type', n.get_enum_value(vpn_client_authentication_type.VpnClientAuthenticationType)),
-            "dead_peer_detection_rate": lambda n : setattr(self, 'dead_peer_detection_rate', n.get_enum_value(vpn_dead_peer_detection_rate.VpnDeadPeerDetectionRate)),
-            "disable_mobility_and_multihoming": lambda n : setattr(self, 'disable_mobility_and_multihoming', n.get_bool_value()),
-            "disable_redirect": lambda n : setattr(self, 'disable_redirect', n.get_bool_value()),
-            "enable_always_on_configuration": lambda n : setattr(self, 'enable_always_on_configuration', n.get_bool_value()),
-            "enable_certificate_revocation_check": lambda n : setattr(self, 'enable_certificate_revocation_check', n.get_bool_value()),
-            "enable_e_a_p": lambda n : setattr(self, 'enable_e_a_p', n.get_bool_value()),
-            "enable_perfect_forward_secrecy": lambda n : setattr(self, 'enable_perfect_forward_secrecy', n.get_bool_value()),
-            "enable_use_internal_subnet_attributes": lambda n : setattr(self, 'enable_use_internal_subnet_attributes', n.get_bool_value()),
-            "local_identifier": lambda n : setattr(self, 'local_identifier', n.get_enum_value(vpn_local_identifier.VpnLocalIdentifier)),
-            "mtu_size_in_bytes": lambda n : setattr(self, 'mtu_size_in_bytes', n.get_int_value()),
-            "remote_identifier": lambda n : setattr(self, 'remote_identifier', n.get_str_value()),
-            "security_association_parameters": lambda n : setattr(self, 'security_association_parameters', n.get_object_value(ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters)),
-            "server_certificate_common_name": lambda n : setattr(self, 'server_certificate_common_name', n.get_str_value()),
-            "server_certificate_issuer_common_name": lambda n : setattr(self, 'server_certificate_issuer_common_name', n.get_str_value()),
-            "server_certificate_type": lambda n : setattr(self, 'server_certificate_type', n.get_enum_value(vpn_server_certificate_type.VpnServerCertificateType)),
-            "shared_secret": lambda n : setattr(self, 'shared_secret', n.get_str_value()),
-            "tls_maximum_version": lambda n : setattr(self, 'tls_maximum_version', n.get_str_value()),
-            "tls_minimum_version": lambda n : setattr(self, 'tls_minimum_version', n.get_str_value()),
+            "allowDefaultChildSecurityAssociationParameters": lambda n : setattr(self, 'allow_default_child_security_association_parameters', n.get_bool_value()),
+            "allowDefaultSecurityAssociationParameters": lambda n : setattr(self, 'allow_default_security_association_parameters', n.get_bool_value()),
+            "alwaysOnConfiguration": lambda n : setattr(self, 'always_on_configuration', n.get_object_value(apple_vpn_always_on_configuration.AppleVpnAlwaysOnConfiguration)),
+            "childSecurityAssociationParameters": lambda n : setattr(self, 'child_security_association_parameters', n.get_object_value(ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters)),
+            "clientAuthenticationType": lambda n : setattr(self, 'client_authentication_type', n.get_enum_value(vpn_client_authentication_type.VpnClientAuthenticationType)),
+            "deadPeerDetectionRate": lambda n : setattr(self, 'dead_peer_detection_rate', n.get_enum_value(vpn_dead_peer_detection_rate.VpnDeadPeerDetectionRate)),
+            "disableMobilityAndMultihoming": lambda n : setattr(self, 'disable_mobility_and_multihoming', n.get_bool_value()),
+            "disableRedirect": lambda n : setattr(self, 'disable_redirect', n.get_bool_value()),
+            "enableAlwaysOnConfiguration": lambda n : setattr(self, 'enable_always_on_configuration', n.get_bool_value()),
+            "enableCertificateRevocationCheck": lambda n : setattr(self, 'enable_certificate_revocation_check', n.get_bool_value()),
+            "enableEAP": lambda n : setattr(self, 'enable_e_a_p', n.get_bool_value()),
+            "enablePerfectForwardSecrecy": lambda n : setattr(self, 'enable_perfect_forward_secrecy', n.get_bool_value()),
+            "enableUseInternalSubnetAttributes": lambda n : setattr(self, 'enable_use_internal_subnet_attributes', n.get_bool_value()),
+            "localIdentifier": lambda n : setattr(self, 'local_identifier', n.get_enum_value(vpn_local_identifier.VpnLocalIdentifier)),
+            "mtuSizeInBytes": lambda n : setattr(self, 'mtu_size_in_bytes', n.get_int_value()),
+            "remoteIdentifier": lambda n : setattr(self, 'remote_identifier', n.get_str_value()),
+            "securityAssociationParameters": lambda n : setattr(self, 'security_association_parameters', n.get_object_value(ios_vpn_security_association_parameters.IosVpnSecurityAssociationParameters)),
+            "serverCertificateCommonName": lambda n : setattr(self, 'server_certificate_common_name', n.get_str_value()),
+            "serverCertificateIssuerCommonName": lambda n : setattr(self, 'server_certificate_issuer_common_name', n.get_str_value()),
+            "serverCertificateType": lambda n : setattr(self, 'server_certificate_type', n.get_enum_value(vpn_server_certificate_type.VpnServerCertificateType)),
+            "sharedSecret": lambda n : setattr(self, 'shared_secret', n.get_str_value()),
+            "tlsMaximumVersion": lambda n : setattr(self, 'tls_maximum_version', n.get_str_value()),
+            "tlsMinimumVersion": lambda n : setattr(self, 'tls_minimum_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -345,7 +345,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the localIdentifier property value. The type of VPN local identifier
         Args:
-            value: Value to set for the localIdentifier property.
+            value: Value to set for the local_identifier property.
         """
         self._local_identifier = value
     
@@ -362,7 +362,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the mtuSizeInBytes property value. Maximum transmission unit. Valid values 1280 to 1400
         Args:
-            value: Value to set for the mtuSizeInBytes property.
+            value: Value to set for the mtu_size_in_bytes property.
         """
         self._mtu_size_in_bytes = value
     
@@ -379,7 +379,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the remoteIdentifier property value. Address of the IKEv2 server. Must be a FQDN, UserFQDN, network address, or ASN1DN
         Args:
-            value: Value to set for the remoteIdentifier property.
+            value: Value to set for the remote_identifier property.
         """
         self._remote_identifier = value
     
@@ -396,7 +396,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the securityAssociationParameters property value. Security Association Parameters
         Args:
-            value: Value to set for the securityAssociationParameters property.
+            value: Value to set for the security_association_parameters property.
         """
         self._security_association_parameters = value
     
@@ -446,7 +446,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the serverCertificateCommonName property value. Common name of the IKEv2 Server Certificate used in Server Authentication
         Args:
-            value: Value to set for the serverCertificateCommonName property.
+            value: Value to set for the server_certificate_common_name property.
         """
         self._server_certificate_common_name = value
     
@@ -463,7 +463,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the serverCertificateIssuerCommonName property value. Issuer Common name of the IKEv2 Server Certificate issuer used in Authentication
         Args:
-            value: Value to set for the serverCertificateIssuerCommonName property.
+            value: Value to set for the server_certificate_issuer_common_name property.
         """
         self._server_certificate_issuer_common_name = value
     
@@ -480,7 +480,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the serverCertificateType property value. The type of certificate the VPN server will present to the VPN client for authentication. Possible values are: rsa, ecdsa256, ecdsa384, ecdsa521.
         Args:
-            value: Value to set for the serverCertificateType property.
+            value: Value to set for the server_certificate_type property.
         """
         self._server_certificate_type = value
     
@@ -497,7 +497,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the sharedSecret property value. Used when Shared Secret Authentication is selected
         Args:
-            value: Value to set for the sharedSecret property.
+            value: Value to set for the shared_secret property.
         """
         self._shared_secret = value
     
@@ -514,7 +514,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the tlsMaximumVersion property value. The maximum TLS version to be used with EAP-TLS authentication
         Args:
-            value: Value to set for the tlsMaximumVersion property.
+            value: Value to set for the tls_maximum_version property.
         """
         self._tls_maximum_version = value
     
@@ -531,7 +531,7 @@ class IosikEv2VpnConfiguration(ios_vpn_configuration.IosVpnConfiguration):
         """
         Sets the tlsMinimumVersion property value. The minimum TLS version to be used with EAP-TLS authentication
         Args:
-            value: Value to set for the tlsMinimumVersion property.
+            value: Value to set for the tls_minimum_version property.
         """
         self._tls_minimum_version = value
     

@@ -35,12 +35,11 @@ class IdentityProviderItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[IdentityProviderItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[IdentityProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete an identityProvider.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class IdentityProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[IdentityProviderItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_provider.IdentityProvider]:
+    async def get(self,request_configuration: Optional[IdentityProviderItemRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_provider.IdentityProvider]:
         """
         Retrieve the properties and relationships of an identityProvider.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_provider.IdentityProvider]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class IdentityProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_provider.IdentityProvider, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_provider.IdentityProvider, error_mapping)
     
-    async def patch(self,body: Optional[identity_provider.IdentityProvider] = None, request_configuration: Optional[IdentityProviderItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_provider.IdentityProvider]:
+    async def patch(self,body: Optional[identity_provider.IdentityProvider] = None, request_configuration: Optional[IdentityProviderItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[identity_provider.IdentityProvider]:
         """
         Update the properties of an identityProvider object.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_provider.IdentityProvider]
         """
         if body is None:
@@ -92,7 +89,7 @@ class IdentityProviderItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_provider.IdentityProvider, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_provider.IdentityProvider, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[IdentityProviderItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -121,7 +118,7 @@ class IdentityProviderItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -142,7 +139,7 @@ class IdentityProviderItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -155,7 +152,7 @@ class IdentityProviderItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -194,7 +191,7 @@ class IdentityProviderItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -209,7 +206,7 @@ class IdentityProviderItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

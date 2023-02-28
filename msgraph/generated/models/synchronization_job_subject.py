@@ -58,8 +58,8 @@ class SynchronizationJobSubject(AdditionalDataHolder, Parsable):
         """
         fields = {
             "links": lambda n : setattr(self, 'links', n.get_object_value(synchronization_linked_objects.SynchronizationLinkedObjects)),
-            "object_id": lambda n : setattr(self, 'object_id', n.get_str_value()),
-            "object_type_name": lambda n : setattr(self, 'object_type_name', n.get_str_value()),
+            "objectId": lambda n : setattr(self, 'object_id', n.get_str_value()),
+            "objectTypeName": lambda n : setattr(self, 'object_type_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -94,7 +94,7 @@ class SynchronizationJobSubject(AdditionalDataHolder, Parsable):
         """
         Sets the objectId property value. The identifier of an object to which a synchronizationJob is to be applied. Can be one of the following: An onPremisesDistinguishedName for synchronization from Active Directory to Azure AD.The user ID for synchronization from Azure AD to a third-party.The Worker ID of the Workday worker for synchronization from Workday to either Active Directory or Azure AD.
         Args:
-            value: Value to set for the objectId property.
+            value: Value to set for the object_id property.
         """
         self._object_id = value
     
@@ -111,7 +111,7 @@ class SynchronizationJobSubject(AdditionalDataHolder, Parsable):
         """
         Sets the objectTypeName property value. The type of the object to which a synchronizationJob is to be applied. Can be one of the following: user for synchronizing between Active Directory and Azure AD.User for synchronizing a user between Azure AD and a third-party application. Worker for synchronization a user between Workday and either Active Directory or Azure AD.Group for synchronizing a group between Azure AD and a third-party application.
         Args:
-            value: Value to set for the objectTypeName property.
+            value: Value to set for the object_type_name property.
         """
         self._object_type_name = value
     
@@ -128,7 +128,7 @@ class SynchronizationJobSubject(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

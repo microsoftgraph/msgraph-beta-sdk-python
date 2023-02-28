@@ -63,7 +63,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the displayName property value. The image's display name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -80,7 +80,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the expirationDate property value. The date the image became unavailable.
         Args:
-            value: Value to set for the expirationDate property.
+            value: Value to set for the expiration_date property.
         """
         self._expiration_date = value
     
@@ -90,15 +90,15 @@ class CloudPcDeviceImage(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "expiration_date": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "operating_system": lambda n : setattr(self, 'operating_system', n.get_str_value()),
-            "os_build_number": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
-            "os_status": lambda n : setattr(self, 'os_status', n.get_enum_value(cloud_pc_device_image_os_status.CloudPcDeviceImageOsStatus)),
-            "source_image_resource_id": lambda n : setattr(self, 'source_image_resource_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "operatingSystem": lambda n : setattr(self, 'operating_system', n.get_str_value()),
+            "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
+            "osStatus": lambda n : setattr(self, 'os_status', n.get_enum_value(cloud_pc_device_image_os_status.CloudPcDeviceImageOsStatus)),
+            "sourceImageResourceId": lambda n : setattr(self, 'source_image_resource_id', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(cloud_pc_device_image_status.CloudPcDeviceImageStatus)),
-            "status_details": lambda n : setattr(self, 'status_details', n.get_enum_value(cloud_pc_device_image_status_details.CloudPcDeviceImageStatusDetails)),
+            "statusDetails": lambda n : setattr(self, 'status_details', n.get_enum_value(cloud_pc_device_image_status_details.CloudPcDeviceImageStatusDetails)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -118,7 +118,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The data and time that the image was last modified. The time is shown in ISO 8601 format and  Coordinated Universal Time (UTC) time. For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -135,7 +135,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the operatingSystem property value. The image's operating system. For example: Windows 10 Enterprise.
         Args:
-            value: Value to set for the operatingSystem property.
+            value: Value to set for the operating_system property.
         """
         self._operating_system = value
     
@@ -152,7 +152,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the osBuildNumber property value. The image's OS build version. For example: 1909.
         Args:
-            value: Value to set for the osBuildNumber property.
+            value: Value to set for the os_build_number property.
         """
         self._os_build_number = value
     
@@ -169,7 +169,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the osStatus property value. The OS status of this image. Possible values are: supported, supportedWithWarning, unknownFutureValue.
         Args:
-            value: Value to set for the osStatus property.
+            value: Value to set for the os_status property.
         """
         self._os_status = value
     
@@ -206,7 +206,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the sourceImageResourceId property value. The ID of the source image resource on Azure. Required format: '/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}'.
         Args:
-            value: Value to set for the sourceImageResourceId property.
+            value: Value to set for the source_image_resource_id property.
         """
         self._source_image_resource_id = value
     
@@ -240,7 +240,7 @@ class CloudPcDeviceImage(entity.Entity):
         """
         Sets the statusDetails property value. The details of the image's status, which indicates why the upload failed, if applicable. Possible values are: internalServerError, sourceImageNotFound, osVersionNotSupported, sourceImageInvalid, and sourceImageNotGeneralized.
         Args:
-            value: Value to set for the statusDetails property.
+            value: Value to set for the status_details property.
         """
         self._status_details = value
     

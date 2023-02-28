@@ -58,10 +58,10 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "max_lifetime": lambda n : setattr(self, 'max_lifetime', n.get_object_value(Timedelta)),
+            "maxLifetime": lambda n : setattr(self, 'max_lifetime', n.get_object_value(Timedelta)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "restrict_for_apps_created_after_date_time": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
-            "restriction_type": lambda n : setattr(self, 'restriction_type', n.get_enum_value(app_credential_restriction_type.AppCredentialRestrictionType)),
+            "restrictionType": lambda n : setattr(self, 'restriction_type', n.get_enum_value(app_credential_restriction_type.AppCredentialRestrictionType)),
+            "restrictForAppsCreatedAfterDateTime": lambda n : setattr(self, 'restrict_for_apps_created_after_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the maxLifetime property value. The maxLifetime property
         Args:
-            value: Value to set for the maxLifetime property.
+            value: Value to set for the max_lifetime property.
         """
         self._max_lifetime = value
     
@@ -95,7 +95,7 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,7 +112,7 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the restrictForAppsCreatedAfterDateTime property value. Enforces the policy for an app created on or after the enforcement date. For existing applications, the enforcement date would be backdated. To apply to all applications, this date would be null.
         Args:
-            value: Value to set for the restrictForAppsCreatedAfterDateTime property.
+            value: Value to set for the restrict_for_apps_created_after_date_time property.
         """
         self._restrict_for_apps_created_after_date_time = value
     
@@ -129,7 +129,7 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the restrictionType property value. The type of restriction being applied. The possible values are: passwordAddition, passwordLifetime, symmetricKeyAddition, symmetricKeyLifetime,customPasswordAddition, unknownFutureValue. Each value of restrictionType can be used only once per policy.
         Args:
-            value: Value to set for the restrictionType property.
+            value: Value to set for the restriction_type property.
         """
         self._restriction_type = value
     
@@ -143,8 +143,8 @@ class PasswordCredentialConfiguration(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_object_value("maxLifetime", self.max_lifetime)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_datetime_value("restrictForAppsCreatedAfterDateTime", self.restrict_for_apps_created_after_date_time)
         writer.write_enum_value("restrictionType", self.restriction_type)
+        writer.write_datetime_value("restrictForAppsCreatedAfterDateTime", self.restrict_for_apps_created_after_date_time)
         writer.write_additional_data_value(self.additional_data)
     
 

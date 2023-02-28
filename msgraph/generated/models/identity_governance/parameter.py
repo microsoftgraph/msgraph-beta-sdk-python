@@ -34,10 +34,10 @@ class Parameter(AdditionalDataHolder, Parsable):
         self._name: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The values of the parameter.
-        self._values: Optional[List[str]] = None
         # The valueType property
         self._value_type: Optional[value_type.ValueType] = None
+        # The values of the parameter.
+        self._values: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Parameter:
@@ -60,7 +60,7 @@ class Parameter(AdditionalDataHolder, Parsable):
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "values": lambda n : setattr(self, 'values', n.get_collection_of_primitive_values(str)),
-            "value_type": lambda n : setattr(self, 'value_type', n.get_enum_value(value_type.ValueType)),
+            "valueType": lambda n : setattr(self, 'value_type', n.get_enum_value(value_type.ValueType)),
         }
         return fields
     
@@ -94,7 +94,7 @@ class Parameter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -113,6 +113,23 @@ class Parameter(AdditionalDataHolder, Parsable):
         writer.write_additional_data_value(self.additional_data)
     
     @property
+    def value_type(self,) -> Optional[value_type.ValueType]:
+        """
+        Gets the valueType property value. The valueType property
+        Returns: Optional[value_type.ValueType]
+        """
+        return self._value_type
+    
+    @value_type.setter
+    def value_type(self,value: Optional[value_type.ValueType] = None) -> None:
+        """
+        Sets the valueType property value. The valueType property
+        Args:
+            value: Value to set for the value_type property.
+        """
+        self._value_type = value
+    
+    @property
     def values(self,) -> Optional[List[str]]:
         """
         Gets the values property value. The values of the parameter.
@@ -128,22 +145,5 @@ class Parameter(AdditionalDataHolder, Parsable):
             value: Value to set for the values property.
         """
         self._values = value
-    
-    @property
-    def value_type(self,) -> Optional[value_type.ValueType]:
-        """
-        Gets the valueType property value. The valueType property
-        Returns: Optional[value_type.ValueType]
-        """
-        return self._value_type
-    
-    @value_type.setter
-    def value_type(self,value: Optional[value_type.ValueType] = None) -> None:
-        """
-        Sets the valueType property value. The valueType property
-        Args:
-            value: Value to set for the valueType property.
-        """
-        self._value_type = value
     
 

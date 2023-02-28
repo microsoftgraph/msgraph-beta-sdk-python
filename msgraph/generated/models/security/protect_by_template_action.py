@@ -33,7 +33,7 @@ class ProtectByTemplateAction(information_protection_action.InformationProtectio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "template_id": lambda n : setattr(self, 'template_id', n.get_str_value()),
+            "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class ProtectByTemplateAction(information_protection_action.InformationProtectio
         """
         Sets the templateId property value. The unique identifier for a protection template in Microsoft Purview Information Protection to apply to the content.
         Args:
-            value: Value to set for the templateId property.
+            value: Value to set for the template_id property.
         """
         self._template_id = value
     

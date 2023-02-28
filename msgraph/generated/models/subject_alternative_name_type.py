@@ -2,7 +2,7 @@ from enum import Enum
 
 class SubjectAlternativeNameType(Enum):
     # No subject alternative name.
-    None_escaped = "none",
+    None_ = "none",
     # Email address.
     EmailAddress = "emailAddress",
     # User Principal Name (UPN).

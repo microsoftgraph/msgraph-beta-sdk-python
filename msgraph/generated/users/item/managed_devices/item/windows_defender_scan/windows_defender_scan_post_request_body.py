@@ -49,7 +49,7 @@ class WindowsDefenderScanPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "quick_scan": lambda n : setattr(self, 'quick_scan', n.get_bool_value()),
+            "quickScan": lambda n : setattr(self, 'quick_scan', n.get_bool_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class WindowsDefenderScanPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the quickScan property value. The quickScan property
         Args:
-            value: Value to set for the quickScan property.
+            value: Value to set for the quick_scan property.
         """
         self._quick_scan = value
     

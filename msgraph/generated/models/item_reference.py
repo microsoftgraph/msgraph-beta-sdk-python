@@ -30,11 +30,11 @@ class ItemReference(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Unique identifier of the drive instance that contains the item. Read-only.
+        # Unique identifier of the drive instance that contains the driveItem. Only returned if the item is located in a [drive][]. Read-only.
         self._drive_id: Optional[str] = None
-        # Identifies the type of drive. See [drive][] resource for values.
+        # Identifies the type of drive. Only returned if the item is located in a [drive][].  See [drive][] resource for values.
         self._drive_type: Optional[str] = None
-        # Unique identifier of the item in the drive. Read-only.
+        # Unique identifier of the driveItem in the drive or a listItem in a list. Read-only.
         self._id: Optional[str] = None
         # The name of the item being referenced. Read-only.
         self._name: Optional[str] = None
@@ -46,7 +46,7 @@ class ItemReference(AdditionalDataHolder, Parsable):
         self._share_id: Optional[str] = None
         # Returns identifiers useful for SharePoint REST compatibility. Read-only.
         self._sharepoint_ids: Optional[sharepoint_ids.SharepointIds] = None
-        # For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
+        # For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource or the parent list of the listItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
         self._site_id: Optional[str] = None
     
     @staticmethod
@@ -64,7 +64,7 @@ class ItemReference(AdditionalDataHolder, Parsable):
     @property
     def drive_id(self,) -> Optional[str]:
         """
-        Gets the driveId property value. Unique identifier of the drive instance that contains the item. Read-only.
+        Gets the driveId property value. Unique identifier of the drive instance that contains the driveItem. Only returned if the item is located in a [drive][]. Read-only.
         Returns: Optional[str]
         """
         return self._drive_id
@@ -72,16 +72,16 @@ class ItemReference(AdditionalDataHolder, Parsable):
     @drive_id.setter
     def drive_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the driveId property value. Unique identifier of the drive instance that contains the item. Read-only.
+        Sets the driveId property value. Unique identifier of the drive instance that contains the driveItem. Only returned if the item is located in a [drive][]. Read-only.
         Args:
-            value: Value to set for the driveId property.
+            value: Value to set for the drive_id property.
         """
         self._drive_id = value
     
     @property
     def drive_type(self,) -> Optional[str]:
         """
-        Gets the driveType property value. Identifies the type of drive. See [drive][] resource for values.
+        Gets the driveType property value. Identifies the type of drive. Only returned if the item is located in a [drive][].  See [drive][] resource for values.
         Returns: Optional[str]
         """
         return self._drive_type
@@ -89,9 +89,9 @@ class ItemReference(AdditionalDataHolder, Parsable):
     @drive_type.setter
     def drive_type(self,value: Optional[str] = None) -> None:
         """
-        Sets the driveType property value. Identifies the type of drive. See [drive][] resource for values.
+        Sets the driveType property value. Identifies the type of drive. Only returned if the item is located in a [drive][].  See [drive][] resource for values.
         Args:
-            value: Value to set for the driveType property.
+            value: Value to set for the drive_type property.
         """
         self._drive_type = value
     
@@ -101,22 +101,22 @@ class ItemReference(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "drive_id": lambda n : setattr(self, 'drive_id', n.get_str_value()),
-            "drive_type": lambda n : setattr(self, 'drive_type', n.get_str_value()),
+            "driveId": lambda n : setattr(self, 'drive_id', n.get_str_value()),
+            "driveType": lambda n : setattr(self, 'drive_type', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "path": lambda n : setattr(self, 'path', n.get_str_value()),
-            "share_id": lambda n : setattr(self, 'share_id', n.get_str_value()),
-            "sharepoint_ids": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(sharepoint_ids.SharepointIds)),
-            "site_id": lambda n : setattr(self, 'site_id', n.get_str_value()),
+            "sharepointIds": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(sharepoint_ids.SharepointIds)),
+            "shareId": lambda n : setattr(self, 'share_id', n.get_str_value()),
+            "siteId": lambda n : setattr(self, 'site_id', n.get_str_value()),
         }
         return fields
     
     @property
     def id(self,) -> Optional[str]:
         """
-        Gets the id property value. Unique identifier of the item in the drive. Read-only.
+        Gets the id property value. Unique identifier of the driveItem in the drive or a listItem in a list. Read-only.
         Returns: Optional[str]
         """
         return self._id
@@ -124,7 +124,7 @@ class ItemReference(AdditionalDataHolder, Parsable):
     @id.setter
     def id(self,value: Optional[str] = None) -> None:
         """
-        Sets the id property value. Unique identifier of the item in the drive. Read-only.
+        Sets the id property value. Unique identifier of the driveItem in the drive or a listItem in a list. Read-only.
         Args:
             value: Value to set for the id property.
         """
@@ -160,7 +160,7 @@ class ItemReference(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -195,8 +195,8 @@ class ItemReference(AdditionalDataHolder, Parsable):
         writer.write_str_value("name", self.name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("path", self.path)
-        writer.write_str_value("shareId", self.share_id)
         writer.write_object_value("sharepointIds", self.sharepoint_ids)
+        writer.write_str_value("shareId", self.share_id)
         writer.write_str_value("siteId", self.site_id)
         writer.write_additional_data_value(self.additional_data)
     
@@ -213,7 +213,7 @@ class ItemReference(AdditionalDataHolder, Parsable):
         """
         Sets the shareId property value. A unique identifier for a shared resource that can be accessed via the [Shares][] API.
         Args:
-            value: Value to set for the shareId property.
+            value: Value to set for the share_id property.
         """
         self._share_id = value
     
@@ -230,14 +230,14 @@ class ItemReference(AdditionalDataHolder, Parsable):
         """
         Sets the sharepointIds property value. Returns identifiers useful for SharePoint REST compatibility. Read-only.
         Args:
-            value: Value to set for the sharepointIds property.
+            value: Value to set for the sharepoint_ids property.
         """
         self._sharepoint_ids = value
     
     @property
     def site_id(self,) -> Optional[str]:
         """
-        Gets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
+        Gets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource or the parent list of the listItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
         Returns: Optional[str]
         """
         return self._site_id
@@ -245,9 +245,9 @@ class ItemReference(AdditionalDataHolder, Parsable):
     @site_id.setter
     def site_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
+        Sets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource or the parent list of the listItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
         Args:
-            value: Value to set for the siteId property.
+            value: Value to set for the site_id property.
         """
         self._site_id = value
     

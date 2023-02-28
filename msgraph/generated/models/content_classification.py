@@ -79,8 +79,8 @@ class ContentClassification(AdditionalDataHolder, Parsable):
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(match_location.MatchLocation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sensitive_type_id": lambda n : setattr(self, 'sensitive_type_id', n.get_str_value()),
-            "unique_count": lambda n : setattr(self, 'unique_count', n.get_int_value()),
+            "sensitiveTypeId": lambda n : setattr(self, 'sensitive_type_id', n.get_str_value()),
+            "uniqueCount": lambda n : setattr(self, 'unique_count', n.get_int_value()),
         }
         return fields
     
@@ -114,7 +114,7 @@ class ContentClassification(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -131,7 +131,7 @@ class ContentClassification(AdditionalDataHolder, Parsable):
         """
         Sets the sensitiveTypeId property value. The sensitiveTypeId property
         Args:
-            value: Value to set for the sensitiveTypeId property.
+            value: Value to set for the sensitive_type_id property.
         """
         self._sensitive_type_id = value
     
@@ -163,7 +163,7 @@ class ContentClassification(AdditionalDataHolder, Parsable):
         """
         Sets the uniqueCount property value. The uniqueCount property
         Args:
-            value: Value to set for the uniqueCount property.
+            value: Value to set for the unique_count property.
         """
         self._unique_count = value
     

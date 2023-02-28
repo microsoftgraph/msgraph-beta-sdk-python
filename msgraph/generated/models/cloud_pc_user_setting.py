@@ -61,7 +61,7 @@ class CloudPcUserSetting(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time the setting was created. The Timestamp type represents the date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -90,7 +90,7 @@ class CloudPcUserSetting(entity.Entity):
         """
         Sets the displayName property value. The setting name displayed in the user interface.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -101,12 +101,12 @@ class CloudPcUserSetting(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(cloud_pc_user_setting_assignment.CloudPcUserSettingAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "local_admin_enabled": lambda n : setattr(self, 'local_admin_enabled', n.get_bool_value()),
-            "restore_point_setting": lambda n : setattr(self, 'restore_point_setting', n.get_object_value(cloud_pc_restore_point_setting.CloudPcRestorePointSetting)),
-            "self_service_enabled": lambda n : setattr(self, 'self_service_enabled', n.get_bool_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "localAdminEnabled": lambda n : setattr(self, 'local_admin_enabled', n.get_bool_value()),
+            "restorePointSetting": lambda n : setattr(self, 'restore_point_setting', n.get_object_value(cloud_pc_restore_point_setting.CloudPcRestorePointSetting)),
+            "selfServiceEnabled": lambda n : setattr(self, 'self_service_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -125,7 +125,7 @@ class CloudPcUserSetting(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The last date and time the setting was modified. The Timestamp type represents the date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like this: '2014-01-01T00:00:00Z'.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -142,7 +142,7 @@ class CloudPcUserSetting(entity.Entity):
         """
         Sets the localAdminEnabled property value. Indicates whether the local admin option is enabled. Default value is false. To enable the local admin option, change the setting to true. If the local admin option is enabled, the end user can be an admin of the Cloud PC device.
         Args:
-            value: Value to set for the localAdminEnabled property.
+            value: Value to set for the local_admin_enabled property.
         """
         self._local_admin_enabled = value
     
@@ -159,7 +159,7 @@ class CloudPcUserSetting(entity.Entity):
         """
         Sets the restorePointSetting property value. Defines how frequently a restore point is created that is, a snapshot is taken) for users' provisioned Cloud PCs (default is 12 hours), and whether the user is allowed to restore their own Cloud PCs to a backup made at a specific point in time.
         Args:
-            value: Value to set for the restorePointSetting property.
+            value: Value to set for the restore_point_setting property.
         """
         self._restore_point_setting = value
     
@@ -176,7 +176,7 @@ class CloudPcUserSetting(entity.Entity):
         """
         Sets the selfServiceEnabled property value. Indicates whether the self-service option is enabled. Default value is false. To enable the self-service option, change the setting to true. If the self-service option is enabled, the end user is allowed to perform some self-service operations, such as upgrading the Cloud PC through the end user portal.
         Args:
-            value: Value to set for the selfServiceEnabled property.
+            value: Value to set for the self_service_enabled property.
         """
         self._self_service_enabled = value
     

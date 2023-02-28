@@ -29,19 +29,18 @@ class GetRemoteAssistanceSessionsReportRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/reports/microsoft.graph.getRemoteAssistanceSessionsReport"
+        self.url_template: str = "{+baseurl}/deviceManagement/reports/getRemoteAssistanceSessionsReport"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[get_remote_assistance_sessions_report_post_request_body.GetRemoteAssistanceSessionsReportPostRequestBody] = None, request_configuration: Optional[GetRemoteAssistanceSessionsReportRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> bytes:
+    async def post(self,body: Optional[get_remote_assistance_sessions_report_post_request_body.GetRemoteAssistanceSessionsReportPostRequestBody] = None, request_configuration: Optional[GetRemoteAssistanceSessionsReportRequestBuilderPostRequestConfiguration] = None) -> bytes:
         """
         Invoke action getRemoteAssistanceSessionsReport
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: bytes
         """
         if body is None:
@@ -55,7 +54,7 @@ class GetRemoteAssistanceSessionsReportRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_primitive_async(request_info, "bytes", response_handler, error_mapping)
+        return await self.request_adapter.send_primitive_async(request_info, "bytes", error_mapping)
     
     def to_post_request_information(self,body: Optional[get_remote_assistance_sessions_report_post_request_body.GetRemoteAssistanceSessionsReportPostRequestBody] = None, request_configuration: Optional[GetRemoteAssistanceSessionsReportRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -83,7 +82,7 @@ class GetRemoteAssistanceSessionsReportRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

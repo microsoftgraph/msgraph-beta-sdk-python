@@ -82,7 +82,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the deviceName property value. Device name.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -109,18 +109,18 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "domain": lambda n : setattr(self, 'domain', n.get_str_value()),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "last_logged_on_user": lambda n : setattr(self, 'last_logged_on_user', n.get_str_value()),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "lastLoggedOnUser": lambda n : setattr(self, 'last_logged_on_user', n.get_str_value()),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
             "location": lambda n : setattr(self, 'location', n.get_str_value()),
-            "mac_address": lambda n : setattr(self, 'mac_address', n.get_str_value()),
+            "macAddress": lambda n : setattr(self, 'mac_address', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "os": lambda n : setattr(self, 'os', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
         }
         return fields
     
@@ -137,7 +137,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the ipAddress property value. IP address.
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -154,7 +154,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the lastLoggedOnUser property value. Last logged on user.
         Args:
-            value: Value to set for the lastLoggedOnUser property.
+            value: Value to set for the last_logged_on_user property.
         """
         self._last_logged_on_user = value
     
@@ -171,7 +171,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the lastSeenDateTime property value. Last seen date and time.
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -205,7 +205,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the macAddress property value. MAC address.
         Args:
-            value: Value to set for the macAddress property.
+            value: Value to set for the mac_address property.
         """
         self._mac_address = value
     
@@ -256,7 +256,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -290,7 +290,7 @@ class UnmanagedDevice(AdditionalDataHolder, Parsable):
         """
         Sets the osVersion property value. Operating system version.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     

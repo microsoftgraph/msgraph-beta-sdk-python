@@ -44,12 +44,11 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_device_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthDeviceAppImpactCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilderGetRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_device_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthDeviceAppImpactCollectionResponse]:
         """
         User Experience Analytics Battery Health Device App Impact
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_device_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthDeviceAppImpactCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthDeviceAppImpactCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_app_impact_collection_response.UserExperienceAnalyticsBatteryHealthDeviceAppImpactCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact]:
+    async def post(self,body: Optional[user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact] = None, request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilderPostRequestConfiguration] = None) -> Optional[user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact]:
         """
         Create new navigation property to userExperienceAnalyticsBatteryHealthDeviceAppImpact for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact]
         """
         if body is None:
@@ -83,7 +81,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_experience_analytics_battery_health_device_app_impact.UserExperienceAnalyticsBatteryHealthDeviceAppImpact, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpactRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

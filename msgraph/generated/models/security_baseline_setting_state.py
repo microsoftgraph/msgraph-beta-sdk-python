@@ -49,7 +49,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the contributingPolicies property value. The policies that contribute to this setting instance
         Args:
-            value: Value to set for the contributingPolicies property.
+            value: Value to set for the contributing_policies property.
         """
         self._contributing_policies = value
     
@@ -78,7 +78,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the errorCode property value. The error code if the setting is in error state
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -88,13 +88,13 @@ class SecurityBaselineSettingState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "contributing_policies": lambda n : setattr(self, 'contributing_policies', n.get_collection_of_object_values(security_baseline_contributing_policy.SecurityBaselineContributingPolicy)),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_str_value()),
-            "setting_category_id": lambda n : setattr(self, 'setting_category_id', n.get_str_value()),
-            "setting_category_name": lambda n : setattr(self, 'setting_category_name', n.get_str_value()),
-            "setting_id": lambda n : setattr(self, 'setting_id', n.get_str_value()),
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
-            "source_policies": lambda n : setattr(self, 'source_policies', n.get_collection_of_object_values(setting_source.SettingSource)),
+            "contributingPolicies": lambda n : setattr(self, 'contributing_policies', n.get_collection_of_object_values(security_baseline_contributing_policy.SecurityBaselineContributingPolicy)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
+            "settingCategoryId": lambda n : setattr(self, 'setting_category_id', n.get_str_value()),
+            "settingCategoryName": lambda n : setattr(self, 'setting_category_name', n.get_str_value()),
+            "settingId": lambda n : setattr(self, 'setting_id', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "sourcePolicies": lambda n : setattr(self, 'source_policies', n.get_collection_of_object_values(setting_source.SettingSource)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(security_baseline_compliance_state.SecurityBaselineComplianceState)),
         }
         super_fields = super().get_field_deserializers()
@@ -132,7 +132,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the settingCategoryId property value. The setting category id which this setting belongs to
         Args:
-            value: Value to set for the settingCategoryId property.
+            value: Value to set for the setting_category_id property.
         """
         self._setting_category_id = value
     
@@ -149,7 +149,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the settingCategoryName property value. The setting category name which this setting belongs to
         Args:
-            value: Value to set for the settingCategoryName property.
+            value: Value to set for the setting_category_name property.
         """
         self._setting_category_name = value
     
@@ -166,7 +166,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the settingId property value. The setting id guid
         Args:
-            value: Value to set for the settingId property.
+            value: Value to set for the setting_id property.
         """
         self._setting_id = value
     
@@ -183,7 +183,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the settingName property value. The setting name that is being reported
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     
@@ -200,7 +200,7 @@ class SecurityBaselineSettingState(entity.Entity):
         """
         Sets the sourcePolicies property value. The policies that contribute to this setting instance
         Args:
-            value: Value to set for the sourcePolicies property.
+            value: Value to set for the source_policies property.
         """
         self._source_policies = value
     

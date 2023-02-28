@@ -67,7 +67,7 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Name of the policy
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -77,10 +77,10 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "source_id": lambda n : setattr(self, 'source_id', n.get_str_value()),
-            "source_type": lambda n : setattr(self, 'source_type', n.get_enum_value(security_baseline_policy_source_type.SecurityBaselinePolicySourceType)),
+            "sourceId": lambda n : setattr(self, 'source_id', n.get_str_value()),
+            "sourceType": lambda n : setattr(self, 'source_type', n.get_enum_value(security_baseline_policy_source_type.SecurityBaselinePolicySourceType)),
         }
         return fields
     
@@ -97,7 +97,7 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -128,7 +128,7 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the sourceId property value. Unique identifier of the policy
         Args:
-            value: Value to set for the sourceId property.
+            value: Value to set for the source_id property.
         """
         self._source_id = value
     
@@ -145,7 +145,7 @@ class SecurityBaselineContributingPolicy(AdditionalDataHolder, Parsable):
         """
         Sets the sourceType property value. Authoring source of a policy
         Args:
-            value: Value to set for the sourceType property.
+            value: Value to set for the source_type property.
         """
         self._source_type = value
     

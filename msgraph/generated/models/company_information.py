@@ -82,7 +82,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the currencyCode property value. The currencyCode property
         Args:
-            value: Value to set for the currencyCode property.
+            value: Value to set for the currency_code property.
         """
         self._currency_code = value
     
@@ -99,7 +99,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the currentFiscalYearStartDate property value. The currentFiscalYearStartDate property
         Args:
-            value: Value to set for the currentFiscalYearStartDate property.
+            value: Value to set for the current_fiscal_year_start_date property.
         """
         self._current_fiscal_year_start_date = value
     
@@ -116,7 +116,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -150,7 +150,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the faxNumber property value. The faxNumber property
         Args:
-            value: Value to set for the faxNumber property.
+            value: Value to set for the fax_number property.
         """
         self._fax_number = value
     
@@ -161,16 +161,16 @@ class CompanyInformation(entity.Entity):
         """
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "current_fiscal_year_start_date": lambda n : setattr(self, 'current_fiscal_year_start_date', n.get_object_value(Date)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
+            "currentFiscalYearStartDate": lambda n : setattr(self, 'current_fiscal_year_start_date', n.get_object_value(Date)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "fax_number": lambda n : setattr(self, 'fax_number', n.get_str_value()),
+            "faxNumber": lambda n : setattr(self, 'fax_number', n.get_str_value()),
             "industry": lambda n : setattr(self, 'industry', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_bytes_value()),
-            "tax_registration_number": lambda n : setattr(self, 'tax_registration_number', n.get_str_value()),
+            "taxRegistrationNumber": lambda n : setattr(self, 'tax_registration_number', n.get_str_value()),
             "website": lambda n : setattr(self, 'website', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -207,7 +207,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -224,7 +224,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the phoneNumber property value. The phoneNumber property
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -280,7 +280,7 @@ class CompanyInformation(entity.Entity):
         """
         Sets the taxRegistrationNumber property value. The taxRegistrationNumber property
         Args:
-            value: Value to set for the taxRegistrationNumber property.
+            value: Value to set for the tax_registration_number property.
         """
         self._tax_registration_number = value
     

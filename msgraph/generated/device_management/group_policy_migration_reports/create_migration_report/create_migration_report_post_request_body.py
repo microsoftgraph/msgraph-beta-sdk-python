@@ -51,7 +51,7 @@ class CreateMigrationReportPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_policy_object_file": lambda n : setattr(self, 'group_policy_object_file', n.get_object_value(group_policy_object_file.GroupPolicyObjectFile)),
+            "groupPolicyObjectFile": lambda n : setattr(self, 'group_policy_object_file', n.get_object_value(group_policy_object_file.GroupPolicyObjectFile)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class CreateMigrationReportPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupPolicyObjectFile property value. The groupPolicyObjectFile property
         Args:
-            value: Value to set for the groupPolicyObjectFile property.
+            value: Value to set for the group_policy_object_file property.
         """
         self._group_policy_object_file = value
     

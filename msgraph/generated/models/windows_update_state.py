@@ -59,7 +59,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the deviceDisplayName property value. Device display name.
         Args:
-            value: Value to set for the deviceDisplayName property.
+            value: Value to set for the device_display_name property.
         """
         self._device_display_name = value
     
@@ -76,7 +76,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the deviceId property value. The id of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -93,7 +93,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the featureUpdateVersion property value. The current feature update version of the device.
         Args:
-            value: Value to set for the featureUpdateVersion property.
+            value: Value to set for the feature_update_version property.
         """
         self._feature_update_version = value
     
@@ -103,15 +103,15 @@ class WindowsUpdateState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_display_name": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "feature_update_version": lambda n : setattr(self, 'feature_update_version', n.get_str_value()),
-            "last_scan_date_time": lambda n : setattr(self, 'last_scan_date_time', n.get_datetime_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "quality_update_version": lambda n : setattr(self, 'quality_update_version', n.get_str_value()),
+            "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "featureUpdateVersion": lambda n : setattr(self, 'feature_update_version', n.get_str_value()),
+            "lastScanDateTime": lambda n : setattr(self, 'last_scan_date_time', n.get_datetime_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "qualityUpdateVersion": lambda n : setattr(self, 'quality_update_version', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(windows_update_status.WindowsUpdateStatus)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -130,7 +130,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the lastScanDateTime property value. The date time that the Windows Update Agent did a successful scan.
         Args:
-            value: Value to set for the lastScanDateTime property.
+            value: Value to set for the last_scan_date_time property.
         """
         self._last_scan_date_time = value
     
@@ -147,7 +147,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the lastSyncDateTime property value. Last date time that the device sync with with Microsoft Intune.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -164,7 +164,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the qualityUpdateVersion property value. The Quality Update Version of the device.
         Args:
-            value: Value to set for the qualityUpdateVersion property.
+            value: Value to set for the quality_update_version property.
         """
         self._quality_update_version = value
     
@@ -217,7 +217,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the userId property value. The id of the user.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     
@@ -234,7 +234,7 @@ class WindowsUpdateState(entity.Entity):
         """
         Sets the userPrincipalName property value. User principal name.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

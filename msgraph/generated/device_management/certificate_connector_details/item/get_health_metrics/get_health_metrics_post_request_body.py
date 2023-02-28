@@ -49,7 +49,7 @@ class GetHealthMetricsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "metric_names": lambda n : setattr(self, 'metric_names', n.get_collection_of_primitive_values(str)),
+            "metricNames": lambda n : setattr(self, 'metric_names', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class GetHealthMetricsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the metricNames property value. The metricNames property
         Args:
-            value: Value to set for the metricNames property.
+            value: Value to set for the metric_names property.
         """
         self._metric_names = value
     

@@ -56,9 +56,9 @@ class NumberRange(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "lower_number": lambda n : setattr(self, 'lower_number', n.get_int_value()),
+            "lowerNumber": lambda n : setattr(self, 'lower_number', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "upper_number": lambda n : setattr(self, 'upper_number', n.get_int_value()),
+            "upperNumber": lambda n : setattr(self, 'upper_number', n.get_int_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class NumberRange(AdditionalDataHolder, Parsable):
         """
         Sets the lowerNumber property value. Lower number.
         Args:
-            value: Value to set for the lowerNumber property.
+            value: Value to set for the lower_number property.
         """
         self._lower_number = value
     
@@ -92,7 +92,7 @@ class NumberRange(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -122,7 +122,7 @@ class NumberRange(AdditionalDataHolder, Parsable):
         """
         Sets the upperNumber property value. Upper number.
         Args:
-            value: Value to set for the upperNumber property.
+            value: Value to set for the upper_number property.
         """
         self._upper_number = value
     

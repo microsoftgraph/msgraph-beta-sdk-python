@@ -43,7 +43,7 @@ class StrongAuthenticationDetail(entity.Entity):
         """
         Sets the encryptedPinHashHistory property value. The encryptedPinHashHistory property
         Args:
-            value: Value to set for the encryptedPinHashHistory property.
+            value: Value to set for the encrypted_pin_hash_history property.
         """
         self._encrypted_pin_hash_history = value
     
@@ -53,8 +53,8 @@ class StrongAuthenticationDetail(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "encrypted_pin_hash_history": lambda n : setattr(self, 'encrypted_pin_hash_history', n.get_bytes_value()),
-            "proofup_time": lambda n : setattr(self, 'proofup_time', n.get_int_value()),
+            "encryptedPinHashHistory": lambda n : setattr(self, 'encrypted_pin_hash_history', n.get_bytes_value()),
+            "proofupTime": lambda n : setattr(self, 'proofup_time', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class StrongAuthenticationDetail(entity.Entity):
         """
         Sets the proofupTime property value. The proofupTime property
         Args:
-            value: Value to set for the proofupTime property.
+            value: Value to set for the proofup_time property.
         """
         self._proofup_time = value
     

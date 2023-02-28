@@ -51,7 +51,7 @@ class SnoozeReminderPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "new_reminder_time": lambda n : setattr(self, 'new_reminder_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "NewReminderTime": lambda n : setattr(self, 'new_reminder_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class SnoozeReminderPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the newReminderTime property value. The NewReminderTime property
         Args:
-            value: Value to set for the NewReminderTime property.
+            value: Value to set for the new_reminder_time property.
         """
         self._new_reminder_time = value
     

@@ -52,12 +52,11 @@ class ResourceAccessProfilesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]:
+    async def get(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]:
         """
         Collection of resource access settings associated with account.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class ResourceAccessProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base_collection_response.DeviceManagementResourceAccessProfileBaseCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase] = None, request_configuration: Optional[ResourceAccessProfilesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]:
+    async def post(self,body: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase] = None, request_configuration: Optional[ResourceAccessProfilesRequestBuilderPostRequestConfiguration] = None) -> Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]:
         """
         Create new navigation property to resourceAccessProfiles for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]
         """
         if body is None:
@@ -91,7 +89,7 @@ class ResourceAccessProfilesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ResourceAccessProfilesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +102,7 @@ class ResourceAccessProfilesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -125,7 +123,7 @@ class ResourceAccessProfilesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +193,7 @@ class ResourceAccessProfilesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -210,7 +208,7 @@ class ResourceAccessProfilesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

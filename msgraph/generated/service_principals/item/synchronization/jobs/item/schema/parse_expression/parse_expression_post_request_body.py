@@ -74,8 +74,8 @@ class ParseExpressionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "expression": lambda n : setattr(self, 'expression', n.get_str_value()),
-            "target_attribute_definition": lambda n : setattr(self, 'target_attribute_definition', n.get_object_value(attribute_definition.AttributeDefinition)),
-            "test_input_object": lambda n : setattr(self, 'test_input_object', n.get_object_value(expression_input_object.ExpressionInputObject)),
+            "targetAttributeDefinition": lambda n : setattr(self, 'target_attribute_definition', n.get_object_value(attribute_definition.AttributeDefinition)),
+            "testInputObject": lambda n : setattr(self, 'test_input_object', n.get_object_value(expression_input_object.ExpressionInputObject)),
         }
         return fields
     
@@ -105,7 +105,7 @@ class ParseExpressionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the targetAttributeDefinition property value. The targetAttributeDefinition property
         Args:
-            value: Value to set for the targetAttributeDefinition property.
+            value: Value to set for the target_attribute_definition property.
         """
         self._target_attribute_definition = value
     
@@ -122,7 +122,7 @@ class ParseExpressionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the testInputObject property value. The testInputObject property
         Args:
-            value: Value to set for the testInputObject property.
+            value: Value to set for the test_input_object property.
         """
         self._test_input_object = value
     

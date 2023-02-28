@@ -55,10 +55,10 @@ class CopyToSectionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "site_collection_id": lambda n : setattr(self, 'site_collection_id', n.get_str_value()),
-            "site_id": lambda n : setattr(self, 'site_id', n.get_str_value()),
+            "siteCollectionId": lambda n : setattr(self, 'site_collection_id', n.get_str_value()),
+            "siteId": lambda n : setattr(self, 'site_id', n.get_str_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class CopyToSectionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupId property value. The groupId property
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -123,7 +123,7 @@ class CopyToSectionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the siteCollectionId property value. The siteCollectionId property
         Args:
-            value: Value to set for the siteCollectionId property.
+            value: Value to set for the site_collection_id property.
         """
         self._site_collection_id = value
     
@@ -140,7 +140,7 @@ class CopyToSectionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the siteId property value. The siteId property
         Args:
-            value: Value to set for the siteId property.
+            value: Value to set for the site_id property.
         """
         self._site_id = value
     

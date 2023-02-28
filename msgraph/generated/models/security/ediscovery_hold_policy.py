@@ -38,7 +38,7 @@ class EdiscoveryHoldPolicy(policy_base.PolicyBase):
         """
         Sets the contentQuery property value. KQL query that specifies content to be held in the specified locations. To learn more, see Keyword queries and search conditions for Content Search and eDiscovery.  To hold all content in the specified locations, leave contentQuery blank.
         Args:
-            value: Value to set for the contentQuery property.
+            value: Value to set for the content_query property.
         """
         self._content_query = value
     
@@ -77,11 +77,11 @@ class EdiscoveryHoldPolicy(policy_base.PolicyBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_query": lambda n : setattr(self, 'content_query', n.get_str_value()),
+            "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_primitive_values(str)),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "site_sources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
-            "user_sources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "siteSources": lambda n : setattr(self, 'site_sources', n.get_collection_of_object_values(site_source.SiteSource)),
+            "userSources": lambda n : setattr(self, 'user_sources', n.get_collection_of_object_values(user_source.UserSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -100,7 +100,7 @@ class EdiscoveryHoldPolicy(policy_base.PolicyBase):
         """
         Sets the isEnabled property value. Indicates whether the hold is enabled and actively holding content.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -132,7 +132,7 @@ class EdiscoveryHoldPolicy(policy_base.PolicyBase):
         """
         Sets the siteSources property value. Data sources that represent SharePoint sites.
         Args:
-            value: Value to set for the siteSources property.
+            value: Value to set for the site_sources property.
         """
         self._site_sources = value
     
@@ -149,7 +149,7 @@ class EdiscoveryHoldPolicy(policy_base.PolicyBase):
         """
         Sets the userSources property value. Data sources that represent Exchange mailboxes.
         Args:
-            value: Value to set for the userSources property.
+            value: Value to set for the user_sources property.
         """
         self._user_sources = value
     

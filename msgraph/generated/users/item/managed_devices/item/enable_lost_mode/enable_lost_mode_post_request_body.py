@@ -72,7 +72,7 @@ class EnableLostModePostRequestBody(AdditionalDataHolder, Parsable):
         fields = {
             "footer": lambda n : setattr(self, 'footer', n.get_str_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
         }
         return fields
     
@@ -106,7 +106,7 @@ class EnableLostModePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the phoneNumber property value. The phoneNumber property
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     

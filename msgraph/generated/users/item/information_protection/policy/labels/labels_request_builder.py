@@ -76,12 +76,11 @@ class LabelsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
+    async def get(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]:
         """
         Get a collection of information protection labels available to the user or to the organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_label_collection_response.InformationProtectionLabelCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -93,15 +92,14 @@ class LabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection_label_collection_response.InformationProtectionLabelCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection_label_collection_response.InformationProtectionLabelCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[information_protection_label.InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[information_protection_label.InformationProtectionLabel]:
+    async def post(self,body: Optional[information_protection_label.InformationProtectionLabel] = None, request_configuration: Optional[LabelsRequestBuilderPostRequestConfiguration] = None) -> Optional[information_protection_label.InformationProtectionLabel]:
         """
         Create new navigation property to labels for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[information_protection_label.InformationProtectionLabel]
         """
         if body is None:
@@ -115,7 +113,7 @@ class LabelsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, information_protection_label.InformationProtectionLabel, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, information_protection_label.InformationProtectionLabel, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[LabelsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -128,7 +126,7 @@ class LabelsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -149,7 +147,7 @@ class LabelsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -219,7 +217,7 @@ class LabelsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -234,7 +232,7 @@ class LabelsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -33,7 +33,7 @@ class EdgeHomeButtonOpensCustomURL(edge_home_button_configuration.EdgeHomeButton
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "home_button_custom_u_r_l": lambda n : setattr(self, 'home_button_custom_u_r_l', n.get_str_value()),
+            "homeButtonCustomURL": lambda n : setattr(self, 'home_button_custom_u_r_l', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class EdgeHomeButtonOpensCustomURL(edge_home_button_configuration.EdgeHomeButton
         """
         Sets the homeButtonCustomURL property value. The specific URL to load.
         Args:
-            value: Value to set for the homeButtonCustomURL property.
+            value: Value to set for the home_button_custom_u_r_l property.
         """
         self._home_button_custom_u_r_l = value
     

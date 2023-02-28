@@ -50,7 +50,7 @@ class GroupPolicyPresentationDecimalTextBox(group_policy_uploaded_presentation.G
         """
         Sets the defaultValue property value. An unsigned integer that specifies the initial value for the decimal text box. The default value is 1.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -60,12 +60,12 @@ class GroupPolicyPresentationDecimalTextBox(group_policy_uploaded_presentation.G
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_int_value()),
-            "max_value": lambda n : setattr(self, 'max_value', n.get_int_value()),
-            "min_value": lambda n : setattr(self, 'min_value', n.get_int_value()),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_int_value()),
+            "maxValue": lambda n : setattr(self, 'max_value', n.get_int_value()),
+            "minValue": lambda n : setattr(self, 'min_value', n.get_int_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
             "spin": lambda n : setattr(self, 'spin', n.get_bool_value()),
-            "spin_step": lambda n : setattr(self, 'spin_step', n.get_int_value()),
+            "spinStep": lambda n : setattr(self, 'spin_step', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class GroupPolicyPresentationDecimalTextBox(group_policy_uploaded_presentation.G
         """
         Sets the maxValue property value. An unsigned integer that specifies the maximum allowed value. The default value is 9999.
         Args:
-            value: Value to set for the maxValue property.
+            value: Value to set for the max_value property.
         """
         self._max_value = value
     
@@ -101,7 +101,7 @@ class GroupPolicyPresentationDecimalTextBox(group_policy_uploaded_presentation.G
         """
         Sets the minValue property value. An unsigned integer that specifies the minimum allowed value. The default value is 0.
         Args:
-            value: Value to set for the minValue property.
+            value: Value to set for the min_value property.
         """
         self._min_value = value
     
@@ -168,7 +168,7 @@ class GroupPolicyPresentationDecimalTextBox(group_policy_uploaded_presentation.G
         """
         Sets the spinStep property value. An unsigned integer that specifies the increment of change for the spin control. The default value is 1.
         Args:
-            value: Value to set for the spinStep property.
+            value: Value to set for the spin_step property.
         """
         self._spin_step = value
     

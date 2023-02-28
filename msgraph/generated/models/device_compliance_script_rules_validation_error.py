@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceComplianceScriptRulesValidationError(Enum):
     # None error.
-    None_escaped = "none",
+    None_ = "none",
     # Json file invalid error.
     JsonFileInvalid = "jsonFileInvalid",
     # Json file missing error.

@@ -106,11 +106,11 @@ class SearchHit(AdditionalDataHolder, Parsable):
         self.__source: Optional[entity.Entity] = None
         # The _summary property
         self.__summary: Optional[str] = None
-        # The name of the content source which the externalItem is part of .
+        # The name of the content source that the externalItem is part of.
         self._content_source: Optional[str] = None
         # The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.
         self._hit_id: Optional[str] = None
-        # The isCollapsed property
+        # Indicates whether the current result is collapses when the collapseProperties property is used.
         self._is_collapsed: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -126,7 +126,7 @@ class SearchHit(AdditionalDataHolder, Parsable):
     @property
     def content_source(self,) -> Optional[str]:
         """
-        Gets the contentSource property value. The name of the content source which the externalItem is part of .
+        Gets the contentSource property value. The name of the content source that the externalItem is part of.
         Returns: Optional[str]
         """
         return self._content_source
@@ -134,9 +134,9 @@ class SearchHit(AdditionalDataHolder, Parsable):
     @content_source.setter
     def content_source(self,value: Optional[str] = None) -> None:
         """
-        Sets the contentSource property value. The name of the content source which the externalItem is part of .
+        Sets the contentSource property value. The name of the content source that the externalItem is part of.
         Args:
-            value: Value to set for the contentSource property.
+            value: Value to set for the content_source property.
         """
         self._content_source = value
     
@@ -158,13 +158,13 @@ class SearchHit(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_source": lambda n : setattr(self, 'content_source', n.get_str_value()),
-            "hit_id": lambda n : setattr(self, 'hit_id', n.get_str_value()),
-            "is_collapsed": lambda n : setattr(self, 'is_collapsed', n.get_bool_value()),
+            "contentSource": lambda n : setattr(self, 'content_source', n.get_str_value()),
+            "hitId": lambda n : setattr(self, 'hit_id', n.get_str_value()),
+            "isCollapsed": lambda n : setattr(self, 'is_collapsed', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "rank": lambda n : setattr(self, 'rank', n.get_int_value()),
             "resource": lambda n : setattr(self, 'resource', n.get_object_value(entity.Entity)),
-            "result_template_id": lambda n : setattr(self, 'result_template_id', n.get_str_value()),
+            "resultTemplateId": lambda n : setattr(self, 'result_template_id', n.get_str_value()),
             "summary": lambda n : setattr(self, 'summary', n.get_str_value()),
             "_id": lambda n : setattr(self, '_id', n.get_str_value()),
             "_score": lambda n : setattr(self, '_score', n.get_int_value()),
@@ -186,14 +186,14 @@ class SearchHit(AdditionalDataHolder, Parsable):
         """
         Sets the hitId property value. The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see hitId format.
         Args:
-            value: Value to set for the hitId property.
+            value: Value to set for the hit_id property.
         """
         self._hit_id = value
     
     @property
     def is_collapsed(self,) -> Optional[bool]:
         """
-        Gets the isCollapsed property value. The isCollapsed property
+        Gets the isCollapsed property value. Indicates whether the current result is collapses when the collapseProperties property is used.
         Returns: Optional[bool]
         """
         return self._is_collapsed
@@ -201,9 +201,9 @@ class SearchHit(AdditionalDataHolder, Parsable):
     @is_collapsed.setter
     def is_collapsed(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isCollapsed property value. The isCollapsed property
+        Sets the isCollapsed property value. Indicates whether the current result is collapses when the collapseProperties property is used.
         Args:
-            value: Value to set for the isCollapsed property.
+            value: Value to set for the is_collapsed property.
         """
         self._is_collapsed = value
     
@@ -220,7 +220,7 @@ class SearchHit(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -271,7 +271,7 @@ class SearchHit(AdditionalDataHolder, Parsable):
         """
         Sets the resultTemplateId property value. ID of the result template for rendering the search result. This ID must map to a display layout in the resultTemplates dictionary, included in the searchresponse as well.
         Args:
-            value: Value to set for the resultTemplateId property.
+            value: Value to set for the result_template_id property.
         """
         self._result_template_id = value
     

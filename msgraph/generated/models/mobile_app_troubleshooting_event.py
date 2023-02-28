@@ -9,23 +9,6 @@ mobile_app_troubleshooting_history_item = lazy_import('msgraph.generated.models.
 
 class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.DeviceManagementTroubleshootingEvent):
     @property
-    def application_id(self,) -> Optional[str]:
-        """
-        Gets the applicationId property value. Intune application identifier.
-        Returns: Optional[str]
-        """
-        return self._application_id
-    
-    @application_id.setter
-    def application_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the applicationId property value. Intune application identifier.
-        Args:
-            value: Value to set for the applicationId property.
-        """
-        self._application_id = value
-    
-    @property
     def app_log_collection_requests(self,) -> Optional[List[app_log_collection_request.AppLogCollectionRequest]]:
         """
         Gets the appLogCollectionRequests property value. The collection property of AppLogUploadRequest.
@@ -38,19 +21,36 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         """
         Sets the appLogCollectionRequests property value. The collection property of AppLogUploadRequest.
         Args:
-            value: Value to set for the appLogCollectionRequests property.
+            value: Value to set for the app_log_collection_requests property.
         """
         self._app_log_collection_requests = value
+    
+    @property
+    def application_id(self,) -> Optional[str]:
+        """
+        Gets the applicationId property value. Intune application identifier.
+        Returns: Optional[str]
+        """
+        return self._application_id
+    
+    @application_id.setter
+    def application_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the applicationId property value. Intune application identifier.
+        Args:
+            value: Value to set for the application_id property.
+        """
+        self._application_id = value
     
     def __init__(self,) -> None:
         """
         Instantiates a new MobileAppTroubleshootingEvent and sets the default values.
         """
         super().__init__()
-        # Intune application identifier.
-        self._application_id: Optional[str] = None
         # The collection property of AppLogUploadRequest.
         self._app_log_collection_requests: Optional[List[app_log_collection_request.AppLogCollectionRequest]] = None
+        # Intune application identifier.
+        self._application_id: Optional[str] = None
         # Intune Mobile Application Troubleshooting History Item
         self._history: Optional[List[mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem]] = None
         # Device identifier created or collected by Intune.
@@ -78,11 +78,11 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_id": lambda n : setattr(self, 'application_id', n.get_str_value()),
-            "app_log_collection_requests": lambda n : setattr(self, 'app_log_collection_requests', n.get_collection_of_object_values(app_log_collection_request.AppLogCollectionRequest)),
+            "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
+            "appLogCollectionRequests": lambda n : setattr(self, 'app_log_collection_requests', n.get_collection_of_object_values(app_log_collection_request.AppLogCollectionRequest)),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem)),
-            "managed_device_identifier": lambda n : setattr(self, 'managed_device_identifier', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "managedDeviceIdentifier": lambda n : setattr(self, 'managed_device_identifier', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -118,7 +118,7 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         """
         Sets the managedDeviceIdentifier property value. Device identifier created or collected by Intune.
         Args:
-            value: Value to set for the managedDeviceIdentifier property.
+            value: Value to set for the managed_device_identifier property.
         """
         self._managed_device_identifier = value
     
@@ -150,7 +150,7 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         """
         Sets the userId property value. Identifier for the user that tried to enroll the device.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

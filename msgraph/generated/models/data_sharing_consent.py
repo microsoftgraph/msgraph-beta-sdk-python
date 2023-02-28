@@ -48,12 +48,12 @@ class DataSharingConsent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "grant_date_time": lambda n : setattr(self, 'grant_date_time', n.get_datetime_value()),
             "granted": lambda n : setattr(self, 'granted', n.get_bool_value()),
-            "granted_by_upn": lambda n : setattr(self, 'granted_by_upn', n.get_str_value()),
-            "granted_by_user_id": lambda n : setattr(self, 'granted_by_user_id', n.get_str_value()),
-            "service_display_name": lambda n : setattr(self, 'service_display_name', n.get_str_value()),
-            "terms_url": lambda n : setattr(self, 'terms_url', n.get_str_value()),
+            "grantedByUpn": lambda n : setattr(self, 'granted_by_upn', n.get_str_value()),
+            "grantedByUserId": lambda n : setattr(self, 'granted_by_user_id', n.get_str_value()),
+            "grantDateTime": lambda n : setattr(self, 'grant_date_time', n.get_datetime_value()),
+            "serviceDisplayName": lambda n : setattr(self, 'service_display_name', n.get_str_value()),
+            "termsUrl": lambda n : setattr(self, 'terms_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class DataSharingConsent(entity.Entity):
         """
         Sets the grantDateTime property value. The time consent was granted for this account
         Args:
-            value: Value to set for the grantDateTime property.
+            value: Value to set for the grant_date_time property.
         """
         self._grant_date_time = value
     
@@ -106,7 +106,7 @@ class DataSharingConsent(entity.Entity):
         """
         Sets the grantedByUpn property value. The Upn of the user that granted consent for this account
         Args:
-            value: Value to set for the grantedByUpn property.
+            value: Value to set for the granted_by_upn property.
         """
         self._granted_by_upn = value
     
@@ -123,7 +123,7 @@ class DataSharingConsent(entity.Entity):
         """
         Sets the grantedByUserId property value. The UserId of the user that granted consent for this account
         Args:
-            value: Value to set for the grantedByUserId property.
+            value: Value to set for the granted_by_user_id property.
         """
         self._granted_by_user_id = value
     
@@ -136,10 +136,10 @@ class DataSharingConsent(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_datetime_value("grantDateTime", self.grant_date_time)
         writer.write_bool_value("granted", self.granted)
         writer.write_str_value("grantedByUpn", self.granted_by_upn)
         writer.write_str_value("grantedByUserId", self.granted_by_user_id)
+        writer.write_datetime_value("grantDateTime", self.grant_date_time)
         writer.write_str_value("serviceDisplayName", self.service_display_name)
         writer.write_str_value("termsUrl", self.terms_url)
     
@@ -156,7 +156,7 @@ class DataSharingConsent(entity.Entity):
         """
         Sets the serviceDisplayName property value. The display name of the service work flow
         Args:
-            value: Value to set for the serviceDisplayName property.
+            value: Value to set for the service_display_name property.
         """
         self._service_display_name = value
     
@@ -173,7 +173,7 @@ class DataSharingConsent(entity.Entity):
         """
         Sets the termsUrl property value. The TermsUrl for the data sharing consent
         Args:
-            value: Value to set for the termsUrl property.
+            value: Value to set for the terms_url property.
         """
         self._terms_url = value
     

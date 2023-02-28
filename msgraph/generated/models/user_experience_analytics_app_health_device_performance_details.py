@@ -23,7 +23,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the appDisplayName property value. The friendly name of the application for which the event occurred.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -40,7 +40,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the appPublisher property value. The publisher of the application.
         Args:
-            value: Value to set for the appPublisher property.
+            value: Value to set for the app_publisher property.
         """
         self._app_publisher = value
     
@@ -57,7 +57,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the appVersion property value. The version of the application.
         Args:
-            value: Value to set for the appVersion property.
+            value: Value to set for the app_version property.
         """
         self._app_version = value
     
@@ -108,7 +108,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the deviceDisplayName property value. The name of the device.
         Args:
-            value: Value to set for the deviceDisplayName property.
+            value: Value to set for the device_display_name property.
         """
         self._device_display_name = value
     
@@ -125,7 +125,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the deviceId property value. The id of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -142,7 +142,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the eventDateTime property value. The time the event occurred.
         Args:
-            value: Value to set for the eventDateTime property.
+            value: Value to set for the event_date_time property.
         """
         self._event_date_time = value
     
@@ -159,7 +159,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         """
         Sets the eventType property value. The type of the event.
         Args:
-            value: Value to set for the eventType property.
+            value: Value to set for the event_type property.
         """
         self._event_type = value
     
@@ -169,13 +169,13 @@ class UserExperienceAnalyticsAppHealthDevicePerformanceDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "app_publisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
-            "app_version": lambda n : setattr(self, 'app_version', n.get_str_value()),
-            "device_display_name": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "event_date_time": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "event_type": lambda n : setattr(self, 'event_type', n.get_str_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),
+            "appVersion": lambda n : setattr(self, 'app_version', n.get_str_value()),
+            "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
+            "eventType": lambda n : setattr(self, 'event_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -106,7 +106,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the displayName property value. The template's display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -118,16 +118,16 @@ class DeviceManagementTemplate(entity.Entity):
         fields = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(device_management_template_setting_category.DeviceManagementTemplateSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "intent_count": lambda n : setattr(self, 'intent_count', n.get_int_value()),
-            "is_deprecated": lambda n : setattr(self, 'is_deprecated', n.get_bool_value()),
-            "migratable_to": lambda n : setattr(self, 'migratable_to', n.get_collection_of_object_values(DeviceManagementTemplate)),
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
-            "published_date_time": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "intentCount": lambda n : setattr(self, 'intent_count', n.get_int_value()),
+            "isDeprecated": lambda n : setattr(self, 'is_deprecated', n.get_bool_value()),
+            "migratableTo": lambda n : setattr(self, 'migratable_to', n.get_collection_of_object_values(DeviceManagementTemplate)),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
+            "publishedDateTime": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
-            "template_subtype": lambda n : setattr(self, 'template_subtype', n.get_enum_value(device_management_template_subtype.DeviceManagementTemplateSubtype)),
-            "template_type": lambda n : setattr(self, 'template_type', n.get_enum_value(device_management_template_type.DeviceManagementTemplateType)),
-            "version_info": lambda n : setattr(self, 'version_info', n.get_str_value()),
+            "templateSubtype": lambda n : setattr(self, 'template_subtype', n.get_enum_value(device_management_template_subtype.DeviceManagementTemplateSubtype)),
+            "templateType": lambda n : setattr(self, 'template_type', n.get_enum_value(device_management_template_type.DeviceManagementTemplateType)),
+            "versionInfo": lambda n : setattr(self, 'version_info', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -146,7 +146,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the intentCount property value. Number of Intents created from this template.
         Args:
-            value: Value to set for the intentCount property.
+            value: Value to set for the intent_count property.
         """
         self._intent_count = value
     
@@ -163,7 +163,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the isDeprecated property value. The template is deprecated or not. Intents cannot be created from a deprecated template.
         Args:
-            value: Value to set for the isDeprecated property.
+            value: Value to set for the is_deprecated property.
         """
         self._is_deprecated = value
     
@@ -180,7 +180,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the migratableTo property value. Collection of templates this template can migrate to
         Args:
-            value: Value to set for the migratableTo property.
+            value: Value to set for the migratable_to property.
         """
         self._migratable_to = value
     
@@ -197,7 +197,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the platformType property value. Supported platform types for policies.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     
@@ -214,7 +214,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the publishedDateTime property value. When the template was published
         Args:
-            value: Value to set for the publishedDateTime property.
+            value: Value to set for the published_date_time property.
         """
         self._published_date_time = value
     
@@ -270,7 +270,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the templateSubtype property value. Template subtype
         Args:
-            value: Value to set for the templateSubtype property.
+            value: Value to set for the template_subtype property.
         """
         self._template_subtype = value
     
@@ -287,7 +287,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the templateType property value. Template type
         Args:
-            value: Value to set for the templateType property.
+            value: Value to set for the template_type property.
         """
         self._template_type = value
     
@@ -304,7 +304,7 @@ class DeviceManagementTemplate(entity.Entity):
         """
         Sets the versionInfo property value. The template's version information
         Args:
-            value: Value to set for the versionInfo property.
+            value: Value to set for the version_info property.
         """
         self._version_info = value
     

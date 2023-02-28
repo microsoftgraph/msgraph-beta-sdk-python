@@ -10,6 +10,9 @@ device_scope_status = lazy_import('msgraph.generated.models.device_scope_status'
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsDeviceScope(entity.Entity):
+    """
+    The user experience analytics device scope entity contains device scope configuration values use to apply filtering on the endpoint analytics reports.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsDeviceScope and sets the default values.
@@ -53,7 +56,7 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         """
         Sets the createdDateTime property value. Indicates the creation date and time for the custom device scope.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -82,7 +85,7 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         """
         Sets the deviceScopeName property value. The name of the user experience analytics device Scope configuration.
         Args:
-            value: Value to set for the deviceScopeName property.
+            value: Value to set for the device_scope_name property.
         """
         self._device_scope_name = value
     
@@ -109,17 +112,17 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "device_scope_name": lambda n : setattr(self, 'device_scope_name', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deviceScopeName": lambda n : setattr(self, 'device_scope_name', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "is_built_in": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(device_scope_operator.DeviceScopeOperator)),
-            "owner_id": lambda n : setattr(self, 'owner_id', n.get_str_value()),
+            "ownerId": lambda n : setattr(self, 'owner_id', n.get_str_value()),
             "parameter": lambda n : setattr(self, 'parameter', n.get_enum_value(device_scope_parameter.DeviceScopeParameter)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(device_scope_status.DeviceScopeStatus)),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
-            "value_object_id": lambda n : setattr(self, 'value_object_id', n.get_str_value()),
+            "valueObjectId": lambda n : setattr(self, 'value_object_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -138,7 +141,7 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         """
         Sets the isBuiltIn property value. Indicates whether the device scope configuration is built-in or custom. When TRUE, the device scope configuration is built-in. When FALSE, the device scope configuration is custom. Default value is FALSE.
         Args:
-            value: Value to set for the isBuiltIn property.
+            value: Value to set for the is_built_in property.
         """
         self._is_built_in = value
     
@@ -155,7 +158,7 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Indicates the last updated date and time for the custom device scope.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -189,7 +192,7 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         """
         Sets the ownerId property value. The unique identifier of the person (admin) who created the device scope configuration.
         Args:
-            value: Value to set for the ownerId property.
+            value: Value to set for the owner_id property.
         """
         self._owner_id = value
     
@@ -278,7 +281,7 @@ class UserExperienceAnalyticsDeviceScope(entity.Entity):
         """
         Sets the valueObjectId property value. The unique identifier for a user device scope tag Id used for the creation of device scope configuration.
         Args:
-            value: Value to set for the valueObjectId property.
+            value: Value to set for the value_object_id property.
         """
         self._value_object_id = value
     

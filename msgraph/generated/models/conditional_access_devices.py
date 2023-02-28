@@ -32,14 +32,14 @@ class ConditionalAccessDevices(AdditionalDataHolder, Parsable):
 
         # Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them. Cannot be set if includeDevices or excludeDevices is set.
         self._device_filter: Optional[conditional_access_filter.ConditionalAccessFilter] = None
-        # States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
-        self._exclude_devices: Optional[List[str]] = None
         # The excludeDeviceStates property
         self._exclude_device_states: Optional[List[str]] = None
-        # States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFIlter is set.
-        self._include_devices: Optional[List[str]] = None
+        # States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
+        self._exclude_devices: Optional[List[str]] = None
         # The includeDeviceStates property
         self._include_device_states: Optional[List[str]] = None
+        # States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFIlter is set.
+        self._include_devices: Optional[List[str]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
     
@@ -68,26 +68,9 @@ class ConditionalAccessDevices(AdditionalDataHolder, Parsable):
         """
         Sets the deviceFilter property value. Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them. Cannot be set if includeDevices or excludeDevices is set.
         Args:
-            value: Value to set for the deviceFilter property.
+            value: Value to set for the device_filter property.
         """
         self._device_filter = value
-    
-    @property
-    def exclude_devices(self,) -> Optional[List[str]]:
-        """
-        Gets the excludeDevices property value. States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
-        Returns: Optional[List[str]]
-        """
-        return self._exclude_devices
-    
-    @exclude_devices.setter
-    def exclude_devices(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the excludeDevices property value. States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
-        Args:
-            value: Value to set for the excludeDevices property.
-        """
-        self._exclude_devices = value
     
     @property
     def exclude_device_states(self,) -> Optional[List[str]]:
@@ -102,9 +85,26 @@ class ConditionalAccessDevices(AdditionalDataHolder, Parsable):
         """
         Sets the excludeDeviceStates property value. The excludeDeviceStates property
         Args:
-            value: Value to set for the excludeDeviceStates property.
+            value: Value to set for the exclude_device_states property.
         """
         self._exclude_device_states = value
+    
+    @property
+    def exclude_devices(self,) -> Optional[List[str]]:
+        """
+        Gets the excludeDevices property value. States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
+        Returns: Optional[List[str]]
+        """
+        return self._exclude_devices
+    
+    @exclude_devices.setter
+    def exclude_devices(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the excludeDevices property value. States excluded from the scope of the policy. Possible values: Compliant, DomainJoined. Cannot be set if deviceFIlter is set.
+        Args:
+            value: Value to set for the exclude_devices property.
+        """
+        self._exclude_devices = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -112,31 +112,14 @@ class ConditionalAccessDevices(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_filter": lambda n : setattr(self, 'device_filter', n.get_object_value(conditional_access_filter.ConditionalAccessFilter)),
-            "exclude_devices": lambda n : setattr(self, 'exclude_devices', n.get_collection_of_primitive_values(str)),
-            "exclude_device_states": lambda n : setattr(self, 'exclude_device_states', n.get_collection_of_primitive_values(str)),
-            "include_devices": lambda n : setattr(self, 'include_devices', n.get_collection_of_primitive_values(str)),
-            "include_device_states": lambda n : setattr(self, 'include_device_states', n.get_collection_of_primitive_values(str)),
+            "deviceFilter": lambda n : setattr(self, 'device_filter', n.get_object_value(conditional_access_filter.ConditionalAccessFilter)),
+            "excludeDevices": lambda n : setattr(self, 'exclude_devices', n.get_collection_of_primitive_values(str)),
+            "excludeDeviceStates": lambda n : setattr(self, 'exclude_device_states', n.get_collection_of_primitive_values(str)),
+            "includeDevices": lambda n : setattr(self, 'include_devices', n.get_collection_of_primitive_values(str)),
+            "includeDeviceStates": lambda n : setattr(self, 'include_device_states', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
-    
-    @property
-    def include_devices(self,) -> Optional[List[str]]:
-        """
-        Gets the includeDevices property value. States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFIlter is set.
-        Returns: Optional[List[str]]
-        """
-        return self._include_devices
-    
-    @include_devices.setter
-    def include_devices(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the includeDevices property value. States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFIlter is set.
-        Args:
-            value: Value to set for the includeDevices property.
-        """
-        self._include_devices = value
     
     @property
     def include_device_states(self,) -> Optional[List[str]]:
@@ -151,9 +134,26 @@ class ConditionalAccessDevices(AdditionalDataHolder, Parsable):
         """
         Sets the includeDeviceStates property value. The includeDeviceStates property
         Args:
-            value: Value to set for the includeDeviceStates property.
+            value: Value to set for the include_device_states property.
         """
         self._include_device_states = value
+    
+    @property
+    def include_devices(self,) -> Optional[List[str]]:
+        """
+        Gets the includeDevices property value. States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFIlter is set.
+        Returns: Optional[List[str]]
+        """
+        return self._include_devices
+    
+    @include_devices.setter
+    def include_devices(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the includeDevices property value. States in the scope of the policy. All is the only allowed value. Cannot be set if deviceFIlter is set.
+        Args:
+            value: Value to set for the include_devices property.
+        """
+        self._include_devices = value
     
     @property
     def odata_type(self,) -> Optional[str]:
@@ -168,7 +168,7 @@ class ConditionalAccessDevices(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

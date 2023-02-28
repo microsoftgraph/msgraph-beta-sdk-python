@@ -36,7 +36,7 @@ class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(educatio
         """
         fields = {
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
-            "token_url": lambda n : setattr(self, 'token_url', n.get_str_value()),
+            "tokenUrl": lambda n : setattr(self, 'token_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class EducationSynchronizationOAuth2ClientCredentialsConnectionSettings(educatio
         """
         Sets the tokenUrl property value. The URL to get access tokens for the data provider.
         Args:
-            value: Value to set for the tokenUrl property.
+            value: Value to set for the token_url property.
         """
         self._token_url = value
     

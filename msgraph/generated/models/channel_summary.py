@@ -57,11 +57,11 @@ class ChannelSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "guests_count": lambda n : setattr(self, 'guests_count', n.get_int_value()),
-            "has_members_from_other_tenants": lambda n : setattr(self, 'has_members_from_other_tenants', n.get_bool_value()),
-            "members_count": lambda n : setattr(self, 'members_count', n.get_int_value()),
+            "guestsCount": lambda n : setattr(self, 'guests_count', n.get_int_value()),
+            "hasMembersFromOtherTenants": lambda n : setattr(self, 'has_members_from_other_tenants', n.get_bool_value()),
+            "membersCount": lambda n : setattr(self, 'members_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "owners_count": lambda n : setattr(self, 'owners_count', n.get_int_value()),
+            "ownersCount": lambda n : setattr(self, 'owners_count', n.get_int_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class ChannelSummary(AdditionalDataHolder, Parsable):
         """
         Sets the guestsCount property value. The guestsCount property
         Args:
-            value: Value to set for the guestsCount property.
+            value: Value to set for the guests_count property.
         """
         self._guests_count = value
     
@@ -95,7 +95,7 @@ class ChannelSummary(AdditionalDataHolder, Parsable):
         """
         Sets the hasMembersFromOtherTenants property value. The hasMembersFromOtherTenants property
         Args:
-            value: Value to set for the hasMembersFromOtherTenants property.
+            value: Value to set for the has_members_from_other_tenants property.
         """
         self._has_members_from_other_tenants = value
     
@@ -112,7 +112,7 @@ class ChannelSummary(AdditionalDataHolder, Parsable):
         """
         Sets the membersCount property value. The membersCount property
         Args:
-            value: Value to set for the membersCount property.
+            value: Value to set for the members_count property.
         """
         self._members_count = value
     
@@ -129,7 +129,7 @@ class ChannelSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -146,7 +146,7 @@ class ChannelSummary(AdditionalDataHolder, Parsable):
         """
         Sets the ownersCount property value. The ownersCount property
         Args:
-            value: Value to set for the ownersCount property.
+            value: Value to set for the owners_count property.
         """
         self._owners_count = value
     

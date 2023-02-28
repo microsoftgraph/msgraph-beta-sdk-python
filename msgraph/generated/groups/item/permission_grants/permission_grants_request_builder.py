@@ -11,6 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.count.count_request_builder')
+delta_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.delta.delta_request_builder')
 get_by_ids_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.get_by_ids.get_by_ids_request_builder')
 get_user_owned_objects_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.get_user_owned_objects.get_user_owned_objects_request_builder')
 validate_properties_request_builder = lazy_import('msgraph.generated.groups.item.permission_grants.validate_properties.validate_properties_request_builder')
@@ -28,6 +29,13 @@ class PermissionGrantsRequestBuilder():
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delta(self) -> delta_request_builder.DeltaRequestBuilder:
+        """
+        Provides operations to call the delta method.
+        """
+        return delta_request_builder.DeltaRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_by_ids(self) -> get_by_ids_request_builder.GetByIdsRequestBuilder:
@@ -68,12 +76,11 @@ class PermissionGrantsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]:
+    async def get(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]:
         """
         List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +92,14 @@ class PermissionGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant_collection_response.ResourceSpecificPermissionGrantCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[PermissionGrantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
+    async def post(self,body: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant] = None, request_configuration: Optional[PermissionGrantsRequestBuilderPostRequestConfiguration] = None) -> Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]:
         """
         Create new navigation property to permissionGrants for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[resource_specific_permission_grant.ResourceSpecificPermissionGrant]
         """
         if body is None:
@@ -107,7 +113,7 @@ class PermissionGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, resource_specific_permission_grant.ResourceSpecificPermissionGrant, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PermissionGrantsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -120,7 +126,7 @@ class PermissionGrantsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -141,7 +147,7 @@ class PermissionGrantsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -211,7 +217,7 @@ class PermissionGrantsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -226,7 +232,7 @@ class PermissionGrantsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

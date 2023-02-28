@@ -58,7 +58,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the addressBook property value. Possible values of a property
         Args:
-            value: Value to set for the addressBook property.
+            value: Value to set for the address_book property.
         """
         self._address_book = value
     
@@ -75,7 +75,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the appleEventsAllowedReceivers property value. Allow or deny the app or process to send a restricted Apple event to another app or process. You will need to know the identifier, identifier type, and code requirement of the receiving app or process. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the appleEventsAllowedReceivers property.
+            value: Value to set for the apple_events_allowed_receivers property.
         """
         self._apple_events_allowed_receivers = value
     
@@ -92,7 +92,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the blockCamera property value. Block access to camera app.
         Args:
-            value: Value to set for the blockCamera property.
+            value: Value to set for the block_camera property.
         """
         self._block_camera = value
     
@@ -109,7 +109,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the blockListenEvent property value. Block the app or process from listening to events from input devices such as mouse, keyboard, and trackpad.Requires macOS 10.15 or later.
         Args:
-            value: Value to set for the blockListenEvent property.
+            value: Value to set for the block_listen_event property.
         """
         self._block_listen_event = value
     
@@ -126,7 +126,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the blockMicrophone property value. Block access to microphone.
         Args:
-            value: Value to set for the blockMicrophone property.
+            value: Value to set for the block_microphone property.
         """
         self._block_microphone = value
     
@@ -143,7 +143,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the blockScreenCapture property value. Block app from capturing contents of system display. Requires macOS 10.15 or later.
         Args:
-            value: Value to set for the blockScreenCapture property.
+            value: Value to set for the block_screen_capture property.
         """
         self._block_screen_capture = value
     
@@ -177,7 +177,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the codeRequirement property value. Enter the code requirement, which can be obtained with the command 'codesign –display -r –' in the Terminal app. Include everything after '=>'.
         Args:
-            value: Value to set for the codeRequirement property.
+            value: Value to set for the code_requirement property.
         """
         self._code_requirement = value
     
@@ -268,7 +268,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name of the app, process, or executable.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -285,7 +285,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the fileProviderPresence property value. Possible values of a property
         Args:
-            value: Value to set for the fileProviderPresence property.
+            value: Value to set for the file_provider_presence property.
         """
         self._file_provider_presence = value
     
@@ -296,32 +296,32 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         fields = {
             "accessibility": lambda n : setattr(self, 'accessibility', n.get_enum_value(enablement.Enablement)),
-            "address_book": lambda n : setattr(self, 'address_book', n.get_enum_value(enablement.Enablement)),
-            "apple_events_allowed_receivers": lambda n : setattr(self, 'apple_events_allowed_receivers', n.get_collection_of_object_values(mac_o_s_apple_event_receiver.MacOSAppleEventReceiver)),
-            "block_camera": lambda n : setattr(self, 'block_camera', n.get_bool_value()),
-            "block_listen_event": lambda n : setattr(self, 'block_listen_event', n.get_bool_value()),
-            "block_microphone": lambda n : setattr(self, 'block_microphone', n.get_bool_value()),
-            "block_screen_capture": lambda n : setattr(self, 'block_screen_capture', n.get_bool_value()),
+            "addressBook": lambda n : setattr(self, 'address_book', n.get_enum_value(enablement.Enablement)),
+            "appleEventsAllowedReceivers": lambda n : setattr(self, 'apple_events_allowed_receivers', n.get_collection_of_object_values(mac_o_s_apple_event_receiver.MacOSAppleEventReceiver)),
+            "blockCamera": lambda n : setattr(self, 'block_camera', n.get_bool_value()),
+            "blockListenEvent": lambda n : setattr(self, 'block_listen_event', n.get_bool_value()),
+            "blockMicrophone": lambda n : setattr(self, 'block_microphone', n.get_bool_value()),
+            "blockScreenCapture": lambda n : setattr(self, 'block_screen_capture', n.get_bool_value()),
             "calendar": lambda n : setattr(self, 'calendar', n.get_enum_value(enablement.Enablement)),
-            "code_requirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "file_provider_presence": lambda n : setattr(self, 'file_provider_presence', n.get_enum_value(enablement.Enablement)),
+            "codeRequirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "fileProviderPresence": lambda n : setattr(self, 'file_provider_presence', n.get_enum_value(enablement.Enablement)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
-            "identifier_type": lambda n : setattr(self, 'identifier_type', n.get_enum_value(mac_o_s_process_identifier_type.MacOSProcessIdentifierType)),
-            "media_library": lambda n : setattr(self, 'media_library', n.get_enum_value(enablement.Enablement)),
+            "identifierType": lambda n : setattr(self, 'identifier_type', n.get_enum_value(mac_o_s_process_identifier_type.MacOSProcessIdentifierType)),
+            "mediaLibrary": lambda n : setattr(self, 'media_library', n.get_enum_value(enablement.Enablement)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "photos": lambda n : setattr(self, 'photos', n.get_enum_value(enablement.Enablement)),
-            "post_event": lambda n : setattr(self, 'post_event', n.get_enum_value(enablement.Enablement)),
+            "postEvent": lambda n : setattr(self, 'post_event', n.get_enum_value(enablement.Enablement)),
             "reminders": lambda n : setattr(self, 'reminders', n.get_enum_value(enablement.Enablement)),
-            "speech_recognition": lambda n : setattr(self, 'speech_recognition', n.get_enum_value(enablement.Enablement)),
-            "static_code_validation": lambda n : setattr(self, 'static_code_validation', n.get_bool_value()),
-            "system_policy_all_files": lambda n : setattr(self, 'system_policy_all_files', n.get_enum_value(enablement.Enablement)),
-            "system_policy_desktop_folder": lambda n : setattr(self, 'system_policy_desktop_folder', n.get_enum_value(enablement.Enablement)),
-            "system_policy_documents_folder": lambda n : setattr(self, 'system_policy_documents_folder', n.get_enum_value(enablement.Enablement)),
-            "system_policy_downloads_folder": lambda n : setattr(self, 'system_policy_downloads_folder', n.get_enum_value(enablement.Enablement)),
-            "system_policy_network_volumes": lambda n : setattr(self, 'system_policy_network_volumes', n.get_enum_value(enablement.Enablement)),
-            "system_policy_removable_volumes": lambda n : setattr(self, 'system_policy_removable_volumes', n.get_enum_value(enablement.Enablement)),
-            "system_policy_system_admin_files": lambda n : setattr(self, 'system_policy_system_admin_files', n.get_enum_value(enablement.Enablement)),
+            "speechRecognition": lambda n : setattr(self, 'speech_recognition', n.get_enum_value(enablement.Enablement)),
+            "staticCodeValidation": lambda n : setattr(self, 'static_code_validation', n.get_bool_value()),
+            "systemPolicyAllFiles": lambda n : setattr(self, 'system_policy_all_files', n.get_enum_value(enablement.Enablement)),
+            "systemPolicyDesktopFolder": lambda n : setattr(self, 'system_policy_desktop_folder', n.get_enum_value(enablement.Enablement)),
+            "systemPolicyDocumentsFolder": lambda n : setattr(self, 'system_policy_documents_folder', n.get_enum_value(enablement.Enablement)),
+            "systemPolicyDownloadsFolder": lambda n : setattr(self, 'system_policy_downloads_folder', n.get_enum_value(enablement.Enablement)),
+            "systemPolicyNetworkVolumes": lambda n : setattr(self, 'system_policy_network_volumes', n.get_enum_value(enablement.Enablement)),
+            "systemPolicyRemovableVolumes": lambda n : setattr(self, 'system_policy_removable_volumes', n.get_enum_value(enablement.Enablement)),
+            "systemPolicySystemAdminFiles": lambda n : setattr(self, 'system_policy_system_admin_files', n.get_enum_value(enablement.Enablement)),
         }
         return fields
     
@@ -355,7 +355,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the identifierType property value. Process identifier types for MacOS Privacy Preferences
         Args:
-            value: Value to set for the identifierType property.
+            value: Value to set for the identifier_type property.
         """
         self._identifier_type = value
     
@@ -372,7 +372,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the mediaLibrary property value. Possible values of a property
         Args:
-            value: Value to set for the mediaLibrary property.
+            value: Value to set for the media_library property.
         """
         self._media_library = value
     
@@ -389,7 +389,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -423,7 +423,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the postEvent property value. Possible values of a property
         Args:
-            value: Value to set for the postEvent property.
+            value: Value to set for the post_event property.
         """
         self._post_event = value
     
@@ -494,7 +494,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the speechRecognition property value. Possible values of a property
         Args:
-            value: Value to set for the speechRecognition property.
+            value: Value to set for the speech_recognition property.
         """
         self._speech_recognition = value
     
@@ -511,7 +511,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the staticCodeValidation property value. Statically validates the code requirement. Use this setting if the process invalidates its dynamic code signature.
         Args:
-            value: Value to set for the staticCodeValidation property.
+            value: Value to set for the static_code_validation property.
         """
         self._static_code_validation = value
     
@@ -528,7 +528,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicyAllFiles property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicyAllFiles property.
+            value: Value to set for the system_policy_all_files property.
         """
         self._system_policy_all_files = value
     
@@ -545,7 +545,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicyDesktopFolder property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicyDesktopFolder property.
+            value: Value to set for the system_policy_desktop_folder property.
         """
         self._system_policy_desktop_folder = value
     
@@ -562,7 +562,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicyDocumentsFolder property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicyDocumentsFolder property.
+            value: Value to set for the system_policy_documents_folder property.
         """
         self._system_policy_documents_folder = value
     
@@ -579,7 +579,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicyDownloadsFolder property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicyDownloadsFolder property.
+            value: Value to set for the system_policy_downloads_folder property.
         """
         self._system_policy_downloads_folder = value
     
@@ -596,7 +596,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicyNetworkVolumes property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicyNetworkVolumes property.
+            value: Value to set for the system_policy_network_volumes property.
         """
         self._system_policy_network_volumes = value
     
@@ -613,7 +613,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicyRemovableVolumes property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicyRemovableVolumes property.
+            value: Value to set for the system_policy_removable_volumes property.
         """
         self._system_policy_removable_volumes = value
     
@@ -630,7 +630,7 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         Sets the systemPolicySystemAdminFiles property value. Possible values of a property
         Args:
-            value: Value to set for the systemPolicySystemAdminFiles property.
+            value: Value to set for the system_policy_system_admin_files property.
         """
         self._system_policy_system_admin_files = value
     

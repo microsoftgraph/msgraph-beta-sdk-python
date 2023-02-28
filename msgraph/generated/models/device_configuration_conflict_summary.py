@@ -23,7 +23,7 @@ class DeviceConfigurationConflictSummary(entity.Entity):
         """
         Sets the conflictingDeviceConfigurations property value. The set of policies in conflict with the given setting
         Args:
-            value: Value to set for the conflictingDeviceConfigurations property.
+            value: Value to set for the conflicting_device_configurations property.
         """
         self._conflicting_device_configurations = value
     
@@ -54,7 +54,7 @@ class DeviceConfigurationConflictSummary(entity.Entity):
         """
         Sets the contributingSettings property value. The set of settings in conflict with the given policies
         Args:
-            value: Value to set for the contributingSettings property.
+            value: Value to set for the contributing_settings property.
         """
         self._contributing_settings = value
     
@@ -83,7 +83,7 @@ class DeviceConfigurationConflictSummary(entity.Entity):
         """
         Sets the deviceCheckinsImpacted property value. The count of checkins impacted by the conflicting policies and settings
         Args:
-            value: Value to set for the deviceCheckinsImpacted property.
+            value: Value to set for the device_checkins_impacted property.
         """
         self._device_checkins_impacted = value
     
@@ -93,9 +93,9 @@ class DeviceConfigurationConflictSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "conflicting_device_configurations": lambda n : setattr(self, 'conflicting_device_configurations', n.get_collection_of_object_values(setting_source.SettingSource)),
-            "contributing_settings": lambda n : setattr(self, 'contributing_settings', n.get_collection_of_primitive_values(str)),
-            "device_checkins_impacted": lambda n : setattr(self, 'device_checkins_impacted', n.get_int_value()),
+            "conflictingDeviceConfigurations": lambda n : setattr(self, 'conflicting_device_configurations', n.get_collection_of_object_values(setting_source.SettingSource)),
+            "contributingSettings": lambda n : setattr(self, 'contributing_settings', n.get_collection_of_primitive_values(str)),
+            "deviceCheckinsImpacted": lambda n : setattr(self, 'device_checkins_impacted', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -37,7 +37,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the azureStorageAccountId property value. The resource ID of the Azure Storage account in which the Cloud PC snapshot is being saved.
         Args:
-            value: Value to set for the azureStorageAccountId property.
+            value: Value to set for the azure_storage_account_id property.
         """
         self._azure_storage_account_id = value
     
@@ -54,7 +54,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the azureStorageAccountName property value. The name of the Azure Storage account in which the Cloud PC snapshot is being saved.
         Args:
-            value: Value to set for the azureStorageAccountName property.
+            value: Value to set for the azure_storage_account_name property.
         """
         self._azure_storage_account_name = value
     
@@ -71,7 +71,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the azureStorageContainerName property value. The name of the container in an Azure Storage account in which the Cloud PC snapshot is being saved.
         Args:
-            value: Value to set for the azureStorageContainerName property.
+            value: Value to set for the azure_storage_container_name property.
         """
         self._azure_storage_container_name = value
     
@@ -121,16 +121,16 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_storage_account_id": lambda n : setattr(self, 'azure_storage_account_id', n.get_str_value()),
-            "azure_storage_account_name": lambda n : setattr(self, 'azure_storage_account_name', n.get_str_value()),
-            "azure_storage_container_name": lambda n : setattr(self, 'azure_storage_container_name', n.get_str_value()),
-            "in_review": lambda n : setattr(self, 'in_review', n.get_bool_value()),
+            "azureStorageAccountId": lambda n : setattr(self, 'azure_storage_account_id', n.get_str_value()),
+            "azureStorageAccountName": lambda n : setattr(self, 'azure_storage_account_name', n.get_str_value()),
+            "azureStorageContainerName": lambda n : setattr(self, 'azure_storage_container_name', n.get_str_value()),
+            "inReview": lambda n : setattr(self, 'in_review', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "restore_point_date_time": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
-            "review_start_date_time": lambda n : setattr(self, 'review_start_date_time', n.get_datetime_value()),
-            "subscription_id": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
-            "subscription_name": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
-            "user_access_level": lambda n : setattr(self, 'user_access_level', n.get_enum_value(cloud_pc_user_access_level.CloudPcUserAccessLevel)),
+            "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
+            "reviewStartDateTime": lambda n : setattr(self, 'review_start_date_time', n.get_datetime_value()),
+            "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
+            "subscriptionName": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
+            "userAccessLevel": lambda n : setattr(self, 'user_access_level', n.get_enum_value(cloud_pc_user_access_level.CloudPcUserAccessLevel)),
         }
         return fields
     
@@ -147,7 +147,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the inReview property value. True if the Cloud PC is set to in review by the administrator.
         Args:
-            value: Value to set for the inReview property.
+            value: Value to set for the in_review property.
         """
         self._in_review = value
     
@@ -164,7 +164,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -181,7 +181,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the restorePointDateTime property value. The specific date and time of the Cloud PC snapshot that was taken and saved automatically, when the Cloud PC is set to in review. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the restorePointDateTime property.
+            value: Value to set for the restore_point_date_time property.
         """
         self._restore_point_date_time = value
     
@@ -198,7 +198,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the reviewStartDateTime property value. The specific date and time when the Cloud PC was set to in review. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the reviewStartDateTime property.
+            value: Value to set for the review_start_date_time property.
         """
         self._review_start_date_time = value
     
@@ -235,7 +235,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the subscriptionId property value. The ID of the Azure subscription in which the Cloud PC snapshot is being saved, in GUID format.
         Args:
-            value: Value to set for the subscriptionId property.
+            value: Value to set for the subscription_id property.
         """
         self._subscription_id = value
     
@@ -252,7 +252,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the subscriptionName property value. The name of the Azure subscription in which the Cloud PC snapshot is being saved.
         Args:
-            value: Value to set for the subscriptionName property.
+            value: Value to set for the subscription_name property.
         """
         self._subscription_name = value
     
@@ -269,7 +269,7 @@ class CloudPcReviewStatus(AdditionalDataHolder, Parsable):
         """
         Sets the userAccessLevel property value. The userAccessLevel property
         Args:
-            value: Value to set for the userAccessLevel property.
+            value: Value to set for the user_access_level property.
         """
         self._user_access_level = value
     

@@ -9,6 +9,23 @@ label_details = lazy_import('msgraph.generated.models.label_details')
 
 class ApplyLabelAction(information_protection_action.InformationProtectionAction):
     @property
+    def action_source(self,) -> Optional[action_source.ActionSource]:
+        """
+        Gets the actionSource property value. The actionSource property
+        Returns: Optional[action_source.ActionSource]
+        """
+        return self._action_source
+    
+    @action_source.setter
+    def action_source(self,value: Optional[action_source.ActionSource] = None) -> None:
+        """
+        Sets the actionSource property value. The actionSource property
+        Args:
+            value: Value to set for the action_source property.
+        """
+        self._action_source = value
+    
+    @property
     def actions(self,) -> Optional[List[information_protection_action.InformationProtectionAction]]:
         """
         Gets the actions property value. The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.
@@ -25,33 +42,16 @@ class ApplyLabelAction(information_protection_action.InformationProtectionAction
         """
         self._actions = value
     
-    @property
-    def action_source(self,) -> Optional[action_source.ActionSource]:
-        """
-        Gets the actionSource property value. The actionSource property
-        Returns: Optional[action_source.ActionSource]
-        """
-        return self._action_source
-    
-    @action_source.setter
-    def action_source(self,value: Optional[action_source.ActionSource] = None) -> None:
-        """
-        Sets the actionSource property value. The actionSource property
-        Args:
-            value: Value to set for the actionSource property.
-        """
-        self._action_source = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new ApplyLabelAction and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.applyLabelAction"
-        # The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.
-        self._actions: Optional[List[information_protection_action.InformationProtectionAction]] = None
         # The actionSource property
         self._action_source: Optional[action_source.ActionSource] = None
+        # The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.
+        self._actions: Optional[List[information_protection_action.InformationProtectionAction]] = None
         # Object that describes the details of the label to apply.
         self._label: Optional[label_details.LabelDetails] = None
         # If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
@@ -76,9 +76,9 @@ class ApplyLabelAction(information_protection_action.InformationProtectionAction
         """
         fields = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(information_protection_action.InformationProtectionAction)),
-            "action_source": lambda n : setattr(self, 'action_source', n.get_enum_value(action_source.ActionSource)),
+            "actionSource": lambda n : setattr(self, 'action_source', n.get_enum_value(action_source.ActionSource)),
             "label": lambda n : setattr(self, 'label', n.get_object_value(label_details.LabelDetails)),
-            "responsible_sensitive_type_ids": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(guid)),
+            "responsibleSensitiveTypeIds": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(guid)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,7 +114,7 @@ class ApplyLabelAction(information_protection_action.InformationProtectionAction
         """
         Sets the responsibleSensitiveTypeIds property value. If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
         Args:
-            value: Value to set for the responsibleSensitiveTypeIds property.
+            value: Value to set for the responsible_sensitive_type_ids property.
         """
         self._responsible_sensitive_type_ids = value
     

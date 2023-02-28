@@ -1,7 +1,7 @@
 from enum import Enum
 
 class RequestedDeploymentStateValue(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Paused = "paused",
     Archived = "archived",
     UnknownFutureValue = "unknownFutureValue",

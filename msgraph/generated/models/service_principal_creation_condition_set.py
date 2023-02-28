@@ -19,7 +19,7 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         """
         Sets the applicationIds property value. The applicationIds property
         Args:
-            value: Value to set for the applicationIds property.
+            value: Value to set for the application_ids property.
         """
         self._application_ids = value
     
@@ -36,26 +36,9 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         """
         Sets the applicationPublisherIds property value. The applicationPublisherIds property
         Args:
-            value: Value to set for the applicationPublisherIds property.
+            value: Value to set for the application_publisher_ids property.
         """
         self._application_publisher_ids = value
-    
-    @property
-    def applications_from_verified_publisher_only(self,) -> Optional[bool]:
-        """
-        Gets the applicationsFromVerifiedPublisherOnly property value. The applicationsFromVerifiedPublisherOnly property
-        Returns: Optional[bool]
-        """
-        return self._applications_from_verified_publisher_only
-    
-    @applications_from_verified_publisher_only.setter
-    def applications_from_verified_publisher_only(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applicationsFromVerifiedPublisherOnly property value. The applicationsFromVerifiedPublisherOnly property
-        Args:
-            value: Value to set for the applicationsFromVerifiedPublisherOnly property.
-        """
-        self._applications_from_verified_publisher_only = value
     
     @property
     def application_tenant_ids(self,) -> Optional[List[str]]:
@@ -70,9 +53,26 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         """
         Sets the applicationTenantIds property value. The applicationTenantIds property
         Args:
-            value: Value to set for the applicationTenantIds property.
+            value: Value to set for the application_tenant_ids property.
         """
         self._application_tenant_ids = value
+    
+    @property
+    def applications_from_verified_publisher_only(self,) -> Optional[bool]:
+        """
+        Gets the applicationsFromVerifiedPublisherOnly property value. The applicationsFromVerifiedPublisherOnly property
+        Returns: Optional[bool]
+        """
+        return self._applications_from_verified_publisher_only
+    
+    @applications_from_verified_publisher_only.setter
+    def applications_from_verified_publisher_only(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applicationsFromVerifiedPublisherOnly property value. The applicationsFromVerifiedPublisherOnly property
+        Args:
+            value: Value to set for the applications_from_verified_publisher_only property.
+        """
+        self._applications_from_verified_publisher_only = value
     
     @property
     def certified_applications_only(self,) -> Optional[bool]:
@@ -87,7 +87,7 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         """
         Sets the certifiedApplicationsOnly property value. The certifiedApplicationsOnly property
         Args:
-            value: Value to set for the certifiedApplicationsOnly property.
+            value: Value to set for the certified_applications_only property.
         """
         self._certified_applications_only = value
     
@@ -100,10 +100,10 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         self._application_ids: Optional[List[str]] = None
         # The applicationPublisherIds property
         self._application_publisher_ids: Optional[List[str]] = None
-        # The applicationsFromVerifiedPublisherOnly property
-        self._applications_from_verified_publisher_only: Optional[bool] = None
         # The applicationTenantIds property
         self._application_tenant_ids: Optional[List[str]] = None
+        # The applicationsFromVerifiedPublisherOnly property
+        self._applications_from_verified_publisher_only: Optional[bool] = None
         # The certifiedApplicationsOnly property
         self._certified_applications_only: Optional[bool] = None
         # The OdataType property
@@ -127,11 +127,11 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_ids": lambda n : setattr(self, 'application_ids', n.get_collection_of_primitive_values(str)),
-            "application_publisher_ids": lambda n : setattr(self, 'application_publisher_ids', n.get_collection_of_primitive_values(str)),
-            "applications_from_verified_publisher_only": lambda n : setattr(self, 'applications_from_verified_publisher_only', n.get_bool_value()),
-            "application_tenant_ids": lambda n : setattr(self, 'application_tenant_ids', n.get_collection_of_primitive_values(str)),
-            "certified_applications_only": lambda n : setattr(self, 'certified_applications_only', n.get_bool_value()),
+            "applicationsFromVerifiedPublisherOnly": lambda n : setattr(self, 'applications_from_verified_publisher_only', n.get_bool_value()),
+            "applicationIds": lambda n : setattr(self, 'application_ids', n.get_collection_of_primitive_values(str)),
+            "applicationPublisherIds": lambda n : setattr(self, 'application_publisher_ids', n.get_collection_of_primitive_values(str)),
+            "applicationTenantIds": lambda n : setattr(self, 'application_tenant_ids', n.get_collection_of_primitive_values(str)),
+            "certifiedApplicationsOnly": lambda n : setattr(self, 'certified_applications_only', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -146,9 +146,9 @@ class ServicePrincipalCreationConditionSet(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_bool_value("applicationsFromVerifiedPublisherOnly", self.applications_from_verified_publisher_only)
         writer.write_collection_of_primitive_values("applicationIds", self.application_ids)
         writer.write_collection_of_primitive_values("applicationPublisherIds", self.application_publisher_ids)
-        writer.write_bool_value("applicationsFromVerifiedPublisherOnly", self.applications_from_verified_publisher_only)
         writer.write_collection_of_primitive_values("applicationTenantIds", self.application_tenant_ids)
         writer.write_bool_value("certifiedApplicationsOnly", self.certified_applications_only)
     

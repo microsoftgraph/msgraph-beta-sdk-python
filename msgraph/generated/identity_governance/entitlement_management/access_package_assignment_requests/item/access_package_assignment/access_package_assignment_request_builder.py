@@ -35,12 +35,11 @@ class AccessPackageAssignmentRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
+    async def get(self,request_configuration: Optional[AccessPackageAssignmentRequestBuilderGetRequestConfiguration] = None) -> Optional[access_package_assignment.AccessPackageAssignment]:
         """
         For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.  Supports $expand.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[access_package_assignment.AccessPackageAssignment]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class AccessPackageAssignmentRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, access_package_assignment.AccessPackageAssignment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AccessPackageAssignmentRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -65,7 +64,7 @@ class AccessPackageAssignmentRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -105,7 +104,7 @@ class AccessPackageAssignmentRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

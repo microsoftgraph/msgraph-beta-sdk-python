@@ -24,7 +24,7 @@ class Run(entity.Entity):
         """
         Sets the completedDateTime property value. The date time that the run completed. Value is null if the workflow hasn't completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -89,7 +89,7 @@ class Run(entity.Entity):
         """
         Sets the failedTasksCount property value. The number of tasks that failed in the run execution.
         Args:
-            value: Value to set for the failedTasksCount property.
+            value: Value to set for the failed_tasks_count property.
         """
         self._failed_tasks_count = value
     
@@ -106,7 +106,7 @@ class Run(entity.Entity):
         """
         Sets the failedUsersCount property value. The number of users that failed in the run execution.
         Args:
-            value: Value to set for the failedUsersCount property.
+            value: Value to set for the failed_users_count property.
         """
         self._failed_users_count = value
     
@@ -116,20 +116,20 @@ class Run(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "failed_tasks_count": lambda n : setattr(self, 'failed_tasks_count', n.get_int_value()),
-            "failed_users_count": lambda n : setattr(self, 'failed_users_count', n.get_int_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "processing_status": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
-            "scheduled_date_time": lambda n : setattr(self, 'scheduled_date_time', n.get_datetime_value()),
-            "started_date_time": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
-            "successful_users_count": lambda n : setattr(self, 'successful_users_count', n.get_int_value()),
-            "task_processing_results": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
-            "total_tasks_count": lambda n : setattr(self, 'total_tasks_count', n.get_int_value()),
-            "total_unprocessed_tasks_count": lambda n : setattr(self, 'total_unprocessed_tasks_count', n.get_int_value()),
-            "total_users_count": lambda n : setattr(self, 'total_users_count', n.get_int_value()),
-            "user_processing_results": lambda n : setattr(self, 'user_processing_results', n.get_collection_of_object_values(user_processing_result.UserProcessingResult)),
-            "workflow_execution_type": lambda n : setattr(self, 'workflow_execution_type', n.get_enum_value(workflow_execution_type.WorkflowExecutionType)),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "failedTasksCount": lambda n : setattr(self, 'failed_tasks_count', n.get_int_value()),
+            "failedUsersCount": lambda n : setattr(self, 'failed_users_count', n.get_int_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(lifecycle_workflow_processing_status.LifecycleWorkflowProcessingStatus)),
+            "scheduledDateTime": lambda n : setattr(self, 'scheduled_date_time', n.get_datetime_value()),
+            "startedDateTime": lambda n : setattr(self, 'started_date_time', n.get_datetime_value()),
+            "successfulUsersCount": lambda n : setattr(self, 'successful_users_count', n.get_int_value()),
+            "taskProcessingResults": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
+            "totalTasksCount": lambda n : setattr(self, 'total_tasks_count', n.get_int_value()),
+            "totalUnprocessedTasksCount": lambda n : setattr(self, 'total_unprocessed_tasks_count', n.get_int_value()),
+            "totalUsersCount": lambda n : setattr(self, 'total_users_count', n.get_int_value()),
+            "userProcessingResults": lambda n : setattr(self, 'user_processing_results', n.get_collection_of_object_values(user_processing_result.UserProcessingResult)),
+            "workflowExecutionType": lambda n : setattr(self, 'workflow_execution_type', n.get_enum_value(workflow_execution_type.WorkflowExecutionType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -148,7 +148,7 @@ class Run(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. The datetime that the run was last updated.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -165,7 +165,7 @@ class Run(entity.Entity):
         """
         Sets the processingStatus property value. The processingStatus property
         Args:
-            value: Value to set for the processingStatus property.
+            value: Value to set for the processing_status property.
         """
         self._processing_status = value
     
@@ -182,7 +182,7 @@ class Run(entity.Entity):
         """
         Sets the scheduledDateTime property value. The date time that the run is scheduled to be executed for a workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the scheduledDateTime property.
+            value: Value to set for the scheduled_date_time property.
         """
         self._scheduled_date_time = value
     
@@ -223,7 +223,7 @@ class Run(entity.Entity):
         """
         Sets the startedDateTime property value. The date time that the run execution started.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         Args:
-            value: Value to set for the startedDateTime property.
+            value: Value to set for the started_date_time property.
         """
         self._started_date_time = value
     
@@ -240,7 +240,7 @@ class Run(entity.Entity):
         """
         Sets the successfulUsersCount property value. The number of successfully completed users in the run.
         Args:
-            value: Value to set for the successfulUsersCount property.
+            value: Value to set for the successful_users_count property.
         """
         self._successful_users_count = value
     
@@ -257,7 +257,7 @@ class Run(entity.Entity):
         """
         Sets the taskProcessingResults property value. The related taskProcessingResults.
         Args:
-            value: Value to set for the taskProcessingResults property.
+            value: Value to set for the task_processing_results property.
         """
         self._task_processing_results = value
     
@@ -274,7 +274,7 @@ class Run(entity.Entity):
         """
         Sets the totalTasksCount property value. The totalTasksCount property
         Args:
-            value: Value to set for the totalTasksCount property.
+            value: Value to set for the total_tasks_count property.
         """
         self._total_tasks_count = value
     
@@ -291,7 +291,7 @@ class Run(entity.Entity):
         """
         Sets the totalUnprocessedTasksCount property value. The total number of unprocessed tasks in the run execution.
         Args:
-            value: Value to set for the totalUnprocessedTasksCount property.
+            value: Value to set for the total_unprocessed_tasks_count property.
         """
         self._total_unprocessed_tasks_count = value
     
@@ -308,7 +308,7 @@ class Run(entity.Entity):
         """
         Sets the totalUsersCount property value. The total number of users in the workflow execution.
         Args:
-            value: Value to set for the totalUsersCount property.
+            value: Value to set for the total_users_count property.
         """
         self._total_users_count = value
     
@@ -325,7 +325,7 @@ class Run(entity.Entity):
         """
         Sets the userProcessingResults property value. The associated individual user execution.
         Args:
-            value: Value to set for the userProcessingResults property.
+            value: Value to set for the user_processing_results property.
         """
         self._user_processing_results = value
     
@@ -342,7 +342,7 @@ class Run(entity.Entity):
         """
         Sets the workflowExecutionType property value. The workflowExecutionType property
         Args:
-            value: Value to set for the workflowExecutionType property.
+            value: Value to set for the workflow_execution_type property.
         """
         self._workflow_execution_type = value
     

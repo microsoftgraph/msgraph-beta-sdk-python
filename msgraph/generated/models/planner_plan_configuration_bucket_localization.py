@@ -60,7 +60,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
         """
         Sets the externalBucketId property value. Application-specified identifier of the bucket.
         Args:
-            value: Value to set for the externalBucketId property.
+            value: Value to set for the external_bucket_id property.
         """
         self._external_bucket_id = value
     
@@ -70,7 +70,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "external_bucket_id": lambda n : setattr(self, 'external_bucket_id', n.get_str_value()),
+            "externalBucketId": lambda n : setattr(self, 'external_bucket_id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -106,7 +106,7 @@ class PlannerPlanConfigurationBucketLocalization(AdditionalDataHolder, Parsable)
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

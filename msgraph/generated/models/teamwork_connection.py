@@ -37,7 +37,7 @@ class TeamworkConnection(AdditionalDataHolder, Parsable):
         """
         Sets the connectionStatus property value. Indicates whether a component/peripheral is connected/disconnected or its state is unknown. The possible values are: unknown, connected, disconnected, unknownFutureValue.
         Args:
-            value: Value to set for the connectionStatus property.
+            value: Value to set for the connection_status property.
         """
         self._connection_status = value
     
@@ -73,8 +73,8 @@ class TeamworkConnection(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connection_status": lambda n : setattr(self, 'connection_status', n.get_enum_value(teamwork_connection_status.TeamworkConnectionStatus)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "connectionStatus": lambda n : setattr(self, 'connection_status', n.get_enum_value(teamwork_connection_status.TeamworkConnectionStatus)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class TeamworkConnection(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedDateTime property value. Time at which the state was last changed. For example, indicates connected since when the state is connected and disconnected since when the state is disconnected.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -109,7 +109,7 @@ class TeamworkConnection(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

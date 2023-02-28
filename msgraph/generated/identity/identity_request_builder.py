@@ -188,12 +188,11 @@ class IdentityRequestBuilder():
         url_tpl_params["customAuthenticationExtension%2Did"] = id
         return custom_authentication_extension_item_request_builder.CustomAuthenticationExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[IdentityRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_container.IdentityContainer]:
+    async def get(self,request_configuration: Optional[IdentityRequestBuilderGetRequestConfiguration] = None) -> Optional[identity_container.IdentityContainer]:
         """
         Get identity
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_container.IdentityContainer]
         """
         request_info = self.to_get_request_information(
@@ -205,7 +204,7 @@ class IdentityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_container.IdentityContainer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_container.IdentityContainer, error_mapping)
     
     def identity_providers_by_id(self,id: str) -> identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder:
         """
@@ -220,13 +219,12 @@ class IdentityRequestBuilder():
         url_tpl_params["identityProviderBase%2Did"] = id
         return identity_provider_base_item_request_builder.IdentityProviderBaseItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[identity_container.IdentityContainer] = None, request_configuration: Optional[IdentityRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[identity_container.IdentityContainer]:
+    async def patch(self,body: Optional[identity_container.IdentityContainer] = None, request_configuration: Optional[IdentityRequestBuilderPatchRequestConfiguration] = None) -> Optional[identity_container.IdentityContainer]:
         """
         Update identity
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[identity_container.IdentityContainer]
         """
         if body is None:
@@ -240,7 +238,7 @@ class IdentityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, identity_container.IdentityContainer, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, identity_container.IdentityContainer, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[IdentityRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -253,7 +251,7 @@ class IdentityRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -274,7 +272,7 @@ class IdentityRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -340,7 +338,7 @@ class IdentityRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -355,7 +353,7 @@ class IdentityRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -26,7 +26,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the alwaysOn property value. Whether or not to enable always-on VPN connection.
         Args:
-            value: Value to set for the alwaysOn property.
+            value: Value to set for the always_on property.
         """
         self._always_on = value
     
@@ -43,7 +43,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the alwaysOnLockdown property value. If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
         Args:
-            value: Value to set for the alwaysOnLockdown property.
+            value: Value to set for the always_on_lockdown property.
         """
         self._always_on_lockdown = value
     
@@ -60,7 +60,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the connectionType property value. Android VPN connection type.
         Args:
-            value: Value to set for the connectionType property.
+            value: Value to set for the connection_type property.
         """
         self._connection_type = value
     
@@ -118,7 +118,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the customData property value. Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customData property.
+            value: Value to set for the custom_data property.
         """
         self._custom_data = value
     
@@ -135,7 +135,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the customKeyValueData property value. Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
         Args:
-            value: Value to set for the customKeyValueData property.
+            value: Value to set for the custom_key_value_data property.
         """
         self._custom_key_value_data = value
     
@@ -152,7 +152,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
         Args:
-            value: Value to set for the derivedCredentialSettings property.
+            value: Value to set for the derived_credential_settings property.
         """
         self._derived_credential_settings = value
     
@@ -162,17 +162,17 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "always_on": lambda n : setattr(self, 'always_on', n.get_bool_value()),
-            "always_on_lockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
-            "connection_type": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_vpn_connection_type.AndroidVpnConnectionType)),
-            "custom_data": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
-            "custom_key_value_data": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "derived_credential_settings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase)),
-            "microsoft_tunnel_site_id": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
-            "proxy_server": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
-            "targeted_mobile_apps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "targeted_package_ids": lambda n : setattr(self, 'targeted_package_ids', n.get_collection_of_primitive_values(str)),
+            "alwaysOn": lambda n : setattr(self, 'always_on', n.get_bool_value()),
+            "alwaysOnLockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_vpn_connection_type.AndroidVpnConnectionType)),
+            "customData": lambda n : setattr(self, 'custom_data', n.get_collection_of_object_values(key_value.KeyValue)),
+            "customKeyValueData": lambda n : setattr(self, 'custom_key_value_data', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase)),
+            "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(vpn_proxy_server.VpnProxyServer)),
+            "targetedMobileApps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "targetedPackageIds": lambda n : setattr(self, 'targeted_package_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -191,7 +191,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -208,7 +208,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the microsoftTunnelSiteId property value. Microsoft Tunnel site ID.
         Args:
-            value: Value to set for the microsoftTunnelSiteId property.
+            value: Value to set for the microsoft_tunnel_site_id property.
         """
         self._microsoft_tunnel_site_id = value
     
@@ -225,7 +225,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the proxyServer property value. Proxy server.
         Args:
-            value: Value to set for the proxyServer property.
+            value: Value to set for the proxy_server property.
         """
         self._proxy_server = value
     
@@ -263,7 +263,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the targetedMobileApps property value. Targeted mobile apps. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the targetedMobileApps property.
+            value: Value to set for the targeted_mobile_apps property.
         """
         self._targeted_mobile_apps = value
     
@@ -280,7 +280,7 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         """
         Sets the targetedPackageIds property value. Targeted App package IDs.
         Args:
-            value: Value to set for the targetedPackageIds property.
+            value: Value to set for the targeted_package_ids property.
         """
         self._targeted_package_ids = value
     

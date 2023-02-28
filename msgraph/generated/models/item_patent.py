@@ -70,7 +70,7 @@ class ItemPatent(item_facet.ItemFacet):
         """
         Sets the displayName property value. Title of the patent or filing.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -81,12 +81,12 @@ class ItemPatent(item_facet.ItemFacet):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_pending": lambda n : setattr(self, 'is_pending', n.get_bool_value()),
-            "issued_date": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
-            "issuing_authority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
+            "issuingAuthority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
+            "isPending": lambda n : setattr(self, 'is_pending', n.get_bool_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -105,7 +105,7 @@ class ItemPatent(item_facet.ItemFacet):
         """
         Sets the isPending property value. Indicates the patent is pending.
         Args:
-            value: Value to set for the isPending property.
+            value: Value to set for the is_pending property.
         """
         self._is_pending = value
     
@@ -122,7 +122,7 @@ class ItemPatent(item_facet.ItemFacet):
         """
         Sets the issuedDate property value. The date that the patent was granted.
         Args:
-            value: Value to set for the issuedDate property.
+            value: Value to set for the issued_date property.
         """
         self._issued_date = value
     
@@ -139,7 +139,7 @@ class ItemPatent(item_facet.ItemFacet):
         """
         Sets the issuingAuthority property value. Authority which granted the patent.
         Args:
-            value: Value to set for the issuingAuthority property.
+            value: Value to set for the issuing_authority property.
         """
         self._issuing_authority = value
     
@@ -171,9 +171,9 @@ class ItemPatent(item_facet.ItemFacet):
         super().serialize(writer)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_bool_value("isPending", self.is_pending)
         writer.write_object_value("issuedDate", self.issued_date)
         writer.write_str_value("issuingAuthority", self.issuing_authority)
+        writer.write_bool_value("isPending", self.is_pending)
         writer.write_str_value("number", self.number)
         writer.write_str_value("webUrl", self.web_url)
     
@@ -190,7 +190,7 @@ class ItemPatent(item_facet.ItemFacet):
         """
         Sets the webUrl property value. URL referencing the patent or filing.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

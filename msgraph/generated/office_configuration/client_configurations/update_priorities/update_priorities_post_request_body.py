@@ -51,8 +51,8 @@ class UpdatePrioritiesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "office_configuration_policy_ids": lambda n : setattr(self, 'office_configuration_policy_ids', n.get_collection_of_primitive_values(str)),
-            "office_configuration_priorities": lambda n : setattr(self, 'office_configuration_priorities', n.get_collection_of_primitive_values(int)),
+            "officeConfigurationPolicyIds": lambda n : setattr(self, 'office_configuration_policy_ids', n.get_collection_of_primitive_values(str)),
+            "officeConfigurationPriorities": lambda n : setattr(self, 'office_configuration_priorities', n.get_collection_of_primitive_values(int)),
         }
         return fields
     
@@ -69,7 +69,7 @@ class UpdatePrioritiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the officeConfigurationPolicyIds property value. The officeConfigurationPolicyIds property
         Args:
-            value: Value to set for the officeConfigurationPolicyIds property.
+            value: Value to set for the office_configuration_policy_ids property.
         """
         self._office_configuration_policy_ids = value
     
@@ -86,7 +86,7 @@ class UpdatePrioritiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the officeConfigurationPriorities property value. The officeConfigurationPriorities property
         Args:
-            value: Value to set for the officeConfigurationPriorities property.
+            value: Value to set for the office_configuration_priorities property.
         """
         self._office_configuration_priorities = value
     

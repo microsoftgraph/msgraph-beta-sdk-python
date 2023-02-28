@@ -97,7 +97,7 @@ class SetPresencePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDuration property value. The expirationDuration property
         Args:
-            value: Value to set for the expirationDuration property.
+            value: Value to set for the expiration_duration property.
         """
         self._expiration_duration = value
     
@@ -109,8 +109,8 @@ class SetPresencePostRequestBody(AdditionalDataHolder, Parsable):
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
             "availability": lambda n : setattr(self, 'availability', n.get_str_value()),
-            "expiration_duration": lambda n : setattr(self, 'expiration_duration', n.get_object_value(Timedelta)),
-            "session_id": lambda n : setattr(self, 'session_id', n.get_str_value()),
+            "expirationDuration": lambda n : setattr(self, 'expiration_duration', n.get_object_value(Timedelta)),
+            "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
         }
         return fields
     
@@ -141,7 +141,7 @@ class SetPresencePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sessionId property value. The sessionId property
         Args:
-            value: Value to set for the sessionId property.
+            value: Value to set for the session_id property.
         """
         self._session_id = value
     

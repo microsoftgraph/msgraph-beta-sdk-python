@@ -22,7 +22,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(device_conf
         """
         Sets the certificateAccessType property value. Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
         Args:
-            value: Value to set for the certificateAccessType property.
+            value: Value to set for the certificate_access_type property.
         """
         self._certificate_access_type = value
     
@@ -64,7 +64,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(device_conf
         """
         Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
         Args:
-            value: Value to set for the derivedCredentialSettings property.
+            value: Value to set for the derived_credential_settings property.
         """
         self._derived_credential_settings = value
     
@@ -74,9 +74,9 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(device_conf
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_access_type": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
-            "derived_credential_settings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
-            "silent_certificate_access_details": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess)),
+            "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "silentCertificateAccessDetails": lambda n : setattr(self, 'silent_certificate_access_details', n.get_collection_of_object_values(android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -108,7 +108,7 @@ class AndroidDeviceOwnerDerivedCredentialAuthenticationConfiguration(device_conf
         """
         Sets the silentCertificateAccessDetails property value. Certificate access information. This collection can contain a maximum of 50 elements.
         Args:
-            value: Value to set for the silentCertificateAccessDetails property.
+            value: Value to set for the silent_certificate_access_details property.
         """
         self._silent_certificate_access_details = value
     

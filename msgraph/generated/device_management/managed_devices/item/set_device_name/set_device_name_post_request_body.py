@@ -56,7 +56,7 @@ class SetDeviceNamePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceName property value. The deviceName property
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -66,7 +66,7 @@ class SetDeviceNamePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
         }
         return fields
     

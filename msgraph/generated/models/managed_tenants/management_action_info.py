@@ -55,9 +55,9 @@ class ManagementActionInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "management_action_id": lambda n : setattr(self, 'management_action_id', n.get_str_value()),
-            "management_template_id": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
-            "management_template_version": lambda n : setattr(self, 'management_template_version', n.get_int_value()),
+            "managementActionId": lambda n : setattr(self, 'management_action_id', n.get_str_value()),
+            "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
+            "managementTemplateVersion": lambda n : setattr(self, 'management_template_version', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -75,7 +75,7 @@ class ManagementActionInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementActionId property value. The identifier for the management action. Required. Read-only.
         Args:
-            value: Value to set for the managementActionId property.
+            value: Value to set for the management_action_id property.
         """
         self._management_action_id = value
     
@@ -92,7 +92,7 @@ class ManagementActionInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementTemplateId property value. The identifier for the management template. Required. Read-only.
         Args:
-            value: Value to set for the managementTemplateId property.
+            value: Value to set for the management_template_id property.
         """
         self._management_template_id = value
     
@@ -109,7 +109,7 @@ class ManagementActionInfo(AdditionalDataHolder, Parsable):
         """
         Sets the managementTemplateVersion property value. The managementTemplateVersion property
         Args:
-            value: Value to set for the managementTemplateVersion property.
+            value: Value to set for the management_template_version property.
         """
         self._management_template_version = value
     
@@ -126,7 +126,7 @@ class ManagementActionInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

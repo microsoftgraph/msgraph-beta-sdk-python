@@ -47,7 +47,7 @@ class GovernanceSubject(entity.Entity):
         """
         Sets the displayName property value. The display name of the subject.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -74,9 +74,9 @@ class GovernanceSubject(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "principal_name": lambda n : setattr(self, 'principal_name', n.get_str_value()),
+            "principalName": lambda n : setattr(self, 'principal_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -96,7 +96,7 @@ class GovernanceSubject(entity.Entity):
         """
         Sets the principalName property value. The principal name of the user subject. If the subject is in other types, it is empty.
         Args:
-            value: Value to set for the principalName property.
+            value: Value to set for the principal_name property.
         """
         self._principal_name = value
     

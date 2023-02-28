@@ -63,7 +63,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the countryCode property value. The ISO 3166-1 Alpha-2 country code of the participant's best estimated physical location at the start of the call. Read-only.
         Args:
-            value: Value to set for the countryCode property.
+            value: Value to set for the country_code property.
         """
         self._country_code = value
     
@@ -92,7 +92,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the endpointType property value. The type of endpoint the participant is using. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue. Read-only.
         Args:
-            value: Value to set for the endpointType property.
+            value: Value to set for the endpoint_type property.
         """
         self._endpoint_type = value
     
@@ -102,14 +102,14 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "country_code": lambda n : setattr(self, 'country_code', n.get_str_value()),
-            "endpoint_type": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(endpoint_type.EndpointType)),
+            "countryCode": lambda n : setattr(self, 'country_code', n.get_str_value()),
+            "endpointType": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(endpoint_type.EndpointType)),
             "identity": lambda n : setattr(self, 'identity', n.get_object_value(identity_set.IdentitySet)),
-            "language_id": lambda n : setattr(self, 'language_id', n.get_str_value()),
-            "non_anonymized_identity": lambda n : setattr(self, 'non_anonymized_identity', n.get_object_value(identity_set.IdentitySet)),
+            "languageId": lambda n : setattr(self, 'language_id', n.get_str_value()),
+            "nonAnonymizedIdentity": lambda n : setattr(self, 'non_anonymized_identity', n.get_object_value(identity_set.IdentitySet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "participant_id": lambda n : setattr(self, 'participant_id', n.get_str_value()),
-            "platform_id": lambda n : setattr(self, 'platform_id', n.get_str_value()),
+            "participantId": lambda n : setattr(self, 'participant_id', n.get_str_value()),
+            "platformId": lambda n : setattr(self, 'platform_id', n.get_str_value()),
             "region": lambda n : setattr(self, 'region', n.get_str_value()),
         }
         return fields
@@ -144,7 +144,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the languageId property value. The language culture string. Read-only.
         Args:
-            value: Value to set for the languageId property.
+            value: Value to set for the language_id property.
         """
         self._language_id = value
     
@@ -161,7 +161,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the nonAnonymizedIdentity property value. The nonAnonymizedIdentity property
         Args:
-            value: Value to set for the nonAnonymizedIdentity property.
+            value: Value to set for the non_anonymized_identity property.
         """
         self._non_anonymized_identity = value
     
@@ -178,7 +178,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -195,7 +195,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the participantId property value. The participant ID of the participant. Read-only.
         Args:
-            value: Value to set for the participantId property.
+            value: Value to set for the participant_id property.
         """
         self._participant_id = value
     
@@ -212,7 +212,7 @@ class ParticipantInfo(AdditionalDataHolder, Parsable):
         """
         Sets the platformId property value. The client platform ID of the participant. Read-only.
         Args:
-            value: Value to set for the platformId property.
+            value: Value to set for the platform_id property.
         """
         self._platform_id = value
     

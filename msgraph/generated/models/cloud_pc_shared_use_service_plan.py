@@ -8,16 +8,16 @@ entity = lazy_import('msgraph.generated.models.entity')
 class CloudPcSharedUseServicePlan(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcSharedUseServicePlan and sets the default values.
+        Instantiates a new CloudPcSharedUseServicePlan and sets the default values.
         """
         super().__init__()
-        # The displayName property
+        # The display name of the shared-use service plan.
         self._display_name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The totalCount property
+        # Total number of shared-use service plans purchased by the customer.
         self._total_count: Optional[int] = None
-        # The usedCount property
+        # The number of service plans that the account uses.
         self._used_count: Optional[int] = None
     
     @staticmethod
@@ -35,7 +35,7 @@ class CloudPcSharedUseServicePlan(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. The display name of the shared-use service plan.
         Returns: Optional[str]
         """
         return self._display_name
@@ -43,9 +43,9 @@ class CloudPcSharedUseServicePlan(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. The display name of the shared-use service plan.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -55,9 +55,9 @@ class CloudPcSharedUseServicePlan(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "total_count": lambda n : setattr(self, 'total_count', n.get_int_value()),
-            "used_count": lambda n : setattr(self, 'used_count', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "totalCount": lambda n : setattr(self, 'total_count', n.get_int_value()),
+            "usedCount": lambda n : setattr(self, 'used_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -79,7 +79,7 @@ class CloudPcSharedUseServicePlan(entity.Entity):
     @property
     def total_count(self,) -> Optional[int]:
         """
-        Gets the totalCount property value. The totalCount property
+        Gets the totalCount property value. Total number of shared-use service plans purchased by the customer.
         Returns: Optional[int]
         """
         return self._total_count
@@ -87,16 +87,16 @@ class CloudPcSharedUseServicePlan(entity.Entity):
     @total_count.setter
     def total_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the totalCount property value. The totalCount property
+        Sets the totalCount property value. Total number of shared-use service plans purchased by the customer.
         Args:
-            value: Value to set for the totalCount property.
+            value: Value to set for the total_count property.
         """
         self._total_count = value
     
     @property
     def used_count(self,) -> Optional[int]:
         """
-        Gets the usedCount property value. The usedCount property
+        Gets the usedCount property value. The number of service plans that the account uses.
         Returns: Optional[int]
         """
         return self._used_count
@@ -104,9 +104,9 @@ class CloudPcSharedUseServicePlan(entity.Entity):
     @used_count.setter
     def used_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the usedCount property value. The usedCount property
+        Sets the usedCount property value. The number of service plans that the account uses.
         Args:
-            value: Value to set for the usedCount property.
+            value: Value to set for the used_count property.
         """
         self._used_count = value
     

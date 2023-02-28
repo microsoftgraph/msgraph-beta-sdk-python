@@ -44,7 +44,7 @@ class MarkContent(label_action_base.LabelActionBase):
         """
         Sets the fontColor property value. The fontColor property
         Args:
-            value: Value to set for the fontColor property.
+            value: Value to set for the font_color property.
         """
         self._font_color = value
     
@@ -61,7 +61,7 @@ class MarkContent(label_action_base.LabelActionBase):
         """
         Sets the fontSize property value. The fontSize property
         Args:
-            value: Value to set for the fontSize property.
+            value: Value to set for the font_size property.
         """
         self._font_size = value
     
@@ -71,8 +71,8 @@ class MarkContent(label_action_base.LabelActionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "font_color": lambda n : setattr(self, 'font_color', n.get_str_value()),
-            "font_size": lambda n : setattr(self, 'font_size', n.get_int_value()),
+            "fontColor": lambda n : setattr(self, 'font_color', n.get_str_value()),
+            "fontSize": lambda n : setattr(self, 'font_size', n.get_int_value()),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

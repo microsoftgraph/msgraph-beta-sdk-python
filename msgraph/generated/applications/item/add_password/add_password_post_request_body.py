@@ -51,7 +51,7 @@ class AddPasswordPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "password_credential": lambda n : setattr(self, 'password_credential', n.get_object_value(password_credential.PasswordCredential)),
+            "passwordCredential": lambda n : setattr(self, 'password_credential', n.get_object_value(password_credential.PasswordCredential)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class AddPasswordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the passwordCredential property value. The passwordCredential property
         Args:
-            value: Value to set for the passwordCredential property.
+            value: Value to set for the password_credential property.
         """
         self._password_credential = value
     

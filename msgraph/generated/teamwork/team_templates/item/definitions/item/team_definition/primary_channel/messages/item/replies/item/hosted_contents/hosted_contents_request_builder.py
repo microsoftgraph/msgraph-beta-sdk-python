@@ -44,12 +44,11 @@ class HostedContentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[HostedContentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_message_hosted_content_collection_response.ChatMessageHostedContentCollectionResponse]:
+    async def get(self,request_configuration: Optional[HostedContentsRequestBuilderGetRequestConfiguration] = None) -> Optional[chat_message_hosted_content_collection_response.ChatMessageHostedContentCollectionResponse]:
         """
         Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message_hosted_content_collection_response.ChatMessageHostedContentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class HostedContentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_message_hosted_content_collection_response.ChatMessageHostedContentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_message_hosted_content_collection_response.ChatMessageHostedContentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[chat_message_hosted_content.ChatMessageHostedContent] = None, request_configuration: Optional[HostedContentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[chat_message_hosted_content.ChatMessageHostedContent]:
+    async def post(self,body: Optional[chat_message_hosted_content.ChatMessageHostedContent] = None, request_configuration: Optional[HostedContentsRequestBuilderPostRequestConfiguration] = None) -> Optional[chat_message_hosted_content.ChatMessageHostedContent]:
         """
         Create new navigation property to hostedContents for teamwork
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[chat_message_hosted_content.ChatMessageHostedContent]
         """
         if body is None:
@@ -83,7 +81,7 @@ class HostedContentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, chat_message_hosted_content.ChatMessageHostedContent, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, chat_message_hosted_content.ChatMessageHostedContent, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[HostedContentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class HostedContentsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class HostedContentsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class HostedContentsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class HostedContentsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

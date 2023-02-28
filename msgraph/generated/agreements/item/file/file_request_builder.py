@@ -44,12 +44,11 @@ class FileRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[FileRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[FileRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property file for agreements
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class FileRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[FileRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[agreement_file.AgreementFile]:
+    async def get(self,request_configuration: Optional[FileRequestBuilderGetRequestConfiguration] = None) -> Optional[agreement_file.AgreementFile]:
         """
         Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[agreement_file.AgreementFile]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +77,7 @@ class FileRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, agreement_file.AgreementFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, agreement_file.AgreementFile, error_mapping)
     
     def localizations_by_id(self,id: str) -> agreement_file_localization_item_request_builder.AgreementFileLocalizationItemRequestBuilder:
         """
@@ -94,13 +92,12 @@ class FileRequestBuilder():
         url_tpl_params["agreementFileLocalization%2Did"] = id
         return agreement_file_localization_item_request_builder.AgreementFileLocalizationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[agreement_file.AgreementFile] = None, request_configuration: Optional[FileRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[agreement_file.AgreementFile]:
+    async def patch(self,body: Optional[agreement_file.AgreementFile] = None, request_configuration: Optional[FileRequestBuilderPatchRequestConfiguration] = None) -> Optional[agreement_file.AgreementFile]:
         """
         Update the navigation property file in agreements
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[agreement_file.AgreementFile]
         """
         if body is None:
@@ -114,7 +111,7 @@ class FileRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, agreement_file.AgreementFile, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, agreement_file.AgreementFile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[FileRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -143,7 +140,7 @@ class FileRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -164,7 +161,7 @@ class FileRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -177,7 +174,7 @@ class FileRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -216,7 +213,7 @@ class FileRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -231,7 +228,7 @@ class FileRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

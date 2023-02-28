@@ -49,7 +49,7 @@ class ClearPresencePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "session_id": lambda n : setattr(self, 'session_id', n.get_str_value()),
+            "sessionId": lambda n : setattr(self, 'session_id', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class ClearPresencePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sessionId property value. The sessionId property
         Args:
-            value: Value to set for the sessionId property.
+            value: Value to set for the session_id property.
         """
         self._session_id = value
     

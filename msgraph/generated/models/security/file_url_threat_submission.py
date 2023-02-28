@@ -40,7 +40,7 @@ class FileUrlThreatSubmission(file_threat_submission.FileThreatSubmission):
         """
         Sets the fileUrl property value. It specifies the URL of the file which needs to be submitted.
         Args:
-            value: Value to set for the fileUrl property.
+            value: Value to set for the file_url property.
         """
         self._file_url = value
     
@@ -50,7 +50,7 @@ class FileUrlThreatSubmission(file_threat_submission.FileThreatSubmission):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_url": lambda n : setattr(self, 'file_url', n.get_str_value()),
+            "fileUrl": lambda n : setattr(self, 'file_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

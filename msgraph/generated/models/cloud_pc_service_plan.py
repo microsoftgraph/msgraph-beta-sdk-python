@@ -3,13 +3,14 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
 cloud_pc_service_plan_type = lazy_import('msgraph.generated.models.cloud_pc_service_plan_type')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class CloudPcServicePlan(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcServicePlan and sets the default values.
+        Instantiates a new CloudPcServicePlan and sets the default values.
         """
         super().__init__()
         # The name for the service plan. Read-only.
@@ -20,6 +21,8 @@ class CloudPcServicePlan(entity.Entity):
         self._ram_in_g_b: Optional[int] = None
         # The size of the OS Disk in GB. Read-only.
         self._storage_in_g_b: Optional[int] = None
+        # The supportedSolution property
+        self._supported_solution: Optional[cloud_pc_management_service.CloudPcManagementService] = None
         # The type of the service plan. Possible values are: enterprise, business, unknownFutureValue. Read-only.
         self._type: Optional[cloud_pc_service_plan_type.CloudPcServicePlanType] = None
         # The size of the user profile disk in GB. Read-only.
@@ -52,7 +55,7 @@ class CloudPcServicePlan(entity.Entity):
         """
         Sets the displayName property value. The name for the service plan. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -62,12 +65,13 @@ class CloudPcServicePlan(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "ram_in_g_b": lambda n : setattr(self, 'ram_in_g_b', n.get_int_value()),
-            "storage_in_g_b": lambda n : setattr(self, 'storage_in_g_b', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "ramInGB": lambda n : setattr(self, 'ram_in_g_b', n.get_int_value()),
+            "storageInGB": lambda n : setattr(self, 'storage_in_g_b', n.get_int_value()),
+            "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_enum_value(cloud_pc_management_service.CloudPcManagementService)),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(cloud_pc_service_plan_type.CloudPcServicePlanType)),
-            "user_profile_in_g_b": lambda n : setattr(self, 'user_profile_in_g_b', n.get_int_value()),
-            "v_cpu_count": lambda n : setattr(self, 'v_cpu_count', n.get_int_value()),
+            "userProfileInGB": lambda n : setattr(self, 'user_profile_in_g_b', n.get_int_value()),
+            "vCpuCount": lambda n : setattr(self, 'v_cpu_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -86,7 +90,7 @@ class CloudPcServicePlan(entity.Entity):
         """
         Sets the ramInGB property value. The size of the RAM in GB. Read-only.
         Args:
-            value: Value to set for the ramInGB property.
+            value: Value to set for the ram_in_g_b property.
         """
         self._ram_in_g_b = value
     
@@ -102,6 +106,7 @@ class CloudPcServicePlan(entity.Entity):
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("ramInGB", self.ram_in_g_b)
         writer.write_int_value("storageInGB", self.storage_in_g_b)
+        writer.write_enum_value("supportedSolution", self.supported_solution)
         writer.write_enum_value("type", self.type)
         writer.write_int_value("userProfileInGB", self.user_profile_in_g_b)
         writer.write_int_value("vCpuCount", self.v_cpu_count)
@@ -119,9 +124,26 @@ class CloudPcServicePlan(entity.Entity):
         """
         Sets the storageInGB property value. The size of the OS Disk in GB. Read-only.
         Args:
-            value: Value to set for the storageInGB property.
+            value: Value to set for the storage_in_g_b property.
         """
         self._storage_in_g_b = value
+    
+    @property
+    def supported_solution(self,) -> Optional[cloud_pc_management_service.CloudPcManagementService]:
+        """
+        Gets the supportedSolution property value. The supportedSolution property
+        Returns: Optional[cloud_pc_management_service.CloudPcManagementService]
+        """
+        return self._supported_solution
+    
+    @supported_solution.setter
+    def supported_solution(self,value: Optional[cloud_pc_management_service.CloudPcManagementService] = None) -> None:
+        """
+        Sets the supportedSolution property value. The supportedSolution property
+        Args:
+            value: Value to set for the supported_solution property.
+        """
+        self._supported_solution = value
     
     @property
     def type(self,) -> Optional[cloud_pc_service_plan_type.CloudPcServicePlanType]:
@@ -153,7 +175,7 @@ class CloudPcServicePlan(entity.Entity):
         """
         Sets the userProfileInGB property value. The size of the user profile disk in GB. Read-only.
         Args:
-            value: Value to set for the userProfileInGB property.
+            value: Value to set for the user_profile_in_g_b property.
         """
         self._user_profile_in_g_b = value
     
@@ -170,7 +192,7 @@ class CloudPcServicePlan(entity.Entity):
         """
         Sets the vCpuCount property value. The number of vCPUs. Read-only.
         Args:
-            value: Value to set for the vCpuCount property.
+            value: Value to set for the v_cpu_count property.
         """
         self._v_cpu_count = value
     

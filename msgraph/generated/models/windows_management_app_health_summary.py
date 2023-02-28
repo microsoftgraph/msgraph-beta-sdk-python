@@ -38,9 +38,9 @@ class WindowsManagementAppHealthSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "healthy_device_count": lambda n : setattr(self, 'healthy_device_count', n.get_int_value()),
-            "unhealthy_device_count": lambda n : setattr(self, 'unhealthy_device_count', n.get_int_value()),
-            "unknown_device_count": lambda n : setattr(self, 'unknown_device_count', n.get_int_value()),
+            "healthyDeviceCount": lambda n : setattr(self, 'healthy_device_count', n.get_int_value()),
+            "unhealthyDeviceCount": lambda n : setattr(self, 'unhealthy_device_count', n.get_int_value()),
+            "unknownDeviceCount": lambda n : setattr(self, 'unknown_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -59,7 +59,7 @@ class WindowsManagementAppHealthSummary(entity.Entity):
         """
         Sets the healthyDeviceCount property value. Healthy device count.
         Args:
-            value: Value to set for the healthyDeviceCount property.
+            value: Value to set for the healthy_device_count property.
         """
         self._healthy_device_count = value
     
@@ -89,7 +89,7 @@ class WindowsManagementAppHealthSummary(entity.Entity):
         """
         Sets the unhealthyDeviceCount property value. Unhealthy device count.
         Args:
-            value: Value to set for the unhealthyDeviceCount property.
+            value: Value to set for the unhealthy_device_count property.
         """
         self._unhealthy_device_count = value
     
@@ -106,7 +106,7 @@ class WindowsManagementAppHealthSummary(entity.Entity):
         """
         Sets the unknownDeviceCount property value. Unknown device count.
         Args:
-            value: Value to set for the unknownDeviceCount property.
+            value: Value to set for the unknown_device_count property.
         """
         self._unknown_device_count = value
     

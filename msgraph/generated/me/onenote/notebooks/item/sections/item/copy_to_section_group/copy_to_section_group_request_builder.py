@@ -30,19 +30,18 @@ class CopyToSectionGroupRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/microsoft.graph.copyToSectionGroup"
+        self.url_template: str = "{+baseurl}/me/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/copyToSectionGroup"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[copy_to_section_group_post_request_body.CopyToSectionGroupPostRequestBody] = None, request_configuration: Optional[CopyToSectionGroupRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[onenote_operation.OnenoteOperation]:
+    async def post(self,body: Optional[copy_to_section_group_post_request_body.CopyToSectionGroupPostRequestBody] = None, request_configuration: Optional[CopyToSectionGroupRequestBuilderPostRequestConfiguration] = None) -> Optional[onenote_operation.OnenoteOperation]:
         """
         Copies a section to a specific section group. For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[onenote_operation.OnenoteOperation]
         """
         if body is None:
@@ -56,7 +55,7 @@ class CopyToSectionGroupRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, onenote_operation.OnenoteOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, onenote_operation.OnenoteOperation, error_mapping)
     
     def to_post_request_information(self,body: Optional[copy_to_section_group_post_request_body.CopyToSectionGroupPostRequestBody] = None, request_configuration: Optional[CopyToSectionGroupRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class CopyToSectionGroupRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class CopyToSectionGroupRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

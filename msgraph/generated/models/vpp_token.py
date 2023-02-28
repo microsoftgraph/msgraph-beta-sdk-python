@@ -27,7 +27,7 @@ class VppToken(entity.Entity):
         """
         Sets the appleId property value. The apple Id associated with the given Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the appleId property.
+            value: Value to set for the apple_id property.
         """
         self._apple_id = value
     
@@ -44,7 +44,7 @@ class VppToken(entity.Entity):
         """
         Sets the automaticallyUpdateApps property value. Whether or not apps for the VPP token will be automatically updated.
         Args:
-            value: Value to set for the automaticallyUpdateApps property.
+            value: Value to set for the automatically_update_apps property.
         """
         self._automatically_update_apps = value
     
@@ -61,7 +61,7 @@ class VppToken(entity.Entity):
         """
         Sets the claimTokenManagementFromExternalMdm property value. Admin consent to allow claiming token management from external MDM.
         Args:
-            value: Value to set for the claimTokenManagementFromExternalMdm property.
+            value: Value to set for the claim_token_management_from_external_mdm property.
         """
         self._claim_token_management_from_external_mdm = value
     
@@ -120,7 +120,7 @@ class VppToken(entity.Entity):
         """
         Sets the countryOrRegion property value. Whether or not apps for the VPP token will be automatically updated.
         Args:
-            value: Value to set for the countryOrRegion property.
+            value: Value to set for the country_or_region property.
         """
         self._country_or_region = value
     
@@ -149,7 +149,7 @@ class VppToken(entity.Entity):
         """
         Sets the dataSharingConsentGranted property value. Consent granted for data sharing with the Apple Volume Purchase Program.
         Args:
-            value: Value to set for the dataSharingConsentGranted property.
+            value: Value to set for the data_sharing_consent_granted property.
         """
         self._data_sharing_consent_granted = value
     
@@ -166,7 +166,7 @@ class VppToken(entity.Entity):
         """
         Sets the displayName property value. An admin specified token friendly name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -183,7 +183,7 @@ class VppToken(entity.Entity):
         """
         Sets the expirationDateTime property value. The expiration date time of the Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -193,23 +193,23 @@ class VppToken(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apple_id": lambda n : setattr(self, 'apple_id', n.get_str_value()),
-            "automatically_update_apps": lambda n : setattr(self, 'automatically_update_apps', n.get_bool_value()),
-            "claim_token_management_from_external_mdm": lambda n : setattr(self, 'claim_token_management_from_external_mdm', n.get_bool_value()),
-            "country_or_region": lambda n : setattr(self, 'country_or_region', n.get_str_value()),
-            "data_sharing_consent_granted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "last_sync_status": lambda n : setattr(self, 'last_sync_status', n.get_enum_value(vpp_token_sync_status.VppTokenSyncStatus)),
-            "location_name": lambda n : setattr(self, 'location_name', n.get_str_value()),
-            "organization_name": lambda n : setattr(self, 'organization_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "appleId": lambda n : setattr(self, 'apple_id', n.get_str_value()),
+            "automaticallyUpdateApps": lambda n : setattr(self, 'automatically_update_apps', n.get_bool_value()),
+            "claimTokenManagementFromExternalMdm": lambda n : setattr(self, 'claim_token_management_from_external_mdm', n.get_bool_value()),
+            "countryOrRegion": lambda n : setattr(self, 'country_or_region', n.get_str_value()),
+            "dataSharingConsentGranted": lambda n : setattr(self, 'data_sharing_consent_granted', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "lastSyncStatus": lambda n : setattr(self, 'last_sync_status', n.get_enum_value(vpp_token_sync_status.VppTokenSyncStatus)),
+            "locationName": lambda n : setattr(self, 'location_name', n.get_str_value()),
+            "organizationName": lambda n : setattr(self, 'organization_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(vpp_token_state.VppTokenState)),
             "token": lambda n : setattr(self, 'token', n.get_str_value()),
-            "token_action_results": lambda n : setattr(self, 'token_action_results', n.get_collection_of_object_values(vpp_token_action_result.VppTokenActionResult)),
-            "vpp_token_account_type": lambda n : setattr(self, 'vpp_token_account_type', n.get_enum_value(vpp_token_account_type.VppTokenAccountType)),
+            "tokenActionResults": lambda n : setattr(self, 'token_action_results', n.get_collection_of_object_values(vpp_token_action_result.VppTokenActionResult)),
+            "vppTokenAccountType": lambda n : setattr(self, 'vpp_token_account_type', n.get_enum_value(vpp_token_account_type.VppTokenAccountType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -228,7 +228,7 @@ class VppToken(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Last modification date time associated with the Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -245,7 +245,7 @@ class VppToken(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The last time when an application sync was done with the Apple volume purchase program service using the the Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -262,7 +262,7 @@ class VppToken(entity.Entity):
         """
         Sets the lastSyncStatus property value. Possible sync statuses associated with an Apple Volume Purchase Program token.
         Args:
-            value: Value to set for the lastSyncStatus property.
+            value: Value to set for the last_sync_status property.
         """
         self._last_sync_status = value
     
@@ -279,7 +279,7 @@ class VppToken(entity.Entity):
         """
         Sets the locationName property value. Token location returned from Apple VPP.
         Args:
-            value: Value to set for the locationName property.
+            value: Value to set for the location_name property.
         """
         self._location_name = value
     
@@ -296,7 +296,7 @@ class VppToken(entity.Entity):
         """
         Sets the organizationName property value. The organization associated with the Apple Volume Purchase Program Token
         Args:
-            value: Value to set for the organizationName property.
+            value: Value to set for the organization_name property.
         """
         self._organization_name = value
     
@@ -313,7 +313,7 @@ class VppToken(entity.Entity):
         """
         Sets the roleScopeTagIds property value. Role Scope Tags IDs assigned to this entity.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -391,7 +391,7 @@ class VppToken(entity.Entity):
         """
         Sets the tokenActionResults property value. The collection of statuses of the actions performed on the Apple Volume Purchase Program Token.
         Args:
-            value: Value to set for the tokenActionResults property.
+            value: Value to set for the token_action_results property.
         """
         self._token_action_results = value
     
@@ -408,7 +408,7 @@ class VppToken(entity.Entity):
         """
         Sets the vppTokenAccountType property value. Possible types of an Apple Volume Purchase Program token.
         Args:
-            value: Value to set for the vppTokenAccountType property.
+            value: Value to set for the vpp_token_account_type property.
         """
         self._vpp_token_account_type = value
     

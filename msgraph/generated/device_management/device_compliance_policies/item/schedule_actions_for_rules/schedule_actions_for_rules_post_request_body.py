@@ -58,7 +58,7 @@ class ScheduleActionsForRulesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceComplianceScheduledActionForRules property value. The deviceComplianceScheduledActionForRules property
         Args:
-            value: Value to set for the deviceComplianceScheduledActionForRules property.
+            value: Value to set for the device_compliance_scheduled_action_for_rules property.
         """
         self._device_compliance_scheduled_action_for_rules = value
     
@@ -68,7 +68,7 @@ class ScheduleActionsForRulesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_compliance_scheduled_action_for_rules": lambda n : setattr(self, 'device_compliance_scheduled_action_for_rules', n.get_collection_of_object_values(device_compliance_scheduled_action_for_rule.DeviceComplianceScheduledActionForRule)),
+            "deviceComplianceScheduledActionForRules": lambda n : setattr(self, 'device_compliance_scheduled_action_for_rules', n.get_collection_of_object_values(device_compliance_scheduled_action_for_rule.DeviceComplianceScheduledActionForRule)),
         }
         return fields
     

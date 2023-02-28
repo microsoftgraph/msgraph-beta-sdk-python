@@ -60,10 +60,10 @@ class Print(AdditionalDataHolder, Parsable):
         self._odata_type: Optional[str] = None
         # The operations property
         self._operations: Optional[List[print_operation.PrintOperation]] = None
-        # The list of printers registered in the tenant.
-        self._printers: Optional[List[printer.Printer]] = None
         # The printerShares property
         self._printer_shares: Optional[List[printer_share.PrinterShare]] = None
+        # The list of printers registered in the tenant.
+        self._printers: Optional[List[printer.Printer]] = None
         # The reports property
         self._reports: Optional[report_root.ReportRoot] = None
         # The list of available Universal Print service endpoints.
@@ -97,12 +97,12 @@ class Print(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(print_operation.PrintOperation)),
             "printers": lambda n : setattr(self, 'printers', n.get_collection_of_object_values(printer.Printer)),
-            "printer_shares": lambda n : setattr(self, 'printer_shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
+            "printerShares": lambda n : setattr(self, 'printer_shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
             "reports": lambda n : setattr(self, 'reports', n.get_object_value(report_root.ReportRoot)),
             "services": lambda n : setattr(self, 'services', n.get_collection_of_object_values(print_service.PrintService)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(print_settings.PrintSettings)),
             "shares": lambda n : setattr(self, 'shares', n.get_collection_of_object_values(printer_share.PrinterShare)),
-            "task_definitions": lambda n : setattr(self, 'task_definitions', n.get_collection_of_object_values(print_task_definition.PrintTaskDefinition)),
+            "taskDefinitions": lambda n : setattr(self, 'task_definitions', n.get_collection_of_object_values(print_task_definition.PrintTaskDefinition)),
         }
         return fields
     
@@ -119,7 +119,7 @@ class Print(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -141,6 +141,23 @@ class Print(AdditionalDataHolder, Parsable):
         self._operations = value
     
     @property
+    def printer_shares(self,) -> Optional[List[printer_share.PrinterShare]]:
+        """
+        Gets the printerShares property value. The printerShares property
+        Returns: Optional[List[printer_share.PrinterShare]]
+        """
+        return self._printer_shares
+    
+    @printer_shares.setter
+    def printer_shares(self,value: Optional[List[printer_share.PrinterShare]] = None) -> None:
+        """
+        Sets the printerShares property value. The printerShares property
+        Args:
+            value: Value to set for the printer_shares property.
+        """
+        self._printer_shares = value
+    
+    @property
     def printers(self,) -> Optional[List[printer.Printer]]:
         """
         Gets the printers property value. The list of printers registered in the tenant.
@@ -156,23 +173,6 @@ class Print(AdditionalDataHolder, Parsable):
             value: Value to set for the printers property.
         """
         self._printers = value
-    
-    @property
-    def printer_shares(self,) -> Optional[List[printer_share.PrinterShare]]:
-        """
-        Gets the printerShares property value. The printerShares property
-        Returns: Optional[List[printer_share.PrinterShare]]
-        """
-        return self._printer_shares
-    
-    @printer_shares.setter
-    def printer_shares(self,value: Optional[List[printer_share.PrinterShare]] = None) -> None:
-        """
-        Sets the printerShares property value. The printerShares property
-        Args:
-            value: Value to set for the printerShares property.
-        """
-        self._printer_shares = value
     
     @property
     def reports(self,) -> Optional[report_root.ReportRoot]:
@@ -275,7 +275,7 @@ class Print(AdditionalDataHolder, Parsable):
         """
         Sets the taskDefinitions property value. The taskDefinitions property
         Args:
-            value: Value to set for the taskDefinitions property.
+            value: Value to set for the task_definitions property.
         """
         self._task_definitions = value
     

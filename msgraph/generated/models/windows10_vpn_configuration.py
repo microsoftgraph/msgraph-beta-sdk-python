@@ -30,7 +30,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the associatedApps property value. Associated Apps. This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the associatedApps property.
+            value: Value to set for the associated_apps property.
         """
         self._associated_apps = value
     
@@ -47,7 +47,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the authenticationMethod property value. Windows 10 VPN connection types.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -64,7 +64,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the connectionType property value. VPN connection types.
         Args:
-            value: Value to set for the connectionType property.
+            value: Value to set for the connection_type property.
         """
         self._connection_type = value
     
@@ -150,7 +150,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the cryptographySuite property value. Cryptography Suite security settings for IKEv2 VPN in Windows10 and above
         Args:
-            value: Value to set for the cryptographySuite property.
+            value: Value to set for the cryptography_suite property.
         """
         self._cryptography_suite = value
     
@@ -167,7 +167,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the dnsRules property value. DNS rules. This collection can contain a maximum of 1000 elements.
         Args:
-            value: Value to set for the dnsRules property.
+            value: Value to set for the dns_rules property.
         """
         self._dns_rules = value
     
@@ -184,7 +184,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the dnsSuffixes property value. Specify DNS suffixes to add to the DNS search list to properly route short names.
         Args:
-            value: Value to set for the dnsSuffixes property.
+            value: Value to set for the dns_suffixes property.
         """
         self._dns_suffixes = value
     
@@ -201,7 +201,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the eapXml property value. Extensible Authentication Protocol (EAP) XML. (UTF8 encoded byte array)
         Args:
-            value: Value to set for the eapXml property.
+            value: Value to set for the eap_xml property.
         """
         self._eap_xml = value
     
@@ -218,7 +218,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableAlwaysOn property value. Enable Always On mode.
         Args:
-            value: Value to set for the enableAlwaysOn property.
+            value: Value to set for the enable_always_on property.
         """
         self._enable_always_on = value
     
@@ -235,7 +235,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableConditionalAccess property value. Enable conditional access.
         Args:
-            value: Value to set for the enableConditionalAccess property.
+            value: Value to set for the enable_conditional_access property.
         """
         self._enable_conditional_access = value
     
@@ -252,7 +252,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableDeviceTunnel property value. Enable device tunnel.
         Args:
-            value: Value to set for the enableDeviceTunnel property.
+            value: Value to set for the enable_device_tunnel property.
         """
         self._enable_device_tunnel = value
     
@@ -269,7 +269,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableDnsRegistration property value. Enable IP address registration with internal DNS.
         Args:
-            value: Value to set for the enableDnsRegistration property.
+            value: Value to set for the enable_dns_registration property.
         """
         self._enable_dns_registration = value
     
@@ -286,7 +286,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableSingleSignOnWithAlternateCertificate property value. Enable single sign-on (SSO) with alternate certificate.
         Args:
-            value: Value to set for the enableSingleSignOnWithAlternateCertificate property.
+            value: Value to set for the enable_single_sign_on_with_alternate_certificate property.
         """
         self._enable_single_sign_on_with_alternate_certificate = value
     
@@ -303,7 +303,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the enableSplitTunneling property value. Enable split tunneling.
         Args:
-            value: Value to set for the enableSplitTunneling property.
+            value: Value to set for the enable_split_tunneling property.
         """
         self._enable_split_tunneling = value
     
@@ -313,31 +313,31 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "associated_apps": lambda n : setattr(self, 'associated_apps', n.get_collection_of_object_values(windows10_associated_apps.Windows10AssociatedApps)),
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod)),
-            "connection_type": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows10_vpn_connection_type.Windows10VpnConnectionType)),
-            "cryptography_suite": lambda n : setattr(self, 'cryptography_suite', n.get_object_value(cryptography_suite.CryptographySuite)),
-            "dns_rules": lambda n : setattr(self, 'dns_rules', n.get_collection_of_object_values(vpn_dns_rule.VpnDnsRule)),
-            "dns_suffixes": lambda n : setattr(self, 'dns_suffixes', n.get_collection_of_primitive_values(str)),
-            "eap_xml": lambda n : setattr(self, 'eap_xml', n.get_bytes_value()),
-            "enable_always_on": lambda n : setattr(self, 'enable_always_on', n.get_bool_value()),
-            "enable_conditional_access": lambda n : setattr(self, 'enable_conditional_access', n.get_bool_value()),
-            "enable_device_tunnel": lambda n : setattr(self, 'enable_device_tunnel', n.get_bool_value()),
-            "enable_dns_registration": lambda n : setattr(self, 'enable_dns_registration', n.get_bool_value()),
-            "enable_single_sign_on_with_alternate_certificate": lambda n : setattr(self, 'enable_single_sign_on_with_alternate_certificate', n.get_bool_value()),
-            "enable_split_tunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(windows_certificate_profile_base.WindowsCertificateProfileBase)),
-            "microsoft_tunnel_site_id": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
-            "only_associated_apps_can_use_connection": lambda n : setattr(self, 'only_associated_apps_can_use_connection', n.get_bool_value()),
-            "profile_target": lambda n : setattr(self, 'profile_target', n.get_enum_value(windows10_vpn_profile_target.Windows10VpnProfileTarget)),
-            "proxy_server": lambda n : setattr(self, 'proxy_server', n.get_object_value(windows10_vpn_proxy_server.Windows10VpnProxyServer)),
-            "remember_user_credentials": lambda n : setattr(self, 'remember_user_credentials', n.get_bool_value()),
+            "associatedApps": lambda n : setattr(self, 'associated_apps', n.get_collection_of_object_values(windows10_associated_apps.Windows10AssociatedApps)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(windows10_vpn_authentication_method.Windows10VpnAuthenticationMethod)),
+            "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(windows10_vpn_connection_type.Windows10VpnConnectionType)),
+            "cryptographySuite": lambda n : setattr(self, 'cryptography_suite', n.get_object_value(cryptography_suite.CryptographySuite)),
+            "dnsRules": lambda n : setattr(self, 'dns_rules', n.get_collection_of_object_values(vpn_dns_rule.VpnDnsRule)),
+            "dnsSuffixes": lambda n : setattr(self, 'dns_suffixes', n.get_collection_of_primitive_values(str)),
+            "eapXml": lambda n : setattr(self, 'eap_xml', n.get_bytes_value()),
+            "enableAlwaysOn": lambda n : setattr(self, 'enable_always_on', n.get_bool_value()),
+            "enableConditionalAccess": lambda n : setattr(self, 'enable_conditional_access', n.get_bool_value()),
+            "enableDeviceTunnel": lambda n : setattr(self, 'enable_device_tunnel', n.get_bool_value()),
+            "enableDnsRegistration": lambda n : setattr(self, 'enable_dns_registration', n.get_bool_value()),
+            "enableSingleSignOnWithAlternateCertificate": lambda n : setattr(self, 'enable_single_sign_on_with_alternate_certificate', n.get_bool_value()),
+            "enableSplitTunneling": lambda n : setattr(self, 'enable_split_tunneling', n.get_bool_value()),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(windows_certificate_profile_base.WindowsCertificateProfileBase)),
+            "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
+            "onlyAssociatedAppsCanUseConnection": lambda n : setattr(self, 'only_associated_apps_can_use_connection', n.get_bool_value()),
+            "profileTarget": lambda n : setattr(self, 'profile_target', n.get_enum_value(windows10_vpn_profile_target.Windows10VpnProfileTarget)),
+            "proxyServer": lambda n : setattr(self, 'proxy_server', n.get_object_value(windows10_vpn_proxy_server.Windows10VpnProxyServer)),
+            "rememberUserCredentials": lambda n : setattr(self, 'remember_user_credentials', n.get_bool_value()),
             "routes": lambda n : setattr(self, 'routes', n.get_collection_of_object_values(vpn_route.VpnRoute)),
-            "single_sign_on_eku": lambda n : setattr(self, 'single_sign_on_eku', n.get_object_value(extended_key_usage.ExtendedKeyUsage)),
-            "single_sign_on_issuer_hash": lambda n : setattr(self, 'single_sign_on_issuer_hash', n.get_str_value()),
-            "traffic_rules": lambda n : setattr(self, 'traffic_rules', n.get_collection_of_object_values(vpn_traffic_rule.VpnTrafficRule)),
-            "trusted_network_domains": lambda n : setattr(self, 'trusted_network_domains', n.get_collection_of_primitive_values(str)),
-            "windows_information_protection_domain": lambda n : setattr(self, 'windows_information_protection_domain', n.get_str_value()),
+            "singleSignOnEku": lambda n : setattr(self, 'single_sign_on_eku', n.get_object_value(extended_key_usage.ExtendedKeyUsage)),
+            "singleSignOnIssuerHash": lambda n : setattr(self, 'single_sign_on_issuer_hash', n.get_str_value()),
+            "trafficRules": lambda n : setattr(self, 'traffic_rules', n.get_collection_of_object_values(vpn_traffic_rule.VpnTrafficRule)),
+            "trustedNetworkDomains": lambda n : setattr(self, 'trusted_network_domains', n.get_collection_of_primitive_values(str)),
+            "windowsInformationProtectionDomain": lambda n : setattr(self, 'windows_information_protection_domain', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -356,7 +356,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -373,7 +373,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the microsoftTunnelSiteId property value. ID of the Microsoft Tunnel site associated with the VPN profile.
         Args:
-            value: Value to set for the microsoftTunnelSiteId property.
+            value: Value to set for the microsoft_tunnel_site_id property.
         """
         self._microsoft_tunnel_site_id = value
     
@@ -390,7 +390,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the onlyAssociatedAppsCanUseConnection property value. Only associated Apps can use connection (per-app VPN).
         Args:
-            value: Value to set for the onlyAssociatedAppsCanUseConnection property.
+            value: Value to set for the only_associated_apps_can_use_connection property.
         """
         self._only_associated_apps_can_use_connection = value
     
@@ -407,7 +407,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the profileTarget property value. Profile target type. Possible values are: user, device, autoPilotDevice.
         Args:
-            value: Value to set for the profileTarget property.
+            value: Value to set for the profile_target property.
         """
         self._profile_target = value
     
@@ -424,7 +424,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the proxyServer property value. Proxy Server.
         Args:
-            value: Value to set for the proxyServer property.
+            value: Value to set for the proxy_server property.
         """
         self._proxy_server = value
     
@@ -441,7 +441,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the rememberUserCredentials property value. Remember user credentials.
         Args:
-            value: Value to set for the rememberUserCredentials property.
+            value: Value to set for the remember_user_credentials property.
         """
         self._remember_user_credentials = value
     
@@ -510,7 +510,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the singleSignOnEku property value. Single sign-on Extended Key Usage (EKU).
         Args:
-            value: Value to set for the singleSignOnEku property.
+            value: Value to set for the single_sign_on_eku property.
         """
         self._single_sign_on_eku = value
     
@@ -527,7 +527,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the singleSignOnIssuerHash property value. Single sign-on issuer hash.
         Args:
-            value: Value to set for the singleSignOnIssuerHash property.
+            value: Value to set for the single_sign_on_issuer_hash property.
         """
         self._single_sign_on_issuer_hash = value
     
@@ -544,7 +544,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the trafficRules property value. Traffic rules. This collection can contain a maximum of 1000 elements.
         Args:
-            value: Value to set for the trafficRules property.
+            value: Value to set for the traffic_rules property.
         """
         self._traffic_rules = value
     
@@ -561,7 +561,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the trustedNetworkDomains property value. Trusted Network Domains
         Args:
-            value: Value to set for the trustedNetworkDomains property.
+            value: Value to set for the trusted_network_domains property.
         """
         self._trusted_network_domains = value
     
@@ -578,7 +578,7 @@ class Windows10VpnConfiguration(windows_vpn_configuration.WindowsVpnConfiguratio
         """
         Sets the windowsInformationProtectionDomain property value. Windows Information Protection (WIP) domain to associate with this connection.
         Args:
-            value: Value to set for the windowsInformationProtectionDomain property.
+            value: Value to set for the windows_information_protection_domain property.
         """
         self._windows_information_protection_domain = value
     

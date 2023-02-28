@@ -21,7 +21,7 @@ class BusinessScenarioTask(planner_task.PlannerTask):
         """
         Sets the businessScenarioProperties property value. Scenario-specific properties of the task. externalObjectId and externalBucketId properties must be specified when creating a task.
         Args:
-            value: Value to set for the businessScenarioProperties property.
+            value: Value to set for the business_scenario_properties property.
         """
         self._business_scenario_properties = value
     
@@ -55,7 +55,7 @@ class BusinessScenarioTask(planner_task.PlannerTask):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "business_scenario_properties": lambda n : setattr(self, 'business_scenario_properties', n.get_object_value(business_scenario_properties.BusinessScenarioProperties)),
+            "businessScenarioProperties": lambda n : setattr(self, 'business_scenario_properties', n.get_object_value(business_scenario_properties.BusinessScenarioProperties)),
             "target": lambda n : setattr(self, 'target', n.get_object_value(business_scenario_task_target_base.BusinessScenarioTaskTargetBase)),
         }
         super_fields = super().get_field_deserializers()

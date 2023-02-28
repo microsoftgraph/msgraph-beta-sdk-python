@@ -21,7 +21,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the accountDomain property value. Domain of user account used to logon.
         Args:
-            value: Value to set for the accountDomain property.
+            value: Value to set for the account_domain property.
         """
         self._account_domain = value
     
@@ -38,7 +38,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the accountName property value. Account name of user account used to logon.
         Args:
-            value: Value to set for the accountName property.
+            value: Value to set for the account_name property.
         """
         self._account_name = value
     
@@ -55,7 +55,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the accountType property value. User Account type, per Windows definition. Possible values are: unknown, standard, power, administrator.
         Args:
-            value: Value to set for the accountType property.
+            value: Value to set for the account_type property.
         """
         self._account_type = value
     
@@ -125,7 +125,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the firstSeenDateTime property value. DateTime at which the earliest logon by this user account occurred (provider-determined period). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the firstSeenDateTime property.
+            value: Value to set for the first_seen_date_time property.
         """
         self._first_seen_date_time = value
     
@@ -135,13 +135,13 @@ class LogonUser(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_domain": lambda n : setattr(self, 'account_domain', n.get_str_value()),
-            "account_name": lambda n : setattr(self, 'account_name', n.get_str_value()),
-            "account_type": lambda n : setattr(self, 'account_type', n.get_enum_value(user_account_security_type.UserAccountSecurityType)),
-            "first_seen_date_time": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "logon_id": lambda n : setattr(self, 'logon_id', n.get_str_value()),
-            "logon_types": lambda n : setattr(self, 'logon_types', n.get_collection_of_enum_values(logon_type.LogonType)),
+            "accountDomain": lambda n : setattr(self, 'account_domain', n.get_str_value()),
+            "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
+            "accountType": lambda n : setattr(self, 'account_type', n.get_enum_value(user_account_security_type.UserAccountSecurityType)),
+            "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "logonId": lambda n : setattr(self, 'logon_id', n.get_str_value()),
+            "logonTypes": lambda n : setattr(self, 'logon_types', n.get_collection_of_enum_values(logon_type.LogonType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -159,7 +159,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the lastSeenDateTime property value. DateTime at which the latest logon by this user account occurred. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -176,7 +176,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the logonId property value. User logon ID.
         Args:
-            value: Value to set for the logonId property.
+            value: Value to set for the logon_id property.
         """
         self._logon_id = value
     
@@ -193,7 +193,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the logonTypes property value. Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
         Args:
-            value: Value to set for the logonTypes property.
+            value: Value to set for the logon_types property.
         """
         self._logon_types = value
     
@@ -210,7 +210,7 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

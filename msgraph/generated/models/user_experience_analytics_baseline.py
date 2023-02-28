@@ -24,7 +24,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the appHealthMetrics property value. The user experience analytics app health metrics.
         Args:
-            value: Value to set for the appHealthMetrics property.
+            value: Value to set for the app_health_metrics property.
         """
         self._app_health_metrics = value
     
@@ -41,7 +41,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the batteryHealthMetrics property value. The user experience analytics battery health metrics.
         Args:
-            value: Value to set for the batteryHealthMetrics property.
+            value: Value to set for the battery_health_metrics property.
         """
         self._battery_health_metrics = value
     
@@ -58,7 +58,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the bestPracticesMetrics property value. The user experience analytics best practices metrics.
         Args:
-            value: Value to set for the bestPracticesMetrics property.
+            value: Value to set for the best_practices_metrics property.
         """
         self._best_practices_metrics = value
     
@@ -103,7 +103,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the createdDateTime property value. The date the custom baseline was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -132,7 +132,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the deviceBootPerformanceMetrics property value. The user experience analytics device boot performance metrics.
         Args:
-            value: Value to set for the deviceBootPerformanceMetrics property.
+            value: Value to set for the device_boot_performance_metrics property.
         """
         self._device_boot_performance_metrics = value
     
@@ -149,7 +149,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the displayName property value. The name of the user experience analytics baseline.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -159,16 +159,16 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_health_metrics": lambda n : setattr(self, 'app_health_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
-            "battery_health_metrics": lambda n : setattr(self, 'battery_health_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
-            "best_practices_metrics": lambda n : setattr(self, 'best_practices_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "device_boot_performance_metrics": lambda n : setattr(self, 'device_boot_performance_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_built_in": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
-            "reboot_analytics_metrics": lambda n : setattr(self, 'reboot_analytics_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
-            "resource_performance_metrics": lambda n : setattr(self, 'resource_performance_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
-            "work_from_anywhere_metrics": lambda n : setattr(self, 'work_from_anywhere_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "appHealthMetrics": lambda n : setattr(self, 'app_health_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "batteryHealthMetrics": lambda n : setattr(self, 'battery_health_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "bestPracticesMetrics": lambda n : setattr(self, 'best_practices_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deviceBootPerformanceMetrics": lambda n : setattr(self, 'device_boot_performance_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isBuiltIn": lambda n : setattr(self, 'is_built_in', n.get_bool_value()),
+            "rebootAnalyticsMetrics": lambda n : setattr(self, 'reboot_analytics_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "resourcePerformanceMetrics": lambda n : setattr(self, 'resource_performance_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
+            "workFromAnywhereMetrics": lambda n : setattr(self, 'work_from_anywhere_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -187,7 +187,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the isBuiltIn property value. Signifies if the current baseline is the commercial median baseline or a custom baseline.
         Args:
-            value: Value to set for the isBuiltIn property.
+            value: Value to set for the is_built_in property.
         """
         self._is_built_in = value
     
@@ -204,7 +204,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the rebootAnalyticsMetrics property value. The user experience analytics reboot analytics metrics.
         Args:
-            value: Value to set for the rebootAnalyticsMetrics property.
+            value: Value to set for the reboot_analytics_metrics property.
         """
         self._reboot_analytics_metrics = value
     
@@ -221,7 +221,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the resourcePerformanceMetrics property value. The user experience analytics resource performance metrics.
         Args:
-            value: Value to set for the resourcePerformanceMetrics property.
+            value: Value to set for the resource_performance_metrics property.
         """
         self._resource_performance_metrics = value
     
@@ -258,7 +258,7 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         """
         Sets the workFromAnywhereMetrics property value. The user experience analytics work from anywhere metrics.
         Args:
-            value: Value to set for the workFromAnywhereMetrics property.
+            value: Value to set for the work_from_anywhere_metrics property.
         """
         self._work_from_anywhere_metrics = value
     

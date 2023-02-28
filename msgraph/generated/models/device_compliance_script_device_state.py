@@ -59,7 +59,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the detectionState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the detectionState property.
+            value: Value to set for the detection_state property.
         """
         self._detection_state = value
     
@@ -76,7 +76,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the expectedStateUpdateDateTime property value. The next timestamp of when the device compliance script is expected to execute
         Args:
-            value: Value to set for the expectedStateUpdateDateTime property.
+            value: Value to set for the expected_state_update_date_time property.
         """
         self._expected_state_update_date_time = value
     
@@ -86,13 +86,13 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "detection_state": lambda n : setattr(self, 'detection_state', n.get_enum_value(run_state.RunState)),
-            "expected_state_update_date_time": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),
-            "last_state_update_date_time": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
-            "last_sync_date_time": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
-            "managed_device": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
-            "script_error": lambda n : setattr(self, 'script_error', n.get_str_value()),
-            "script_output": lambda n : setattr(self, 'script_output', n.get_str_value()),
+            "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(run_state.RunState)),
+            "expectedStateUpdateDateTime": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),
+            "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
+            "lastSyncDateTime": lambda n : setattr(self, 'last_sync_date_time', n.get_datetime_value()),
+            "managedDevice": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
+            "scriptError": lambda n : setattr(self, 'script_error', n.get_str_value()),
+            "scriptOutput": lambda n : setattr(self, 'script_output', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -111,7 +111,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the lastStateUpdateDateTime property value. The last timestamp of when the device compliance script executed
         Args:
-            value: Value to set for the lastStateUpdateDateTime property.
+            value: Value to set for the last_state_update_date_time property.
         """
         self._last_state_update_date_time = value
     
@@ -128,7 +128,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the lastSyncDateTime property value. The last time that Intune Managment Extension synced with Intune
         Args:
-            value: Value to set for the lastSyncDateTime property.
+            value: Value to set for the last_sync_date_time property.
         """
         self._last_sync_date_time = value
     
@@ -145,7 +145,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the managedDevice property value. The managed device on which the device compliance script executed
         Args:
-            value: Value to set for the managedDevice property.
+            value: Value to set for the managed_device property.
         """
         self._managed_device = value
     
@@ -162,7 +162,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the scriptError property value. Error from the detection script
         Args:
-            value: Value to set for the scriptError property.
+            value: Value to set for the script_error property.
         """
         self._script_error = value
     
@@ -179,7 +179,7 @@ class DeviceComplianceScriptDeviceState(entity.Entity):
         """
         Sets the scriptOutput property value. Output of the detection script
         Args:
-            value: Value to set for the scriptOutput property.
+            value: Value to set for the script_output property.
         """
         self._script_output = value
     

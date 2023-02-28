@@ -68,12 +68,11 @@ class SitePageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property pages for sites
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -84,14 +83,13 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page.SitePage]:
+    async def get(self,request_configuration: Optional[SitePageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
         The collection of pages in the SitePages list in this site.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
         """
         request_info = self.to_get_request_information(
@@ -103,15 +101,14 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
     
-    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[site_page.SitePage]:
+    async def patch(self,body: Optional[site_page.SitePage] = None, request_configuration: Optional[SitePageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[site_page.SitePage]:
         """
         Update the navigation property pages in sites
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[site_page.SitePage]
         """
         if body is None:
@@ -125,7 +122,7 @@ class SitePageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, site_page.SitePage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, site_page.SitePage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SitePageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -154,7 +151,7 @@ class SitePageItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -175,7 +172,7 @@ class SitePageItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -201,7 +198,7 @@ class SitePageItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -240,7 +237,7 @@ class SitePageItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -255,7 +252,7 @@ class SitePageItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

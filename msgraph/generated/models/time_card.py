@@ -42,7 +42,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the clockInEvent property value. The clock-in event of the timeCard.
         Args:
-            value: Value to set for the clockInEvent property.
+            value: Value to set for the clock_in_event property.
         """
         self._clock_in_event = value
     
@@ -59,7 +59,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the clockOutEvent property value. The clock-out event of the timeCard.
         Args:
-            value: Value to set for the clockOutEvent property.
+            value: Value to set for the clock_out_event property.
         """
         self._clock_out_event = value
     
@@ -76,7 +76,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the confirmedBy property value. Indicate if this timeCard entry is confirmed. Possible values are none, user, manager, unknownFutureValue.
         Args:
-            value: Value to set for the confirmedBy property.
+            value: Value to set for the confirmed_by property.
         """
         self._confirmed_by = value
     
@@ -122,13 +122,13 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         fields = {
             "breaks": lambda n : setattr(self, 'breaks', n.get_collection_of_object_values(time_card_break.TimeCardBreak)),
-            "clock_in_event": lambda n : setattr(self, 'clock_in_event', n.get_object_value(time_card_event.TimeCardEvent)),
-            "clock_out_event": lambda n : setattr(self, 'clock_out_event', n.get_object_value(time_card_event.TimeCardEvent)),
-            "confirmed_by": lambda n : setattr(self, 'confirmed_by', n.get_enum_value(confirmed_by.ConfirmedBy)),
+            "clockInEvent": lambda n : setattr(self, 'clock_in_event', n.get_object_value(time_card_event.TimeCardEvent)),
+            "clockOutEvent": lambda n : setattr(self, 'clock_out_event', n.get_object_value(time_card_event.TimeCardEvent)),
+            "confirmedBy": lambda n : setattr(self, 'confirmed_by', n.get_enum_value(confirmed_by.ConfirmedBy)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
-            "original_entry": lambda n : setattr(self, 'original_entry', n.get_object_value(time_card_entry.TimeCardEntry)),
+            "originalEntry": lambda n : setattr(self, 'original_entry', n.get_object_value(time_card_entry.TimeCardEntry)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(time_card_state.TimeCardState)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -164,7 +164,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the originalEntry property value. The original timeCardEntry of the timeCard, before user edits.
         Args:
-            value: Value to set for the originalEntry property.
+            value: Value to set for the original_entry property.
         """
         self._original_entry = value
     
@@ -216,7 +216,7 @@ class TimeCard(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the userId property value. User ID to which  the timeCard belongs.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

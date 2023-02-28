@@ -20,7 +20,7 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         """
         Sets the afterHours property value. Time spent on meetings outside of working hours, which is based on the user's Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
         Args:
-            value: Value to set for the afterHours property.
+            value: Value to set for the after_hours property.
         """
         self._after_hours = value
     
@@ -78,7 +78,7 @@ class MeetingActivityStatistics(activity_statistics.ActivityStatistics):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "after_hours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
+            "afterHours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
             "conflicting": lambda n : setattr(self, 'conflicting', n.get_object_value(Timedelta)),
             "long": lambda n : setattr(self, 'long', n.get_object_value(Timedelta)),
             "multitasking": lambda n : setattr(self, 'multitasking', n.get_object_value(Timedelta)),

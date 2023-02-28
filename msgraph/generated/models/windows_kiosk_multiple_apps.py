@@ -20,7 +20,7 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
         """
         Sets the allowAccessToDownloadsFolder property value. This setting allows access to Downloads folder in file explorer.
         Args:
-            value: Value to set for the allowAccessToDownloadsFolder property.
+            value: Value to set for the allow_access_to_downloads_folder property.
         """
         self._allow_access_to_downloads_folder = value
     
@@ -83,7 +83,7 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
         """
         Sets the disallowDesktopApps property value. This setting indicates that desktop apps are allowed. Default to true.
         Args:
-            value: Value to set for the disallowDesktopApps property.
+            value: Value to set for the disallow_desktop_apps property.
         """
         self._disallow_desktop_apps = value
     
@@ -93,11 +93,11 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_access_to_downloads_folder": lambda n : setattr(self, 'allow_access_to_downloads_folder', n.get_bool_value()),
+            "allowAccessToDownloadsFolder": lambda n : setattr(self, 'allow_access_to_downloads_folder', n.get_bool_value()),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(windows_kiosk_app_base.WindowsKioskAppBase)),
-            "disallow_desktop_apps": lambda n : setattr(self, 'disallow_desktop_apps', n.get_bool_value()),
-            "show_task_bar": lambda n : setattr(self, 'show_task_bar', n.get_bool_value()),
-            "start_menu_layout_xml": lambda n : setattr(self, 'start_menu_layout_xml', n.get_bytes_value()),
+            "disallowDesktopApps": lambda n : setattr(self, 'disallow_desktop_apps', n.get_bool_value()),
+            "showTaskBar": lambda n : setattr(self, 'show_task_bar', n.get_bool_value()),
+            "startMenuLayoutXml": lambda n : setattr(self, 'start_menu_layout_xml', n.get_bytes_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -131,7 +131,7 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
         """
         Sets the showTaskBar property value. This setting allows the admin to specify whether the Task Bar is shown or not.
         Args:
-            value: Value to set for the showTaskBar property.
+            value: Value to set for the show_task_bar property.
         """
         self._show_task_bar = value
     
@@ -148,7 +148,7 @@ class WindowsKioskMultipleApps(windows_kiosk_app_configuration.WindowsKioskAppCo
         """
         Sets the startMenuLayoutXml property value. Allows admins to override the default Start layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in Binary format.
         Args:
-            value: Value to set for the startMenuLayoutXml property.
+            value: Value to set for the start_menu_layout_xml property.
         """
         self._start_menu_layout_xml = value
     

@@ -49,7 +49,7 @@ class CreateGooglePlayWebTokenPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "parent_uri": lambda n : setattr(self, 'parent_uri', n.get_str_value()),
+            "parentUri": lambda n : setattr(self, 'parent_uri', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class CreateGooglePlayWebTokenPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the parentUri property value. The parentUri property
         Args:
-            value: Value to set for the parentUri property.
+            value: Value to set for the parent_uri property.
         """
         self._parent_uri = value
     

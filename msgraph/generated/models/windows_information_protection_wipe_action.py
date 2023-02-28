@@ -49,12 +49,12 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_check_in_date_time": lambda n : setattr(self, 'last_check_in_date_time', n.get_datetime_value()),
+            "lastCheckInDateTime": lambda n : setattr(self, 'last_check_in_date_time', n.get_datetime_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(action_state.ActionState)),
-            "targeted_device_mac_address": lambda n : setattr(self, 'targeted_device_mac_address', n.get_str_value()),
-            "targeted_device_name": lambda n : setattr(self, 'targeted_device_name', n.get_str_value()),
-            "targeted_device_registration_id": lambda n : setattr(self, 'targeted_device_registration_id', n.get_str_value()),
-            "targeted_user_id": lambda n : setattr(self, 'targeted_user_id', n.get_str_value()),
+            "targetedDeviceMacAddress": lambda n : setattr(self, 'targeted_device_mac_address', n.get_str_value()),
+            "targetedDeviceName": lambda n : setattr(self, 'targeted_device_name', n.get_str_value()),
+            "targetedDeviceRegistrationId": lambda n : setattr(self, 'targeted_device_registration_id', n.get_str_value()),
+            "targetedUserId": lambda n : setattr(self, 'targeted_user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         """
         Sets the lastCheckInDateTime property value. Last checkin time of the device that was targeted by this wipe action.
         Args:
-            value: Value to set for the lastCheckInDateTime property.
+            value: Value to set for the last_check_in_date_time property.
         """
         self._last_check_in_date_time = value
     
@@ -123,7 +123,7 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         """
         Sets the targetedDeviceMacAddress property value. Targeted device Mac address.
         Args:
-            value: Value to set for the targetedDeviceMacAddress property.
+            value: Value to set for the targeted_device_mac_address property.
         """
         self._targeted_device_mac_address = value
     
@@ -140,7 +140,7 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         """
         Sets the targetedDeviceName property value. Targeted device name.
         Args:
-            value: Value to set for the targetedDeviceName property.
+            value: Value to set for the targeted_device_name property.
         """
         self._targeted_device_name = value
     
@@ -157,7 +157,7 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         """
         Sets the targetedDeviceRegistrationId property value. The DeviceRegistrationId being targeted by this wipe action.
         Args:
-            value: Value to set for the targetedDeviceRegistrationId property.
+            value: Value to set for the targeted_device_registration_id property.
         """
         self._targeted_device_registration_id = value
     
@@ -174,7 +174,7 @@ class WindowsInformationProtectionWipeAction(entity.Entity):
         """
         Sets the targetedUserId property value. The UserId being targeted by this wipe action.
         Args:
-            value: Value to set for the targetedUserId property.
+            value: Value to set for the targeted_user_id property.
         """
         self._targeted_user_id = value
     

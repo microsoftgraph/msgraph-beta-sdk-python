@@ -56,7 +56,7 @@ class WipeManagedAppRegistrationByDeviceTagPostRequestBody(AdditionalDataHolder,
         """
         Sets the deviceTag property value. The deviceTag property
         Args:
-            value: Value to set for the deviceTag property.
+            value: Value to set for the device_tag property.
         """
         self._device_tag = value
     
@@ -66,7 +66,7 @@ class WipeManagedAppRegistrationByDeviceTagPostRequestBody(AdditionalDataHolder,
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_tag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
+            "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
         }
         return fields
     

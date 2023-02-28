@@ -53,7 +53,7 @@ class TenantSetupInfo(entity.Entity):
         """
         Sets the defaultRolesSettings property value. The defaultRolesSettings property
         Args:
-            value: Value to set for the defaultRolesSettings property.
+            value: Value to set for the default_roles_settings property.
         """
         self._default_roles_settings = value
     
@@ -70,7 +70,7 @@ class TenantSetupInfo(entity.Entity):
         """
         Sets the firstTimeSetup property value. The firstTimeSetup property
         Args:
-            value: Value to set for the firstTimeSetup property.
+            value: Value to set for the first_time_setup property.
         """
         self._first_time_setup = value
     
@@ -80,12 +80,12 @@ class TenantSetupInfo(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_roles_settings": lambda n : setattr(self, 'default_roles_settings', n.get_object_value(privileged_role_settings.PrivilegedRoleSettings)),
-            "first_time_setup": lambda n : setattr(self, 'first_time_setup', n.get_bool_value()),
-            "relevant_roles_settings": lambda n : setattr(self, 'relevant_roles_settings', n.get_collection_of_primitive_values(str)),
-            "setup_status": lambda n : setattr(self, 'setup_status', n.get_enum_value(setup_status.SetupStatus)),
-            "skip_setup": lambda n : setattr(self, 'skip_setup', n.get_bool_value()),
-            "user_roles_actions": lambda n : setattr(self, 'user_roles_actions', n.get_str_value()),
+            "defaultRolesSettings": lambda n : setattr(self, 'default_roles_settings', n.get_object_value(privileged_role_settings.PrivilegedRoleSettings)),
+            "firstTimeSetup": lambda n : setattr(self, 'first_time_setup', n.get_bool_value()),
+            "relevantRolesSettings": lambda n : setattr(self, 'relevant_roles_settings', n.get_collection_of_primitive_values(str)),
+            "setupStatus": lambda n : setattr(self, 'setup_status', n.get_enum_value(setup_status.SetupStatus)),
+            "skipSetup": lambda n : setattr(self, 'skip_setup', n.get_bool_value()),
+            "userRolesActions": lambda n : setattr(self, 'user_roles_actions', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -104,7 +104,7 @@ class TenantSetupInfo(entity.Entity):
         """
         Sets the relevantRolesSettings property value. The relevantRolesSettings property
         Args:
-            value: Value to set for the relevantRolesSettings property.
+            value: Value to set for the relevant_roles_settings property.
         """
         self._relevant_roles_settings = value
     
@@ -137,7 +137,7 @@ class TenantSetupInfo(entity.Entity):
         """
         Sets the setupStatus property value. The setupStatus property
         Args:
-            value: Value to set for the setupStatus property.
+            value: Value to set for the setup_status property.
         """
         self._setup_status = value
     
@@ -154,7 +154,7 @@ class TenantSetupInfo(entity.Entity):
         """
         Sets the skipSetup property value. The skipSetup property
         Args:
-            value: Value to set for the skipSetup property.
+            value: Value to set for the skip_setup property.
         """
         self._skip_setup = value
     
@@ -171,7 +171,7 @@ class TenantSetupInfo(entity.Entity):
         """
         Sets the userRolesActions property value. The userRolesActions property
         Args:
-            value: Value to set for the userRolesActions property.
+            value: Value to set for the user_roles_actions property.
         """
         self._user_roles_actions = value
     

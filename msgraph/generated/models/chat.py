@@ -31,7 +31,7 @@ class Chat(entity.Entity):
         """
         Sets the chatType property value. The chatType property
         Args:
-            value: Value to set for the chatType property.
+            value: Value to set for the chat_type property.
         """
         self._chat_type = value
     
@@ -88,7 +88,7 @@ class Chat(entity.Entity):
         """
         Sets the createdDateTime property value. Date and time at which the chat was created. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -110,22 +110,22 @@ class Chat(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "chat_type": lambda n : setattr(self, 'chat_type', n.get_enum_value(chat_type.ChatType)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "installed_apps": lambda n : setattr(self, 'installed_apps', n.get_collection_of_object_values(teams_app_installation.TeamsAppInstallation)),
-            "last_message_preview": lambda n : setattr(self, 'last_message_preview', n.get_object_value(chat_message_info.ChatMessageInfo)),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "chatType": lambda n : setattr(self, 'chat_type', n.get_enum_value(chat_type.ChatType)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "installedApps": lambda n : setattr(self, 'installed_apps', n.get_collection_of_object_values(teams_app_installation.TeamsAppInstallation)),
+            "lastMessagePreview": lambda n : setattr(self, 'last_message_preview', n.get_object_value(chat_message_info.ChatMessageInfo)),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "members": lambda n : setattr(self, 'members', n.get_collection_of_object_values(conversation_member.ConversationMember)),
             "messages": lambda n : setattr(self, 'messages', n.get_collection_of_object_values(chat_message.ChatMessage)),
-            "online_meeting_info": lambda n : setattr(self, 'online_meeting_info', n.get_object_value(teamwork_online_meeting_info.TeamworkOnlineMeetingInfo)),
+            "onlineMeetingInfo": lambda n : setattr(self, 'online_meeting_info', n.get_object_value(teamwork_online_meeting_info.TeamworkOnlineMeetingInfo)),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(teams_async_operation.TeamsAsyncOperation)),
-            "permission_grants": lambda n : setattr(self, 'permission_grants', n.get_collection_of_object_values(resource_specific_permission_grant.ResourceSpecificPermissionGrant)),
-            "pinned_messages": lambda n : setattr(self, 'pinned_messages', n.get_collection_of_object_values(pinned_chat_message_info.PinnedChatMessageInfo)),
+            "permissionGrants": lambda n : setattr(self, 'permission_grants', n.get_collection_of_object_values(resource_specific_permission_grant.ResourceSpecificPermissionGrant)),
+            "pinnedMessages": lambda n : setattr(self, 'pinned_messages', n.get_collection_of_object_values(pinned_chat_message_info.PinnedChatMessageInfo)),
             "tabs": lambda n : setattr(self, 'tabs', n.get_collection_of_object_values(teams_tab.TeamsTab)),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "topic": lambda n : setattr(self, 'topic', n.get_str_value()),
             "viewpoint": lambda n : setattr(self, 'viewpoint', n.get_object_value(chat_viewpoint.ChatViewpoint)),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -144,7 +144,7 @@ class Chat(entity.Entity):
         """
         Sets the installedApps property value. A collection of all the apps in the chat. Nullable.
         Args:
-            value: Value to set for the installedApps property.
+            value: Value to set for the installed_apps property.
         """
         self._installed_apps = value
     
@@ -161,7 +161,7 @@ class Chat(entity.Entity):
         """
         Sets the lastMessagePreview property value. Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
         Args:
-            value: Value to set for the lastMessagePreview property.
+            value: Value to set for the last_message_preview property.
         """
         self._last_message_preview = value
     
@@ -178,7 +178,7 @@ class Chat(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. Date and time at which the chat was renamed or list of members were last changed. Read-only.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -229,7 +229,7 @@ class Chat(entity.Entity):
         """
         Sets the onlineMeetingInfo property value. Represents details about an online meeting. If the chat isn't associated with an online meeting, the property is empty. Read-only.
         Args:
-            value: Value to set for the onlineMeetingInfo property.
+            value: Value to set for the online_meeting_info property.
         """
         self._online_meeting_info = value
     
@@ -263,7 +263,7 @@ class Chat(entity.Entity):
         """
         Sets the permissionGrants property value. A collection of permissions granted to apps for the chat.
         Args:
-            value: Value to set for the permissionGrants property.
+            value: Value to set for the permission_grants property.
         """
         self._permission_grants = value
     
@@ -280,7 +280,7 @@ class Chat(entity.Entity):
         """
         Sets the pinnedMessages property value. A collection of all the pinned messages in the chat. Nullable.
         Args:
-            value: Value to set for the pinnedMessages property.
+            value: Value to set for the pinned_messages property.
         """
         self._pinned_messages = value
     
@@ -340,7 +340,7 @@ class Chat(entity.Entity):
         """
         Sets the tenantId property value. The identifier of the tenant in which the chat was created. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -391,7 +391,7 @@ class Chat(entity.Entity):
         """
         Sets the webUrl property value. The URL for the chat in Microsoft Teams. The URL should be treated as an opaque blob, and not parsed. Read-only.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

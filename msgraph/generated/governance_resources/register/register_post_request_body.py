@@ -56,7 +56,7 @@ class RegisterPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the externalId property value. The externalId property
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -66,7 +66,7 @@ class RegisterPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
         }
         return fields
     

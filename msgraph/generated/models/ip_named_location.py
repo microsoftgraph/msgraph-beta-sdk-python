@@ -12,7 +12,7 @@ class IpNamedLocation(named_location.NamedLocation):
         Instantiates a new IpNamedLocation and sets the default values.
         """
         super().__init__()
-        # List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC596. Required.
+        # List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC5969. Required.
         self._ip_ranges: Optional[List[ip_range.IpRange]] = None
         # true if this location is explicitly trusted. Optional. Default value is false.
         self._is_trusted: Optional[bool] = None
@@ -37,8 +37,8 @@ class IpNamedLocation(named_location.NamedLocation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "ip_ranges": lambda n : setattr(self, 'ip_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
-            "is_trusted": lambda n : setattr(self, 'is_trusted', n.get_bool_value()),
+            "ipRanges": lambda n : setattr(self, 'ip_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
+            "isTrusted": lambda n : setattr(self, 'is_trusted', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -47,7 +47,7 @@ class IpNamedLocation(named_location.NamedLocation):
     @property
     def ip_ranges(self,) -> Optional[List[ip_range.IpRange]]:
         """
-        Gets the ipRanges property value. List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC596. Required.
+        Gets the ipRanges property value. List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC5969. Required.
         Returns: Optional[List[ip_range.IpRange]]
         """
         return self._ip_ranges
@@ -55,9 +55,9 @@ class IpNamedLocation(named_location.NamedLocation):
     @ip_ranges.setter
     def ip_ranges(self,value: Optional[List[ip_range.IpRange]] = None) -> None:
         """
-        Sets the ipRanges property value. List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC596. Required.
+        Sets the ipRanges property value. List of IP address ranges in IPv4 CIDR format (e.g. 1.2.3.4/32) or any allowable IPv6 format from IETF RFC5969. Required.
         Args:
-            value: Value to set for the ipRanges property.
+            value: Value to set for the ip_ranges property.
         """
         self._ip_ranges = value
     
@@ -74,7 +74,7 @@ class IpNamedLocation(named_location.NamedLocation):
         """
         Sets the isTrusted property value. true if this location is explicitly trusted. Optional. Default value is false.
         Args:
-            value: Value to set for the isTrusted property.
+            value: Value to set for the is_trusted property.
         """
         self._is_trusted = value
     

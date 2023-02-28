@@ -44,12 +44,11 @@ class SharedWithTeamsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SharedWithTeamsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[shared_with_channel_team_info_collection_response.SharedWithChannelTeamInfoCollectionResponse]:
+    async def get(self,request_configuration: Optional[SharedWithTeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[shared_with_channel_team_info_collection_response.SharedWithChannelTeamInfoCollectionResponse]:
         """
         Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_with_channel_team_info_collection_response.SharedWithChannelTeamInfoCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SharedWithTeamsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, shared_with_channel_team_info_collection_response.SharedWithChannelTeamInfoCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, shared_with_channel_team_info_collection_response.SharedWithChannelTeamInfoCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[shared_with_channel_team_info.SharedWithChannelTeamInfo] = None, request_configuration: Optional[SharedWithTeamsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[shared_with_channel_team_info.SharedWithChannelTeamInfo]:
+    async def post(self,body: Optional[shared_with_channel_team_info.SharedWithChannelTeamInfo] = None, request_configuration: Optional[SharedWithTeamsRequestBuilderPostRequestConfiguration] = None) -> Optional[shared_with_channel_team_info.SharedWithChannelTeamInfo]:
         """
         Create new navigation property to sharedWithTeams for groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[shared_with_channel_team_info.SharedWithChannelTeamInfo]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SharedWithTeamsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, shared_with_channel_team_info.SharedWithChannelTeamInfo, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, shared_with_channel_team_info.SharedWithChannelTeamInfo, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SharedWithTeamsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class SharedWithTeamsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class SharedWithTeamsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class SharedWithTeamsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class SharedWithTeamsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

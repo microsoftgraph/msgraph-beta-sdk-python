@@ -35,12 +35,11 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property assignments for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -51,14 +50,13 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]:
+    async def get(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]:
         """
-        A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. See an example of getting the assignments relationship.
+        A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]
         """
         request_info = self.to_get_request_information(
@@ -70,15 +68,14 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment] = None, request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]:
+    async def patch(self,body: Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment] = None, request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]:
         """
         Update the navigation property assignments in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]
         """
         if body is None:
@@ -92,7 +89,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,7 +109,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[CloudPcProvisioningPolicyAssignmentItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. See an example of getting the assignments relationship.
+        A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -121,7 +118,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -142,7 +139,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -155,7 +152,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -164,7 +161,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
     @dataclass
     class CloudPcProvisioningPolicyAssignmentItemRequestBuilderGetQueryParameters():
         """
-        A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. See an example of getting the assignments relationship.
+        A defined collection of provisioning policy assignments. Represents the set of Microsoft 365 groups and security groups in Azure AD that have provisioning policy assigned. Returned only on $expand. For an example about how to get the assignments relationship, see Get cloudPcProvisioningPolicy.
         """
         # Expand related entities
         expand: Optional[List[str]] = None
@@ -194,7 +191,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -209,7 +206,7 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -54,8 +54,8 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "os_version": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
-            "user_account_type": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
         }
         return fields
     
@@ -72,7 +72,7 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the osVersion property value. The osVersion property
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -101,7 +101,7 @@ class ReprovisionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the userAccountType property value. The userAccountType property
         Args:
-            value: Value to set for the userAccountType property.
+            value: Value to set for the user_account_type property.
         """
         self._user_account_type = value
     

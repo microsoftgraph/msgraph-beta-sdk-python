@@ -37,7 +37,7 @@ class UserExperienceAnalyticsSettings(AdditionalDataHolder, Parsable):
         """
         Sets the configurationManagerDataConnectorConfigured property value. True if Tenant attach is configured. If configured then SCCM tenant attached devices will show up in UXA reporting.
         Args:
-            value: Value to set for the configurationManagerDataConnectorConfigured property.
+            value: Value to set for the configuration_manager_data_connector_configured property.
         """
         self._configuration_manager_data_connector_configured = value
     
@@ -71,7 +71,7 @@ class UserExperienceAnalyticsSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_manager_data_connector_configured": lambda n : setattr(self, 'configuration_manager_data_connector_configured', n.get_bool_value()),
+            "configurationManagerDataConnectorConfigured": lambda n : setattr(self, 'configuration_manager_data_connector_configured', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class UserExperienceAnalyticsSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

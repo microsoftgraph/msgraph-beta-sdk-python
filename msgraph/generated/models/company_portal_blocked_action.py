@@ -81,7 +81,7 @@ class CompanyPortalBlockedAction(AdditionalDataHolder, Parsable):
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(company_portal_action.CompanyPortalAction)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "owner_type": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),
+            "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(owner_type.OwnerType)),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
         }
         return fields
@@ -99,7 +99,7 @@ class CompanyPortalBlockedAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -116,7 +116,7 @@ class CompanyPortalBlockedAction(AdditionalDataHolder, Parsable):
         """
         Sets the ownerType property value. Owner type of device.
         Args:
-            value: Value to set for the ownerType property.
+            value: Value to set for the owner_type property.
         """
         self._owner_type = value
     

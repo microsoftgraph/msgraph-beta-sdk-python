@@ -22,7 +22,7 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         """
         Sets the activeDeviceCount property value. The number of active devices for the OS version. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the activeDeviceCount property.
+            value: Value to set for the active_device_count property.
         """
         self._active_device_count = value
     
@@ -64,12 +64,12 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_device_count": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
-            "mean_time_to_failure_in_minutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
-            "os_build_number": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "os_version_app_health_score": lambda n : setattr(self, 'os_version_app_health_score', n.get_float_value()),
-            "os_version_app_health_status": lambda n : setattr(self, 'os_version_app_health_status', n.get_str_value()),
+            "activeDeviceCount": lambda n : setattr(self, 'active_device_count', n.get_int_value()),
+            "meanTimeToFailureInMinutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
+            "osBuildNumber": lambda n : setattr(self, 'os_build_number', n.get_str_value()),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "osVersionAppHealthScore": lambda n : setattr(self, 'os_version_app_health_score', n.get_float_value()),
+            "osVersionAppHealthStatus": lambda n : setattr(self, 'os_version_app_health_status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -88,7 +88,7 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         """
         Sets the meanTimeToFailureInMinutes property value. The mean time to failure for the OS version in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the meanTimeToFailureInMinutes property.
+            value: Value to set for the mean_time_to_failure_in_minutes property.
         """
         self._mean_time_to_failure_in_minutes = value
     
@@ -105,7 +105,7 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         """
         Sets the osBuildNumber property value. The OS build number installed on the device.
         Args:
-            value: Value to set for the osBuildNumber property.
+            value: Value to set for the os_build_number property.
         """
         self._os_build_number = value
     
@@ -122,7 +122,7 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         """
         Sets the osVersion property value. The OS version installed on the device.
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -139,7 +139,7 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         """
         Sets the osVersionAppHealthScore property value. The app health score of the OS version. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the osVersionAppHealthScore property.
+            value: Value to set for the os_version_app_health_score property.
         """
         self._os_version_app_health_score = value
     
@@ -156,7 +156,7 @@ class UserExperienceAnalyticsAppHealthOSVersionPerformance(entity.Entity):
         """
         Sets the osVersionAppHealthStatus property value. The overall app health status of the OS version.
         Args:
-            value: Value to set for the osVersionAppHealthStatus property.
+            value: Value to set for the os_version_app_health_status property.
         """
         self._os_version_app_health_status = value
     

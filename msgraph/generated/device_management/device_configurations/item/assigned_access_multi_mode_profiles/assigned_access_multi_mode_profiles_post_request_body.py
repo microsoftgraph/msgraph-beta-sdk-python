@@ -36,7 +36,7 @@ class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Parsa
         """
         Sets the assignedAccessMultiModeProfiles property value. The assignedAccessMultiModeProfiles property
         Args:
-            value: Value to set for the assignedAccessMultiModeProfiles property.
+            value: Value to set for the assigned_access_multi_mode_profiles property.
         """
         self._assigned_access_multi_mode_profiles = value
     
@@ -68,7 +68,7 @@ class AssignedAccessMultiModeProfilesPostRequestBody(AdditionalDataHolder, Parsa
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_access_multi_mode_profiles": lambda n : setattr(self, 'assigned_access_multi_mode_profiles', n.get_collection_of_object_values(windows_assigned_access_profile.WindowsAssignedAccessProfile)),
+            "assignedAccessMultiModeProfiles": lambda n : setattr(self, 'assigned_access_multi_mode_profiles', n.get_collection_of_object_values(windows_assigned_access_profile.WindowsAssignedAccessProfile)),
         }
         return fields
     

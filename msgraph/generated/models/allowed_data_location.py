@@ -19,13 +19,13 @@ class AllowedDataLocation(entity.Entity):
         """
         Sets the appId property value. The appId property
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new AllowedDataLocation and sets the default values.
+        Instantiates a new allowedDataLocation and sets the default values.
         """
         super().__init__()
         # The appId property
@@ -74,9 +74,9 @@ class AllowedDataLocation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "domain": lambda n : setattr(self, 'domain', n.get_str_value()),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
             "location": lambda n : setattr(self, 'location', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -96,7 +96,7 @@ class AllowedDataLocation(entity.Entity):
         """
         Sets the isDefault property value. The isDefault property
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     

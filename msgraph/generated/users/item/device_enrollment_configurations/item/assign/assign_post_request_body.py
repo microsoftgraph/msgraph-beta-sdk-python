@@ -58,7 +58,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the enrollmentConfigurationAssignments property value. The enrollmentConfigurationAssignments property
         Args:
-            value: Value to set for the enrollmentConfigurationAssignments property.
+            value: Value to set for the enrollment_configuration_assignments property.
         """
         self._enrollment_configuration_assignments = value
     
@@ -68,7 +68,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enrollment_configuration_assignments": lambda n : setattr(self, 'enrollment_configuration_assignments', n.get_collection_of_object_values(enrollment_configuration_assignment.EnrollmentConfigurationAssignment)),
+            "enrollmentConfigurationAssignments": lambda n : setattr(self, 'enrollment_configuration_assignments', n.get_collection_of_object_values(enrollment_configuration_assignment.EnrollmentConfigurationAssignment)),
         }
         return fields
     

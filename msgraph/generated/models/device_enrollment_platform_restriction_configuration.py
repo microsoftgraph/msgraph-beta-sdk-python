@@ -37,8 +37,8 @@ class DeviceEnrollmentPlatformRestrictionConfiguration(device_enrollment_configu
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "platform_restriction": lambda n : setattr(self, 'platform_restriction', n.get_object_value(device_enrollment_platform_restriction.DeviceEnrollmentPlatformRestriction)),
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
+            "platformRestriction": lambda n : setattr(self, 'platform_restriction', n.get_object_value(device_enrollment_platform_restriction.DeviceEnrollmentPlatformRestriction)),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,7 +57,7 @@ class DeviceEnrollmentPlatformRestrictionConfiguration(device_enrollment_configu
         """
         Sets the platformRestriction property value. Restrictions based on platform, platform operating system version, and device ownership
         Args:
-            value: Value to set for the platformRestriction property.
+            value: Value to set for the platform_restriction property.
         """
         self._platform_restriction = value
     
@@ -74,7 +74,7 @@ class DeviceEnrollmentPlatformRestrictionConfiguration(device_enrollment_configu
         """
         Sets the platformType property value. This enum indicates the platform type for which the enrollment restriction applies.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     

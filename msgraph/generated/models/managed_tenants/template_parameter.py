@@ -85,7 +85,7 @@ class TemplateParameter(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The display name for the template parameter. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -96,11 +96,11 @@ class TemplateParameter(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "json_allowed_values": lambda n : setattr(self, 'json_allowed_values', n.get_str_value()),
-            "json_default_value": lambda n : setattr(self, 'json_default_value', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "jsonAllowedValues": lambda n : setattr(self, 'json_allowed_values', n.get_str_value()),
+            "jsonDefaultValue": lambda n : setattr(self, 'json_default_value', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "value_type": lambda n : setattr(self, 'value_type', n.get_enum_value(management_parameter_value_type.ManagementParameterValueType)),
+            "valueType": lambda n : setattr(self, 'value_type', n.get_enum_value(management_parameter_value_type.ManagementParameterValueType)),
         }
         return fields
     
@@ -117,7 +117,7 @@ class TemplateParameter(AdditionalDataHolder, Parsable):
         """
         Sets the jsonAllowedValues property value. The allowed values for the template parameter represented by a serialized string of JSON. Optional. Read-only.
         Args:
-            value: Value to set for the jsonAllowedValues property.
+            value: Value to set for the json_allowed_values property.
         """
         self._json_allowed_values = value
     
@@ -134,7 +134,7 @@ class TemplateParameter(AdditionalDataHolder, Parsable):
         """
         Sets the jsonDefaultValue property value. The default value for the template parameter represented by a serialized string of JSON. Required. Read-only.
         Args:
-            value: Value to set for the jsonDefaultValue property.
+            value: Value to set for the json_default_value property.
         """
         self._json_default_value = value
     
@@ -151,7 +151,7 @@ class TemplateParameter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -184,7 +184,7 @@ class TemplateParameter(AdditionalDataHolder, Parsable):
         """
         Sets the valueType property value. The valueType property
         Args:
-            value: Value to set for the valueType property.
+            value: Value to set for the value_type property.
         """
         self._value_type = value
     

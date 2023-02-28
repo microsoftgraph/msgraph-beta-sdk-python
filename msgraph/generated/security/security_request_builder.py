@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-security = lazy_import('msgraph.generated.models.security')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+security = lazy_import('msgraph.generated.models.security.security')
 alerts_request_builder = lazy_import('msgraph.generated.security.alerts.alerts_request_builder')
 alerts_v2_request_builder = lazy_import('msgraph.generated.security.alerts_v2.alerts_v2_request_builder')
 alert_item_request_builder = lazy_import('msgraph.generated.security.alerts_v2.item.alert_item_request_builder')
@@ -34,13 +34,13 @@ ip_security_profile_item_request_builder = lazy_import('msgraph.generated.securi
 labels_request_builder = lazy_import('msgraph.generated.security.labels.labels_request_builder')
 provider_tenant_settings_request_builder = lazy_import('msgraph.generated.security.provider_tenant_settings.provider_tenant_settings_request_builder')
 provider_tenant_setting_item_request_builder = lazy_import('msgraph.generated.security.provider_tenant_settings.item.provider_tenant_setting_item_request_builder')
-run_hunting_query_request_builder = lazy_import('msgraph.generated.security.run_hunting_query.run_hunting_query_request_builder')
 secure_score_control_profiles_request_builder = lazy_import('msgraph.generated.security.secure_score_control_profiles.secure_score_control_profiles_request_builder')
 secure_score_control_profile_item_request_builder = lazy_import('msgraph.generated.security.secure_score_control_profiles.item.secure_score_control_profile_item_request_builder')
 secure_scores_request_builder = lazy_import('msgraph.generated.security.secure_scores.secure_scores_request_builder')
 secure_score_item_request_builder = lazy_import('msgraph.generated.security.secure_scores.item.secure_score_item_request_builder')
 security_actions_request_builder = lazy_import('msgraph.generated.security.security_actions.security_actions_request_builder')
 security_action_item_request_builder = lazy_import('msgraph.generated.security.security_actions.item.security_action_item_request_builder')
+security_run_hunting_query_request_builder = lazy_import('msgraph.generated.security.security_run_hunting_query.security_run_hunting_query_request_builder')
 subject_rights_requests_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.subject_rights_requests_request_builder')
 subject_rights_request_item_request_builder = lazy_import('msgraph.generated.security.subject_rights_requests.item.subject_rights_request_item_request_builder')
 threat_submission_request_builder = lazy_import('msgraph.generated.security.threat_submission.threat_submission_request_builder')
@@ -147,13 +147,6 @@ class SecurityRequestBuilder():
         return provider_tenant_settings_request_builder.ProviderTenantSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def run_hunting_query(self) -> run_hunting_query_request_builder.RunHuntingQueryRequestBuilder:
-        """
-        Provides operations to call the runHuntingQuery method.
-        """
-        return run_hunting_query_request_builder.RunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
     def secure_score_control_profiles(self) -> secure_score_control_profiles_request_builder.SecureScoreControlProfilesRequestBuilder:
         """
         Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
@@ -173,6 +166,13 @@ class SecurityRequestBuilder():
         Provides operations to manage the securityActions property of the microsoft.graph.security entity.
         """
         return security_actions_request_builder.SecurityActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def security_run_hunting_query(self) -> security_run_hunting_query_request_builder.SecurityRunHuntingQueryRequestBuilder:
+        """
+        Provides operations to call the runHuntingQuery method.
+        """
+        return security_run_hunting_query_request_builder.SecurityRunHuntingQueryRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subject_rights_requests(self) -> subject_rights_requests_request_builder.SubjectRightsRequestsRequestBuilder:
@@ -299,12 +299,11 @@ class SecurityRequestBuilder():
         url_tpl_params["fileSecurityProfile%2Did"] = id
         return file_security_profile_item_request_builder.FileSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security.Security]:
+    async def get(self,request_configuration: Optional[SecurityRequestBuilderGetRequestConfiguration] = None) -> Optional[security.Security]:
         """
         Get security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security.Security]
         """
         request_info = self.to_get_request_information(
@@ -316,7 +315,7 @@ class SecurityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security.Security, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
     
     def host_security_profiles_by_id(self,id: str) -> host_security_profile_item_request_builder.HostSecurityProfileItemRequestBuilder:
         """
@@ -357,13 +356,12 @@ class SecurityRequestBuilder():
         url_tpl_params["ipSecurityProfile%2Did"] = id
         return ip_security_profile_item_request_builder.IpSecurityProfileItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[security.Security]:
+    async def patch(self,body: Optional[security.Security] = None, request_configuration: Optional[SecurityRequestBuilderPatchRequestConfiguration] = None) -> Optional[security.Security]:
         """
         Update security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[security.Security]
         """
         if body is None:
@@ -377,7 +375,7 @@ class SecurityRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, security.Security, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, security.Security, error_mapping)
     
     def provider_tenant_settings_by_id(self,id: str) -> provider_tenant_setting_item_request_builder.ProviderTenantSettingItemRequestBuilder:
         """
@@ -468,7 +466,7 @@ class SecurityRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -489,7 +487,7 @@ class SecurityRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -542,7 +540,7 @@ class SecurityRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -557,7 +555,7 @@ class SecurityRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

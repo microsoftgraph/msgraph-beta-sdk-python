@@ -63,7 +63,7 @@ class AttachmentSession(entity.Entity):
         """
         Sets the expirationDateTime property value. The date and time in UTC when the upload session will expire. The complete file must be uploaded before this expiration time is reached.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -74,8 +74,8 @@ class AttachmentSession(entity.Entity):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "next_expected_ranges": lambda n : setattr(self, 'next_expected_ranges', n.get_collection_of_primitive_values(str)),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "nextExpectedRanges": lambda n : setattr(self, 'next_expected_ranges', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -94,7 +94,7 @@ class AttachmentSession(entity.Entity):
         """
         Sets the nextExpectedRanges property value. Indicates a single value {start} that represents the location in the file where the next upload should begin.
         Args:
-            value: Value to set for the nextExpectedRanges property.
+            value: Value to set for the next_expected_ranges property.
         """
         self._next_expected_ranges = value
     

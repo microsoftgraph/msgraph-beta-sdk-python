@@ -51,7 +51,7 @@ class CreateDeviceLogCollectionRequestPostRequestBody(AdditionalDataHolder, Pars
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "template_type": lambda n : setattr(self, 'template_type', n.get_object_value(device_log_collection_request.DeviceLogCollectionRequest)),
+            "templateType": lambda n : setattr(self, 'template_type', n.get_object_value(device_log_collection_request.DeviceLogCollectionRequest)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class CreateDeviceLogCollectionRequestPostRequestBody(AdditionalDataHolder, Pars
         """
         Sets the templateType property value. The templateType property
         Args:
-            value: Value to set for the templateType property.
+            value: Value to set for the template_type property.
         """
         self._template_type = value
     

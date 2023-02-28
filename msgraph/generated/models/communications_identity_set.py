@@ -21,7 +21,7 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         """
         Sets the applicationInstance property value. The application instance associated with this action.
         Args:
-            value: Value to set for the applicationInstance property.
+            value: Value to set for the application_instance property.
         """
         self._application_instance = value
     
@@ -38,7 +38,7 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         """
         Sets the assertedIdentity property value. An identity the participant would like to present itself as to the other participants in the call.
         Args:
-            value: Value to set for the assertedIdentity property.
+            value: Value to set for the asserted_identity property.
         """
         self._asserted_identity = value
     
@@ -55,7 +55,7 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         """
         Sets the azureCommunicationServicesUser property value. The Azure Communication Services user associated with this action.
         Args:
-            value: Value to set for the azureCommunicationServicesUser property.
+            value: Value to set for the azure_communication_services_user property.
         """
         self._azure_communication_services_user = value
     
@@ -124,7 +124,7 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         """
         Sets the endpointType property value. Type of endpoint the participant is using. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone and unknownFutureValue.
         Args:
-            value: Value to set for the endpointType property.
+            value: Value to set for the endpoint_type property.
         """
         self._endpoint_type = value
     
@@ -134,13 +134,13 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_instance": lambda n : setattr(self, 'application_instance', n.get_object_value(identity.Identity)),
-            "asserted_identity": lambda n : setattr(self, 'asserted_identity', n.get_object_value(identity.Identity)),
-            "azure_communication_services_user": lambda n : setattr(self, 'azure_communication_services_user', n.get_object_value(identity.Identity)),
+            "applicationInstance": lambda n : setattr(self, 'application_instance', n.get_object_value(identity.Identity)),
+            "assertedIdentity": lambda n : setattr(self, 'asserted_identity', n.get_object_value(identity.Identity)),
+            "azureCommunicationServicesUser": lambda n : setattr(self, 'azure_communication_services_user', n.get_object_value(identity.Identity)),
             "encrypted": lambda n : setattr(self, 'encrypted', n.get_object_value(identity.Identity)),
-            "endpoint_type": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(endpoint_type.EndpointType)),
+            "endpointType": lambda n : setattr(self, 'endpoint_type', n.get_enum_value(endpoint_type.EndpointType)),
             "guest": lambda n : setattr(self, 'guest', n.get_object_value(identity.Identity)),
-            "on_premises": lambda n : setattr(self, 'on_premises', n.get_object_value(identity.Identity)),
+            "onPremises": lambda n : setattr(self, 'on_premises', n.get_object_value(identity.Identity)),
             "phone": lambda n : setattr(self, 'phone', n.get_object_value(identity.Identity)),
         }
         super_fields = super().get_field_deserializers()
@@ -177,7 +177,7 @@ class CommunicationsIdentitySet(identity_set.IdentitySet):
         """
         Sets the onPremises property value. The Skype for Business On-Premises user associated with this action.
         Args:
-            value: Value to set for the onPremises property.
+            value: Value to set for the on_premises property.
         """
         self._on_premises = value
     

@@ -61,7 +61,7 @@ class ProfileCardProperty(entity.Entity):
         """
         Sets the directoryPropertyName property value. Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
         Args:
-            value: Value to set for the directoryPropertyName property.
+            value: Value to set for the directory_property_name property.
         """
         self._directory_property_name = value
     
@@ -72,7 +72,7 @@ class ProfileCardProperty(entity.Entity):
         """
         fields = {
             "annotations": lambda n : setattr(self, 'annotations', n.get_collection_of_object_values(profile_card_annotation.ProfileCardAnnotation)),
-            "directory_property_name": lambda n : setattr(self, 'directory_property_name', n.get_str_value()),
+            "directoryPropertyName": lambda n : setattr(self, 'directory_property_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

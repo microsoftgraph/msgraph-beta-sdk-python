@@ -14,8 +14,8 @@ exclusions_request_builder = lazy_import('msgraph.generated.admin.windows.update
 updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.item.updatable_asset_item_request_builder')
 members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.members_request_builder')
 updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.updatable_asset_item_request_builder')
-update_audience_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.update_audience.update_audience_request_builder')
-update_audience_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.update_audience_by_id.update_audience_by_id_request_builder')
+windows_updates_update_audience_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.windows_updates_update_audience.windows_updates_update_audience_request_builder')
+windows_updates_update_audience_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.windows_updates_update_audience_by_id.windows_updates_update_audience_by_id_request_builder')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
 
@@ -38,18 +38,18 @@ class AudienceRequestBuilder():
         return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_audience(self) -> update_audience_request_builder.UpdateAudienceRequestBuilder:
+    def windows_updates_update_audience(self) -> windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder:
         """
         Provides operations to call the updateAudience method.
         """
-        return update_audience_request_builder.UpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
+        return windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def update_audience_by_id(self) -> update_audience_by_id_request_builder.UpdateAudienceByIdRequestBuilder:
+    def windows_updates_update_audience_by_id(self) -> windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder:
         """
         Provides operations to call the updateAudienceById method.
         """
-        return update_audience_by_id_request_builder.UpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
+        return windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -69,12 +69,11 @@ class AudienceRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AudienceRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AudienceRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property audience for admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -85,7 +84,7 @@ class AudienceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def exclusions_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
         """
@@ -100,12 +99,11 @@ class AudienceRequestBuilder():
         url_tpl_params["updatableAsset%2Did"] = id
         return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[AudienceRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[deployment_audience.DeploymentAudience]:
+    async def get(self,request_configuration: Optional[AudienceRequestBuilderGetRequestConfiguration] = None) -> Optional[deployment_audience.DeploymentAudience]:
         """
         Specifies the audience to which content is deployed.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deployment_audience.DeploymentAudience]
         """
         request_info = self.to_get_request_information(
@@ -117,7 +115,7 @@ class AudienceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, error_mapping)
     
     def members_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
         """
@@ -132,13 +130,12 @@ class AudienceRequestBuilder():
         url_tpl_params["updatableAsset%2Did"] = id
         return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[deployment_audience.DeploymentAudience] = None, request_configuration: Optional[AudienceRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[deployment_audience.DeploymentAudience]:
+    async def patch(self,body: Optional[deployment_audience.DeploymentAudience] = None, request_configuration: Optional[AudienceRequestBuilderPatchRequestConfiguration] = None) -> Optional[deployment_audience.DeploymentAudience]:
         """
         Update the navigation property audience in admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[deployment_audience.DeploymentAudience]
         """
         if body is None:
@@ -152,7 +149,7 @@ class AudienceRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AudienceRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -181,7 +178,7 @@ class AudienceRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -202,7 +199,7 @@ class AudienceRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -215,7 +212,7 @@ class AudienceRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -254,7 +251,7 @@ class AudienceRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -269,7 +266,7 @@ class AudienceRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -51,8 +51,8 @@ class RequestRemoteHelpSessionAccessPostRequestBody(AdditionalDataHolder, Parsab
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "pub_sub_connection_id": lambda n : setattr(self, 'pub_sub_connection_id', n.get_str_value()),
-            "session_key": lambda n : setattr(self, 'session_key', n.get_str_value()),
+            "pubSubConnectionId": lambda n : setattr(self, 'pub_sub_connection_id', n.get_str_value()),
+            "sessionKey": lambda n : setattr(self, 'session_key', n.get_str_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class RequestRemoteHelpSessionAccessPostRequestBody(AdditionalDataHolder, Parsab
         """
         Sets the pubSubConnectionId property value. The pubSubConnectionId property
         Args:
-            value: Value to set for the pubSubConnectionId property.
+            value: Value to set for the pub_sub_connection_id property.
         """
         self._pub_sub_connection_id = value
     
@@ -98,7 +98,7 @@ class RequestRemoteHelpSessionAccessPostRequestBody(AdditionalDataHolder, Parsab
         """
         Sets the sessionKey property value. The sessionKey property
         Args:
-            value: Value to set for the sessionKey property.
+            value: Value to set for the session_key property.
         """
         self._session_key = value
     

@@ -24,7 +24,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the actionFailureReason property value. Possible types of reasons for an Apple Volume Purchase Program token action failure.
         Args:
-            value: Value to set for the actionFailureReason property.
+            value: Value to set for the action_failure_reason property.
         """
         self._action_failure_reason = value
     
@@ -41,7 +41,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the actionName property value. Action name
         Args:
-            value: Value to set for the actionName property.
+            value: Value to set for the action_name property.
         """
         self._action_name = value
     
@@ -58,7 +58,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the actionState property value. The actionState property
         Args:
-            value: Value to set for the actionState property.
+            value: Value to set for the action_state property.
         """
         self._action_state = value
     
@@ -132,7 +132,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the failedLicensesCount property value. A count of the number of licenses for which revoke failed.
         Args:
-            value: Value to set for the failedLicensesCount property.
+            value: Value to set for the failed_licenses_count property.
         """
         self._failed_licenses_count = value
     
@@ -142,16 +142,16 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_failure_reason": lambda n : setattr(self, 'action_failure_reason', n.get_enum_value(vpp_token_action_failure_reason.VppTokenActionFailureReason)),
-            "action_name": lambda n : setattr(self, 'action_name', n.get_str_value()),
-            "action_state": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
-            "failed_licenses_count": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "actionFailureReason": lambda n : setattr(self, 'action_failure_reason', n.get_enum_value(vpp_token_action_failure_reason.VppTokenActionFailureReason)),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
+            "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
+            "failedLicensesCount": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
-            "total_licenses_count": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "totalLicensesCount": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         return fields
     
@@ -168,7 +168,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the lastUpdatedDateTime property value. Time the action state was last updated
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -185,7 +185,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceId property value. DeviceId associated with the action.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -202,7 +202,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -239,7 +239,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. Time the action was initiated
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
@@ -256,7 +256,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the totalLicensesCount property value. A count of the number of licenses for which revoke was attempted.
         Args:
-            value: Value to set for the totalLicensesCount property.
+            value: Value to set for the total_licenses_count property.
         """
         self._total_licenses_count = value
     
@@ -273,7 +273,7 @@ class MacOsVppAppRevokeLicensesActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the userId property value. UserId associated with the action.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

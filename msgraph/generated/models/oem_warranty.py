@@ -39,7 +39,7 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         """
         Sets the additionalWarranties property value. List of additional warranty offers. This collection can contain a maximum of 100 elements.
         Args:
-            value: Value to set for the additionalWarranties property.
+            value: Value to set for the additional_warranties property.
         """
         self._additional_warranties = value
     
@@ -56,7 +56,7 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         """
         Sets the baseWarranties property value. List of base warranty offers. This collection can contain a maximum of 100 elements.
         Args:
-            value: Value to set for the baseWarranties property.
+            value: Value to set for the base_warranties property.
         """
         self._base_warranties = value
     
@@ -103,7 +103,7 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         """
         Sets the deviceConfigurationUrl property value. Device configuration page URL
         Args:
-            value: Value to set for the deviceConfigurationUrl property.
+            value: Value to set for the device_configuration_url property.
         """
         self._device_configuration_url = value
     
@@ -120,7 +120,7 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         """
         Sets the deviceWarrantyUrl property value. Device warranty page URL
         Args:
-            value: Value to set for the deviceWarrantyUrl property.
+            value: Value to set for the device_warranty_url property.
         """
         self._device_warranty_url = value
     
@@ -130,10 +130,10 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_warranties": lambda n : setattr(self, 'additional_warranties', n.get_collection_of_object_values(warranty_offer.WarrantyOffer)),
-            "base_warranties": lambda n : setattr(self, 'base_warranties', n.get_collection_of_object_values(warranty_offer.WarrantyOffer)),
-            "device_configuration_url": lambda n : setattr(self, 'device_configuration_url', n.get_str_value()),
-            "device_warranty_url": lambda n : setattr(self, 'device_warranty_url', n.get_str_value()),
+            "additionalWarranties": lambda n : setattr(self, 'additional_warranties', n.get_collection_of_object_values(warranty_offer.WarrantyOffer)),
+            "baseWarranties": lambda n : setattr(self, 'base_warranties', n.get_collection_of_object_values(warranty_offer.WarrantyOffer)),
+            "deviceConfigurationUrl": lambda n : setattr(self, 'device_configuration_url', n.get_str_value()),
+            "deviceWarrantyUrl": lambda n : setattr(self, 'device_warranty_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -151,7 +151,7 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

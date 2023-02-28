@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SynchronizationJobRestartScope(Enum):
-    None_escaped = "None",
+    None_ = "None",
     ConnectorDataStore = "ConnectorDataStore",
     Escrows = "Escrows",
     Watermark = "Watermark",

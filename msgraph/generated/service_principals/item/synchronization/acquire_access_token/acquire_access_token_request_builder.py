@@ -29,19 +29,18 @@ class AcquireAccessTokenRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/microsoft.graph.acquireAccessToken"
+        self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/acquireAccessToken"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[acquire_access_token_post_request_body.AcquireAccessTokenPostRequestBody] = None, request_configuration: Optional[AcquireAccessTokenRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def post(self,body: Optional[acquire_access_token_post_request_body.AcquireAccessTokenPostRequestBody] = None, request_configuration: Optional[AcquireAccessTokenRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Acquire an OAuth Access token to authorize the Azure AD provisioning service to provision users into an application.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -54,7 +53,7 @@ class AcquireAccessTokenRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def to_post_request_information(self,body: Optional[acquire_access_token_post_request_body.AcquireAccessTokenPostRequestBody] = None, request_configuration: Optional[AcquireAccessTokenRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -82,7 +81,7 @@ class AcquireAccessTokenRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

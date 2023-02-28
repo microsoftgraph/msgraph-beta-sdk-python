@@ -47,7 +47,7 @@ class MessageEvent(entity.Entity):
         """
         Sets the dateTime property value. The dateTime property
         Args:
-            value: Value to set for the dateTime property.
+            value: Value to set for the date_time property.
         """
         self._date_time = value
     
@@ -81,7 +81,7 @@ class MessageEvent(entity.Entity):
         """
         Sets the eventType property value. The eventType property
         Args:
-            value: Value to set for the eventType property.
+            value: Value to set for the event_type property.
         """
         self._event_type = value
     
@@ -91,9 +91,9 @@ class MessageEvent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "date_time": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
+            "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "event_type": lambda n : setattr(self, 'event_type', n.get_enum_value(message_event_type.MessageEventType)),
+            "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(message_event_type.MessageEventType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

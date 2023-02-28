@@ -34,7 +34,7 @@ class RestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the cloudPcSnapshotId property value. The cloudPcSnapshotId property
         Args:
-            value: Value to set for the cloudPcSnapshotId property.
+            value: Value to set for the cloud_pc_snapshot_id property.
         """
         self._cloud_pc_snapshot_id = value
     
@@ -66,7 +66,7 @@ class RestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_pc_snapshot_id": lambda n : setattr(self, 'cloud_pc_snapshot_id', n.get_str_value()),
+            "cloudPcSnapshotId": lambda n : setattr(self, 'cloud_pc_snapshot_id', n.get_str_value()),
         }
         return fields
     

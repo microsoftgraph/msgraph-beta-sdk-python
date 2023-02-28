@@ -23,7 +23,7 @@ class AlertRule(entity.Entity):
         """
         Sets the alertRuleTemplate property value. The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
         Args:
-            value: Value to set for the alertRuleTemplate property.
+            value: Value to set for the alert_rule_template property.
         """
         self._alert_rule_template = value
     
@@ -93,7 +93,7 @@ class AlertRule(entity.Entity):
         """
         Sets the displayName property value. The display name of the rule.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -120,12 +120,12 @@ class AlertRule(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_rule_template": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
+            "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "is_system_rule": lambda n : setattr(self, 'is_system_rule', n.get_bool_value()),
-            "notification_channels": lambda n : setattr(self, 'notification_channels', n.get_collection_of_object_values(notification_channel.NotificationChannel)),
+            "isSystemRule": lambda n : setattr(self, 'is_system_rule', n.get_bool_value()),
+            "notificationChannels": lambda n : setattr(self, 'notification_channels', n.get_collection_of_object_values(notification_channel.NotificationChannel)),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(rule_severity_type.RuleSeverityType)),
             "threshold": lambda n : setattr(self, 'threshold', n.get_object_value(rule_threshold.RuleThreshold)),
         }
@@ -146,7 +146,7 @@ class AlertRule(entity.Entity):
         """
         Sets the isSystemRule property value. Indicates whether the rule is a system rule. If true, the rule is a system rule; otherwise, the rule is a custom defined rule and can be edited. System rules are built-in and only a few properties can be edited.
         Args:
-            value: Value to set for the isSystemRule property.
+            value: Value to set for the is_system_rule property.
         """
         self._is_system_rule = value
     
@@ -163,7 +163,7 @@ class AlertRule(entity.Entity):
         """
         Sets the notificationChannels property value. The notification channels of the rule selected by the user.
         Args:
-            value: Value to set for the notificationChannels property.
+            value: Value to set for the notification_channels property.
         """
         self._notification_channels = value
     

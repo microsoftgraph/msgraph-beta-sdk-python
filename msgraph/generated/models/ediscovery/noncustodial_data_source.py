@@ -20,7 +20,7 @@ class NoncustodialDataSource(data_source_container.DataSourceContainer):
         """
         Sets the applyHoldToSource property value. Indicates if hold is applied to non-custodial data source (such as mailbox or site).
         Args:
-            value: Value to set for the applyHoldToSource property.
+            value: Value to set for the apply_hold_to_source property.
         """
         self._apply_hold_to_source = value
     
@@ -60,7 +60,7 @@ class NoncustodialDataSource(data_source_container.DataSourceContainer):
         """
         Sets the dataSource property value. User source or SharePoint site data source as non-custodial data source.
         Args:
-            value: Value to set for the dataSource property.
+            value: Value to set for the data_source property.
         """
         self._data_source = value
     
@@ -70,8 +70,8 @@ class NoncustodialDataSource(data_source_container.DataSourceContainer):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apply_hold_to_source": lambda n : setattr(self, 'apply_hold_to_source', n.get_bool_value()),
-            "data_source": lambda n : setattr(self, 'data_source', n.get_object_value(data_source.DataSource)),
+            "applyHoldToSource": lambda n : setattr(self, 'apply_hold_to_source', n.get_bool_value()),
+            "dataSource": lambda n : setattr(self, 'data_source', n.get_object_value(data_source.DataSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

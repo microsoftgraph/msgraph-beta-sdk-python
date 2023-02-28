@@ -49,7 +49,7 @@ class ResizeCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "target_service_plan_id": lambda n : setattr(self, 'target_service_plan_id', n.get_str_value()),
+            "targetServicePlanId": lambda n : setattr(self, 'target_service_plan_id', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class ResizeCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the targetServicePlanId property value. The targetServicePlanId property
         Args:
-            value: Value to set for the targetServicePlanId property.
+            value: Value to set for the target_service_plan_id property.
         """
         self._target_service_plan_id = value
     

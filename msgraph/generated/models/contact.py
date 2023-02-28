@@ -29,7 +29,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the assistantName property value. The name of the contact's assistant.
         Args:
-            value: Value to set for the assistantName property.
+            value: Value to set for the assistant_name property.
         """
         self._assistant_name = value
     
@@ -80,7 +80,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the companyName property value. The name of the contact's company.
         Args:
-            value: Value to set for the companyName property.
+            value: Value to set for the company_name property.
         """
         self._company_name = value
     
@@ -207,7 +207,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the displayName property value. The contact's display name. You can specify the display name in a create or update operation. Note that later updates to other properties may cause an automatically generated value to overwrite the displayName value you have specified. To preserve a pre-existing value, always include it as displayName in an update operation.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -224,7 +224,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the emailAddresses property value. The contact's email addresses.
         Args:
-            value: Value to set for the emailAddresses property.
+            value: Value to set for the email_addresses property.
         """
         self._email_addresses = value
     
@@ -258,7 +258,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the fileAs property value. The name the contact is filed under.
         Args:
-            value: Value to set for the fileAs property.
+            value: Value to set for the file_as property.
         """
         self._file_as = value
     
@@ -319,43 +319,43 @@ class Contact(outlook_item.OutlookItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assistant_name": lambda n : setattr(self, 'assistant_name', n.get_str_value()),
+            "assistantName": lambda n : setattr(self, 'assistant_name', n.get_str_value()),
             "birthday": lambda n : setattr(self, 'birthday', n.get_datetime_value()),
             "children": lambda n : setattr(self, 'children', n.get_collection_of_primitive_values(str)),
-            "company_name": lambda n : setattr(self, 'company_name', n.get_str_value()),
+            "companyName": lambda n : setattr(self, 'company_name', n.get_str_value()),
             "department": lambda n : setattr(self, 'department', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "email_addresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_object_values(typed_email_address.TypedEmailAddress)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "emailAddresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_object_values(typed_email_address.TypedEmailAddress)),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
-            "file_as": lambda n : setattr(self, 'file_as', n.get_str_value()),
+            "fileAs": lambda n : setattr(self, 'file_as', n.get_str_value()),
             "flag": lambda n : setattr(self, 'flag', n.get_object_value(followup_flag.FollowupFlag)),
             "gender": lambda n : setattr(self, 'gender', n.get_str_value()),
             "generation": lambda n : setattr(self, 'generation', n.get_str_value()),
-            "given_name": lambda n : setattr(self, 'given_name', n.get_str_value()),
-            "im_addresses": lambda n : setattr(self, 'im_addresses', n.get_collection_of_primitive_values(str)),
+            "givenName": lambda n : setattr(self, 'given_name', n.get_str_value()),
+            "imAddresses": lambda n : setattr(self, 'im_addresses', n.get_collection_of_primitive_values(str)),
             "initials": lambda n : setattr(self, 'initials', n.get_str_value()),
-            "is_favorite": lambda n : setattr(self, 'is_favorite', n.get_bool_value()),
-            "job_title": lambda n : setattr(self, 'job_title', n.get_str_value()),
+            "isFavorite": lambda n : setattr(self, 'is_favorite', n.get_bool_value()),
+            "jobTitle": lambda n : setattr(self, 'job_title', n.get_str_value()),
             "manager": lambda n : setattr(self, 'manager', n.get_str_value()),
-            "middle_name": lambda n : setattr(self, 'middle_name', n.get_str_value()),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
-            "nick_name": lambda n : setattr(self, 'nick_name', n.get_str_value()),
-            "office_location": lambda n : setattr(self, 'office_location', n.get_str_value()),
-            "parent_folder_id": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
-            "personal_notes": lambda n : setattr(self, 'personal_notes', n.get_str_value()),
+            "middleName": lambda n : setattr(self, 'middle_name', n.get_str_value()),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "nickName": lambda n : setattr(self, 'nick_name', n.get_str_value()),
+            "officeLocation": lambda n : setattr(self, 'office_location', n.get_str_value()),
+            "parentFolderId": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
+            "personalNotes": lambda n : setattr(self, 'personal_notes', n.get_str_value()),
             "phones": lambda n : setattr(self, 'phones', n.get_collection_of_object_values(phone.Phone)),
             "photo": lambda n : setattr(self, 'photo', n.get_object_value(profile_photo.ProfilePhoto)),
-            "postal_addresses": lambda n : setattr(self, 'postal_addresses', n.get_collection_of_object_values(physical_address.PhysicalAddress)),
+            "postalAddresses": lambda n : setattr(self, 'postal_addresses', n.get_collection_of_object_values(physical_address.PhysicalAddress)),
             "profession": lambda n : setattr(self, 'profession', n.get_str_value()),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
-            "spouse_name": lambda n : setattr(self, 'spouse_name', n.get_str_value()),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "spouseName": lambda n : setattr(self, 'spouse_name', n.get_str_value()),
             "surname": lambda n : setattr(self, 'surname', n.get_str_value()),
             "title": lambda n : setattr(self, 'title', n.get_str_value()),
             "websites": lambda n : setattr(self, 'websites', n.get_collection_of_object_values(website.Website)),
-            "wedding_anniversary": lambda n : setattr(self, 'wedding_anniversary', n.get_object_value(Date)),
-            "yomi_company_name": lambda n : setattr(self, 'yomi_company_name', n.get_str_value()),
-            "yomi_given_name": lambda n : setattr(self, 'yomi_given_name', n.get_str_value()),
-            "yomi_surname": lambda n : setattr(self, 'yomi_surname', n.get_str_value()),
+            "weddingAnniversary": lambda n : setattr(self, 'wedding_anniversary', n.get_object_value(Date)),
+            "yomiCompanyName": lambda n : setattr(self, 'yomi_company_name', n.get_str_value()),
+            "yomiGivenName": lambda n : setattr(self, 'yomi_given_name', n.get_str_value()),
+            "yomiSurname": lambda n : setattr(self, 'yomi_surname', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -374,7 +374,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the givenName property value. The contact's given name.
         Args:
-            value: Value to set for the givenName property.
+            value: Value to set for the given_name property.
         """
         self._given_name = value
     
@@ -391,7 +391,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the imAddresses property value. The imAddresses property
         Args:
-            value: Value to set for the imAddresses property.
+            value: Value to set for the im_addresses property.
         """
         self._im_addresses = value
     
@@ -425,7 +425,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the isFavorite property value. The isFavorite property
         Args:
-            value: Value to set for the isFavorite property.
+            value: Value to set for the is_favorite property.
         """
         self._is_favorite = value
     
@@ -442,7 +442,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the jobTitle property value. The jobTitle property
         Args:
-            value: Value to set for the jobTitle property.
+            value: Value to set for the job_title property.
         """
         self._job_title = value
     
@@ -476,7 +476,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the middleName property value. The middleName property
         Args:
-            value: Value to set for the middleName property.
+            value: Value to set for the middle_name property.
         """
         self._middle_name = value
     
@@ -493,7 +493,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the multiValueExtendedProperties property value. The collection of multi-value extended properties defined for the contact. Read-only. Nullable.
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -510,7 +510,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the nickName property value. The nickName property
         Args:
-            value: Value to set for the nickName property.
+            value: Value to set for the nick_name property.
         """
         self._nick_name = value
     
@@ -527,7 +527,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the officeLocation property value. The officeLocation property
         Args:
-            value: Value to set for the officeLocation property.
+            value: Value to set for the office_location property.
         """
         self._office_location = value
     
@@ -544,7 +544,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the parentFolderId property value. The parentFolderId property
         Args:
-            value: Value to set for the parentFolderId property.
+            value: Value to set for the parent_folder_id property.
         """
         self._parent_folder_id = value
     
@@ -561,7 +561,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the personalNotes property value. The personalNotes property
         Args:
-            value: Value to set for the personalNotes property.
+            value: Value to set for the personal_notes property.
         """
         self._personal_notes = value
     
@@ -612,7 +612,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the postalAddresses property value. The postalAddresses property
         Args:
-            value: Value to set for the postalAddresses property.
+            value: Value to set for the postal_addresses property.
         """
         self._postal_addresses = value
     
@@ -693,7 +693,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the singleValueExtendedProperties property value. The collection of single-value extended properties defined for the contact. Read-only. Nullable.
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     
@@ -710,7 +710,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the spouseName property value. The spouseName property
         Args:
-            value: Value to set for the spouseName property.
+            value: Value to set for the spouse_name property.
         """
         self._spouse_name = value
     
@@ -778,7 +778,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the weddingAnniversary property value. The weddingAnniversary property
         Args:
-            value: Value to set for the weddingAnniversary property.
+            value: Value to set for the wedding_anniversary property.
         """
         self._wedding_anniversary = value
     
@@ -795,7 +795,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the yomiCompanyName property value. The yomiCompanyName property
         Args:
-            value: Value to set for the yomiCompanyName property.
+            value: Value to set for the yomi_company_name property.
         """
         self._yomi_company_name = value
     
@@ -812,7 +812,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the yomiGivenName property value. The yomiGivenName property
         Args:
-            value: Value to set for the yomiGivenName property.
+            value: Value to set for the yomi_given_name property.
         """
         self._yomi_given_name = value
     
@@ -829,7 +829,7 @@ class Contact(outlook_item.OutlookItem):
         """
         Sets the yomiSurname property value. The yomiSurname property
         Args:
-            value: Value to set for the yomiSurname property.
+            value: Value to set for the yomi_surname property.
         """
         self._yomi_surname = value
     

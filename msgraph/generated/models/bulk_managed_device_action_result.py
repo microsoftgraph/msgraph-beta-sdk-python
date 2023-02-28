@@ -64,7 +64,7 @@ class BulkManagedDeviceActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the failedDeviceIds property value. Failed devices
         Args:
-            value: Value to set for the failedDeviceIds property.
+            value: Value to set for the failed_device_ids property.
         """
         self._failed_device_ids = value
     
@@ -74,11 +74,11 @@ class BulkManagedDeviceActionResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_device_ids": lambda n : setattr(self, 'failed_device_ids', n.get_collection_of_primitive_values(str)),
-            "not_found_device_ids": lambda n : setattr(self, 'not_found_device_ids', n.get_collection_of_primitive_values(str)),
-            "not_supported_device_ids": lambda n : setattr(self, 'not_supported_device_ids', n.get_collection_of_primitive_values(str)),
+            "failedDeviceIds": lambda n : setattr(self, 'failed_device_ids', n.get_collection_of_primitive_values(str)),
+            "notFoundDeviceIds": lambda n : setattr(self, 'not_found_device_ids', n.get_collection_of_primitive_values(str)),
+            "notSupportedDeviceIds": lambda n : setattr(self, 'not_supported_device_ids', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "successful_device_ids": lambda n : setattr(self, 'successful_device_ids', n.get_collection_of_primitive_values(str)),
+            "successfulDeviceIds": lambda n : setattr(self, 'successful_device_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -95,7 +95,7 @@ class BulkManagedDeviceActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the notFoundDeviceIds property value. Not found devices
         Args:
-            value: Value to set for the notFoundDeviceIds property.
+            value: Value to set for the not_found_device_ids property.
         """
         self._not_found_device_ids = value
     
@@ -112,7 +112,7 @@ class BulkManagedDeviceActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the notSupportedDeviceIds property value. Not supported devices
         Args:
-            value: Value to set for the notSupportedDeviceIds property.
+            value: Value to set for the not_supported_device_ids property.
         """
         self._not_supported_device_ids = value
     
@@ -129,7 +129,7 @@ class BulkManagedDeviceActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -161,7 +161,7 @@ class BulkManagedDeviceActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the successfulDeviceIds property value. Successful devices
         Args:
-            value: Value to set for the successfulDeviceIds property.
+            value: Value to set for the successful_device_ids property.
         """
         self._successful_device_ids = value
     

@@ -83,9 +83,9 @@ class GetSharedUseLicenseUsageReportPostRequestBody(AdditionalDataHolder, Parsab
         """
         fields = {
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
-            "group_by": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
-            "order_by": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
-            "report_name": lambda n : setattr(self, 'report_name', n.get_enum_value(cloud_pc_report_name.CloudPcReportName)),
+            "groupBy": lambda n : setattr(self, 'group_by', n.get_collection_of_primitive_values(str)),
+            "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(cloud_pc_report_name.CloudPcReportName)),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),
@@ -106,7 +106,7 @@ class GetSharedUseLicenseUsageReportPostRequestBody(AdditionalDataHolder, Parsab
         """
         Sets the groupBy property value. The groupBy property
         Args:
-            value: Value to set for the groupBy property.
+            value: Value to set for the group_by property.
         """
         self._group_by = value
     
@@ -123,7 +123,7 @@ class GetSharedUseLicenseUsageReportPostRequestBody(AdditionalDataHolder, Parsab
         """
         Sets the orderBy property value. The orderBy property
         Args:
-            value: Value to set for the orderBy property.
+            value: Value to set for the order_by property.
         """
         self._order_by = value
     
@@ -140,7 +140,7 @@ class GetSharedUseLicenseUsageReportPostRequestBody(AdditionalDataHolder, Parsab
         """
         Sets the reportName property value. The reportName property
         Args:
-            value: Value to set for the reportName property.
+            value: Value to set for the report_name property.
         """
         self._report_name = value
     

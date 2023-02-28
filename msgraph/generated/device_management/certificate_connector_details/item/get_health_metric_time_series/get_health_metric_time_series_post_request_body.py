@@ -51,7 +51,7 @@ class GetHealthMetricTimeSeriesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "time_series": lambda n : setattr(self, 'time_series', n.get_object_value(time_series_parameter.TimeSeriesParameter)),
+            "timeSeries": lambda n : setattr(self, 'time_series', n.get_object_value(time_series_parameter.TimeSeriesParameter)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class GetHealthMetricTimeSeriesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the timeSeries property value. The timeSeries property
         Args:
-            value: Value to set for the timeSeries property.
+            value: Value to set for the time_series property.
         """
         self._time_series = value
     

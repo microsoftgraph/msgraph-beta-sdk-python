@@ -84,7 +84,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the dateTimeConfiguration property value. The date and time configurations for a device.
         Args:
-            value: Value to set for the dateTimeConfiguration property.
+            value: Value to set for the date_time_configuration property.
         """
         self._date_time_configuration = value
     
@@ -101,7 +101,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the defaultPassword property value. The default password for the device. Write-Only.
         Args:
-            value: Value to set for the defaultPassword property.
+            value: Value to set for the default_password property.
         """
         self._default_password = value
     
@@ -118,7 +118,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the deviceLockTimeout property value. The device lock timeout in seconds.
         Args:
-            value: Value to set for the deviceLockTimeout property.
+            value: Value to set for the device_lock_timeout property.
         """
         self._device_lock_timeout = value
     
@@ -128,18 +128,18 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "date_time_configuration": lambda n : setattr(self, 'date_time_configuration', n.get_object_value(teamwork_date_time_configuration.TeamworkDateTimeConfiguration)),
-            "default_password": lambda n : setattr(self, 'default_password', n.get_str_value()),
-            "device_lock_timeout": lambda n : setattr(self, 'device_lock_timeout', n.get_object_value(Timedelta)),
-            "is_device_lock_enabled": lambda n : setattr(self, 'is_device_lock_enabled', n.get_bool_value()),
-            "is_logging_enabled": lambda n : setattr(self, 'is_logging_enabled', n.get_bool_value()),
-            "is_power_saving_enabled": lambda n : setattr(self, 'is_power_saving_enabled', n.get_bool_value()),
-            "is_screen_capture_enabled": lambda n : setattr(self, 'is_screen_capture_enabled', n.get_bool_value()),
-            "is_silent_mode_enabled": lambda n : setattr(self, 'is_silent_mode_enabled', n.get_bool_value()),
+            "dateTimeConfiguration": lambda n : setattr(self, 'date_time_configuration', n.get_object_value(teamwork_date_time_configuration.TeamworkDateTimeConfiguration)),
+            "defaultPassword": lambda n : setattr(self, 'default_password', n.get_str_value()),
+            "deviceLockTimeout": lambda n : setattr(self, 'device_lock_timeout', n.get_object_value(Timedelta)),
+            "isDeviceLockEnabled": lambda n : setattr(self, 'is_device_lock_enabled', n.get_bool_value()),
+            "isLoggingEnabled": lambda n : setattr(self, 'is_logging_enabled', n.get_bool_value()),
+            "isPowerSavingEnabled": lambda n : setattr(self, 'is_power_saving_enabled', n.get_bool_value()),
+            "isScreenCaptureEnabled": lambda n : setattr(self, 'is_screen_capture_enabled', n.get_bool_value()),
+            "isSilentModeEnabled": lambda n : setattr(self, 'is_silent_mode_enabled', n.get_bool_value()),
             "language": lambda n : setattr(self, 'language', n.get_str_value()),
-            "lock_pin": lambda n : setattr(self, 'lock_pin', n.get_str_value()),
-            "logging_level": lambda n : setattr(self, 'logging_level', n.get_str_value()),
-            "network_configuration": lambda n : setattr(self, 'network_configuration', n.get_object_value(teamwork_network_configuration.TeamworkNetworkConfiguration)),
+            "lockPin": lambda n : setattr(self, 'lock_pin', n.get_str_value()),
+            "loggingLevel": lambda n : setattr(self, 'logging_level', n.get_str_value()),
+            "networkConfiguration": lambda n : setattr(self, 'network_configuration', n.get_object_value(teamwork_network_configuration.TeamworkNetworkConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -157,7 +157,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isDeviceLockEnabled property value. True if the device lock is enabled.
         Args:
-            value: Value to set for the isDeviceLockEnabled property.
+            value: Value to set for the is_device_lock_enabled property.
         """
         self._is_device_lock_enabled = value
     
@@ -174,7 +174,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isLoggingEnabled property value. True if logging is enabled.
         Args:
-            value: Value to set for the isLoggingEnabled property.
+            value: Value to set for the is_logging_enabled property.
         """
         self._is_logging_enabled = value
     
@@ -191,7 +191,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isPowerSavingEnabled property value. True if power saving is enabled.
         Args:
-            value: Value to set for the isPowerSavingEnabled property.
+            value: Value to set for the is_power_saving_enabled property.
         """
         self._is_power_saving_enabled = value
     
@@ -208,7 +208,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isScreenCaptureEnabled property value. True if screen capture is enabled.
         Args:
-            value: Value to set for the isScreenCaptureEnabled property.
+            value: Value to set for the is_screen_capture_enabled property.
         """
         self._is_screen_capture_enabled = value
     
@@ -225,7 +225,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isSilentModeEnabled property value. True if silent mode is enabled.
         Args:
-            value: Value to set for the isSilentModeEnabled property.
+            value: Value to set for the is_silent_mode_enabled property.
         """
         self._is_silent_mode_enabled = value
     
@@ -259,7 +259,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the lockPin property value. The pin that unlocks the device. Write-Only.
         Args:
-            value: Value to set for the lockPin property.
+            value: Value to set for the lock_pin property.
         """
         self._lock_pin = value
     
@@ -276,7 +276,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the loggingLevel property value. The logging level for the device.
         Args:
-            value: Value to set for the loggingLevel property.
+            value: Value to set for the logging_level property.
         """
         self._logging_level = value
     
@@ -293,7 +293,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the networkConfiguration property value. The network configuration for the device.
         Args:
-            value: Value to set for the networkConfiguration property.
+            value: Value to set for the network_configuration property.
         """
         self._network_configuration = value
     
@@ -310,7 +310,7 @@ class TeamworkSystemConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

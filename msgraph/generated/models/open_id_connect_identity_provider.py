@@ -22,7 +22,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the claimsMapping property value. After the OIDC provider sends an ID token back to Azure AD, Azure AD needs to be able to map the claims from the received token to the claims that Azure AD recognizes and uses. This complex type captures that mapping. Required.
         Args:
-            value: Value to set for the claimsMapping property.
+            value: Value to set for the claims_mapping property.
         """
         self._claims_mapping = value
     
@@ -39,7 +39,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the clientId property value. The client identifier for the application obtained when registering the application with the identity provider. Required.
         Args:
-            value: Value to set for the clientId property.
+            value: Value to set for the client_id property.
         """
         self._client_id = value
     
@@ -56,7 +56,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the clientSecret property value. The client secret for the application obtained when registering the application with the identity provider. The clientSecret has a dependency on responseType. When responseType is code, a secret is required for the auth code exchange.When responseType is id_token the secret is not required because there is no code exchange. The id_token is returned directly from the authorization response. This is write-only. A read operation returns ****.
         Args:
-            value: Value to set for the clientSecret property.
+            value: Value to set for the client_secret property.
         """
         self._client_secret = value
     
@@ -108,7 +108,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the domainHint property value. The domain hint can be used to skip directly to the sign-in page of the specified identity provider, instead of having the user make a selection among the list of available identity providers.
         Args:
-            value: Value to set for the domainHint property.
+            value: Value to set for the domain_hint property.
         """
         self._domain_hint = value
     
@@ -118,13 +118,13 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "claims_mapping": lambda n : setattr(self, 'claims_mapping', n.get_object_value(claims_mapping.ClaimsMapping)),
-            "client_id": lambda n : setattr(self, 'client_id', n.get_str_value()),
-            "client_secret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
-            "domain_hint": lambda n : setattr(self, 'domain_hint', n.get_str_value()),
-            "metadata_url": lambda n : setattr(self, 'metadata_url', n.get_str_value()),
-            "response_mode": lambda n : setattr(self, 'response_mode', n.get_enum_value(open_id_connect_response_mode.OpenIdConnectResponseMode)),
-            "response_type": lambda n : setattr(self, 'response_type', n.get_enum_value(open_id_connect_response_types.OpenIdConnectResponseTypes)),
+            "claimsMapping": lambda n : setattr(self, 'claims_mapping', n.get_object_value(claims_mapping.ClaimsMapping)),
+            "clientId": lambda n : setattr(self, 'client_id', n.get_str_value()),
+            "clientSecret": lambda n : setattr(self, 'client_secret', n.get_str_value()),
+            "domainHint": lambda n : setattr(self, 'domain_hint', n.get_str_value()),
+            "metadataUrl": lambda n : setattr(self, 'metadata_url', n.get_str_value()),
+            "responseMode": lambda n : setattr(self, 'response_mode', n.get_enum_value(open_id_connect_response_mode.OpenIdConnectResponseMode)),
+            "responseType": lambda n : setattr(self, 'response_type', n.get_enum_value(open_id_connect_response_types.OpenIdConnectResponseTypes)),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -144,7 +144,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the metadataUrl property value. The URL for the metadata document of the OpenID Connect identity provider. Every OpenID Connect identity provider describes a metadata document that contains most of the information required to perform sign-in. This includes information such as the URLs to use and the location of the service's public signing keys. The OpenID Connect metadata document is always located at an endpoint that ends in .well-known/openid-configuration. Provide the metadata URL for the OpenID Connect identity provider you add. Read-only. Required.
         Args:
-            value: Value to set for the metadataUrl property.
+            value: Value to set for the metadata_url property.
         """
         self._metadata_url = value
     
@@ -161,7 +161,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the responseMode property value. The responseMode property
         Args:
-            value: Value to set for the responseMode property.
+            value: Value to set for the response_mode property.
         """
         self._response_mode = value
     
@@ -178,7 +178,7 @@ class OpenIdConnectIdentityProvider(identity_provider_base.IdentityProviderBase)
         """
         Sets the responseType property value. The responseType property
         Args:
-            value: Value to set for the responseType property.
+            value: Value to set for the response_type property.
         """
         self._response_type = value
     

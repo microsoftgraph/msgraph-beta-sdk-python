@@ -36,8 +36,8 @@ class MetadataAction(information_protection_action.InformationProtectionAction):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "metadata_to_add": lambda n : setattr(self, 'metadata_to_add', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "metadata_to_remove": lambda n : setattr(self, 'metadata_to_remove', n.get_collection_of_primitive_values(str)),
+            "metadataToAdd": lambda n : setattr(self, 'metadata_to_add', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "metadataToRemove": lambda n : setattr(self, 'metadata_to_remove', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -56,7 +56,7 @@ class MetadataAction(information_protection_action.InformationProtectionAction):
         """
         Sets the metadataToAdd property value. A collection of key value pairs that should be added to the file.
         Args:
-            value: Value to set for the metadataToAdd property.
+            value: Value to set for the metadata_to_add property.
         """
         self._metadata_to_add = value
     
@@ -73,7 +73,7 @@ class MetadataAction(information_protection_action.InformationProtectionAction):
         """
         Sets the metadataToRemove property value. A collection of strings that indicate which keys to remove from the file metadata.
         Args:
-            value: Value to set for the metadataToRemove property.
+            value: Value to set for the metadata_to_remove property.
         """
         self._metadata_to_remove = value
     

@@ -54,8 +54,8 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "service": lambda n : setattr(self, 'service', n.get_str_value()),
-            "service_plan_id": lambda n : setattr(self, 'service_plan_id', n.get_object_value(Guid)),
-            "sku_id": lambda n : setattr(self, 'sku_id', n.get_object_value(Guid)),
+            "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_object_value(Guid)),
+            "skuId": lambda n : setattr(self, 'sku_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -102,7 +102,7 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the servicePlanId property value. The servicePlanId property
         Args:
-            value: Value to set for the servicePlanId property.
+            value: Value to set for the service_plan_id property.
         """
         self._service_plan_id = value
     
@@ -119,7 +119,7 @@ class ActivateServicePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the skuId property value. The skuId property
         Args:
-            value: Value to set for the skuId property.
+            value: Value to set for the sku_id property.
         """
         self._sku_id = value
     

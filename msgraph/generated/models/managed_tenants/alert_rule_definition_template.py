@@ -60,7 +60,7 @@ class AlertRuleDefinitionTemplate(AdditionalDataHolder, Parsable):
         """
         Sets the defaultSeverity property value. The defaultSeverity property
         Args:
-            value: Value to set for the defaultSeverity property.
+            value: Value to set for the default_severity property.
         """
         self._default_severity = value
     
@@ -70,7 +70,7 @@ class AlertRuleDefinitionTemplate(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_severity": lambda n : setattr(self, 'default_severity', n.get_enum_value(alert_severity.AlertSeverity)),
+            "defaultSeverity": lambda n : setattr(self, 'default_severity', n.get_enum_value(alert_severity.AlertSeverity)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -88,7 +88,7 @@ class AlertRuleDefinitionTemplate(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

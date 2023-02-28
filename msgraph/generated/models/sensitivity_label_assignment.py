@@ -36,7 +36,7 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentMethod property value. The assignmentMethod property
         Args:
-            value: Value to set for the assignmentMethod property.
+            value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
     
@@ -74,10 +74,10 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_method": lambda n : setattr(self, 'assignment_method', n.get_enum_value(sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod)),
+            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sensitivity_label_id": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "sensitivityLabelId": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         return fields
     
@@ -94,7 +94,7 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -111,7 +111,7 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the sensitivityLabelId property value. The unique identifier for the sensitivity label assigned to the file.
         Args:
-            value: Value to set for the sensitivityLabelId property.
+            value: Value to set for the sensitivity_label_id property.
         """
         self._sensitivity_label_id = value
     
@@ -142,7 +142,7 @@ class SensitivityLabelAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the tenantId property value. The unique identifier for the tenant that hosts the file when this label is applied.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

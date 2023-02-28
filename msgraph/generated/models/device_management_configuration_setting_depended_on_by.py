@@ -60,7 +60,7 @@ class DeviceManagementConfigurationSettingDependedOnBy(AdditionalDataHolder, Par
         """
         Sets the dependedOnBy property value. Identifier of child setting that is dependent on the current setting
         Args:
-            value: Value to set for the dependedOnBy property.
+            value: Value to set for the depended_on_by property.
         """
         self._depended_on_by = value
     
@@ -70,7 +70,7 @@ class DeviceManagementConfigurationSettingDependedOnBy(AdditionalDataHolder, Par
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "depended_on_by": lambda n : setattr(self, 'depended_on_by', n.get_str_value()),
+            "dependedOnBy": lambda n : setattr(self, 'depended_on_by', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
         }
@@ -89,7 +89,7 @@ class DeviceManagementConfigurationSettingDependedOnBy(AdditionalDataHolder, Par
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

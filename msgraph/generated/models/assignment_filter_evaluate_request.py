@@ -67,7 +67,7 @@ class AssignmentFilterEvaluateRequest(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "order_by": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
+            "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
             "rule": lambda n : setattr(self, 'rule', n.get_str_value()),
             "search": lambda n : setattr(self, 'search', n.get_str_value()),
@@ -89,7 +89,7 @@ class AssignmentFilterEvaluateRequest(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -106,7 +106,7 @@ class AssignmentFilterEvaluateRequest(AdditionalDataHolder, Parsable):
         """
         Sets the orderBy property value. Order the devices should be sorted in. Default is ascending on device name.
         Args:
-            value: Value to set for the orderBy property.
+            value: Value to set for the order_by property.
         """
         self._order_by = value
     

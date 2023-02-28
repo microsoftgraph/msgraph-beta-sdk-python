@@ -49,7 +49,7 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the draftShift property value. The draft version of this shift that is viewable by managers. Required.
         Args:
-            value: Value to set for the draftShift property.
+            value: Value to set for the draft_shift property.
         """
         self._draft_shift = value
     
@@ -59,11 +59,11 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "draft_shift": lambda n : setattr(self, 'draft_shift', n.get_object_value(shift_item.ShiftItem)),
-            "is_staged_for_deletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
-            "scheduling_group_id": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
-            "shared_shift": lambda n : setattr(self, 'shared_shift', n.get_object_value(shift_item.ShiftItem)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "draftShift": lambda n : setattr(self, 'draft_shift', n.get_object_value(shift_item.ShiftItem)),
+            "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
+            "schedulingGroupId": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
+            "sharedShift": lambda n : setattr(self, 'shared_shift', n.get_object_value(shift_item.ShiftItem)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -82,7 +82,7 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the isStagedForDeletion property value. The isStagedForDeletion property
         Args:
-            value: Value to set for the isStagedForDeletion property.
+            value: Value to set for the is_staged_for_deletion property.
         """
         self._is_staged_for_deletion = value
     
@@ -99,7 +99,7 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the schedulingGroupId property value. The schedulingGroupId property
         Args:
-            value: Value to set for the schedulingGroupId property.
+            value: Value to set for the scheduling_group_id property.
         """
         self._scheduling_group_id = value
     
@@ -131,7 +131,7 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the sharedShift property value. The sharedShift property
         Args:
-            value: Value to set for the sharedShift property.
+            value: Value to set for the shared_shift property.
         """
         self._shared_shift = value
     
@@ -148,7 +148,7 @@ class Shift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the userId property value. The userId property
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

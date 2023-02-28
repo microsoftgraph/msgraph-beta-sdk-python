@@ -38,7 +38,7 @@ class AuthenticationListener(entity.Entity):
         """
         fields = {
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "source_filter": lambda n : setattr(self, 'source_filter', n.get_object_value(authentication_source_filter.AuthenticationSourceFilter)),
+            "sourceFilter": lambda n : setattr(self, 'source_filter', n.get_object_value(authentication_source_filter.AuthenticationSourceFilter)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -86,7 +86,7 @@ class AuthenticationListener(entity.Entity):
         """
         Sets the sourceFilter property value. Filter based on the source of the authentication that is used to determine whether the listener is evaluated. This is currently limited to evaluations based on application the user is authenticating to.
         Args:
-            value: Value to set for the sourceFilter property.
+            value: Value to set for the source_filter property.
         """
         self._source_filter = value
     

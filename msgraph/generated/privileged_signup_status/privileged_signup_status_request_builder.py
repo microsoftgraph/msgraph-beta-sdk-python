@@ -24,6 +24,13 @@ class PrivilegedSignupStatusRequestBuilder():
     Provides operations to manage the collection of privilegedSignupStatus entities.
     """
     @property
+    def can_sign_up(self) -> can_sign_up_request_builder.CanSignUpRequestBuilder:
+        """
+        Provides operations to call the canSignUp method.
+        """
+        return can_sign_up_request_builder.CanSignUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def complete_setup(self) -> complete_setup_request_builder.CompleteSetupRequestBuilder:
         """
         Provides operations to call the completeSetup method.
@@ -38,18 +45,18 @@ class PrivilegedSignupStatusRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def is_signed_up(self) -> is_signed_up_request_builder.IsSignedUpRequestBuilder:
+        """
+        Provides operations to call the isSignedUp method.
+        """
+        return is_signed_up_request_builder.IsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def sign_up(self) -> sign_up_request_builder.SignUpRequestBuilder:
         """
         Provides operations to call the signUp method.
         """
         return sign_up_request_builder.SignUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def can_sign_up(self,) -> can_sign_up_request_builder.CanSignUpRequestBuilder:
-        """
-        Provides operations to call the canSignUp method.
-        Returns: can_sign_up_request_builder.CanSignUpRequestBuilder
-        """
-        return can_sign_up_request_builder.CanSignUpRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -69,12 +76,11 @@ class PrivilegedSignupStatusRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
+    async def get(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]:
         """
         Get entities from privilegedSignupStatus
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -86,22 +92,14 @@ class PrivilegedSignupStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status_collection_response.PrivilegedSignupStatusCollectionResponse, error_mapping)
     
-    def is_signed_up(self,) -> is_signed_up_request_builder.IsSignedUpRequestBuilder:
-        """
-        Provides operations to call the isSignedUp method.
-        Returns: is_signed_up_request_builder.IsSignedUpRequestBuilder
-        """
-        return is_signed_up_request_builder.IsSignedUpRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
+    async def post(self,body: Optional[privileged_signup_status.PrivilegedSignupStatus] = None, request_configuration: Optional[PrivilegedSignupStatusRequestBuilderPostRequestConfiguration] = None) -> Optional[privileged_signup_status.PrivilegedSignupStatus]:
         """
         Add new entity to privilegedSignupStatus
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[privileged_signup_status.PrivilegedSignupStatus]
         """
         if body is None:
@@ -115,7 +113,7 @@ class PrivilegedSignupStatusRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, privileged_signup_status.PrivilegedSignupStatus, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PrivilegedSignupStatusRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -128,7 +126,7 @@ class PrivilegedSignupStatusRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -149,7 +147,7 @@ class PrivilegedSignupStatusRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -219,7 +217,7 @@ class PrivilegedSignupStatusRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -234,7 +232,7 @@ class PrivilegedSignupStatusRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

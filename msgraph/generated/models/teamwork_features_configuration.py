@@ -66,7 +66,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the emailToSendLogsAndFeedback property value. Email address to send logs and feedback.
         Args:
-            value: Value to set for the emailToSendLogsAndFeedback property.
+            value: Value to set for the email_to_send_logs_and_feedback property.
         """
         self._email_to_send_logs_and_feedback = value
     
@@ -76,11 +76,11 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "email_to_send_logs_and_feedback": lambda n : setattr(self, 'email_to_send_logs_and_feedback', n.get_str_value()),
-            "is_auto_screen_share_enabled": lambda n : setattr(self, 'is_auto_screen_share_enabled', n.get_bool_value()),
-            "is_bluetooth_beaconing_enabled": lambda n : setattr(self, 'is_bluetooth_beaconing_enabled', n.get_bool_value()),
-            "is_hide_meeting_names_enabled": lambda n : setattr(self, 'is_hide_meeting_names_enabled', n.get_bool_value()),
-            "is_send_logs_and_feedback_enabled": lambda n : setattr(self, 'is_send_logs_and_feedback_enabled', n.get_bool_value()),
+            "emailToSendLogsAndFeedback": lambda n : setattr(self, 'email_to_send_logs_and_feedback', n.get_str_value()),
+            "isAutoScreenShareEnabled": lambda n : setattr(self, 'is_auto_screen_share_enabled', n.get_bool_value()),
+            "isBluetoothBeaconingEnabled": lambda n : setattr(self, 'is_bluetooth_beaconing_enabled', n.get_bool_value()),
+            "isHideMeetingNamesEnabled": lambda n : setattr(self, 'is_hide_meeting_names_enabled', n.get_bool_value()),
+            "isSendLogsAndFeedbackEnabled": lambda n : setattr(self, 'is_send_logs_and_feedback_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -98,7 +98,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isAutoScreenShareEnabled property value. True if auto screen shared is enabled.
         Args:
-            value: Value to set for the isAutoScreenShareEnabled property.
+            value: Value to set for the is_auto_screen_share_enabled property.
         """
         self._is_auto_screen_share_enabled = value
     
@@ -115,7 +115,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isBluetoothBeaconingEnabled property value. True if Bluetooth beaconing is enabled.
         Args:
-            value: Value to set for the isBluetoothBeaconingEnabled property.
+            value: Value to set for the is_bluetooth_beaconing_enabled property.
         """
         self._is_bluetooth_beaconing_enabled = value
     
@@ -132,7 +132,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isHideMeetingNamesEnabled property value. True if hiding meeting names is enabled.
         Args:
-            value: Value to set for the isHideMeetingNamesEnabled property.
+            value: Value to set for the is_hide_meeting_names_enabled property.
         """
         self._is_hide_meeting_names_enabled = value
     
@@ -149,7 +149,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isSendLogsAndFeedbackEnabled property value. True if sending logs and feedback is enabled.
         Args:
-            value: Value to set for the isSendLogsAndFeedbackEnabled property.
+            value: Value to set for the is_send_logs_and_feedback_enabled property.
         """
         self._is_send_logs_and_feedback_enabled = value
     
@@ -166,7 +166,7 @@ class TeamworkFeaturesConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -2,7 +2,7 @@ from enum import Enum
 
 class DeviceEventLevel(Enum):
     # Indicates that the device event level is none.
-    None_escaped = "none",
+    None_ = "none",
     # Indicates that the device event level is verbose.
     Verbose = "verbose",
     # Indicates that the device event level is information.

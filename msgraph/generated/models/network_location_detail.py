@@ -55,8 +55,8 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "network_names": lambda n : setattr(self, 'network_names', n.get_collection_of_primitive_values(str)),
-            "network_type": lambda n : setattr(self, 'network_type', n.get_enum_value(network_type.NetworkType)),
+            "networkNames": lambda n : setattr(self, 'network_names', n.get_collection_of_primitive_values(str)),
+            "networkType": lambda n : setattr(self, 'network_type', n.get_enum_value(network_type.NetworkType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -74,7 +74,7 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the networkNames property value. Provides the name of the network used when signing in.
         Args:
-            value: Value to set for the networkNames property.
+            value: Value to set for the network_names property.
         """
         self._network_names = value
     
@@ -91,7 +91,7 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the networkType property value. Provides the type of network used when signing in. Possible values are: intranet, extranet, namedNetwork, trusted, unknownFutureValue.
         Args:
-            value: Value to set for the networkType property.
+            value: Value to set for the network_type property.
         """
         self._network_type = value
     
@@ -108,7 +108,7 @@ class NetworkLocationDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

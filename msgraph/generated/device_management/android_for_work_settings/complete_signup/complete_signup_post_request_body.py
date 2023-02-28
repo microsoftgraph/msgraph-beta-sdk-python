@@ -56,7 +56,7 @@ class CompleteSignupPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the enterpriseToken property value. The enterpriseToken property
         Args:
-            value: Value to set for the enterpriseToken property.
+            value: Value to set for the enterprise_token property.
         """
         self._enterprise_token = value
     
@@ -66,7 +66,7 @@ class CompleteSignupPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enterprise_token": lambda n : setattr(self, 'enterprise_token', n.get_str_value()),
+            "enterpriseToken": lambda n : setattr(self, 'enterprise_token', n.get_str_value()),
         }
         return fields
     

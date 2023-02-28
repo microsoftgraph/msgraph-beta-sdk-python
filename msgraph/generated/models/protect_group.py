@@ -20,7 +20,7 @@ class ProtectGroup(label_action_base.LabelActionBase):
         """
         Sets the allowEmailFromGuestUsers property value. The allowEmailFromGuestUsers property
         Args:
-            value: Value to set for the allowEmailFromGuestUsers property.
+            value: Value to set for the allow_email_from_guest_users property.
         """
         self._allow_email_from_guest_users = value
     
@@ -37,7 +37,7 @@ class ProtectGroup(label_action_base.LabelActionBase):
         """
         Sets the allowGuestUsers property value. The allowGuestUsers property
         Args:
-            value: Value to set for the allowGuestUsers property.
+            value: Value to set for the allow_guest_users property.
         """
         self._allow_guest_users = value
     
@@ -72,8 +72,8 @@ class ProtectGroup(label_action_base.LabelActionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_email_from_guest_users": lambda n : setattr(self, 'allow_email_from_guest_users', n.get_bool_value()),
-            "allow_guest_users": lambda n : setattr(self, 'allow_guest_users', n.get_bool_value()),
+            "allowEmailFromGuestUsers": lambda n : setattr(self, 'allow_email_from_guest_users', n.get_bool_value()),
+            "allowGuestUsers": lambda n : setattr(self, 'allow_guest_users', n.get_bool_value()),
             "privacy": lambda n : setattr(self, 'privacy', n.get_enum_value(group_privacy.GroupPrivacy)),
         }
         super_fields = super().get_field_deserializers()

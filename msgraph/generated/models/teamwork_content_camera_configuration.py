@@ -55,9 +55,9 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_content_camera_inverted": lambda n : setattr(self, 'is_content_camera_inverted', n.get_bool_value()),
-            "is_content_camera_optional": lambda n : setattr(self, 'is_content_camera_optional', n.get_bool_value()),
-            "is_content_enhancement_enabled": lambda n : setattr(self, 'is_content_enhancement_enabled', n.get_bool_value()),
+            "isContentCameraInverted": lambda n : setattr(self, 'is_content_camera_inverted', n.get_bool_value()),
+            "isContentCameraOptional": lambda n : setattr(self, 'is_content_camera_optional', n.get_bool_value()),
+            "isContentEnhancementEnabled": lambda n : setattr(self, 'is_content_enhancement_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -75,7 +75,7 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isContentCameraInverted property value. True if the content camera is inverted.
         Args:
-            value: Value to set for the isContentCameraInverted property.
+            value: Value to set for the is_content_camera_inverted property.
         """
         self._is_content_camera_inverted = value
     
@@ -92,7 +92,7 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isContentCameraOptional property value. True if the content camera is optional.
         Args:
-            value: Value to set for the isContentCameraOptional property.
+            value: Value to set for the is_content_camera_optional property.
         """
         self._is_content_camera_optional = value
     
@@ -109,7 +109,7 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isContentEnhancementEnabled property value. True if the content enhancement is enabled.
         Args:
-            value: Value to set for the isContentEnhancementEnabled property.
+            value: Value to set for the is_content_enhancement_enabled property.
         """
         self._is_content_enhancement_enabled = value
     
@@ -126,7 +126,7 @@ class TeamworkContentCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

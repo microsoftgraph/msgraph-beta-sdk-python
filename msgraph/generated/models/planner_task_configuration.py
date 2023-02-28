@@ -42,7 +42,7 @@ class PlannerTaskConfiguration(entity.Entity):
         """
         Sets the editPolicy property value. Policy configuration for tasks created for the businessScenario when they are being changed outside of the scenario.
         Args:
-            value: Value to set for the editPolicy property.
+            value: Value to set for the edit_policy property.
         """
         self._edit_policy = value
     
@@ -52,7 +52,7 @@ class PlannerTaskConfiguration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "edit_policy": lambda n : setattr(self, 'edit_policy', n.get_object_value(planner_task_policy.PlannerTaskPolicy)),
+            "editPolicy": lambda n : setattr(self, 'edit_policy', n.get_object_value(planner_task_policy.PlannerTaskPolicy)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

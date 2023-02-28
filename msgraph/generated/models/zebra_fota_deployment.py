@@ -55,7 +55,7 @@ class ZebraFotaDeployment(entity.Entity):
         """
         Sets the deploymentAssignments property value. Collection of Android FOTA Assignment
         Args:
-            value: Value to set for the deploymentAssignments property.
+            value: Value to set for the deployment_assignments property.
         """
         self._deployment_assignments = value
     
@@ -72,7 +72,7 @@ class ZebraFotaDeployment(entity.Entity):
         """
         Sets the deploymentSettings property value. The Zebra FOTA deployment complex type that describes the settings required to create a FOTA deployment.
         Args:
-            value: Value to set for the deploymentSettings property.
+            value: Value to set for the deployment_settings property.
         """
         self._deployment_settings = value
     
@@ -89,7 +89,7 @@ class ZebraFotaDeployment(entity.Entity):
         """
         Sets the deploymentStatus property value. Represents the deployment status from Zebra. The status is a high level status of the deployment as opposed being a detailed status per device.
         Args:
-            value: Value to set for the deploymentStatus property.
+            value: Value to set for the deployment_status property.
         """
         self._deployment_status = value
     
@@ -123,7 +123,7 @@ class ZebraFotaDeployment(entity.Entity):
         """
         Sets the displayName property value. A human readable name of the deployment.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -133,11 +133,11 @@ class ZebraFotaDeployment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deployment_assignments": lambda n : setattr(self, 'deployment_assignments', n.get_collection_of_object_values(android_fota_deployment_assignment.AndroidFotaDeploymentAssignment)),
-            "deployment_settings": lambda n : setattr(self, 'deployment_settings', n.get_object_value(zebra_fota_deployment_settings.ZebraFotaDeploymentSettings)),
-            "deployment_status": lambda n : setattr(self, 'deployment_status', n.get_object_value(zebra_fota_deployment_status.ZebraFotaDeploymentStatus)),
+            "deploymentAssignments": lambda n : setattr(self, 'deployment_assignments', n.get_collection_of_object_values(android_fota_deployment_assignment.AndroidFotaDeploymentAssignment)),
+            "deploymentSettings": lambda n : setattr(self, 'deployment_settings', n.get_object_value(zebra_fota_deployment_settings.ZebraFotaDeploymentSettings)),
+            "deploymentStatus": lambda n : setattr(self, 'deployment_status', n.get_object_value(zebra_fota_deployment_status.ZebraFotaDeploymentStatus)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
