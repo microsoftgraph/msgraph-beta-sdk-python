@@ -53,8 +53,8 @@ class SendMailPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "message": lambda n : setattr(self, 'message', n.get_object_value(message.Message)),
-            "save_to_sent_items": lambda n : setattr(self, 'save_to_sent_items', n.get_bool_value()),
+            "Message": lambda n : setattr(self, 'message', n.get_object_value(message.Message)),
+            "SaveToSentItems": lambda n : setattr(self, 'save_to_sent_items', n.get_bool_value()),
         }
         return fields
     
@@ -88,7 +88,7 @@ class SendMailPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the saveToSentItems property value. The SaveToSentItems property
         Args:
-            value: Value to set for the SaveToSentItems property.
+            value: Value to set for the save_to_sent_items property.
         """
         self._save_to_sent_items = value
     

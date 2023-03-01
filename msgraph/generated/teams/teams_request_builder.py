@@ -22,18 +22,25 @@ class TeamsRequestBuilder():
     Provides operations to manage the collection of team entities.
     """
     @property
+    def all_messages(self) -> all_messages_request_builder.AllMessagesRequestBuilder:
+        """
+        Provides operations to call the allMessages method.
+        """
+        return all_messages_request_builder.AllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def count(self) -> count_request_builder.CountRequestBuilder:
         """
         Provides operations to count the resources in the collection.
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def all_messages(self,) -> all_messages_request_builder.AllMessagesRequestBuilder:
+    @property
+    def get_all_messages(self) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
         """
-        Provides operations to call the allMessages method.
-        Returns: all_messages_request_builder.AllMessagesRequestBuilder
+        Provides operations to call the getAllMessages method.
         """
-        return all_messages_request_builder.AllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
+        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -53,12 +60,11 @@ class TeamsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TeamsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team_collection_response.TeamCollectionResponse]:
+    async def get(self,request_configuration: Optional[TeamsRequestBuilderGetRequestConfiguration] = None) -> Optional[team_collection_response.TeamCollectionResponse]:
         """
         List all teams in an organization.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team_collection_response.TeamCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -70,22 +76,14 @@ class TeamsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team_collection_response.TeamCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team_collection_response.TeamCollectionResponse, error_mapping)
     
-    def get_all_messages(self,) -> get_all_messages_request_builder.GetAllMessagesRequestBuilder:
-        """
-        Provides operations to call the getAllMessages method.
-        Returns: get_all_messages_request_builder.GetAllMessagesRequestBuilder
-        """
-        return get_all_messages_request_builder.GetAllMessagesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[team.Team] = None, request_configuration: Optional[TeamsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[team.Team]:
+    async def post(self,body: Optional[team.Team] = None, request_configuration: Optional[TeamsRequestBuilderPostRequestConfiguration] = None) -> Optional[team.Team]:
         """
         Create a new team.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[team.Team]
         """
         if body is None:
@@ -99,7 +97,7 @@ class TeamsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, team.Team, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, team.Team, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TeamsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -112,7 +110,7 @@ class TeamsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -133,7 +131,7 @@ class TeamsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -203,7 +201,7 @@ class TeamsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -218,7 +216,7 @@ class TeamsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

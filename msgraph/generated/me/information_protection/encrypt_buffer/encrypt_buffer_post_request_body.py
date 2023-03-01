@@ -69,7 +69,7 @@ class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "buffer": lambda n : setattr(self, 'buffer', n.get_bytes_value()),
-            "label_id": lambda n : setattr(self, 'label_id', n.get_object_value(Guid)),
+            "labelId": lambda n : setattr(self, 'label_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -86,7 +86,7 @@ class EncryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the labelId property value. The labelId property
         Args:
-            value: Value to set for the labelId property.
+            value: Value to set for the label_id property.
         """
         self._label_id = value
     

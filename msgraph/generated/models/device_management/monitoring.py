@@ -21,7 +21,7 @@ class Monitoring(entity.Entity):
         """
         Sets the alertRecords property value. The collection of records of alert events.
         Args:
-            value: Value to set for the alertRecords property.
+            value: Value to set for the alert_records property.
         """
         self._alert_records = value
     
@@ -38,7 +38,7 @@ class Monitoring(entity.Entity):
         """
         Sets the alertRules property value. The collection of alert rules.
         Args:
-            value: Value to set for the alertRules property.
+            value: Value to set for the alert_rules property.
         """
         self._alert_rules = value
     
@@ -72,8 +72,8 @@ class Monitoring(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_records": lambda n : setattr(self, 'alert_records', n.get_collection_of_object_values(alert_record.AlertRecord)),
-            "alert_rules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(alert_rule.AlertRule)),
+            "alertRecords": lambda n : setattr(self, 'alert_records', n.get_collection_of_object_values(alert_record.AlertRecord)),
+            "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(alert_rule.AlertRule)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

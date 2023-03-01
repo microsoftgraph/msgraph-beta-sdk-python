@@ -30,19 +30,18 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/microsoft.graph.createPasswordSingleSignOnCredentials"
+        self.url_template: str = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/createPasswordSingleSignOnCredentials"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[create_password_single_sign_on_credentials_post_request_body.CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]:
+    async def post(self,body: Optional[create_password_single_sign_on_credentials_post_request_body.CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]:
         """
         Create single sign-on credentials using a password for a user or group.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet]
         """
         if body is None:
@@ -56,7 +55,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, password_single_sign_on_credential_set.PasswordSingleSignOnCredentialSet, error_mapping)
     
     def to_post_request_information(self,body: Optional[create_password_single_sign_on_credentials_post_request_body.CreatePasswordSingleSignOnCredentialsPostRequestBody] = None, request_configuration: Optional[CreatePasswordSingleSignOnCredentialsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class CreatePasswordSingleSignOnCredentialsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -64,7 +64,7 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the extensionIdentifier property value. Gets or sets the bundle ID of the app extension that performs SSO for the specified URLs.
         Args:
-            value: Value to set for the extensionIdentifier property.
+            value: Value to set for the extension_identifier property.
         """
         self._extension_identifier = value
     
@@ -75,9 +75,9 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         fields = {
             "configurations": lambda n : setattr(self, 'configurations', n.get_collection_of_object_values(key_typed_value_pair.KeyTypedValuePair)),
-            "extension_identifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),
-            "team_identifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
-            "url_prefixes": lambda n : setattr(self, 'url_prefixes', n.get_collection_of_primitive_values(str)),
+            "extensionIdentifier": lambda n : setattr(self, 'extension_identifier', n.get_str_value()),
+            "teamIdentifier": lambda n : setattr(self, 'team_identifier', n.get_str_value()),
+            "urlPrefixes": lambda n : setattr(self, 'url_prefixes', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -110,7 +110,7 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the teamIdentifier property value. Gets or sets the team ID of the app extension that performs SSO for the specified URLs.
         Args:
-            value: Value to set for the teamIdentifier property.
+            value: Value to set for the team_identifier property.
         """
         self._team_identifier = value
     
@@ -127,7 +127,7 @@ class RedirectSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the urlPrefixes property value. One or more URL prefixes of identity providers on whose behalf the app extension performs single sign-on. URLs must begin with http:// or https://. All URL prefixes must be unique for all profiles.
         Args:
-            value: Value to set for the urlPrefixes property.
+            value: Value to set for the url_prefixes property.
         """
         self._url_prefixes = value
     

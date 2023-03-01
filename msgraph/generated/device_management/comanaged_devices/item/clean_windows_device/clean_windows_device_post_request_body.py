@@ -49,7 +49,7 @@ class CleanWindowsDevicePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "keep_user_data": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
+            "keepUserData": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class CleanWindowsDevicePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keepUserData property value. The keepUserData property
         Args:
-            value: Value to set for the keepUserData property.
+            value: Value to set for the keep_user_data property.
         """
         self._keep_user_data = value
     

@@ -23,7 +23,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the activityGroupNames property value. The activityGroupNames property
         Args:
-            value: Value to set for the activityGroupNames property.
+            value: Value to set for the activity_group_names property.
         """
         self._activity_group_names = value
     
@@ -57,7 +57,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the azureSubscriptionId property value. The azureSubscriptionId property
         Args:
-            value: Value to set for the azureSubscriptionId property.
+            value: Value to set for the azure_subscription_id property.
         """
         self._azure_subscription_id = value
     
@@ -74,7 +74,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the azureTenantId property value. The azureTenantId property
         Args:
-            value: Value to set for the azureTenantId property.
+            value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
     
@@ -125,7 +125,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the countHits property value. The countHits property
         Args:
-            value: Value to set for the countHits property.
+            value: Value to set for the count_hits property.
         """
         self._count_hits = value
     
@@ -142,7 +142,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the countHosts property value. The countHosts property
         Args:
-            value: Value to set for the countHosts property.
+            value: Value to set for the count_hosts property.
         """
         self._count_hosts = value
     
@@ -171,7 +171,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the firstSeenDateTime property value. The firstSeenDateTime property
         Args:
-            value: Value to set for the firstSeenDateTime property.
+            value: Value to set for the first_seen_date_time property.
         """
         self._first_seen_date_time = value
     
@@ -181,19 +181,19 @@ class IpSecurityProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_group_names": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
+            "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
-            "azure_subscription_id": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
-            "azure_tenant_id": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
-            "count_hits": lambda n : setattr(self, 'count_hits', n.get_int_value()),
-            "count_hosts": lambda n : setattr(self, 'count_hosts', n.get_int_value()),
-            "first_seen_date_time": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
-            "ip_categories": lambda n : setattr(self, 'ip_categories', n.get_collection_of_object_values(ip_category.IpCategory)),
-            "ip_reference_data": lambda n : setattr(self, 'ip_reference_data', n.get_collection_of_object_values(ip_reference_data.IpReferenceData)),
-            "last_seen_date_time": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
-            "risk_score": lambda n : setattr(self, 'risk_score', n.get_str_value()),
+            "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
+            "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
+            "countHits": lambda n : setattr(self, 'count_hits', n.get_int_value()),
+            "countHosts": lambda n : setattr(self, 'count_hosts', n.get_int_value()),
+            "firstSeenDateTime": lambda n : setattr(self, 'first_seen_date_time', n.get_datetime_value()),
+            "ipCategories": lambda n : setattr(self, 'ip_categories', n.get_collection_of_object_values(ip_category.IpCategory)),
+            "ipReferenceData": lambda n : setattr(self, 'ip_reference_data', n.get_collection_of_object_values(ip_reference_data.IpReferenceData)),
+            "lastSeenDateTime": lambda n : setattr(self, 'last_seen_date_time', n.get_datetime_value()),
+            "riskScore": lambda n : setattr(self, 'risk_score', n.get_str_value()),
             "tags": lambda n : setattr(self, 'tags', n.get_collection_of_primitive_values(str)),
-            "vendor_information": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
+            "vendorInformation": lambda n : setattr(self, 'vendor_information', n.get_object_value(security_vendor_information.SecurityVendorInformation)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -212,7 +212,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the ipCategories property value. The ipCategories property
         Args:
-            value: Value to set for the ipCategories property.
+            value: Value to set for the ip_categories property.
         """
         self._ip_categories = value
     
@@ -229,7 +229,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the ipReferenceData property value. The ipReferenceData property
         Args:
-            value: Value to set for the ipReferenceData property.
+            value: Value to set for the ip_reference_data property.
         """
         self._ip_reference_data = value
     
@@ -246,7 +246,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the lastSeenDateTime property value. The lastSeenDateTime property
         Args:
-            value: Value to set for the lastSeenDateTime property.
+            value: Value to set for the last_seen_date_time property.
         """
         self._last_seen_date_time = value
     
@@ -263,7 +263,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the riskScore property value. The riskScore property
         Args:
-            value: Value to set for the riskScore property.
+            value: Value to set for the risk_score property.
         """
         self._risk_score = value
     
@@ -320,7 +320,7 @@ class IpSecurityProfile(entity.Entity):
         """
         Sets the vendorInformation property value. The vendorInformation property
         Args:
-            value: Value to set for the vendorInformation property.
+            value: Value to set for the vendor_information property.
         """
         self._vendor_information = value
     

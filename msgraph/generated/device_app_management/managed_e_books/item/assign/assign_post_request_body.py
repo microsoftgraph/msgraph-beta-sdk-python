@@ -51,7 +51,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_e_book_assignments": lambda n : setattr(self, 'managed_e_book_assignments', n.get_collection_of_object_values(managed_e_book_assignment.ManagedEBookAssignment)),
+            "managedEBookAssignments": lambda n : setattr(self, 'managed_e_book_assignments', n.get_collection_of_object_values(managed_e_book_assignment.ManagedEBookAssignment)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the managedEBookAssignments property value. The managedEBookAssignments property
         Args:
-            value: Value to set for the managedEBookAssignments property.
+            value: Value to set for the managed_e_book_assignments property.
         """
         self._managed_e_book_assignments = value
     

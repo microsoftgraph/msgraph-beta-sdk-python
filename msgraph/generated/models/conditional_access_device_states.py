@@ -60,7 +60,7 @@ class ConditionalAccessDeviceStates(AdditionalDataHolder, Parsable):
         """
         Sets the excludeStates property value. States excluded from the scope of the policy. Possible values: Compliant, DomainJoined.
         Args:
-            value: Value to set for the excludeStates property.
+            value: Value to set for the exclude_states property.
         """
         self._exclude_states = value
     
@@ -70,8 +70,8 @@ class ConditionalAccessDeviceStates(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "exclude_states": lambda n : setattr(self, 'exclude_states', n.get_collection_of_primitive_values(str)),
-            "include_states": lambda n : setattr(self, 'include_states', n.get_collection_of_primitive_values(str)),
+            "excludeStates": lambda n : setattr(self, 'exclude_states', n.get_collection_of_primitive_values(str)),
+            "includeStates": lambda n : setattr(self, 'include_states', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class ConditionalAccessDeviceStates(AdditionalDataHolder, Parsable):
         """
         Sets the includeStates property value. States in the scope of the policy. All is the only allowed value.
         Args:
-            value: Value to set for the includeStates property.
+            value: Value to set for the include_states property.
         """
         self._include_states = value
     
@@ -106,7 +106,7 @@ class ConditionalAccessDeviceStates(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

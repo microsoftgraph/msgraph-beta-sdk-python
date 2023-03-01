@@ -49,7 +49,7 @@ class DismissPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_ids": lambda n : setattr(self, 'user_ids', n.get_collection_of_primitive_values(str)),
+            "userIds": lambda n : setattr(self, 'user_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -77,7 +77,7 @@ class DismissPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the userIds property value. The userIds property
         Args:
-            value: Value to set for the userIds property.
+            value: Value to set for the user_ids property.
         """
         self._user_ids = value
     

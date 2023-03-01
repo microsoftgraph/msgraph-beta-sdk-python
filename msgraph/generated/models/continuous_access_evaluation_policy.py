@@ -68,7 +68,7 @@ class ContinuousAccessEvaluationPolicy(entity.Entity):
         """
         Sets the displayName property value. The value is always Continuous Access Evaluation. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -79,9 +79,9 @@ class ContinuousAccessEvaluationPolicy(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_primitive_values(str)),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "migrate": lambda n : setattr(self, 'migrate', n.get_bool_value()),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_primitive_values(str)),
         }
@@ -119,7 +119,7 @@ class ContinuousAccessEvaluationPolicy(entity.Entity):
         """
         Sets the isEnabled property value. true to indicate whether continuous access evaluation should be performed; otherwise false. Read-only.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     

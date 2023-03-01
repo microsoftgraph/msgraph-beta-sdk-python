@@ -19,7 +19,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the activeDirectorySiteCode property value. Gets or sets the Active Directory site.
         Args:
-            value: Value to set for the activeDirectorySiteCode property.
+            value: Value to set for the active_directory_site_code property.
         """
         self._active_directory_site_code = value
     
@@ -36,7 +36,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the blockActiveDirectorySiteAutoDiscovery property value. Enables or disables whether the Kerberos extension can automatically determine its site name.
         Args:
-            value: Value to set for the blockActiveDirectorySiteAutoDiscovery property.
+            value: Value to set for the block_active_directory_site_auto_discovery property.
         """
         self._block_active_directory_site_auto_discovery = value
     
@@ -53,7 +53,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the blockAutomaticLogin property value. Enables or disables Keychain usage.
         Args:
-            value: Value to set for the blockAutomaticLogin property.
+            value: Value to set for the block_automatic_login property.
         """
         self._block_automatic_login = value
     
@@ -70,7 +70,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the cacheName property value. Gets or sets the Generic Security Services name of the Kerberos cache to use for this profile.
         Args:
-            value: Value to set for the cacheName property.
+            value: Value to set for the cache_name property.
         """
         self._cache_name = value
     
@@ -134,12 +134,12 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         self._sign_in_help_text: Optional[str] = None
         # When set to True, LDAP connections are required to use Transport Layer Security (TLS). Available for devices running macOS versions 11 and later.
         self._tls_for_l_d_a_p_required: Optional[bool] = None
-        # This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
-        self._username_label_custom: Optional[str] = None
         # Gets or sets the principle user name to use for this profile. The realm name does not need to be included.
         self._user_principal_name: Optional[str] = None
         # When set to True, the user isn’t prompted to set up the Kerberos extension until the extension is enabled by the admin, or a Kerberos challenge is received. Available for devices running macOS versions 11 and later.
         self._user_setup_delayed: Optional[bool] = None
+        # This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
+        self._username_label_custom: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSKerberosSingleSignOnExtension:
@@ -166,7 +166,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the credentialBundleIdAccessControlList property value. Gets or sets a list of app Bundle IDs allowed to access the Kerberos Ticket Granting Ticket.
         Args:
-            value: Value to set for the credentialBundleIdAccessControlList property.
+            value: Value to set for the credential_bundle_id_access_control_list property.
         """
         self._credential_bundle_id_access_control_list = value
     
@@ -183,7 +183,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the credentialsCacheMonitored property value. When set to True, the credential is requested on the next matching Kerberos challenge or network state change. When the credential is expired or missing, a new credential is created. Available for devices running macOS versions 12 and later.
         Args:
-            value: Value to set for the credentialsCacheMonitored property.
+            value: Value to set for the credentials_cache_monitored property.
         """
         self._credentials_cache_monitored = value
     
@@ -200,7 +200,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the domainRealms property value. Gets or sets a list of realms for custom domain-realm mapping. Realms are case sensitive.
         Args:
-            value: Value to set for the domainRealms property.
+            value: Value to set for the domain_realms property.
         """
         self._domain_realms = value
     
@@ -227,36 +227,36 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_directory_site_code": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
-            "block_active_directory_site_auto_discovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
-            "block_automatic_login": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),
-            "cache_name": lambda n : setattr(self, 'cache_name', n.get_str_value()),
-            "credential_bundle_id_access_control_list": lambda n : setattr(self, 'credential_bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
-            "credentials_cache_monitored": lambda n : setattr(self, 'credentials_cache_monitored', n.get_bool_value()),
-            "domain_realms": lambda n : setattr(self, 'domain_realms', n.get_collection_of_primitive_values(str)),
+            "activeDirectorySiteCode": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
+            "blockActiveDirectorySiteAutoDiscovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
+            "blockAutomaticLogin": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),
+            "cacheName": lambda n : setattr(self, 'cache_name', n.get_str_value()),
+            "credentialsCacheMonitored": lambda n : setattr(self, 'credentials_cache_monitored', n.get_bool_value()),
+            "credentialBundleIdAccessControlList": lambda n : setattr(self, 'credential_bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
-            "is_default_realm": lambda n : setattr(self, 'is_default_realm', n.get_bool_value()),
-            "kerberos_apps_in_bundle_id_a_c_l_included": lambda n : setattr(self, 'kerberos_apps_in_bundle_id_a_c_l_included', n.get_bool_value()),
-            "managed_apps_in_bundle_id_a_c_l_included": lambda n : setattr(self, 'managed_apps_in_bundle_id_a_c_l_included', n.get_bool_value()),
-            "mode_credential_used": lambda n : setattr(self, 'mode_credential_used', n.get_str_value()),
-            "password_block_modification": lambda n : setattr(self, 'password_block_modification', n.get_bool_value()),
-            "password_change_url": lambda n : setattr(self, 'password_change_url', n.get_str_value()),
-            "password_enable_local_sync": lambda n : setattr(self, 'password_enable_local_sync', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_expiration_notification_days": lambda n : setattr(self, 'password_expiration_notification_days', n.get_int_value()),
-            "password_minimum_age_days": lambda n : setattr(self, 'password_minimum_age_days', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_require_active_directory_complexity": lambda n : setattr(self, 'password_require_active_directory_complexity', n.get_bool_value()),
-            "password_requirements_description": lambda n : setattr(self, 'password_requirements_description', n.get_str_value()),
-            "preferred_k_d_cs": lambda n : setattr(self, 'preferred_k_d_cs', n.get_collection_of_primitive_values(str)),
+            "domainRealms": lambda n : setattr(self, 'domain_realms', n.get_collection_of_primitive_values(str)),
+            "isDefaultRealm": lambda n : setattr(self, 'is_default_realm', n.get_bool_value()),
+            "kerberosAppsInBundleIdACLIncluded": lambda n : setattr(self, 'kerberos_apps_in_bundle_id_a_c_l_included', n.get_bool_value()),
+            "managedAppsInBundleIdACLIncluded": lambda n : setattr(self, 'managed_apps_in_bundle_id_a_c_l_included', n.get_bool_value()),
+            "modeCredentialUsed": lambda n : setattr(self, 'mode_credential_used', n.get_str_value()),
+            "passwordBlockModification": lambda n : setattr(self, 'password_block_modification', n.get_bool_value()),
+            "passwordChangeUrl": lambda n : setattr(self, 'password_change_url', n.get_str_value()),
+            "passwordEnableLocalSync": lambda n : setattr(self, 'password_enable_local_sync', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordExpirationNotificationDays": lambda n : setattr(self, 'password_expiration_notification_days', n.get_int_value()),
+            "passwordMinimumAgeDays": lambda n : setattr(self, 'password_minimum_age_days', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequirementsDescription": lambda n : setattr(self, 'password_requirements_description', n.get_str_value()),
+            "passwordRequireActiveDirectoryComplexity": lambda n : setattr(self, 'password_require_active_directory_complexity', n.get_bool_value()),
+            "preferredKDCs": lambda n : setattr(self, 'preferred_k_d_cs', n.get_collection_of_primitive_values(str)),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
-            "require_user_presence": lambda n : setattr(self, 'require_user_presence', n.get_bool_value()),
-            "sign_in_help_text": lambda n : setattr(self, 'sign_in_help_text', n.get_str_value()),
-            "tls_for_l_d_a_p_required": lambda n : setattr(self, 'tls_for_l_d_a_p_required', n.get_bool_value()),
-            "username_label_custom": lambda n : setattr(self, 'username_label_custom', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "user_setup_delayed": lambda n : setattr(self, 'user_setup_delayed', n.get_bool_value()),
+            "requireUserPresence": lambda n : setattr(self, 'require_user_presence', n.get_bool_value()),
+            "signInHelpText": lambda n : setattr(self, 'sign_in_help_text', n.get_str_value()),
+            "tlsForLDAPRequired": lambda n : setattr(self, 'tls_for_l_d_a_p_required', n.get_bool_value()),
+            "usernameLabelCustom": lambda n : setattr(self, 'username_label_custom', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userSetupDelayed": lambda n : setattr(self, 'user_setup_delayed', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -275,7 +275,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the isDefaultRealm property value. When true, this profile's realm will be selected as the default. Necessary if multiple Kerberos-type profiles are configured.
         Args:
-            value: Value to set for the isDefaultRealm property.
+            value: Value to set for the is_default_realm property.
         """
         self._is_default_realm = value
     
@@ -292,7 +292,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the kerberosAppsInBundleIdACLIncluded property value. When set to True, the Kerberos extension allows any apps entered with the app bundle ID, managed apps, and standard Kerberos utilities, such as TicketViewer and klist, to access and use the credential. Available for devices running macOS versions 12 and later.
         Args:
-            value: Value to set for the kerberosAppsInBundleIdACLIncluded property.
+            value: Value to set for the kerberos_apps_in_bundle_id_a_c_l_included property.
         """
         self._kerberos_apps_in_bundle_id_a_c_l_included = value
     
@@ -309,7 +309,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the managedAppsInBundleIdACLIncluded property value. When set to True, the Kerberos extension allows managed apps, and any apps entered with the app bundle ID to access the credential. When set to False, the Kerberos extension allows all apps to access the credential. Available for devices running iOS and iPadOS versions 14 and later.
         Args:
-            value: Value to set for the managedAppsInBundleIdACLIncluded property.
+            value: Value to set for the managed_apps_in_bundle_id_a_c_l_included property.
         """
         self._managed_apps_in_bundle_id_a_c_l_included = value
     
@@ -326,7 +326,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the modeCredentialUsed property value. Select how other processes use the Kerberos Extension credential.
         Args:
-            value: Value to set for the modeCredentialUsed property.
+            value: Value to set for the mode_credential_used property.
         """
         self._mode_credential_used = value
     
@@ -343,7 +343,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordBlockModification property value. Enables or disables password changes.
         Args:
-            value: Value to set for the passwordBlockModification property.
+            value: Value to set for the password_block_modification property.
         """
         self._password_block_modification = value
     
@@ -360,7 +360,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordChangeUrl property value. Gets or sets the URL that the user will be sent to when they initiate a password change.
         Args:
-            value: Value to set for the passwordChangeUrl property.
+            value: Value to set for the password_change_url property.
         """
         self._password_change_url = value
     
@@ -377,7 +377,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordEnableLocalSync property value. Enables or disables password syncing. This won't affect users logged in with a mobile account on macOS.
         Args:
-            value: Value to set for the passwordEnableLocalSync property.
+            value: Value to set for the password_enable_local_sync property.
         """
         self._password_enable_local_sync = value
     
@@ -394,7 +394,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordExpirationDays property value. Overrides the default password expiration in days. For most domains, this value is calculated automatically.
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -411,7 +411,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordExpirationNotificationDays property value. Gets or sets the number of days until the user is notified that their password will expire (default is 15).
         Args:
-            value: Value to set for the passwordExpirationNotificationDays property.
+            value: Value to set for the password_expiration_notification_days property.
         """
         self._password_expiration_notification_days = value
     
@@ -428,7 +428,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordMinimumAgeDays property value. Gets or sets the minimum number of days until a user can change their password again.
         Args:
-            value: Value to set for the passwordMinimumAgeDays property.
+            value: Value to set for the password_minimum_age_days property.
         """
         self._password_minimum_age_days = value
     
@@ -445,7 +445,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordMinimumLength property value. Gets or sets the minimum length of a password.
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -462,7 +462,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordPreviousPasswordBlockCount property value. Gets or sets the number of previous passwords to block.
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -479,7 +479,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordRequireActiveDirectoryComplexity property value. Enables or disables whether passwords must meet Active Directory's complexity requirements.
         Args:
-            value: Value to set for the passwordRequireActiveDirectoryComplexity property.
+            value: Value to set for the password_require_active_directory_complexity property.
         """
         self._password_require_active_directory_complexity = value
     
@@ -496,7 +496,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the passwordRequirementsDescription property value. Gets or sets a description of the password complexity requirements.
         Args:
-            value: Value to set for the passwordRequirementsDescription property.
+            value: Value to set for the password_requirements_description property.
         """
         self._password_requirements_description = value
     
@@ -513,7 +513,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the preferredKDCs property value. Add creates an ordered list of preferred Key Distribution Centers (KDCs) to use for Kerberos traffic. This list is used when the servers are not discoverable using DNS. When the servers are discoverable, the list is used for both connectivity checks, and used first for Kerberos traffic. If the servers don’t respond, then the device uses DNS discovery. Delete removes an existing list, and devices use DNS discovery. Available for devices running macOS versions 12 and later.
         Args:
-            value: Value to set for the preferredKDCs property.
+            value: Value to set for the preferred_k_d_cs property.
         """
         self._preferred_k_d_cs = value
     
@@ -547,7 +547,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the requireUserPresence property value. Gets or sets whether to require authentication via Touch ID, Face ID, or a passcode to access the keychain entry.
         Args:
-            value: Value to set for the requireUserPresence property.
+            value: Value to set for the require_user_presence property.
         """
         self._require_user_presence = value
     
@@ -564,10 +564,10 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         writer.write_bool_value("blockActiveDirectorySiteAutoDiscovery", self.block_active_directory_site_auto_discovery)
         writer.write_bool_value("blockAutomaticLogin", self.block_automatic_login)
         writer.write_str_value("cacheName", self.cache_name)
-        writer.write_collection_of_primitive_values("credentialBundleIdAccessControlList", self.credential_bundle_id_access_control_list)
         writer.write_bool_value("credentialsCacheMonitored", self.credentials_cache_monitored)
-        writer.write_collection_of_primitive_values("domainRealms", self.domain_realms)
+        writer.write_collection_of_primitive_values("credentialBundleIdAccessControlList", self.credential_bundle_id_access_control_list)
         writer.write_collection_of_primitive_values("domains", self.domains)
+        writer.write_collection_of_primitive_values("domainRealms", self.domain_realms)
         writer.write_bool_value("isDefaultRealm", self.is_default_realm)
         writer.write_bool_value("kerberosAppsInBundleIdACLIncluded", self.kerberos_apps_in_bundle_id_a_c_l_included)
         writer.write_bool_value("managedAppsInBundleIdACLIncluded", self.managed_apps_in_bundle_id_a_c_l_included)
@@ -580,8 +580,8 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         writer.write_int_value("passwordMinimumAgeDays", self.password_minimum_age_days)
         writer.write_int_value("passwordMinimumLength", self.password_minimum_length)
         writer.write_int_value("passwordPreviousPasswordBlockCount", self.password_previous_password_block_count)
-        writer.write_bool_value("passwordRequireActiveDirectoryComplexity", self.password_require_active_directory_complexity)
         writer.write_str_value("passwordRequirementsDescription", self.password_requirements_description)
+        writer.write_bool_value("passwordRequireActiveDirectoryComplexity", self.password_require_active_directory_complexity)
         writer.write_collection_of_primitive_values("preferredKDCs", self.preferred_k_d_cs)
         writer.write_str_value("realm", self.realm)
         writer.write_bool_value("requireUserPresence", self.require_user_presence)
@@ -604,7 +604,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the signInHelpText property value. Text displayed to the user at the Kerberos sign in window. Available for devices running iOS and iPadOS versions 14 and later.
         Args:
-            value: Value to set for the signInHelpText property.
+            value: Value to set for the sign_in_help_text property.
         """
         self._sign_in_help_text = value
     
@@ -621,26 +621,9 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the tlsForLDAPRequired property value. When set to True, LDAP connections are required to use Transport Layer Security (TLS). Available for devices running macOS versions 11 and later.
         Args:
-            value: Value to set for the tlsForLDAPRequired property.
+            value: Value to set for the tls_for_l_d_a_p_required property.
         """
         self._tls_for_l_d_a_p_required = value
-    
-    @property
-    def username_label_custom(self,) -> Optional[str]:
-        """
-        Gets the usernameLabelCustom property value. This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
-        Returns: Optional[str]
-        """
-        return self._username_label_custom
-    
-    @username_label_custom.setter
-    def username_label_custom(self,value: Optional[str] = None) -> None:
-        """
-        Sets the usernameLabelCustom property value. This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
-        Args:
-            value: Value to set for the usernameLabelCustom property.
-        """
-        self._username_label_custom = value
     
     @property
     def user_principal_name(self,) -> Optional[str]:
@@ -655,7 +638,7 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the userPrincipalName property value. Gets or sets the principle user name to use for this profile. The realm name does not need to be included.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -672,8 +655,25 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         """
         Sets the userSetupDelayed property value. When set to True, the user isn’t prompted to set up the Kerberos extension until the extension is enabled by the admin, or a Kerberos challenge is received. Available for devices running macOS versions 11 and later.
         Args:
-            value: Value to set for the userSetupDelayed property.
+            value: Value to set for the user_setup_delayed property.
         """
         self._user_setup_delayed = value
+    
+    @property
+    def username_label_custom(self,) -> Optional[str]:
+        """
+        Gets the usernameLabelCustom property value. This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
+        Returns: Optional[str]
+        """
+        return self._username_label_custom
+    
+    @username_label_custom.setter
+    def username_label_custom(self,value: Optional[str] = None) -> None:
+        """
+        Sets the usernameLabelCustom property value. This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
+        Args:
+            value: Value to set for the username_label_custom property.
+        """
+        self._username_label_custom = value
     
 

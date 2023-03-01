@@ -365,6 +365,13 @@ class UserItemRequestBuilder():
         return events_request_builder.EventsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def export_device_and_app_management_data(self) -> export_device_and_app_management_data_request_builder.ExportDeviceAndAppManagementDataRequestBuilder:
+        """
+        Provides operations to call the exportDeviceAndAppManagementData method.
+        """
+        return export_device_and_app_management_data_request_builder.ExportDeviceAndAppManagementDataRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def export_personal_data(self) -> export_personal_data_request_builder.ExportPersonalDataRequestBuilder:
         """
         Provides operations to call the exportPersonalData method.
@@ -386,6 +393,20 @@ class UserItemRequestBuilder():
         return find_meeting_times_request_builder.FindMeetingTimesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def find_room_lists(self) -> find_room_lists_request_builder.FindRoomListsRequestBuilder:
+        """
+        Provides operations to call the findRoomLists method.
+        """
+        return find_room_lists_request_builder.FindRoomListsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def find_rooms(self) -> find_rooms_request_builder.FindRoomsRequestBuilder:
+        """
+        Provides operations to call the findRooms method.
+        """
+        return find_rooms_request_builder.FindRoomsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def followed_sites(self) -> followed_sites_request_builder.FollowedSitesRequestBuilder:
         """
         Provides operations to manage the followedSites property of the microsoft.graph.user entity.
@@ -393,11 +414,53 @@ class UserItemRequestBuilder():
         return followed_sites_request_builder.FollowedSitesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_effective_device_enrollment_configurations(self) -> get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder:
+        """
+        Provides operations to call the getEffectiveDeviceEnrollmentConfigurations method.
+        """
+        return get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_logged_on_managed_devices(self) -> get_logged_on_managed_devices_request_builder.GetLoggedOnManagedDevicesRequestBuilder:
+        """
+        Provides operations to call the getLoggedOnManagedDevices method.
+        """
+        return get_logged_on_managed_devices_request_builder.GetLoggedOnManagedDevicesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_mail_tips(self) -> get_mail_tips_request_builder.GetMailTipsRequestBuilder:
         """
         Provides operations to call the getMailTips method.
         """
         return get_mail_tips_request_builder.GetMailTipsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_managed_app_diagnostic_statuses(self) -> get_managed_app_diagnostic_statuses_request_builder.GetManagedAppDiagnosticStatusesRequestBuilder:
+        """
+        Provides operations to call the getManagedAppDiagnosticStatuses method.
+        """
+        return get_managed_app_diagnostic_statuses_request_builder.GetManagedAppDiagnosticStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_managed_app_policies(self) -> get_managed_app_policies_request_builder.GetManagedAppPoliciesRequestBuilder:
+        """
+        Provides operations to call the getManagedAppPolicies method.
+        """
+        return get_managed_app_policies_request_builder.GetManagedAppPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_managed_devices_with_app_failures(self) -> get_managed_devices_with_app_failures_request_builder.GetManagedDevicesWithAppFailuresRequestBuilder:
+        """
+        Provides operations to call the getManagedDevicesWithAppFailures method.
+        """
+        return get_managed_devices_with_app_failures_request_builder.GetManagedDevicesWithAppFailuresRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_managed_devices_with_failed_or_pending_apps(self) -> get_managed_devices_with_failed_or_pending_apps_request_builder.GetManagedDevicesWithFailedOrPendingAppsRequestBuilder:
+        """
+        Provides operations to call the getManagedDevicesWithFailedOrPendingApps method.
+        """
+        return get_managed_devices_with_failed_or_pending_apps_request_builder.GetManagedDevicesWithFailedOrPendingAppsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def get_member_groups(self) -> get_member_groups_request_builder.GetMemberGroupsRequestBuilder:
@@ -440,6 +503,13 @@ class UserItemRequestBuilder():
         Provides operations to call the invalidateAllRefreshTokens method.
         """
         return invalidate_all_refresh_tokens_request_builder.InvalidateAllRefreshTokensRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def is_managed_app_user_blocked(self) -> is_managed_app_user_blocked_request_builder.IsManagedAppUserBlockedRequestBuilder:
+        """
+        Provides operations to call the isManagedAppUserBlocked method.
+        """
+        return is_managed_app_user_blocked_request_builder.IsManagedAppUserBlockedRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def joined_groups(self) -> joined_groups_request_builder.JoinedGroupsRequestBuilder:
@@ -963,12 +1033,11 @@ class UserItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[UserItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -979,7 +1048,7 @@ class UserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_enrollment_configurations_by_id(self,id: str) -> device_enrollment_configuration_item_request_builder.DeviceEnrollmentConfigurationItemRequestBuilder:
         """
@@ -1059,13 +1128,6 @@ class UserItemRequestBuilder():
         url_tpl_params["event%2Did"] = id
         return event_item_request_builder.EventItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def export_device_and_app_management_data(self,) -> export_device_and_app_management_data_request_builder.ExportDeviceAndAppManagementDataRequestBuilder:
-        """
-        Provides operations to call the exportDeviceAndAppManagementData method.
-        Returns: export_device_and_app_management_data_request_builder.ExportDeviceAndAppManagementDataRequestBuilder
-        """
-        return export_device_and_app_management_data_request_builder.ExportDeviceAndAppManagementDataRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def export_device_and_app_management_data_with_skip_with_top(self,skip: Optional[int] = None, top: Optional[int] = None) -> export_device_and_app_management_data_with_skip_with_top_request_builder.ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder:
         """
         Provides operations to call the exportDeviceAndAppManagementData method.
@@ -1093,20 +1155,6 @@ class UserItemRequestBuilder():
         url_tpl_params["extension%2Did"] = id
         return extension_item_request_builder.ExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def find_room_lists(self,) -> find_room_lists_request_builder.FindRoomListsRequestBuilder:
-        """
-        Provides operations to call the findRoomLists method.
-        Returns: find_room_lists_request_builder.FindRoomListsRequestBuilder
-        """
-        return find_room_lists_request_builder.FindRoomListsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def find_rooms(self,) -> find_rooms_request_builder.FindRoomsRequestBuilder:
-        """
-        Provides operations to call the findRooms method.
-        Returns: find_rooms_request_builder.FindRoomsRequestBuilder
-        """
-        return find_rooms_request_builder.FindRoomsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def find_rooms_with_room_list(self,room_list: Optional[str] = None) -> find_rooms_with_room_list_request_builder.FindRoomsWithRoomListRequestBuilder:
         """
         Provides operations to call the findRooms method.
@@ -1131,12 +1179,11 @@ class UserItemRequestBuilder():
         url_tpl_params["site%2Did"] = id
         return site_item_request_builder.SiteItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
+    async def get(self,request_configuration: Optional[UserItemRequestBuilderGetRequestConfiguration] = None) -> Optional[user.User]:
         """
         Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         request_info = self.to_get_request_information(
@@ -1148,56 +1195,7 @@ class UserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
-    
-    def get_effective_device_enrollment_configurations(self,) -> get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder:
-        """
-        Provides operations to call the getEffectiveDeviceEnrollmentConfigurations method.
-        Returns: get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder
-        """
-        return get_effective_device_enrollment_configurations_request_builder.GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_logged_on_managed_devices(self,) -> get_logged_on_managed_devices_request_builder.GetLoggedOnManagedDevicesRequestBuilder:
-        """
-        Provides operations to call the getLoggedOnManagedDevices method.
-        Returns: get_logged_on_managed_devices_request_builder.GetLoggedOnManagedDevicesRequestBuilder
-        """
-        return get_logged_on_managed_devices_request_builder.GetLoggedOnManagedDevicesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_managed_app_diagnostic_statuses(self,) -> get_managed_app_diagnostic_statuses_request_builder.GetManagedAppDiagnosticStatusesRequestBuilder:
-        """
-        Provides operations to call the getManagedAppDiagnosticStatuses method.
-        Returns: get_managed_app_diagnostic_statuses_request_builder.GetManagedAppDiagnosticStatusesRequestBuilder
-        """
-        return get_managed_app_diagnostic_statuses_request_builder.GetManagedAppDiagnosticStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_managed_app_policies(self,) -> get_managed_app_policies_request_builder.GetManagedAppPoliciesRequestBuilder:
-        """
-        Provides operations to call the getManagedAppPolicies method.
-        Returns: get_managed_app_policies_request_builder.GetManagedAppPoliciesRequestBuilder
-        """
-        return get_managed_app_policies_request_builder.GetManagedAppPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_managed_devices_with_app_failures(self,) -> get_managed_devices_with_app_failures_request_builder.GetManagedDevicesWithAppFailuresRequestBuilder:
-        """
-        Provides operations to call the getManagedDevicesWithAppFailures method.
-        Returns: get_managed_devices_with_app_failures_request_builder.GetManagedDevicesWithAppFailuresRequestBuilder
-        """
-        return get_managed_devices_with_app_failures_request_builder.GetManagedDevicesWithAppFailuresRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_managed_devices_with_failed_or_pending_apps(self,) -> get_managed_devices_with_failed_or_pending_apps_request_builder.GetManagedDevicesWithFailedOrPendingAppsRequestBuilder:
-        """
-        Provides operations to call the getManagedDevicesWithFailedOrPendingApps method.
-        Returns: get_managed_devices_with_failed_or_pending_apps_request_builder.GetManagedDevicesWithFailedOrPendingAppsRequestBuilder
-        """
-        return get_managed_devices_with_failed_or_pending_apps_request_builder.GetManagedDevicesWithFailedOrPendingAppsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def is_managed_app_user_blocked(self,) -> is_managed_app_user_blocked_request_builder.IsManagedAppUserBlockedRequestBuilder:
-        """
-        Provides operations to call the isManagedAppUserBlocked method.
-        Returns: is_managed_app_user_blocked_request_builder.IsManagedAppUserBlockedRequestBuilder
-        """
-        return is_managed_app_user_blocked_request_builder.IsManagedAppUserBlockedRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
     
     def joined_teams_by_id(self,id: str) -> team_item_request_builder.TeamItemRequestBuilder:
         """
@@ -1381,13 +1379,12 @@ class UserItemRequestBuilder():
         url_tpl_params["directoryObject%2Did"] = id
         return directory_object_item_request_builder.DirectoryObjectItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[user.User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user.User]:
+    async def patch(self,body: Optional[user.User] = None, request_configuration: Optional[UserItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user.User]:
         """
         Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user.User]
         """
         if body is None:
@@ -1401,7 +1398,7 @@ class UserItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user.User, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user.User, error_mapping)
     
     def pending_access_review_instances_by_id(self,id: str) -> access_review_instance_item_request_builder.AccessReviewInstanceItemRequestBuilder:
         """
@@ -1509,7 +1506,7 @@ class UserItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -1530,7 +1527,7 @@ class UserItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -1595,7 +1592,7 @@ class UserItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -1634,7 +1631,7 @@ class UserItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -1649,7 +1646,7 @@ class UserItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -55,17 +55,17 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "mfa_and_sspr_capable_user_count": lambda n : setattr(self, 'mfa_and_sspr_capable_user_count', n.get_int_value()),
-            "mfa_conditional_access_policy_state": lambda n : setattr(self, 'mfa_conditional_access_policy_state', n.get_str_value()),
-            "mfa_excluded_user_count": lambda n : setattr(self, 'mfa_excluded_user_count', n.get_int_value()),
-            "mfa_registered_user_count": lambda n : setattr(self, 'mfa_registered_user_count', n.get_int_value()),
-            "security_defaults_enabled": lambda n : setattr(self, 'security_defaults_enabled', n.get_bool_value()),
-            "sspr_enabled_user_count": lambda n : setattr(self, 'sspr_enabled_user_count', n.get_int_value()),
-            "sspr_registered_user_count": lambda n : setattr(self, 'sspr_registered_user_count', n.get_int_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "total_user_count": lambda n : setattr(self, 'total_user_count', n.get_int_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "mfaAndSsprCapableUserCount": lambda n : setattr(self, 'mfa_and_sspr_capable_user_count', n.get_int_value()),
+            "mfaConditionalAccessPolicyState": lambda n : setattr(self, 'mfa_conditional_access_policy_state', n.get_str_value()),
+            "mfaExcludedUserCount": lambda n : setattr(self, 'mfa_excluded_user_count', n.get_int_value()),
+            "mfaRegisteredUserCount": lambda n : setattr(self, 'mfa_registered_user_count', n.get_int_value()),
+            "securityDefaultsEnabled": lambda n : setattr(self, 'security_defaults_enabled', n.get_bool_value()),
+            "ssprEnabledUserCount": lambda n : setattr(self, 'sspr_enabled_user_count', n.get_int_value()),
+            "ssprRegisteredUserCount": lambda n : setattr(self, 'sspr_registered_user_count', n.get_int_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "totalUserCount": lambda n : setattr(self, 'total_user_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -101,7 +101,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the mfaAndSsprCapableUserCount property value. The number of users that are capable of performing multi-factor authentication or self service password reset. Optional. Read-only.
         Args:
-            value: Value to set for the mfaAndSsprCapableUserCount property.
+            value: Value to set for the mfa_and_sspr_capable_user_count property.
         """
         self._mfa_and_sspr_capable_user_count = value
     
@@ -118,7 +118,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the mfaConditionalAccessPolicyState property value. The state of a conditional access policy that enforces multi-factor authentication. Optional. Read-only.
         Args:
-            value: Value to set for the mfaConditionalAccessPolicyState property.
+            value: Value to set for the mfa_conditional_access_policy_state property.
         """
         self._mfa_conditional_access_policy_state = value
     
@@ -135,7 +135,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the mfaExcludedUserCount property value. The number of users in the multi-factor authentication exclusion security group (Microsoft 365 Lighthouse - MFA exclusions). Optional. Read-only.
         Args:
-            value: Value to set for the mfaExcludedUserCount property.
+            value: Value to set for the mfa_excluded_user_count property.
         """
         self._mfa_excluded_user_count = value
     
@@ -152,7 +152,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the mfaRegisteredUserCount property value. The number of users registered for multi-factor authentication. Optional. Read-only.
         Args:
-            value: Value to set for the mfaRegisteredUserCount property.
+            value: Value to set for the mfa_registered_user_count property.
         """
         self._mfa_registered_user_count = value
     
@@ -169,7 +169,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the securityDefaultsEnabled property value. A flag indicating whether Identity Security Defaults is enabled. Optional. Read-only.
         Args:
-            value: Value to set for the securityDefaultsEnabled property.
+            value: Value to set for the security_defaults_enabled property.
         """
         self._security_defaults_enabled = value
     
@@ -207,7 +207,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the ssprEnabledUserCount property value. The number of users enabled for self service password reset. Optional. Read-only.
         Args:
-            value: Value to set for the ssprEnabledUserCount property.
+            value: Value to set for the sspr_enabled_user_count property.
         """
         self._sspr_enabled_user_count = value
     
@@ -224,7 +224,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the ssprRegisteredUserCount property value. The number of users registered for self service password reset. Optional. Read-only.
         Args:
-            value: Value to set for the ssprRegisteredUserCount property.
+            value: Value to set for the sspr_registered_user_count property.
         """
         self._sspr_registered_user_count = value
     
@@ -241,7 +241,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -258,7 +258,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -275,7 +275,7 @@ class CredentialUserRegistrationsSummary(entity.Entity):
         """
         Sets the totalUserCount property value. The total number of users in the given managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the totalUserCount property.
+            value: Value to set for the total_user_count property.
         """
         self._total_user_count = value
     

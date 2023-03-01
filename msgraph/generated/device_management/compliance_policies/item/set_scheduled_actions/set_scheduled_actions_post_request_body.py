@@ -51,7 +51,7 @@ class SetScheduledActionsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "scheduled_actions": lambda n : setattr(self, 'scheduled_actions', n.get_collection_of_object_values(device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule)),
+            "scheduledActions": lambda n : setattr(self, 'scheduled_actions', n.get_collection_of_object_values(device_management_compliance_scheduled_action_for_rule.DeviceManagementComplianceScheduledActionForRule)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class SetScheduledActionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the scheduledActions property value. The scheduledActions property
         Args:
-            value: Value to set for the scheduledActions property.
+            value: Value to set for the scheduled_actions property.
         """
         self._scheduled_actions = value
     

@@ -10,7 +10,7 @@ class BrowserSiteTargetEnvironment(Enum):
     # Configurable type
     Configurable = "configurable",
     # Open in the browser the employee chooses.
-    None_escaped = "none",
+    None_ = "none",
     # Placeholder for evolvable enum, but this enum is never returned to the caller, so it shouldn't be necessary.
     UnknownFutureValue = "unknownFutureValue",
 

@@ -73,7 +73,7 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         """
         Sets the dataUploadURI property value. The dataUploadURI property
         Args:
-            value: Value to set for the dataUploadURI property.
+            value: Value to set for the data_upload_u_r_i property.
         """
         self._data_upload_u_r_i = value
     
@@ -107,7 +107,7 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         """
         Sets the fileName property value. The fileName property
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -118,13 +118,13 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         """
         fields = {
             "checksum": lambda n : setattr(self, 'checksum', n.get_str_value()),
-            "data_upload_u_r_i": lambda n : setattr(self, 'data_upload_u_r_i', n.get_str_value()),
+            "dataUploadURI": lambda n : setattr(self, 'data_upload_u_r_i', n.get_str_value()),
             "fields": lambda n : setattr(self, 'fields', n.get_collection_of_primitive_values(str)),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
-            "rows_per_block": lambda n : setattr(self, 'rows_per_block', n.get_int_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "rowsPerBlock": lambda n : setattr(self, 'rows_per_block', n.get_int_value()),
             "salt": lambda n : setattr(self, 'salt', n.get_str_value()),
-            "upload_agent": lambda n : setattr(self, 'upload_agent', n.get_object_value(exact_match_upload_agent.ExactMatchUploadAgent)),
-            "upload_agent_id": lambda n : setattr(self, 'upload_agent_id', n.get_str_value()),
+            "uploadAgent": lambda n : setattr(self, 'upload_agent', n.get_object_value(exact_match_upload_agent.ExactMatchUploadAgent)),
+            "uploadAgentId": lambda n : setattr(self, 'upload_agent_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -143,7 +143,7 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         """
         Sets the rowsPerBlock property value. The rowsPerBlock property
         Args:
-            value: Value to set for the rowsPerBlock property.
+            value: Value to set for the rows_per_block property.
         """
         self._rows_per_block = value
     
@@ -195,7 +195,7 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         """
         Sets the uploadAgent property value. The uploadAgent property
         Args:
-            value: Value to set for the uploadAgent property.
+            value: Value to set for the upload_agent property.
         """
         self._upload_agent = value
     
@@ -212,7 +212,7 @@ class ExactMatchSession(exact_match_session_base.ExactMatchSessionBase):
         """
         Sets the uploadAgentId property value. The uploadAgentId property
         Args:
-            value: Value to set for the uploadAgentId property.
+            value: Value to set for the upload_agent_id property.
         """
         self._upload_agent_id = value
     

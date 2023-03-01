@@ -71,7 +71,7 @@ class ImportResourceActionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "format": lambda n : setattr(self, 'format', n.get_str_value()),
-            "overwrite_resource_namespace": lambda n : setattr(self, 'overwrite_resource_namespace', n.get_bool_value()),
+            "overwriteResourceNamespace": lambda n : setattr(self, 'overwrite_resource_namespace', n.get_bool_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class ImportResourceActionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the overwriteResourceNamespace property value. The overwriteResourceNamespace property
         Args:
-            value: Value to set for the overwriteResourceNamespace property.
+            value: Value to set for the overwrite_resource_namespace property.
         """
         self._overwrite_resource_namespace = value
     

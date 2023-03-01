@@ -24,7 +24,7 @@ class ItemFacet(entity.Entity):
         """
         Sets the allowedAudiences property value. The audiences that are able to see the values contained within the associated entity. Possible values are: me, family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
         Args:
-            value: Value to set for the allowedAudiences property.
+            value: Value to set for the allowed_audiences property.
         """
         self._allowed_audiences = value
     
@@ -65,7 +65,7 @@ class ItemFacet(entity.Entity):
         """
         Sets the createdBy property value. The createdBy property
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -82,7 +82,7 @@ class ItemFacet(entity.Entity):
         """
         Sets the createdDateTime property value. Provides the dateTimeOffset for when the entity was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -104,13 +104,13 @@ class ItemFacet(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_audiences": lambda n : setattr(self, 'allowed_audiences', n.get_enum_value(allowed_audiences.AllowedAudiences)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "allowedAudiences": lambda n : setattr(self, 'allowed_audiences', n.get_enum_value(allowed_audiences.AllowedAudiences)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "inference": lambda n : setattr(self, 'inference', n.get_object_value(inference_data.InferenceData)),
-            "is_searchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "isSearchable": lambda n : setattr(self, 'is_searchable', n.get_bool_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "source": lambda n : setattr(self, 'source', n.get_object_value(person_data_sources.PersonDataSources)),
         }
         super_fields = super().get_field_deserializers()
@@ -147,7 +147,7 @@ class ItemFacet(entity.Entity):
         """
         Sets the isSearchable property value. The isSearchable property
         Args:
-            value: Value to set for the isSearchable property.
+            value: Value to set for the is_searchable property.
         """
         self._is_searchable = value
     
@@ -164,7 +164,7 @@ class ItemFacet(entity.Entity):
         """
         Sets the lastModifiedBy property value. The lastModifiedBy property
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -181,7 +181,7 @@ class ItemFacet(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Provides the dateTimeOffset for when the entity was created.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

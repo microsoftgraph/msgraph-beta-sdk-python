@@ -34,7 +34,7 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         """
         Sets the assignmentFilterIds property value. The assignmentFilterIds property
         Args:
-            value: Value to set for the assignmentFilterIds property.
+            value: Value to set for the assignment_filter_ids property.
         """
         self._assignment_filter_ids = value
     
@@ -76,12 +76,12 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_filter_ids": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "payload_id": lambda n : setattr(self, 'payload_id', n.get_str_value()),
+            "assignmentFilterIds": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
             "skip": lambda n : setattr(self, 'skip', n.get_int_value()),
             "top": lambda n : setattr(self, 'top', n.get_int_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         return fields
     
@@ -98,7 +98,7 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         """
         Sets the managedDeviceId property value. The managedDeviceId property
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -115,7 +115,7 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         """
         Sets the payloadId property value. The payloadId property
         Args:
-            value: Value to set for the payloadId property.
+            value: Value to set for the payload_id property.
         """
         self._payload_id = value
     
@@ -182,7 +182,7 @@ class GetAssignmentFiltersStatusDetailsPostRequestBody(AdditionalDataHolder, Par
         """
         Sets the userId property value. The userId property
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

@@ -47,13 +47,13 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "indexed_item_count": lambda n : setattr(self, 'indexed_item_count', n.get_int_value()),
-            "indexed_items_size": lambda n : setattr(self, 'indexed_items_size', n.get_int_value()),
-            "mailbox_count": lambda n : setattr(self, 'mailbox_count', n.get_int_value()),
-            "site_count": lambda n : setattr(self, 'site_count', n.get_int_value()),
-            "source_collection": lambda n : setattr(self, 'source_collection', n.get_object_value(source_collection.SourceCollection)),
-            "unindexed_item_count": lambda n : setattr(self, 'unindexed_item_count', n.get_int_value()),
-            "unindexed_items_size": lambda n : setattr(self, 'unindexed_items_size', n.get_int_value()),
+            "indexedItemsSize": lambda n : setattr(self, 'indexed_items_size', n.get_int_value()),
+            "indexedItemCount": lambda n : setattr(self, 'indexed_item_count', n.get_int_value()),
+            "mailboxCount": lambda n : setattr(self, 'mailbox_count', n.get_int_value()),
+            "siteCount": lambda n : setattr(self, 'site_count', n.get_int_value()),
+            "sourceCollection": lambda n : setattr(self, 'source_collection', n.get_object_value(source_collection.SourceCollection)),
+            "unindexedItemsSize": lambda n : setattr(self, 'unindexed_items_size', n.get_int_value()),
+            "unindexedItemCount": lambda n : setattr(self, 'unindexed_item_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the indexedItemCount property value. The estimated count of items for the sourceCollection that matched the content query.
         Args:
-            value: Value to set for the indexedItemCount property.
+            value: Value to set for the indexed_item_count property.
         """
         self._indexed_item_count = value
     
@@ -89,7 +89,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the indexedItemsSize property value. The estimated size of items for the sourceCollection that matched the content query.
         Args:
-            value: Value to set for the indexedItemsSize property.
+            value: Value to set for the indexed_items_size property.
         """
         self._indexed_items_size = value
     
@@ -106,7 +106,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the mailboxCount property value. The number of mailboxes that had search hits.
         Args:
-            value: Value to set for the mailboxCount property.
+            value: Value to set for the mailbox_count property.
         """
         self._mailbox_count = value
     
@@ -119,13 +119,13 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_int_value("indexedItemCount", self.indexed_item_count)
         writer.write_int_value("indexedItemsSize", self.indexed_items_size)
+        writer.write_int_value("indexedItemCount", self.indexed_item_count)
         writer.write_int_value("mailboxCount", self.mailbox_count)
         writer.write_int_value("siteCount", self.site_count)
         writer.write_object_value("sourceCollection", self.source_collection)
-        writer.write_int_value("unindexedItemCount", self.unindexed_item_count)
         writer.write_int_value("unindexedItemsSize", self.unindexed_items_size)
+        writer.write_int_value("unindexedItemCount", self.unindexed_item_count)
     
     @property
     def site_count(self,) -> Optional[int]:
@@ -140,7 +140,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the siteCount property value. The number of mailboxes that had search hits.
         Args:
-            value: Value to set for the siteCount property.
+            value: Value to set for the site_count property.
         """
         self._site_count = value
     
@@ -157,7 +157,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the sourceCollection property value. eDiscovery collection, commonly known as a search.
         Args:
-            value: Value to set for the sourceCollection property.
+            value: Value to set for the source_collection property.
         """
         self._source_collection = value
     
@@ -174,7 +174,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the unindexedItemCount property value. The estimated count of unindexed items for the collection.
         Args:
-            value: Value to set for the unindexedItemCount property.
+            value: Value to set for the unindexed_item_count property.
         """
         self._unindexed_item_count = value
     
@@ -191,7 +191,7 @@ class EstimateStatisticsOperation(case_operation.CaseOperation):
         """
         Sets the unindexedItemsSize property value. The estimated size of unindexed items for the collection.
         Args:
-            value: Value to set for the unindexedItemsSize property.
+            value: Value to set for the unindexed_items_size property.
         """
         self._unindexed_items_size = value
     

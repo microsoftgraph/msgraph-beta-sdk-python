@@ -52,7 +52,7 @@ class UploadClientCertificatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
-            "pkcs12_value": lambda n : setattr(self, 'pkcs12_value', n.get_str_value()),
+            "pkcs12Value": lambda n : setattr(self, 'pkcs12_value', n.get_str_value()),
         }
         return fields
     
@@ -86,7 +86,7 @@ class UploadClientCertificatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the pkcs12Value property value. The pkcs12Value property
         Args:
-            value: Value to set for the pkcs12Value property.
+            value: Value to set for the pkcs12_value property.
         """
         self._pkcs12_value = value
     

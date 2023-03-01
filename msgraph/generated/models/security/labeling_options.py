@@ -38,7 +38,7 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentMethod property value. The assignmentMethod property
         Args:
-            value: Value to set for the assignmentMethod property.
+            value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
     
@@ -85,7 +85,7 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the downgradeJustification property value. The downgrade justification object that indicates if downgrade was justified and, if so, the reason.
         Args:
-            value: Value to set for the downgradeJustification property.
+            value: Value to set for the downgrade_justification property.
         """
         self._downgrade_justification = value
     
@@ -102,7 +102,7 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the extendedProperties property value. Extended properties will be parsed and returned in the standard Microsoft Purview Information Protection labeled metadata format as part of the label information.
         Args:
-            value: Value to set for the extendedProperties property.
+            value: Value to set for the extended_properties property.
         """
         self._extended_properties = value
     
@@ -112,10 +112,10 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_method": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
-            "downgrade_justification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
-            "extended_properties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "label_id": lambda n : setattr(self, 'label_id', n.get_str_value()),
+            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
+            "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
+            "extendedProperties": lambda n : setattr(self, 'extended_properties', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "labelId": lambda n : setattr(self, 'label_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -133,7 +133,7 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the labelId property value. The GUID of the label that should be applied to the information.
         Args:
-            value: Value to set for the labelId property.
+            value: Value to set for the label_id property.
         """
         self._label_id = value
     
@@ -150,7 +150,7 @@ class LabelingOptions(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

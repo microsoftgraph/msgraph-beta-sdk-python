@@ -12,7 +12,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 managed_tenant_alert = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-add_user_input_log_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.add_user_input_log.add_user_input_log_request_builder')
 alert_logs_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.alert_logs.alert_logs_request_builder')
 managed_tenant_alert_log_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.alert_logs.item.managed_tenant_alert_log_item_request_builder')
 alert_rule_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.alert_rule.alert_rule_request_builder')
@@ -20,18 +19,12 @@ api_notifications_request_builder = lazy_import('msgraph.generated.tenant_relati
 managed_tenant_api_notification_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.api_notifications.item.managed_tenant_api_notification_item_request_builder')
 email_notifications_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.email_notifications.email_notifications_request_builder')
 managed_tenant_email_notification_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.email_notifications.item.managed_tenant_email_notification_item_request_builder')
+managed_tenants_add_user_input_log_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenant_alerts.item.managed_tenants_add_user_input_log.managed_tenants_add_user_input_log_request_builder')
 
 class ManagedTenantAlertItemRequestBuilder():
     """
     Provides operations to manage the managedTenantAlerts property of the microsoft.graph.managedTenants.managedTenant entity.
     """
-    @property
-    def add_user_input_log(self) -> add_user_input_log_request_builder.AddUserInputLogRequestBuilder:
-        """
-        Provides operations to call the addUserInputLog method.
-        """
-        return add_user_input_log_request_builder.AddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def alert_logs(self) -> alert_logs_request_builder.AlertLogsRequestBuilder:
         """
@@ -59,6 +52,13 @@ class ManagedTenantAlertItemRequestBuilder():
         Provides operations to manage the emailNotifications property of the microsoft.graph.managedTenants.managedTenantAlert entity.
         """
         return email_notifications_request_builder.EmailNotificationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_tenants_add_user_input_log(self) -> managed_tenants_add_user_input_log_request_builder.ManagedTenantsAddUserInputLogRequestBuilder:
+        """
+        Provides operations to call the addUserInputLog method.
+        """
+        return managed_tenants_add_user_input_log_request_builder.ManagedTenantsAddUserInputLogRequestBuilder(self.request_adapter, self.path_parameters)
     
     def alert_logs_by_id(self,id: str) -> managed_tenant_alert_log_item_request_builder.ManagedTenantAlertLogItemRequestBuilder:
         """
@@ -104,12 +104,11 @@ class ManagedTenantAlertItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property managedTenantAlerts for tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -120,7 +119,7 @@ class ManagedTenantAlertItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def email_notifications_by_id(self,id: str) -> managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder:
         """
@@ -135,12 +134,11 @@ class ManagedTenantAlertItemRequestBuilder():
         url_tpl_params["managedTenantEmailNotification%2Did"] = id
         return managed_tenant_email_notification_item_request_builder.ManagedTenantEmailNotificationItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+    async def get(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderGetRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
         """
         Get managedTenantAlerts from tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
         """
         request_info = self.to_get_request_information(
@@ -152,15 +150,14 @@ class ManagedTenantAlertItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, error_mapping)
     
-    async def patch(self,body: Optional[managed_tenant_alert.ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
+    async def patch(self,body: Optional[managed_tenant_alert.ManagedTenantAlert] = None, request_configuration: Optional[ManagedTenantAlertItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[managed_tenant_alert.ManagedTenantAlert]:
         """
         Update the navigation property managedTenantAlerts in tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[managed_tenant_alert.ManagedTenantAlert]
         """
         if body is None:
@@ -174,7 +171,7 @@ class ManagedTenantAlertItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, managed_tenant_alert.ManagedTenantAlert, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagedTenantAlertItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -203,7 +200,7 @@ class ManagedTenantAlertItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -224,7 +221,7 @@ class ManagedTenantAlertItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -237,7 +234,7 @@ class ManagedTenantAlertItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -276,7 +273,7 @@ class ManagedTenantAlertItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -291,7 +288,7 @@ class ManagedTenantAlertItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

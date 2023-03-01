@@ -41,9 +41,9 @@ class RbacApplicationMultiple(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "resource_namespaces": lambda n : setattr(self, 'resource_namespaces', n.get_collection_of_object_values(unified_rbac_resource_namespace.UnifiedRbacResourceNamespace)),
-            "role_assignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple)),
-            "role_definitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(unified_role_definition.UnifiedRoleDefinition)),
+            "resourceNamespaces": lambda n : setattr(self, 'resource_namespaces', n.get_collection_of_object_values(unified_rbac_resource_namespace.UnifiedRbacResourceNamespace)),
+            "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(unified_role_assignment_multiple.UnifiedRoleAssignmentMultiple)),
+            "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(unified_role_definition.UnifiedRoleDefinition)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -62,7 +62,7 @@ class RbacApplicationMultiple(entity.Entity):
         """
         Sets the resourceNamespaces property value. The resourceNamespaces property
         Args:
-            value: Value to set for the resourceNamespaces property.
+            value: Value to set for the resource_namespaces property.
         """
         self._resource_namespaces = value
     
@@ -79,7 +79,7 @@ class RbacApplicationMultiple(entity.Entity):
         """
         Sets the roleAssignments property value. The roleAssignments property
         Args:
-            value: Value to set for the roleAssignments property.
+            value: Value to set for the role_assignments property.
         """
         self._role_assignments = value
     
@@ -96,7 +96,7 @@ class RbacApplicationMultiple(entity.Entity):
         """
         Sets the roleDefinitions property value. The roleDefinitions property
         Args:
-            value: Value to set for the roleDefinitions property.
+            value: Value to set for the role_definitions property.
         """
         self._role_definitions = value
     

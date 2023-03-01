@@ -57,7 +57,7 @@ class EventQuery(AdditionalDataHolder, Parsable):
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "query": lambda n : setattr(self, 'query', n.get_str_value()),
-            "query_type": lambda n : setattr(self, 'query_type', n.get_enum_value(query_type.QueryType)),
+            "queryType": lambda n : setattr(self, 'query_type', n.get_enum_value(query_type.QueryType)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class EventQuery(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -108,7 +108,7 @@ class EventQuery(AdditionalDataHolder, Parsable):
         """
         Sets the queryType property value. The queryType property
         Args:
-            value: Value to set for the queryType property.
+            value: Value to set for the query_type property.
         """
         self._query_type = value
     

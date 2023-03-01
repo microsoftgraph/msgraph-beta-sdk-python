@@ -38,9 +38,9 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_email_password_authentication_enabled": lambda n : setattr(self, 'is_email_password_authentication_enabled', n.get_bool_value()),
-            "is_phone_one_time_password_authentication_enabled": lambda n : setattr(self, 'is_phone_one_time_password_authentication_enabled', n.get_bool_value()),
-            "is_user_name_authentication_enabled": lambda n : setattr(self, 'is_user_name_authentication_enabled', n.get_bool_value()),
+            "isEmailPasswordAuthenticationEnabled": lambda n : setattr(self, 'is_email_password_authentication_enabled', n.get_bool_value()),
+            "isPhoneOneTimePasswordAuthenticationEnabled": lambda n : setattr(self, 'is_phone_one_time_password_authentication_enabled', n.get_bool_value()),
+            "isUserNameAuthenticationEnabled": lambda n : setattr(self, 'is_user_name_authentication_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -59,7 +59,7 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the isEmailPasswordAuthenticationEnabled property value. The tenant admin can configure local accounts using email if the email and password authentication method is enabled.
         Args:
-            value: Value to set for the isEmailPasswordAuthenticationEnabled property.
+            value: Value to set for the is_email_password_authentication_enabled property.
         """
         self._is_email_password_authentication_enabled = value
     
@@ -76,7 +76,7 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the isPhoneOneTimePasswordAuthenticationEnabled property value. The tenant admin can configure local accounts using phone number if the phone number and one-time password authentication method is enabled.
         Args:
-            value: Value to set for the isPhoneOneTimePasswordAuthenticationEnabled property.
+            value: Value to set for the is_phone_one_time_password_authentication_enabled property.
         """
         self._is_phone_one_time_password_authentication_enabled = value
     
@@ -93,7 +93,7 @@ class B2cAuthenticationMethodsPolicy(entity.Entity):
         """
         Sets the isUserNameAuthenticationEnabled property value. The tenant admin can configure local accounts using username if the username and password authentication method is enabled.
         Args:
-            value: Value to set for the isUserNameAuthenticationEnabled property.
+            value: Value to set for the is_user_name_authentication_enabled property.
         """
         self._is_user_name_authentication_enabled = value
     

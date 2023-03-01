@@ -35,7 +35,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
         self._kerberos_sign_on_settings: Optional[kerberos_sign_on_settings.KerberosSignOnSettings] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased.
+        # The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
         self._single_sign_on_mode: Optional[single_sign_on_mode.SingleSignOnMode] = None
     
     @staticmethod
@@ -56,9 +56,9 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "kerberos_sign_on_settings": lambda n : setattr(self, 'kerberos_sign_on_settings', n.get_object_value(kerberos_sign_on_settings.KerberosSignOnSettings)),
+            "kerberosSignOnSettings": lambda n : setattr(self, 'kerberos_sign_on_settings', n.get_object_value(kerberos_sign_on_settings.KerberosSignOnSettings)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "single_sign_on_mode": lambda n : setattr(self, 'single_sign_on_mode', n.get_enum_value(single_sign_on_mode.SingleSignOnMode)),
+            "singleSignOnMode": lambda n : setattr(self, 'single_sign_on_mode', n.get_enum_value(single_sign_on_mode.SingleSignOnMode)),
         }
         return fields
     
@@ -75,7 +75,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
         """
         Sets the kerberosSignOnSettings property value. The Kerberos Constrained Delegation settings for applications that use Integrated Window Authentication.
         Args:
-            value: Value to set for the kerberosSignOnSettings property.
+            value: Value to set for the kerberos_sign_on_settings property.
         """
         self._kerberos_sign_on_settings = value
     
@@ -92,7 +92,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,7 +112,7 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
     @property
     def single_sign_on_mode(self,) -> Optional[single_sign_on_mode.SingleSignOnMode]:
         """
-        Gets the singleSignOnMode property value. The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased.
+        Gets the singleSignOnMode property value. The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
         Returns: Optional[single_sign_on_mode.SingleSignOnMode]
         """
         return self._single_sign_on_mode
@@ -120,9 +120,9 @@ class OnPremisesPublishingSingleSignOn(AdditionalDataHolder, Parsable):
     @single_sign_on_mode.setter
     def single_sign_on_mode(self,value: Optional[single_sign_on_mode.SingleSignOnMode] = None) -> None:
         """
-        Sets the singleSignOnMode property value. The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased.
+        Sets the singleSignOnMode property value. The preferred single-sign on mode for the application. Possible values are: none, onPremisesKerberos, aadHeaderBased,pingHeaderBased, oAuthToken.
         Args:
-            value: Value to set for the singleSignOnMode property.
+            value: Value to set for the single_sign_on_mode property.
         """
         self._single_sign_on_mode = value
     

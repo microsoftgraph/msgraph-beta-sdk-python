@@ -59,8 +59,8 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "history_data": lambda n : setattr(self, 'history_data', n.get_collection_of_object_values(device_health_script_remediation_history_data.DeviceHealthScriptRemediationHistoryData)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "historyData": lambda n : setattr(self, 'history_data', n.get_collection_of_object_values(device_health_script_remediation_history_data.DeviceHealthScriptRemediationHistoryData)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -78,7 +78,7 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
         """
         Sets the historyData property value. The number of devices remediated by the device health script on the given date.
         Args:
-            value: Value to set for the historyData property.
+            value: Value to set for the history_data property.
         """
         self._history_data = value
     
@@ -95,7 +95,7 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedDateTime property value. The date on which the results history is calculated for the healthscript.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -112,7 +112,7 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

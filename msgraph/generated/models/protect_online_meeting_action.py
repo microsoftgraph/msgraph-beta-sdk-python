@@ -22,7 +22,7 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         """
         Sets the allowedForwarders property value. The allowedForwarders property
         Args:
-            value: Value to set for the allowedForwarders property.
+            value: Value to set for the allowed_forwarders property.
         """
         self._allowed_forwarders = value
     
@@ -39,7 +39,7 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         """
         Sets the allowedPresenters property value. The allowedPresenters property
         Args:
-            value: Value to set for the allowedPresenters property.
+            value: Value to set for the allowed_presenters property.
         """
         self._allowed_presenters = value
     
@@ -78,11 +78,11 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_forwarders": lambda n : setattr(self, 'allowed_forwarders', n.get_enum_value(online_meeting_forwarders.OnlineMeetingForwarders)),
-            "allowed_presenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(online_meeting_presenters.OnlineMeetingPresenters)),
-            "is_copy_to_clipboard_enabled": lambda n : setattr(self, 'is_copy_to_clipboard_enabled', n.get_bool_value()),
-            "is_lobby_enabled": lambda n : setattr(self, 'is_lobby_enabled', n.get_bool_value()),
-            "lobby_bypass_settings": lambda n : setattr(self, 'lobby_bypass_settings', n.get_object_value(lobby_bypass_settings.LobbyBypassSettings)),
+            "allowedForwarders": lambda n : setattr(self, 'allowed_forwarders', n.get_enum_value(online_meeting_forwarders.OnlineMeetingForwarders)),
+            "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(online_meeting_presenters.OnlineMeetingPresenters)),
+            "isCopyToClipboardEnabled": lambda n : setattr(self, 'is_copy_to_clipboard_enabled', n.get_bool_value()),
+            "isLobbyEnabled": lambda n : setattr(self, 'is_lobby_enabled', n.get_bool_value()),
+            "lobbyBypassSettings": lambda n : setattr(self, 'lobby_bypass_settings', n.get_object_value(lobby_bypass_settings.LobbyBypassSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -101,7 +101,7 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         """
         Sets the isCopyToClipboardEnabled property value. The isCopyToClipboardEnabled property
         Args:
-            value: Value to set for the isCopyToClipboardEnabled property.
+            value: Value to set for the is_copy_to_clipboard_enabled property.
         """
         self._is_copy_to_clipboard_enabled = value
     
@@ -118,7 +118,7 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         """
         Sets the isLobbyEnabled property value. The isLobbyEnabled property
         Args:
-            value: Value to set for the isLobbyEnabled property.
+            value: Value to set for the is_lobby_enabled property.
         """
         self._is_lobby_enabled = value
     
@@ -135,7 +135,7 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         """
         Sets the lobbyBypassSettings property value. The lobbyBypassSettings property
         Args:
-            value: Value to set for the lobbyBypassSettings property.
+            value: Value to set for the lobby_bypass_settings property.
         """
         self._lobby_bypass_settings = value
     

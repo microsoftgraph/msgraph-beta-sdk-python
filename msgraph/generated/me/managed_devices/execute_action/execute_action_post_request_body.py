@@ -19,7 +19,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the actionName property value. The actionName property
         Args:
-            value: Value to set for the actionName property.
+            value: Value to set for the action_name property.
         """
         self._action_name = value
     
@@ -53,7 +53,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the carrierUrl property value. The carrierUrl property
         Args:
-            value: Value to set for the carrierUrl property.
+            value: Value to set for the carrier_url property.
         """
         self._carrier_url = value
     
@@ -112,7 +112,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deprovisionReason property value. The deprovisionReason property
         Args:
-            value: Value to set for the deprovisionReason property.
+            value: Value to set for the deprovision_reason property.
         """
         self._deprovision_reason = value
     
@@ -129,7 +129,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceIds property value. The deviceIds property
         Args:
-            value: Value to set for the deviceIds property.
+            value: Value to set for the device_ids property.
         """
         self._device_ids = value
     
@@ -146,7 +146,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceName property value. The deviceName property
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -156,17 +156,17 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_name": lambda n : setattr(self, 'action_name', n.get_enum_value(managed_device_remote_action.ManagedDeviceRemoteAction)),
-            "carrier_url": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
-            "deprovision_reason": lambda n : setattr(self, 'deprovision_reason', n.get_str_value()),
-            "device_ids": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(str)),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "keep_enrollment_data": lambda n : setattr(self, 'keep_enrollment_data', n.get_bool_value()),
-            "keep_user_data": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
-            "notification_body": lambda n : setattr(self, 'notification_body', n.get_str_value()),
-            "notification_title": lambda n : setattr(self, 'notification_title', n.get_str_value()),
-            "organizational_unit_path": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
-            "persist_esim_data_plan": lambda n : setattr(self, 'persist_esim_data_plan', n.get_bool_value()),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(managed_device_remote_action.ManagedDeviceRemoteAction)),
+            "carrierUrl": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
+            "deprovisionReason": lambda n : setattr(self, 'deprovision_reason', n.get_str_value()),
+            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(str)),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "keepEnrollmentData": lambda n : setattr(self, 'keep_enrollment_data', n.get_bool_value()),
+            "keepUserData": lambda n : setattr(self, 'keep_user_data', n.get_bool_value()),
+            "notificationBody": lambda n : setattr(self, 'notification_body', n.get_str_value()),
+            "notificationTitle": lambda n : setattr(self, 'notification_title', n.get_str_value()),
+            "organizationalUnitPath": lambda n : setattr(self, 'organizational_unit_path', n.get_str_value()),
+            "persistEsimDataPlan": lambda n : setattr(self, 'persist_esim_data_plan', n.get_bool_value()),
         }
         return fields
     
@@ -183,7 +183,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keepEnrollmentData property value. The keepEnrollmentData property
         Args:
-            value: Value to set for the keepEnrollmentData property.
+            value: Value to set for the keep_enrollment_data property.
         """
         self._keep_enrollment_data = value
     
@@ -200,7 +200,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keepUserData property value. The keepUserData property
         Args:
-            value: Value to set for the keepUserData property.
+            value: Value to set for the keep_user_data property.
         """
         self._keep_user_data = value
     
@@ -217,7 +217,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the notificationBody property value. The notificationBody property
         Args:
-            value: Value to set for the notificationBody property.
+            value: Value to set for the notification_body property.
         """
         self._notification_body = value
     
@@ -234,7 +234,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the notificationTitle property value. The notificationTitle property
         Args:
-            value: Value to set for the notificationTitle property.
+            value: Value to set for the notification_title property.
         """
         self._notification_title = value
     
@@ -251,7 +251,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the organizationalUnitPath property value. The organizationalUnitPath property
         Args:
-            value: Value to set for the organizationalUnitPath property.
+            value: Value to set for the organizational_unit_path property.
         """
         self._organizational_unit_path = value
     
@@ -268,7 +268,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the persistEsimDataPlan property value. The persistEsimDataPlan property
         Args:
-            value: Value to set for the persistEsimDataPlan property.
+            value: Value to set for the persist_esim_data_plan property.
         """
         self._persist_esim_data_plan = value
     

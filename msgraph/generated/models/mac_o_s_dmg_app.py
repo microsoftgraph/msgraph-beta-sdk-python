@@ -43,11 +43,11 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "ignore_version_detection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),
-            "included_apps": lambda n : setattr(self, 'included_apps', n.get_collection_of_object_values(mac_o_s_included_app.MacOSIncludedApp)),
-            "minimum_supported_operating_system": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem)),
-            "primary_bundle_id": lambda n : setattr(self, 'primary_bundle_id', n.get_str_value()),
-            "primary_bundle_version": lambda n : setattr(self, 'primary_bundle_version', n.get_str_value()),
+            "ignoreVersionDetection": lambda n : setattr(self, 'ignore_version_detection', n.get_bool_value()),
+            "includedApps": lambda n : setattr(self, 'included_apps', n.get_collection_of_object_values(mac_o_s_included_app.MacOSIncludedApp)),
+            "minimumSupportedOperatingSystem": lambda n : setattr(self, 'minimum_supported_operating_system', n.get_object_value(mac_o_s_minimum_operating_system.MacOSMinimumOperatingSystem)),
+            "primaryBundleId": lambda n : setattr(self, 'primary_bundle_id', n.get_str_value()),
+            "primaryBundleVersion": lambda n : setattr(self, 'primary_bundle_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,7 +66,7 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         """
         Sets the ignoreVersionDetection property value. A value indicating whether the app's version will be used to detect the app after it is installed on a device. Set this to true for apps that use a self-update feature. Set this to false to install the app when it is not already installed on the device, or if the deploying app's version number does not match the version that's already installed on the device.
         Args:
-            value: Value to set for the ignoreVersionDetection property.
+            value: Value to set for the ignore_version_detection property.
         """
         self._ignore_version_detection = value
     
@@ -83,7 +83,7 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         """
         Sets the includedApps property value. The list of apps expected to be installed by the DMG.
         Args:
-            value: Value to set for the includedApps property.
+            value: Value to set for the included_apps property.
         """
         self._included_apps = value
     
@@ -100,7 +100,7 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         """
         Sets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
         Args:
-            value: Value to set for the minimumSupportedOperatingSystem property.
+            value: Value to set for the minimum_supported_operating_system property.
         """
         self._minimum_supported_operating_system = value
     
@@ -117,7 +117,7 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         """
         Sets the primaryBundleId property value. The primary CFBundleIdentifier of the DMG.
         Args:
-            value: Value to set for the primaryBundleId property.
+            value: Value to set for the primary_bundle_id property.
         """
         self._primary_bundle_id = value
     
@@ -134,7 +134,7 @@ class MacOSDmgApp(mobile_lob_app.MobileLobApp):
         """
         Sets the primaryBundleVersion property value. The primary CFBundleVersion of the DMG.
         Args:
-            value: Value to set for the primaryBundleVersion property.
+            value: Value to set for the primary_bundle_version property.
         """
         self._primary_bundle_version = value
     

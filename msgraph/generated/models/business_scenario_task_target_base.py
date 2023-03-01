@@ -54,7 +54,7 @@ class BusinessScenarioTaskTargetBase(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "task_target_kind": lambda n : setattr(self, 'task_target_kind', n.get_enum_value(planner_task_target_kind.PlannerTaskTargetKind)),
+            "taskTargetKind": lambda n : setattr(self, 'task_target_kind', n.get_enum_value(planner_task_target_kind.PlannerTaskTargetKind)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class BusinessScenarioTaskTargetBase(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -100,7 +100,7 @@ class BusinessScenarioTaskTargetBase(AdditionalDataHolder, Parsable):
         """
         Sets the taskTargetKind property value. The taskTargetKind property
         Args:
-            value: Value to set for the taskTargetKind property.
+            value: Value to set for the task_target_kind property.
         """
         self._task_target_kind = value
     

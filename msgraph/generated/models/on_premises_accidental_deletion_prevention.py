@@ -36,7 +36,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
         """
         Sets the alertThreshold property value. Threshold value which triggers accidental deletion prevention. The threshold is either an absolute number of objects or a percentage number of objects.
         Args:
-            value: Value to set for the alertThreshold property.
+            value: Value to set for the alert_threshold property.
         """
         self._alert_threshold = value
     
@@ -51,7 +51,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
         self._alert_threshold: Optional[int] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage.
+        # The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage, unknownFutureValue.
         self._synchronization_prevention_type: Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType] = None
     
     @staticmethod
@@ -72,9 +72,9 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_threshold": lambda n : setattr(self, 'alert_threshold', n.get_int_value()),
+            "alertThreshold": lambda n : setattr(self, 'alert_threshold', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "synchronization_prevention_type": lambda n : setattr(self, 'synchronization_prevention_type', n.get_enum_value(on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType)),
+            "synchronizationPreventionType": lambda n : setattr(self, 'synchronization_prevention_type', n.get_enum_value(on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType)),
         }
         return fields
     
@@ -91,7 +91,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -111,7 +111,7 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @property
     def synchronization_prevention_type(self,) -> Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType]:
         """
-        Gets the synchronizationPreventionType property value. The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage.
+        Gets the synchronizationPreventionType property value. The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage, unknownFutureValue.
         Returns: Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType]
         """
         return self._synchronization_prevention_type
@@ -119,9 +119,9 @@ class OnPremisesAccidentalDeletionPrevention(AdditionalDataHolder, Parsable):
     @synchronization_prevention_type.setter
     def synchronization_prevention_type(self,value: Optional[on_premises_directory_synchronization_deletion_prevention_type.OnPremisesDirectorySynchronizationDeletionPreventionType] = None) -> None:
         """
-        Sets the synchronizationPreventionType property value. The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage.
+        Sets the synchronizationPreventionType property value. The status of the accidental deletion prevention feature. The possible values are: disabled, enabledForCount, enabledForPercentage, unknownFutureValue.
         Args:
-            value: Value to set for the synchronizationPreventionType property.
+            value: Value to set for the synchronization_prevention_type property.
         """
         self._synchronization_prevention_type = value
     

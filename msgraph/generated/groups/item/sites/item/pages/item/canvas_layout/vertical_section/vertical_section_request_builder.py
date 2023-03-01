@@ -44,12 +44,11 @@ class VerticalSectionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[VerticalSectionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[VerticalSectionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property verticalSection for groups
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class VerticalSectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[VerticalSectionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vertical_section.VerticalSection]:
+    async def get(self,request_configuration: Optional[VerticalSectionRequestBuilderGetRequestConfiguration] = None) -> Optional[vertical_section.VerticalSection]:
         """
         Read the properties and relationships of a verticalSection object.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vertical_section.VerticalSection]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +77,14 @@ class VerticalSectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vertical_section.VerticalSection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vertical_section.VerticalSection, error_mapping)
     
-    async def patch(self,body: Optional[vertical_section.VerticalSection] = None, request_configuration: Optional[VerticalSectionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[vertical_section.VerticalSection]:
+    async def patch(self,body: Optional[vertical_section.VerticalSection] = None, request_configuration: Optional[VerticalSectionRequestBuilderPatchRequestConfiguration] = None) -> Optional[vertical_section.VerticalSection]:
         """
         Update the navigation property verticalSection in groups
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[vertical_section.VerticalSection]
         """
         if body is None:
@@ -101,7 +98,7 @@ class VerticalSectionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, vertical_section.VerticalSection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, vertical_section.VerticalSection, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[VerticalSectionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -130,7 +127,7 @@ class VerticalSectionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -151,7 +148,7 @@ class VerticalSectionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -177,7 +174,7 @@ class VerticalSectionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -216,7 +213,7 @@ class VerticalSectionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -231,7 +228,7 @@ class VerticalSectionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

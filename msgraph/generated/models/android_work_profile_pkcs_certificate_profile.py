@@ -22,7 +22,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
         Args:
-            value: Value to set for the certificateStore property.
+            value: Value to set for the certificate_store property.
         """
         self._certificate_store = value
     
@@ -39,7 +39,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the certificateTemplateName property value. PKCS Certificate Template Name
         Args:
-            value: Value to set for the certificateTemplateName property.
+            value: Value to set for the certificate_template_name property.
         """
         self._certificate_template_name = value
     
@@ -56,7 +56,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the certificationAuthority property value. PKCS Certification Authority
         Args:
-            value: Value to set for the certificationAuthority property.
+            value: Value to set for the certification_authority property.
         """
         self._certification_authority = value
     
@@ -73,7 +73,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the certificationAuthorityName property value. PKCS Certification Authority Name
         Args:
-            value: Value to set for the certificationAuthorityName property.
+            value: Value to set for the certification_authority_name property.
         """
         self._certification_authority_name = value
     
@@ -125,7 +125,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the customSubjectAlternativeNames property value. Custom Subject Alternative Name Settings. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the customSubjectAlternativeNames property.
+            value: Value to set for the custom_subject_alternative_names property.
         """
         self._custom_subject_alternative_names = value
     
@@ -135,14 +135,14 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_store": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
-            "certificate_template_name": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
-            "certification_authority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
-            "certification_authority_name": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
-            "custom_subject_alternative_names": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
-            "subject_alternative_name_format_string": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
-            "subject_name_format_string": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
+            "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
+            "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
+            "certificationAuthority": lambda n : setattr(self, 'certification_authority', n.get_str_value()),
+            "certificationAuthorityName": lambda n : setattr(self, 'certification_authority_name', n.get_str_value()),
+            "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "subjectAlternativeNameFormatString": lambda n : setattr(self, 'subject_alternative_name_format_string', n.get_str_value()),
+            "subjectNameFormatString": lambda n : setattr(self, 'subject_name_format_string', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -161,7 +161,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     
@@ -196,7 +196,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the subjectAlternativeNameFormatString property value. Custom String that defines the AAD Attribute.
         Args:
-            value: Value to set for the subjectAlternativeNameFormatString property.
+            value: Value to set for the subject_alternative_name_format_string property.
         """
         self._subject_alternative_name_format_string = value
     
@@ -213,7 +213,7 @@ class AndroidWorkProfilePkcsCertificateProfile(android_work_profile_certificate_
         """
         Sets the subjectNameFormatString property value. Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         Args:
-            value: Value to set for the subjectNameFormatString property.
+            value: Value to set for the subject_name_format_string property.
         """
         self._subject_name_format_string = value
     

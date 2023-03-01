@@ -45,7 +45,7 @@ class IosEduDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the deviceCertificateSettings property value. The Trusted Root and PFX certificates for Device
         Args:
-            value: Value to set for the deviceCertificateSettings property.
+            value: Value to set for the device_certificate_settings property.
         """
         self._device_certificate_settings = value
     
@@ -55,9 +55,9 @@ class IosEduDeviceConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_certificate_settings": lambda n : setattr(self, 'device_certificate_settings', n.get_object_value(ios_edu_certificate_settings.IosEduCertificateSettings)),
-            "student_certificate_settings": lambda n : setattr(self, 'student_certificate_settings', n.get_object_value(ios_edu_certificate_settings.IosEduCertificateSettings)),
-            "teacher_certificate_settings": lambda n : setattr(self, 'teacher_certificate_settings', n.get_object_value(ios_edu_certificate_settings.IosEduCertificateSettings)),
+            "deviceCertificateSettings": lambda n : setattr(self, 'device_certificate_settings', n.get_object_value(ios_edu_certificate_settings.IosEduCertificateSettings)),
+            "studentCertificateSettings": lambda n : setattr(self, 'student_certificate_settings', n.get_object_value(ios_edu_certificate_settings.IosEduCertificateSettings)),
+            "teacherCertificateSettings": lambda n : setattr(self, 'teacher_certificate_settings', n.get_object_value(ios_edu_certificate_settings.IosEduCertificateSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -89,7 +89,7 @@ class IosEduDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the studentCertificateSettings property value. The Trusted Root and PFX certificates for Student
         Args:
-            value: Value to set for the studentCertificateSettings property.
+            value: Value to set for the student_certificate_settings property.
         """
         self._student_certificate_settings = value
     
@@ -106,7 +106,7 @@ class IosEduDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the teacherCertificateSettings property value. Trusted Root and PFX certificates for iOS EDU.
         Args:
-            value: Value to set for the teacherCertificateSettings property.
+            value: Value to set for the teacher_certificate_settings property.
         """
         self._teacher_certificate_settings = value
     

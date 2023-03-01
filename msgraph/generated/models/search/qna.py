@@ -24,7 +24,7 @@ class Qna(search_answer.SearchAnswer):
         """
         Sets the availabilityEndDateTime property value. Timestamp of when the qna will stop to appear as a search result. Set as null for always available.
         Args:
-            value: Value to set for the availabilityEndDateTime property.
+            value: Value to set for the availability_end_date_time property.
         """
         self._availability_end_date_time = value
     
@@ -41,7 +41,7 @@ class Qna(search_answer.SearchAnswer):
         """
         Sets the availabilityStartDateTime property value. Timestamp of when the qna will start to appear as a search result. Set as null for always available.
         Args:
-            value: Value to set for the availabilityStartDateTime property.
+            value: Value to set for the availability_start_date_time property.
         """
         self._availability_start_date_time = value
     
@@ -89,15 +89,15 @@ class Qna(search_answer.SearchAnswer):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "availability_end_date_time": lambda n : setattr(self, 'availability_end_date_time', n.get_datetime_value()),
-            "availability_start_date_time": lambda n : setattr(self, 'availability_start_date_time', n.get_datetime_value()),
-            "group_ids": lambda n : setattr(self, 'group_ids', n.get_collection_of_primitive_values(str)),
-            "is_suggested": lambda n : setattr(self, 'is_suggested', n.get_bool_value()),
+            "availabilityEndDateTime": lambda n : setattr(self, 'availability_end_date_time', n.get_datetime_value()),
+            "availabilityStartDateTime": lambda n : setattr(self, 'availability_start_date_time', n.get_datetime_value()),
+            "groupIds": lambda n : setattr(self, 'group_ids', n.get_collection_of_primitive_values(str)),
+            "isSuggested": lambda n : setattr(self, 'is_suggested', n.get_bool_value()),
             "keywords": lambda n : setattr(self, 'keywords', n.get_object_value(answer_keyword.AnswerKeyword)),
-            "language_tags": lambda n : setattr(self, 'language_tags', n.get_collection_of_primitive_values(str)),
+            "languageTags": lambda n : setattr(self, 'language_tags', n.get_collection_of_primitive_values(str)),
             "platforms": lambda n : setattr(self, 'platforms', n.get_collection_of_enum_values(device_platform_type.DevicePlatformType)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(answer_state.AnswerState)),
-            "targeted_variations": lambda n : setattr(self, 'targeted_variations', n.get_collection_of_object_values(answer_variant.AnswerVariant)),
+            "targetedVariations": lambda n : setattr(self, 'targeted_variations', n.get_collection_of_object_values(answer_variant.AnswerVariant)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -116,7 +116,7 @@ class Qna(search_answer.SearchAnswer):
         """
         Sets the groupIds property value. List of security groups able to view this qna.
         Args:
-            value: Value to set for the groupIds property.
+            value: Value to set for the group_ids property.
         """
         self._group_ids = value
     
@@ -133,7 +133,7 @@ class Qna(search_answer.SearchAnswer):
         """
         Sets the isSuggested property value. True if this qna was suggested to the admin by a user or was mined and suggested by Microsoft. Read-only.
         Args:
-            value: Value to set for the isSuggested property.
+            value: Value to set for the is_suggested property.
         """
         self._is_suggested = value
     
@@ -167,7 +167,7 @@ class Qna(search_answer.SearchAnswer):
         """
         Sets the languageTags property value. A list of language names that are geographically specific and that this QnA can be viewed in. Each language tag value follows the pattern {language}-{region}. As an example, en-us is English as used in the United States. For the list of possible values, see supported language tags.
         Args:
-            value: Value to set for the languageTags property.
+            value: Value to set for the language_tags property.
         """
         self._language_tags = value
     
@@ -237,7 +237,7 @@ class Qna(search_answer.SearchAnswer):
         """
         Sets the targetedVariations property value. Variations of a qna for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings will apply to all variations.
         Args:
-            value: Value to set for the targetedVariations property.
+            value: Value to set for the targeted_variations property.
         """
         self._targeted_variations = value
     

@@ -57,9 +57,9 @@ class CommentAction(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_reply": lambda n : setattr(self, 'is_reply', n.get_bool_value()),
+            "isReply": lambda n : setattr(self, 'is_reply', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "parent_author": lambda n : setattr(self, 'parent_author', n.get_object_value(identity_set.IdentitySet)),
+            "parentAuthor": lambda n : setattr(self, 'parent_author', n.get_object_value(identity_set.IdentitySet)),
             "participants": lambda n : setattr(self, 'participants', n.get_collection_of_object_values(identity_set.IdentitySet)),
         }
         return fields
@@ -77,7 +77,7 @@ class CommentAction(AdditionalDataHolder, Parsable):
         """
         Sets the isReply property value. If true, this activity was a reply to an existing comment thread.
         Args:
-            value: Value to set for the isReply property.
+            value: Value to set for the is_reply property.
         """
         self._is_reply = value
     
@@ -94,7 +94,7 @@ class CommentAction(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -111,7 +111,7 @@ class CommentAction(AdditionalDataHolder, Parsable):
         """
         Sets the parentAuthor property value. The identity of the user who started the comment thread.
         Args:
-            value: Value to set for the parentAuthor property.
+            value: Value to set for the parent_author property.
         """
         self._parent_author = value
     

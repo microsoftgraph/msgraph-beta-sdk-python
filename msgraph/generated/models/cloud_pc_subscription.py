@@ -36,8 +36,8 @@ class CloudPcSubscription(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "subscription_id": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
-            "subscription_name": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
+            "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
+            "subscriptionName": lambda n : setattr(self, 'subscription_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -68,7 +68,7 @@ class CloudPcSubscription(entity.Entity):
         """
         Sets the subscriptionId property value. The ID of the subscription.
         Args:
-            value: Value to set for the subscriptionId property.
+            value: Value to set for the subscription_id property.
         """
         self._subscription_id = value
     
@@ -85,7 +85,7 @@ class CloudPcSubscription(entity.Entity):
         """
         Sets the subscriptionName property value. The name of the subscription.
         Args:
-            value: Value to set for the subscriptionName property.
+            value: Value to set for the subscription_name property.
         """
         self._subscription_name = value
     

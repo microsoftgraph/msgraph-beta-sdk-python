@@ -51,7 +51,7 @@ class UpdateWindowsDeviceAccountPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "update_windows_device_account_action_parameter": lambda n : setattr(self, 'update_windows_device_account_action_parameter', n.get_object_value(update_windows_device_account_action_parameter.UpdateWindowsDeviceAccountActionParameter)),
+            "updateWindowsDeviceAccountActionParameter": lambda n : setattr(self, 'update_windows_device_account_action_parameter', n.get_object_value(update_windows_device_account_action_parameter.UpdateWindowsDeviceAccountActionParameter)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class UpdateWindowsDeviceAccountPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the updateWindowsDeviceAccountActionParameter property value. The updateWindowsDeviceAccountActionParameter property
         Args:
-            value: Value to set for the updateWindowsDeviceAccountActionParameter property.
+            value: Value to set for the update_windows_device_account_action_parameter property.
         """
         self._update_windows_device_account_action_parameter = value
     

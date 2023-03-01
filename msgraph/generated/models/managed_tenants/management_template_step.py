@@ -24,7 +24,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the acceptedVersion property value. The acceptedVersion property
         Args:
-            value: Value to set for the acceptedVersion property.
+            value: Value to set for the accepted_version property.
         """
         self._accepted_version = value
     
@@ -90,7 +90,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -107,7 +107,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -153,7 +153,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -163,16 +163,16 @@ class ManagementTemplateStep(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accepted_version": lambda n : setattr(self, 'accepted_version', n.get_object_value(management_template_step_version.ManagementTemplateStepVersion)),
+            "acceptedVersion": lambda n : setattr(self, 'accepted_version', n.get_object_value(management_template_step_version.ManagementTemplateStepVersion)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "management_template": lambda n : setattr(self, 'management_template', n.get_object_value(management_template.ManagementTemplate)),
-            "portal_link": lambda n : setattr(self, 'portal_link', n.get_object_value(action_url.ActionUrl)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "managementTemplate": lambda n : setattr(self, 'management_template', n.get_object_value(management_template.ManagementTemplate)),
+            "portalLink": lambda n : setattr(self, 'portal_link', n.get_object_value(action_url.ActionUrl)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "versions": lambda n : setattr(self, 'versions', n.get_collection_of_object_values(management_template_step_version.ManagementTemplateStepVersion)),
         }
@@ -193,7 +193,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -210,7 +210,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -227,7 +227,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the managementTemplate property value. The managementTemplate property
         Args:
-            value: Value to set for the managementTemplate property.
+            value: Value to set for the management_template property.
         """
         self._management_template = value
     
@@ -244,7 +244,7 @@ class ManagementTemplateStep(entity.Entity):
         """
         Sets the portalLink property value. The portalLink property
         Args:
-            value: Value to set for the portalLink property.
+            value: Value to set for the portal_link property.
         """
         self._portal_link = value
     

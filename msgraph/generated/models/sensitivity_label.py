@@ -24,7 +24,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the applicableTo property value. The applicableTo property
         Args:
-            value: Value to set for the applicableTo property.
+            value: Value to set for the applicable_to property.
         """
         self._applicable_to = value
     
@@ -41,7 +41,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the applicationMode property value. The applicationMode property
         Args:
-            value: Value to set for the applicationMode property.
+            value: Value to set for the application_mode property.
         """
         self._application_mode = value
     
@@ -58,7 +58,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the assignedPolicies property value. The assignedPolicies property
         Args:
-            value: Value to set for the assignedPolicies property.
+            value: Value to set for the assigned_policies property.
         """
         self._assigned_policies = value
     
@@ -75,7 +75,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the autoLabeling property value. The autoLabeling property
         Args:
-            value: Value to set for the autoLabeling property.
+            value: Value to set for the auto_labeling property.
         """
         self._auto_labeling = value
     
@@ -155,7 +155,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -165,19 +165,19 @@ class SensitivityLabel(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applicable_to": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
-            "application_mode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
-            "assigned_policies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(label_policy.LabelPolicy)),
-            "auto_labeling": lambda n : setattr(self, 'auto_labeling', n.get_object_value(auto_labeling.AutoLabeling)),
+            "applicableTo": lambda n : setattr(self, 'applicable_to', n.get_enum_value(sensitivity_label_target.SensitivityLabelTarget)),
+            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
+            "assignedPolicies": lambda n : setattr(self, 'assigned_policies', n.get_collection_of_object_values(label_policy.LabelPolicy)),
+            "autoLabeling": lambda n : setattr(self, 'auto_labeling', n.get_object_value(auto_labeling.AutoLabeling)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_default": lambda n : setattr(self, 'is_default', n.get_bool_value()),
-            "is_endpoint_protection_enabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
-            "label_actions": lambda n : setattr(self, 'label_actions', n.get_collection_of_object_values(label_action_base.LabelActionBase)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),
+            "isEndpointProtectionEnabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
+            "labelActions": lambda n : setattr(self, 'label_actions', n.get_collection_of_object_values(label_action_base.LabelActionBase)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "sublabels": lambda n : setattr(self, 'sublabels', n.get_collection_of_object_values(SensitivityLabel)),
-            "tool_tip": lambda n : setattr(self, 'tool_tip', n.get_str_value()),
+            "toolTip": lambda n : setattr(self, 'tool_tip', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -196,7 +196,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the isDefault property value. The isDefault property
         Args:
-            value: Value to set for the isDefault property.
+            value: Value to set for the is_default property.
         """
         self._is_default = value
     
@@ -213,7 +213,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the isEndpointProtectionEnabled property value. The isEndpointProtectionEnabled property
         Args:
-            value: Value to set for the isEndpointProtectionEnabled property.
+            value: Value to set for the is_endpoint_protection_enabled property.
         """
         self._is_endpoint_protection_enabled = value
     
@@ -230,7 +230,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the labelActions property value. The labelActions property
         Args:
-            value: Value to set for the labelActions property.
+            value: Value to set for the label_actions property.
         """
         self._label_actions = value
     
@@ -321,7 +321,7 @@ class SensitivityLabel(entity.Entity):
         """
         Sets the toolTip property value. The toolTip property
         Args:
-            value: Value to set for the toolTip property.
+            value: Value to set for the tool_tip property.
         """
         self._tool_tip = value
     

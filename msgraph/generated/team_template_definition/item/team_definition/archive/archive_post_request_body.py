@@ -49,7 +49,7 @@ class ArchivePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "should_set_spo_site_read_only_for_members": lambda n : setattr(self, 'should_set_spo_site_read_only_for_members', n.get_bool_value()),
+            "shouldSetSpoSiteReadOnlyForMembers": lambda n : setattr(self, 'should_set_spo_site_read_only_for_members', n.get_bool_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class ArchivePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the shouldSetSpoSiteReadOnlyForMembers property value. The shouldSetSpoSiteReadOnlyForMembers property
         Args:
-            value: Value to set for the shouldSetSpoSiteReadOnlyForMembers property.
+            value: Value to set for the should_set_spo_site_read_only_for_members property.
         """
         self._should_set_spo_site_read_only_for_members = value
     

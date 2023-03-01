@@ -61,7 +61,7 @@ class SharePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. The endDateTime property
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -71,9 +71,9 @@ class SharePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "notify_team": lambda n : setattr(self, 'notify_team', n.get_bool_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
+            "notifyTeam": lambda n : setattr(self, 'notify_team', n.get_bool_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -90,7 +90,7 @@ class SharePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the notifyTeam property value. The notifyTeam property
         Args:
-            value: Value to set for the notifyTeam property.
+            value: Value to set for the notify_team property.
         """
         self._notify_team = value
     
@@ -120,7 +120,7 @@ class SharePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. The startDateTime property
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

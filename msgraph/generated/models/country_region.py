@@ -20,7 +20,7 @@ class CountryRegion(entity.Entity):
         """
         Sets the addressFormat property value. The addressFormat property
         Args:
-            value: Value to set for the addressFormat property.
+            value: Value to set for the address_format property.
         """
         self._address_format = value
     
@@ -82,7 +82,7 @@ class CountryRegion(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -92,10 +92,10 @@ class CountryRegion(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "address_format": lambda n : setattr(self, 'address_format', n.get_str_value()),
+            "addressFormat": lambda n : setattr(self, 'address_format', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -114,7 +114,7 @@ class CountryRegion(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

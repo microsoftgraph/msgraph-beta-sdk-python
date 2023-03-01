@@ -62,7 +62,7 @@ class PlannerPlanConfiguration(entity.Entity):
         """
         Sets the createdBy property value. The identity of the creator of the plan configuration.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -79,7 +79,7 @@ class PlannerPlanConfiguration(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time when the plan configuration was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -108,7 +108,7 @@ class PlannerPlanConfiguration(entity.Entity):
         """
         Sets the defaultLanguage property value. The language code for the default language to be used for the names of the objects created for the plan.
         Args:
-            value: Value to set for the defaultLanguage property.
+            value: Value to set for the default_language property.
         """
         self._default_language = value
     
@@ -119,11 +119,11 @@ class PlannerPlanConfiguration(entity.Entity):
         """
         fields = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "default_language": lambda n : setattr(self, 'default_language', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "defaultLanguage": lambda n : setattr(self, 'default_language', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "localizations": lambda n : setattr(self, 'localizations', n.get_collection_of_object_values(planner_plan_configuration_localization.PlannerPlanConfigurationLocalization)),
         }
         super_fields = super().get_field_deserializers()
@@ -143,7 +143,7 @@ class PlannerPlanConfiguration(entity.Entity):
         """
         Sets the lastModifiedBy property value. The identity of the user who last modified the plan configuration.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -160,7 +160,7 @@ class PlannerPlanConfiguration(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time when the plan configuration was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

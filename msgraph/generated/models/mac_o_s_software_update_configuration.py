@@ -22,7 +22,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the allOtherUpdateBehavior property value. Update behavior options for macOS software updates.
         Args:
-            value: Value to set for the allOtherUpdateBehavior property.
+            value: Value to set for the all_other_update_behavior property.
         """
         self._all_other_update_behavior = value
     
@@ -39,7 +39,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the configDataUpdateBehavior property value. Update behavior options for macOS software updates.
         Args:
-            value: Value to set for the configDataUpdateBehavior property.
+            value: Value to set for the config_data_update_behavior property.
         """
         self._config_data_update_behavior = value
     
@@ -89,7 +89,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the criticalUpdateBehavior property value. Update behavior options for macOS software updates.
         Args:
-            value: Value to set for the criticalUpdateBehavior property.
+            value: Value to set for the critical_update_behavior property.
         """
         self._critical_update_behavior = value
     
@@ -106,7 +106,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the customUpdateTimeWindows property value. Custom Time windows when updates will be allowed or blocked. This collection can contain a maximum of 20 elements.
         Args:
-            value: Value to set for the customUpdateTimeWindows property.
+            value: Value to set for the custom_update_time_windows property.
         """
         self._custom_update_time_windows = value
     
@@ -123,7 +123,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the firmwareUpdateBehavior property value. Update behavior options for macOS software updates.
         Args:
-            value: Value to set for the firmwareUpdateBehavior property.
+            value: Value to set for the firmware_update_behavior property.
         """
         self._firmware_update_behavior = value
     
@@ -133,13 +133,13 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "all_other_update_behavior": lambda n : setattr(self, 'all_other_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
-            "config_data_update_behavior": lambda n : setattr(self, 'config_data_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
-            "critical_update_behavior": lambda n : setattr(self, 'critical_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
-            "custom_update_time_windows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(custom_update_time_window.CustomUpdateTimeWindow)),
-            "firmware_update_behavior": lambda n : setattr(self, 'firmware_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
-            "update_schedule_type": lambda n : setattr(self, 'update_schedule_type', n.get_enum_value(mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType)),
-            "update_time_window_utc_offset_in_minutes": lambda n : setattr(self, 'update_time_window_utc_offset_in_minutes', n.get_int_value()),
+            "allOtherUpdateBehavior": lambda n : setattr(self, 'all_other_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
+            "configDataUpdateBehavior": lambda n : setattr(self, 'config_data_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
+            "criticalUpdateBehavior": lambda n : setattr(self, 'critical_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
+            "customUpdateTimeWindows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(custom_update_time_window.CustomUpdateTimeWindow)),
+            "firmwareUpdateBehavior": lambda n : setattr(self, 'firmware_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
+            "updateScheduleType": lambda n : setattr(self, 'update_schedule_type', n.get_enum_value(mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType)),
+            "updateTimeWindowUtcOffsetInMinutes": lambda n : setattr(self, 'update_time_window_utc_offset_in_minutes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -175,7 +175,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the updateScheduleType property value. Update schedule type for macOS software updates.
         Args:
-            value: Value to set for the updateScheduleType property.
+            value: Value to set for the update_schedule_type property.
         """
         self._update_schedule_type = value
     
@@ -192,7 +192,7 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the updateTimeWindowUtcOffsetInMinutes property value. Minutes indicating UTC offset for each update time window
         Args:
-            value: Value to set for the updateTimeWindowUtcOffsetInMinutes property.
+            value: Value to set for the update_time_window_utc_offset_in_minutes property.
         """
         self._update_time_window_utc_offset_in_minutes = value
     

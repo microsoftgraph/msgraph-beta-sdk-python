@@ -30,6 +30,20 @@ class SchemaRequestBuilder():
         return directories_request_builder.DirectoriesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def filter_operators(self) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
+        """
+        Provides operations to call the filterOperators method.
+        """
+        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def functions(self) -> functions_request_builder.FunctionsRequestBuilder:
+        """
+        Provides operations to call the functions method.
+        """
+        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def parse_expression(self) -> parse_expression_request_builder.ParseExpressionRequestBuilder:
         """
         Provides operations to call the parseExpression method.
@@ -54,12 +68,11 @@ class SchemaRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property schema for applications
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -70,7 +83,7 @@ class SchemaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def directories_by_id(self,id: str) -> directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder:
         """
@@ -85,26 +98,11 @@ class SchemaRequestBuilder():
         url_tpl_params["directoryDefinition%2Did"] = id
         return directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def filter_operators(self,) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
-        """
-        Provides operations to call the filterOperators method.
-        Returns: filter_operators_request_builder.FilterOperatorsRequestBuilder
-        """
-        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def functions(self,) -> functions_request_builder.FunctionsRequestBuilder:
-        """
-        Provides operations to call the functions method.
-        Returns: functions_request_builder.FunctionsRequestBuilder
-        """
-        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
+    async def get(self,request_configuration: Optional[SchemaRequestBuilderGetRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
         Default synchronization schema for the jobs based on this template.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_schema.SynchronizationSchema]
         """
         request_info = self.to_get_request_information(
@@ -116,15 +114,14 @@ class SchemaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, error_mapping)
     
-    async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
+    async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
         """
         Update the navigation property schema in applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[synchronization_schema.SynchronizationSchema]
         """
         if body is None:
@@ -138,7 +135,7 @@ class SchemaRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -167,7 +164,7 @@ class SchemaRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -188,7 +185,7 @@ class SchemaRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -201,7 +198,7 @@ class SchemaRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -240,7 +237,7 @@ class SchemaRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -255,7 +252,7 @@ class SchemaRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

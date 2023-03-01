@@ -36,7 +36,7 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
         """
         Sets the availableVersion property value. The available software version to update.
         Args:
-            value: Value to set for the availableVersion property.
+            value: Value to set for the available_version property.
         """
         self._available_version = value
     
@@ -81,7 +81,7 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
         """
         Sets the currentVersion property value. The current software version.
         Args:
-            value: Value to set for the currentVersion property.
+            value: Value to set for the current_version property.
         """
         self._current_version = value
     
@@ -91,10 +91,10 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "available_version": lambda n : setattr(self, 'available_version', n.get_str_value()),
-            "current_version": lambda n : setattr(self, 'current_version', n.get_str_value()),
+            "availableVersion": lambda n : setattr(self, 'available_version', n.get_str_value()),
+            "currentVersion": lambda n : setattr(self, 'current_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "software_freshness": lambda n : setattr(self, 'software_freshness', n.get_enum_value(teamwork_software_freshness.TeamworkSoftwareFreshness)),
+            "softwareFreshness": lambda n : setattr(self, 'software_freshness', n.get_enum_value(teamwork_software_freshness.TeamworkSoftwareFreshness)),
         }
         return fields
     
@@ -111,7 +111,7 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -142,7 +142,7 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
         """
         Sets the softwareFreshness property value. The update status of the software. The possible values are: unknown, latest, updateAvailable, unknownFutureValue.
         Args:
-            value: Value to set for the softwareFreshness property.
+            value: Value to set for the software_freshness property.
         """
         self._software_freshness = value
     

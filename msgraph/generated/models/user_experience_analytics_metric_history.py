@@ -49,7 +49,7 @@ class UserExperienceAnalyticsMetricHistory(entity.Entity):
         """
         Sets the deviceId property value. The user experience analytics device id.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -59,9 +59,9 @@ class UserExperienceAnalyticsMetricHistory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "metric_date_time": lambda n : setattr(self, 'metric_date_time', n.get_datetime_value()),
-            "metric_type": lambda n : setattr(self, 'metric_type', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "metricDateTime": lambda n : setattr(self, 'metric_date_time', n.get_datetime_value()),
+            "metricType": lambda n : setattr(self, 'metric_type', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,7 +80,7 @@ class UserExperienceAnalyticsMetricHistory(entity.Entity):
         """
         Sets the metricDateTime property value. The user experience analytics metric date time.
         Args:
-            value: Value to set for the metricDateTime property.
+            value: Value to set for the metric_date_time property.
         """
         self._metric_date_time = value
     
@@ -97,7 +97,7 @@ class UserExperienceAnalyticsMetricHistory(entity.Entity):
         """
         Sets the metricType property value. The user experience analytics metric type.
         Args:
-            value: Value to set for the metricType property.
+            value: Value to set for the metric_type property.
         """
         self._metric_type = value
     

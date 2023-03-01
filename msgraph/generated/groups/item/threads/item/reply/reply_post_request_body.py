@@ -51,7 +51,7 @@ class ReplyPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "post": lambda n : setattr(self, 'post', n.get_object_value(post.Post)),
+            "Post": lambda n : setattr(self, 'post', n.get_object_value(post.Post)),
         }
         return fields
     

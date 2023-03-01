@@ -51,7 +51,7 @@ class AuthenticationSourceFilter(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "include_applications": lambda n : setattr(self, 'include_applications', n.get_collection_of_primitive_values(str)),
+            "includeApplications": lambda n : setattr(self, 'include_applications', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class AuthenticationSourceFilter(AdditionalDataHolder, Parsable):
         """
         Sets the includeApplications property value. Applications to include for evaluation of the authenticationListener. These applications trigger the associated action when used as the client application in the authentication flow. The application identifer is the application's client id.
         Args:
-            value: Value to set for the includeApplications property.
+            value: Value to set for the include_applications property.
         """
         self._include_applications = value
     
@@ -86,7 +86,7 @@ class AuthenticationSourceFilter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

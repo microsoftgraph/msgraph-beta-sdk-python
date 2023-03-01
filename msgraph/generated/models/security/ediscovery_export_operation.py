@@ -6,6 +6,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 case_operation = lazy_import('msgraph.generated.models.security.case_operation')
 ediscovery_review_set = lazy_import('msgraph.generated.models.security.ediscovery_review_set')
 ediscovery_review_set_query = lazy_import('msgraph.generated.models.security.ediscovery_review_set_query')
+export_file_metadata = lazy_import('msgraph.generated.models.security.export_file_metadata')
 export_file_structure = lazy_import('msgraph.generated.models.security.export_file_structure')
 export_options = lazy_import('msgraph.generated.models.security.export_options')
 
@@ -23,7 +24,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the azureBlobContainer property value. The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
         Args:
-            value: Value to set for the azureBlobContainer property.
+            value: Value to set for the azure_blob_container property.
         """
         self._azure_blob_container = value
     
@@ -40,7 +41,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the azureBlobToken property value. The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
         Args:
-            value: Value to set for the azureBlobToken property.
+            value: Value to set for the azure_blob_token property.
         """
         self._azure_blob_token = value
     
@@ -55,6 +56,8 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         self._azure_blob_token: Optional[str] = None
         # The description provided for the export.
         self._description: Optional[str] = None
+        # The exportFileMetadata property
+        self._export_file_metadata: Optional[List[export_file_metadata.ExportFileMetadata]] = None
         # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
         self._export_options: Optional[export_options.ExportOptions] = None
         # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
@@ -100,6 +103,23 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         self._description = value
     
     @property
+    def export_file_metadata(self,) -> Optional[List[export_file_metadata.ExportFileMetadata]]:
+        """
+        Gets the exportFileMetadata property value. The exportFileMetadata property
+        Returns: Optional[List[export_file_metadata.ExportFileMetadata]]
+        """
+        return self._export_file_metadata
+    
+    @export_file_metadata.setter
+    def export_file_metadata(self,value: Optional[List[export_file_metadata.ExportFileMetadata]] = None) -> None:
+        """
+        Sets the exportFileMetadata property value. The exportFileMetadata property
+        Args:
+            value: Value to set for the export_file_metadata property.
+        """
+        self._export_file_metadata = value
+    
+    @property
     def export_options(self,) -> Optional[export_options.ExportOptions]:
         """
         Gets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
@@ -112,7 +132,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
         Args:
-            value: Value to set for the exportOptions property.
+            value: Value to set for the export_options property.
         """
         self._export_options = value
     
@@ -129,7 +149,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the exportStructure property value. The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
         Args:
-            value: Value to set for the exportStructure property.
+            value: Value to set for the export_structure property.
         """
         self._export_structure = value
     
@@ -139,15 +159,16 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_blob_container": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
-            "azure_blob_token": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
+            "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
+            "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "export_options": lambda n : setattr(self, 'export_options', n.get_enum_value(export_options.ExportOptions)),
-            "export_structure": lambda n : setattr(self, 'export_structure', n.get_enum_value(export_file_structure.ExportFileStructure)),
-            "output_folder_id": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
-            "output_name": lambda n : setattr(self, 'output_name', n.get_str_value()),
-            "review_set": lambda n : setattr(self, 'review_set', n.get_object_value(ediscovery_review_set.EdiscoveryReviewSet)),
-            "review_set_query": lambda n : setattr(self, 'review_set_query', n.get_object_value(ediscovery_review_set_query.EdiscoveryReviewSetQuery)),
+            "exportFileMetadata": lambda n : setattr(self, 'export_file_metadata', n.get_collection_of_object_values(export_file_metadata.ExportFileMetadata)),
+            "exportOptions": lambda n : setattr(self, 'export_options', n.get_enum_value(export_options.ExportOptions)),
+            "exportStructure": lambda n : setattr(self, 'export_structure', n.get_enum_value(export_file_structure.ExportFileStructure)),
+            "outputFolderId": lambda n : setattr(self, 'output_folder_id', n.get_str_value()),
+            "outputName": lambda n : setattr(self, 'output_name', n.get_str_value()),
+            "reviewSet": lambda n : setattr(self, 'review_set', n.get_object_value(ediscovery_review_set.EdiscoveryReviewSet)),
+            "reviewSetQuery": lambda n : setattr(self, 'review_set_query', n.get_object_value(ediscovery_review_set_query.EdiscoveryReviewSetQuery)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -166,7 +187,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the outputFolderId property value. The outputFolderId property
         Args:
-            value: Value to set for the outputFolderId property.
+            value: Value to set for the output_folder_id property.
         """
         self._output_folder_id = value
     
@@ -183,7 +204,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the outputName property value. The name provided for the export.
         Args:
-            value: Value to set for the outputName property.
+            value: Value to set for the output_name property.
         """
         self._output_name = value
     
@@ -200,7 +221,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the reviewSet property value. Review set from where documents are exported.
         Args:
-            value: Value to set for the reviewSet property.
+            value: Value to set for the review_set property.
         """
         self._review_set = value
     
@@ -217,7 +238,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         """
         Sets the reviewSetQuery property value. The review set query which is used to filter the documents for export.
         Args:
-            value: Value to set for the reviewSetQuery property.
+            value: Value to set for the review_set_query property.
         """
         self._review_set_query = value
     
@@ -233,6 +254,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         writer.write_str_value("azureBlobContainer", self.azure_blob_container)
         writer.write_str_value("azureBlobToken", self.azure_blob_token)
         writer.write_str_value("description", self.description)
+        writer.write_collection_of_object_values("exportFileMetadata", self.export_file_metadata)
         writer.write_enum_value("exportOptions", self.export_options)
         writer.write_enum_value("exportStructure", self.export_structure)
         writer.write_str_value("outputFolderId", self.output_folder_id)

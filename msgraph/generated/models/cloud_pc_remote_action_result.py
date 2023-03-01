@@ -21,7 +21,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the actionName property value. The specified action. Supported values in the Microsoft Endpoint Manager portal are: Reprovision, Resize, Restore. Supported values in enterprise Cloud PC devices are: Reboot, Rename, Reprovision, Troubleshoot.
         Args:
-            value: Value to set for the actionName property.
+            value: Value to set for the action_name property.
         """
         self._action_name = value
     
@@ -38,7 +38,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the actionState property value. State of the action. Possible values are: None, pending, canceled, active, done, failed, notSupported. Read-only.
         Args:
-            value: Value to set for the actionState property.
+            value: Value to set for the action_state property.
         """
         self._action_state = value
     
@@ -72,7 +72,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the cloudPcId property value. The ID of the Cloud PC device on which the remote action is performed. Read-only.
         Args:
-            value: Value to set for the cloudPcId property.
+            value: Value to set for the cloud_pc_id property.
         """
         self._cloud_pc_id = value
     
@@ -118,14 +118,14 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_name": lambda n : setattr(self, 'action_name', n.get_str_value()),
-            "action_state": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
-            "cloud_pc_id": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
+            "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
+            "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
-            "status_details": lambda n : setattr(self, 'status_details', n.get_object_value(cloud_pc_status_details.CloudPcStatusDetails)),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "statusDetails": lambda n : setattr(self, 'status_details', n.get_object_value(cloud_pc_status_details.CloudPcStatusDetails)),
         }
         return fields
     
@@ -142,7 +142,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the lastUpdatedDateTime property value. Last update time for action. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -159,7 +159,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceId property value. The ID of the Intune managed device on which the remote action is performed. Read-only.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -176,7 +176,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -211,7 +211,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. Time the action was initiated. The Timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as '2014-01-01T00:00:00Z'.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
@@ -228,7 +228,7 @@ class CloudPcRemoteActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the statusDetails property value. The details of the Cloud PC status.
         Args:
-            value: Value to set for the statusDetails property.
+            value: Value to set for the status_details property.
         """
         self._status_details = value
     

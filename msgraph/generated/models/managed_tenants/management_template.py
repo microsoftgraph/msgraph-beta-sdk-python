@@ -84,7 +84,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -101,7 +101,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -147,7 +147,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the displayName property value. The display name for the management template. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -158,21 +158,21 @@ class ManagementTemplate(entity.Entity):
         """
         fields = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "information_links": lambda n : setattr(self, 'information_links', n.get_collection_of_object_values(action_url.ActionUrl)),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
-            "management_template_collections": lambda n : setattr(self, 'management_template_collections', n.get_collection_of_object_values(management_template_collection.ManagementTemplateCollection)),
-            "management_template_steps": lambda n : setattr(self, 'management_template_steps', n.get_collection_of_object_values(management_template_step.ManagementTemplateStep)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "informationLinks": lambda n : setattr(self, 'information_links', n.get_collection_of_object_values(action_url.ActionUrl)),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "managementTemplateCollections": lambda n : setattr(self, 'management_template_collections', n.get_collection_of_object_values(management_template_collection.ManagementTemplateCollection)),
+            "managementTemplateSteps": lambda n : setattr(self, 'management_template_steps', n.get_collection_of_object_values(management_template_step.ManagementTemplateStep)),
             "parameters": lambda n : setattr(self, 'parameters', n.get_collection_of_object_values(template_parameter.TemplateParameter)),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "provider": lambda n : setattr(self, 'provider', n.get_enum_value(management_provider.ManagementProvider)),
-            "user_impact": lambda n : setattr(self, 'user_impact', n.get_str_value()),
+            "userImpact": lambda n : setattr(self, 'user_impact', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
-            "workload_actions": lambda n : setattr(self, 'workload_actions', n.get_collection_of_object_values(workload_action.WorkloadAction)),
+            "workloadActions": lambda n : setattr(self, 'workload_actions', n.get_collection_of_object_values(workload_action.WorkloadAction)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -191,7 +191,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the informationLinks property value. The informationLinks property
         Args:
-            value: Value to set for the informationLinks property.
+            value: Value to set for the information_links property.
         """
         self._information_links = value
     
@@ -208,7 +208,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -225,7 +225,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -242,7 +242,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the managementTemplateCollections property value. The managementTemplateCollections property
         Args:
-            value: Value to set for the managementTemplateCollections property.
+            value: Value to set for the management_template_collections property.
         """
         self._management_template_collections = value
     
@@ -259,7 +259,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the managementTemplateSteps property value. The managementTemplateSteps property
         Args:
-            value: Value to set for the managementTemplateSteps property.
+            value: Value to set for the management_template_steps property.
         """
         self._management_template_steps = value
     
@@ -353,7 +353,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the userImpact property value. The userImpact property
         Args:
-            value: Value to set for the userImpact property.
+            value: Value to set for the user_impact property.
         """
         self._user_impact = value
     
@@ -387,7 +387,7 @@ class ManagementTemplate(entity.Entity):
         """
         Sets the workloadActions property value. The collection of workload actions associated with the management template. Optional. Read-only.
         Args:
-            value: Value to set for the workloadActions property.
+            value: Value to set for the workload_actions property.
         """
         self._workload_actions = value
     

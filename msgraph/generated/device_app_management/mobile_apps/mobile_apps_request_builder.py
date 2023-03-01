@@ -13,9 +13,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 count_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.count.count_request_builder')
 get_mobile_app_count_with_status_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.get_mobile_app_count_with_status.get_mobile_app_count_with_status_request_builder')
 get_top_mobile_apps_with_status_with_count_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.get_top_mobile_apps_with_status_with_count.get_top_mobile_apps_with_status_with_count_request_builder')
+graph_managed_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.graph_managed_mobile_lob_app.graph_managed_mobile_lob_app_request_builder')
+graph_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.graph_mobile_lob_app.graph_mobile_lob_app_request_builder')
 has_payload_links_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.has_payload_links.has_payload_links_request_builder')
-managed_mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.managed_mobile_lob_app.managed_mobile_lob_app_request_builder')
-mobile_lob_app_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.mobile_lob_app.mobile_lob_app_request_builder')
 validate_xml_request_builder = lazy_import('msgraph.generated.device_app_management.mobile_apps.validate_xml.validate_xml_request_builder')
 mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 mobile_app_collection_response = lazy_import('msgraph.generated.models.mobile_app_collection_response')
@@ -33,25 +33,25 @@ class MobileAppsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def graph_managed_mobile_lob_app(self) -> graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder:
+        """
+        Casts the previous resource to managedMobileLobApp.
+        """
+        return graph_managed_mobile_lob_app_request_builder.GraphManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_mobile_lob_app(self) -> graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder:
+        """
+        Casts the previous resource to mobileLobApp.
+        """
+        return graph_mobile_lob_app_request_builder.GraphMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def has_payload_links(self) -> has_payload_links_request_builder.HasPayloadLinksRequestBuilder:
         """
         Provides operations to call the hasPayloadLinks method.
         """
         return has_payload_links_request_builder.HasPayloadLinksRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_mobile_lob_app(self) -> managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder:
-        """
-        Casts the previous resource to managedMobileLobApp.
-        """
-        return managed_mobile_lob_app_request_builder.ManagedMobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def mobile_lob_app(self) -> mobile_lob_app_request_builder.MobileLobAppRequestBuilder:
-        """
-        Casts the previous resource to mobileLobApp.
-        """
-        return mobile_lob_app_request_builder.MobileLobAppRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def validate_xml(self) -> validate_xml_request_builder.ValidateXmlRequestBuilder:
@@ -78,12 +78,11 @@ class MobileAppsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app_collection_response.MobileAppCollectionResponse]:
+    async def get(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> Optional[mobile_app_collection_response.MobileAppCollectionResponse]:
         """
         The mobile apps.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app_collection_response.MobileAppCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -95,7 +94,7 @@ class MobileAppsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app_collection_response.MobileAppCollectionResponse, error_mapping)
     
     def get_mobile_app_count_with_status(self,status: Optional[str] = None) -> get_mobile_app_count_with_status_request_builder.GetMobileAppCountWithStatusRequestBuilder:
         """
@@ -122,13 +121,12 @@ class MobileAppsRequestBuilder():
             raise Exception("status cannot be undefined")
         return get_top_mobile_apps_with_status_with_count_request_builder.GetTopMobileAppsWithStatusWithCountRequestBuilder(self.request_adapter, self.path_parameters, count, status)
     
-    async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mobile_app.MobileApp]:
+    async def post(self,body: Optional[mobile_app.MobileApp] = None, request_configuration: Optional[MobileAppsRequestBuilderPostRequestConfiguration] = None) -> Optional[mobile_app.MobileApp]:
         """
         Create new navigation property to mobileApps for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mobile_app.MobileApp]
         """
         if body is None:
@@ -142,7 +140,7 @@ class MobileAppsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mobile_app.MobileApp, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[MobileAppsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -155,7 +153,7 @@ class MobileAppsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -176,7 +174,7 @@ class MobileAppsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -246,7 +244,7 @@ class MobileAppsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -261,7 +259,7 @@ class MobileAppsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

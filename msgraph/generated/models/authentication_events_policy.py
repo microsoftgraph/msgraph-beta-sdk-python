@@ -35,7 +35,7 @@ class AuthenticationEventsPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "on_signup_start": lambda n : setattr(self, 'on_signup_start', n.get_collection_of_object_values(authentication_listener.AuthenticationListener)),
+            "onSignupStart": lambda n : setattr(self, 'on_signup_start', n.get_collection_of_object_values(authentication_listener.AuthenticationListener)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class AuthenticationEventsPolicy(entity.Entity):
         """
         Sets the onSignupStart property value. A list of applicable actions to be taken on sign-up.
         Args:
-            value: Value to set for the onSignupStart property.
+            value: Value to set for the on_signup_start property.
         """
         self._on_signup_start = value
     

@@ -65,7 +65,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the defaultMfaMethod property value. The method the user or admin selected as default for performing multi-factor authentication for the user. The possible values are: none, mobilePhone, alternateMobilePhone, officePhone, microsoftAuthenticatorPush, softwareOneTimePasscode, unknownFutureValue.
         Args:
-            value: Value to set for the defaultMfaMethod property.
+            value: Value to set for the default_mfa_method property.
         """
         self._default_mfa_method = value
     
@@ -75,18 +75,18 @@ class UserRegistrationDetails(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_mfa_method": lambda n : setattr(self, 'default_mfa_method', n.get_enum_value(default_mfa_method_type.DefaultMfaMethodType)),
-            "is_admin": lambda n : setattr(self, 'is_admin', n.get_bool_value()),
-            "is_mfa_capable": lambda n : setattr(self, 'is_mfa_capable', n.get_bool_value()),
-            "is_mfa_registered": lambda n : setattr(self, 'is_mfa_registered', n.get_bool_value()),
-            "is_passwordless_capable": lambda n : setattr(self, 'is_passwordless_capable', n.get_bool_value()),
-            "is_sspr_capable": lambda n : setattr(self, 'is_sspr_capable', n.get_bool_value()),
-            "is_sspr_enabled": lambda n : setattr(self, 'is_sspr_enabled', n.get_bool_value()),
-            "is_sspr_registered": lambda n : setattr(self, 'is_sspr_registered', n.get_bool_value()),
-            "methods_registered": lambda n : setattr(self, 'methods_registered', n.get_collection_of_primitive_values(str)),
-            "user_display_name": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
-            "user_type": lambda n : setattr(self, 'user_type', n.get_enum_value(sign_in_user_type.SignInUserType)),
+            "defaultMfaMethod": lambda n : setattr(self, 'default_mfa_method', n.get_enum_value(default_mfa_method_type.DefaultMfaMethodType)),
+            "isAdmin": lambda n : setattr(self, 'is_admin', n.get_bool_value()),
+            "isMfaCapable": lambda n : setattr(self, 'is_mfa_capable', n.get_bool_value()),
+            "isMfaRegistered": lambda n : setattr(self, 'is_mfa_registered', n.get_bool_value()),
+            "isPasswordlessCapable": lambda n : setattr(self, 'is_passwordless_capable', n.get_bool_value()),
+            "isSsprCapable": lambda n : setattr(self, 'is_sspr_capable', n.get_bool_value()),
+            "isSsprEnabled": lambda n : setattr(self, 'is_sspr_enabled', n.get_bool_value()),
+            "isSsprRegistered": lambda n : setattr(self, 'is_sspr_registered', n.get_bool_value()),
+            "methodsRegistered": lambda n : setattr(self, 'methods_registered', n.get_collection_of_primitive_values(str)),
+            "userDisplayName": lambda n : setattr(self, 'user_display_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(sign_in_user_type.SignInUserType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -105,7 +105,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isAdmin property value. Whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.
         Args:
-            value: Value to set for the isAdmin property.
+            value: Value to set for the is_admin property.
         """
         self._is_admin = value
     
@@ -122,7 +122,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isMfaCapable property value. Whether the user has registered a strong authentication method for multi-factor authentication. The method must be allowed by the authentication methods policy. Supports $filter (eq).
         Args:
-            value: Value to set for the isMfaCapable property.
+            value: Value to set for the is_mfa_capable property.
         """
         self._is_mfa_capable = value
     
@@ -139,7 +139,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isMfaRegistered property value. Whether the user has registered a strong authentication method for multi-factor authentication. The method may not necessarily be allowed by the authentication methods policy.  Supports $filter (eq).
         Args:
-            value: Value to set for the isMfaRegistered property.
+            value: Value to set for the is_mfa_registered property.
         """
         self._is_mfa_registered = value
     
@@ -156,7 +156,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isPasswordlessCapable property value. Whether the user has registered a passwordless strong authentication method (including FIDO2, Windows Hello for Business, and Microsoft Authenticator (Passwordless)) that is allowed by the authentication methods policy. Supports $filter (eq).
         Args:
-            value: Value to set for the isPasswordlessCapable property.
+            value: Value to set for the is_passwordless_capable property.
         """
         self._is_passwordless_capable = value
     
@@ -173,7 +173,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isSsprCapable property value. Whether the user has registered the required number of authentication methods for self-service password reset and the user is allowed to perform self-service password reset by policy. Supports $filter (eq).
         Args:
-            value: Value to set for the isSsprCapable property.
+            value: Value to set for the is_sspr_capable property.
         """
         self._is_sspr_capable = value
     
@@ -190,7 +190,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isSsprEnabled property value. Whether the user is allowed to perform self-service password reset by policy. The user may not necessarily have registered the required number of authentication methods for self-service password reset. Supports $filter (eq).
         Args:
-            value: Value to set for the isSsprEnabled property.
+            value: Value to set for the is_sspr_enabled property.
         """
         self._is_sspr_enabled = value
     
@@ -207,7 +207,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the isSsprRegistered property value. Whether the user has registered the required number of authentication methods for self-service password reset. The user may not necessarily be allowed to perform self-service password reset by policy. Supports $filter (eq).
         Args:
-            value: Value to set for the isSsprRegistered property.
+            value: Value to set for the is_sspr_registered property.
         """
         self._is_sspr_registered = value
     
@@ -224,7 +224,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the methodsRegistered property value. Collection of authentication methods registered, such as mobilePhone, email, fido2. Supports $filter (any with eq).
         Args:
-            value: Value to set for the methodsRegistered property.
+            value: Value to set for the methods_registered property.
         """
         self._methods_registered = value
     
@@ -263,7 +263,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the userDisplayName property value. The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderBy.
         Args:
-            value: Value to set for the userDisplayName property.
+            value: Value to set for the user_display_name property.
         """
         self._user_display_name = value
     
@@ -280,7 +280,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderBy.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     
@@ -297,7 +297,7 @@ class UserRegistrationDetails(entity.Entity):
         """
         Sets the userType property value. Identifies whether the user is a member or guest in the tenant. The possible values are: member, guest, unknownFutureValue.
         Args:
-            value: Value to set for the userType property.
+            value: Value to set for the user_type property.
         """
         self._user_type = value
     

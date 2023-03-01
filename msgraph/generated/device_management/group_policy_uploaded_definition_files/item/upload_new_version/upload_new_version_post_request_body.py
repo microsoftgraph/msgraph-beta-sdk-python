@@ -71,7 +71,7 @@ class UploadNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "group_policy_uploaded_language_files": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
+            "groupPolicyUploadedLanguageFiles": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
         }
         return fields
     
@@ -88,7 +88,7 @@ class UploadNewVersionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupPolicyUploadedLanguageFiles property value. The groupPolicyUploadedLanguageFiles property
         Args:
-            value: Value to set for the groupPolicyUploadedLanguageFiles property.
+            value: Value to set for the group_policy_uploaded_language_files property.
         """
         self._group_policy_uploaded_language_files = value
     

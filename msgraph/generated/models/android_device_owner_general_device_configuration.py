@@ -46,7 +46,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the accountsBlockModification property value. Indicates whether or not adding or removing accounts is disabled.
         Args:
-            value: Value to set for the accountsBlockModification property.
+            value: Value to set for the accounts_block_modification property.
         """
         self._accounts_block_modification = value
     
@@ -63,7 +63,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the appsAllowInstallFromUnknownSources property value. Indicates whether or not the user is allowed to enable to unknown sources setting.
         Args:
-            value: Value to set for the appsAllowInstallFromUnknownSources property.
+            value: Value to set for the apps_allow_install_from_unknown_sources property.
         """
         self._apps_allow_install_from_unknown_sources = value
     
@@ -80,7 +80,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the appsAutoUpdatePolicy property value. Indicates the value of the app auto update policy. Possible values are: notConfigured, userChoice, never, wiFiOnly, always.
         Args:
-            value: Value to set for the appsAutoUpdatePolicy property.
+            value: Value to set for the apps_auto_update_policy property.
         """
         self._apps_auto_update_policy = value
     
@@ -97,7 +97,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the appsDefaultPermissionPolicy property value. Indicates the permission policy for requests for runtime permissions if one is not defined for the app specifically. Possible values are: deviceDefault, prompt, autoGrant, autoDeny.
         Args:
-            value: Value to set for the appsDefaultPermissionPolicy property.
+            value: Value to set for the apps_default_permission_policy property.
         """
         self._apps_default_permission_policy = value
     
@@ -114,7 +114,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the appsRecommendSkippingFirstUseHints property value. Whether or not to recommend all apps skip any first-time-use hints they may have added.
         Args:
-            value: Value to set for the appsRecommendSkippingFirstUseHints property.
+            value: Value to set for the apps_recommend_skipping_first_use_hints property.
         """
         self._apps_recommend_skipping_first_use_hints = value
     
@@ -131,7 +131,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the azureAdSharedDeviceDataClearApps property value. A list of managed apps that will have their data cleared during a global sign-out in AAD shared device mode. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the azureAdSharedDeviceDataClearApps property.
+            value: Value to set for the azure_ad_shared_device_data_clear_apps property.
         """
         self._azure_ad_shared_device_data_clear_apps = value
     
@@ -148,7 +148,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the bluetoothBlockConfiguration property value. Indicates whether or not to block a user from configuring bluetooth.
         Args:
-            value: Value to set for the bluetoothBlockConfiguration property.
+            value: Value to set for the bluetooth_block_configuration property.
         """
         self._bluetooth_block_configuration = value
     
@@ -165,7 +165,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the bluetoothBlockContactSharing property value. Indicates whether or not to block a user from sharing contacts via bluetooth.
         Args:
-            value: Value to set for the bluetoothBlockContactSharing property.
+            value: Value to set for the bluetooth_block_contact_sharing property.
         """
         self._bluetooth_block_contact_sharing = value
     
@@ -182,7 +182,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the cameraBlocked property value. Indicates whether or not to disable the use of the camera.
         Args:
-            value: Value to set for the cameraBlocked property.
+            value: Value to set for the camera_blocked property.
         """
         self._camera_blocked = value
     
@@ -199,7 +199,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the cellularBlockWiFiTethering property value. Indicates whether or not to block Wi-Fi tethering.
         Args:
-            value: Value to set for the cellularBlockWiFiTethering property.
+            value: Value to set for the cellular_block_wi_fi_tethering property.
         """
         self._cellular_block_wi_fi_tethering = value
     
@@ -216,7 +216,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the certificateCredentialConfigurationDisabled property value. Indicates whether or not to block users from any certificate credential configuration.
         Args:
-            value: Value to set for the certificateCredentialConfigurationDisabled property.
+            value: Value to set for the certificate_credential_configuration_disabled property.
         """
         self._certificate_credential_configuration_disabled = value
     
@@ -356,10 +356,14 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         self._kiosk_mode_virtual_home_button_type: Optional[android_device_owner_virtual_home_button_type.AndroidDeviceOwnerVirtualHomeButtonType] = None
         # URL to a publicly accessible image to use for the wallpaper when the device is in Kiosk Mode.
         self._kiosk_mode_wallpaper_url: Optional[str] = None
-        # The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
-        self._kiosk_mode_wifi_allowed_ssids: Optional[List[str]] = None
         # Whether or not to allow a user to configure Wi-Fi settings in Kiosk Mode.
         self._kiosk_mode_wi_fi_configuration_enabled: Optional[bool] = None
+        # The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
+        self._kiosk_mode_wifi_allowed_ssids: Optional[List[str]] = None
+        # Indicates whether or not LocateDevice for devices with lost mode (COBO, COPE) is enabled.
+        self._locate_device_lost_mode_enabled: Optional[bool] = None
+        # Indicates whether or not LocateDevice for userless (COSU) devices is disabled.
+        self._locate_device_userless_disabled: Optional[bool] = None
         # Indicates whether or not to block unmuting the microphone on the device.
         self._microphone_force_mute: Optional[bool] = None
         # Indicates whether or not to you want configure Microsoft Launcher.
@@ -408,10 +412,10 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         self._password_minutes_of_inactivity_before_screen_timeout: Optional[int] = None
         # Indicates the length of password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
         self._password_previous_password_count_to_block: Optional[int] = None
-        # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        self._password_required_type: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None
         # Indicates the timeout period after which a device must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
         self._password_require_unlock: Optional[android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock] = None
+        # Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        self._password_required_type: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None
         # Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
         self._password_sign_in_failure_count_before_factory_reset: Optional[int] = None
         # Indicates whether the user can install apps from unknown sources on the personal profile.
@@ -488,10 +492,10 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         self._work_profile_password_minimum_upper_case_characters: Optional[int] = None
         # Indicates the length of the work profile password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
         self._work_profile_password_previous_password_count_to_block: Optional[int] = None
-        # Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        self._work_profile_password_required_type: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None
         # Indicates the timeout period after which a work profile must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
         self._work_profile_password_require_unlock: Optional[android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock] = None
+        # Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        self._work_profile_password_required_type: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None
         # Indicates the number of times a user can enter an incorrect work profile password before the device is wiped. Valid values 4 to 11
         self._work_profile_password_sign_in_failure_count_before_factory_reset: Optional[int] = None
     
@@ -520,7 +524,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the crossProfilePoliciesAllowCopyPaste property value. Indicates whether or not text copied from one profile (personal or work) can be pasted in the other.
         Args:
-            value: Value to set for the crossProfilePoliciesAllowCopyPaste property.
+            value: Value to set for the cross_profile_policies_allow_copy_paste property.
         """
         self._cross_profile_policies_allow_copy_paste = value
     
@@ -537,7 +541,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the crossProfilePoliciesAllowDataSharing property value. Indicates whether data from one profile (personal or work) can be shared with apps in the other profile. Possible values are: notConfigured, crossProfileDataSharingBlocked, dataSharingFromWorkToPersonalBlocked, crossProfileDataSharingAllowed, unkownFutureValue.
         Args:
-            value: Value to set for the crossProfilePoliciesAllowDataSharing property.
+            value: Value to set for the cross_profile_policies_allow_data_sharing property.
         """
         self._cross_profile_policies_allow_data_sharing = value
     
@@ -554,7 +558,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the crossProfilePoliciesShowWorkContactsInPersonalProfile property value. Indicates whether or not contacts stored in work profile are shown in personal profile contact searches/incoming calls.
         Args:
-            value: Value to set for the crossProfilePoliciesShowWorkContactsInPersonalProfile property.
+            value: Value to set for the cross_profile_policies_show_work_contacts_in_personal_profile property.
         """
         self._cross_profile_policies_show_work_contacts_in_personal_profile = value
     
@@ -571,7 +575,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the dataRoamingBlocked property value. Indicates whether or not to block a user from data roaming.
         Args:
-            value: Value to set for the dataRoamingBlocked property.
+            value: Value to set for the data_roaming_blocked property.
         """
         self._data_roaming_blocked = value
     
@@ -588,7 +592,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the dateTimeConfigurationBlocked property value. Indicates whether or not to block the user from manually changing the date or time on the device
         Args:
-            value: Value to set for the dateTimeConfigurationBlocked property.
+            value: Value to set for the date_time_configuration_blocked property.
         """
         self._date_time_configuration_blocked = value
     
@@ -605,7 +609,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the detailedHelpText property value. Represents the customized detailed help text provided to users when they attempt to modify managed settings on their device.
         Args:
-            value: Value to set for the detailedHelpText property.
+            value: Value to set for the detailed_help_text property.
         """
         self._detailed_help_text = value
     
@@ -622,7 +626,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the deviceOwnerLockScreenMessage property value. Represents the customized lock screen message provided to users when they attempt to modify managed settings on their device.
         Args:
-            value: Value to set for the deviceOwnerLockScreenMessage property.
+            value: Value to set for the device_owner_lock_screen_message property.
         """
         self._device_owner_lock_screen_message = value
     
@@ -639,7 +643,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the enrollmentProfile property value. Android Device Owner Enrollment Profile types.
         Args:
-            value: Value to set for the enrollmentProfile property.
+            value: Value to set for the enrollment_profile property.
         """
         self._enrollment_profile = value
     
@@ -656,7 +660,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the factoryResetBlocked property value. Indicates whether or not the factory reset option in settings is disabled.
         Args:
-            value: Value to set for the factoryResetBlocked property.
+            value: Value to set for the factory_reset_blocked property.
         """
         self._factory_reset_blocked = value
     
@@ -673,7 +677,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the factoryResetDeviceAdministratorEmails property value. List of Google account emails that will be required to authenticate after a device is factory reset before it can be set up.
         Args:
-            value: Value to set for the factoryResetDeviceAdministratorEmails property.
+            value: Value to set for the factory_reset_device_administrator_emails property.
         """
         self._factory_reset_device_administrator_emails = value
     
@@ -683,140 +687,142 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accounts_block_modification": lambda n : setattr(self, 'accounts_block_modification', n.get_bool_value()),
-            "apps_allow_install_from_unknown_sources": lambda n : setattr(self, 'apps_allow_install_from_unknown_sources', n.get_bool_value()),
-            "apps_auto_update_policy": lambda n : setattr(self, 'apps_auto_update_policy', n.get_enum_value(android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType)),
-            "apps_default_permission_policy": lambda n : setattr(self, 'apps_default_permission_policy', n.get_enum_value(android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType)),
-            "apps_recommend_skipping_first_use_hints": lambda n : setattr(self, 'apps_recommend_skipping_first_use_hints', n.get_bool_value()),
-            "azure_ad_shared_device_data_clear_apps": lambda n : setattr(self, 'azure_ad_shared_device_data_clear_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "bluetooth_block_configuration": lambda n : setattr(self, 'bluetooth_block_configuration', n.get_bool_value()),
-            "bluetooth_block_contact_sharing": lambda n : setattr(self, 'bluetooth_block_contact_sharing', n.get_bool_value()),
-            "camera_blocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
-            "cellular_block_wi_fi_tethering": lambda n : setattr(self, 'cellular_block_wi_fi_tethering', n.get_bool_value()),
-            "certificate_credential_configuration_disabled": lambda n : setattr(self, 'certificate_credential_configuration_disabled', n.get_bool_value()),
-            "cross_profile_policies_allow_copy_paste": lambda n : setattr(self, 'cross_profile_policies_allow_copy_paste', n.get_bool_value()),
-            "cross_profile_policies_allow_data_sharing": lambda n : setattr(self, 'cross_profile_policies_allow_data_sharing', n.get_enum_value(android_device_owner_cross_profile_data_sharing.AndroidDeviceOwnerCrossProfileDataSharing)),
-            "cross_profile_policies_show_work_contacts_in_personal_profile": lambda n : setattr(self, 'cross_profile_policies_show_work_contacts_in_personal_profile', n.get_bool_value()),
-            "data_roaming_blocked": lambda n : setattr(self, 'data_roaming_blocked', n.get_bool_value()),
-            "date_time_configuration_blocked": lambda n : setattr(self, 'date_time_configuration_blocked', n.get_bool_value()),
-            "detailed_help_text": lambda n : setattr(self, 'detailed_help_text', n.get_object_value(android_device_owner_user_facing_message.AndroidDeviceOwnerUserFacingMessage)),
-            "device_owner_lock_screen_message": lambda n : setattr(self, 'device_owner_lock_screen_message', n.get_object_value(android_device_owner_user_facing_message.AndroidDeviceOwnerUserFacingMessage)),
-            "enrollment_profile": lambda n : setattr(self, 'enrollment_profile', n.get_enum_value(android_device_owner_enrollment_profile_type.AndroidDeviceOwnerEnrollmentProfileType)),
-            "factory_reset_blocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
-            "factory_reset_device_administrator_emails": lambda n : setattr(self, 'factory_reset_device_administrator_emails', n.get_collection_of_primitive_values(str)),
-            "global_proxy": lambda n : setattr(self, 'global_proxy', n.get_object_value(android_device_owner_global_proxy.AndroidDeviceOwnerGlobalProxy)),
-            "google_accounts_blocked": lambda n : setattr(self, 'google_accounts_blocked', n.get_bool_value()),
-            "kiosk_customization_device_settings_blocked": lambda n : setattr(self, 'kiosk_customization_device_settings_blocked', n.get_bool_value()),
-            "kiosk_customization_power_button_actions_blocked": lambda n : setattr(self, 'kiosk_customization_power_button_actions_blocked', n.get_bool_value()),
-            "kiosk_customization_status_bar": lambda n : setattr(self, 'kiosk_customization_status_bar', n.get_enum_value(android_device_owner_kiosk_customization_status_bar.AndroidDeviceOwnerKioskCustomizationStatusBar)),
-            "kiosk_customization_system_error_warnings": lambda n : setattr(self, 'kiosk_customization_system_error_warnings', n.get_bool_value()),
-            "kiosk_customization_system_navigation": lambda n : setattr(self, 'kiosk_customization_system_navigation', n.get_enum_value(android_device_owner_kiosk_customization_system_navigation.AndroidDeviceOwnerKioskCustomizationSystemNavigation)),
-            "kiosk_mode_app_order_enabled": lambda n : setattr(self, 'kiosk_mode_app_order_enabled', n.get_bool_value()),
-            "kiosk_mode_app_positions": lambda n : setattr(self, 'kiosk_mode_app_positions', n.get_collection_of_object_values(android_device_owner_kiosk_mode_app_position_item.AndroidDeviceOwnerKioskModeAppPositionItem)),
-            "kiosk_mode_apps": lambda n : setattr(self, 'kiosk_mode_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "kiosk_mode_apps_in_folder_ordered_by_name": lambda n : setattr(self, 'kiosk_mode_apps_in_folder_ordered_by_name', n.get_bool_value()),
-            "kiosk_mode_bluetooth_configuration_enabled": lambda n : setattr(self, 'kiosk_mode_bluetooth_configuration_enabled', n.get_bool_value()),
-            "kiosk_mode_debug_menu_easy_access_enabled": lambda n : setattr(self, 'kiosk_mode_debug_menu_easy_access_enabled', n.get_bool_value()),
-            "kiosk_mode_exit_code": lambda n : setattr(self, 'kiosk_mode_exit_code', n.get_str_value()),
-            "kiosk_mode_flashlight_configuration_enabled": lambda n : setattr(self, 'kiosk_mode_flashlight_configuration_enabled', n.get_bool_value()),
-            "kiosk_mode_folder_icon": lambda n : setattr(self, 'kiosk_mode_folder_icon', n.get_enum_value(android_device_owner_kiosk_mode_folder_icon.AndroidDeviceOwnerKioskModeFolderIcon)),
-            "kiosk_mode_grid_height": lambda n : setattr(self, 'kiosk_mode_grid_height', n.get_int_value()),
-            "kiosk_mode_grid_width": lambda n : setattr(self, 'kiosk_mode_grid_width', n.get_int_value()),
-            "kiosk_mode_icon_size": lambda n : setattr(self, 'kiosk_mode_icon_size', n.get_enum_value(android_device_owner_kiosk_mode_icon_size.AndroidDeviceOwnerKioskModeIconSize)),
-            "kiosk_mode_lock_home_screen": lambda n : setattr(self, 'kiosk_mode_lock_home_screen', n.get_bool_value()),
-            "kiosk_mode_managed_folders": lambda n : setattr(self, 'kiosk_mode_managed_folders', n.get_collection_of_object_values(android_device_owner_kiosk_mode_managed_folder.AndroidDeviceOwnerKioskModeManagedFolder)),
-            "kiosk_mode_managed_home_screen_auto_signout": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_auto_signout', n.get_bool_value()),
-            "kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds', n.get_int_value()),
-            "kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds', n.get_int_value()),
-            "kiosk_mode_managed_home_screen_pin_complexity": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_complexity', n.get_enum_value(kiosk_mode_managed_home_screen_pin_complexity.KioskModeManagedHomeScreenPinComplexity)),
-            "kiosk_mode_managed_home_screen_pin_required": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_required', n.get_bool_value()),
-            "kiosk_mode_managed_home_screen_pin_required_to_resume": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_required_to_resume', n.get_bool_value()),
-            "kiosk_mode_managed_home_screen_sign_in_background": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_background', n.get_str_value()),
-            "kiosk_mode_managed_home_screen_sign_in_branding_logo": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_branding_logo', n.get_str_value()),
-            "kiosk_mode_managed_home_screen_sign_in_enabled": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_enabled', n.get_bool_value()),
-            "kiosk_mode_managed_settings_entry_disabled": lambda n : setattr(self, 'kiosk_mode_managed_settings_entry_disabled', n.get_bool_value()),
-            "kiosk_mode_media_volume_configuration_enabled": lambda n : setattr(self, 'kiosk_mode_media_volume_configuration_enabled', n.get_bool_value()),
-            "kiosk_mode_screen_orientation": lambda n : setattr(self, 'kiosk_mode_screen_orientation', n.get_enum_value(android_device_owner_kiosk_mode_screen_orientation.AndroidDeviceOwnerKioskModeScreenOrientation)),
-            "kiosk_mode_screen_saver_configuration_enabled": lambda n : setattr(self, 'kiosk_mode_screen_saver_configuration_enabled', n.get_bool_value()),
-            "kiosk_mode_screen_saver_detect_media_disabled": lambda n : setattr(self, 'kiosk_mode_screen_saver_detect_media_disabled', n.get_bool_value()),
-            "kiosk_mode_screen_saver_display_time_in_seconds": lambda n : setattr(self, 'kiosk_mode_screen_saver_display_time_in_seconds', n.get_int_value()),
-            "kiosk_mode_screen_saver_image_url": lambda n : setattr(self, 'kiosk_mode_screen_saver_image_url', n.get_str_value()),
-            "kiosk_mode_screen_saver_start_delay_in_seconds": lambda n : setattr(self, 'kiosk_mode_screen_saver_start_delay_in_seconds', n.get_int_value()),
-            "kiosk_mode_show_app_notification_badge": lambda n : setattr(self, 'kiosk_mode_show_app_notification_badge', n.get_bool_value()),
-            "kiosk_mode_show_device_info": lambda n : setattr(self, 'kiosk_mode_show_device_info', n.get_bool_value()),
-            "kiosk_mode_use_managed_home_screen_app": lambda n : setattr(self, 'kiosk_mode_use_managed_home_screen_app', n.get_enum_value(kiosk_mode_type.KioskModeType)),
-            "kiosk_mode_virtual_home_button_enabled": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_enabled', n.get_bool_value()),
-            "kiosk_mode_virtual_home_button_type": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_type', n.get_enum_value(android_device_owner_virtual_home_button_type.AndroidDeviceOwnerVirtualHomeButtonType)),
-            "kiosk_mode_wallpaper_url": lambda n : setattr(self, 'kiosk_mode_wallpaper_url', n.get_str_value()),
-            "kiosk_mode_wifi_allowed_ssids": lambda n : setattr(self, 'kiosk_mode_wifi_allowed_ssids', n.get_collection_of_primitive_values(str)),
-            "kiosk_mode_wi_fi_configuration_enabled": lambda n : setattr(self, 'kiosk_mode_wi_fi_configuration_enabled', n.get_bool_value()),
-            "microphone_force_mute": lambda n : setattr(self, 'microphone_force_mute', n.get_bool_value()),
-            "microsoft_launcher_configuration_enabled": lambda n : setattr(self, 'microsoft_launcher_configuration_enabled', n.get_bool_value()),
-            "microsoft_launcher_custom_wallpaper_allow_user_modification": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_allow_user_modification', n.get_bool_value()),
-            "microsoft_launcher_custom_wallpaper_enabled": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_enabled', n.get_bool_value()),
-            "microsoft_launcher_custom_wallpaper_image_url": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_image_url', n.get_str_value()),
-            "microsoft_launcher_dock_presence_allow_user_modification": lambda n : setattr(self, 'microsoft_launcher_dock_presence_allow_user_modification', n.get_bool_value()),
-            "microsoft_launcher_dock_presence_configuration": lambda n : setattr(self, 'microsoft_launcher_dock_presence_configuration', n.get_enum_value(microsoft_launcher_dock_presence.MicrosoftLauncherDockPresence)),
-            "microsoft_launcher_feed_allow_user_modification": lambda n : setattr(self, 'microsoft_launcher_feed_allow_user_modification', n.get_bool_value()),
-            "microsoft_launcher_feed_enabled": lambda n : setattr(self, 'microsoft_launcher_feed_enabled', n.get_bool_value()),
-            "microsoft_launcher_search_bar_placement_configuration": lambda n : setattr(self, 'microsoft_launcher_search_bar_placement_configuration', n.get_enum_value(microsoft_launcher_search_bar_placement.MicrosoftLauncherSearchBarPlacement)),
-            "network_escape_hatch_allowed": lambda n : setattr(self, 'network_escape_hatch_allowed', n.get_bool_value()),
-            "nfc_block_outgoing_beam": lambda n : setattr(self, 'nfc_block_outgoing_beam', n.get_bool_value()),
-            "password_block_keyguard": lambda n : setattr(self, 'password_block_keyguard', n.get_bool_value()),
-            "password_block_keyguard_features": lambda n : setattr(self, 'password_block_keyguard_features', n.get_collection_of_enum_values(android_keyguard_feature.AndroidKeyguardFeature)),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minimum_letter_characters": lambda n : setattr(self, 'password_minimum_letter_characters', n.get_int_value()),
-            "password_minimum_lower_case_characters": lambda n : setattr(self, 'password_minimum_lower_case_characters', n.get_int_value()),
-            "password_minimum_non_letter_characters": lambda n : setattr(self, 'password_minimum_non_letter_characters', n.get_int_value()),
-            "password_minimum_numeric_characters": lambda n : setattr(self, 'password_minimum_numeric_characters', n.get_int_value()),
-            "password_minimum_symbol_characters": lambda n : setattr(self, 'password_minimum_symbol_characters', n.get_int_value()),
-            "password_minimum_upper_case_characters": lambda n : setattr(self, 'password_minimum_upper_case_characters', n.get_int_value()),
-            "password_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "password_previous_password_count_to_block": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
-            "password_require_unlock": lambda n : setattr(self, 'password_require_unlock', n.get_enum_value(android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock)),
-            "password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
-            "personal_profile_apps_allow_install_from_unknown_sources": lambda n : setattr(self, 'personal_profile_apps_allow_install_from_unknown_sources', n.get_bool_value()),
-            "personal_profile_camera_blocked": lambda n : setattr(self, 'personal_profile_camera_blocked', n.get_bool_value()),
-            "personal_profile_personal_applications": lambda n : setattr(self, 'personal_profile_personal_applications', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "personal_profile_play_store_mode": lambda n : setattr(self, 'personal_profile_play_store_mode', n.get_enum_value(personal_profile_personal_play_store_mode.PersonalProfilePersonalPlayStoreMode)),
-            "personal_profile_screen_capture_blocked": lambda n : setattr(self, 'personal_profile_screen_capture_blocked', n.get_bool_value()),
-            "play_store_mode": lambda n : setattr(self, 'play_store_mode', n.get_enum_value(android_device_owner_play_store_mode.AndroidDeviceOwnerPlayStoreMode)),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "security_common_criteria_mode_enabled": lambda n : setattr(self, 'security_common_criteria_mode_enabled', n.get_bool_value()),
-            "security_developer_settings_enabled": lambda n : setattr(self, 'security_developer_settings_enabled', n.get_bool_value()),
-            "security_require_verify_apps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
-            "short_help_text": lambda n : setattr(self, 'short_help_text', n.get_object_value(android_device_owner_user_facing_message.AndroidDeviceOwnerUserFacingMessage)),
-            "status_bar_blocked": lambda n : setattr(self, 'status_bar_blocked', n.get_bool_value()),
-            "stay_on_modes": lambda n : setattr(self, 'stay_on_modes', n.get_collection_of_enum_values(android_device_owner_battery_plugged_mode.AndroidDeviceOwnerBatteryPluggedMode)),
-            "storage_allow_usb": lambda n : setattr(self, 'storage_allow_usb', n.get_bool_value()),
-            "storage_block_external_media": lambda n : setattr(self, 'storage_block_external_media', n.get_bool_value()),
-            "storage_block_usb_file_transfer": lambda n : setattr(self, 'storage_block_usb_file_transfer', n.get_bool_value()),
-            "system_update_freeze_periods": lambda n : setattr(self, 'system_update_freeze_periods', n.get_collection_of_object_values(android_device_owner_system_update_freeze_period.AndroidDeviceOwnerSystemUpdateFreezePeriod)),
-            "system_update_install_type": lambda n : setattr(self, 'system_update_install_type', n.get_enum_value(android_device_owner_system_update_install_type.AndroidDeviceOwnerSystemUpdateInstallType)),
-            "system_update_window_end_minutes_after_midnight": lambda n : setattr(self, 'system_update_window_end_minutes_after_midnight', n.get_int_value()),
-            "system_update_window_start_minutes_after_midnight": lambda n : setattr(self, 'system_update_window_start_minutes_after_midnight', n.get_int_value()),
-            "system_windows_blocked": lambda n : setattr(self, 'system_windows_blocked', n.get_bool_value()),
-            "users_block_add": lambda n : setattr(self, 'users_block_add', n.get_bool_value()),
-            "users_block_remove": lambda n : setattr(self, 'users_block_remove', n.get_bool_value()),
-            "volume_block_adjustment": lambda n : setattr(self, 'volume_block_adjustment', n.get_bool_value()),
-            "vpn_always_on_lockdown_mode": lambda n : setattr(self, 'vpn_always_on_lockdown_mode', n.get_bool_value()),
-            "vpn_always_on_package_identifier": lambda n : setattr(self, 'vpn_always_on_package_identifier', n.get_str_value()),
-            "wifi_block_edit_configurations": lambda n : setattr(self, 'wifi_block_edit_configurations', n.get_bool_value()),
-            "wifi_block_edit_policy_defined_configurations": lambda n : setattr(self, 'wifi_block_edit_policy_defined_configurations', n.get_bool_value()),
-            "work_profile_password_expiration_days": lambda n : setattr(self, 'work_profile_password_expiration_days', n.get_int_value()),
-            "work_profile_password_minimum_length": lambda n : setattr(self, 'work_profile_password_minimum_length', n.get_int_value()),
-            "work_profile_password_minimum_letter_characters": lambda n : setattr(self, 'work_profile_password_minimum_letter_characters', n.get_int_value()),
-            "work_profile_password_minimum_lower_case_characters": lambda n : setattr(self, 'work_profile_password_minimum_lower_case_characters', n.get_int_value()),
-            "work_profile_password_minimum_non_letter_characters": lambda n : setattr(self, 'work_profile_password_minimum_non_letter_characters', n.get_int_value()),
-            "work_profile_password_minimum_numeric_characters": lambda n : setattr(self, 'work_profile_password_minimum_numeric_characters', n.get_int_value()),
-            "work_profile_password_minimum_symbol_characters": lambda n : setattr(self, 'work_profile_password_minimum_symbol_characters', n.get_int_value()),
-            "work_profile_password_minimum_upper_case_characters": lambda n : setattr(self, 'work_profile_password_minimum_upper_case_characters', n.get_int_value()),
-            "work_profile_password_previous_password_count_to_block": lambda n : setattr(self, 'work_profile_password_previous_password_count_to_block', n.get_int_value()),
-            "work_profile_password_required_type": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
-            "work_profile_password_require_unlock": lambda n : setattr(self, 'work_profile_password_require_unlock', n.get_enum_value(android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock)),
-            "work_profile_password_sign_in_failure_count_before_factory_reset": lambda n : setattr(self, 'work_profile_password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "accountsBlockModification": lambda n : setattr(self, 'accounts_block_modification', n.get_bool_value()),
+            "appsAllowInstallFromUnknownSources": lambda n : setattr(self, 'apps_allow_install_from_unknown_sources', n.get_bool_value()),
+            "appsAutoUpdatePolicy": lambda n : setattr(self, 'apps_auto_update_policy', n.get_enum_value(android_device_owner_app_auto_update_policy_type.AndroidDeviceOwnerAppAutoUpdatePolicyType)),
+            "appsDefaultPermissionPolicy": lambda n : setattr(self, 'apps_default_permission_policy', n.get_enum_value(android_device_owner_default_app_permission_policy_type.AndroidDeviceOwnerDefaultAppPermissionPolicyType)),
+            "appsRecommendSkippingFirstUseHints": lambda n : setattr(self, 'apps_recommend_skipping_first_use_hints', n.get_bool_value()),
+            "azureAdSharedDeviceDataClearApps": lambda n : setattr(self, 'azure_ad_shared_device_data_clear_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "bluetoothBlockConfiguration": lambda n : setattr(self, 'bluetooth_block_configuration', n.get_bool_value()),
+            "bluetoothBlockContactSharing": lambda n : setattr(self, 'bluetooth_block_contact_sharing', n.get_bool_value()),
+            "cameraBlocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
+            "cellularBlockWiFiTethering": lambda n : setattr(self, 'cellular_block_wi_fi_tethering', n.get_bool_value()),
+            "certificateCredentialConfigurationDisabled": lambda n : setattr(self, 'certificate_credential_configuration_disabled', n.get_bool_value()),
+            "crossProfilePoliciesAllowCopyPaste": lambda n : setattr(self, 'cross_profile_policies_allow_copy_paste', n.get_bool_value()),
+            "crossProfilePoliciesAllowDataSharing": lambda n : setattr(self, 'cross_profile_policies_allow_data_sharing', n.get_enum_value(android_device_owner_cross_profile_data_sharing.AndroidDeviceOwnerCrossProfileDataSharing)),
+            "crossProfilePoliciesShowWorkContactsInPersonalProfile": lambda n : setattr(self, 'cross_profile_policies_show_work_contacts_in_personal_profile', n.get_bool_value()),
+            "dataRoamingBlocked": lambda n : setattr(self, 'data_roaming_blocked', n.get_bool_value()),
+            "dateTimeConfigurationBlocked": lambda n : setattr(self, 'date_time_configuration_blocked', n.get_bool_value()),
+            "detailedHelpText": lambda n : setattr(self, 'detailed_help_text', n.get_object_value(android_device_owner_user_facing_message.AndroidDeviceOwnerUserFacingMessage)),
+            "deviceOwnerLockScreenMessage": lambda n : setattr(self, 'device_owner_lock_screen_message', n.get_object_value(android_device_owner_user_facing_message.AndroidDeviceOwnerUserFacingMessage)),
+            "enrollmentProfile": lambda n : setattr(self, 'enrollment_profile', n.get_enum_value(android_device_owner_enrollment_profile_type.AndroidDeviceOwnerEnrollmentProfileType)),
+            "factoryResetBlocked": lambda n : setattr(self, 'factory_reset_blocked', n.get_bool_value()),
+            "factoryResetDeviceAdministratorEmails": lambda n : setattr(self, 'factory_reset_device_administrator_emails', n.get_collection_of_primitive_values(str)),
+            "globalProxy": lambda n : setattr(self, 'global_proxy', n.get_object_value(android_device_owner_global_proxy.AndroidDeviceOwnerGlobalProxy)),
+            "googleAccountsBlocked": lambda n : setattr(self, 'google_accounts_blocked', n.get_bool_value()),
+            "kioskCustomizationDeviceSettingsBlocked": lambda n : setattr(self, 'kiosk_customization_device_settings_blocked', n.get_bool_value()),
+            "kioskCustomizationPowerButtonActionsBlocked": lambda n : setattr(self, 'kiosk_customization_power_button_actions_blocked', n.get_bool_value()),
+            "kioskCustomizationStatusBar": lambda n : setattr(self, 'kiosk_customization_status_bar', n.get_enum_value(android_device_owner_kiosk_customization_status_bar.AndroidDeviceOwnerKioskCustomizationStatusBar)),
+            "kioskCustomizationSystemErrorWarnings": lambda n : setattr(self, 'kiosk_customization_system_error_warnings', n.get_bool_value()),
+            "kioskCustomizationSystemNavigation": lambda n : setattr(self, 'kiosk_customization_system_navigation', n.get_enum_value(android_device_owner_kiosk_customization_system_navigation.AndroidDeviceOwnerKioskCustomizationSystemNavigation)),
+            "kioskModeApps": lambda n : setattr(self, 'kiosk_mode_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "kioskModeAppsInFolderOrderedByName": lambda n : setattr(self, 'kiosk_mode_apps_in_folder_ordered_by_name', n.get_bool_value()),
+            "kioskModeAppOrderEnabled": lambda n : setattr(self, 'kiosk_mode_app_order_enabled', n.get_bool_value()),
+            "kioskModeAppPositions": lambda n : setattr(self, 'kiosk_mode_app_positions', n.get_collection_of_object_values(android_device_owner_kiosk_mode_app_position_item.AndroidDeviceOwnerKioskModeAppPositionItem)),
+            "kioskModeBluetoothConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_bluetooth_configuration_enabled', n.get_bool_value()),
+            "kioskModeDebugMenuEasyAccessEnabled": lambda n : setattr(self, 'kiosk_mode_debug_menu_easy_access_enabled', n.get_bool_value()),
+            "kioskModeExitCode": lambda n : setattr(self, 'kiosk_mode_exit_code', n.get_str_value()),
+            "kioskModeFlashlightConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_flashlight_configuration_enabled', n.get_bool_value()),
+            "kioskModeFolderIcon": lambda n : setattr(self, 'kiosk_mode_folder_icon', n.get_enum_value(android_device_owner_kiosk_mode_folder_icon.AndroidDeviceOwnerKioskModeFolderIcon)),
+            "kioskModeGridHeight": lambda n : setattr(self, 'kiosk_mode_grid_height', n.get_int_value()),
+            "kioskModeGridWidth": lambda n : setattr(self, 'kiosk_mode_grid_width', n.get_int_value()),
+            "kioskModeIconSize": lambda n : setattr(self, 'kiosk_mode_icon_size', n.get_enum_value(android_device_owner_kiosk_mode_icon_size.AndroidDeviceOwnerKioskModeIconSize)),
+            "kioskModeLockHomeScreen": lambda n : setattr(self, 'kiosk_mode_lock_home_screen', n.get_bool_value()),
+            "kioskModeManagedFolders": lambda n : setattr(self, 'kiosk_mode_managed_folders', n.get_collection_of_object_values(android_device_owner_kiosk_mode_managed_folder.AndroidDeviceOwnerKioskModeManagedFolder)),
+            "kioskModeManagedHomeScreenAutoSignout": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_auto_signout', n.get_bool_value()),
+            "kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds', n.get_int_value()),
+            "kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds', n.get_int_value()),
+            "kioskModeManagedHomeScreenPinComplexity": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_complexity', n.get_enum_value(kiosk_mode_managed_home_screen_pin_complexity.KioskModeManagedHomeScreenPinComplexity)),
+            "kioskModeManagedHomeScreenPinRequired": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_required', n.get_bool_value()),
+            "kioskModeManagedHomeScreenPinRequiredToResume": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_pin_required_to_resume', n.get_bool_value()),
+            "kioskModeManagedHomeScreenSignInBackground": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_background', n.get_str_value()),
+            "kioskModeManagedHomeScreenSignInBrandingLogo": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_branding_logo', n.get_str_value()),
+            "kioskModeManagedHomeScreenSignInEnabled": lambda n : setattr(self, 'kiosk_mode_managed_home_screen_sign_in_enabled', n.get_bool_value()),
+            "kioskModeManagedSettingsEntryDisabled": lambda n : setattr(self, 'kiosk_mode_managed_settings_entry_disabled', n.get_bool_value()),
+            "kioskModeMediaVolumeConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_media_volume_configuration_enabled', n.get_bool_value()),
+            "kioskModeScreenOrientation": lambda n : setattr(self, 'kiosk_mode_screen_orientation', n.get_enum_value(android_device_owner_kiosk_mode_screen_orientation.AndroidDeviceOwnerKioskModeScreenOrientation)),
+            "kioskModeScreenSaverConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_screen_saver_configuration_enabled', n.get_bool_value()),
+            "kioskModeScreenSaverDetectMediaDisabled": lambda n : setattr(self, 'kiosk_mode_screen_saver_detect_media_disabled', n.get_bool_value()),
+            "kioskModeScreenSaverDisplayTimeInSeconds": lambda n : setattr(self, 'kiosk_mode_screen_saver_display_time_in_seconds', n.get_int_value()),
+            "kioskModeScreenSaverImageUrl": lambda n : setattr(self, 'kiosk_mode_screen_saver_image_url', n.get_str_value()),
+            "kioskModeScreenSaverStartDelayInSeconds": lambda n : setattr(self, 'kiosk_mode_screen_saver_start_delay_in_seconds', n.get_int_value()),
+            "kioskModeShowAppNotificationBadge": lambda n : setattr(self, 'kiosk_mode_show_app_notification_badge', n.get_bool_value()),
+            "kioskModeShowDeviceInfo": lambda n : setattr(self, 'kiosk_mode_show_device_info', n.get_bool_value()),
+            "kioskModeUseManagedHomeScreenApp": lambda n : setattr(self, 'kiosk_mode_use_managed_home_screen_app', n.get_enum_value(kiosk_mode_type.KioskModeType)),
+            "kioskModeVirtualHomeButtonEnabled": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_enabled', n.get_bool_value()),
+            "kioskModeVirtualHomeButtonType": lambda n : setattr(self, 'kiosk_mode_virtual_home_button_type', n.get_enum_value(android_device_owner_virtual_home_button_type.AndroidDeviceOwnerVirtualHomeButtonType)),
+            "kioskModeWallpaperUrl": lambda n : setattr(self, 'kiosk_mode_wallpaper_url', n.get_str_value()),
+            "kioskModeWifiAllowedSsids": lambda n : setattr(self, 'kiosk_mode_wifi_allowed_ssids', n.get_collection_of_primitive_values(str)),
+            "kioskModeWiFiConfigurationEnabled": lambda n : setattr(self, 'kiosk_mode_wi_fi_configuration_enabled', n.get_bool_value()),
+            "locateDeviceLostModeEnabled": lambda n : setattr(self, 'locate_device_lost_mode_enabled', n.get_bool_value()),
+            "locateDeviceUserlessDisabled": lambda n : setattr(self, 'locate_device_userless_disabled', n.get_bool_value()),
+            "microphoneForceMute": lambda n : setattr(self, 'microphone_force_mute', n.get_bool_value()),
+            "microsoftLauncherConfigurationEnabled": lambda n : setattr(self, 'microsoft_launcher_configuration_enabled', n.get_bool_value()),
+            "microsoftLauncherCustomWallpaperAllowUserModification": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_allow_user_modification', n.get_bool_value()),
+            "microsoftLauncherCustomWallpaperEnabled": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_enabled', n.get_bool_value()),
+            "microsoftLauncherCustomWallpaperImageUrl": lambda n : setattr(self, 'microsoft_launcher_custom_wallpaper_image_url', n.get_str_value()),
+            "microsoftLauncherDockPresenceAllowUserModification": lambda n : setattr(self, 'microsoft_launcher_dock_presence_allow_user_modification', n.get_bool_value()),
+            "microsoftLauncherDockPresenceConfiguration": lambda n : setattr(self, 'microsoft_launcher_dock_presence_configuration', n.get_enum_value(microsoft_launcher_dock_presence.MicrosoftLauncherDockPresence)),
+            "microsoftLauncherFeedAllowUserModification": lambda n : setattr(self, 'microsoft_launcher_feed_allow_user_modification', n.get_bool_value()),
+            "microsoftLauncherFeedEnabled": lambda n : setattr(self, 'microsoft_launcher_feed_enabled', n.get_bool_value()),
+            "microsoftLauncherSearchBarPlacementConfiguration": lambda n : setattr(self, 'microsoft_launcher_search_bar_placement_configuration', n.get_enum_value(microsoft_launcher_search_bar_placement.MicrosoftLauncherSearchBarPlacement)),
+            "networkEscapeHatchAllowed": lambda n : setattr(self, 'network_escape_hatch_allowed', n.get_bool_value()),
+            "nfcBlockOutgoingBeam": lambda n : setattr(self, 'nfc_block_outgoing_beam', n.get_bool_value()),
+            "passwordBlockKeyguard": lambda n : setattr(self, 'password_block_keyguard', n.get_bool_value()),
+            "passwordBlockKeyguardFeatures": lambda n : setattr(self, 'password_block_keyguard_features', n.get_collection_of_enum_values(android_keyguard_feature.AndroidKeyguardFeature)),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinimumLetterCharacters": lambda n : setattr(self, 'password_minimum_letter_characters', n.get_int_value()),
+            "passwordMinimumLowerCaseCharacters": lambda n : setattr(self, 'password_minimum_lower_case_characters', n.get_int_value()),
+            "passwordMinimumNonLetterCharacters": lambda n : setattr(self, 'password_minimum_non_letter_characters', n.get_int_value()),
+            "passwordMinimumNumericCharacters": lambda n : setattr(self, 'password_minimum_numeric_characters', n.get_int_value()),
+            "passwordMinimumSymbolCharacters": lambda n : setattr(self, 'password_minimum_symbol_characters', n.get_int_value()),
+            "passwordMinimumUpperCaseCharacters": lambda n : setattr(self, 'password_minimum_upper_case_characters', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'password_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passwordPreviousPasswordCountToBlock": lambda n : setattr(self, 'password_previous_password_count_to_block', n.get_int_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
+            "passwordRequireUnlock": lambda n : setattr(self, 'password_require_unlock', n.get_enum_value(android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock)),
+            "passwordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
+            "personalProfileAppsAllowInstallFromUnknownSources": lambda n : setattr(self, 'personal_profile_apps_allow_install_from_unknown_sources', n.get_bool_value()),
+            "personalProfileCameraBlocked": lambda n : setattr(self, 'personal_profile_camera_blocked', n.get_bool_value()),
+            "personalProfilePersonalApplications": lambda n : setattr(self, 'personal_profile_personal_applications', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "personalProfilePlayStoreMode": lambda n : setattr(self, 'personal_profile_play_store_mode', n.get_enum_value(personal_profile_personal_play_store_mode.PersonalProfilePersonalPlayStoreMode)),
+            "personalProfileScreenCaptureBlocked": lambda n : setattr(self, 'personal_profile_screen_capture_blocked', n.get_bool_value()),
+            "playStoreMode": lambda n : setattr(self, 'play_store_mode', n.get_enum_value(android_device_owner_play_store_mode.AndroidDeviceOwnerPlayStoreMode)),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "securityCommonCriteriaModeEnabled": lambda n : setattr(self, 'security_common_criteria_mode_enabled', n.get_bool_value()),
+            "securityDeveloperSettingsEnabled": lambda n : setattr(self, 'security_developer_settings_enabled', n.get_bool_value()),
+            "securityRequireVerifyApps": lambda n : setattr(self, 'security_require_verify_apps', n.get_bool_value()),
+            "shortHelpText": lambda n : setattr(self, 'short_help_text', n.get_object_value(android_device_owner_user_facing_message.AndroidDeviceOwnerUserFacingMessage)),
+            "statusBarBlocked": lambda n : setattr(self, 'status_bar_blocked', n.get_bool_value()),
+            "stayOnModes": lambda n : setattr(self, 'stay_on_modes', n.get_collection_of_enum_values(android_device_owner_battery_plugged_mode.AndroidDeviceOwnerBatteryPluggedMode)),
+            "storageAllowUsb": lambda n : setattr(self, 'storage_allow_usb', n.get_bool_value()),
+            "storageBlockExternalMedia": lambda n : setattr(self, 'storage_block_external_media', n.get_bool_value()),
+            "storageBlockUsbFileTransfer": lambda n : setattr(self, 'storage_block_usb_file_transfer', n.get_bool_value()),
+            "systemUpdateFreezePeriods": lambda n : setattr(self, 'system_update_freeze_periods', n.get_collection_of_object_values(android_device_owner_system_update_freeze_period.AndroidDeviceOwnerSystemUpdateFreezePeriod)),
+            "systemUpdateInstallType": lambda n : setattr(self, 'system_update_install_type', n.get_enum_value(android_device_owner_system_update_install_type.AndroidDeviceOwnerSystemUpdateInstallType)),
+            "systemUpdateWindowEndMinutesAfterMidnight": lambda n : setattr(self, 'system_update_window_end_minutes_after_midnight', n.get_int_value()),
+            "systemUpdateWindowStartMinutesAfterMidnight": lambda n : setattr(self, 'system_update_window_start_minutes_after_midnight', n.get_int_value()),
+            "systemWindowsBlocked": lambda n : setattr(self, 'system_windows_blocked', n.get_bool_value()),
+            "usersBlockAdd": lambda n : setattr(self, 'users_block_add', n.get_bool_value()),
+            "usersBlockRemove": lambda n : setattr(self, 'users_block_remove', n.get_bool_value()),
+            "volumeBlockAdjustment": lambda n : setattr(self, 'volume_block_adjustment', n.get_bool_value()),
+            "vpnAlwaysOnLockdownMode": lambda n : setattr(self, 'vpn_always_on_lockdown_mode', n.get_bool_value()),
+            "vpnAlwaysOnPackageIdentifier": lambda n : setattr(self, 'vpn_always_on_package_identifier', n.get_str_value()),
+            "wifiBlockEditConfigurations": lambda n : setattr(self, 'wifi_block_edit_configurations', n.get_bool_value()),
+            "wifiBlockEditPolicyDefinedConfigurations": lambda n : setattr(self, 'wifi_block_edit_policy_defined_configurations', n.get_bool_value()),
+            "workProfilePasswordExpirationDays": lambda n : setattr(self, 'work_profile_password_expiration_days', n.get_int_value()),
+            "workProfilePasswordMinimumLength": lambda n : setattr(self, 'work_profile_password_minimum_length', n.get_int_value()),
+            "workProfilePasswordMinimumLetterCharacters": lambda n : setattr(self, 'work_profile_password_minimum_letter_characters', n.get_int_value()),
+            "workProfilePasswordMinimumLowerCaseCharacters": lambda n : setattr(self, 'work_profile_password_minimum_lower_case_characters', n.get_int_value()),
+            "workProfilePasswordMinimumNonLetterCharacters": lambda n : setattr(self, 'work_profile_password_minimum_non_letter_characters', n.get_int_value()),
+            "workProfilePasswordMinimumNumericCharacters": lambda n : setattr(self, 'work_profile_password_minimum_numeric_characters', n.get_int_value()),
+            "workProfilePasswordMinimumSymbolCharacters": lambda n : setattr(self, 'work_profile_password_minimum_symbol_characters', n.get_int_value()),
+            "workProfilePasswordMinimumUpperCaseCharacters": lambda n : setattr(self, 'work_profile_password_minimum_upper_case_characters', n.get_int_value()),
+            "workProfilePasswordPreviousPasswordCountToBlock": lambda n : setattr(self, 'work_profile_password_previous_password_count_to_block', n.get_int_value()),
+            "workProfilePasswordRequiredType": lambda n : setattr(self, 'work_profile_password_required_type', n.get_enum_value(android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType)),
+            "workProfilePasswordRequireUnlock": lambda n : setattr(self, 'work_profile_password_require_unlock', n.get_enum_value(android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock)),
+            "workProfilePasswordSignInFailureCountBeforeFactoryReset": lambda n : setattr(self, 'work_profile_password_sign_in_failure_count_before_factory_reset', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -835,7 +841,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the globalProxy property value. Proxy is set up directly with host, port and excluded hosts.
         Args:
-            value: Value to set for the globalProxy property.
+            value: Value to set for the global_proxy property.
         """
         self._global_proxy = value
     
@@ -852,7 +858,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the googleAccountsBlocked property value. Indicates whether or not google accounts will be blocked.
         Args:
-            value: Value to set for the googleAccountsBlocked property.
+            value: Value to set for the google_accounts_blocked property.
         """
         self._google_accounts_blocked = value
     
@@ -869,7 +875,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskCustomizationDeviceSettingsBlocked property value. Indicates whether a user can access the device's Settings app while in Kiosk Mode.
         Args:
-            value: Value to set for the kioskCustomizationDeviceSettingsBlocked property.
+            value: Value to set for the kiosk_customization_device_settings_blocked property.
         """
         self._kiosk_customization_device_settings_blocked = value
     
@@ -886,7 +892,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskCustomizationPowerButtonActionsBlocked property value. Whether the power menu is shown when a user long presses the Power button of a device in Kiosk Mode.
         Args:
-            value: Value to set for the kioskCustomizationPowerButtonActionsBlocked property.
+            value: Value to set for the kiosk_customization_power_button_actions_blocked property.
         """
         self._kiosk_customization_power_button_actions_blocked = value
     
@@ -903,7 +909,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskCustomizationStatusBar property value. Indicates whether system info and notifications are disabled in Kiosk Mode. Possible values are: notConfigured, notificationsAndSystemInfoEnabled, systemInfoOnly.
         Args:
-            value: Value to set for the kioskCustomizationStatusBar property.
+            value: Value to set for the kiosk_customization_status_bar property.
         """
         self._kiosk_customization_status_bar = value
     
@@ -920,7 +926,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskCustomizationSystemErrorWarnings property value. Indicates whether system error dialogs for crashed or unresponsive apps are shown in Kiosk Mode.
         Args:
-            value: Value to set for the kioskCustomizationSystemErrorWarnings property.
+            value: Value to set for the kiosk_customization_system_error_warnings property.
         """
         self._kiosk_customization_system_error_warnings = value
     
@@ -937,7 +943,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskCustomizationSystemNavigation property value. Indicates which navigation features are enabled in Kiosk Mode. Possible values are: notConfigured, navigationEnabled, homeButtonOnly.
         Args:
-            value: Value to set for the kioskCustomizationSystemNavigation property.
+            value: Value to set for the kiosk_customization_system_navigation property.
         """
         self._kiosk_customization_system_navigation = value
     
@@ -954,7 +960,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeAppOrderEnabled property value. Whether or not to enable app ordering in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeAppOrderEnabled property.
+            value: Value to set for the kiosk_mode_app_order_enabled property.
         """
         self._kiosk_mode_app_order_enabled = value
     
@@ -971,7 +977,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeAppPositions property value. The ordering of items on Kiosk Mode Managed Home Screen. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the kioskModeAppPositions property.
+            value: Value to set for the kiosk_mode_app_positions property.
         """
         self._kiosk_mode_app_positions = value
     
@@ -988,7 +994,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeApps property value. A list of managed apps that will be shown when the device is in Kiosk Mode. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the kioskModeApps property.
+            value: Value to set for the kiosk_mode_apps property.
         """
         self._kiosk_mode_apps = value
     
@@ -1005,7 +1011,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeAppsInFolderOrderedByName property value. Whether or not to alphabetize applications within a folder in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeAppsInFolderOrderedByName property.
+            value: Value to set for the kiosk_mode_apps_in_folder_ordered_by_name property.
         """
         self._kiosk_mode_apps_in_folder_ordered_by_name = value
     
@@ -1022,7 +1028,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeBluetoothConfigurationEnabled property value. Whether or not to allow a user to configure Bluetooth settings in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeBluetoothConfigurationEnabled property.
+            value: Value to set for the kiosk_mode_bluetooth_configuration_enabled property.
         """
         self._kiosk_mode_bluetooth_configuration_enabled = value
     
@@ -1039,7 +1045,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeDebugMenuEasyAccessEnabled property value. Whether or not to allow a user to easy access to the debug menu in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeDebugMenuEasyAccessEnabled property.
+            value: Value to set for the kiosk_mode_debug_menu_easy_access_enabled property.
         """
         self._kiosk_mode_debug_menu_easy_access_enabled = value
     
@@ -1056,7 +1062,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeExitCode property value. Exit code to allow a user to escape from Kiosk Mode when the device is in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeExitCode property.
+            value: Value to set for the kiosk_mode_exit_code property.
         """
         self._kiosk_mode_exit_code = value
     
@@ -1073,7 +1079,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeFlashlightConfigurationEnabled property value. Whether or not to allow a user to use the flashlight in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeFlashlightConfigurationEnabled property.
+            value: Value to set for the kiosk_mode_flashlight_configuration_enabled property.
         """
         self._kiosk_mode_flashlight_configuration_enabled = value
     
@@ -1090,7 +1096,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeFolderIcon property value. Folder icon configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, darkSquare, darkCircle, lightSquare, lightCircle.
         Args:
-            value: Value to set for the kioskModeFolderIcon property.
+            value: Value to set for the kiosk_mode_folder_icon property.
         """
         self._kiosk_mode_folder_icon = value
     
@@ -1107,7 +1113,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeGridHeight property value. Number of rows for Managed Home Screen grid with app ordering enabled in Kiosk Mode. Valid values 1 to 9999999
         Args:
-            value: Value to set for the kioskModeGridHeight property.
+            value: Value to set for the kiosk_mode_grid_height property.
         """
         self._kiosk_mode_grid_height = value
     
@@ -1124,7 +1130,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeGridWidth property value. Number of columns for Managed Home Screen grid with app ordering enabled in Kiosk Mode. Valid values 1 to 9999999
         Args:
-            value: Value to set for the kioskModeGridWidth property.
+            value: Value to set for the kiosk_mode_grid_width property.
         """
         self._kiosk_mode_grid_width = value
     
@@ -1141,7 +1147,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeIconSize property value. Icon size configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, smallest, small, regular, large, largest.
         Args:
-            value: Value to set for the kioskModeIconSize property.
+            value: Value to set for the kiosk_mode_icon_size property.
         """
         self._kiosk_mode_icon_size = value
     
@@ -1158,7 +1164,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeLockHomeScreen property value. Whether or not to lock home screen to the end user in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeLockHomeScreen property.
+            value: Value to set for the kiosk_mode_lock_home_screen property.
         """
         self._kiosk_mode_lock_home_screen = value
     
@@ -1175,7 +1181,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedFolders property value. A list of managed folders for a device in Kiosk Mode. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the kioskModeManagedFolders property.
+            value: Value to set for the kiosk_mode_managed_folders property.
         """
         self._kiosk_mode_managed_folders = value
     
@@ -1192,7 +1198,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenAutoSignout property value. Whether or not to automatically sign-out of MHS and Shared device mode applications after inactive for Managed Home Screen.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenAutoSignout property.
+            value: Value to set for the kiosk_mode_managed_home_screen_auto_signout property.
         """
         self._kiosk_mode_managed_home_screen_auto_signout = value
     
@@ -1209,7 +1215,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds property value. Number of seconds to give user notice before automatically signing them out for Managed Home Screen. Valid values 0 to 9999999
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds property.
+            value: Value to set for the kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds property.
         """
         self._kiosk_mode_managed_home_screen_inactive_sign_out_delay_in_seconds = value
     
@@ -1226,7 +1232,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds property value. Number of seconds device is inactive before automatically signing user out for Managed Home Screen. Valid values 0 to 9999999
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds property.
+            value: Value to set for the kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds property.
         """
         self._kiosk_mode_managed_home_screen_inactive_sign_out_notice_in_seconds = value
     
@@ -1243,7 +1249,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenPinComplexity property value. Complexity of PIN for sign-in session for Managed Home Screen. Possible values are: notConfigured, simple, complex.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenPinComplexity property.
+            value: Value to set for the kiosk_mode_managed_home_screen_pin_complexity property.
         """
         self._kiosk_mode_managed_home_screen_pin_complexity = value
     
@@ -1260,7 +1266,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenPinRequired property value. Whether or not require user to set a PIN for sign-in session for Managed Home Screen.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenPinRequired property.
+            value: Value to set for the kiosk_mode_managed_home_screen_pin_required property.
         """
         self._kiosk_mode_managed_home_screen_pin_required = value
     
@@ -1277,7 +1283,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenPinRequiredToResume property value. Whether or not required user to enter session PIN if screensaver has appeared for Managed Home Screen.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenPinRequiredToResume property.
+            value: Value to set for the kiosk_mode_managed_home_screen_pin_required_to_resume property.
         """
         self._kiosk_mode_managed_home_screen_pin_required_to_resume = value
     
@@ -1294,7 +1300,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenSignInBackground property value. Custom URL background for sign-in screen for Managed Home Screen.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenSignInBackground property.
+            value: Value to set for the kiosk_mode_managed_home_screen_sign_in_background property.
         """
         self._kiosk_mode_managed_home_screen_sign_in_background = value
     
@@ -1311,7 +1317,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenSignInBrandingLogo property value. Custom URL branding logo for sign-in screen and session pin page for Managed Home Screen.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenSignInBrandingLogo property.
+            value: Value to set for the kiosk_mode_managed_home_screen_sign_in_branding_logo property.
         """
         self._kiosk_mode_managed_home_screen_sign_in_branding_logo = value
     
@@ -1328,7 +1334,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedHomeScreenSignInEnabled property value. Whether or not show sign-in screen for Managed Home Screen.
         Args:
-            value: Value to set for the kioskModeManagedHomeScreenSignInEnabled property.
+            value: Value to set for the kiosk_mode_managed_home_screen_sign_in_enabled property.
         """
         self._kiosk_mode_managed_home_screen_sign_in_enabled = value
     
@@ -1345,7 +1351,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeManagedSettingsEntryDisabled property value. Whether or not to display the Managed Settings entry point on the managed home screen in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeManagedSettingsEntryDisabled property.
+            value: Value to set for the kiosk_mode_managed_settings_entry_disabled property.
         """
         self._kiosk_mode_managed_settings_entry_disabled = value
     
@@ -1362,7 +1368,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeMediaVolumeConfigurationEnabled property value. Whether or not to allow a user to change the media volume in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeMediaVolumeConfigurationEnabled property.
+            value: Value to set for the kiosk_mode_media_volume_configuration_enabled property.
         """
         self._kiosk_mode_media_volume_configuration_enabled = value
     
@@ -1379,7 +1385,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeScreenOrientation property value. Screen orientation configuration for managed home screen in Kiosk Mode. Possible values are: notConfigured, portrait, landscape, autoRotate.
         Args:
-            value: Value to set for the kioskModeScreenOrientation property.
+            value: Value to set for the kiosk_mode_screen_orientation property.
         """
         self._kiosk_mode_screen_orientation = value
     
@@ -1396,7 +1402,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeScreenSaverConfigurationEnabled property value. Whether or not to enable screen saver mode or not in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeScreenSaverConfigurationEnabled property.
+            value: Value to set for the kiosk_mode_screen_saver_configuration_enabled property.
         """
         self._kiosk_mode_screen_saver_configuration_enabled = value
     
@@ -1413,7 +1419,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeScreenSaverDetectMediaDisabled property value. Whether or not the device screen should show the screen saver if audio/video is playing in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeScreenSaverDetectMediaDisabled property.
+            value: Value to set for the kiosk_mode_screen_saver_detect_media_disabled property.
         """
         self._kiosk_mode_screen_saver_detect_media_disabled = value
     
@@ -1430,7 +1436,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeScreenSaverDisplayTimeInSeconds property value. The number of seconds that the device will display the screen saver for in Kiosk Mode. Valid values 0 to 9999999
         Args:
-            value: Value to set for the kioskModeScreenSaverDisplayTimeInSeconds property.
+            value: Value to set for the kiosk_mode_screen_saver_display_time_in_seconds property.
         """
         self._kiosk_mode_screen_saver_display_time_in_seconds = value
     
@@ -1447,7 +1453,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeScreenSaverImageUrl property value. URL for an image that will be the device's screen saver in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeScreenSaverImageUrl property.
+            value: Value to set for the kiosk_mode_screen_saver_image_url property.
         """
         self._kiosk_mode_screen_saver_image_url = value
     
@@ -1464,7 +1470,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeScreenSaverStartDelayInSeconds property value. The number of seconds the device needs to be inactive for before the screen saver is shown in Kiosk Mode. Valid values 1 to 9999999
         Args:
-            value: Value to set for the kioskModeScreenSaverStartDelayInSeconds property.
+            value: Value to set for the kiosk_mode_screen_saver_start_delay_in_seconds property.
         """
         self._kiosk_mode_screen_saver_start_delay_in_seconds = value
     
@@ -1481,7 +1487,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeShowAppNotificationBadge property value. Whether or not to display application notification badges in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeShowAppNotificationBadge property.
+            value: Value to set for the kiosk_mode_show_app_notification_badge property.
         """
         self._kiosk_mode_show_app_notification_badge = value
     
@@ -1498,7 +1504,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeShowDeviceInfo property value. Whether or not to allow a user to access basic device information.
         Args:
-            value: Value to set for the kioskModeShowDeviceInfo property.
+            value: Value to set for the kiosk_mode_show_device_info property.
         """
         self._kiosk_mode_show_device_info = value
     
@@ -1515,7 +1521,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeUseManagedHomeScreenApp property value. Whether or not to use single app kiosk mode or multi-app kiosk mode. Possible values are: notConfigured, singleAppMode, multiAppMode.
         Args:
-            value: Value to set for the kioskModeUseManagedHomeScreenApp property.
+            value: Value to set for the kiosk_mode_use_managed_home_screen_app property.
         """
         self._kiosk_mode_use_managed_home_screen_app = value
     
@@ -1532,7 +1538,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeVirtualHomeButtonEnabled property value. Whether or not to display a virtual home button when the device is in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeVirtualHomeButtonEnabled property.
+            value: Value to set for the kiosk_mode_virtual_home_button_enabled property.
         """
         self._kiosk_mode_virtual_home_button_enabled = value
     
@@ -1549,7 +1555,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeVirtualHomeButtonType property value. Indicates whether the virtual home button is a swipe up home button or a floating home button. Possible values are: notConfigured, swipeUp, floating.
         Args:
-            value: Value to set for the kioskModeVirtualHomeButtonType property.
+            value: Value to set for the kiosk_mode_virtual_home_button_type property.
         """
         self._kiosk_mode_virtual_home_button_type = value
     
@@ -1566,26 +1572,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeWallpaperUrl property value. URL to a publicly accessible image to use for the wallpaper when the device is in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeWallpaperUrl property.
+            value: Value to set for the kiosk_mode_wallpaper_url property.
         """
         self._kiosk_mode_wallpaper_url = value
-    
-    @property
-    def kiosk_mode_wifi_allowed_ssids(self,) -> Optional[List[str]]:
-        """
-        Gets the kioskModeWifiAllowedSsids property value. The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[str]]
-        """
-        return self._kiosk_mode_wifi_allowed_ssids
-    
-    @kiosk_mode_wifi_allowed_ssids.setter
-    def kiosk_mode_wifi_allowed_ssids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the kioskModeWifiAllowedSsids property value. The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the kioskModeWifiAllowedSsids property.
-        """
-        self._kiosk_mode_wifi_allowed_ssids = value
     
     @property
     def kiosk_mode_wi_fi_configuration_enabled(self,) -> Optional[bool]:
@@ -1600,9 +1589,60 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the kioskModeWiFiConfigurationEnabled property value. Whether or not to allow a user to configure Wi-Fi settings in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeWiFiConfigurationEnabled property.
+            value: Value to set for the kiosk_mode_wi_fi_configuration_enabled property.
         """
         self._kiosk_mode_wi_fi_configuration_enabled = value
+    
+    @property
+    def kiosk_mode_wifi_allowed_ssids(self,) -> Optional[List[str]]:
+        """
+        Gets the kioskModeWifiAllowedSsids property value. The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
+        Returns: Optional[List[str]]
+        """
+        return self._kiosk_mode_wifi_allowed_ssids
+    
+    @kiosk_mode_wifi_allowed_ssids.setter
+    def kiosk_mode_wifi_allowed_ssids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the kioskModeWifiAllowedSsids property value. The restricted set of WIFI SSIDs available for the user to configure in Kiosk Mode. This collection can contain a maximum of 500 elements.
+        Args:
+            value: Value to set for the kiosk_mode_wifi_allowed_ssids property.
+        """
+        self._kiosk_mode_wifi_allowed_ssids = value
+    
+    @property
+    def locate_device_lost_mode_enabled(self,) -> Optional[bool]:
+        """
+        Gets the locateDeviceLostModeEnabled property value. Indicates whether or not LocateDevice for devices with lost mode (COBO, COPE) is enabled.
+        Returns: Optional[bool]
+        """
+        return self._locate_device_lost_mode_enabled
+    
+    @locate_device_lost_mode_enabled.setter
+    def locate_device_lost_mode_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the locateDeviceLostModeEnabled property value. Indicates whether or not LocateDevice for devices with lost mode (COBO, COPE) is enabled.
+        Args:
+            value: Value to set for the locate_device_lost_mode_enabled property.
+        """
+        self._locate_device_lost_mode_enabled = value
+    
+    @property
+    def locate_device_userless_disabled(self,) -> Optional[bool]:
+        """
+        Gets the locateDeviceUserlessDisabled property value. Indicates whether or not LocateDevice for userless (COSU) devices is disabled.
+        Returns: Optional[bool]
+        """
+        return self._locate_device_userless_disabled
+    
+    @locate_device_userless_disabled.setter
+    def locate_device_userless_disabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the locateDeviceUserlessDisabled property value. Indicates whether or not LocateDevice for userless (COSU) devices is disabled.
+        Args:
+            value: Value to set for the locate_device_userless_disabled property.
+        """
+        self._locate_device_userless_disabled = value
     
     @property
     def microphone_force_mute(self,) -> Optional[bool]:
@@ -1617,7 +1657,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microphoneForceMute property value. Indicates whether or not to block unmuting the microphone on the device.
         Args:
-            value: Value to set for the microphoneForceMute property.
+            value: Value to set for the microphone_force_mute property.
         """
         self._microphone_force_mute = value
     
@@ -1634,7 +1674,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherConfigurationEnabled property value. Indicates whether or not to you want configure Microsoft Launcher.
         Args:
-            value: Value to set for the microsoftLauncherConfigurationEnabled property.
+            value: Value to set for the microsoft_launcher_configuration_enabled property.
         """
         self._microsoft_launcher_configuration_enabled = value
     
@@ -1651,7 +1691,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherCustomWallpaperAllowUserModification property value. Indicates whether or not the user can modify the wallpaper to personalize their device.
         Args:
-            value: Value to set for the microsoftLauncherCustomWallpaperAllowUserModification property.
+            value: Value to set for the microsoft_launcher_custom_wallpaper_allow_user_modification property.
         """
         self._microsoft_launcher_custom_wallpaper_allow_user_modification = value
     
@@ -1668,7 +1708,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherCustomWallpaperEnabled property value. Indicates whether or not to configure the wallpaper on the targeted devices.
         Args:
-            value: Value to set for the microsoftLauncherCustomWallpaperEnabled property.
+            value: Value to set for the microsoft_launcher_custom_wallpaper_enabled property.
         """
         self._microsoft_launcher_custom_wallpaper_enabled = value
     
@@ -1685,7 +1725,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherCustomWallpaperImageUrl property value. Indicates the URL for the image file to use as the wallpaper on the targeted devices.
         Args:
-            value: Value to set for the microsoftLauncherCustomWallpaperImageUrl property.
+            value: Value to set for the microsoft_launcher_custom_wallpaper_image_url property.
         """
         self._microsoft_launcher_custom_wallpaper_image_url = value
     
@@ -1702,7 +1742,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherDockPresenceAllowUserModification property value. Indicates whether or not the user can modify the device dock configuration on the device.
         Args:
-            value: Value to set for the microsoftLauncherDockPresenceAllowUserModification property.
+            value: Value to set for the microsoft_launcher_dock_presence_allow_user_modification property.
         """
         self._microsoft_launcher_dock_presence_allow_user_modification = value
     
@@ -1719,7 +1759,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherDockPresenceConfiguration property value. Indicates whether or not you want to configure the device dock. Possible values are: notConfigured, show, hide, disabled.
         Args:
-            value: Value to set for the microsoftLauncherDockPresenceConfiguration property.
+            value: Value to set for the microsoft_launcher_dock_presence_configuration property.
         """
         self._microsoft_launcher_dock_presence_configuration = value
     
@@ -1736,7 +1776,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherFeedAllowUserModification property value. Indicates whether or not the user can modify the launcher feed on the device.
         Args:
-            value: Value to set for the microsoftLauncherFeedAllowUserModification property.
+            value: Value to set for the microsoft_launcher_feed_allow_user_modification property.
         """
         self._microsoft_launcher_feed_allow_user_modification = value
     
@@ -1753,7 +1793,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherFeedEnabled property value. Indicates whether or not you want to enable the launcher feed on the device.
         Args:
-            value: Value to set for the microsoftLauncherFeedEnabled property.
+            value: Value to set for the microsoft_launcher_feed_enabled property.
         """
         self._microsoft_launcher_feed_enabled = value
     
@@ -1770,7 +1810,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the microsoftLauncherSearchBarPlacementConfiguration property value. Indicates the search bar placement configuration on the device. Possible values are: notConfigured, top, bottom, hide.
         Args:
-            value: Value to set for the microsoftLauncherSearchBarPlacementConfiguration property.
+            value: Value to set for the microsoft_launcher_search_bar_placement_configuration property.
         """
         self._microsoft_launcher_search_bar_placement_configuration = value
     
@@ -1787,7 +1827,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the networkEscapeHatchAllowed property value. Indicates whether or not the device will allow connecting to a temporary network connection at boot time.
         Args:
-            value: Value to set for the networkEscapeHatchAllowed property.
+            value: Value to set for the network_escape_hatch_allowed property.
         """
         self._network_escape_hatch_allowed = value
     
@@ -1804,7 +1844,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the nfcBlockOutgoingBeam property value. Indicates whether or not to block NFC outgoing beam.
         Args:
-            value: Value to set for the nfcBlockOutgoingBeam property.
+            value: Value to set for the nfc_block_outgoing_beam property.
         """
         self._nfc_block_outgoing_beam = value
     
@@ -1821,7 +1861,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordBlockKeyguard property value. Indicates whether or not the keyguard is disabled.
         Args:
-            value: Value to set for the passwordBlockKeyguard property.
+            value: Value to set for the password_block_keyguard property.
         """
         self._password_block_keyguard = value
     
@@ -1838,7 +1878,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordBlockKeyguardFeatures property value. List of device keyguard features to block. This collection can contain a maximum of 11 elements.
         Args:
-            value: Value to set for the passwordBlockKeyguardFeatures property.
+            value: Value to set for the password_block_keyguard_features property.
         """
         self._password_block_keyguard_features = value
     
@@ -1855,7 +1895,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordExpirationDays property value. Indicates the amount of time that a password can be set for before it expires and a new password will be required. Valid values 1 to 365
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -1872,7 +1912,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumLength property value. Indicates the minimum length of the password required on the device. Valid values 4 to 16
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -1889,7 +1929,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumLetterCharacters property value. Indicates the minimum number of letter characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumLetterCharacters property.
+            value: Value to set for the password_minimum_letter_characters property.
         """
         self._password_minimum_letter_characters = value
     
@@ -1906,7 +1946,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumLowerCaseCharacters property value. Indicates the minimum number of lower case characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumLowerCaseCharacters property.
+            value: Value to set for the password_minimum_lower_case_characters property.
         """
         self._password_minimum_lower_case_characters = value
     
@@ -1923,7 +1963,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumNonLetterCharacters property value. Indicates the minimum number of non-letter characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumNonLetterCharacters property.
+            value: Value to set for the password_minimum_non_letter_characters property.
         """
         self._password_minimum_non_letter_characters = value
     
@@ -1940,7 +1980,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumNumericCharacters property value. Indicates the minimum number of numeric characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumNumericCharacters property.
+            value: Value to set for the password_minimum_numeric_characters property.
         """
         self._password_minimum_numeric_characters = value
     
@@ -1957,7 +1997,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumSymbolCharacters property value. Indicates the minimum number of symbol characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumSymbolCharacters property.
+            value: Value to set for the password_minimum_symbol_characters property.
         """
         self._password_minimum_symbol_characters = value
     
@@ -1974,7 +2014,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinimumUpperCaseCharacters property value. Indicates the minimum number of upper case letter characters required for device password. Valid values 1 to 16
         Args:
-            value: Value to set for the passwordMinimumUpperCaseCharacters property.
+            value: Value to set for the password_minimum_upper_case_characters property.
         """
         self._password_minimum_upper_case_characters = value
     
@@ -1991,7 +2031,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the password_minutes_of_inactivity_before_screen_timeout property.
         """
         self._password_minutes_of_inactivity_before_screen_timeout = value
     
@@ -2008,26 +2048,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordPreviousPasswordCountToBlock property value. Indicates the length of password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
         Args:
-            value: Value to set for the passwordPreviousPasswordCountToBlock property.
+            value: Value to set for the password_previous_password_count_to_block property.
         """
         self._password_previous_password_count_to_block = value
-    
-    @property
-    def password_required_type(self,) -> Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]:
-        """
-        Gets the passwordRequiredType property value. Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        Returns: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]
-        """
-        return self._password_required_type
-    
-    @password_required_type.setter
-    def password_required_type(self,value: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None) -> None:
-        """
-        Sets the passwordRequiredType property value. Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        Args:
-            value: Value to set for the passwordRequiredType property.
-        """
-        self._password_required_type = value
     
     @property
     def password_require_unlock(self,) -> Optional[android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock]:
@@ -2042,9 +2065,26 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordRequireUnlock property value. Indicates the timeout period after which a device must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
         Args:
-            value: Value to set for the passwordRequireUnlock property.
+            value: Value to set for the password_require_unlock property.
         """
         self._password_require_unlock = value
+    
+    @property
+    def password_required_type(self,) -> Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]:
+        """
+        Gets the passwordRequiredType property value. Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        Returns: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]
+        """
+        return self._password_required_type
+    
+    @password_required_type.setter
+    def password_required_type(self,value: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None) -> None:
+        """
+        Sets the passwordRequiredType property value. Indicates the minimum password quality required on the device. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        Args:
+            value: Value to set for the password_required_type property.
+        """
+        self._password_required_type = value
     
     @property
     def password_sign_in_failure_count_before_factory_reset(self,) -> Optional[int]:
@@ -2059,7 +2099,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the passwordSignInFailureCountBeforeFactoryReset property value. Indicates the number of times a user can enter an incorrect password before the device is wiped. Valid values 4 to 11
         Args:
-            value: Value to set for the passwordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the password_sign_in_failure_count_before_factory_reset property.
         """
         self._password_sign_in_failure_count_before_factory_reset = value
     
@@ -2076,7 +2116,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the personalProfileAppsAllowInstallFromUnknownSources property value. Indicates whether the user can install apps from unknown sources on the personal profile.
         Args:
-            value: Value to set for the personalProfileAppsAllowInstallFromUnknownSources property.
+            value: Value to set for the personal_profile_apps_allow_install_from_unknown_sources property.
         """
         self._personal_profile_apps_allow_install_from_unknown_sources = value
     
@@ -2093,7 +2133,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the personalProfileCameraBlocked property value. Indicates whether to disable the use of the camera on the personal profile.
         Args:
-            value: Value to set for the personalProfileCameraBlocked property.
+            value: Value to set for the personal_profile_camera_blocked property.
         """
         self._personal_profile_camera_blocked = value
     
@@ -2110,7 +2150,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the personalProfilePersonalApplications property value. Policy applied to applications in the personal profile. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the personalProfilePersonalApplications property.
+            value: Value to set for the personal_profile_personal_applications property.
         """
         self._personal_profile_personal_applications = value
     
@@ -2127,7 +2167,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the personalProfilePlayStoreMode property value. Used together with PersonalProfilePersonalApplications to control how apps in the personal profile are allowed or blocked. Possible values are: notConfigured, blockedApps, allowedApps.
         Args:
-            value: Value to set for the personalProfilePlayStoreMode property.
+            value: Value to set for the personal_profile_play_store_mode property.
         """
         self._personal_profile_play_store_mode = value
     
@@ -2144,7 +2184,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the personalProfileScreenCaptureBlocked property value. Indicates whether to disable the capability to take screenshots on the personal profile.
         Args:
-            value: Value to set for the personalProfileScreenCaptureBlocked property.
+            value: Value to set for the personal_profile_screen_capture_blocked property.
         """
         self._personal_profile_screen_capture_blocked = value
     
@@ -2161,7 +2201,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the playStoreMode property value. Indicates the Play Store mode of the device. Possible values are: notConfigured, allowList, blockList.
         Args:
-            value: Value to set for the playStoreMode property.
+            value: Value to set for the play_store_mode property.
         """
         self._play_store_mode = value
     
@@ -2178,7 +2218,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the screenCaptureBlocked property value. Indicates whether or not to disable the capability to take screenshots.
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -2195,7 +2235,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the securityCommonCriteriaModeEnabled property value. Represents the security common criteria mode enabled provided to users when they attempt to modify managed settings on their device.
         Args:
-            value: Value to set for the securityCommonCriteriaModeEnabled property.
+            value: Value to set for the security_common_criteria_mode_enabled property.
         """
         self._security_common_criteria_mode_enabled = value
     
@@ -2212,7 +2252,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the securityDeveloperSettingsEnabled property value. Indicates whether or not the user is allowed to access developer settings like developer options and safe boot on the device.
         Args:
-            value: Value to set for the securityDeveloperSettingsEnabled property.
+            value: Value to set for the security_developer_settings_enabled property.
         """
         self._security_developer_settings_enabled = value
     
@@ -2229,7 +2269,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the securityRequireVerifyApps property value. Indicates whether or not verify apps is required.
         Args:
-            value: Value to set for the securityRequireVerifyApps property.
+            value: Value to set for the security_require_verify_apps property.
         """
         self._security_require_verify_apps = value
     
@@ -2270,10 +2310,10 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         writer.write_enum_value("kioskCustomizationStatusBar", self.kiosk_customization_status_bar)
         writer.write_bool_value("kioskCustomizationSystemErrorWarnings", self.kiosk_customization_system_error_warnings)
         writer.write_enum_value("kioskCustomizationSystemNavigation", self.kiosk_customization_system_navigation)
-        writer.write_bool_value("kioskModeAppOrderEnabled", self.kiosk_mode_app_order_enabled)
-        writer.write_collection_of_object_values("kioskModeAppPositions", self.kiosk_mode_app_positions)
         writer.write_collection_of_object_values("kioskModeApps", self.kiosk_mode_apps)
         writer.write_bool_value("kioskModeAppsInFolderOrderedByName", self.kiosk_mode_apps_in_folder_ordered_by_name)
+        writer.write_bool_value("kioskModeAppOrderEnabled", self.kiosk_mode_app_order_enabled)
+        writer.write_collection_of_object_values("kioskModeAppPositions", self.kiosk_mode_app_positions)
         writer.write_bool_value("kioskModeBluetoothConfigurationEnabled", self.kiosk_mode_bluetooth_configuration_enabled)
         writer.write_bool_value("kioskModeDebugMenuEasyAccessEnabled", self.kiosk_mode_debug_menu_easy_access_enabled)
         writer.write_str_value("kioskModeExitCode", self.kiosk_mode_exit_code)
@@ -2309,6 +2349,8 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         writer.write_str_value("kioskModeWallpaperUrl", self.kiosk_mode_wallpaper_url)
         writer.write_collection_of_primitive_values("kioskModeWifiAllowedSsids", self.kiosk_mode_wifi_allowed_ssids)
         writer.write_bool_value("kioskModeWiFiConfigurationEnabled", self.kiosk_mode_wi_fi_configuration_enabled)
+        writer.write_bool_value("locateDeviceLostModeEnabled", self.locate_device_lost_mode_enabled)
+        writer.write_bool_value("locateDeviceUserlessDisabled", self.locate_device_userless_disabled)
         writer.write_bool_value("microphoneForceMute", self.microphone_force_mute)
         writer.write_bool_value("microsoftLauncherConfigurationEnabled", self.microsoft_launcher_configuration_enabled)
         writer.write_bool_value("microsoftLauncherCustomWallpaperAllowUserModification", self.microsoft_launcher_custom_wallpaper_allow_user_modification)
@@ -2390,7 +2432,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the shortHelpText property value. Represents the customized short help text provided to users when they attempt to modify managed settings on their device.
         Args:
-            value: Value to set for the shortHelpText property.
+            value: Value to set for the short_help_text property.
         """
         self._short_help_text = value
     
@@ -2407,7 +2449,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the statusBarBlocked property value. Indicates whether or the status bar is disabled, including notifications, quick settings and other screen overlays.
         Args:
-            value: Value to set for the statusBarBlocked property.
+            value: Value to set for the status_bar_blocked property.
         """
         self._status_bar_blocked = value
     
@@ -2424,7 +2466,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the stayOnModes property value. List of modes in which the device's display will stay powered-on. This collection can contain a maximum of 4 elements.
         Args:
-            value: Value to set for the stayOnModes property.
+            value: Value to set for the stay_on_modes property.
         """
         self._stay_on_modes = value
     
@@ -2441,7 +2483,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the storageAllowUsb property value. Indicates whether or not to allow USB mass storage.
         Args:
-            value: Value to set for the storageAllowUsb property.
+            value: Value to set for the storage_allow_usb property.
         """
         self._storage_allow_usb = value
     
@@ -2458,7 +2500,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the storageBlockExternalMedia property value. Indicates whether or not to block external media.
         Args:
-            value: Value to set for the storageBlockExternalMedia property.
+            value: Value to set for the storage_block_external_media property.
         """
         self._storage_block_external_media = value
     
@@ -2475,7 +2517,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the storageBlockUsbFileTransfer property value. Indicates whether or not to block USB file transfer.
         Args:
-            value: Value to set for the storageBlockUsbFileTransfer property.
+            value: Value to set for the storage_block_usb_file_transfer property.
         """
         self._storage_block_usb_file_transfer = value
     
@@ -2492,7 +2534,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the systemUpdateFreezePeriods property value. Indicates the annually repeating time periods during which system updates are postponed. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the systemUpdateFreezePeriods property.
+            value: Value to set for the system_update_freeze_periods property.
         """
         self._system_update_freeze_periods = value
     
@@ -2509,7 +2551,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the systemUpdateInstallType property value. The type of system update configuration. Possible values are: deviceDefault, postpone, windowed, automatic.
         Args:
-            value: Value to set for the systemUpdateInstallType property.
+            value: Value to set for the system_update_install_type property.
         """
         self._system_update_install_type = value
     
@@ -2526,7 +2568,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the systemUpdateWindowEndMinutesAfterMidnight property value. Indicates the number of minutes after midnight that the system update window ends. Valid values 0 to 1440
         Args:
-            value: Value to set for the systemUpdateWindowEndMinutesAfterMidnight property.
+            value: Value to set for the system_update_window_end_minutes_after_midnight property.
         """
         self._system_update_window_end_minutes_after_midnight = value
     
@@ -2543,7 +2585,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the systemUpdateWindowStartMinutesAfterMidnight property value. Indicates the number of minutes after midnight that the system update window starts. Valid values 0 to 1440
         Args:
-            value: Value to set for the systemUpdateWindowStartMinutesAfterMidnight property.
+            value: Value to set for the system_update_window_start_minutes_after_midnight property.
         """
         self._system_update_window_start_minutes_after_midnight = value
     
@@ -2560,7 +2602,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the systemWindowsBlocked property value. Whether or not to block Android system prompt windows, like toasts, phone activities, and system alerts.
         Args:
-            value: Value to set for the systemWindowsBlocked property.
+            value: Value to set for the system_windows_blocked property.
         """
         self._system_windows_blocked = value
     
@@ -2577,7 +2619,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the usersBlockAdd property value. Indicates whether or not adding users and profiles is disabled.
         Args:
-            value: Value to set for the usersBlockAdd property.
+            value: Value to set for the users_block_add property.
         """
         self._users_block_add = value
     
@@ -2594,7 +2636,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the usersBlockRemove property value. Indicates whether or not to disable removing other users from the device.
         Args:
-            value: Value to set for the usersBlockRemove property.
+            value: Value to set for the users_block_remove property.
         """
         self._users_block_remove = value
     
@@ -2611,7 +2653,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the volumeBlockAdjustment property value. Indicates whether or not adjusting the master volume is disabled.
         Args:
-            value: Value to set for the volumeBlockAdjustment property.
+            value: Value to set for the volume_block_adjustment property.
         """
         self._volume_block_adjustment = value
     
@@ -2628,7 +2670,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the vpnAlwaysOnLockdownMode property value. If an always on VPN package name is specified, whether or not to lock network traffic when that VPN is disconnected.
         Args:
-            value: Value to set for the vpnAlwaysOnLockdownMode property.
+            value: Value to set for the vpn_always_on_lockdown_mode property.
         """
         self._vpn_always_on_lockdown_mode = value
     
@@ -2645,7 +2687,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the vpnAlwaysOnPackageIdentifier property value. Android app package name for app that will handle an always-on VPN connection.
         Args:
-            value: Value to set for the vpnAlwaysOnPackageIdentifier property.
+            value: Value to set for the vpn_always_on_package_identifier property.
         """
         self._vpn_always_on_package_identifier = value
     
@@ -2662,7 +2704,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the wifiBlockEditConfigurations property value. Indicates whether or not to block the user from editing the wifi connection settings.
         Args:
-            value: Value to set for the wifiBlockEditConfigurations property.
+            value: Value to set for the wifi_block_edit_configurations property.
         """
         self._wifi_block_edit_configurations = value
     
@@ -2679,7 +2721,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the wifiBlockEditPolicyDefinedConfigurations property value. Indicates whether or not to block the user from editing just the networks defined by the policy.
         Args:
-            value: Value to set for the wifiBlockEditPolicyDefinedConfigurations property.
+            value: Value to set for the wifi_block_edit_policy_defined_configurations property.
         """
         self._wifi_block_edit_policy_defined_configurations = value
     
@@ -2696,7 +2738,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordExpirationDays property value. Indicates the number of days that a work profile password can be set before it expires and a new password will be required. Valid values 1 to 365
         Args:
-            value: Value to set for the workProfilePasswordExpirationDays property.
+            value: Value to set for the work_profile_password_expiration_days property.
         """
         self._work_profile_password_expiration_days = value
     
@@ -2713,7 +2755,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumLength property value. Indicates the minimum length of the work profile password. Valid values 4 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumLength property.
+            value: Value to set for the work_profile_password_minimum_length property.
         """
         self._work_profile_password_minimum_length = value
     
@@ -2730,7 +2772,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumLetterCharacters property value. Indicates the minimum number of letter characters required for the work profile password. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumLetterCharacters property.
+            value: Value to set for the work_profile_password_minimum_letter_characters property.
         """
         self._work_profile_password_minimum_letter_characters = value
     
@@ -2747,7 +2789,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumLowerCaseCharacters property value. Indicates the minimum number of lower-case characters required for the work profile password. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumLowerCaseCharacters property.
+            value: Value to set for the work_profile_password_minimum_lower_case_characters property.
         """
         self._work_profile_password_minimum_lower_case_characters = value
     
@@ -2764,7 +2806,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumNonLetterCharacters property value. Indicates the minimum number of non-letter characters required for the work profile password. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumNonLetterCharacters property.
+            value: Value to set for the work_profile_password_minimum_non_letter_characters property.
         """
         self._work_profile_password_minimum_non_letter_characters = value
     
@@ -2781,7 +2823,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumNumericCharacters property value. Indicates the minimum number of numeric characters required for the work profile password. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumNumericCharacters property.
+            value: Value to set for the work_profile_password_minimum_numeric_characters property.
         """
         self._work_profile_password_minimum_numeric_characters = value
     
@@ -2798,7 +2840,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumSymbolCharacters property value. Indicates the minimum number of symbol characters required for the work profile password. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumSymbolCharacters property.
+            value: Value to set for the work_profile_password_minimum_symbol_characters property.
         """
         self._work_profile_password_minimum_symbol_characters = value
     
@@ -2815,7 +2857,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordMinimumUpperCaseCharacters property value. Indicates the minimum number of upper-case letter characters required for the work profile password. Valid values 1 to 16
         Args:
-            value: Value to set for the workProfilePasswordMinimumUpperCaseCharacters property.
+            value: Value to set for the work_profile_password_minimum_upper_case_characters property.
         """
         self._work_profile_password_minimum_upper_case_characters = value
     
@@ -2832,26 +2874,9 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordPreviousPasswordCountToBlock property value. Indicates the length of the work profile password history, where the user will not be able to enter a new password that is the same as any password in the history. Valid values 0 to 24
         Args:
-            value: Value to set for the workProfilePasswordPreviousPasswordCountToBlock property.
+            value: Value to set for the work_profile_password_previous_password_count_to_block property.
         """
         self._work_profile_password_previous_password_count_to_block = value
-    
-    @property
-    def work_profile_password_required_type(self,) -> Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]:
-        """
-        Gets the workProfilePasswordRequiredType property value. Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        Returns: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]
-        """
-        return self._work_profile_password_required_type
-    
-    @work_profile_password_required_type.setter
-    def work_profile_password_required_type(self,value: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None) -> None:
-        """
-        Sets the workProfilePasswordRequiredType property value. Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
-        Args:
-            value: Value to set for the workProfilePasswordRequiredType property.
-        """
-        self._work_profile_password_required_type = value
     
     @property
     def work_profile_password_require_unlock(self,) -> Optional[android_device_owner_required_password_unlock.AndroidDeviceOwnerRequiredPasswordUnlock]:
@@ -2866,9 +2891,26 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordRequireUnlock property value. Indicates the timeout period after which a work profile must be unlocked using a form of strong authentication. Possible values are: deviceDefault, daily, unkownFutureValue.
         Args:
-            value: Value to set for the workProfilePasswordRequireUnlock property.
+            value: Value to set for the work_profile_password_require_unlock property.
         """
         self._work_profile_password_require_unlock = value
+    
+    @property
+    def work_profile_password_required_type(self,) -> Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]:
+        """
+        Gets the workProfilePasswordRequiredType property value. Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        Returns: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType]
+        """
+        return self._work_profile_password_required_type
+    
+    @work_profile_password_required_type.setter
+    def work_profile_password_required_type(self,value: Optional[android_device_owner_required_password_type.AndroidDeviceOwnerRequiredPasswordType] = None) -> None:
+        """
+        Sets the workProfilePasswordRequiredType property value. Indicates the minimum password quality required on the work profile password. Possible values are: deviceDefault, required, numeric, numericComplex, alphabetic, alphanumeric, alphanumericWithSymbols, lowSecurityBiometric, customPassword.
+        Args:
+            value: Value to set for the work_profile_password_required_type property.
+        """
+        self._work_profile_password_required_type = value
     
     @property
     def work_profile_password_sign_in_failure_count_before_factory_reset(self,) -> Optional[int]:
@@ -2883,7 +2925,7 @@ class AndroidDeviceOwnerGeneralDeviceConfiguration(device_configuration.DeviceCo
         """
         Sets the workProfilePasswordSignInFailureCountBeforeFactoryReset property value. Indicates the number of times a user can enter an incorrect work profile password before the device is wiped. Valid values 4 to 11
         Args:
-            value: Value to set for the workProfilePasswordSignInFailureCountBeforeFactoryReset property.
+            value: Value to set for the work_profile_password_sign_in_failure_count_before_factory_reset property.
         """
         self._work_profile_password_sign_in_failure_count_before_factory_reset = value
     

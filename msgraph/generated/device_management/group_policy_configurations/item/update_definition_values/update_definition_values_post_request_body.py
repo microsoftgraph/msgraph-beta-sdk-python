@@ -79,7 +79,7 @@ class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deletedIds property value. The deletedIds property
         Args:
-            value: Value to set for the deletedIds property.
+            value: Value to set for the deleted_ids property.
         """
         self._deleted_ids = value
     
@@ -90,7 +90,7 @@ class UpdateDefinitionValuesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "added": lambda n : setattr(self, 'added', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),
-            "deleted_ids": lambda n : setattr(self, 'deleted_ids', n.get_collection_of_primitive_values(str)),
+            "deletedIds": lambda n : setattr(self, 'deleted_ids', n.get_collection_of_primitive_values(str)),
             "updated": lambda n : setattr(self, 'updated', n.get_collection_of_object_values(group_policy_definition_value.GroupPolicyDefinitionValue)),
         }
         return fields

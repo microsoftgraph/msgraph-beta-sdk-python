@@ -34,7 +34,7 @@ class ActivateDeviceEsimPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the carrierUrl property value. The carrierUrl property
         Args:
-            value: Value to set for the carrierUrl property.
+            value: Value to set for the carrier_url property.
         """
         self._carrier_url = value
     
@@ -66,7 +66,7 @@ class ActivateDeviceEsimPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "carrier_url": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
+            "carrierUrl": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
         }
         return fields
     

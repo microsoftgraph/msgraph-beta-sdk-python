@@ -53,7 +53,7 @@ class PrivilegedRoleAssignment(entity.Entity):
         """
         Sets the expirationDateTime property value. The UTC DateTime when the temporary privileged role assignment will be expired. For permanent role assignment, the value is null.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -63,12 +63,12 @@ class PrivilegedRoleAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "is_elevated": lambda n : setattr(self, 'is_elevated', n.get_bool_value()),
-            "result_message": lambda n : setattr(self, 'result_message', n.get_str_value()),
-            "role_id": lambda n : setattr(self, 'role_id', n.get_str_value()),
-            "role_info": lambda n : setattr(self, 'role_info', n.get_object_value(privileged_role.PrivilegedRole)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "isElevated": lambda n : setattr(self, 'is_elevated', n.get_bool_value()),
+            "resultMessage": lambda n : setattr(self, 'result_message', n.get_str_value()),
+            "roleId": lambda n : setattr(self, 'role_id', n.get_str_value()),
+            "roleInfo": lambda n : setattr(self, 'role_info', n.get_object_value(privileged_role.PrivilegedRole)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,7 +87,7 @@ class PrivilegedRoleAssignment(entity.Entity):
         """
         Sets the isElevated property value. true if the role assignment is activated. false if the role assignment is deactivated.
         Args:
-            value: Value to set for the isElevated property.
+            value: Value to set for the is_elevated property.
         """
         self._is_elevated = value
     
@@ -104,7 +104,7 @@ class PrivilegedRoleAssignment(entity.Entity):
         """
         Sets the resultMessage property value. Result message set by the service.
         Args:
-            value: Value to set for the resultMessage property.
+            value: Value to set for the result_message property.
         """
         self._result_message = value
     
@@ -121,7 +121,7 @@ class PrivilegedRoleAssignment(entity.Entity):
         """
         Sets the roleId property value. Role identifier. In GUID string format.
         Args:
-            value: Value to set for the roleId property.
+            value: Value to set for the role_id property.
         """
         self._role_id = value
     
@@ -138,7 +138,7 @@ class PrivilegedRoleAssignment(entity.Entity):
         """
         Sets the roleInfo property value. Read-only. Nullable. The associated role information.
         Args:
-            value: Value to set for the roleInfo property.
+            value: Value to set for the role_info property.
         """
         self._role_info = value
     
@@ -171,7 +171,7 @@ class PrivilegedRoleAssignment(entity.Entity):
         """
         Sets the userId property value. User identifier. In GUID string format.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

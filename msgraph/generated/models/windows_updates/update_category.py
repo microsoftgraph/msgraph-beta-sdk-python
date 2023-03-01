@@ -4,4 +4,5 @@ class UpdateCategory(Enum):
     Feature = "feature",
     Quality = "quality",
     UnknownFutureValue = "unknownFutureValue",
+    Driver = "driver",
 

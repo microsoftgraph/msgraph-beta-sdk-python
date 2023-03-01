@@ -44,7 +44,7 @@ class AndroidDeviceOwnerGlobalProxyDirect(android_device_owner_global_proxy.Andr
         """
         Sets the excludedHosts property value. The excluded hosts
         Args:
-            value: Value to set for the excludedHosts property.
+            value: Value to set for the excluded_hosts property.
         """
         self._excluded_hosts = value
     
@@ -54,7 +54,7 @@ class AndroidDeviceOwnerGlobalProxyDirect(android_device_owner_global_proxy.Andr
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "excluded_hosts": lambda n : setattr(self, 'excluded_hosts', n.get_collection_of_primitive_values(str)),
+            "excludedHosts": lambda n : setattr(self, 'excluded_hosts', n.get_collection_of_primitive_values(str)),
             "host": lambda n : setattr(self, 'host', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
         }

@@ -29,19 +29,18 @@ class DeclineRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/me/calendars/{calendar%2Did}/calendarView/{event%2Did}/microsoft.graph.decline"
+        self.url_template: str = "{+baseurl}/me/calendars/{calendar%2Did}/calendarView/{event%2Did}/decline"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[decline_post_request_body.DeclinePostRequestBody] = None, request_configuration: Optional[DeclineRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def post(self,body: Optional[decline_post_request_body.DeclinePostRequestBody] = None, request_configuration: Optional[DeclineRequestBuilderPostRequestConfiguration] = None) -> None:
         """
         Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         if body is None:
             raise Exception("body cannot be undefined")
@@ -54,7 +53,7 @@ class DeclineRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def to_post_request_information(self,body: Optional[decline_post_request_body.DeclinePostRequestBody] = None, request_configuration: Optional[DeclineRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -82,7 +81,7 @@ class DeclineRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

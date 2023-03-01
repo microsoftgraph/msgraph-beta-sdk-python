@@ -58,10 +58,10 @@ class DeviceComplianceScript(entity.Entity):
         self._publisher: Optional[str] = None
         # List of Scope Tag IDs for the device compliance script
         self._role_scope_tag_ids: Optional[List[str]] = None
-        # Indicate whether PowerShell script(s) should run as 32-bit
-        self._run_as32_bit: Optional[bool] = None
         # Indicates the type of execution context the app runs in.
         self._run_as_account: Optional[run_as_account_type.RunAsAccountType] = None
+        # Indicate whether PowerShell script(s) should run as 32-bit
+        self._run_as32_bit: Optional[bool] = None
         # High level run summary for device compliance script.
         self._run_summary: Optional[device_compliance_script_run_summary.DeviceComplianceScriptRunSummary] = None
         # Version of the device compliance script
@@ -80,7 +80,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the createdDateTime property value. The timestamp of when the device compliance script was created. This property is read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -126,7 +126,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the detectionScriptContent property value. The entire content of the detection powershell script
         Args:
-            value: Value to set for the detectionScriptContent property.
+            value: Value to set for the detection_script_content property.
         """
         self._detection_script_content = value
     
@@ -143,7 +143,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the deviceRunStates property value. List of run states for the device compliance script across all devices
         Args:
-            value: Value to set for the deviceRunStates property.
+            value: Value to set for the device_run_states property.
         """
         self._device_run_states = value
     
@@ -160,7 +160,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the displayName property value. Name of the device compliance script
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -177,7 +177,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the enforceSignatureCheck property value. Indicate whether the script signature needs be checked
         Args:
-            value: Value to set for the enforceSignatureCheck property.
+            value: Value to set for the enforce_signature_check property.
         """
         self._enforce_signature_check = value
     
@@ -188,18 +188,18 @@ class DeviceComplianceScript(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_health_script_assignment.DeviceHealthScriptAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "detection_script_content": lambda n : setattr(self, 'detection_script_content', n.get_bytes_value()),
-            "device_run_states": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_compliance_script_device_state.DeviceComplianceScriptDeviceState)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enforce_signature_check": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "detectionScriptContent": lambda n : setattr(self, 'detection_script_content', n.get_bytes_value()),
+            "deviceRunStates": lambda n : setattr(self, 'device_run_states', n.get_collection_of_object_values(device_compliance_script_device_state.DeviceComplianceScriptDeviceState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "run_as32_bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
-            "run_as_account": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
-            "run_summary": lambda n : setattr(self, 'run_summary', n.get_object_value(device_compliance_script_run_summary.DeviceComplianceScriptRunSummary)),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "runAs32Bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
+            "runAsAccount": lambda n : setattr(self, 'run_as_account', n.get_enum_value(run_as_account_type.RunAsAccountType)),
+            "runSummary": lambda n : setattr(self, 'run_summary', n.get_object_value(device_compliance_script_run_summary.DeviceComplianceScriptRunSummary)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -219,7 +219,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The timestamp of when the device compliance script was modified. This property is read-only.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -253,26 +253,9 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tag IDs for the device compliance script
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
-    
-    @property
-    def run_as32_bit(self,) -> Optional[bool]:
-        """
-        Gets the runAs32Bit property value. Indicate whether PowerShell script(s) should run as 32-bit
-        Returns: Optional[bool]
-        """
-        return self._run_as32_bit
-    
-    @run_as32_bit.setter
-    def run_as32_bit(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the runAs32Bit property value. Indicate whether PowerShell script(s) should run as 32-bit
-        Args:
-            value: Value to set for the runAs32Bit property.
-        """
-        self._run_as32_bit = value
     
     @property
     def run_as_account(self,) -> Optional[run_as_account_type.RunAsAccountType]:
@@ -287,9 +270,26 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the runAsAccount property value. Indicates the type of execution context the app runs in.
         Args:
-            value: Value to set for the runAsAccount property.
+            value: Value to set for the run_as_account property.
         """
         self._run_as_account = value
+    
+    @property
+    def run_as32_bit(self,) -> Optional[bool]:
+        """
+        Gets the runAs32Bit property value. Indicate whether PowerShell script(s) should run as 32-bit
+        Returns: Optional[bool]
+        """
+        return self._run_as32_bit
+    
+    @run_as32_bit.setter
+    def run_as32_bit(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the runAs32Bit property value. Indicate whether PowerShell script(s) should run as 32-bit
+        Args:
+            value: Value to set for the run_as32_bit property.
+        """
+        self._run_as32_bit = value
     
     @property
     def run_summary(self,) -> Optional[device_compliance_script_run_summary.DeviceComplianceScriptRunSummary]:
@@ -304,7 +304,7 @@ class DeviceComplianceScript(entity.Entity):
         """
         Sets the runSummary property value. High level run summary for device compliance script.
         Args:
-            value: Value to set for the runSummary property.
+            value: Value to set for the run_summary property.
         """
         self._run_summary = value
     

@@ -22,7 +22,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the averageSpikeTimeScore property value. AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
         Args:
-            value: Value to set for the averageSpikeTimeScore property.
+            value: Value to set for the average_spike_time_score property.
         """
         self._average_spike_time_score = value
     
@@ -73,7 +73,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the cpuSpikeTimePercentage property value. CPU spike time in percentage. Valid values 0 to 100
         Args:
-            value: Value to set for the cpuSpikeTimePercentage property.
+            value: Value to set for the cpu_spike_time_percentage property.
         """
         self._cpu_spike_time_percentage = value
     
@@ -90,7 +90,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the cpuSpikeTimePercentageThreshold property value. Threshold of cpuSpikeTimeScore. Valid values 0 to 100
         Args:
-            value: Value to set for the cpuSpikeTimePercentageThreshold property.
+            value: Value to set for the cpu_spike_time_percentage_threshold property.
         """
         self._cpu_spike_time_percentage_threshold = value
     
@@ -107,7 +107,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the cpuSpikeTimeScore property value. The user experience analytics device CPU spike time score. Valid values 0 to 100
         Args:
-            value: Value to set for the cpuSpikeTimeScore property.
+            value: Value to set for the cpu_spike_time_score property.
         """
         self._cpu_spike_time_score = value
     
@@ -136,7 +136,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the deviceCount property value. User experience analytics summarized device count.
         Args:
-            value: Value to set for the deviceCount property.
+            value: Value to set for the device_count property.
         """
         self._device_count = value
     
@@ -153,7 +153,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the deviceId property value. The id of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -170,7 +170,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the deviceName property value. The name of the device.
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -187,7 +187,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the deviceResourcePerformanceScore property value. Resource performance score of a specific device. Valid values 0 to 100
         Args:
-            value: Value to set for the deviceResourcePerformanceScore property.
+            value: Value to set for the device_resource_performance_score property.
         """
         self._device_resource_performance_score = value
     
@@ -197,19 +197,19 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "average_spike_time_score": lambda n : setattr(self, 'average_spike_time_score', n.get_int_value()),
-            "cpu_spike_time_percentage": lambda n : setattr(self, 'cpu_spike_time_percentage', n.get_float_value()),
-            "cpu_spike_time_percentage_threshold": lambda n : setattr(self, 'cpu_spike_time_percentage_threshold', n.get_float_value()),
-            "cpu_spike_time_score": lambda n : setattr(self, 'cpu_spike_time_score', n.get_int_value()),
-            "device_count": lambda n : setattr(self, 'device_count', n.get_int_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_resource_performance_score": lambda n : setattr(self, 'device_resource_performance_score', n.get_int_value()),
+            "averageSpikeTimeScore": lambda n : setattr(self, 'average_spike_time_score', n.get_int_value()),
+            "cpuSpikeTimePercentage": lambda n : setattr(self, 'cpu_spike_time_percentage', n.get_float_value()),
+            "cpuSpikeTimePercentageThreshold": lambda n : setattr(self, 'cpu_spike_time_percentage_threshold', n.get_float_value()),
+            "cpuSpikeTimeScore": lambda n : setattr(self, 'cpu_spike_time_score', n.get_int_value()),
+            "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceResourcePerformanceScore": lambda n : setattr(self, 'device_resource_performance_score', n.get_int_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "ram_spike_time_percentage": lambda n : setattr(self, 'ram_spike_time_percentage', n.get_float_value()),
-            "ram_spike_time_percentage_threshold": lambda n : setattr(self, 'ram_spike_time_percentage_threshold', n.get_float_value()),
-            "ram_spike_time_score": lambda n : setattr(self, 'ram_spike_time_score', n.get_int_value()),
+            "ramSpikeTimePercentage": lambda n : setattr(self, 'ram_spike_time_percentage', n.get_float_value()),
+            "ramSpikeTimePercentageThreshold": lambda n : setattr(self, 'ram_spike_time_percentage_threshold', n.get_float_value()),
+            "ramSpikeTimeScore": lambda n : setattr(self, 'ram_spike_time_score', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -262,7 +262,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the ramSpikeTimePercentage property value. RAM spike time in percentage. Valid values 0 to 100
         Args:
-            value: Value to set for the ramSpikeTimePercentage property.
+            value: Value to set for the ram_spike_time_percentage property.
         """
         self._ram_spike_time_percentage = value
     
@@ -279,7 +279,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the ramSpikeTimePercentageThreshold property value. Threshold of ramSpikeTimeScore. Valid values 0 to 100
         Args:
-            value: Value to set for the ramSpikeTimePercentageThreshold property.
+            value: Value to set for the ram_spike_time_percentage_threshold property.
         """
         self._ram_spike_time_percentage_threshold = value
     
@@ -296,7 +296,7 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         """
         Sets the ramSpikeTimeScore property value. The user experience analytics device RAM spike time score. Valid values 0 to 100
         Args:
-            value: Value to set for the ramSpikeTimeScore property.
+            value: Value to set for the ram_spike_time_score property.
         """
         self._ram_spike_time_score = value
     

@@ -60,7 +60,7 @@ class DeviceManagementCachedReportConfiguration(entity.Entity):
         """
         Sets the expirationDateTime property value. Time that the cached report expires
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -87,12 +87,12 @@ class DeviceManagementCachedReportConfiguration(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
-            "last_refresh_date_time": lambda n : setattr(self, 'last_refresh_date_time', n.get_datetime_value()),
+            "lastRefreshDateTime": lambda n : setattr(self, 'last_refresh_date_time', n.get_datetime_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_str_value()),
-            "order_by": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
-            "report_name": lambda n : setattr(self, 'report_name', n.get_str_value()),
+            "orderBy": lambda n : setattr(self, 'order_by', n.get_collection_of_primitive_values(str)),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_str_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(device_management_report_status.DeviceManagementReportStatus)),
         }
@@ -113,7 +113,7 @@ class DeviceManagementCachedReportConfiguration(entity.Entity):
         """
         Sets the lastRefreshDateTime property value. Time that the cached report was last refreshed
         Args:
-            value: Value to set for the lastRefreshDateTime property.
+            value: Value to set for the last_refresh_date_time property.
         """
         self._last_refresh_date_time = value
     
@@ -147,7 +147,7 @@ class DeviceManagementCachedReportConfiguration(entity.Entity):
         """
         Sets the orderBy property value. Ordering of columns in the report
         Args:
-            value: Value to set for the orderBy property.
+            value: Value to set for the order_by property.
         """
         self._order_by = value
     
@@ -164,7 +164,7 @@ class DeviceManagementCachedReportConfiguration(entity.Entity):
         """
         Sets the reportName property value. Name of the report
         Args:
-            value: Value to set for the reportName property.
+            value: Value to set for the report_name property.
         """
         self._report_name = value
     

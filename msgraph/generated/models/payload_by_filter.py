@@ -40,7 +40,7 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterType property value. Represents type of the assignment filter.
         Args:
-            value: Value to set for the assignmentFilterType property.
+            value: Value to set for the assignment_filter_type property.
         """
         self._assignment_filter_type = value
     
@@ -80,11 +80,11 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_filter_type": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "payload_id": lambda n : setattr(self, 'payload_id', n.get_str_value()),
-            "payload_type": lambda n : setattr(self, 'payload_type', n.get_enum_value(associated_assignment_payload_type.AssociatedAssignmentPayloadType)),
+            "payloadId": lambda n : setattr(self, 'payload_id', n.get_str_value()),
+            "payloadType": lambda n : setattr(self, 'payload_type', n.get_enum_value(associated_assignment_payload_type.AssociatedAssignmentPayloadType)),
         }
         return fields
     
@@ -101,7 +101,7 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         """
         Sets the groupId property value. The Azure AD security group ID
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -118,7 +118,7 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -135,7 +135,7 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         """
         Sets the payloadId property value. The policy identifier
         Args:
-            value: Value to set for the payloadId property.
+            value: Value to set for the payload_id property.
         """
         self._payload_id = value
     
@@ -152,7 +152,7 @@ class PayloadByFilter(AdditionalDataHolder, Parsable):
         """
         Sets the payloadType property value. This enum represents associated assignment payload type
         Args:
-            value: Value to set for the payloadType property.
+            value: Value to set for the payload_type property.
         """
         self._payload_type = value
     

@@ -57,7 +57,7 @@ class PublishPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "revision": lambda n : setattr(self, 'revision', n.get_str_value()),
-            "shared_cookies": lambda n : setattr(self, 'shared_cookies', n.get_collection_of_object_values(browser_shared_cookie.BrowserSharedCookie)),
+            "sharedCookies": lambda n : setattr(self, 'shared_cookies', n.get_collection_of_object_values(browser_shared_cookie.BrowserSharedCookie)),
             "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(browser_site.BrowserSite)),
         }
         return fields
@@ -105,7 +105,7 @@ class PublishPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sharedCookies property value. The sharedCookies property
         Args:
-            value: Value to set for the sharedCookies property.
+            value: Value to set for the shared_cookies property.
         """
         self._shared_cookies = value
     

@@ -25,7 +25,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the allowedInstallationScopes property value. A collection of scopes where the Teams app can be installed. Possible values are:team — Indicates that the Teams app can be installed within a team and is authorized to access that team's data. groupChat  — Indicates that the Teams app can be installed within a group chat and is authorized to access that group chat's data.  personal — Indicates that the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
         Args:
-            value: Value to set for the allowedInstallationScopes property.
+            value: Value to set for the allowed_installation_scopes property.
         """
         self._allowed_installation_scopes = value
     
@@ -42,7 +42,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the azureADAppId property value. The WebApplicationInfo.Id from the Teams app manifest.
         Args:
-            value: Value to set for the azureADAppId property.
+            value: Value to set for the azure_a_d_app_id property.
         """
         self._azure_a_d_app_id = value
     
@@ -76,7 +76,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the colorIcon property value. The color version of the Teams app's icon.
         Args:
-            value: Value to set for the colorIcon property.
+            value: Value to set for the color_icon property.
         """
         self._color_icon = value
     
@@ -127,7 +127,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the createdBy property value. The createdBy property
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -173,7 +173,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the displayName property value. The name of the app provided by the app developer.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -183,18 +183,18 @@ class TeamsAppDefinition(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_installation_scopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_enum_value(teams_app_installation_scopes.TeamsAppInstallationScopes)),
-            "azure_a_d_app_id": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
+            "allowedInstallationScopes": lambda n : setattr(self, 'allowed_installation_scopes', n.get_enum_value(teams_app_installation_scopes.TeamsAppInstallationScopes)),
+            "azureADAppId": lambda n : setattr(self, 'azure_a_d_app_id', n.get_str_value()),
             "bot": lambda n : setattr(self, 'bot', n.get_object_value(teamwork_bot.TeamworkBot)),
-            "color_icon": lambda n : setattr(self, 'color_icon', n.get_object_value(teams_app_icon.TeamsAppIcon)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "colorIcon": lambda n : setattr(self, 'color_icon', n.get_object_value(teams_app_icon.TeamsAppIcon)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "outline_icon": lambda n : setattr(self, 'outline_icon', n.get_object_value(teams_app_icon.TeamsAppIcon)),
-            "publishing_state": lambda n : setattr(self, 'publishing_state', n.get_enum_value(teams_app_publishing_state.TeamsAppPublishingState)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "outlineIcon": lambda n : setattr(self, 'outline_icon', n.get_object_value(teams_app_icon.TeamsAppIcon)),
+            "publishingState": lambda n : setattr(self, 'publishing_state', n.get_enum_value(teams_app_publishing_state.TeamsAppPublishingState)),
             "shortdescription": lambda n : setattr(self, 'shortdescription', n.get_str_value()),
-            "teams_app_id": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
+            "teamsAppId": lambda n : setattr(self, 'teams_app_id', n.get_str_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -214,7 +214,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -231,7 +231,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the outlineIcon property value. The outline version of the Teams app's icon.
         Args:
-            value: Value to set for the outlineIcon property.
+            value: Value to set for the outline_icon property.
         """
         self._outline_icon = value
     
@@ -248,7 +248,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the publishingState property value. The published status of a specific version of a Teams app. Possible values are:submitted — The specific version of the Teams app has been submitted and is under review. published  — The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected — The request to publish the specific version of the Teams app was rejected by the admin.
         Args:
-            value: Value to set for the publishingState property.
+            value: Value to set for the publishing_state property.
         """
         self._publishing_state = value
     
@@ -305,7 +305,7 @@ class TeamsAppDefinition(entity.Entity):
         """
         Sets the teamsAppId property value. The ID from the Teams app manifest.
         Args:
-            value: Value to set for the teamsAppId property.
+            value: Value to set for the teams_app_id property.
         """
         self._teams_app_id = value
     

@@ -19,7 +19,7 @@ class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
         """
         Sets the bundleID property value. BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.
         Args:
-            value: Value to set for the bundleID property.
+            value: Value to set for the bundle_i_d property.
         """
         self._bundle_i_d = value
     
@@ -52,8 +52,8 @@ class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bundle_i_d": lambda n : setattr(self, 'bundle_i_d', n.get_str_value()),
-            "is_web_clip": lambda n : setattr(self, 'is_web_clip', n.get_bool_value()),
+            "bundleID": lambda n : setattr(self, 'bundle_i_d', n.get_str_value()),
+            "isWebClip": lambda n : setattr(self, 'is_web_clip', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class IosHomeScreenApp(ios_home_screen_item.IosHomeScreenItem):
         """
         Sets the isWebClip property value. When true, the bundle ID will be handled as a URL for a web clip.
         Args:
-            value: Value to set for the isWebClip property.
+            value: Value to set for the is_web_clip property.
         """
         self._is_web_clip = value
     

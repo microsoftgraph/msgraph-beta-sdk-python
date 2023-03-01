@@ -52,7 +52,7 @@ class VerificationResult(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "signature_valid": lambda n : setattr(self, 'signature_valid', n.get_bool_value()),
+            "signatureValid": lambda n : setattr(self, 'signature_valid', n.get_bool_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class VerificationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -98,7 +98,7 @@ class VerificationResult(AdditionalDataHolder, Parsable):
         """
         Sets the signatureValid property value. The signatureValid property
         Args:
-            value: Value to set for the signatureValid property.
+            value: Value to set for the signature_valid property.
         """
         self._signature_valid = value
     

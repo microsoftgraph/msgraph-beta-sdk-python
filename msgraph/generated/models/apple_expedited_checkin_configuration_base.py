@@ -40,7 +40,7 @@ class AppleExpeditedCheckinConfigurationBase(device_configuration.DeviceConfigur
         """
         Sets the enableExpeditedCheckin property value. Gets or sets whether to enable expedited device check-ins.
         Args:
-            value: Value to set for the enableExpeditedCheckin property.
+            value: Value to set for the enable_expedited_checkin property.
         """
         self._enable_expedited_checkin = value
     
@@ -50,7 +50,7 @@ class AppleExpeditedCheckinConfigurationBase(device_configuration.DeviceConfigur
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enable_expedited_checkin": lambda n : setattr(self, 'enable_expedited_checkin', n.get_bool_value()),
+            "enableExpeditedCheckin": lambda n : setattr(self, 'enable_expedited_checkin', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

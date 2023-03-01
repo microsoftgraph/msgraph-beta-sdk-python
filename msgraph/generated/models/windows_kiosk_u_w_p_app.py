@@ -19,7 +19,7 @@ class WindowsKioskUWPApp(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the appId property value. This references an Intune App that will be target to the same assignments as Kiosk configuration
         Args:
-            value: Value to set for the appId property.
+            value: Value to set for the app_id property.
         """
         self._app_id = value
     
@@ -36,7 +36,7 @@ class WindowsKioskUWPApp(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the appUserModelId property value. This is the only Application User Model ID (AUMID) that will be available to launch use while in Kiosk Mode
         Args:
-            value: Value to set for the appUserModelId property.
+            value: Value to set for the app_user_model_id property.
         """
         self._app_user_model_id = value
     
@@ -66,7 +66,7 @@ class WindowsKioskUWPApp(windows_kiosk_app_base.WindowsKioskAppBase):
         """
         Sets the containedAppId property value. This references an contained App from an Intune App
         Args:
-            value: Value to set for the containedAppId property.
+            value: Value to set for the contained_app_id property.
         """
         self._contained_app_id = value
     
@@ -88,9 +88,9 @@ class WindowsKioskUWPApp(windows_kiosk_app_base.WindowsKioskAppBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_id": lambda n : setattr(self, 'app_id', n.get_str_value()),
-            "app_user_model_id": lambda n : setattr(self, 'app_user_model_id', n.get_str_value()),
-            "contained_app_id": lambda n : setattr(self, 'contained_app_id', n.get_str_value()),
+            "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
+            "appUserModelId": lambda n : setattr(self, 'app_user_model_id', n.get_str_value()),
+            "containedAppId": lambda n : setattr(self, 'contained_app_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

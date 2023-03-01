@@ -82,9 +82,9 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "publisher_name": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
-            "rule_package_id": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
-            "rule_package_type": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
+            "publisherName": lambda n : setattr(self, 'publisher_name', n.get_str_value()),
+            "rulePackageId": lambda n : setattr(self, 'rule_package_id', n.get_str_value()),
+            "rulePackageType": lambda n : setattr(self, 'rule_package_type', n.get_str_value()),
         }
         return fields
     
@@ -135,7 +135,7 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -152,7 +152,7 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
         """
         Sets the publisherName property value. The publisherName property
         Args:
-            value: Value to set for the publisherName property.
+            value: Value to set for the publisher_name property.
         """
         self._publisher_name = value
     
@@ -169,7 +169,7 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
         """
         Sets the rulePackageId property value. The rulePackageId property
         Args:
-            value: Value to set for the rulePackageId property.
+            value: Value to set for the rule_package_id property.
         """
         self._rule_package_id = value
     
@@ -186,7 +186,7 @@ class ResponsibleSensitiveType(AdditionalDataHolder, Parsable):
         """
         Sets the rulePackageType property value. The rulePackageType property
         Args:
-            value: Value to set for the rulePackageType property.
+            value: Value to set for the rule_package_type property.
         """
         self._rule_package_type = value
     

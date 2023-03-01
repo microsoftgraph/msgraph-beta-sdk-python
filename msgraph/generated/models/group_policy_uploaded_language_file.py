@@ -87,7 +87,7 @@ class GroupPolicyUploadedLanguageFile(AdditionalDataHolder, Parsable):
         """
         Sets the fileName property value. The file name of the uploaded ADML file.
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -98,10 +98,10 @@ class GroupPolicyUploadedLanguageFile(AdditionalDataHolder, Parsable):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "language_code": lambda n : setattr(self, 'language_code', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "languageCode": lambda n : setattr(self, 'language_code', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -136,7 +136,7 @@ class GroupPolicyUploadedLanguageFile(AdditionalDataHolder, Parsable):
         """
         Sets the languageCode property value. The language code of the uploaded ADML file.
         Args:
-            value: Value to set for the languageCode property.
+            value: Value to set for the language_code property.
         """
         self._language_code = value
     
@@ -153,7 +153,7 @@ class GroupPolicyUploadedLanguageFile(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -170,7 +170,7 @@ class GroupPolicyUploadedLanguageFile(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -36,7 +36,7 @@ class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the allowedCombinations property value. The allowedCombinations property
         Args:
-            value: Value to set for the allowedCombinations property.
+            value: Value to set for the allowed_combinations property.
         """
         self._allowed_combinations = value
     
@@ -68,7 +68,7 @@ class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_combinations": lambda n : setattr(self, 'allowed_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
+            "allowedCombinations": lambda n : setattr(self, 'allowed_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
         }
         return fields
     

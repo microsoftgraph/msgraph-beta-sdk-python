@@ -52,7 +52,7 @@ class CustomExtensionClientConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "timeout_in_milliseconds": lambda n : setattr(self, 'timeout_in_milliseconds', n.get_int_value()),
+            "timeoutInMilliseconds": lambda n : setattr(self, 'timeout_in_milliseconds', n.get_int_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class CustomExtensionClientConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -98,7 +98,7 @@ class CustomExtensionClientConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the timeoutInMilliseconds property value. The max duration in milliseconds that Azure AD will wait for a response from the logic app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.
         Args:
-            value: Value to set for the timeoutInMilliseconds property.
+            value: Value to set for the timeout_in_milliseconds property.
         """
         self._timeout_in_milliseconds = value
     

@@ -8,7 +8,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class AdminReportSettings(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new adminReportSettings and sets the default values.
+        Instantiates a new AdminReportSettings and sets the default values.
         """
         super().__init__()
         # If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
@@ -41,7 +41,7 @@ class AdminReportSettings(entity.Entity):
         """
         Sets the displayConcealedNames property value. If set to true, all reports will conceal user information such as usernames, groups, and sites. If false, all reports will show identifiable information. This property represents a setting in the Microsoft 365 admin center. Required.
         Args:
-            value: Value to set for the displayConcealedNames property.
+            value: Value to set for the display_concealed_names property.
         """
         self._display_concealed_names = value
     
@@ -51,7 +51,7 @@ class AdminReportSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_concealed_names": lambda n : setattr(self, 'display_concealed_names', n.get_bool_value()),
+            "displayConcealedNames": lambda n : setattr(self, 'display_concealed_names', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -34,7 +34,7 @@ class DeviceManagementComplexSettingDefinition(device_management_setting_definit
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "property_definition_ids": lambda n : setattr(self, 'property_definition_ids', n.get_collection_of_primitive_values(str)),
+            "propertyDefinitionIds": lambda n : setattr(self, 'property_definition_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class DeviceManagementComplexSettingDefinition(device_management_setting_definit
         """
         Sets the propertyDefinitionIds property value. The definitions of each property of the complex setting
         Args:
-            value: Value to set for the propertyDefinitionIds property.
+            value: Value to set for the property_definition_ids property.
         """
         self._property_definition_ids = value
     

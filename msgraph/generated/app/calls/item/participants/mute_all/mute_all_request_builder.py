@@ -30,19 +30,18 @@ class MuteAllRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/app/calls/{call%2Did}/participants/microsoft.graph.muteAll"
+        self.url_template: str = "{+baseurl}/app/calls/{call%2Did}/participants/muteAll"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[mute_all_post_request_body.MuteAllPostRequestBody] = None, request_configuration: Optional[MuteAllRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[mute_participants_operation.MuteParticipantsOperation]:
+    async def post(self,body: Optional[mute_all_post_request_body.MuteAllPostRequestBody] = None, request_configuration: Optional[MuteAllRequestBuilderPostRequestConfiguration] = None) -> Optional[mute_participants_operation.MuteParticipantsOperation]:
         """
         Mute all participants in the call.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[mute_participants_operation.MuteParticipantsOperation]
         """
         if body is None:
@@ -56,7 +55,7 @@ class MuteAllRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, mute_participants_operation.MuteParticipantsOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, mute_participants_operation.MuteParticipantsOperation, error_mapping)
     
     def to_post_request_information(self,body: Optional[mute_all_post_request_body.MuteAllPostRequestBody] = None, request_configuration: Optional[MuteAllRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class MuteAllRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class MuteAllRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

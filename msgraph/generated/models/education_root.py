@@ -85,7 +85,7 @@ class EducationRoot(AdditionalDataHolder, Parsable):
             "me": lambda n : setattr(self, 'me', n.get_object_value(education_user.EducationUser)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "schools": lambda n : setattr(self, 'schools', n.get_collection_of_object_values(education_school.EducationSchool)),
-            "synchronization_profiles": lambda n : setattr(self, 'synchronization_profiles', n.get_collection_of_object_values(education_synchronization_profile.EducationSynchronizationProfile)),
+            "synchronizationProfiles": lambda n : setattr(self, 'synchronization_profiles', n.get_collection_of_object_values(education_synchronization_profile.EducationSynchronizationProfile)),
             "users": lambda n : setattr(self, 'users', n.get_collection_of_object_values(education_user.EducationUser)),
         }
         return fields
@@ -120,7 +120,7 @@ class EducationRoot(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -170,7 +170,7 @@ class EducationRoot(AdditionalDataHolder, Parsable):
         """
         Sets the synchronizationProfiles property value. The synchronizationProfiles property
         Args:
-            value: Value to set for the synchronizationProfiles property.
+            value: Value to set for the synchronization_profiles property.
         """
         self._synchronization_profiles = value
     

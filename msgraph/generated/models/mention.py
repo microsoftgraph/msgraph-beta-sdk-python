@@ -38,7 +38,7 @@ class Mention(entity.Entity):
         """
         Sets the clientReference property value. A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
         Args:
-            value: Value to set for the clientReference property.
+            value: Value to set for the client_reference property.
         """
         self._client_reference = value
     
@@ -57,10 +57,10 @@ class Mention(entity.Entity):
         self._created_date_time: Optional[datetime] = None
         # A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
         self._deep_link: Optional[str] = None
-        # The mentioned property
-        self._mentioned: Optional[email_address.EmailAddress] = None
         # Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
         self._mention_text: Optional[str] = None
+        # The mentioned property
+        self._mentioned: Optional[email_address.EmailAddress] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
@@ -79,7 +79,7 @@ class Mention(entity.Entity):
         """
         Sets the createdBy property value. The email information of the user who made the mention.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -96,7 +96,7 @@ class Mention(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time that the mention is created on the client.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -125,7 +125,7 @@ class Mention(entity.Entity):
         """
         Sets the deepLink property value. A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
         Args:
-            value: Value to set for the deepLink property.
+            value: Value to set for the deep_link property.
         """
         self._deep_link = value
     
@@ -136,17 +136,34 @@ class Mention(entity.Entity):
         """
         fields = {
             "application": lambda n : setattr(self, 'application', n.get_str_value()),
-            "client_reference": lambda n : setattr(self, 'client_reference', n.get_str_value()),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(email_address.EmailAddress)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deep_link": lambda n : setattr(self, 'deep_link', n.get_str_value()),
+            "clientReference": lambda n : setattr(self, 'client_reference', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(email_address.EmailAddress)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deepLink": lambda n : setattr(self, 'deep_link', n.get_str_value()),
             "mentioned": lambda n : setattr(self, 'mentioned', n.get_object_value(email_address.EmailAddress)),
-            "mention_text": lambda n : setattr(self, 'mention_text', n.get_str_value()),
-            "server_created_date_time": lambda n : setattr(self, 'server_created_date_time', n.get_datetime_value()),
+            "mentionText": lambda n : setattr(self, 'mention_text', n.get_str_value()),
+            "serverCreatedDateTime": lambda n : setattr(self, 'server_created_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def mention_text(self,) -> Optional[str]:
+        """
+        Gets the mentionText property value. Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
+        Returns: Optional[str]
+        """
+        return self._mention_text
+    
+    @mention_text.setter
+    def mention_text(self,value: Optional[str] = None) -> None:
+        """
+        Sets the mentionText property value. Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
+        Args:
+            value: Value to set for the mention_text property.
+        """
+        self._mention_text = value
     
     @property
     def mentioned(self,) -> Optional[email_address.EmailAddress]:
@@ -164,23 +181,6 @@ class Mention(entity.Entity):
             value: Value to set for the mentioned property.
         """
         self._mentioned = value
-    
-    @property
-    def mention_text(self,) -> Optional[str]:
-        """
-        Gets the mentionText property value. Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
-        Returns: Optional[str]
-        """
-        return self._mention_text
-    
-    @mention_text.setter
-    def mention_text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the mentionText property value. Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
-        Args:
-            value: Value to set for the mentionText property.
-        """
-        self._mention_text = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -213,7 +213,7 @@ class Mention(entity.Entity):
         """
         Sets the serverCreatedDateTime property value. The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
         Args:
-            value: Value to set for the serverCreatedDateTime property.
+            value: Value to set for the server_created_date_time property.
         """
         self._server_created_date_time = value
     

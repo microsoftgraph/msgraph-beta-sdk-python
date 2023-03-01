@@ -45,7 +45,7 @@ class ItemPhone(item_facet.ItemFacet):
         """
         Sets the displayName property value. Friendly name the user has assigned this phone number.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -55,7 +55,7 @@ class ItemPhone(item_facet.ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(phone_type.PhoneType)),
         }

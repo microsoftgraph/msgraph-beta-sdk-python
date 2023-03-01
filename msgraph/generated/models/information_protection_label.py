@@ -83,7 +83,7 @@ class InformationProtectionLabel(entity.Entity):
         fields = {
             "color": lambda n : setattr(self, 'color', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_active": lambda n : setattr(self, 'is_active', n.get_bool_value()),
+            "isActive": lambda n : setattr(self, 'is_active', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(parent_label_details.ParentLabelDetails)),
             "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_int_value()),
@@ -106,7 +106,7 @@ class InformationProtectionLabel(entity.Entity):
         """
         Sets the isActive property value. Indicates whether the label is active or not. Active labels should be hidden or disabled in UI.
         Args:
-            value: Value to set for the isActive property.
+            value: Value to set for the is_active property.
         """
         self._is_active = value
     

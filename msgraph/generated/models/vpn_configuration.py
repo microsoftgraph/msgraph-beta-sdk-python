@@ -21,7 +21,7 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the authenticationMethod property value. VPN Authentication Method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -38,7 +38,7 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectionName property value. Connection name displayed to the user.
         Args:
-            value: Value to set for the connectionName property.
+            value: Value to set for the connection_name property.
         """
         self._connection_name = value
     
@@ -77,8 +77,8 @@ class VpnConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
-            "connection_name": lambda n : setattr(self, 'connection_name', n.get_str_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
+            "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
             "role": lambda n : setattr(self, 'role', n.get_str_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_object_values(vpn_server.VpnServer)),

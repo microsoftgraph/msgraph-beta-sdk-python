@@ -62,12 +62,12 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "management_action_id": lambda n : setattr(self, 'management_action_id', n.get_str_value()),
-            "management_template_id": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
-            "management_template_version": lambda n : setattr(self, 'management_template_version', n.get_int_value()),
+            "managementActionId": lambda n : setattr(self, 'management_action_id', n.get_str_value()),
+            "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
+            "managementTemplateVersion": lambda n : setattr(self, 'management_template_version', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(management_action_status.ManagementActionStatus)),
-            "workload_action_deployment_statuses": lambda n : setattr(self, 'workload_action_deployment_statuses', n.get_collection_of_object_values(workload_action_deployment_status.WorkloadActionDeploymentStatus)),
+            "workloadActionDeploymentStatuses": lambda n : setattr(self, 'workload_action_deployment_statuses', n.get_collection_of_object_values(workload_action_deployment_status.WorkloadActionDeploymentStatus)),
         }
         return fields
     
@@ -84,7 +84,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the managementActionId property value. The identifier for the management action. Required. Read-only.
         Args:
-            value: Value to set for the managementActionId property.
+            value: Value to set for the management_action_id property.
         """
         self._management_action_id = value
     
@@ -101,7 +101,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the managementTemplateId property value. The management template identifier that was used to generate the management action. Required. Read-only.
         Args:
-            value: Value to set for the managementTemplateId property.
+            value: Value to set for the management_template_id property.
         """
         self._management_template_id = value
     
@@ -118,7 +118,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the managementTemplateVersion property value. The managementTemplateVersion property
         Args:
-            value: Value to set for the managementTemplateVersion property.
+            value: Value to set for the management_template_version property.
         """
         self._management_template_version = value
     
@@ -135,7 +135,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -185,7 +185,7 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the workloadActionDeploymentStatuses property value. The collection of workload action deployment statues for the given management action. Optional.
         Args:
-            value: Value to set for the workloadActionDeploymentStatuses property.
+            value: Value to set for the workload_action_deployment_statuses property.
         """
         self._workload_action_deployment_statuses = value
     

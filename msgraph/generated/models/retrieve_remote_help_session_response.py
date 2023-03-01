@@ -21,7 +21,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the acsGroupId property value. ACS Group Id
         Args:
-            value: Value to set for the acsGroupId property.
+            value: Value to set for the acs_group_id property.
         """
         self._acs_group_id = value
     
@@ -38,7 +38,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the acsHelperUserId property value. Helper ACS User Id
         Args:
-            value: Value to set for the acsHelperUserId property.
+            value: Value to set for the acs_helper_user_id property.
         """
         self._acs_helper_user_id = value
     
@@ -55,7 +55,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the acsHelperUserToken property value. Helper ACS User Token
         Args:
-            value: Value to set for the acsHelperUserToken property.
+            value: Value to set for the acs_helper_user_token property.
         """
         self._acs_helper_user_token = value
     
@@ -72,7 +72,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the acsSharerUserId property value. Sharer ACS User Id
         Args:
-            value: Value to set for the acsSharerUserId property.
+            value: Value to set for the acs_sharer_user_id property.
         """
         self._acs_sharer_user_id = value
     
@@ -146,7 +146,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the deviceName property value. Android Device Name
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -156,16 +156,16 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "acs_group_id": lambda n : setattr(self, 'acs_group_id', n.get_str_value()),
-            "acs_helper_user_id": lambda n : setattr(self, 'acs_helper_user_id', n.get_str_value()),
-            "acs_helper_user_token": lambda n : setattr(self, 'acs_helper_user_token', n.get_str_value()),
-            "acs_sharer_user_id": lambda n : setattr(self, 'acs_sharer_user_id', n.get_str_value()),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "acsGroupId": lambda n : setattr(self, 'acs_group_id', n.get_str_value()),
+            "acsHelperUserId": lambda n : setattr(self, 'acs_helper_user_id', n.get_str_value()),
+            "acsHelperUserToken": lambda n : setattr(self, 'acs_helper_user_token', n.get_str_value()),
+            "acsSharerUserId": lambda n : setattr(self, 'acs_sharer_user_id', n.get_str_value()),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "pub_sub_group_id": lambda n : setattr(self, 'pub_sub_group_id', n.get_str_value()),
-            "pub_sub_helper_access_uri": lambda n : setattr(self, 'pub_sub_helper_access_uri', n.get_str_value()),
-            "session_expiration_date_time": lambda n : setattr(self, 'session_expiration_date_time', n.get_datetime_value()),
-            "session_key": lambda n : setattr(self, 'session_key', n.get_str_value()),
+            "pubSubGroupId": lambda n : setattr(self, 'pub_sub_group_id', n.get_str_value()),
+            "pubSubHelperAccessUri": lambda n : setattr(self, 'pub_sub_helper_access_uri', n.get_str_value()),
+            "sessionExpirationDateTime": lambda n : setattr(self, 'session_expiration_date_time', n.get_datetime_value()),
+            "sessionKey": lambda n : setattr(self, 'session_key', n.get_str_value()),
         }
         return fields
     
@@ -182,7 +182,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -199,7 +199,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the pubSubGroupId property value. Azure Pubsub Group Id
         Args:
-            value: Value to set for the pubSubGroupId property.
+            value: Value to set for the pub_sub_group_id property.
         """
         self._pub_sub_group_id = value
     
@@ -216,7 +216,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the pubSubHelperAccessUri property value. Azure Pubsub Group Id
         Args:
-            value: Value to set for the pubSubHelperAccessUri property.
+            value: Value to set for the pub_sub_helper_access_uri property.
         """
         self._pub_sub_helper_access_uri = value
     
@@ -253,7 +253,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the sessionExpirationDateTime property value. Azure Pubsub Session Expiration Date Time.
         Args:
-            value: Value to set for the sessionExpirationDateTime property.
+            value: Value to set for the session_expiration_date_time property.
         """
         self._session_expiration_date_time = value
     
@@ -270,7 +270,7 @@ class RetrieveRemoteHelpSessionResponse(AdditionalDataHolder, Parsable):
         """
         Sets the sessionKey property value. The unique identifier for a session
         Args:
-            value: Value to set for the sessionKey property.
+            value: Value to set for the session_key property.
         """
         self._session_key = value
     

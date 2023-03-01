@@ -82,7 +82,7 @@ class Task(entity.Entity):
         """
         Sets the continueOnError property value. A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.
         Args:
-            value: Value to set for the continueOnError property.
+            value: Value to set for the continue_on_error property.
         """
         self._continue_on_error = value
     
@@ -128,7 +128,7 @@ class Task(entity.Entity):
         """
         Sets the displayName property value. A unique string that identifies the task. Required.Supports $filter(eq, ne) and orderBy.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -145,7 +145,7 @@ class Task(entity.Entity):
         """
         Sets the executionSequence property value. An integer that states in what order the task will run in a workflow.Supports $orderby.
         Args:
-            value: Value to set for the executionSequence property.
+            value: Value to set for the execution_sequence property.
         """
         self._execution_sequence = value
     
@@ -157,13 +157,13 @@ class Task(entity.Entity):
         fields = {
             "arguments": lambda n : setattr(self, 'arguments', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_task_category.LifecycleTaskCategory)),
-            "continue_on_error": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),
+            "continueOnError": lambda n : setattr(self, 'continue_on_error', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "execution_sequence": lambda n : setattr(self, 'execution_sequence', n.get_int_value()),
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
-            "task_definition_id": lambda n : setattr(self, 'task_definition_id', n.get_str_value()),
-            "task_processing_results": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "executionSequence": lambda n : setattr(self, 'execution_sequence', n.get_int_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "taskDefinitionId": lambda n : setattr(self, 'task_definition_id', n.get_str_value()),
+            "taskProcessingResults": lambda n : setattr(self, 'task_processing_results', n.get_collection_of_object_values(task_processing_result.TaskProcessingResult)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -182,7 +182,7 @@ class Task(entity.Entity):
         """
         Sets the isEnabled property value. A boolean value that denotes whether the task is set to run or not. Optional.Supports $filter(eq, ne) and orderBy.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -218,7 +218,7 @@ class Task(entity.Entity):
         """
         Sets the taskDefinitionId property value. A unique template identifier for the task. For more information about the tasks that Lifecycle Workflows currently supports and their unique identifiers, see supported tasks. Required.Supports $filter(eq, ne).
         Args:
-            value: Value to set for the taskDefinitionId property.
+            value: Value to set for the task_definition_id property.
         """
         self._task_definition_id = value
     
@@ -235,7 +235,7 @@ class Task(entity.Entity):
         """
         Sets the taskProcessingResults property value. The result of processing the task.
         Args:
-            value: Value to set for the taskProcessingResults property.
+            value: Value to set for the task_processing_results property.
         """
         self._task_processing_results = value
     

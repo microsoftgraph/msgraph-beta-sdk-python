@@ -63,7 +63,7 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -80,7 +80,7 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -109,7 +109,7 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         Sets the emailAddresses property value. The emailAddresses property
         Args:
-            value: Value to set for the emailAddresses property.
+            value: Value to set for the email_addresses property.
         """
         self._email_addresses = value
     
@@ -126,7 +126,7 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         Sets the emailBody property value. The emailBody property
         Args:
-            value: Value to set for the emailBody property.
+            value: Value to set for the email_body property.
         """
         self._email_body = value
     
@@ -137,12 +137,12 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         fields = {
             "alert": lambda n : setattr(self, 'alert', n.get_object_value(managed_tenant_alert.ManagedTenantAlert)),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "email_addresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_object_values(email.Email)),
-            "email_body": lambda n : setattr(self, 'email_body', n.get_str_value()),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "emailAddresses": lambda n : setattr(self, 'email_addresses', n.get_collection_of_object_values(email.Email)),
+            "emailBody": lambda n : setattr(self, 'email_body', n.get_str_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -162,7 +162,7 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -179,7 +179,7 @@ class ManagedTenantEmailNotification(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     

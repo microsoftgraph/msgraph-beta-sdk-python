@@ -28,7 +28,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the assignedTo property value. The name of the person who has been assigned the task in Outlook. Read-only.
         Args:
-            value: Value to set for the assignedTo property.
+            value: Value to set for the assigned_to property.
         """
         self._assigned_to = value
     
@@ -79,7 +79,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the completedDateTime property value. The date in the specified time zone that the task was finished.
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -151,7 +151,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the dueDateTime property value. The date in the specified time zone that the task is to be finished.
         Args:
-            value: Value to set for the dueDateTime property.
+            value: Value to set for the due_date_time property.
         """
         self._due_date_time = value
     
@@ -161,22 +161,22 @@ class OutlookTask(outlook_item.OutlookItem):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assigned_to": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
+            "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "due_date_time": lambda n : setattr(self, 'due_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "has_attachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "dueDateTime": lambda n : setattr(self, 'due_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
             "importance": lambda n : setattr(self, 'importance', n.get_enum_value(importance.Importance)),
-            "is_reminder_on": lambda n : setattr(self, 'is_reminder_on', n.get_bool_value()),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "isReminderOn": lambda n : setattr(self, 'is_reminder_on', n.get_bool_value()),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
             "owner": lambda n : setattr(self, 'owner', n.get_str_value()),
-            "parent_folder_id": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
+            "parentFolderId": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(patterned_recurrence.PatternedRecurrence)),
-            "reminder_date_time": lambda n : setattr(self, 'reminder_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "reminderDateTime": lambda n : setattr(self, 'reminder_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
             "sensitivity": lambda n : setattr(self, 'sensitivity', n.get_enum_value(sensitivity.Sensitivity)),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(task_status.TaskStatus)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
         }
@@ -197,7 +197,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the hasAttachments property value. Set to true if the task has attachments.
         Args:
-            value: Value to set for the hasAttachments property.
+            value: Value to set for the has_attachments property.
         """
         self._has_attachments = value
     
@@ -231,7 +231,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the isReminderOn property value. The isReminderOn property
         Args:
-            value: Value to set for the isReminderOn property.
+            value: Value to set for the is_reminder_on property.
         """
         self._is_reminder_on = value
     
@@ -248,7 +248,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the multiValueExtendedProperties property value. The collection of multi-value extended properties defined for the task. Read-only. Nullable.
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -282,7 +282,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the parentFolderId property value. The parentFolderId property
         Args:
-            value: Value to set for the parentFolderId property.
+            value: Value to set for the parent_folder_id property.
         """
         self._parent_folder_id = value
     
@@ -316,7 +316,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the reminderDateTime property value. The reminderDateTime property
         Args:
-            value: Value to set for the reminderDateTime property.
+            value: Value to set for the reminder_date_time property.
         """
         self._reminder_date_time = value
     
@@ -378,7 +378,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the singleValueExtendedProperties property value. The collection of single-value extended properties defined for the task. Read-only. Nullable.
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     
@@ -395,7 +395,7 @@ class OutlookTask(outlook_item.OutlookItem):
         """
         Sets the startDateTime property value. The startDateTime property
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

@@ -39,7 +39,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the applyActions property value. Optional field. Describes the  actions to take once a review is complete. There are two types that are currently supported: removeAccessApplyAction (default) and disableAndDeleteUserApplyAction. Field only needs to be specified in the case of disableAndDeleteUserApplyAction.
         Args:
-            value: Value to set for the applyActions property.
+            value: Value to set for the apply_actions property.
         """
         self._apply_actions = value
     
@@ -56,7 +56,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the autoApplyDecisionsEnabled property value. Indicates whether decisions are automatically applied. When set to false, an admin must apply the decisions manually once the reviewer completes the access review. When set to true, decisions are applied automatically after the access review instance duration ends, whether or not the reviewers have responded. Default value is false.
         Args:
-            value: Value to set for the autoApplyDecisionsEnabled property.
+            value: Value to set for the auto_apply_decisions_enabled property.
         """
         self._auto_apply_decisions_enabled = value
     
@@ -121,7 +121,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the decisionHistoriesForReviewersEnabled property value. Indicates whether decisions on previous access review stages are available for reviewers on an accessReviewInstance with multiple subsequent stages. If not provided, the default is disabled (false).
         Args:
-            value: Value to set for the decisionHistoriesForReviewersEnabled property.
+            value: Value to set for the decision_histories_for_reviewers_enabled property.
         """
         self._decision_histories_for_reviewers_enabled = value
     
@@ -138,7 +138,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the defaultDecision property value. Decision chosen if defaultDecisionEnabled is enabled. Can be one of Approve, Deny, or Recommendation.
         Args:
-            value: Value to set for the defaultDecision property.
+            value: Value to set for the default_decision property.
         """
         self._default_decision = value
     
@@ -155,7 +155,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the defaultDecisionEnabled property value. Indicates whether the default decision is enabled or disabled when reviewers do not respond. Default value is false.
         Args:
-            value: Value to set for the defaultDecisionEnabled property.
+            value: Value to set for the default_decision_enabled property.
         """
         self._default_decision_enabled = value
     
@@ -165,20 +165,20 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apply_actions": lambda n : setattr(self, 'apply_actions', n.get_collection_of_object_values(access_review_apply_action.AccessReviewApplyAction)),
-            "auto_apply_decisions_enabled": lambda n : setattr(self, 'auto_apply_decisions_enabled', n.get_bool_value()),
-            "decision_histories_for_reviewers_enabled": lambda n : setattr(self, 'decision_histories_for_reviewers_enabled', n.get_bool_value()),
-            "default_decision": lambda n : setattr(self, 'default_decision', n.get_str_value()),
-            "default_decision_enabled": lambda n : setattr(self, 'default_decision_enabled', n.get_bool_value()),
-            "instance_duration_in_days": lambda n : setattr(self, 'instance_duration_in_days', n.get_int_value()),
-            "justification_required_on_approval": lambda n : setattr(self, 'justification_required_on_approval', n.get_bool_value()),
-            "mail_notifications_enabled": lambda n : setattr(self, 'mail_notifications_enabled', n.get_bool_value()),
+            "applyActions": lambda n : setattr(self, 'apply_actions', n.get_collection_of_object_values(access_review_apply_action.AccessReviewApplyAction)),
+            "autoApplyDecisionsEnabled": lambda n : setattr(self, 'auto_apply_decisions_enabled', n.get_bool_value()),
+            "decisionHistoriesForReviewersEnabled": lambda n : setattr(self, 'decision_histories_for_reviewers_enabled', n.get_bool_value()),
+            "defaultDecision": lambda n : setattr(self, 'default_decision', n.get_str_value()),
+            "defaultDecisionEnabled": lambda n : setattr(self, 'default_decision_enabled', n.get_bool_value()),
+            "instanceDurationInDays": lambda n : setattr(self, 'instance_duration_in_days', n.get_int_value()),
+            "justificationRequiredOnApproval": lambda n : setattr(self, 'justification_required_on_approval', n.get_bool_value()),
+            "mailNotificationsEnabled": lambda n : setattr(self, 'mail_notifications_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recommendation_insight_settings": lambda n : setattr(self, 'recommendation_insight_settings', n.get_collection_of_object_values(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting)),
-            "recommendation_look_back_duration": lambda n : setattr(self, 'recommendation_look_back_duration', n.get_object_value(Timedelta)),
-            "recommendations_enabled": lambda n : setattr(self, 'recommendations_enabled', n.get_bool_value()),
+            "recommendationsEnabled": lambda n : setattr(self, 'recommendations_enabled', n.get_bool_value()),
+            "recommendationInsightSettings": lambda n : setattr(self, 'recommendation_insight_settings', n.get_collection_of_object_values(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting)),
+            "recommendationLookBackDuration": lambda n : setattr(self, 'recommendation_look_back_duration', n.get_object_value(Timedelta)),
             "recurrence": lambda n : setattr(self, 'recurrence', n.get_object_value(patterned_recurrence.PatternedRecurrence)),
-            "reminder_notifications_enabled": lambda n : setattr(self, 'reminder_notifications_enabled', n.get_bool_value()),
+            "reminderNotificationsEnabled": lambda n : setattr(self, 'reminder_notifications_enabled', n.get_bool_value()),
         }
         return fields
     
@@ -195,7 +195,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the instanceDurationInDays property value. Duration of each recurrence of review (accessReviewInstance) in number of days. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its durationInDays setting will be used instead of the value of this property.
         Args:
-            value: Value to set for the instanceDurationInDays property.
+            value: Value to set for the instance_duration_in_days property.
         """
         self._instance_duration_in_days = value
     
@@ -212,7 +212,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the justificationRequiredOnApproval property value. Indicates whether reviewers are required to provide justification with their decision. Default value is false.
         Args:
-            value: Value to set for the justificationRequiredOnApproval property.
+            value: Value to set for the justification_required_on_approval property.
         """
         self._justification_required_on_approval = value
     
@@ -229,7 +229,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the mailNotificationsEnabled property value. Indicates whether emails are enabled or disabled. Default value is false.
         Args:
-            value: Value to set for the mailNotificationsEnabled property.
+            value: Value to set for the mail_notifications_enabled property.
         """
         self._mail_notifications_enabled = value
     
@@ -246,7 +246,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -263,7 +263,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recommendationInsightSettings property value. Optional. Describes the types of insights that aid reviewers to make access review decisions. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its recommendationInsightSettings setting will be used instead of the value of this property.
         Args:
-            value: Value to set for the recommendationInsightSettings property.
+            value: Value to set for the recommendation_insight_settings property.
         """
         self._recommendation_insight_settings = value
     
@@ -280,7 +280,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recommendationLookBackDuration property value. Optional field. Indicates the period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look-back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its recommendationLookBackDuration setting will be used instead of the value of this property.
         Args:
-            value: Value to set for the recommendationLookBackDuration property.
+            value: Value to set for the recommendation_look_back_duration property.
         """
         self._recommendation_look_back_duration = value
     
@@ -297,7 +297,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the recommendationsEnabled property value. Indicates whether decision recommendations are enabled or disabled. NOTE: If the stageSettings of the accessReviewScheduleDefinition object is defined, its recommendationsEnabled setting will be used instead of the value of this property.
         Args:
-            value: Value to set for the recommendationsEnabled property.
+            value: Value to set for the recommendations_enabled property.
         """
         self._recommendations_enabled = value
     
@@ -331,7 +331,7 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         """
         Sets the reminderNotificationsEnabled property value. Indicates whether reminders are enabled or disabled. Default value is false.
         Args:
-            value: Value to set for the reminderNotificationsEnabled property.
+            value: Value to set for the reminder_notifications_enabled property.
         """
         self._reminder_notifications_enabled = value
     
@@ -352,9 +352,9 @@ class AccessReviewScheduleSettings(AdditionalDataHolder, Parsable):
         writer.write_bool_value("justificationRequiredOnApproval", self.justification_required_on_approval)
         writer.write_bool_value("mailNotificationsEnabled", self.mail_notifications_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_bool_value("recommendationsEnabled", self.recommendations_enabled)
         writer.write_collection_of_object_values("recommendationInsightSettings", self.recommendation_insight_settings)
         writer.write_object_value("recommendationLookBackDuration", self.recommendation_look_back_duration)
-        writer.write_bool_value("recommendationsEnabled", self.recommendations_enabled)
         writer.write_object_value("recurrence", self.recurrence)
         writer.write_bool_value("reminderNotificationsEnabled", self.reminder_notifications_enabled)
         writer.write_additional_data_value(self.additional_data)

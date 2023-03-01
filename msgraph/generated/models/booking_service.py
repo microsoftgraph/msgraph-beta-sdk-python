@@ -28,7 +28,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the additionalInformation property value. Additional information that is sent to the customer when an appointment is confirmed.
         Args:
-            value: Value to set for the additionalInformation property.
+            value: Value to set for the additional_information property.
         """
         self._additional_information = value
     
@@ -104,7 +104,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the customQuestions property value. Contains the set of custom questions associated with a particular service.
         Args:
-            value: Value to set for the customQuestions property.
+            value: Value to set for the custom_questions property.
         """
         self._custom_questions = value
     
@@ -121,7 +121,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the defaultDuration property value. The default length of the service, represented in numbers of days, hours, minutes, and seconds. For example, P11D23H59M59.999999999999S.
         Args:
-            value: Value to set for the defaultDuration property.
+            value: Value to set for the default_duration property.
         """
         self._default_duration = value
     
@@ -138,7 +138,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the defaultLocation property value. The default physical location for the service.
         Args:
-            value: Value to set for the defaultLocation property.
+            value: Value to set for the default_location property.
         """
         self._default_location = value
     
@@ -155,7 +155,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the defaultPrice property value. The default monetary price for the service.
         Args:
-            value: Value to set for the defaultPrice property.
+            value: Value to set for the default_price property.
         """
         self._default_price = value
     
@@ -172,7 +172,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the defaultPriceType property value. Represents the type of pricing of a booking service.
         Args:
-            value: Value to set for the defaultPriceType property.
+            value: Value to set for the default_price_type property.
         """
         self._default_price_type = value
     
@@ -189,7 +189,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the defaultReminders property value. The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.
         Args:
-            value: Value to set for the defaultReminders property.
+            value: Value to set for the default_reminders property.
         """
         self._default_reminders = value
     
@@ -216,26 +216,26 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_information": lambda n : setattr(self, 'additional_information', n.get_str_value()),
-            "custom_questions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(booking_question_assignment.BookingQuestionAssignment)),
-            "default_duration": lambda n : setattr(self, 'default_duration', n.get_object_value(Timedelta)),
-            "default_location": lambda n : setattr(self, 'default_location', n.get_object_value(location.Location)),
-            "default_price": lambda n : setattr(self, 'default_price', n.get_float_value()),
-            "default_price_type": lambda n : setattr(self, 'default_price_type', n.get_enum_value(booking_price_type.BookingPriceType)),
-            "default_reminders": lambda n : setattr(self, 'default_reminders', n.get_collection_of_object_values(booking_reminder.BookingReminder)),
+            "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_str_value()),
+            "customQuestions": lambda n : setattr(self, 'custom_questions', n.get_collection_of_object_values(booking_question_assignment.BookingQuestionAssignment)),
+            "defaultDuration": lambda n : setattr(self, 'default_duration', n.get_object_value(Timedelta)),
+            "defaultLocation": lambda n : setattr(self, 'default_location', n.get_object_value(location.Location)),
+            "defaultPrice": lambda n : setattr(self, 'default_price', n.get_float_value()),
+            "defaultPriceType": lambda n : setattr(self, 'default_price_type', n.get_enum_value(booking_price_type.BookingPriceType)),
+            "defaultReminders": lambda n : setattr(self, 'default_reminders', n.get_collection_of_object_values(booking_reminder.BookingReminder)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_anonymous_join_enabled": lambda n : setattr(self, 'is_anonymous_join_enabled', n.get_bool_value()),
-            "is_hidden_from_customers": lambda n : setattr(self, 'is_hidden_from_customers', n.get_bool_value()),
-            "is_location_online": lambda n : setattr(self, 'is_location_online', n.get_bool_value()),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
-            "maximum_attendees_count": lambda n : setattr(self, 'maximum_attendees_count', n.get_int_value()),
+            "isAnonymousJoinEnabled": lambda n : setattr(self, 'is_anonymous_join_enabled', n.get_bool_value()),
+            "isHiddenFromCustomers": lambda n : setattr(self, 'is_hidden_from_customers', n.get_bool_value()),
+            "isLocationOnline": lambda n : setattr(self, 'is_location_online', n.get_bool_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "maximumAttendeesCount": lambda n : setattr(self, 'maximum_attendees_count', n.get_int_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
-            "post_buffer": lambda n : setattr(self, 'post_buffer', n.get_object_value(Timedelta)),
-            "pre_buffer": lambda n : setattr(self, 'pre_buffer', n.get_object_value(Timedelta)),
-            "scheduling_policy": lambda n : setattr(self, 'scheduling_policy', n.get_object_value(booking_scheduling_policy.BookingSchedulingPolicy)),
-            "sms_notifications_enabled": lambda n : setattr(self, 'sms_notifications_enabled', n.get_bool_value()),
-            "staff_member_ids": lambda n : setattr(self, 'staff_member_ids', n.get_collection_of_primitive_values(str)),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "postBuffer": lambda n : setattr(self, 'post_buffer', n.get_object_value(Timedelta)),
+            "preBuffer": lambda n : setattr(self, 'pre_buffer', n.get_object_value(Timedelta)),
+            "schedulingPolicy": lambda n : setattr(self, 'scheduling_policy', n.get_object_value(booking_scheduling_policy.BookingSchedulingPolicy)),
+            "smsNotificationsEnabled": lambda n : setattr(self, 'sms_notifications_enabled', n.get_bool_value()),
+            "staffMemberIds": lambda n : setattr(self, 'staff_member_ids', n.get_collection_of_primitive_values(str)),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -254,7 +254,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the isAnonymousJoinEnabled property value. True if an anonymousJoinWebUrl(webrtcUrl) will be generated for the appointment booked for this service.
         Args:
-            value: Value to set for the isAnonymousJoinEnabled property.
+            value: Value to set for the is_anonymous_join_enabled property.
         """
         self._is_anonymous_join_enabled = value
     
@@ -271,7 +271,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the isHiddenFromCustomers property value. True means this service is not available to customers for booking.
         Args:
-            value: Value to set for the isHiddenFromCustomers property.
+            value: Value to set for the is_hidden_from_customers property.
         """
         self._is_hidden_from_customers = value
     
@@ -288,7 +288,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the isLocationOnline property value. True indicates that the appointments for the service will be held online. Default value is false.
         Args:
-            value: Value to set for the isLocationOnline property.
+            value: Value to set for the is_location_online property.
         """
         self._is_location_online = value
     
@@ -305,7 +305,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the languageTag property value. The language of the self service booking page.
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -322,7 +322,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the maximumAttendeesCount property value. The maximum number of customers allowed in a service. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment.  To create a customer, use the Create bookingCustomer operation.
         Args:
-            value: Value to set for the maximumAttendeesCount property.
+            value: Value to set for the maximum_attendees_count property.
         """
         self._maximum_attendees_count = value
     
@@ -356,7 +356,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the postBuffer property value. The time to buffer after an appointment for this service ends, and before the next customer appointment can be booked.
         Args:
-            value: Value to set for the postBuffer property.
+            value: Value to set for the post_buffer property.
         """
         self._post_buffer = value
     
@@ -373,7 +373,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the preBuffer property value. The time to buffer before an appointment for this service can start.
         Args:
-            value: Value to set for the preBuffer property.
+            value: Value to set for the pre_buffer property.
         """
         self._pre_buffer = value
     
@@ -390,7 +390,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the schedulingPolicy property value. The set of policies that determine how appointments for this type of service should be created and managed.
         Args:
-            value: Value to set for the schedulingPolicy property.
+            value: Value to set for the scheduling_policy property.
         """
         self._scheduling_policy = value
     
@@ -436,7 +436,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the smsNotificationsEnabled property value. True indicates SMS notifications can be sent to the customers for the appointment of the service. Default value is false.
         Args:
-            value: Value to set for the smsNotificationsEnabled property.
+            value: Value to set for the sms_notifications_enabled property.
         """
         self._sms_notifications_enabled = value
     
@@ -453,7 +453,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the staffMemberIds property value. Represents those staff members who provide this service.
         Args:
-            value: Value to set for the staffMemberIds property.
+            value: Value to set for the staff_member_ids property.
         """
         self._staff_member_ids = value
     
@@ -470,7 +470,7 @@ class BookingService(booking_named_entity.BookingNamedEntity):
         """
         Sets the webUrl property value. The URL a customer uses to access the service.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

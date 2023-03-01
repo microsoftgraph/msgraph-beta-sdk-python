@@ -28,7 +28,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the addressableUserName property value. Addressable user name.
         Args:
-            value: Value to set for the addressableUserName property.
+            value: Value to set for the addressable_user_name property.
         """
         self._addressable_user_name = value
     
@@ -45,7 +45,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the azureActiveDirectoryDeviceId property value. AAD Device ID - to be deprecated
         Args:
-            value: Value to set for the azureActiveDirectoryDeviceId property.
+            value: Value to set for the azure_active_directory_device_id property.
         """
         self._azure_active_directory_device_id = value
     
@@ -62,7 +62,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the azureAdDeviceId property value. AAD Device ID
         Args:
-            value: Value to set for the azureAdDeviceId property.
+            value: Value to set for the azure_ad_device_id property.
         """
         self._azure_ad_device_id = value
     
@@ -153,7 +153,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deploymentProfile property value. Deployment profile currently assigned to the Windows autopilot device.
         Args:
-            value: Value to set for the deploymentProfile property.
+            value: Value to set for the deployment_profile property.
         """
         self._deployment_profile = value
     
@@ -170,7 +170,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deploymentProfileAssignedDateTime property value. Profile set time of the Windows autopilot device.
         Args:
-            value: Value to set for the deploymentProfileAssignedDateTime property.
+            value: Value to set for the deployment_profile_assigned_date_time property.
         """
         self._deployment_profile_assigned_date_time = value
     
@@ -187,7 +187,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deploymentProfileAssignmentDetailedStatus property value. The deploymentProfileAssignmentDetailedStatus property
         Args:
-            value: Value to set for the deploymentProfileAssignmentDetailedStatus property.
+            value: Value to set for the deployment_profile_assignment_detailed_status property.
         """
         self._deployment_profile_assignment_detailed_status = value
     
@@ -204,7 +204,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deploymentProfileAssignmentStatus property value. The deploymentProfileAssignmentStatus property
         Args:
-            value: Value to set for the deploymentProfileAssignmentStatus property.
+            value: Value to set for the deployment_profile_assignment_status property.
         """
         self._deployment_profile_assignment_status = value
     
@@ -221,7 +221,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deviceAccountPassword property value. Surface Hub Device Account Password
         Args:
-            value: Value to set for the deviceAccountPassword property.
+            value: Value to set for the device_account_password property.
         """
         self._device_account_password = value
     
@@ -238,7 +238,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deviceAccountUpn property value. Surface Hub Device Account Upn
         Args:
-            value: Value to set for the deviceAccountUpn property.
+            value: Value to set for the device_account_upn property.
         """
         self._device_account_upn = value
     
@@ -255,7 +255,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the deviceFriendlyName property value. Surface Hub Device Friendly Name
         Args:
-            value: Value to set for the deviceFriendlyName property.
+            value: Value to set for the device_friendly_name property.
         """
         self._device_friendly_name = value
     
@@ -272,7 +272,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the displayName property value. Display Name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -289,7 +289,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the enrollmentState property value. The enrollmentState property
         Args:
-            value: Value to set for the enrollmentState property.
+            value: Value to set for the enrollment_state property.
         """
         self._enrollment_state = value
     
@@ -299,33 +299,33 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "addressable_user_name": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
-            "azure_active_directory_device_id": lambda n : setattr(self, 'azure_active_directory_device_id', n.get_str_value()),
-            "azure_ad_device_id": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
-            "deployment_profile": lambda n : setattr(self, 'deployment_profile', n.get_object_value(windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile)),
-            "deployment_profile_assigned_date_time": lambda n : setattr(self, 'deployment_profile_assigned_date_time', n.get_datetime_value()),
-            "deployment_profile_assignment_detailed_status": lambda n : setattr(self, 'deployment_profile_assignment_detailed_status', n.get_enum_value(windows_autopilot_profile_assignment_detailed_status.WindowsAutopilotProfileAssignmentDetailedStatus)),
-            "deployment_profile_assignment_status": lambda n : setattr(self, 'deployment_profile_assignment_status', n.get_enum_value(windows_autopilot_profile_assignment_status.WindowsAutopilotProfileAssignmentStatus)),
-            "device_account_password": lambda n : setattr(self, 'device_account_password', n.get_str_value()),
-            "device_account_upn": lambda n : setattr(self, 'device_account_upn', n.get_str_value()),
-            "device_friendly_name": lambda n : setattr(self, 'device_friendly_name', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enrollment_state": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
-            "group_tag": lambda n : setattr(self, 'group_tag', n.get_str_value()),
-            "intended_deployment_profile": lambda n : setattr(self, 'intended_deployment_profile', n.get_object_value(windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile)),
-            "last_contacted_date_time": lambda n : setattr(self, 'last_contacted_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "addressableUserName": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
+            "azureActiveDirectoryDeviceId": lambda n : setattr(self, 'azure_active_directory_device_id', n.get_str_value()),
+            "azureAdDeviceId": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
+            "deploymentProfile": lambda n : setattr(self, 'deployment_profile', n.get_object_value(windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile)),
+            "deploymentProfileAssignedDateTime": lambda n : setattr(self, 'deployment_profile_assigned_date_time', n.get_datetime_value()),
+            "deploymentProfileAssignmentDetailedStatus": lambda n : setattr(self, 'deployment_profile_assignment_detailed_status', n.get_enum_value(windows_autopilot_profile_assignment_detailed_status.WindowsAutopilotProfileAssignmentDetailedStatus)),
+            "deploymentProfileAssignmentStatus": lambda n : setattr(self, 'deployment_profile_assignment_status', n.get_enum_value(windows_autopilot_profile_assignment_status.WindowsAutopilotProfileAssignmentStatus)),
+            "deviceAccountPassword": lambda n : setattr(self, 'device_account_password', n.get_str_value()),
+            "deviceAccountUpn": lambda n : setattr(self, 'device_account_upn', n.get_str_value()),
+            "deviceFriendlyName": lambda n : setattr(self, 'device_friendly_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enrollmentState": lambda n : setattr(self, 'enrollment_state', n.get_enum_value(enrollment_state.EnrollmentState)),
+            "groupTag": lambda n : setattr(self, 'group_tag', n.get_str_value()),
+            "intendedDeploymentProfile": lambda n : setattr(self, 'intended_deployment_profile', n.get_object_value(windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile)),
+            "lastContactedDateTime": lambda n : setattr(self, 'last_contacted_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "product_key": lambda n : setattr(self, 'product_key', n.get_str_value()),
-            "purchase_order_identifier": lambda n : setattr(self, 'purchase_order_identifier', n.get_str_value()),
-            "remediation_state": lambda n : setattr(self, 'remediation_state', n.get_enum_value(windows_autopilot_device_remediation_state.WindowsAutopilotDeviceRemediationState)),
-            "remediation_state_last_modified_date_time": lambda n : setattr(self, 'remediation_state_last_modified_date_time', n.get_datetime_value()),
-            "resource_name": lambda n : setattr(self, 'resource_name', n.get_str_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
-            "sku_number": lambda n : setattr(self, 'sku_number', n.get_str_value()),
-            "system_family": lambda n : setattr(self, 'system_family', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "productKey": lambda n : setattr(self, 'product_key', n.get_str_value()),
+            "purchaseOrderIdentifier": lambda n : setattr(self, 'purchase_order_identifier', n.get_str_value()),
+            "remediationState": lambda n : setattr(self, 'remediation_state', n.get_enum_value(windows_autopilot_device_remediation_state.WindowsAutopilotDeviceRemediationState)),
+            "remediationStateLastModifiedDateTime": lambda n : setattr(self, 'remediation_state_last_modified_date_time', n.get_datetime_value()),
+            "resourceName": lambda n : setattr(self, 'resource_name', n.get_str_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "skuNumber": lambda n : setattr(self, 'sku_number', n.get_str_value()),
+            "systemFamily": lambda n : setattr(self, 'system_family', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -344,7 +344,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the groupTag property value. Group Tag of the Windows autopilot device.
         Args:
-            value: Value to set for the groupTag property.
+            value: Value to set for the group_tag property.
         """
         self._group_tag = value
     
@@ -361,7 +361,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the intendedDeploymentProfile property value. Deployment profile intended to be assigned to the Windows autopilot device.
         Args:
-            value: Value to set for the intendedDeploymentProfile property.
+            value: Value to set for the intended_deployment_profile property.
         """
         self._intended_deployment_profile = value
     
@@ -378,7 +378,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the lastContactedDateTime property value. Intune Last Contacted Date Time of the Windows autopilot device.
         Args:
-            value: Value to set for the lastContactedDateTime property.
+            value: Value to set for the last_contacted_date_time property.
         """
         self._last_contacted_date_time = value
     
@@ -395,7 +395,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the managedDeviceId property value. Managed Device ID
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -446,7 +446,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the productKey property value. Product Key of the Windows autopilot device.
         Args:
-            value: Value to set for the productKey property.
+            value: Value to set for the product_key property.
         """
         self._product_key = value
     
@@ -463,7 +463,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the purchaseOrderIdentifier property value. Purchase Order Identifier of the Windows autopilot device.
         Args:
-            value: Value to set for the purchaseOrderIdentifier property.
+            value: Value to set for the purchase_order_identifier property.
         """
         self._purchase_order_identifier = value
     
@@ -480,7 +480,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the remediationState property value. Device remediation status, indicating whether or not hardware has been changed for an Autopilot-registered device.
         Args:
-            value: Value to set for the remediationState property.
+            value: Value to set for the remediation_state property.
         """
         self._remediation_state = value
     
@@ -497,7 +497,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the remediationStateLastModifiedDateTime property value. RemediationState set time of Autopilot device.
         Args:
-            value: Value to set for the remediationStateLastModifiedDateTime property.
+            value: Value to set for the remediation_state_last_modified_date_time property.
         """
         self._remediation_state_last_modified_date_time = value
     
@@ -514,9 +514,26 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the resourceName property value. Resource Name.
         Args:
-            value: Value to set for the resourceName property.
+            value: Value to set for the resource_name property.
         """
         self._resource_name = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. Serial number of the Windows autopilot device.
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. Serial number of the Windows autopilot device.
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -556,23 +573,6 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         writer.write_str_value("userPrincipalName", self.user_principal_name)
     
     @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. Serial number of the Windows autopilot device.
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. Serial number of the Windows autopilot device.
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
-    
-    @property
     def sku_number(self,) -> Optional[str]:
         """
         Gets the skuNumber property value. SKU Number
@@ -585,7 +585,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the skuNumber property value. SKU Number
         Args:
-            value: Value to set for the skuNumber property.
+            value: Value to set for the sku_number property.
         """
         self._sku_number = value
     
@@ -602,7 +602,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the systemFamily property value. System Family
         Args:
-            value: Value to set for the systemFamily property.
+            value: Value to set for the system_family property.
         """
         self._system_family = value
     
@@ -619,7 +619,7 @@ class WindowsAutopilotDeviceIdentity(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

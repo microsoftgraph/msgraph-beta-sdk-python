@@ -59,12 +59,12 @@ class TeamworkHardwareDetail(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "mac_addresses": lambda n : setattr(self, 'mac_addresses', n.get_collection_of_primitive_values(str)),
+            "macAddresses": lambda n : setattr(self, 'mac_addresses', n.get_collection_of_primitive_values(str)),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "serial_number": lambda n : setattr(self, 'serial_number', n.get_str_value()),
-            "unique_id": lambda n : setattr(self, 'unique_id', n.get_str_value()),
+            "serialNumber": lambda n : setattr(self, 'serial_number', n.get_str_value()),
+            "uniqueId": lambda n : setattr(self, 'unique_id', n.get_str_value()),
         }
         return fields
     
@@ -81,7 +81,7 @@ class TeamworkHardwareDetail(AdditionalDataHolder, Parsable):
         """
         Sets the macAddresses property value. MAC address.
         Args:
-            value: Value to set for the macAddresses property.
+            value: Value to set for the mac_addresses property.
         """
         self._mac_addresses = value
     
@@ -132,9 +132,26 @@ class TeamworkHardwareDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
+    
+    @property
+    def serial_number(self,) -> Optional[str]:
+        """
+        Gets the serialNumber property value. Device serial number.
+        Returns: Optional[str]
+        """
+        return self._serial_number
+    
+    @serial_number.setter
+    def serial_number(self,value: Optional[str] = None) -> None:
+        """
+        Sets the serialNumber property value. Device serial number.
+        Args:
+            value: Value to set for the serial_number property.
+        """
+        self._serial_number = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -153,23 +170,6 @@ class TeamworkHardwareDetail(AdditionalDataHolder, Parsable):
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def serial_number(self,) -> Optional[str]:
-        """
-        Gets the serialNumber property value. Device serial number.
-        Returns: Optional[str]
-        """
-        return self._serial_number
-    
-    @serial_number.setter
-    def serial_number(self,value: Optional[str] = None) -> None:
-        """
-        Sets the serialNumber property value. Device serial number.
-        Args:
-            value: Value to set for the serialNumber property.
-        """
-        self._serial_number = value
-    
-    @property
     def unique_id(self,) -> Optional[str]:
         """
         Gets the uniqueId property value. The unique identifier for the device.
@@ -182,7 +182,7 @@ class TeamworkHardwareDetail(AdditionalDataHolder, Parsable):
         """
         Sets the uniqueId property value. The unique identifier for the device.
         Args:
-            value: Value to set for the uniqueId property.
+            value: Value to set for the unique_id property.
         """
         self._unique_id = value
     

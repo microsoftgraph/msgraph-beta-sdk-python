@@ -17,7 +17,7 @@ class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the actionName property value. Trigger on the service to either START or STOP computing metrics data based on a device scope configuration.
         Args:
-            value: Value to set for the actionName property.
+            value: Value to set for the action_name property.
         """
         self._action_name = value
     
@@ -75,7 +75,7 @@ class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceScopeId property value. The deviceScopeId property
         Args:
-            value: Value to set for the deviceScopeId property.
+            value: Value to set for the device_scope_id property.
         """
         self._device_scope_id = value
     
@@ -85,8 +85,8 @@ class TriggerDeviceScopeActionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_name": lambda n : setattr(self, 'action_name', n.get_str_value()),
-            "device_scope_id": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
+            "deviceScopeId": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
         }
         return fields
     

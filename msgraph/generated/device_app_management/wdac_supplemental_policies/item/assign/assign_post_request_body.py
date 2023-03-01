@@ -51,7 +51,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "wdac_policy_assignments": lambda n : setattr(self, 'wdac_policy_assignments', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment)),
+            "wdacPolicyAssignments": lambda n : setattr(self, 'wdac_policy_assignments', n.get_collection_of_object_values(windows_defender_application_control_supplemental_policy_assignment.WindowsDefenderApplicationControlSupplementalPolicyAssignment)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the wdacPolicyAssignments property value. The wdacPolicyAssignments property
         Args:
-            value: Value to set for the wdacPolicyAssignments property.
+            value: Value to set for the wdac_policy_assignments property.
         """
         self._wdac_policy_assignments = value
     

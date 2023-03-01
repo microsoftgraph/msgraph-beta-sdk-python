@@ -64,7 +64,7 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the defaultMicrophone property value. The defaultMicrophone property
         Args:
-            value: Value to set for the defaultMicrophone property.
+            value: Value to set for the default_microphone property.
         """
         self._default_microphone = value
     
@@ -74,8 +74,8 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_microphone": lambda n : setattr(self, 'default_microphone', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
-            "is_microphone_optional": lambda n : setattr(self, 'is_microphone_optional', n.get_bool_value()),
+            "defaultMicrophone": lambda n : setattr(self, 'default_microphone', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "isMicrophoneOptional": lambda n : setattr(self, 'is_microphone_optional', n.get_bool_value()),
             "microphones": lambda n : setattr(self, 'microphones', n.get_collection_of_object_values(teamwork_peripheral.TeamworkPeripheral)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -94,7 +94,7 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isMicrophoneOptional property value. True if the configured microphone is optional. False if the microphone is not optional and the health state of the device should be computed.
         Args:
-            value: Value to set for the isMicrophoneOptional property.
+            value: Value to set for the is_microphone_optional property.
         """
         self._is_microphone_optional = value
     
@@ -128,7 +128,7 @@ class TeamworkMicrophoneConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

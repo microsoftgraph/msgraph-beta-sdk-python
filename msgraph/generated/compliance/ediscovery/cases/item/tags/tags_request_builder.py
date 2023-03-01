@@ -10,8 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-as_hierarchy_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.as_hierarchy.as_hierarchy_request_builder')
 count_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.count.count_request_builder')
+ediscovery_as_hierarchy_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.tags.ediscovery_as_hierarchy.ediscovery_as_hierarchy_request_builder')
 tag = lazy_import('msgraph.generated.models.ediscovery.tag')
 tag_collection_response = lazy_import('msgraph.generated.models.ediscovery.tag_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
@@ -27,12 +27,12 @@ class TagsRequestBuilder():
         """
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
-    def as_hierarchy(self,) -> as_hierarchy_request_builder.AsHierarchyRequestBuilder:
+    @property
+    def ediscovery_as_hierarchy(self) -> ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder:
         """
         Provides operations to call the asHierarchy method.
-        Returns: as_hierarchy_request_builder.AsHierarchyRequestBuilder
         """
-        return as_hierarchy_request_builder.AsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
+        return ediscovery_as_hierarchy_request_builder.EdiscoveryAsHierarchyRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +52,11 @@ class TagsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tag_collection_response.TagCollectionResponse]:
+    async def get(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> Optional[tag_collection_response.TagCollectionResponse]:
         """
         Retrieve a list of tag objects from an eDiscovery case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tag_collection_response.TagCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -69,15 +68,14 @@ class TagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tag_collection_response.TagCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tag_collection_response.TagCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tag.Tag]:
+    async def post(self,body: Optional[tag.Tag] = None, request_configuration: Optional[TagsRequestBuilderPostRequestConfiguration] = None) -> Optional[tag.Tag]:
         """
         Create a new tag for the specified case.  The tags are used in review sets while reviewing content.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tag.Tag]
         """
         if body is None:
@@ -91,7 +89,7 @@ class TagsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tag.Tag, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tag.Tag, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TagsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -104,7 +102,7 @@ class TagsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -125,7 +123,7 @@ class TagsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -195,7 +193,7 @@ class TagsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -210,7 +208,7 @@ class TagsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

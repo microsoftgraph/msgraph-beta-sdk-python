@@ -37,7 +37,7 @@ class PrivilegedSignupStatus(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_registered": lambda n : setattr(self, 'is_registered', n.get_bool_value()),
+            "isRegistered": lambda n : setattr(self, 'is_registered', n.get_bool_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(setup_status.SetupStatus)),
         }
         super_fields = super().get_field_deserializers()
@@ -57,7 +57,7 @@ class PrivilegedSignupStatus(entity.Entity):
         """
         Sets the isRegistered property value. The isRegistered property
         Args:
-            value: Value to set for the isRegistered property.
+            value: Value to set for the is_registered property.
         """
         self._is_registered = value
     

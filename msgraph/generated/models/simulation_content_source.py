@@ -2,7 +2,7 @@ from enum import Enum
 
 class SimulationContentSource(Enum):
     Unknown = "unknown",
-    Global_escaped = "global",
+    Global_ = "global",
     Tenant = "tenant",
     UnknownFutureValue = "unknownFutureValue",
 

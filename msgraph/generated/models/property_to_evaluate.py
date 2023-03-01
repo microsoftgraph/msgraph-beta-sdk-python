@@ -54,8 +54,8 @@ class PropertyToEvaluate(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "property_name": lambda n : setattr(self, 'property_name', n.get_str_value()),
-            "property_value": lambda n : setattr(self, 'property_value', n.get_str_value()),
+            "propertyName": lambda n : setattr(self, 'property_name', n.get_str_value()),
+            "propertyValue": lambda n : setattr(self, 'property_value', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class PropertyToEvaluate(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -89,7 +89,7 @@ class PropertyToEvaluate(AdditionalDataHolder, Parsable):
         """
         Sets the propertyName property value. Provides the property name.
         Args:
-            value: Value to set for the propertyName property.
+            value: Value to set for the property_name property.
         """
         self._property_name = value
     
@@ -106,7 +106,7 @@ class PropertyToEvaluate(AdditionalDataHolder, Parsable):
         """
         Sets the propertyValue property value. Provides the property value.
         Args:
-            value: Value to set for the propertyValue property.
+            value: Value to set for the property_value property.
         """
         self._property_value = value
     

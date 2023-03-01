@@ -30,19 +30,18 @@ class CheckMemberGroupsRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/groups/{group%2Did}/permissionGrants/{resourceSpecificPermissionGrant%2Did}/microsoft.graph.checkMemberGroups"
+        self.url_template: str = "{+baseurl}/groups/{group%2Did}/permissionGrants/{resourceSpecificPermissionGrant%2Did}/checkMemberGroups"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[check_member_groups_post_request_body.CheckMemberGroupsPostRequestBody] = None, request_configuration: Optional[CheckMemberGroupsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[check_member_groups_response.CheckMemberGroupsResponse]:
+    async def post(self,body: Optional[check_member_groups_post_request_body.CheckMemberGroupsPostRequestBody] = None, request_configuration: Optional[CheckMemberGroupsRequestBuilderPostRequestConfiguration] = None) -> Optional[check_member_groups_response.CheckMemberGroupsResponse]:
         """
         Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[check_member_groups_response.CheckMemberGroupsResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class CheckMemberGroupsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, check_member_groups_response.CheckMemberGroupsResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, check_member_groups_response.CheckMemberGroupsResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[check_member_groups_post_request_body.CheckMemberGroupsPostRequestBody] = None, request_configuration: Optional[CheckMemberGroupsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class CheckMemberGroupsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class CheckMemberGroupsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

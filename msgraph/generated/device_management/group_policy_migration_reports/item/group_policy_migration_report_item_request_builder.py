@@ -61,12 +61,11 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property groupPolicyMigrationReports for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -77,14 +76,13 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def get(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
         """
         A list of Group Policy migration reports.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
         """
         request_info = self.to_get_request_information(
@@ -96,7 +94,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def group_policy_setting_mappings_by_id(self,id: str) -> group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder:
         """
@@ -111,13 +109,12 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         url_tpl_params["groupPolicySettingMapping%2Did"] = id
         return group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
+    async def patch(self,body: Optional[group_policy_migration_report.GroupPolicyMigrationReport] = None, request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_migration_report.GroupPolicyMigrationReport]:
         """
         Update the navigation property groupPolicyMigrationReports in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[group_policy_migration_report.GroupPolicyMigrationReport]
         """
         if body is None:
@@ -131,7 +128,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -160,7 +157,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -181,7 +178,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -207,7 +204,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -246,7 +243,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -261,7 +258,7 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

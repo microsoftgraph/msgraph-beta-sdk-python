@@ -9,12 +9,12 @@ entity = lazy_import('msgraph.generated.models.entity')
 
 class AppLogCollectionRequest(entity.Entity):
     """
-    AppLogCollectionRequest Entity.
+    Entity for AppLogCollectionRequest contains all logs values.
     """
     @property
     def completed_date_time(self,) -> Optional[datetime]:
         """
-        Gets the completedDateTime property value. Time at which the upload log request reached a terminal state
+        Gets the completedDateTime property value. Time at which the upload log request reached a completed state if not completed yet NULL will be returned.
         Returns: Optional[datetime]
         """
         return self._completed_date_time
@@ -22,9 +22,9 @@ class AppLogCollectionRequest(entity.Entity):
     @completed_date_time.setter
     def completed_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the completedDateTime property value. Time at which the upload log request reached a terminal state
+        Sets the completedDateTime property value. Time at which the upload log request reached a completed state if not completed yet NULL will be returned.
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -33,11 +33,11 @@ class AppLogCollectionRequest(entity.Entity):
         Instantiates a new appLogCollectionRequest and sets the default values.
         """
         super().__init__()
-        # Time at which the upload log request reached a terminal state
+        # Time at which the upload log request reached a completed state if not completed yet NULL will be returned.
         self._completed_date_time: Optional[datetime] = None
         # List of log folders.
         self._custom_log_folders: Optional[List[str]] = None
-        # Error message if any during the upload process
+        # Indicates error message if any during the upload process.
         self._error_message: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -69,14 +69,14 @@ class AppLogCollectionRequest(entity.Entity):
         """
         Sets the customLogFolders property value. List of log folders.
         Args:
-            value: Value to set for the customLogFolders property.
+            value: Value to set for the custom_log_folders property.
         """
         self._custom_log_folders = value
     
     @property
     def error_message(self,) -> Optional[str]:
         """
-        Gets the errorMessage property value. Error message if any during the upload process
+        Gets the errorMessage property value. Indicates error message if any during the upload process.
         Returns: Optional[str]
         """
         return self._error_message
@@ -84,9 +84,9 @@ class AppLogCollectionRequest(entity.Entity):
     @error_message.setter
     def error_message(self,value: Optional[str] = None) -> None:
         """
-        Sets the errorMessage property value. Error message if any during the upload process
+        Sets the errorMessage property value. Indicates error message if any during the upload process.
         Args:
-            value: Value to set for the errorMessage property.
+            value: Value to set for the error_message property.
         """
         self._error_message = value
     
@@ -96,9 +96,9 @@ class AppLogCollectionRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
-            "custom_log_folders": lambda n : setattr(self, 'custom_log_folders', n.get_collection_of_primitive_values(str)),
-            "error_message": lambda n : setattr(self, 'error_message', n.get_str_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "customLogFolders": lambda n : setattr(self, 'custom_log_folders', n.get_collection_of_primitive_values(str)),
+            "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(app_log_upload_state.AppLogUploadState)),
         }
         super_fields = super().get_field_deserializers()

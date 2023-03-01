@@ -25,7 +25,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the categoryDescription property value. Description of the category header
         Args:
-            value: Value to set for the categoryDescription property.
+            value: Value to set for the category_description property.
         """
         self._category_description = value
     
@@ -42,7 +42,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the childCategoryIds property value. List of child ids of the category.
         Args:
-            value: Value to set for the childCategoryIds property.
+            value: Value to set for the child_category_ids property.
         """
         self._child_category_ids = value
     
@@ -118,7 +118,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the displayName property value. Display name of the item
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -128,16 +128,16 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "category_description": lambda n : setattr(self, 'category_description', n.get_str_value()),
-            "child_category_ids": lambda n : setattr(self, 'child_category_ids', n.get_collection_of_primitive_values(str)),
+            "categoryDescription": lambda n : setattr(self, 'category_description', n.get_str_value()),
+            "childCategoryIds": lambda n : setattr(self, 'child_category_ids', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "help_text": lambda n : setattr(self, 'help_text', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "helpText": lambda n : setattr(self, 'help_text', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "parent_category_id": lambda n : setattr(self, 'parent_category_id', n.get_str_value()),
+            "parentCategoryId": lambda n : setattr(self, 'parent_category_id', n.get_str_value()),
             "platforms": lambda n : setattr(self, 'platforms', n.get_enum_value(device_management_configuration_platforms.DeviceManagementConfigurationPlatforms)),
-            "root_category_id": lambda n : setattr(self, 'root_category_id', n.get_str_value()),
-            "setting_usage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage)),
+            "rootCategoryId": lambda n : setattr(self, 'root_category_id', n.get_str_value()),
+            "settingUsage": lambda n : setattr(self, 'setting_usage', n.get_enum_value(device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage)),
             "technologies": lambda n : setattr(self, 'technologies', n.get_enum_value(device_management_configuration_technologies.DeviceManagementConfigurationTechnologies)),
         }
         super_fields = super().get_field_deserializers()
@@ -157,7 +157,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the helpText property value. Help text of the item
         Args:
-            value: Value to set for the helpText property.
+            value: Value to set for the help_text property.
         """
         self._help_text = value
     
@@ -191,7 +191,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the parentCategoryId property value. Parent id of the category.
         Args:
-            value: Value to set for the parentCategoryId property.
+            value: Value to set for the parent_category_id property.
         """
         self._parent_category_id = value
     
@@ -225,7 +225,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the rootCategoryId property value. Root id of the category.
         Args:
-            value: Value to set for the rootCategoryId property.
+            value: Value to set for the root_category_id property.
         """
         self._root_category_id = value
     
@@ -263,7 +263,7 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         """
         Sets the settingUsage property value. Supported setting types
         Args:
-            value: Value to set for the settingUsage property.
+            value: Value to set for the setting_usage property.
         """
         self._setting_usage = value
     

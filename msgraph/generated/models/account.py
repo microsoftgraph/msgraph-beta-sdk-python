@@ -86,7 +86,7 @@ class Account(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -98,10 +98,10 @@ class Account(entity.Entity):
         fields = {
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
             "category": lambda n : setattr(self, 'category', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "sub_category": lambda n : setattr(self, 'sub_category', n.get_str_value()),
+            "subCategory": lambda n : setattr(self, 'sub_category', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -120,7 +120,7 @@ class Account(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -170,7 +170,7 @@ class Account(entity.Entity):
         """
         Sets the subCategory property value. The subCategory property
         Args:
-            value: Value to set for the subCategory property.
+            value: Value to set for the sub_category property.
         """
         self._sub_category = value
     

@@ -45,7 +45,7 @@ class GroupPolicyPresentationDropdownList(group_policy_uploaded_presentation.Gro
         """
         Sets the defaultItem property value. Localized string value identifying the default choice of the list of items.
         Args:
-            value: Value to set for the defaultItem property.
+            value: Value to set for the default_item property.
         """
         self._default_item = value
     
@@ -55,7 +55,7 @@ class GroupPolicyPresentationDropdownList(group_policy_uploaded_presentation.Gro
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_item": lambda n : setattr(self, 'default_item', n.get_object_value(group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem)),
+            "defaultItem": lambda n : setattr(self, 'default_item', n.get_object_value(group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem)),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(group_policy_presentation_dropdown_list_item.GroupPolicyPresentationDropdownListItem)),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
         }

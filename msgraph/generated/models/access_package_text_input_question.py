@@ -35,8 +35,8 @@ class AccessPackageTextInputQuestion(access_package_question.AccessPackageQuesti
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_single_line_question": lambda n : setattr(self, 'is_single_line_question', n.get_bool_value()),
-            "regex_pattern": lambda n : setattr(self, 'regex_pattern', n.get_str_value()),
+            "isSingleLineQuestion": lambda n : setattr(self, 'is_single_line_question', n.get_bool_value()),
+            "regexPattern": lambda n : setattr(self, 'regex_pattern', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class AccessPackageTextInputQuestion(access_package_question.AccessPackageQuesti
         """
         Sets the isSingleLineQuestion property value. Indicates whether the answer will be in single or multiple line format.
         Args:
-            value: Value to set for the isSingleLineQuestion property.
+            value: Value to set for the is_single_line_question property.
         """
         self._is_single_line_question = value
     
@@ -72,7 +72,7 @@ class AccessPackageTextInputQuestion(access_package_question.AccessPackageQuesti
         """
         Sets the regexPattern property value. This is the regex pattern that the corresponding text answer must follow.
         Args:
-            value: Value to set for the regexPattern property.
+            value: Value to set for the regex_pattern property.
         """
         self._regex_pattern = value
     

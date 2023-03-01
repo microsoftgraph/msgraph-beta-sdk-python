@@ -38,6 +38,13 @@ class AssignmentFiltersRequestBuilder():
         return enable_request_builder.EnableRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_state(self) -> get_state_request_builder.GetStateRequestBuilder:
+        """
+        Provides operations to call the getState method.
+        """
+        return get_state_request_builder.GetStateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def validate_filter(self) -> validate_filter_request_builder.ValidateFilterRequestBuilder:
         """
         Provides operations to call the validateFilter method.
@@ -62,12 +69,11 @@ class AssignmentFiltersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]:
+    async def get(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]:
         """
         The list of assignment filters
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -79,7 +85,7 @@ class AssignmentFiltersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter_collection_response.DeviceAndAppManagementAssignmentFilterCollectionResponse, error_mapping)
     
     def get_platform_supported_properties_with_platform(self,platform: Optional[str] = None) -> get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder:
         """
@@ -92,20 +98,12 @@ class AssignmentFiltersRequestBuilder():
             raise Exception("platform cannot be undefined")
         return get_platform_supported_properties_with_platform_request_builder.GetPlatformSupportedPropertiesWithPlatformRequestBuilder(self.request_adapter, self.path_parameters, platform)
     
-    def get_state(self,) -> get_state_request_builder.GetStateRequestBuilder:
-        """
-        Provides operations to call the getState method.
-        Returns: get_state_request_builder.GetStateRequestBuilder
-        """
-        return get_state_request_builder.GetStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
+    async def post(self,body: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter] = None, request_configuration: Optional[AssignmentFiltersRequestBuilderPostRequestConfiguration] = None) -> Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]:
         """
         Create new navigation property to assignmentFilters for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter]
         """
         if body is None:
@@ -119,7 +117,7 @@ class AssignmentFiltersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_and_app_management_assignment_filter.DeviceAndAppManagementAssignmentFilter, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AssignmentFiltersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -132,7 +130,7 @@ class AssignmentFiltersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -153,7 +151,7 @@ class AssignmentFiltersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -223,7 +221,7 @@ class AssignmentFiltersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -238,7 +236,7 @@ class AssignmentFiltersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

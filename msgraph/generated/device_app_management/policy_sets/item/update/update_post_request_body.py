@@ -20,7 +20,7 @@ class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the addedPolicySetItems property value. The addedPolicySetItems property
         Args:
-            value: Value to set for the addedPolicySetItems property.
+            value: Value to set for the added_policy_set_items property.
         """
         self._added_policy_set_items = value
     
@@ -99,7 +99,7 @@ class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deletedPolicySetItems property value. The deletedPolicySetItems property
         Args:
-            value: Value to set for the deletedPolicySetItems property.
+            value: Value to set for the deleted_policy_set_items property.
         """
         self._deleted_policy_set_items = value
     
@@ -109,10 +109,10 @@ class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "added_policy_set_items": lambda n : setattr(self, 'added_policy_set_items', n.get_collection_of_object_values(policy_set_item.PolicySetItem)),
+            "addedPolicySetItems": lambda n : setattr(self, 'added_policy_set_items', n.get_collection_of_object_values(policy_set_item.PolicySetItem)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(policy_set_assignment.PolicySetAssignment)),
-            "deleted_policy_set_items": lambda n : setattr(self, 'deleted_policy_set_items', n.get_collection_of_primitive_values(str)),
-            "updated_policy_set_items": lambda n : setattr(self, 'updated_policy_set_items', n.get_collection_of_object_values(policy_set_item.PolicySetItem)),
+            "deletedPolicySetItems": lambda n : setattr(self, 'deleted_policy_set_items', n.get_collection_of_primitive_values(str)),
+            "updatedPolicySetItems": lambda n : setattr(self, 'updated_policy_set_items', n.get_collection_of_object_values(policy_set_item.PolicySetItem)),
         }
         return fields
     
@@ -143,7 +143,7 @@ class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the updatedPolicySetItems property value. The updatedPolicySetItems property
         Args:
-            value: Value to set for the updatedPolicySetItems property.
+            value: Value to set for the updated_policy_set_items property.
         """
         self._updated_policy_set_items = value
     

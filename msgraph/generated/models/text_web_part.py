@@ -33,7 +33,7 @@ class TextWebPart(web_part.WebPart):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "inner_html": lambda n : setattr(self, 'inner_html', n.get_str_value()),
+            "innerHtml": lambda n : setattr(self, 'inner_html', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class TextWebPart(web_part.WebPart):
         """
         Sets the innerHtml property value. The HTML string in text web part.
         Args:
-            value: Value to set for the innerHtml property.
+            value: Value to set for the inner_html property.
         """
         self._inner_html = value
     

@@ -49,7 +49,7 @@ class ConfirmCompromisedPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "request_ids": lambda n : setattr(self, 'request_ids', n.get_collection_of_primitive_values(str)),
+            "requestIds": lambda n : setattr(self, 'request_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class ConfirmCompromisedPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the requestIds property value. The requestIds property
         Args:
-            value: Value to set for the requestIds property.
+            value: Value to set for the request_ids property.
         """
         self._request_ids = value
     

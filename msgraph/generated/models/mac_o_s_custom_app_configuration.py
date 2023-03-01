@@ -19,7 +19,7 @@ class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bundleId property value. Bundle id for targeting.
         Args:
-            value: Value to set for the bundleId property.
+            value: Value to set for the bundle_id property.
         """
         self._bundle_id = value
     
@@ -36,7 +36,7 @@ class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the configurationXml property value. Configuration xml. (UTF8 encoded byte array)
         Args:
-            value: Value to set for the configurationXml property.
+            value: Value to set for the configuration_xml property.
         """
         self._configuration_xml = value
     
@@ -78,7 +78,7 @@ class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the fileName property value. Configuration file name (.plist
         Args:
-            value: Value to set for the fileName property.
+            value: Value to set for the file_name property.
         """
         self._file_name = value
     
@@ -88,9 +88,9 @@ class MacOSCustomAppConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "bundle_id": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
-            "configuration_xml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
-            "file_name": lambda n : setattr(self, 'file_name', n.get_str_value()),
+            "bundleId": lambda n : setattr(self, 'bundle_id', n.get_str_value()),
+            "configurationXml": lambda n : setattr(self, 'configuration_xml', n.get_bytes_value()),
+            "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

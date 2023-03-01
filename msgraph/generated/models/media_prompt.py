@@ -37,7 +37,7 @@ class MediaPrompt(prompt.Prompt):
         """
         fields = {
             "loop": lambda n : setattr(self, 'loop', n.get_int_value()),
-            "media_info": lambda n : setattr(self, 'media_info', n.get_object_value(media_info.MediaInfo)),
+            "mediaInfo": lambda n : setattr(self, 'media_info', n.get_object_value(media_info.MediaInfo)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class MediaPrompt(prompt.Prompt):
         """
         Sets the mediaInfo property value. The mediaInfo property
         Args:
-            value: Value to set for the mediaInfo property.
+            value: Value to set for the media_info property.
         """
         self._media_info = value
     

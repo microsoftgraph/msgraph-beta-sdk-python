@@ -55,9 +55,9 @@ class Settings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "has_graph_mailbox": lambda n : setattr(self, 'has_graph_mailbox', n.get_bool_value()),
-            "has_license": lambda n : setattr(self, 'has_license', n.get_bool_value()),
-            "has_opted_out": lambda n : setattr(self, 'has_opted_out', n.get_bool_value()),
+            "hasGraphMailbox": lambda n : setattr(self, 'has_graph_mailbox', n.get_bool_value()),
+            "hasLicense": lambda n : setattr(self, 'has_license', n.get_bool_value()),
+            "hasOptedOut": lambda n : setattr(self, 'has_opted_out', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -75,7 +75,7 @@ class Settings(AdditionalDataHolder, Parsable):
         """
         Sets the hasGraphMailbox property value. Specifies if the user's primary mailbox is hosted in the cloud and is enabled for Microsoft Graph.
         Args:
-            value: Value to set for the hasGraphMailbox property.
+            value: Value to set for the has_graph_mailbox property.
         """
         self._has_graph_mailbox = value
     
@@ -92,7 +92,7 @@ class Settings(AdditionalDataHolder, Parsable):
         """
         Sets the hasLicense property value. Specifies if the user has a MyAnalytics license assigned.
         Args:
-            value: Value to set for the hasLicense property.
+            value: Value to set for the has_license property.
         """
         self._has_license = value
     
@@ -109,7 +109,7 @@ class Settings(AdditionalDataHolder, Parsable):
         """
         Sets the hasOptedOut property value. Specifies if the user opted out of MyAnalytics.
         Args:
-            value: Value to set for the hasOptedOut property.
+            value: Value to set for the has_opted_out property.
         """
         self._has_opted_out = value
     
@@ -126,7 +126,7 @@ class Settings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

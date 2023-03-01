@@ -26,7 +26,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the authenticationMethod property value. Specify the authentication method. Possible values are: certificate, usernameAndPassword, derivedCredential.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -43,7 +43,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the authenticationPeriodInSeconds property value. Specify the number of seconds for the client to wait after an authentication attempt before failing. Valid range 1-3600.
         Args:
-            value: Value to set for the authenticationPeriodInSeconds property.
+            value: Value to set for the authentication_period_in_seconds property.
         """
         self._authentication_period_in_seconds = value
     
@@ -60,7 +60,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the authenticationRetryDelayPeriodInSeconds property value. Specify the number of seconds between a failed authentication and the next authentication attempt. Valid range 1-3600.
         Args:
-            value: Value to set for the authenticationRetryDelayPeriodInSeconds property.
+            value: Value to set for the authentication_retry_delay_period_in_seconds property.
         """
         self._authentication_retry_delay_period_in_seconds = value
     
@@ -77,7 +77,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the authenticationType property value. Specify whether to authenticate the user, the device, either, or to use guest authentication (none). If you’re using certificate authentication, make sure the certificate type matches the authentication type. Possible values are: none, user, machine, machineOrUser, guest.
         Args:
-            value: Value to set for the authenticationType property.
+            value: Value to set for the authentication_type property.
         """
         self._authentication_type = value
     
@@ -94,7 +94,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the cacheCredentials property value. Specify whether to cache user credentials on the device so that users don’t need to keep entering them each time they connect.
         Args:
-            value: Value to set for the cacheCredentials property.
+            value: Value to set for the cache_credentials property.
         """
         self._cache_credentials = value
     
@@ -116,10 +116,10 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         self._cache_credentials: Optional[bool] = None
         # Specify whether to prevent the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP.
         self._disable_user_prompt_for_server_validation: Optional[bool] = None
-        # Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
-        self._eapol_start_period_in_seconds: Optional[int] = None
         # Extensible Authentication Protocol (EAP) configuration types.
         self._eap_type: Optional[eap_type.EapType] = None
+        # Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
+        self._eapol_start_period_in_seconds: Optional[int] = None
         # Specify whether the wifi connection should enable pairwise master key caching.
         self._enable_pairwise_master_key_caching: Optional[bool] = None
         # Specify whether pre-authentication should be enabled.
@@ -184,26 +184,9 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the disableUserPromptForServerValidation property value. Specify whether to prevent the user from being prompted to authorize new servers for trusted certification authorities when EAP type is selected as PEAP.
         Args:
-            value: Value to set for the disableUserPromptForServerValidation property.
+            value: Value to set for the disable_user_prompt_for_server_validation property.
         """
         self._disable_user_prompt_for_server_validation = value
-    
-    @property
-    def eapol_start_period_in_seconds(self,) -> Optional[int]:
-        """
-        Gets the eapolStartPeriodInSeconds property value. Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
-        Returns: Optional[int]
-        """
-        return self._eapol_start_period_in_seconds
-    
-    @eapol_start_period_in_seconds.setter
-    def eapol_start_period_in_seconds(self,value: Optional[int] = None) -> None:
-        """
-        Sets the eapolStartPeriodInSeconds property value. Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
-        Args:
-            value: Value to set for the eapolStartPeriodInSeconds property.
-        """
-        self._eapol_start_period_in_seconds = value
     
     @property
     def eap_type(self,) -> Optional[eap_type.EapType]:
@@ -218,9 +201,26 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the eapType property value. Extensible Authentication Protocol (EAP) configuration types.
         Args:
-            value: Value to set for the eapType property.
+            value: Value to set for the eap_type property.
         """
         self._eap_type = value
+    
+    @property
+    def eapol_start_period_in_seconds(self,) -> Optional[int]:
+        """
+        Gets the eapolStartPeriodInSeconds property value. Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
+        Returns: Optional[int]
+        """
+        return self._eapol_start_period_in_seconds
+    
+    @eapol_start_period_in_seconds.setter
+    def eapol_start_period_in_seconds(self,value: Optional[int] = None) -> None:
+        """
+        Sets the eapolStartPeriodInSeconds property value. Specify the number of seconds to wait before sending an EAPOL (Extensible Authentication Protocol over LAN) Start message. Valid range 1-3600.
+        Args:
+            value: Value to set for the eapol_start_period_in_seconds property.
+        """
+        self._eapol_start_period_in_seconds = value
     
     @property
     def enable_pairwise_master_key_caching(self,) -> Optional[bool]:
@@ -235,7 +235,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the enablePairwiseMasterKeyCaching property value. Specify whether the wifi connection should enable pairwise master key caching.
         Args:
-            value: Value to set for the enablePairwiseMasterKeyCaching property.
+            value: Value to set for the enable_pairwise_master_key_caching property.
         """
         self._enable_pairwise_master_key_caching = value
     
@@ -252,7 +252,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the enablePreAuthentication property value. Specify whether pre-authentication should be enabled.
         Args:
-            value: Value to set for the enablePreAuthentication property.
+            value: Value to set for the enable_pre_authentication property.
         """
         self._enable_pre_authentication = value
     
@@ -262,33 +262,33 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
-            "authentication_period_in_seconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),
-            "authentication_retry_delay_period_in_seconds": lambda n : setattr(self, 'authentication_retry_delay_period_in_seconds', n.get_int_value()),
-            "authentication_type": lambda n : setattr(self, 'authentication_type', n.get_enum_value(wifi_authentication_type.WifiAuthenticationType)),
-            "cache_credentials": lambda n : setattr(self, 'cache_credentials', n.get_bool_value()),
-            "disable_user_prompt_for_server_validation": lambda n : setattr(self, 'disable_user_prompt_for_server_validation', n.get_bool_value()),
-            "eapol_start_period_in_seconds": lambda n : setattr(self, 'eapol_start_period_in_seconds', n.get_int_value()),
-            "eap_type": lambda n : setattr(self, 'eap_type', n.get_enum_value(eap_type.EapType)),
-            "enable_pairwise_master_key_caching": lambda n : setattr(self, 'enable_pairwise_master_key_caching', n.get_bool_value()),
-            "enable_pre_authentication": lambda n : setattr(self, 'enable_pre_authentication', n.get_bool_value()),
-            "identity_certificate_for_client_authentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(windows_certificate_profile_base.WindowsCertificateProfileBase)),
-            "inner_authentication_protocol_for_e_a_p_t_t_l_s": lambda n : setattr(self, 'inner_authentication_protocol_for_e_a_p_t_t_l_s', n.get_enum_value(non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType)),
-            "maximum_authentication_failures": lambda n : setattr(self, 'maximum_authentication_failures', n.get_int_value()),
-            "maximum_authentication_timeout_in_seconds": lambda n : setattr(self, 'maximum_authentication_timeout_in_seconds', n.get_int_value()),
-            "maximum_e_a_p_o_l_start_messages": lambda n : setattr(self, 'maximum_e_a_p_o_l_start_messages', n.get_int_value()),
-            "maximum_number_of_pairwise_master_keys_in_cache": lambda n : setattr(self, 'maximum_number_of_pairwise_master_keys_in_cache', n.get_int_value()),
-            "maximum_pairwise_master_key_cache_time_in_minutes": lambda n : setattr(self, 'maximum_pairwise_master_key_cache_time_in_minutes', n.get_int_value()),
-            "maximum_pre_authentication_attempts": lambda n : setattr(self, 'maximum_pre_authentication_attempts', n.get_int_value()),
-            "network_single_sign_on": lambda n : setattr(self, 'network_single_sign_on', n.get_enum_value(network_single_sign_on_type.NetworkSingleSignOnType)),
-            "outer_identity_privacy_temporary_value": lambda n : setattr(self, 'outer_identity_privacy_temporary_value', n.get_str_value()),
-            "perform_server_validation": lambda n : setattr(self, 'perform_server_validation', n.get_bool_value()),
-            "prompt_for_additional_authentication_credentials": lambda n : setattr(self, 'prompt_for_additional_authentication_credentials', n.get_bool_value()),
-            "require_cryptographic_binding": lambda n : setattr(self, 'require_cryptographic_binding', n.get_bool_value()),
-            "root_certificate_for_client_validation": lambda n : setattr(self, 'root_certificate_for_client_validation', n.get_object_value(windows81_trusted_root_certificate.Windows81TrustedRootCertificate)),
-            "root_certificates_for_server_validation": lambda n : setattr(self, 'root_certificates_for_server_validation', n.get_collection_of_object_values(windows81_trusted_root_certificate.Windows81TrustedRootCertificate)),
-            "trusted_server_certificate_names": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),
-            "user_based_virtual_lan": lambda n : setattr(self, 'user_based_virtual_lan', n.get_bool_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
+            "authenticationPeriodInSeconds": lambda n : setattr(self, 'authentication_period_in_seconds', n.get_int_value()),
+            "authenticationRetryDelayPeriodInSeconds": lambda n : setattr(self, 'authentication_retry_delay_period_in_seconds', n.get_int_value()),
+            "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_enum_value(wifi_authentication_type.WifiAuthenticationType)),
+            "cacheCredentials": lambda n : setattr(self, 'cache_credentials', n.get_bool_value()),
+            "disableUserPromptForServerValidation": lambda n : setattr(self, 'disable_user_prompt_for_server_validation', n.get_bool_value()),
+            "eapolStartPeriodInSeconds": lambda n : setattr(self, 'eapol_start_period_in_seconds', n.get_int_value()),
+            "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(eap_type.EapType)),
+            "enablePairwiseMasterKeyCaching": lambda n : setattr(self, 'enable_pairwise_master_key_caching', n.get_bool_value()),
+            "enablePreAuthentication": lambda n : setattr(self, 'enable_pre_authentication', n.get_bool_value()),
+            "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(windows_certificate_profile_base.WindowsCertificateProfileBase)),
+            "innerAuthenticationProtocolForEAPTTLS": lambda n : setattr(self, 'inner_authentication_protocol_for_e_a_p_t_t_l_s', n.get_enum_value(non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType)),
+            "maximumAuthenticationFailures": lambda n : setattr(self, 'maximum_authentication_failures', n.get_int_value()),
+            "maximumAuthenticationTimeoutInSeconds": lambda n : setattr(self, 'maximum_authentication_timeout_in_seconds', n.get_int_value()),
+            "maximumEAPOLStartMessages": lambda n : setattr(self, 'maximum_e_a_p_o_l_start_messages', n.get_int_value()),
+            "maximumNumberOfPairwiseMasterKeysInCache": lambda n : setattr(self, 'maximum_number_of_pairwise_master_keys_in_cache', n.get_int_value()),
+            "maximumPairwiseMasterKeyCacheTimeInMinutes": lambda n : setattr(self, 'maximum_pairwise_master_key_cache_time_in_minutes', n.get_int_value()),
+            "maximumPreAuthenticationAttempts": lambda n : setattr(self, 'maximum_pre_authentication_attempts', n.get_int_value()),
+            "networkSingleSignOn": lambda n : setattr(self, 'network_single_sign_on', n.get_enum_value(network_single_sign_on_type.NetworkSingleSignOnType)),
+            "outerIdentityPrivacyTemporaryValue": lambda n : setattr(self, 'outer_identity_privacy_temporary_value', n.get_str_value()),
+            "performServerValidation": lambda n : setattr(self, 'perform_server_validation', n.get_bool_value()),
+            "promptForAdditionalAuthenticationCredentials": lambda n : setattr(self, 'prompt_for_additional_authentication_credentials', n.get_bool_value()),
+            "requireCryptographicBinding": lambda n : setattr(self, 'require_cryptographic_binding', n.get_bool_value()),
+            "rootCertificatesForServerValidation": lambda n : setattr(self, 'root_certificates_for_server_validation', n.get_collection_of_object_values(windows81_trusted_root_certificate.Windows81TrustedRootCertificate)),
+            "rootCertificateForClientValidation": lambda n : setattr(self, 'root_certificate_for_client_validation', n.get_object_value(windows81_trusted_root_certificate.Windows81TrustedRootCertificate)),
+            "trustedServerCertificateNames": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),
+            "userBasedVirtualLan": lambda n : setattr(self, 'user_based_virtual_lan', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -307,7 +307,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the identityCertificateForClientAuthentication property value. Specify identity certificate for client authentication.
         Args:
-            value: Value to set for the identityCertificateForClientAuthentication property.
+            value: Value to set for the identity_certificate_for_client_authentication property.
         """
         self._identity_certificate_for_client_authentication = value
     
@@ -324,7 +324,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the innerAuthenticationProtocolForEAPTTLS property value. Specify inner authentication protocol for EAP TTLS. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
         Args:
-            value: Value to set for the innerAuthenticationProtocolForEAPTTLS property.
+            value: Value to set for the inner_authentication_protocol_for_e_a_p_t_t_l_s property.
         """
         self._inner_authentication_protocol_for_e_a_p_t_t_l_s = value
     
@@ -341,7 +341,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the maximumAuthenticationFailures property value. Specify the maximum authentication failures allowed for a set of credentials. Valid range 1-100.
         Args:
-            value: Value to set for the maximumAuthenticationFailures property.
+            value: Value to set for the maximum_authentication_failures property.
         """
         self._maximum_authentication_failures = value
     
@@ -358,7 +358,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the maximumAuthenticationTimeoutInSeconds property value. Specify maximum authentication timeout (in seconds).  Valid range: 1-120
         Args:
-            value: Value to set for the maximumAuthenticationTimeoutInSeconds property.
+            value: Value to set for the maximum_authentication_timeout_in_seconds property.
         """
         self._maximum_authentication_timeout_in_seconds = value
     
@@ -375,7 +375,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the maximumEAPOLStartMessages property value. Specifiy the maximum number of EAPOL (Extensible Authentication Protocol over LAN) Start messages to be sent before returning failure. Valid range 1-100.
         Args:
-            value: Value to set for the maximumEAPOLStartMessages property.
+            value: Value to set for the maximum_e_a_p_o_l_start_messages property.
         """
         self._maximum_e_a_p_o_l_start_messages = value
     
@@ -392,7 +392,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the maximumNumberOfPairwiseMasterKeysInCache property value. Specify maximum number of pairwise master keys in cache.  Valid range: 1-255
         Args:
-            value: Value to set for the maximumNumberOfPairwiseMasterKeysInCache property.
+            value: Value to set for the maximum_number_of_pairwise_master_keys_in_cache property.
         """
         self._maximum_number_of_pairwise_master_keys_in_cache = value
     
@@ -409,7 +409,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the maximumPairwiseMasterKeyCacheTimeInMinutes property value. Specify maximum pairwise master key cache time (in minutes).  Valid range: 5-1440
         Args:
-            value: Value to set for the maximumPairwiseMasterKeyCacheTimeInMinutes property.
+            value: Value to set for the maximum_pairwise_master_key_cache_time_in_minutes property.
         """
         self._maximum_pairwise_master_key_cache_time_in_minutes = value
     
@@ -426,7 +426,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the maximumPreAuthenticationAttempts property value. Specify maximum pre-authentication attempts.  Valid range: 1-16
         Args:
-            value: Value to set for the maximumPreAuthenticationAttempts property.
+            value: Value to set for the maximum_pre_authentication_attempts property.
         """
         self._maximum_pre_authentication_attempts = value
     
@@ -443,7 +443,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the networkSingleSignOn property value. Specify the network single sign on type. Possible values are: disabled, prelogon, postlogon.
         Args:
-            value: Value to set for the networkSingleSignOn property.
+            value: Value to set for the network_single_sign_on property.
         """
         self._network_single_sign_on = value
     
@@ -460,7 +460,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the outerIdentityPrivacyTemporaryValue property value. Specify the string to replace usernames for privacy when using EAP TTLS or PEAP.
         Args:
-            value: Value to set for the outerIdentityPrivacyTemporaryValue property.
+            value: Value to set for the outer_identity_privacy_temporary_value property.
         """
         self._outer_identity_privacy_temporary_value = value
     
@@ -477,7 +477,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the performServerValidation property value. Specify whether to enable verification of server's identity by validating the certificate when EAP type is selected as PEAP.
         Args:
-            value: Value to set for the performServerValidation property.
+            value: Value to set for the perform_server_validation property.
         """
         self._perform_server_validation = value
     
@@ -494,7 +494,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the promptForAdditionalAuthenticationCredentials property value. Specify whether the wifi connection should prompt for additional authentication credentials.
         Args:
-            value: Value to set for the promptForAdditionalAuthenticationCredentials property.
+            value: Value to set for the prompt_for_additional_authentication_credentials property.
         """
         self._prompt_for_additional_authentication_credentials = value
     
@@ -511,7 +511,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the requireCryptographicBinding property value. Specify whether to enable cryptographic binding when EAP type is selected as PEAP.
         Args:
-            value: Value to set for the requireCryptographicBinding property.
+            value: Value to set for the require_cryptographic_binding property.
         """
         self._require_cryptographic_binding = value
     
@@ -528,7 +528,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the rootCertificateForClientValidation property value. Specify root certificate for client validation.
         Args:
-            value: Value to set for the rootCertificateForClientValidation property.
+            value: Value to set for the root_certificate_for_client_validation property.
         """
         self._root_certificate_for_client_validation = value
     
@@ -545,7 +545,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the rootCertificatesForServerValidation property value. Specify root certificate for server validation. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the rootCertificatesForServerValidation property.
+            value: Value to set for the root_certificates_for_server_validation property.
         """
         self._root_certificates_for_server_validation = value
     
@@ -581,8 +581,8 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         writer.write_bool_value("performServerValidation", self.perform_server_validation)
         writer.write_bool_value("promptForAdditionalAuthenticationCredentials", self.prompt_for_additional_authentication_credentials)
         writer.write_bool_value("requireCryptographicBinding", self.require_cryptographic_binding)
-        writer.write_object_value("rootCertificateForClientValidation", self.root_certificate_for_client_validation)
         writer.write_collection_of_object_values("rootCertificatesForServerValidation", self.root_certificates_for_server_validation)
+        writer.write_object_value("rootCertificateForClientValidation", self.root_certificate_for_client_validation)
         writer.write_collection_of_primitive_values("trustedServerCertificateNames", self.trusted_server_certificate_names)
         writer.write_bool_value("userBasedVirtualLan", self.user_based_virtual_lan)
     
@@ -599,7 +599,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the trustedServerCertificateNames property value. Specify trusted server certificate names.
         Args:
-            value: Value to set for the trustedServerCertificateNames property.
+            value: Value to set for the trusted_server_certificate_names property.
         """
         self._trusted_server_certificate_names = value
     
@@ -616,7 +616,7 @@ class WindowsWifiEnterpriseEAPConfiguration(windows_wifi_configuration.WindowsWi
         """
         Sets the userBasedVirtualLan property value. Specifiy whether to change the virtual LAN used by the device based on the user’s credentials. Cannot be used when NetworkSingleSignOnType is set to ​Disabled.
         Args:
-            value: Value to set for the userBasedVirtualLan property.
+            value: Value to set for the user_based_virtual_lan property.
         """
         self._user_based_virtual_lan = value
     

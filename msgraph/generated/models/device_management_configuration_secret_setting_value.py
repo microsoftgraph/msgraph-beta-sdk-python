@@ -37,7 +37,7 @@ class DeviceManagementConfigurationSecretSettingValue(device_management_configur
         """
         fields = {
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
-            "value_state": lambda n : setattr(self, 'value_state', n.get_enum_value(device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState)),
+            "valueState": lambda n : setattr(self, 'value_state', n.get_enum_value(device_management_configuration_secret_setting_value_state.DeviceManagementConfigurationSecretSettingValueState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class DeviceManagementConfigurationSecretSettingValue(device_management_configur
         """
         Sets the valueState property value. type tracking the encryption state of a secret setting value
         Args:
-            value: Value to set for the valueState property.
+            value: Value to set for the value_state property.
         """
         self._value_state = value
     

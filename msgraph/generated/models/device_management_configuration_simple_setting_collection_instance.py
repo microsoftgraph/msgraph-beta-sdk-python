@@ -34,7 +34,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstance(device_manage
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "simple_setting_collection_value": lambda n : setattr(self, 'simple_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue)),
+            "simpleSettingCollectionValue": lambda n : setattr(self, 'simple_setting_collection_value', n.get_collection_of_object_values(device_management_configuration_simple_setting_value.DeviceManagementConfigurationSimpleSettingValue)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstance(device_manage
         """
         Sets the simpleSettingCollectionValue property value. Simple setting collection instance value
         Args:
-            value: Value to set for the simpleSettingCollectionValue property.
+            value: Value to set for the simple_setting_collection_value property.
         """
         self._simple_setting_collection_value = value
     

@@ -51,8 +51,8 @@ class SendCustomNotificationToCompanyPortalPostRequestBody(AdditionalDataHolder,
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "notification_body": lambda n : setattr(self, 'notification_body', n.get_str_value()),
-            "notification_title": lambda n : setattr(self, 'notification_title', n.get_str_value()),
+            "notificationBody": lambda n : setattr(self, 'notification_body', n.get_str_value()),
+            "notificationTitle": lambda n : setattr(self, 'notification_title', n.get_str_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class SendCustomNotificationToCompanyPortalPostRequestBody(AdditionalDataHolder,
         """
         Sets the notificationBody property value. The notificationBody property
         Args:
-            value: Value to set for the notificationBody property.
+            value: Value to set for the notification_body property.
         """
         self._notification_body = value
     
@@ -86,7 +86,7 @@ class SendCustomNotificationToCompanyPortalPostRequestBody(AdditionalDataHolder,
         """
         Sets the notificationTitle property value. The notificationTitle property
         Args:
-            value: Value to set for the notificationTitle property.
+            value: Value to set for the notification_title property.
         """
         self._notification_title = value
     

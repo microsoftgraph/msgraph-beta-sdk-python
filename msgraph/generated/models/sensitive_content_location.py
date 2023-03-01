@@ -97,7 +97,7 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
         fields = {
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "evidences": lambda n : setattr(self, 'evidences', n.get_collection_of_object_values(sensitive_content_evidence.SensitiveContentEvidence)),
-            "id_match": lambda n : setattr(self, 'id_match', n.get_str_value()),
+            "idMatch": lambda n : setattr(self, 'id_match', n.get_str_value()),
             "length": lambda n : setattr(self, 'length', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "offset": lambda n : setattr(self, 'offset', n.get_int_value()),
@@ -117,7 +117,7 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
         """
         Sets the idMatch property value. The idMatch property
         Args:
-            value: Value to set for the idMatch property.
+            value: Value to set for the id_match property.
         """
         self._id_match = value
     
@@ -151,7 +151,7 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

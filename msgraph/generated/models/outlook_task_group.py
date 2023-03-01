@@ -20,7 +20,7 @@ class OutlookTaskGroup(entity.Entity):
         """
         Sets the changeKey property value. The version of the task group.
         Args:
-            value: Value to set for the changeKey property.
+            value: Value to set for the change_key property.
         """
         self._change_key = value
     
@@ -60,11 +60,11 @@ class OutlookTaskGroup(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "change_key": lambda n : setattr(self, 'change_key', n.get_str_value()),
-            "group_key": lambda n : setattr(self, 'group_key', n.get_object_value(Guid)),
-            "is_default_group": lambda n : setattr(self, 'is_default_group', n.get_bool_value()),
+            "changeKey": lambda n : setattr(self, 'change_key', n.get_str_value()),
+            "groupKey": lambda n : setattr(self, 'group_key', n.get_object_value(Guid)),
+            "isDefaultGroup": lambda n : setattr(self, 'is_default_group', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "task_folders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(outlook_task_folder.OutlookTaskFolder)),
+            "taskFolders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(outlook_task_folder.OutlookTaskFolder)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,7 +83,7 @@ class OutlookTaskGroup(entity.Entity):
         """
         Sets the groupKey property value. The unique GUID identifier for the task group.
         Args:
-            value: Value to set for the groupKey property.
+            value: Value to set for the group_key property.
         """
         self._group_key = value
     
@@ -100,7 +100,7 @@ class OutlookTaskGroup(entity.Entity):
         """
         Sets the isDefaultGroup property value. True if the task group is the default task group.
         Args:
-            value: Value to set for the isDefaultGroup property.
+            value: Value to set for the is_default_group property.
         """
         self._is_default_group = value
     
@@ -149,7 +149,7 @@ class OutlookTaskGroup(entity.Entity):
         """
         Sets the taskFolders property value. The collection of task folders in the task group. Read-only. Nullable.
         Args:
-            value: Value to set for the taskFolders property.
+            value: Value to set for the task_folders property.
         """
         self._task_folders = value
     

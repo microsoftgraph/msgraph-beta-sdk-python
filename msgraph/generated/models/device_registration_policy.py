@@ -22,7 +22,7 @@ class DeviceRegistrationPolicy(entity.Entity):
         """
         Sets the azureADJoin property value. Specifies the authorization policy for controlling registration of new devices using Azure AD Join within your organization. Required. For more information, see What is a device identity?.
         Args:
-            value: Value to set for the azureADJoin property.
+            value: Value to set for the azure_a_d_join property.
         """
         self._azure_a_d_join = value
     
@@ -39,7 +39,7 @@ class DeviceRegistrationPolicy(entity.Entity):
         """
         Sets the azureADRegistration property value. Specifies the authorization policy for controlling registration of new devices using Azure AD registered within your organization. Required. For more information, see What is a device identity?.
         Args:
-            value: Value to set for the azureADRegistration property.
+            value: Value to set for the azure_a_d_registration property.
         """
         self._azure_a_d_registration = value
     
@@ -105,7 +105,7 @@ class DeviceRegistrationPolicy(entity.Entity):
         """
         Sets the displayName property value. The name of the device registration policy. It is always set to Device Registration Policy. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -115,12 +115,12 @@ class DeviceRegistrationPolicy(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_a_d_join": lambda n : setattr(self, 'azure_a_d_join', n.get_object_value(azure_ad_join_policy.AzureAdJoinPolicy)),
-            "azure_a_d_registration": lambda n : setattr(self, 'azure_a_d_registration', n.get_object_value(azure_a_d_registration_policy.AzureADRegistrationPolicy)),
+            "azureADJoin": lambda n : setattr(self, 'azure_a_d_join', n.get_object_value(azure_ad_join_policy.AzureAdJoinPolicy)),
+            "azureADRegistration": lambda n : setattr(self, 'azure_a_d_registration', n.get_object_value(azure_a_d_registration_policy.AzureADRegistrationPolicy)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "multi_factor_auth_configuration": lambda n : setattr(self, 'multi_factor_auth_configuration', n.get_enum_value(multi_factor_auth_configuration.MultiFactorAuthConfiguration)),
-            "user_device_quota": lambda n : setattr(self, 'user_device_quota', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "multiFactorAuthConfiguration": lambda n : setattr(self, 'multi_factor_auth_configuration', n.get_enum_value(multi_factor_auth_configuration.MultiFactorAuthConfiguration)),
+            "userDeviceQuota": lambda n : setattr(self, 'user_device_quota', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -139,7 +139,7 @@ class DeviceRegistrationPolicy(entity.Entity):
         """
         Sets the multiFactorAuthConfiguration property value. The multiFactorAuthConfiguration property
         Args:
-            value: Value to set for the multiFactorAuthConfiguration property.
+            value: Value to set for the multi_factor_auth_configuration property.
         """
         self._multi_factor_auth_configuration = value
     
@@ -172,7 +172,7 @@ class DeviceRegistrationPolicy(entity.Entity):
         """
         Sets the userDeviceQuota property value. Specifies the maximum number of devices that a user can have within your organization before blocking new device registrations. The default value is set to 50. If this property is not specified during the policy update operation, it is automatically reset to 0 to indicate that users are not allowed to join any devices.
         Args:
-            value: Value to set for the userDeviceQuota property.
+            value: Value to set for the user_device_quota property.
         """
         self._user_device_quota = value
     

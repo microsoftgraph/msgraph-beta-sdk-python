@@ -58,7 +58,7 @@ class UserExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the daysUntilForcedReboot property value. Specifies the number of days after an update is installed, during which the user of the device can control when the device restarts.
         Args:
-            value: Value to set for the daysUntilForcedReboot property.
+            value: Value to set for the days_until_forced_reboot property.
         """
         self._days_until_forced_reboot = value
     
@@ -68,7 +68,7 @@ class UserExperienceSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "days_until_forced_reboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
+            "daysUntilForcedReboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -86,7 +86,7 @@ class UserExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

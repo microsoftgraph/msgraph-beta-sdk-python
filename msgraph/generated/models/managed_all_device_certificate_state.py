@@ -21,7 +21,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateExpirationDateTime property value. Certificate expiry date
         Args:
-            value: Value to set for the certificateExpirationDateTime property.
+            value: Value to set for the certificate_expiration_date_time property.
         """
         self._certificate_expiration_date_time = value
     
@@ -38,7 +38,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateExtendedKeyUsages property value. Enhanced Key Usage
         Args:
-            value: Value to set for the certificateExtendedKeyUsages property.
+            value: Value to set for the certificate_extended_key_usages property.
         """
         self._certificate_extended_key_usages = value
     
@@ -55,7 +55,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateIssuanceDateTime property value. Issuance date
         Args:
-            value: Value to set for the certificateIssuanceDateTime property.
+            value: Value to set for the certificate_issuance_date_time property.
         """
         self._certificate_issuance_date_time = value
     
@@ -72,7 +72,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateIssuerName property value. Issuer
         Args:
-            value: Value to set for the certificateIssuerName property.
+            value: Value to set for the certificate_issuer_name property.
         """
         self._certificate_issuer_name = value
     
@@ -89,7 +89,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateKeyUsages property value. Key Usage
         Args:
-            value: Value to set for the certificateKeyUsages property.
+            value: Value to set for the certificate_key_usages property.
         """
         self._certificate_key_usages = value
     
@@ -106,7 +106,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateRevokeStatus property value. Certificate Revocation Status.
         Args:
-            value: Value to set for the certificateRevokeStatus property.
+            value: Value to set for the certificate_revoke_status property.
         """
         self._certificate_revoke_status = value
     
@@ -123,7 +123,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateRevokeStatusLastChangeDateTime property value. The time the revoke status was last changed
         Args:
-            value: Value to set for the certificateRevokeStatusLastChangeDateTime property.
+            value: Value to set for the certificate_revoke_status_last_change_date_time property.
         """
         self._certificate_revoke_status_last_change_date_time = value
     
@@ -140,7 +140,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateSerialNumber property value. Serial number
         Args:
-            value: Value to set for the certificateSerialNumber property.
+            value: Value to set for the certificate_serial_number property.
         """
         self._certificate_serial_number = value
     
@@ -157,7 +157,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateSubjectName property value. Certificate subject name
         Args:
-            value: Value to set for the certificateSubjectName property.
+            value: Value to set for the certificate_subject_name property.
         """
         self._certificate_subject_name = value
     
@@ -174,7 +174,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the certificateThumbprint property value. Thumbprint
         Args:
-            value: Value to set for the certificateThumbprint property.
+            value: Value to set for the certificate_thumbprint property.
         """
         self._certificate_thumbprint = value
     
@@ -228,18 +228,18 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_expiration_date_time": lambda n : setattr(self, 'certificate_expiration_date_time', n.get_datetime_value()),
-            "certificate_extended_key_usages": lambda n : setattr(self, 'certificate_extended_key_usages', n.get_str_value()),
-            "certificate_issuance_date_time": lambda n : setattr(self, 'certificate_issuance_date_time', n.get_datetime_value()),
-            "certificate_issuer_name": lambda n : setattr(self, 'certificate_issuer_name', n.get_str_value()),
-            "certificate_key_usages": lambda n : setattr(self, 'certificate_key_usages', n.get_int_value()),
-            "certificate_revoke_status": lambda n : setattr(self, 'certificate_revoke_status', n.get_enum_value(certificate_revocation_status.CertificateRevocationStatus)),
-            "certificate_revoke_status_last_change_date_time": lambda n : setattr(self, 'certificate_revoke_status_last_change_date_time', n.get_datetime_value()),
-            "certificate_serial_number": lambda n : setattr(self, 'certificate_serial_number', n.get_str_value()),
-            "certificate_subject_name": lambda n : setattr(self, 'certificate_subject_name', n.get_str_value()),
-            "certificate_thumbprint": lambda n : setattr(self, 'certificate_thumbprint', n.get_str_value()),
-            "managed_device_display_name": lambda n : setattr(self, 'managed_device_display_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "certificateExpirationDateTime": lambda n : setattr(self, 'certificate_expiration_date_time', n.get_datetime_value()),
+            "certificateExtendedKeyUsages": lambda n : setattr(self, 'certificate_extended_key_usages', n.get_str_value()),
+            "certificateIssuanceDateTime": lambda n : setattr(self, 'certificate_issuance_date_time', n.get_datetime_value()),
+            "certificateIssuerName": lambda n : setattr(self, 'certificate_issuer_name', n.get_str_value()),
+            "certificateKeyUsages": lambda n : setattr(self, 'certificate_key_usages', n.get_int_value()),
+            "certificateRevokeStatus": lambda n : setattr(self, 'certificate_revoke_status', n.get_enum_value(certificate_revocation_status.CertificateRevocationStatus)),
+            "certificateRevokeStatusLastChangeDateTime": lambda n : setattr(self, 'certificate_revoke_status_last_change_date_time', n.get_datetime_value()),
+            "certificateSerialNumber": lambda n : setattr(self, 'certificate_serial_number', n.get_str_value()),
+            "certificateSubjectName": lambda n : setattr(self, 'certificate_subject_name', n.get_str_value()),
+            "certificateThumbprint": lambda n : setattr(self, 'certificate_thumbprint', n.get_str_value()),
+            "managedDeviceDisplayName": lambda n : setattr(self, 'managed_device_display_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -258,7 +258,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the managedDeviceDisplayName property value. Device display name
         Args:
-            value: Value to set for the managedDeviceDisplayName property.
+            value: Value to set for the managed_device_display_name property.
         """
         self._managed_device_display_name = value
     
@@ -297,7 +297,7 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         Sets the userPrincipalName property value. User principal name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

@@ -38,7 +38,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the accountId property value. The accountId property
         Args:
-            value: Value to set for the accountId property.
+            value: Value to set for the account_id property.
         """
         self._account_id = value
     
@@ -55,7 +55,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the accountNumber property value. The accountNumber property
         Args:
-            value: Value to set for the accountNumber property.
+            value: Value to set for the account_number property.
         """
         self._account_number = value
     
@@ -112,7 +112,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the creditAmount property value. The creditAmount property
         Args:
-            value: Value to set for the creditAmount property.
+            value: Value to set for the credit_amount property.
         """
         self._credit_amount = value
     
@@ -129,7 +129,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the debitAmount property value. The debitAmount property
         Args:
-            value: Value to set for the debitAmount property.
+            value: Value to set for the debit_amount property.
         """
         self._debit_amount = value
     
@@ -163,7 +163,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the documentNumber property value. The documentNumber property
         Args:
-            value: Value to set for the documentNumber property.
+            value: Value to set for the document_number property.
         """
         self._document_number = value
     
@@ -180,7 +180,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the documentType property value. The documentType property
         Args:
-            value: Value to set for the documentType property.
+            value: Value to set for the document_type property.
         """
         self._document_type = value
     
@@ -191,15 +191,15 @@ class GeneralLedgerEntry(entity.Entity):
         """
         fields = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "account_id": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
-            "account_number": lambda n : setattr(self, 'account_number', n.get_str_value()),
-            "credit_amount": lambda n : setattr(self, 'credit_amount', n.get_float_value()),
-            "debit_amount": lambda n : setattr(self, 'debit_amount', n.get_float_value()),
+            "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
+            "accountNumber": lambda n : setattr(self, 'account_number', n.get_str_value()),
+            "creditAmount": lambda n : setattr(self, 'credit_amount', n.get_float_value()),
+            "debitAmount": lambda n : setattr(self, 'debit_amount', n.get_float_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "document_number": lambda n : setattr(self, 'document_number', n.get_str_value()),
-            "document_type": lambda n : setattr(self, 'document_type', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "posting_date": lambda n : setattr(self, 'posting_date', n.get_object_value(Date)),
+            "documentNumber": lambda n : setattr(self, 'document_number', n.get_str_value()),
+            "documentType": lambda n : setattr(self, 'document_type', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "postingDate": lambda n : setattr(self, 'posting_date', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -218,7 +218,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -235,7 +235,7 @@ class GeneralLedgerEntry(entity.Entity):
         """
         Sets the postingDate property value. The postingDate property
         Args:
-            value: Value to set for the postingDate property.
+            value: Value to set for the posting_date property.
         """
         self._posting_date = value
     

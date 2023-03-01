@@ -1,7 +1,7 @@
 from enum import Enum
 
 class OfficeUpdateChannel(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Current = "current",
     Deferred = "deferred",
     FirstReleaseCurrent = "firstReleaseCurrent",

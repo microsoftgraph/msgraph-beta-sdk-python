@@ -30,19 +30,18 @@ class EvaluateClassificationResultsRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/informationProtection/policy/labels/microsoft.graph.evaluateClassificationResults"
+        self.url_template: str = "{+baseurl}/informationProtection/policy/labels/evaluateClassificationResults"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]:
+    async def post(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]:
         """
         Using classification results, compute the information protection label that should be applied and return the set of actions that must be taken to correctly label the information. This API is useful when a label should be set automatically based on classification of the file contents, rather than labeled directly by a user or service.  To evaluate based on classification results, provide contentInfo, which includes existing content metadata key/value pairs, and classification results. The API returns an informationProtectionAction that contains one of more of the following: 
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[evaluate_classification_results_response.EvaluateClassificationResultsResponse]
         """
         if body is None:
@@ -56,7 +55,7 @@ class EvaluateClassificationResultsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, evaluate_classification_results_response.EvaluateClassificationResultsResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, evaluate_classification_results_response.EvaluateClassificationResultsResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[evaluate_classification_results_post_request_body.EvaluateClassificationResultsPostRequestBody] = None, request_configuration: Optional[EvaluateClassificationResultsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class EvaluateClassificationResultsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class EvaluateClassificationResultsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

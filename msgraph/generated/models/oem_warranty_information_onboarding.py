@@ -77,7 +77,7 @@ class OemWarrantyInformationOnboarding(entity.Entity):
         fields = {
             "available": lambda n : setattr(self, 'available', n.get_bool_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
-            "oem_name": lambda n : setattr(self, 'oem_name', n.get_str_value()),
+            "oemName": lambda n : setattr(self, 'oem_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -96,7 +96,7 @@ class OemWarrantyInformationOnboarding(entity.Entity):
         """
         Sets the oemName property value. OEM name. This property is read-only.
         Args:
-            value: Value to set for the oemName property.
+            value: Value to set for the oem_name property.
         """
         self._oem_name = value
     

@@ -49,7 +49,7 @@ class GetMemberGroupsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "security_enabled_only": lambda n : setattr(self, 'security_enabled_only', n.get_bool_value()),
+            "securityEnabledOnly": lambda n : setattr(self, 'security_enabled_only', n.get_bool_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class GetMemberGroupsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the securityEnabledOnly property value. The securityEnabledOnly property
         Args:
-            value: Value to set for the securityEnabledOnly property.
+            value: Value to set for the security_enabled_only property.
         """
         self._security_enabled_only = value
     

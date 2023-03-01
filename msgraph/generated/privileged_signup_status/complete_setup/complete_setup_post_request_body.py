@@ -51,7 +51,7 @@ class CompleteSetupPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "tenant_setup_info": lambda n : setattr(self, 'tenant_setup_info', n.get_object_value(tenant_setup_info.TenantSetupInfo)),
+            "tenantSetupInfo": lambda n : setattr(self, 'tenant_setup_info', n.get_object_value(tenant_setup_info.TenantSetupInfo)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class CompleteSetupPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the tenantSetupInfo property value. The tenantSetupInfo property
         Args:
-            value: Value to set for the tenantSetupInfo property.
+            value: Value to set for the tenant_setup_info property.
         """
         self._tenant_setup_info = value
     

@@ -19,7 +19,7 @@ class ActivateDeviceEsimActionResult(device_action_result.DeviceActionResult):
         """
         Sets the carrierUrl property value. Carrier Url to activate the device eSIM
         Args:
-            value: Value to set for the carrierUrl property.
+            value: Value to set for the carrier_url property.
         """
         self._carrier_url = value
     
@@ -51,7 +51,7 @@ class ActivateDeviceEsimActionResult(device_action_result.DeviceActionResult):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "carrier_url": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
+            "carrierUrl": lambda n : setattr(self, 'carrier_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

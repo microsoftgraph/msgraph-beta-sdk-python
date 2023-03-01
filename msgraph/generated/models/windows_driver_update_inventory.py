@@ -25,7 +25,7 @@ class WindowsDriverUpdateInventory(entity.Entity):
         """
         Sets the applicableDeviceCount property value. The number of devices for which this driver is applicable.
         Args:
-            value: Value to set for the applicableDeviceCount property.
+            value: Value to set for the applicable_device_count property.
         """
         self._applicable_device_count = value
     
@@ -42,7 +42,7 @@ class WindowsDriverUpdateInventory(entity.Entity):
         """
         Sets the approvalStatus property value. An enum type to represent approval status of a driver.
         Args:
-            value: Value to set for the approvalStatus property.
+            value: Value to set for the approval_status property.
         """
         self._approval_status = value
     
@@ -114,7 +114,7 @@ class WindowsDriverUpdateInventory(entity.Entity):
         """
         Sets the deployDateTime property value. The date time when a driver should be deployed if approvalStatus is approved.
         Args:
-            value: Value to set for the deployDateTime property.
+            value: Value to set for the deploy_date_time property.
         """
         self._deploy_date_time = value
     
@@ -131,7 +131,7 @@ class WindowsDriverUpdateInventory(entity.Entity):
         """
         Sets the driverClass property value. The class of the driver.
         Args:
-            value: Value to set for the driverClass property.
+            value: Value to set for the driver_class property.
         """
         self._driver_class = value
     
@@ -141,14 +141,14 @@ class WindowsDriverUpdateInventory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applicable_device_count": lambda n : setattr(self, 'applicable_device_count', n.get_int_value()),
-            "approval_status": lambda n : setattr(self, 'approval_status', n.get_enum_value(driver_approval_status.DriverApprovalStatus)),
+            "applicableDeviceCount": lambda n : setattr(self, 'applicable_device_count', n.get_int_value()),
+            "approvalStatus": lambda n : setattr(self, 'approval_status', n.get_enum_value(driver_approval_status.DriverApprovalStatus)),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(driver_category.DriverCategory)),
-            "deploy_date_time": lambda n : setattr(self, 'deploy_date_time', n.get_datetime_value()),
-            "driver_class": lambda n : setattr(self, 'driver_class', n.get_str_value()),
+            "deployDateTime": lambda n : setattr(self, 'deploy_date_time', n.get_datetime_value()),
+            "driverClass": lambda n : setattr(self, 'driver_class', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "release_date_time": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
+            "releaseDateTime": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -202,7 +202,7 @@ class WindowsDriverUpdateInventory(entity.Entity):
         """
         Sets the releaseDateTime property value. The release date time of the driver.
         Args:
-            value: Value to set for the releaseDateTime property.
+            value: Value to set for the release_date_time property.
         """
         self._release_date_time = value
     

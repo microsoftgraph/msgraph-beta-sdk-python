@@ -25,7 +25,7 @@ class PrintJob(entity.Entity):
         """
         Sets the acknowledgedDateTime property value. The acknowledgedDateTime property
         Args:
-            value: Value to set for the acknowledgedDateTime property.
+            value: Value to set for the acknowledged_date_time property.
         """
         self._acknowledged_date_time = value
     
@@ -42,7 +42,7 @@ class PrintJob(entity.Entity):
         """
         Sets the completedDateTime property value. The completedDateTime property
         Args:
-            value: Value to set for the completedDateTime property.
+            value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
     
@@ -78,7 +78,7 @@ class PrintJob(entity.Entity):
         self._created_by: Optional[user_identity.UserIdentity] = None
         # The DateTimeOffset when the job was created. Read-only.
         self._created_date_time: Optional[datetime] = None
-        # The displayName property
+        # The name of the print job.
         self._display_name: Optional[str] = None
         # The documents property
         self._documents: Optional[List[print_document.PrintDocument]] = None
@@ -110,7 +110,7 @@ class PrintJob(entity.Entity):
         """
         Sets the createdBy property value. The createdBy property
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -127,7 +127,7 @@ class PrintJob(entity.Entity):
         """
         Sets the createdDateTime property value. The DateTimeOffset when the job was created. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -146,7 +146,7 @@ class PrintJob(entity.Entity):
     @property
     def display_name(self,) -> Optional[str]:
         """
-        Gets the displayName property value. The displayName property
+        Gets the displayName property value. The name of the print job.
         Returns: Optional[str]
         """
         return self._display_name
@@ -154,9 +154,9 @@ class PrintJob(entity.Entity):
     @display_name.setter
     def display_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the displayName property value. The displayName property
+        Sets the displayName property value. The name of the print job.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -190,7 +190,7 @@ class PrintJob(entity.Entity):
         """
         Sets the errorCode property value. The errorCode property
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -200,17 +200,17 @@ class PrintJob(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "acknowledged_date_time": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
-            "completed_date_time": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
+            "acknowledgedDateTime": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
+            "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(print_job_configuration.PrintJobConfiguration)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "documents": lambda n : setattr(self, 'documents', n.get_collection_of_object_values(print_document.PrintDocument)),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "is_fetchable": lambda n : setattr(self, 'is_fetchable', n.get_bool_value()),
-            "redirected_from": lambda n : setattr(self, 'redirected_from', n.get_str_value()),
-            "redirected_to": lambda n : setattr(self, 'redirected_to', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "isFetchable": lambda n : setattr(self, 'is_fetchable', n.get_bool_value()),
+            "redirectedFrom": lambda n : setattr(self, 'redirected_from', n.get_str_value()),
+            "redirectedTo": lambda n : setattr(self, 'redirected_to', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_object_value(print_job_status.PrintJobStatus)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(print_task.PrintTask)),
         }
@@ -231,7 +231,7 @@ class PrintJob(entity.Entity):
         """
         Sets the isFetchable property value. If true, document can be fetched by printer.
         Args:
-            value: Value to set for the isFetchable property.
+            value: Value to set for the is_fetchable property.
         """
         self._is_fetchable = value
     
@@ -248,7 +248,7 @@ class PrintJob(entity.Entity):
         """
         Sets the redirectedFrom property value. Contains the source job URL, if the job has been redirected from another printer.
         Args:
-            value: Value to set for the redirectedFrom property.
+            value: Value to set for the redirected_from property.
         """
         self._redirected_from = value
     
@@ -265,7 +265,7 @@ class PrintJob(entity.Entity):
         """
         Sets the redirectedTo property value. Contains the destination job URL, if the job has been redirected to another printer.
         Args:
-            value: Value to set for the redirectedTo property.
+            value: Value to set for the redirected_to property.
         """
         self._redirected_to = value
     

@@ -87,7 +87,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the encryptionMethod property value. Select the encryption method for operating system drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
         Args:
-            value: Value to set for the encryptionMethod property.
+            value: Value to set for the encryption_method property.
         """
         self._encryption_method = value
     
@@ -97,19 +97,19 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "encryption_method": lambda n : setattr(self, 'encryption_method', n.get_enum_value(bit_locker_encryption_method.BitLockerEncryptionMethod)),
-            "minimum_pin_length": lambda n : setattr(self, 'minimum_pin_length', n.get_int_value()),
+            "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(bit_locker_encryption_method.BitLockerEncryptionMethod)),
+            "minimumPinLength": lambda n : setattr(self, 'minimum_pin_length', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "preboot_recovery_enable_message_and_url": lambda n : setattr(self, 'preboot_recovery_enable_message_and_url', n.get_bool_value()),
-            "preboot_recovery_message": lambda n : setattr(self, 'preboot_recovery_message', n.get_str_value()),
-            "preboot_recovery_url": lambda n : setattr(self, 'preboot_recovery_url', n.get_str_value()),
-            "recovery_options": lambda n : setattr(self, 'recovery_options', n.get_object_value(bit_locker_recovery_options.BitLockerRecoveryOptions)),
-            "startup_authentication_block_without_tpm_chip": lambda n : setattr(self, 'startup_authentication_block_without_tpm_chip', n.get_bool_value()),
-            "startup_authentication_required": lambda n : setattr(self, 'startup_authentication_required', n.get_bool_value()),
-            "startup_authentication_tpm_key_usage": lambda n : setattr(self, 'startup_authentication_tpm_key_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "startup_authentication_tpm_pin_and_key_usage": lambda n : setattr(self, 'startup_authentication_tpm_pin_and_key_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "startup_authentication_tpm_pin_usage": lambda n : setattr(self, 'startup_authentication_tpm_pin_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "startup_authentication_tpm_usage": lambda n : setattr(self, 'startup_authentication_tpm_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "prebootRecoveryEnableMessageAndUrl": lambda n : setattr(self, 'preboot_recovery_enable_message_and_url', n.get_bool_value()),
+            "prebootRecoveryMessage": lambda n : setattr(self, 'preboot_recovery_message', n.get_str_value()),
+            "prebootRecoveryUrl": lambda n : setattr(self, 'preboot_recovery_url', n.get_str_value()),
+            "recoveryOptions": lambda n : setattr(self, 'recovery_options', n.get_object_value(bit_locker_recovery_options.BitLockerRecoveryOptions)),
+            "startupAuthenticationBlockWithoutTpmChip": lambda n : setattr(self, 'startup_authentication_block_without_tpm_chip', n.get_bool_value()),
+            "startupAuthenticationRequired": lambda n : setattr(self, 'startup_authentication_required', n.get_bool_value()),
+            "startupAuthenticationTpmKeyUsage": lambda n : setattr(self, 'startup_authentication_tpm_key_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "startupAuthenticationTpmPinAndKeyUsage": lambda n : setattr(self, 'startup_authentication_tpm_pin_and_key_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "startupAuthenticationTpmPinUsage": lambda n : setattr(self, 'startup_authentication_tpm_pin_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "startupAuthenticationTpmUsage": lambda n : setattr(self, 'startup_authentication_tpm_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
         }
         return fields
     
@@ -126,7 +126,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the minimumPinLength property value. Indicates the minimum length of startup pin. Valid values 4 to 20
         Args:
-            value: Value to set for the minimumPinLength property.
+            value: Value to set for the minimum_pin_length property.
         """
         self._minimum_pin_length = value
     
@@ -143,7 +143,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -160,7 +160,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the prebootRecoveryEnableMessageAndUrl property value. Enable pre-boot recovery message and Url. If requireStartupAuthentication is false, this value does not affect.
         Args:
-            value: Value to set for the prebootRecoveryEnableMessageAndUrl property.
+            value: Value to set for the preboot_recovery_enable_message_and_url property.
         """
         self._preboot_recovery_enable_message_and_url = value
     
@@ -177,7 +177,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the prebootRecoveryMessage property value. Defines a custom recovery message.
         Args:
-            value: Value to set for the prebootRecoveryMessage property.
+            value: Value to set for the preboot_recovery_message property.
         """
         self._preboot_recovery_message = value
     
@@ -194,7 +194,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the prebootRecoveryUrl property value. Defines a custom recovery URL.
         Args:
-            value: Value to set for the prebootRecoveryUrl property.
+            value: Value to set for the preboot_recovery_url property.
         """
         self._preboot_recovery_url = value
     
@@ -211,7 +211,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the recoveryOptions property value. Allows to recover BitLocker encrypted operating system drives in the absence of the required startup key information. This policy setting is applied when you turn on BitLocker.
         Args:
-            value: Value to set for the recoveryOptions property.
+            value: Value to set for the recovery_options property.
         """
         self._recovery_options = value
     
@@ -251,7 +251,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the startupAuthenticationBlockWithoutTpmChip property value. Indicates whether to allow BitLocker without a compatible TPM (requires a password or a startup key on a USB flash drive).
         Args:
-            value: Value to set for the startupAuthenticationBlockWithoutTpmChip property.
+            value: Value to set for the startup_authentication_block_without_tpm_chip property.
         """
         self._startup_authentication_block_without_tpm_chip = value
     
@@ -268,7 +268,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the startupAuthenticationRequired property value. Require additional authentication at startup.
         Args:
-            value: Value to set for the startupAuthenticationRequired property.
+            value: Value to set for the startup_authentication_required property.
         """
         self._startup_authentication_required = value
     
@@ -285,7 +285,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the startupAuthenticationTpmKeyUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the startupAuthenticationTpmKeyUsage property.
+            value: Value to set for the startup_authentication_tpm_key_usage property.
         """
         self._startup_authentication_tpm_key_usage = value
     
@@ -302,7 +302,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the startupAuthenticationTpmPinAndKeyUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the startupAuthenticationTpmPinAndKeyUsage property.
+            value: Value to set for the startup_authentication_tpm_pin_and_key_usage property.
         """
         self._startup_authentication_tpm_pin_and_key_usage = value
     
@@ -319,7 +319,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the startupAuthenticationTpmPinUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the startupAuthenticationTpmPinUsage property.
+            value: Value to set for the startup_authentication_tpm_pin_usage property.
         """
         self._startup_authentication_tpm_pin_usage = value
     
@@ -336,7 +336,7 @@ class BitLockerSystemDrivePolicy(AdditionalDataHolder, Parsable):
         """
         Sets the startupAuthenticationTpmUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the startupAuthenticationTpmUsage property.
+            value: Value to set for the startup_authentication_tpm_usage property.
         """
         self._startup_authentication_tpm_usage = value
     

@@ -30,7 +30,7 @@ class ExternalConnection(entity.Entity):
         """
         Sets the activitySettings property value. Collects configurable settings related to activities involving connector content.
         Args:
-            value: Value to set for the activitySettings property.
+            value: Value to set for the activity_settings property.
         """
         self._activity_settings = value
     
@@ -47,7 +47,7 @@ class ExternalConnection(entity.Entity):
         """
         Sets the complianceSettings property value. The settings required for the connection to participate in eDiscovery, such as the display templates for eDiscovery results.
         Args:
-            value: Value to set for the complianceSettings property.
+            value: Value to set for the compliance_settings property.
         """
         self._compliance_settings = value
     
@@ -81,13 +81,13 @@ class ExternalConnection(entity.Entity):
         """
         Sets the connectorId property value. The Teams App ID. Optional.
         Args:
-            value: Value to set for the connectorId property.
+            value: Value to set for the connector_id property.
         """
         self._connector_id = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new ExternalConnection and sets the default values.
+        Instantiates a new externalConnection and sets the default values.
         """
         super().__init__()
         # Collects configurable settings related to activities involving connector content.
@@ -165,7 +165,7 @@ class ExternalConnection(entity.Entity):
         """
         Sets the enabledContentExperiences property value. The list of content experiences the connection will participate in. Possible values are search and compliance.
         Args:
-            value: Value to set for the enabledContentExperiences property.
+            value: Value to set for the enabled_content_experiences property.
         """
         self._enabled_content_experiences = value
     
@@ -175,20 +175,20 @@ class ExternalConnection(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "activity_settings": lambda n : setattr(self, 'activity_settings', n.get_object_value(activity_settings.ActivitySettings)),
-            "compliance_settings": lambda n : setattr(self, 'compliance_settings', n.get_object_value(compliance_settings.ComplianceSettings)),
+            "activitySettings": lambda n : setattr(self, 'activity_settings', n.get_object_value(activity_settings.ActivitySettings)),
+            "complianceSettings": lambda n : setattr(self, 'compliance_settings', n.get_object_value(compliance_settings.ComplianceSettings)),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(configuration.Configuration)),
-            "connector_id": lambda n : setattr(self, 'connector_id', n.get_str_value()),
+            "connectorId": lambda n : setattr(self, 'connector_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "enabled_content_experiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_enum_value(content_experience_type.ContentExperienceType)),
+            "enabledContentExperiences": lambda n : setattr(self, 'enabled_content_experiences', n.get_enum_value(content_experience_type.ContentExperienceType)),
             "groups": lambda n : setattr(self, 'groups', n.get_collection_of_object_values(external_group.ExternalGroup)),
-            "ingested_items_count": lambda n : setattr(self, 'ingested_items_count', n.get_int_value()),
+            "ingestedItemsCount": lambda n : setattr(self, 'ingested_items_count', n.get_int_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(external_item.ExternalItem)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "operations": lambda n : setattr(self, 'operations', n.get_collection_of_object_values(connection_operation.ConnectionOperation)),
             "quota": lambda n : setattr(self, 'quota', n.get_object_value(connection_quota.ConnectionQuota)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(schema.Schema)),
-            "search_settings": lambda n : setattr(self, 'search_settings', n.get_object_value(search_settings.SearchSettings)),
+            "searchSettings": lambda n : setattr(self, 'search_settings', n.get_object_value(search_settings.SearchSettings)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(connection_state.ConnectionState)),
         }
         super_fields = super().get_field_deserializers()
@@ -225,7 +225,7 @@ class ExternalConnection(entity.Entity):
         """
         Sets the ingestedItemsCount property value. The number of items ingested into a connection. This value is refreshed every 15 minutes. If the connection state is draft, then ingestedItemsCount will be null.
         Args:
-            value: Value to set for the ingestedItemsCount property.
+            value: Value to set for the ingested_items_count property.
         """
         self._ingested_items_count = value
     
@@ -327,7 +327,7 @@ class ExternalConnection(entity.Entity):
         """
         Sets the searchSettings property value. The settings configuring the search experience for content in this connection, such as the display templates for search results.
         Args:
-            value: Value to set for the searchSettings property.
+            value: Value to set for the search_settings property.
         """
         self._search_settings = value
     

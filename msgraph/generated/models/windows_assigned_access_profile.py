@@ -19,7 +19,7 @@ class WindowsAssignedAccessProfile(entity.Entity):
         """
         Sets the appUserModelIds property value. These are the only Windows Store Apps that will be available to launch from the Start menu.
         Args:
-            value: Value to set for the appUserModelIds property.
+            value: Value to set for the app_user_model_ids property.
         """
         self._app_user_model_ids = value
     
@@ -68,7 +68,7 @@ class WindowsAssignedAccessProfile(entity.Entity):
         """
         Sets the desktopAppPaths property value. These are the paths of the Desktop Apps that will be available on the Start menu and the only apps the user will be able to launch.
         Args:
-            value: Value to set for the desktopAppPaths property.
+            value: Value to set for the desktop_app_paths property.
         """
         self._desktop_app_paths = value
     
@@ -78,12 +78,12 @@ class WindowsAssignedAccessProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_user_model_ids": lambda n : setattr(self, 'app_user_model_ids', n.get_collection_of_primitive_values(str)),
-            "desktop_app_paths": lambda n : setattr(self, 'desktop_app_paths', n.get_collection_of_primitive_values(str)),
-            "profile_name": lambda n : setattr(self, 'profile_name', n.get_str_value()),
-            "show_task_bar": lambda n : setattr(self, 'show_task_bar', n.get_bool_value()),
-            "start_menu_layout_xml": lambda n : setattr(self, 'start_menu_layout_xml', n.get_bytes_value()),
-            "user_accounts": lambda n : setattr(self, 'user_accounts', n.get_collection_of_primitive_values(str)),
+            "appUserModelIds": lambda n : setattr(self, 'app_user_model_ids', n.get_collection_of_primitive_values(str)),
+            "desktopAppPaths": lambda n : setattr(self, 'desktop_app_paths', n.get_collection_of_primitive_values(str)),
+            "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
+            "showTaskBar": lambda n : setattr(self, 'show_task_bar', n.get_bool_value()),
+            "startMenuLayoutXml": lambda n : setattr(self, 'start_menu_layout_xml', n.get_bytes_value()),
+            "userAccounts": lambda n : setattr(self, 'user_accounts', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class WindowsAssignedAccessProfile(entity.Entity):
         """
         Sets the profileName property value. This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the users to whom this kiosk configuration is assigned.
         Args:
-            value: Value to set for the profileName property.
+            value: Value to set for the profile_name property.
         """
         self._profile_name = value
     
@@ -135,7 +135,7 @@ class WindowsAssignedAccessProfile(entity.Entity):
         """
         Sets the showTaskBar property value. This setting allows the admin to specify whether the Task Bar is shown or not.
         Args:
-            value: Value to set for the showTaskBar property.
+            value: Value to set for the show_task_bar property.
         """
         self._show_task_bar = value
     
@@ -152,7 +152,7 @@ class WindowsAssignedAccessProfile(entity.Entity):
         """
         Sets the startMenuLayoutXml property value. Allows admins to override the default Start layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in Binary format.
         Args:
-            value: Value to set for the startMenuLayoutXml property.
+            value: Value to set for the start_menu_layout_xml property.
         """
         self._start_menu_layout_xml = value
     
@@ -169,7 +169,7 @@ class WindowsAssignedAccessProfile(entity.Entity):
         """
         Sets the userAccounts property value. The user accounts that will be locked to this kiosk configuration.
         Args:
-            value: Value to set for the userAccounts property.
+            value: Value to set for the user_accounts property.
         """
         self._user_accounts = value
     

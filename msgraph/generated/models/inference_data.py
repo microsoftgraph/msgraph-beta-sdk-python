@@ -34,7 +34,7 @@ class InferenceData(AdditionalDataHolder, Parsable):
         """
         Sets the confidenceScore property value. Confidence score reflecting the accuracy of the data inferred about the user.
         Args:
-            value: Value to set for the confidenceScore property.
+            value: Value to set for the confidence_score property.
         """
         self._confidence_score = value
     
@@ -70,9 +70,9 @@ class InferenceData(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "confidence_score": lambda n : setattr(self, 'confidence_score', n.get_float_value()),
+            "confidenceScore": lambda n : setattr(self, 'confidence_score', n.get_float_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "user_has_verified_accuracy": lambda n : setattr(self, 'user_has_verified_accuracy', n.get_bool_value()),
+            "userHasVerifiedAccuracy": lambda n : setattr(self, 'user_has_verified_accuracy', n.get_bool_value()),
         }
         return fields
     
@@ -89,7 +89,7 @@ class InferenceData(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -119,7 +119,7 @@ class InferenceData(AdditionalDataHolder, Parsable):
         """
         Sets the userHasVerifiedAccuracy property value. Records if the user has confirmed this inference as being True or False.
         Args:
-            value: Value to set for the userHasVerifiedAccuracy property.
+            value: Value to set for the user_has_verified_accuracy property.
         """
         self._user_has_verified_accuracy = value
     

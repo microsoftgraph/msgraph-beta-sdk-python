@@ -37,7 +37,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the configuredDisplays property value. The list of configured displays. Applicable only for Microsoft Teams Rooms devices.
         Args:
-            value: Value to set for the configuredDisplays property.
+            value: Value to set for the configured_displays property.
         """
         self._configured_displays = value
     
@@ -86,7 +86,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the displayCount property value. Total number of connected displays, including the inbuilt display. Applicable only for Teams Rooms devices.
         Args:
-            value: Value to set for the displayCount property.
+            value: Value to set for the display_count property.
         """
         self._display_count = value
     
@@ -96,11 +96,11 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configured_displays": lambda n : setattr(self, 'configured_displays', n.get_collection_of_object_values(teamwork_configured_peripheral.TeamworkConfiguredPeripheral)),
-            "display_count": lambda n : setattr(self, 'display_count', n.get_int_value()),
-            "in_built_display_screen_configuration": lambda n : setattr(self, 'in_built_display_screen_configuration', n.get_object_value(teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration)),
-            "is_content_duplication_allowed": lambda n : setattr(self, 'is_content_duplication_allowed', n.get_bool_value()),
-            "is_dual_display_mode_enabled": lambda n : setattr(self, 'is_dual_display_mode_enabled', n.get_bool_value()),
+            "configuredDisplays": lambda n : setattr(self, 'configured_displays', n.get_collection_of_object_values(teamwork_configured_peripheral.TeamworkConfiguredPeripheral)),
+            "displayCount": lambda n : setattr(self, 'display_count', n.get_int_value()),
+            "inBuiltDisplayScreenConfiguration": lambda n : setattr(self, 'in_built_display_screen_configuration', n.get_object_value(teamwork_display_screen_configuration.TeamworkDisplayScreenConfiguration)),
+            "isContentDuplicationAllowed": lambda n : setattr(self, 'is_content_duplication_allowed', n.get_bool_value()),
+            "isDualDisplayModeEnabled": lambda n : setattr(self, 'is_dual_display_mode_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -118,7 +118,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the inBuiltDisplayScreenConfiguration property value. Configuration for the inbuilt display. Not applicable for Teams Rooms devices.
         Args:
-            value: Value to set for the inBuiltDisplayScreenConfiguration property.
+            value: Value to set for the in_built_display_screen_configuration property.
         """
         self._in_built_display_screen_configuration = value
     
@@ -135,7 +135,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isContentDuplicationAllowed property value. True if content duplication is allowed. Applicable only for Teams Rooms devices.
         Args:
-            value: Value to set for the isContentDuplicationAllowed property.
+            value: Value to set for the is_content_duplication_allowed property.
         """
         self._is_content_duplication_allowed = value
     
@@ -152,7 +152,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isDualDisplayModeEnabled property value. True if dual display mode is enabled. If isDualDisplayModeEnabled is true, then the content will be displayed on both front of room screens instead of just the one screen, when it is shared via the HDMI ingest module on the Microsoft Teams Rooms device. Applicable only for Teams Rooms devices.
         Args:
-            value: Value to set for the isDualDisplayModeEnabled property.
+            value: Value to set for the is_dual_display_mode_enabled property.
         """
         self._is_dual_display_mode_enabled = value
     
@@ -169,7 +169,7 @@ class TeamworkDisplayConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

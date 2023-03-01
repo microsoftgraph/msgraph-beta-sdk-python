@@ -78,8 +78,8 @@ class ContentProperties(AdditionalDataHolder, Parsable):
         """
         fields = {
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_primitive_values(str)),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_object_value(content_metadata.ContentMetadata)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -98,7 +98,7 @@ class ContentProperties(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedBy property value. The lastModifiedBy property
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -115,7 +115,7 @@ class ContentProperties(AdditionalDataHolder, Parsable):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -149,7 +149,7 @@ class ContentProperties(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

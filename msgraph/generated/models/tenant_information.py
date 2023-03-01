@@ -64,7 +64,7 @@ class TenantInformation(AdditionalDataHolder, Parsable):
         """
         Sets the defaultDomainName property value. Primary domain name of an Azure AD tenant.
         Args:
-            value: Value to set for the defaultDomainName property.
+            value: Value to set for the default_domain_name property.
         """
         self._default_domain_name = value
     
@@ -81,7 +81,7 @@ class TenantInformation(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Display name of an Azure AD tenant.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -98,7 +98,7 @@ class TenantInformation(AdditionalDataHolder, Parsable):
         """
         Sets the federationBrandName property value. Name shown to users that sign in to an Azure AD tenant.
         Args:
-            value: Value to set for the federationBrandName property.
+            value: Value to set for the federation_brand_name property.
         """
         self._federation_brand_name = value
     
@@ -108,11 +108,11 @@ class TenantInformation(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_domain_name": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "federation_brand_name": lambda n : setattr(self, 'federation_brand_name', n.get_str_value()),
+            "defaultDomainName": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "federationBrandName": lambda n : setattr(self, 'federation_brand_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         return fields
     
@@ -129,7 +129,7 @@ class TenantInformation(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -161,7 +161,7 @@ class TenantInformation(AdditionalDataHolder, Parsable):
         """
         Sets the tenantId property value. Unique identifier of an Azure AD tenant.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

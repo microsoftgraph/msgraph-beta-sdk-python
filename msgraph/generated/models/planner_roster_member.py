@@ -39,8 +39,8 @@ class PlannerRosterMember(entity.Entity):
         """
         fields = {
             "roles": lambda n : setattr(self, 'roles', n.get_collection_of_primitive_values(str)),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -89,7 +89,7 @@ class PlannerRosterMember(entity.Entity):
         """
         Sets the tenantId property value. Identifier of the tenant the user belongs to. Currently only the users from the same tenant can be added to a plannerRoster.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -106,7 +106,7 @@ class PlannerRosterMember(entity.Entity):
         """
         Sets the userId property value. Identifier of the user.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

@@ -95,7 +95,7 @@ class SetUserPreferredPresencePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the expirationDuration property value. The expirationDuration property
         Args:
-            value: Value to set for the expirationDuration property.
+            value: Value to set for the expiration_duration property.
         """
         self._expiration_duration = value
     
@@ -107,7 +107,7 @@ class SetUserPreferredPresencePostRequestBody(AdditionalDataHolder, Parsable):
         fields = {
             "activity": lambda n : setattr(self, 'activity', n.get_str_value()),
             "availability": lambda n : setattr(self, 'availability', n.get_str_value()),
-            "expiration_duration": lambda n : setattr(self, 'expiration_duration', n.get_object_value(Timedelta)),
+            "expirationDuration": lambda n : setattr(self, 'expiration_duration', n.get_object_value(Timedelta)),
         }
         return fields
     

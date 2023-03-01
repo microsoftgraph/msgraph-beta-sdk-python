@@ -67,7 +67,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the dateFormat property value. The date format for the device.
         Args:
-            value: Value to set for the dateFormat property.
+            value: Value to set for the date_format property.
         """
         self._date_format = value
     
@@ -77,12 +77,12 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "date_format": lambda n : setattr(self, 'date_format', n.get_str_value()),
+            "dateFormat": lambda n : setattr(self, 'date_format', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "office_hours_end_time": lambda n : setattr(self, 'office_hours_end_time', n.get_object_value(Time)),
-            "office_hours_start_time": lambda n : setattr(self, 'office_hours_start_time', n.get_object_value(Time)),
-            "time_format": lambda n : setattr(self, 'time_format', n.get_str_value()),
-            "time_zone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
+            "officeHoursEndTime": lambda n : setattr(self, 'office_hours_end_time', n.get_object_value(Time)),
+            "officeHoursStartTime": lambda n : setattr(self, 'office_hours_start_time', n.get_object_value(Time)),
+            "timeFormat": lambda n : setattr(self, 'time_format', n.get_str_value()),
+            "timeZone": lambda n : setattr(self, 'time_zone', n.get_str_value()),
         }
         return fields
     
@@ -99,7 +99,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -116,7 +116,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the officeHoursEndTime property value. The time of the day when the device is turned off.
         Args:
-            value: Value to set for the officeHoursEndTime property.
+            value: Value to set for the office_hours_end_time property.
         """
         self._office_hours_end_time = value
     
@@ -133,7 +133,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the officeHoursStartTime property value. The time of the day when the device is turned on.
         Args:
-            value: Value to set for the officeHoursStartTime property.
+            value: Value to set for the office_hours_start_time property.
         """
         self._office_hours_start_time = value
     
@@ -166,7 +166,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the timeFormat property value. The time format for the device.
         Args:
-            value: Value to set for the timeFormat property.
+            value: Value to set for the time_format property.
         """
         self._time_format = value
     
@@ -183,7 +183,7 @@ class TeamworkDateTimeConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the timeZone property value. The time zone to which the office hours apply.
         Args:
-            value: Value to set for the timeZone property.
+            value: Value to set for the time_zone property.
         """
         self._time_zone = value
     

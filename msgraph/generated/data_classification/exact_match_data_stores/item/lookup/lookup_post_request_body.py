@@ -54,7 +54,7 @@ class LookupPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
-            "result_column_names": lambda n : setattr(self, 'result_column_names', n.get_collection_of_primitive_values(str)),
+            "resultColumnNames": lambda n : setattr(self, 'result_column_names', n.get_collection_of_primitive_values(str)),
             "values": lambda n : setattr(self, 'values', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -89,7 +89,7 @@ class LookupPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the resultColumnNames property value. The resultColumnNames property
         Args:
-            value: Value to set for the resultColumnNames property.
+            value: Value to set for the result_column_names property.
         """
         self._result_column_names = value
     

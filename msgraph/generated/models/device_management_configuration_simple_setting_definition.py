@@ -51,7 +51,7 @@ class DeviceManagementConfigurationSimpleSettingDefinition(device_management_con
         """
         Sets the defaultValue property value. Default setting value for this setting
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -68,7 +68,7 @@ class DeviceManagementConfigurationSimpleSettingDefinition(device_management_con
         """
         Sets the dependedOnBy property value. list of child settings that depend on this setting
         Args:
-            value: Value to set for the dependedOnBy property.
+            value: Value to set for the depended_on_by property.
         """
         self._depended_on_by = value
     
@@ -85,7 +85,7 @@ class DeviceManagementConfigurationSimpleSettingDefinition(device_management_con
         """
         Sets the dependentOn property value. list of parent settings this setting is dependent on
         Args:
-            value: Value to set for the dependentOn property.
+            value: Value to set for the dependent_on property.
         """
         self._dependent_on = value
     
@@ -95,10 +95,10 @@ class DeviceManagementConfigurationSimpleSettingDefinition(device_management_con
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue)),
-            "depended_on_by": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
-            "dependent_on": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),
-            "value_definition": lambda n : setattr(self, 'value_definition', n.get_object_value(device_management_configuration_setting_value_definition.DeviceManagementConfigurationSettingValueDefinition)),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_object_value(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue)),
+            "dependedOnBy": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
+            "dependentOn": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),
+            "valueDefinition": lambda n : setattr(self, 'value_definition', n.get_object_value(device_management_configuration_setting_value_definition.DeviceManagementConfigurationSettingValueDefinition)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -131,7 +131,7 @@ class DeviceManagementConfigurationSimpleSettingDefinition(device_management_con
         """
         Sets the valueDefinition property value. Definition of the value for this setting
         Args:
-            value: Value to set for the valueDefinition property.
+            value: Value to set for the value_definition property.
         """
         self._value_definition = value
     

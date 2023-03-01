@@ -44,7 +44,7 @@ class AddCopyFromContentTypeHubPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the contentTypeId property value. The contentTypeId property
         Args:
-            value: Value to set for the contentTypeId property.
+            value: Value to set for the content_type_id property.
         """
         self._content_type_id = value
     
@@ -66,7 +66,7 @@ class AddCopyFromContentTypeHubPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_type_id": lambda n : setattr(self, 'content_type_id', n.get_str_value()),
+            "contentTypeId": lambda n : setattr(self, 'content_type_id', n.get_str_value()),
         }
         return fields
     

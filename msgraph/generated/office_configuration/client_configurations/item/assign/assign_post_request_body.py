@@ -51,7 +51,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "office_configuration_assignments": lambda n : setattr(self, 'office_configuration_assignments', n.get_collection_of_object_values(office_client_configuration_assignment.OfficeClientConfigurationAssignment)),
+            "officeConfigurationAssignments": lambda n : setattr(self, 'office_configuration_assignments', n.get_collection_of_object_values(office_client_configuration_assignment.OfficeClientConfigurationAssignment)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the officeConfigurationAssignments property value. The officeConfigurationAssignments property
         Args:
-            value: Value to set for the officeConfigurationAssignments property.
+            value: Value to set for the office_configuration_assignments property.
         """
         self._office_configuration_assignments = value
     

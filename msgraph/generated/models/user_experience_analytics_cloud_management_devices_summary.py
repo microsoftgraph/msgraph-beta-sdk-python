@@ -37,7 +37,7 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         """
         Sets the coManagedDeviceCount property value. Total number of  co-managed devices.
         Args:
-            value: Value to set for the coManagedDeviceCount property.
+            value: Value to set for the co_managed_device_count property.
         """
         self._co_managed_device_count = value
     
@@ -75,10 +75,10 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "co_managed_device_count": lambda n : setattr(self, 'co_managed_device_count', n.get_int_value()),
-            "intune_device_count": lambda n : setattr(self, 'intune_device_count', n.get_int_value()),
+            "coManagedDeviceCount": lambda n : setattr(self, 'co_managed_device_count', n.get_int_value()),
+            "intuneDeviceCount": lambda n : setattr(self, 'intune_device_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "tenant_attach_device_count": lambda n : setattr(self, 'tenant_attach_device_count', n.get_int_value()),
+            "tenantAttachDeviceCount": lambda n : setattr(self, 'tenant_attach_device_count', n.get_int_value()),
         }
         return fields
     
@@ -95,7 +95,7 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         """
         Sets the intuneDeviceCount property value. The count of intune devices that are not autopilot registerd.
         Args:
-            value: Value to set for the intuneDeviceCount property.
+            value: Value to set for the intune_device_count property.
         """
         self._intune_device_count = value
     
@@ -112,7 +112,7 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class UserExperienceAnalyticsCloudManagementDevicesSummary(AdditionalDataHolder,
         """
         Sets the tenantAttachDeviceCount property value. Total count of tenant attach devices.
         Args:
-            value: Value to set for the tenantAttachDeviceCount property.
+            value: Value to set for the tenant_attach_device_count property.
         """
         self._tenant_attach_device_count = value
     

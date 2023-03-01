@@ -72,12 +72,12 @@ class Office365ActiveUserCounts(entity.Entity):
         fields = {
             "exchange": lambda n : setattr(self, 'exchange', n.get_int_value()),
             "office365": lambda n : setattr(self, 'office365', n.get_int_value()),
-            "one_drive": lambda n : setattr(self, 'one_drive', n.get_int_value()),
-            "report_date": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
-            "report_period": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "report_refresh_date": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
-            "share_point": lambda n : setattr(self, 'share_point', n.get_int_value()),
-            "skype_for_business": lambda n : setattr(self, 'skype_for_business', n.get_int_value()),
+            "oneDrive": lambda n : setattr(self, 'one_drive', n.get_int_value()),
+            "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
+            "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "sharePoint": lambda n : setattr(self, 'share_point', n.get_int_value()),
+            "skypeForBusiness": lambda n : setattr(self, 'skype_for_business', n.get_int_value()),
             "teams": lambda n : setattr(self, 'teams', n.get_int_value()),
             "yammer": lambda n : setattr(self, 'yammer', n.get_int_value()),
         }
@@ -115,7 +115,7 @@ class Office365ActiveUserCounts(entity.Entity):
         """
         Sets the oneDrive property value. The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
         Args:
-            value: Value to set for the oneDrive property.
+            value: Value to set for the one_drive property.
         """
         self._one_drive = value
     
@@ -132,7 +132,7 @@ class Office365ActiveUserCounts(entity.Entity):
         """
         Sets the reportDate property value. The date on which a number of users were active.
         Args:
-            value: Value to set for the reportDate property.
+            value: Value to set for the report_date property.
         """
         self._report_date = value
     
@@ -149,7 +149,7 @@ class Office365ActiveUserCounts(entity.Entity):
         """
         Sets the reportPeriod property value. The number of days the report covers.
         Args:
-            value: Value to set for the reportPeriod property.
+            value: Value to set for the report_period property.
         """
         self._report_period = value
     
@@ -166,7 +166,7 @@ class Office365ActiveUserCounts(entity.Entity):
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
-            value: Value to set for the reportRefreshDate property.
+            value: Value to set for the report_refresh_date property.
         """
         self._report_refresh_date = value
     
@@ -203,7 +203,7 @@ class Office365ActiveUserCounts(entity.Entity):
         """
         Sets the sharePoint property value. The number of active users in SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
         Args:
-            value: Value to set for the sharePoint property.
+            value: Value to set for the share_point property.
         """
         self._share_point = value
     
@@ -220,7 +220,7 @@ class Office365ActiveUserCounts(entity.Entity):
         """
         Sets the skypeForBusiness property value. The number of active users in Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
         Args:
-            value: Value to set for the skypeForBusiness property.
+            value: Value to set for the skype_for_business property.
         """
         self._skype_for_business = value
     

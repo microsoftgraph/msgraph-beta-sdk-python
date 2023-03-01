@@ -20,7 +20,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(devic
         """
         Sets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
         Args:
-            value: Value to set for the allowUnmanagedValues property.
+            value: Value to set for the allow_unmanaged_values property.
         """
         self._allow_unmanaged_values = value
     
@@ -37,7 +37,7 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(devic
         """
         Sets the choiceSettingCollectionValueTemplate property value. Choice Setting Collection Value Template
         Args:
-            value: Value to set for the choiceSettingCollectionValueTemplate property.
+            value: Value to set for the choice_setting_collection_value_template property.
         """
         self._choice_setting_collection_value_template = value
     
@@ -70,8 +70,8 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(devic
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_unmanaged_values": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
-            "choice_setting_collection_value_template": lambda n : setattr(self, 'choice_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate)),
+            "allowUnmanagedValues": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
+            "choiceSettingCollectionValueTemplate": lambda n : setattr(self, 'choice_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

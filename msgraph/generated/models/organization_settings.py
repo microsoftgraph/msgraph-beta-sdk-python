@@ -40,7 +40,7 @@ class OrganizationSettings(entity.Entity):
         """
         Sets the contactInsights property value. Contains the properties that are configured by an administrator as a tenant-level privacy control whether to identify duplicate contacts among a user's contacts list and suggest the user to merge those contacts to have a cleaner contacts list. List contactInsights returns the settings to display or return contact insights in an organization.
         Args:
-            value: Value to set for the contactInsights property.
+            value: Value to set for the contact_insights property.
         """
         self._contact_insights = value
     
@@ -62,11 +62,11 @@ class OrganizationSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "contact_insights": lambda n : setattr(self, 'contact_insights', n.get_object_value(insights_settings.InsightsSettings)),
-            "item_insights": lambda n : setattr(self, 'item_insights', n.get_object_value(insights_settings.InsightsSettings)),
-            "microsoft_application_data_access": lambda n : setattr(self, 'microsoft_application_data_access', n.get_object_value(microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings)),
-            "people_insights": lambda n : setattr(self, 'people_insights', n.get_object_value(insights_settings.InsightsSettings)),
-            "profile_card_properties": lambda n : setattr(self, 'profile_card_properties', n.get_collection_of_object_values(profile_card_property.ProfileCardProperty)),
+            "contactInsights": lambda n : setattr(self, 'contact_insights', n.get_object_value(insights_settings.InsightsSettings)),
+            "itemInsights": lambda n : setattr(self, 'item_insights', n.get_object_value(insights_settings.InsightsSettings)),
+            "microsoftApplicationDataAccess": lambda n : setattr(self, 'microsoft_application_data_access', n.get_object_value(microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings)),
+            "peopleInsights": lambda n : setattr(self, 'people_insights', n.get_object_value(insights_settings.InsightsSettings)),
+            "profileCardProperties": lambda n : setattr(self, 'profile_card_properties', n.get_collection_of_object_values(profile_card_property.ProfileCardProperty)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class OrganizationSettings(entity.Entity):
         """
         Sets the itemInsights property value. Contains the properties that are configured by an administrator for the visibility of Microsoft Graph-derived insights, between a user and other items in Microsoft 365, such as documents or sites. List itemInsights returns the settings to display or return item insights in an organization.
         Args:
-            value: Value to set for the itemInsights property.
+            value: Value to set for the item_insights property.
         """
         self._item_insights = value
     
@@ -102,7 +102,7 @@ class OrganizationSettings(entity.Entity):
         """
         Sets the microsoftApplicationDataAccess property value. The microsoftApplicationDataAccess property
         Args:
-            value: Value to set for the microsoftApplicationDataAccess property.
+            value: Value to set for the microsoft_application_data_access property.
         """
         self._microsoft_application_data_access = value
     
@@ -119,7 +119,7 @@ class OrganizationSettings(entity.Entity):
         """
         Sets the peopleInsights property value. Contains the properties that are configured by an administrator for the visibility of a list of people relevant and working with a user in Microsoft 365. List peopleInsights returns the settings to display or return people insights in an organization.
         Args:
-            value: Value to set for the peopleInsights property.
+            value: Value to set for the people_insights property.
         """
         self._people_insights = value
     
@@ -136,7 +136,7 @@ class OrganizationSettings(entity.Entity):
         """
         Sets the profileCardProperties property value. Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
         Args:
-            value: Value to set for the profileCardProperties property.
+            value: Value to set for the profile_card_properties property.
         """
         self._profile_card_properties = value
     

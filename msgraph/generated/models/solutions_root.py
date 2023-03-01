@@ -36,7 +36,7 @@ class SolutionsRoot(AdditionalDataHolder, Parsable):
         """
         Sets the businessScenarios property value. The businessScenarios property
         Args:
-            value: Value to set for the businessScenarios property.
+            value: Value to set for the business_scenarios property.
         """
         self._business_scenarios = value
     
@@ -70,7 +70,7 @@ class SolutionsRoot(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "business_scenarios": lambda n : setattr(self, 'business_scenarios', n.get_collection_of_object_values(business_scenario.BusinessScenario)),
+            "businessScenarios": lambda n : setattr(self, 'business_scenarios', n.get_collection_of_object_values(business_scenario.BusinessScenario)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -88,7 +88,7 @@ class SolutionsRoot(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

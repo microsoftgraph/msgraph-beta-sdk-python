@@ -37,7 +37,7 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the classificationResults property value. The classificationResults property
         Args:
-            value: Value to set for the classificationResults property.
+            value: Value to set for the classification_results property.
         """
         self._classification_results = value
     
@@ -66,7 +66,7 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the contentInfo property value. The contentInfo property
         Args:
-            value: Value to set for the contentInfo property.
+            value: Value to set for the content_info property.
         """
         self._content_info = value
     
@@ -88,8 +88,8 @@ class EvaluateClassificationResultsPostRequestBody(AdditionalDataHolder, Parsabl
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "classification_results": lambda n : setattr(self, 'classification_results', n.get_collection_of_object_values(classification_result.ClassificationResult)),
-            "content_info": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
+            "classificationResults": lambda n : setattr(self, 'classification_results', n.get_collection_of_object_values(classification_result.ClassificationResult)),
+            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
         }
         return fields
     

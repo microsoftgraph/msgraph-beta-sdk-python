@@ -33,7 +33,7 @@ class WindowsAppIdentifier(mobile_app_identifier.MobileAppIdentifier):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "windows_app_id": lambda n : setattr(self, 'windows_app_id', n.get_str_value()),
+            "windowsAppId": lambda n : setattr(self, 'windows_app_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -63,7 +63,7 @@ class WindowsAppIdentifier(mobile_app_identifier.MobileAppIdentifier):
         """
         Sets the windowsAppId property value. The identifier for an app, as specified in the app store.
         Args:
-            value: Value to set for the windowsAppId property.
+            value: Value to set for the windows_app_id property.
         """
         self._windows_app_id = value
     

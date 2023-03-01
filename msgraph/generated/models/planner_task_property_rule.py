@@ -20,7 +20,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the appliedCategories property value. Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
         Args:
-            value: Value to set for the appliedCategories property.
+            value: Value to set for the applied_categories property.
         """
         self._applied_categories = value
     
@@ -54,7 +54,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the checkLists property value. Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
         Args:
-            value: Value to set for the checkLists property.
+            value: Value to set for the check_lists property.
         """
         self._check_lists = value
     
@@ -135,7 +135,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the dueDate property value. Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
         Args:
-            value: Value to set for the dueDate property.
+            value: Value to set for the due_date property.
         """
         self._due_date = value
     
@@ -145,19 +145,19 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applied_categories": lambda n : setattr(self, 'applied_categories', n.get_object_value(planner_field_rules.PlannerFieldRules)),
+            "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(planner_field_rules.PlannerFieldRules)),
-            "check_lists": lambda n : setattr(self, 'check_lists', n.get_object_value(planner_field_rules.PlannerFieldRules)),
+            "checkLists": lambda n : setattr(self, 'check_lists', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "delete": lambda n : setattr(self, 'delete', n.get_collection_of_primitive_values(str)),
-            "due_date": lambda n : setattr(self, 'due_date', n.get_collection_of_primitive_values(str)),
+            "dueDate": lambda n : setattr(self, 'due_date', n.get_collection_of_primitive_values(str)),
             "move": lambda n : setattr(self, 'move', n.get_collection_of_primitive_values(str)),
             "notes": lambda n : setattr(self, 'notes', n.get_collection_of_primitive_values(str)),
             "order": lambda n : setattr(self, 'order', n.get_collection_of_primitive_values(str)),
-            "percent_complete": lambda n : setattr(self, 'percent_complete', n.get_collection_of_primitive_values(str)),
-            "preview_type": lambda n : setattr(self, 'preview_type', n.get_collection_of_primitive_values(str)),
+            "percentComplete": lambda n : setattr(self, 'percent_complete', n.get_collection_of_primitive_values(str)),
+            "previewType": lambda n : setattr(self, 'preview_type', n.get_collection_of_primitive_values(str)),
             "priority": lambda n : setattr(self, 'priority', n.get_collection_of_primitive_values(str)),
             "references": lambda n : setattr(self, 'references', n.get_object_value(planner_field_rules.PlannerFieldRules)),
-            "start_date": lambda n : setattr(self, 'start_date', n.get_collection_of_primitive_values(str)),
+            "startDate": lambda n : setattr(self, 'start_date', n.get_collection_of_primitive_values(str)),
             "title": lambda n : setattr(self, 'title', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -228,7 +228,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the percentComplete property value. Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, setToNotStarted, setToInProgress, and block.
         Args:
-            value: Value to set for the percentComplete property.
+            value: Value to set for the percent_complete property.
         """
         self._percent_complete = value
     
@@ -245,7 +245,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the previewType property value. Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
         Args:
-            value: Value to set for the previewType property.
+            value: Value to set for the preview_type property.
         """
         self._preview_type = value
     
@@ -320,7 +320,7 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         """
         Sets the startDate property value. Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
         Args:
-            value: Value to set for the startDate property.
+            value: Value to set for the start_date property.
         """
         self._start_date = value
     

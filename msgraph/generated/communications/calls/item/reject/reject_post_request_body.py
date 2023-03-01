@@ -36,7 +36,7 @@ class RejectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the callbackUri property value. The callbackUri property
         Args:
-            value: Value to set for the callbackUri property.
+            value: Value to set for the callback_uri property.
         """
         self._callback_uri = value
     
@@ -70,7 +70,7 @@ class RejectPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "callback_uri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
+            "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_enum_value(reject_reason.RejectReason)),
         }
         return fields

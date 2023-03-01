@@ -49,7 +49,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the bccRecipients property value. The Bcc: recipients for the message.
         Args:
-            value: Value to set for the bccRecipients property.
+            value: Value to set for the bcc_recipients property.
         """
         self._bcc_recipients = value
     
@@ -83,7 +83,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the bodyPreview property value. The first 255 characters of the message body. It is in text format. If the message contains instances of mention, this property would contain a concatenation of these mentions as well.
         Args:
-            value: Value to set for the bodyPreview property.
+            value: Value to set for the body_preview property.
         """
         self._body_preview = value
     
@@ -100,7 +100,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the ccRecipients property value. The Cc: recipients for the message.
         Args:
-            value: Value to set for the ccRecipients property.
+            value: Value to set for the cc_recipients property.
         """
         self._cc_recipients = value
     
@@ -129,7 +129,7 @@ class Message(outlook_item.OutlookItem):
         # The flag value that indicates the status, start date, due date, or completion date for the message.
         self._flag: Optional[followup_flag.FollowupFlag] = None
         # The owner of the mailbox from which the message is sent. In most cases, this value is the same as the sender property, except for sharing or delegation scenarios. The value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.
-        self._from_escaped: Optional[recipient.Recipient] = None
+        self._from_: Optional[recipient.Recipient] = None
         # Indicates whether the message has attachments. This property doesn't include inline attachments, so if a message contains only inline attachments, this property is false. To verify the existence of inline attachments, parse the body property to look for a src attribute, such as <IMG src='cid:image001.jpg@01D26CD8.6C05F070'>.
         self._has_attachments: Optional[bool] = None
         # The importance property
@@ -192,7 +192,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the conversationId property value. The ID of the conversation the email belongs to.
         Args:
-            value: Value to set for the conversationId property.
+            value: Value to set for the conversation_id property.
         """
         self._conversation_id = value
     
@@ -209,7 +209,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the conversationIndex property value. Indicates the position of the message within the conversation.
         Args:
-            value: Value to set for the conversationIndex property.
+            value: Value to set for the conversation_index property.
         """
         self._conversation_index = value
     
@@ -260,21 +260,21 @@ class Message(outlook_item.OutlookItem):
         self._flag = value
     
     @property
-    def from_escaped(self,) -> Optional[recipient.Recipient]:
+    def from_(self,) -> Optional[recipient.Recipient]:
         """
         Gets the from property value. The owner of the mailbox from which the message is sent. In most cases, this value is the same as the sender property, except for sharing or delegation scenarios. The value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.
         Returns: Optional[recipient.Recipient]
         """
-        return self._from_escaped
+        return self._from_
     
-    @from_escaped.setter
-    def from_escaped(self,value: Optional[recipient.Recipient] = None) -> None:
+    @from_.setter
+    def from_(self,value: Optional[recipient.Recipient] = None) -> None:
         """
         Sets the from property value. The owner of the mailbox from which the message is sent. In most cases, this value is the same as the sender property, except for sharing or delegation scenarios. The value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.
         Args:
-            value: Value to set for the from_escaped property.
+            value: Value to set for the from_ property.
         """
-        self._from_escaped = value
+        self._from_ = value
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
@@ -283,39 +283,39 @@ class Message(outlook_item.OutlookItem):
         """
         fields = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
-            "bcc_recipients": lambda n : setattr(self, 'bcc_recipients', n.get_collection_of_object_values(recipient.Recipient)),
+            "bccRecipients": lambda n : setattr(self, 'bcc_recipients', n.get_collection_of_object_values(recipient.Recipient)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
-            "body_preview": lambda n : setattr(self, 'body_preview', n.get_str_value()),
-            "cc_recipients": lambda n : setattr(self, 'cc_recipients', n.get_collection_of_object_values(recipient.Recipient)),
-            "conversation_id": lambda n : setattr(self, 'conversation_id', n.get_str_value()),
-            "conversation_index": lambda n : setattr(self, 'conversation_index', n.get_bytes_value()),
+            "bodyPreview": lambda n : setattr(self, 'body_preview', n.get_str_value()),
+            "ccRecipients": lambda n : setattr(self, 'cc_recipients', n.get_collection_of_object_values(recipient.Recipient)),
+            "conversationId": lambda n : setattr(self, 'conversation_id', n.get_str_value()),
+            "conversationIndex": lambda n : setattr(self, 'conversation_index', n.get_bytes_value()),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),
             "flag": lambda n : setattr(self, 'flag', n.get_object_value(followup_flag.FollowupFlag)),
-            "from": lambda n : setattr(self, 'from_escaped', n.get_object_value(recipient.Recipient)),
-            "has_attachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
+            "from": lambda n : setattr(self, 'from_', n.get_object_value(recipient.Recipient)),
+            "hasAttachments": lambda n : setattr(self, 'has_attachments', n.get_bool_value()),
             "importance": lambda n : setattr(self, 'importance', n.get_enum_value(importance.Importance)),
-            "inference_classification": lambda n : setattr(self, 'inference_classification', n.get_enum_value(inference_classification_type.InferenceClassificationType)),
-            "internet_message_headers": lambda n : setattr(self, 'internet_message_headers', n.get_collection_of_object_values(internet_message_header.InternetMessageHeader)),
-            "internet_message_id": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
-            "is_delivery_receipt_requested": lambda n : setattr(self, 'is_delivery_receipt_requested', n.get_bool_value()),
-            "is_draft": lambda n : setattr(self, 'is_draft', n.get_bool_value()),
-            "is_read": lambda n : setattr(self, 'is_read', n.get_bool_value()),
-            "is_read_receipt_requested": lambda n : setattr(self, 'is_read_receipt_requested', n.get_bool_value()),
+            "inferenceClassification": lambda n : setattr(self, 'inference_classification', n.get_enum_value(inference_classification_type.InferenceClassificationType)),
+            "internetMessageHeaders": lambda n : setattr(self, 'internet_message_headers', n.get_collection_of_object_values(internet_message_header.InternetMessageHeader)),
+            "internetMessageId": lambda n : setattr(self, 'internet_message_id', n.get_str_value()),
+            "isDeliveryReceiptRequested": lambda n : setattr(self, 'is_delivery_receipt_requested', n.get_bool_value()),
+            "isDraft": lambda n : setattr(self, 'is_draft', n.get_bool_value()),
+            "isRead": lambda n : setattr(self, 'is_read', n.get_bool_value()),
+            "isReadReceiptRequested": lambda n : setattr(self, 'is_read_receipt_requested', n.get_bool_value()),
             "mentions": lambda n : setattr(self, 'mentions', n.get_collection_of_object_values(mention.Mention)),
-            "mentions_preview": lambda n : setattr(self, 'mentions_preview', n.get_object_value(mentions_preview.MentionsPreview)),
-            "multi_value_extended_properties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
-            "parent_folder_id": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
-            "received_date_time": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
-            "reply_to": lambda n : setattr(self, 'reply_to', n.get_collection_of_object_values(recipient.Recipient)),
+            "mentionsPreview": lambda n : setattr(self, 'mentions_preview', n.get_object_value(mentions_preview.MentionsPreview)),
+            "multiValueExtendedProperties": lambda n : setattr(self, 'multi_value_extended_properties', n.get_collection_of_object_values(multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty)),
+            "parentFolderId": lambda n : setattr(self, 'parent_folder_id', n.get_str_value()),
+            "receivedDateTime": lambda n : setattr(self, 'received_date_time', n.get_datetime_value()),
+            "replyTo": lambda n : setattr(self, 'reply_to', n.get_collection_of_object_values(recipient.Recipient)),
             "sender": lambda n : setattr(self, 'sender', n.get_object_value(recipient.Recipient)),
-            "sent_date_time": lambda n : setattr(self, 'sent_date_time', n.get_datetime_value()),
-            "single_value_extended_properties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
+            "sentDateTime": lambda n : setattr(self, 'sent_date_time', n.get_datetime_value()),
+            "singleValueExtendedProperties": lambda n : setattr(self, 'single_value_extended_properties', n.get_collection_of_object_values(single_value_legacy_extended_property.SingleValueLegacyExtendedProperty)),
             "subject": lambda n : setattr(self, 'subject', n.get_str_value()),
-            "to_recipients": lambda n : setattr(self, 'to_recipients', n.get_collection_of_object_values(recipient.Recipient)),
-            "unique_body": lambda n : setattr(self, 'unique_body', n.get_object_value(item_body.ItemBody)),
-            "unsubscribe_data": lambda n : setattr(self, 'unsubscribe_data', n.get_collection_of_primitive_values(str)),
-            "unsubscribe_enabled": lambda n : setattr(self, 'unsubscribe_enabled', n.get_bool_value()),
-            "web_link": lambda n : setattr(self, 'web_link', n.get_str_value()),
+            "toRecipients": lambda n : setattr(self, 'to_recipients', n.get_collection_of_object_values(recipient.Recipient)),
+            "uniqueBody": lambda n : setattr(self, 'unique_body', n.get_object_value(item_body.ItemBody)),
+            "unsubscribeData": lambda n : setattr(self, 'unsubscribe_data', n.get_collection_of_primitive_values(str)),
+            "unsubscribeEnabled": lambda n : setattr(self, 'unsubscribe_enabled', n.get_bool_value()),
+            "webLink": lambda n : setattr(self, 'web_link', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -334,7 +334,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the hasAttachments property value. Indicates whether the message has attachments. This property doesn't include inline attachments, so if a message contains only inline attachments, this property is false. To verify the existence of inline attachments, parse the body property to look for a src attribute, such as <IMG src='cid:image001.jpg@01D26CD8.6C05F070'>.
         Args:
-            value: Value to set for the hasAttachments property.
+            value: Value to set for the has_attachments property.
         """
         self._has_attachments = value
     
@@ -368,7 +368,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the inferenceClassification property value. The inferenceClassification property
         Args:
-            value: Value to set for the inferenceClassification property.
+            value: Value to set for the inference_classification property.
         """
         self._inference_classification = value
     
@@ -385,7 +385,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the internetMessageHeaders property value. The internetMessageHeaders property
         Args:
-            value: Value to set for the internetMessageHeaders property.
+            value: Value to set for the internet_message_headers property.
         """
         self._internet_message_headers = value
     
@@ -402,7 +402,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the internetMessageId property value. The internetMessageId property
         Args:
-            value: Value to set for the internetMessageId property.
+            value: Value to set for the internet_message_id property.
         """
         self._internet_message_id = value
     
@@ -419,7 +419,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the isDeliveryReceiptRequested property value. The isDeliveryReceiptRequested property
         Args:
-            value: Value to set for the isDeliveryReceiptRequested property.
+            value: Value to set for the is_delivery_receipt_requested property.
         """
         self._is_delivery_receipt_requested = value
     
@@ -436,7 +436,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the isDraft property value. The isDraft property
         Args:
-            value: Value to set for the isDraft property.
+            value: Value to set for the is_draft property.
         """
         self._is_draft = value
     
@@ -453,7 +453,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the isRead property value. The isRead property
         Args:
-            value: Value to set for the isRead property.
+            value: Value to set for the is_read property.
         """
         self._is_read = value
     
@@ -470,7 +470,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the isReadReceiptRequested property value. The isReadReceiptRequested property
         Args:
-            value: Value to set for the isReadReceiptRequested property.
+            value: Value to set for the is_read_receipt_requested property.
         """
         self._is_read_receipt_requested = value
     
@@ -504,7 +504,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the mentionsPreview property value. The mentionsPreview property
         Args:
-            value: Value to set for the mentionsPreview property.
+            value: Value to set for the mentions_preview property.
         """
         self._mentions_preview = value
     
@@ -521,7 +521,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the multiValueExtendedProperties property value. The collection of multi-value extended properties defined for the message. Nullable.
         Args:
-            value: Value to set for the multiValueExtendedProperties property.
+            value: Value to set for the multi_value_extended_properties property.
         """
         self._multi_value_extended_properties = value
     
@@ -538,7 +538,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the parentFolderId property value. The parentFolderId property
         Args:
-            value: Value to set for the parentFolderId property.
+            value: Value to set for the parent_folder_id property.
         """
         self._parent_folder_id = value
     
@@ -555,7 +555,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the receivedDateTime property value. The receivedDateTime property
         Args:
-            value: Value to set for the receivedDateTime property.
+            value: Value to set for the received_date_time property.
         """
         self._received_date_time = value
     
@@ -572,7 +572,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the replyTo property value. The replyTo property
         Args:
-            value: Value to set for the replyTo property.
+            value: Value to set for the reply_to property.
         """
         self._reply_to = value
     
@@ -606,7 +606,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the sentDateTime property value. The sentDateTime property
         Args:
-            value: Value to set for the sentDateTime property.
+            value: Value to set for the sent_date_time property.
         """
         self._sent_date_time = value
     
@@ -628,7 +628,7 @@ class Message(outlook_item.OutlookItem):
         writer.write_object_value("conversationIndex", self.conversation_index)
         writer.write_collection_of_object_values("extensions", self.extensions)
         writer.write_object_value("flag", self.flag)
-        writer.write_object_value("from", self.from_escaped)
+        writer.write_object_value("from", self.from_)
         writer.write_bool_value("hasAttachments", self.has_attachments)
         writer.write_enum_value("importance", self.importance)
         writer.write_enum_value("inferenceClassification", self.inference_classification)
@@ -667,7 +667,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the singleValueExtendedProperties property value. The collection of single-value extended properties defined for the message. Nullable.
         Args:
-            value: Value to set for the singleValueExtendedProperties property.
+            value: Value to set for the single_value_extended_properties property.
         """
         self._single_value_extended_properties = value
     
@@ -701,7 +701,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the toRecipients property value. The toRecipients property
         Args:
-            value: Value to set for the toRecipients property.
+            value: Value to set for the to_recipients property.
         """
         self._to_recipients = value
     
@@ -718,7 +718,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the uniqueBody property value. The uniqueBody property
         Args:
-            value: Value to set for the uniqueBody property.
+            value: Value to set for the unique_body property.
         """
         self._unique_body = value
     
@@ -735,7 +735,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the unsubscribeData property value. The unsubscribeData property
         Args:
-            value: Value to set for the unsubscribeData property.
+            value: Value to set for the unsubscribe_data property.
         """
         self._unsubscribe_data = value
     
@@ -752,7 +752,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the unsubscribeEnabled property value. The unsubscribeEnabled property
         Args:
-            value: Value to set for the unsubscribeEnabled property.
+            value: Value to set for the unsubscribe_enabled property.
         """
         self._unsubscribe_enabled = value
     
@@ -769,7 +769,7 @@ class Message(outlook_item.OutlookItem):
         """
         Sets the webLink property value. The webLink property
         Args:
-            value: Value to set for the webLink property.
+            value: Value to set for the web_link property.
         """
         self._web_link = value
     

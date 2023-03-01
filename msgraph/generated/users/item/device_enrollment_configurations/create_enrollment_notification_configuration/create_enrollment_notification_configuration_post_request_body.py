@@ -58,7 +58,7 @@ class CreateEnrollmentNotificationConfigurationPostRequestBody(AdditionalDataHol
         """
         Sets the deviceEnrollmentNotificationConfigurations property value. The deviceEnrollmentNotificationConfigurations property
         Args:
-            value: Value to set for the deviceEnrollmentNotificationConfigurations property.
+            value: Value to set for the device_enrollment_notification_configurations property.
         """
         self._device_enrollment_notification_configurations = value
     
@@ -68,7 +68,7 @@ class CreateEnrollmentNotificationConfigurationPostRequestBody(AdditionalDataHol
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_enrollment_notification_configurations": lambda n : setattr(self, 'device_enrollment_notification_configurations', n.get_collection_of_object_values(device_enrollment_configuration.DeviceEnrollmentConfiguration)),
+            "deviceEnrollmentNotificationConfigurations": lambda n : setattr(self, 'device_enrollment_notification_configurations', n.get_collection_of_object_values(device_enrollment_configuration.DeviceEnrollmentConfiguration)),
         }
         return fields
     

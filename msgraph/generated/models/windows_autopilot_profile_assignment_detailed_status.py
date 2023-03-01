@@ -2,7 +2,7 @@ from enum import Enum
 
 class WindowsAutopilotProfileAssignmentDetailedStatus(Enum):
     # No assignment detailed status
-    None_escaped = "none",
+    None_ = "none",
     # Hardware requirements are not met. This can happen if a self-deploying AutoPilot Profile is assigned to a device without TPM 2.0.
     HardwareRequirementsNotMet = "hardwareRequirementsNotMet",
     # Indicates that a Surface Hub AutoPilot Profile is assigned to a device that is not Surface Hub(Aruba).

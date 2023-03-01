@@ -51,7 +51,7 @@ class SetOrderPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "new_assignment_order": lambda n : setattr(self, 'new_assignment_order', n.get_object_value(assignment_order.AssignmentOrder)),
+            "newAssignmentOrder": lambda n : setattr(self, 'new_assignment_order', n.get_object_value(assignment_order.AssignmentOrder)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class SetOrderPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the newAssignmentOrder property value. The newAssignmentOrder property
         Args:
-            value: Value to set for the newAssignmentOrder property.
+            value: Value to set for the new_assignment_order property.
         """
         self._new_assignment_order = value
     

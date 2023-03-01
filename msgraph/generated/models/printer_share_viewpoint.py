@@ -52,7 +52,7 @@ class PrinterShareViewpoint(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_used_date_time": lambda n : setattr(self, 'last_used_date_time', n.get_datetime_value()),
+            "lastUsedDateTime": lambda n : setattr(self, 'last_used_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -70,7 +70,7 @@ class PrinterShareViewpoint(AdditionalDataHolder, Parsable):
         """
         Sets the lastUsedDateTime property value. Date and time when the printer was last used by the signed-in user. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the lastUsedDateTime property.
+            value: Value to set for the last_used_date_time property.
         """
         self._last_used_date_time = value
     
@@ -87,7 +87,7 @@ class PrinterShareViewpoint(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

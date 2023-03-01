@@ -24,7 +24,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         """
         Sets the applicablePlatform property value. The endpoint security configuration applicable platform.
         Args:
-            value: Value to set for the applicablePlatform property.
+            value: Value to set for the applicable_platform property.
         """
         self._applicable_platform = value
     
@@ -74,7 +74,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         """
         Sets the endpointSecurityPolicy property value. The endpoint security policy type.
         Args:
-            value: Value to set for the endpointSecurityPolicy property.
+            value: Value to set for the endpoint_security_policy property.
         """
         self._endpoint_security_policy = value
     
@@ -91,7 +91,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         """
         Sets the endpointSecurityPolicyProfile property value. The endpoint security policy profile type.
         Args:
-            value: Value to set for the endpointSecurityPolicyProfile property.
+            value: Value to set for the endpoint_security_policy_profile property.
         """
         self._endpoint_security_policy_profile = value
     
@@ -101,13 +101,13 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "applicable_platform": lambda n : setattr(self, 'applicable_platform', n.get_enum_value(endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform)),
-            "endpoint_security_policy": lambda n : setattr(self, 'endpoint_security_policy', n.get_enum_value(endpoint_security_configuration_type.EndpointSecurityConfigurationType)),
-            "endpoint_security_policy_profile": lambda n : setattr(self, 'endpoint_security_policy_profile', n.get_enum_value(endpoint_security_configuration_profile_type.EndpointSecurityConfigurationProfileType)),
+            "applicablePlatform": lambda n : setattr(self, 'applicable_platform', n.get_enum_value(endpoint_security_configuration_applicable_platform.EndpointSecurityConfigurationApplicablePlatform)),
+            "endpointSecurityPolicy": lambda n : setattr(self, 'endpoint_security_policy', n.get_enum_value(endpoint_security_configuration_type.EndpointSecurityConfigurationType)),
+            "endpointSecurityPolicyProfile": lambda n : setattr(self, 'endpoint_security_policy_profile', n.get_enum_value(endpoint_security_configuration_profile_type.EndpointSecurityConfigurationProfileType)),
             "insights": lambda n : setattr(self, 'insights', n.get_str_value()),
-            "intended_settings": lambda n : setattr(self, 'intended_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "managed_device_count": lambda n : setattr(self, 'managed_device_count', n.get_int_value()),
-            "managed_devices": lambda n : setattr(self, 'managed_devices', n.get_collection_of_object_values(vulnerable_managed_device.VulnerableManagedDevice)),
+            "intendedSettings": lambda n : setattr(self, 'intended_settings', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "managedDevices": lambda n : setattr(self, 'managed_devices', n.get_collection_of_object_values(vulnerable_managed_device.VulnerableManagedDevice)),
+            "managedDeviceCount": lambda n : setattr(self, 'managed_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -143,7 +143,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         """
         Sets the intendedSettings property value. The intended settings and their values.
         Args:
-            value: Value to set for the intendedSettings property.
+            value: Value to set for the intended_settings property.
         """
         self._intended_settings = value
     
@@ -160,7 +160,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         """
         Sets the managedDeviceCount property value. The number of vulnerable devices. Valid values 0 to 65536
         Args:
-            value: Value to set for the managedDeviceCount property.
+            value: Value to set for the managed_device_count property.
         """
         self._managed_device_count = value
     
@@ -177,7 +177,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         """
         Sets the managedDevices property value. The vulnerable managed devices.
         Args:
-            value: Value to set for the managedDevices property.
+            value: Value to set for the managed_devices property.
         """
         self._managed_devices = value
     
@@ -195,7 +195,7 @@ class SecurityConfigurationTask(device_app_management_task.DeviceAppManagementTa
         writer.write_enum_value("endpointSecurityPolicyProfile", self.endpoint_security_policy_profile)
         writer.write_str_value("insights", self.insights)
         writer.write_collection_of_object_values("intendedSettings", self.intended_settings)
-        writer.write_int_value("managedDeviceCount", self.managed_device_count)
         writer.write_collection_of_object_values("managedDevices", self.managed_devices)
+        writer.write_int_value("managedDeviceCount", self.managed_device_count)
     
 

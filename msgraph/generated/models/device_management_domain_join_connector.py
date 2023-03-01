@@ -52,7 +52,7 @@ class DeviceManagementDomainJoinConnector(entity.Entity):
         """
         Sets the displayName property value. The connector display name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -62,8 +62,8 @@ class DeviceManagementDomainJoinConnector(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_connection_date_time": lambda n : setattr(self, 'last_connection_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastConnectionDateTime": lambda n : setattr(self, 'last_connection_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(device_management_domain_join_connector_state.DeviceManagementDomainJoinConnectorState)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),
         }
@@ -84,7 +84,7 @@ class DeviceManagementDomainJoinConnector(entity.Entity):
         """
         Sets the lastConnectionDateTime property value. Last time connector contacted Intune.
         Args:
-            value: Value to set for the lastConnectionDateTime property.
+            value: Value to set for the last_connection_date_time property.
         """
         self._last_connection_date_time = value
     

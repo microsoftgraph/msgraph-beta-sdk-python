@@ -30,19 +30,18 @@ class RevokeGrantsRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/sites/{site%2Did}/permissions/{permission%2Did}/microsoft.graph.revokeGrants"
+        self.url_template: str = "{+baseurl}/sites/{site%2Did}/permissions/{permission%2Did}/revokeGrants"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[revoke_grants_post_request_body.RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[permission.Permission]:
+    async def post(self,body: Optional[revoke_grants_post_request_body.RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None) -> Optional[permission.Permission]:
         """
         Revoke access to a [listItem][] or [driveItem][] granted via a sharing link by removing the specified [recipient][] from the link.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[permission.Permission]
         """
         if body is None:
@@ -56,7 +55,7 @@ class RevokeGrantsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, permission.Permission, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, permission.Permission, error_mapping)
     
     def to_post_request_information(self,body: Optional[revoke_grants_post_request_body.RevokeGrantsPostRequestBody] = None, request_configuration: Optional[RevokeGrantsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class RevokeGrantsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class RevokeGrantsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

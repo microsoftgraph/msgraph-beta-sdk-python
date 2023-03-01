@@ -51,7 +51,7 @@ class TextClassificationRequest(entity.Entity):
         """
         Sets the fileExtension property value. The fileExtension property
         Args:
-            value: Value to set for the fileExtension property.
+            value: Value to set for the file_extension property.
         """
         self._file_extension = value
     
@@ -61,10 +61,10 @@ class TextClassificationRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "file_extension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
-            "match_tolerances_to_include": lambda n : setattr(self, 'match_tolerances_to_include', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
-            "scopes_to_run": lambda n : setattr(self, 'scopes_to_run', n.get_enum_value(sensitive_type_scope.SensitiveTypeScope)),
-            "sensitive_type_ids": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
+            "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
+            "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
+            "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_enum_value(sensitive_type_scope.SensitiveTypeScope)),
+            "sensitiveTypeIds": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -84,7 +84,7 @@ class TextClassificationRequest(entity.Entity):
         """
         Sets the matchTolerancesToInclude property value. The matchTolerancesToInclude property
         Args:
-            value: Value to set for the matchTolerancesToInclude property.
+            value: Value to set for the match_tolerances_to_include property.
         """
         self._match_tolerances_to_include = value
     
@@ -101,7 +101,7 @@ class TextClassificationRequest(entity.Entity):
         """
         Sets the scopesToRun property value. The scopesToRun property
         Args:
-            value: Value to set for the scopesToRun property.
+            value: Value to set for the scopes_to_run property.
         """
         self._scopes_to_run = value
     
@@ -118,7 +118,7 @@ class TextClassificationRequest(entity.Entity):
         """
         Sets the sensitiveTypeIds property value. The sensitiveTypeIds property
         Args:
-            value: Value to set for the sensitiveTypeIds property.
+            value: Value to set for the sensitive_type_ids property.
         """
         self._sensitive_type_ids = value
     

@@ -65,7 +65,7 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
         """
         Sets the deviceId property value. DeviceId of device represented by this object
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -75,9 +75,9 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "summarized_app_state": lambda n : setattr(self, 'summarized_app_state', n.get_enum_value(run_state.RunState)),
+            "summarizedAppState": lambda n : setattr(self, 'summarized_app_state', n.get_enum_value(run_state.RunState)),
         }
         return fields
     
@@ -94,7 +94,7 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -124,7 +124,7 @@ class ManagedDeviceSummarizedAppState(AdditionalDataHolder, Parsable):
         """
         Sets the summarizedAppState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the summarizedAppState property.
+            value: Value to set for the summarized_app_state property.
         """
         self._summarized_app_state = value
     

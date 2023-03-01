@@ -49,7 +49,7 @@ class CheckMemberGroupsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_ids": lambda n : setattr(self, 'group_ids', n.get_collection_of_primitive_values(str)),
+            "groupIds": lambda n : setattr(self, 'group_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class CheckMemberGroupsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupIds property value. The groupIds property
         Args:
-            value: Value to set for the groupIds property.
+            value: Value to set for the group_ids property.
         """
         self._group_ids = value
     

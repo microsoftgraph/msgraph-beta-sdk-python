@@ -50,7 +50,7 @@ class CloudPcSupportedRegion(entity.Entity):
         """
         Sets the displayName property value. The name for the supported region. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -60,10 +60,10 @@ class CloudPcSupportedRegion(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "region_group": lambda n : setattr(self, 'region_group', n.get_enum_value(cloud_pc_region_group.CloudPcRegionGroup)),
-            "region_status": lambda n : setattr(self, 'region_status', n.get_enum_value(cloud_pc_supported_region_status.CloudPcSupportedRegionStatus)),
-            "supported_solution": lambda n : setattr(self, 'supported_solution', n.get_enum_value(cloud_pc_management_service.CloudPcManagementService)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(cloud_pc_region_group.CloudPcRegionGroup)),
+            "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(cloud_pc_supported_region_status.CloudPcSupportedRegionStatus)),
+            "supportedSolution": lambda n : setattr(self, 'supported_solution', n.get_enum_value(cloud_pc_management_service.CloudPcManagementService)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -82,7 +82,7 @@ class CloudPcSupportedRegion(entity.Entity):
         """
         Sets the regionGroup property value. The regionGroup property
         Args:
-            value: Value to set for the regionGroup property.
+            value: Value to set for the region_group property.
         """
         self._region_group = value
     
@@ -99,7 +99,7 @@ class CloudPcSupportedRegion(entity.Entity):
         """
         Sets the regionStatus property value. The status of the supported region. Possible values are: available, restricted, unavailable, unknownFutureValue. Read-only.
         Args:
-            value: Value to set for the regionStatus property.
+            value: Value to set for the region_status property.
         """
         self._region_status = value
     
@@ -130,7 +130,7 @@ class CloudPcSupportedRegion(entity.Entity):
         """
         Sets the supportedSolution property value. The supportedSolution property
         Args:
-            value: Value to set for the supportedSolution property.
+            value: Value to set for the supported_solution property.
         """
         self._supported_solution = value
     

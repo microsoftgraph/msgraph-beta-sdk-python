@@ -57,7 +57,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the createdDateTime property value. Date/time when this PFX certificate was imported.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -86,7 +86,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the encryptedPfxBlob property value. Encrypted PFX blob.
         Args:
-            value: Value to set for the encryptedPfxBlob property.
+            value: Value to set for the encrypted_pfx_blob property.
         """
         self._encrypted_pfx_blob = value
     
@@ -103,7 +103,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the encryptedPfxPassword property value. Encrypted PFX password.
         Args:
-            value: Value to set for the encryptedPfxPassword property.
+            value: Value to set for the encrypted_pfx_password property.
         """
         self._encrypted_pfx_password = value
     
@@ -120,7 +120,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the expirationDateTime property value. Certificate's validity expiration date/time.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -130,18 +130,18 @@ class UserPFXCertificate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "encrypted_pfx_blob": lambda n : setattr(self, 'encrypted_pfx_blob', n.get_bytes_value()),
-            "encrypted_pfx_password": lambda n : setattr(self, 'encrypted_pfx_password', n.get_str_value()),
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "intended_purpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(user_pfx_intended_purpose.UserPfxIntendedPurpose)),
-            "key_name": lambda n : setattr(self, 'key_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "padding_scheme": lambda n : setattr(self, 'padding_scheme', n.get_enum_value(user_pfx_padding_scheme.UserPfxPaddingScheme)),
-            "provider_name": lambda n : setattr(self, 'provider_name', n.get_str_value()),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "encryptedPfxBlob": lambda n : setattr(self, 'encrypted_pfx_blob', n.get_bytes_value()),
+            "encryptedPfxPassword": lambda n : setattr(self, 'encrypted_pfx_password', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(user_pfx_intended_purpose.UserPfxIntendedPurpose)),
+            "keyName": lambda n : setattr(self, 'key_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "paddingScheme": lambda n : setattr(self, 'padding_scheme', n.get_enum_value(user_pfx_padding_scheme.UserPfxPaddingScheme)),
+            "providerName": lambda n : setattr(self, 'provider_name', n.get_str_value()),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_datetime_value()),
             "thumbprint": lambda n : setattr(self, 'thumbprint', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -160,7 +160,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the intendedPurpose property value. Supported values for the intended purpose of a user PFX certificate.
         Args:
-            value: Value to set for the intendedPurpose property.
+            value: Value to set for the intended_purpose property.
         """
         self._intended_purpose = value
     
@@ -177,7 +177,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the keyName property value. Name of the key (within the provider) used to encrypt the blob.
         Args:
-            value: Value to set for the keyName property.
+            value: Value to set for the key_name property.
         """
         self._key_name = value
     
@@ -194,7 +194,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Date/time when this PFX certificate was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -211,7 +211,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the paddingScheme property value. Supported values for the padding scheme used by encryption provider.
         Args:
-            value: Value to set for the paddingScheme property.
+            value: Value to set for the padding_scheme property.
         """
         self._padding_scheme = value
     
@@ -228,7 +228,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the providerName property value. Crypto provider used to encrypt this blob.
         Args:
-            value: Value to set for the providerName property.
+            value: Value to set for the provider_name property.
         """
         self._provider_name = value
     
@@ -267,7 +267,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the startDateTime property value. Certificate's validity start date/time.
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     
@@ -301,7 +301,7 @@ class UserPFXCertificate(entity.Entity):
         """
         Sets the userPrincipalName property value. User Principal Name of the PFX certificate.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

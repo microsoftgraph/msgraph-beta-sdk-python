@@ -38,7 +38,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         Sets the certExpiryTime property value. Certificate expire time
         Args:
-            value: Value to set for the certExpiryTime property.
+            value: Value to set for the cert_expiry_time property.
         """
         self._cert_expiry_time = value
     
@@ -55,7 +55,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         Sets the connectorVersion property value. Version of certificate connector
         Args:
-            value: Value to set for the connectorVersion property.
+            value: Value to set for the connector_version property.
         """
         self._connector_version = value
     
@@ -106,7 +106,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         Sets the enrollmentError property value. Certificate connector enrollment error
         Args:
-            value: Value to set for the enrollmentError property.
+            value: Value to set for the enrollment_error property.
         """
         self._enrollment_error = value
     
@@ -116,11 +116,11 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cert_expiry_time": lambda n : setattr(self, 'cert_expiry_time', n.get_datetime_value()),
-            "connector_version": lambda n : setattr(self, 'connector_version', n.get_str_value()),
-            "enrollment_error": lambda n : setattr(self, 'enrollment_error', n.get_str_value()),
-            "last_connector_connection_time": lambda n : setattr(self, 'last_connector_connection_time', n.get_datetime_value()),
-            "last_upload_version": lambda n : setattr(self, 'last_upload_version', n.get_int_value()),
+            "certExpiryTime": lambda n : setattr(self, 'cert_expiry_time', n.get_datetime_value()),
+            "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
+            "enrollmentError": lambda n : setattr(self, 'enrollment_error', n.get_str_value()),
+            "lastConnectorConnectionTime": lambda n : setattr(self, 'last_connector_connection_time', n.get_datetime_value()),
+            "lastUploadVersion": lambda n : setattr(self, 'last_upload_version', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_int_value()),
         }
@@ -139,7 +139,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         Sets the lastConnectorConnectionTime property value. Last time certificate connector connected
         Args:
-            value: Value to set for the lastConnectorConnectionTime property.
+            value: Value to set for the last_connector_connection_time property.
         """
         self._last_connector_connection_time = value
     
@@ -156,7 +156,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         Sets the lastUploadVersion property value. Version of last uploaded certificate connector
         Args:
-            value: Value to set for the lastUploadVersion property.
+            value: Value to set for the last_upload_version property.
         """
         self._last_upload_version = value
     
@@ -173,7 +173,7 @@ class CertificateConnectorSetting(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -34,7 +34,7 @@ class WipeManagedAppRegistrationsByAzureAdDeviceIdPostRequestBody(AdditionalData
         """
         Sets the azureAdDeviceId property value. The azureAdDeviceId property
         Args:
-            value: Value to set for the azureAdDeviceId property.
+            value: Value to set for the azure_ad_device_id property.
         """
         self._azure_ad_device_id = value
     
@@ -66,7 +66,7 @@ class WipeManagedAppRegistrationsByAzureAdDeviceIdPostRequestBody(AdditionalData
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "azure_ad_device_id": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
+            "azureAdDeviceId": lambda n : setattr(self, 'azure_ad_device_id', n.get_str_value()),
         }
         return fields
     

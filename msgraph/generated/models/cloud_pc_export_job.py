@@ -26,7 +26,7 @@ class CloudPcExportJob(entity.Entity):
         self._format: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, unknownFutureValue.
+        # The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
         self._report_name: Optional[cloud_pc_report_name.CloudPcReportName] = None
         # The date and time when the export job was requested.
         self._request_date_time: Optional[datetime] = None
@@ -58,7 +58,7 @@ class CloudPcExportJob(entity.Entity):
         """
         Sets the expirationDateTime property value. The date and time when the export job expires.
         Args:
-            value: Value to set for the expirationDateTime property.
+            value: Value to set for the expiration_date_time property.
         """
         self._expiration_date_time = value
     
@@ -75,7 +75,7 @@ class CloudPcExportJob(entity.Entity):
         """
         Sets the exportJobStatus property value. The status of the export job. The possible values are: notStarted, inProgress, completed, unknownFutureValue. Read-only.
         Args:
-            value: Value to set for the exportJobStatus property.
+            value: Value to set for the export_job_status property.
         """
         self._export_job_status = value
     
@@ -92,7 +92,7 @@ class CloudPcExportJob(entity.Entity):
         """
         Sets the exportUrl property value. The storage account URL of the exported report. It can be used to download the file.
         Args:
-            value: Value to set for the exportUrl property.
+            value: Value to set for the export_url property.
         """
         self._export_url = value
     
@@ -136,13 +136,13 @@ class CloudPcExportJob(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiration_date_time": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
-            "export_job_status": lambda n : setattr(self, 'export_job_status', n.get_enum_value(cloud_pc_export_job_status.CloudPcExportJobStatus)),
-            "export_url": lambda n : setattr(self, 'export_url', n.get_str_value()),
+            "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
+            "exportJobStatus": lambda n : setattr(self, 'export_job_status', n.get_enum_value(cloud_pc_export_job_status.CloudPcExportJobStatus)),
+            "exportUrl": lambda n : setattr(self, 'export_url', n.get_str_value()),
             "filter": lambda n : setattr(self, 'filter', n.get_str_value()),
             "format": lambda n : setattr(self, 'format', n.get_str_value()),
-            "report_name": lambda n : setattr(self, 'report_name', n.get_enum_value(cloud_pc_report_name.CloudPcReportName)),
-            "request_date_time": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
+            "reportName": lambda n : setattr(self, 'report_name', n.get_enum_value(cloud_pc_report_name.CloudPcReportName)),
+            "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
             "select": lambda n : setattr(self, 'select', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
@@ -152,7 +152,7 @@ class CloudPcExportJob(entity.Entity):
     @property
     def report_name(self,) -> Optional[cloud_pc_report_name.CloudPcReportName]:
         """
-        Gets the reportName property value. The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, unknownFutureValue.
+        Gets the reportName property value. The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
         Returns: Optional[cloud_pc_report_name.CloudPcReportName]
         """
         return self._report_name
@@ -160,9 +160,9 @@ class CloudPcExportJob(entity.Entity):
     @report_name.setter
     def report_name(self,value: Optional[cloud_pc_report_name.CloudPcReportName] = None) -> None:
         """
-        Sets the reportName property value. The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, unknownFutureValue.
+        Sets the reportName property value. The report name. The possible values are: remoteConnectionHistoricalReports, dailyAggregatedRemoteConnectionReports, totalAggregatedRemoteConnectionReports, sharedUseLicenseUsageReport, sharedUseLicenseUsageRealTimeReport, or unknownFutureValue.
         Args:
-            value: Value to set for the reportName property.
+            value: Value to set for the report_name property.
         """
         self._report_name = value
     
@@ -179,7 +179,7 @@ class CloudPcExportJob(entity.Entity):
         """
         Sets the requestDateTime property value. The date and time when the export job was requested.
         Args:
-            value: Value to set for the requestDateTime property.
+            value: Value to set for the request_date_time property.
         """
         self._request_date_time = value
     

@@ -10,14 +10,14 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-application_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.application.application_request_builder')
 check_member_groups_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.check_member_groups.check_member_groups_request_builder')
 check_member_objects_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.check_member_objects.check_member_objects_request_builder')
 get_member_groups_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.get_member_groups.get_member_groups_request_builder')
 get_member_objects_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.get_member_objects.get_member_objects_request_builder')
-group_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.group.group_request_builder')
+graph_application_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.graph_application.graph_application_request_builder')
+graph_group_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.graph_group.graph_group_request_builder')
+graph_user_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.graph_user.graph_user_request_builder')
 restore_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.restore.restore_request_builder')
-user_request_builder = lazy_import('msgraph.generated.directory.deleted_items.item.user.user_request_builder')
 directory_object = lazy_import('msgraph.generated.models.directory_object')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -25,13 +25,6 @@ class DirectoryObjectItemRequestBuilder():
     """
     Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
     """
-    @property
-    def application(self) -> application_request_builder.ApplicationRequestBuilder:
-        """
-        Casts the previous resource to application.
-        """
-        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def check_member_groups(self) -> check_member_groups_request_builder.CheckMemberGroupsRequestBuilder:
         """
@@ -61,11 +54,25 @@ class DirectoryObjectItemRequestBuilder():
         return get_member_objects_request_builder.GetMemberObjectsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
+    def graph_application(self) -> graph_application_request_builder.GraphApplicationRequestBuilder:
+        """
+        Casts the previous resource to application.
+        """
+        return graph_application_request_builder.GraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_group(self) -> graph_group_request_builder.GraphGroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
-        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_group_request_builder.GraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_user(self) -> graph_user_request_builder.GraphUserRequestBuilder:
+        """
+        Casts the previous resource to user.
+        """
+        return graph_user_request_builder.GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def restore(self) -> restore_request_builder.RestoreRequestBuilder:
@@ -73,13 +80,6 @@ class DirectoryObjectItemRequestBuilder():
         Provides operations to call the restore method.
         """
         return restore_request_builder.RestoreRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
-        """
-        Casts the previous resource to user.
-        """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -99,12 +99,11 @@ class DirectoryObjectItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deletedItems for directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -115,14 +114,13 @@ class DirectoryObjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def get(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderGetRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Get deletedItems from directory
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         request_info = self.to_get_request_information(
@@ -134,15 +132,14 @@ class DirectoryObjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
-    async def patch(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[DirectoryObjectItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[directory_object.DirectoryObject]:
+    async def patch(self,body: Optional[directory_object.DirectoryObject] = None, request_configuration: Optional[DirectoryObjectItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[directory_object.DirectoryObject]:
         """
         Update the navigation property deletedItems in directory
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[directory_object.DirectoryObject]
         """
         if body is None:
@@ -156,7 +153,7 @@ class DirectoryObjectItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, directory_object.DirectoryObject, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DirectoryObjectItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -185,7 +182,7 @@ class DirectoryObjectItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -206,7 +203,7 @@ class DirectoryObjectItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -219,7 +216,7 @@ class DirectoryObjectItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -258,7 +255,7 @@ class DirectoryObjectItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -273,7 +270,7 @@ class DirectoryObjectItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

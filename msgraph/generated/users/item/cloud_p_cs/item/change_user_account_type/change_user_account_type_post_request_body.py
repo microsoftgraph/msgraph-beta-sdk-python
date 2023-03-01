@@ -51,7 +51,7 @@ class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "user_account_type": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
+            "userAccountType": lambda n : setattr(self, 'user_account_type', n.get_enum_value(cloud_pc_user_account_type.CloudPcUserAccountType)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class ChangeUserAccountTypePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the userAccountType property value. The userAccountType property
         Args:
-            value: Value to set for the userAccountType property.
+            value: Value to set for the user_account_type property.
         """
         self._user_account_type = value
     

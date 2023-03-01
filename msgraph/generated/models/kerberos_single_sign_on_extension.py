@@ -19,7 +19,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the activeDirectorySiteCode property value. Gets or sets the Active Directory site.
         Args:
-            value: Value to set for the activeDirectorySiteCode property.
+            value: Value to set for the active_directory_site_code property.
         """
         self._active_directory_site_code = value
     
@@ -36,7 +36,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the blockActiveDirectorySiteAutoDiscovery property value. Enables or disables whether the Kerberos extension can automatically determine its site name.
         Args:
-            value: Value to set for the blockActiveDirectorySiteAutoDiscovery property.
+            value: Value to set for the block_active_directory_site_auto_discovery property.
         """
         self._block_active_directory_site_auto_discovery = value
     
@@ -53,7 +53,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the blockAutomaticLogin property value. Enables or disables Keychain usage.
         Args:
-            value: Value to set for the blockAutomaticLogin property.
+            value: Value to set for the block_automatic_login property.
         """
         self._block_automatic_login = value
     
@@ -70,7 +70,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the cacheName property value. Gets or sets the Generic Security Services name of the Kerberos cache to use for this profile.
         Args:
-            value: Value to set for the cacheName property.
+            value: Value to set for the cache_name property.
         """
         self._cache_name = value
     
@@ -148,7 +148,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the credentialBundleIdAccessControlList property value. Gets or sets a list of app Bundle IDs allowed to access the Kerberos Ticket Granting Ticket.
         Args:
-            value: Value to set for the credentialBundleIdAccessControlList property.
+            value: Value to set for the credential_bundle_id_access_control_list property.
         """
         self._credential_bundle_id_access_control_list = value
     
@@ -165,7 +165,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the domainRealms property value. Gets or sets a list of realms for custom domain-realm mapping. Realms are case sensitive.
         Args:
-            value: Value to set for the domainRealms property.
+            value: Value to set for the domain_realms property.
         """
         self._domain_realms = value
     
@@ -192,27 +192,27 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "active_directory_site_code": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
-            "block_active_directory_site_auto_discovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
-            "block_automatic_login": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),
-            "cache_name": lambda n : setattr(self, 'cache_name', n.get_str_value()),
-            "credential_bundle_id_access_control_list": lambda n : setattr(self, 'credential_bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
-            "domain_realms": lambda n : setattr(self, 'domain_realms', n.get_collection_of_primitive_values(str)),
+            "activeDirectorySiteCode": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
+            "blockActiveDirectorySiteAutoDiscovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
+            "blockAutomaticLogin": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),
+            "cacheName": lambda n : setattr(self, 'cache_name', n.get_str_value()),
+            "credentialBundleIdAccessControlList": lambda n : setattr(self, 'credential_bundle_id_access_control_list', n.get_collection_of_primitive_values(str)),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
-            "is_default_realm": lambda n : setattr(self, 'is_default_realm', n.get_bool_value()),
-            "password_block_modification": lambda n : setattr(self, 'password_block_modification', n.get_bool_value()),
-            "password_change_url": lambda n : setattr(self, 'password_change_url', n.get_str_value()),
-            "password_enable_local_sync": lambda n : setattr(self, 'password_enable_local_sync', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_expiration_notification_days": lambda n : setattr(self, 'password_expiration_notification_days', n.get_int_value()),
-            "password_minimum_age_days": lambda n : setattr(self, 'password_minimum_age_days', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_require_active_directory_complexity": lambda n : setattr(self, 'password_require_active_directory_complexity', n.get_bool_value()),
-            "password_requirements_description": lambda n : setattr(self, 'password_requirements_description', n.get_str_value()),
+            "domainRealms": lambda n : setattr(self, 'domain_realms', n.get_collection_of_primitive_values(str)),
+            "isDefaultRealm": lambda n : setattr(self, 'is_default_realm', n.get_bool_value()),
+            "passwordBlockModification": lambda n : setattr(self, 'password_block_modification', n.get_bool_value()),
+            "passwordChangeUrl": lambda n : setattr(self, 'password_change_url', n.get_str_value()),
+            "passwordEnableLocalSync": lambda n : setattr(self, 'password_enable_local_sync', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordExpirationNotificationDays": lambda n : setattr(self, 'password_expiration_notification_days', n.get_int_value()),
+            "passwordMinimumAgeDays": lambda n : setattr(self, 'password_minimum_age_days', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequirementsDescription": lambda n : setattr(self, 'password_requirements_description', n.get_str_value()),
+            "passwordRequireActiveDirectoryComplexity": lambda n : setattr(self, 'password_require_active_directory_complexity', n.get_bool_value()),
             "realm": lambda n : setattr(self, 'realm', n.get_str_value()),
-            "require_user_presence": lambda n : setattr(self, 'require_user_presence', n.get_bool_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "requireUserPresence": lambda n : setattr(self, 'require_user_presence', n.get_bool_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -231,7 +231,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the isDefaultRealm property value. When true, this profile's realm will be selected as the default. Necessary if multiple Kerberos-type profiles are configured.
         Args:
-            value: Value to set for the isDefaultRealm property.
+            value: Value to set for the is_default_realm property.
         """
         self._is_default_realm = value
     
@@ -248,7 +248,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordBlockModification property value. Enables or disables password changes.
         Args:
-            value: Value to set for the passwordBlockModification property.
+            value: Value to set for the password_block_modification property.
         """
         self._password_block_modification = value
     
@@ -265,7 +265,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordChangeUrl property value. Gets or sets the URL that the user will be sent to when they initiate a password change.
         Args:
-            value: Value to set for the passwordChangeUrl property.
+            value: Value to set for the password_change_url property.
         """
         self._password_change_url = value
     
@@ -282,7 +282,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordEnableLocalSync property value. Enables or disables password syncing. This won't affect users logged in with a mobile account on macOS.
         Args:
-            value: Value to set for the passwordEnableLocalSync property.
+            value: Value to set for the password_enable_local_sync property.
         """
         self._password_enable_local_sync = value
     
@@ -299,7 +299,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordExpirationDays property value. Overrides the default password expiration in days. For most domains, this value is calculated automatically.
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -316,7 +316,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordExpirationNotificationDays property value. Gets or sets the number of days until the user is notified that their password will expire (default is 15).
         Args:
-            value: Value to set for the passwordExpirationNotificationDays property.
+            value: Value to set for the password_expiration_notification_days property.
         """
         self._password_expiration_notification_days = value
     
@@ -333,7 +333,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordMinimumAgeDays property value. Gets or sets the minimum number of days until a user can change their password again.
         Args:
-            value: Value to set for the passwordMinimumAgeDays property.
+            value: Value to set for the password_minimum_age_days property.
         """
         self._password_minimum_age_days = value
     
@@ -350,7 +350,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordMinimumLength property value. Gets or sets the minimum length of a password.
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -367,7 +367,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordPreviousPasswordBlockCount property value. Gets or sets the number of previous passwords to block.
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -384,7 +384,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordRequireActiveDirectoryComplexity property value. Enables or disables whether passwords must meet Active Directory's complexity requirements.
         Args:
-            value: Value to set for the passwordRequireActiveDirectoryComplexity property.
+            value: Value to set for the password_require_active_directory_complexity property.
         """
         self._password_require_active_directory_complexity = value
     
@@ -401,7 +401,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the passwordRequirementsDescription property value. Gets or sets a description of the password complexity requirements.
         Args:
-            value: Value to set for the passwordRequirementsDescription property.
+            value: Value to set for the password_requirements_description property.
         """
         self._password_requirements_description = value
     
@@ -435,7 +435,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the requireUserPresence property value. Gets or sets whether to require authentication via Touch ID, Face ID, or a passcode to access the keychain entry.
         Args:
-            value: Value to set for the requireUserPresence property.
+            value: Value to set for the require_user_presence property.
         """
         self._require_user_presence = value
     
@@ -453,8 +453,8 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         writer.write_bool_value("blockAutomaticLogin", self.block_automatic_login)
         writer.write_str_value("cacheName", self.cache_name)
         writer.write_collection_of_primitive_values("credentialBundleIdAccessControlList", self.credential_bundle_id_access_control_list)
-        writer.write_collection_of_primitive_values("domainRealms", self.domain_realms)
         writer.write_collection_of_primitive_values("domains", self.domains)
+        writer.write_collection_of_primitive_values("domainRealms", self.domain_realms)
         writer.write_bool_value("isDefaultRealm", self.is_default_realm)
         writer.write_bool_value("passwordBlockModification", self.password_block_modification)
         writer.write_str_value("passwordChangeUrl", self.password_change_url)
@@ -464,8 +464,8 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         writer.write_int_value("passwordMinimumAgeDays", self.password_minimum_age_days)
         writer.write_int_value("passwordMinimumLength", self.password_minimum_length)
         writer.write_int_value("passwordPreviousPasswordBlockCount", self.password_previous_password_block_count)
-        writer.write_bool_value("passwordRequireActiveDirectoryComplexity", self.password_require_active_directory_complexity)
         writer.write_str_value("passwordRequirementsDescription", self.password_requirements_description)
+        writer.write_bool_value("passwordRequireActiveDirectoryComplexity", self.password_require_active_directory_complexity)
         writer.write_str_value("realm", self.realm)
         writer.write_bool_value("requireUserPresence", self.require_user_presence)
         writer.write_str_value("userPrincipalName", self.user_principal_name)
@@ -483,7 +483,7 @@ class KerberosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtensi
         """
         Sets the userPrincipalName property value. Gets or sets the principle user name to use for this profile. The realm name does not need to be included.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

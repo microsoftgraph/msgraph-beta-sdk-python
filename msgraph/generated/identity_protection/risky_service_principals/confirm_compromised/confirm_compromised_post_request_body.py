@@ -49,7 +49,7 @@ class ConfirmCompromisedPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "service_principal_ids": lambda n : setattr(self, 'service_principal_ids', n.get_collection_of_primitive_values(str)),
+            "servicePrincipalIds": lambda n : setattr(self, 'service_principal_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -77,7 +77,7 @@ class ConfirmCompromisedPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the servicePrincipalIds property value. The servicePrincipalIds property
         Args:
-            value: Value to set for the servicePrincipalIds property.
+            value: Value to set for the service_principal_ids property.
         """
         self._service_principal_ids = value
     

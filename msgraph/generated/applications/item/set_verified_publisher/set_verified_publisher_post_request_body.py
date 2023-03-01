@@ -49,7 +49,7 @@ class SetVerifiedPublisherPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "verified_publisher_id": lambda n : setattr(self, 'verified_publisher_id', n.get_str_value()),
+            "verifiedPublisherId": lambda n : setattr(self, 'verified_publisher_id', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class SetVerifiedPublisherPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the verifiedPublisherId property value. The verifiedPublisherId property
         Args:
-            value: Value to set for the verifiedPublisherId property.
+            value: Value to set for the verified_publisher_id property.
         """
         self._verified_publisher_id = value
     

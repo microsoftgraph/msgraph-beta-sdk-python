@@ -24,7 +24,7 @@ class MicrosoftTunnelServer(entity.Entity):
         """
         Sets the agentImageDigest property value. The digest of the current agent image running on this server
         Args:
-            value: Value to set for the agentImageDigest property.
+            value: Value to set for the agent_image_digest property.
         """
         self._agent_image_digest = value
     
@@ -71,7 +71,7 @@ class MicrosoftTunnelServer(entity.Entity):
         """
         Sets the displayName property value. The display name for the server. This property is required when a server is created and cannot be cleared during updates.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -81,11 +81,11 @@ class MicrosoftTunnelServer(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "agent_image_digest": lambda n : setattr(self, 'agent_image_digest', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_checkin_date_time": lambda n : setattr(self, 'last_checkin_date_time', n.get_datetime_value()),
-            "server_image_digest": lambda n : setattr(self, 'server_image_digest', n.get_str_value()),
-            "tunnel_server_health_status": lambda n : setattr(self, 'tunnel_server_health_status', n.get_enum_value(microsoft_tunnel_server_health_status.MicrosoftTunnelServerHealthStatus)),
+            "agentImageDigest": lambda n : setattr(self, 'agent_image_digest', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastCheckinDateTime": lambda n : setattr(self, 'last_checkin_date_time', n.get_datetime_value()),
+            "serverImageDigest": lambda n : setattr(self, 'server_image_digest', n.get_str_value()),
+            "tunnelServerHealthStatus": lambda n : setattr(self, 'tunnel_server_health_status', n.get_enum_value(microsoft_tunnel_server_health_status.MicrosoftTunnelServerHealthStatus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -104,7 +104,7 @@ class MicrosoftTunnelServer(entity.Entity):
         """
         Sets the lastCheckinDateTime property value. Indicates when the server last checked in
         Args:
-            value: Value to set for the lastCheckinDateTime property.
+            value: Value to set for the last_checkin_date_time property.
         """
         self._last_checkin_date_time = value
     
@@ -136,7 +136,7 @@ class MicrosoftTunnelServer(entity.Entity):
         """
         Sets the serverImageDigest property value. The digest of the current server image running on this server
         Args:
-            value: Value to set for the serverImageDigest property.
+            value: Value to set for the server_image_digest property.
         """
         self._server_image_digest = value
     
@@ -153,7 +153,7 @@ class MicrosoftTunnelServer(entity.Entity):
         """
         Sets the tunnelServerHealthStatus property value. Enum of possible MicrosoftTunnelServer health status types
         Args:
-            value: Value to set for the tunnelServerHealthStatus property.
+            value: Value to set for the tunnel_server_health_status property.
         """
         self._tunnel_server_health_status = value
     

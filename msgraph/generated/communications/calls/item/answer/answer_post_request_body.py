@@ -21,7 +21,7 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the acceptedModalities property value. The acceptedModalities property
         Args:
-            value: Value to set for the acceptedModalities property.
+            value: Value to set for the accepted_modalities property.
         """
         self._accepted_modalities = value
     
@@ -43,23 +43,6 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
         self._additional_data = value
     
     @property
-    def callback_uri(self,) -> Optional[str]:
-        """
-        Gets the callbackUri property value. The callbackUri property
-        Returns: Optional[str]
-        """
-        return self._callback_uri
-    
-    @callback_uri.setter
-    def callback_uri(self,value: Optional[str] = None) -> None:
-        """
-        Sets the callbackUri property value. The callbackUri property
-        Args:
-            value: Value to set for the callbackUri property.
-        """
-        self._callback_uri = value
-    
-    @property
     def call_options(self,) -> Optional[incoming_call_options.IncomingCallOptions]:
         """
         Gets the callOptions property value. The callOptions property
@@ -72,9 +55,26 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the callOptions property value. The callOptions property
         Args:
-            value: Value to set for the callOptions property.
+            value: Value to set for the call_options property.
         """
         self._call_options = value
+    
+    @property
+    def callback_uri(self,) -> Optional[str]:
+        """
+        Gets the callbackUri property value. The callbackUri property
+        Returns: Optional[str]
+        """
+        return self._callback_uri
+    
+    @callback_uri.setter
+    def callback_uri(self,value: Optional[str] = None) -> None:
+        """
+        Sets the callbackUri property value. The callbackUri property
+        Args:
+            value: Value to set for the callback_uri property.
+        """
+        self._callback_uri = value
     
     def __init__(self,) -> None:
         """
@@ -85,10 +85,10 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
 
         # The acceptedModalities property
         self._accepted_modalities: Optional[List[modality.Modality]] = None
-        # The callbackUri property
-        self._callback_uri: Optional[str] = None
         # The callOptions property
         self._call_options: Optional[incoming_call_options.IncomingCallOptions] = None
+        # The callbackUri property
+        self._callback_uri: Optional[str] = None
         # The mediaConfig property
         self._media_config: Optional[media_config.MediaConfig] = None
         # The participantCapacity property
@@ -112,11 +112,11 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accepted_modalities": lambda n : setattr(self, 'accepted_modalities', n.get_collection_of_enum_values(modality.Modality)),
-            "callback_uri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
-            "call_options": lambda n : setattr(self, 'call_options', n.get_object_value(incoming_call_options.IncomingCallOptions)),
-            "media_config": lambda n : setattr(self, 'media_config', n.get_object_value(media_config.MediaConfig)),
-            "participant_capacity": lambda n : setattr(self, 'participant_capacity', n.get_int_value()),
+            "acceptedModalities": lambda n : setattr(self, 'accepted_modalities', n.get_collection_of_enum_values(modality.Modality)),
+            "callbackUri": lambda n : setattr(self, 'callback_uri', n.get_str_value()),
+            "callOptions": lambda n : setattr(self, 'call_options', n.get_object_value(incoming_call_options.IncomingCallOptions)),
+            "mediaConfig": lambda n : setattr(self, 'media_config', n.get_object_value(media_config.MediaConfig)),
+            "participantCapacity": lambda n : setattr(self, 'participant_capacity', n.get_int_value()),
         }
         return fields
     
@@ -133,7 +133,7 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the mediaConfig property value. The mediaConfig property
         Args:
-            value: Value to set for the mediaConfig property.
+            value: Value to set for the media_config property.
         """
         self._media_config = value
     
@@ -150,7 +150,7 @@ class AnswerPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the participantCapacity property value. The participantCapacity property
         Args:
-            value: Value to set for the participantCapacity property.
+            value: Value to set for the participant_capacity property.
         """
         self._participant_capacity = value
     

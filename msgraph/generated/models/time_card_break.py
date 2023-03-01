@@ -37,7 +37,7 @@ class TimeCardBreak(AdditionalDataHolder, Parsable):
         """
         Sets the breakId property value. ID of the timeCardBreak.
         Args:
-            value: Value to set for the breakId property.
+            value: Value to set for the break_id property.
         """
         self._break_id = value
     
@@ -94,7 +94,7 @@ class TimeCardBreak(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "break_id": lambda n : setattr(self, 'break_id', n.get_str_value()),
+            "breakId": lambda n : setattr(self, 'break_id', n.get_str_value()),
             "end": lambda n : setattr(self, 'end', n.get_object_value(time_card_event.TimeCardEvent)),
             "notes": lambda n : setattr(self, 'notes', n.get_object_value(item_body.ItemBody)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -132,7 +132,7 @@ class TimeCardBreak(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

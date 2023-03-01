@@ -34,7 +34,7 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the columnId property value. The columnId property
         Args:
-            value: Value to set for the columnId property.
+            value: Value to set for the column_id property.
         """
         self._column_id = value
     
@@ -72,10 +72,10 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "column_id": lambda n : setattr(self, 'column_id', n.get_float_value()),
-            "horizontal_section_id": lambda n : setattr(self, 'horizontal_section_id', n.get_float_value()),
-            "is_in_vertical_section": lambda n : setattr(self, 'is_in_vertical_section', n.get_bool_value()),
-            "web_part_index": lambda n : setattr(self, 'web_part_index', n.get_float_value()),
+            "columnId": lambda n : setattr(self, 'column_id', n.get_float_value()),
+            "horizontalSectionId": lambda n : setattr(self, 'horizontal_section_id', n.get_float_value()),
+            "isInVerticalSection": lambda n : setattr(self, 'is_in_vertical_section', n.get_bool_value()),
+            "webPartIndex": lambda n : setattr(self, 'web_part_index', n.get_float_value()),
         }
         return fields
     
@@ -92,7 +92,7 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the horizontalSectionId property value. The horizontalSectionId property
         Args:
-            value: Value to set for the horizontalSectionId property.
+            value: Value to set for the horizontal_section_id property.
         """
         self._horizontal_section_id = value
     
@@ -109,7 +109,7 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the isInVerticalSection property value. The isInVerticalSection property
         Args:
-            value: Value to set for the isInVerticalSection property.
+            value: Value to set for the is_in_vertical_section property.
         """
         self._is_in_vertical_section = value
     
@@ -140,7 +140,7 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the webPartIndex property value. The webPartIndex property
         Args:
-            value: Value to set for the webPartIndex property.
+            value: Value to set for the web_part_index property.
         """
         self._web_part_index = value
     

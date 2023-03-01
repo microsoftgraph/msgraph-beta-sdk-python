@@ -67,7 +67,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the enhancedAntiSpoofingForFacialFeaturesEnabled property value. Boolean value used to enable enhanced anti-spoofing for facial feature recognition on Windows Hello face authentication.
         Args:
-            value: Value to set for the enhancedAntiSpoofingForFacialFeaturesEnabled property.
+            value: Value to set for the enhanced_anti_spoofing_for_facial_features_enabled property.
         """
         self._enhanced_anti_spoofing_for_facial_features_enabled = value
     
@@ -77,20 +77,20 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "enhanced_anti_spoofing_for_facial_features_enabled": lambda n : setattr(self, 'enhanced_anti_spoofing_for_facial_features_enabled', n.get_bool_value()),
-            "pin_expiration_in_days": lambda n : setattr(self, 'pin_expiration_in_days', n.get_int_value()),
-            "pin_lowercase_characters_usage": lambda n : setattr(self, 'pin_lowercase_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "pin_maximum_length": lambda n : setattr(self, 'pin_maximum_length', n.get_int_value()),
-            "pin_minimum_length": lambda n : setattr(self, 'pin_minimum_length', n.get_int_value()),
-            "pin_previous_block_count": lambda n : setattr(self, 'pin_previous_block_count', n.get_int_value()),
-            "pin_recovery_enabled": lambda n : setattr(self, 'pin_recovery_enabled', n.get_bool_value()),
-            "pin_special_characters_usage": lambda n : setattr(self, 'pin_special_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "pin_uppercase_characters_usage": lambda n : setattr(self, 'pin_uppercase_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
-            "security_device_required": lambda n : setattr(self, 'security_device_required', n.get_bool_value()),
-            "unlock_with_biometrics_enabled": lambda n : setattr(self, 'unlock_with_biometrics_enabled', n.get_bool_value()),
-            "use_certificates_for_on_premises_auth_enabled": lambda n : setattr(self, 'use_certificates_for_on_premises_auth_enabled', n.get_bool_value()),
-            "use_security_key_for_signin": lambda n : setattr(self, 'use_security_key_for_signin', n.get_bool_value()),
-            "windows_hello_for_business_blocked": lambda n : setattr(self, 'windows_hello_for_business_blocked', n.get_bool_value()),
+            "enhancedAntiSpoofingForFacialFeaturesEnabled": lambda n : setattr(self, 'enhanced_anti_spoofing_for_facial_features_enabled', n.get_bool_value()),
+            "pinExpirationInDays": lambda n : setattr(self, 'pin_expiration_in_days', n.get_int_value()),
+            "pinLowercaseCharactersUsage": lambda n : setattr(self, 'pin_lowercase_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "pinMaximumLength": lambda n : setattr(self, 'pin_maximum_length', n.get_int_value()),
+            "pinMinimumLength": lambda n : setattr(self, 'pin_minimum_length', n.get_int_value()),
+            "pinPreviousBlockCount": lambda n : setattr(self, 'pin_previous_block_count', n.get_int_value()),
+            "pinRecoveryEnabled": lambda n : setattr(self, 'pin_recovery_enabled', n.get_bool_value()),
+            "pinSpecialCharactersUsage": lambda n : setattr(self, 'pin_special_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "pinUppercaseCharactersUsage": lambda n : setattr(self, 'pin_uppercase_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),
+            "securityDeviceRequired": lambda n : setattr(self, 'security_device_required', n.get_bool_value()),
+            "unlockWithBiometricsEnabled": lambda n : setattr(self, 'unlock_with_biometrics_enabled', n.get_bool_value()),
+            "useCertificatesForOnPremisesAuthEnabled": lambda n : setattr(self, 'use_certificates_for_on_premises_auth_enabled', n.get_bool_value()),
+            "useSecurityKeyForSignin": lambda n : setattr(self, 'use_security_key_for_signin', n.get_bool_value()),
+            "windowsHelloForBusinessBlocked": lambda n : setattr(self, 'windows_hello_for_business_blocked', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -109,7 +109,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinExpirationInDays property value. Integer value specifies the period (in days) that a PIN can be used before the system requires the user to change it. Valid values are 0 to 730 inclusive. Valid values 0 to 730
         Args:
-            value: Value to set for the pinExpirationInDays property.
+            value: Value to set for the pin_expiration_in_days property.
         """
         self._pin_expiration_in_days = value
     
@@ -126,7 +126,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinLowercaseCharactersUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the pinLowercaseCharactersUsage property.
+            value: Value to set for the pin_lowercase_characters_usage property.
         """
         self._pin_lowercase_characters_usage = value
     
@@ -143,7 +143,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinMaximumLength property value. Integer value that sets the maximum number of characters allowed for the work PIN. Valid values are 4 to 127 inclusive and greater than or equal to the value set for the minimum PIN. Valid values 4 to 127
         Args:
-            value: Value to set for the pinMaximumLength property.
+            value: Value to set for the pin_maximum_length property.
         """
         self._pin_maximum_length = value
     
@@ -160,7 +160,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinMinimumLength property value. Integer value that sets the minimum number of characters required for the Windows Hello for Business PIN. Valid values are 4 to 127 inclusive and less than or equal to the value set for the maximum PIN. Valid values 4 to 127
         Args:
-            value: Value to set for the pinMinimumLength property.
+            value: Value to set for the pin_minimum_length property.
         """
         self._pin_minimum_length = value
     
@@ -177,7 +177,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinPreviousBlockCount property value. Controls the ability to prevent users from using past PINs. This must be set between 0 and 50, inclusive, and the current PIN of the user is included in that count. If set to 0, previous PINs are not stored. PIN history is not preserved through a PIN reset. Valid values 0 to 50
         Args:
-            value: Value to set for the pinPreviousBlockCount property.
+            value: Value to set for the pin_previous_block_count property.
         """
         self._pin_previous_block_count = value
     
@@ -194,7 +194,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinRecoveryEnabled property value. Boolean value that enables a user to change their PIN by using the Windows Hello for Business PIN recovery service.
         Args:
-            value: Value to set for the pinRecoveryEnabled property.
+            value: Value to set for the pin_recovery_enabled property.
         """
         self._pin_recovery_enabled = value
     
@@ -211,7 +211,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinSpecialCharactersUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the pinSpecialCharactersUsage property.
+            value: Value to set for the pin_special_characters_usage property.
         """
         self._pin_special_characters_usage = value
     
@@ -228,7 +228,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the pinUppercaseCharactersUsage property value. Possible values of the ConfigurationUsage list.
         Args:
-            value: Value to set for the pinUppercaseCharactersUsage property.
+            value: Value to set for the pin_uppercase_characters_usage property.
         """
         self._pin_uppercase_characters_usage = value
     
@@ -245,7 +245,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the securityDeviceRequired property value. Controls whether to require a Trusted Platform Module (TPM) for provisioning Windows Hello for Business. A TPM provides an additional security benefit in that data stored on it cannot be used on other devices. If set to False, all devices can provision Windows Hello for Business even if there is not a usable TPM.
         Args:
-            value: Value to set for the securityDeviceRequired property.
+            value: Value to set for the security_device_required property.
         """
         self._security_device_required = value
     
@@ -286,7 +286,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the unlockWithBiometricsEnabled property value. Controls the use of biometric gestures, such as face and fingerprint, as an alternative to the Windows Hello for Business PIN.  If set to False, biometric gestures are not allowed. Users must still configure a PIN as a backup in case of failures.
         Args:
-            value: Value to set for the unlockWithBiometricsEnabled property.
+            value: Value to set for the unlock_with_biometrics_enabled property.
         """
         self._unlock_with_biometrics_enabled = value
     
@@ -303,7 +303,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the useCertificatesForOnPremisesAuthEnabled property value. Boolean value that enables Windows Hello for Business to use certificates to authenticate on-premise resources.
         Args:
-            value: Value to set for the useCertificatesForOnPremisesAuthEnabled property.
+            value: Value to set for the use_certificates_for_on_premises_auth_enabled property.
         """
         self._use_certificates_for_on_premises_auth_enabled = value
     
@@ -320,7 +320,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the useSecurityKeyForSignin property value. Boolean value used to enable the Windows Hello security key as a logon credential.
         Args:
-            value: Value to set for the useSecurityKeyForSignin property.
+            value: Value to set for the use_security_key_for_signin property.
         """
         self._use_security_key_for_signin = value
     
@@ -337,7 +337,7 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         """
         Sets the windowsHelloForBusinessBlocked property value. Boolean value that blocks Windows Hello for Business as a method for signing into Windows.
         Args:
-            value: Value to set for the windowsHelloForBusinessBlocked property.
+            value: Value to set for the windows_hello_for_business_blocked property.
         """
         self._windows_hello_for_business_blocked = value
     

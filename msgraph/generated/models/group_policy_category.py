@@ -76,7 +76,7 @@ class GroupPolicyCategory(entity.Entity):
         """
         Sets the definitionFile property value. The id of the definition file the category came from
         Args:
-            value: Value to set for the definitionFile property.
+            value: Value to set for the definition_file property.
         """
         self._definition_file = value
     
@@ -110,7 +110,7 @@ class GroupPolicyCategory(entity.Entity):
         """
         Sets the displayName property value. The string id of the category's display name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -121,12 +121,12 @@ class GroupPolicyCategory(entity.Entity):
         """
         fields = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(GroupPolicyCategory)),
-            "definition_file": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(group_policy_definition.GroupPolicyDefinition)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "ingestion_source": lambda n : setattr(self, 'ingestion_source', n.get_enum_value(ingestion_source.IngestionSource)),
-            "is_root": lambda n : setattr(self, 'is_root', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "definitionFile": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "ingestionSource": lambda n : setattr(self, 'ingestion_source', n.get_enum_value(ingestion_source.IngestionSource)),
+            "isRoot": lambda n : setattr(self, 'is_root', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(GroupPolicyCategory)),
         }
         super_fields = super().get_field_deserializers()
@@ -146,7 +146,7 @@ class GroupPolicyCategory(entity.Entity):
         """
         Sets the ingestionSource property value. Category Ingestion source
         Args:
-            value: Value to set for the ingestionSource property.
+            value: Value to set for the ingestion_source property.
         """
         self._ingestion_source = value
     
@@ -163,7 +163,7 @@ class GroupPolicyCategory(entity.Entity):
         """
         Sets the isRoot property value. Defines if the category is a root category
         Args:
-            value: Value to set for the isRoot property.
+            value: Value to set for the is_root property.
         """
         self._is_root = value
     
@@ -180,7 +180,7 @@ class GroupPolicyCategory(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time the entity was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -211,8 +211,8 @@ class GroupPolicyCategory(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("children", self.children)
-        writer.write_object_value("definitionFile", self.definition_file)
         writer.write_collection_of_object_values("definitions", self.definitions)
+        writer.write_object_value("definitionFile", self.definition_file)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("ingestionSource", self.ingestion_source)
         writer.write_bool_value("isRoot", self.is_root)

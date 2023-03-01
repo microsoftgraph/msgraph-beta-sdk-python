@@ -69,7 +69,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the deviceScopeAction property value. Trigger on the service to either START or STOP computing metrics data based on a device scope configuration.
         Args:
-            value: Value to set for the deviceScopeAction property.
+            value: Value to set for the device_scope_action property.
         """
         self._device_scope_action = value
     
@@ -86,7 +86,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the deviceScopeId property value. The unique identifier of the device scope the action was triggered on.
         Args:
-            value: Value to set for the deviceScopeId property.
+            value: Value to set for the device_scope_id property.
         """
         self._device_scope_id = value
     
@@ -103,7 +103,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the failedMessage property value. The message indicates the reason the device scope action failed to trigger.
         Args:
-            value: Value to set for the failedMessage property.
+            value: Value to set for the failed_message property.
         """
         self._failed_message = value
     
@@ -113,9 +113,9 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_scope_action": lambda n : setattr(self, 'device_scope_action', n.get_str_value()),
-            "device_scope_id": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
-            "failed_message": lambda n : setattr(self, 'failed_message', n.get_str_value()),
+            "deviceScopeAction": lambda n : setattr(self, 'device_scope_action', n.get_str_value()),
+            "deviceScopeId": lambda n : setattr(self, 'device_scope_id', n.get_str_value()),
+            "failedMessage": lambda n : setattr(self, 'failed_message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(device_scope_action_status.DeviceScopeActionStatus)),
         }
@@ -134,7 +134,7 @@ class DeviceScopeActionResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

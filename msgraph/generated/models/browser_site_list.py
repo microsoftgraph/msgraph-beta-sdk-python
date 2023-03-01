@@ -84,7 +84,7 @@ class BrowserSiteList(entity.Entity):
         """
         Sets the displayName property value. The name of the site list.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -95,13 +95,13 @@ class BrowserSiteList(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "published_by": lambda n : setattr(self, 'published_by', n.get_object_value(identity_set.IdentitySet)),
-            "published_date_time": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "publishedBy": lambda n : setattr(self, 'published_by', n.get_object_value(identity_set.IdentitySet)),
+            "publishedDateTime": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
             "revision": lambda n : setattr(self, 'revision', n.get_str_value()),
-            "shared_cookies": lambda n : setattr(self, 'shared_cookies', n.get_collection_of_object_values(browser_shared_cookie.BrowserSharedCookie)),
+            "sharedCookies": lambda n : setattr(self, 'shared_cookies', n.get_collection_of_object_values(browser_shared_cookie.BrowserSharedCookie)),
             "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(browser_site.BrowserSite)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(browser_site_list_status.BrowserSiteListStatus)),
         }
@@ -122,7 +122,7 @@ class BrowserSiteList(entity.Entity):
         """
         Sets the lastModifiedBy property value. The user who last modified the site list.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -139,7 +139,7 @@ class BrowserSiteList(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time when the site list was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -156,7 +156,7 @@ class BrowserSiteList(entity.Entity):
         """
         Sets the publishedBy property value. The user who published the site list.
         Args:
-            value: Value to set for the publishedBy property.
+            value: Value to set for the published_by property.
         """
         self._published_by = value
     
@@ -173,7 +173,7 @@ class BrowserSiteList(entity.Entity):
         """
         Sets the publishedDateTime property value. The date and time when the site list was published.
         Args:
-            value: Value to set for the publishedDateTime property.
+            value: Value to set for the published_date_time property.
         """
         self._published_date_time = value
     
@@ -227,7 +227,7 @@ class BrowserSiteList(entity.Entity):
         """
         Sets the sharedCookies property value. A collection of shared cookies defined for the site list.
         Args:
-            value: Value to set for the sharedCookies property.
+            value: Value to set for the shared_cookies property.
         """
         self._shared_cookies = value
     

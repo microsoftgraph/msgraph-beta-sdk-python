@@ -49,7 +49,7 @@ class GetPolicySetsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "policy_set_ids": lambda n : setattr(self, 'policy_set_ids', n.get_collection_of_primitive_values(str)),
+            "policySetIds": lambda n : setattr(self, 'policy_set_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class GetPolicySetsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the policySetIds property value. The policySetIds property
         Args:
-            value: Value to set for the policySetIds property.
+            value: Value to set for the policy_set_ids property.
         """
         self._policy_set_ids = value
     

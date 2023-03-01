@@ -58,10 +58,10 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_required": lambda n : setattr(self, 'is_required', n.get_bool_value()),
+            "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_definition_id": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
-            "setting_instance_template_id": lambda n : setattr(self, 'setting_instance_template_id', n.get_str_value()),
+            "settingDefinitionId": lambda n : setattr(self, 'setting_definition_id', n.get_str_value()),
+            "settingInstanceTemplateId": lambda n : setattr(self, 'setting_instance_template_id', n.get_str_value()),
         }
         return fields
     
@@ -78,7 +78,7 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         """
         Sets the isRequired property value. Indicates if a policy must specify this setting.
         Args:
-            value: Value to set for the isRequired property.
+            value: Value to set for the is_required property.
         """
         self._is_required = value
     
@@ -95,7 +95,7 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -126,7 +126,7 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         """
         Sets the settingDefinitionId property value. Setting Definition Id
         Args:
-            value: Value to set for the settingDefinitionId property.
+            value: Value to set for the setting_definition_id property.
         """
         self._setting_definition_id = value
     
@@ -143,7 +143,7 @@ class DeviceManagementConfigurationSettingInstanceTemplate(AdditionalDataHolder,
         """
         Sets the settingInstanceTemplateId property value. Setting Instance Template Id
         Args:
-            value: Value to set for the settingInstanceTemplateId property.
+            value: Value to set for the setting_instance_template_id property.
         """
         self._setting_instance_template_id = value
     

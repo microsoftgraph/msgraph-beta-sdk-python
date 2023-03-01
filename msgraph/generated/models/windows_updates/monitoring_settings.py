@@ -53,7 +53,7 @@ class MonitoringSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "monitoring_rules": lambda n : setattr(self, 'monitoring_rules', n.get_collection_of_object_values(monitoring_rule.MonitoringRule)),
+            "monitoringRules": lambda n : setattr(self, 'monitoring_rules', n.get_collection_of_object_values(monitoring_rule.MonitoringRule)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -71,7 +71,7 @@ class MonitoringSettings(AdditionalDataHolder, Parsable):
         """
         Sets the monitoringRules property value. Specifies the rules through which monitoring signals can trigger actions on the deployment. Rules are combined using 'or'.
         Args:
-            value: Value to set for the monitoringRules property.
+            value: Value to set for the monitoring_rules property.
         """
         self._monitoring_rules = value
     
@@ -88,7 +88,7 @@ class MonitoringSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

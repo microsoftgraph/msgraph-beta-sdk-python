@@ -78,7 +78,7 @@ class DeviceManagementUserRightsLocalUserOrGroup(AdditionalDataHolder, Parsable)
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "security_identifier": lambda n : setattr(self, 'security_identifier', n.get_str_value()),
+            "securityIdentifier": lambda n : setattr(self, 'security_identifier', n.get_str_value()),
         }
         return fields
     
@@ -112,7 +112,7 @@ class DeviceManagementUserRightsLocalUserOrGroup(AdditionalDataHolder, Parsable)
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -129,7 +129,7 @@ class DeviceManagementUserRightsLocalUserOrGroup(AdditionalDataHolder, Parsable)
         """
         Sets the securityIdentifier property value. The security identifier of this local user or group (e.g. S-1-5-32-544).
         Args:
-            value: Value to set for the securityIdentifier property.
+            value: Value to set for the security_identifier property.
         """
         self._security_identifier = value
     

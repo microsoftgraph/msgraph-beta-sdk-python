@@ -44,10 +44,10 @@ class OutlookUser(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "master_categories": lambda n : setattr(self, 'master_categories', n.get_collection_of_object_values(outlook_category.OutlookCategory)),
-            "task_folders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(outlook_task_folder.OutlookTaskFolder)),
-            "task_groups": lambda n : setattr(self, 'task_groups', n.get_collection_of_object_values(outlook_task_group.OutlookTaskGroup)),
+            "masterCategories": lambda n : setattr(self, 'master_categories', n.get_collection_of_object_values(outlook_category.OutlookCategory)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(outlook_task.OutlookTask)),
+            "taskFolders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(outlook_task_folder.OutlookTaskFolder)),
+            "taskGroups": lambda n : setattr(self, 'task_groups', n.get_collection_of_object_values(outlook_task_group.OutlookTaskGroup)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,7 +66,7 @@ class OutlookUser(entity.Entity):
         """
         Sets the masterCategories property value. A list of categories defined for the user.
         Args:
-            value: Value to set for the masterCategories property.
+            value: Value to set for the master_categories property.
         """
         self._master_categories = value
     
@@ -80,9 +80,9 @@ class OutlookUser(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("masterCategories", self.master_categories)
+        writer.write_collection_of_object_values("tasks", self.tasks)
         writer.write_collection_of_object_values("taskFolders", self.task_folders)
         writer.write_collection_of_object_values("taskGroups", self.task_groups)
-        writer.write_collection_of_object_values("tasks", self.tasks)
     
     @property
     def task_folders(self,) -> Optional[List[outlook_task_folder.OutlookTaskFolder]]:
@@ -97,7 +97,7 @@ class OutlookUser(entity.Entity):
         """
         Sets the taskFolders property value. The taskFolders property
         Args:
-            value: Value to set for the taskFolders property.
+            value: Value to set for the task_folders property.
         """
         self._task_folders = value
     
@@ -114,7 +114,7 @@ class OutlookUser(entity.Entity):
         """
         Sets the taskGroups property value. The taskGroups property
         Args:
-            value: Value to set for the taskGroups property.
+            value: Value to set for the task_groups property.
         """
         self._task_groups = value
     

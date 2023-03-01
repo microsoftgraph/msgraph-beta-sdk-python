@@ -51,7 +51,7 @@ class QueryByPlatformTypePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "platform_type": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
+            "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(policy_platform_type.PolicyPlatformType)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class QueryByPlatformTypePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the platformType property value. Supported platform types for policies.
         Args:
-            value: Value to set for the platformType property.
+            value: Value to set for the platform_type property.
         """
         self._platform_type = value
     

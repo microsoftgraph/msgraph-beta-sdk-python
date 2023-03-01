@@ -45,7 +45,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         self._property_regex_constraint: Optional[str] = None
         # List of all supported operators on this property.
         self._supported_operators: Optional[List[assignment_filter_operator.AssignmentFilterOperator]] = None
-        # List of all supported values for this propery, empty if everything is supported.
+        # List of all supported values for this property, empty if everything is supported.
         self._supported_values: Optional[List[str]] = None
     
     @staticmethod
@@ -73,7 +73,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         """
         Sets the dataType property value. The data type of the property.
         Args:
-            value: Value to set for the dataType property.
+            value: Value to set for the data_type property.
         """
         self._data_type = value
     
@@ -83,13 +83,13 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "data_type": lambda n : setattr(self, 'data_type', n.get_str_value()),
-            "is_collection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
+            "dataType": lambda n : setattr(self, 'data_type', n.get_str_value()),
+            "isCollection": lambda n : setattr(self, 'is_collection', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "property_regex_constraint": lambda n : setattr(self, 'property_regex_constraint', n.get_str_value()),
-            "supported_operators": lambda n : setattr(self, 'supported_operators', n.get_collection_of_enum_values(assignment_filter_operator.AssignmentFilterOperator)),
-            "supported_values": lambda n : setattr(self, 'supported_values', n.get_collection_of_primitive_values(str)),
+            "propertyRegexConstraint": lambda n : setattr(self, 'property_regex_constraint', n.get_str_value()),
+            "supportedOperators": lambda n : setattr(self, 'supported_operators', n.get_collection_of_enum_values(assignment_filter_operator.AssignmentFilterOperator)),
+            "supportedValues": lambda n : setattr(self, 'supported_values', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -106,7 +106,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         """
         Sets the isCollection property value. Indicates whether the property is a collection type or not.
         Args:
-            value: Value to set for the isCollection property.
+            value: Value to set for the is_collection property.
         """
         self._is_collection = value
     
@@ -140,7 +140,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -157,7 +157,7 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         """
         Sets the propertyRegexConstraint property value. Regex string to do validation on the property value.
         Args:
-            value: Value to set for the propertyRegexConstraint property.
+            value: Value to set for the property_regex_constraint property.
         """
         self._property_regex_constraint = value
     
@@ -191,14 +191,14 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
         """
         Sets the supportedOperators property value. List of all supported operators on this property.
         Args:
-            value: Value to set for the supportedOperators property.
+            value: Value to set for the supported_operators property.
         """
         self._supported_operators = value
     
     @property
     def supported_values(self,) -> Optional[List[str]]:
         """
-        Gets the supportedValues property value. List of all supported values for this propery, empty if everything is supported.
+        Gets the supportedValues property value. List of all supported values for this property, empty if everything is supported.
         Returns: Optional[List[str]]
         """
         return self._supported_values
@@ -206,9 +206,9 @@ class AssignmentFilterSupportedProperty(AdditionalDataHolder, Parsable):
     @supported_values.setter
     def supported_values(self,value: Optional[List[str]] = None) -> None:
         """
-        Sets the supportedValues property value. List of all supported values for this propery, empty if everything is supported.
+        Sets the supportedValues property value. List of all supported values for this property, empty if everything is supported.
         Args:
-            value: Value to set for the supportedValues property.
+            value: Value to set for the supported_values property.
         """
         self._supported_values = value
     

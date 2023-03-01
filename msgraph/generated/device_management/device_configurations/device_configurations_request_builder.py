@@ -30,6 +30,13 @@ class DeviceConfigurationsRequestBuilder():
         return count_request_builder.CountRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_ios_available_update_versions(self) -> get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder:
+        """
+        Provides operations to call the getIosAvailableUpdateVersions method.
+        """
+        return get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def get_targeted_users_and_devices(self) -> get_targeted_users_and_devices_request_builder.GetTargetedUsersAndDevicesRequestBuilder:
         """
         Provides operations to call the getTargetedUsersAndDevices method.
@@ -61,12 +68,11 @@ class DeviceConfigurationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
+    async def get(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]:
         """
         The device configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration_collection_response.DeviceConfigurationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -78,22 +84,14 @@ class DeviceConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration_collection_response.DeviceConfigurationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration_collection_response.DeviceConfigurationCollectionResponse, error_mapping)
     
-    def get_ios_available_update_versions(self,) -> get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder:
-        """
-        Provides operations to call the getIosAvailableUpdateVersions method.
-        Returns: get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder
-        """
-        return get_ios_available_update_versions_request_builder.GetIosAvailableUpdateVersionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def post(self,body: Optional[device_configuration.DeviceConfiguration] = None, request_configuration: Optional[DeviceConfigurationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_configuration.DeviceConfiguration]:
+    async def post(self,body: Optional[device_configuration.DeviceConfiguration] = None, request_configuration: Optional[DeviceConfigurationsRequestBuilderPostRequestConfiguration] = None) -> Optional[device_configuration.DeviceConfiguration]:
         """
         Create new navigation property to deviceConfigurations for deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_configuration.DeviceConfiguration]
         """
         if body is None:
@@ -107,7 +105,7 @@ class DeviceConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_configuration.DeviceConfiguration, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_configuration.DeviceConfiguration, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DeviceConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -120,7 +118,7 @@ class DeviceConfigurationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -141,7 +139,7 @@ class DeviceConfigurationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -211,7 +209,7 @@ class DeviceConfigurationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -226,7 +224,7 @@ class DeviceConfigurationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

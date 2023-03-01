@@ -35,7 +35,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the accountBlockModification property value. Indicates whether or not to allow account modification when the device is in supervised mode.
         Args:
-            value: Value to set for the accountBlockModification property.
+            value: Value to set for the account_block_modification property.
         """
         self._account_block_modification = value
     
@@ -52,7 +52,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the activationLockAllowWhenSupervised property value. Indicates whether or not to allow activation lock when the device is in the supervised mode.
         Args:
-            value: Value to set for the activationLockAllowWhenSupervised property.
+            value: Value to set for the activation_lock_allow_when_supervised property.
         """
         self._activation_lock_allow_when_supervised = value
     
@@ -69,7 +69,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airDropBlocked property value. Indicates whether or not to allow AirDrop when the device is in supervised mode.
         Args:
-            value: Value to set for the airDropBlocked property.
+            value: Value to set for the air_drop_blocked property.
         """
         self._air_drop_blocked = value
     
@@ -86,7 +86,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airDropForceUnmanagedDropTarget property value. Indicates whether or not to cause AirDrop to be considered an unmanaged drop target (iOS 9.0 and later).
         Args:
-            value: Value to set for the airDropForceUnmanagedDropTarget property.
+            value: Value to set for the air_drop_force_unmanaged_drop_target property.
         """
         self._air_drop_force_unmanaged_drop_target = value
     
@@ -103,7 +103,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airPlayForcePairingPasswordForOutgoingRequests property value. Indicates whether or not to enforce all devices receiving AirPlay requests from this device to use a pairing password.
         Args:
-            value: Value to set for the airPlayForcePairingPasswordForOutgoingRequests property.
+            value: Value to set for the air_play_force_pairing_password_for_outgoing_requests property.
         """
         self._air_play_force_pairing_password_for_outgoing_requests = value
     
@@ -120,7 +120,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airPrintBlockCredentialsStorage property value. Indicates whether or not keychain storage of username and password for Airprint is blocked (iOS 11.0 and later).
         Args:
-            value: Value to set for the airPrintBlockCredentialsStorage property.
+            value: Value to set for the air_print_block_credentials_storage property.
         """
         self._air_print_block_credentials_storage = value
     
@@ -137,7 +137,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airPrintBlocked property value. Indicates whether or not AirPrint is blocked (iOS 11.0 and later).
         Args:
-            value: Value to set for the airPrintBlocked property.
+            value: Value to set for the air_print_blocked property.
         """
         self._air_print_blocked = value
     
@@ -154,7 +154,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airPrintBlockiBeaconDiscovery property value. Indicates whether or not iBeacon discovery of AirPrint printers is blocked. This prevents spurious AirPrint Bluetooth beacons from phishing for network traffic (iOS 11.0 and later).
         Args:
-            value: Value to set for the airPrintBlockiBeaconDiscovery property.
+            value: Value to set for the air_print_blocki_beacon_discovery property.
         """
         self._air_print_blocki_beacon_discovery = value
     
@@ -171,7 +171,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the airPrintForceTrustedTLS property value. Indicates if trusted certificates are required for TLS printing communication (iOS 11.0 and later).
         Args:
-            value: Value to set for the airPrintForceTrustedTLS property.
+            value: Value to set for the air_print_force_trusted_t_l_s property.
         """
         self._air_print_force_trusted_t_l_s = value
     
@@ -188,77 +188,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appClipsBlocked property value. Prevents a user from adding any App Clips and removes any existing App Clips on the device.
         Args:
-            value: Value to set for the appClipsBlocked property.
+            value: Value to set for the app_clips_blocked property.
         """
         self._app_clips_blocked = value
-    
-    @property
-    def apple_news_blocked(self,) -> Optional[bool]:
-        """
-        Gets the appleNewsBlocked property value. Indicates whether or not to block the user from using News when the device is in supervised mode (iOS 9.0 and later).
-        Returns: Optional[bool]
-        """
-        return self._apple_news_blocked
-    
-    @apple_news_blocked.setter
-    def apple_news_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appleNewsBlocked property value. Indicates whether or not to block the user from using News when the device is in supervised mode (iOS 9.0 and later).
-        Args:
-            value: Value to set for the appleNewsBlocked property.
-        """
-        self._apple_news_blocked = value
-    
-    @property
-    def apple_personalized_ads_blocked(self,) -> Optional[bool]:
-        """
-        Gets the applePersonalizedAdsBlocked property value. Limits Apple personalized advertising when true. Available in iOS 14 and later.
-        Returns: Optional[bool]
-        """
-        return self._apple_personalized_ads_blocked
-    
-    @apple_personalized_ads_blocked.setter
-    def apple_personalized_ads_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the applePersonalizedAdsBlocked property value. Limits Apple personalized advertising when true. Available in iOS 14 and later.
-        Args:
-            value: Value to set for the applePersonalizedAdsBlocked property.
-        """
-        self._apple_personalized_ads_blocked = value
-    
-    @property
-    def apple_watch_block_pairing(self,) -> Optional[bool]:
-        """
-        Gets the appleWatchBlockPairing property value. Indicates whether or not to allow Apple Watch pairing when the device is in supervised mode (iOS 9.0 and later).
-        Returns: Optional[bool]
-        """
-        return self._apple_watch_block_pairing
-    
-    @apple_watch_block_pairing.setter
-    def apple_watch_block_pairing(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appleWatchBlockPairing property value. Indicates whether or not to allow Apple Watch pairing when the device is in supervised mode (iOS 9.0 and later).
-        Args:
-            value: Value to set for the appleWatchBlockPairing property.
-        """
-        self._apple_watch_block_pairing = value
-    
-    @property
-    def apple_watch_force_wrist_detection(self,) -> Optional[bool]:
-        """
-        Gets the appleWatchForceWristDetection property value. Indicates whether or not to force a paired Apple Watch to use Wrist Detection (iOS 8.2 and later).
-        Returns: Optional[bool]
-        """
-        return self._apple_watch_force_wrist_detection
-    
-    @apple_watch_force_wrist_detection.setter
-    def apple_watch_force_wrist_detection(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appleWatchForceWristDetection property value. Indicates whether or not to force a paired Apple Watch to use Wrist Detection (iOS 8.2 and later).
-        Args:
-            value: Value to set for the appleWatchForceWristDetection property.
-        """
-        self._apple_watch_force_wrist_detection = value
     
     @property
     def app_removal_blocked(self,) -> Optional[bool]:
@@ -273,26 +205,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appRemovalBlocked property value. Indicates if the removal of apps is allowed.
         Args:
-            value: Value to set for the appRemovalBlocked property.
+            value: Value to set for the app_removal_blocked property.
         """
         self._app_removal_blocked = value
-    
-    @property
-    def apps_single_app_mode_list(self,) -> Optional[List[app_list_item.AppListItem]]:
-        """
-        Gets the appsSingleAppModeList property value. Gets or sets the list of iOS apps allowed to autonomously enter Single App Mode. Supervised only. iOS 7.0 and later. This collection can contain a maximum of 500 elements.
-        Returns: Optional[List[app_list_item.AppListItem]]
-        """
-        return self._apps_single_app_mode_list
-    
-    @apps_single_app_mode_list.setter
-    def apps_single_app_mode_list(self,value: Optional[List[app_list_item.AppListItem]] = None) -> None:
-        """
-        Sets the appsSingleAppModeList property value. Gets or sets the list of iOS apps allowed to autonomously enter Single App Mode. Supervised only. iOS 7.0 and later. This collection can contain a maximum of 500 elements.
-        Args:
-            value: Value to set for the appsSingleAppModeList property.
-        """
-        self._apps_single_app_mode_list = value
     
     @property
     def app_store_block_automatic_downloads(self,) -> Optional[bool]:
@@ -307,26 +222,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appStoreBlockAutomaticDownloads property value. Indicates whether or not to block the automatic downloading of apps purchased on other devices when the device is in supervised mode (iOS 9.0 and later).
         Args:
-            value: Value to set for the appStoreBlockAutomaticDownloads property.
+            value: Value to set for the app_store_block_automatic_downloads property.
         """
         self._app_store_block_automatic_downloads = value
-    
-    @property
-    def app_store_blocked(self,) -> Optional[bool]:
-        """
-        Gets the appStoreBlocked property value. Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.
-        Returns: Optional[bool]
-        """
-        return self._app_store_blocked
-    
-    @app_store_blocked.setter
-    def app_store_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the appStoreBlocked property value. Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.
-        Args:
-            value: Value to set for the appStoreBlocked property.
-        """
-        self._app_store_blocked = value
     
     @property
     def app_store_block_in_app_purchases(self,) -> Optional[bool]:
@@ -341,7 +239,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appStoreBlockInAppPurchases property value. Indicates whether or not to block the user from making in app purchases.
         Args:
-            value: Value to set for the appStoreBlockInAppPurchases property.
+            value: Value to set for the app_store_block_in_app_purchases property.
         """
         self._app_store_block_in_app_purchases = value
     
@@ -358,9 +256,26 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appStoreBlockUIAppInstallation property value. Indicates whether or not to block the App Store app, not restricting installation through Host apps. Applies to supervised mode only (iOS 9.0 and later).
         Args:
-            value: Value to set for the appStoreBlockUIAppInstallation property.
+            value: Value to set for the app_store_block_u_i_app_installation property.
         """
         self._app_store_block_u_i_app_installation = value
+    
+    @property
+    def app_store_blocked(self,) -> Optional[bool]:
+        """
+        Gets the appStoreBlocked property value. Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.
+        Returns: Optional[bool]
+        """
+        return self._app_store_blocked
+    
+    @app_store_blocked.setter
+    def app_store_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appStoreBlocked property value. Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.
+        Args:
+            value: Value to set for the app_store_blocked property.
+        """
+        self._app_store_blocked = value
     
     @property
     def app_store_require_password(self,) -> Optional[bool]:
@@ -375,9 +290,94 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appStoreRequirePassword property value. Indicates whether or not to require a password when using the app store.
         Args:
-            value: Value to set for the appStoreRequirePassword property.
+            value: Value to set for the app_store_require_password property.
         """
         self._app_store_require_password = value
+    
+    @property
+    def apple_news_blocked(self,) -> Optional[bool]:
+        """
+        Gets the appleNewsBlocked property value. Indicates whether or not to block the user from using News when the device is in supervised mode (iOS 9.0 and later).
+        Returns: Optional[bool]
+        """
+        return self._apple_news_blocked
+    
+    @apple_news_blocked.setter
+    def apple_news_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appleNewsBlocked property value. Indicates whether or not to block the user from using News when the device is in supervised mode (iOS 9.0 and later).
+        Args:
+            value: Value to set for the apple_news_blocked property.
+        """
+        self._apple_news_blocked = value
+    
+    @property
+    def apple_personalized_ads_blocked(self,) -> Optional[bool]:
+        """
+        Gets the applePersonalizedAdsBlocked property value. Limits Apple personalized advertising when true. Available in iOS 14 and later.
+        Returns: Optional[bool]
+        """
+        return self._apple_personalized_ads_blocked
+    
+    @apple_personalized_ads_blocked.setter
+    def apple_personalized_ads_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the applePersonalizedAdsBlocked property value. Limits Apple personalized advertising when true. Available in iOS 14 and later.
+        Args:
+            value: Value to set for the apple_personalized_ads_blocked property.
+        """
+        self._apple_personalized_ads_blocked = value
+    
+    @property
+    def apple_watch_block_pairing(self,) -> Optional[bool]:
+        """
+        Gets the appleWatchBlockPairing property value. Indicates whether or not to allow Apple Watch pairing when the device is in supervised mode (iOS 9.0 and later).
+        Returns: Optional[bool]
+        """
+        return self._apple_watch_block_pairing
+    
+    @apple_watch_block_pairing.setter
+    def apple_watch_block_pairing(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appleWatchBlockPairing property value. Indicates whether or not to allow Apple Watch pairing when the device is in supervised mode (iOS 9.0 and later).
+        Args:
+            value: Value to set for the apple_watch_block_pairing property.
+        """
+        self._apple_watch_block_pairing = value
+    
+    @property
+    def apple_watch_force_wrist_detection(self,) -> Optional[bool]:
+        """
+        Gets the appleWatchForceWristDetection property value. Indicates whether or not to force a paired Apple Watch to use Wrist Detection (iOS 8.2 and later).
+        Returns: Optional[bool]
+        """
+        return self._apple_watch_force_wrist_detection
+    
+    @apple_watch_force_wrist_detection.setter
+    def apple_watch_force_wrist_detection(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the appleWatchForceWristDetection property value. Indicates whether or not to force a paired Apple Watch to use Wrist Detection (iOS 8.2 and later).
+        Args:
+            value: Value to set for the apple_watch_force_wrist_detection property.
+        """
+        self._apple_watch_force_wrist_detection = value
+    
+    @property
+    def apps_single_app_mode_list(self,) -> Optional[List[app_list_item.AppListItem]]:
+        """
+        Gets the appsSingleAppModeList property value. Gets or sets the list of iOS apps allowed to autonomously enter Single App Mode. Supervised only. iOS 7.0 and later. This collection can contain a maximum of 500 elements.
+        Returns: Optional[List[app_list_item.AppListItem]]
+        """
+        return self._apps_single_app_mode_list
+    
+    @apps_single_app_mode_list.setter
+    def apps_single_app_mode_list(self,value: Optional[List[app_list_item.AppListItem]] = None) -> None:
+        """
+        Sets the appsSingleAppModeList property value. Gets or sets the list of iOS apps allowed to autonomously enter Single App Mode. Supervised only. iOS 7.0 and later. This collection can contain a maximum of 500 elements.
+        Args:
+            value: Value to set for the apps_single_app_mode_list property.
+        """
+        self._apps_single_app_mode_list = value
     
     @property
     def apps_visibility_list(self,) -> Optional[List[app_list_item.AppListItem]]:
@@ -392,7 +392,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appsVisibilityList property value. List of apps in the visibility list (either visible/launchable apps list or hidden/unlaunchable apps list, controlled by AppsVisibilityListType) (iOS 9.3 and later). This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the appsVisibilityList property.
+            value: Value to set for the apps_visibility_list property.
         """
         self._apps_visibility_list = value
     
@@ -409,7 +409,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the appsVisibilityListType property value. Possible values of the compliance app list.
         Args:
-            value: Value to set for the appsVisibilityListType property.
+            value: Value to set for the apps_visibility_list_type property.
         """
         self._apps_visibility_list_type = value
     
@@ -426,7 +426,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the autoFillForceAuthentication property value. Indicates whether or not to force user authentication before autofilling passwords and credit card information in Safari and other apps on supervised devices.
         Args:
-            value: Value to set for the autoFillForceAuthentication property.
+            value: Value to set for the auto_fill_force_authentication property.
         """
         self._auto_fill_force_authentication = value
     
@@ -443,7 +443,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the autoUnlockBlocked property value. Blocks users from unlocking their device with Apple Watch. Available for devices running iOS and iPadOS versions 14.5 and later.
         Args:
-            value: Value to set for the autoUnlockBlocked property.
+            value: Value to set for the auto_unlock_blocked property.
         """
         self._auto_unlock_blocked = value
     
@@ -460,7 +460,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the blockSystemAppRemoval property value. Indicates whether or not the removal of system apps from the device is blocked on a supervised device (iOS 11.0 and later).
         Args:
-            value: Value to set for the blockSystemAppRemoval property.
+            value: Value to set for the block_system_app_removal property.
         """
         self._block_system_app_removal = value
     
@@ -477,7 +477,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the bluetoothBlockModification property value. Indicates whether or not to allow modification of Bluetooth settings when the device is in supervised mode (iOS 10.0 and later).
         Args:
-            value: Value to set for the bluetoothBlockModification property.
+            value: Value to set for the bluetooth_block_modification property.
         """
         self._bluetooth_block_modification = value
     
@@ -494,7 +494,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cameraBlocked property value. Indicates whether or not to block the user from accessing the camera of the device. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the cameraBlocked property.
+            value: Value to set for the camera_blocked property.
         """
         self._camera_blocked = value
     
@@ -511,7 +511,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockDataRoaming property value. Indicates whether or not to block data roaming.
         Args:
-            value: Value to set for the cellularBlockDataRoaming property.
+            value: Value to set for the cellular_block_data_roaming property.
         """
         self._cellular_block_data_roaming = value
     
@@ -528,7 +528,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockGlobalBackgroundFetchWhileRoaming property value. Indicates whether or not to block global background fetch while roaming.
         Args:
-            value: Value to set for the cellularBlockGlobalBackgroundFetchWhileRoaming property.
+            value: Value to set for the cellular_block_global_background_fetch_while_roaming property.
         """
         self._cellular_block_global_background_fetch_while_roaming = value
     
@@ -545,7 +545,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockPerAppDataModification property value. Indicates whether or not to allow changes to cellular app data usage settings when the device is in supervised mode.
         Args:
-            value: Value to set for the cellularBlockPerAppDataModification property.
+            value: Value to set for the cellular_block_per_app_data_modification property.
         """
         self._cellular_block_per_app_data_modification = value
     
@@ -562,7 +562,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockPersonalHotspot property value. Indicates whether or not to block Personal Hotspot.
         Args:
-            value: Value to set for the cellularBlockPersonalHotspot property.
+            value: Value to set for the cellular_block_personal_hotspot property.
         """
         self._cellular_block_personal_hotspot = value
     
@@ -579,7 +579,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockPersonalHotspotModification property value. Indicates whether or not to block the user from modifying the personal hotspot setting (iOS 12.2 or later).
         Args:
-            value: Value to set for the cellularBlockPersonalHotspotModification property.
+            value: Value to set for the cellular_block_personal_hotspot_modification property.
         """
         self._cellular_block_personal_hotspot_modification = value
     
@@ -596,7 +596,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockPlanModification property value. Indicates whether or not to allow users to change the settings of the cellular plan on a supervised device.
         Args:
-            value: Value to set for the cellularBlockPlanModification property.
+            value: Value to set for the cellular_block_plan_modification property.
         """
         self._cellular_block_plan_modification = value
     
@@ -613,7 +613,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the cellularBlockVoiceRoaming property value. Indicates whether or not to block voice roaming.
         Args:
-            value: Value to set for the cellularBlockVoiceRoaming property.
+            value: Value to set for the cellular_block_voice_roaming property.
         """
         self._cellular_block_voice_roaming = value
     
@@ -630,7 +630,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the certificatesBlockUntrustedTlsCertificates property value. Indicates whether or not to block untrusted TLS certificates.
         Args:
-            value: Value to set for the certificatesBlockUntrustedTlsCertificates property.
+            value: Value to set for the certificates_block_untrusted_tls_certificates property.
         """
         self._certificates_block_untrusted_tls_certificates = value
     
@@ -647,7 +647,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomAppBlockRemoteScreenObservation property value. Indicates whether or not to allow remote screen observation by Classroom app when the device is in supervised mode (iOS 9.3 and later).
         Args:
-            value: Value to set for the classroomAppBlockRemoteScreenObservation property.
+            value: Value to set for the classroom_app_block_remote_screen_observation property.
         """
         self._classroom_app_block_remote_screen_observation = value
     
@@ -664,7 +664,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomAppForceUnpromptedScreenObservation property value. Indicates whether or not to automatically give permission to the teacher of a managed course on the Classroom app to view a student's screen without prompting when the device is in supervised mode.
         Args:
-            value: Value to set for the classroomAppForceUnpromptedScreenObservation property.
+            value: Value to set for the classroom_app_force_unprompted_screen_observation property.
         """
         self._classroom_app_force_unprompted_screen_observation = value
     
@@ -681,7 +681,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomForceAutomaticallyJoinClasses property value. Indicates whether or not to automatically give permission to the teacher's requests, without prompting the student, when the device is in supervised mode.
         Args:
-            value: Value to set for the classroomForceAutomaticallyJoinClasses property.
+            value: Value to set for the classroom_force_automatically_join_classes property.
         """
         self._classroom_force_automatically_join_classes = value
     
@@ -698,7 +698,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomForceRequestPermissionToLeaveClasses property value. Indicates whether a student enrolled in an unmanaged course via Classroom will request permission from the teacher when attempting to leave the course (iOS 11.3 and later).
         Args:
-            value: Value to set for the classroomForceRequestPermissionToLeaveClasses property.
+            value: Value to set for the classroom_force_request_permission_to_leave_classes property.
         """
         self._classroom_force_request_permission_to_leave_classes = value
     
@@ -715,7 +715,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the classroomForceUnpromptedAppAndDeviceLock property value. Indicates whether or not to allow the teacher to lock apps or the device without prompting the student. Supervised only.
         Args:
-            value: Value to set for the classroomForceUnpromptedAppAndDeviceLock property.
+            value: Value to set for the classroom_force_unprompted_app_and_device_lock property.
         """
         self._classroom_force_unprompted_app_and_device_lock = value
     
@@ -732,7 +732,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the compliantAppListType property value. Possible values of the compliance app list.
         Args:
-            value: Value to set for the compliantAppListType property.
+            value: Value to set for the compliant_app_list_type property.
         """
         self._compliant_app_list_type = value
     
@@ -749,7 +749,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the compliantAppsList property value. List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.
         Args:
-            value: Value to set for the compliantAppsList property.
+            value: Value to set for the compliant_apps_list property.
         """
         self._compliant_apps_list = value
     
@@ -766,7 +766,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the configurationProfileBlockChanges property value. Indicates whether or not to block the user from installing configuration profiles and certificates interactively when the device is in supervised mode.
         Args:
-            value: Value to set for the configurationProfileBlockChanges property.
+            value: Value to set for the configuration_profile_block_changes property.
         """
         self._configuration_profile_block_changes = value
     
@@ -796,6 +796,18 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         self._air_print_force_trusted_t_l_s: Optional[bool] = None
         # Prevents a user from adding any App Clips and removes any existing App Clips on the device.
         self._app_clips_blocked: Optional[bool] = None
+        # Indicates if the removal of apps is allowed.
+        self._app_removal_blocked: Optional[bool] = None
+        # Indicates whether or not to block the automatic downloading of apps purchased on other devices when the device is in supervised mode (iOS 9.0 and later).
+        self._app_store_block_automatic_downloads: Optional[bool] = None
+        # Indicates whether or not to block the user from making in app purchases.
+        self._app_store_block_in_app_purchases: Optional[bool] = None
+        # Indicates whether or not to block the App Store app, not restricting installation through Host apps. Applies to supervised mode only (iOS 9.0 and later).
+        self._app_store_block_u_i_app_installation: Optional[bool] = None
+        # Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.
+        self._app_store_blocked: Optional[bool] = None
+        # Indicates whether or not to require a password when using the app store.
+        self._app_store_require_password: Optional[bool] = None
         # Indicates whether or not to block the user from using News when the device is in supervised mode (iOS 9.0 and later).
         self._apple_news_blocked: Optional[bool] = None
         # Limits Apple personalized advertising when true. Available in iOS 14 and later.
@@ -804,20 +816,8 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         self._apple_watch_block_pairing: Optional[bool] = None
         # Indicates whether or not to force a paired Apple Watch to use Wrist Detection (iOS 8.2 and later).
         self._apple_watch_force_wrist_detection: Optional[bool] = None
-        # Indicates if the removal of apps is allowed.
-        self._app_removal_blocked: Optional[bool] = None
         # Gets or sets the list of iOS apps allowed to autonomously enter Single App Mode. Supervised only. iOS 7.0 and later. This collection can contain a maximum of 500 elements.
         self._apps_single_app_mode_list: Optional[List[app_list_item.AppListItem]] = None
-        # Indicates whether or not to block the automatic downloading of apps purchased on other devices when the device is in supervised mode (iOS 9.0 and later).
-        self._app_store_block_automatic_downloads: Optional[bool] = None
-        # Indicates whether or not to block the user from using the App Store. Requires a supervised device for iOS 13 and later.
-        self._app_store_blocked: Optional[bool] = None
-        # Indicates whether or not to block the user from making in app purchases.
-        self._app_store_block_in_app_purchases: Optional[bool] = None
-        # Indicates whether or not to block the App Store app, not restricting installation through Host apps. Applies to supervised mode only (iOS 9.0 and later).
-        self._app_store_block_u_i_app_installation: Optional[bool] = None
-        # Indicates whether or not to require a password when using the app store.
-        self._app_store_require_password: Optional[bool] = None
         # List of apps in the visibility list (either visible/launchable apps list or hidden/unlaunchable apps list, controlled by AppsVisibilityListType) (iOS 9.3 and later). This collection can contain a maximum of 10000 elements.
         self._apps_visibility_list: Optional[List[app_list_item.AppListItem]] = None
         # Possible values of the compliance app list.
@@ -920,10 +920,10 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         self._gaming_block_multiplayer: Optional[bool] = None
         # indicates whether or not to allow host pairing to control the devices an iOS device can pair with when the iOS device is in supervised mode.
         self._host_pairing_blocked: Optional[bool] = None
-        # Indicates whether or not to block the user from using the iBooks Store when the device is in supervised mode.
-        self._i_books_store_blocked: Optional[bool] = None
         # Indicates whether or not to block the user from downloading media from the iBookstore that has been tagged as erotica.
         self._i_books_store_block_erotica: Optional[bool] = None
+        # Indicates whether or not to block the user from using the iBooks Store when the device is in supervised mode.
+        self._i_books_store_blocked: Optional[bool] = None
         # Indicates whether or not to block the user from continuing work they started on iOS device to another iOS or macOS device.
         self._i_cloud_block_activity_continuation: Optional[bool] = None
         # Indicates whether or not to block iCloud backup. Requires a supervised device for iOS 13 and later.
@@ -942,14 +942,14 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         self._i_cloud_private_relay_blocked: Optional[bool] = None
         # Indicates whether or not to require backups to iCloud be encrypted.
         self._i_cloud_require_encrypted_backup: Optional[bool] = None
-        # Indicates whether or not to block the iTunes app. Requires a supervised device for iOS 13 and later.
-        self._i_tunes_blocked: Optional[bool] = None
         # Indicates whether or not to block the user from accessing explicit content in iTunes and the App Store. Requires a supervised device for iOS 13 and later.
         self._i_tunes_block_explicit_content: Optional[bool] = None
         # Indicates whether or not to block Music service and revert Music app to classic mode when the device is in supervised mode (iOS 9.3 and later and macOS 10.12 and later).
         self._i_tunes_block_music_service: Optional[bool] = None
         # Indicates whether or not to block the user from using iTunes Radio when the device is in supervised mode (iOS 9.3 and later).
         self._i_tunes_block_radio: Optional[bool] = None
+        # Indicates whether or not to block the iTunes app. Requires a supervised device for iOS 13 and later.
+        self._i_tunes_blocked: Optional[bool] = None
         # Indicates whether or not to block keyboard auto-correction when the device is in supervised mode (iOS 8.1.3 and later).
         self._keyboard_block_auto_correct: Optional[bool] = None
         # Indicates whether or not to block the user from using dictation input when the device is in supervised mode.
@@ -1102,12 +1102,12 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         self._proximity_block_setup_to_new_device: Optional[bool] = None
         # Indicates whether or not to block the user from using Auto fill in Safari. Requires a supervised device for iOS 13 and later.
         self._safari_block_autofill: Optional[bool] = None
-        # Indicates whether or not to block the user from using Safari. Requires a supervised device for iOS 13 and later.
-        self._safari_blocked: Optional[bool] = None
         # Indicates whether or not to block JavaScript in Safari.
         self._safari_block_java_script: Optional[bool] = None
         # Indicates whether or not to block popups in Safari.
         self._safari_block_popups: Optional[bool] = None
+        # Indicates whether or not to block the user from using Safari. Requires a supervised device for iOS 13 and later.
+        self._safari_blocked: Optional[bool] = None
         # Web Browser Cookie Settings.
         self._safari_cookie_settings: Optional[web_browser_cookie_settings.WebBrowserCookieSettings] = None
         # URLs matching the patterns listed here will be considered managed.
@@ -1120,12 +1120,12 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         self._screen_capture_blocked: Optional[bool] = None
         # Indicates whether or not to block temporary sessions on Shared iPads (iOS 13.4 or later).
         self._shared_device_block_temporary_sessions: Optional[bool] = None
+        # Indicates whether or not to block Siri from querying user-generated content when used on a supervised device.
+        self._siri_block_user_generated_content: Optional[bool] = None
         # Indicates whether or not to block the user from using Siri.
         self._siri_blocked: Optional[bool] = None
         # Indicates whether or not to block the user from using Siri when locked.
         self._siri_blocked_when_locked: Optional[bool] = None
-        # Indicates whether or not to block Siri from querying user-generated content when used on a supervised device.
-        self._siri_block_user_generated_content: Optional[bool] = None
         # Indicates whether or not to prevent Siri from dictating, or speaking profane language on supervised device.
         self._siri_require_profanity_filter: Optional[bool] = None
         # Sets how many days a software update will be delyed for a supervised device. Valid values 0 to 90
@@ -1164,7 +1164,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the contactsAllowManagedToUnmanagedWrite property value. Indicates whether or not managed apps can write contacts to unmanaged contacts accounts (iOS 12.0 and later).
         Args:
-            value: Value to set for the contactsAllowManagedToUnmanagedWrite property.
+            value: Value to set for the contacts_allow_managed_to_unmanaged_write property.
         """
         self._contacts_allow_managed_to_unmanaged_write = value
     
@@ -1181,7 +1181,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the contactsAllowUnmanagedToManagedRead property value. Indicates whether or not unmanaged apps can read from managed contacts accounts (iOS 12.0 or later).
         Args:
-            value: Value to set for the contactsAllowUnmanagedToManagedRead property.
+            value: Value to set for the contacts_allow_unmanaged_to_managed_read property.
         """
         self._contacts_allow_unmanaged_to_managed_read = value
     
@@ -1198,7 +1198,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the continuousPathKeyboardBlocked property value. Indicates whether or not to block the continuous path keyboard when the device is supervised (iOS 13 or later).
         Args:
-            value: Value to set for the continuousPathKeyboardBlocked property.
+            value: Value to set for the continuous_path_keyboard_blocked property.
         """
         self._continuous_path_keyboard_blocked = value
     
@@ -1227,7 +1227,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the dateAndTimeForceSetAutomatically property value. Indicates whether or not the Date and Time 'Set Automatically' feature is enabled and cannot be turned off by the user (iOS 12.0 and later).
         Args:
-            value: Value to set for the dateAndTimeForceSetAutomatically property.
+            value: Value to set for the date_and_time_force_set_automatically property.
         """
         self._date_and_time_force_set_automatically = value
     
@@ -1244,7 +1244,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the definitionLookupBlocked property value. Indicates whether or not to block definition lookup when the device is in supervised mode (iOS 8.1.3 and later ).
         Args:
-            value: Value to set for the definitionLookupBlocked property.
+            value: Value to set for the definition_lookup_blocked property.
         """
         self._definition_lookup_blocked = value
     
@@ -1261,7 +1261,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the deviceBlockEnableRestrictions property value. Indicates whether or not to allow the user to enables restrictions in the device settings when the device is in supervised mode.
         Args:
-            value: Value to set for the deviceBlockEnableRestrictions property.
+            value: Value to set for the device_block_enable_restrictions property.
         """
         self._device_block_enable_restrictions = value
     
@@ -1278,7 +1278,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the deviceBlockEraseContentAndSettings property value. Indicates whether or not to allow the use of the 'Erase all content and settings' option on the device when the device is in supervised mode.
         Args:
-            value: Value to set for the deviceBlockEraseContentAndSettings property.
+            value: Value to set for the device_block_erase_content_and_settings property.
         """
         self._device_block_erase_content_and_settings = value
     
@@ -1295,7 +1295,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the deviceBlockNameModification property value. Indicates whether or not to allow device name modification when the device is in supervised mode (iOS 9.0 and later).
         Args:
-            value: Value to set for the deviceBlockNameModification property.
+            value: Value to set for the device_block_name_modification property.
         """
         self._device_block_name_modification = value
     
@@ -1312,7 +1312,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the diagnosticDataBlockSubmission property value. Indicates whether or not to block diagnostic data submission.
         Args:
-            value: Value to set for the diagnosticDataBlockSubmission property.
+            value: Value to set for the diagnostic_data_block_submission property.
         """
         self._diagnostic_data_block_submission = value
     
@@ -1329,7 +1329,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the diagnosticDataBlockSubmissionModification property value. Indicates whether or not to allow diagnostics submission settings modification when the device is in supervised mode (iOS 9.3.2 and later).
         Args:
-            value: Value to set for the diagnosticDataBlockSubmissionModification property.
+            value: Value to set for the diagnostic_data_block_submission_modification property.
         """
         self._diagnostic_data_block_submission_modification = value
     
@@ -1346,7 +1346,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the documentsBlockManagedDocumentsInUnmanagedApps property value. Indicates whether or not to block the user from viewing managed documents in unmanaged apps.
         Args:
-            value: Value to set for the documentsBlockManagedDocumentsInUnmanagedApps property.
+            value: Value to set for the documents_block_managed_documents_in_unmanaged_apps property.
         """
         self._documents_block_managed_documents_in_unmanaged_apps = value
     
@@ -1363,7 +1363,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the documentsBlockUnmanagedDocumentsInManagedApps property value. Indicates whether or not to block the user from viewing unmanaged documents in managed apps.
         Args:
-            value: Value to set for the documentsBlockUnmanagedDocumentsInManagedApps property.
+            value: Value to set for the documents_block_unmanaged_documents_in_managed_apps property.
         """
         self._documents_block_unmanaged_documents_in_managed_apps = value
     
@@ -1380,7 +1380,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the emailInDomainSuffixes property value. An email address lacking a suffix that matches any of these strings will be considered out-of-domain.
         Args:
-            value: Value to set for the emailInDomainSuffixes property.
+            value: Value to set for the email_in_domain_suffixes property.
         """
         self._email_in_domain_suffixes = value
     
@@ -1397,7 +1397,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseAppBlockTrust property value. Indicates whether or not to block the user from trusting an enterprise app.
         Args:
-            value: Value to set for the enterpriseAppBlockTrust property.
+            value: Value to set for the enterprise_app_block_trust property.
         """
         self._enterprise_app_block_trust = value
     
@@ -1414,7 +1414,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseAppBlockTrustModification property value. [Deprecated] Configuring this setting and setting the value to 'true' has no effect on the device.
         Args:
-            value: Value to set for the enterpriseAppBlockTrustModification property.
+            value: Value to set for the enterprise_app_block_trust_modification property.
         """
         self._enterprise_app_block_trust_modification = value
     
@@ -1431,7 +1431,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseBookBlockBackup property value. Indicates whether or not Enterprise book back up is blocked.
         Args:
-            value: Value to set for the enterpriseBookBlockBackup property.
+            value: Value to set for the enterprise_book_block_backup property.
         """
         self._enterprise_book_block_backup = value
     
@@ -1448,7 +1448,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the enterpriseBookBlockMetadataSync property value. Indicates whether or not Enterprise book notes and highlights sync is blocked.
         Args:
-            value: Value to set for the enterpriseBookBlockMetadataSync property.
+            value: Value to set for the enterprise_book_block_metadata_sync property.
         """
         self._enterprise_book_block_metadata_sync = value
     
@@ -1465,7 +1465,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the esimBlockModification property value. Indicates whether or not to allow the addition or removal of cellular plans on the eSIM of a supervised device.
         Args:
-            value: Value to set for the esimBlockModification property.
+            value: Value to set for the esim_block_modification property.
         """
         self._esim_block_modification = value
     
@@ -1482,7 +1482,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the faceTimeBlocked property value. Indicates whether or not to block the user from using FaceTime. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the faceTimeBlocked property.
+            value: Value to set for the face_time_blocked property.
         """
         self._face_time_blocked = value
     
@@ -1499,7 +1499,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the filesNetworkDriveAccessBlocked property value. Indicates if devices can access files or other resources on a network server using the Server Message Block (SMB) protocol. Available for devices running iOS and iPadOS, versions 13.0 and later.
         Args:
-            value: Value to set for the filesNetworkDriveAccessBlocked property.
+            value: Value to set for the files_network_drive_access_blocked property.
         """
         self._files_network_drive_access_blocked = value
     
@@ -1516,7 +1516,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the filesUsbDriveAccessBlocked property value. Indicates if sevices with access can connect to and open files on a USB drive. Available for devices running iOS and iPadOS, versions 13.0 and later.
         Args:
-            value: Value to set for the filesUsbDriveAccessBlocked property.
+            value: Value to set for the files_usb_drive_access_blocked property.
         """
         self._files_usb_drive_access_blocked = value
     
@@ -1533,7 +1533,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the findMyDeviceInFindMyAppBlocked property value. Indicates whether or not to block Find My Device when the device is supervised (iOS 13 or later).
         Args:
-            value: Value to set for the findMyDeviceInFindMyAppBlocked property.
+            value: Value to set for the find_my_device_in_find_my_app_blocked property.
         """
         self._find_my_device_in_find_my_app_blocked = value
     
@@ -1550,7 +1550,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the findMyFriendsBlocked property value. Indicates whether or not to block changes to Find My Friends when the device is in supervised mode.
         Args:
-            value: Value to set for the findMyFriendsBlocked property.
+            value: Value to set for the find_my_friends_blocked property.
         """
         self._find_my_friends_blocked = value
     
@@ -1567,7 +1567,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the findMyFriendsInFindMyAppBlocked property value. Indicates whether or not to block Find My Friends when the device is supervised (iOS 13 or later).
         Args:
-            value: Value to set for the findMyFriendsInFindMyAppBlocked property.
+            value: Value to set for the find_my_friends_in_find_my_app_blocked property.
         """
         self._find_my_friends_in_find_my_app_blocked = value
     
@@ -1584,7 +1584,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the gameCenterBlocked property value. Indicates whether or not to block the user from using Game Center when the device is in supervised mode.
         Args:
-            value: Value to set for the gameCenterBlocked property.
+            value: Value to set for the game_center_blocked property.
         """
         self._game_center_blocked = value
     
@@ -1601,7 +1601,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the gamingBlockGameCenterFriends property value. Indicates whether or not to block the user from having friends in Game Center. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the gamingBlockGameCenterFriends property.
+            value: Value to set for the gaming_block_game_center_friends property.
         """
         self._gaming_block_game_center_friends = value
     
@@ -1618,7 +1618,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the gamingBlockMultiplayer property value. Indicates whether or not to block the user from using multiplayer gaming. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the gamingBlockMultiplayer property.
+            value: Value to set for the gaming_block_multiplayer property.
         """
         self._gaming_block_multiplayer = value
     
@@ -1628,193 +1628,193 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_block_modification": lambda n : setattr(self, 'account_block_modification', n.get_bool_value()),
-            "activation_lock_allow_when_supervised": lambda n : setattr(self, 'activation_lock_allow_when_supervised', n.get_bool_value()),
-            "air_drop_blocked": lambda n : setattr(self, 'air_drop_blocked', n.get_bool_value()),
-            "air_drop_force_unmanaged_drop_target": lambda n : setattr(self, 'air_drop_force_unmanaged_drop_target', n.get_bool_value()),
-            "air_play_force_pairing_password_for_outgoing_requests": lambda n : setattr(self, 'air_play_force_pairing_password_for_outgoing_requests', n.get_bool_value()),
-            "air_print_block_credentials_storage": lambda n : setattr(self, 'air_print_block_credentials_storage', n.get_bool_value()),
-            "air_print_blocked": lambda n : setattr(self, 'air_print_blocked', n.get_bool_value()),
-            "air_print_blocki_beacon_discovery": lambda n : setattr(self, 'air_print_blocki_beacon_discovery', n.get_bool_value()),
-            "air_print_force_trusted_t_l_s": lambda n : setattr(self, 'air_print_force_trusted_t_l_s', n.get_bool_value()),
-            "app_clips_blocked": lambda n : setattr(self, 'app_clips_blocked', n.get_bool_value()),
-            "apple_news_blocked": lambda n : setattr(self, 'apple_news_blocked', n.get_bool_value()),
-            "apple_personalized_ads_blocked": lambda n : setattr(self, 'apple_personalized_ads_blocked', n.get_bool_value()),
-            "apple_watch_block_pairing": lambda n : setattr(self, 'apple_watch_block_pairing', n.get_bool_value()),
-            "apple_watch_force_wrist_detection": lambda n : setattr(self, 'apple_watch_force_wrist_detection', n.get_bool_value()),
-            "app_removal_blocked": lambda n : setattr(self, 'app_removal_blocked', n.get_bool_value()),
-            "apps_single_app_mode_list": lambda n : setattr(self, 'apps_single_app_mode_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "app_store_block_automatic_downloads": lambda n : setattr(self, 'app_store_block_automatic_downloads', n.get_bool_value()),
-            "app_store_blocked": lambda n : setattr(self, 'app_store_blocked', n.get_bool_value()),
-            "app_store_block_in_app_purchases": lambda n : setattr(self, 'app_store_block_in_app_purchases', n.get_bool_value()),
-            "app_store_block_u_i_app_installation": lambda n : setattr(self, 'app_store_block_u_i_app_installation', n.get_bool_value()),
-            "app_store_require_password": lambda n : setattr(self, 'app_store_require_password', n.get_bool_value()),
-            "apps_visibility_list": lambda n : setattr(self, 'apps_visibility_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "apps_visibility_list_type": lambda n : setattr(self, 'apps_visibility_list_type', n.get_enum_value(app_list_type.AppListType)),
-            "auto_fill_force_authentication": lambda n : setattr(self, 'auto_fill_force_authentication', n.get_bool_value()),
-            "auto_unlock_blocked": lambda n : setattr(self, 'auto_unlock_blocked', n.get_bool_value()),
-            "block_system_app_removal": lambda n : setattr(self, 'block_system_app_removal', n.get_bool_value()),
-            "bluetooth_block_modification": lambda n : setattr(self, 'bluetooth_block_modification', n.get_bool_value()),
-            "camera_blocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
-            "cellular_block_data_roaming": lambda n : setattr(self, 'cellular_block_data_roaming', n.get_bool_value()),
-            "cellular_block_global_background_fetch_while_roaming": lambda n : setattr(self, 'cellular_block_global_background_fetch_while_roaming', n.get_bool_value()),
-            "cellular_block_per_app_data_modification": lambda n : setattr(self, 'cellular_block_per_app_data_modification', n.get_bool_value()),
-            "cellular_block_personal_hotspot": lambda n : setattr(self, 'cellular_block_personal_hotspot', n.get_bool_value()),
-            "cellular_block_personal_hotspot_modification": lambda n : setattr(self, 'cellular_block_personal_hotspot_modification', n.get_bool_value()),
-            "cellular_block_plan_modification": lambda n : setattr(self, 'cellular_block_plan_modification', n.get_bool_value()),
-            "cellular_block_voice_roaming": lambda n : setattr(self, 'cellular_block_voice_roaming', n.get_bool_value()),
-            "certificates_block_untrusted_tls_certificates": lambda n : setattr(self, 'certificates_block_untrusted_tls_certificates', n.get_bool_value()),
-            "classroom_app_block_remote_screen_observation": lambda n : setattr(self, 'classroom_app_block_remote_screen_observation', n.get_bool_value()),
-            "classroom_app_force_unprompted_screen_observation": lambda n : setattr(self, 'classroom_app_force_unprompted_screen_observation', n.get_bool_value()),
-            "classroom_force_automatically_join_classes": lambda n : setattr(self, 'classroom_force_automatically_join_classes', n.get_bool_value()),
-            "classroom_force_request_permission_to_leave_classes": lambda n : setattr(self, 'classroom_force_request_permission_to_leave_classes', n.get_bool_value()),
-            "classroom_force_unprompted_app_and_device_lock": lambda n : setattr(self, 'classroom_force_unprompted_app_and_device_lock', n.get_bool_value()),
-            "compliant_app_list_type": lambda n : setattr(self, 'compliant_app_list_type', n.get_enum_value(app_list_type.AppListType)),
-            "compliant_apps_list": lambda n : setattr(self, 'compliant_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "configuration_profile_block_changes": lambda n : setattr(self, 'configuration_profile_block_changes', n.get_bool_value()),
-            "contacts_allow_managed_to_unmanaged_write": lambda n : setattr(self, 'contacts_allow_managed_to_unmanaged_write', n.get_bool_value()),
-            "contacts_allow_unmanaged_to_managed_read": lambda n : setattr(self, 'contacts_allow_unmanaged_to_managed_read', n.get_bool_value()),
-            "continuous_path_keyboard_blocked": lambda n : setattr(self, 'continuous_path_keyboard_blocked', n.get_bool_value()),
-            "date_and_time_force_set_automatically": lambda n : setattr(self, 'date_and_time_force_set_automatically', n.get_bool_value()),
-            "definition_lookup_blocked": lambda n : setattr(self, 'definition_lookup_blocked', n.get_bool_value()),
-            "device_block_enable_restrictions": lambda n : setattr(self, 'device_block_enable_restrictions', n.get_bool_value()),
-            "device_block_erase_content_and_settings": lambda n : setattr(self, 'device_block_erase_content_and_settings', n.get_bool_value()),
-            "device_block_name_modification": lambda n : setattr(self, 'device_block_name_modification', n.get_bool_value()),
-            "diagnostic_data_block_submission": lambda n : setattr(self, 'diagnostic_data_block_submission', n.get_bool_value()),
-            "diagnostic_data_block_submission_modification": lambda n : setattr(self, 'diagnostic_data_block_submission_modification', n.get_bool_value()),
-            "documents_block_managed_documents_in_unmanaged_apps": lambda n : setattr(self, 'documents_block_managed_documents_in_unmanaged_apps', n.get_bool_value()),
-            "documents_block_unmanaged_documents_in_managed_apps": lambda n : setattr(self, 'documents_block_unmanaged_documents_in_managed_apps', n.get_bool_value()),
-            "email_in_domain_suffixes": lambda n : setattr(self, 'email_in_domain_suffixes', n.get_collection_of_primitive_values(str)),
-            "enterprise_app_block_trust": lambda n : setattr(self, 'enterprise_app_block_trust', n.get_bool_value()),
-            "enterprise_app_block_trust_modification": lambda n : setattr(self, 'enterprise_app_block_trust_modification', n.get_bool_value()),
-            "enterprise_book_block_backup": lambda n : setattr(self, 'enterprise_book_block_backup', n.get_bool_value()),
-            "enterprise_book_block_metadata_sync": lambda n : setattr(self, 'enterprise_book_block_metadata_sync', n.get_bool_value()),
-            "esim_block_modification": lambda n : setattr(self, 'esim_block_modification', n.get_bool_value()),
-            "face_time_blocked": lambda n : setattr(self, 'face_time_blocked', n.get_bool_value()),
-            "files_network_drive_access_blocked": lambda n : setattr(self, 'files_network_drive_access_blocked', n.get_bool_value()),
-            "files_usb_drive_access_blocked": lambda n : setattr(self, 'files_usb_drive_access_blocked', n.get_bool_value()),
-            "find_my_device_in_find_my_app_blocked": lambda n : setattr(self, 'find_my_device_in_find_my_app_blocked', n.get_bool_value()),
-            "find_my_friends_blocked": lambda n : setattr(self, 'find_my_friends_blocked', n.get_bool_value()),
-            "find_my_friends_in_find_my_app_blocked": lambda n : setattr(self, 'find_my_friends_in_find_my_app_blocked', n.get_bool_value()),
-            "game_center_blocked": lambda n : setattr(self, 'game_center_blocked', n.get_bool_value()),
-            "gaming_block_game_center_friends": lambda n : setattr(self, 'gaming_block_game_center_friends', n.get_bool_value()),
-            "gaming_block_multiplayer": lambda n : setattr(self, 'gaming_block_multiplayer', n.get_bool_value()),
-            "host_pairing_blocked": lambda n : setattr(self, 'host_pairing_blocked', n.get_bool_value()),
-            "i_books_store_blocked": lambda n : setattr(self, 'i_books_store_blocked', n.get_bool_value()),
-            "i_books_store_block_erotica": lambda n : setattr(self, 'i_books_store_block_erotica', n.get_bool_value()),
-            "i_cloud_block_activity_continuation": lambda n : setattr(self, 'i_cloud_block_activity_continuation', n.get_bool_value()),
-            "i_cloud_block_backup": lambda n : setattr(self, 'i_cloud_block_backup', n.get_bool_value()),
-            "i_cloud_block_document_sync": lambda n : setattr(self, 'i_cloud_block_document_sync', n.get_bool_value()),
-            "i_cloud_block_managed_apps_sync": lambda n : setattr(self, 'i_cloud_block_managed_apps_sync', n.get_bool_value()),
-            "i_cloud_block_photo_library": lambda n : setattr(self, 'i_cloud_block_photo_library', n.get_bool_value()),
-            "i_cloud_block_photo_stream_sync": lambda n : setattr(self, 'i_cloud_block_photo_stream_sync', n.get_bool_value()),
-            "i_cloud_block_shared_photo_stream": lambda n : setattr(self, 'i_cloud_block_shared_photo_stream', n.get_bool_value()),
-            "i_cloud_private_relay_blocked": lambda n : setattr(self, 'i_cloud_private_relay_blocked', n.get_bool_value()),
-            "i_cloud_require_encrypted_backup": lambda n : setattr(self, 'i_cloud_require_encrypted_backup', n.get_bool_value()),
-            "i_tunes_blocked": lambda n : setattr(self, 'i_tunes_blocked', n.get_bool_value()),
-            "i_tunes_block_explicit_content": lambda n : setattr(self, 'i_tunes_block_explicit_content', n.get_bool_value()),
-            "i_tunes_block_music_service": lambda n : setattr(self, 'i_tunes_block_music_service', n.get_bool_value()),
-            "i_tunes_block_radio": lambda n : setattr(self, 'i_tunes_block_radio', n.get_bool_value()),
-            "keyboard_block_auto_correct": lambda n : setattr(self, 'keyboard_block_auto_correct', n.get_bool_value()),
-            "keyboard_block_dictation": lambda n : setattr(self, 'keyboard_block_dictation', n.get_bool_value()),
-            "keyboard_block_predictive": lambda n : setattr(self, 'keyboard_block_predictive', n.get_bool_value()),
-            "keyboard_block_shortcuts": lambda n : setattr(self, 'keyboard_block_shortcuts', n.get_bool_value()),
-            "keyboard_block_spell_check": lambda n : setattr(self, 'keyboard_block_spell_check', n.get_bool_value()),
-            "keychain_block_cloud_sync": lambda n : setattr(self, 'keychain_block_cloud_sync', n.get_bool_value()),
-            "kiosk_mode_allow_assistive_speak": lambda n : setattr(self, 'kiosk_mode_allow_assistive_speak', n.get_bool_value()),
-            "kiosk_mode_allow_assistive_touch_settings": lambda n : setattr(self, 'kiosk_mode_allow_assistive_touch_settings', n.get_bool_value()),
-            "kiosk_mode_allow_auto_lock": lambda n : setattr(self, 'kiosk_mode_allow_auto_lock', n.get_bool_value()),
-            "kiosk_mode_allow_color_inversion_settings": lambda n : setattr(self, 'kiosk_mode_allow_color_inversion_settings', n.get_bool_value()),
-            "kiosk_mode_allow_ringer_switch": lambda n : setattr(self, 'kiosk_mode_allow_ringer_switch', n.get_bool_value()),
-            "kiosk_mode_allow_screen_rotation": lambda n : setattr(self, 'kiosk_mode_allow_screen_rotation', n.get_bool_value()),
-            "kiosk_mode_allow_sleep_button": lambda n : setattr(self, 'kiosk_mode_allow_sleep_button', n.get_bool_value()),
-            "kiosk_mode_allow_touchscreen": lambda n : setattr(self, 'kiosk_mode_allow_touchscreen', n.get_bool_value()),
-            "kiosk_mode_allow_voice_control_modification": lambda n : setattr(self, 'kiosk_mode_allow_voice_control_modification', n.get_bool_value()),
-            "kiosk_mode_allow_voice_over_settings": lambda n : setattr(self, 'kiosk_mode_allow_voice_over_settings', n.get_bool_value()),
-            "kiosk_mode_allow_volume_buttons": lambda n : setattr(self, 'kiosk_mode_allow_volume_buttons', n.get_bool_value()),
-            "kiosk_mode_allow_zoom_settings": lambda n : setattr(self, 'kiosk_mode_allow_zoom_settings', n.get_bool_value()),
-            "kiosk_mode_app_store_url": lambda n : setattr(self, 'kiosk_mode_app_store_url', n.get_str_value()),
-            "kiosk_mode_app_type": lambda n : setattr(self, 'kiosk_mode_app_type', n.get_enum_value(ios_kiosk_mode_app_type.IosKioskModeAppType)),
-            "kiosk_mode_block_auto_lock": lambda n : setattr(self, 'kiosk_mode_block_auto_lock', n.get_bool_value()),
-            "kiosk_mode_block_ringer_switch": lambda n : setattr(self, 'kiosk_mode_block_ringer_switch', n.get_bool_value()),
-            "kiosk_mode_block_screen_rotation": lambda n : setattr(self, 'kiosk_mode_block_screen_rotation', n.get_bool_value()),
-            "kiosk_mode_block_sleep_button": lambda n : setattr(self, 'kiosk_mode_block_sleep_button', n.get_bool_value()),
-            "kiosk_mode_block_touchscreen": lambda n : setattr(self, 'kiosk_mode_block_touchscreen', n.get_bool_value()),
-            "kiosk_mode_block_volume_buttons": lambda n : setattr(self, 'kiosk_mode_block_volume_buttons', n.get_bool_value()),
-            "kiosk_mode_built_in_app_id": lambda n : setattr(self, 'kiosk_mode_built_in_app_id', n.get_str_value()),
-            "kiosk_mode_enable_voice_control": lambda n : setattr(self, 'kiosk_mode_enable_voice_control', n.get_bool_value()),
-            "kiosk_mode_managed_app_id": lambda n : setattr(self, 'kiosk_mode_managed_app_id', n.get_str_value()),
-            "kiosk_mode_require_assistive_touch": lambda n : setattr(self, 'kiosk_mode_require_assistive_touch', n.get_bool_value()),
-            "kiosk_mode_require_color_inversion": lambda n : setattr(self, 'kiosk_mode_require_color_inversion', n.get_bool_value()),
-            "kiosk_mode_require_mono_audio": lambda n : setattr(self, 'kiosk_mode_require_mono_audio', n.get_bool_value()),
-            "kiosk_mode_require_voice_over": lambda n : setattr(self, 'kiosk_mode_require_voice_over', n.get_bool_value()),
-            "kiosk_mode_require_zoom": lambda n : setattr(self, 'kiosk_mode_require_zoom', n.get_bool_value()),
-            "lock_screen_block_control_center": lambda n : setattr(self, 'lock_screen_block_control_center', n.get_bool_value()),
-            "lock_screen_block_notification_view": lambda n : setattr(self, 'lock_screen_block_notification_view', n.get_bool_value()),
-            "lock_screen_block_passbook": lambda n : setattr(self, 'lock_screen_block_passbook', n.get_bool_value()),
-            "lock_screen_block_today_view": lambda n : setattr(self, 'lock_screen_block_today_view', n.get_bool_value()),
-            "managed_pasteboard_required": lambda n : setattr(self, 'managed_pasteboard_required', n.get_bool_value()),
-            "media_content_rating_apps": lambda n : setattr(self, 'media_content_rating_apps', n.get_enum_value(rating_apps_type.RatingAppsType)),
-            "media_content_rating_australia": lambda n : setattr(self, 'media_content_rating_australia', n.get_object_value(media_content_rating_australia.MediaContentRatingAustralia)),
-            "media_content_rating_canada": lambda n : setattr(self, 'media_content_rating_canada', n.get_object_value(media_content_rating_canada.MediaContentRatingCanada)),
-            "media_content_rating_france": lambda n : setattr(self, 'media_content_rating_france', n.get_object_value(media_content_rating_france.MediaContentRatingFrance)),
-            "media_content_rating_germany": lambda n : setattr(self, 'media_content_rating_germany', n.get_object_value(media_content_rating_germany.MediaContentRatingGermany)),
-            "media_content_rating_ireland": lambda n : setattr(self, 'media_content_rating_ireland', n.get_object_value(media_content_rating_ireland.MediaContentRatingIreland)),
-            "media_content_rating_japan": lambda n : setattr(self, 'media_content_rating_japan', n.get_object_value(media_content_rating_japan.MediaContentRatingJapan)),
-            "media_content_rating_new_zealand": lambda n : setattr(self, 'media_content_rating_new_zealand', n.get_object_value(media_content_rating_new_zealand.MediaContentRatingNewZealand)),
-            "media_content_rating_united_kingdom": lambda n : setattr(self, 'media_content_rating_united_kingdom', n.get_object_value(media_content_rating_united_kingdom.MediaContentRatingUnitedKingdom)),
-            "media_content_rating_united_states": lambda n : setattr(self, 'media_content_rating_united_states', n.get_object_value(media_content_rating_united_states.MediaContentRatingUnitedStates)),
-            "messages_blocked": lambda n : setattr(self, 'messages_blocked', n.get_bool_value()),
-            "network_usage_rules": lambda n : setattr(self, 'network_usage_rules', n.get_collection_of_object_values(ios_network_usage_rule.IosNetworkUsageRule)),
-            "nfc_blocked": lambda n : setattr(self, 'nfc_blocked', n.get_bool_value()),
-            "notifications_block_settings_modification": lambda n : setattr(self, 'notifications_block_settings_modification', n.get_bool_value()),
-            "on_device_only_dictation_forced": lambda n : setattr(self, 'on_device_only_dictation_forced', n.get_bool_value()),
-            "on_device_only_translation_forced": lambda n : setattr(self, 'on_device_only_translation_forced', n.get_bool_value()),
-            "passcode_block_fingerprint_modification": lambda n : setattr(self, 'passcode_block_fingerprint_modification', n.get_bool_value()),
-            "passcode_block_fingerprint_unlock": lambda n : setattr(self, 'passcode_block_fingerprint_unlock', n.get_bool_value()),
-            "passcode_block_modification": lambda n : setattr(self, 'passcode_block_modification', n.get_bool_value()),
-            "passcode_block_simple": lambda n : setattr(self, 'passcode_block_simple', n.get_bool_value()),
-            "passcode_expiration_days": lambda n : setattr(self, 'passcode_expiration_days', n.get_int_value()),
-            "passcode_minimum_character_set_count": lambda n : setattr(self, 'passcode_minimum_character_set_count', n.get_int_value()),
-            "passcode_minimum_length": lambda n : setattr(self, 'passcode_minimum_length', n.get_int_value()),
-            "passcode_minutes_of_inactivity_before_lock": lambda n : setattr(self, 'passcode_minutes_of_inactivity_before_lock', n.get_int_value()),
-            "passcode_minutes_of_inactivity_before_screen_timeout": lambda n : setattr(self, 'passcode_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
-            "passcode_previous_passcode_block_count": lambda n : setattr(self, 'passcode_previous_passcode_block_count', n.get_int_value()),
-            "passcode_required": lambda n : setattr(self, 'passcode_required', n.get_bool_value()),
-            "passcode_required_type": lambda n : setattr(self, 'passcode_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
-            "passcode_sign_in_failure_count_before_wipe": lambda n : setattr(self, 'passcode_sign_in_failure_count_before_wipe', n.get_int_value()),
-            "password_block_air_drop_sharing": lambda n : setattr(self, 'password_block_air_drop_sharing', n.get_bool_value()),
-            "password_block_auto_fill": lambda n : setattr(self, 'password_block_auto_fill', n.get_bool_value()),
-            "password_block_proximity_requests": lambda n : setattr(self, 'password_block_proximity_requests', n.get_bool_value()),
-            "pki_block_o_t_a_updates": lambda n : setattr(self, 'pki_block_o_t_a_updates', n.get_bool_value()),
-            "podcasts_blocked": lambda n : setattr(self, 'podcasts_blocked', n.get_bool_value()),
-            "privacy_force_limit_ad_tracking": lambda n : setattr(self, 'privacy_force_limit_ad_tracking', n.get_bool_value()),
-            "proximity_block_setup_to_new_device": lambda n : setattr(self, 'proximity_block_setup_to_new_device', n.get_bool_value()),
-            "safari_block_autofill": lambda n : setattr(self, 'safari_block_autofill', n.get_bool_value()),
-            "safari_blocked": lambda n : setattr(self, 'safari_blocked', n.get_bool_value()),
-            "safari_block_java_script": lambda n : setattr(self, 'safari_block_java_script', n.get_bool_value()),
-            "safari_block_popups": lambda n : setattr(self, 'safari_block_popups', n.get_bool_value()),
-            "safari_cookie_settings": lambda n : setattr(self, 'safari_cookie_settings', n.get_enum_value(web_browser_cookie_settings.WebBrowserCookieSettings)),
-            "safari_managed_domains": lambda n : setattr(self, 'safari_managed_domains', n.get_collection_of_primitive_values(str)),
-            "safari_password_auto_fill_domains": lambda n : setattr(self, 'safari_password_auto_fill_domains', n.get_collection_of_primitive_values(str)),
-            "safari_require_fraud_warning": lambda n : setattr(self, 'safari_require_fraud_warning', n.get_bool_value()),
-            "screen_capture_blocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
-            "shared_device_block_temporary_sessions": lambda n : setattr(self, 'shared_device_block_temporary_sessions', n.get_bool_value()),
-            "siri_blocked": lambda n : setattr(self, 'siri_blocked', n.get_bool_value()),
-            "siri_blocked_when_locked": lambda n : setattr(self, 'siri_blocked_when_locked', n.get_bool_value()),
-            "siri_block_user_generated_content": lambda n : setattr(self, 'siri_block_user_generated_content', n.get_bool_value()),
-            "siri_require_profanity_filter": lambda n : setattr(self, 'siri_require_profanity_filter', n.get_bool_value()),
-            "software_updates_enforced_delay_in_days": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
-            "software_updates_force_delayed": lambda n : setattr(self, 'software_updates_force_delayed', n.get_bool_value()),
-            "spotlight_block_internet_results": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
-            "unpaired_external_boot_to_recovery_allowed": lambda n : setattr(self, 'unpaired_external_boot_to_recovery_allowed', n.get_bool_value()),
-            "usb_restricted_mode_blocked": lambda n : setattr(self, 'usb_restricted_mode_blocked', n.get_bool_value()),
-            "voice_dialing_blocked": lambda n : setattr(self, 'voice_dialing_blocked', n.get_bool_value()),
-            "vpn_block_creation": lambda n : setattr(self, 'vpn_block_creation', n.get_bool_value()),
-            "wallpaper_block_modification": lambda n : setattr(self, 'wallpaper_block_modification', n.get_bool_value()),
-            "wi_fi_connect_only_to_configured_networks": lambda n : setattr(self, 'wi_fi_connect_only_to_configured_networks', n.get_bool_value()),
-            "wi_fi_connect_to_allowed_networks_only_forced": lambda n : setattr(self, 'wi_fi_connect_to_allowed_networks_only_forced', n.get_bool_value()),
-            "wifi_power_on_forced": lambda n : setattr(self, 'wifi_power_on_forced', n.get_bool_value()),
+            "accountBlockModification": lambda n : setattr(self, 'account_block_modification', n.get_bool_value()),
+            "activationLockAllowWhenSupervised": lambda n : setattr(self, 'activation_lock_allow_when_supervised', n.get_bool_value()),
+            "airDropBlocked": lambda n : setattr(self, 'air_drop_blocked', n.get_bool_value()),
+            "airDropForceUnmanagedDropTarget": lambda n : setattr(self, 'air_drop_force_unmanaged_drop_target', n.get_bool_value()),
+            "airPlayForcePairingPasswordForOutgoingRequests": lambda n : setattr(self, 'air_play_force_pairing_password_for_outgoing_requests', n.get_bool_value()),
+            "airPrintBlocked": lambda n : setattr(self, 'air_print_blocked', n.get_bool_value()),
+            "airPrintBlockiBeaconDiscovery": lambda n : setattr(self, 'air_print_blocki_beacon_discovery', n.get_bool_value()),
+            "airPrintBlockCredentialsStorage": lambda n : setattr(self, 'air_print_block_credentials_storage', n.get_bool_value()),
+            "airPrintForceTrustedTLS": lambda n : setattr(self, 'air_print_force_trusted_t_l_s', n.get_bool_value()),
+            "appleNewsBlocked": lambda n : setattr(self, 'apple_news_blocked', n.get_bool_value()),
+            "applePersonalizedAdsBlocked": lambda n : setattr(self, 'apple_personalized_ads_blocked', n.get_bool_value()),
+            "appleWatchBlockPairing": lambda n : setattr(self, 'apple_watch_block_pairing', n.get_bool_value()),
+            "appleWatchForceWristDetection": lambda n : setattr(self, 'apple_watch_force_wrist_detection', n.get_bool_value()),
+            "appsSingleAppModeList": lambda n : setattr(self, 'apps_single_app_mode_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "appsVisibilityList": lambda n : setattr(self, 'apps_visibility_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "appsVisibilityListType": lambda n : setattr(self, 'apps_visibility_list_type', n.get_enum_value(app_list_type.AppListType)),
+            "appClipsBlocked": lambda n : setattr(self, 'app_clips_blocked', n.get_bool_value()),
+            "appRemovalBlocked": lambda n : setattr(self, 'app_removal_blocked', n.get_bool_value()),
+            "appStoreBlocked": lambda n : setattr(self, 'app_store_blocked', n.get_bool_value()),
+            "appStoreBlockAutomaticDownloads": lambda n : setattr(self, 'app_store_block_automatic_downloads', n.get_bool_value()),
+            "appStoreBlockInAppPurchases": lambda n : setattr(self, 'app_store_block_in_app_purchases', n.get_bool_value()),
+            "appStoreBlockUIAppInstallation": lambda n : setattr(self, 'app_store_block_u_i_app_installation', n.get_bool_value()),
+            "appStoreRequirePassword": lambda n : setattr(self, 'app_store_require_password', n.get_bool_value()),
+            "autoFillForceAuthentication": lambda n : setattr(self, 'auto_fill_force_authentication', n.get_bool_value()),
+            "autoUnlockBlocked": lambda n : setattr(self, 'auto_unlock_blocked', n.get_bool_value()),
+            "blockSystemAppRemoval": lambda n : setattr(self, 'block_system_app_removal', n.get_bool_value()),
+            "bluetoothBlockModification": lambda n : setattr(self, 'bluetooth_block_modification', n.get_bool_value()),
+            "cameraBlocked": lambda n : setattr(self, 'camera_blocked', n.get_bool_value()),
+            "cellularBlockDataRoaming": lambda n : setattr(self, 'cellular_block_data_roaming', n.get_bool_value()),
+            "cellularBlockGlobalBackgroundFetchWhileRoaming": lambda n : setattr(self, 'cellular_block_global_background_fetch_while_roaming', n.get_bool_value()),
+            "cellularBlockPersonalHotspot": lambda n : setattr(self, 'cellular_block_personal_hotspot', n.get_bool_value()),
+            "cellularBlockPersonalHotspotModification": lambda n : setattr(self, 'cellular_block_personal_hotspot_modification', n.get_bool_value()),
+            "cellularBlockPerAppDataModification": lambda n : setattr(self, 'cellular_block_per_app_data_modification', n.get_bool_value()),
+            "cellularBlockPlanModification": lambda n : setattr(self, 'cellular_block_plan_modification', n.get_bool_value()),
+            "cellularBlockVoiceRoaming": lambda n : setattr(self, 'cellular_block_voice_roaming', n.get_bool_value()),
+            "certificatesBlockUntrustedTlsCertificates": lambda n : setattr(self, 'certificates_block_untrusted_tls_certificates', n.get_bool_value()),
+            "classroomAppBlockRemoteScreenObservation": lambda n : setattr(self, 'classroom_app_block_remote_screen_observation', n.get_bool_value()),
+            "classroomAppForceUnpromptedScreenObservation": lambda n : setattr(self, 'classroom_app_force_unprompted_screen_observation', n.get_bool_value()),
+            "classroomForceAutomaticallyJoinClasses": lambda n : setattr(self, 'classroom_force_automatically_join_classes', n.get_bool_value()),
+            "classroomForceRequestPermissionToLeaveClasses": lambda n : setattr(self, 'classroom_force_request_permission_to_leave_classes', n.get_bool_value()),
+            "classroomForceUnpromptedAppAndDeviceLock": lambda n : setattr(self, 'classroom_force_unprompted_app_and_device_lock', n.get_bool_value()),
+            "compliantAppsList": lambda n : setattr(self, 'compliant_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "compliantAppListType": lambda n : setattr(self, 'compliant_app_list_type', n.get_enum_value(app_list_type.AppListType)),
+            "configurationProfileBlockChanges": lambda n : setattr(self, 'configuration_profile_block_changes', n.get_bool_value()),
+            "contactsAllowManagedToUnmanagedWrite": lambda n : setattr(self, 'contacts_allow_managed_to_unmanaged_write', n.get_bool_value()),
+            "contactsAllowUnmanagedToManagedRead": lambda n : setattr(self, 'contacts_allow_unmanaged_to_managed_read', n.get_bool_value()),
+            "continuousPathKeyboardBlocked": lambda n : setattr(self, 'continuous_path_keyboard_blocked', n.get_bool_value()),
+            "dateAndTimeForceSetAutomatically": lambda n : setattr(self, 'date_and_time_force_set_automatically', n.get_bool_value()),
+            "definitionLookupBlocked": lambda n : setattr(self, 'definition_lookup_blocked', n.get_bool_value()),
+            "deviceBlockEnableRestrictions": lambda n : setattr(self, 'device_block_enable_restrictions', n.get_bool_value()),
+            "deviceBlockEraseContentAndSettings": lambda n : setattr(self, 'device_block_erase_content_and_settings', n.get_bool_value()),
+            "deviceBlockNameModification": lambda n : setattr(self, 'device_block_name_modification', n.get_bool_value()),
+            "diagnosticDataBlockSubmission": lambda n : setattr(self, 'diagnostic_data_block_submission', n.get_bool_value()),
+            "diagnosticDataBlockSubmissionModification": lambda n : setattr(self, 'diagnostic_data_block_submission_modification', n.get_bool_value()),
+            "documentsBlockManagedDocumentsInUnmanagedApps": lambda n : setattr(self, 'documents_block_managed_documents_in_unmanaged_apps', n.get_bool_value()),
+            "documentsBlockUnmanagedDocumentsInManagedApps": lambda n : setattr(self, 'documents_block_unmanaged_documents_in_managed_apps', n.get_bool_value()),
+            "emailInDomainSuffixes": lambda n : setattr(self, 'email_in_domain_suffixes', n.get_collection_of_primitive_values(str)),
+            "enterpriseAppBlockTrust": lambda n : setattr(self, 'enterprise_app_block_trust', n.get_bool_value()),
+            "enterpriseAppBlockTrustModification": lambda n : setattr(self, 'enterprise_app_block_trust_modification', n.get_bool_value()),
+            "enterpriseBookBlockBackup": lambda n : setattr(self, 'enterprise_book_block_backup', n.get_bool_value()),
+            "enterpriseBookBlockMetadataSync": lambda n : setattr(self, 'enterprise_book_block_metadata_sync', n.get_bool_value()),
+            "esimBlockModification": lambda n : setattr(self, 'esim_block_modification', n.get_bool_value()),
+            "faceTimeBlocked": lambda n : setattr(self, 'face_time_blocked', n.get_bool_value()),
+            "filesNetworkDriveAccessBlocked": lambda n : setattr(self, 'files_network_drive_access_blocked', n.get_bool_value()),
+            "filesUsbDriveAccessBlocked": lambda n : setattr(self, 'files_usb_drive_access_blocked', n.get_bool_value()),
+            "findMyDeviceInFindMyAppBlocked": lambda n : setattr(self, 'find_my_device_in_find_my_app_blocked', n.get_bool_value()),
+            "findMyFriendsBlocked": lambda n : setattr(self, 'find_my_friends_blocked', n.get_bool_value()),
+            "findMyFriendsInFindMyAppBlocked": lambda n : setattr(self, 'find_my_friends_in_find_my_app_blocked', n.get_bool_value()),
+            "gameCenterBlocked": lambda n : setattr(self, 'game_center_blocked', n.get_bool_value()),
+            "gamingBlockGameCenterFriends": lambda n : setattr(self, 'gaming_block_game_center_friends', n.get_bool_value()),
+            "gamingBlockMultiplayer": lambda n : setattr(self, 'gaming_block_multiplayer', n.get_bool_value()),
+            "hostPairingBlocked": lambda n : setattr(self, 'host_pairing_blocked', n.get_bool_value()),
+            "iBooksStoreBlocked": lambda n : setattr(self, 'i_books_store_blocked', n.get_bool_value()),
+            "iBooksStoreBlockErotica": lambda n : setattr(self, 'i_books_store_block_erotica', n.get_bool_value()),
+            "iCloudBlockActivityContinuation": lambda n : setattr(self, 'i_cloud_block_activity_continuation', n.get_bool_value()),
+            "iCloudBlockBackup": lambda n : setattr(self, 'i_cloud_block_backup', n.get_bool_value()),
+            "iCloudBlockDocumentSync": lambda n : setattr(self, 'i_cloud_block_document_sync', n.get_bool_value()),
+            "iCloudBlockManagedAppsSync": lambda n : setattr(self, 'i_cloud_block_managed_apps_sync', n.get_bool_value()),
+            "iCloudBlockPhotoLibrary": lambda n : setattr(self, 'i_cloud_block_photo_library', n.get_bool_value()),
+            "iCloudBlockPhotoStreamSync": lambda n : setattr(self, 'i_cloud_block_photo_stream_sync', n.get_bool_value()),
+            "iCloudBlockSharedPhotoStream": lambda n : setattr(self, 'i_cloud_block_shared_photo_stream', n.get_bool_value()),
+            "iCloudPrivateRelayBlocked": lambda n : setattr(self, 'i_cloud_private_relay_blocked', n.get_bool_value()),
+            "iCloudRequireEncryptedBackup": lambda n : setattr(self, 'i_cloud_require_encrypted_backup', n.get_bool_value()),
+            "iTunesBlocked": lambda n : setattr(self, 'i_tunes_blocked', n.get_bool_value()),
+            "iTunesBlockExplicitContent": lambda n : setattr(self, 'i_tunes_block_explicit_content', n.get_bool_value()),
+            "iTunesBlockMusicService": lambda n : setattr(self, 'i_tunes_block_music_service', n.get_bool_value()),
+            "iTunesBlockRadio": lambda n : setattr(self, 'i_tunes_block_radio', n.get_bool_value()),
+            "keyboardBlockAutoCorrect": lambda n : setattr(self, 'keyboard_block_auto_correct', n.get_bool_value()),
+            "keyboardBlockDictation": lambda n : setattr(self, 'keyboard_block_dictation', n.get_bool_value()),
+            "keyboardBlockPredictive": lambda n : setattr(self, 'keyboard_block_predictive', n.get_bool_value()),
+            "keyboardBlockShortcuts": lambda n : setattr(self, 'keyboard_block_shortcuts', n.get_bool_value()),
+            "keyboardBlockSpellCheck": lambda n : setattr(self, 'keyboard_block_spell_check', n.get_bool_value()),
+            "keychainBlockCloudSync": lambda n : setattr(self, 'keychain_block_cloud_sync', n.get_bool_value()),
+            "kioskModeAllowAssistiveSpeak": lambda n : setattr(self, 'kiosk_mode_allow_assistive_speak', n.get_bool_value()),
+            "kioskModeAllowAssistiveTouchSettings": lambda n : setattr(self, 'kiosk_mode_allow_assistive_touch_settings', n.get_bool_value()),
+            "kioskModeAllowAutoLock": lambda n : setattr(self, 'kiosk_mode_allow_auto_lock', n.get_bool_value()),
+            "kioskModeAllowColorInversionSettings": lambda n : setattr(self, 'kiosk_mode_allow_color_inversion_settings', n.get_bool_value()),
+            "kioskModeAllowRingerSwitch": lambda n : setattr(self, 'kiosk_mode_allow_ringer_switch', n.get_bool_value()),
+            "kioskModeAllowScreenRotation": lambda n : setattr(self, 'kiosk_mode_allow_screen_rotation', n.get_bool_value()),
+            "kioskModeAllowSleepButton": lambda n : setattr(self, 'kiosk_mode_allow_sleep_button', n.get_bool_value()),
+            "kioskModeAllowTouchscreen": lambda n : setattr(self, 'kiosk_mode_allow_touchscreen', n.get_bool_value()),
+            "kioskModeAllowVoiceControlModification": lambda n : setattr(self, 'kiosk_mode_allow_voice_control_modification', n.get_bool_value()),
+            "kioskModeAllowVoiceOverSettings": lambda n : setattr(self, 'kiosk_mode_allow_voice_over_settings', n.get_bool_value()),
+            "kioskModeAllowVolumeButtons": lambda n : setattr(self, 'kiosk_mode_allow_volume_buttons', n.get_bool_value()),
+            "kioskModeAllowZoomSettings": lambda n : setattr(self, 'kiosk_mode_allow_zoom_settings', n.get_bool_value()),
+            "kioskModeAppStoreUrl": lambda n : setattr(self, 'kiosk_mode_app_store_url', n.get_str_value()),
+            "kioskModeAppType": lambda n : setattr(self, 'kiosk_mode_app_type', n.get_enum_value(ios_kiosk_mode_app_type.IosKioskModeAppType)),
+            "kioskModeBlockAutoLock": lambda n : setattr(self, 'kiosk_mode_block_auto_lock', n.get_bool_value()),
+            "kioskModeBlockRingerSwitch": lambda n : setattr(self, 'kiosk_mode_block_ringer_switch', n.get_bool_value()),
+            "kioskModeBlockScreenRotation": lambda n : setattr(self, 'kiosk_mode_block_screen_rotation', n.get_bool_value()),
+            "kioskModeBlockSleepButton": lambda n : setattr(self, 'kiosk_mode_block_sleep_button', n.get_bool_value()),
+            "kioskModeBlockTouchscreen": lambda n : setattr(self, 'kiosk_mode_block_touchscreen', n.get_bool_value()),
+            "kioskModeBlockVolumeButtons": lambda n : setattr(self, 'kiosk_mode_block_volume_buttons', n.get_bool_value()),
+            "kioskModeBuiltInAppId": lambda n : setattr(self, 'kiosk_mode_built_in_app_id', n.get_str_value()),
+            "kioskModeEnableVoiceControl": lambda n : setattr(self, 'kiosk_mode_enable_voice_control', n.get_bool_value()),
+            "kioskModeManagedAppId": lambda n : setattr(self, 'kiosk_mode_managed_app_id', n.get_str_value()),
+            "kioskModeRequireAssistiveTouch": lambda n : setattr(self, 'kiosk_mode_require_assistive_touch', n.get_bool_value()),
+            "kioskModeRequireColorInversion": lambda n : setattr(self, 'kiosk_mode_require_color_inversion', n.get_bool_value()),
+            "kioskModeRequireMonoAudio": lambda n : setattr(self, 'kiosk_mode_require_mono_audio', n.get_bool_value()),
+            "kioskModeRequireVoiceOver": lambda n : setattr(self, 'kiosk_mode_require_voice_over', n.get_bool_value()),
+            "kioskModeRequireZoom": lambda n : setattr(self, 'kiosk_mode_require_zoom', n.get_bool_value()),
+            "lockScreenBlockControlCenter": lambda n : setattr(self, 'lock_screen_block_control_center', n.get_bool_value()),
+            "lockScreenBlockNotificationView": lambda n : setattr(self, 'lock_screen_block_notification_view', n.get_bool_value()),
+            "lockScreenBlockPassbook": lambda n : setattr(self, 'lock_screen_block_passbook', n.get_bool_value()),
+            "lockScreenBlockTodayView": lambda n : setattr(self, 'lock_screen_block_today_view', n.get_bool_value()),
+            "managedPasteboardRequired": lambda n : setattr(self, 'managed_pasteboard_required', n.get_bool_value()),
+            "mediaContentRatingApps": lambda n : setattr(self, 'media_content_rating_apps', n.get_enum_value(rating_apps_type.RatingAppsType)),
+            "mediaContentRatingAustralia": lambda n : setattr(self, 'media_content_rating_australia', n.get_object_value(media_content_rating_australia.MediaContentRatingAustralia)),
+            "mediaContentRatingCanada": lambda n : setattr(self, 'media_content_rating_canada', n.get_object_value(media_content_rating_canada.MediaContentRatingCanada)),
+            "mediaContentRatingFrance": lambda n : setattr(self, 'media_content_rating_france', n.get_object_value(media_content_rating_france.MediaContentRatingFrance)),
+            "mediaContentRatingGermany": lambda n : setattr(self, 'media_content_rating_germany', n.get_object_value(media_content_rating_germany.MediaContentRatingGermany)),
+            "mediaContentRatingIreland": lambda n : setattr(self, 'media_content_rating_ireland', n.get_object_value(media_content_rating_ireland.MediaContentRatingIreland)),
+            "mediaContentRatingJapan": lambda n : setattr(self, 'media_content_rating_japan', n.get_object_value(media_content_rating_japan.MediaContentRatingJapan)),
+            "mediaContentRatingNewZealand": lambda n : setattr(self, 'media_content_rating_new_zealand', n.get_object_value(media_content_rating_new_zealand.MediaContentRatingNewZealand)),
+            "mediaContentRatingUnitedKingdom": lambda n : setattr(self, 'media_content_rating_united_kingdom', n.get_object_value(media_content_rating_united_kingdom.MediaContentRatingUnitedKingdom)),
+            "mediaContentRatingUnitedStates": lambda n : setattr(self, 'media_content_rating_united_states', n.get_object_value(media_content_rating_united_states.MediaContentRatingUnitedStates)),
+            "messagesBlocked": lambda n : setattr(self, 'messages_blocked', n.get_bool_value()),
+            "networkUsageRules": lambda n : setattr(self, 'network_usage_rules', n.get_collection_of_object_values(ios_network_usage_rule.IosNetworkUsageRule)),
+            "nfcBlocked": lambda n : setattr(self, 'nfc_blocked', n.get_bool_value()),
+            "notificationsBlockSettingsModification": lambda n : setattr(self, 'notifications_block_settings_modification', n.get_bool_value()),
+            "onDeviceOnlyDictationForced": lambda n : setattr(self, 'on_device_only_dictation_forced', n.get_bool_value()),
+            "onDeviceOnlyTranslationForced": lambda n : setattr(self, 'on_device_only_translation_forced', n.get_bool_value()),
+            "passcodeBlockFingerprintModification": lambda n : setattr(self, 'passcode_block_fingerprint_modification', n.get_bool_value()),
+            "passcodeBlockFingerprintUnlock": lambda n : setattr(self, 'passcode_block_fingerprint_unlock', n.get_bool_value()),
+            "passcodeBlockModification": lambda n : setattr(self, 'passcode_block_modification', n.get_bool_value()),
+            "passcodeBlockSimple": lambda n : setattr(self, 'passcode_block_simple', n.get_bool_value()),
+            "passcodeExpirationDays": lambda n : setattr(self, 'passcode_expiration_days', n.get_int_value()),
+            "passcodeMinimumCharacterSetCount": lambda n : setattr(self, 'passcode_minimum_character_set_count', n.get_int_value()),
+            "passcodeMinimumLength": lambda n : setattr(self, 'passcode_minimum_length', n.get_int_value()),
+            "passcodeMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'passcode_minutes_of_inactivity_before_lock', n.get_int_value()),
+            "passcodeMinutesOfInactivityBeforeScreenTimeout": lambda n : setattr(self, 'passcode_minutes_of_inactivity_before_screen_timeout', n.get_int_value()),
+            "passcodePreviousPasscodeBlockCount": lambda n : setattr(self, 'passcode_previous_passcode_block_count', n.get_int_value()),
+            "passcodeRequired": lambda n : setattr(self, 'passcode_required', n.get_bool_value()),
+            "passcodeRequiredType": lambda n : setattr(self, 'passcode_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
+            "passcodeSignInFailureCountBeforeWipe": lambda n : setattr(self, 'passcode_sign_in_failure_count_before_wipe', n.get_int_value()),
+            "passwordBlockAirDropSharing": lambda n : setattr(self, 'password_block_air_drop_sharing', n.get_bool_value()),
+            "passwordBlockAutoFill": lambda n : setattr(self, 'password_block_auto_fill', n.get_bool_value()),
+            "passwordBlockProximityRequests": lambda n : setattr(self, 'password_block_proximity_requests', n.get_bool_value()),
+            "pkiBlockOTAUpdates": lambda n : setattr(self, 'pki_block_o_t_a_updates', n.get_bool_value()),
+            "podcastsBlocked": lambda n : setattr(self, 'podcasts_blocked', n.get_bool_value()),
+            "privacyForceLimitAdTracking": lambda n : setattr(self, 'privacy_force_limit_ad_tracking', n.get_bool_value()),
+            "proximityBlockSetupToNewDevice": lambda n : setattr(self, 'proximity_block_setup_to_new_device', n.get_bool_value()),
+            "safariBlocked": lambda n : setattr(self, 'safari_blocked', n.get_bool_value()),
+            "safariBlockAutofill": lambda n : setattr(self, 'safari_block_autofill', n.get_bool_value()),
+            "safariBlockJavaScript": lambda n : setattr(self, 'safari_block_java_script', n.get_bool_value()),
+            "safariBlockPopups": lambda n : setattr(self, 'safari_block_popups', n.get_bool_value()),
+            "safariCookieSettings": lambda n : setattr(self, 'safari_cookie_settings', n.get_enum_value(web_browser_cookie_settings.WebBrowserCookieSettings)),
+            "safariManagedDomains": lambda n : setattr(self, 'safari_managed_domains', n.get_collection_of_primitive_values(str)),
+            "safariPasswordAutoFillDomains": lambda n : setattr(self, 'safari_password_auto_fill_domains', n.get_collection_of_primitive_values(str)),
+            "safariRequireFraudWarning": lambda n : setattr(self, 'safari_require_fraud_warning', n.get_bool_value()),
+            "screenCaptureBlocked": lambda n : setattr(self, 'screen_capture_blocked', n.get_bool_value()),
+            "sharedDeviceBlockTemporarySessions": lambda n : setattr(self, 'shared_device_block_temporary_sessions', n.get_bool_value()),
+            "siriBlocked": lambda n : setattr(self, 'siri_blocked', n.get_bool_value()),
+            "siriBlockedWhenLocked": lambda n : setattr(self, 'siri_blocked_when_locked', n.get_bool_value()),
+            "siriBlockUserGeneratedContent": lambda n : setattr(self, 'siri_block_user_generated_content', n.get_bool_value()),
+            "siriRequireProfanityFilter": lambda n : setattr(self, 'siri_require_profanity_filter', n.get_bool_value()),
+            "softwareUpdatesEnforcedDelayInDays": lambda n : setattr(self, 'software_updates_enforced_delay_in_days', n.get_int_value()),
+            "softwareUpdatesForceDelayed": lambda n : setattr(self, 'software_updates_force_delayed', n.get_bool_value()),
+            "spotlightBlockInternetResults": lambda n : setattr(self, 'spotlight_block_internet_results', n.get_bool_value()),
+            "unpairedExternalBootToRecoveryAllowed": lambda n : setattr(self, 'unpaired_external_boot_to_recovery_allowed', n.get_bool_value()),
+            "usbRestrictedModeBlocked": lambda n : setattr(self, 'usb_restricted_mode_blocked', n.get_bool_value()),
+            "voiceDialingBlocked": lambda n : setattr(self, 'voice_dialing_blocked', n.get_bool_value()),
+            "vpnBlockCreation": lambda n : setattr(self, 'vpn_block_creation', n.get_bool_value()),
+            "wallpaperBlockModification": lambda n : setattr(self, 'wallpaper_block_modification', n.get_bool_value()),
+            "wifiPowerOnForced": lambda n : setattr(self, 'wifi_power_on_forced', n.get_bool_value()),
+            "wiFiConnectOnlyToConfiguredNetworks": lambda n : setattr(self, 'wi_fi_connect_only_to_configured_networks', n.get_bool_value()),
+            "wiFiConnectToAllowedNetworksOnlyForced": lambda n : setattr(self, 'wi_fi_connect_to_allowed_networks_only_forced', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -1833,26 +1833,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the hostPairingBlocked property value. indicates whether or not to allow host pairing to control the devices an iOS device can pair with when the iOS device is in supervised mode.
         Args:
-            value: Value to set for the hostPairingBlocked property.
+            value: Value to set for the host_pairing_blocked property.
         """
         self._host_pairing_blocked = value
-    
-    @property
-    def i_books_store_blocked(self,) -> Optional[bool]:
-        """
-        Gets the iBooksStoreBlocked property value. Indicates whether or not to block the user from using the iBooks Store when the device is in supervised mode.
-        Returns: Optional[bool]
-        """
-        return self._i_books_store_blocked
-    
-    @i_books_store_blocked.setter
-    def i_books_store_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the iBooksStoreBlocked property value. Indicates whether or not to block the user from using the iBooks Store when the device is in supervised mode.
-        Args:
-            value: Value to set for the iBooksStoreBlocked property.
-        """
-        self._i_books_store_blocked = value
     
     @property
     def i_books_store_block_erotica(self,) -> Optional[bool]:
@@ -1867,9 +1850,26 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iBooksStoreBlockErotica property value. Indicates whether or not to block the user from downloading media from the iBookstore that has been tagged as erotica.
         Args:
-            value: Value to set for the iBooksStoreBlockErotica property.
+            value: Value to set for the i_books_store_block_erotica property.
         """
         self._i_books_store_block_erotica = value
+    
+    @property
+    def i_books_store_blocked(self,) -> Optional[bool]:
+        """
+        Gets the iBooksStoreBlocked property value. Indicates whether or not to block the user from using the iBooks Store when the device is in supervised mode.
+        Returns: Optional[bool]
+        """
+        return self._i_books_store_blocked
+    
+    @i_books_store_blocked.setter
+    def i_books_store_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the iBooksStoreBlocked property value. Indicates whether or not to block the user from using the iBooks Store when the device is in supervised mode.
+        Args:
+            value: Value to set for the i_books_store_blocked property.
+        """
+        self._i_books_store_blocked = value
     
     @property
     def i_cloud_block_activity_continuation(self,) -> Optional[bool]:
@@ -1884,7 +1884,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockActivityContinuation property value. Indicates whether or not to block the user from continuing work they started on iOS device to another iOS or macOS device.
         Args:
-            value: Value to set for the iCloudBlockActivityContinuation property.
+            value: Value to set for the i_cloud_block_activity_continuation property.
         """
         self._i_cloud_block_activity_continuation = value
     
@@ -1901,7 +1901,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockBackup property value. Indicates whether or not to block iCloud backup. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the iCloudBlockBackup property.
+            value: Value to set for the i_cloud_block_backup property.
         """
         self._i_cloud_block_backup = value
     
@@ -1918,7 +1918,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockDocumentSync property value. Indicates whether or not to block iCloud document sync. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the iCloudBlockDocumentSync property.
+            value: Value to set for the i_cloud_block_document_sync property.
         """
         self._i_cloud_block_document_sync = value
     
@@ -1935,7 +1935,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockManagedAppsSync property value. Indicates whether or not to block Managed Apps Cloud Sync.
         Args:
-            value: Value to set for the iCloudBlockManagedAppsSync property.
+            value: Value to set for the i_cloud_block_managed_apps_sync property.
         """
         self._i_cloud_block_managed_apps_sync = value
     
@@ -1952,7 +1952,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockPhotoLibrary property value. Indicates whether or not to block iCloud Photo Library.
         Args:
-            value: Value to set for the iCloudBlockPhotoLibrary property.
+            value: Value to set for the i_cloud_block_photo_library property.
         """
         self._i_cloud_block_photo_library = value
     
@@ -1969,7 +1969,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockPhotoStreamSync property value. Indicates whether or not to block iCloud Photo Stream Sync.
         Args:
-            value: Value to set for the iCloudBlockPhotoStreamSync property.
+            value: Value to set for the i_cloud_block_photo_stream_sync property.
         """
         self._i_cloud_block_photo_stream_sync = value
     
@@ -1986,7 +1986,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudBlockSharedPhotoStream property value. Indicates whether or not to block Shared Photo Stream.
         Args:
-            value: Value to set for the iCloudBlockSharedPhotoStream property.
+            value: Value to set for the i_cloud_block_shared_photo_stream property.
         """
         self._i_cloud_block_shared_photo_stream = value
     
@@ -2003,7 +2003,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudPrivateRelayBlocked property value. iCloud private relay is an iCloud+ service that prevents networks and servers from monitoring a person's activity across the internet. By blocking iCloud private relay, Apple will not encrypt the traffic leaving the device. Available for devices running iOS 15 and later.
         Args:
-            value: Value to set for the iCloudPrivateRelayBlocked property.
+            value: Value to set for the i_cloud_private_relay_blocked property.
         """
         self._i_cloud_private_relay_blocked = value
     
@@ -2020,26 +2020,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iCloudRequireEncryptedBackup property value. Indicates whether or not to require backups to iCloud be encrypted.
         Args:
-            value: Value to set for the iCloudRequireEncryptedBackup property.
+            value: Value to set for the i_cloud_require_encrypted_backup property.
         """
         self._i_cloud_require_encrypted_backup = value
-    
-    @property
-    def i_tunes_blocked(self,) -> Optional[bool]:
-        """
-        Gets the iTunesBlocked property value. Indicates whether or not to block the iTunes app. Requires a supervised device for iOS 13 and later.
-        Returns: Optional[bool]
-        """
-        return self._i_tunes_blocked
-    
-    @i_tunes_blocked.setter
-    def i_tunes_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the iTunesBlocked property value. Indicates whether or not to block the iTunes app. Requires a supervised device for iOS 13 and later.
-        Args:
-            value: Value to set for the iTunesBlocked property.
-        """
-        self._i_tunes_blocked = value
     
     @property
     def i_tunes_block_explicit_content(self,) -> Optional[bool]:
@@ -2054,7 +2037,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iTunesBlockExplicitContent property value. Indicates whether or not to block the user from accessing explicit content in iTunes and the App Store. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the iTunesBlockExplicitContent property.
+            value: Value to set for the i_tunes_block_explicit_content property.
         """
         self._i_tunes_block_explicit_content = value
     
@@ -2071,7 +2054,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iTunesBlockMusicService property value. Indicates whether or not to block Music service and revert Music app to classic mode when the device is in supervised mode (iOS 9.3 and later and macOS 10.12 and later).
         Args:
-            value: Value to set for the iTunesBlockMusicService property.
+            value: Value to set for the i_tunes_block_music_service property.
         """
         self._i_tunes_block_music_service = value
     
@@ -2088,9 +2071,26 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the iTunesBlockRadio property value. Indicates whether or not to block the user from using iTunes Radio when the device is in supervised mode (iOS 9.3 and later).
         Args:
-            value: Value to set for the iTunesBlockRadio property.
+            value: Value to set for the i_tunes_block_radio property.
         """
         self._i_tunes_block_radio = value
+    
+    @property
+    def i_tunes_blocked(self,) -> Optional[bool]:
+        """
+        Gets the iTunesBlocked property value. Indicates whether or not to block the iTunes app. Requires a supervised device for iOS 13 and later.
+        Returns: Optional[bool]
+        """
+        return self._i_tunes_blocked
+    
+    @i_tunes_blocked.setter
+    def i_tunes_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the iTunesBlocked property value. Indicates whether or not to block the iTunes app. Requires a supervised device for iOS 13 and later.
+        Args:
+            value: Value to set for the i_tunes_blocked property.
+        """
+        self._i_tunes_blocked = value
     
     @property
     def keyboard_block_auto_correct(self,) -> Optional[bool]:
@@ -2105,7 +2105,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keyboardBlockAutoCorrect property value. Indicates whether or not to block keyboard auto-correction when the device is in supervised mode (iOS 8.1.3 and later).
         Args:
-            value: Value to set for the keyboardBlockAutoCorrect property.
+            value: Value to set for the keyboard_block_auto_correct property.
         """
         self._keyboard_block_auto_correct = value
     
@@ -2122,7 +2122,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keyboardBlockDictation property value. Indicates whether or not to block the user from using dictation input when the device is in supervised mode.
         Args:
-            value: Value to set for the keyboardBlockDictation property.
+            value: Value to set for the keyboard_block_dictation property.
         """
         self._keyboard_block_dictation = value
     
@@ -2139,7 +2139,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keyboardBlockPredictive property value. Indicates whether or not to block predictive keyboards when device is in supervised mode (iOS 8.1.3 and later).
         Args:
-            value: Value to set for the keyboardBlockPredictive property.
+            value: Value to set for the keyboard_block_predictive property.
         """
         self._keyboard_block_predictive = value
     
@@ -2156,7 +2156,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keyboardBlockShortcuts property value. Indicates whether or not to block keyboard shortcuts when the device is in supervised mode (iOS 9.0 and later).
         Args:
-            value: Value to set for the keyboardBlockShortcuts property.
+            value: Value to set for the keyboard_block_shortcuts property.
         """
         self._keyboard_block_shortcuts = value
     
@@ -2173,7 +2173,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keyboardBlockSpellCheck property value. Indicates whether or not to block keyboard spell-checking when the device is in supervised mode (iOS 8.1.3 and later).
         Args:
-            value: Value to set for the keyboardBlockSpellCheck property.
+            value: Value to set for the keyboard_block_spell_check property.
         """
         self._keyboard_block_spell_check = value
     
@@ -2190,7 +2190,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the keychainBlockCloudSync property value. Indicates whether or not iCloud keychain synchronization is blocked. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the keychainBlockCloudSync property.
+            value: Value to set for the keychain_block_cloud_sync property.
         """
         self._keychain_block_cloud_sync = value
     
@@ -2207,7 +2207,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowAssistiveSpeak property value. Indicates whether or not to allow assistive speak while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeAllowAssistiveSpeak property.
+            value: Value to set for the kiosk_mode_allow_assistive_speak property.
         """
         self._kiosk_mode_allow_assistive_speak = value
     
@@ -2224,7 +2224,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowAssistiveTouchSettings property value. Indicates whether or not to allow access to the Assistive Touch Settings while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeAllowAssistiveTouchSettings property.
+            value: Value to set for the kiosk_mode_allow_assistive_touch_settings property.
         """
         self._kiosk_mode_allow_assistive_touch_settings = value
     
@@ -2241,7 +2241,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowAutoLock property value. Indicates whether or not to allow device auto lock while in kiosk mode. This property's functionality is redundant with the OS default and is deprecated. Use KioskModeBlockAutoLock instead.
         Args:
-            value: Value to set for the kioskModeAllowAutoLock property.
+            value: Value to set for the kiosk_mode_allow_auto_lock property.
         """
         self._kiosk_mode_allow_auto_lock = value
     
@@ -2258,7 +2258,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowColorInversionSettings property value. Indicates whether or not to allow access to the Color Inversion Settings while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeAllowColorInversionSettings property.
+            value: Value to set for the kiosk_mode_allow_color_inversion_settings property.
         """
         self._kiosk_mode_allow_color_inversion_settings = value
     
@@ -2275,7 +2275,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowRingerSwitch property value. Indicates whether or not to allow use of the ringer switch while in kiosk mode. This property's functionality is redundant with the OS default and is deprecated. Use KioskModeBlockRingerSwitch instead.
         Args:
-            value: Value to set for the kioskModeAllowRingerSwitch property.
+            value: Value to set for the kiosk_mode_allow_ringer_switch property.
         """
         self._kiosk_mode_allow_ringer_switch = value
     
@@ -2292,7 +2292,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowScreenRotation property value. Indicates whether or not to allow screen rotation while in kiosk mode. This property's functionality is redundant with the OS default and is deprecated. Use KioskModeBlockScreenRotation instead.
         Args:
-            value: Value to set for the kioskModeAllowScreenRotation property.
+            value: Value to set for the kiosk_mode_allow_screen_rotation property.
         """
         self._kiosk_mode_allow_screen_rotation = value
     
@@ -2309,7 +2309,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowSleepButton property value. Indicates whether or not to allow use of the sleep button while in kiosk mode. This property's functionality is redundant with the OS default and is deprecated. Use KioskModeBlockSleepButton instead.
         Args:
-            value: Value to set for the kioskModeAllowSleepButton property.
+            value: Value to set for the kiosk_mode_allow_sleep_button property.
         """
         self._kiosk_mode_allow_sleep_button = value
     
@@ -2326,7 +2326,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowTouchscreen property value. Indicates whether or not to allow use of the touchscreen while in kiosk mode. This property's functionality is redundant with the OS default and is deprecated. Use KioskModeBlockTouchscreen instead.
         Args:
-            value: Value to set for the kioskModeAllowTouchscreen property.
+            value: Value to set for the kiosk_mode_allow_touchscreen property.
         """
         self._kiosk_mode_allow_touchscreen = value
     
@@ -2343,7 +2343,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowVoiceControlModification property value. Indicates whether or not to allow the user to toggle voice control in kiosk mode.
         Args:
-            value: Value to set for the kioskModeAllowVoiceControlModification property.
+            value: Value to set for the kiosk_mode_allow_voice_control_modification property.
         """
         self._kiosk_mode_allow_voice_control_modification = value
     
@@ -2360,7 +2360,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowVoiceOverSettings property value. Indicates whether or not to allow access to the voice over settings while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeAllowVoiceOverSettings property.
+            value: Value to set for the kiosk_mode_allow_voice_over_settings property.
         """
         self._kiosk_mode_allow_voice_over_settings = value
     
@@ -2377,7 +2377,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowVolumeButtons property value. Indicates whether or not to allow use of the volume buttons while in kiosk mode. This property's functionality is redundant with the OS default and is deprecated. Use KioskModeBlockVolumeButtons instead.
         Args:
-            value: Value to set for the kioskModeAllowVolumeButtons property.
+            value: Value to set for the kiosk_mode_allow_volume_buttons property.
         """
         self._kiosk_mode_allow_volume_buttons = value
     
@@ -2394,7 +2394,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAllowZoomSettings property value. Indicates whether or not to allow access to the zoom settings while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeAllowZoomSettings property.
+            value: Value to set for the kiosk_mode_allow_zoom_settings property.
         """
         self._kiosk_mode_allow_zoom_settings = value
     
@@ -2411,7 +2411,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAppStoreUrl property value. URL in the app store to the app to use for kiosk mode. Use if KioskModeManagedAppId is not known.
         Args:
-            value: Value to set for the kioskModeAppStoreUrl property.
+            value: Value to set for the kiosk_mode_app_store_url property.
         """
         self._kiosk_mode_app_store_url = value
     
@@ -2428,7 +2428,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeAppType property value. App source options for iOS kiosk mode.
         Args:
-            value: Value to set for the kioskModeAppType property.
+            value: Value to set for the kiosk_mode_app_type property.
         """
         self._kiosk_mode_app_type = value
     
@@ -2445,7 +2445,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBlockAutoLock property value. Indicates whether or not to block device auto lock while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeBlockAutoLock property.
+            value: Value to set for the kiosk_mode_block_auto_lock property.
         """
         self._kiosk_mode_block_auto_lock = value
     
@@ -2462,7 +2462,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBlockRingerSwitch property value. Indicates whether or not to block use of the ringer switch while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeBlockRingerSwitch property.
+            value: Value to set for the kiosk_mode_block_ringer_switch property.
         """
         self._kiosk_mode_block_ringer_switch = value
     
@@ -2479,7 +2479,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBlockScreenRotation property value. Indicates whether or not to block screen rotation while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeBlockScreenRotation property.
+            value: Value to set for the kiosk_mode_block_screen_rotation property.
         """
         self._kiosk_mode_block_screen_rotation = value
     
@@ -2496,7 +2496,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBlockSleepButton property value. Indicates whether or not to block use of the sleep button while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeBlockSleepButton property.
+            value: Value to set for the kiosk_mode_block_sleep_button property.
         """
         self._kiosk_mode_block_sleep_button = value
     
@@ -2513,7 +2513,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBlockTouchscreen property value. Indicates whether or not to block use of the touchscreen while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeBlockTouchscreen property.
+            value: Value to set for the kiosk_mode_block_touchscreen property.
         """
         self._kiosk_mode_block_touchscreen = value
     
@@ -2530,7 +2530,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBlockVolumeButtons property value. Indicates whether or not to block the volume buttons while in Kiosk Mode.
         Args:
-            value: Value to set for the kioskModeBlockVolumeButtons property.
+            value: Value to set for the kiosk_mode_block_volume_buttons property.
         """
         self._kiosk_mode_block_volume_buttons = value
     
@@ -2547,7 +2547,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeBuiltInAppId property value. ID for built-in apps to use for kiosk mode. Used when KioskModeManagedAppId and KioskModeAppStoreUrl are not set.
         Args:
-            value: Value to set for the kioskModeBuiltInAppId property.
+            value: Value to set for the kiosk_mode_built_in_app_id property.
         """
         self._kiosk_mode_built_in_app_id = value
     
@@ -2564,7 +2564,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeEnableVoiceControl property value. Indicates whether or not to enable voice control in kiosk mode.
         Args:
-            value: Value to set for the kioskModeEnableVoiceControl property.
+            value: Value to set for the kiosk_mode_enable_voice_control property.
         """
         self._kiosk_mode_enable_voice_control = value
     
@@ -2581,7 +2581,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeManagedAppId property value. Managed app id of the app to use for kiosk mode. If KioskModeManagedAppId is specified then KioskModeAppStoreUrl will be ignored.
         Args:
-            value: Value to set for the kioskModeManagedAppId property.
+            value: Value to set for the kiosk_mode_managed_app_id property.
         """
         self._kiosk_mode_managed_app_id = value
     
@@ -2598,7 +2598,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeRequireAssistiveTouch property value. Indicates whether or not to require assistive touch while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeRequireAssistiveTouch property.
+            value: Value to set for the kiosk_mode_require_assistive_touch property.
         """
         self._kiosk_mode_require_assistive_touch = value
     
@@ -2615,7 +2615,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeRequireColorInversion property value. Indicates whether or not to require color inversion while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeRequireColorInversion property.
+            value: Value to set for the kiosk_mode_require_color_inversion property.
         """
         self._kiosk_mode_require_color_inversion = value
     
@@ -2632,7 +2632,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeRequireMonoAudio property value. Indicates whether or not to require mono audio while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeRequireMonoAudio property.
+            value: Value to set for the kiosk_mode_require_mono_audio property.
         """
         self._kiosk_mode_require_mono_audio = value
     
@@ -2649,7 +2649,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeRequireVoiceOver property value. Indicates whether or not to require voice over while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeRequireVoiceOver property.
+            value: Value to set for the kiosk_mode_require_voice_over property.
         """
         self._kiosk_mode_require_voice_over = value
     
@@ -2666,7 +2666,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the kioskModeRequireZoom property value. Indicates whether or not to require zoom while in kiosk mode.
         Args:
-            value: Value to set for the kioskModeRequireZoom property.
+            value: Value to set for the kiosk_mode_require_zoom property.
         """
         self._kiosk_mode_require_zoom = value
     
@@ -2683,7 +2683,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockControlCenter property value. Indicates whether or not to block the user from using control center on the lock screen.
         Args:
-            value: Value to set for the lockScreenBlockControlCenter property.
+            value: Value to set for the lock_screen_block_control_center property.
         """
         self._lock_screen_block_control_center = value
     
@@ -2700,7 +2700,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockNotificationView property value. Indicates whether or not to block the user from using the notification view on the lock screen.
         Args:
-            value: Value to set for the lockScreenBlockNotificationView property.
+            value: Value to set for the lock_screen_block_notification_view property.
         """
         self._lock_screen_block_notification_view = value
     
@@ -2717,7 +2717,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockPassbook property value. Indicates whether or not to block the user from using passbook when the device is locked.
         Args:
-            value: Value to set for the lockScreenBlockPassbook property.
+            value: Value to set for the lock_screen_block_passbook property.
         """
         self._lock_screen_block_passbook = value
     
@@ -2734,7 +2734,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the lockScreenBlockTodayView property value. Indicates whether or not to block the user from using the Today View on the lock screen.
         Args:
-            value: Value to set for the lockScreenBlockTodayView property.
+            value: Value to set for the lock_screen_block_today_view property.
         """
         self._lock_screen_block_today_view = value
     
@@ -2751,7 +2751,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the managedPasteboardRequired property value. Open-in management controls how people share data between unmanaged and managed apps. Setting this to true enforces copy/paste restrictions based on how you configured Block viewing corporate documents in unmanaged apps  and  Block viewing non-corporate documents in corporate apps.
         Args:
-            value: Value to set for the managedPasteboardRequired property.
+            value: Value to set for the managed_pasteboard_required property.
         """
         self._managed_pasteboard_required = value
     
@@ -2768,7 +2768,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingApps property value. Apps rating as in media content
         Args:
-            value: Value to set for the mediaContentRatingApps property.
+            value: Value to set for the media_content_rating_apps property.
         """
         self._media_content_rating_apps = value
     
@@ -2785,7 +2785,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingAustralia property value. Media content rating settings for Australia
         Args:
-            value: Value to set for the mediaContentRatingAustralia property.
+            value: Value to set for the media_content_rating_australia property.
         """
         self._media_content_rating_australia = value
     
@@ -2802,7 +2802,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingCanada property value. Media content rating settings for Canada
         Args:
-            value: Value to set for the mediaContentRatingCanada property.
+            value: Value to set for the media_content_rating_canada property.
         """
         self._media_content_rating_canada = value
     
@@ -2819,7 +2819,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingFrance property value. Media content rating settings for France
         Args:
-            value: Value to set for the mediaContentRatingFrance property.
+            value: Value to set for the media_content_rating_france property.
         """
         self._media_content_rating_france = value
     
@@ -2836,7 +2836,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingGermany property value. Media content rating settings for Germany
         Args:
-            value: Value to set for the mediaContentRatingGermany property.
+            value: Value to set for the media_content_rating_germany property.
         """
         self._media_content_rating_germany = value
     
@@ -2853,7 +2853,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingIreland property value. Media content rating settings for Ireland
         Args:
-            value: Value to set for the mediaContentRatingIreland property.
+            value: Value to set for the media_content_rating_ireland property.
         """
         self._media_content_rating_ireland = value
     
@@ -2870,7 +2870,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingJapan property value. Media content rating settings for Japan
         Args:
-            value: Value to set for the mediaContentRatingJapan property.
+            value: Value to set for the media_content_rating_japan property.
         """
         self._media_content_rating_japan = value
     
@@ -2887,7 +2887,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingNewZealand property value. Media content rating settings for New Zealand
         Args:
-            value: Value to set for the mediaContentRatingNewZealand property.
+            value: Value to set for the media_content_rating_new_zealand property.
         """
         self._media_content_rating_new_zealand = value
     
@@ -2904,7 +2904,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingUnitedKingdom property value. Media content rating settings for United Kingdom
         Args:
-            value: Value to set for the mediaContentRatingUnitedKingdom property.
+            value: Value to set for the media_content_rating_united_kingdom property.
         """
         self._media_content_rating_united_kingdom = value
     
@@ -2921,7 +2921,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the mediaContentRatingUnitedStates property value. Media content rating settings for United States
         Args:
-            value: Value to set for the mediaContentRatingUnitedStates property.
+            value: Value to set for the media_content_rating_united_states property.
         """
         self._media_content_rating_united_states = value
     
@@ -2938,7 +2938,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the messagesBlocked property value. Indicates whether or not to block the user from using the Messages app on the supervised device.
         Args:
-            value: Value to set for the messagesBlocked property.
+            value: Value to set for the messages_blocked property.
         """
         self._messages_blocked = value
     
@@ -2955,7 +2955,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkUsageRules property value. List of managed apps and the network rules that applies to them. This collection can contain a maximum of 1000 elements.
         Args:
-            value: Value to set for the networkUsageRules property.
+            value: Value to set for the network_usage_rules property.
         """
         self._network_usage_rules = value
     
@@ -2972,7 +2972,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the nfcBlocked property value. Disable NFC to prevent devices from pairing with other NFC-enabled devices. Available for iOS/iPadOS devices running 14.2 and later.
         Args:
-            value: Value to set for the nfcBlocked property.
+            value: Value to set for the nfc_blocked property.
         """
         self._nfc_blocked = value
     
@@ -2989,7 +2989,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the notificationsBlockSettingsModification property value. Indicates whether or not to allow notifications settings modification (iOS 9.3 and later).
         Args:
-            value: Value to set for the notificationsBlockSettingsModification property.
+            value: Value to set for the notifications_block_settings_modification property.
         """
         self._notifications_block_settings_modification = value
     
@@ -3006,7 +3006,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the onDeviceOnlyDictationForced property value. Disables connections to Siri servers so that users can’t use Siri to dictate text. Available for devices running iOS and iPadOS versions 14.5 and later.
         Args:
-            value: Value to set for the onDeviceOnlyDictationForced property.
+            value: Value to set for the on_device_only_dictation_forced property.
         """
         self._on_device_only_dictation_forced = value
     
@@ -3023,7 +3023,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the onDeviceOnlyTranslationForced property value. When set to TRUE, the setting disables connections to Siri servers so that users can’t use Siri to translate text. When set to FALSE, the setting allows connections to to Siri servers to users can use Siri to translate text. Available for devices running iOS and iPadOS versions 15.0 and later.
         Args:
-            value: Value to set for the onDeviceOnlyTranslationForced property.
+            value: Value to set for the on_device_only_translation_forced property.
         """
         self._on_device_only_translation_forced = value
     
@@ -3040,7 +3040,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeBlockFingerprintModification property value. Block modification of registered Touch ID fingerprints when in supervised mode.
         Args:
-            value: Value to set for the passcodeBlockFingerprintModification property.
+            value: Value to set for the passcode_block_fingerprint_modification property.
         """
         self._passcode_block_fingerprint_modification = value
     
@@ -3057,7 +3057,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeBlockFingerprintUnlock property value. Indicates whether or not to block fingerprint unlock.
         Args:
-            value: Value to set for the passcodeBlockFingerprintUnlock property.
+            value: Value to set for the passcode_block_fingerprint_unlock property.
         """
         self._passcode_block_fingerprint_unlock = value
     
@@ -3074,7 +3074,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeBlockModification property value. Indicates whether or not to allow passcode modification on the supervised device (iOS 9.0 and later).
         Args:
-            value: Value to set for the passcodeBlockModification property.
+            value: Value to set for the passcode_block_modification property.
         """
         self._passcode_block_modification = value
     
@@ -3091,7 +3091,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeBlockSimple property value. Indicates whether or not to block simple passcodes.
         Args:
-            value: Value to set for the passcodeBlockSimple property.
+            value: Value to set for the passcode_block_simple property.
         """
         self._passcode_block_simple = value
     
@@ -3108,7 +3108,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeExpirationDays property value. Number of days before the passcode expires. Valid values 1 to 65535
         Args:
-            value: Value to set for the passcodeExpirationDays property.
+            value: Value to set for the passcode_expiration_days property.
         """
         self._passcode_expiration_days = value
     
@@ -3125,7 +3125,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeMinimumCharacterSetCount property value. Number of character sets a passcode must contain. Valid values 0 to 4
         Args:
-            value: Value to set for the passcodeMinimumCharacterSetCount property.
+            value: Value to set for the passcode_minimum_character_set_count property.
         """
         self._passcode_minimum_character_set_count = value
     
@@ -3142,7 +3142,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeMinimumLength property value. Minimum length of passcode. Valid values 4 to 14
         Args:
-            value: Value to set for the passcodeMinimumLength property.
+            value: Value to set for the passcode_minimum_length property.
         """
         self._passcode_minimum_length = value
     
@@ -3159,7 +3159,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeMinutesOfInactivityBeforeLock property value. Minutes of inactivity before a passcode is required.
         Args:
-            value: Value to set for the passcodeMinutesOfInactivityBeforeLock property.
+            value: Value to set for the passcode_minutes_of_inactivity_before_lock property.
         """
         self._passcode_minutes_of_inactivity_before_lock = value
     
@@ -3176,7 +3176,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeMinutesOfInactivityBeforeScreenTimeout property value. Minutes of inactivity before the screen times out.
         Args:
-            value: Value to set for the passcodeMinutesOfInactivityBeforeScreenTimeout property.
+            value: Value to set for the passcode_minutes_of_inactivity_before_screen_timeout property.
         """
         self._passcode_minutes_of_inactivity_before_screen_timeout = value
     
@@ -3193,7 +3193,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodePreviousPasscodeBlockCount property value. Number of previous passcodes to block. Valid values 1 to 24
         Args:
-            value: Value to set for the passcodePreviousPasscodeBlockCount property.
+            value: Value to set for the passcode_previous_passcode_block_count property.
         """
         self._passcode_previous_passcode_block_count = value
     
@@ -3210,7 +3210,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeRequired property value. Indicates whether or not to require a passcode.
         Args:
-            value: Value to set for the passcodeRequired property.
+            value: Value to set for the passcode_required property.
         """
         self._passcode_required = value
     
@@ -3227,7 +3227,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeRequiredType property value. Possible values of required passwords.
         Args:
-            value: Value to set for the passcodeRequiredType property.
+            value: Value to set for the passcode_required_type property.
         """
         self._passcode_required_type = value
     
@@ -3244,7 +3244,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passcodeSignInFailureCountBeforeWipe property value. Number of sign in failures allowed before wiping the device. Valid values 2 to 11
         Args:
-            value: Value to set for the passcodeSignInFailureCountBeforeWipe property.
+            value: Value to set for the passcode_sign_in_failure_count_before_wipe property.
         """
         self._passcode_sign_in_failure_count_before_wipe = value
     
@@ -3261,7 +3261,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockAirDropSharing property value. Indicates whether or not to block sharing passwords with the AirDrop passwords feature iOS 12.0 and later).
         Args:
-            value: Value to set for the passwordBlockAirDropSharing property.
+            value: Value to set for the password_block_air_drop_sharing property.
         """
         self._password_block_air_drop_sharing = value
     
@@ -3278,7 +3278,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockAutoFill property value. Indicates if the AutoFill passwords feature is allowed (iOS 12.0 and later).
         Args:
-            value: Value to set for the passwordBlockAutoFill property.
+            value: Value to set for the password_block_auto_fill property.
         """
         self._password_block_auto_fill = value
     
@@ -3295,7 +3295,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the passwordBlockProximityRequests property value. Indicates whether or not to block requesting passwords from nearby devices (iOS 12.0 and later).
         Args:
-            value: Value to set for the passwordBlockProximityRequests property.
+            value: Value to set for the password_block_proximity_requests property.
         """
         self._password_block_proximity_requests = value
     
@@ -3312,7 +3312,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the pkiBlockOTAUpdates property value. Indicates whether or not over-the-air PKI updates are blocked. Setting this restriction to false does not disable CRL and OCSP checks (iOS 7.0 and later).
         Args:
-            value: Value to set for the pkiBlockOTAUpdates property.
+            value: Value to set for the pki_block_o_t_a_updates property.
         """
         self._pki_block_o_t_a_updates = value
     
@@ -3329,7 +3329,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the podcastsBlocked property value. Indicates whether or not to block the user from using podcasts on the supervised device (iOS 8.0 and later).
         Args:
-            value: Value to set for the podcastsBlocked property.
+            value: Value to set for the podcasts_blocked property.
         """
         self._podcasts_blocked = value
     
@@ -3346,7 +3346,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the privacyForceLimitAdTracking property value. Indicates if ad tracking is limited.(iOS 7.0 and later).
         Args:
-            value: Value to set for the privacyForceLimitAdTracking property.
+            value: Value to set for the privacy_force_limit_ad_tracking property.
         """
         self._privacy_force_limit_ad_tracking = value
     
@@ -3363,7 +3363,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proximityBlockSetupToNewDevice property value. Indicates whether or not to enable the prompt to setup nearby devices with a supervised device.
         Args:
-            value: Value to set for the proximityBlockSetupToNewDevice property.
+            value: Value to set for the proximity_block_setup_to_new_device property.
         """
         self._proximity_block_setup_to_new_device = value
     
@@ -3380,26 +3380,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariBlockAutofill property value. Indicates whether or not to block the user from using Auto fill in Safari. Requires a supervised device for iOS 13 and later.
         Args:
-            value: Value to set for the safariBlockAutofill property.
+            value: Value to set for the safari_block_autofill property.
         """
         self._safari_block_autofill = value
-    
-    @property
-    def safari_blocked(self,) -> Optional[bool]:
-        """
-        Gets the safariBlocked property value. Indicates whether or not to block the user from using Safari. Requires a supervised device for iOS 13 and later.
-        Returns: Optional[bool]
-        """
-        return self._safari_blocked
-    
-    @safari_blocked.setter
-    def safari_blocked(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the safariBlocked property value. Indicates whether or not to block the user from using Safari. Requires a supervised device for iOS 13 and later.
-        Args:
-            value: Value to set for the safariBlocked property.
-        """
-        self._safari_blocked = value
     
     @property
     def safari_block_java_script(self,) -> Optional[bool]:
@@ -3414,7 +3397,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariBlockJavaScript property value. Indicates whether or not to block JavaScript in Safari.
         Args:
-            value: Value to set for the safariBlockJavaScript property.
+            value: Value to set for the safari_block_java_script property.
         """
         self._safari_block_java_script = value
     
@@ -3431,9 +3414,26 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariBlockPopups property value. Indicates whether or not to block popups in Safari.
         Args:
-            value: Value to set for the safariBlockPopups property.
+            value: Value to set for the safari_block_popups property.
         """
         self._safari_block_popups = value
+    
+    @property
+    def safari_blocked(self,) -> Optional[bool]:
+        """
+        Gets the safariBlocked property value. Indicates whether or not to block the user from using Safari. Requires a supervised device for iOS 13 and later.
+        Returns: Optional[bool]
+        """
+        return self._safari_blocked
+    
+    @safari_blocked.setter
+    def safari_blocked(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the safariBlocked property value. Indicates whether or not to block the user from using Safari. Requires a supervised device for iOS 13 and later.
+        Args:
+            value: Value to set for the safari_blocked property.
+        """
+        self._safari_blocked = value
     
     @property
     def safari_cookie_settings(self,) -> Optional[web_browser_cookie_settings.WebBrowserCookieSettings]:
@@ -3448,7 +3448,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariCookieSettings property value. Web Browser Cookie Settings.
         Args:
-            value: Value to set for the safariCookieSettings property.
+            value: Value to set for the safari_cookie_settings property.
         """
         self._safari_cookie_settings = value
     
@@ -3465,7 +3465,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariManagedDomains property value. URLs matching the patterns listed here will be considered managed.
         Args:
-            value: Value to set for the safariManagedDomains property.
+            value: Value to set for the safari_managed_domains property.
         """
         self._safari_managed_domains = value
     
@@ -3482,7 +3482,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariPasswordAutoFillDomains property value. Users can save passwords in Safari only from URLs matching the patterns listed here. Applies to devices in supervised mode (iOS 9.3 and later).
         Args:
-            value: Value to set for the safariPasswordAutoFillDomains property.
+            value: Value to set for the safari_password_auto_fill_domains property.
         """
         self._safari_password_auto_fill_domains = value
     
@@ -3499,7 +3499,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the safariRequireFraudWarning property value. Indicates whether or not to require fraud warning in Safari.
         Args:
-            value: Value to set for the safariRequireFraudWarning property.
+            value: Value to set for the safari_require_fraud_warning property.
         """
         self._safari_require_fraud_warning = value
     
@@ -3516,7 +3516,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the screenCaptureBlocked property value. Indicates whether or not to block the user from taking Screenshots.
         Args:
-            value: Value to set for the screenCaptureBlocked property.
+            value: Value to set for the screen_capture_blocked property.
         """
         self._screen_capture_blocked = value
     
@@ -3534,24 +3534,24 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("airDropBlocked", self.air_drop_blocked)
         writer.write_bool_value("airDropForceUnmanagedDropTarget", self.air_drop_force_unmanaged_drop_target)
         writer.write_bool_value("airPlayForcePairingPasswordForOutgoingRequests", self.air_play_force_pairing_password_for_outgoing_requests)
-        writer.write_bool_value("airPrintBlockCredentialsStorage", self.air_print_block_credentials_storage)
         writer.write_bool_value("airPrintBlocked", self.air_print_blocked)
         writer.write_bool_value("airPrintBlockiBeaconDiscovery", self.air_print_blocki_beacon_discovery)
+        writer.write_bool_value("airPrintBlockCredentialsStorage", self.air_print_block_credentials_storage)
         writer.write_bool_value("airPrintForceTrustedTLS", self.air_print_force_trusted_t_l_s)
-        writer.write_bool_value("appClipsBlocked", self.app_clips_blocked)
         writer.write_bool_value("appleNewsBlocked", self.apple_news_blocked)
         writer.write_bool_value("applePersonalizedAdsBlocked", self.apple_personalized_ads_blocked)
         writer.write_bool_value("appleWatchBlockPairing", self.apple_watch_block_pairing)
         writer.write_bool_value("appleWatchForceWristDetection", self.apple_watch_force_wrist_detection)
-        writer.write_bool_value("appRemovalBlocked", self.app_removal_blocked)
         writer.write_collection_of_object_values("appsSingleAppModeList", self.apps_single_app_mode_list)
-        writer.write_bool_value("appStoreBlockAutomaticDownloads", self.app_store_block_automatic_downloads)
+        writer.write_collection_of_object_values("appsVisibilityList", self.apps_visibility_list)
+        writer.write_enum_value("appsVisibilityListType", self.apps_visibility_list_type)
+        writer.write_bool_value("appClipsBlocked", self.app_clips_blocked)
+        writer.write_bool_value("appRemovalBlocked", self.app_removal_blocked)
         writer.write_bool_value("appStoreBlocked", self.app_store_blocked)
+        writer.write_bool_value("appStoreBlockAutomaticDownloads", self.app_store_block_automatic_downloads)
         writer.write_bool_value("appStoreBlockInAppPurchases", self.app_store_block_in_app_purchases)
         writer.write_bool_value("appStoreBlockUIAppInstallation", self.app_store_block_u_i_app_installation)
         writer.write_bool_value("appStoreRequirePassword", self.app_store_require_password)
-        writer.write_collection_of_object_values("appsVisibilityList", self.apps_visibility_list)
-        writer.write_enum_value("appsVisibilityListType", self.apps_visibility_list_type)
         writer.write_bool_value("autoFillForceAuthentication", self.auto_fill_force_authentication)
         writer.write_bool_value("autoUnlockBlocked", self.auto_unlock_blocked)
         writer.write_bool_value("blockSystemAppRemoval", self.block_system_app_removal)
@@ -3559,9 +3559,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("cameraBlocked", self.camera_blocked)
         writer.write_bool_value("cellularBlockDataRoaming", self.cellular_block_data_roaming)
         writer.write_bool_value("cellularBlockGlobalBackgroundFetchWhileRoaming", self.cellular_block_global_background_fetch_while_roaming)
-        writer.write_bool_value("cellularBlockPerAppDataModification", self.cellular_block_per_app_data_modification)
         writer.write_bool_value("cellularBlockPersonalHotspot", self.cellular_block_personal_hotspot)
         writer.write_bool_value("cellularBlockPersonalHotspotModification", self.cellular_block_personal_hotspot_modification)
+        writer.write_bool_value("cellularBlockPerAppDataModification", self.cellular_block_per_app_data_modification)
         writer.write_bool_value("cellularBlockPlanModification", self.cellular_block_plan_modification)
         writer.write_bool_value("cellularBlockVoiceRoaming", self.cellular_block_voice_roaming)
         writer.write_bool_value("certificatesBlockUntrustedTlsCertificates", self.certificates_block_untrusted_tls_certificates)
@@ -3570,8 +3570,8 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("classroomForceAutomaticallyJoinClasses", self.classroom_force_automatically_join_classes)
         writer.write_bool_value("classroomForceRequestPermissionToLeaveClasses", self.classroom_force_request_permission_to_leave_classes)
         writer.write_bool_value("classroomForceUnpromptedAppAndDeviceLock", self.classroom_force_unprompted_app_and_device_lock)
-        writer.write_enum_value("compliantAppListType", self.compliant_app_list_type)
         writer.write_collection_of_object_values("compliantAppsList", self.compliant_apps_list)
+        writer.write_enum_value("compliantAppListType", self.compliant_app_list_type)
         writer.write_bool_value("configurationProfileBlockChanges", self.configuration_profile_block_changes)
         writer.write_bool_value("contactsAllowManagedToUnmanagedWrite", self.contacts_allow_managed_to_unmanaged_write)
         writer.write_bool_value("contactsAllowUnmanagedToManagedRead", self.contacts_allow_unmanaged_to_managed_read)
@@ -3691,8 +3691,8 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("podcastsBlocked", self.podcasts_blocked)
         writer.write_bool_value("privacyForceLimitAdTracking", self.privacy_force_limit_ad_tracking)
         writer.write_bool_value("proximityBlockSetupToNewDevice", self.proximity_block_setup_to_new_device)
-        writer.write_bool_value("safariBlockAutofill", self.safari_block_autofill)
         writer.write_bool_value("safariBlocked", self.safari_blocked)
+        writer.write_bool_value("safariBlockAutofill", self.safari_block_autofill)
         writer.write_bool_value("safariBlockJavaScript", self.safari_block_java_script)
         writer.write_bool_value("safariBlockPopups", self.safari_block_popups)
         writer.write_enum_value("safariCookieSettings", self.safari_cookie_settings)
@@ -3713,9 +3713,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         writer.write_bool_value("voiceDialingBlocked", self.voice_dialing_blocked)
         writer.write_bool_value("vpnBlockCreation", self.vpn_block_creation)
         writer.write_bool_value("wallpaperBlockModification", self.wallpaper_block_modification)
+        writer.write_bool_value("wifiPowerOnForced", self.wifi_power_on_forced)
         writer.write_bool_value("wiFiConnectOnlyToConfiguredNetworks", self.wi_fi_connect_only_to_configured_networks)
         writer.write_bool_value("wiFiConnectToAllowedNetworksOnlyForced", self.wi_fi_connect_to_allowed_networks_only_forced)
-        writer.write_bool_value("wifiPowerOnForced", self.wifi_power_on_forced)
     
     @property
     def shared_device_block_temporary_sessions(self,) -> Optional[bool]:
@@ -3730,9 +3730,26 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the sharedDeviceBlockTemporarySessions property value. Indicates whether or not to block temporary sessions on Shared iPads (iOS 13.4 or later).
         Args:
-            value: Value to set for the sharedDeviceBlockTemporarySessions property.
+            value: Value to set for the shared_device_block_temporary_sessions property.
         """
         self._shared_device_block_temporary_sessions = value
+    
+    @property
+    def siri_block_user_generated_content(self,) -> Optional[bool]:
+        """
+        Gets the siriBlockUserGeneratedContent property value. Indicates whether or not to block Siri from querying user-generated content when used on a supervised device.
+        Returns: Optional[bool]
+        """
+        return self._siri_block_user_generated_content
+    
+    @siri_block_user_generated_content.setter
+    def siri_block_user_generated_content(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the siriBlockUserGeneratedContent property value. Indicates whether or not to block Siri from querying user-generated content when used on a supervised device.
+        Args:
+            value: Value to set for the siri_block_user_generated_content property.
+        """
+        self._siri_block_user_generated_content = value
     
     @property
     def siri_blocked(self,) -> Optional[bool]:
@@ -3747,7 +3764,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the siriBlocked property value. Indicates whether or not to block the user from using Siri.
         Args:
-            value: Value to set for the siriBlocked property.
+            value: Value to set for the siri_blocked property.
         """
         self._siri_blocked = value
     
@@ -3764,26 +3781,9 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the siriBlockedWhenLocked property value. Indicates whether or not to block the user from using Siri when locked.
         Args:
-            value: Value to set for the siriBlockedWhenLocked property.
+            value: Value to set for the siri_blocked_when_locked property.
         """
         self._siri_blocked_when_locked = value
-    
-    @property
-    def siri_block_user_generated_content(self,) -> Optional[bool]:
-        """
-        Gets the siriBlockUserGeneratedContent property value. Indicates whether or not to block Siri from querying user-generated content when used on a supervised device.
-        Returns: Optional[bool]
-        """
-        return self._siri_block_user_generated_content
-    
-    @siri_block_user_generated_content.setter
-    def siri_block_user_generated_content(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the siriBlockUserGeneratedContent property value. Indicates whether or not to block Siri from querying user-generated content when used on a supervised device.
-        Args:
-            value: Value to set for the siriBlockUserGeneratedContent property.
-        """
-        self._siri_block_user_generated_content = value
     
     @property
     def siri_require_profanity_filter(self,) -> Optional[bool]:
@@ -3798,7 +3798,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the siriRequireProfanityFilter property value. Indicates whether or not to prevent Siri from dictating, or speaking profane language on supervised device.
         Args:
-            value: Value to set for the siriRequireProfanityFilter property.
+            value: Value to set for the siri_require_profanity_filter property.
         """
         self._siri_require_profanity_filter = value
     
@@ -3815,7 +3815,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the softwareUpdatesEnforcedDelayInDays property value. Sets how many days a software update will be delyed for a supervised device. Valid values 0 to 90
         Args:
-            value: Value to set for the softwareUpdatesEnforcedDelayInDays property.
+            value: Value to set for the software_updates_enforced_delay_in_days property.
         """
         self._software_updates_enforced_delay_in_days = value
     
@@ -3832,7 +3832,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the softwareUpdatesForceDelayed property value. Indicates whether or not to delay user visibility of software updates when the device is in supervised mode.
         Args:
-            value: Value to set for the softwareUpdatesForceDelayed property.
+            value: Value to set for the software_updates_force_delayed property.
         """
         self._software_updates_force_delayed = value
     
@@ -3849,7 +3849,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the spotlightBlockInternetResults property value. Indicates whether or not to block Spotlight search from returning internet results on supervised device.
         Args:
-            value: Value to set for the spotlightBlockInternetResults property.
+            value: Value to set for the spotlight_block_internet_results property.
         """
         self._spotlight_block_internet_results = value
     
@@ -3866,7 +3866,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the unpairedExternalBootToRecoveryAllowed property value. Allow users to boot devices into recovery mode with unpaired devices. Available for devices running iOS and iPadOS versions 14.5 and later.
         Args:
-            value: Value to set for the unpairedExternalBootToRecoveryAllowed property.
+            value: Value to set for the unpaired_external_boot_to_recovery_allowed property.
         """
         self._unpaired_external_boot_to_recovery_allowed = value
     
@@ -3883,7 +3883,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the usbRestrictedModeBlocked property value. Indicates if connecting to USB accessories while the device is locked is allowed (iOS 11.4.1 and later).
         Args:
-            value: Value to set for the usbRestrictedModeBlocked property.
+            value: Value to set for the usb_restricted_mode_blocked property.
         """
         self._usb_restricted_mode_blocked = value
     
@@ -3900,7 +3900,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the voiceDialingBlocked property value. Indicates whether or not to block voice dialing.
         Args:
-            value: Value to set for the voiceDialingBlocked property.
+            value: Value to set for the voice_dialing_blocked property.
         """
         self._voice_dialing_blocked = value
     
@@ -3917,7 +3917,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the vpnBlockCreation property value. Indicates whether or not the creation of VPN configurations is blocked (iOS 11.0 and later).
         Args:
-            value: Value to set for the vpnBlockCreation property.
+            value: Value to set for the vpn_block_creation property.
         """
         self._vpn_block_creation = value
     
@@ -3934,7 +3934,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wallpaperBlockModification property value. Indicates whether or not to allow wallpaper modification on supervised device (iOS 9.0 and later) .
         Args:
-            value: Value to set for the wallpaperBlockModification property.
+            value: Value to set for the wallpaper_block_modification property.
         """
         self._wallpaper_block_modification = value
     
@@ -3951,7 +3951,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wiFiConnectOnlyToConfiguredNetworks property value. Indicates whether or not to force the device to use only Wi-Fi networks from configuration profiles when the device is in supervised mode. Available for devices running iOS and iPadOS versions 14.4 and earlier. Devices running 14.5+ should use the setting, 'WiFiConnectToAllowedNetworksOnlyForced.
         Args:
-            value: Value to set for the wiFiConnectOnlyToConfiguredNetworks property.
+            value: Value to set for the wi_fi_connect_only_to_configured_networks property.
         """
         self._wi_fi_connect_only_to_configured_networks = value
     
@@ -3968,7 +3968,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wiFiConnectToAllowedNetworksOnlyForced property value. Require devices to use Wi-Fi networks set up via configuration profiles. Available for devices running iOS and iPadOS versions 14.5 and later.
         Args:
-            value: Value to set for the wiFiConnectToAllowedNetworksOnlyForced property.
+            value: Value to set for the wi_fi_connect_to_allowed_networks_only_forced property.
         """
         self._wi_fi_connect_to_allowed_networks_only_forced = value
     
@@ -3985,7 +3985,7 @@ class IosGeneralDeviceConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wifiPowerOnForced property value. Indicates whether or not Wi-Fi remains on, even when device is in airplane mode. Available for devices running iOS and iPadOS, versions 13.0 and later.
         Args:
-            value: Value to set for the wifiPowerOnForced property.
+            value: Value to set for the wifi_power_on_forced property.
         """
         self._wifi_power_on_forced = value
     

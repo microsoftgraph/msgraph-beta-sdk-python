@@ -57,8 +57,8 @@ class DeviceManagementConfigurationSettingValueTemplateReference(AdditionalDataH
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "setting_value_template_id": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
-            "use_template_default": lambda n : setattr(self, 'use_template_default', n.get_bool_value()),
+            "settingValueTemplateId": lambda n : setattr(self, 'setting_value_template_id', n.get_str_value()),
+            "useTemplateDefault": lambda n : setattr(self, 'use_template_default', n.get_bool_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class DeviceManagementConfigurationSettingValueTemplateReference(AdditionalDataH
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -105,7 +105,7 @@ class DeviceManagementConfigurationSettingValueTemplateReference(AdditionalDataH
         """
         Sets the settingValueTemplateId property value. Setting value template id
         Args:
-            value: Value to set for the settingValueTemplateId property.
+            value: Value to set for the setting_value_template_id property.
         """
         self._setting_value_template_id = value
     
@@ -122,7 +122,7 @@ class DeviceManagementConfigurationSettingValueTemplateReference(AdditionalDataH
         """
         Sets the useTemplateDefault property value. Indicates whether to update policy setting value to match template setting default value
         Args:
-            value: Value to set for the useTemplateDefault property.
+            value: Value to set for the use_template_default property.
         """
         self._use_template_default = value
     

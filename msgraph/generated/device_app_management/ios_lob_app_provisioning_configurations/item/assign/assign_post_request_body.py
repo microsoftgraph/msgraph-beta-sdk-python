@@ -37,7 +37,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the appProvisioningConfigurationGroupAssignments property value. The appProvisioningConfigurationGroupAssignments property
         Args:
-            value: Value to set for the appProvisioningConfigurationGroupAssignments property.
+            value: Value to set for the app_provisioning_configuration_group_assignments property.
         """
         self._app_provisioning_configuration_group_assignments = value
     
@@ -71,8 +71,8 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_provisioning_configuration_group_assignments": lambda n : setattr(self, 'app_provisioning_configuration_group_assignments', n.get_collection_of_object_values(mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment)),
-            "i_o_s_lob_app_provisioning_config_assignments": lambda n : setattr(self, 'i_o_s_lob_app_provisioning_config_assignments', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment)),
+            "appProvisioningConfigurationGroupAssignments": lambda n : setattr(self, 'app_provisioning_configuration_group_assignments', n.get_collection_of_object_values(mobile_app_provisioning_config_group_assignment.MobileAppProvisioningConfigGroupAssignment)),
+            "iOSLobAppProvisioningConfigAssignments": lambda n : setattr(self, 'i_o_s_lob_app_provisioning_config_assignments', n.get_collection_of_object_values(ios_lob_app_provisioning_configuration_assignment.IosLobAppProvisioningConfigurationAssignment)),
         }
         return fields
     
@@ -89,7 +89,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the iOSLobAppProvisioningConfigAssignments property value. The iOSLobAppProvisioningConfigAssignments property
         Args:
-            value: Value to set for the iOSLobAppProvisioningConfigAssignments property.
+            value: Value to set for the i_o_s_lob_app_provisioning_config_assignments property.
         """
         self._i_o_s_lob_app_provisioning_config_assignments = value
     

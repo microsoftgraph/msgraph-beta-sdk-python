@@ -52,7 +52,7 @@ class MediaConfig(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "remove_from_default_audio_group": lambda n : setattr(self, 'remove_from_default_audio_group', n.get_bool_value()),
+            "removeFromDefaultAudioGroup": lambda n : setattr(self, 'remove_from_default_audio_group', n.get_bool_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class MediaConfig(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -86,7 +86,7 @@ class MediaConfig(AdditionalDataHolder, Parsable):
         """
         Sets the removeFromDefaultAudioGroup property value. The removeFromDefaultAudioGroup property
         Args:
-            value: Value to set for the removeFromDefaultAudioGroup property.
+            value: Value to set for the remove_from_default_audio_group property.
         """
         self._remove_from_default_audio_group = value
     

@@ -38,8 +38,8 @@ class AddToReviewSetOperation(case_operation.CaseOperation):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "review_set": lambda n : setattr(self, 'review_set', n.get_object_value(review_set.ReviewSet)),
-            "source_collection": lambda n : setattr(self, 'source_collection', n.get_object_value(source_collection.SourceCollection)),
+            "reviewSet": lambda n : setattr(self, 'review_set', n.get_object_value(review_set.ReviewSet)),
+            "sourceCollection": lambda n : setattr(self, 'source_collection', n.get_object_value(source_collection.SourceCollection)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -58,7 +58,7 @@ class AddToReviewSetOperation(case_operation.CaseOperation):
         """
         Sets the reviewSet property value. The review set to which items matching the source collection query are added to.
         Args:
-            value: Value to set for the reviewSet property.
+            value: Value to set for the review_set property.
         """
         self._review_set = value
     
@@ -87,7 +87,7 @@ class AddToReviewSetOperation(case_operation.CaseOperation):
         """
         Sets the sourceCollection property value. The sourceCollection that items are being added from.
         Args:
-            value: Value to set for the sourceCollection property.
+            value: Value to set for the source_collection property.
         """
         self._source_collection = value
     

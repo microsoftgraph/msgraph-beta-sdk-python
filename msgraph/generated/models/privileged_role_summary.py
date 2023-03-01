@@ -50,7 +50,7 @@ class PrivilegedRoleSummary(entity.Entity):
         """
         Sets the elevatedCount property value. The number of users that have the role assigned and the role is activated.
         Args:
-            value: Value to set for the elevatedCount property.
+            value: Value to set for the elevated_count property.
         """
         self._elevated_count = value
     
@@ -60,11 +60,11 @@ class PrivilegedRoleSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "elevated_count": lambda n : setattr(self, 'elevated_count', n.get_int_value()),
-            "managed_count": lambda n : setattr(self, 'managed_count', n.get_int_value()),
-            "mfa_enabled": lambda n : setattr(self, 'mfa_enabled', n.get_bool_value()),
+            "elevatedCount": lambda n : setattr(self, 'elevated_count', n.get_int_value()),
+            "managedCount": lambda n : setattr(self, 'managed_count', n.get_int_value()),
+            "mfaEnabled": lambda n : setattr(self, 'mfa_enabled', n.get_bool_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(role_summary_status.RoleSummaryStatus)),
-            "users_count": lambda n : setattr(self, 'users_count', n.get_int_value()),
+            "usersCount": lambda n : setattr(self, 'users_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -83,7 +83,7 @@ class PrivilegedRoleSummary(entity.Entity):
         """
         Sets the managedCount property value. The number of users that have the role assigned but the role is deactivated.
         Args:
-            value: Value to set for the managedCount property.
+            value: Value to set for the managed_count property.
         """
         self._managed_count = value
     
@@ -100,7 +100,7 @@ class PrivilegedRoleSummary(entity.Entity):
         """
         Sets the mfaEnabled property value. true if the role activation requires MFA. false if the role activation doesn't require MFA.
         Args:
-            value: Value to set for the mfaEnabled property.
+            value: Value to set for the mfa_enabled property.
         """
         self._mfa_enabled = value
     
@@ -149,7 +149,7 @@ class PrivilegedRoleSummary(entity.Entity):
         """
         Sets the usersCount property value. The number of users that are assigned with the role.
         Args:
-            value: Value to set for the usersCount property.
+            value: Value to set for the users_count property.
         """
         self._users_count = value
     

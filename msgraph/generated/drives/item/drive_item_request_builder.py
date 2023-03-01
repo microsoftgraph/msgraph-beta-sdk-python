@@ -68,11 +68,25 @@ class DriveItemRequestBuilder():
         return list_request_builder.ListRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def recent(self) -> recent_request_builder.RecentRequestBuilder:
+        """
+        Provides operations to call the recent method.
+        """
+        return recent_request_builder.RecentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def root(self) -> root_request_builder.RootRequestBuilder:
         """
         Provides operations to manage the root property of the microsoft.graph.drive entity.
         """
         return root_request_builder.RootRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def shared_with_me(self) -> shared_with_me_request_builder.SharedWithMeRequestBuilder:
+        """
+        Provides operations to call the sharedWithMe method.
+        """
+        return shared_with_me_request_builder.SharedWithMeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def special(self) -> special_request_builder.SpecialRequestBuilder:
@@ -125,12 +139,11 @@ class DriveItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DriveItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DriveItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete entity from drives
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -141,7 +154,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def following_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
         """
@@ -156,12 +169,11 @@ class DriveItemRequestBuilder():
         url_tpl_params["driveItem%2Did"] = id
         return drive_item_item_request_builder.DriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive.Drive]:
+    async def get(self,request_configuration: Optional[DriveItemRequestBuilderGetRequestConfiguration] = None) -> Optional[drive.Drive]:
         """
         Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive.Drive]
         """
         request_info = self.to_get_request_information(
@@ -173,7 +185,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive.Drive, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive.Drive, error_mapping)
     
     def items_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
         """
@@ -188,13 +200,12 @@ class DriveItemRequestBuilder():
         url_tpl_params["driveItem%2Did"] = id
         return drive_item_item_request_builder.DriveItemItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[drive.Drive] = None, request_configuration: Optional[DriveItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive.Drive]:
+    async def patch(self,body: Optional[drive.Drive] = None, request_configuration: Optional[DriveItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[drive.Drive]:
         """
         Update entity in drives
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive.Drive]
         """
         if body is None:
@@ -208,14 +219,7 @@ class DriveItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive.Drive, response_handler, error_mapping)
-    
-    def recent(self,) -> recent_request_builder.RecentRequestBuilder:
-        """
-        Provides operations to call the recent method.
-        Returns: recent_request_builder.RecentRequestBuilder
-        """
-        return recent_request_builder.RecentRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, drive.Drive, error_mapping)
     
     def search_with_q(self,q: Optional[str] = None) -> search_with_q_request_builder.SearchWithQRequestBuilder:
         """
@@ -227,13 +231,6 @@ class DriveItemRequestBuilder():
         if q is None:
             raise Exception("q cannot be undefined")
         return search_with_q_request_builder.SearchWithQRequestBuilder(self.request_adapter, self.path_parameters, q)
-    
-    def shared_with_me(self,) -> shared_with_me_request_builder.SharedWithMeRequestBuilder:
-        """
-        Provides operations to call the sharedWithMe method.
-        Returns: shared_with_me_request_builder.SharedWithMeRequestBuilder
-        """
-        return shared_with_me_request_builder.SharedWithMeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def special_by_id(self,id: str) -> drive_item_item_request_builder.DriveItemItemRequestBuilder:
         """
@@ -275,7 +272,7 @@ class DriveItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -296,7 +293,7 @@ class DriveItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -309,7 +306,7 @@ class DriveItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -348,7 +345,7 @@ class DriveItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -363,7 +360,7 @@ class DriveItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

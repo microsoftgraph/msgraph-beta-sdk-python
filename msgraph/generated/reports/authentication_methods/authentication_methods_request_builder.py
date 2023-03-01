@@ -30,6 +30,20 @@ class AuthenticationMethodsRequestBuilder():
         """
         return user_registration_details_request_builder.UserRegistrationDetailsRequestBuilder(self.request_adapter, self.path_parameters)
     
+    @property
+    def users_registered_by_feature(self) -> users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByFeature method.
+        """
+        return users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def users_registered_by_method(self) -> users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder:
+        """
+        Provides operations to call the usersRegisteredByMethod method.
+        """
+        return users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder(self.request_adapter, self.path_parameters)
+    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AuthenticationMethodsRequestBuilder and sets the default values.
@@ -48,12 +62,11 @@ class AuthenticationMethodsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property authenticationMethods for reports
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -64,14 +77,13 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
         """
         Container for navigation properties for Azure AD authentication methods resources.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
         """
         request_info = self.to_get_request_information(
@@ -83,15 +95,14 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
-    async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
+    async def patch(self,body: Optional[authentication_methods_root.AuthenticationMethodsRoot] = None, request_configuration: Optional[AuthenticationMethodsRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_methods_root.AuthenticationMethodsRoot]:
         """
         Update the navigation property authenticationMethods in reports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_root.AuthenticationMethodsRoot]
         """
         if body is None:
@@ -105,7 +116,7 @@ class AuthenticationMethodsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_root.AuthenticationMethodsRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AuthenticationMethodsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -134,7 +145,7 @@ class AuthenticationMethodsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -155,7 +166,7 @@ class AuthenticationMethodsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -175,13 +186,6 @@ class AuthenticationMethodsRequestBuilder():
         url_tpl_params["userRegistrationDetails%2Did"] = id
         return user_registration_details_item_request_builder.UserRegistrationDetailsItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def users_registered_by_feature(self,) -> users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByFeature method.
-        Returns: users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder
-        """
-        return users_registered_by_feature_request_builder.UsersRegisteredByFeatureRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def users_registered_by_feature_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
         """
         Provides operations to call the usersRegisteredByFeature method.
@@ -195,13 +199,6 @@ class AuthenticationMethodsRequestBuilder():
         if included_user_types is None:
             raise Exception("included_user_types cannot be undefined")
         return users_registered_by_feature_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(self.request_adapter, self.path_parameters, includedUserRoles, includedUserTypes)
-    
-    def users_registered_by_method(self,) -> users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder:
-        """
-        Provides operations to call the usersRegisteredByMethod method.
-        Returns: users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder
-        """
-        return users_registered_by_method_request_builder.UsersRegisteredByMethodRequestBuilder(self.request_adapter, self.path_parameters)
     
     def users_registered_by_method_with_included_user_types_with_included_user_roles(self,included_user_roles: Optional[str] = None, included_user_types: Optional[str] = None) -> users_registered_by_method_with_included_user_types_with_included_user_roles_request_builder.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder:
         """
@@ -223,7 +220,7 @@ class AuthenticationMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -262,7 +259,7 @@ class AuthenticationMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -277,7 +274,7 @@ class AuthenticationMethodsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -35,8 +35,8 @@ class DeviceManagementSettingCollectionConstraint(device_management_constraint.D
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_length": lambda n : setattr(self, 'maximum_length', n.get_int_value()),
-            "minimum_length": lambda n : setattr(self, 'minimum_length', n.get_int_value()),
+            "maximumLength": lambda n : setattr(self, 'maximum_length', n.get_int_value()),
+            "minimumLength": lambda n : setattr(self, 'minimum_length', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class DeviceManagementSettingCollectionConstraint(device_management_constraint.D
         """
         Sets the maximumLength property value. The maximum number of elements in the collection
         Args:
-            value: Value to set for the maximumLength property.
+            value: Value to set for the maximum_length property.
         """
         self._maximum_length = value
     
@@ -72,7 +72,7 @@ class DeviceManagementSettingCollectionConstraint(device_management_constraint.D
         """
         Sets the minimumLength property value. The minimum number of elements in the collection
         Args:
-            value: Value to set for the minimumLength property.
+            value: Value to set for the minimum_length property.
         """
         self._minimum_length = value
     

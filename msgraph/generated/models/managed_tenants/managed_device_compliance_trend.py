@@ -19,7 +19,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the compliantDeviceCount property value. The number of devices with a compliant status. Required. Read-only.
         Args:
-            value: Value to set for the compliantDeviceCount property.
+            value: Value to set for the compliant_device_count property.
         """
         self._compliant_device_count = value
     
@@ -36,7 +36,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the configManagerDeviceCount property value. The number of devices manged by Configuration Manager. Required. Read-only.
         Args:
-            value: Value to set for the configManagerDeviceCount property.
+            value: Value to set for the config_manager_device_count property.
         """
         self._config_manager_device_count = value
     
@@ -79,7 +79,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the countDateTime property value. The date and time compliance snapshot was performed. Required. Read-only.
         Args:
-            value: Value to set for the countDateTime property.
+            value: Value to set for the count_date_time property.
         """
         self._count_date_time = value
     
@@ -108,7 +108,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the errorDeviceCount property value. The number of devices with an error status. Required. Read-only.
         Args:
-            value: Value to set for the errorDeviceCount property.
+            value: Value to set for the error_device_count property.
         """
         self._error_device_count = value
     
@@ -118,15 +118,15 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliant_device_count": lambda n : setattr(self, 'compliant_device_count', n.get_int_value()),
-            "config_manager_device_count": lambda n : setattr(self, 'config_manager_device_count', n.get_int_value()),
-            "count_date_time": lambda n : setattr(self, 'count_date_time', n.get_str_value()),
-            "error_device_count": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
-            "in_grace_period_device_count": lambda n : setattr(self, 'in_grace_period_device_count', n.get_int_value()),
-            "noncompliant_device_count": lambda n : setattr(self, 'noncompliant_device_count', n.get_int_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "unknown_device_count": lambda n : setattr(self, 'unknown_device_count', n.get_int_value()),
+            "compliantDeviceCount": lambda n : setattr(self, 'compliant_device_count', n.get_int_value()),
+            "configManagerDeviceCount": lambda n : setattr(self, 'config_manager_device_count', n.get_int_value()),
+            "countDateTime": lambda n : setattr(self, 'count_date_time', n.get_str_value()),
+            "errorDeviceCount": lambda n : setattr(self, 'error_device_count', n.get_int_value()),
+            "inGracePeriodDeviceCount": lambda n : setattr(self, 'in_grace_period_device_count', n.get_int_value()),
+            "noncompliantDeviceCount": lambda n : setattr(self, 'noncompliant_device_count', n.get_int_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "unknownDeviceCount": lambda n : setattr(self, 'unknown_device_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -145,7 +145,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the inGracePeriodDeviceCount property value. The number of devices that are in a grace period status. Required. Read-only.
         Args:
-            value: Value to set for the inGracePeriodDeviceCount property.
+            value: Value to set for the in_grace_period_device_count property.
         """
         self._in_grace_period_device_count = value
     
@@ -162,7 +162,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the noncompliantDeviceCount property value. The number of devices that are in a non-compliant status. Required. Read-only.
         Args:
-            value: Value to set for the noncompliantDeviceCount property.
+            value: Value to set for the noncompliant_device_count property.
         """
         self._noncompliant_device_count = value
     
@@ -198,7 +198,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -215,7 +215,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -232,7 +232,7 @@ class ManagedDeviceComplianceTrend(entity.Entity):
         """
         Sets the unknownDeviceCount property value. The number of devices in an unknown status. Required. Read-only.
         Args:
-            value: Value to set for the unknownDeviceCount property.
+            value: Value to set for the unknown_device_count property.
         """
         self._unknown_device_count = value
     

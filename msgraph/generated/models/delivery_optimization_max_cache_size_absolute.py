@@ -33,7 +33,7 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_s
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "maximum_cache_size_in_gigabytes": lambda n : setattr(self, 'maximum_cache_size_in_gigabytes', n.get_int_value()),
+            "maximumCacheSizeInGigabytes": lambda n : setattr(self, 'maximum_cache_size_in_gigabytes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class DeliveryOptimizationMaxCacheSizeAbsolute(delivery_optimization_max_cache_s
         """
         Sets the maximumCacheSizeInGigabytes property value. Specifies the maximum size in GB of Delivery Optimization cache. Valid values 0 to 4294967295
         Args:
-            value: Value to set for the maximumCacheSizeInGigabytes property.
+            value: Value to set for the maximum_cache_size_in_gigabytes property.
         """
         self._maximum_cache_size_in_gigabytes = value
     

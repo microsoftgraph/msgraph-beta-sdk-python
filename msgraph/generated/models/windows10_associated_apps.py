@@ -39,7 +39,7 @@ class Windows10AssociatedApps(AdditionalDataHolder, Parsable):
         """
         Sets the appType property value. Windows 10 Application type.
         Args:
-            value: Value to set for the appType property.
+            value: Value to set for the app_type property.
         """
         self._app_type = value
     
@@ -75,7 +75,7 @@ class Windows10AssociatedApps(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_type": lambda n : setattr(self, 'app_type', n.get_enum_value(windows10_app_type.Windows10AppType)),
+            "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(windows10_app_type.Windows10AppType)),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -111,7 +111,7 @@ class Windows10AssociatedApps(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

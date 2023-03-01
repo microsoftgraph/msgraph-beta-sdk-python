@@ -68,7 +68,7 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         """
         Sets the directoryAudits property value. The directoryAudits property
         Args:
-            value: Value to set for the directoryAudits property.
+            value: Value to set for the directory_audits property.
         """
         self._directory_audits = value
     
@@ -85,7 +85,7 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         """
         Sets the directoryProvisioning property value. The directoryProvisioning property
         Args:
-            value: Value to set for the directoryProvisioning property.
+            value: Value to set for the directory_provisioning property.
         """
         self._directory_provisioning = value
     
@@ -95,11 +95,11 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "directory_audits": lambda n : setattr(self, 'directory_audits', n.get_collection_of_object_values(directory_audit.DirectoryAudit)),
-            "directory_provisioning": lambda n : setattr(self, 'directory_provisioning', n.get_collection_of_object_values(provisioning_object_summary.ProvisioningObjectSummary)),
+            "directoryAudits": lambda n : setattr(self, 'directory_audits', n.get_collection_of_object_values(directory_audit.DirectoryAudit)),
+            "directoryProvisioning": lambda n : setattr(self, 'directory_provisioning', n.get_collection_of_object_values(provisioning_object_summary.ProvisioningObjectSummary)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "provisioning": lambda n : setattr(self, 'provisioning', n.get_collection_of_object_values(provisioning_object_summary.ProvisioningObjectSummary)),
-            "sign_ins": lambda n : setattr(self, 'sign_ins', n.get_collection_of_object_values(sign_in.SignIn)),
+            "signIns": lambda n : setattr(self, 'sign_ins', n.get_collection_of_object_values(sign_in.SignIn)),
         }
         return fields
     
@@ -116,7 +116,7 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -165,7 +165,7 @@ class AuditLogRoot(AdditionalDataHolder, Parsable):
         """
         Sets the signIns property value. The signIns property
         Args:
-            value: Value to set for the signIns property.
+            value: Value to set for the sign_ins property.
         """
         self._sign_ins = value
     

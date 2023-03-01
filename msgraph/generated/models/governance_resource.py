@@ -66,7 +66,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the displayName property value. The display name of the resource.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -83,7 +83,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the externalId property value. The external id of the resource, representing its original id in the external system. For example, a subscription resource's external id can be '/subscriptions/c14ae696-5e0c-4e5d-88cc-bef6637737ac'.
         Args:
-            value: Value to set for the externalId property.
+            value: Value to set for the external_id property.
         """
         self._external_id = value
     
@@ -93,15 +93,15 @@ class GovernanceResource(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "external_id": lambda n : setattr(self, 'external_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "externalId": lambda n : setattr(self, 'external_id', n.get_str_value()),
             "parent": lambda n : setattr(self, 'parent', n.get_object_value(GovernanceResource)),
-            "registered_date_time": lambda n : setattr(self, 'registered_date_time', n.get_datetime_value()),
-            "registered_root": lambda n : setattr(self, 'registered_root', n.get_str_value()),
-            "role_assignment_requests": lambda n : setattr(self, 'role_assignment_requests', n.get_collection_of_object_values(governance_role_assignment_request.GovernanceRoleAssignmentRequest)),
-            "role_assignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(governance_role_assignment.GovernanceRoleAssignment)),
-            "role_definitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(governance_role_definition.GovernanceRoleDefinition)),
-            "role_settings": lambda n : setattr(self, 'role_settings', n.get_collection_of_object_values(governance_role_setting.GovernanceRoleSetting)),
+            "registeredDateTime": lambda n : setattr(self, 'registered_date_time', n.get_datetime_value()),
+            "registeredRoot": lambda n : setattr(self, 'registered_root', n.get_str_value()),
+            "roleAssignments": lambda n : setattr(self, 'role_assignments', n.get_collection_of_object_values(governance_role_assignment.GovernanceRoleAssignment)),
+            "roleAssignmentRequests": lambda n : setattr(self, 'role_assignment_requests', n.get_collection_of_object_values(governance_role_assignment_request.GovernanceRoleAssignmentRequest)),
+            "roleDefinitions": lambda n : setattr(self, 'role_definitions', n.get_collection_of_object_values(governance_role_definition.GovernanceRoleDefinition)),
+            "roleSettings": lambda n : setattr(self, 'role_settings', n.get_collection_of_object_values(governance_role_setting.GovernanceRoleSetting)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
@@ -139,7 +139,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the registeredDateTime property value. Represents the date time when the resource is registered in PIM.
         Args:
-            value: Value to set for the registeredDateTime property.
+            value: Value to set for the registered_date_time property.
         """
         self._registered_date_time = value
     
@@ -156,7 +156,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the registeredRoot property value. The externalId of the resource's root scope that is registered in PIM. The root scope can be the parent, grandparent, or higher ancestor resources.
         Args:
-            value: Value to set for the registeredRoot property.
+            value: Value to set for the registered_root property.
         """
         self._registered_root = value
     
@@ -173,7 +173,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the roleAssignmentRequests property value. The collection of role assignment requests for the resource.
         Args:
-            value: Value to set for the roleAssignmentRequests property.
+            value: Value to set for the role_assignment_requests property.
         """
         self._role_assignment_requests = value
     
@@ -190,7 +190,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the roleAssignments property value. The collection of role assignments for the resource.
         Args:
-            value: Value to set for the roleAssignments property.
+            value: Value to set for the role_assignments property.
         """
         self._role_assignments = value
     
@@ -207,7 +207,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the roleDefinitions property value. The collection of role defintions for the resource.
         Args:
-            value: Value to set for the roleDefinitions property.
+            value: Value to set for the role_definitions property.
         """
         self._role_definitions = value
     
@@ -224,7 +224,7 @@ class GovernanceResource(entity.Entity):
         """
         Sets the roleSettings property value. The collection of role settings for the resource.
         Args:
-            value: Value to set for the roleSettings property.
+            value: Value to set for the role_settings property.
         """
         self._role_settings = value
     
@@ -242,8 +242,8 @@ class GovernanceResource(entity.Entity):
         writer.write_object_value("parent", self.parent)
         writer.write_datetime_value("registeredDateTime", self.registered_date_time)
         writer.write_str_value("registeredRoot", self.registered_root)
-        writer.write_collection_of_object_values("roleAssignmentRequests", self.role_assignment_requests)
         writer.write_collection_of_object_values("roleAssignments", self.role_assignments)
+        writer.write_collection_of_object_values("roleAssignmentRequests", self.role_assignment_requests)
         writer.write_collection_of_object_values("roleDefinitions", self.role_definitions)
         writer.write_collection_of_object_values("roleSettings", self.role_settings)
         writer.write_str_value("status", self.status)

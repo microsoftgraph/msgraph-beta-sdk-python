@@ -53,7 +53,7 @@ class OutOfOfficeSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_out_of_office": lambda n : setattr(self, 'is_out_of_office', n.get_bool_value()),
+            "isOutOfOffice": lambda n : setattr(self, 'is_out_of_office', n.get_bool_value()),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -72,7 +72,7 @@ class OutOfOfficeSettings(AdditionalDataHolder, Parsable):
         """
         Sets the isOutOfOffice property value. True if either:It is currently in the out of office time window configured on the Outlook or Teams client.There is currently an event on the user's calendar that's marked as Show as Out of OfficeOtherwise, false.
         Args:
-            value: Value to set for the isOutOfOffice property.
+            value: Value to set for the is_out_of_office property.
         """
         self._is_out_of_office = value
     
@@ -106,7 +106,7 @@ class OutOfOfficeSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

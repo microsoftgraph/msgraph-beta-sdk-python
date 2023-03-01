@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SignInAccessType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     B2bCollaboration = "b2bCollaboration",
     B2bDirectConnect = "b2bDirectConnect",
     MicrosoftSupport = "microsoftSupport",

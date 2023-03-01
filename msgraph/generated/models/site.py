@@ -8,6 +8,7 @@ column_definition = lazy_import('msgraph.generated.models.column_definition')
 content_type = lazy_import('msgraph.generated.models.content_type')
 deleted = lazy_import('msgraph.generated.models.deleted')
 drive = lazy_import('msgraph.generated.models.drive')
+information_protection = lazy_import('msgraph.generated.models.information_protection')
 item_analytics = lazy_import('msgraph.generated.models.item_analytics')
 list = lazy_import('msgraph.generated.models.list')
 onenote = lazy_import('msgraph.generated.models.onenote')
@@ -57,7 +58,7 @@ class Site(base_item.BaseItem):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Site and sets the default values.
+        Instantiates a new site and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.site"
@@ -77,6 +78,8 @@ class Site(base_item.BaseItem):
         self._drives: Optional[List[drive.Drive]] = None
         # The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
         self._external_columns: Optional[List[column_definition.ColumnDefinition]] = None
+        # The informationProtection property
+        self._information_protection: Optional[information_protection.InformationProtection] = None
         # Used to address any item contained in this site. This collection cannot be enumerated.
         self._items: Optional[List[base_item.BaseItem]] = None
         # The collection of lists under this site.
@@ -98,7 +101,7 @@ class Site(base_item.BaseItem):
         # Provides details about the site's site collection. Available only on the root site. Read-only.
         self._site_collection: Optional[site_collection.SiteCollection] = None
         # The collection of the sub-sites under this site.
-        self._sites: Optional[List[site.Site]] = None
+        self._sites: Optional[List[Site]] = None
         # The termStore under this site.
         self._term_store: Optional[store.Store] = None
     
@@ -115,7 +118,7 @@ class Site(base_item.BaseItem):
         """
         Sets the contentTypes property value. The collection of content types defined for this site.
         Args:
-            value: Value to set for the contentTypes property.
+            value: Value to set for the content_types property.
         """
         self._content_types = value
     
@@ -161,7 +164,7 @@ class Site(base_item.BaseItem):
         """
         Sets the displayName property value. The full title for the site. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -212,7 +215,7 @@ class Site(base_item.BaseItem):
         """
         Sets the externalColumns property value. The collection of column definitions available in the site that are referenced from the sites in the parent hierarchy of the current site.
         Args:
-            value: Value to set for the externalColumns property.
+            value: Value to set for the external_columns property.
         """
         self._external_columns = value
     
@@ -224,12 +227,13 @@ class Site(base_item.BaseItem):
         fields = {
             "analytics": lambda n : setattr(self, 'analytics', n.get_object_value(item_analytics.ItemAnalytics)),
             "columns": lambda n : setattr(self, 'columns', n.get_collection_of_object_values(column_definition.ColumnDefinition)),
-            "content_types": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(content_type.ContentType)),
+            "contentTypes": lambda n : setattr(self, 'content_types', n.get_collection_of_object_values(content_type.ContentType)),
             "deleted": lambda n : setattr(self, 'deleted', n.get_object_value(deleted.Deleted)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "drive": lambda n : setattr(self, 'drive', n.get_object_value(drive.Drive)),
             "drives": lambda n : setattr(self, 'drives', n.get_collection_of_object_values(drive.Drive)),
-            "external_columns": lambda n : setattr(self, 'external_columns', n.get_collection_of_object_values(column_definition.ColumnDefinition)),
+            "externalColumns": lambda n : setattr(self, 'external_columns', n.get_collection_of_object_values(column_definition.ColumnDefinition)),
+            "informationProtection": lambda n : setattr(self, 'information_protection', n.get_object_value(information_protection.InformationProtection)),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(base_item.BaseItem)),
             "lists": lambda n : setattr(self, 'lists', n.get_collection_of_object_values(list.List)),
             "onenote": lambda n : setattr(self, 'onenote', n.get_object_value(onenote.Onenote)),
@@ -238,14 +242,31 @@ class Site(base_item.BaseItem):
             "permissions": lambda n : setattr(self, 'permissions', n.get_collection_of_object_values(permission.Permission)),
             "root": lambda n : setattr(self, 'root', n.get_object_value(root.Root)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(site_settings.SiteSettings)),
-            "sharepoint_ids": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(sharepoint_ids.SharepointIds)),
-            "site_collection": lambda n : setattr(self, 'site_collection', n.get_object_value(site_collection.SiteCollection)),
-            "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(site.Site)),
-            "term_store": lambda n : setattr(self, 'term_store', n.get_object_value(store.Store)),
+            "sharepointIds": lambda n : setattr(self, 'sharepoint_ids', n.get_object_value(sharepoint_ids.SharepointIds)),
+            "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(Site)),
+            "siteCollection": lambda n : setattr(self, 'site_collection', n.get_object_value(site_collection.SiteCollection)),
+            "termStore": lambda n : setattr(self, 'term_store', n.get_object_value(store.Store)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def information_protection(self,) -> Optional[information_protection.InformationProtection]:
+        """
+        Gets the informationProtection property value. The informationProtection property
+        Returns: Optional[information_protection.InformationProtection]
+        """
+        return self._information_protection
+    
+    @information_protection.setter
+    def information_protection(self,value: Optional[information_protection.InformationProtection] = None) -> None:
+        """
+        Sets the informationProtection property value. The informationProtection property
+        Args:
+            value: Value to set for the information_protection property.
+        """
+        self._information_protection = value
     
     @property
     def items(self,) -> Optional[List[base_item.BaseItem]]:
@@ -383,6 +404,7 @@ class Site(base_item.BaseItem):
         writer.write_object_value("drive", self.drive)
         writer.write_collection_of_object_values("drives", self.drives)
         writer.write_collection_of_object_values("externalColumns", self.external_columns)
+        writer.write_object_value("informationProtection", self.information_protection)
         writer.write_collection_of_object_values("items", self.items)
         writer.write_collection_of_object_values("lists", self.lists)
         writer.write_object_value("onenote", self.onenote)
@@ -392,8 +414,8 @@ class Site(base_item.BaseItem):
         writer.write_object_value("root", self.root)
         writer.write_object_value("settings", self.settings)
         writer.write_object_value("sharepointIds", self.sharepoint_ids)
-        writer.write_object_value("siteCollection", self.site_collection)
         writer.write_collection_of_object_values("sites", self.sites)
+        writer.write_object_value("siteCollection", self.site_collection)
         writer.write_object_value("termStore", self.term_store)
     
     @property
@@ -426,7 +448,7 @@ class Site(base_item.BaseItem):
         """
         Sets the sharepointIds property value. Returns identifiers useful for SharePoint REST compatibility. Read-only.
         Args:
-            value: Value to set for the sharepointIds property.
+            value: Value to set for the sharepoint_ids property.
         """
         self._sharepoint_ids = value
     
@@ -443,20 +465,20 @@ class Site(base_item.BaseItem):
         """
         Sets the siteCollection property value. Provides details about the site's site collection. Available only on the root site. Read-only.
         Args:
-            value: Value to set for the siteCollection property.
+            value: Value to set for the site_collection property.
         """
         self._site_collection = value
     
     @property
-    def sites(self,) -> Optional[List[site.Site]]:
+    def sites(self,) -> Optional[List[Site]]:
         """
         Gets the sites property value. The collection of the sub-sites under this site.
-        Returns: Optional[List[site.Site]]
+        Returns: Optional[List[Site]]
         """
         return self._sites
     
     @sites.setter
-    def sites(self,value: Optional[List[site.Site]] = None) -> None:
+    def sites(self,value: Optional[List[Site]] = None) -> None:
         """
         Sets the sites property value. The collection of the sub-sites under this site.
         Args:
@@ -477,7 +499,7 @@ class Site(base_item.BaseItem):
         """
         Sets the termStore property value. The termStore under this site.
         Args:
-            value: Value to set for the termStore property.
+            value: Value to set for the term_store property.
         """
         self._term_store = value
     

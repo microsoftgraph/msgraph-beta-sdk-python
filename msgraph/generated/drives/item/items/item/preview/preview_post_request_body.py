@@ -34,7 +34,7 @@ class PreviewPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the allowEdit property value. The allowEdit property
         Args:
-            value: Value to set for the allowEdit property.
+            value: Value to set for the allow_edit property.
         """
         self._allow_edit = value
     
@@ -91,7 +91,7 @@ class PreviewPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_edit": lambda n : setattr(self, 'allow_edit', n.get_bool_value()),
+            "allowEdit": lambda n : setattr(self, 'allow_edit', n.get_bool_value()),
             "chromeless": lambda n : setattr(self, 'chromeless', n.get_bool_value()),
             "page": lambda n : setattr(self, 'page', n.get_str_value()),
             "viewer": lambda n : setattr(self, 'viewer', n.get_str_value()),

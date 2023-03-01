@@ -36,7 +36,7 @@ class PlayPromptPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the clientContext property value. The clientContext property
         Args:
-            value: Value to set for the clientContext property.
+            value: Value to set for the client_context property.
         """
         self._client_context = value
     
@@ -72,7 +72,7 @@ class PlayPromptPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_context": lambda n : setattr(self, 'client_context', n.get_str_value()),
+            "clientContext": lambda n : setattr(self, 'client_context', n.get_str_value()),
             "loop": lambda n : setattr(self, 'loop', n.get_bool_value()),
             "prompts": lambda n : setattr(self, 'prompts', n.get_collection_of_object_values(prompt.Prompt)),
         }

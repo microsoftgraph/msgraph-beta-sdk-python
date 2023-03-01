@@ -63,10 +63,10 @@ class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "insight_id": lambda n : setattr(self, 'insight_id', n.get_str_value()),
+            "insightId": lambda n : setattr(self, 'insight_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(user_experience_analytics_insight_severity.UserExperienceAnalyticsInsightSeverity)),
-            "user_experience_analytics_metric_id": lambda n : setattr(self, 'user_experience_analytics_metric_id', n.get_str_value()),
+            "userExperienceAnalyticsMetricId": lambda n : setattr(self, 'user_experience_analytics_metric_id', n.get_str_value()),
             "values": lambda n : setattr(self, 'values', n.get_collection_of_object_values(user_experience_analytics_insight_value.UserExperienceAnalyticsInsightValue)),
         }
         return fields
@@ -84,7 +84,7 @@ class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
         """
         Sets the insightId property value. The unique identifier of the user experience analytics insight.
         Args:
-            value: Value to set for the insightId property.
+            value: Value to set for the insight_id property.
         """
         self._insight_id = value
     
@@ -101,7 +101,7 @@ class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -150,7 +150,7 @@ class UserExperienceAnalyticsInsight(AdditionalDataHolder, Parsable):
         """
         Sets the userExperienceAnalyticsMetricId property value. The unique identifier of the user experience analytics insight.
         Args:
-            value: Value to set for the userExperienceAnalyticsMetricId property.
+            value: Value to set for the user_experience_analytics_metric_id property.
         """
         self._user_experience_analytics_metric_id = value
     

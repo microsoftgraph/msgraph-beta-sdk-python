@@ -85,7 +85,7 @@ class AnswerVariant(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Answer variation name displayed in search results.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -96,11 +96,11 @@ class AnswerVariant(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "platform": lambda n : setattr(self, 'platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
     
@@ -117,7 +117,7 @@ class AnswerVariant(AdditionalDataHolder, Parsable):
         """
         Sets the languageTag property value. The languageTag property
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -134,7 +134,7 @@ class AnswerVariant(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -184,7 +184,7 @@ class AnswerVariant(AdditionalDataHolder, Parsable):
         """
         Sets the webUrl property value. Answer variation URL link. When users click this answer variation in search results, they will go to this URL.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

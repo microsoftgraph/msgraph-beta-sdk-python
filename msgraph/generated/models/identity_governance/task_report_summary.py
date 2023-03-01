@@ -64,7 +64,7 @@ class TaskReportSummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedTasks property value. The number of failed tasks in a report.
         Args:
-            value: Value to set for the failedTasks property.
+            value: Value to set for the failed_tasks property.
         """
         self._failed_tasks = value
     
@@ -74,11 +74,11 @@ class TaskReportSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_tasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
+            "failedTasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "successful_tasks": lambda n : setattr(self, 'successful_tasks', n.get_int_value()),
-            "total_tasks": lambda n : setattr(self, 'total_tasks', n.get_int_value()),
-            "unprocessed_tasks": lambda n : setattr(self, 'unprocessed_tasks', n.get_int_value()),
+            "successfulTasks": lambda n : setattr(self, 'successful_tasks', n.get_int_value()),
+            "totalTasks": lambda n : setattr(self, 'total_tasks', n.get_int_value()),
+            "unprocessedTasks": lambda n : setattr(self, 'unprocessed_tasks', n.get_int_value()),
         }
         return fields
     
@@ -95,7 +95,7 @@ class TaskReportSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -127,7 +127,7 @@ class TaskReportSummary(AdditionalDataHolder, Parsable):
         """
         Sets the successfulTasks property value. The total number of successful tasks in a report.
         Args:
-            value: Value to set for the successfulTasks property.
+            value: Value to set for the successful_tasks property.
         """
         self._successful_tasks = value
     
@@ -144,7 +144,7 @@ class TaskReportSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalTasks property value. The total number of tasks in a report.
         Args:
-            value: Value to set for the totalTasks property.
+            value: Value to set for the total_tasks property.
         """
         self._total_tasks = value
     
@@ -161,7 +161,7 @@ class TaskReportSummary(AdditionalDataHolder, Parsable):
         """
         Sets the unprocessedTasks property value. The number of unprocessed tasks in a report.
         Args:
-            value: Value to set for the unprocessedTasks property.
+            value: Value to set for the unprocessed_tasks property.
         """
         self._unprocessed_tasks = value
     

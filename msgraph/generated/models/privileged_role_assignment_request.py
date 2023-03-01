@@ -22,7 +22,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the assignmentState property value. The state of the assignment. The value can be Eligible for eligible assignment Active - if it is directly assigned Active by administrators, or activated on an eligible assignment by the users.
         Args:
-            value: Value to set for the assignmentState property.
+            value: Value to set for the assignment_state property.
         """
         self._assignment_state = value
     
@@ -93,18 +93,18 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_state": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
+            "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "duration": lambda n : setattr(self, 'duration', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
-            "requested_date_time": lambda n : setattr(self, 'requested_date_time', n.get_datetime_value()),
-            "role_id": lambda n : setattr(self, 'role_id', n.get_str_value()),
-            "role_info": lambda n : setattr(self, 'role_info', n.get_object_value(privileged_role.PrivilegedRole)),
+            "requestedDateTime": lambda n : setattr(self, 'requested_date_time', n.get_datetime_value()),
+            "roleId": lambda n : setattr(self, 'role_id', n.get_str_value()),
+            "roleInfo": lambda n : setattr(self, 'role_info', n.get_object_value(privileged_role.PrivilegedRole)),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(governance_schedule.GovernanceSchedule)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "ticket_number": lambda n : setattr(self, 'ticket_number', n.get_str_value()),
-            "ticket_system": lambda n : setattr(self, 'ticket_system', n.get_str_value()),
+            "ticketNumber": lambda n : setattr(self, 'ticket_number', n.get_str_value()),
+            "ticketSystem": lambda n : setattr(self, 'ticket_system', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -140,7 +140,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the requestedDateTime property value. Read-only. The request create time. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the requestedDateTime property.
+            value: Value to set for the requested_date_time property.
         """
         self._requested_date_time = value
     
@@ -157,7 +157,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the roleId property value. The id of the role.
         Args:
-            value: Value to set for the roleId property.
+            value: Value to set for the role_id property.
         """
         self._role_id = value
     
@@ -174,7 +174,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the roleInfo property value. The roleInfo object of the role assignment request.
         Args:
-            value: Value to set for the roleInfo property.
+            value: Value to set for the role_info property.
         """
         self._role_info = value
     
@@ -247,7 +247,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the ticketNumber property value. The ticketNumber for the role assignment.
         Args:
-            value: Value to set for the ticketNumber property.
+            value: Value to set for the ticket_number property.
         """
         self._ticket_number = value
     
@@ -264,7 +264,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the ticketSystem property value. The ticketSystem for the role assignment.
         Args:
-            value: Value to set for the ticketSystem property.
+            value: Value to set for the ticket_system property.
         """
         self._ticket_system = value
     
@@ -298,7 +298,7 @@ class PrivilegedRoleAssignmentRequest(entity.Entity):
         """
         Sets the userId property value. The id of the user.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

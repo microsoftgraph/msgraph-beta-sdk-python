@@ -44,12 +44,11 @@ class CustomerPaymentsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[CustomerPaymentsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer_payment_collection_response.CustomerPaymentCollectionResponse]:
+    async def get(self,request_configuration: Optional[CustomerPaymentsRequestBuilderGetRequestConfiguration] = None) -> Optional[customer_payment_collection_response.CustomerPaymentCollectionResponse]:
         """
         Get customerPayments from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment_collection_response.CustomerPaymentCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class CustomerPaymentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer_payment_collection_response.CustomerPaymentCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer_payment_collection_response.CustomerPaymentCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[customer_payment.CustomerPayment] = None, request_configuration: Optional[CustomerPaymentsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[customer_payment.CustomerPayment]:
+    async def post(self,body: Optional[customer_payment.CustomerPayment] = None, request_configuration: Optional[CustomerPaymentsRequestBuilderPostRequestConfiguration] = None) -> Optional[customer_payment.CustomerPayment]:
         """
         Create new navigation property to customerPayments for financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[customer_payment.CustomerPayment]
         """
         if body is None:
@@ -83,7 +81,7 @@ class CustomerPaymentsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, customer_payment.CustomerPayment, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, customer_payment.CustomerPayment, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[CustomerPaymentsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class CustomerPaymentsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class CustomerPaymentsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class CustomerPaymentsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class CustomerPaymentsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

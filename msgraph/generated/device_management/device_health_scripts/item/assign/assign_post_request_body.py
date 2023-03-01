@@ -58,7 +58,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceHealthScriptAssignments property value. The deviceHealthScriptAssignments property
         Args:
-            value: Value to set for the deviceHealthScriptAssignments property.
+            value: Value to set for the device_health_script_assignments property.
         """
         self._device_health_script_assignments = value
     
@@ -68,7 +68,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_health_script_assignments": lambda n : setattr(self, 'device_health_script_assignments', n.get_collection_of_object_values(device_health_script_assignment.DeviceHealthScriptAssignment)),
+            "deviceHealthScriptAssignments": lambda n : setattr(self, 'device_health_script_assignments', n.get_collection_of_object_values(device_health_script_assignment.DeviceHealthScriptAssignment)),
         }
         return fields
     

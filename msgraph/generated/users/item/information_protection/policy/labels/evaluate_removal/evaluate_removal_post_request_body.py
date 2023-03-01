@@ -49,7 +49,7 @@ class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the contentInfo property value. The contentInfo property
         Args:
-            value: Value to set for the contentInfo property.
+            value: Value to set for the content_info property.
         """
         self._content_info = value
     
@@ -78,7 +78,7 @@ class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the downgradeJustification property value. The downgradeJustification property
         Args:
-            value: Value to set for the downgradeJustification property.
+            value: Value to set for the downgrade_justification property.
         """
         self._downgrade_justification = value
     
@@ -88,8 +88,8 @@ class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_info": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
-            "downgrade_justification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
+            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
+            "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
         }
         return fields
     

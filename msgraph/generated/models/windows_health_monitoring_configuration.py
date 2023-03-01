@@ -21,7 +21,7 @@ class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the allowDeviceHealthMonitoring property value. Possible values of a property
         Args:
-            value: Value to set for the allowDeviceHealthMonitoring property.
+            value: Value to set for the allow_device_health_monitoring property.
         """
         self._allow_device_health_monitoring = value
     
@@ -38,7 +38,7 @@ class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the configDeviceHealthMonitoringCustomScope property value. Specifies custom set of events collected from the device where health monitoring is enabled
         Args:
-            value: Value to set for the configDeviceHealthMonitoringCustomScope property.
+            value: Value to set for the config_device_health_monitoring_custom_scope property.
         """
         self._config_device_health_monitoring_custom_scope = value
     
@@ -55,7 +55,7 @@ class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfigurat
         """
         Sets the configDeviceHealthMonitoringScope property value. Device health monitoring scope
         Args:
-            value: Value to set for the configDeviceHealthMonitoringScope property.
+            value: Value to set for the config_device_health_monitoring_scope property.
         """
         self._config_device_health_monitoring_scope = value
     
@@ -90,9 +90,9 @@ class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfigurat
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_device_health_monitoring": lambda n : setattr(self, 'allow_device_health_monitoring', n.get_enum_value(enablement.Enablement)),
-            "config_device_health_monitoring_custom_scope": lambda n : setattr(self, 'config_device_health_monitoring_custom_scope', n.get_str_value()),
-            "config_device_health_monitoring_scope": lambda n : setattr(self, 'config_device_health_monitoring_scope', n.get_enum_value(windows_health_monitoring_scope.WindowsHealthMonitoringScope)),
+            "allowDeviceHealthMonitoring": lambda n : setattr(self, 'allow_device_health_monitoring', n.get_enum_value(enablement.Enablement)),
+            "configDeviceHealthMonitoringCustomScope": lambda n : setattr(self, 'config_device_health_monitoring_custom_scope', n.get_str_value()),
+            "configDeviceHealthMonitoringScope": lambda n : setattr(self, 'config_device_health_monitoring_scope', n.get_enum_value(windows_health_monitoring_scope.WindowsHealthMonitoringScope)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

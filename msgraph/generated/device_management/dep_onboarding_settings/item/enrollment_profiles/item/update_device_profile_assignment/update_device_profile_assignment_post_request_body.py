@@ -56,7 +56,7 @@ class UpdateDeviceProfileAssignmentPostRequestBody(AdditionalDataHolder, Parsabl
         """
         Sets the deviceIds property value. The deviceIds property
         Args:
-            value: Value to set for the deviceIds property.
+            value: Value to set for the device_ids property.
         """
         self._device_ids = value
     
@@ -66,7 +66,7 @@ class UpdateDeviceProfileAssignmentPostRequestBody(AdditionalDataHolder, Parsabl
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_ids": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(str)),
+            "deviceIds": lambda n : setattr(self, 'device_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     

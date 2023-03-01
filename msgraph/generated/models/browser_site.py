@@ -29,7 +29,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the allowRedirect property value. Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
         Args:
-            value: Value to set for the allowRedirect property.
+            value: Value to set for the allow_redirect property.
         """
         self._allow_redirect = value
     
@@ -63,7 +63,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the compatibilityMode property value. The compatibilityMode property
         Args:
-            value: Value to set for the compatibilityMode property.
+            value: Value to set for the compatibility_mode property.
         """
         self._compatibility_mode = value
     
@@ -112,7 +112,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time when the site was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -141,7 +141,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the deletedDateTime property value. The date and time when the site was deleted.
         Args:
-            value: Value to set for the deletedDateTime property.
+            value: Value to set for the deleted_date_time property.
         """
         self._deleted_date_time = value
     
@@ -151,18 +151,18 @@ class BrowserSite(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_redirect": lambda n : setattr(self, 'allow_redirect', n.get_bool_value()),
+            "allowRedirect": lambda n : setattr(self, 'allow_redirect', n.get_bool_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "compatibility_mode": lambda n : setattr(self, 'compatibility_mode', n.get_enum_value(browser_site_compatibility_mode.BrowserSiteCompatibilityMode)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deleted_date_time": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
+            "compatibilityMode": lambda n : setattr(self, 'compatibility_mode', n.get_enum_value(browser_site_compatibility_mode.BrowserSiteCompatibilityMode)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(browser_site_history.BrowserSiteHistory)),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "merge_type": lambda n : setattr(self, 'merge_type', n.get_enum_value(browser_site_merge_type.BrowserSiteMergeType)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "mergeType": lambda n : setattr(self, 'merge_type', n.get_enum_value(browser_site_merge_type.BrowserSiteMergeType)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(browser_site_status.BrowserSiteStatus)),
-            "target_environment": lambda n : setattr(self, 'target_environment', n.get_enum_value(browser_site_target_environment.BrowserSiteTargetEnvironment)),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "targetEnvironment": lambda n : setattr(self, 'target_environment', n.get_enum_value(browser_site_target_environment.BrowserSiteTargetEnvironment)),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -198,7 +198,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the lastModifiedBy property value. The user who last modified the site.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -215,7 +215,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time when the site was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -232,7 +232,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the mergeType property value. The mergeType property
         Args:
-            value: Value to set for the mergeType property.
+            value: Value to set for the merge_type property.
         """
         self._merge_type = value
     
@@ -288,7 +288,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the targetEnvironment property value. The targetEnvironment property
         Args:
-            value: Value to set for the targetEnvironment property.
+            value: Value to set for the target_environment property.
         """
         self._target_environment = value
     
@@ -305,7 +305,7 @@ class BrowserSite(entity.Entity):
         """
         Sets the webUrl property value. The URL of the site.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

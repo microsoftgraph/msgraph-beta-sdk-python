@@ -21,7 +21,7 @@ class SynchronizationTemplate(entity.Entity):
         """
         Sets the applicationId property value. Identifier of the application this template belongs to.
         Args:
-            value: Value to set for the applicationId property.
+            value: Value to set for the application_id property.
         """
         self._application_id = value
     
@@ -123,7 +123,7 @@ class SynchronizationTemplate(entity.Entity):
         """
         Sets the factoryTag property value. One of the well-known factory tags supported by the synchronization engine. The factoryTag tells the synchronization engine which implementation to use when processing jobs based on this template.
         Args:
-            value: Value to set for the factoryTag property.
+            value: Value to set for the factory_tag property.
         """
         self._factory_tag = value
     
@@ -133,11 +133,11 @@ class SynchronizationTemplate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_id": lambda n : setattr(self, 'application_id', n.get_object_value(Guid)),
+            "applicationId": lambda n : setattr(self, 'application_id', n.get_object_value(Guid)),
             "default": lambda n : setattr(self, 'default', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discoverable": lambda n : setattr(self, 'discoverable', n.get_bool_value()),
-            "factory_tag": lambda n : setattr(self, 'factory_tag', n.get_str_value()),
+            "factoryTag": lambda n : setattr(self, 'factory_tag', n.get_str_value()),
             "metadata": lambda n : setattr(self, 'metadata', n.get_collection_of_object_values(metadata_entry.MetadataEntry)),
             "schema": lambda n : setattr(self, 'schema', n.get_object_value(synchronization_schema.SynchronizationSchema)),
         }

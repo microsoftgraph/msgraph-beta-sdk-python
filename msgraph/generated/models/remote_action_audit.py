@@ -42,7 +42,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the actionState property value. The actionState property
         Args:
-            value: Value to set for the actionState property.
+            value: Value to set for the action_state property.
         """
         self._action_state = value
     
@@ -97,7 +97,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the deviceDisplayName property value. Intune device name.
         Args:
-            value: Value to set for the deviceDisplayName property.
+            value: Value to set for the device_display_name property.
         """
         self._device_display_name = value
     
@@ -114,7 +114,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the deviceIMEI property value. IMEI of the device.
         Args:
-            value: Value to set for the deviceIMEI property.
+            value: Value to set for the device_i_m_e_i property.
         """
         self._device_i_m_e_i = value
     
@@ -131,7 +131,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the deviceOwnerUserPrincipalName property value. Upn of the device owner.
         Args:
-            value: Value to set for the deviceOwnerUserPrincipalName property.
+            value: Value to set for the device_owner_user_principal_name property.
         """
         self._device_owner_user_principal_name = value
     
@@ -142,14 +142,14 @@ class RemoteActionAudit(entity.Entity):
         """
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(remote_action.RemoteAction)),
-            "action_state": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
-            "device_display_name": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
-            "device_i_m_e_i": lambda n : setattr(self, 'device_i_m_e_i', n.get_str_value()),
-            "device_owner_user_principal_name": lambda n : setattr(self, 'device_owner_user_principal_name', n.get_str_value()),
-            "initiated_by_user_principal_name": lambda n : setattr(self, 'initiated_by_user_principal_name', n.get_str_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "request_date_time": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "actionState": lambda n : setattr(self, 'action_state', n.get_enum_value(action_state.ActionState)),
+            "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
+            "deviceIMEI": lambda n : setattr(self, 'device_i_m_e_i', n.get_str_value()),
+            "deviceOwnerUserPrincipalName": lambda n : setattr(self, 'device_owner_user_principal_name', n.get_str_value()),
+            "initiatedByUserPrincipalName": lambda n : setattr(self, 'initiated_by_user_principal_name', n.get_str_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "requestDateTime": lambda n : setattr(self, 'request_date_time', n.get_datetime_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -168,7 +168,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the initiatedByUserPrincipalName property value. User who initiated the device action, format is UPN.
         Args:
-            value: Value to set for the initiatedByUserPrincipalName property.
+            value: Value to set for the initiated_by_user_principal_name property.
         """
         self._initiated_by_user_principal_name = value
     
@@ -185,7 +185,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the managedDeviceId property value. Action target.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -202,7 +202,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the requestDateTime property value. Time when the action was issued, given in UTC.
         Args:
-            value: Value to set for the requestDateTime property.
+            value: Value to set for the request_date_time property.
         """
         self._request_date_time = value
     
@@ -238,7 +238,7 @@ class RemoteActionAudit(entity.Entity):
         """
         Sets the userName property value. [deprecated] Please use InitiatedByUserPrincipalName instead.
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     

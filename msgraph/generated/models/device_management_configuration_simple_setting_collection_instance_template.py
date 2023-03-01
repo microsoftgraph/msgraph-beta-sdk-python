@@ -20,7 +20,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(devic
         """
         Sets the allowUnmanagedValues property value. Linked policy may append values which are not present in the template.
         Args:
-            value: Value to set for the allowUnmanagedValues property.
+            value: Value to set for the allow_unmanaged_values property.
         """
         self._allow_unmanaged_values = value
     
@@ -53,8 +53,8 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(devic
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_unmanaged_values": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
-            "simple_setting_collection_value_template": lambda n : setattr(self, 'simple_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate)),
+            "allowUnmanagedValues": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
+            "simpleSettingCollectionValueTemplate": lambda n : setattr(self, 'simple_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_simple_setting_value_template.DeviceManagementConfigurationSimpleSettingValueTemplate)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -85,7 +85,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate(devic
         """
         Sets the simpleSettingCollectionValueTemplate property value. Simple Setting Collection Value Template
         Args:
-            value: Value to set for the simpleSettingCollectionValueTemplate property.
+            value: Value to set for the simple_setting_collection_value_template property.
         """
         self._simple_setting_collection_value_template = value
     

@@ -74,7 +74,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the excludeGroups property value. Group IDs excluded from scope of policy.
         Args:
-            value: Value to set for the excludeGroups property.
+            value: Value to set for the exclude_groups property.
         """
         self._exclude_groups = value
     
@@ -91,7 +91,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded in the policy scope. Optionally populated.
         Args:
-            value: Value to set for the excludeGuestsOrExternalUsers property.
+            value: Value to set for the exclude_guests_or_external_users property.
         """
         self._exclude_guests_or_external_users = value
     
@@ -108,7 +108,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the excludeRoles property value. Role IDs excluded from scope of policy.
         Args:
-            value: Value to set for the excludeRoles property.
+            value: Value to set for the exclude_roles property.
         """
         self._exclude_roles = value
     
@@ -125,7 +125,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the excludeUsers property value. User IDs excluded from scope of policy and/or GuestsOrExternalUsers.
         Args:
-            value: Value to set for the excludeUsers property.
+            value: Value to set for the exclude_users property.
         """
         self._exclude_users = value
     
@@ -135,14 +135,14 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "exclude_groups": lambda n : setattr(self, 'exclude_groups', n.get_collection_of_primitive_values(str)),
-            "exclude_guests_or_external_users": lambda n : setattr(self, 'exclude_guests_or_external_users', n.get_object_value(conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers)),
-            "exclude_roles": lambda n : setattr(self, 'exclude_roles', n.get_collection_of_primitive_values(str)),
-            "exclude_users": lambda n : setattr(self, 'exclude_users', n.get_collection_of_primitive_values(str)),
-            "include_groups": lambda n : setattr(self, 'include_groups', n.get_collection_of_primitive_values(str)),
-            "include_guests_or_external_users": lambda n : setattr(self, 'include_guests_or_external_users', n.get_object_value(conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers)),
-            "include_roles": lambda n : setattr(self, 'include_roles', n.get_collection_of_primitive_values(str)),
-            "include_users": lambda n : setattr(self, 'include_users', n.get_collection_of_primitive_values(str)),
+            "excludeGroups": lambda n : setattr(self, 'exclude_groups', n.get_collection_of_primitive_values(str)),
+            "excludeGuestsOrExternalUsers": lambda n : setattr(self, 'exclude_guests_or_external_users', n.get_object_value(conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers)),
+            "excludeRoles": lambda n : setattr(self, 'exclude_roles', n.get_collection_of_primitive_values(str)),
+            "excludeUsers": lambda n : setattr(self, 'exclude_users', n.get_collection_of_primitive_values(str)),
+            "includeGroups": lambda n : setattr(self, 'include_groups', n.get_collection_of_primitive_values(str)),
+            "includeGuestsOrExternalUsers": lambda n : setattr(self, 'include_guests_or_external_users', n.get_object_value(conditional_access_guests_or_external_users.ConditionalAccessGuestsOrExternalUsers)),
+            "includeRoles": lambda n : setattr(self, 'include_roles', n.get_collection_of_primitive_values(str)),
+            "includeUsers": lambda n : setattr(self, 'include_users', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -160,7 +160,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the includeGroups property value. Group IDs in scope of policy unless explicitly excluded, or All.
         Args:
-            value: Value to set for the includeGroups property.
+            value: Value to set for the include_groups property.
         """
         self._include_groups = value
     
@@ -177,7 +177,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the includeGuestsOrExternalUsers property value. Internal guests or external users included in the policy scope. Optionally populated.
         Args:
-            value: Value to set for the includeGuestsOrExternalUsers property.
+            value: Value to set for the include_guests_or_external_users property.
         """
         self._include_guests_or_external_users = value
     
@@ -194,7 +194,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded, or All.
         Args:
-            value: Value to set for the includeRoles property.
+            value: Value to set for the include_roles property.
         """
         self._include_roles = value
     
@@ -211,7 +211,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the includeUsers property value. User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.
         Args:
-            value: Value to set for the includeUsers property.
+            value: Value to set for the include_users property.
         """
         self._include_users = value
     
@@ -228,7 +228,7 @@ class ConditionalAccessUsers(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

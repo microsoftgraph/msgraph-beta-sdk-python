@@ -30,7 +30,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the adminShowHostInfo property value. Whether to show admin host information on the login window.
         Args:
-            value: Value to set for the adminShowHostInfo property.
+            value: Value to set for the admin_show_host_info property.
         """
         self._admin_show_host_info = value
     
@@ -47,7 +47,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the appAssociatedDomains property value. Gets or sets a list that maps apps to their associated domains. Application identifiers must be unique. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the appAssociatedDomains property.
+            value: Value to set for the app_associated_domains property.
         """
         self._app_associated_domains = value
     
@@ -64,7 +64,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the associatedDomains property value. DEPRECATED: use appAssociatedDomains instead. Gets or sets a list that maps apps to their associated domains. The key should match the app's ID, and the value should be a string in the form of 'service:domain' where domain is a fully qualified hostname (e.g. webcredentials:example.com). This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the associatedDomains property.
+            value: Value to set for the associated_domains property.
         """
         self._associated_domains = value
     
@@ -81,7 +81,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the authorizedUsersListHidden property value. Whether to show the name and password dialog or a list of users on the login window.
         Args:
-            value: Value to set for the authorizedUsersListHidden property.
+            value: Value to set for the authorized_users_list_hidden property.
         """
         self._authorized_users_list_hidden = value
     
@@ -98,7 +98,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the authorizedUsersListHideAdminUsers property value. Whether to hide admin users in the authorized users list on the login window.
         Args:
-            value: Value to set for the authorizedUsersListHideAdminUsers property.
+            value: Value to set for the authorized_users_list_hide_admin_users property.
         """
         self._authorized_users_list_hide_admin_users = value
     
@@ -115,7 +115,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the authorizedUsersListHideLocalUsers property value. Whether to show only network and system users in the authorized users list on the login window.
         Args:
-            value: Value to set for the authorizedUsersListHideLocalUsers property.
+            value: Value to set for the authorized_users_list_hide_local_users property.
         """
         self._authorized_users_list_hide_local_users = value
     
@@ -132,7 +132,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the authorizedUsersListHideMobileAccounts property value. Whether to hide mobile users in the authorized users list on the login window.
         Args:
-            value: Value to set for the authorizedUsersListHideMobileAccounts property.
+            value: Value to set for the authorized_users_list_hide_mobile_accounts property.
         """
         self._authorized_users_list_hide_mobile_accounts = value
     
@@ -149,7 +149,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the authorizedUsersListIncludeNetworkUsers property value. Whether to show network users in the authorized users list on the login window.
         Args:
-            value: Value to set for the authorizedUsersListIncludeNetworkUsers property.
+            value: Value to set for the authorized_users_list_include_network_users property.
         """
         self._authorized_users_list_include_network_users = value
     
@@ -166,7 +166,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the authorizedUsersListShowOtherManagedUsers property value. Whether to show other users in the authorized users list on the login window.
         Args:
-            value: Value to set for the authorizedUsersListShowOtherManagedUsers property.
+            value: Value to set for the authorized_users_list_show_other_managed_users property.
         """
         self._authorized_users_list_show_other_managed_users = value
     
@@ -183,7 +183,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the autoLaunchItems property value. List of applications, files, folders, and other items to launch when the user logs in. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the autoLaunchItems property.
+            value: Value to set for the auto_launch_items property.
         """
         self._auto_launch_items = value
     
@@ -200,7 +200,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the consoleAccessDisabled property value. Whether the Other user will disregard use of the console special user name.
         Args:
-            value: Value to set for the consoleAccessDisabled property.
+            value: Value to set for the console_access_disabled property.
         """
         self._console_access_disabled = value
     
@@ -252,10 +252,10 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         self._content_caching_log_client_identities: Optional[bool] = None
         # The maximum number of bytes of disk space that will be used for the content cache. A value of 0 (default) indicates unlimited disk space.
         self._content_caching_max_size_bytes: Optional[int] = None
-        # A list of IP addresses representing parent content caches.
-        self._content_caching_parents: Optional[List[str]] = None
         # Determines how content caches select a parent cache.
         self._content_caching_parent_selection_policy: Optional[mac_o_s_content_caching_parent_selection_policy.MacOSContentCachingParentSelectionPolicy] = None
+        # A list of IP addresses representing parent content caches.
+        self._content_caching_parents: Optional[List[str]] = None
         # A list of custom IP ranges content caches will use to query for content from peers caches. This collection can contain a maximum of 500 elements.
         self._content_caching_peer_filter_ranges: Optional[List[ip_range.IpRange]] = None
         # A list of custom IP ranges content caches will use to listen for peer caches. This collection can contain a maximum of 500 elements.
@@ -270,10 +270,10 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         self._content_caching_show_alerts: Optional[bool] = None
         # Indicates the type of content allowed to be cached by Apple's content caching service.
         self._content_caching_type: Optional[mac_o_s_content_caching_type.MacOSContentCachingType] = None
-        # Custom text to be displayed on the login window.
-        self._login_window_text: Optional[str] = None
         # Whether the Log Out menu item on the login window will be disabled while the user is logged in.
         self._log_out_disabled_while_logged_in: Optional[bool] = None
+        # Custom text to be displayed on the login window.
+        self._login_window_text: Optional[str] = None
         # Gets or sets a single sign-on extension profile.
         self._mac_o_s_single_sign_on_extension: Optional[mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension] = None
         # Whether the Power Off menu item on the login window will be disabled while the user is logged in.
@@ -308,7 +308,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingBlockDeletion property value. Prevents content caches from purging content to free up disk space for other apps.
         Args:
-            value: Value to set for the contentCachingBlockDeletion property.
+            value: Value to set for the content_caching_block_deletion property.
         """
         self._content_caching_block_deletion = value
     
@@ -325,7 +325,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingClientListenRanges property value. A list of custom IP ranges content caches will use to listen for clients. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the contentCachingClientListenRanges property.
+            value: Value to set for the content_caching_client_listen_ranges property.
         """
         self._content_caching_client_listen_ranges = value
     
@@ -342,7 +342,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingClientPolicy property value. Determines which clients a content cache will serve.
         Args:
-            value: Value to set for the contentCachingClientPolicy property.
+            value: Value to set for the content_caching_client_policy property.
         """
         self._content_caching_client_policy = value
     
@@ -359,7 +359,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingDataPath property value. The path to the directory used to store cached content. The value must be (or end with) /Library/Application Support/Apple/AssetCache/Data
         Args:
-            value: Value to set for the contentCachingDataPath property.
+            value: Value to set for the content_caching_data_path property.
         """
         self._content_caching_data_path = value
     
@@ -376,7 +376,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingDisableConnectionSharing property value. Disables internet connection sharing.
         Args:
-            value: Value to set for the contentCachingDisableConnectionSharing property.
+            value: Value to set for the content_caching_disable_connection_sharing property.
         """
         self._content_caching_disable_connection_sharing = value
     
@@ -393,7 +393,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingEnabled property value. Enables content caching and prevents it from being disabled by the user.
         Args:
-            value: Value to set for the contentCachingEnabled property.
+            value: Value to set for the content_caching_enabled property.
         """
         self._content_caching_enabled = value
     
@@ -410,7 +410,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingForceConnectionSharing property value. Forces internet connection sharing. contentCachingDisableConnectionSharing overrides this setting.
         Args:
-            value: Value to set for the contentCachingForceConnectionSharing property.
+            value: Value to set for the content_caching_force_connection_sharing property.
         """
         self._content_caching_force_connection_sharing = value
     
@@ -427,7 +427,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingKeepAwake property value. Prevent the device from sleeping if content caching is enabled.
         Args:
-            value: Value to set for the contentCachingKeepAwake property.
+            value: Value to set for the content_caching_keep_awake property.
         """
         self._content_caching_keep_awake = value
     
@@ -444,7 +444,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingLogClientIdentities property value. Enables logging of IP addresses and ports of clients that request cached content.
         Args:
-            value: Value to set for the contentCachingLogClientIdentities property.
+            value: Value to set for the content_caching_log_client_identities property.
         """
         self._content_caching_log_client_identities = value
     
@@ -461,26 +461,9 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingMaxSizeBytes property value. The maximum number of bytes of disk space that will be used for the content cache. A value of 0 (default) indicates unlimited disk space.
         Args:
-            value: Value to set for the contentCachingMaxSizeBytes property.
+            value: Value to set for the content_caching_max_size_bytes property.
         """
         self._content_caching_max_size_bytes = value
-    
-    @property
-    def content_caching_parents(self,) -> Optional[List[str]]:
-        """
-        Gets the contentCachingParents property value. A list of IP addresses representing parent content caches.
-        Returns: Optional[List[str]]
-        """
-        return self._content_caching_parents
-    
-    @content_caching_parents.setter
-    def content_caching_parents(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the contentCachingParents property value. A list of IP addresses representing parent content caches.
-        Args:
-            value: Value to set for the contentCachingParents property.
-        """
-        self._content_caching_parents = value
     
     @property
     def content_caching_parent_selection_policy(self,) -> Optional[mac_o_s_content_caching_parent_selection_policy.MacOSContentCachingParentSelectionPolicy]:
@@ -495,9 +478,26 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingParentSelectionPolicy property value. Determines how content caches select a parent cache.
         Args:
-            value: Value to set for the contentCachingParentSelectionPolicy property.
+            value: Value to set for the content_caching_parent_selection_policy property.
         """
         self._content_caching_parent_selection_policy = value
+    
+    @property
+    def content_caching_parents(self,) -> Optional[List[str]]:
+        """
+        Gets the contentCachingParents property value. A list of IP addresses representing parent content caches.
+        Returns: Optional[List[str]]
+        """
+        return self._content_caching_parents
+    
+    @content_caching_parents.setter
+    def content_caching_parents(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the contentCachingParents property value. A list of IP addresses representing parent content caches.
+        Args:
+            value: Value to set for the content_caching_parents property.
+        """
+        self._content_caching_parents = value
     
     @property
     def content_caching_peer_filter_ranges(self,) -> Optional[List[ip_range.IpRange]]:
@@ -512,7 +512,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingPeerFilterRanges property value. A list of custom IP ranges content caches will use to query for content from peers caches. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the contentCachingPeerFilterRanges property.
+            value: Value to set for the content_caching_peer_filter_ranges property.
         """
         self._content_caching_peer_filter_ranges = value
     
@@ -529,7 +529,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingPeerListenRanges property value. A list of custom IP ranges content caches will use to listen for peer caches. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the contentCachingPeerListenRanges property.
+            value: Value to set for the content_caching_peer_listen_ranges property.
         """
         self._content_caching_peer_listen_ranges = value
     
@@ -546,7 +546,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingPeerPolicy property value. Determines which content caches other content caches will peer with.
         Args:
-            value: Value to set for the contentCachingPeerPolicy property.
+            value: Value to set for the content_caching_peer_policy property.
         """
         self._content_caching_peer_policy = value
     
@@ -563,7 +563,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingPort property value. Sets the port used for content caching. If the value is 0, a random available port will be selected. Valid values 0 to 65535
         Args:
-            value: Value to set for the contentCachingPort property.
+            value: Value to set for the content_caching_port property.
         """
         self._content_caching_port = value
     
@@ -580,7 +580,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingPublicRanges property value. A list of custom IP ranges that Apple's content caching service should use to match clients to content caches. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the contentCachingPublicRanges property.
+            value: Value to set for the content_caching_public_ranges property.
         """
         self._content_caching_public_ranges = value
     
@@ -597,7 +597,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingShowAlerts property value. Display content caching alerts as system notifications.
         Args:
-            value: Value to set for the contentCachingShowAlerts property.
+            value: Value to set for the content_caching_show_alerts property.
         """
         self._content_caching_show_alerts = value
     
@@ -614,7 +614,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the contentCachingType property value. Indicates the type of content allowed to be cached by Apple's content caching service.
         Args:
-            value: Value to set for the contentCachingType property.
+            value: Value to set for the content_caching_type property.
         """
         self._content_caching_type = value
     
@@ -636,69 +636,52 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "admin_show_host_info": lambda n : setattr(self, 'admin_show_host_info', n.get_bool_value()),
-            "app_associated_domains": lambda n : setattr(self, 'app_associated_domains', n.get_collection_of_object_values(mac_o_s_associated_domains_item.MacOSAssociatedDomainsItem)),
-            "associated_domains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "authorized_users_list_hidden": lambda n : setattr(self, 'authorized_users_list_hidden', n.get_bool_value()),
-            "authorized_users_list_hide_admin_users": lambda n : setattr(self, 'authorized_users_list_hide_admin_users', n.get_bool_value()),
-            "authorized_users_list_hide_local_users": lambda n : setattr(self, 'authorized_users_list_hide_local_users', n.get_bool_value()),
-            "authorized_users_list_hide_mobile_accounts": lambda n : setattr(self, 'authorized_users_list_hide_mobile_accounts', n.get_bool_value()),
-            "authorized_users_list_include_network_users": lambda n : setattr(self, 'authorized_users_list_include_network_users', n.get_bool_value()),
-            "authorized_users_list_show_other_managed_users": lambda n : setattr(self, 'authorized_users_list_show_other_managed_users', n.get_bool_value()),
-            "auto_launch_items": lambda n : setattr(self, 'auto_launch_items', n.get_collection_of_object_values(mac_o_s_launch_item.MacOSLaunchItem)),
-            "console_access_disabled": lambda n : setattr(self, 'console_access_disabled', n.get_bool_value()),
-            "content_caching_block_deletion": lambda n : setattr(self, 'content_caching_block_deletion', n.get_bool_value()),
-            "content_caching_client_listen_ranges": lambda n : setattr(self, 'content_caching_client_listen_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
-            "content_caching_client_policy": lambda n : setattr(self, 'content_caching_client_policy', n.get_enum_value(mac_o_s_content_caching_client_policy.MacOSContentCachingClientPolicy)),
-            "content_caching_data_path": lambda n : setattr(self, 'content_caching_data_path', n.get_str_value()),
-            "content_caching_disable_connection_sharing": lambda n : setattr(self, 'content_caching_disable_connection_sharing', n.get_bool_value()),
-            "content_caching_enabled": lambda n : setattr(self, 'content_caching_enabled', n.get_bool_value()),
-            "content_caching_force_connection_sharing": lambda n : setattr(self, 'content_caching_force_connection_sharing', n.get_bool_value()),
-            "content_caching_keep_awake": lambda n : setattr(self, 'content_caching_keep_awake', n.get_bool_value()),
-            "content_caching_log_client_identities": lambda n : setattr(self, 'content_caching_log_client_identities', n.get_bool_value()),
-            "content_caching_max_size_bytes": lambda n : setattr(self, 'content_caching_max_size_bytes', n.get_int_value()),
-            "content_caching_parents": lambda n : setattr(self, 'content_caching_parents', n.get_collection_of_primitive_values(str)),
-            "content_caching_parent_selection_policy": lambda n : setattr(self, 'content_caching_parent_selection_policy', n.get_enum_value(mac_o_s_content_caching_parent_selection_policy.MacOSContentCachingParentSelectionPolicy)),
-            "content_caching_peer_filter_ranges": lambda n : setattr(self, 'content_caching_peer_filter_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
-            "content_caching_peer_listen_ranges": lambda n : setattr(self, 'content_caching_peer_listen_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
-            "content_caching_peer_policy": lambda n : setattr(self, 'content_caching_peer_policy', n.get_enum_value(mac_o_s_content_caching_peer_policy.MacOSContentCachingPeerPolicy)),
-            "content_caching_port": lambda n : setattr(self, 'content_caching_port', n.get_int_value()),
-            "content_caching_public_ranges": lambda n : setattr(self, 'content_caching_public_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
-            "content_caching_show_alerts": lambda n : setattr(self, 'content_caching_show_alerts', n.get_bool_value()),
-            "content_caching_type": lambda n : setattr(self, 'content_caching_type', n.get_enum_value(mac_o_s_content_caching_type.MacOSContentCachingType)),
-            "login_window_text": lambda n : setattr(self, 'login_window_text', n.get_str_value()),
-            "log_out_disabled_while_logged_in": lambda n : setattr(self, 'log_out_disabled_while_logged_in', n.get_bool_value()),
-            "mac_o_s_single_sign_on_extension": lambda n : setattr(self, 'mac_o_s_single_sign_on_extension', n.get_object_value(mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension)),
-            "power_off_disabled_while_logged_in": lambda n : setattr(self, 'power_off_disabled_while_logged_in', n.get_bool_value()),
-            "restart_disabled": lambda n : setattr(self, 'restart_disabled', n.get_bool_value()),
-            "restart_disabled_while_logged_in": lambda n : setattr(self, 'restart_disabled_while_logged_in', n.get_bool_value()),
-            "screen_lock_disable_immediate": lambda n : setattr(self, 'screen_lock_disable_immediate', n.get_bool_value()),
-            "shut_down_disabled": lambda n : setattr(self, 'shut_down_disabled', n.get_bool_value()),
-            "shut_down_disabled_while_logged_in": lambda n : setattr(self, 'shut_down_disabled_while_logged_in', n.get_bool_value()),
-            "single_sign_on_extension": lambda n : setattr(self, 'single_sign_on_extension', n.get_object_value(single_sign_on_extension.SingleSignOnExtension)),
-            "single_sign_on_extension_pkinit_certificate": lambda n : setattr(self, 'single_sign_on_extension_pkinit_certificate', n.get_object_value(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase)),
-            "sleep_disabled": lambda n : setattr(self, 'sleep_disabled', n.get_bool_value()),
+            "adminShowHostInfo": lambda n : setattr(self, 'admin_show_host_info', n.get_bool_value()),
+            "appAssociatedDomains": lambda n : setattr(self, 'app_associated_domains', n.get_collection_of_object_values(mac_o_s_associated_domains_item.MacOSAssociatedDomainsItem)),
+            "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "authorizedUsersListHidden": lambda n : setattr(self, 'authorized_users_list_hidden', n.get_bool_value()),
+            "authorizedUsersListHideAdminUsers": lambda n : setattr(self, 'authorized_users_list_hide_admin_users', n.get_bool_value()),
+            "authorizedUsersListHideLocalUsers": lambda n : setattr(self, 'authorized_users_list_hide_local_users', n.get_bool_value()),
+            "authorizedUsersListHideMobileAccounts": lambda n : setattr(self, 'authorized_users_list_hide_mobile_accounts', n.get_bool_value()),
+            "authorizedUsersListIncludeNetworkUsers": lambda n : setattr(self, 'authorized_users_list_include_network_users', n.get_bool_value()),
+            "authorizedUsersListShowOtherManagedUsers": lambda n : setattr(self, 'authorized_users_list_show_other_managed_users', n.get_bool_value()),
+            "autoLaunchItems": lambda n : setattr(self, 'auto_launch_items', n.get_collection_of_object_values(mac_o_s_launch_item.MacOSLaunchItem)),
+            "consoleAccessDisabled": lambda n : setattr(self, 'console_access_disabled', n.get_bool_value()),
+            "contentCachingBlockDeletion": lambda n : setattr(self, 'content_caching_block_deletion', n.get_bool_value()),
+            "contentCachingClientListenRanges": lambda n : setattr(self, 'content_caching_client_listen_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
+            "contentCachingClientPolicy": lambda n : setattr(self, 'content_caching_client_policy', n.get_enum_value(mac_o_s_content_caching_client_policy.MacOSContentCachingClientPolicy)),
+            "contentCachingDataPath": lambda n : setattr(self, 'content_caching_data_path', n.get_str_value()),
+            "contentCachingDisableConnectionSharing": lambda n : setattr(self, 'content_caching_disable_connection_sharing', n.get_bool_value()),
+            "contentCachingEnabled": lambda n : setattr(self, 'content_caching_enabled', n.get_bool_value()),
+            "contentCachingForceConnectionSharing": lambda n : setattr(self, 'content_caching_force_connection_sharing', n.get_bool_value()),
+            "contentCachingKeepAwake": lambda n : setattr(self, 'content_caching_keep_awake', n.get_bool_value()),
+            "contentCachingLogClientIdentities": lambda n : setattr(self, 'content_caching_log_client_identities', n.get_bool_value()),
+            "contentCachingMaxSizeBytes": lambda n : setattr(self, 'content_caching_max_size_bytes', n.get_int_value()),
+            "contentCachingParents": lambda n : setattr(self, 'content_caching_parents', n.get_collection_of_primitive_values(str)),
+            "contentCachingParentSelectionPolicy": lambda n : setattr(self, 'content_caching_parent_selection_policy', n.get_enum_value(mac_o_s_content_caching_parent_selection_policy.MacOSContentCachingParentSelectionPolicy)),
+            "contentCachingPeerFilterRanges": lambda n : setattr(self, 'content_caching_peer_filter_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
+            "contentCachingPeerListenRanges": lambda n : setattr(self, 'content_caching_peer_listen_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
+            "contentCachingPeerPolicy": lambda n : setattr(self, 'content_caching_peer_policy', n.get_enum_value(mac_o_s_content_caching_peer_policy.MacOSContentCachingPeerPolicy)),
+            "contentCachingPort": lambda n : setattr(self, 'content_caching_port', n.get_int_value()),
+            "contentCachingPublicRanges": lambda n : setattr(self, 'content_caching_public_ranges', n.get_collection_of_object_values(ip_range.IpRange)),
+            "contentCachingShowAlerts": lambda n : setattr(self, 'content_caching_show_alerts', n.get_bool_value()),
+            "contentCachingType": lambda n : setattr(self, 'content_caching_type', n.get_enum_value(mac_o_s_content_caching_type.MacOSContentCachingType)),
+            "loginWindowText": lambda n : setattr(self, 'login_window_text', n.get_str_value()),
+            "logOutDisabledWhileLoggedIn": lambda n : setattr(self, 'log_out_disabled_while_logged_in', n.get_bool_value()),
+            "macOSSingleSignOnExtension": lambda n : setattr(self, 'mac_o_s_single_sign_on_extension', n.get_object_value(mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension)),
+            "powerOffDisabledWhileLoggedIn": lambda n : setattr(self, 'power_off_disabled_while_logged_in', n.get_bool_value()),
+            "restartDisabled": lambda n : setattr(self, 'restart_disabled', n.get_bool_value()),
+            "restartDisabledWhileLoggedIn": lambda n : setattr(self, 'restart_disabled_while_logged_in', n.get_bool_value()),
+            "screenLockDisableImmediate": lambda n : setattr(self, 'screen_lock_disable_immediate', n.get_bool_value()),
+            "shutDownDisabled": lambda n : setattr(self, 'shut_down_disabled', n.get_bool_value()),
+            "shutDownDisabledWhileLoggedIn": lambda n : setattr(self, 'shut_down_disabled_while_logged_in', n.get_bool_value()),
+            "singleSignOnExtension": lambda n : setattr(self, 'single_sign_on_extension', n.get_object_value(single_sign_on_extension.SingleSignOnExtension)),
+            "singleSignOnExtensionPkinitCertificate": lambda n : setattr(self, 'single_sign_on_extension_pkinit_certificate', n.get_object_value(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase)),
+            "sleepDisabled": lambda n : setattr(self, 'sleep_disabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def login_window_text(self,) -> Optional[str]:
-        """
-        Gets the loginWindowText property value. Custom text to be displayed on the login window.
-        Returns: Optional[str]
-        """
-        return self._login_window_text
-    
-    @login_window_text.setter
-    def login_window_text(self,value: Optional[str] = None) -> None:
-        """
-        Sets the loginWindowText property value. Custom text to be displayed on the login window.
-        Args:
-            value: Value to set for the loginWindowText property.
-        """
-        self._login_window_text = value
     
     @property
     def log_out_disabled_while_logged_in(self,) -> Optional[bool]:
@@ -713,9 +696,26 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the logOutDisabledWhileLoggedIn property value. Whether the Log Out menu item on the login window will be disabled while the user is logged in.
         Args:
-            value: Value to set for the logOutDisabledWhileLoggedIn property.
+            value: Value to set for the log_out_disabled_while_logged_in property.
         """
         self._log_out_disabled_while_logged_in = value
+    
+    @property
+    def login_window_text(self,) -> Optional[str]:
+        """
+        Gets the loginWindowText property value. Custom text to be displayed on the login window.
+        Returns: Optional[str]
+        """
+        return self._login_window_text
+    
+    @login_window_text.setter
+    def login_window_text(self,value: Optional[str] = None) -> None:
+        """
+        Sets the loginWindowText property value. Custom text to be displayed on the login window.
+        Args:
+            value: Value to set for the login_window_text property.
+        """
+        self._login_window_text = value
     
     @property
     def mac_o_s_single_sign_on_extension(self,) -> Optional[mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension]:
@@ -730,7 +730,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the macOSSingleSignOnExtension property value. Gets or sets a single sign-on extension profile.
         Args:
-            value: Value to set for the macOSSingleSignOnExtension property.
+            value: Value to set for the mac_o_s_single_sign_on_extension property.
         """
         self._mac_o_s_single_sign_on_extension = value
     
@@ -747,7 +747,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the powerOffDisabledWhileLoggedIn property value. Whether the Power Off menu item on the login window will be disabled while the user is logged in.
         Args:
-            value: Value to set for the powerOffDisabledWhileLoggedIn property.
+            value: Value to set for the power_off_disabled_while_logged_in property.
         """
         self._power_off_disabled_while_logged_in = value
     
@@ -764,7 +764,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the restartDisabled property value. Whether to hide the Restart button item on the login window.
         Args:
-            value: Value to set for the restartDisabled property.
+            value: Value to set for the restart_disabled property.
         """
         self._restart_disabled = value
     
@@ -781,7 +781,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the restartDisabledWhileLoggedIn property value. Whether the Restart menu item on the login window will be disabled while the user is logged in.
         Args:
-            value: Value to set for the restartDisabledWhileLoggedIn property.
+            value: Value to set for the restart_disabled_while_logged_in property.
         """
         self._restart_disabled_while_logged_in = value
     
@@ -798,7 +798,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the screenLockDisableImmediate property value. Whether to disable the immediate screen lock functions.
         Args:
-            value: Value to set for the screenLockDisableImmediate property.
+            value: Value to set for the screen_lock_disable_immediate property.
         """
         self._screen_lock_disable_immediate = value
     
@@ -867,7 +867,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the shutDownDisabled property value. Whether to hide the Shut Down button item on the login window.
         Args:
-            value: Value to set for the shutDownDisabled property.
+            value: Value to set for the shut_down_disabled property.
         """
         self._shut_down_disabled = value
     
@@ -884,7 +884,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the shutDownDisabledWhileLoggedIn property value. Whether the Shut Down menu item on the login window will be disabled while the user is logged in.
         Args:
-            value: Value to set for the shutDownDisabledWhileLoggedIn property.
+            value: Value to set for the shut_down_disabled_while_logged_in property.
         """
         self._shut_down_disabled_while_logged_in = value
     
@@ -901,7 +901,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the singleSignOnExtension property value. Gets or sets a single sign-on extension profile. Deprecated: use MacOSSingleSignOnExtension instead.
         Args:
-            value: Value to set for the singleSignOnExtension property.
+            value: Value to set for the single_sign_on_extension property.
         """
         self._single_sign_on_extension = value
     
@@ -918,7 +918,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the singleSignOnExtensionPkinitCertificate property value. PKINIT Certificate for the authentication with single sign-on extensions.
         Args:
-            value: Value to set for the singleSignOnExtensionPkinitCertificate property.
+            value: Value to set for the single_sign_on_extension_pkinit_certificate property.
         """
         self._single_sign_on_extension_pkinit_certificate = value
     
@@ -935,7 +935,7 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         """
         Sets the sleepDisabled property value. Whether to hide the Sleep menu item on the login window.
         Args:
-            value: Value to set for the sleepDisabled property.
+            value: Value to set for the sleep_disabled property.
         """
         self._sleep_disabled = value
     

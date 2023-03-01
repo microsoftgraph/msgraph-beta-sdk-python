@@ -111,12 +111,11 @@ class TenantRelationshipsRequestBuilder():
             raise Exception("tenant_id cannot be undefined")
         return find_tenant_information_by_tenant_id_with_tenant_id_request_builder.FindTenantInformationByTenantIdWithTenantIdRequestBuilder(self.request_adapter, self.path_parameters, tenantId)
     
-    async def get(self,request_configuration: Optional[TenantRelationshipsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_relationship.TenantRelationship]:
+    async def get(self,request_configuration: Optional[TenantRelationshipsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_relationship.TenantRelationship]:
         """
         Get tenantRelationships
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_relationship.TenantRelationship]
         """
         request_info = self.to_get_request_information(
@@ -128,15 +127,14 @@ class TenantRelationshipsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_relationship.TenantRelationship, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_relationship.TenantRelationship, error_mapping)
     
-    async def patch(self,body: Optional[tenant_relationship.TenantRelationship] = None, request_configuration: Optional[TenantRelationshipsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[tenant_relationship.TenantRelationship]:
+    async def patch(self,body: Optional[tenant_relationship.TenantRelationship] = None, request_configuration: Optional[TenantRelationshipsRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_relationship.TenantRelationship]:
         """
         Update tenantRelationships
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[tenant_relationship.TenantRelationship]
         """
         if body is None:
@@ -150,7 +148,7 @@ class TenantRelationshipsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, tenant_relationship.TenantRelationship, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, tenant_relationship.TenantRelationship, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantRelationshipsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -163,7 +161,7 @@ class TenantRelationshipsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -184,7 +182,7 @@ class TenantRelationshipsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -224,7 +222,7 @@ class TenantRelationshipsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -239,7 +237,7 @@ class TenantRelationshipsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

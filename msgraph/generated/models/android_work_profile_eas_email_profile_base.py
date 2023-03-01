@@ -11,9 +11,6 @@ email_sync_duration = lazy_import('msgraph.generated.models.email_sync_duration'
 user_email_source = lazy_import('msgraph.generated.models.user_email_source')
 
 class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfiguration):
-    """
-    Base for Android Work Profile EAS Email profiles
-    """
     @property
     def authentication_method(self,) -> Optional[eas_authentication_method.EasAuthenticationMethod]:
         """
@@ -27,13 +24,13 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the authenticationMethod property value. Exchange Active Sync authentication method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new androidWorkProfileEasEmailProfileBase and sets the default values.
+        Instantiates a new AndroidWorkProfileEasEmailProfileBase and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidWorkProfileEasEmailProfileBase"
@@ -77,7 +74,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the durationOfEmailToSync property value. Possible values for email sync duration.
         Args:
-            value: Value to set for the durationOfEmailToSync property.
+            value: Value to set for the duration_of_email_to_sync property.
         """
         self._duration_of_email_to_sync = value
     
@@ -94,7 +91,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the emailAddressSource property value. Possible values for username source or email source.
         Args:
-            value: Value to set for the emailAddressSource property.
+            value: Value to set for the email_address_source property.
         """
         self._email_address_source = value
     
@@ -104,13 +101,13 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
-            "duration_of_email_to_sync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
-            "email_address_source": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
-            "host_name": lambda n : setattr(self, 'host_name', n.get_str_value()),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_work_profile_certificate_profile_base.AndroidWorkProfileCertificateProfileBase)),
-            "require_ssl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
-            "username_source": lambda n : setattr(self, 'username_source', n.get_enum_value(android_username_source.AndroidUsernameSource)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
+            "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
+            "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
+            "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_work_profile_certificate_profile_base.AndroidWorkProfileCertificateProfileBase)),
+            "requireSsl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
+            "usernameSource": lambda n : setattr(self, 'username_source', n.get_enum_value(android_username_source.AndroidUsernameSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -129,7 +126,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the hostName property value. Exchange location (URL) that the mail app connects to.
         Args:
-            value: Value to set for the hostName property.
+            value: Value to set for the host_name property.
         """
         self._host_name = value
     
@@ -146,7 +143,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the identityCertificate property value. Identity certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -163,7 +160,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the requireSsl property value. Indicates whether or not to use SSL.
         Args:
-            value: Value to set for the requireSsl property.
+            value: Value to set for the require_ssl property.
         """
         self._require_ssl = value
     
@@ -197,7 +194,7 @@ class AndroidWorkProfileEasEmailProfileBase(device_configuration.DeviceConfigura
         """
         Sets the usernameSource property value. Android username source.
         Args:
-            value: Value to set for the usernameSource property.
+            value: Value to set for the username_source property.
         """
         self._username_source = value
     

@@ -12,7 +12,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.count.count_request_builder')
-summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.summary_with_start_date_time_with_end_date_time.summary_with_start_date_time_with_end_date_time_request_builder')
+identity_governance_summary_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.identity_governance_summary_with_start_date_time_with_end_date_time.identity_governance_summary_with_start_date_time_with_end_date_time_request_builder')
 task_report_collection_response = lazy_import('msgraph.generated.models.identity_governance.task_report_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -45,12 +45,11 @@ class TaskReportsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[task_report_collection_response.TaskReportCollectionResponse]:
+    async def get(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[task_report_collection_response.TaskReportCollectionResponse]:
         """
         Get a list of the taskReport objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_report_collection_response.TaskReportCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -62,21 +61,21 @@ class TaskReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, task_report_collection_response.TaskReportCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, task_report_collection_response.TaskReportCollectionResponse, error_mapping)
     
-    def summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
+    def identity_governance_summary_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, start_date_time: Optional[datetime] = None) -> identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.IdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
         Provides operations to call the summary method.
         Args:
             endDateTime: Usage: endDateTime={endDateTime}
             startDateTime: Usage: startDateTime={startDateTime}
-        Returns: summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder
+        Returns: identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.IdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder
         """
         if end_date_time is None:
             raise Exception("end_date_time cannot be undefined")
         if start_date_time is None:
             raise Exception("start_date_time cannot be undefined")
-        return summary_with_start_date_time_with_end_date_time_request_builder.SummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, startDateTime)
+        return identity_governance_summary_with_start_date_time_with_end_date_time_request_builder.IdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(self.request_adapter, self.path_parameters, endDateTime, startDateTime)
     
     def to_get_request_information(self,request_configuration: Optional[TaskReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -89,7 +88,7 @@ class TaskReportsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -159,7 +158,7 @@ class TaskReportsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

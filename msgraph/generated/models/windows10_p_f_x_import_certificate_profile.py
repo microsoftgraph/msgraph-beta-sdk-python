@@ -34,7 +34,7 @@ class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfigurat
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "key_storage_provider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
+            "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -53,7 +53,7 @@ class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfigurat
         """
         Sets the keyStorageProvider property value. Key Storage Provider (KSP) Import Options.
         Args:
-            value: Value to set for the keyStorageProvider property.
+            value: Value to set for the key_storage_provider property.
         """
         self._key_storage_provider = value
     

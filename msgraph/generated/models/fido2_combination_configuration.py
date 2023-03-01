@@ -19,7 +19,7 @@ class Fido2CombinationConfiguration(authentication_combination_configuration.Aut
         """
         Sets the allowedAAGUIDs property value. A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.
         Args:
-            value: Value to set for the allowedAAGUIDs property.
+            value: Value to set for the allowed_a_a_g_u_i_ds property.
         """
         self._allowed_a_a_g_u_i_ds = value
     
@@ -50,7 +50,7 @@ class Fido2CombinationConfiguration(authentication_combination_configuration.Aut
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allowed_a_a_g_u_i_ds": lambda n : setattr(self, 'allowed_a_a_g_u_i_ds', n.get_collection_of_primitive_values(str)),
+            "allowedAAGUIDs": lambda n : setattr(self, 'allowed_a_a_g_u_i_ds', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

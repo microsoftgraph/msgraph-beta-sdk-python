@@ -45,7 +45,7 @@ class TeamworkPeripheral(entity.Entity):
         """
         Sets the displayName property value. Display name for the peripheral.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -55,9 +55,9 @@ class TeamworkPeripheral(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "product_id": lambda n : setattr(self, 'product_id', n.get_str_value()),
-            "vendor_id": lambda n : setattr(self, 'vendor_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "productId": lambda n : setattr(self, 'product_id', n.get_str_value()),
+            "vendorId": lambda n : setattr(self, 'vendor_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -76,7 +76,7 @@ class TeamworkPeripheral(entity.Entity):
         """
         Sets the productId property value. The product ID of the device. Each product from a vendor has its own ID.
         Args:
-            value: Value to set for the productId property.
+            value: Value to set for the product_id property.
         """
         self._product_id = value
     
@@ -106,7 +106,7 @@ class TeamworkPeripheral(entity.Entity):
         """
         Sets the vendorId property value. The unique identifier for the vendor of the device. Each vendor has a unique ID.
         Args:
-            value: Value to set for the vendorId property.
+            value: Value to set for the vendor_id property.
         """
         self._vendor_id = value
     

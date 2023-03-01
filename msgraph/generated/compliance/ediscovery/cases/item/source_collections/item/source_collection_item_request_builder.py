@@ -15,11 +15,11 @@ data_source_item_request_builder = lazy_import('msgraph.generated.compliance.edi
 add_to_review_set_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.add_to_review_set_operation.add_to_review_set_operation_request_builder')
 custodian_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.custodian_sources.custodian_sources_request_builder')
 data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.custodian_sources.item.data_source_item_request_builder')
-estimate_statistics_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.estimate_statistics.estimate_statistics_request_builder')
+ediscovery_estimate_statistics_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.ediscovery_estimate_statistics.ediscovery_estimate_statistics_request_builder')
+ediscovery_purge_data_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.ediscovery_purge_data.ediscovery_purge_data_request_builder')
 last_estimate_statistics_operation_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.last_estimate_statistics_operation.last_estimate_statistics_operation_request_builder')
 noncustodial_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.noncustodial_sources.noncustodial_sources_request_builder')
 noncustodial_data_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.noncustodial_sources.item.noncustodial_data_source_item_request_builder')
-purge_data_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.source_collections.item.purge_data.purge_data_request_builder')
 source_collection = lazy_import('msgraph.generated.models.ediscovery.source_collection')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -49,11 +49,18 @@ class SourceCollectionItemRequestBuilder():
         return custodian_sources_request_builder.CustodianSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def estimate_statistics(self) -> estimate_statistics_request_builder.EstimateStatisticsRequestBuilder:
+    def ediscovery_estimate_statistics(self) -> ediscovery_estimate_statistics_request_builder.EdiscoveryEstimateStatisticsRequestBuilder:
         """
         Provides operations to call the estimateStatistics method.
         """
-        return estimate_statistics_request_builder.EstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+        return ediscovery_estimate_statistics_request_builder.EdiscoveryEstimateStatisticsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def ediscovery_purge_data(self) -> ediscovery_purge_data_request_builder.EdiscoveryPurgeDataRequestBuilder:
+        """
+        Provides operations to call the purgeData method.
+        """
+        return ediscovery_purge_data_request_builder.EdiscoveryPurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def last_estimate_statistics_operation(self) -> last_estimate_statistics_operation_request_builder.LastEstimateStatisticsOperationRequestBuilder:
@@ -68,13 +75,6 @@ class SourceCollectionItemRequestBuilder():
         Provides operations to manage the noncustodialSources property of the microsoft.graph.ediscovery.sourceCollection entity.
         """
         return noncustodial_sources_request_builder.NoncustodialSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def purge_data(self) -> purge_data_request_builder.PurgeDataRequestBuilder:
-        """
-        Provides operations to call the purgeData method.
-        """
-        return purge_data_request_builder.PurgeDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     def additional_sources_by_id(self,id: str) -> data_source_item_request_builder.DataSourceItemRequestBuilder:
         """
@@ -120,12 +120,11 @@ class SourceCollectionItemRequestBuilder():
         url_tpl_params["dataSource%2Did"] = id
         return data_source_item_request_builder.DataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def delete(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property sourceCollections for compliance
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -136,14 +135,13 @@ class SourceCollectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[SourceCollectionItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[source_collection.SourceCollection]:
+    async def get(self,request_configuration: Optional[SourceCollectionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[source_collection.SourceCollection]:
         """
         Returns a list of sourceCollection objects associated with this case.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[source_collection.SourceCollection]
         """
         request_info = self.to_get_request_information(
@@ -155,7 +153,7 @@ class SourceCollectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, error_mapping)
     
     def noncustodial_sources_by_id(self,id: str) -> noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder:
         """
@@ -170,13 +168,12 @@ class SourceCollectionItemRequestBuilder():
         url_tpl_params["noncustodialDataSource%2Did"] = id
         return noncustodial_data_source_item_request_builder.NoncustodialDataSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[source_collection.SourceCollection]:
+    async def patch(self,body: Optional[source_collection.SourceCollection] = None, request_configuration: Optional[SourceCollectionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[source_collection.SourceCollection]:
         """
         Update the navigation property sourceCollections in compliance
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[source_collection.SourceCollection]
         """
         if body is None:
@@ -190,7 +187,7 @@ class SourceCollectionItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, source_collection.SourceCollection, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SourceCollectionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -219,7 +216,7 @@ class SourceCollectionItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -240,7 +237,7 @@ class SourceCollectionItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -253,7 +250,7 @@ class SourceCollectionItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -292,7 +289,7 @@ class SourceCollectionItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -307,7 +304,7 @@ class SourceCollectionItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

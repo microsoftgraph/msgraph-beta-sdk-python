@@ -55,8 +55,8 @@ class KerberosSignOnSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "kerberos_service_principal_name": lambda n : setattr(self, 'kerberos_service_principal_name', n.get_str_value()),
-            "kerberos_sign_on_mapping_attribute_type": lambda n : setattr(self, 'kerberos_sign_on_mapping_attribute_type', n.get_enum_value(kerberos_sign_on_mapping_attribute_type.KerberosSignOnMappingAttributeType)),
+            "kerberosServicePrincipalName": lambda n : setattr(self, 'kerberos_service_principal_name', n.get_str_value()),
+            "kerberosSignOnMappingAttributeType": lambda n : setattr(self, 'kerberos_sign_on_mapping_attribute_type', n.get_enum_value(kerberos_sign_on_mapping_attribute_type.KerberosSignOnMappingAttributeType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -74,7 +74,7 @@ class KerberosSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the kerberosServicePrincipalName property value. The Internal Application SPN of the application server. This SPN needs to be in the list of services to which the connector can present delegated credentials.
         Args:
-            value: Value to set for the kerberosServicePrincipalName property.
+            value: Value to set for the kerberos_service_principal_name property.
         """
         self._kerberos_service_principal_name = value
     
@@ -91,7 +91,7 @@ class KerberosSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the kerberosSignOnMappingAttributeType property value. The Delegated Login Identity for the connector to use on behalf of your users. For more information, see Working with different on-premises and cloud identities . Possible values are: userPrincipalName, onPremisesUserPrincipalName, userPrincipalUsername, onPremisesUserPrincipalUsername, onPremisesSAMAccountName.
         Args:
-            value: Value to set for the kerberosSignOnMappingAttributeType property.
+            value: Value to set for the kerberos_sign_on_mapping_attribute_type property.
         """
         self._kerberos_sign_on_mapping_attribute_type = value
     
@@ -108,7 +108,7 @@ class KerberosSignOnSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -34,7 +34,7 @@ class ClassificationResult(AdditionalDataHolder, Parsable):
         """
         Sets the confidenceLevel property value. The confidence level, 0 to 100, of the result.
         Args:
-            value: Value to set for the confidenceLevel property.
+            value: Value to set for the confidence_level property.
         """
         self._confidence_level = value
     
@@ -89,10 +89,10 @@ class ClassificationResult(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "confidence_level": lambda n : setattr(self, 'confidence_level', n.get_int_value()),
+            "confidenceLevel": lambda n : setattr(self, 'confidence_level', n.get_int_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sensitive_type_id": lambda n : setattr(self, 'sensitive_type_id', n.get_str_value()),
+            "sensitiveTypeId": lambda n : setattr(self, 'sensitive_type_id', n.get_str_value()),
         }
         return fields
     
@@ -109,7 +109,7 @@ class ClassificationResult(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -126,7 +126,7 @@ class ClassificationResult(AdditionalDataHolder, Parsable):
         """
         Sets the sensitiveTypeId property value. The GUID of the discovered sensitive information type.
         Args:
-            value: Value to set for the sensitiveTypeId property.
+            value: Value to set for the sensitive_type_id property.
         """
         self._sensitive_type_id = value
     

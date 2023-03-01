@@ -12,9 +12,9 @@ class CallTranscript(entity.Entity):
         Instantiates a new callTranscript and sets the default values.
         """
         super().__init__()
-        # A field representing the content of the transcript. Read-only.
+        # A field that represents the content of the transcript. Read-only.
         self._content: Optional[bytes] = None
-        # Date and time at which the transcript was created. Read-only.
+        # Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         self._created_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -22,7 +22,7 @@ class CallTranscript(entity.Entity):
     @property
     def content(self,) -> Optional[bytes]:
         """
-        Gets the content property value. A field representing the content of the transcript. Read-only.
+        Gets the content property value. A field that represents the content of the transcript. Read-only.
         Returns: Optional[bytes]
         """
         return self._content
@@ -30,7 +30,7 @@ class CallTranscript(entity.Entity):
     @content.setter
     def content(self,value: Optional[bytes] = None) -> None:
         """
-        Sets the content property value. A field representing the content of the transcript. Read-only.
+        Sets the content property value. A field that represents the content of the transcript. Read-only.
         Args:
             value: Value to set for the content property.
         """
@@ -39,7 +39,7 @@ class CallTranscript(entity.Entity):
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. Date and time at which the transcript was created. Read-only.
+        Gets the createdDateTime property value. Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -47,9 +47,9 @@ class CallTranscript(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. Date and time at which the transcript was created. Read-only.
+        Sets the createdDateTime property value. Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -72,7 +72,7 @@ class CallTranscript(entity.Entity):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

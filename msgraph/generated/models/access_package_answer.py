@@ -36,7 +36,7 @@ class AccessPackageAnswer(AdditionalDataHolder, Parsable):
         """
         Sets the answeredQuestion property value. The question the answer is for. Required and Read-only.
         Args:
-            value: Value to set for the answeredQuestion property.
+            value: Value to set for the answered_question property.
         """
         self._answered_question = value
     
@@ -79,7 +79,7 @@ class AccessPackageAnswer(AdditionalDataHolder, Parsable):
         """
         Sets the displayValue property value. The display value of the answer. Required.
         Args:
-            value: Value to set for the displayValue property.
+            value: Value to set for the display_value property.
         """
         self._display_value = value
     
@@ -89,8 +89,8 @@ class AccessPackageAnswer(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "answered_question": lambda n : setattr(self, 'answered_question', n.get_object_value(access_package_question.AccessPackageQuestion)),
-            "display_value": lambda n : setattr(self, 'display_value', n.get_str_value()),
+            "answeredQuestion": lambda n : setattr(self, 'answered_question', n.get_object_value(access_package_question.AccessPackageQuestion)),
+            "displayValue": lambda n : setattr(self, 'display_value', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -108,7 +108,7 @@ class AccessPackageAnswer(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

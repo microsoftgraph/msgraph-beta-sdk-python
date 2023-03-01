@@ -37,8 +37,8 @@ class TeamsAppIcon(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "hosted_content": lambda n : setattr(self, 'hosted_content', n.get_object_value(teamwork_hosted_content.TeamworkHostedContent)),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "hostedContent": lambda n : setattr(self, 'hosted_content', n.get_object_value(teamwork_hosted_content.TeamworkHostedContent)),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,7 +57,7 @@ class TeamsAppIcon(entity.Entity):
         """
         Sets the hostedContent property value. The contents of the app icon if the icon is hosted within the Teams infrastructure.
         Args:
-            value: Value to set for the hostedContent property.
+            value: Value to set for the hosted_content property.
         """
         self._hosted_content = value
     
@@ -86,7 +86,7 @@ class TeamsAppIcon(entity.Entity):
         """
         Sets the webUrl property value. The web URL that can be used for downloading the image.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

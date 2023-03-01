@@ -29,18 +29,17 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/microsoft.graph.importOffice365DeviceConfigurationPolicies"
+        self.url_template: str = "{+baseurl}/deviceManagement/templates/{deviceManagementTemplate%2Did}/migratableTo/importOffice365DeviceConfigurationPolicies"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ImportOffice365DeviceConfigurationPoliciesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[import_office365_device_configuration_policies_response.ImportOffice365DeviceConfigurationPoliciesResponse]:
+    async def post(self,request_configuration: Optional[ImportOffice365DeviceConfigurationPoliciesRequestBuilderPostRequestConfiguration] = None) -> Optional[import_office365_device_configuration_policies_response.ImportOffice365DeviceConfigurationPoliciesResponse]:
         """
         Invoke action importOffice365DeviceConfigurationPolicies
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[import_office365_device_configuration_policies_response.ImportOffice365DeviceConfigurationPoliciesResponse]
         """
         request_info = self.to_post_request_information(
@@ -52,7 +51,7 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, import_office365_device_configuration_policies_response.ImportOffice365DeviceConfigurationPoliciesResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, import_office365_device_configuration_policies_response.ImportOffice365DeviceConfigurationPoliciesResponse, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ImportOffice365DeviceConfigurationPoliciesRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -65,7 +64,7 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -77,7 +76,7 @@ class ImportOffice365DeviceConfigurationPoliciesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

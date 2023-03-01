@@ -37,8 +37,8 @@ class AndroidImportedPFXCertificateProfile(android_certificate_profile_base.Andr
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "intended_purpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
-            "managed_device_certificate_states": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
+            "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
+            "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,7 +57,7 @@ class AndroidImportedPFXCertificateProfile(android_certificate_profile_base.Andr
         """
         Sets the intendedPurpose property value. PFX Import Options.
         Args:
-            value: Value to set for the intendedPurpose property.
+            value: Value to set for the intended_purpose property.
         """
         self._intended_purpose = value
     
@@ -74,7 +74,7 @@ class AndroidImportedPFXCertificateProfile(android_certificate_profile_base.Andr
         """
         Sets the managedDeviceCertificateStates property value. Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
         Args:
-            value: Value to set for the managedDeviceCertificateStates property.
+            value: Value to set for the managed_device_certificate_states property.
         """
         self._managed_device_certificate_states = value
     

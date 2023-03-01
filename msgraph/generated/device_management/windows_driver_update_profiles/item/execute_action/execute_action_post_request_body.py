@@ -20,7 +20,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the actionName property value. An enum type to represent approval actions of single or list of drivers.
         Args:
-            value: Value to set for the actionName property.
+            value: Value to set for the action_name property.
         """
         self._action_name = value
     
@@ -80,7 +80,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deploymentDate property value. The deploymentDate property
         Args:
-            value: Value to set for the deploymentDate property.
+            value: Value to set for the deployment_date property.
         """
         self._deployment_date = value
     
@@ -97,7 +97,7 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the driverIds property value. The driverIds property
         Args:
-            value: Value to set for the driverIds property.
+            value: Value to set for the driver_ids property.
         """
         self._driver_ids = value
     
@@ -107,9 +107,9 @@ class ExecuteActionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "action_name": lambda n : setattr(self, 'action_name', n.get_enum_value(driver_approval_action.DriverApprovalAction)),
-            "deployment_date": lambda n : setattr(self, 'deployment_date', n.get_datetime_value()),
-            "driver_ids": lambda n : setattr(self, 'driver_ids', n.get_collection_of_primitive_values(str)),
+            "actionName": lambda n : setattr(self, 'action_name', n.get_enum_value(driver_approval_action.DriverApprovalAction)),
+            "deploymentDate": lambda n : setattr(self, 'deployment_date', n.get_datetime_value()),
+            "driverIds": lambda n : setattr(self, 'driver_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     

@@ -58,7 +58,7 @@ class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the encryptedBuffer property value. The encryptedBuffer property
         Args:
-            value: Value to set for the encryptedBuffer property.
+            value: Value to set for the encrypted_buffer property.
         """
         self._encrypted_buffer = value
     
@@ -68,8 +68,8 @@ class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "encrypted_buffer": lambda n : setattr(self, 'encrypted_buffer', n.get_bytes_value()),
-            "publishing_license": lambda n : setattr(self, 'publishing_license', n.get_bytes_value()),
+            "encryptedBuffer": lambda n : setattr(self, 'encrypted_buffer', n.get_bytes_value()),
+            "publishingLicense": lambda n : setattr(self, 'publishing_license', n.get_bytes_value()),
         }
         return fields
     
@@ -86,7 +86,7 @@ class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the publishingLicense property value. The publishingLicense property
         Args:
-            value: Value to set for the publishingLicense property.
+            value: Value to set for the publishing_license property.
         """
         self._publishing_license = value
     

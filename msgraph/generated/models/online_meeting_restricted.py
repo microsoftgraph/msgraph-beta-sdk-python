@@ -31,17 +31,17 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The contentSharingDisabled property
+        # Specifies the reason why shared content from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
         self._content_sharing_disabled: Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The videoDisabled property
+        # Specifies the reason why video from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
         self._video_disabled: Optional[online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason] = None
     
     @property
     def content_sharing_disabled(self,) -> Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason]:
         """
-        Gets the contentSharingDisabled property value. The contentSharingDisabled property
+        Gets the contentSharingDisabled property value. Specifies the reason why shared content from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
         Returns: Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason]
         """
         return self._content_sharing_disabled
@@ -49,9 +49,9 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
     @content_sharing_disabled.setter
     def content_sharing_disabled(self,value: Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason] = None) -> None:
         """
-        Sets the contentSharingDisabled property value. The contentSharingDisabled property
+        Sets the contentSharingDisabled property value. Specifies the reason why shared content from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
         Args:
-            value: Value to set for the contentSharingDisabled property.
+            value: Value to set for the content_sharing_disabled property.
         """
         self._content_sharing_disabled = value
     
@@ -73,9 +73,9 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_sharing_disabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_enum_value(online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason)),
+            "contentSharingDisabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_enum_value(online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "video_disabled": lambda n : setattr(self, 'video_disabled', n.get_enum_value(online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason)),
+            "videoDisabled": lambda n : setattr(self, 'video_disabled', n.get_enum_value(online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -112,7 +112,7 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
     @property
     def video_disabled(self,) -> Optional[online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason]:
         """
-        Gets the videoDisabled property value. The videoDisabled property
+        Gets the videoDisabled property value. Specifies the reason why video from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
         Returns: Optional[online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason]
         """
         return self._video_disabled
@@ -120,9 +120,9 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
     @video_disabled.setter
     def video_disabled(self,value: Optional[online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason] = None) -> None:
         """
-        Sets the videoDisabled property value. The videoDisabled property
+        Sets the videoDisabled property value. Specifies the reason why video from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
         Args:
-            value: Value to set for the videoDisabled property.
+            value: Value to set for the video_disabled property.
         """
         self._video_disabled = value
     

@@ -46,7 +46,7 @@ class SharedEmailDomainInvitation(entity.Entity):
         """
         Sets the expiryTime property value. The expiryTime property
         Args:
-            value: Value to set for the expiryTime property.
+            value: Value to set for the expiry_time property.
         """
         self._expiry_time = value
     
@@ -56,9 +56,9 @@ class SharedEmailDomainInvitation(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiry_time": lambda n : setattr(self, 'expiry_time', n.get_datetime_value()),
-            "invitation_domain": lambda n : setattr(self, 'invitation_domain', n.get_str_value()),
-            "invitation_status": lambda n : setattr(self, 'invitation_status', n.get_str_value()),
+            "expiryTime": lambda n : setattr(self, 'expiry_time', n.get_datetime_value()),
+            "invitationDomain": lambda n : setattr(self, 'invitation_domain', n.get_str_value()),
+            "invitationStatus": lambda n : setattr(self, 'invitation_status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -77,7 +77,7 @@ class SharedEmailDomainInvitation(entity.Entity):
         """
         Sets the invitationDomain property value. The invitationDomain property
         Args:
-            value: Value to set for the invitationDomain property.
+            value: Value to set for the invitation_domain property.
         """
         self._invitation_domain = value
     
@@ -94,7 +94,7 @@ class SharedEmailDomainInvitation(entity.Entity):
         """
         Sets the invitationStatus property value. The invitationStatus property
         Args:
-            value: Value to set for the invitationStatus property.
+            value: Value to set for the invitation_status property.
         """
         self._invitation_status = value
     

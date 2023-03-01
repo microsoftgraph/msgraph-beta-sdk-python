@@ -40,7 +40,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the cancelRequested property value. A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
         Args:
-            value: Value to set for the cancelRequested property.
+            value: Value to set for the cancel_requested property.
         """
         self._cancel_requested = value
     
@@ -57,7 +57,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the completeOrCanceledDateTime property value. The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
         Args:
-            value: Value to set for the completeOrCanceledDateTime property.
+            value: Value to set for the complete_or_canceled_date_time property.
         """
         self._complete_or_canceled_date_time = value
     
@@ -117,21 +117,21 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cancel_requested": lambda n : setattr(self, 'cancel_requested', n.get_bool_value()),
-            "complete_or_canceled_date_time": lambda n : setattr(self, 'complete_or_canceled_date_time', n.get_datetime_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "cancelRequested": lambda n : setattr(self, 'cancel_requested', n.get_bool_value()),
+            "completeOrCanceledDateTime": lambda n : setattr(self, 'complete_or_canceled_date_time', n.get_datetime_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(zebra_fota_deployment_state.ZebraFotaDeploymentState)),
-            "total_awaiting_install": lambda n : setattr(self, 'total_awaiting_install', n.get_int_value()),
-            "total_canceled": lambda n : setattr(self, 'total_canceled', n.get_int_value()),
-            "total_created": lambda n : setattr(self, 'total_created', n.get_int_value()),
-            "total_devices": lambda n : setattr(self, 'total_devices', n.get_int_value()),
-            "total_downloading": lambda n : setattr(self, 'total_downloading', n.get_int_value()),
-            "total_failed_download": lambda n : setattr(self, 'total_failed_download', n.get_int_value()),
-            "total_failed_install": lambda n : setattr(self, 'total_failed_install', n.get_int_value()),
-            "total_scheduled": lambda n : setattr(self, 'total_scheduled', n.get_int_value()),
-            "total_succeeded_install": lambda n : setattr(self, 'total_succeeded_install', n.get_int_value()),
-            "total_unknown": lambda n : setattr(self, 'total_unknown', n.get_int_value()),
+            "totalAwaitingInstall": lambda n : setattr(self, 'total_awaiting_install', n.get_int_value()),
+            "totalCanceled": lambda n : setattr(self, 'total_canceled', n.get_int_value()),
+            "totalCreated": lambda n : setattr(self, 'total_created', n.get_int_value()),
+            "totalDevices": lambda n : setattr(self, 'total_devices', n.get_int_value()),
+            "totalDownloading": lambda n : setattr(self, 'total_downloading', n.get_int_value()),
+            "totalFailedDownload": lambda n : setattr(self, 'total_failed_download', n.get_int_value()),
+            "totalFailedInstall": lambda n : setattr(self, 'total_failed_install', n.get_int_value()),
+            "totalScheduled": lambda n : setattr(self, 'total_scheduled', n.get_int_value()),
+            "totalSucceededInstall": lambda n : setattr(self, 'total_succeeded_install', n.get_int_value()),
+            "totalUnknown": lambda n : setattr(self, 'total_unknown', n.get_int_value()),
         }
         return fields
     
@@ -148,7 +148,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the lastUpdatedDateTime property value. Date and time when the deployment status was updated from Zebra
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -165,7 +165,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -224,7 +224,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalAwaitingInstall property value. An integer that indicates the total number of devices where installation was successful.
         Args:
-            value: Value to set for the totalAwaitingInstall property.
+            value: Value to set for the total_awaiting_install property.
         """
         self._total_awaiting_install = value
     
@@ -241,7 +241,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalCanceled property value. An integer that indicates the total number of devices where installation was canceled.
         Args:
-            value: Value to set for the totalCanceled property.
+            value: Value to set for the total_canceled property.
         """
         self._total_canceled = value
     
@@ -258,7 +258,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalCreated property value. An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
         Args:
-            value: Value to set for the totalCreated property.
+            value: Value to set for the total_created property.
         """
         self._total_created = value
     
@@ -275,7 +275,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalDevices property value. An integer that indicates the total number of devices in the deployment.
         Args:
-            value: Value to set for the totalDevices property.
+            value: Value to set for the total_devices property.
         """
         self._total_devices = value
     
@@ -292,7 +292,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalDownloading property value. An integer that indicates the total number of devices where installation was successful.
         Args:
-            value: Value to set for the totalDownloading property.
+            value: Value to set for the total_downloading property.
         """
         self._total_downloading = value
     
@@ -309,7 +309,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalFailedDownload property value. An integer that indicates the total number of devices that have failed to download the new OS file.
         Args:
-            value: Value to set for the totalFailedDownload property.
+            value: Value to set for the total_failed_download property.
         """
         self._total_failed_download = value
     
@@ -326,7 +326,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalFailedInstall property value. An integer that indicates the total number of devices that have failed to install the new OS file.
         Args:
-            value: Value to set for the totalFailedInstall property.
+            value: Value to set for the total_failed_install property.
         """
         self._total_failed_install = value
     
@@ -343,7 +343,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalScheduled property value. An integer that indicates the total number of devices that received the json and are scheduled.
         Args:
-            value: Value to set for the totalScheduled property.
+            value: Value to set for the total_scheduled property.
         """
         self._total_scheduled = value
     
@@ -360,7 +360,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalSucceededInstall property value. An integer that indicates the total number of devices where installation was successful.
         Args:
-            value: Value to set for the totalSucceededInstall property.
+            value: Value to set for the total_succeeded_install property.
         """
         self._total_succeeded_install = value
     
@@ -377,7 +377,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         Sets the totalUnknown property value. An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
         Args:
-            value: Value to set for the totalUnknown property.
+            value: Value to set for the total_unknown property.
         """
         self._total_unknown = value
     

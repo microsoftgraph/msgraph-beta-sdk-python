@@ -49,7 +49,7 @@ class DeviceManagementSettingCategory(entity.Entity):
         """
         Sets the displayName property value. The category name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -59,9 +59,9 @@ class DeviceManagementSettingCategory(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "has_required_setting": lambda n : setattr(self, 'has_required_setting', n.get_bool_value()),
-            "setting_definitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_setting_definition.DeviceManagementSettingDefinition)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "hasRequiredSetting": lambda n : setattr(self, 'has_required_setting', n.get_bool_value()),
+            "settingDefinitions": lambda n : setattr(self, 'setting_definitions', n.get_collection_of_object_values(device_management_setting_definition.DeviceManagementSettingDefinition)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -80,7 +80,7 @@ class DeviceManagementSettingCategory(entity.Entity):
         """
         Sets the hasRequiredSetting property value. The category contains top level required setting
         Args:
-            value: Value to set for the hasRequiredSetting property.
+            value: Value to set for the has_required_setting property.
         """
         self._has_required_setting = value
     
@@ -110,7 +110,7 @@ class DeviceManagementSettingCategory(entity.Entity):
         """
         Sets the settingDefinitions property value. The setting definitions this category contains
         Args:
-            value: Value to set for the settingDefinitions property.
+            value: Value to set for the setting_definitions property.
         """
         self._setting_definitions = value
     

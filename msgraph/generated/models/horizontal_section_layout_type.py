@@ -1,7 +1,7 @@
 from enum import Enum
 
 class HorizontalSectionLayoutType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     OneColumn = "oneColumn",
     TwoColumns = "twoColumns",
     ThreeColumns = "threeColumns",

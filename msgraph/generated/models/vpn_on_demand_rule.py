@@ -98,7 +98,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the dnsSearchDomains property value. DNS Search Domains.
         Args:
-            value: Value to set for the dnsSearchDomains property.
+            value: Value to set for the dns_search_domains property.
         """
         self._dns_search_domains = value
     
@@ -115,7 +115,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the dnsServerAddressMatch property value. DNS Search Server Address.
         Args:
-            value: Value to set for the dnsServerAddressMatch property.
+            value: Value to set for the dns_server_address_match property.
         """
         self._dns_server_address_match = value
     
@@ -132,7 +132,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the domainAction property value. VPN On-Demand Rule Connection Domain Action.
         Args:
-            value: Value to set for the domainAction property.
+            value: Value to set for the domain_action property.
         """
         self._domain_action = value
     
@@ -160,14 +160,14 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         fields = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(vpn_on_demand_rule_connection_action.VpnOnDemandRuleConnectionAction)),
-            "dns_search_domains": lambda n : setattr(self, 'dns_search_domains', n.get_collection_of_primitive_values(str)),
-            "dns_server_address_match": lambda n : setattr(self, 'dns_server_address_match', n.get_collection_of_primitive_values(str)),
-            "domain_action": lambda n : setattr(self, 'domain_action', n.get_enum_value(vpn_on_demand_rule_connection_domain_action.VpnOnDemandRuleConnectionDomainAction)),
+            "dnsSearchDomains": lambda n : setattr(self, 'dns_search_domains', n.get_collection_of_primitive_values(str)),
+            "dnsServerAddressMatch": lambda n : setattr(self, 'dns_server_address_match', n.get_collection_of_primitive_values(str)),
             "domains": lambda n : setattr(self, 'domains', n.get_collection_of_primitive_values(str)),
-            "interface_type_match": lambda n : setattr(self, 'interface_type_match', n.get_enum_value(vpn_on_demand_rule_interface_type_match.VpnOnDemandRuleInterfaceTypeMatch)),
+            "domainAction": lambda n : setattr(self, 'domain_action', n.get_enum_value(vpn_on_demand_rule_connection_domain_action.VpnOnDemandRuleConnectionDomainAction)),
+            "interfaceTypeMatch": lambda n : setattr(self, 'interface_type_match', n.get_enum_value(vpn_on_demand_rule_interface_type_match.VpnOnDemandRuleInterfaceTypeMatch)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "probe_required_url": lambda n : setattr(self, 'probe_required_url', n.get_str_value()),
-            "probe_url": lambda n : setattr(self, 'probe_url', n.get_str_value()),
+            "probeRequiredUrl": lambda n : setattr(self, 'probe_required_url', n.get_str_value()),
+            "probeUrl": lambda n : setattr(self, 'probe_url', n.get_str_value()),
             "ssids": lambda n : setattr(self, 'ssids', n.get_collection_of_primitive_values(str)),
         }
         return fields
@@ -185,7 +185,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the interfaceTypeMatch property value. VPN On-Demand Rule Connection network interface type.
         Args:
-            value: Value to set for the interfaceTypeMatch property.
+            value: Value to set for the interface_type_match property.
         """
         self._interface_type_match = value
     
@@ -202,7 +202,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -219,7 +219,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the probeRequiredUrl property value. Probe Required Url (Only applicable when Action is evaluate connection and DomainAction is connect if needed).
         Args:
-            value: Value to set for the probeRequiredUrl property.
+            value: Value to set for the probe_required_url property.
         """
         self._probe_required_url = value
     
@@ -236,7 +236,7 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         """
         Sets the probeUrl property value. A URL to probe. If this URL is successfully fetched (returning a 200 HTTP status code) without redirection, this rule matches.
         Args:
-            value: Value to set for the probeUrl property.
+            value: Value to set for the probe_url property.
         """
         self._probe_url = value
     
@@ -251,8 +251,8 @@ class VpnOnDemandRule(AdditionalDataHolder, Parsable):
         writer.write_enum_value("action", self.action)
         writer.write_collection_of_primitive_values("dnsSearchDomains", self.dns_search_domains)
         writer.write_collection_of_primitive_values("dnsServerAddressMatch", self.dns_server_address_match)
-        writer.write_enum_value("domainAction", self.domain_action)
         writer.write_collection_of_primitive_values("domains", self.domains)
+        writer.write_enum_value("domainAction", self.domain_action)
         writer.write_enum_value("interfaceTypeMatch", self.interface_type_match)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_str_value("probeRequiredUrl", self.probe_required_url)

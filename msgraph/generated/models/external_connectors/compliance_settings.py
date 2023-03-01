@@ -60,7 +60,7 @@ class ComplianceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the eDiscoveryResultTemplates property value. Enables the developer to define the appearance of the content and configure conditions that dictate when the template should be displayed. Maximum of two eDiscovery result templates per connection.
         Args:
-            value: Value to set for the eDiscoveryResultTemplates property.
+            value: Value to set for the e_discovery_result_templates property.
         """
         self._e_discovery_result_templates = value
     
@@ -70,7 +70,7 @@ class ComplianceSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "e_discovery_result_templates": lambda n : setattr(self, 'e_discovery_result_templates', n.get_collection_of_object_values(display_template.DisplayTemplate)),
+            "eDiscoveryResultTemplates": lambda n : setattr(self, 'e_discovery_result_templates', n.get_collection_of_object_values(display_template.DisplayTemplate)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -88,7 +88,7 @@ class ComplianceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

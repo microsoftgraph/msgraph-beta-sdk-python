@@ -21,7 +21,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the authenticationType property value. The authenticationType property
         Args:
-            value: Value to set for the authenticationType property.
+            value: Value to set for the authentication_type property.
         """
         self._authentication_type = value
     
@@ -38,7 +38,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the authenticatorFlavor property value. The authenticatorFlavor property
         Args:
-            value: Value to set for the authenticatorFlavor property.
+            value: Value to set for the authenticator_flavor property.
         """
         self._authenticator_flavor = value
     
@@ -105,7 +105,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the deviceId property value. The deviceId property
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -122,7 +122,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the deviceName property value. The deviceName property
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -139,7 +139,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the deviceTag property value. The deviceTag property
         Args:
-            value: Value to set for the deviceTag property.
+            value: Value to set for the device_tag property.
         """
         self._device_tag = value
     
@@ -156,7 +156,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the deviceToken property value. The deviceToken property
         Args:
-            value: Value to set for the deviceToken property.
+            value: Value to set for the device_token property.
         """
         self._device_token = value
     
@@ -166,21 +166,21 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_type": lambda n : setattr(self, 'authentication_type', n.get_str_value()),
-            "authenticator_flavor": lambda n : setattr(self, 'authenticator_flavor', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_tag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
-            "device_token": lambda n : setattr(self, 'device_token', n.get_str_value()),
-            "hash_function": lambda n : setattr(self, 'hash_function', n.get_str_value()),
-            "last_authenticated_date_time": lambda n : setattr(self, 'last_authenticated_date_time', n.get_datetime_value()),
-            "notification_type": lambda n : setattr(self, 'notification_type', n.get_str_value()),
-            "oath_secret_key": lambda n : setattr(self, 'oath_secret_key', n.get_str_value()),
-            "oath_token_metadata": lambda n : setattr(self, 'oath_token_metadata', n.get_object_value(oath_token_metadata.OathTokenMetadata)),
-            "oath_token_time_drift_in_seconds": lambda n : setattr(self, 'oath_token_time_drift_in_seconds', n.get_int_value()),
-            "phone_app_version": lambda n : setattr(self, 'phone_app_version', n.get_str_value()),
-            "tenant_device_id": lambda n : setattr(self, 'tenant_device_id', n.get_str_value()),
-            "token_generation_interval_in_seconds": lambda n : setattr(self, 'token_generation_interval_in_seconds', n.get_int_value()),
+            "authenticationType": lambda n : setattr(self, 'authentication_type', n.get_str_value()),
+            "authenticatorFlavor": lambda n : setattr(self, 'authenticator_flavor', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
+            "deviceToken": lambda n : setattr(self, 'device_token', n.get_str_value()),
+            "hashFunction": lambda n : setattr(self, 'hash_function', n.get_str_value()),
+            "lastAuthenticatedDateTime": lambda n : setattr(self, 'last_authenticated_date_time', n.get_datetime_value()),
+            "notificationType": lambda n : setattr(self, 'notification_type', n.get_str_value()),
+            "oathSecretKey": lambda n : setattr(self, 'oath_secret_key', n.get_str_value()),
+            "oathTokenMetadata": lambda n : setattr(self, 'oath_token_metadata', n.get_object_value(oath_token_metadata.OathTokenMetadata)),
+            "oathTokenTimeDriftInSeconds": lambda n : setattr(self, 'oath_token_time_drift_in_seconds', n.get_int_value()),
+            "phoneAppVersion": lambda n : setattr(self, 'phone_app_version', n.get_str_value()),
+            "tenantDeviceId": lambda n : setattr(self, 'tenant_device_id', n.get_str_value()),
+            "tokenGenerationIntervalInSeconds": lambda n : setattr(self, 'token_generation_interval_in_seconds', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -199,7 +199,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the hashFunction property value. The hashFunction property
         Args:
-            value: Value to set for the hashFunction property.
+            value: Value to set for the hash_function property.
         """
         self._hash_function = value
     
@@ -216,7 +216,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the lastAuthenticatedDateTime property value. The lastAuthenticatedDateTime property
         Args:
-            value: Value to set for the lastAuthenticatedDateTime property.
+            value: Value to set for the last_authenticated_date_time property.
         """
         self._last_authenticated_date_time = value
     
@@ -233,7 +233,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the notificationType property value. The notificationType property
         Args:
-            value: Value to set for the notificationType property.
+            value: Value to set for the notification_type property.
         """
         self._notification_type = value
     
@@ -250,7 +250,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the oathSecretKey property value. The oathSecretKey property
         Args:
-            value: Value to set for the oathSecretKey property.
+            value: Value to set for the oath_secret_key property.
         """
         self._oath_secret_key = value
     
@@ -267,7 +267,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the oathTokenMetadata property value. The oathTokenMetadata property
         Args:
-            value: Value to set for the oathTokenMetadata property.
+            value: Value to set for the oath_token_metadata property.
         """
         self._oath_token_metadata = value
     
@@ -284,7 +284,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the oathTokenTimeDriftInSeconds property value. The oathTokenTimeDriftInSeconds property
         Args:
-            value: Value to set for the oathTokenTimeDriftInSeconds property.
+            value: Value to set for the oath_token_time_drift_in_seconds property.
         """
         self._oath_token_time_drift_in_seconds = value
     
@@ -301,7 +301,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the phoneAppVersion property value. The phoneAppVersion property
         Args:
-            value: Value to set for the phoneAppVersion property.
+            value: Value to set for the phone_app_version property.
         """
         self._phone_app_version = value
     
@@ -343,7 +343,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the tenantDeviceId property value. The tenantDeviceId property
         Args:
-            value: Value to set for the tenantDeviceId property.
+            value: Value to set for the tenant_device_id property.
         """
         self._tenant_device_id = value
     
@@ -360,7 +360,7 @@ class StrongAuthenticationPhoneAppDetail(entity.Entity):
         """
         Sets the tokenGenerationIntervalInSeconds property value. The tokenGenerationIntervalInSeconds property
         Args:
-            value: Value to set for the tokenGenerationIntervalInSeconds property.
+            value: Value to set for the token_generation_interval_in_seconds property.
         """
         self._token_generation_interval_in_seconds = value
     

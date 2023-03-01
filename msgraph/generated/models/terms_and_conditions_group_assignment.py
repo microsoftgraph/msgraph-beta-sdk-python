@@ -40,8 +40,8 @@ class TermsAndConditionsGroupAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "target_group_id": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
-            "terms_and_conditions": lambda n : setattr(self, 'terms_and_conditions', n.get_object_value(terms_and_conditions.TermsAndConditions)),
+            "targetGroupId": lambda n : setattr(self, 'target_group_id', n.get_str_value()),
+            "termsAndConditions": lambda n : setattr(self, 'terms_and_conditions', n.get_object_value(terms_and_conditions.TermsAndConditions)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -72,7 +72,7 @@ class TermsAndConditionsGroupAssignment(entity.Entity):
         """
         Sets the targetGroupId property value. Unique identifier of a group that the T&C policy is assigned to.
         Args:
-            value: Value to set for the targetGroupId property.
+            value: Value to set for the target_group_id property.
         """
         self._target_group_id = value
     
@@ -89,7 +89,7 @@ class TermsAndConditionsGroupAssignment(entity.Entity):
         """
         Sets the termsAndConditions property value. Navigation link to the terms and conditions that are assigned.
         Args:
-            value: Value to set for the termsAndConditions property.
+            value: Value to set for the terms_and_conditions property.
         """
         self._terms_and_conditions = value
     

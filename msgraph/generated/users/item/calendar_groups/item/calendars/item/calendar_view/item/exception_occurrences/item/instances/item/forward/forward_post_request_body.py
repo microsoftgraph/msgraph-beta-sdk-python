@@ -70,8 +70,8 @@ class ForwardPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
-            "to_recipients": lambda n : setattr(self, 'to_recipients', n.get_collection_of_object_values(recipient.Recipient)),
+            "Comment": lambda n : setattr(self, 'comment', n.get_str_value()),
+            "ToRecipients": lambda n : setattr(self, 'to_recipients', n.get_collection_of_object_values(recipient.Recipient)),
         }
         return fields
     
@@ -100,7 +100,7 @@ class ForwardPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the toRecipients property value. The ToRecipients property
         Args:
-            value: Value to set for the ToRecipients property.
+            value: Value to set for the to_recipients property.
         """
         self._to_recipients = value
     

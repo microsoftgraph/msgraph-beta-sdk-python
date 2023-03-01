@@ -83,7 +83,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -94,11 +94,11 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         fields = {
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_object_value(Guid)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recommended_confidence": lambda n : setattr(self, 'recommended_confidence', n.get_int_value()),
-            "unique_count": lambda n : setattr(self, 'unique_count', n.get_int_value()),
+            "recommendedConfidence": lambda n : setattr(self, 'recommended_confidence', n.get_int_value()),
+            "uniqueCount": lambda n : setattr(self, 'unique_count', n.get_int_value()),
         }
         return fields
     
@@ -132,7 +132,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -149,7 +149,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         Sets the recommendedConfidence property value. The recommendedConfidence property
         Args:
-            value: Value to set for the recommendedConfidence property.
+            value: Value to set for the recommended_confidence property.
         """
         self._recommended_confidence = value
     
@@ -182,7 +182,7 @@ class DetectedSensitiveContentBase(AdditionalDataHolder, Parsable):
         """
         Sets the uniqueCount property value. The uniqueCount property
         Args:
-            value: Value to set for the uniqueCount property.
+            value: Value to set for the unique_count property.
         """
         self._unique_count = value
     

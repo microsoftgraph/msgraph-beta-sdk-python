@@ -75,7 +75,7 @@ class CommsApplication(AdditionalDataHolder, Parsable):
         fields = {
             "calls": lambda n : setattr(self, 'calls', n.get_collection_of_object_values(call.Call)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "online_meetings": lambda n : setattr(self, 'online_meetings', n.get_collection_of_object_values(online_meeting.OnlineMeeting)),
+            "onlineMeetings": lambda n : setattr(self, 'online_meetings', n.get_collection_of_object_values(online_meeting.OnlineMeeting)),
         }
         return fields
     
@@ -92,7 +92,7 @@ class CommsApplication(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class CommsApplication(AdditionalDataHolder, Parsable):
         """
         Sets the onlineMeetings property value. The onlineMeetings property
         Args:
-            value: Value to set for the onlineMeetings property.
+            value: Value to set for the online_meetings property.
         """
         self._online_meetings = value
     

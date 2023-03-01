@@ -35,8 +35,8 @@ class RoleMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "role_id": lambda n : setattr(self, 'role_id', n.get_str_value()),
-            "role_template_id": lambda n : setattr(self, 'role_template_id', n.get_str_value()),
+            "roleId": lambda n : setattr(self, 'role_id', n.get_str_value()),
+            "roleTemplateId": lambda n : setattr(self, 'role_template_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class RoleMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
         """
         Sets the roleId property value. The roleId property
         Args:
-            value: Value to set for the roleId property.
+            value: Value to set for the role_id property.
         """
         self._role_id = value
     
@@ -72,7 +72,7 @@ class RoleMembershipGovernanceCriteria(governance_criteria.GovernanceCriteria):
         """
         Sets the roleTemplateId property value. The roleTemplateId property
         Args:
-            value: Value to set for the roleTemplateId property.
+            value: Value to set for the role_template_id property.
         """
         self._role_template_id = value
     

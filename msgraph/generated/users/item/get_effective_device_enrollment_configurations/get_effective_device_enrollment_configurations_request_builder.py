@@ -29,18 +29,17 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/users/{user%2Did}/microsoft.graph.getEffectiveDeviceEnrollmentConfigurations(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}"
+        self.url_template: str = "{+baseurl}/users/{user%2Did}/getEffectiveDeviceEnrollmentConfigurations(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[get_effective_device_enrollment_configurations_response.GetEffectiveDeviceEnrollmentConfigurationsResponse]:
+    async def get(self,request_configuration: Optional[GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> Optional[get_effective_device_enrollment_configurations_response.GetEffectiveDeviceEnrollmentConfigurationsResponse]:
         """
         Invoke function getEffectiveDeviceEnrollmentConfigurations
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[get_effective_device_enrollment_configurations_response.GetEffectiveDeviceEnrollmentConfigurationsResponse]
         """
         request_info = self.to_get_request_information(
@@ -52,7 +51,7 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, get_effective_device_enrollment_configurations_response.GetEffectiveDeviceEnrollmentConfigurationsResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, get_effective_device_enrollment_configurations_response.GetEffectiveDeviceEnrollmentConfigurationsResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[GetEffectiveDeviceEnrollmentConfigurationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -65,7 +64,7 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -130,7 +129,7 @@ class GetEffectiveDeviceEnrollmentConfigurationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

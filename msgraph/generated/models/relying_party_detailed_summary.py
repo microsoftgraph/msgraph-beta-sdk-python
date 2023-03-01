@@ -63,7 +63,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the failedSignInCount property value. Number of failed sign in on Active Directory Federation Service in the period specified.
         Args:
-            value: Value to set for the failedSignInCount property.
+            value: Value to set for the failed_sign_in_count property.
         """
         self._failed_sign_in_count = value
     
@@ -73,17 +73,17 @@ class RelyingPartyDetailedSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_sign_in_count": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
-            "migration_status": lambda n : setattr(self, 'migration_status', n.get_enum_value(migration_status.MigrationStatus)),
-            "migration_validation_details": lambda n : setattr(self, 'migration_validation_details', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "relying_party_id": lambda n : setattr(self, 'relying_party_id', n.get_str_value()),
-            "relying_party_name": lambda n : setattr(self, 'relying_party_name', n.get_str_value()),
-            "reply_urls": lambda n : setattr(self, 'reply_urls', n.get_collection_of_primitive_values(str)),
-            "service_id": lambda n : setattr(self, 'service_id', n.get_str_value()),
-            "sign_in_success_rate": lambda n : setattr(self, 'sign_in_success_rate', n.get_float_value()),
-            "successful_sign_in_count": lambda n : setattr(self, 'successful_sign_in_count', n.get_int_value()),
-            "total_sign_in_count": lambda n : setattr(self, 'total_sign_in_count', n.get_int_value()),
-            "unique_user_count": lambda n : setattr(self, 'unique_user_count', n.get_int_value()),
+            "failedSignInCount": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
+            "migrationStatus": lambda n : setattr(self, 'migration_status', n.get_enum_value(migration_status.MigrationStatus)),
+            "migrationValidationDetails": lambda n : setattr(self, 'migration_validation_details', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "relyingPartyId": lambda n : setattr(self, 'relying_party_id', n.get_str_value()),
+            "relyingPartyName": lambda n : setattr(self, 'relying_party_name', n.get_str_value()),
+            "replyUrls": lambda n : setattr(self, 'reply_urls', n.get_collection_of_primitive_values(str)),
+            "serviceId": lambda n : setattr(self, 'service_id', n.get_str_value()),
+            "signInSuccessRate": lambda n : setattr(self, 'sign_in_success_rate', n.get_float_value()),
+            "successfulSignInCount": lambda n : setattr(self, 'successful_sign_in_count', n.get_int_value()),
+            "totalSignInCount": lambda n : setattr(self, 'total_sign_in_count', n.get_int_value()),
+            "uniqueUserCount": lambda n : setattr(self, 'unique_user_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the migrationStatus property value. The migrationStatus property
         Args:
-            value: Value to set for the migrationStatus property.
+            value: Value to set for the migration_status property.
         """
         self._migration_status = value
     
@@ -119,7 +119,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the migrationValidationDetails property value. Specifies all the validations check done on applications configuration details to evaluate if the application is ready to be moved to Azure AD.
         Args:
-            value: Value to set for the migrationValidationDetails property.
+            value: Value to set for the migration_validation_details property.
         """
         self._migration_validation_details = value
     
@@ -136,7 +136,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the relyingPartyId property value. This identifier is used to identify the relying party to this Federation Service. It is used when issuing claims to the relying party.
         Args:
-            value: Value to set for the relyingPartyId property.
+            value: Value to set for the relying_party_id property.
         """
         self._relying_party_id = value
     
@@ -153,7 +153,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the relyingPartyName property value. Name of application or other entity on the internet that uses an identity provider to authenticate a user who wants to log in.
         Args:
-            value: Value to set for the relyingPartyName property.
+            value: Value to set for the relying_party_name property.
         """
         self._relying_party_name = value
     
@@ -170,7 +170,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the replyUrls property value. Specifies where the relying party expects to receive the token.
         Args:
-            value: Value to set for the replyUrls property.
+            value: Value to set for the reply_urls property.
         """
         self._reply_urls = value
     
@@ -208,7 +208,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the serviceId property value. Uniquely identifies the Active Directory forest.
         Args:
-            value: Value to set for the serviceId property.
+            value: Value to set for the service_id property.
         """
         self._service_id = value
     
@@ -225,7 +225,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the signInSuccessRate property value. Number of successful / (number of successful + number of failed sign ins) on Active Directory Federation Service in the period specified.
         Args:
-            value: Value to set for the signInSuccessRate property.
+            value: Value to set for the sign_in_success_rate property.
         """
         self._sign_in_success_rate = value
     
@@ -242,7 +242,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the successfulSignInCount property value. Number of successful sign ins on Active Directory Federation Service.
         Args:
-            value: Value to set for the successfulSignInCount property.
+            value: Value to set for the successful_sign_in_count property.
         """
         self._successful_sign_in_count = value
     
@@ -259,7 +259,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the totalSignInCount property value. Number of successful + failed sign ins failed sign ins on Active Directory Federation Service in the period specified.
         Args:
-            value: Value to set for the totalSignInCount property.
+            value: Value to set for the total_sign_in_count property.
         """
         self._total_sign_in_count = value
     
@@ -276,7 +276,7 @@ class RelyingPartyDetailedSummary(entity.Entity):
         """
         Sets the uniqueUserCount property value. Number of unique users that have signed into the application.
         Args:
-            value: Value to set for the uniqueUserCount property.
+            value: Value to set for the unique_user_count property.
         """
         self._unique_user_count = value
     

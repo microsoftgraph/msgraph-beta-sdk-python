@@ -60,7 +60,7 @@ class CopyToDefaultContentLocationPostRequestBody(AdditionalDataHolder, Parsable
         """
         Sets the destinationFileName property value. The destinationFileName property
         Args:
-            value: Value to set for the destinationFileName property.
+            value: Value to set for the destination_file_name property.
         """
         self._destination_file_name = value
     
@@ -70,8 +70,8 @@ class CopyToDefaultContentLocationPostRequestBody(AdditionalDataHolder, Parsable
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "destination_file_name": lambda n : setattr(self, 'destination_file_name', n.get_str_value()),
-            "source_file": lambda n : setattr(self, 'source_file', n.get_object_value(item_reference.ItemReference)),
+            "destinationFileName": lambda n : setattr(self, 'destination_file_name', n.get_str_value()),
+            "sourceFile": lambda n : setattr(self, 'source_file', n.get_object_value(item_reference.ItemReference)),
         }
         return fields
     
@@ -100,7 +100,7 @@ class CopyToDefaultContentLocationPostRequestBody(AdditionalDataHolder, Parsable
         """
         Sets the sourceFile property value. The sourceFile property
         Args:
-            value: Value to set for the sourceFile property.
+            value: Value to set for the source_file property.
         """
         self._source_file = value
     

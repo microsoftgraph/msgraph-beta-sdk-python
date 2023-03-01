@@ -44,12 +44,11 @@ class PartnersRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[PartnersRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse]:
+    async def get(self,request_configuration: Optional[PartnersRequestBuilderGetRequestConfiguration] = None) -> Optional[cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse]:
         """
-        Get a list of all partner configurations within a cross-tenant access policy.
+        Get a list of all partner configurations within a cross-tenant access policy. You can also use the `$expand` parameter to list the user synchronization policy for all partner configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class PartnersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner_collection_response.CrossTenantAccessPolicyConfigurationPartnerCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner] = None, request_configuration: Optional[PartnersRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
+    async def post(self,body: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner] = None, request_configuration: Optional[PartnersRequestBuilderPostRequestConfiguration] = None) -> Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]:
         """
         Create a new partner configuration in a cross-tenant access policy.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner]
         """
         if body is None:
@@ -83,11 +81,11 @@ class PartnersRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cross_tenant_access_policy_configuration_partner.CrossTenantAccessPolicyConfigurationPartner, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[PartnersRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get a list of all partner configurations within a cross-tenant access policy.
+        Get a list of all partner configurations within a cross-tenant access policy. You can also use the `$expand` parameter to list the user synchronization policy for all partner configurations.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -96,7 +94,7 @@ class PartnersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class PartnersRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -127,7 +125,7 @@ class PartnersRequestBuilder():
     @dataclass
     class PartnersRequestBuilderGetQueryParameters():
         """
-        Get a list of all partner configurations within a cross-tenant access policy.
+        Get a list of all partner configurations within a cross-tenant access policy. You can also use the `$expand` parameter to list the user synchronization policy for all partner configurations.
         """
         # Include count of items
         count: Optional[bool] = None
@@ -187,7 +185,7 @@ class PartnersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class PartnersRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

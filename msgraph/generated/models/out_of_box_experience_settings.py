@@ -36,10 +36,10 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
 
         # The deviceUsageType property
         self._device_usage_type: Optional[windows_device_usage_type.WindowsDeviceUsageType] = None
-        # If set to true, then the user can't start over with different account, on company sign-in
-        self._hide_escape_link: Optional[bool] = None
         # Show or hide EULA to user
         self._hide_e_u_l_a: Optional[bool] = None
+        # If set to true, then the user can't start over with different account, on company sign-in
+        self._hide_escape_link: Optional[bool] = None
         # Show or hide privacy settings to user
         self._hide_privacy_settings: Optional[bool] = None
         # The OdataType property
@@ -74,7 +74,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the deviceUsageType property value. The deviceUsageType property
         Args:
-            value: Value to set for the deviceUsageType property.
+            value: Value to set for the device_usage_type property.
         """
         self._device_usage_type = value
     
@@ -84,32 +84,15 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_usage_type": lambda n : setattr(self, 'device_usage_type', n.get_enum_value(windows_device_usage_type.WindowsDeviceUsageType)),
-            "hide_escape_link": lambda n : setattr(self, 'hide_escape_link', n.get_bool_value()),
-            "hide_e_u_l_a": lambda n : setattr(self, 'hide_e_u_l_a', n.get_bool_value()),
-            "hide_privacy_settings": lambda n : setattr(self, 'hide_privacy_settings', n.get_bool_value()),
+            "deviceUsageType": lambda n : setattr(self, 'device_usage_type', n.get_enum_value(windows_device_usage_type.WindowsDeviceUsageType)),
+            "hideEscapeLink": lambda n : setattr(self, 'hide_escape_link', n.get_bool_value()),
+            "hideEULA": lambda n : setattr(self, 'hide_e_u_l_a', n.get_bool_value()),
+            "hidePrivacySettings": lambda n : setattr(self, 'hide_privacy_settings', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "skip_keyboard_selection_page": lambda n : setattr(self, 'skip_keyboard_selection_page', n.get_bool_value()),
-            "user_type": lambda n : setattr(self, 'user_type', n.get_enum_value(windows_user_type.WindowsUserType)),
+            "skipKeyboardSelectionPage": lambda n : setattr(self, 'skip_keyboard_selection_page', n.get_bool_value()),
+            "userType": lambda n : setattr(self, 'user_type', n.get_enum_value(windows_user_type.WindowsUserType)),
         }
         return fields
-    
-    @property
-    def hide_escape_link(self,) -> Optional[bool]:
-        """
-        Gets the hideEscapeLink property value. If set to true, then the user can't start over with different account, on company sign-in
-        Returns: Optional[bool]
-        """
-        return self._hide_escape_link
-    
-    @hide_escape_link.setter
-    def hide_escape_link(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the hideEscapeLink property value. If set to true, then the user can't start over with different account, on company sign-in
-        Args:
-            value: Value to set for the hideEscapeLink property.
-        """
-        self._hide_escape_link = value
     
     @property
     def hide_e_u_l_a(self,) -> Optional[bool]:
@@ -124,9 +107,26 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the hideEULA property value. Show or hide EULA to user
         Args:
-            value: Value to set for the hideEULA property.
+            value: Value to set for the hide_e_u_l_a property.
         """
         self._hide_e_u_l_a = value
+    
+    @property
+    def hide_escape_link(self,) -> Optional[bool]:
+        """
+        Gets the hideEscapeLink property value. If set to true, then the user can't start over with different account, on company sign-in
+        Returns: Optional[bool]
+        """
+        return self._hide_escape_link
+    
+    @hide_escape_link.setter
+    def hide_escape_link(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the hideEscapeLink property value. If set to true, then the user can't start over with different account, on company sign-in
+        Args:
+            value: Value to set for the hide_escape_link property.
+        """
+        self._hide_escape_link = value
     
     @property
     def hide_privacy_settings(self,) -> Optional[bool]:
@@ -141,7 +141,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the hidePrivacySettings property value. Show or hide privacy settings to user
         Args:
-            value: Value to set for the hidePrivacySettings property.
+            value: Value to set for the hide_privacy_settings property.
         """
         self._hide_privacy_settings = value
     
@@ -158,7 +158,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -192,7 +192,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the skipKeyboardSelectionPage property value. If set, then skip the keyboard selection page if Language and Region are set
         Args:
-            value: Value to set for the skipKeyboardSelectionPage property.
+            value: Value to set for the skip_keyboard_selection_page property.
         """
         self._skip_keyboard_selection_page = value
     
@@ -209,7 +209,7 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         """
         Sets the userType property value. The userType property
         Args:
-            value: Value to set for the userType property.
+            value: Value to set for the user_type property.
         """
         self._user_type = value
     

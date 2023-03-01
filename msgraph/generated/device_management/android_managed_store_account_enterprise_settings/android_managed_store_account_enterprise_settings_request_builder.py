@@ -10,6 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+add_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.add_apps.add_apps_request_builder')
 approve_apps_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.approve_apps.approve_apps_request_builder')
 complete_signup_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.complete_signup.complete_signup_request_builder')
 create_google_play_web_token_request_builder = lazy_import('msgraph.generated.device_management.android_managed_store_account_enterprise_settings.create_google_play_web_token.create_google_play_web_token_request_builder')
@@ -24,6 +25,13 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
     """
     Provides operations to manage the androidManagedStoreAccountEnterpriseSettings property of the microsoft.graph.deviceManagement entity.
     """
+    @property
+    def add_apps(self) -> add_apps_request_builder.AddAppsRequestBuilder:
+        """
+        Provides operations to call the addApps method.
+        """
+        return add_apps_request_builder.AddAppsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def approve_apps(self) -> approve_apps_request_builder.ApproveAppsRequestBuilder:
         """
@@ -91,12 +99,11 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property androidManagedStoreAccountEnterpriseSettings for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -107,14 +114,13 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def get(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderGetRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
         """
         The singleton Android managed store account enterprise settings entity.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
         """
         request_info = self.to_get_request_information(
@@ -126,15 +132,14 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
-    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
+    async def patch(self,body: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings] = None, request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]:
         """
         Update the navigation property androidManagedStoreAccountEnterpriseSettings in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings]
         """
         if body is None:
@@ -148,7 +153,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, android_managed_store_account_enterprise_settings.AndroidManagedStoreAccountEnterpriseSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AndroidManagedStoreAccountEnterpriseSettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -177,7 +182,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -198,7 +203,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -211,7 +216,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -250,7 +255,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -265,7 +270,7 @@ class AndroidManagedStoreAccountEnterpriseSettingsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

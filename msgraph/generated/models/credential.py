@@ -62,7 +62,7 @@ class Credential(AdditionalDataHolder, Parsable):
         """
         Sets the fieldId property value. The name of the field for this credential. e.g, username or password or phoneNumber. This is defined by the application. Must match what is in the html field on singleSignOnSettings/password object.
         Args:
-            value: Value to set for the fieldId property.
+            value: Value to set for the field_id property.
         """
         self._field_id = value
     
@@ -72,7 +72,7 @@ class Credential(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "field_id": lambda n : setattr(self, 'field_id', n.get_str_value()),
+            "fieldId": lambda n : setattr(self, 'field_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
@@ -92,7 +92,7 @@ class Credential(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

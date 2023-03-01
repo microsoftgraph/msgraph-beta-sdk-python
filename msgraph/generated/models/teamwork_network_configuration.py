@@ -74,7 +74,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the defaultGateway property value. The default gateway is the path used to pass information when the destination is unknown to the device.
         Args:
-            value: Value to set for the defaultGateway property.
+            value: Value to set for the default_gateway property.
         """
         self._default_gateway = value
     
@@ -91,7 +91,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the domainName property value. The network domain of the device, for example, contoso.com.
         Args:
-            value: Value to set for the domainName property.
+            value: Value to set for the domain_name property.
         """
         self._domain_name = value
     
@@ -101,16 +101,16 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_gateway": lambda n : setattr(self, 'default_gateway', n.get_str_value()),
-            "domain_name": lambda n : setattr(self, 'domain_name', n.get_str_value()),
-            "host_name": lambda n : setattr(self, 'host_name', n.get_str_value()),
-            "ip_address": lambda n : setattr(self, 'ip_address', n.get_str_value()),
-            "is_dhcp_enabled": lambda n : setattr(self, 'is_dhcp_enabled', n.get_bool_value()),
-            "is_p_c_port_enabled": lambda n : setattr(self, 'is_p_c_port_enabled', n.get_bool_value()),
+            "defaultGateway": lambda n : setattr(self, 'default_gateway', n.get_str_value()),
+            "domainName": lambda n : setattr(self, 'domain_name', n.get_str_value()),
+            "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
+            "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
+            "isDhcpEnabled": lambda n : setattr(self, 'is_dhcp_enabled', n.get_bool_value()),
+            "isPCPortEnabled": lambda n : setattr(self, 'is_p_c_port_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "primary_dns": lambda n : setattr(self, 'primary_dns', n.get_str_value()),
-            "secondary_dns": lambda n : setattr(self, 'secondary_dns', n.get_str_value()),
-            "subnet_mask": lambda n : setattr(self, 'subnet_mask', n.get_str_value()),
+            "primaryDns": lambda n : setattr(self, 'primary_dns', n.get_str_value()),
+            "secondaryDns": lambda n : setattr(self, 'secondary_dns', n.get_str_value()),
+            "subnetMask": lambda n : setattr(self, 'subnet_mask', n.get_str_value()),
         }
         return fields
     
@@ -127,7 +127,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the hostName property value. The device name on a network.
         Args:
-            value: Value to set for the hostName property.
+            value: Value to set for the host_name property.
         """
         self._host_name = value
     
@@ -144,7 +144,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the ipAddress property value. The IP address is a numerical label that uniquely identifies every device connected to the internet.
         Args:
-            value: Value to set for the ipAddress property.
+            value: Value to set for the ip_address property.
         """
         self._ip_address = value
     
@@ -161,7 +161,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isDhcpEnabled property value. True if DHCP is enabled.
         Args:
-            value: Value to set for the isDhcpEnabled property.
+            value: Value to set for the is_dhcp_enabled property.
         """
         self._is_dhcp_enabled = value
     
@@ -178,7 +178,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the isPCPortEnabled property value. True if the PC port is enabled.
         Args:
-            value: Value to set for the isPCPortEnabled property.
+            value: Value to set for the is_p_c_port_enabled property.
         """
         self._is_p_c_port_enabled = value
     
@@ -195,7 +195,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -212,7 +212,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the primaryDns property value. A primary DNS is the first point of contact for a device that translates the hostname into an IP address.
         Args:
-            value: Value to set for the primaryDns property.
+            value: Value to set for the primary_dns property.
         """
         self._primary_dns = value
     
@@ -229,7 +229,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the secondaryDns property value. A secondary DNS is used when the primary DNS is not available.
         Args:
-            value: Value to set for the secondaryDns property.
+            value: Value to set for the secondary_dns property.
         """
         self._secondary_dns = value
     
@@ -266,7 +266,7 @@ class TeamworkNetworkConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the subnetMask property value. A subnet mask is a number that distinguishes the network address and the host address within an IP address.
         Args:
-            value: Value to set for the subnetMask property.
+            value: Value to set for the subnet_mask property.
         """
         self._subnet_mask = value
     

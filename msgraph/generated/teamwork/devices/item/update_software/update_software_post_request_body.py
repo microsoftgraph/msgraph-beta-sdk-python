@@ -53,8 +53,8 @@ class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "software_type": lambda n : setattr(self, 'software_type', n.get_enum_value(teamwork_software_type.TeamworkSoftwareType)),
-            "software_version": lambda n : setattr(self, 'software_version', n.get_str_value()),
+            "softwareType": lambda n : setattr(self, 'software_type', n.get_enum_value(teamwork_software_type.TeamworkSoftwareType)),
+            "softwareVersion": lambda n : setattr(self, 'software_version', n.get_str_value()),
         }
         return fields
     
@@ -83,7 +83,7 @@ class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the softwareType property value. The softwareType property
         Args:
-            value: Value to set for the softwareType property.
+            value: Value to set for the software_type property.
         """
         self._software_type = value
     
@@ -100,7 +100,7 @@ class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the softwareVersion property value. The softwareVersion property
         Args:
-            value: Value to set for the softwareVersion property.
+            value: Value to set for the software_version property.
         """
         self._software_version = value
     

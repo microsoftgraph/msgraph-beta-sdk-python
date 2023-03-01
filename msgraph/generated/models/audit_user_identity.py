@@ -35,8 +35,8 @@ class AuditUserIdentity(user_identity.UserIdentity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "home_tenant_id": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
-            "home_tenant_name": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
+            "homeTenantId": lambda n : setattr(self, 'home_tenant_id', n.get_str_value()),
+            "homeTenantName": lambda n : setattr(self, 'home_tenant_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -55,7 +55,7 @@ class AuditUserIdentity(user_identity.UserIdentity):
         """
         Sets the homeTenantId property value. For user sign ins, the identifier of the tenant that the user is a member of.
         Args:
-            value: Value to set for the homeTenantId property.
+            value: Value to set for the home_tenant_id property.
         """
         self._home_tenant_id = value
     
@@ -72,7 +72,7 @@ class AuditUserIdentity(user_identity.UserIdentity):
         """
         Sets the homeTenantName property value. For user sign ins, the name of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Azure AD to show the tenant content.
         Args:
-            value: Value to set for the homeTenantName property.
+            value: Value to set for the home_tenant_name property.
         """
         self._home_tenant_name = value
     

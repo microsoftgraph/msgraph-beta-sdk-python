@@ -46,7 +46,7 @@ class ExtractLabelPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the contentInfo property value. The contentInfo property
         Args:
-            value: Value to set for the contentInfo property.
+            value: Value to set for the content_info property.
         """
         self._content_info = value
     
@@ -68,7 +68,7 @@ class ExtractLabelPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_info": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
+            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
         }
         return fields
     

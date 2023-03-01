@@ -47,7 +47,7 @@ class GovernancePolicyTemplate(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -57,7 +57,7 @@ class GovernancePolicyTemplate(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(governance_policy.GovernancePolicy)),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(business_flow_settings.BusinessFlowSettings)),
         }

@@ -45,7 +45,7 @@ class CustomExtensionHandler(entity.Entity):
         """
         Sets the customExtension property value. Indicates which custom workflow extension will be executed at this stage. Nullable. Supports $expand.
         Args:
-            value: Value to set for the customExtension property.
+            value: Value to set for the custom_extension property.
         """
         self._custom_extension = value
     
@@ -55,7 +55,7 @@ class CustomExtensionHandler(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_extension": lambda n : setattr(self, 'custom_extension', n.get_object_value(custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension)),
+            "customExtension": lambda n : setattr(self, 'custom_extension', n.get_object_value(custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension)),
             "stage": lambda n : setattr(self, 'stage', n.get_enum_value(access_package_custom_extension_stage.AccessPackageCustomExtensionStage)),
         }
         super_fields = super().get_field_deserializers()

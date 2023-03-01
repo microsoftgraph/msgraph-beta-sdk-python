@@ -41,7 +41,7 @@ class OnTokenIssuanceStartCustomExtensionHandler(on_token_issuance_start_handler
         """
         Sets the customExtension property value. The customExtension property
         Args:
-            value: Value to set for the customExtension property.
+            value: Value to set for the custom_extension property.
         """
         self._custom_extension = value
     
@@ -51,7 +51,7 @@ class OnTokenIssuanceStartCustomExtensionHandler(on_token_issuance_start_handler
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_extension": lambda n : setattr(self, 'custom_extension', n.get_object_value(on_token_issuance_start_custom_extension.OnTokenIssuanceStartCustomExtension)),
+            "customExtension": lambda n : setattr(self, 'custom_extension', n.get_object_value(on_token_issuance_start_custom_extension.OnTokenIssuanceStartCustomExtension)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

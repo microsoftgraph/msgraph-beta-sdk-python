@@ -54,7 +54,7 @@ class DeviceManagementIntentUserState(entity.Entity):
         """
         Sets the deviceCount property value. Count of Devices that belongs to a user for an intent
         Args:
-            value: Value to set for the deviceCount property.
+            value: Value to set for the device_count property.
         """
         self._device_count = value
     
@@ -64,11 +64,11 @@ class DeviceManagementIntentUserState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_count": lambda n : setattr(self, 'device_count', n.get_int_value()),
-            "last_reported_date_time": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
+            "deviceCount": lambda n : setattr(self, 'device_count', n.get_int_value()),
+            "lastReportedDateTime": lambda n : setattr(self, 'last_reported_date_time', n.get_datetime_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(compliance_status.ComplianceStatus)),
-            "user_name": lambda n : setattr(self, 'user_name', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -87,7 +87,7 @@ class DeviceManagementIntentUserState(entity.Entity):
         """
         Sets the lastReportedDateTime property value. Last modified date time of an intent report
         Args:
-            value: Value to set for the lastReportedDateTime property.
+            value: Value to set for the last_reported_date_time property.
         """
         self._last_reported_date_time = value
     
@@ -136,7 +136,7 @@ class DeviceManagementIntentUserState(entity.Entity):
         """
         Sets the userName property value. The user name that is being reported on a device
         Args:
-            value: Value to set for the userName property.
+            value: Value to set for the user_name property.
         """
         self._user_name = value
     
@@ -153,7 +153,7 @@ class DeviceManagementIntentUserState(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name that is being reported on a device
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

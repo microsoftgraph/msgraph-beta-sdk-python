@@ -52,7 +52,7 @@ class TargetPolicyEndpoints(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "platform_types": lambda n : setattr(self, 'platform_types', n.get_collection_of_primitive_values(str)),
+            "platformTypes": lambda n : setattr(self, 'platform_types', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -69,7 +69,7 @@ class TargetPolicyEndpoints(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -86,7 +86,7 @@ class TargetPolicyEndpoints(AdditionalDataHolder, Parsable):
         """
         Sets the platformTypes property value. Use to filter the notification distribution to a specific platform or platforms. Valid values are Windows, iOS, Android and WebPush. By default, all push endpoint types (Windows, iOS, Android and WebPush) are enabled.
         Args:
-            value: Value to set for the platformTypes property.
+            value: Value to set for the platform_types property.
         """
         self._platform_types = value
     

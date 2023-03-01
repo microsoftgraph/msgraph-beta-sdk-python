@@ -34,7 +34,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the addressableUserName property value. The addressableUserName property
         Args:
-            value: Value to set for the addressableUserName property.
+            value: Value to set for the addressable_user_name property.
         """
         self._addressable_user_name = value
     
@@ -85,7 +85,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceAccountPassword property value. The deviceAccountPassword property
         Args:
-            value: Value to set for the deviceAccountPassword property.
+            value: Value to set for the device_account_password property.
         """
         self._device_account_password = value
     
@@ -102,7 +102,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceAccountUpn property value. The deviceAccountUpn property
         Args:
-            value: Value to set for the deviceAccountUpn property.
+            value: Value to set for the device_account_upn property.
         """
         self._device_account_upn = value
     
@@ -119,7 +119,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceFriendlyName property value. The deviceFriendlyName property
         Args:
-            value: Value to set for the deviceFriendlyName property.
+            value: Value to set for the device_friendly_name property.
         """
         self._device_friendly_name = value
     
@@ -136,7 +136,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -146,13 +146,13 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "addressable_user_name": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
-            "device_account_password": lambda n : setattr(self, 'device_account_password', n.get_str_value()),
-            "device_account_upn": lambda n : setattr(self, 'device_account_upn', n.get_str_value()),
-            "device_friendly_name": lambda n : setattr(self, 'device_friendly_name', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "group_tag": lambda n : setattr(self, 'group_tag', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "addressableUserName": lambda n : setattr(self, 'addressable_user_name', n.get_str_value()),
+            "deviceAccountPassword": lambda n : setattr(self, 'device_account_password', n.get_str_value()),
+            "deviceAccountUpn": lambda n : setattr(self, 'device_account_upn', n.get_str_value()),
+            "deviceFriendlyName": lambda n : setattr(self, 'device_friendly_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "groupTag": lambda n : setattr(self, 'group_tag', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -169,7 +169,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupTag property value. The groupTag property
         Args:
-            value: Value to set for the groupTag property.
+            value: Value to set for the group_tag property.
         """
         self._group_tag = value
     
@@ -203,7 +203,7 @@ class UpdateDevicePropertiesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the userPrincipalName property value. The userPrincipalName property
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

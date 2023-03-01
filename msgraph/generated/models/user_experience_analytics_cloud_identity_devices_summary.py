@@ -61,7 +61,7 @@ class UserExperienceAnalyticsCloudIdentityDevicesSummary(AdditionalDataHolder, P
         """
         Sets the deviceWithoutCloudIdentityCount property value. The count of devices that are not cloud identity.
         Args:
-            value: Value to set for the deviceWithoutCloudIdentityCount property.
+            value: Value to set for the device_without_cloud_identity_count property.
         """
         self._device_without_cloud_identity_count = value
     
@@ -71,7 +71,7 @@ class UserExperienceAnalyticsCloudIdentityDevicesSummary(AdditionalDataHolder, P
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_without_cloud_identity_count": lambda n : setattr(self, 'device_without_cloud_identity_count', n.get_int_value()),
+            "deviceWithoutCloudIdentityCount": lambda n : setattr(self, 'device_without_cloud_identity_count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -89,7 +89,7 @@ class UserExperienceAnalyticsCloudIdentityDevicesSummary(AdditionalDataHolder, P
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

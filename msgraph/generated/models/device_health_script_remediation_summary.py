@@ -57,8 +57,8 @@ class DeviceHealthScriptRemediationSummary(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "remediated_device_count": lambda n : setattr(self, 'remediated_device_count', n.get_int_value()),
-            "script_count": lambda n : setattr(self, 'script_count', n.get_int_value()),
+            "remediatedDeviceCount": lambda n : setattr(self, 'remediated_device_count', n.get_int_value()),
+            "scriptCount": lambda n : setattr(self, 'script_count', n.get_int_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class DeviceHealthScriptRemediationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -92,7 +92,7 @@ class DeviceHealthScriptRemediationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the remediatedDeviceCount property value. The number of devices remediated by device health scripts.
         Args:
-            value: Value to set for the remediatedDeviceCount property.
+            value: Value to set for the remediated_device_count property.
         """
         self._remediated_device_count = value
     
@@ -109,7 +109,7 @@ class DeviceHealthScriptRemediationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the scriptCount property value. The number of device health scripts deployed.
         Args:
-            value: Value to set for the scriptCount property.
+            value: Value to set for the script_count property.
         """
         self._script_count = value
     

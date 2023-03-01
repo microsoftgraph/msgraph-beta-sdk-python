@@ -20,7 +20,7 @@ class AccessPackageResourceScope(entity.Entity):
         """
         Sets the accessPackageResource property value. The accessPackageResource property
         Args:
-            value: Value to set for the accessPackageResource property.
+            value: Value to set for the access_package_resource property.
         """
         self._access_package_resource = value
     
@@ -90,7 +90,7 @@ class AccessPackageResourceScope(entity.Entity):
         """
         Sets the displayName property value. The display name of the scope.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -100,13 +100,13 @@ class AccessPackageResourceScope(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_resource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
+            "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_root_scope": lambda n : setattr(self, 'is_root_scope', n.get_bool_value()),
-            "origin_id": lambda n : setattr(self, 'origin_id', n.get_str_value()),
-            "origin_system": lambda n : setattr(self, 'origin_system', n.get_str_value()),
-            "role_origin_id": lambda n : setattr(self, 'role_origin_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isRootScope": lambda n : setattr(self, 'is_root_scope', n.get_bool_value()),
+            "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
+            "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
+            "roleOriginId": lambda n : setattr(self, 'role_origin_id', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -126,7 +126,7 @@ class AccessPackageResourceScope(entity.Entity):
         """
         Sets the isRootScope property value. True if the scopes are arranged in a hierarchy and this is the top or root scope of the resource.
         Args:
-            value: Value to set for the isRootScope property.
+            value: Value to set for the is_root_scope property.
         """
         self._is_root_scope = value
     
@@ -143,7 +143,7 @@ class AccessPackageResourceScope(entity.Entity):
         """
         Sets the originId property value. The unique identifier for the scope in the resource as defined in the origin system.
         Args:
-            value: Value to set for the originId property.
+            value: Value to set for the origin_id property.
         """
         self._origin_id = value
     
@@ -160,7 +160,7 @@ class AccessPackageResourceScope(entity.Entity):
         """
         Sets the originSystem property value. The origin system for the scope.
         Args:
-            value: Value to set for the originSystem property.
+            value: Value to set for the origin_system property.
         """
         self._origin_system = value
     
@@ -177,7 +177,7 @@ class AccessPackageResourceScope(entity.Entity):
         """
         Sets the roleOriginId property value. The origin system for the role, if different.
         Args:
-            value: Value to set for the roleOriginId property.
+            value: Value to set for the role_origin_id property.
         """
         self._role_origin_id = value
     

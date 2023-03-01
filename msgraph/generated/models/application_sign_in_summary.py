@@ -19,7 +19,7 @@ class ApplicationSignInSummary(entity.Entity):
         """
         Sets the appDisplayName property value. Name of the application that the user signed into.
         Args:
-            value: Value to set for the appDisplayName property.
+            value: Value to set for the app_display_name property.
         """
         self._app_display_name = value
     
@@ -34,10 +34,10 @@ class ApplicationSignInSummary(entity.Entity):
         self._failed_sign_in_count: Optional[int] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # Count of successful sign-ins made by the application.
-        self._successful_sign_in_count: Optional[int] = None
         # Percentage of successful sign-ins made by the application.
         self._success_percentage: Optional[float] = None
+        # Count of successful sign-ins made by the application.
+        self._successful_sign_in_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplicationSignInSummary:
@@ -64,7 +64,7 @@ class ApplicationSignInSummary(entity.Entity):
         """
         Sets the failedSignInCount property value. Count of failed sign-ins made by the application.
         Args:
-            value: Value to set for the failedSignInCount property.
+            value: Value to set for the failed_sign_in_count property.
         """
         self._failed_sign_in_count = value
     
@@ -74,10 +74,10 @@ class ApplicationSignInSummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_display_name": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
-            "failed_sign_in_count": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
-            "successful_sign_in_count": lambda n : setattr(self, 'successful_sign_in_count', n.get_int_value()),
-            "success_percentage": lambda n : setattr(self, 'success_percentage', n.get_float_value()),
+            "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
+            "failedSignInCount": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
+            "successfulSignInCount": lambda n : setattr(self, 'successful_sign_in_count', n.get_int_value()),
+            "successPercentage": lambda n : setattr(self, 'success_percentage', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -98,23 +98,6 @@ class ApplicationSignInSummary(entity.Entity):
         writer.write_float_value("successPercentage", self.success_percentage)
     
     @property
-    def successful_sign_in_count(self,) -> Optional[int]:
-        """
-        Gets the successfulSignInCount property value. Count of successful sign-ins made by the application.
-        Returns: Optional[int]
-        """
-        return self._successful_sign_in_count
-    
-    @successful_sign_in_count.setter
-    def successful_sign_in_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the successfulSignInCount property value. Count of successful sign-ins made by the application.
-        Args:
-            value: Value to set for the successfulSignInCount property.
-        """
-        self._successful_sign_in_count = value
-    
-    @property
     def success_percentage(self,) -> Optional[float]:
         """
         Gets the successPercentage property value. Percentage of successful sign-ins made by the application.
@@ -127,8 +110,25 @@ class ApplicationSignInSummary(entity.Entity):
         """
         Sets the successPercentage property value. Percentage of successful sign-ins made by the application.
         Args:
-            value: Value to set for the successPercentage property.
+            value: Value to set for the success_percentage property.
         """
         self._success_percentage = value
+    
+    @property
+    def successful_sign_in_count(self,) -> Optional[int]:
+        """
+        Gets the successfulSignInCount property value. Count of successful sign-ins made by the application.
+        Returns: Optional[int]
+        """
+        return self._successful_sign_in_count
+    
+    @successful_sign_in_count.setter
+    def successful_sign_in_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the successfulSignInCount property value. Count of successful sign-ins made by the application.
+        Args:
+            value: Value to set for the successful_sign_in_count property.
+        """
+        self._successful_sign_in_count = value
     
 

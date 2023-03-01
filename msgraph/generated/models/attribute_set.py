@@ -54,7 +54,7 @@ class AttributeSet(entity.Entity):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "max_attributes_per_set": lambda n : setattr(self, 'max_attributes_per_set', n.get_int_value()),
+            "maxAttributesPerSet": lambda n : setattr(self, 'max_attributes_per_set', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -73,7 +73,7 @@ class AttributeSet(entity.Entity):
         """
         Sets the maxAttributesPerSet property value. Maximum number of custom security attributes that can be defined in this attribute set. Default value is null. If not specified, the administrator can add up to the maximum of 500 active attributes per tenant. Can be changed later.
         Args:
-            value: Value to set for the maxAttributesPerSet property.
+            value: Value to set for the max_attributes_per_set property.
         """
         self._max_attributes_per_set = value
     

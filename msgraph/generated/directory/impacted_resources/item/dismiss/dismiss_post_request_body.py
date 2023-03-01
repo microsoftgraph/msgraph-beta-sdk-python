@@ -56,7 +56,7 @@ class DismissPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the dismissReason property value. The dismissReason property
         Args:
-            value: Value to set for the dismissReason property.
+            value: Value to set for the dismiss_reason property.
         """
         self._dismiss_reason = value
     
@@ -66,7 +66,7 @@ class DismissPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "dismiss_reason": lambda n : setattr(self, 'dismiss_reason', n.get_str_value()),
+            "dismissReason": lambda n : setattr(self, 'dismiss_reason', n.get_str_value()),
         }
         return fields
     

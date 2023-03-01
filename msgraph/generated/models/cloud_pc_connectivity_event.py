@@ -70,7 +70,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         """
         Sets the eventDateTime property value. Indicates the date and time when this event was created. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the eventDateTime property.
+            value: Value to set for the event_date_time property.
         """
         self._event_date_time = value
     
@@ -87,7 +87,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         """
         Sets the eventName property value. Name of the event.
         Args:
-            value: Value to set for the eventName property.
+            value: Value to set for the event_name property.
         """
         self._event_name = value
     
@@ -104,7 +104,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         """
         Sets the eventResult property value. The eventResult property
         Args:
-            value: Value to set for the eventResult property.
+            value: Value to set for the event_result property.
         """
         self._event_result = value
     
@@ -121,7 +121,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         """
         Sets the eventType property value. The eventType property
         Args:
-            value: Value to set for the eventType property.
+            value: Value to set for the event_type property.
         """
         self._event_type = value
     
@@ -131,10 +131,10 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "event_date_time": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "event_name": lambda n : setattr(self, 'event_name', n.get_str_value()),
-            "event_result": lambda n : setattr(self, 'event_result', n.get_enum_value(cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult)),
-            "event_type": lambda n : setattr(self, 'event_type', n.get_enum_value(cloud_pc_connectivity_event_type.CloudPcConnectivityEventType)),
+            "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
+            "eventName": lambda n : setattr(self, 'event_name', n.get_str_value()),
+            "eventResult": lambda n : setattr(self, 'event_result', n.get_enum_value(cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult)),
+            "eventType": lambda n : setattr(self, 'event_type', n.get_enum_value(cloud_pc_connectivity_event_type.CloudPcConnectivityEventType)),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -170,7 +170,7 @@ class CloudPcConnectivityEvent(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -13,23 +13,6 @@ sales_order_line = lazy_import('msgraph.generated.models.sales_order_line')
 
 class SalesOrder(entity.Entity):
     @property
-    def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the billingPostalAddress property value. The billingPostalAddress property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._billing_postal_address
-    
-    @billing_postal_address.setter
-    def billing_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the billingPostalAddress property value. The billingPostalAddress property
-        Args:
-            value: Value to set for the billingPostalAddress property.
-        """
-        self._billing_postal_address = value
-    
-    @property
     def bill_to_customer_id(self,) -> Optional[Guid]:
         """
         Gets the billToCustomerId property value. The billToCustomerId property
@@ -42,7 +25,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the billToCustomerId property value. The billToCustomerId property
         Args:
-            value: Value to set for the billToCustomerId property.
+            value: Value to set for the bill_to_customer_id property.
         """
         self._bill_to_customer_id = value
     
@@ -59,7 +42,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the billToCustomerNumber property value. The billToCustomerNumber property
         Args:
-            value: Value to set for the billToCustomerNumber property.
+            value: Value to set for the bill_to_customer_number property.
         """
         self._bill_to_customer_number = value
     
@@ -76,23 +59,40 @@ class SalesOrder(entity.Entity):
         """
         Sets the billToName property value. The billToName property
         Args:
-            value: Value to set for the billToName property.
+            value: Value to set for the bill_to_name property.
         """
         self._bill_to_name = value
+    
+    @property
+    def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the billingPostalAddress property value. The billingPostalAddress property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._billing_postal_address
+    
+    @billing_postal_address.setter
+    def billing_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the billingPostalAddress property value. The billingPostalAddress property
+        Args:
+            value: Value to set for the billing_postal_address property.
+        """
+        self._billing_postal_address = value
     
     def __init__(self,) -> None:
         """
         Instantiates a new salesOrder and sets the default values.
         """
         super().__init__()
-        # The billingPostalAddress property
-        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The billToCustomerId property
         self._bill_to_customer_id: Optional[Guid] = None
         # The billToCustomerNumber property
         self._bill_to_customer_number: Optional[str] = None
         # The billToName property
         self._bill_to_name: Optional[str] = None
+        # The billingPostalAddress property
+        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The currency property
         self._currency: Optional[currency.Currency] = None
         # The currencyCode property
@@ -143,12 +143,12 @@ class SalesOrder(entity.Entity):
         self._salesperson: Optional[str] = None
         # The sellingPostalAddress property
         self._selling_postal_address: Optional[postal_address_type.PostalAddressType] = None
-        # The shippingPostalAddress property
-        self._shipping_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The shipToContact property
         self._ship_to_contact: Optional[str] = None
         # The shipToName property
         self._ship_to_name: Optional[str] = None
+        # The shippingPostalAddress property
+        self._shipping_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The status property
         self._status: Optional[str] = None
         # The totalAmountExcludingTax property
@@ -200,7 +200,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the currencyCode property value. The currencyCode property
         Args:
-            value: Value to set for the currencyCode property.
+            value: Value to set for the currency_code property.
         """
         self._currency_code = value
     
@@ -217,7 +217,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the currencyId property value. The currencyId property
         Args:
-            value: Value to set for the currencyId property.
+            value: Value to set for the currency_id property.
         """
         self._currency_id = value
     
@@ -251,7 +251,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the customerId property value. The customerId property
         Args:
-            value: Value to set for the customerId property.
+            value: Value to set for the customer_id property.
         """
         self._customer_id = value
     
@@ -268,7 +268,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the customerName property value. The customerName property
         Args:
-            value: Value to set for the customerName property.
+            value: Value to set for the customer_name property.
         """
         self._customer_name = value
     
@@ -285,7 +285,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the customerNumber property value. The customerNumber property
         Args:
-            value: Value to set for the customerNumber property.
+            value: Value to set for the customer_number property.
         """
         self._customer_number = value
     
@@ -302,7 +302,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the discountAmount property value. The discountAmount property
         Args:
-            value: Value to set for the discountAmount property.
+            value: Value to set for the discount_amount property.
         """
         self._discount_amount = value
     
@@ -319,7 +319,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the discountAppliedBeforeTax property value. The discountAppliedBeforeTax property
         Args:
-            value: Value to set for the discountAppliedBeforeTax property.
+            value: Value to set for the discount_applied_before_tax property.
         """
         self._discount_applied_before_tax = value
     
@@ -353,7 +353,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the externalDocumentNumber property value. The externalDocumentNumber property
         Args:
-            value: Value to set for the externalDocumentNumber property.
+            value: Value to set for the external_document_number property.
         """
         self._external_document_number = value
     
@@ -370,7 +370,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the fullyShipped property value. The fullyShipped property
         Args:
-            value: Value to set for the fullyShipped property.
+            value: Value to set for the fully_shipped property.
         """
         self._fully_shipped = value
     
@@ -380,41 +380,41 @@ class SalesOrder(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "billing_postal_address": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "bill_to_customer_id": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
-            "bill_to_customer_number": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
-            "bill_to_name": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
+            "billingPostalAddress": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
+            "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
+            "billToName": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
-            "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
+            "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
+            "currencyId": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
-            "customer_name": lambda n : setattr(self, 'customer_name', n.get_str_value()),
-            "customer_number": lambda n : setattr(self, 'customer_number', n.get_str_value()),
-            "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
-            "discount_applied_before_tax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "customerName": lambda n : setattr(self, 'customer_name', n.get_str_value()),
+            "customerNumber": lambda n : setattr(self, 'customer_number', n.get_str_value()),
+            "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
+            "discountAppliedBeforeTax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "external_document_number": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
-            "fully_shipped": lambda n : setattr(self, 'fully_shipped', n.get_bool_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "externalDocumentNumber": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
+            "fullyShipped": lambda n : setattr(self, 'fully_shipped', n.get_bool_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "order_date": lambda n : setattr(self, 'order_date', n.get_object_value(Date)),
-            "partial_shipping": lambda n : setattr(self, 'partial_shipping', n.get_bool_value()),
-            "payment_term": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
-            "prices_include_tax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
-            "requested_delivery_date": lambda n : setattr(self, 'requested_delivery_date', n.get_object_value(Date)),
-            "sales_order_lines": lambda n : setattr(self, 'sales_order_lines', n.get_collection_of_object_values(sales_order_line.SalesOrderLine)),
+            "orderDate": lambda n : setattr(self, 'order_date', n.get_object_value(Date)),
+            "partialShipping": lambda n : setattr(self, 'partial_shipping', n.get_bool_value()),
+            "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
+            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "pricesIncludeTax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
+            "requestedDeliveryDate": lambda n : setattr(self, 'requested_delivery_date', n.get_object_value(Date)),
             "salesperson": lambda n : setattr(self, 'salesperson', n.get_str_value()),
-            "selling_postal_address": lambda n : setattr(self, 'selling_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "shipping_postal_address": lambda n : setattr(self, 'shipping_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "ship_to_contact": lambda n : setattr(self, 'ship_to_contact', n.get_str_value()),
-            "ship_to_name": lambda n : setattr(self, 'ship_to_name', n.get_str_value()),
+            "salesOrderLines": lambda n : setattr(self, 'sales_order_lines', n.get_collection_of_object_values(sales_order_line.SalesOrderLine)),
+            "sellingPostalAddress": lambda n : setattr(self, 'selling_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "shippingPostalAddress": lambda n : setattr(self, 'shipping_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "shipToContact": lambda n : setattr(self, 'ship_to_contact', n.get_str_value()),
+            "shipToName": lambda n : setattr(self, 'ship_to_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "total_amount_excluding_tax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
-            "total_amount_including_tax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
-            "total_tax_amount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
+            "totalAmountExcludingTax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
+            "totalAmountIncludingTax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
+            "totalTaxAmount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -433,7 +433,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -467,7 +467,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the orderDate property value. The orderDate property
         Args:
-            value: Value to set for the orderDate property.
+            value: Value to set for the order_date property.
         """
         self._order_date = value
     
@@ -484,7 +484,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the partialShipping property value. The partialShipping property
         Args:
-            value: Value to set for the partialShipping property.
+            value: Value to set for the partial_shipping property.
         """
         self._partial_shipping = value
     
@@ -501,7 +501,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the paymentTerm property value. The paymentTerm property
         Args:
-            value: Value to set for the paymentTerm property.
+            value: Value to set for the payment_term property.
         """
         self._payment_term = value
     
@@ -518,7 +518,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
-            value: Value to set for the paymentTermsId property.
+            value: Value to set for the payment_terms_id property.
         """
         self._payment_terms_id = value
     
@@ -535,7 +535,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the phoneNumber property value. The phoneNumber property
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -552,7 +552,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the pricesIncludeTax property value. The pricesIncludeTax property
         Args:
-            value: Value to set for the pricesIncludeTax property.
+            value: Value to set for the prices_include_tax property.
         """
         self._prices_include_tax = value
     
@@ -569,7 +569,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the requestedDeliveryDate property value. The requestedDeliveryDate property
         Args:
-            value: Value to set for the requestedDeliveryDate property.
+            value: Value to set for the requested_delivery_date property.
         """
         self._requested_delivery_date = value
     
@@ -586,7 +586,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the salesOrderLines property value. The salesOrderLines property
         Args:
-            value: Value to set for the salesOrderLines property.
+            value: Value to set for the sales_order_lines property.
         """
         self._sales_order_lines = value
     
@@ -620,7 +620,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the sellingPostalAddress property value. The sellingPostalAddress property
         Args:
-            value: Value to set for the sellingPostalAddress property.
+            value: Value to set for the selling_postal_address property.
         """
         self._selling_postal_address = value
     
@@ -658,8 +658,8 @@ class SalesOrder(entity.Entity):
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_bool_value("pricesIncludeTax", self.prices_include_tax)
         writer.write_object_value("requestedDeliveryDate", self.requested_delivery_date)
-        writer.write_collection_of_object_values("salesOrderLines", self.sales_order_lines)
         writer.write_str_value("salesperson", self.salesperson)
+        writer.write_collection_of_object_values("salesOrderLines", self.sales_order_lines)
         writer.write_object_value("sellingPostalAddress", self.selling_postal_address)
         writer.write_object_value("shippingPostalAddress", self.shipping_postal_address)
         writer.write_str_value("shipToContact", self.ship_to_contact)
@@ -668,23 +668,6 @@ class SalesOrder(entity.Entity):
         writer.write_float_value("totalAmountExcludingTax", self.total_amount_excluding_tax)
         writer.write_float_value("totalAmountIncludingTax", self.total_amount_including_tax)
         writer.write_float_value("totalTaxAmount", self.total_tax_amount)
-    
-    @property
-    def shipping_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the shippingPostalAddress property value. The shippingPostalAddress property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._shipping_postal_address
-    
-    @shipping_postal_address.setter
-    def shipping_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the shippingPostalAddress property value. The shippingPostalAddress property
-        Args:
-            value: Value to set for the shippingPostalAddress property.
-        """
-        self._shipping_postal_address = value
     
     @property
     def ship_to_contact(self,) -> Optional[str]:
@@ -699,7 +682,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the shipToContact property value. The shipToContact property
         Args:
-            value: Value to set for the shipToContact property.
+            value: Value to set for the ship_to_contact property.
         """
         self._ship_to_contact = value
     
@@ -716,9 +699,26 @@ class SalesOrder(entity.Entity):
         """
         Sets the shipToName property value. The shipToName property
         Args:
-            value: Value to set for the shipToName property.
+            value: Value to set for the ship_to_name property.
         """
         self._ship_to_name = value
+    
+    @property
+    def shipping_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the shippingPostalAddress property value. The shippingPostalAddress property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._shipping_postal_address
+    
+    @shipping_postal_address.setter
+    def shipping_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the shippingPostalAddress property value. The shippingPostalAddress property
+        Args:
+            value: Value to set for the shipping_postal_address property.
+        """
+        self._shipping_postal_address = value
     
     @property
     def status(self,) -> Optional[str]:
@@ -750,7 +750,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the totalAmountExcludingTax property value. The totalAmountExcludingTax property
         Args:
-            value: Value to set for the totalAmountExcludingTax property.
+            value: Value to set for the total_amount_excluding_tax property.
         """
         self._total_amount_excluding_tax = value
     
@@ -767,7 +767,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the totalAmountIncludingTax property value. The totalAmountIncludingTax property
         Args:
-            value: Value to set for the totalAmountIncludingTax property.
+            value: Value to set for the total_amount_including_tax property.
         """
         self._total_amount_including_tax = value
     
@@ -784,7 +784,7 @@ class SalesOrder(entity.Entity):
         """
         Sets the totalTaxAmount property value. The totalTaxAmount property
         Args:
-            value: Value to set for the totalTaxAmount property.
+            value: Value to set for the total_tax_amount property.
         """
         self._total_tax_amount = value
     

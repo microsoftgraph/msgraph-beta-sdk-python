@@ -54,7 +54,7 @@ class VpnProxyServer(AdditionalDataHolder, Parsable):
         """
         Sets the automaticConfigurationScriptUrl property value. Proxy's automatic configuration script url.
         Args:
-            value: Value to set for the automaticConfigurationScriptUrl property.
+            value: Value to set for the automatic_configuration_script_url property.
         """
         self._automatic_configuration_script_url = value
     
@@ -93,7 +93,7 @@ class VpnProxyServer(AdditionalDataHolder, Parsable):
         """
         fields = {
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
-            "automatic_configuration_script_url": lambda n : setattr(self, 'automatic_configuration_script_url', n.get_str_value()),
+            "automaticConfigurationScriptUrl": lambda n : setattr(self, 'automatic_configuration_script_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
         }
@@ -112,7 +112,7 @@ class VpnProxyServer(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -54,7 +54,7 @@ class SearchSettings(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "search_result_templates": lambda n : setattr(self, 'search_result_templates', n.get_collection_of_object_values(display_template.DisplayTemplate)),
+            "searchResultTemplates": lambda n : setattr(self, 'search_result_templates', n.get_collection_of_object_values(display_template.DisplayTemplate)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class SearchSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -88,7 +88,7 @@ class SearchSettings(AdditionalDataHolder, Parsable):
         """
         Sets the searchResultTemplates property value. Enables the developer to define the appearance of the content and configure conditions that dictate when the template should be displayed. Maximum of 2 search result templates per connection.
         Args:
-            value: Value to set for the searchResultTemplates property.
+            value: Value to set for the search_result_templates property.
         """
         self._search_result_templates = value
     

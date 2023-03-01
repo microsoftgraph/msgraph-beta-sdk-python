@@ -40,7 +40,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the alertType property value. Notification Settings Alert Type.
         Args:
-            value: Value to set for the alertType property.
+            value: Value to set for the alert_type property.
         """
         self._alert_type = value
     
@@ -57,7 +57,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the appName property value. Application name to be associated with the bundleID.
         Args:
-            value: Value to set for the appName property.
+            value: Value to set for the app_name property.
         """
         self._app_name = value
     
@@ -74,7 +74,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the badgesEnabled property value. Indicates whether badges are allowed for this app.
         Args:
-            value: Value to set for the badgesEnabled property.
+            value: Value to set for the badges_enabled property.
         """
         self._badges_enabled = value
     
@@ -91,7 +91,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the bundleID property value. Bundle id of app to which to apply these notification settings.
         Args:
-            value: Value to set for the bundleID property.
+            value: Value to set for the bundle_i_d property.
         """
         self._bundle_i_d = value
     
@@ -160,17 +160,17 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alert_type": lambda n : setattr(self, 'alert_type', n.get_enum_value(ios_notification_alert_type.IosNotificationAlertType)),
-            "app_name": lambda n : setattr(self, 'app_name', n.get_str_value()),
-            "badges_enabled": lambda n : setattr(self, 'badges_enabled', n.get_bool_value()),
-            "bundle_i_d": lambda n : setattr(self, 'bundle_i_d', n.get_str_value()),
+            "alertType": lambda n : setattr(self, 'alert_type', n.get_enum_value(ios_notification_alert_type.IosNotificationAlertType)),
+            "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
+            "badgesEnabled": lambda n : setattr(self, 'badges_enabled', n.get_bool_value()),
+            "bundleID": lambda n : setattr(self, 'bundle_i_d', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "preview_visibility": lambda n : setattr(self, 'preview_visibility', n.get_enum_value(ios_notification_preview_visibility.IosNotificationPreviewVisibility)),
+            "previewVisibility": lambda n : setattr(self, 'preview_visibility', n.get_enum_value(ios_notification_preview_visibility.IosNotificationPreviewVisibility)),
             "publisher": lambda n : setattr(self, 'publisher', n.get_str_value()),
-            "show_in_notification_center": lambda n : setattr(self, 'show_in_notification_center', n.get_bool_value()),
-            "show_on_lock_screen": lambda n : setattr(self, 'show_on_lock_screen', n.get_bool_value()),
-            "sounds_enabled": lambda n : setattr(self, 'sounds_enabled', n.get_bool_value()),
+            "showInNotificationCenter": lambda n : setattr(self, 'show_in_notification_center', n.get_bool_value()),
+            "showOnLockScreen": lambda n : setattr(self, 'show_on_lock_screen', n.get_bool_value()),
+            "soundsEnabled": lambda n : setattr(self, 'sounds_enabled', n.get_bool_value()),
         }
         return fields
     
@@ -187,7 +187,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -204,7 +204,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the previewVisibility property value. Determines when notification previews are visible on an iOS device. Previews can include things like text (from Messages and Mail) and invitation details (from Calendar). When configured, it will override the user's defined preview settings.
         Args:
-            value: Value to set for the previewVisibility property.
+            value: Value to set for the preview_visibility property.
         """
         self._preview_visibility = value
     
@@ -259,7 +259,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the showInNotificationCenter property value. Indicates whether notifications can be shown in notification center.
         Args:
-            value: Value to set for the showInNotificationCenter property.
+            value: Value to set for the show_in_notification_center property.
         """
         self._show_in_notification_center = value
     
@@ -276,7 +276,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the showOnLockScreen property value. Indicates whether notifications can be shown on the lock screen.
         Args:
-            value: Value to set for the showOnLockScreen property.
+            value: Value to set for the show_on_lock_screen property.
         """
         self._show_on_lock_screen = value
     
@@ -293,7 +293,7 @@ class IosNotificationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the soundsEnabled property value. Indicates whether sounds are allowed for this app.
         Args:
-            value: Value to set for the soundsEnabled property.
+            value: Value to set for the sounds_enabled property.
         """
         self._sounds_enabled = value
     

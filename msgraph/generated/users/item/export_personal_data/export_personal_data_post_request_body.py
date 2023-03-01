@@ -49,7 +49,7 @@ class ExportPersonalDataPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "storage_location": lambda n : setattr(self, 'storage_location', n.get_str_value()),
+            "storageLocation": lambda n : setattr(self, 'storage_location', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class ExportPersonalDataPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the storageLocation property value. The storageLocation property
         Args:
-            value: Value to set for the storageLocation property.
+            value: Value to set for the storage_location property.
         """
         self._storage_location = value
     

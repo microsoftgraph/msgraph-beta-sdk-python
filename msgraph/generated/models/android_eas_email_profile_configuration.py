@@ -26,7 +26,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the accountName property value. Exchange ActiveSync account name, displayed to users as name of EAS (this) profile.
         Args:
-            value: Value to set for the accountName property.
+            value: Value to set for the account_name property.
         """
         self._account_name = value
     
@@ -43,7 +43,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the authenticationMethod property value. Exchange Active Sync authentication method.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -113,7 +113,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the customDomainName property value. Custom domain name value used while generating an email profile before installing on the device.
         Args:
-            value: Value to set for the customDomainName property.
+            value: Value to set for the custom_domain_name property.
         """
         self._custom_domain_name = value
     
@@ -130,7 +130,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the durationOfEmailToSync property value. Possible values for email sync duration.
         Args:
-            value: Value to set for the durationOfEmailToSync property.
+            value: Value to set for the duration_of_email_to_sync property.
         """
         self._duration_of_email_to_sync = value
     
@@ -147,7 +147,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the emailAddressSource property value. Possible values for username source or email source.
         Args:
-            value: Value to set for the emailAddressSource property.
+            value: Value to set for the email_address_source property.
         """
         self._email_address_source = value
     
@@ -164,7 +164,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the emailSyncSchedule property value. Possible values for email sync schedule.
         Args:
-            value: Value to set for the emailSyncSchedule property.
+            value: Value to set for the email_sync_schedule property.
         """
         self._email_sync_schedule = value
     
@@ -174,23 +174,23 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "account_name": lambda n : setattr(self, 'account_name', n.get_str_value()),
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
-            "custom_domain_name": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
-            "duration_of_email_to_sync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
-            "email_address_source": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
-            "email_sync_schedule": lambda n : setattr(self, 'email_sync_schedule', n.get_enum_value(email_sync_schedule.EmailSyncSchedule)),
-            "host_name": lambda n : setattr(self, 'host_name', n.get_str_value()),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_certificate_profile_base.AndroidCertificateProfileBase)),
-            "require_smime": lambda n : setattr(self, 'require_smime', n.get_bool_value()),
-            "require_ssl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
-            "smime_signing_certificate": lambda n : setattr(self, 'smime_signing_certificate', n.get_object_value(android_certificate_profile_base.AndroidCertificateProfileBase)),
-            "sync_calendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
-            "sync_contacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
-            "sync_notes": lambda n : setattr(self, 'sync_notes', n.get_bool_value()),
-            "sync_tasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
-            "user_domain_name_source": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(domain_name_source.DomainNameSource)),
-            "username_source": lambda n : setattr(self, 'username_source', n.get_enum_value(android_username_source.AndroidUsernameSource)),
+            "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(eas_authentication_method.EasAuthenticationMethod)),
+            "customDomainName": lambda n : setattr(self, 'custom_domain_name', n.get_str_value()),
+            "durationOfEmailToSync": lambda n : setattr(self, 'duration_of_email_to_sync', n.get_enum_value(email_sync_duration.EmailSyncDuration)),
+            "emailAddressSource": lambda n : setattr(self, 'email_address_source', n.get_enum_value(user_email_source.UserEmailSource)),
+            "emailSyncSchedule": lambda n : setattr(self, 'email_sync_schedule', n.get_enum_value(email_sync_schedule.EmailSyncSchedule)),
+            "hostName": lambda n : setattr(self, 'host_name', n.get_str_value()),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(android_certificate_profile_base.AndroidCertificateProfileBase)),
+            "requireSmime": lambda n : setattr(self, 'require_smime', n.get_bool_value()),
+            "requireSsl": lambda n : setattr(self, 'require_ssl', n.get_bool_value()),
+            "smimeSigningCertificate": lambda n : setattr(self, 'smime_signing_certificate', n.get_object_value(android_certificate_profile_base.AndroidCertificateProfileBase)),
+            "syncCalendar": lambda n : setattr(self, 'sync_calendar', n.get_bool_value()),
+            "syncContacts": lambda n : setattr(self, 'sync_contacts', n.get_bool_value()),
+            "syncNotes": lambda n : setattr(self, 'sync_notes', n.get_bool_value()),
+            "syncTasks": lambda n : setattr(self, 'sync_tasks', n.get_bool_value()),
+            "usernameSource": lambda n : setattr(self, 'username_source', n.get_enum_value(android_username_source.AndroidUsernameSource)),
+            "userDomainNameSource": lambda n : setattr(self, 'user_domain_name_source', n.get_enum_value(domain_name_source.DomainNameSource)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -209,7 +209,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the hostName property value. Exchange location (URL) that the native mail app connects to.
         Args:
-            value: Value to set for the hostName property.
+            value: Value to set for the host_name property.
         """
         self._host_name = value
     
@@ -226,7 +226,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the identityCertificate property value. Identity certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -243,7 +243,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the requireSmime property value. Indicates whether or not to use S/MIME certificate.
         Args:
-            value: Value to set for the requireSmime property.
+            value: Value to set for the require_smime property.
         """
         self._require_smime = value
     
@@ -260,7 +260,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the requireSsl property value. Indicates whether or not to use SSL.
         Args:
-            value: Value to set for the requireSsl property.
+            value: Value to set for the require_ssl property.
         """
         self._require_ssl = value
     
@@ -288,8 +288,8 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         writer.write_bool_value("syncContacts", self.sync_contacts)
         writer.write_bool_value("syncNotes", self.sync_notes)
         writer.write_bool_value("syncTasks", self.sync_tasks)
-        writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
         writer.write_enum_value("usernameSource", self.username_source)
+        writer.write_enum_value("userDomainNameSource", self.user_domain_name_source)
     
     @property
     def smime_signing_certificate(self,) -> Optional[android_certificate_profile_base.AndroidCertificateProfileBase]:
@@ -304,7 +304,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the smimeSigningCertificate property value. S/MIME signing certificate.
         Args:
-            value: Value to set for the smimeSigningCertificate property.
+            value: Value to set for the smime_signing_certificate property.
         """
         self._smime_signing_certificate = value
     
@@ -321,7 +321,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the syncCalendar property value. Toggles syncing the calendar. If set to false calendar is turned off on the device.
         Args:
-            value: Value to set for the syncCalendar property.
+            value: Value to set for the sync_calendar property.
         """
         self._sync_calendar = value
     
@@ -338,7 +338,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the syncContacts property value. Toggles syncing contacts. If set to false contacts are turned off on the device.
         Args:
-            value: Value to set for the syncContacts property.
+            value: Value to set for the sync_contacts property.
         """
         self._sync_contacts = value
     
@@ -355,7 +355,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the syncNotes property value. Toggles syncing notes. If set to false notes are turned off on the device.
         Args:
-            value: Value to set for the syncNotes property.
+            value: Value to set for the sync_notes property.
         """
         self._sync_notes = value
     
@@ -372,7 +372,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the syncTasks property value. Toggles syncing tasks. If set to false tasks are turned off on the device.
         Args:
-            value: Value to set for the syncTasks property.
+            value: Value to set for the sync_tasks property.
         """
         self._sync_tasks = value
     
@@ -389,7 +389,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the userDomainNameSource property value. UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device. Possible values are: fullDomainName, netBiosDomainName.
         Args:
-            value: Value to set for the userDomainNameSource property.
+            value: Value to set for the user_domain_name_source property.
         """
         self._user_domain_name_source = value
     
@@ -406,7 +406,7 @@ class AndroidEasEmailProfileConfiguration(device_configuration.DeviceConfigurati
         """
         Sets the usernameSource property value. Android username source.
         Args:
-            value: Value to set for the usernameSource property.
+            value: Value to set for the username_source property.
         """
         self._username_source = value
     

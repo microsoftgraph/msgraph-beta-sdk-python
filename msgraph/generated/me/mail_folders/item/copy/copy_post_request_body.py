@@ -56,7 +56,7 @@ class CopyPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the destinationId property value. The DestinationId property
         Args:
-            value: Value to set for the DestinationId property.
+            value: Value to set for the destination_id property.
         """
         self._destination_id = value
     
@@ -66,7 +66,7 @@ class CopyPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "destination_id": lambda n : setattr(self, 'destination_id', n.get_str_value()),
+            "DestinationId": lambda n : setattr(self, 'destination_id', n.get_str_value()),
         }
         return fields
     

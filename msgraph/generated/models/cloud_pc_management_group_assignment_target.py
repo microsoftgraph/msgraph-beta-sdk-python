@@ -12,9 +12,9 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.cloudPcManagementGroupAssignmentTarget"
-        # The id of the assignment's target group
+        # The ID of the target group for the assignment.
         self._group_id: Optional[str] = None
-        # The servicePlanId property
+        # The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
         self._service_plan_id: Optional[str] = None
     
     @staticmethod
@@ -35,8 +35,8 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
-            "service_plan_id": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "servicePlanId": lambda n : setattr(self, 'service_plan_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -45,7 +45,7 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
     @property
     def group_id(self,) -> Optional[str]:
         """
-        Gets the groupId property value. The id of the assignment's target group
+        Gets the groupId property value. The ID of the target group for the assignment.
         Returns: Optional[str]
         """
         return self._group_id
@@ -53,9 +53,9 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
     @group_id.setter
     def group_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the groupId property value. The id of the assignment's target group
+        Sets the groupId property value. The ID of the target group for the assignment.
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -74,7 +74,7 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
     @property
     def service_plan_id(self,) -> Optional[str]:
         """
-        Gets the servicePlanId property value. The servicePlanId property
+        Gets the servicePlanId property value. The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
         Returns: Optional[str]
         """
         return self._service_plan_id
@@ -82,9 +82,9 @@ class CloudPcManagementGroupAssignmentTarget(cloud_pc_management_assignment_targ
     @service_plan_id.setter
     def service_plan_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the servicePlanId property value. The servicePlanId property
+        Sets the servicePlanId property value. The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.
         Args:
-            value: Value to set for the servicePlanId property.
+            value: Value to set for the service_plan_id property.
         """
         self._service_plan_id = value
     

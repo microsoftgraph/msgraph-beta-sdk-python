@@ -15,8 +15,8 @@ report_settings_request_builder = lazy_import('msgraph.generated.admin.report_se
 service_announcement_request_builder = lazy_import('msgraph.generated.admin.service_announcement.service_announcement_request_builder')
 sharepoint_request_builder = lazy_import('msgraph.generated.admin.sharepoint.sharepoint_request_builder')
 windows_request_builder = lazy_import('msgraph.generated.admin.windows.windows_request_builder')
-admin = lazy_import('msgraph.generated.models.admin')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+admin = lazy_import('msgraph.generated.models.tenant_admin.admin')
 
 class AdminRequestBuilder():
     """
@@ -75,12 +75,11 @@ class AdminRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[admin.Admin]:
+    async def get(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> Optional[admin.Admin]:
         """
         Get admin
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[admin.Admin]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +91,14 @@ class AdminRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, admin.Admin, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
     
-    async def patch(self,body: Optional[admin.Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[admin.Admin]:
+    async def patch(self,body: Optional[admin.Admin] = None, request_configuration: Optional[AdminRequestBuilderPatchRequestConfiguration] = None) -> Optional[admin.Admin]:
         """
         Update admin
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[admin.Admin]
         """
         if body is None:
@@ -114,7 +112,7 @@ class AdminRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, admin.Admin, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, admin.Admin, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AdminRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -127,7 +125,7 @@ class AdminRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -148,7 +146,7 @@ class AdminRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -188,7 +186,7 @@ class AdminRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -203,7 +201,7 @@ class AdminRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

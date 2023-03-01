@@ -56,12 +56,11 @@ class UserConsentRequestsRequestBuilder():
             raise Exception("on cannot be undefined")
         return filter_by_current_user_with_on_request_builder.FilterByCurrentUserWithOnRequestBuilder(self.request_adapter, self.path_parameters, on)
     
-    async def get(self,request_configuration: Optional[UserConsentRequestsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_consent_request_collection_response.UserConsentRequestCollectionResponse]:
+    async def get(self,request_configuration: Optional[UserConsentRequestsRequestBuilderGetRequestConfiguration] = None) -> Optional[user_consent_request_collection_response.UserConsentRequestCollectionResponse]:
         """
         Retrieve a collection of userConsentRequest objects and their properties.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_consent_request_collection_response.UserConsentRequestCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -73,15 +72,14 @@ class UserConsentRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_consent_request_collection_response.UserConsentRequestCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_consent_request_collection_response.UserConsentRequestCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[user_consent_request.UserConsentRequest] = None, request_configuration: Optional[UserConsentRequestsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[user_consent_request.UserConsentRequest]:
+    async def post(self,body: Optional[user_consent_request.UserConsentRequest] = None, request_configuration: Optional[UserConsentRequestsRequestBuilderPostRequestConfiguration] = None) -> Optional[user_consent_request.UserConsentRequest]:
         """
         Create new navigation property to userConsentRequests for users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[user_consent_request.UserConsentRequest]
         """
         if body is None:
@@ -95,7 +93,7 @@ class UserConsentRequestsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, user_consent_request.UserConsentRequest, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, user_consent_request.UserConsentRequest, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[UserConsentRequestsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -108,7 +106,7 @@ class UserConsentRequestsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -129,7 +127,7 @@ class UserConsentRequestsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -199,7 +197,7 @@ class UserConsentRequestsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -214,7 +212,7 @@ class UserConsentRequestsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

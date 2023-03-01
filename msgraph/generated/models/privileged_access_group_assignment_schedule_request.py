@@ -23,7 +23,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         Sets the accessId property value. The accessId property
         Args:
-            value: Value to set for the accessId property.
+            value: Value to set for the access_id property.
         """
         self._access_id = value
     
@@ -40,7 +40,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         Sets the activatedUsing property value. The activatedUsing property
         Args:
-            value: Value to set for the activatedUsing property.
+            value: Value to set for the activated_using property.
         """
         self._activated_using = value
     
@@ -85,14 +85,14 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_id": lambda n : setattr(self, 'access_id', n.get_enum_value(privileged_access_group_relationships.PrivilegedAccessGroupRelationships)),
-            "activated_using": lambda n : setattr(self, 'activated_using', n.get_object_value(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
+            "accessId": lambda n : setattr(self, 'access_id', n.get_enum_value(privileged_access_group_relationships.PrivilegedAccessGroupRelationships)),
+            "activatedUsing": lambda n : setattr(self, 'activated_using', n.get_object_value(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
             "group": lambda n : setattr(self, 'group', n.get_object_value(group.Group)),
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "principal": lambda n : setattr(self, 'principal', n.get_object_value(directory_object.DirectoryObject)),
-            "principal_id": lambda n : setattr(self, 'principal_id', n.get_str_value()),
-            "target_schedule": lambda n : setattr(self, 'target_schedule', n.get_object_value(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
-            "target_schedule_id": lambda n : setattr(self, 'target_schedule_id', n.get_str_value()),
+            "principalId": lambda n : setattr(self, 'principal_id', n.get_str_value()),
+            "targetSchedule": lambda n : setattr(self, 'target_schedule', n.get_object_value(privileged_access_group_eligibility_schedule.PrivilegedAccessGroupEligibilitySchedule)),
+            "targetScheduleId": lambda n : setattr(self, 'target_schedule_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -128,7 +128,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         Sets the groupId property value. The groupId property
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     
@@ -162,7 +162,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         Sets the principalId property value. The principalId property
         Args:
-            value: Value to set for the principalId property.
+            value: Value to set for the principal_id property.
         """
         self._principal_id = value
     
@@ -197,7 +197,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         Sets the targetSchedule property value. The targetSchedule property
         Args:
-            value: Value to set for the targetSchedule property.
+            value: Value to set for the target_schedule property.
         """
         self._target_schedule = value
     
@@ -214,7 +214,7 @@ class PrivilegedAccessGroupAssignmentScheduleRequest(privileged_access_schedule_
         """
         Sets the targetScheduleId property value. The targetScheduleId property
         Args:
-            value: Value to set for the targetScheduleId property.
+            value: Value to set for the target_schedule_id property.
         """
         self._target_schedule_id = value
     

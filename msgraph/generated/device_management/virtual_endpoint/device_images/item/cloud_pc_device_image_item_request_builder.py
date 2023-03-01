@@ -43,12 +43,11 @@ class CloudPcDeviceImageItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property deviceImages for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -59,14 +58,13 @@ class CloudPcDeviceImageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
+    async def get(self,request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
         """
         The image resource on Cloud PC.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image.CloudPcDeviceImage]
         """
         request_info = self.to_get_request_information(
@@ -78,15 +76,14 @@ class CloudPcDeviceImageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, error_mapping)
     
-    async def patch(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
+    async def patch(self,body: Optional[cloud_pc_device_image.CloudPcDeviceImage] = None, request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_device_image.CloudPcDeviceImage]:
         """
         Update the navigation property deviceImages in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_pc_device_image.CloudPcDeviceImage]
         """
         if body is None:
@@ -100,7 +97,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_pc_device_image.CloudPcDeviceImage, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPcDeviceImageItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -129,7 +126,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -150,7 +147,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -163,7 +160,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +199,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -217,7 +214,7 @@ class CloudPcDeviceImageItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -22,7 +22,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
         Args:
-            value: Value to set for the advancedThreatProtectionRequiredSecurityLevel property.
+            value: Value to set for the advanced_threat_protection_required_security_level property.
         """
         self._advanced_threat_protection_required_security_level = value
     
@@ -40,10 +40,10 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         self._device_threat_protection_required_security_level: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None
         # Corresponds to the 'Block all incoming connections' option.
         self._firewall_block_all_incoming: Optional[bool] = None
-        # Whether the firewall should be enabled or not.
-        self._firewall_enabled: Optional[bool] = None
         # Corresponds to 'Enable stealth mode.'
         self._firewall_enable_stealth_mode: Optional[bool] = None
+        # Whether the firewall should be enabled or not.
+        self._firewall_enabled: Optional[bool] = None
         # App source options for macOS Gatekeeper.
         self._gatekeeper_allowed_app_source: Optional[mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources] = None
         # Maximum MacOS build version.
@@ -100,7 +100,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the deviceThreatProtectionEnabled property value. Require that devices have enabled device threat protection.
         Args:
-            value: Value to set for the deviceThreatProtectionEnabled property.
+            value: Value to set for the device_threat_protection_enabled property.
         """
         self._device_threat_protection_enabled = value
     
@@ -117,7 +117,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the deviceThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
         Args:
-            value: Value to set for the deviceThreatProtectionRequiredSecurityLevel property.
+            value: Value to set for the device_threat_protection_required_security_level property.
         """
         self._device_threat_protection_required_security_level = value
     
@@ -134,26 +134,9 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the firewallBlockAllIncoming property value. Corresponds to the 'Block all incoming connections' option.
         Args:
-            value: Value to set for the firewallBlockAllIncoming property.
+            value: Value to set for the firewall_block_all_incoming property.
         """
         self._firewall_block_all_incoming = value
-    
-    @property
-    def firewall_enabled(self,) -> Optional[bool]:
-        """
-        Gets the firewallEnabled property value. Whether the firewall should be enabled or not.
-        Returns: Optional[bool]
-        """
-        return self._firewall_enabled
-    
-    @firewall_enabled.setter
-    def firewall_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the firewallEnabled property value. Whether the firewall should be enabled or not.
-        Args:
-            value: Value to set for the firewallEnabled property.
-        """
-        self._firewall_enabled = value
     
     @property
     def firewall_enable_stealth_mode(self,) -> Optional[bool]:
@@ -168,9 +151,26 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the firewallEnableStealthMode property value. Corresponds to 'Enable stealth mode.'
         Args:
-            value: Value to set for the firewallEnableStealthMode property.
+            value: Value to set for the firewall_enable_stealth_mode property.
         """
         self._firewall_enable_stealth_mode = value
+    
+    @property
+    def firewall_enabled(self,) -> Optional[bool]:
+        """
+        Gets the firewallEnabled property value. Whether the firewall should be enabled or not.
+        Returns: Optional[bool]
+        """
+        return self._firewall_enabled
+    
+    @firewall_enabled.setter
+    def firewall_enabled(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the firewallEnabled property value. Whether the firewall should be enabled or not.
+        Args:
+            value: Value to set for the firewall_enabled property.
+        """
+        self._firewall_enabled = value
     
     @property
     def gatekeeper_allowed_app_source(self,) -> Optional[mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources]:
@@ -185,7 +185,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the gatekeeperAllowedAppSource property value. App source options for macOS Gatekeeper.
         Args:
-            value: Value to set for the gatekeeperAllowedAppSource property.
+            value: Value to set for the gatekeeper_allowed_app_source property.
         """
         self._gatekeeper_allowed_app_source = value
     
@@ -195,27 +195,27 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "advanced_threat_protection_required_security_level": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
-            "device_threat_protection_enabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
-            "device_threat_protection_required_security_level": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
-            "firewall_block_all_incoming": lambda n : setattr(self, 'firewall_block_all_incoming', n.get_bool_value()),
-            "firewall_enabled": lambda n : setattr(self, 'firewall_enabled', n.get_bool_value()),
-            "firewall_enable_stealth_mode": lambda n : setattr(self, 'firewall_enable_stealth_mode', n.get_bool_value()),
-            "gatekeeper_allowed_app_source": lambda n : setattr(self, 'gatekeeper_allowed_app_source', n.get_enum_value(mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources)),
-            "os_maximum_build_version": lambda n : setattr(self, 'os_maximum_build_version', n.get_str_value()),
-            "os_maximum_version": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
-            "os_minimum_build_version": lambda n : setattr(self, 'os_minimum_build_version', n.get_str_value()),
-            "os_minimum_version": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
-            "password_block_simple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
-            "password_expiration_days": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
-            "password_minimum_character_set_count": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
-            "password_minimum_length": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
-            "password_minutes_of_inactivity_before_lock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
-            "password_previous_password_block_count": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
-            "password_required": lambda n : setattr(self, 'password_required', n.get_bool_value()),
-            "password_required_type": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
-            "storage_require_encryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
-            "system_integrity_protection_enabled": lambda n : setattr(self, 'system_integrity_protection_enabled', n.get_bool_value()),
+            "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
+            "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
+            "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
+            "firewallBlockAllIncoming": lambda n : setattr(self, 'firewall_block_all_incoming', n.get_bool_value()),
+            "firewallEnabled": lambda n : setattr(self, 'firewall_enabled', n.get_bool_value()),
+            "firewallEnableStealthMode": lambda n : setattr(self, 'firewall_enable_stealth_mode', n.get_bool_value()),
+            "gatekeeperAllowedAppSource": lambda n : setattr(self, 'gatekeeper_allowed_app_source', n.get_enum_value(mac_o_s_gatekeeper_app_sources.MacOSGatekeeperAppSources)),
+            "osMaximumBuildVersion": lambda n : setattr(self, 'os_maximum_build_version', n.get_str_value()),
+            "osMaximumVersion": lambda n : setattr(self, 'os_maximum_version', n.get_str_value()),
+            "osMinimumBuildVersion": lambda n : setattr(self, 'os_minimum_build_version', n.get_str_value()),
+            "osMinimumVersion": lambda n : setattr(self, 'os_minimum_version', n.get_str_value()),
+            "passwordBlockSimple": lambda n : setattr(self, 'password_block_simple', n.get_bool_value()),
+            "passwordExpirationDays": lambda n : setattr(self, 'password_expiration_days', n.get_int_value()),
+            "passwordMinimumCharacterSetCount": lambda n : setattr(self, 'password_minimum_character_set_count', n.get_int_value()),
+            "passwordMinimumLength": lambda n : setattr(self, 'password_minimum_length', n.get_int_value()),
+            "passwordMinutesOfInactivityBeforeLock": lambda n : setattr(self, 'password_minutes_of_inactivity_before_lock', n.get_int_value()),
+            "passwordPreviousPasswordBlockCount": lambda n : setattr(self, 'password_previous_password_block_count', n.get_int_value()),
+            "passwordRequired": lambda n : setattr(self, 'password_required', n.get_bool_value()),
+            "passwordRequiredType": lambda n : setattr(self, 'password_required_type', n.get_enum_value(required_password_type.RequiredPasswordType)),
+            "storageRequireEncryption": lambda n : setattr(self, 'storage_require_encryption', n.get_bool_value()),
+            "systemIntegrityProtectionEnabled": lambda n : setattr(self, 'system_integrity_protection_enabled', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -234,7 +234,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the osMaximumBuildVersion property value. Maximum MacOS build version.
         Args:
-            value: Value to set for the osMaximumBuildVersion property.
+            value: Value to set for the os_maximum_build_version property.
         """
         self._os_maximum_build_version = value
     
@@ -251,7 +251,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the osMaximumVersion property value. Maximum MacOS version.
         Args:
-            value: Value to set for the osMaximumVersion property.
+            value: Value to set for the os_maximum_version property.
         """
         self._os_maximum_version = value
     
@@ -268,7 +268,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the osMinimumBuildVersion property value. Minimum MacOS build version.
         Args:
-            value: Value to set for the osMinimumBuildVersion property.
+            value: Value to set for the os_minimum_build_version property.
         """
         self._os_minimum_build_version = value
     
@@ -285,7 +285,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the osMinimumVersion property value. Minimum MacOS version.
         Args:
-            value: Value to set for the osMinimumVersion property.
+            value: Value to set for the os_minimum_version property.
         """
         self._os_minimum_version = value
     
@@ -302,7 +302,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordBlockSimple property value. Indicates whether or not to block simple passwords.
         Args:
-            value: Value to set for the passwordBlockSimple property.
+            value: Value to set for the password_block_simple property.
         """
         self._password_block_simple = value
     
@@ -319,7 +319,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordExpirationDays property value. Number of days before the password expires. Valid values 1 to 65535
         Args:
-            value: Value to set for the passwordExpirationDays property.
+            value: Value to set for the password_expiration_days property.
         """
         self._password_expiration_days = value
     
@@ -336,7 +336,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordMinimumCharacterSetCount property value. The number of character sets required in the password.
         Args:
-            value: Value to set for the passwordMinimumCharacterSetCount property.
+            value: Value to set for the password_minimum_character_set_count property.
         """
         self._password_minimum_character_set_count = value
     
@@ -353,7 +353,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordMinimumLength property value. Minimum length of password. Valid values 4 to 14
         Args:
-            value: Value to set for the passwordMinimumLength property.
+            value: Value to set for the password_minimum_length property.
         """
         self._password_minimum_length = value
     
@@ -370,7 +370,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordMinutesOfInactivityBeforeLock property value. Minutes of inactivity before a password is required.
         Args:
-            value: Value to set for the passwordMinutesOfInactivityBeforeLock property.
+            value: Value to set for the password_minutes_of_inactivity_before_lock property.
         """
         self._password_minutes_of_inactivity_before_lock = value
     
@@ -387,7 +387,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordPreviousPasswordBlockCount property value. Number of previous passwords to block. Valid values 1 to 24
         Args:
-            value: Value to set for the passwordPreviousPasswordBlockCount property.
+            value: Value to set for the password_previous_password_block_count property.
         """
         self._password_previous_password_block_count = value
     
@@ -404,7 +404,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordRequired property value. Whether or not to require a password.
         Args:
-            value: Value to set for the passwordRequired property.
+            value: Value to set for the password_required property.
         """
         self._password_required = value
     
@@ -421,7 +421,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the passwordRequiredType property value. Possible values of required passwords.
         Args:
-            value: Value to set for the passwordRequiredType property.
+            value: Value to set for the password_required_type property.
         """
         self._password_required_type = value
     
@@ -469,7 +469,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the storageRequireEncryption property value. Require encryption on Mac OS devices.
         Args:
-            value: Value to set for the storageRequireEncryption property.
+            value: Value to set for the storage_require_encryption property.
         """
         self._storage_require_encryption = value
     
@@ -486,7 +486,7 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         """
         Sets the systemIntegrityProtectionEnabled property value. Require that devices have enabled system integrity protection.
         Args:
-            value: Value to set for the systemIntegrityProtectionEnabled property.
+            value: Value to set for the system_integrity_protection_enabled property.
         """
         self._system_integrity_protection_enabled = value
     

@@ -24,7 +24,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the appCrashCount property value. The number of app crashes for the device. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the appCrashCount property.
+            value: Value to set for the app_crash_count property.
         """
         self._app_crash_count = value
     
@@ -41,7 +41,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the appHangCount property value. The number of app hangs for the device. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the appHangCount property.
+            value: Value to set for the app_hang_count property.
         """
         self._app_hang_count = value
     
@@ -90,7 +90,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the crashedAppCount property value. The number of distinct app crashes for the device. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the crashedAppCount property.
+            value: Value to set for the crashed_app_count property.
         """
         self._crashed_app_count = value
     
@@ -119,7 +119,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceAppHealthScore property value. The app health score of the device. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         Args:
-            value: Value to set for the deviceAppHealthScore property.
+            value: Value to set for the device_app_health_score property.
         """
         self._device_app_health_score = value
     
@@ -136,7 +136,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceAppHealthStatus property value. The overall app health status of the device.
         Args:
-            value: Value to set for the deviceAppHealthStatus property.
+            value: Value to set for the device_app_health_status property.
         """
         self._device_app_health_status = value
     
@@ -153,7 +153,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceDisplayName property value. The name of the device.
         Args:
-            value: Value to set for the deviceDisplayName property.
+            value: Value to set for the device_display_name property.
         """
         self._device_display_name = value
     
@@ -170,7 +170,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceId property value. The id of the device.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -187,7 +187,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceManufacturer property value. The manufacturer name of the device.
         Args:
-            value: Value to set for the deviceManufacturer property.
+            value: Value to set for the device_manufacturer property.
         """
         self._device_manufacturer = value
     
@@ -204,7 +204,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the deviceModel property value. The model name of the device.
         Args:
-            value: Value to set for the deviceModel property.
+            value: Value to set for the device_model property.
         """
         self._device_model = value
     
@@ -214,18 +214,18 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_crash_count": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
-            "app_hang_count": lambda n : setattr(self, 'app_hang_count', n.get_int_value()),
-            "crashed_app_count": lambda n : setattr(self, 'crashed_app_count', n.get_int_value()),
-            "device_app_health_score": lambda n : setattr(self, 'device_app_health_score', n.get_float_value()),
-            "device_app_health_status": lambda n : setattr(self, 'device_app_health_status', n.get_str_value()),
-            "device_display_name": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "device_manufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
-            "device_model": lambda n : setattr(self, 'device_model', n.get_str_value()),
-            "health_status": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
-            "mean_time_to_failure_in_minutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
-            "processed_date_time": lambda n : setattr(self, 'processed_date_time', n.get_datetime_value()),
+            "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
+            "appHangCount": lambda n : setattr(self, 'app_hang_count', n.get_int_value()),
+            "crashedAppCount": lambda n : setattr(self, 'crashed_app_count', n.get_int_value()),
+            "deviceAppHealthScore": lambda n : setattr(self, 'device_app_health_score', n.get_float_value()),
+            "deviceAppHealthStatus": lambda n : setattr(self, 'device_app_health_status', n.get_str_value()),
+            "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "deviceManufacturer": lambda n : setattr(self, 'device_manufacturer', n.get_str_value()),
+            "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
+            "healthStatus": lambda n : setattr(self, 'health_status', n.get_enum_value(user_experience_analytics_health_state.UserExperienceAnalyticsHealthState)),
+            "meanTimeToFailureInMinutes": lambda n : setattr(self, 'mean_time_to_failure_in_minutes', n.get_int_value()),
+            "processedDateTime": lambda n : setattr(self, 'processed_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -244,7 +244,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the healthStatus property value. The healthStatus property
         Args:
-            value: Value to set for the healthStatus property.
+            value: Value to set for the health_status property.
         """
         self._health_status = value
     
@@ -261,7 +261,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the meanTimeToFailureInMinutes property value. The mean time to failure for the device in minutes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the meanTimeToFailureInMinutes property.
+            value: Value to set for the mean_time_to_failure_in_minutes property.
         """
         self._mean_time_to_failure_in_minutes = value
     
@@ -278,7 +278,7 @@ class UserExperienceAnalyticsAppHealthDevicePerformance(entity.Entity):
         """
         Sets the processedDateTime property value. The date and time when the statistics were last computed.
         Args:
-            value: Value to set for the processedDateTime property.
+            value: Value to set for the processed_date_time property.
         """
         self._processed_date_time = value
     

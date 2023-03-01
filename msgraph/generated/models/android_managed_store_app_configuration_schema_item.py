@@ -84,7 +84,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the dataType property value. Data type for a configuration item inside an Android application's custom configuration schema
         Args:
-            value: Value to set for the dataType property.
+            value: Value to set for the data_type property.
         """
         self._data_type = value
     
@@ -101,7 +101,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the defaultBoolValue property value. Default value for boolean type items, if specified by the app developer
         Args:
-            value: Value to set for the defaultBoolValue property.
+            value: Value to set for the default_bool_value property.
         """
         self._default_bool_value = value
     
@@ -118,7 +118,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the defaultIntValue property value. Default value for integer type items, if specified by the app developer
         Args:
-            value: Value to set for the defaultIntValue property.
+            value: Value to set for the default_int_value property.
         """
         self._default_int_value = value
     
@@ -135,7 +135,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the defaultStringArrayValue property value. Default value for string array type items, if specified by the app developer
         Args:
-            value: Value to set for the defaultStringArrayValue property.
+            value: Value to set for the default_string_array_value property.
         """
         self._default_string_array_value = value
     
@@ -152,7 +152,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the defaultStringValue property value. Default value for string type items, if specified by the app developer
         Args:
-            value: Value to set for the defaultStringValue property.
+            value: Value to set for the default_string_value property.
         """
         self._default_string_value = value
     
@@ -186,7 +186,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the displayName property value. Human readable name
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -196,17 +196,17 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "data_type": lambda n : setattr(self, 'data_type', n.get_enum_value(android_managed_store_app_configuration_schema_item_data_type.AndroidManagedStoreAppConfigurationSchemaItemDataType)),
-            "default_bool_value": lambda n : setattr(self, 'default_bool_value', n.get_bool_value()),
-            "default_int_value": lambda n : setattr(self, 'default_int_value', n.get_int_value()),
-            "default_string_array_value": lambda n : setattr(self, 'default_string_array_value', n.get_collection_of_primitive_values(str)),
-            "default_string_value": lambda n : setattr(self, 'default_string_value', n.get_str_value()),
+            "dataType": lambda n : setattr(self, 'data_type', n.get_enum_value(android_managed_store_app_configuration_schema_item_data_type.AndroidManagedStoreAppConfigurationSchemaItemDataType)),
+            "defaultBoolValue": lambda n : setattr(self, 'default_bool_value', n.get_bool_value()),
+            "defaultIntValue": lambda n : setattr(self, 'default_int_value', n.get_int_value()),
+            "defaultStringArrayValue": lambda n : setattr(self, 'default_string_array_value', n.get_collection_of_primitive_values(str)),
+            "defaultStringValue": lambda n : setattr(self, 'default_string_value', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "index": lambda n : setattr(self, 'index', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "parent_index": lambda n : setattr(self, 'parent_index', n.get_int_value()),
-            "schema_item_key": lambda n : setattr(self, 'schema_item_key', n.get_str_value()),
+            "parentIndex": lambda n : setattr(self, 'parent_index', n.get_int_value()),
+            "schemaItemKey": lambda n : setattr(self, 'schema_item_key', n.get_str_value()),
             "selections": lambda n : setattr(self, 'selections', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
         }
         return fields
@@ -241,7 +241,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -258,7 +258,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the parentIndex property value. Index of parent schema item to track nested schema items
         Args:
-            value: Value to set for the parentIndex property.
+            value: Value to set for the parent_index property.
         """
         self._parent_index = value
     
@@ -275,7 +275,7 @@ class AndroidManagedStoreAppConfigurationSchemaItem(AdditionalDataHolder, Parsab
         """
         Sets the schemaItemKey property value. Unique key the application uses to identify the item
         Args:
-            value: Value to set for the schemaItemKey property.
+            value: Value to set for the schema_item_key property.
         """
         self._schema_item_key = value
     

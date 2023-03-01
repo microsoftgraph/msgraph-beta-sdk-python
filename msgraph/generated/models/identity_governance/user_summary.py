@@ -66,7 +66,7 @@ class UserSummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedTasks property value. The number of failed tasks for users in a user summary.
         Args:
-            value: Value to set for the failedTasks property.
+            value: Value to set for the failed_tasks property.
         """
         self._failed_tasks = value
     
@@ -83,7 +83,7 @@ class UserSummary(AdditionalDataHolder, Parsable):
         """
         Sets the failedUsers property value. The number of failed users in a user summary.
         Args:
-            value: Value to set for the failedUsers property.
+            value: Value to set for the failed_users property.
         """
         self._failed_users = value
     
@@ -93,12 +93,12 @@ class UserSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "failed_tasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
-            "failed_users": lambda n : setattr(self, 'failed_users', n.get_int_value()),
+            "failedTasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
+            "failedUsers": lambda n : setattr(self, 'failed_users', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "successful_users": lambda n : setattr(self, 'successful_users', n.get_int_value()),
-            "total_tasks": lambda n : setattr(self, 'total_tasks', n.get_int_value()),
-            "total_users": lambda n : setattr(self, 'total_users', n.get_int_value()),
+            "successfulUsers": lambda n : setattr(self, 'successful_users', n.get_int_value()),
+            "totalTasks": lambda n : setattr(self, 'total_tasks', n.get_int_value()),
+            "totalUsers": lambda n : setattr(self, 'total_users', n.get_int_value()),
         }
         return fields
     
@@ -115,7 +115,7 @@ class UserSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -148,7 +148,7 @@ class UserSummary(AdditionalDataHolder, Parsable):
         """
         Sets the successfulUsers property value. The number of successful users in a user summary.
         Args:
-            value: Value to set for the successfulUsers property.
+            value: Value to set for the successful_users property.
         """
         self._successful_users = value
     
@@ -165,7 +165,7 @@ class UserSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalTasks property value. The total tasks of users in a user summary.
         Args:
-            value: Value to set for the totalTasks property.
+            value: Value to set for the total_tasks property.
         """
         self._total_tasks = value
     
@@ -182,7 +182,7 @@ class UserSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalUsers property value. The total number of users in a user summary
         Args:
-            value: Value to set for the totalUsers property.
+            value: Value to set for the total_users property.
         """
         self._total_users = value
     

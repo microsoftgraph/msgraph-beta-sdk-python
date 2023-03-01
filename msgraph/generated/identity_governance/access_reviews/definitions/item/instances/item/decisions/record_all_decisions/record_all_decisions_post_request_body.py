@@ -74,8 +74,8 @@ class RecordAllDecisionsPostRequestBody(AdditionalDataHolder, Parsable):
         fields = {
             "decision": lambda n : setattr(self, 'decision', n.get_str_value()),
             "justification": lambda n : setattr(self, 'justification', n.get_str_value()),
-            "principal_id": lambda n : setattr(self, 'principal_id', n.get_str_value()),
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "principalId": lambda n : setattr(self, 'principal_id', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
         }
         return fields
     
@@ -109,7 +109,7 @@ class RecordAllDecisionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the principalId property value. The principalId property
         Args:
-            value: Value to set for the principalId property.
+            value: Value to set for the principal_id property.
         """
         self._principal_id = value
     
@@ -126,7 +126,7 @@ class RecordAllDecisionsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the resourceId property value. The resourceId property
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     

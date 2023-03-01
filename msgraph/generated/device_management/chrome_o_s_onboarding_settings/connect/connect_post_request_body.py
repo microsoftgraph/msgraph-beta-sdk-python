@@ -51,8 +51,8 @@ class ConnectPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "owner_access_token": lambda n : setattr(self, 'owner_access_token', n.get_str_value()),
-            "owner_user_principal_name": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
+            "ownerAccessToken": lambda n : setattr(self, 'owner_access_token', n.get_str_value()),
+            "ownerUserPrincipalName": lambda n : setattr(self, 'owner_user_principal_name', n.get_str_value()),
         }
         return fields
     
@@ -69,7 +69,7 @@ class ConnectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the ownerAccessToken property value. The ownerAccessToken property
         Args:
-            value: Value to set for the ownerAccessToken property.
+            value: Value to set for the owner_access_token property.
         """
         self._owner_access_token = value
     
@@ -86,7 +86,7 @@ class ConnectPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the ownerUserPrincipalName property value. The ownerUserPrincipalName property
         Args:
-            value: Value to set for the ownerUserPrincipalName property.
+            value: Value to set for the owner_user_principal_name property.
         """
         self._owner_user_principal_name = value
     

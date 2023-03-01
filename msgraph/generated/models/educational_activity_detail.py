@@ -142,7 +142,7 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. Long-form name of the program that the user has provided.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -159,7 +159,7 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
         """
         Sets the fieldsOfStudy property value. Majors and minors associated with the program. (if applicable)
         Args:
-            value: Value to set for the fieldsOfStudy property.
+            value: Value to set for the fields_of_study property.
         """
         self._fields_of_study = value
     
@@ -173,12 +173,12 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_primitive_values(str)),
             "awards": lambda n : setattr(self, 'awards', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "fields_of_study": lambda n : setattr(self, 'fields_of_study', n.get_collection_of_primitive_values(str)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "fieldsOfStudy": lambda n : setattr(self, 'fields_of_study', n.get_collection_of_primitive_values(str)),
             "grade": lambda n : setattr(self, 'grade', n.get_str_value()),
             "notes": lambda n : setattr(self, 'notes', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         return fields
     
@@ -229,7 +229,7 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -266,7 +266,7 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
         """
         Sets the webUrl property value. Link to the degree or program page.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

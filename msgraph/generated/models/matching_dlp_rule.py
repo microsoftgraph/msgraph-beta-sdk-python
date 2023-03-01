@@ -86,14 +86,14 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         fields = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(dlp_action_info.DlpActionInfo)),
-            "is_most_restrictive": lambda n : setattr(self, 'is_most_restrictive', n.get_bool_value()),
+            "isMostRestrictive": lambda n : setattr(self, 'is_most_restrictive', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "policy_id": lambda n : setattr(self, 'policy_id', n.get_str_value()),
-            "policy_name": lambda n : setattr(self, 'policy_name', n.get_str_value()),
+            "policyId": lambda n : setattr(self, 'policy_id', n.get_str_value()),
+            "policyName": lambda n : setattr(self, 'policy_name', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "rule_id": lambda n : setattr(self, 'rule_id', n.get_str_value()),
-            "rule_mode": lambda n : setattr(self, 'rule_mode', n.get_enum_value(rule_mode.RuleMode)),
-            "rule_name": lambda n : setattr(self, 'rule_name', n.get_str_value()),
+            "ruleId": lambda n : setattr(self, 'rule_id', n.get_str_value()),
+            "ruleMode": lambda n : setattr(self, 'rule_mode', n.get_enum_value(rule_mode.RuleMode)),
+            "ruleName": lambda n : setattr(self, 'rule_name', n.get_str_value()),
         }
         return fields
     
@@ -110,7 +110,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the isMostRestrictive property value. The isMostRestrictive property
         Args:
-            value: Value to set for the isMostRestrictive property.
+            value: Value to set for the is_most_restrictive property.
         """
         self._is_most_restrictive = value
     
@@ -127,7 +127,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -144,7 +144,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the policyId property value. The policyId property
         Args:
-            value: Value to set for the policyId property.
+            value: Value to set for the policy_id property.
         """
         self._policy_id = value
     
@@ -161,7 +161,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the policyName property value. The policyName property
         Args:
-            value: Value to set for the policyName property.
+            value: Value to set for the policy_name property.
         """
         self._policy_name = value
     
@@ -195,7 +195,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the ruleId property value. The ruleId property
         Args:
-            value: Value to set for the ruleId property.
+            value: Value to set for the rule_id property.
         """
         self._rule_id = value
     
@@ -212,7 +212,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the ruleMode property value. The ruleMode property
         Args:
-            value: Value to set for the ruleMode property.
+            value: Value to set for the rule_mode property.
         """
         self._rule_mode = value
     
@@ -229,7 +229,7 @@ class MatchingDlpRule(AdditionalDataHolder, Parsable):
         """
         Sets the ruleName property value. The ruleName property
         Args:
-            value: Value to set for the ruleName property.
+            value: Value to set for the rule_name property.
         """
         self._rule_name = value
     

@@ -68,12 +68,11 @@ class SalesCreditMemoItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
+    async def get(self,request_configuration: Optional[SalesCreditMemoItemRequestBuilderGetRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
         """
         Get salesCreditMemos from financials
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_credit_memo.SalesCreditMemo]
         """
         request_info = self.to_get_request_information(
@@ -85,15 +84,14 @@ class SalesCreditMemoItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
     
-    async def patch(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
+    async def patch(self,body: Optional[sales_credit_memo.SalesCreditMemo] = None, request_configuration: Optional[SalesCreditMemoItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[sales_credit_memo.SalesCreditMemo]:
         """
         Update the navigation property salesCreditMemos in financials
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[sales_credit_memo.SalesCreditMemo]
         """
         if body is None:
@@ -107,7 +105,7 @@ class SalesCreditMemoItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, sales_credit_memo.SalesCreditMemo, error_mapping)
     
     def sales_credit_memo_lines_by_id(self,id: str) -> sales_credit_memo_line_item_request_builder.SalesCreditMemoLineItemRequestBuilder:
         """
@@ -133,7 +131,7 @@ class SalesCreditMemoItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -154,7 +152,7 @@ class SalesCreditMemoItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -194,7 +192,7 @@ class SalesCreditMemoItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -209,7 +207,7 @@ class SalesCreditMemoItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

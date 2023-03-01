@@ -66,7 +66,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
         """
         Sets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when requesting presence of another user.
         Args:
-            value: Value to set for the expiryDateTime property.
+            value: Value to set for the expiry_date_time property.
         """
         self._expiry_date_time = value
     
@@ -76,10 +76,10 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "expiry_date_time": lambda n : setattr(self, 'expiry_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "expiryDateTime": lambda n : setattr(self, 'expiry_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
             "message": lambda n : setattr(self, 'message', n.get_object_value(item_body.ItemBody)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "published_date_time": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
+            "publishedDateTime": lambda n : setattr(self, 'published_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -113,7 +113,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -130,7 +130,7 @@ class PresenceStatusMessage(AdditionalDataHolder, Parsable):
         """
         Sets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime is not available when requesting presence of another user.
         Args:
-            value: Value to set for the publishedDateTime property.
+            value: Value to set for the published_date_time property.
         """
         self._published_date_time = value
     

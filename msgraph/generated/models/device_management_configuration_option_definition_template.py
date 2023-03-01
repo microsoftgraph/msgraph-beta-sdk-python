@@ -76,7 +76,7 @@ class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder
         """
         fields = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
-            "item_id": lambda n : setattr(self, 'item_id', n.get_str_value()),
+            "itemId": lambda n : setattr(self, 'item_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -94,7 +94,7 @@ class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder
         """
         Sets the itemId property value. Option ItemId
         Args:
-            value: Value to set for the itemId property.
+            value: Value to set for the item_id property.
         """
         self._item_id = value
     
@@ -111,7 +111,7 @@ class DeviceManagementConfigurationOptionDefinitionTemplate(AdditionalDataHolder
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -40,7 +40,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         """
         Sets the appType property value. The type of Windows kiosk app.
         Args:
-            value: Value to set for the appType property.
+            value: Value to set for the app_type property.
         """
         self._app_type = value
     
@@ -57,7 +57,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         """
         Sets the autoLaunch property value. Allow the app to be auto-launched in multi-app kiosk mode
         Args:
-            value: Value to set for the autoLaunch property.
+            value: Value to set for the auto_launch property.
         """
         self._auto_launch = value
     
@@ -97,11 +97,11 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_type": lambda n : setattr(self, 'app_type', n.get_enum_value(windows_kiosk_app_type.WindowsKioskAppType)),
-            "auto_launch": lambda n : setattr(self, 'auto_launch', n.get_bool_value()),
+            "appType": lambda n : setattr(self, 'app_type', n.get_enum_value(windows_kiosk_app_type.WindowsKioskAppType)),
+            "autoLaunch": lambda n : setattr(self, 'auto_launch', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "start_layout_tile_size": lambda n : setattr(self, 'start_layout_tile_size', n.get_enum_value(windows_app_start_layout_tile_size.WindowsAppStartLayoutTileSize)),
+            "startLayoutTileSize": lambda n : setattr(self, 'start_layout_tile_size', n.get_enum_value(windows_app_start_layout_tile_size.WindowsAppStartLayoutTileSize)),
         }
         return fields
     
@@ -135,7 +135,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -167,7 +167,7 @@ class WindowsKioskAppBase(AdditionalDataHolder, Parsable):
         """
         Sets the startLayoutTileSize property value. The tile size of Windows app in the start layout.
         Args:
-            value: Value to set for the startLayoutTileSize property.
+            value: Value to set for the start_layout_tile_size property.
         """
         self._start_layout_tile_size = value
     

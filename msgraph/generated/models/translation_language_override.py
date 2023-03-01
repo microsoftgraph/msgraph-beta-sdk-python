@@ -55,9 +55,9 @@ class TranslationLanguageOverride(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "language_tag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
+            "languageTag": lambda n : setattr(self, 'language_tag', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "translation_behavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(translation_behavior.TranslationBehavior)),
+            "translationBehavior": lambda n : setattr(self, 'translation_behavior', n.get_enum_value(translation_behavior.TranslationBehavior)),
         }
         return fields
     
@@ -74,7 +74,7 @@ class TranslationLanguageOverride(AdditionalDataHolder, Parsable):
         """
         Sets the languageTag property value. The language to apply the override.Returned by default. Not nullable.
         Args:
-            value: Value to set for the languageTag property.
+            value: Value to set for the language_tag property.
         """
         self._language_tag = value
     
@@ -91,7 +91,7 @@ class TranslationLanguageOverride(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -121,7 +121,7 @@ class TranslationLanguageOverride(AdditionalDataHolder, Parsable):
         """
         Sets the translationBehavior property value. The translation override behavior for the language, if any.Returned by default. Not nullable.
         Args:
-            value: Value to set for the translationBehavior property.
+            value: Value to set for the translation_behavior property.
         """
         self._translation_behavior = value
     

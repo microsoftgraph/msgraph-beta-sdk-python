@@ -19,7 +19,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the allowDeviceResetOnInstallFailure property value. Allow or block device reset on installation failure
         Args:
-            value: Value to set for the allowDeviceResetOnInstallFailure property.
+            value: Value to set for the allow_device_reset_on_install_failure property.
         """
         self._allow_device_reset_on_install_failure = value
     
@@ -36,7 +36,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the allowDeviceUseOnInstallFailure property value. Allow the user to continue using the device on installation failure
         Args:
-            value: Value to set for the allowDeviceUseOnInstallFailure property.
+            value: Value to set for the allow_device_use_on_install_failure property.
         """
         self._allow_device_use_on_install_failure = value
     
@@ -53,7 +53,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the allowLogCollectionOnInstallFailure property value. Allow or block log collection on installation failure
         Args:
-            value: Value to set for the allowLogCollectionOnInstallFailure property.
+            value: Value to set for the allow_log_collection_on_install_failure property.
         """
         self._allow_log_collection_on_install_failure = value
     
@@ -70,7 +70,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the allowNonBlockingAppInstallation property value. Install all required apps as non blocking apps during white glove
         Args:
-            value: Value to set for the allowNonBlockingAppInstallation property.
+            value: Value to set for the allow_non_blocking_app_installation property.
         """
         self._allow_non_blocking_app_installation = value
     
@@ -87,7 +87,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the blockDeviceSetupRetryByUser property value. Allow the user to retry the setup on installation failure
         Args:
-            value: Value to set for the blockDeviceSetupRetryByUser property.
+            value: Value to set for the block_device_setup_retry_by_user property.
         """
         self._block_device_setup_retry_by_user = value
     
@@ -147,7 +147,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the customErrorMessage property value. Set custom error message to show upon installation failure
         Args:
-            value: Value to set for the customErrorMessage property.
+            value: Value to set for the custom_error_message property.
         """
         self._custom_error_message = value
     
@@ -164,7 +164,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the disableUserStatusTrackingAfterFirstUser property value. Only show installation progress for first user post enrollment
         Args:
-            value: Value to set for the disableUserStatusTrackingAfterFirstUser property.
+            value: Value to set for the disable_user_status_tracking_after_first_user property.
         """
         self._disable_user_status_tracking_after_first_user = value
     
@@ -174,18 +174,18 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_device_reset_on_install_failure": lambda n : setattr(self, 'allow_device_reset_on_install_failure', n.get_bool_value()),
-            "allow_device_use_on_install_failure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
-            "allow_log_collection_on_install_failure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),
-            "allow_non_blocking_app_installation": lambda n : setattr(self, 'allow_non_blocking_app_installation', n.get_bool_value()),
-            "block_device_setup_retry_by_user": lambda n : setattr(self, 'block_device_setup_retry_by_user', n.get_bool_value()),
-            "custom_error_message": lambda n : setattr(self, 'custom_error_message', n.get_str_value()),
-            "disable_user_status_tracking_after_first_user": lambda n : setattr(self, 'disable_user_status_tracking_after_first_user', n.get_bool_value()),
-            "install_progress_timeout_in_minutes": lambda n : setattr(self, 'install_progress_timeout_in_minutes', n.get_int_value()),
-            "install_quality_updates": lambda n : setattr(self, 'install_quality_updates', n.get_bool_value()),
-            "selected_mobile_app_ids": lambda n : setattr(self, 'selected_mobile_app_ids', n.get_collection_of_primitive_values(str)),
-            "show_installation_progress": lambda n : setattr(self, 'show_installation_progress', n.get_bool_value()),
-            "track_install_progress_for_autopilot_only": lambda n : setattr(self, 'track_install_progress_for_autopilot_only', n.get_bool_value()),
+            "allowDeviceResetOnInstallFailure": lambda n : setattr(self, 'allow_device_reset_on_install_failure', n.get_bool_value()),
+            "allowDeviceUseOnInstallFailure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
+            "allowLogCollectionOnInstallFailure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),
+            "allowNonBlockingAppInstallation": lambda n : setattr(self, 'allow_non_blocking_app_installation', n.get_bool_value()),
+            "blockDeviceSetupRetryByUser": lambda n : setattr(self, 'block_device_setup_retry_by_user', n.get_bool_value()),
+            "customErrorMessage": lambda n : setattr(self, 'custom_error_message', n.get_str_value()),
+            "disableUserStatusTrackingAfterFirstUser": lambda n : setattr(self, 'disable_user_status_tracking_after_first_user', n.get_bool_value()),
+            "installProgressTimeoutInMinutes": lambda n : setattr(self, 'install_progress_timeout_in_minutes', n.get_int_value()),
+            "installQualityUpdates": lambda n : setattr(self, 'install_quality_updates', n.get_bool_value()),
+            "selectedMobileAppIds": lambda n : setattr(self, 'selected_mobile_app_ids', n.get_collection_of_primitive_values(str)),
+            "showInstallationProgress": lambda n : setattr(self, 'show_installation_progress', n.get_bool_value()),
+            "trackInstallProgressForAutopilotOnly": lambda n : setattr(self, 'track_install_progress_for_autopilot_only', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -204,7 +204,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the installProgressTimeoutInMinutes property value. Set installation progress timeout in minutes
         Args:
-            value: Value to set for the installProgressTimeoutInMinutes property.
+            value: Value to set for the install_progress_timeout_in_minutes property.
         """
         self._install_progress_timeout_in_minutes = value
     
@@ -221,7 +221,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the installQualityUpdates property value. Allows quality updates installation during OOBE
         Args:
-            value: Value to set for the installQualityUpdates property.
+            value: Value to set for the install_quality_updates property.
         """
         self._install_quality_updates = value
     
@@ -238,7 +238,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the selectedMobileAppIds property value. Selected applications to track the installation status
         Args:
-            value: Value to set for the selectedMobileAppIds property.
+            value: Value to set for the selected_mobile_app_ids property.
         """
         self._selected_mobile_app_ids = value
     
@@ -277,7 +277,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the showInstallationProgress property value. Show or hide installation progress to user
         Args:
-            value: Value to set for the showInstallationProgress property.
+            value: Value to set for the show_installation_progress property.
         """
         self._show_installation_progress = value
     
@@ -294,7 +294,7 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         Sets the trackInstallProgressForAutopilotOnly property value. Only show installation progress for Autopilot enrollment scenarios
         Args:
-            value: Value to set for the trackInstallProgressForAutopilotOnly property.
+            value: Value to set for the track_install_progress_for_autopilot_only property.
         """
         self._track_install_progress_for_autopilot_only = value
     

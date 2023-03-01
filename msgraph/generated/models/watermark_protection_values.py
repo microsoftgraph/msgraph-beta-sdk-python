@@ -28,9 +28,9 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The isEnabledForContentSharing property
+        # Indicates whether to apply a watermark to any shared content.
         self._is_enabled_for_content_sharing: Optional[bool] = None
-        # The isEnabledForVideo property
+        # Indicates whether to apply a watermark to everyone's video feed.
         self._is_enabled_for_video: Optional[bool] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
@@ -53,8 +53,8 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_enabled_for_content_sharing": lambda n : setattr(self, 'is_enabled_for_content_sharing', n.get_bool_value()),
-            "is_enabled_for_video": lambda n : setattr(self, 'is_enabled_for_video', n.get_bool_value()),
+            "isEnabledForContentSharing": lambda n : setattr(self, 'is_enabled_for_content_sharing', n.get_bool_value()),
+            "isEnabledForVideo": lambda n : setattr(self, 'is_enabled_for_video', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -62,7 +62,7 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
     @property
     def is_enabled_for_content_sharing(self,) -> Optional[bool]:
         """
-        Gets the isEnabledForContentSharing property value. The isEnabledForContentSharing property
+        Gets the isEnabledForContentSharing property value. Indicates whether to apply a watermark to any shared content.
         Returns: Optional[bool]
         """
         return self._is_enabled_for_content_sharing
@@ -70,16 +70,16 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
     @is_enabled_for_content_sharing.setter
     def is_enabled_for_content_sharing(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isEnabledForContentSharing property value. The isEnabledForContentSharing property
+        Sets the isEnabledForContentSharing property value. Indicates whether to apply a watermark to any shared content.
         Args:
-            value: Value to set for the isEnabledForContentSharing property.
+            value: Value to set for the is_enabled_for_content_sharing property.
         """
         self._is_enabled_for_content_sharing = value
     
     @property
     def is_enabled_for_video(self,) -> Optional[bool]:
         """
-        Gets the isEnabledForVideo property value. The isEnabledForVideo property
+        Gets the isEnabledForVideo property value. Indicates whether to apply a watermark to everyone's video feed.
         Returns: Optional[bool]
         """
         return self._is_enabled_for_video
@@ -87,9 +87,9 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
     @is_enabled_for_video.setter
     def is_enabled_for_video(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isEnabledForVideo property value. The isEnabledForVideo property
+        Sets the isEnabledForVideo property value. Indicates whether to apply a watermark to everyone's video feed.
         Args:
-            value: Value to set for the isEnabledForVideo property.
+            value: Value to set for the is_enabled_for_video property.
         """
         self._is_enabled_for_video = value
     
@@ -106,7 +106,7 @@ class WatermarkProtectionValues(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

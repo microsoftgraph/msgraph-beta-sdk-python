@@ -51,7 +51,7 @@ class WindowsPrivacyAccessControlsPostRequestBody(AdditionalDataHolder, Parsable
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "windows_privacy_access_controls": lambda n : setattr(self, 'windows_privacy_access_controls', n.get_collection_of_object_values(windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem)),
+            "windowsPrivacyAccessControls": lambda n : setattr(self, 'windows_privacy_access_controls', n.get_collection_of_object_values(windows_privacy_data_access_control_item.WindowsPrivacyDataAccessControlItem)),
         }
         return fields
     
@@ -79,7 +79,7 @@ class WindowsPrivacyAccessControlsPostRequestBody(AdditionalDataHolder, Parsable
         """
         Sets the windowsPrivacyAccessControls property value. The windowsPrivacyAccessControls property
         Args:
-            value: Value to set for the windowsPrivacyAccessControls property.
+            value: Value to set for the windows_privacy_access_controls property.
         """
         self._windows_privacy_access_controls = value
     

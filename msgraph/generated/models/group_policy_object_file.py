@@ -60,7 +60,7 @@ class GroupPolicyObjectFile(entity.Entity):
         """
         Sets the createdDateTime property value. The date and time at which the GroupPolicy was first uploaded.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -83,11 +83,11 @@ class GroupPolicyObjectFile(entity.Entity):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "group_policy_object_id": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "ou_distinguished_name": lambda n : setattr(self, 'ou_distinguished_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "groupPolicyObjectId": lambda n : setattr(self, 'group_policy_object_id', n.get_object_value(Guid)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "ouDistinguishedName": lambda n : setattr(self, 'ou_distinguished_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -106,7 +106,7 @@ class GroupPolicyObjectFile(entity.Entity):
         """
         Sets the groupPolicyObjectId property value. The Group Policy Object GUID from GPO Xml content
         Args:
-            value: Value to set for the groupPolicyObjectId property.
+            value: Value to set for the group_policy_object_id property.
         """
         self._group_policy_object_id = value
     
@@ -123,7 +123,7 @@ class GroupPolicyObjectFile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date and time at which the GroupPolicyObjectFile was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -140,7 +140,7 @@ class GroupPolicyObjectFile(entity.Entity):
         """
         Sets the ouDistinguishedName property value. The distinguished name of the OU.
         Args:
-            value: Value to set for the ouDistinguishedName property.
+            value: Value to set for the ou_distinguished_name property.
         """
         self._ou_distinguished_name = value
     
@@ -157,7 +157,7 @@ class GroupPolicyObjectFile(entity.Entity):
         """
         Sets the roleScopeTagIds property value. The list of scope tags for the configuration.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

@@ -86,13 +86,13 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "attendees": lambda n : setattr(self, 'attendees', n.get_collection_of_object_values(attendee_base.AttendeeBase)),
-            "is_organizer_optional": lambda n : setattr(self, 'is_organizer_optional', n.get_bool_value()),
-            "location_constraint": lambda n : setattr(self, 'location_constraint', n.get_object_value(location_constraint.LocationConstraint)),
-            "max_candidates": lambda n : setattr(self, 'max_candidates', n.get_int_value()),
-            "meeting_duration": lambda n : setattr(self, 'meeting_duration', n.get_object_value(Timedelta)),
-            "minimum_attendee_percentage": lambda n : setattr(self, 'minimum_attendee_percentage', n.get_float_value()),
-            "return_suggestion_reasons": lambda n : setattr(self, 'return_suggestion_reasons', n.get_bool_value()),
-            "time_constraint": lambda n : setattr(self, 'time_constraint', n.get_object_value(time_constraint.TimeConstraint)),
+            "isOrganizerOptional": lambda n : setattr(self, 'is_organizer_optional', n.get_bool_value()),
+            "locationConstraint": lambda n : setattr(self, 'location_constraint', n.get_object_value(location_constraint.LocationConstraint)),
+            "maxCandidates": lambda n : setattr(self, 'max_candidates', n.get_int_value()),
+            "meetingDuration": lambda n : setattr(self, 'meeting_duration', n.get_object_value(Timedelta)),
+            "minimumAttendeePercentage": lambda n : setattr(self, 'minimum_attendee_percentage', n.get_float_value()),
+            "returnSuggestionReasons": lambda n : setattr(self, 'return_suggestion_reasons', n.get_bool_value()),
+            "timeConstraint": lambda n : setattr(self, 'time_constraint', n.get_object_value(time_constraint.TimeConstraint)),
         }
         return fields
     
@@ -109,7 +109,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the isOrganizerOptional property value. The isOrganizerOptional property
         Args:
-            value: Value to set for the isOrganizerOptional property.
+            value: Value to set for the is_organizer_optional property.
         """
         self._is_organizer_optional = value
     
@@ -126,7 +126,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the locationConstraint property value. The locationConstraint property
         Args:
-            value: Value to set for the locationConstraint property.
+            value: Value to set for the location_constraint property.
         """
         self._location_constraint = value
     
@@ -143,7 +143,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the maxCandidates property value. The maxCandidates property
         Args:
-            value: Value to set for the maxCandidates property.
+            value: Value to set for the max_candidates property.
         """
         self._max_candidates = value
     
@@ -160,7 +160,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the meetingDuration property value. The meetingDuration property
         Args:
-            value: Value to set for the meetingDuration property.
+            value: Value to set for the meeting_duration property.
         """
         self._meeting_duration = value
     
@@ -177,7 +177,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the minimumAttendeePercentage property value. The minimumAttendeePercentage property
         Args:
-            value: Value to set for the minimumAttendeePercentage property.
+            value: Value to set for the minimum_attendee_percentage property.
         """
         self._minimum_attendee_percentage = value
     
@@ -194,7 +194,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the returnSuggestionReasons property value. The returnSuggestionReasons property
         Args:
-            value: Value to set for the returnSuggestionReasons property.
+            value: Value to set for the return_suggestion_reasons property.
         """
         self._return_suggestion_reasons = value
     
@@ -229,7 +229,7 @@ class FindMeetingTimesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the timeConstraint property value. The timeConstraint property
         Args:
-            value: Value to set for the timeConstraint property.
+            value: Value to set for the time_constraint property.
         """
         self._time_constraint = value
     

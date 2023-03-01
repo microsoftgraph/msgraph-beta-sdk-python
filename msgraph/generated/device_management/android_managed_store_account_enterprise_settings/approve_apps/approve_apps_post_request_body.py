@@ -34,7 +34,7 @@ class ApproveAppsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the approveAllPermissions property value. The approveAllPermissions property
         Args:
-            value: Value to set for the approveAllPermissions property.
+            value: Value to set for the approve_all_permissions property.
         """
         self._approve_all_permissions = value
     
@@ -68,8 +68,8 @@ class ApproveAppsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "approve_all_permissions": lambda n : setattr(self, 'approve_all_permissions', n.get_bool_value()),
-            "package_ids": lambda n : setattr(self, 'package_ids', n.get_collection_of_primitive_values(str)),
+            "approveAllPermissions": lambda n : setattr(self, 'approve_all_permissions', n.get_bool_value()),
+            "packageIds": lambda n : setattr(self, 'package_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -86,7 +86,7 @@ class ApproveAppsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the packageIds property value. The packageIds property
         Args:
-            value: Value to set for the packageIds property.
+            value: Value to set for the package_ids property.
         """
         self._package_ids = value
     

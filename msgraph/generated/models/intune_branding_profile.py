@@ -45,7 +45,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the companyPortalBlockedActions property value. Collection of blocked actions on the company portal as per platform and device ownership types.
         Args:
-            value: Value to set for the companyPortalBlockedActions property.
+            value: Value to set for the company_portal_blocked_actions property.
         """
         self._company_portal_blocked_actions = value
     
@@ -76,6 +76,8 @@ class IntuneBrandingProfile(entity.Entity):
         self._custom_privacy_message: Optional[str] = None
         # Applies to telemetry sent from all clients to the Intune service. When disabled, all proactive troubleshooting and issue warnings within the client are turned off, and telemetry settings appear inactive or hidden to the device user.
         self._disable_client_telemetry: Optional[bool] = None
+        # Boolean that indicates if Device Category Selection will be shown in Company Portal
+        self._disable_device_category_selection: Optional[bool] = None
         # Company/organization name that is displayed to end users
         self._display_name: Optional[str] = None
         # Options available for enrollment flow customization
@@ -136,7 +138,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the contactITEmailAddress property value. E-mail address of the person/organization responsible for IT support
         Args:
-            value: Value to set for the contactITEmailAddress property.
+            value: Value to set for the contact_i_t_email_address property.
         """
         self._contact_i_t_email_address = value
     
@@ -153,7 +155,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the contactITName property value. Name of the person/organization responsible for IT support
         Args:
-            value: Value to set for the contactITName property.
+            value: Value to set for the contact_i_t_name property.
         """
         self._contact_i_t_name = value
     
@@ -170,7 +172,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the contactITNotes property value. Text comments regarding the person/organization responsible for IT support
         Args:
-            value: Value to set for the contactITNotes property.
+            value: Value to set for the contact_i_t_notes property.
         """
         self._contact_i_t_notes = value
     
@@ -187,7 +189,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the contactITPhoneNumber property value. Phone number of the person/organization responsible for IT support
         Args:
-            value: Value to set for the contactITPhoneNumber property.
+            value: Value to set for the contact_i_t_phone_number property.
         """
         self._contact_i_t_phone_number = value
     
@@ -204,7 +206,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the createdDateTime property value. Time when the BrandingProfile was created
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -233,7 +235,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the customCanSeePrivacyMessage property value. Text comments regarding what the admin has access to on the device
         Args:
-            value: Value to set for the customCanSeePrivacyMessage property.
+            value: Value to set for the custom_can_see_privacy_message property.
         """
         self._custom_can_see_privacy_message = value
     
@@ -250,7 +252,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the customCantSeePrivacyMessage property value. Text comments regarding what the admin doesn't have access to on the device
         Args:
-            value: Value to set for the customCantSeePrivacyMessage property.
+            value: Value to set for the custom_cant_see_privacy_message property.
         """
         self._custom_cant_see_privacy_message = value
     
@@ -267,7 +269,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the customPrivacyMessage property value. Text comments regarding what the admin doesn't have access to on the device
         Args:
-            value: Value to set for the customPrivacyMessage property.
+            value: Value to set for the custom_privacy_message property.
         """
         self._custom_privacy_message = value
     
@@ -284,9 +286,26 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the disableClientTelemetry property value. Applies to telemetry sent from all clients to the Intune service. When disabled, all proactive troubleshooting and issue warnings within the client are turned off, and telemetry settings appear inactive or hidden to the device user.
         Args:
-            value: Value to set for the disableClientTelemetry property.
+            value: Value to set for the disable_client_telemetry property.
         """
         self._disable_client_telemetry = value
+    
+    @property
+    def disable_device_category_selection(self,) -> Optional[bool]:
+        """
+        Gets the disableDeviceCategorySelection property value. Boolean that indicates if Device Category Selection will be shown in Company Portal
+        Returns: Optional[bool]
+        """
+        return self._disable_device_category_selection
+    
+    @disable_device_category_selection.setter
+    def disable_device_category_selection(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the disableDeviceCategorySelection property value. Boolean that indicates if Device Category Selection will be shown in Company Portal
+        Args:
+            value: Value to set for the disable_device_category_selection property.
+        """
+        self._disable_device_category_selection = value
     
     @property
     def display_name(self,) -> Optional[str]:
@@ -301,7 +320,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the displayName property value. Company/organization name that is displayed to end users
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -318,7 +337,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the enrollmentAvailability property value. Options available for enrollment flow customization
         Args:
-            value: Value to set for the enrollmentAvailability property.
+            value: Value to set for the enrollment_availability property.
         """
         self._enrollment_availability = value
     
@@ -329,38 +348,39 @@ class IntuneBrandingProfile(entity.Entity):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(intune_branding_profile_assignment.IntuneBrandingProfileAssignment)),
-            "company_portal_blocked_actions": lambda n : setattr(self, 'company_portal_blocked_actions', n.get_collection_of_object_values(company_portal_blocked_action.CompanyPortalBlockedAction)),
-            "contact_i_t_email_address": lambda n : setattr(self, 'contact_i_t_email_address', n.get_str_value()),
-            "contact_i_t_name": lambda n : setattr(self, 'contact_i_t_name', n.get_str_value()),
-            "contact_i_t_notes": lambda n : setattr(self, 'contact_i_t_notes', n.get_str_value()),
-            "contact_i_t_phone_number": lambda n : setattr(self, 'contact_i_t_phone_number', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "custom_can_see_privacy_message": lambda n : setattr(self, 'custom_can_see_privacy_message', n.get_str_value()),
-            "custom_cant_see_privacy_message": lambda n : setattr(self, 'custom_cant_see_privacy_message', n.get_str_value()),
-            "custom_privacy_message": lambda n : setattr(self, 'custom_privacy_message', n.get_str_value()),
-            "disable_client_telemetry": lambda n : setattr(self, 'disable_client_telemetry', n.get_bool_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enrollment_availability": lambda n : setattr(self, 'enrollment_availability', n.get_enum_value(enrollment_availability_options.EnrollmentAvailabilityOptions)),
-            "is_default_profile": lambda n : setattr(self, 'is_default_profile', n.get_bool_value()),
-            "is_factory_reset_disabled": lambda n : setattr(self, 'is_factory_reset_disabled', n.get_bool_value()),
-            "is_remove_device_disabled": lambda n : setattr(self, 'is_remove_device_disabled', n.get_bool_value()),
-            "landing_page_customized_image": lambda n : setattr(self, 'landing_page_customized_image', n.get_object_value(mime_content.MimeContent)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "light_background_logo": lambda n : setattr(self, 'light_background_logo', n.get_object_value(mime_content.MimeContent)),
-            "online_support_site_name": lambda n : setattr(self, 'online_support_site_name', n.get_str_value()),
-            "online_support_site_url": lambda n : setattr(self, 'online_support_site_url', n.get_str_value()),
-            "privacy_url": lambda n : setattr(self, 'privacy_url', n.get_str_value()),
-            "profile_description": lambda n : setattr(self, 'profile_description', n.get_str_value()),
-            "profile_name": lambda n : setattr(self, 'profile_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
-            "send_device_ownership_change_push_notification": lambda n : setattr(self, 'send_device_ownership_change_push_notification', n.get_bool_value()),
-            "show_azure_a_d_enterprise_apps": lambda n : setattr(self, 'show_azure_a_d_enterprise_apps', n.get_bool_value()),
-            "show_configuration_manager_apps": lambda n : setattr(self, 'show_configuration_manager_apps', n.get_bool_value()),
-            "show_display_name_next_to_logo": lambda n : setattr(self, 'show_display_name_next_to_logo', n.get_bool_value()),
-            "show_logo": lambda n : setattr(self, 'show_logo', n.get_bool_value()),
-            "show_office_web_apps": lambda n : setattr(self, 'show_office_web_apps', n.get_bool_value()),
-            "theme_color": lambda n : setattr(self, 'theme_color', n.get_object_value(rgb_color.RgbColor)),
-            "theme_color_logo": lambda n : setattr(self, 'theme_color_logo', n.get_object_value(mime_content.MimeContent)),
+            "companyPortalBlockedActions": lambda n : setattr(self, 'company_portal_blocked_actions', n.get_collection_of_object_values(company_portal_blocked_action.CompanyPortalBlockedAction)),
+            "contactITEmailAddress": lambda n : setattr(self, 'contact_i_t_email_address', n.get_str_value()),
+            "contactITName": lambda n : setattr(self, 'contact_i_t_name', n.get_str_value()),
+            "contactITNotes": lambda n : setattr(self, 'contact_i_t_notes', n.get_str_value()),
+            "contactITPhoneNumber": lambda n : setattr(self, 'contact_i_t_phone_number', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "customCantSeePrivacyMessage": lambda n : setattr(self, 'custom_cant_see_privacy_message', n.get_str_value()),
+            "customCanSeePrivacyMessage": lambda n : setattr(self, 'custom_can_see_privacy_message', n.get_str_value()),
+            "customPrivacyMessage": lambda n : setattr(self, 'custom_privacy_message', n.get_str_value()),
+            "disableClientTelemetry": lambda n : setattr(self, 'disable_client_telemetry', n.get_bool_value()),
+            "disableDeviceCategorySelection": lambda n : setattr(self, 'disable_device_category_selection', n.get_bool_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enrollmentAvailability": lambda n : setattr(self, 'enrollment_availability', n.get_enum_value(enrollment_availability_options.EnrollmentAvailabilityOptions)),
+            "isDefaultProfile": lambda n : setattr(self, 'is_default_profile', n.get_bool_value()),
+            "isFactoryResetDisabled": lambda n : setattr(self, 'is_factory_reset_disabled', n.get_bool_value()),
+            "isRemoveDeviceDisabled": lambda n : setattr(self, 'is_remove_device_disabled', n.get_bool_value()),
+            "landingPageCustomizedImage": lambda n : setattr(self, 'landing_page_customized_image', n.get_object_value(mime_content.MimeContent)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "lightBackgroundLogo": lambda n : setattr(self, 'light_background_logo', n.get_object_value(mime_content.MimeContent)),
+            "onlineSupportSiteName": lambda n : setattr(self, 'online_support_site_name', n.get_str_value()),
+            "onlineSupportSiteUrl": lambda n : setattr(self, 'online_support_site_url', n.get_str_value()),
+            "privacyUrl": lambda n : setattr(self, 'privacy_url', n.get_str_value()),
+            "profileDescription": lambda n : setattr(self, 'profile_description', n.get_str_value()),
+            "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "sendDeviceOwnershipChangePushNotification": lambda n : setattr(self, 'send_device_ownership_change_push_notification', n.get_bool_value()),
+            "showAzureADEnterpriseApps": lambda n : setattr(self, 'show_azure_a_d_enterprise_apps', n.get_bool_value()),
+            "showConfigurationManagerApps": lambda n : setattr(self, 'show_configuration_manager_apps', n.get_bool_value()),
+            "showDisplayNameNextToLogo": lambda n : setattr(self, 'show_display_name_next_to_logo', n.get_bool_value()),
+            "showLogo": lambda n : setattr(self, 'show_logo', n.get_bool_value()),
+            "showOfficeWebApps": lambda n : setattr(self, 'show_office_web_apps', n.get_bool_value()),
+            "themeColor": lambda n : setattr(self, 'theme_color', n.get_object_value(rgb_color.RgbColor)),
+            "themeColorLogo": lambda n : setattr(self, 'theme_color_logo', n.get_object_value(mime_content.MimeContent)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -379,7 +399,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the isDefaultProfile property value. Boolean that represents whether the profile is used as default or not
         Args:
-            value: Value to set for the isDefaultProfile property.
+            value: Value to set for the is_default_profile property.
         """
         self._is_default_profile = value
     
@@ -396,7 +416,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the isFactoryResetDisabled property value. Boolean that represents whether the adminsistrator has disabled the 'Factory Reset' action on corporate owned devices.
         Args:
-            value: Value to set for the isFactoryResetDisabled property.
+            value: Value to set for the is_factory_reset_disabled property.
         """
         self._is_factory_reset_disabled = value
     
@@ -413,7 +433,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the isRemoveDeviceDisabled property value. Boolean that represents whether the adminsistrator has disabled the 'Remove Device' action on corporate owned devices.
         Args:
-            value: Value to set for the isRemoveDeviceDisabled property.
+            value: Value to set for the is_remove_device_disabled property.
         """
         self._is_remove_device_disabled = value
     
@@ -430,7 +450,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the landingPageCustomizedImage property value. Customized image displayed in Company Portal apps landing page
         Args:
-            value: Value to set for the landingPageCustomizedImage property.
+            value: Value to set for the landing_page_customized_image property.
         """
         self._landing_page_customized_image = value
     
@@ -447,7 +467,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. Time when the BrandingProfile was last modified
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -464,7 +484,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the lightBackgroundLogo property value. Logo image displayed in Company Portal apps which have a light background behind the logo
         Args:
-            value: Value to set for the lightBackgroundLogo property.
+            value: Value to set for the light_background_logo property.
         """
         self._light_background_logo = value
     
@@ -481,7 +501,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the onlineSupportSiteName property value. Display name of the company/organization’s IT helpdesk site
         Args:
-            value: Value to set for the onlineSupportSiteName property.
+            value: Value to set for the online_support_site_name property.
         """
         self._online_support_site_name = value
     
@@ -498,7 +518,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the onlineSupportSiteUrl property value. URL to the company/organization’s IT helpdesk site
         Args:
-            value: Value to set for the onlineSupportSiteUrl property.
+            value: Value to set for the online_support_site_url property.
         """
         self._online_support_site_url = value
     
@@ -515,7 +535,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the privacyUrl property value. URL to the company/organization’s privacy policy
         Args:
-            value: Value to set for the privacyUrl property.
+            value: Value to set for the privacy_url property.
         """
         self._privacy_url = value
     
@@ -532,7 +552,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the profileDescription property value. Description of the profile
         Args:
-            value: Value to set for the profileDescription property.
+            value: Value to set for the profile_description property.
         """
         self._profile_description = value
     
@@ -549,7 +569,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the profileName property value. Name of the profile
         Args:
-            value: Value to set for the profileName property.
+            value: Value to set for the profile_name property.
         """
         self._profile_name = value
     
@@ -566,7 +586,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of scope tags assigned to the branding profile
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     
@@ -583,7 +603,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the sendDeviceOwnershipChangePushNotification property value. Boolean that indicates if a push notification is sent to users when their device ownership type changes from personal to corporate
         Args:
-            value: Value to set for the sendDeviceOwnershipChangePushNotification property.
+            value: Value to set for the send_device_ownership_change_push_notification property.
         """
         self._send_device_ownership_change_push_notification = value
     
@@ -603,10 +623,11 @@ class IntuneBrandingProfile(entity.Entity):
         writer.write_str_value("contactITNotes", self.contact_i_t_notes)
         writer.write_str_value("contactITPhoneNumber", self.contact_i_t_phone_number)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_str_value("customCanSeePrivacyMessage", self.custom_can_see_privacy_message)
         writer.write_str_value("customCantSeePrivacyMessage", self.custom_cant_see_privacy_message)
+        writer.write_str_value("customCanSeePrivacyMessage", self.custom_can_see_privacy_message)
         writer.write_str_value("customPrivacyMessage", self.custom_privacy_message)
         writer.write_bool_value("disableClientTelemetry", self.disable_client_telemetry)
+        writer.write_bool_value("disableDeviceCategorySelection", self.disable_device_category_selection)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("enrollmentAvailability", self.enrollment_availability)
         writer.write_bool_value("isDefaultProfile", self.is_default_profile)
@@ -643,7 +664,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the showAzureADEnterpriseApps property value. Boolean that indicates if AzureAD Enterprise Apps will be shown in Company Portal
         Args:
-            value: Value to set for the showAzureADEnterpriseApps property.
+            value: Value to set for the show_azure_a_d_enterprise_apps property.
         """
         self._show_azure_a_d_enterprise_apps = value
     
@@ -660,7 +681,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the showConfigurationManagerApps property value. Boolean that indicates if Configuration Manager Apps will be shown in Company Portal
         Args:
-            value: Value to set for the showConfigurationManagerApps property.
+            value: Value to set for the show_configuration_manager_apps property.
         """
         self._show_configuration_manager_apps = value
     
@@ -677,7 +698,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the showDisplayNameNextToLogo property value. Boolean that represents whether the administrator-supplied display name will be shown next to the logo image or not
         Args:
-            value: Value to set for the showDisplayNameNextToLogo property.
+            value: Value to set for the show_display_name_next_to_logo property.
         """
         self._show_display_name_next_to_logo = value
     
@@ -694,7 +715,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the showLogo property value. Boolean that represents whether the administrator-supplied logo images are shown or not
         Args:
-            value: Value to set for the showLogo property.
+            value: Value to set for the show_logo property.
         """
         self._show_logo = value
     
@@ -711,7 +732,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the showOfficeWebApps property value. Boolean that indicates if Office WebApps will be shown in Company Portal
         Args:
-            value: Value to set for the showOfficeWebApps property.
+            value: Value to set for the show_office_web_apps property.
         """
         self._show_office_web_apps = value
     
@@ -728,7 +749,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the themeColor property value. Primary theme color used in the Company Portal applications and web portal
         Args:
-            value: Value to set for the themeColor property.
+            value: Value to set for the theme_color property.
         """
         self._theme_color = value
     
@@ -745,7 +766,7 @@ class IntuneBrandingProfile(entity.Entity):
         """
         Sets the themeColorLogo property value. Logo image displayed in Company Portal apps which have a theme color background behind the logo
         Args:
-            value: Value to set for the themeColorLogo property.
+            value: Value to set for the theme_color_logo property.
         """
         self._theme_color_logo = value
     

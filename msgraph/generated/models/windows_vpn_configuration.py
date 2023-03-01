@@ -7,9 +7,6 @@ device_configuration = lazy_import('msgraph.generated.models.device_configuratio
 vpn_server = lazy_import('msgraph.generated.models.vpn_server')
 
 class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
-    """
-    Windows VPN configuration profile.
-    """
     @property
     def connection_name(self,) -> Optional[str]:
         """
@@ -23,13 +20,13 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectionName property value. Connection name displayed to the user.
         Args:
-            value: Value to set for the connectionName property.
+            value: Value to set for the connection_name property.
         """
         self._connection_name = value
     
     def __init__(self,) -> None:
         """
-        Instantiates a new windowsVpnConfiguration and sets the default values.
+        Instantiates a new WindowsVpnConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsVpnConfiguration"
@@ -65,7 +62,7 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the customXml property value. Custom XML commands that configures the VPN connection. (UTF8 encoded byte array)
         Args:
-            value: Value to set for the customXml property.
+            value: Value to set for the custom_xml property.
         """
         self._custom_xml = value
     
@@ -75,8 +72,8 @@ class WindowsVpnConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connection_name": lambda n : setattr(self, 'connection_name', n.get_str_value()),
-            "custom_xml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
+            "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),
+            "customXml": lambda n : setattr(self, 'custom_xml', n.get_bytes_value()),
             "servers": lambda n : setattr(self, 'servers', n.get_collection_of_object_values(vpn_server.VpnServer)),
         }
         super_fields = super().get_field_deserializers()

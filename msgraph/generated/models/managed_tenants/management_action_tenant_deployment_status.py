@@ -40,8 +40,8 @@ class ManagementActionTenantDeploymentStatus(entity.Entity):
         """
         fields = {
             "statuses": lambda n : setattr(self, 'statuses', n.get_collection_of_object_values(management_action_deployment_status.ManagementActionDeploymentStatus)),
-            "tenant_group_id": lambda n : setattr(self, 'tenant_group_id', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "tenantGroupId": lambda n : setattr(self, 'tenant_group_id', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -90,7 +90,7 @@ class ManagementActionTenantDeploymentStatus(entity.Entity):
         """
         Sets the tenantGroupId property value. The identifier for the tenant group that is associated with the management action. Required. Read-only.
         Args:
-            value: Value to set for the tenantGroupId property.
+            value: Value to set for the tenant_group_id property.
         """
         self._tenant_group_id = value
     
@@ -107,7 +107,7 @@ class ManagementActionTenantDeploymentStatus(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     

@@ -57,8 +57,8 @@ class AndroidManagedStoreAppTrack(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "track_alias": lambda n : setattr(self, 'track_alias', n.get_str_value()),
-            "track_id": lambda n : setattr(self, 'track_id', n.get_str_value()),
+            "trackAlias": lambda n : setattr(self, 'track_alias', n.get_str_value()),
+            "trackId": lambda n : setattr(self, 'track_id', n.get_str_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class AndroidManagedStoreAppTrack(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -105,7 +105,7 @@ class AndroidManagedStoreAppTrack(AdditionalDataHolder, Parsable):
         """
         Sets the trackAlias property value. Friendly name for track.
         Args:
-            value: Value to set for the trackAlias property.
+            value: Value to set for the track_alias property.
         """
         self._track_alias = value
     
@@ -122,7 +122,7 @@ class AndroidManagedStoreAppTrack(AdditionalDataHolder, Parsable):
         """
         Sets the trackId property value. Unique track identifier.
         Args:
-            value: Value to set for the trackId property.
+            value: Value to set for the track_id property.
         """
         self._track_id = value
     

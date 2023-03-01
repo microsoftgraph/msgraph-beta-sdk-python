@@ -49,7 +49,7 @@ class UnsetReactionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "reaction_type": lambda n : setattr(self, 'reaction_type', n.get_str_value()),
+            "reactionType": lambda n : setattr(self, 'reaction_type', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class UnsetReactionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the reactionType property value. The reactionType property
         Args:
-            value: Value to set for the reactionType property.
+            value: Value to set for the reaction_type property.
         """
         self._reaction_type = value
     

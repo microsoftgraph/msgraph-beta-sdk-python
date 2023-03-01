@@ -37,8 +37,8 @@ class MachineLearningDetectedSensitiveContent(detected_sensitive_content.Detecte
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "match_tolerance": lambda n : setattr(self, 'match_tolerance', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
-            "model_version": lambda n : setattr(self, 'model_version', n.get_str_value()),
+            "matchTolerance": lambda n : setattr(self, 'match_tolerance', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
+            "modelVersion": lambda n : setattr(self, 'model_version', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -57,7 +57,7 @@ class MachineLearningDetectedSensitiveContent(detected_sensitive_content.Detecte
         """
         Sets the matchTolerance property value. The matchTolerance property
         Args:
-            value: Value to set for the matchTolerance property.
+            value: Value to set for the match_tolerance property.
         """
         self._match_tolerance = value
     
@@ -74,7 +74,7 @@ class MachineLearningDetectedSensitiveContent(detected_sensitive_content.Detecte
         """
         Sets the modelVersion property value. The modelVersion property
         Args:
-            value: Value to set for the modelVersion property.
+            value: Value to set for the model_version property.
         """
         self._model_version = value
     

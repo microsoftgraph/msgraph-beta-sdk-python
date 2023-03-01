@@ -25,7 +25,7 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         """
         Sets the additionalInformation property value. A set of string key and string value pairs which provides additional information on the Troubleshooting event
         Args:
-            value: Value to set for the additionalInformation property.
+            value: Value to set for the additional_information property.
         """
         self._additional_information = value
     
@@ -60,7 +60,7 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         """
         Sets the correlationId property value. Id used for tracing the failure in the service.
         Args:
-            value: Value to set for the correlationId property.
+            value: Value to set for the correlation_id property.
         """
         self._correlation_id = value
     
@@ -89,7 +89,7 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         """
         Sets the eventDateTime property value. Time when the event occurred .
         Args:
-            value: Value to set for the eventDateTime property.
+            value: Value to set for the event_date_time property.
         """
         self._event_date_time = value
     
@@ -106,7 +106,7 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         """
         Sets the eventName property value. Event Name corresponding to the Troubleshooting Event. It is an Optional field
         Args:
-            value: Value to set for the eventName property.
+            value: Value to set for the event_name property.
         """
         self._event_name = value
     
@@ -116,11 +116,11 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_information": lambda n : setattr(self, 'additional_information', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
-            "correlation_id": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
-            "event_date_time": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
-            "event_name": lambda n : setattr(self, 'event_name', n.get_str_value()),
-            "troubleshooting_error_details": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails)),
+            "additionalInformation": lambda n : setattr(self, 'additional_information', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
+            "correlationId": lambda n : setattr(self, 'correlation_id', n.get_str_value()),
+            "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),
+            "eventName": lambda n : setattr(self, 'event_name', n.get_str_value()),
+            "troubleshootingErrorDetails": lambda n : setattr(self, 'troubleshooting_error_details', n.get_object_value(device_management_troubleshooting_error_details.DeviceManagementTroubleshootingErrorDetails)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -154,7 +154,7 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
         """
         Sets the troubleshootingErrorDetails property value. Object containing detailed information about the error and its remediation.
         Args:
-            value: Value to set for the troubleshootingErrorDetails property.
+            value: Value to set for the troubleshooting_error_details property.
         """
         self._troubleshooting_error_details = value
     

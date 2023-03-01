@@ -49,7 +49,7 @@ class ValidateXmlPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "office_configuration_xml": lambda n : setattr(self, 'office_configuration_xml', n.get_bytes_value()),
+            "officeConfigurationXml": lambda n : setattr(self, 'office_configuration_xml', n.get_bytes_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class ValidateXmlPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the officeConfigurationXml property value. The officeConfigurationXml property
         Args:
-            value: Value to set for the officeConfigurationXml property.
+            value: Value to set for the office_configuration_xml property.
         """
         self._office_configuration_xml = value
     

@@ -22,7 +22,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the acceptedFor property value. The acceptedFor property
         Args:
-            value: Value to set for the acceptedFor property.
+            value: Value to set for the accepted_for property.
         """
         self._accepted_for = value
     
@@ -69,7 +69,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the contentMarkdown property value. The contentMarkdown property
         Args:
-            value: Value to set for the contentMarkdown property.
+            value: Value to set for the content_markdown property.
         """
         self._content_markdown = value
     
@@ -86,7 +86,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the createdByUserId property value. The createdByUserId property
         Args:
-            value: Value to set for the createdByUserId property.
+            value: Value to set for the created_by_user_id property.
         """
         self._created_by_user_id = value
     
@@ -103,7 +103,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -142,17 +142,17 @@ class ManagementTemplateStepVersion(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accepted_for": lambda n : setattr(self, 'accepted_for', n.get_object_value(management_template_step.ManagementTemplateStep)),
-            "content_markdown": lambda n : setattr(self, 'content_markdown', n.get_str_value()),
-            "created_by_user_id": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "acceptedFor": lambda n : setattr(self, 'accepted_for', n.get_object_value(management_template_step.ManagementTemplateStep)),
+            "contentMarkdown": lambda n : setattr(self, 'content_markdown', n.get_str_value()),
+            "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deployments": lambda n : setattr(self, 'deployments', n.get_collection_of_object_values(management_template_step_deployment.ManagementTemplateStepDeployment)),
-            "last_action_by_user_id": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
-            "last_action_date_time": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
+            "lastActionByUserId": lambda n : setattr(self, 'last_action_by_user_id', n.get_str_value()),
+            "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "template_step": lambda n : setattr(self, 'template_step', n.get_object_value(management_template_step.ManagementTemplateStep)),
+            "templateStep": lambda n : setattr(self, 'template_step', n.get_object_value(management_template_step.ManagementTemplateStep)),
             "version": lambda n : setattr(self, 'version', n.get_int_value()),
-            "version_information": lambda n : setattr(self, 'version_information', n.get_str_value()),
+            "versionInformation": lambda n : setattr(self, 'version_information', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -171,7 +171,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the lastActionByUserId property value. The lastActionByUserId property
         Args:
-            value: Value to set for the lastActionByUserId property.
+            value: Value to set for the last_action_by_user_id property.
         """
         self._last_action_by_user_id = value
     
@@ -188,7 +188,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the lastActionDateTime property value. The lastActionDateTime property
         Args:
-            value: Value to set for the lastActionDateTime property.
+            value: Value to set for the last_action_date_time property.
         """
         self._last_action_date_time = value
     
@@ -243,7 +243,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the templateStep property value. The templateStep property
         Args:
-            value: Value to set for the templateStep property.
+            value: Value to set for the template_step property.
         """
         self._template_step = value
     
@@ -277,7 +277,7 @@ class ManagementTemplateStepVersion(entity.Entity):
         """
         Sets the versionInformation property value. The versionInformation property
         Args:
-            value: Value to set for the versionInformation property.
+            value: Value to set for the version_information property.
         """
         self._version_information = value
     

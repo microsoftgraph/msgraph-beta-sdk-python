@@ -37,7 +37,7 @@ class Acronym(search_answer.SearchAnswer):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "stands_for": lambda n : setattr(self, 'stands_for', n.get_str_value()),
+            "standsFor": lambda n : setattr(self, 'stands_for', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(answer_state.AnswerState)),
         }
         super_fields = super().get_field_deserializers()
@@ -69,7 +69,7 @@ class Acronym(search_answer.SearchAnswer):
         """
         Sets the standsFor property value. What the acronym stands for.
         Args:
-            value: Value to set for the standsFor property.
+            value: Value to set for the stands_for property.
         """
         self._stands_for = value
     

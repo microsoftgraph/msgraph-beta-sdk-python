@@ -46,7 +46,7 @@ class RoomList(place.Place):
         """
         Sets the emailAddress property value. The email address of the room list.
         Args:
-            value: Value to set for the emailAddress property.
+            value: Value to set for the email_address property.
         """
         self._email_address = value
     
@@ -56,7 +56,7 @@ class RoomList(place.Place):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "email_address": lambda n : setattr(self, 'email_address', n.get_str_value()),
+            "emailAddress": lambda n : setattr(self, 'email_address', n.get_str_value()),
             "rooms": lambda n : setattr(self, 'rooms', n.get_collection_of_object_values(room.Room)),
             "workspaces": lambda n : setattr(self, 'workspaces', n.get_collection_of_object_values(workspace.Workspace)),
         }

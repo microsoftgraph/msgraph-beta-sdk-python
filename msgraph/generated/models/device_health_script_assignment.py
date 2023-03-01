@@ -43,8 +43,8 @@ class DeviceHealthScriptAssignment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "run_remediation_script": lambda n : setattr(self, 'run_remediation_script', n.get_bool_value()),
-            "run_schedule": lambda n : setattr(self, 'run_schedule', n.get_object_value(device_health_script_run_schedule.DeviceHealthScriptRunSchedule)),
+            "runRemediationScript": lambda n : setattr(self, 'run_remediation_script', n.get_bool_value()),
+            "runSchedule": lambda n : setattr(self, 'run_schedule', n.get_object_value(device_health_script_run_schedule.DeviceHealthScriptRunSchedule)),
             "target": lambda n : setattr(self, 'target', n.get_object_value(device_and_app_management_assignment_target.DeviceAndAppManagementAssignmentTarget)),
         }
         super_fields = super().get_field_deserializers()
@@ -64,7 +64,7 @@ class DeviceHealthScriptAssignment(entity.Entity):
         """
         Sets the runRemediationScript property value. Determine whether we want to run detection script only or run both detection script and remediation script
         Args:
-            value: Value to set for the runRemediationScript property.
+            value: Value to set for the run_remediation_script property.
         """
         self._run_remediation_script = value
     
@@ -81,7 +81,7 @@ class DeviceHealthScriptAssignment(entity.Entity):
         """
         Sets the runSchedule property value. Script run schedule for the target group
         Args:
-            value: Value to set for the runSchedule property.
+            value: Value to set for the run_schedule property.
         """
         self._run_schedule = value
     

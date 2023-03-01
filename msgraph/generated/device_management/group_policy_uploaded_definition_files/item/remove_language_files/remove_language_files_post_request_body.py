@@ -51,7 +51,7 @@ class RemoveLanguageFilesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_policy_uploaded_language_files": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
+            "groupPolicyUploadedLanguageFiles": lambda n : setattr(self, 'group_policy_uploaded_language_files', n.get_collection_of_object_values(group_policy_uploaded_language_file.GroupPolicyUploadedLanguageFile)),
         }
         return fields
     
@@ -68,7 +68,7 @@ class RemoveLanguageFilesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupPolicyUploadedLanguageFiles property value. The groupPolicyUploadedLanguageFiles property
         Args:
-            value: Value to set for the groupPolicyUploadedLanguageFiles property.
+            value: Value to set for the group_policy_uploaded_language_files property.
         """
         self._group_policy_uploaded_language_files = value
     

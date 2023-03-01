@@ -36,7 +36,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the approvalStageTimeOutInDays property value. The number of days that a request can be pending a response before it is automatically denied.
         Args:
-            value: Value to set for the approvalStageTimeOutInDays property.
+            value: Value to set for the approval_stage_time_out_in_days property.
         """
         self._approval_stage_time_out_in_days = value
     
@@ -87,7 +87,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the escalationApprovers property value. If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests. This can be a collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors.  When creating or updating a policy, if there are no escalation approvers, or escalation approvers are not required for the stage, the value of this property should be an empty collection.
         Args:
-            value: Value to set for the escalationApprovers property.
+            value: Value to set for the escalation_approvers property.
         """
         self._escalation_approvers = value
     
@@ -104,7 +104,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the escalationTimeInMinutes property value. If escalation is required, the time a request can be pending a response from a primary approver.
         Args:
-            value: Value to set for the escalationTimeInMinutes property.
+            value: Value to set for the escalation_time_in_minutes property.
         """
         self._escalation_time_in_minutes = value
     
@@ -114,13 +114,13 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "approval_stage_time_out_in_days": lambda n : setattr(self, 'approval_stage_time_out_in_days', n.get_int_value()),
-            "escalation_approvers": lambda n : setattr(self, 'escalation_approvers', n.get_collection_of_object_values(user_set.UserSet)),
-            "escalation_time_in_minutes": lambda n : setattr(self, 'escalation_time_in_minutes', n.get_int_value()),
-            "is_approver_justification_required": lambda n : setattr(self, 'is_approver_justification_required', n.get_bool_value()),
-            "is_escalation_enabled": lambda n : setattr(self, 'is_escalation_enabled', n.get_bool_value()),
+            "approvalStageTimeOutInDays": lambda n : setattr(self, 'approval_stage_time_out_in_days', n.get_int_value()),
+            "escalationApprovers": lambda n : setattr(self, 'escalation_approvers', n.get_collection_of_object_values(user_set.UserSet)),
+            "escalationTimeInMinutes": lambda n : setattr(self, 'escalation_time_in_minutes', n.get_int_value()),
+            "isApproverJustificationRequired": lambda n : setattr(self, 'is_approver_justification_required', n.get_bool_value()),
+            "isEscalationEnabled": lambda n : setattr(self, 'is_escalation_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "primary_approvers": lambda n : setattr(self, 'primary_approvers', n.get_collection_of_object_values(user_set.UserSet)),
+            "primaryApprovers": lambda n : setattr(self, 'primary_approvers', n.get_collection_of_object_values(user_set.UserSet)),
         }
         return fields
     
@@ -137,7 +137,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the isApproverJustificationRequired property value. Indicates whether the approver is required to provide a justification for approving a request.
         Args:
-            value: Value to set for the isApproverJustificationRequired property.
+            value: Value to set for the is_approver_justification_required property.
         """
         self._is_approver_justification_required = value
     
@@ -154,7 +154,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the isEscalationEnabled property value. If true, then one or more escalation approvers are configured in this approval stage.
         Args:
-            value: Value to set for the isEscalationEnabled property.
+            value: Value to set for the is_escalation_enabled property.
         """
         self._is_escalation_enabled = value
     
@@ -171,7 +171,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -188,7 +188,7 @@ class ApprovalStage(AdditionalDataHolder, Parsable):
         """
         Sets the primaryApprovers property value. The users who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors and externalSponsors. When creating or updating a policy, include at least one userSet in this collection.
         Args:
-            value: Value to set for the primaryApprovers property.
+            value: Value to set for the primary_approvers property.
         """
         self._primary_approvers = value
     

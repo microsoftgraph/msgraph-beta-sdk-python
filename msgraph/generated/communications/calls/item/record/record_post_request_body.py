@@ -36,7 +36,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the bargeInAllowed property value. The bargeInAllowed property
         Args:
-            value: Value to set for the bargeInAllowed property.
+            value: Value to set for the barge_in_allowed property.
         """
         self._barge_in_allowed = value
     
@@ -53,7 +53,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the clientContext property value. The clientContext property
         Args:
-            value: Value to set for the clientContext property.
+            value: Value to set for the client_context property.
         """
         self._client_context = value
     
@@ -101,15 +101,15 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "barge_in_allowed": lambda n : setattr(self, 'barge_in_allowed', n.get_bool_value()),
-            "client_context": lambda n : setattr(self, 'client_context', n.get_str_value()),
-            "initial_silence_timeout_in_seconds": lambda n : setattr(self, 'initial_silence_timeout_in_seconds', n.get_int_value()),
-            "max_record_duration_in_seconds": lambda n : setattr(self, 'max_record_duration_in_seconds', n.get_int_value()),
-            "max_silence_timeout_in_seconds": lambda n : setattr(self, 'max_silence_timeout_in_seconds', n.get_int_value()),
-            "play_beep": lambda n : setattr(self, 'play_beep', n.get_bool_value()),
+            "bargeInAllowed": lambda n : setattr(self, 'barge_in_allowed', n.get_bool_value()),
+            "clientContext": lambda n : setattr(self, 'client_context', n.get_str_value()),
+            "initialSilenceTimeoutInSeconds": lambda n : setattr(self, 'initial_silence_timeout_in_seconds', n.get_int_value()),
+            "maxRecordDurationInSeconds": lambda n : setattr(self, 'max_record_duration_in_seconds', n.get_int_value()),
+            "maxSilenceTimeoutInSeconds": lambda n : setattr(self, 'max_silence_timeout_in_seconds', n.get_int_value()),
+            "playBeep": lambda n : setattr(self, 'play_beep', n.get_bool_value()),
             "prompts": lambda n : setattr(self, 'prompts', n.get_collection_of_object_values(prompt.Prompt)),
-            "stop_tones": lambda n : setattr(self, 'stop_tones', n.get_collection_of_primitive_values(str)),
-            "stream_while_recording": lambda n : setattr(self, 'stream_while_recording', n.get_bool_value()),
+            "stopTones": lambda n : setattr(self, 'stop_tones', n.get_collection_of_primitive_values(str)),
+            "streamWhileRecording": lambda n : setattr(self, 'stream_while_recording', n.get_bool_value()),
         }
         return fields
     
@@ -126,7 +126,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the initialSilenceTimeoutInSeconds property value. The initialSilenceTimeoutInSeconds property
         Args:
-            value: Value to set for the initialSilenceTimeoutInSeconds property.
+            value: Value to set for the initial_silence_timeout_in_seconds property.
         """
         self._initial_silence_timeout_in_seconds = value
     
@@ -143,7 +143,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the maxRecordDurationInSeconds property value. The maxRecordDurationInSeconds property
         Args:
-            value: Value to set for the maxRecordDurationInSeconds property.
+            value: Value to set for the max_record_duration_in_seconds property.
         """
         self._max_record_duration_in_seconds = value
     
@@ -160,7 +160,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the maxSilenceTimeoutInSeconds property value. The maxSilenceTimeoutInSeconds property
         Args:
-            value: Value to set for the maxSilenceTimeoutInSeconds property.
+            value: Value to set for the max_silence_timeout_in_seconds property.
         """
         self._max_silence_timeout_in_seconds = value
     
@@ -177,7 +177,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the playBeep property value. The playBeep property
         Args:
-            value: Value to set for the playBeep property.
+            value: Value to set for the play_beep property.
         """
         self._play_beep = value
     
@@ -230,7 +230,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the stopTones property value. The stopTones property
         Args:
-            value: Value to set for the stopTones property.
+            value: Value to set for the stop_tones property.
         """
         self._stop_tones = value
     
@@ -247,7 +247,7 @@ class RecordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the streamWhileRecording property value. The streamWhileRecording property
         Args:
-            value: Value to set for the streamWhileRecording property.
+            value: Value to set for the stream_while_recording property.
         """
         self._stream_while_recording = value
     

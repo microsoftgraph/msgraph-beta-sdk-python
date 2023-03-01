@@ -63,7 +63,7 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the daysUntilForcedReboot property value. The number of days after installation that forced reboot will happen.
         Args:
-            value: Value to set for the daysUntilForcedReboot property.
+            value: Value to set for the days_until_forced_reboot property.
         """
         self._days_until_forced_reboot = value
     
@@ -73,9 +73,9 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "days_until_forced_reboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
+            "daysUntilForcedReboot": lambda n : setattr(self, 'days_until_forced_reboot', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "quality_update_release": lambda n : setattr(self, 'quality_update_release', n.get_str_value()),
+            "qualityUpdateRelease": lambda n : setattr(self, 'quality_update_release', n.get_str_value()),
         }
         return fields
     
@@ -92,7 +92,7 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -109,7 +109,7 @@ class ExpeditedWindowsQualityUpdateSettings(AdditionalDataHolder, Parsable):
         """
         Sets the qualityUpdateRelease property value. The release date to identify a quality update.
         Args:
-            value: Value to set for the qualityUpdateRelease property.
+            value: Value to set for the quality_update_release property.
         """
         self._quality_update_release = value
     

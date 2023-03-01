@@ -36,7 +36,7 @@ class UpdateRecordingStatusPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the clientContext property value. The clientContext property
         Args:
-            value: Value to set for the clientContext property.
+            value: Value to set for the client_context property.
         """
         self._client_context = value
     
@@ -70,7 +70,7 @@ class UpdateRecordingStatusPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "client_context": lambda n : setattr(self, 'client_context', n.get_str_value()),
+            "clientContext": lambda n : setattr(self, 'client_context', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(recording_status.RecordingStatus)),
         }
         return fields

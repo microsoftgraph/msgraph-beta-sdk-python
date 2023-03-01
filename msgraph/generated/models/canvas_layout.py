@@ -38,8 +38,8 @@ class CanvasLayout(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "horizontal_sections": lambda n : setattr(self, 'horizontal_sections', n.get_collection_of_object_values(horizontal_section.HorizontalSection)),
-            "vertical_section": lambda n : setattr(self, 'vertical_section', n.get_object_value(vertical_section.VerticalSection)),
+            "horizontalSections": lambda n : setattr(self, 'horizontal_sections', n.get_collection_of_object_values(horizontal_section.HorizontalSection)),
+            "verticalSection": lambda n : setattr(self, 'vertical_section', n.get_object_value(vertical_section.VerticalSection)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -58,7 +58,7 @@ class CanvasLayout(entity.Entity):
         """
         Sets the horizontalSections property value. Collection of horizontal sections on the SharePoint page.
         Args:
-            value: Value to set for the horizontalSections property.
+            value: Value to set for the horizontal_sections property.
         """
         self._horizontal_sections = value
     
@@ -87,7 +87,7 @@ class CanvasLayout(entity.Entity):
         """
         Sets the verticalSection property value. Vertical section on the SharePoint page.
         Args:
-            value: Value to set for the verticalSection property.
+            value: Value to set for the vertical_section property.
         """
         self._vertical_section = value
     

@@ -46,7 +46,7 @@ class GroupPolicyPresentationComboBox(group_policy_uploaded_presentation.GroupPo
         """
         Sets the defaultValue property value. Localized default string displayed in the combo box. The default value is empty.
         Args:
-            value: Value to set for the defaultValue property.
+            value: Value to set for the default_value property.
         """
         self._default_value = value
     
@@ -56,8 +56,8 @@ class GroupPolicyPresentationComboBox(group_policy_uploaded_presentation.GroupPo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "default_value": lambda n : setattr(self, 'default_value', n.get_str_value()),
-            "max_length": lambda n : setattr(self, 'max_length', n.get_int_value()),
+            "defaultValue": lambda n : setattr(self, 'default_value', n.get_str_value()),
+            "maxLength": lambda n : setattr(self, 'max_length', n.get_int_value()),
             "required": lambda n : setattr(self, 'required', n.get_bool_value()),
             "suggestions": lambda n : setattr(self, 'suggestions', n.get_collection_of_primitive_values(str)),
         }
@@ -78,7 +78,7 @@ class GroupPolicyPresentationComboBox(group_policy_uploaded_presentation.GroupPo
         """
         Sets the maxLength property value. An unsigned integer that specifies the maximum number of text characters for the parameter. The default value is 1023.
         Args:
-            value: Value to set for the maxLength property.
+            value: Value to set for the max_length property.
         """
         self._max_length = value
     

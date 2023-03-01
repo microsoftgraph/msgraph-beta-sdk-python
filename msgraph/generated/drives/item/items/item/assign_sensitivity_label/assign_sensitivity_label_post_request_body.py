@@ -36,7 +36,7 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentMethod property value. The assignmentMethod property
         Args:
-            value: Value to set for the assignmentMethod property.
+            value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
     
@@ -72,9 +72,9 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_method": lambda n : setattr(self, 'assignment_method', n.get_enum_value(sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod)),
-            "justification_text": lambda n : setattr(self, 'justification_text', n.get_str_value()),
-            "sensitivity_label_id": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
+            "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(sensitivity_label_assignment_method.SensitivityLabelAssignmentMethod)),
+            "justificationText": lambda n : setattr(self, 'justification_text', n.get_str_value()),
+            "sensitivityLabelId": lambda n : setattr(self, 'sensitivity_label_id', n.get_str_value()),
         }
         return fields
     
@@ -91,7 +91,7 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the justificationText property value. The justificationText property
         Args:
-            value: Value to set for the justificationText property.
+            value: Value to set for the justification_text property.
         """
         self._justification_text = value
     
@@ -108,7 +108,7 @@ class AssignSensitivityLabelPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sensitivityLabelId property value. The sensitivityLabelId property
         Args:
-            value: Value to set for the sensitivityLabelId property.
+            value: Value to set for the sensitivity_label_id property.
         """
         self._sensitivity_label_id = value
     

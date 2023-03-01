@@ -56,10 +56,10 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "last_recorded_date_time": lambda n : setattr(self, 'last_recorded_date_time', n.get_datetime_value()),
-            "observed_date_time": lambda n : setattr(self, 'observed_date_time', n.get_datetime_value()),
+            "lastRecordedDateTime": lambda n : setattr(self, 'last_recorded_date_time', n.get_datetime_value()),
+            "observedDateTime": lambda n : setattr(self, 'observed_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "recorded_date_time": lambda n : setattr(self, 'recorded_date_time', n.get_datetime_value()),
+            "recordedDateTime": lambda n : setattr(self, 'recorded_date_time', n.get_datetime_value()),
         }
         return fields
     
@@ -76,7 +76,7 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
         """
         Sets the lastRecordedDateTime property value. The lastRecordedDateTime property
         Args:
-            value: Value to set for the lastRecordedDateTime property.
+            value: Value to set for the last_recorded_date_time property.
         """
         self._last_recorded_date_time = value
     
@@ -93,7 +93,7 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
         """
         Sets the observedDateTime property value. When the activity was observed to take place.
         Args:
-            value: Value to set for the observedDateTime property.
+            value: Value to set for the observed_date_time property.
         """
         self._observed_date_time = value
     
@@ -110,7 +110,7 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -127,7 +127,7 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
         """
         Sets the recordedDateTime property value. When the observation was recorded on the service.
         Args:
-            value: Value to set for the recordedDateTime property.
+            value: Value to set for the recorded_date_time property.
         """
         self._recorded_date_time = value
     

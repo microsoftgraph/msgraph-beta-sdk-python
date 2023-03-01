@@ -12,13 +12,13 @@ class CatalogEntry(entity.Entity):
         Instantiates a new catalogEntry and sets the default values.
         """
         super().__init__()
-        # The date on which the content is no longer available to deploy using the service. Read-only.
+        # The date on which the content is no longer available to deploy using the service. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         self._deployable_until_date_time: Optional[datetime] = None
         # The display name of the content. Read-only.
         self._display_name: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The release date for the content. Read-only.
+        # The release date for the content. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         self._release_date_time: Optional[datetime] = None
     
     @staticmethod
@@ -36,7 +36,7 @@ class CatalogEntry(entity.Entity):
     @property
     def deployable_until_date_time(self,) -> Optional[datetime]:
         """
-        Gets the deployableUntilDateTime property value. The date on which the content is no longer available to deploy using the service. Read-only.
+        Gets the deployableUntilDateTime property value. The date on which the content is no longer available to deploy using the service. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Returns: Optional[datetime]
         """
         return self._deployable_until_date_time
@@ -44,9 +44,9 @@ class CatalogEntry(entity.Entity):
     @deployable_until_date_time.setter
     def deployable_until_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the deployableUntilDateTime property value. The date on which the content is no longer available to deploy using the service. Read-only.
+        Sets the deployableUntilDateTime property value. The date on which the content is no longer available to deploy using the service. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the deployableUntilDateTime property.
+            value: Value to set for the deployable_until_date_time property.
         """
         self._deployable_until_date_time = value
     
@@ -63,7 +63,7 @@ class CatalogEntry(entity.Entity):
         """
         Sets the displayName property value. The display name of the content. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -73,9 +73,9 @@ class CatalogEntry(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deployable_until_date_time": lambda n : setattr(self, 'deployable_until_date_time', n.get_datetime_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "release_date_time": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
+            "deployableUntilDateTime": lambda n : setattr(self, 'deployable_until_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "releaseDateTime": lambda n : setattr(self, 'release_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -84,7 +84,7 @@ class CatalogEntry(entity.Entity):
     @property
     def release_date_time(self,) -> Optional[datetime]:
         """
-        Gets the releaseDateTime property value. The release date for the content. Read-only.
+        Gets the releaseDateTime property value. The release date for the content. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Returns: Optional[datetime]
         """
         return self._release_date_time
@@ -92,9 +92,9 @@ class CatalogEntry(entity.Entity):
     @release_date_time.setter
     def release_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the releaseDateTime property value. The release date for the content. Read-only.
+        Sets the releaseDateTime property value. The release date for the content. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the releaseDateTime property.
+            value: Value to set for the release_date_time property.
         """
         self._release_date_time = value
     

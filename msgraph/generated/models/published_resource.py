@@ -21,7 +21,7 @@ class PublishedResource(entity.Entity):
         """
         Sets the agentGroups property value. List of onPremisesAgentGroups that a publishedResource is assigned to. Read-only. Nullable.
         Args:
-            value: Value to set for the agentGroups property.
+            value: Value to set for the agent_groups property.
         """
         self._agent_groups = value
     
@@ -66,7 +66,7 @@ class PublishedResource(entity.Entity):
         """
         Sets the displayName property value. Display Name of the publishedResource.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -76,10 +76,10 @@ class PublishedResource(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "agent_groups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "publishing_type": lambda n : setattr(self, 'publishing_type', n.get_enum_value(on_premises_publishing_type.OnPremisesPublishingType)),
-            "resource_name": lambda n : setattr(self, 'resource_name', n.get_str_value()),
+            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "publishingType": lambda n : setattr(self, 'publishing_type', n.get_enum_value(on_premises_publishing_type.OnPremisesPublishingType)),
+            "resourceName": lambda n : setattr(self, 'resource_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -98,7 +98,7 @@ class PublishedResource(entity.Entity):
         """
         Sets the publishingType property value. The publishingType property
         Args:
-            value: Value to set for the publishingType property.
+            value: Value to set for the publishing_type property.
         """
         self._publishing_type = value
     
@@ -115,7 +115,7 @@ class PublishedResource(entity.Entity):
         """
         Sets the resourceName property value. Name of the publishedResource.
         Args:
-            value: Value to set for the resourceName property.
+            value: Value to set for the resource_name property.
         """
         self._resource_name = value
     

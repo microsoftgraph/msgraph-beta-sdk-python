@@ -37,7 +37,7 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         """
         Sets the applyDefaultValueWhenNotAssigned property value. Whether Apply DefaultValue When Not Assigned
         Args:
-            value: Value to set for the applyDefaultValueWhenNotAssigned property.
+            value: Value to set for the apply_default_value_when_not_assigned property.
         """
         self._apply_default_value_when_not_assigned = value
     
@@ -94,9 +94,9 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "apply_default_value_when_not_assigned": lambda n : setattr(self, 'apply_default_value_when_not_assigned', n.get_bool_value()),
+            "applyDefaultValueWhenNotAssigned": lambda n : setattr(self, 'apply_default_value_when_not_assigned', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "is_required": lambda n : setattr(self, 'is_required', n.get_bool_value()),
+            "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -115,7 +115,7 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         """
         Sets the isRequired property value. Whether the param is required
         Args:
-            value: Value to set for the isRequired property.
+            value: Value to set for the is_required property.
         """
         self._is_required = value
     
@@ -149,7 +149,7 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

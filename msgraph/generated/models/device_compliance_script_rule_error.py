@@ -34,7 +34,7 @@ class DeviceComplianceScriptRuleError(device_compliance_script_error.DeviceCompl
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "setting_name": lambda n : setattr(self, 'setting_name', n.get_str_value()),
+            "settingName": lambda n : setattr(self, 'setting_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -64,7 +64,7 @@ class DeviceComplianceScriptRuleError(device_compliance_script_error.DeviceCompl
         """
         Sets the settingName property value. Setting name for the rule with error.
         Args:
-            value: Value to set for the settingName property.
+            value: Value to set for the setting_name property.
         """
         self._setting_name = value
     

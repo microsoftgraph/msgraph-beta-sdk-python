@@ -4,21 +4,35 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-endpoint_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.endpoint.endpoint_request_builder')
+graph_endpoint_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.graph_endpoint.graph_endpoint_request_builder')
+graph_service_principal_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.graph_service_principal.graph_service_principal_request_builder')
+graph_user_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.graph_user.graph_user_request_builder')
 ref_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.ref.ref_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.service_principal.service_principal_request_builder')
-user_request_builder = lazy_import('msgraph.generated.users.item.devices.item.registered_owners.item.user.user_request_builder')
 
 class DirectoryObjectItemRequestBuilder():
     """
     Builds and executes requests for operations under /users/{user-id}/devices/{device-id}/registeredOwners/{directoryObject-id}
     """
     @property
-    def endpoint(self) -> endpoint_request_builder.EndpointRequestBuilder:
+    def graph_endpoint(self) -> graph_endpoint_request_builder.GraphEndpointRequestBuilder:
         """
         Casts the previous resource to endpoint.
         """
-        return endpoint_request_builder.EndpointRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_endpoint_request_builder.GraphEndpointRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_service_principal(self) -> graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder:
+        """
+        Casts the previous resource to servicePrincipal.
+        """
+        return graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_user(self) -> graph_user_request_builder.GraphUserRequestBuilder:
+        """
+        Casts the previous resource to user.
+        """
+        return graph_user_request_builder.GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
@@ -26,20 +40,6 @@ class DirectoryObjectItemRequestBuilder():
         Provides operations to manage the collection of user entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
-        """
-        Casts the previous resource to servicePrincipal.
-        """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
-        """
-        Casts the previous resource to user.
-        """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """

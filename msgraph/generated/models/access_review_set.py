@@ -80,7 +80,7 @@ class AccessReviewSet(entity.Entity):
         fields = {
             "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_object_values(access_review_instance_decision_item.AccessReviewInstanceDecisionItem)),
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(access_review_schedule_definition.AccessReviewScheduleDefinition)),
-            "history_definitions": lambda n : setattr(self, 'history_definitions', n.get_collection_of_object_values(access_review_history_definition.AccessReviewHistoryDefinition)),
+            "historyDefinitions": lambda n : setattr(self, 'history_definitions', n.get_collection_of_object_values(access_review_history_definition.AccessReviewHistoryDefinition)),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(access_review_policy.AccessReviewPolicy)),
         }
         super_fields = super().get_field_deserializers()
@@ -100,7 +100,7 @@ class AccessReviewSet(entity.Entity):
         """
         Sets the historyDefinitions property value. Represents a collection of access review history data and the scopes used to collect that data.
         Args:
-            value: Value to set for the historyDefinitions property.
+            value: Value to set for the history_definitions property.
         """
         self._history_definitions = value
     

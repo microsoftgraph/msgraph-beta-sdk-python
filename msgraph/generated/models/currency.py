@@ -20,7 +20,7 @@ class Currency(entity.Entity):
         """
         Sets the amountDecimalPlaces property value. The amountDecimalPlaces property
         Args:
-            value: Value to set for the amountDecimalPlaces property.
+            value: Value to set for the amount_decimal_places property.
         """
         self._amount_decimal_places = value
     
@@ -37,7 +37,7 @@ class Currency(entity.Entity):
         """
         Sets the amountRoundingPrecision property value. The amountRoundingPrecision property
         Args:
-            value: Value to set for the amountRoundingPrecision property.
+            value: Value to set for the amount_rounding_precision property.
         """
         self._amount_rounding_precision = value
     
@@ -103,7 +103,7 @@ class Currency(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -113,11 +113,11 @@ class Currency(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "amount_decimal_places": lambda n : setattr(self, 'amount_decimal_places', n.get_str_value()),
-            "amount_rounding_precision": lambda n : setattr(self, 'amount_rounding_precision', n.get_float_value()),
+            "amountDecimalPlaces": lambda n : setattr(self, 'amount_decimal_places', n.get_str_value()),
+            "amountRoundingPrecision": lambda n : setattr(self, 'amount_rounding_precision', n.get_float_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "symbol": lambda n : setattr(self, 'symbol', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -137,7 +137,7 @@ class Currency(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     

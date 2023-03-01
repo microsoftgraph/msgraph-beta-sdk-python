@@ -47,9 +47,9 @@ class EducationSynchronizationCustomizations(education_synchronization_customiza
             "school": lambda n : setattr(self, 'school', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
             "section": lambda n : setattr(self, 'section', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
             "student": lambda n : setattr(self, 'student', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
-            "student_enrollment": lambda n : setattr(self, 'student_enrollment', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
+            "studentEnrollment": lambda n : setattr(self, 'student_enrollment', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
             "teacher": lambda n : setattr(self, 'teacher', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
-            "teacher_roster": lambda n : setattr(self, 'teacher_roster', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
+            "teacherRoster": lambda n : setattr(self, 'teacher_roster', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -135,7 +135,7 @@ class EducationSynchronizationCustomizations(education_synchronization_customiza
         """
         Sets the studentEnrollment property value. Customizations for Student Enrollments.
         Args:
-            value: Value to set for the studentEnrollment property.
+            value: Value to set for the student_enrollment property.
         """
         self._student_enrollment = value
     
@@ -169,7 +169,7 @@ class EducationSynchronizationCustomizations(education_synchronization_customiza
         """
         Sets the teacherRoster property value. Customizations for Teacher Rosters.
         Args:
-            value: Value to set for the teacherRoster property.
+            value: Value to set for the teacher_roster property.
         """
         self._teacher_roster = value
     

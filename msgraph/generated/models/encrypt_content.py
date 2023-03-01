@@ -41,7 +41,7 @@ class EncryptContent(label_action_base.LabelActionBase):
         """
         Sets the encryptWith property value. The encryptWith property
         Args:
-            value: Value to set for the encryptWith property.
+            value: Value to set for the encrypt_with property.
         """
         self._encrypt_with = value
     
@@ -51,7 +51,7 @@ class EncryptContent(label_action_base.LabelActionBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "encrypt_with": lambda n : setattr(self, 'encrypt_with', n.get_enum_value(encrypt_with.EncryptWith)),
+            "encryptWith": lambda n : setattr(self, 'encrypt_with', n.get_enum_value(encrypt_with.EncryptWith)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

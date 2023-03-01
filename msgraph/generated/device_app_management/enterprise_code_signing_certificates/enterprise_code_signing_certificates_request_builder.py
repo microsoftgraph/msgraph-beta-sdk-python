@@ -44,12 +44,11 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[EnterpriseCodeSigningCertificatesRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enterprise_code_signing_certificate_collection_response.EnterpriseCodeSigningCertificateCollectionResponse]:
+    async def get(self,request_configuration: Optional[EnterpriseCodeSigningCertificatesRequestBuilderGetRequestConfiguration] = None) -> Optional[enterprise_code_signing_certificate_collection_response.EnterpriseCodeSigningCertificateCollectionResponse]:
         """
         The Windows Enterprise Code Signing Certificate.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enterprise_code_signing_certificate_collection_response.EnterpriseCodeSigningCertificateCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enterprise_code_signing_certificate_collection_response.EnterpriseCodeSigningCertificateCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enterprise_code_signing_certificate_collection_response.EnterpriseCodeSigningCertificateCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate] = None, request_configuration: Optional[EnterpriseCodeSigningCertificatesRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]:
+    async def post(self,body: Optional[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate] = None, request_configuration: Optional[EnterpriseCodeSigningCertificatesRequestBuilderPostRequestConfiguration] = None) -> Optional[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]:
         """
         Create new navigation property to enterpriseCodeSigningCertificates for deviceAppManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate]
         """
         if body is None:
@@ -83,7 +81,7 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, enterprise_code_signing_certificate.EnterpriseCodeSigningCertificate, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[EnterpriseCodeSigningCertificatesRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class EnterpriseCodeSigningCertificatesRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

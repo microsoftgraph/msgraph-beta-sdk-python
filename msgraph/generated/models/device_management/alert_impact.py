@@ -36,7 +36,7 @@ class AlertImpact(AdditionalDataHolder, Parsable):
         """
         Sets the aggregationType property value. The aggregation type of the impact. The possible values are: count, percentage, affectedCloudPcCount, affectedCloudPcPercentage, unknownFutureValue.
         Args:
-            value: Value to set for the aggregationType property.
+            value: Value to set for the aggregation_type property.
         """
         self._aggregation_type = value
     
@@ -72,7 +72,7 @@ class AlertImpact(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "aggregation_type": lambda n : setattr(self, 'aggregation_type', n.get_enum_value(aggregation_type.AggregationType)),
+            "aggregationType": lambda n : setattr(self, 'aggregation_type', n.get_enum_value(aggregation_type.AggregationType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_int_value()),
         }
@@ -91,7 +91,7 @@ class AlertImpact(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -49,7 +49,7 @@ class CreateTokenPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "token_validity_in_seconds": lambda n : setattr(self, 'token_validity_in_seconds', n.get_int_value()),
+            "tokenValidityInSeconds": lambda n : setattr(self, 'token_validity_in_seconds', n.get_int_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class CreateTokenPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the tokenValidityInSeconds property value. The tokenValidityInSeconds property
         Args:
-            value: Value to set for the tokenValidityInSeconds property.
+            value: Value to set for the token_validity_in_seconds property.
         """
         self._token_validity_in_seconds = value
     

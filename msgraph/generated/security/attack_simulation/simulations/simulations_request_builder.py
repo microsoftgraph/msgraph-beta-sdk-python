@@ -44,12 +44,11 @@ class SimulationsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[simulation_collection_response.SimulationCollectionResponse]:
+    async def get(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> Optional[simulation_collection_response.SimulationCollectionResponse]:
         """
         Get a list of attack simulation campaigns for a tenant.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[simulation_collection_response.SimulationCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class SimulationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, simulation_collection_response.SimulationCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, simulation_collection_response.SimulationCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[simulation.Simulation]:
+    async def post(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> Optional[simulation.Simulation]:
         """
-        Create new navigation property to simulations for security
+        Create an attack simulation campaign for a tenant.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[simulation.Simulation]
         """
         if body is None:
@@ -83,7 +81,7 @@ class SimulationsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, simulation.Simulation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, simulation.Simulation, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[SimulationsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class SimulationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -105,7 +103,7 @@ class SimulationsRequestBuilder():
     
     def to_post_request_information(self,body: Optional[simulation.Simulation] = None, request_configuration: Optional[SimulationsRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Create new navigation property to simulations for security
+        Create an attack simulation campaign for a tenant.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -117,7 +115,7 @@ class SimulationsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class SimulationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class SimulationsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

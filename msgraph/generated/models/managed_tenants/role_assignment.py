@@ -37,7 +37,7 @@ class RoleAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentType property value. The type of the admin relationship(s) associated with the role assignment. Possible values are: none, delegatedAdminPrivileges, unknownFutureValue, granularDelegatedAdminPrivileges, delegatedAndGranularDelegetedAdminPrivileges. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: granularDelegatedAdminPrivileges , delegatedAndGranularDelegetedAdminPrivileges.
         Args:
-            value: Value to set for the assignmentType property.
+            value: Value to set for the assignment_type property.
         """
         self._assignment_type = value
     
@@ -73,7 +73,7 @@ class RoleAssignment(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_type": lambda n : setattr(self, 'assignment_type', n.get_enum_value(delegated_privilege_status.DelegatedPrivilegeStatus)),
+            "assignmentType": lambda n : setattr(self, 'assignment_type', n.get_enum_value(delegated_privilege_status.DelegatedPrivilegeStatus)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "roles": lambda n : setattr(self, 'roles', n.get_collection_of_object_values(role_definition.RoleDefinition)),
         }
@@ -92,7 +92,7 @@ class RoleAssignment(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

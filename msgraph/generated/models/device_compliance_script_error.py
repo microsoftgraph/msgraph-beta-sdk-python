@@ -82,7 +82,7 @@ class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
         """
         Sets the deviceComplianceScriptRulesValidationError property value. Error code for rule validation.
         Args:
-            value: Value to set for the deviceComplianceScriptRulesValidationError property.
+            value: Value to set for the device_compliance_script_rules_validation_error property.
         """
         self._device_compliance_script_rules_validation_error = value
     
@@ -93,7 +93,7 @@ class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
         """
         fields = {
             "code": lambda n : setattr(self, 'code', n.get_enum_value(code.Code)),
-            "device_compliance_script_rules_validation_error": lambda n : setattr(self, 'device_compliance_script_rules_validation_error', n.get_enum_value(device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError)),
+            "deviceComplianceScriptRulesValidationError": lambda n : setattr(self, 'device_compliance_script_rules_validation_error', n.get_enum_value(device_compliance_script_rules_validation_error.DeviceComplianceScriptRulesValidationError)),
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -129,7 +129,7 @@ class DeviceComplianceScriptError(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -22,7 +22,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the cloudName property value. Zscaler only. Zscaler cloud which the user is assigned to.
         Args:
-            value: Value to set for the cloudName property.
+            value: Value to set for the cloud_name property.
         """
         self._cloud_name = value
     
@@ -74,7 +74,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
         Args:
-            value: Value to set for the derivedCredentialSettings property.
+            value: Value to set for the derived_credential_settings property.
         """
         self._derived_credential_settings = value
     
@@ -91,7 +91,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the excludeList property value. Zscaler only. List of network addresses which are not sent through the Zscaler cloud.
         Args:
-            value: Value to set for the excludeList property.
+            value: Value to set for the exclude_list property.
         """
         self._exclude_list = value
     
@@ -101,14 +101,14 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_name": lambda n : setattr(self, 'cloud_name', n.get_str_value()),
-            "derived_credential_settings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
-            "exclude_list": lambda n : setattr(self, 'exclude_list', n.get_collection_of_primitive_values(str)),
-            "identity_certificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
-            "microsoft_tunnel_site_id": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
-            "strict_enforcement": lambda n : setattr(self, 'strict_enforcement', n.get_bool_value()),
-            "targeted_mobile_apps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
-            "user_domain": lambda n : setattr(self, 'user_domain', n.get_str_value()),
+            "cloudName": lambda n : setattr(self, 'cloud_name', n.get_str_value()),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "excludeList": lambda n : setattr(self, 'exclude_list', n.get_collection_of_primitive_values(str)),
+            "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(ios_certificate_profile_base.IosCertificateProfileBase)),
+            "microsoftTunnelSiteId": lambda n : setattr(self, 'microsoft_tunnel_site_id', n.get_str_value()),
+            "strictEnforcement": lambda n : setattr(self, 'strict_enforcement', n.get_bool_value()),
+            "targetedMobileApps": lambda n : setattr(self, 'targeted_mobile_apps', n.get_collection_of_object_values(app_list_item.AppListItem)),
+            "userDomain": lambda n : setattr(self, 'user_domain', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,7 +127,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the identityCertificate property value. Identity certificate for client authentication when authentication method is certificate.
         Args:
-            value: Value to set for the identityCertificate property.
+            value: Value to set for the identity_certificate property.
         """
         self._identity_certificate = value
     
@@ -144,7 +144,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the microsoftTunnelSiteId property value. Microsoft Tunnel site ID.
         Args:
-            value: Value to set for the microsoftTunnelSiteId property.
+            value: Value to set for the microsoft_tunnel_site_id property.
         """
         self._microsoft_tunnel_site_id = value
     
@@ -179,7 +179,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the strictEnforcement property value. Zscaler only. Blocks network traffic until the user signs into Zscaler app. 'True' means traffic is blocked.
         Args:
-            value: Value to set for the strictEnforcement property.
+            value: Value to set for the strict_enforcement property.
         """
         self._strict_enforcement = value
     
@@ -196,7 +196,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the targetedMobileApps property value. Targeted mobile apps. This collection can contain a maximum of 500 elements.
         Args:
-            value: Value to set for the targetedMobileApps property.
+            value: Value to set for the targeted_mobile_apps property.
         """
         self._targeted_mobile_apps = value
     
@@ -213,7 +213,7 @@ class IosVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         """
         Sets the userDomain property value. Zscaler only. Enter a static domain to pre-populate the login field with in the Zscaler app. If this is left empty, the user's Azure Active Directory domain will be used instead.
         Args:
-            value: Value to set for the userDomain property.
+            value: Value to set for the user_domain property.
         """
         self._user_domain = value
     

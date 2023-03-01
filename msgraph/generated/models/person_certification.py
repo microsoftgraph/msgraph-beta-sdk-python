@@ -20,7 +20,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the certificationId property value. The referenceable identifier for the certification.
         Args:
-            value: Value to set for the certificationId property.
+            value: Value to set for the certification_id property.
         """
         self._certification_id = value
     
@@ -93,7 +93,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the displayName property value. Title of the certification.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -110,7 +110,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the endDate property value. The date that the certification expires.
         Args:
-            value: Value to set for the endDate property.
+            value: Value to set for the end_date property.
         """
         self._end_date = value
     
@@ -120,16 +120,16 @@ class PersonCertification(item_facet.ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certification_id": lambda n : setattr(self, 'certification_id', n.get_str_value()),
+            "certificationId": lambda n : setattr(self, 'certification_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "end_date": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
-            "issued_date": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
-            "issuing_authority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
-            "issuing_company": lambda n : setattr(self, 'issuing_company', n.get_str_value()),
-            "start_date": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
-            "thumbnail_url": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
-            "web_url": lambda n : setattr(self, 'web_url', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "endDate": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
+            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
+            "issuingAuthority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
+            "issuingCompany": lambda n : setattr(self, 'issuing_company', n.get_str_value()),
+            "startDate": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
+            "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
+            "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -148,7 +148,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the issuedDate property value. The date that the certification was issued.
         Args:
-            value: Value to set for the issuedDate property.
+            value: Value to set for the issued_date property.
         """
         self._issued_date = value
     
@@ -165,7 +165,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the issuingAuthority property value. Authority which granted the certification.
         Args:
-            value: Value to set for the issuingAuthority property.
+            value: Value to set for the issuing_authority property.
         """
         self._issuing_authority = value
     
@@ -182,7 +182,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the issuingCompany property value. Company which granted the certification.
         Args:
-            value: Value to set for the issuingCompany property.
+            value: Value to set for the issuing_company property.
         """
         self._issuing_company = value
     
@@ -219,7 +219,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the startDate property value. The date that the certification became valid.
         Args:
-            value: Value to set for the startDate property.
+            value: Value to set for the start_date property.
         """
         self._start_date = value
     
@@ -236,7 +236,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the thumbnailUrl property value. URL referencing a thumbnail of the certification.
         Args:
-            value: Value to set for the thumbnailUrl property.
+            value: Value to set for the thumbnail_url property.
         """
         self._thumbnail_url = value
     
@@ -253,7 +253,7 @@ class PersonCertification(item_facet.ItemFacet):
         """
         Sets the webUrl property value. URL referencing the certification.
         Args:
-            value: Value to set for the webUrl property.
+            value: Value to set for the web_url property.
         """
         self._web_url = value
     

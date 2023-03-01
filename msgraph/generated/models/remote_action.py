@@ -59,4 +59,6 @@ class RemoteAction(Enum):
     MoveDeviceToOrganizationalUnit = "moveDeviceToOrganizationalUnit",
     # Add device action of InitiateMobileDeviceManagementKeyRecovery
     InitiateMobileDeviceManagementKeyRecovery = "initiateMobileDeviceManagementKeyRecovery",
+    # Add device action of InitiateOnDemandProactiveRemediation
+    InitiateOnDemandProactiveRemediation = "initiateOnDemandProactiveRemediation",
 

@@ -44,6 +44,34 @@ class CloudPCItemRequestBuilder():
         return end_grace_period_request_builder.EndGracePeriodRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def get_cloud_pc_connectivity_history(self) -> get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder:
+        """
+        Provides operations to call the getCloudPcConnectivityHistory method.
+        """
+        return get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_cloud_pc_launch_info(self) -> get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder:
+        """
+        Provides operations to call the getCloudPcLaunchInfo method.
+        """
+        return get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_shift_work_cloud_pc_access_state(self) -> get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder:
+        """
+        Provides operations to call the getShiftWorkCloudPcAccessState method.
+        """
+        return get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_supported_cloud_pc_remote_actions(self) -> get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder:
+        """
+        Provides operations to call the getSupportedCloudPcRemoteActions method.
+        """
+        return get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def reboot(self) -> reboot_request_builder.RebootRequestBuilder:
         """
         Provides operations to call the reboot method.
@@ -103,12 +131,11 @@ class CloudPCItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property cloudPCs for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -119,14 +146,13 @@ class CloudPCItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def get(self,request_configuration: Optional[CloudPCItemRequestBuilderGetRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
         """
         Get cloudPCs from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c.CloudPC]
         """
         request_info = self.to_get_request_information(
@@ -138,43 +164,14 @@ class CloudPCItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
     
-    def get_cloud_pc_connectivity_history(self,) -> get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder:
-        """
-        Provides operations to call the getCloudPcConnectivityHistory method.
-        Returns: get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder
-        """
-        return get_cloud_pc_connectivity_history_request_builder.GetCloudPcConnectivityHistoryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_cloud_pc_launch_info(self,) -> get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder:
-        """
-        Provides operations to call the getCloudPcLaunchInfo method.
-        Returns: get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder
-        """
-        return get_cloud_pc_launch_info_request_builder.GetCloudPcLaunchInfoRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_shift_work_cloud_pc_access_state(self,) -> get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder:
-        """
-        Provides operations to call the getShiftWorkCloudPcAccessState method.
-        Returns: get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder
-        """
-        return get_shift_work_cloud_pc_access_state_request_builder.GetShiftWorkCloudPcAccessStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_supported_cloud_pc_remote_actions(self,) -> get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder:
-        """
-        Provides operations to call the getSupportedCloudPcRemoteActions method.
-        Returns: get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder
-        """
-        return get_supported_cloud_pc_remote_actions_request_builder.GetSupportedCloudPcRemoteActionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def patch(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[cloud_p_c.CloudPC]:
+    async def patch(self,body: Optional[cloud_p_c.CloudPC] = None, request_configuration: Optional[CloudPCItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_p_c.CloudPC]:
         """
         Update the navigation property cloudPCs in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[cloud_p_c.CloudPC]
         """
         if body is None:
@@ -188,7 +185,7 @@ class CloudPCItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, cloud_p_c.CloudPC, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[CloudPCItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -217,7 +214,7 @@ class CloudPCItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -238,7 +235,7 @@ class CloudPCItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -251,7 +248,7 @@ class CloudPCItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -290,7 +287,7 @@ class CloudPCItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -305,7 +302,7 @@ class CloudPCItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -49,7 +49,7 @@ class RemovePasswordPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "key_id": lambda n : setattr(self, 'key_id', n.get_object_value(Guid)),
+            "keyId": lambda n : setattr(self, 'key_id', n.get_object_value(Guid)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class RemovePasswordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the keyId property value. The keyId property
         Args:
-            value: Value to set for the keyId property.
+            value: Value to set for the key_id property.
         """
         self._key_id = value
     

@@ -21,7 +21,7 @@ class VirtualAppointment(entity.Entity):
         """
         Sets the appointmentClientJoinWebUrl property value. The join web URL of the virtual appointment for clients with waiting room and browser join. Optional.
         Args:
-            value: Value to set for the appointmentClientJoinWebUrl property.
+            value: Value to set for the appointment_client_join_web_url property.
         """
         self._appointment_client_join_web_url = value
     
@@ -38,7 +38,7 @@ class VirtualAppointment(entity.Entity):
         """
         Sets the appointmentClients property value. The client information for the virtual appointment, including name, email, and SMS phone number. Optional.
         Args:
-            value: Value to set for the appointmentClients property.
+            value: Value to set for the appointment_clients property.
         """
         self._appointment_clients = value
     
@@ -85,7 +85,7 @@ class VirtualAppointment(entity.Entity):
         """
         Sets the externalAppointmentId property value. The identifier of the appointment from the scheduling system, associated with the current virtual appointment. Optional.
         Args:
-            value: Value to set for the externalAppointmentId property.
+            value: Value to set for the external_appointment_id property.
         """
         self._external_appointment_id = value
     
@@ -102,7 +102,7 @@ class VirtualAppointment(entity.Entity):
         """
         Sets the externalAppointmentUrl property value. The URL of the appointment resource from the scheduling system, associated with the current virtual appointment. Optional.
         Args:
-            value: Value to set for the externalAppointmentUrl property.
+            value: Value to set for the external_appointment_url property.
         """
         self._external_appointment_url = value
     
@@ -112,10 +112,10 @@ class VirtualAppointment(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "appointment_client_join_web_url": lambda n : setattr(self, 'appointment_client_join_web_url', n.get_str_value()),
-            "appointment_clients": lambda n : setattr(self, 'appointment_clients', n.get_collection_of_object_values(virtual_appointment_user.VirtualAppointmentUser)),
-            "external_appointment_id": lambda n : setattr(self, 'external_appointment_id', n.get_str_value()),
-            "external_appointment_url": lambda n : setattr(self, 'external_appointment_url', n.get_str_value()),
+            "appointmentClients": lambda n : setattr(self, 'appointment_clients', n.get_collection_of_object_values(virtual_appointment_user.VirtualAppointmentUser)),
+            "appointmentClientJoinWebUrl": lambda n : setattr(self, 'appointment_client_join_web_url', n.get_str_value()),
+            "externalAppointmentId": lambda n : setattr(self, 'external_appointment_id', n.get_str_value()),
+            "externalAppointmentUrl": lambda n : setattr(self, 'external_appointment_url', n.get_str_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(virtual_appointment_settings.VirtualAppointmentSettings)),
         }
         super_fields = super().get_field_deserializers()
@@ -131,8 +131,8 @@ class VirtualAppointment(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_str_value("appointmentClientJoinWebUrl", self.appointment_client_join_web_url)
         writer.write_collection_of_object_values("appointmentClients", self.appointment_clients)
+        writer.write_str_value("appointmentClientJoinWebUrl", self.appointment_client_join_web_url)
         writer.write_str_value("externalAppointmentId", self.external_appointment_id)
         writer.write_str_value("externalAppointmentUrl", self.external_appointment_url)
         writer.write_object_value("settings", self.settings)

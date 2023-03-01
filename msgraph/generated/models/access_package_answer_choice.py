@@ -19,7 +19,7 @@ class AccessPackageAnswerChoice(AdditionalDataHolder, Parsable):
         """
         Sets the actualValue property value. The actual value of the selected choice. This is typically a string value which is understandable by applications. Required.
         Args:
-            value: Value to set for the actualValue property.
+            value: Value to set for the actual_value property.
         """
         self._actual_value = value
     
@@ -79,7 +79,7 @@ class AccessPackageAnswerChoice(AdditionalDataHolder, Parsable):
         """
         Sets the displayValue property value. The localized display values shown to the requestor and approvers. Required.
         Args:
-            value: Value to set for the displayValue property.
+            value: Value to set for the display_value property.
         """
         self._display_value = value
     
@@ -89,8 +89,8 @@ class AccessPackageAnswerChoice(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "actual_value": lambda n : setattr(self, 'actual_value', n.get_str_value()),
-            "display_value": lambda n : setattr(self, 'display_value', n.get_object_value(access_package_localized_content.AccessPackageLocalizedContent)),
+            "actualValue": lambda n : setattr(self, 'actual_value', n.get_str_value()),
+            "displayValue": lambda n : setattr(self, 'display_value', n.get_object_value(access_package_localized_content.AccessPackageLocalizedContent)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -108,7 +108,7 @@ class AccessPackageAnswerChoice(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

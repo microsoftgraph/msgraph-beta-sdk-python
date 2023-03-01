@@ -53,8 +53,8 @@ class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "managed_device_ids": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
-            "review_status": lambda n : setattr(self, 'review_status', n.get_object_value(cloud_pc_review_status.CloudPcReviewStatus)),
+            "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
+            "reviewStatus": lambda n : setattr(self, 'review_status', n.get_object_value(cloud_pc_review_status.CloudPcReviewStatus)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the managedDeviceIds property value. The managedDeviceIds property
         Args:
-            value: Value to set for the managedDeviceIds property.
+            value: Value to set for the managed_device_ids property.
         """
         self._managed_device_ids = value
     
@@ -88,7 +88,7 @@ class BulkSetCloudPcReviewStatusPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the reviewStatus property value. The reviewStatus property
         Args:
-            value: Value to set for the reviewStatus property.
+            value: Value to set for the review_status property.
         """
         self._review_status = value
     

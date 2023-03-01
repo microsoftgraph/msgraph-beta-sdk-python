@@ -39,7 +39,7 @@ class PrivilegedAccessSchedule(entity.Entity):
         """
         Sets the createdDateTime property value. The createdDateTime property
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -56,7 +56,7 @@ class PrivilegedAccessSchedule(entity.Entity):
         """
         Sets the createdUsing property value. The createdUsing property
         Args:
-            value: Value to set for the createdUsing property.
+            value: Value to set for the created_using property.
         """
         self._created_using = value
     
@@ -78,10 +78,10 @@ class PrivilegedAccessSchedule(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "created_using": lambda n : setattr(self, 'created_using', n.get_str_value()),
-            "modified_date_time": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
-            "schedule_info": lambda n : setattr(self, 'schedule_info', n.get_object_value(request_schedule.RequestSchedule)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "createdUsing": lambda n : setattr(self, 'created_using', n.get_str_value()),
+            "modifiedDateTime": lambda n : setattr(self, 'modified_date_time', n.get_datetime_value()),
+            "scheduleInfo": lambda n : setattr(self, 'schedule_info', n.get_object_value(request_schedule.RequestSchedule)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -101,7 +101,7 @@ class PrivilegedAccessSchedule(entity.Entity):
         """
         Sets the modifiedDateTime property value. The modifiedDateTime property
         Args:
-            value: Value to set for the modifiedDateTime property.
+            value: Value to set for the modified_date_time property.
         """
         self._modified_date_time = value
     
@@ -118,7 +118,7 @@ class PrivilegedAccessSchedule(entity.Entity):
         """
         Sets the scheduleInfo property value. The scheduleInfo property
         Args:
-            value: Value to set for the scheduleInfo property.
+            value: Value to set for the schedule_info property.
         """
         self._schedule_info = value
     

@@ -44,12 +44,11 @@ class OutlookTaskGroupItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property taskGroups for users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,14 +59,13 @@ class OutlookTaskGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
+    async def get(self,request_configuration: Optional[OutlookTaskGroupItemRequestBuilderGetRequestConfiguration] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
         """
         Get taskGroups from users
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task_group.OutlookTaskGroup]
         """
         request_info = self.to_get_request_information(
@@ -79,15 +77,14 @@ class OutlookTaskGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, error_mapping)
     
-    async def patch(self,body: Optional[outlook_task_group.OutlookTaskGroup] = None, request_configuration: Optional[OutlookTaskGroupItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
+    async def patch(self,body: Optional[outlook_task_group.OutlookTaskGroup] = None, request_configuration: Optional[OutlookTaskGroupItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[outlook_task_group.OutlookTaskGroup]:
         """
         Update the navigation property taskGroups in users
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[outlook_task_group.OutlookTaskGroup]
         """
         if body is None:
@@ -101,7 +98,7 @@ class OutlookTaskGroupItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, outlook_task_group.OutlookTaskGroup, error_mapping)
     
     def task_folders_by_id(self,id: str) -> outlook_task_folder_item_request_builder.OutlookTaskFolderItemRequestBuilder:
         """
@@ -143,7 +140,7 @@ class OutlookTaskGroupItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -164,7 +161,7 @@ class OutlookTaskGroupItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -177,7 +174,7 @@ class OutlookTaskGroupItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -211,7 +208,7 @@ class OutlookTaskGroupItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -226,7 +223,7 @@ class OutlookTaskGroupItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

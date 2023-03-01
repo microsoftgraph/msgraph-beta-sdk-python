@@ -30,19 +30,18 @@ class UploadSecretRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}/microsoft.graph.uploadSecret"
+        self.url_template: str = "{+baseurl}/trustFramework/keySets/{trustFrameworkKeySet%2Did}/uploadSecret"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[upload_secret_post_request_body.UploadSecretPostRequestBody] = None, request_configuration: Optional[UploadSecretRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
+    async def post(self,body: Optional[upload_secret_post_request_body.UploadSecretPostRequestBody] = None, request_configuration: Optional[UploadSecretRequestBuilderPostRequestConfiguration] = None) -> Optional[trust_framework_key.TrustFrameworkKey]:
         """
         Upload a plain text secret to a trustFrameworkKeyset. Examples of secrets are application secrets in Azure Active Directory, Google, Facebook, or any other identity provider. his method returns trustFrameworkKey.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[trust_framework_key.TrustFrameworkKey]
         """
         if body is None:
@@ -56,7 +55,7 @@ class UploadSecretRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, trust_framework_key.TrustFrameworkKey, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, trust_framework_key.TrustFrameworkKey, error_mapping)
     
     def to_post_request_information(self,body: Optional[upload_secret_post_request_body.UploadSecretPostRequestBody] = None, request_configuration: Optional[UploadSecretRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class UploadSecretRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class UploadSecretRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -52,7 +52,7 @@ class ClassifyExactMatchesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the contentClassifications property value. The contentClassifications property
         Args:
-            value: Value to set for the contentClassifications property.
+            value: Value to set for the content_classifications property.
         """
         self._content_classifications = value
     
@@ -74,10 +74,10 @@ class ClassifyExactMatchesPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_classifications": lambda n : setattr(self, 'content_classifications', n.get_collection_of_object_values(content_classification.ContentClassification)),
-            "sensitive_type_ids": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
+            "contentClassifications": lambda n : setattr(self, 'content_classifications', n.get_collection_of_object_values(content_classification.ContentClassification)),
+            "sensitiveTypeIds": lambda n : setattr(self, 'sensitive_type_ids', n.get_collection_of_primitive_values(str)),
             "text": lambda n : setattr(self, 'text', n.get_str_value()),
-            "timeout_in_ms": lambda n : setattr(self, 'timeout_in_ms', n.get_str_value()),
+            "timeoutInMs": lambda n : setattr(self, 'timeout_in_ms', n.get_str_value()),
         }
         return fields
     
@@ -94,7 +94,7 @@ class ClassifyExactMatchesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sensitiveTypeIds property value. The sensitiveTypeIds property
         Args:
-            value: Value to set for the sensitiveTypeIds property.
+            value: Value to set for the sensitive_type_ids property.
         """
         self._sensitive_type_ids = value
     
@@ -142,7 +142,7 @@ class ClassifyExactMatchesPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the timeoutInMs property value. The timeoutInMs property
         Args:
-            value: Value to set for the timeoutInMs property.
+            value: Value to set for the timeout_in_ms property.
         """
         self._timeout_in_ms = value
     

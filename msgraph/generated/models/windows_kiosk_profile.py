@@ -37,7 +37,7 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         """
         Sets the appConfiguration property value. The app base class used to identify the application info for the kiosk configuration
         Args:
-            value: Value to set for the appConfiguration property.
+            value: Value to set for the app_configuration property.
         """
         self._app_configuration = value
     
@@ -77,11 +77,11 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_configuration": lambda n : setattr(self, 'app_configuration', n.get_object_value(windows_kiosk_app_configuration.WindowsKioskAppConfiguration)),
+            "appConfiguration": lambda n : setattr(self, 'app_configuration', n.get_object_value(windows_kiosk_app_configuration.WindowsKioskAppConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "profile_id": lambda n : setattr(self, 'profile_id', n.get_str_value()),
-            "profile_name": lambda n : setattr(self, 'profile_name', n.get_str_value()),
-            "user_accounts_configuration": lambda n : setattr(self, 'user_accounts_configuration', n.get_collection_of_object_values(windows_kiosk_user.WindowsKioskUser)),
+            "profileId": lambda n : setattr(self, 'profile_id', n.get_str_value()),
+            "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
+            "userAccountsConfiguration": lambda n : setattr(self, 'user_accounts_configuration', n.get_collection_of_object_values(windows_kiosk_user.WindowsKioskUser)),
         }
         return fields
     
@@ -98,7 +98,7 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -115,7 +115,7 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         """
         Sets the profileId property value. Key of the entity.
         Args:
-            value: Value to set for the profileId property.
+            value: Value to set for the profile_id property.
         """
         self._profile_id = value
     
@@ -132,7 +132,7 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         """
         Sets the profileName property value. This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the users to whom this kiosk configuration is assigned.
         Args:
-            value: Value to set for the profileName property.
+            value: Value to set for the profile_name property.
         """
         self._profile_name = value
     
@@ -164,7 +164,7 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         """
         Sets the userAccountsConfiguration property value. The user accounts that will be locked to this kiosk configuration. This collection can contain a maximum of 100 elements.
         Args:
-            value: Value to set for the userAccountsConfiguration property.
+            value: Value to set for the user_accounts_configuration property.
         """
         self._user_accounts_configuration = value
     

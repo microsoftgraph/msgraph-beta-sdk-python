@@ -24,7 +24,7 @@ class NdesConnector(entity.Entity):
         """
         Sets the connectorVersion property value. The build version of the Ndes Connector.
         Args:
-            value: Value to set for the connectorVersion property.
+            value: Value to set for the connector_version property.
         """
         self._connector_version = value
     
@@ -75,7 +75,7 @@ class NdesConnector(entity.Entity):
         """
         Sets the displayName property value. The friendly name of the Ndes Connector.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -92,7 +92,7 @@ class NdesConnector(entity.Entity):
         """
         Sets the enrolledDateTime property value. Timestamp when on-prem certificate connector was enrolled in Intune.
         Args:
-            value: Value to set for the enrolledDateTime property.
+            value: Value to set for the enrolled_date_time property.
         """
         self._enrolled_date_time = value
     
@@ -102,12 +102,12 @@ class NdesConnector(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connector_version": lambda n : setattr(self, 'connector_version', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "enrolled_date_time": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),
-            "last_connection_date_time": lambda n : setattr(self, 'last_connection_date_time', n.get_datetime_value()),
-            "machine_name": lambda n : setattr(self, 'machine_name', n.get_str_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "enrolledDateTime": lambda n : setattr(self, 'enrolled_date_time', n.get_datetime_value()),
+            "lastConnectionDateTime": lambda n : setattr(self, 'last_connection_date_time', n.get_datetime_value()),
+            "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(ndes_connector_state.NdesConnectorState)),
         }
         super_fields = super().get_field_deserializers()
@@ -127,7 +127,7 @@ class NdesConnector(entity.Entity):
         """
         Sets the lastConnectionDateTime property value. Last connection time for the Ndes Connector
         Args:
-            value: Value to set for the lastConnectionDateTime property.
+            value: Value to set for the last_connection_date_time property.
         """
         self._last_connection_date_time = value
     
@@ -144,7 +144,7 @@ class NdesConnector(entity.Entity):
         """
         Sets the machineName property value. Name of the machine running on-prem certificate connector service.
         Args:
-            value: Value to set for the machineName property.
+            value: Value to set for the machine_name property.
         """
         self._machine_name = value
     
@@ -161,7 +161,7 @@ class NdesConnector(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Entity instance.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

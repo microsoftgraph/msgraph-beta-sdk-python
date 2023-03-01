@@ -33,7 +33,7 @@ class AzureAdTokenAuthentication(custom_extension_authentication_configuration.C
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "resource_id": lambda n : setattr(self, 'resource_id', n.get_str_value()),
+            "resourceId": lambda n : setattr(self, 'resource_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class AzureAdTokenAuthentication(custom_extension_authentication_configuration.C
         """
         Sets the resourceId property value. The appID of the Azure AD application to use to authenticate a logic app with a custom access package workflow extension.
         Args:
-            value: Value to set for the resourceId property.
+            value: Value to set for the resource_id property.
         """
         self._resource_id = value
     

@@ -71,12 +71,11 @@ class ThreatSubmissionRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[ThreatSubmissionRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[ThreatSubmissionRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property threatSubmission for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -87,7 +86,7 @@ class ThreatSubmissionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def email_threats_by_id(self,id: str) -> email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder:
         """
@@ -128,12 +127,11 @@ class ThreatSubmissionRequestBuilder():
         url_tpl_params["fileThreatSubmission%2Did"] = id
         return file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[ThreatSubmissionRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[threat_submission_root.ThreatSubmissionRoot]:
+    async def get(self,request_configuration: Optional[ThreatSubmissionRequestBuilderGetRequestConfiguration] = None) -> Optional[threat_submission_root.ThreatSubmissionRoot]:
         """
         A threat submission sent to Microsoft; for example, a suspicious email threat, URL threat, or file threat.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[threat_submission_root.ThreatSubmissionRoot]
         """
         request_info = self.to_get_request_information(
@@ -145,15 +143,14 @@ class ThreatSubmissionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, error_mapping)
     
-    async def patch(self,body: Optional[threat_submission_root.ThreatSubmissionRoot] = None, request_configuration: Optional[ThreatSubmissionRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[threat_submission_root.ThreatSubmissionRoot]:
+    async def patch(self,body: Optional[threat_submission_root.ThreatSubmissionRoot] = None, request_configuration: Optional[ThreatSubmissionRequestBuilderPatchRequestConfiguration] = None) -> Optional[threat_submission_root.ThreatSubmissionRoot]:
         """
         Update the navigation property threatSubmission in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[threat_submission_root.ThreatSubmissionRoot]
         """
         if body is None:
@@ -167,7 +164,7 @@ class ThreatSubmissionRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ThreatSubmissionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -196,7 +193,7 @@ class ThreatSubmissionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -217,7 +214,7 @@ class ThreatSubmissionRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -243,7 +240,7 @@ class ThreatSubmissionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -282,7 +279,7 @@ class ThreatSubmissionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -297,7 +294,7 @@ class ThreatSubmissionRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

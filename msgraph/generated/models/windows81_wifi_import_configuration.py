@@ -38,8 +38,8 @@ class Windows81WifiImportConfiguration(device_configuration.DeviceConfiguration)
         """
         fields = {
             "payload": lambda n : setattr(self, 'payload', n.get_bytes_value()),
-            "payload_file_name": lambda n : setattr(self, 'payload_file_name', n.get_str_value()),
-            "profile_name": lambda n : setattr(self, 'profile_name', n.get_str_value()),
+            "payloadFileName": lambda n : setattr(self, 'payload_file_name', n.get_str_value()),
+            "profileName": lambda n : setattr(self, 'profile_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -75,7 +75,7 @@ class Windows81WifiImportConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the payloadFileName property value. Payload file name (.xml).
         Args:
-            value: Value to set for the payloadFileName property.
+            value: Value to set for the payload_file_name property.
         """
         self._payload_file_name = value
     
@@ -92,7 +92,7 @@ class Windows81WifiImportConfiguration(device_configuration.DeviceConfiguration)
         """
         Sets the profileName property value. Profile name displayed in the UI.
         Args:
-            value: Value to set for the profileName property.
+            value: Value to set for the profile_name property.
         """
         self._profile_name = value
     

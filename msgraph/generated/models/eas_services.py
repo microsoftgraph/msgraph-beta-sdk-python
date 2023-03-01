@@ -1,7 +1,7 @@
 from enum import Enum
 
 class EasServices(Enum):
-    None_escaped = "none",
+    None_ = "none",
     # Enables synchronization of calendars.
     Calendars = "calendars",
     # Enables synchronization of contacts.

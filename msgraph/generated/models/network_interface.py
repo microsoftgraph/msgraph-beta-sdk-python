@@ -77,10 +77,10 @@ class NetworkInterface(AdditionalDataHolder, Parsable):
         """
         fields = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "ip_v4_address": lambda n : setattr(self, 'ip_v4_address', n.get_str_value()),
-            "ip_v6_address": lambda n : setattr(self, 'ip_v6_address', n.get_str_value()),
-            "local_ip_v6_address": lambda n : setattr(self, 'local_ip_v6_address', n.get_str_value()),
-            "mac_address": lambda n : setattr(self, 'mac_address', n.get_str_value()),
+            "ipV4Address": lambda n : setattr(self, 'ip_v4_address', n.get_str_value()),
+            "ipV6Address": lambda n : setattr(self, 'ip_v6_address', n.get_str_value()),
+            "localIpV6Address": lambda n : setattr(self, 'local_ip_v6_address', n.get_str_value()),
+            "macAddress": lambda n : setattr(self, 'mac_address', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -98,7 +98,7 @@ class NetworkInterface(AdditionalDataHolder, Parsable):
         """
         Sets the ipV4Address property value. Last IPv4 address associated with this NIC.
         Args:
-            value: Value to set for the ipV4Address property.
+            value: Value to set for the ip_v4_address property.
         """
         self._ip_v4_address = value
     
@@ -115,7 +115,7 @@ class NetworkInterface(AdditionalDataHolder, Parsable):
         """
         Sets the ipV6Address property value. Last Public (aka global) IPv6 address associated with this NIC.
         Args:
-            value: Value to set for the ipV6Address property.
+            value: Value to set for the ip_v6_address property.
         """
         self._ip_v6_address = value
     
@@ -132,7 +132,7 @@ class NetworkInterface(AdditionalDataHolder, Parsable):
         """
         Sets the localIpV6Address property value. Last local (link-local or site-local) IPv6 address associated with this NIC.
         Args:
-            value: Value to set for the localIpV6Address property.
+            value: Value to set for the local_ip_v6_address property.
         """
         self._local_ip_v6_address = value
     
@@ -149,7 +149,7 @@ class NetworkInterface(AdditionalDataHolder, Parsable):
         """
         Sets the macAddress property value. MAC address of the NIC on this host.
         Args:
-            value: Value to set for the macAddress property.
+            value: Value to set for the mac_address property.
         """
         self._mac_address = value
     
@@ -166,7 +166,7 @@ class NetworkInterface(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

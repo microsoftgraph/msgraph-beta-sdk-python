@@ -22,7 +22,7 @@ class OnPremisesAgent(entity.Entity):
         """
         Sets the agentGroups property value. List of onPremisesAgentGroups that an onPremisesAgent is assigned to. Read-only. Nullable.
         Args:
-            value: Value to set for the agentGroups property.
+            value: Value to set for the agent_groups property.
         """
         self._agent_groups = value
     
@@ -69,7 +69,7 @@ class OnPremisesAgent(entity.Entity):
         """
         Sets the externalIp property value. The external IP address as detected by the service for the agent machine. Read-only
         Args:
-            value: Value to set for the externalIp property.
+            value: Value to set for the external_ip property.
         """
         self._external_ip = value
     
@@ -79,11 +79,11 @@ class OnPremisesAgent(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "agent_groups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
-            "external_ip": lambda n : setattr(self, 'external_ip', n.get_str_value()),
-            "machine_name": lambda n : setattr(self, 'machine_name', n.get_str_value()),
+            "agentGroups": lambda n : setattr(self, 'agent_groups', n.get_collection_of_object_values(on_premises_agent_group.OnPremisesAgentGroup)),
+            "externalIp": lambda n : setattr(self, 'external_ip', n.get_str_value()),
+            "machineName": lambda n : setattr(self, 'machine_name', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(agent_status.AgentStatus)),
-            "supported_publishing_types": lambda n : setattr(self, 'supported_publishing_types', n.get_collection_of_enum_values(on_premises_publishing_type.OnPremisesPublishingType)),
+            "supportedPublishingTypes": lambda n : setattr(self, 'supported_publishing_types', n.get_collection_of_enum_values(on_premises_publishing_type.OnPremisesPublishingType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,7 +102,7 @@ class OnPremisesAgent(entity.Entity):
         """
         Sets the machineName property value. The name of the machine that the aggent is running on. Read-only
         Args:
-            value: Value to set for the machineName property.
+            value: Value to set for the machine_name property.
         """
         self._machine_name = value
     
@@ -151,7 +151,7 @@ class OnPremisesAgent(entity.Entity):
         """
         Sets the supportedPublishingTypes property value. The supportedPublishingTypes property
         Args:
-            value: Value to set for the supportedPublishingTypes property.
+            value: Value to set for the supported_publishing_types property.
         """
         self._supported_publishing_types = value
     

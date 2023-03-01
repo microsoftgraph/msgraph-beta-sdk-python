@@ -51,7 +51,7 @@ class MentionsPreview(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_mentioned": lambda n : setattr(self, 'is_mentioned', n.get_bool_value()),
+            "isMentioned": lambda n : setattr(self, 'is_mentioned', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -69,7 +69,7 @@ class MentionsPreview(AdditionalDataHolder, Parsable):
         """
         Sets the isMentioned property value. True if the signed-in user is mentioned in the parent resource instance. Read-only. Supports filter.
         Args:
-            value: Value to set for the isMentioned property.
+            value: Value to set for the is_mentioned property.
         """
         self._is_mentioned = value
     
@@ -86,7 +86,7 @@ class MentionsPreview(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

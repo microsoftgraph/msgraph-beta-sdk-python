@@ -35,7 +35,7 @@ class TriggersRoot(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "retention_events": lambda n : setattr(self, 'retention_events', n.get_collection_of_object_values(retention_event.RetentionEvent)),
+            "retentionEvents": lambda n : setattr(self, 'retention_events', n.get_collection_of_object_values(retention_event.RetentionEvent)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -54,7 +54,7 @@ class TriggersRoot(entity.Entity):
         """
         Sets the retentionEvents property value. The retentionEvents property
         Args:
-            value: Value to set for the retentionEvents property.
+            value: Value to set for the retention_events property.
         """
         self._retention_events = value
     

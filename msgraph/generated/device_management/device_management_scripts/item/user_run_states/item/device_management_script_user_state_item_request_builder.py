@@ -44,12 +44,11 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property userRunStates for deviceManagement
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -60,7 +59,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
     def device_run_states_by_id(self,id: str) -> device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder:
         """
@@ -75,12 +74,11 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         url_tpl_params["deviceManagementScriptDeviceState%2Did"] = id
         return device_management_script_device_state_item_request_builder.DeviceManagementScriptDeviceStateItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def get(self,request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_user_state.DeviceManagementScriptUserState]:
+    async def get(self,request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_script_user_state.DeviceManagementScriptUserState]:
         """
         List of run states for this script across all users.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_user_state.DeviceManagementScriptUserState]
         """
         request_info = self.to_get_request_information(
@@ -92,15 +90,14 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_user_state.DeviceManagementScriptUserState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_user_state.DeviceManagementScriptUserState, error_mapping)
     
-    async def patch(self,body: Optional[device_management_script_user_state.DeviceManagementScriptUserState] = None, request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[device_management_script_user_state.DeviceManagementScriptUserState]:
+    async def patch(self,body: Optional[device_management_script_user_state.DeviceManagementScriptUserState] = None, request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_script_user_state.DeviceManagementScriptUserState]:
         """
         Update the navigation property userRunStates in deviceManagement
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[device_management_script_user_state.DeviceManagementScriptUserState]
         """
         if body is None:
@@ -114,7 +111,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, device_management_script_user_state.DeviceManagementScriptUserState, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, device_management_script_user_state.DeviceManagementScriptUserState, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementScriptUserStateItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -143,7 +140,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -164,7 +161,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -177,7 +174,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -216,7 +213,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -231,7 +228,7 @@ class DeviceManagementScriptUserStateItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

@@ -49,7 +49,7 @@ class UnfavoritePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "message_ids": lambda n : setattr(self, 'message_ids', n.get_collection_of_primitive_values(str)),
+            "messageIds": lambda n : setattr(self, 'message_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class UnfavoritePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the messageIds property value. The messageIds property
         Args:
-            value: Value to set for the messageIds property.
+            value: Value to set for the message_ids property.
         """
         self._message_ids = value
     

@@ -37,9 +37,9 @@ class LogicAppTriggerEndpointConfiguration(custom_extension_endpoint_configurati
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "logic_app_workflow_name": lambda n : setattr(self, 'logic_app_workflow_name', n.get_str_value()),
-            "resource_group_name": lambda n : setattr(self, 'resource_group_name', n.get_str_value()),
-            "subscription_id": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
+            "logicAppWorkflowName": lambda n : setattr(self, 'logic_app_workflow_name', n.get_str_value()),
+            "resourceGroupName": lambda n : setattr(self, 'resource_group_name', n.get_str_value()),
+            "subscriptionId": lambda n : setattr(self, 'subscription_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -58,7 +58,7 @@ class LogicAppTriggerEndpointConfiguration(custom_extension_endpoint_configurati
         """
         Sets the logicAppWorkflowName property value. The name of the logic app.
         Args:
-            value: Value to set for the logicAppWorkflowName property.
+            value: Value to set for the logic_app_workflow_name property.
         """
         self._logic_app_workflow_name = value
     
@@ -75,7 +75,7 @@ class LogicAppTriggerEndpointConfiguration(custom_extension_endpoint_configurati
         """
         Sets the resourceGroupName property value. The Azure resource group name for the logic app.
         Args:
-            value: Value to set for the resourceGroupName property.
+            value: Value to set for the resource_group_name property.
         """
         self._resource_group_name = value
     
@@ -105,7 +105,7 @@ class LogicAppTriggerEndpointConfiguration(custom_extension_endpoint_configurati
         """
         Sets the subscriptionId property value. Identifier of the Azure subscription for the logic app.
         Args:
-            value: Value to set for the subscriptionId property.
+            value: Value to set for the subscription_id property.
         """
         self._subscription_id = value
     

@@ -36,7 +36,7 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentState property value. The assignmentState property
         Args:
-            value: Value to set for the assignmentState property.
+            value: Value to set for the assignment_state property.
         """
         self._assignment_state = value
     
@@ -91,7 +91,7 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_state": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
+            "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "decision": lambda n : setattr(self, 'decision', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(governance_schedule.GovernanceSchedule)),

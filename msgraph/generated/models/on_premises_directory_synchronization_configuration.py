@@ -20,7 +20,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         """
         Sets the accidentalDeletionPrevention property value. Contains the accidental deletion prevention configuration for a tenant.
         Args:
-            value: Value to set for the accidentalDeletionPrevention property.
+            value: Value to set for the accidental_deletion_prevention property.
         """
         self._accidental_deletion_prevention = value
     
@@ -82,7 +82,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         """
         Sets the customerRequestedSynchronizationInterval property value. Interval of time that the customer requested the sync client waits between sync cycles.
         Args:
-            value: Value to set for the customerRequestedSynchronizationInterval property.
+            value: Value to set for the customer_requested_synchronization_interval property.
         """
         self._customer_requested_synchronization_interval = value
     
@@ -92,10 +92,10 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "accidental_deletion_prevention": lambda n : setattr(self, 'accidental_deletion_prevention', n.get_object_value(on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention)),
-            "customer_requested_synchronization_interval": lambda n : setattr(self, 'customer_requested_synchronization_interval', n.get_object_value(Timedelta)),
+            "accidentalDeletionPrevention": lambda n : setattr(self, 'accidental_deletion_prevention', n.get_object_value(on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention)),
+            "customerRequestedSynchronizationInterval": lambda n : setattr(self, 'customer_requested_synchronization_interval', n.get_object_value(Timedelta)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "synchronization_interval": lambda n : setattr(self, 'synchronization_interval', n.get_object_value(Timedelta)),
+            "synchronizationInterval": lambda n : setattr(self, 'synchronization_interval', n.get_object_value(Timedelta)),
         }
         return fields
     
@@ -112,7 +112,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -143,7 +143,7 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         """
         Sets the synchronizationInterval property value. Interval of time the sync client should honor between sync cycles
         Args:
-            value: Value to set for the synchronizationInterval property.
+            value: Value to set for the synchronization_interval property.
         """
         self._synchronization_interval = value
     

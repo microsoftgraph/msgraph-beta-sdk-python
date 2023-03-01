@@ -41,7 +41,7 @@ class AttachmentContentProperties(content_properties.ContentProperties):
         """
         Sets the currentLabel property value. The currentLabel property
         Args:
-            value: Value to set for the currentLabel property.
+            value: Value to set for the current_label property.
         """
         self._current_label = value
     
@@ -51,7 +51,7 @@ class AttachmentContentProperties(content_properties.ContentProperties):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "current_label": lambda n : setattr(self, 'current_label', n.get_object_value(current_label.CurrentLabel)),
+            "currentLabel": lambda n : setattr(self, 'current_label', n.get_object_value(current_label.CurrentLabel)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

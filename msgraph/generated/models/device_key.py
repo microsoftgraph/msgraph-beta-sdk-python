@@ -62,7 +62,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         """
         Sets the deviceId property value. The deviceId property
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -72,9 +72,9 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
-            "key_material": lambda n : setattr(self, 'key_material', n.get_bytes_value()),
-            "key_type": lambda n : setattr(self, 'key_type', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_object_value(Guid)),
+            "keyMaterial": lambda n : setattr(self, 'key_material', n.get_bytes_value()),
+            "keyType": lambda n : setattr(self, 'key_type', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -92,7 +92,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         """
         Sets the keyMaterial property value. The keyMaterial property
         Args:
-            value: Value to set for the keyMaterial property.
+            value: Value to set for the key_material property.
         """
         self._key_material = value
     
@@ -109,7 +109,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         """
         Sets the keyType property value. The keyType property
         Args:
-            value: Value to set for the keyType property.
+            value: Value to set for the key_type property.
         """
         self._key_type = value
     
@@ -126,7 +126,7 @@ class DeviceKey(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -54,8 +54,8 @@ class ReferencedObject(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "referenced_object_name": lambda n : setattr(self, 'referenced_object_name', n.get_str_value()),
-            "referenced_property": lambda n : setattr(self, 'referenced_property', n.get_str_value()),
+            "referencedObjectName": lambda n : setattr(self, 'referenced_object_name', n.get_str_value()),
+            "referencedProperty": lambda n : setattr(self, 'referenced_property', n.get_str_value()),
         }
         return fields
     
@@ -72,7 +72,7 @@ class ReferencedObject(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -89,7 +89,7 @@ class ReferencedObject(AdditionalDataHolder, Parsable):
         """
         Sets the referencedObjectName property value. Name of the referenced object. Must match one of the objects in the directory definition.
         Args:
-            value: Value to set for the referencedObjectName property.
+            value: Value to set for the referenced_object_name property.
         """
         self._referenced_object_name = value
     
@@ -106,7 +106,7 @@ class ReferencedObject(AdditionalDataHolder, Parsable):
         """
         Sets the referencedProperty property value. Currently not supported. Name of the property in the referenced object, the value for which is used as the reference.
         Args:
-            value: Value to set for the referencedProperty property.
+            value: Value to set for the referenced_property property.
         """
         self._referenced_property = value
     

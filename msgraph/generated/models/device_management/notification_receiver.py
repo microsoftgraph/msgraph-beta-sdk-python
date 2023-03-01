@@ -48,7 +48,7 @@ class NotificationReceiver(AdditionalDataHolder, Parsable):
         """
         Sets the contactInformation property value. The contact information about the notification receivers, such as an email address. Currently, only email and portal notifications are supported. For portal notifications, contactInformation can be left blank. For email notifications, contactInformation consists of an email address such as serena.davis@contoso.com.
         Args:
-            value: Value to set for the contactInformation property.
+            value: Value to set for the contact_information property.
         """
         self._contact_information = value
     
@@ -70,7 +70,7 @@ class NotificationReceiver(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "contact_information": lambda n : setattr(self, 'contact_information', n.get_str_value()),
+            "contactInformation": lambda n : setattr(self, 'contact_information', n.get_str_value()),
             "locale": lambda n : setattr(self, 'locale', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -106,7 +106,7 @@ class NotificationReceiver(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

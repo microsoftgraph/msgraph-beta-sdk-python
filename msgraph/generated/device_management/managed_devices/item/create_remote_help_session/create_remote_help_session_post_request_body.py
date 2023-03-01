@@ -49,7 +49,7 @@ class CreateRemoteHelpSessionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "session_type": lambda n : setattr(self, 'session_type', n.get_str_value()),
+            "sessionType": lambda n : setattr(self, 'session_type', n.get_str_value()),
         }
         return fields
     
@@ -77,7 +77,7 @@ class CreateRemoteHelpSessionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the sessionType property value. The sessionType property
         Args:
-            value: Value to set for the sessionType property.
+            value: Value to set for the session_type property.
         """
         self._session_type = value
     

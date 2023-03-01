@@ -57,12 +57,11 @@ class AuthenticationMethodsPolicyRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[AuthenticationMethodsPolicyRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_policy.AuthenticationMethodsPolicy]:
+    async def get(self,request_configuration: Optional[AuthenticationMethodsPolicyRequestBuilderGetRequestConfiguration] = None) -> Optional[authentication_methods_policy.AuthenticationMethodsPolicy]:
         """
         Get authenticationMethodsPolicy
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_policy.AuthenticationMethodsPolicy]
         """
         request_info = self.to_get_request_information(
@@ -74,15 +73,14 @@ class AuthenticationMethodsPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_policy.AuthenticationMethodsPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_policy.AuthenticationMethodsPolicy, error_mapping)
     
-    async def patch(self,body: Optional[authentication_methods_policy.AuthenticationMethodsPolicy] = None, request_configuration: Optional[AuthenticationMethodsPolicyRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[authentication_methods_policy.AuthenticationMethodsPolicy]:
+    async def patch(self,body: Optional[authentication_methods_policy.AuthenticationMethodsPolicy] = None, request_configuration: Optional[AuthenticationMethodsPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[authentication_methods_policy.AuthenticationMethodsPolicy]:
         """
         Update authenticationMethodsPolicy
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[authentication_methods_policy.AuthenticationMethodsPolicy]
         """
         if body is None:
@@ -96,7 +94,7 @@ class AuthenticationMethodsPolicyRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, authentication_methods_policy.AuthenticationMethodsPolicy, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, authentication_methods_policy.AuthenticationMethodsPolicy, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AuthenticationMethodsPolicyRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -109,7 +107,7 @@ class AuthenticationMethodsPolicyRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -130,7 +128,7 @@ class AuthenticationMethodsPolicyRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -170,7 +168,7 @@ class AuthenticationMethodsPolicyRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -185,7 +183,7 @@ class AuthenticationMethodsPolicyRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

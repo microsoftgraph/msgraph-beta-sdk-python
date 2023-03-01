@@ -53,8 +53,8 @@ class ImportDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "imported_device_identities": lambda n : setattr(self, 'imported_device_identities', n.get_collection_of_object_values(imported_device_identity.ImportedDeviceIdentity)),
-            "overwrite_imported_device_identities": lambda n : setattr(self, 'overwrite_imported_device_identities', n.get_bool_value()),
+            "importedDeviceIdentities": lambda n : setattr(self, 'imported_device_identities', n.get_collection_of_object_values(imported_device_identity.ImportedDeviceIdentity)),
+            "overwriteImportedDeviceIdentities": lambda n : setattr(self, 'overwrite_imported_device_identities', n.get_bool_value()),
         }
         return fields
     
@@ -71,7 +71,7 @@ class ImportDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the importedDeviceIdentities property value. The importedDeviceIdentities property
         Args:
-            value: Value to set for the importedDeviceIdentities property.
+            value: Value to set for the imported_device_identities property.
         """
         self._imported_device_identities = value
     
@@ -88,7 +88,7 @@ class ImportDeviceIdentityListPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the overwriteImportedDeviceIdentities property value. The overwriteImportedDeviceIdentities property
         Args:
-            value: Value to set for the overwriteImportedDeviceIdentities property.
+            value: Value to set for the overwrite_imported_device_identities property.
         """
         self._overwrite_imported_device_identities = value
     

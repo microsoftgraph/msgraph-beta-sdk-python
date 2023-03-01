@@ -48,6 +48,10 @@ get_email_app_usage_user_counts_with_period_request_builder = lazy_import('msgra
 get_email_app_usage_user_detail_with_date_request_builder = lazy_import('msgraph.generated.reports.get_email_app_usage_user_detail_with_date.get_email_app_usage_user_detail_with_date_request_builder')
 get_email_app_usage_user_detail_with_period_request_builder = lazy_import('msgraph.generated.reports.get_email_app_usage_user_detail_with_period.get_email_app_usage_user_detail_with_period_request_builder')
 get_email_app_usage_versions_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_email_app_usage_versions_user_counts_with_period.get_email_app_usage_versions_user_counts_with_period_request_builder')
+get_forms_user_activity_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_counts_with_period.get_forms_user_activity_counts_with_period_request_builder')
+get_forms_user_activity_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_user_counts_with_period.get_forms_user_activity_user_counts_with_period_request_builder')
+get_forms_user_activity_user_detail_with_date_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_user_detail_with_date.get_forms_user_activity_user_detail_with_date_request_builder')
+get_forms_user_activity_user_detail_with_period_request_builder = lazy_import('msgraph.generated.reports.get_forms_user_activity_user_detail_with_period.get_forms_user_activity_user_detail_with_period_request_builder')
 get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time_request_builder = lazy_import('msgraph.generated.reports.get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time.get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time_request_builder')
 get_m365_app_platform_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_m365_app_platform_user_counts_with_period.get_m365_app_platform_user_counts_with_period_request_builder')
 get_m365_app_user_counts_with_period_request_builder = lazy_import('msgraph.generated.reports.get_m365_app_user_counts_with_period.get_m365_app_user_counts_with_period_request_builder')
@@ -222,6 +226,90 @@ class ReportsRequestBuilder():
         return daily_print_usage_summaries_by_user_request_builder.DailyPrintUsageSummariesByUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
+    def device_configuration_device_activity(self) -> device_configuration_device_activity_request_builder.DeviceConfigurationDeviceActivityRequestBuilder:
+        """
+        Provides operations to call the deviceConfigurationDeviceActivity method.
+        """
+        return device_configuration_device_activity_request_builder.DeviceConfigurationDeviceActivityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def device_configuration_user_activity(self) -> device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder:
+        """
+        Provides operations to call the deviceConfigurationUserActivity method.
+        """
+        return device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_attack_simulation_repeat_offenders(self) -> get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder:
+        """
+        Provides operations to call the getAttackSimulationRepeatOffenders method.
+        """
+        return get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_attack_simulation_simulation_user_coverage(self) -> get_attack_simulation_simulation_user_coverage_request_builder.GetAttackSimulationSimulationUserCoverageRequestBuilder:
+        """
+        Provides operations to call the getAttackSimulationSimulationUserCoverage method.
+        """
+        return get_attack_simulation_simulation_user_coverage_request_builder.GetAttackSimulationSimulationUserCoverageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_attack_simulation_training_user_coverage(self) -> get_attack_simulation_training_user_coverage_request_builder.GetAttackSimulationTrainingUserCoverageRequestBuilder:
+        """
+        Provides operations to call the getAttackSimulationTrainingUserCoverage method.
+        """
+        return get_attack_simulation_training_user_coverage_request_builder.GetAttackSimulationTrainingUserCoverageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_credential_user_registration_count(self) -> get_credential_user_registration_count_request_builder.GetCredentialUserRegistrationCountRequestBuilder:
+        """
+        Provides operations to call the getCredentialUserRegistrationCount method.
+        """
+        return get_credential_user_registration_count_request_builder.GetCredentialUserRegistrationCountRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_office365_activation_counts(self) -> get_office365_activation_counts_request_builder.GetOffice365ActivationCountsRequestBuilder:
+        """
+        Provides operations to call the getOffice365ActivationCounts method.
+        """
+        return get_office365_activation_counts_request_builder.GetOffice365ActivationCountsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_office365_activations_user_counts(self) -> get_office365_activations_user_counts_request_builder.GetOffice365ActivationsUserCountsRequestBuilder:
+        """
+        Provides operations to call the getOffice365ActivationsUserCounts method.
+        """
+        return get_office365_activations_user_counts_request_builder.GetOffice365ActivationsUserCountsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_office365_activations_user_detail(self) -> get_office365_activations_user_detail_request_builder.GetOffice365ActivationsUserDetailRequestBuilder:
+        """
+        Provides operations to call the getOffice365ActivationsUserDetail method.
+        """
+        return get_office365_activations_user_detail_request_builder.GetOffice365ActivationsUserDetailRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_device_enrollment_failure_details(self) -> managed_device_enrollment_failure_details_request_builder.ManagedDeviceEnrollmentFailureDetailsRequestBuilder:
+        """
+        Provides operations to call the managedDeviceEnrollmentFailureDetails method.
+        """
+        return managed_device_enrollment_failure_details_request_builder.ManagedDeviceEnrollmentFailureDetailsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_device_enrollment_failure_trends(self) -> managed_device_enrollment_failure_trends_request_builder.ManagedDeviceEnrollmentFailureTrendsRequestBuilder:
+        """
+        Provides operations to call the managedDeviceEnrollmentFailureTrends method.
+        """
+        return managed_device_enrollment_failure_trends_request_builder.ManagedDeviceEnrollmentFailureTrendsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_device_enrollment_top_failures(self) -> managed_device_enrollment_top_failures_request_builder.ManagedDeviceEnrollmentTopFailuresRequestBuilder:
+        """
+        Provides operations to call the managedDeviceEnrollmentTopFailures method.
+        """
+        return managed_device_enrollment_top_failures_request_builder.ManagedDeviceEnrollmentTopFailuresRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
     def monthly_print_usage_by_printer(self) -> monthly_print_usage_by_printer_request_builder.MonthlyPrintUsageByPrinterRequestBuilder:
         """
         Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
@@ -372,26 +460,11 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    def device_configuration_device_activity(self,) -> device_configuration_device_activity_request_builder.DeviceConfigurationDeviceActivityRequestBuilder:
-        """
-        Provides operations to call the deviceConfigurationDeviceActivity method.
-        Returns: device_configuration_device_activity_request_builder.DeviceConfigurationDeviceActivityRequestBuilder
-        """
-        return device_configuration_device_activity_request_builder.DeviceConfigurationDeviceActivityRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def device_configuration_user_activity(self,) -> device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder:
-        """
-        Provides operations to call the deviceConfigurationUserActivity method.
-        Returns: device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder
-        """
-        return device_configuration_user_activity_request_builder.DeviceConfigurationUserActivityRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[report_root.ReportRoot]:
+    async def get(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> Optional[report_root.ReportRoot]:
         """
         Get reports
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]
         """
         request_info = self.to_get_request_information(
@@ -403,28 +476,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
-    
-    def get_attack_simulation_repeat_offenders(self,) -> get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder:
-        """
-        Provides operations to call the getAttackSimulationRepeatOffenders method.
-        Returns: get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder
-        """
-        return get_attack_simulation_repeat_offenders_request_builder.GetAttackSimulationRepeatOffendersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_attack_simulation_simulation_user_coverage(self,) -> get_attack_simulation_simulation_user_coverage_request_builder.GetAttackSimulationSimulationUserCoverageRequestBuilder:
-        """
-        Provides operations to call the getAttackSimulationSimulationUserCoverage method.
-        Returns: get_attack_simulation_simulation_user_coverage_request_builder.GetAttackSimulationSimulationUserCoverageRequestBuilder
-        """
-        return get_attack_simulation_simulation_user_coverage_request_builder.GetAttackSimulationSimulationUserCoverageRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_attack_simulation_training_user_coverage(self,) -> get_attack_simulation_training_user_coverage_request_builder.GetAttackSimulationTrainingUserCoverageRequestBuilder:
-        """
-        Provides operations to call the getAttackSimulationTrainingUserCoverage method.
-        Returns: get_attack_simulation_training_user_coverage_request_builder.GetAttackSimulationTrainingUserCoverageRequestBuilder
-        """
-        return get_attack_simulation_training_user_coverage_request_builder.GetAttackSimulationTrainingUserCoverageRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, error_mapping)
     
     def get_azure_a_d_application_sign_in_summary_with_period(self,period: Optional[str] = None) -> get_azure_a_d_application_sign_in_summary_with_period_request_builder.GetAzureADApplicationSignInSummaryWithPeriodRequestBuilder:
         """
@@ -480,13 +532,6 @@ class ReportsRequestBuilder():
         if period is None:
             raise Exception("period cannot be undefined")
         return get_credential_usage_summary_with_period_request_builder.GetCredentialUsageSummaryWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
-    
-    def get_credential_user_registration_count(self,) -> get_credential_user_registration_count_request_builder.GetCredentialUserRegistrationCountRequestBuilder:
-        """
-        Provides operations to call the getCredentialUserRegistrationCount method.
-        Returns: get_credential_user_registration_count_request_builder.GetCredentialUserRegistrationCountRequestBuilder
-        """
-        return get_credential_user_registration_count_request_builder.GetCredentialUserRegistrationCountRequestBuilder(self.request_adapter, self.path_parameters)
     
     def get_email_activity_counts_with_period(self,period: Optional[str] = None) -> get_email_activity_counts_with_period_request_builder.GetEmailActivityCountsWithPeriodRequestBuilder:
         """
@@ -586,6 +631,50 @@ class ReportsRequestBuilder():
         if period is None:
             raise Exception("period cannot be undefined")
         return get_email_app_usage_versions_user_counts_with_period_request_builder.GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_forms_user_activity_counts_with_period(self,period: Optional[str] = None) -> get_forms_user_activity_counts_with_period_request_builder.GetFormsUserActivityCountsWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityCounts method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_forms_user_activity_counts_with_period_request_builder.GetFormsUserActivityCountsWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_forms_user_activity_counts_with_period_request_builder.GetFormsUserActivityCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_forms_user_activity_user_counts_with_period(self,period: Optional[str] = None) -> get_forms_user_activity_user_counts_with_period_request_builder.GetFormsUserActivityUserCountsWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityUserCounts method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_forms_user_activity_user_counts_with_period_request_builder.GetFormsUserActivityUserCountsWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_forms_user_activity_user_counts_with_period_request_builder.GetFormsUserActivityUserCountsWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
+    
+    def get_forms_user_activity_user_detail_with_date(self,date: Optional[Date] = None) -> get_forms_user_activity_user_detail_with_date_request_builder.GetFormsUserActivityUserDetailWithDateRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityUserDetail method.
+        Args:
+            date: Usage: date={date}
+        Returns: get_forms_user_activity_user_detail_with_date_request_builder.GetFormsUserActivityUserDetailWithDateRequestBuilder
+        """
+        if date is None:
+            raise Exception("date cannot be undefined")
+        return get_forms_user_activity_user_detail_with_date_request_builder.GetFormsUserActivityUserDetailWithDateRequestBuilder(self.request_adapter, self.path_parameters, date)
+    
+    def get_forms_user_activity_user_detail_with_period(self,period: Optional[str] = None) -> get_forms_user_activity_user_detail_with_period_request_builder.GetFormsUserActivityUserDetailWithPeriodRequestBuilder:
+        """
+        Provides operations to call the getFormsUserActivityUserDetail method.
+        Args:
+            period: Usage: period='{period}'
+        Returns: get_forms_user_activity_user_detail_with_period_request_builder.GetFormsUserActivityUserDetailWithPeriodRequestBuilder
+        """
+        if period is None:
+            raise Exception("period cannot be undefined")
+        return get_forms_user_activity_user_detail_with_period_request_builder.GetFormsUserActivityUserDetailWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
     
     def get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time(self,end_date_time: Optional[datetime] = None, group_id: Optional[str] = None, start_date_time: Optional[datetime] = None) -> get_group_archived_print_jobs_with_group_id_with_start_date_time_with_end_date_time_request_builder.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder:
         """
@@ -691,27 +780,6 @@ class ReportsRequestBuilder():
         if period is None:
             raise Exception("period cannot be undefined")
         return get_mailbox_usage_storage_with_period_request_builder.GetMailboxUsageStorageWithPeriodRequestBuilder(self.request_adapter, self.path_parameters, period)
-    
-    def get_office365_activation_counts(self,) -> get_office365_activation_counts_request_builder.GetOffice365ActivationCountsRequestBuilder:
-        """
-        Provides operations to call the getOffice365ActivationCounts method.
-        Returns: get_office365_activation_counts_request_builder.GetOffice365ActivationCountsRequestBuilder
-        """
-        return get_office365_activation_counts_request_builder.GetOffice365ActivationCountsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_office365_activations_user_counts(self,) -> get_office365_activations_user_counts_request_builder.GetOffice365ActivationsUserCountsRequestBuilder:
-        """
-        Provides operations to call the getOffice365ActivationsUserCounts method.
-        Returns: get_office365_activations_user_counts_request_builder.GetOffice365ActivationsUserCountsRequestBuilder
-        """
-        return get_office365_activations_user_counts_request_builder.GetOffice365ActivationsUserCountsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def get_office365_activations_user_detail(self,) -> get_office365_activations_user_detail_request_builder.GetOffice365ActivationsUserDetailRequestBuilder:
-        """
-        Provides operations to call the getOffice365ActivationsUserDetail method.
-        Returns: get_office365_activations_user_detail_request_builder.GetOffice365ActivationsUserDetailRequestBuilder
-        """
-        return get_office365_activations_user_detail_request_builder.GetOffice365ActivationsUserDetailRequestBuilder(self.request_adapter, self.path_parameters)
     
     def get_office365_active_user_counts_with_period(self,period: Optional[str] = None) -> get_office365_active_user_counts_with_period_request_builder.GetOffice365ActiveUserCountsWithPeriodRequestBuilder:
         """
@@ -1667,13 +1735,6 @@ class ReportsRequestBuilder():
             raise Exception("top cannot be undefined")
         return managed_device_enrollment_abandonment_summary_with_skip_with_top_with_filter_with_skip_token_request_builder.ManagedDeviceEnrollmentAbandonmentSummaryWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(self.request_adapter, self.path_parameters, filter, skip, skipToken, top)
     
-    def managed_device_enrollment_failure_details(self,) -> managed_device_enrollment_failure_details_request_builder.ManagedDeviceEnrollmentFailureDetailsRequestBuilder:
-        """
-        Provides operations to call the managedDeviceEnrollmentFailureDetails method.
-        Returns: managed_device_enrollment_failure_details_request_builder.ManagedDeviceEnrollmentFailureDetailsRequestBuilder
-        """
-        return managed_device_enrollment_failure_details_request_builder.ManagedDeviceEnrollmentFailureDetailsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def managed_device_enrollment_failure_details_with_skip_with_top_with_filter_with_skip_token(self,filter: Optional[str] = None, skip: Optional[int] = None, skip_token: Optional[str] = None, top: Optional[int] = None) -> managed_device_enrollment_failure_details_with_skip_with_top_with_filter_with_skip_token_request_builder.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder:
         """
         Provides operations to call the managedDeviceEnrollmentFailureDetails method.
@@ -1693,20 +1754,6 @@ class ReportsRequestBuilder():
         if top is None:
             raise Exception("top cannot be undefined")
         return managed_device_enrollment_failure_details_with_skip_with_top_with_filter_with_skip_token_request_builder.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(self.request_adapter, self.path_parameters, filter, skip, skipToken, top)
-    
-    def managed_device_enrollment_failure_trends(self,) -> managed_device_enrollment_failure_trends_request_builder.ManagedDeviceEnrollmentFailureTrendsRequestBuilder:
-        """
-        Provides operations to call the managedDeviceEnrollmentFailureTrends method.
-        Returns: managed_device_enrollment_failure_trends_request_builder.ManagedDeviceEnrollmentFailureTrendsRequestBuilder
-        """
-        return managed_device_enrollment_failure_trends_request_builder.ManagedDeviceEnrollmentFailureTrendsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def managed_device_enrollment_top_failures(self,) -> managed_device_enrollment_top_failures_request_builder.ManagedDeviceEnrollmentTopFailuresRequestBuilder:
-        """
-        Provides operations to call the managedDeviceEnrollmentTopFailures method.
-        Returns: managed_device_enrollment_top_failures_request_builder.ManagedDeviceEnrollmentTopFailuresRequestBuilder
-        """
-        return managed_device_enrollment_top_failures_request_builder.ManagedDeviceEnrollmentTopFailuresRequestBuilder(self.request_adapter, self.path_parameters)
     
     def managed_device_enrollment_top_failures_with_period(self,period: Optional[str] = None) -> managed_device_enrollment_top_failures_with_period_request_builder.ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder:
         """
@@ -1771,13 +1818,12 @@ class ReportsRequestBuilder():
         url_tpl_params["printUsageByUser%2Did"] = id
         return print_usage_by_user_item_request_builder.PrintUsageByUserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
-    async def patch(self,body: Optional[report_root.ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[report_root.ReportRoot]:
+    async def patch(self,body: Optional[report_root.ReportRoot] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> Optional[report_root.ReportRoot]:
         """
         Update reports
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[report_root.ReportRoot]
         """
         if body is None:
@@ -1791,7 +1837,7 @@ class ReportsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, report_root.ReportRoot, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ReportsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -1804,7 +1850,7 @@ class ReportsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -1825,7 +1871,7 @@ class ReportsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -1878,7 +1924,7 @@ class ReportsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -1893,7 +1939,7 @@ class ReportsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

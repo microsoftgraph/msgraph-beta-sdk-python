@@ -78,7 +78,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deviceConfigurationGroupAssignments property value. The deviceConfigurationGroupAssignments property
         Args:
-            value: Value to set for the deviceConfigurationGroupAssignments property.
+            value: Value to set for the device_configuration_group_assignments property.
         """
         self._device_configuration_group_assignments = value
     
@@ -89,7 +89,7 @@ class AssignPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_configuration_assignment.DeviceConfigurationAssignment)),
-            "device_configuration_group_assignments": lambda n : setattr(self, 'device_configuration_group_assignments', n.get_collection_of_object_values(device_configuration_group_assignment.DeviceConfigurationGroupAssignment)),
+            "deviceConfigurationGroupAssignments": lambda n : setattr(self, 'device_configuration_group_assignments', n.get_collection_of_object_values(device_configuration_group_assignment.DeviceConfigurationGroupAssignment)),
         }
         return fields
     

@@ -31,7 +31,7 @@ class Participant(entity.Entity):
         self.odata_type: Optional[str] = None
         # Information on whether the participant has recording capability.
         self._recording_info: Optional[recording_info.RecordingInfo] = None
-        # The restrictedExperience property
+        # Indicates the reason or reasons why media content from this participant is restricted.
         self._restricted_experience: Optional[online_meeting_restricted.OnlineMeetingRestricted] = None
     
     @staticmethod
@@ -53,13 +53,13 @@ class Participant(entity.Entity):
         """
         fields = {
             "info": lambda n : setattr(self, 'info', n.get_object_value(participant_info.ParticipantInfo)),
-            "is_identity_anonymized": lambda n : setattr(self, 'is_identity_anonymized', n.get_bool_value()),
-            "is_in_lobby": lambda n : setattr(self, 'is_in_lobby', n.get_bool_value()),
-            "is_muted": lambda n : setattr(self, 'is_muted', n.get_bool_value()),
-            "media_streams": lambda n : setattr(self, 'media_streams', n.get_collection_of_object_values(media_stream.MediaStream)),
+            "isIdentityAnonymized": lambda n : setattr(self, 'is_identity_anonymized', n.get_bool_value()),
+            "isInLobby": lambda n : setattr(self, 'is_in_lobby', n.get_bool_value()),
+            "isMuted": lambda n : setattr(self, 'is_muted', n.get_bool_value()),
+            "mediaStreams": lambda n : setattr(self, 'media_streams', n.get_collection_of_object_values(media_stream.MediaStream)),
             "metadata": lambda n : setattr(self, 'metadata', n.get_str_value()),
-            "recording_info": lambda n : setattr(self, 'recording_info', n.get_object_value(recording_info.RecordingInfo)),
-            "restricted_experience": lambda n : setattr(self, 'restricted_experience', n.get_object_value(online_meeting_restricted.OnlineMeetingRestricted)),
+            "recordingInfo": lambda n : setattr(self, 'recording_info', n.get_object_value(recording_info.RecordingInfo)),
+            "restrictedExperience": lambda n : setattr(self, 'restricted_experience', n.get_object_value(online_meeting_restricted.OnlineMeetingRestricted)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -95,7 +95,7 @@ class Participant(entity.Entity):
         """
         Sets the isIdentityAnonymized property value. The isIdentityAnonymized property
         Args:
-            value: Value to set for the isIdentityAnonymized property.
+            value: Value to set for the is_identity_anonymized property.
         """
         self._is_identity_anonymized = value
     
@@ -112,7 +112,7 @@ class Participant(entity.Entity):
         """
         Sets the isInLobby property value. true if the participant is in lobby.
         Args:
-            value: Value to set for the isInLobby property.
+            value: Value to set for the is_in_lobby property.
         """
         self._is_in_lobby = value
     
@@ -129,7 +129,7 @@ class Participant(entity.Entity):
         """
         Sets the isMuted property value. true if the participant is muted (client or server muted).
         Args:
-            value: Value to set for the isMuted property.
+            value: Value to set for the is_muted property.
         """
         self._is_muted = value
     
@@ -146,7 +146,7 @@ class Participant(entity.Entity):
         """
         Sets the mediaStreams property value. The list of media streams.
         Args:
-            value: Value to set for the mediaStreams property.
+            value: Value to set for the media_streams property.
         """
         self._media_streams = value
     
@@ -180,14 +180,14 @@ class Participant(entity.Entity):
         """
         Sets the recordingInfo property value. Information on whether the participant has recording capability.
         Args:
-            value: Value to set for the recordingInfo property.
+            value: Value to set for the recording_info property.
         """
         self._recording_info = value
     
     @property
     def restricted_experience(self,) -> Optional[online_meeting_restricted.OnlineMeetingRestricted]:
         """
-        Gets the restrictedExperience property value. The restrictedExperience property
+        Gets the restrictedExperience property value. Indicates the reason or reasons why media content from this participant is restricted.
         Returns: Optional[online_meeting_restricted.OnlineMeetingRestricted]
         """
         return self._restricted_experience
@@ -195,9 +195,9 @@ class Participant(entity.Entity):
     @restricted_experience.setter
     def restricted_experience(self,value: Optional[online_meeting_restricted.OnlineMeetingRestricted] = None) -> None:
         """
-        Sets the restrictedExperience property value. The restrictedExperience property
+        Sets the restrictedExperience property value. Indicates the reason or reasons why media content from this participant is restricted.
         Args:
-            value: Value to set for the restrictedExperience property.
+            value: Value to set for the restricted_experience property.
         """
         self._restricted_experience = value
     

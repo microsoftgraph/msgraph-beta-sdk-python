@@ -36,7 +36,7 @@ class CreatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the certificateSigningRequest property value. The certificateSigningRequest property
         Args:
-            value: Value to set for the certificateSigningRequest property.
+            value: Value to set for the certificate_signing_request property.
         """
         self._certificate_signing_request = value
     
@@ -53,7 +53,7 @@ class CreatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the connectorId property value. The connectorId property
         Args:
-            value: Value to set for the connectorId property.
+            value: Value to set for the connector_id property.
         """
         self._connector_id = value
     
@@ -104,7 +104,7 @@ class CreatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -114,13 +114,13 @@ class CreatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "certificate_signing_request": lambda n : setattr(self, 'certificate_signing_request', n.get_object_value(print_certificate_signing_request.PrintCertificateSigningRequest)),
-            "connector_id": lambda n : setattr(self, 'connector_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "has_physical_device": lambda n : setattr(self, 'has_physical_device', n.get_bool_value()),
+            "certificateSigningRequest": lambda n : setattr(self, 'certificate_signing_request', n.get_object_value(print_certificate_signing_request.PrintCertificateSigningRequest)),
+            "connectorId": lambda n : setattr(self, 'connector_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "hasPhysicalDevice": lambda n : setattr(self, 'has_physical_device', n.get_bool_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),
             "model": lambda n : setattr(self, 'model', n.get_str_value()),
-            "physical_device_id": lambda n : setattr(self, 'physical_device_id', n.get_str_value()),
+            "physicalDeviceId": lambda n : setattr(self, 'physical_device_id', n.get_str_value()),
         }
         return fields
     
@@ -137,7 +137,7 @@ class CreatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the hasPhysicalDevice property value. The hasPhysicalDevice property
         Args:
-            value: Value to set for the hasPhysicalDevice property.
+            value: Value to set for the has_physical_device property.
         """
         self._has_physical_device = value
     
@@ -188,7 +188,7 @@ class CreatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the physicalDeviceId property value. The physicalDeviceId property
         Args:
-            value: Value to set for the physicalDeviceId property.
+            value: Value to set for the physical_device_id property.
         """
         self._physical_device_id = value
     

@@ -65,7 +65,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
         """
         Sets the errorMessage property value. Detailed error message if dynamic group processing ran into an error.  Optional. Read-only.
         Args:
-            value: Value to set for the errorMessage property.
+            value: Value to set for the error_message property.
         """
         self._error_message = value
     
@@ -75,8 +75,8 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_message": lambda n : setattr(self, 'error_message', n.get_str_value()),
-            "last_membership_updated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
+            "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),
+            "lastMembershipUpdated": lambda n : setattr(self, 'last_membership_updated', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(membership_rule_processing_status_details.MembershipRuleProcessingStatusDetails)),
         }
@@ -95,7 +95,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
         """
         Sets the lastMembershipUpdated property value. Most recent date and time when membership of a dynamic group was updated.  Optional. Read-only.
         Args:
-            value: Value to set for the lastMembershipUpdated property.
+            value: Value to set for the last_membership_updated property.
         """
         self._last_membership_updated = value
     
@@ -112,7 +112,7 @@ class MembershipRuleProcessingStatus(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

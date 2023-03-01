@@ -20,7 +20,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the cloudPcStatus property value. The status of the cloud PC. Possible values are: notProvisioned, provisioning, provisioned, upgrading, inGracePeriod, deprovisioning, failed. Required. Read-only.
         Args:
-            value: Value to set for the cloudPcStatus property.
+            value: Value to set for the cloud_pc_status property.
         """
         self._cloud_pc_status = value
     
@@ -81,7 +81,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the deviceSpecification property value. The specification of the cloud PC device. Required. Read-only.
         Args:
-            value: Value to set for the deviceSpecification property.
+            value: Value to set for the device_specification property.
         """
         self._device_specification = value
     
@@ -98,7 +98,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the displayName property value. The display name  of the cloud PC device. Required. Read-only.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -108,18 +108,18 @@ class CloudPcDevice(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "cloud_pc_status": lambda n : setattr(self, 'cloud_pc_status', n.get_str_value()),
-            "device_specification": lambda n : setattr(self, 'device_specification', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "last_refreshed_date_time": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
-            "managed_device_id": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
-            "managed_device_name": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
-            "provisioning_policy_id": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
-            "service_plan_name": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
-            "service_plan_type": lambda n : setattr(self, 'service_plan_type', n.get_str_value()),
-            "tenant_display_name": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "cloudPcStatus": lambda n : setattr(self, 'cloud_pc_status', n.get_str_value()),
+            "deviceSpecification": lambda n : setattr(self, 'device_specification', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "lastRefreshedDateTime": lambda n : setattr(self, 'last_refreshed_date_time', n.get_datetime_value()),
+            "managedDeviceId": lambda n : setattr(self, 'managed_device_id', n.get_str_value()),
+            "managedDeviceName": lambda n : setattr(self, 'managed_device_name', n.get_str_value()),
+            "provisioningPolicyId": lambda n : setattr(self, 'provisioning_policy_id', n.get_str_value()),
+            "servicePlanName": lambda n : setattr(self, 'service_plan_name', n.get_str_value()),
+            "servicePlanType": lambda n : setattr(self, 'service_plan_type', n.get_str_value()),
+            "tenantDisplayName": lambda n : setattr(self, 'tenant_display_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -138,7 +138,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the lastRefreshedDateTime property value. Date and time the entity was last updated in the multi-tenant management platform. Required. Read-only.
         Args:
-            value: Value to set for the lastRefreshedDateTime property.
+            value: Value to set for the last_refreshed_date_time property.
         """
         self._last_refreshed_date_time = value
     
@@ -155,7 +155,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the managedDeviceId property value. The managed device identifier of the cloud PC device. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceId property.
+            value: Value to set for the managed_device_id property.
         """
         self._managed_device_id = value
     
@@ -172,7 +172,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the managedDeviceName property value. The managed device display name of the cloud PC device. Optional. Read-only.
         Args:
-            value: Value to set for the managedDeviceName property.
+            value: Value to set for the managed_device_name property.
         """
         self._managed_device_name = value
     
@@ -189,7 +189,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the provisioningPolicyId property value. The provisioning policy identifier for the cloud PC device. Required. Read-only.
         Args:
-            value: Value to set for the provisioningPolicyId property.
+            value: Value to set for the provisioning_policy_id property.
         """
         self._provisioning_policy_id = value
     
@@ -228,7 +228,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the servicePlanName property value. The service plan name of the cloud PC device. Required. Read-only.
         Args:
-            value: Value to set for the servicePlanName property.
+            value: Value to set for the service_plan_name property.
         """
         self._service_plan_name = value
     
@@ -245,7 +245,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the servicePlanType property value. The service plan type of the cloud PC device. Required. Read-only.
         Args:
-            value: Value to set for the servicePlanType property.
+            value: Value to set for the service_plan_type property.
         """
         self._service_plan_type = value
     
@@ -262,7 +262,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the tenantDisplayName property value. The display name for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantDisplayName property.
+            value: Value to set for the tenant_display_name property.
         """
         self._tenant_display_name = value
     
@@ -279,7 +279,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant. Required. Read-only.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -296,7 +296,7 @@ class CloudPcDevice(entity.Entity):
         """
         Sets the userPrincipalName property value. The user principal name (UPN) of the user assigned to the cloud PC device. Required. Read-only.
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

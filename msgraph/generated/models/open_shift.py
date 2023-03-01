@@ -47,7 +47,7 @@ class OpenShift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the draftOpenShift property value. An unpublished open shift.
         Args:
-            value: Value to set for the draftOpenShift property.
+            value: Value to set for the draft_open_shift property.
         """
         self._draft_open_shift = value
     
@@ -57,10 +57,10 @@ class OpenShift(change_tracked_entity.ChangeTrackedEntity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "draft_open_shift": lambda n : setattr(self, 'draft_open_shift', n.get_object_value(open_shift_item.OpenShiftItem)),
-            "is_staged_for_deletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
-            "scheduling_group_id": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
-            "shared_open_shift": lambda n : setattr(self, 'shared_open_shift', n.get_object_value(open_shift_item.OpenShiftItem)),
+            "draftOpenShift": lambda n : setattr(self, 'draft_open_shift', n.get_object_value(open_shift_item.OpenShiftItem)),
+            "isStagedForDeletion": lambda n : setattr(self, 'is_staged_for_deletion', n.get_bool_value()),
+            "schedulingGroupId": lambda n : setattr(self, 'scheduling_group_id', n.get_str_value()),
+            "sharedOpenShift": lambda n : setattr(self, 'shared_open_shift', n.get_object_value(open_shift_item.OpenShiftItem)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -79,7 +79,7 @@ class OpenShift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the isStagedForDeletion property value. The isStagedForDeletion property
         Args:
-            value: Value to set for the isStagedForDeletion property.
+            value: Value to set for the is_staged_for_deletion property.
         """
         self._is_staged_for_deletion = value
     
@@ -96,7 +96,7 @@ class OpenShift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the schedulingGroupId property value. ID for the scheduling group that the open shift belongs to.
         Args:
-            value: Value to set for the schedulingGroupId property.
+            value: Value to set for the scheduling_group_id property.
         """
         self._scheduling_group_id = value
     
@@ -127,7 +127,7 @@ class OpenShift(change_tracked_entity.ChangeTrackedEntity):
         """
         Sets the sharedOpenShift property value. A published open shift.
         Args:
-            value: Value to set for the sharedOpenShift property.
+            value: Value to set for the shared_open_shift property.
         """
         self._shared_open_shift = value
     

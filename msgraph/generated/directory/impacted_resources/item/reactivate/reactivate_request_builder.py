@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-recommendation_resource = lazy_import('msgraph.generated.models.recommendation_resource')
+impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
 class ReactivateRequestBuilder():
@@ -29,19 +29,18 @@ class ReactivateRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/directory/impactedResources/{recommendationResource%2Did}/microsoft.graph.reactivate"
+        self.url_template: str = "{+baseurl}/directory/impactedResources/{impactedResource%2Did}/reactivate"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[recommendation_resource.RecommendationResource]:
+    async def post(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None) -> Optional[impacted_resource.ImpactedResource]:
         """
         Invoke action reactivate
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
-        Returns: Optional[recommendation_resource.RecommendationResource]
+        Returns: Optional[impacted_resource.ImpactedResource]
         """
         request_info = self.to_post_request_information(
             request_configuration
@@ -52,7 +51,7 @@ class ReactivateRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, recommendation_resource.RecommendationResource, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, impacted_resource.ImpactedResource, error_mapping)
     
     def to_post_request_information(self,request_configuration: Optional[ReactivateRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -65,7 +64,7 @@ class ReactivateRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -77,7 +76,7 @@ class ReactivateRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

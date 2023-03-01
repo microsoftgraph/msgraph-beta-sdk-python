@@ -11,6 +11,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 count_request_builder = lazy_import('msgraph.generated.drives.item.items.item.children.count.count_request_builder')
+drive_item = lazy_import('msgraph.generated.models.drive_item')
 drive_item_collection_response = lazy_import('msgraph.generated.models.drive_item_collection_response')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -43,12 +44,11 @@ class ChildrenRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[ChildrenRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[drive_item_collection_response.DriveItemCollectionResponse]:
+    async def get(self,request_configuration: Optional[ChildrenRequestBuilderGetRequestConfiguration] = None) -> Optional[drive_item_collection_response.DriveItemCollectionResponse]:
         """
         Return a collection of DriveItems in the **children** relationship of a DriveItem. DriveItems with a non-null **folder** or **package** facet can have one or more child DriveItems.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[drive_item_collection_response.DriveItemCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -60,7 +60,28 @@ class ChildrenRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, drive_item_collection_response.DriveItemCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, drive_item_collection_response.DriveItemCollectionResponse, error_mapping)
+    
+    async def post(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[ChildrenRequestBuilderPostRequestConfiguration] = None) -> Optional[drive_item.DriveItem]:
+        """
+        Create new navigation property to children for drives
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: Optional[drive_item.DriveItem]
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = self.to_post_request_information(
+            body, request_configuration
+        )
+        error_mapping: Dict[str, ParsableFactory] = {
+            "4XX": o_data_error.ODataError,
+            "5XX": o_data_error.ODataError,
+        }
+        if not self.request_adapter:
+            raise Exception("Http core is null") 
+        return await self.request_adapter.send_async(request_info, drive_item.DriveItem, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ChildrenRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -73,11 +94,32 @@ class ChildrenRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
             request_info.add_request_options(request_configuration.options)
+        return request_info
+    
+    def to_post_request_information(self,body: Optional[drive_item.DriveItem] = None, request_configuration: Optional[ChildrenRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
+        """
+        Create new navigation property to children for drives
+        Args:
+            body: The request body
+            requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
+        Returns: RequestInformation
+        """
+        if body is None:
+            raise Exception("body cannot be undefined")
+        request_info = RequestInformation()
+        request_info.url_template = self.url_template
+        request_info.path_parameters = self.path_parameters
+        request_info.http_method = Method.POST
+        request_info.headers["Accept"] = ["application/json"]
+        if request_configuration:
+            request_info.add_request_headers(request_configuration.headers)
+            request_info.add_request_options(request_configuration.options)
+        request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
     @dataclass
@@ -143,13 +185,25 @@ class ChildrenRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
 
         # Request query parameters
         query_parameters: Optional[ChildrenRequestBuilder.ChildrenRequestBuilderGetQueryParameters] = None
+
+    
+    @dataclass
+    class ChildrenRequestBuilderPostRequestConfiguration():
+        """
+        Configuration for the request such as headers, query parameters, and middleware options.
+        """
+        # Request headers
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
+
+        # Request options
+        options: Optional[List[RequestOption]] = None
 
     
 

@@ -20,7 +20,7 @@ class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.Custom
         """
         Sets the claimsForTokenConfiguration property value. The claimsForTokenConfiguration property
         Args:
-            value: Value to set for the claimsForTokenConfiguration property.
+            value: Value to set for the claims_for_token_configuration property.
         """
         self._claims_for_token_configuration = value
     
@@ -51,7 +51,7 @@ class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.Custom
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "claims_for_token_configuration": lambda n : setattr(self, 'claims_for_token_configuration', n.get_collection_of_object_values(on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim)),
+            "claimsForTokenConfiguration": lambda n : setattr(self, 'claims_for_token_configuration', n.get_collection_of_object_values(on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

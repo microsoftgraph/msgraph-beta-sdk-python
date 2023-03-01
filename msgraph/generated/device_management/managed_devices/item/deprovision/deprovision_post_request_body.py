@@ -56,7 +56,7 @@ class DeprovisionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the deprovisionReason property value. The deprovisionReason property
         Args:
-            value: Value to set for the deprovisionReason property.
+            value: Value to set for the deprovision_reason property.
         """
         self._deprovision_reason = value
     
@@ -66,7 +66,7 @@ class DeprovisionPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "deprovision_reason": lambda n : setattr(self, 'deprovision_reason', n.get_str_value()),
+            "deprovisionReason": lambda n : setattr(self, 'deprovision_reason', n.get_str_value()),
         }
         return fields
     

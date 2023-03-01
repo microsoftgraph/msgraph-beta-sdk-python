@@ -36,7 +36,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         """
         Sets the alternateUrl property value. If you're configuring a traffic manager in front of multiple App Proxy application segments, contains the user-friendly URL that will point to the traffic manager.
         Args:
-            value: Value to set for the alternateUrl property.
+            value: Value to set for the alternate_url property.
         """
         self._alternate_url = value
     
@@ -71,7 +71,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         """
         Sets the corsConfigurations property value. CORS Rule definition for a particular application segment.
         Args:
-            value: Value to set for the corsConfigurations property.
+            value: Value to set for the cors_configurations property.
         """
         self._cors_configurations = value
     
@@ -100,7 +100,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         """
         Sets the externalUrl property value. The published external URL for the application segment; for example, https://intranet.contoso.com./
         Args:
-            value: Value to set for the externalUrl property.
+            value: Value to set for the external_url property.
         """
         self._external_url = value
     
@@ -110,10 +110,10 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "alternate_url": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
-            "cors_configurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(cors_configuration.CorsConfiguration)),
-            "external_url": lambda n : setattr(self, 'external_url', n.get_str_value()),
-            "internal_url": lambda n : setattr(self, 'internal_url', n.get_str_value()),
+            "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
+            "corsConfigurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(cors_configuration.CorsConfiguration)),
+            "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),
+            "internalUrl": lambda n : setattr(self, 'internal_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -131,7 +131,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         """
         Sets the internalUrl property value. The internal URL of the application segment; for example, https://intranet/.
         Args:
-            value: Value to set for the internalUrl property.
+            value: Value to set for the internal_url property.
         """
         self._internal_url = value
     
@@ -148,7 +148,7 @@ class OnPremisesApplicationSegment(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

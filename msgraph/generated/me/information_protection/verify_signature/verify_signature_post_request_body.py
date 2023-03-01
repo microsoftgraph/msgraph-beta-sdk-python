@@ -72,7 +72,7 @@ class VerifySignaturePostRequestBody(AdditionalDataHolder, Parsable):
         fields = {
             "digest": lambda n : setattr(self, 'digest', n.get_bytes_value()),
             "signature": lambda n : setattr(self, 'signature', n.get_bytes_value()),
-            "signing_key_id": lambda n : setattr(self, 'signing_key_id', n.get_str_value()),
+            "signingKeyId": lambda n : setattr(self, 'signing_key_id', n.get_str_value()),
         }
         return fields
     
@@ -119,7 +119,7 @@ class VerifySignaturePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the signingKeyId property value. The signingKeyId property
         Args:
-            value: Value to set for the signingKeyId property.
+            value: Value to set for the signing_key_id property.
         """
         self._signing_key_id = value
     

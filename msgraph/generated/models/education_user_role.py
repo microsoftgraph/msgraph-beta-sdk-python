@@ -3,7 +3,7 @@ from enum import Enum
 class EducationUserRole(Enum):
     Student = "student",
     Teacher = "teacher",
-    None_escaped = "none",
+    None_ = "none",
     UnknownFutureValue = "unknownFutureValue",
     Faculty = "faculty",
 

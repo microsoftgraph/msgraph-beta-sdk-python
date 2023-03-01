@@ -37,7 +37,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         """
         Sets the completedDeviceScopeIds property value. A collection of the user experience analytics device scope Unique Identifiers that are enabled and finished recalculating the report metric.
         Args:
-            value: Value to set for the completedDeviceScopeIds property.
+            value: Value to set for the completed_device_scope_ids property.
         """
         self._completed_device_scope_ids = value
     
@@ -77,11 +77,11 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completed_device_scope_ids": lambda n : setattr(self, 'completed_device_scope_ids', n.get_collection_of_primitive_values(str)),
-            "insufficient_data_device_scope_ids": lambda n : setattr(self, 'insufficient_data_device_scope_ids', n.get_collection_of_primitive_values(str)),
+            "completedDeviceScopeIds": lambda n : setattr(self, 'completed_device_scope_ids', n.get_collection_of_primitive_values(str)),
+            "insufficientDataDeviceScopeIds": lambda n : setattr(self, 'insufficient_data_device_scope_ids', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "total_device_scopes": lambda n : setattr(self, 'total_device_scopes', n.get_int_value()),
-            "total_device_scopes_enabled": lambda n : setattr(self, 'total_device_scopes_enabled', n.get_int_value()),
+            "totalDeviceScopes": lambda n : setattr(self, 'total_device_scopes', n.get_int_value()),
+            "totalDeviceScopesEnabled": lambda n : setattr(self, 'total_device_scopes_enabled', n.get_int_value()),
         }
         return fields
     
@@ -98,7 +98,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         """
         Sets the insufficientDataDeviceScopeIds property value. A collection of user experience analytics device scope Unique Identitfiers that are enabled but there is insufficient data to calculate results.
         Args:
-            value: Value to set for the insufficientDataDeviceScopeIds property.
+            value: Value to set for the insufficient_data_device_scope_ids property.
         """
         self._insufficient_data_device_scope_ids = value
     
@@ -115,7 +115,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -147,7 +147,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalDeviceScopes property value. The total number of user experience analytics device scopes. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the totalDeviceScopes property.
+            value: Value to set for the total_device_scopes property.
         """
         self._total_device_scopes = value
     
@@ -164,7 +164,7 @@ class UserExperienceAnalyticsDeviceScopeSummary(AdditionalDataHolder, Parsable):
         """
         Sets the totalDeviceScopesEnabled property value. The total number of user experience analytics device scopes that are enabled. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the totalDeviceScopesEnabled property.
+            value: Value to set for the total_device_scopes_enabled property.
         """
         self._total_device_scopes_enabled = value
     

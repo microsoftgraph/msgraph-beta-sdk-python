@@ -1,7 +1,7 @@
 from enum import Enum
 
 class UserMailboxSetting(Enum):
-    None_escaped = "none",
+    None_ = "none",
     JunkMailDeletion = "junkMailDeletion",
     IsFromAddressInAddressBook = "isFromAddressInAddressBook",
     IsFromAddressInAddressSafeList = "isFromAddressInAddressSafeList",

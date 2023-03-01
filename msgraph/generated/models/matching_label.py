@@ -37,7 +37,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the applicationMode property value. The applicationMode property
         Args:
-            value: Value to set for the applicationMode property.
+            value: Value to set for the application_mode property.
         """
         self._application_mode = value
     
@@ -113,7 +113,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -123,17 +123,17 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "application_mode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
+            "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
-            "is_endpoint_protection_enabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
-            "label_actions": lambda n : setattr(self, 'label_actions', n.get_collection_of_object_values(label_action_base.LabelActionBase)),
+            "isEndpointProtectionEnabled": lambda n : setattr(self, 'is_endpoint_protection_enabled', n.get_bool_value()),
+            "labelActions": lambda n : setattr(self, 'label_actions', n.get_collection_of_object_values(label_action_base.LabelActionBase)),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "policy_tip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
+            "policyTip": lambda n : setattr(self, 'policy_tip', n.get_str_value()),
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
-            "tool_tip": lambda n : setattr(self, 'tool_tip', n.get_str_value()),
+            "toolTip": lambda n : setattr(self, 'tool_tip', n.get_str_value()),
         }
         return fields
     
@@ -167,7 +167,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the isEndpointProtectionEnabled property value. The isEndpointProtectionEnabled property
         Args:
-            value: Value to set for the isEndpointProtectionEnabled property.
+            value: Value to set for the is_endpoint_protection_enabled property.
         """
         self._is_endpoint_protection_enabled = value
     
@@ -184,7 +184,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the labelActions property value. The labelActions property
         Args:
-            value: Value to set for the labelActions property.
+            value: Value to set for the label_actions property.
         """
         self._label_actions = value
     
@@ -218,7 +218,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -235,7 +235,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the policyTip property value. The policyTip property
         Args:
-            value: Value to set for the policyTip property.
+            value: Value to set for the policy_tip property.
         """
         self._policy_tip = value
     
@@ -290,7 +290,7 @@ class MatchingLabel(AdditionalDataHolder, Parsable):
         """
         Sets the toolTip property value. The toolTip property
         Args:
-            value: Value to set for the toolTip property.
+            value: Value to set for the tool_tip property.
         """
         self._tool_tip = value
     

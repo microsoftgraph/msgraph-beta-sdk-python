@@ -66,7 +66,7 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsab
         """
         Sets the driverInventorySyncState property value. Windows DnF update inventory sync state.
         Args:
-            value: Value to set for the driverInventorySyncState property.
+            value: Value to set for the driver_inventory_sync_state property.
         """
         self._driver_inventory_sync_state = value
     
@@ -76,8 +76,8 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsab
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "driver_inventory_sync_state": lambda n : setattr(self, 'driver_inventory_sync_state', n.get_enum_value(windows_driver_update_profile_inventory_sync_state.WindowsDriverUpdateProfileInventorySyncState)),
-            "last_successful_sync_date_time": lambda n : setattr(self, 'last_successful_sync_date_time', n.get_datetime_value()),
+            "driverInventorySyncState": lambda n : setattr(self, 'driver_inventory_sync_state', n.get_enum_value(windows_driver_update_profile_inventory_sync_state.WindowsDriverUpdateProfileInventorySyncState)),
+            "lastSuccessfulSyncDateTime": lambda n : setattr(self, 'last_successful_sync_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -95,7 +95,7 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsab
         """
         Sets the lastSuccessfulSyncDateTime property value. The last successful sync date and time in UTC.
         Args:
-            value: Value to set for the lastSuccessfulSyncDateTime property.
+            value: Value to set for the last_successful_sync_date_time property.
         """
         self._last_successful_sync_date_time = value
     
@@ -112,7 +112,7 @@ class WindowsDriverUpdateProfileInventorySyncStatus(AdditionalDataHolder, Parsab
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

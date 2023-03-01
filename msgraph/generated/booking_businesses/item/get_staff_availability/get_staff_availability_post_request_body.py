@@ -62,7 +62,7 @@ class GetStaffAvailabilityPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the endDateTime property value. The endDateTime property
         Args:
-            value: Value to set for the endDateTime property.
+            value: Value to set for the end_date_time property.
         """
         self._end_date_time = value
     
@@ -72,9 +72,9 @@ class GetStaffAvailabilityPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "end_date_time": lambda n : setattr(self, 'end_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "staff_ids": lambda n : setattr(self, 'staff_ids', n.get_collection_of_primitive_values(str)),
-            "start_date_time": lambda n : setattr(self, 'start_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "staffIds": lambda n : setattr(self, 'staff_ids', n.get_collection_of_primitive_values(str)),
+            "startDateTime": lambda n : setattr(self, 'start_date_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
         }
         return fields
     
@@ -104,7 +104,7 @@ class GetStaffAvailabilityPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the staffIds property value. The staffIds property
         Args:
-            value: Value to set for the staffIds property.
+            value: Value to set for the staff_ids property.
         """
         self._staff_ids = value
     
@@ -121,7 +121,7 @@ class GetStaffAvailabilityPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the startDateTime property value. The startDateTime property
         Args:
-            value: Value to set for the startDateTime property.
+            value: Value to set for the start_date_time property.
         """
         self._start_date_time = value
     

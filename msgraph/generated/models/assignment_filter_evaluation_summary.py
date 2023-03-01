@@ -43,7 +43,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterDisplayName property value. The admin defined name for assignment filter.
         Args:
-            value: Value to set for the assignmentFilterDisplayName property.
+            value: Value to set for the assignment_filter_display_name property.
         """
         self._assignment_filter_display_name = value
     
@@ -60,7 +60,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterId property value. Unique identifier for the assignment filter object
         Args:
-            value: Value to set for the assignmentFilterId property.
+            value: Value to set for the assignment_filter_id property.
         """
         self._assignment_filter_id = value
     
@@ -77,7 +77,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterLastModifiedDateTime property value. The time the assignment filter was last modified.
         Args:
-            value: Value to set for the assignmentFilterLastModifiedDateTime property.
+            value: Value to set for the assignment_filter_last_modified_date_time property.
         """
         self._assignment_filter_last_modified_date_time = value
     
@@ -94,7 +94,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterPlatform property value. Supported platform types.
         Args:
-            value: Value to set for the assignmentFilterPlatform property.
+            value: Value to set for the assignment_filter_platform property.
         """
         self._assignment_filter_platform = value
     
@@ -111,7 +111,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterType property value. Represents type of the assignment filter.
         Args:
-            value: Value to set for the assignmentFilterType property.
+            value: Value to set for the assignment_filter_type property.
         """
         self._assignment_filter_type = value
     
@@ -128,7 +128,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the assignmentFilterTypeAndEvaluationResults property value. A collection of filter types and their corresponding evaluation results.
         Args:
-            value: Value to set for the assignmentFilterTypeAndEvaluationResults property.
+            value: Value to set for the assignment_filter_type_and_evaluation_results property.
         """
         self._assignment_filter_type_and_evaluation_results = value
     
@@ -183,7 +183,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationDateTime property value. The time assignment filter was evaluated.
         Args:
-            value: Value to set for the evaluationDateTime property.
+            value: Value to set for the evaluation_date_time property.
         """
         self._evaluation_date_time = value
     
@@ -200,7 +200,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the evaluationResult property value. Supported evaluation results for filter.
         Args:
-            value: Value to set for the evaluationResult property.
+            value: Value to set for the evaluation_result property.
         """
         self._evaluation_result = value
     
@@ -210,14 +210,14 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "assignment_filter_display_name": lambda n : setattr(self, 'assignment_filter_display_name', n.get_str_value()),
-            "assignment_filter_id": lambda n : setattr(self, 'assignment_filter_id', n.get_str_value()),
-            "assignment_filter_last_modified_date_time": lambda n : setattr(self, 'assignment_filter_last_modified_date_time', n.get_datetime_value()),
-            "assignment_filter_platform": lambda n : setattr(self, 'assignment_filter_platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
-            "assignment_filter_type": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
-            "assignment_filter_type_and_evaluation_results": lambda n : setattr(self, 'assignment_filter_type_and_evaluation_results', n.get_collection_of_object_values(assignment_filter_type_and_evaluation_result.AssignmentFilterTypeAndEvaluationResult)),
-            "evaluation_date_time": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
-            "evaluation_result": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(assignment_filter_evaluation_result.AssignmentFilterEvaluationResult)),
+            "assignmentFilterDisplayName": lambda n : setattr(self, 'assignment_filter_display_name', n.get_str_value()),
+            "assignmentFilterId": lambda n : setattr(self, 'assignment_filter_id', n.get_str_value()),
+            "assignmentFilterLastModifiedDateTime": lambda n : setattr(self, 'assignment_filter_last_modified_date_time', n.get_datetime_value()),
+            "assignmentFilterPlatform": lambda n : setattr(self, 'assignment_filter_platform', n.get_enum_value(device_platform_type.DevicePlatformType)),
+            "assignmentFilterType": lambda n : setattr(self, 'assignment_filter_type', n.get_enum_value(device_and_app_management_assignment_filter_type.DeviceAndAppManagementAssignmentFilterType)),
+            "assignmentFilterTypeAndEvaluationResults": lambda n : setattr(self, 'assignment_filter_type_and_evaluation_results', n.get_collection_of_object_values(assignment_filter_type_and_evaluation_result.AssignmentFilterTypeAndEvaluationResult)),
+            "evaluationDateTime": lambda n : setattr(self, 'evaluation_date_time', n.get_datetime_value()),
+            "evaluationResult": lambda n : setattr(self, 'evaluation_result', n.get_enum_value(assignment_filter_evaluation_result.AssignmentFilterEvaluationResult)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -235,7 +235,7 @@ class AssignmentFilterEvaluationSummary(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

@@ -24,7 +24,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the accessPackageResourceEnvironment property value. Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment's originId.Supports $expand.
         Args:
-            value: Value to set for the accessPackageResourceEnvironment property.
+            value: Value to set for the access_package_resource_environment property.
         """
         self._access_package_resource_environment = value
     
@@ -41,7 +41,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the accessPackageResourceRoles property value. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the accessPackageResourceRoles property.
+            value: Value to set for the access_package_resource_roles property.
         """
         self._access_package_resource_roles = value
     
@@ -58,7 +58,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the accessPackageResourceScopes property value. Read-only. Nullable. Supports $expand.
         Args:
-            value: Value to set for the accessPackageResourceScopes property.
+            value: Value to set for the access_package_resource_scopes property.
         """
         self._access_package_resource_scopes = value
     
@@ -75,7 +75,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the addedBy property value. The name of the user or application that first added this resource. Read-only.
         Args:
-            value: Value to set for the addedBy property.
+            value: Value to set for the added_by property.
         """
         self._added_by = value
     
@@ -92,7 +92,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the addedOn property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         Args:
-            value: Value to set for the addedOn property.
+            value: Value to set for the added_on property.
         """
         self._added_on = value
     
@@ -189,7 +189,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the displayName property value. The display name of the resource, such as the application name, group name or site name.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -199,18 +199,18 @@ class AccessPackageResource(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "access_package_resource_environment": lambda n : setattr(self, 'access_package_resource_environment', n.get_object_value(access_package_resource_environment.AccessPackageResourceEnvironment)),
-            "access_package_resource_roles": lambda n : setattr(self, 'access_package_resource_roles', n.get_collection_of_object_values(access_package_resource_role.AccessPackageResourceRole)),
-            "access_package_resource_scopes": lambda n : setattr(self, 'access_package_resource_scopes', n.get_collection_of_object_values(access_package_resource_scope.AccessPackageResourceScope)),
-            "added_by": lambda n : setattr(self, 'added_by', n.get_str_value()),
-            "added_on": lambda n : setattr(self, 'added_on', n.get_datetime_value()),
+            "accessPackageResourceEnvironment": lambda n : setattr(self, 'access_package_resource_environment', n.get_object_value(access_package_resource_environment.AccessPackageResourceEnvironment)),
+            "accessPackageResourceRoles": lambda n : setattr(self, 'access_package_resource_roles', n.get_collection_of_object_values(access_package_resource_role.AccessPackageResourceRole)),
+            "accessPackageResourceScopes": lambda n : setattr(self, 'access_package_resource_scopes', n.get_collection_of_object_values(access_package_resource_scope.AccessPackageResourceScope)),
+            "addedBy": lambda n : setattr(self, 'added_by', n.get_str_value()),
+            "addedOn": lambda n : setattr(self, 'added_on', n.get_datetime_value()),
             "attributes": lambda n : setattr(self, 'attributes', n.get_collection_of_object_values(access_package_resource_attribute.AccessPackageResourceAttribute)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "is_pending_onboarding": lambda n : setattr(self, 'is_pending_onboarding', n.get_bool_value()),
-            "origin_id": lambda n : setattr(self, 'origin_id', n.get_str_value()),
-            "origin_system": lambda n : setattr(self, 'origin_system', n.get_str_value()),
-            "resource_type": lambda n : setattr(self, 'resource_type', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "isPendingOnboarding": lambda n : setattr(self, 'is_pending_onboarding', n.get_bool_value()),
+            "originId": lambda n : setattr(self, 'origin_id', n.get_str_value()),
+            "originSystem": lambda n : setattr(self, 'origin_system', n.get_str_value()),
+            "resourceType": lambda n : setattr(self, 'resource_type', n.get_str_value()),
             "url": lambda n : setattr(self, 'url', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -230,7 +230,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the isPendingOnboarding property value. True if the resource is not yet available for assignment. Read-only.
         Args:
-            value: Value to set for the isPendingOnboarding property.
+            value: Value to set for the is_pending_onboarding property.
         """
         self._is_pending_onboarding = value
     
@@ -247,7 +247,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the originId property value. The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group.
         Args:
-            value: Value to set for the originId property.
+            value: Value to set for the origin_id property.
         """
         self._origin_id = value
     
@@ -264,7 +264,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the originSystem property value. The type of the resource in the origin system, such as SharePointOnline, AadApplication or AadGroup.
         Args:
-            value: Value to set for the originSystem property.
+            value: Value to set for the origin_system property.
         """
         self._origin_system = value
     
@@ -281,7 +281,7 @@ class AccessPackageResource(entity.Entity):
         """
         Sets the resourceType property value. The type of the resource, such as Application if it is an Azure AD connected application, or SharePoint Online Site for a SharePoint Online site.
         Args:
-            value: Value to set for the resourceType property.
+            value: Value to set for the resource_type property.
         """
         self._resource_type = value
     

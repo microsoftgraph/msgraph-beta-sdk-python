@@ -1,7 +1,7 @@
 from enum import Enum
 
 class ConditionalAccessConditions(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Application = "application",
     Users = "users",
     DevicePlatform = "devicePlatform",

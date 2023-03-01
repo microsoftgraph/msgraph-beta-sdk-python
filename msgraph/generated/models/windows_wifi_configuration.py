@@ -22,7 +22,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectAutomatically property value. Specify whether the wifi connection should connect automatically when in range.
         Args:
-            value: Value to set for the connectAutomatically property.
+            value: Value to set for the connect_automatically property.
         """
         self._connect_automatically = value
     
@@ -39,7 +39,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectToPreferredNetwork property value. Specify whether the wifi connection should connect to more preferred networks when already connected to this one.  Requires ConnectAutomatically to be true.
         Args:
-            value: Value to set for the connectToPreferredNetwork property.
+            value: Value to set for the connect_to_preferred_network property.
         """
         self._connect_to_preferred_network = value
     
@@ -56,7 +56,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the connectWhenNetworkNameIsHidden property value. Specify whether the wifi connection should connect automatically even when the SSID is not broadcasting.
         Args:
-            value: Value to set for the connectWhenNetworkNameIsHidden property.
+            value: Value to set for the connect_when_network_name_is_hidden property.
         """
         self._connect_when_network_name_is_hidden = value
     
@@ -118,7 +118,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the forceFIPSCompliance property value. Specify whether to force FIPS compliance.
         Args:
-            value: Value to set for the forceFIPSCompliance property.
+            value: Value to set for the force_f_i_p_s_compliance property.
         """
         self._force_f_i_p_s_compliance = value
     
@@ -128,19 +128,19 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "connect_automatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
-            "connect_to_preferred_network": lambda n : setattr(self, 'connect_to_preferred_network', n.get_bool_value()),
-            "connect_when_network_name_is_hidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
-            "force_f_i_p_s_compliance": lambda n : setattr(self, 'force_f_i_p_s_compliance', n.get_bool_value()),
-            "metered_connection_limit": lambda n : setattr(self, 'metered_connection_limit', n.get_enum_value(metered_connection_limit_type.MeteredConnectionLimitType)),
-            "network_name": lambda n : setattr(self, 'network_name', n.get_str_value()),
-            "pre_shared_key": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
-            "proxy_automatic_configuration_url": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
-            "proxy_manual_address": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
-            "proxy_manual_port": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
-            "proxy_setting": lambda n : setattr(self, 'proxy_setting', n.get_enum_value(wi_fi_proxy_setting.WiFiProxySetting)),
+            "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
+            "connectToPreferredNetwork": lambda n : setattr(self, 'connect_to_preferred_network', n.get_bool_value()),
+            "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
+            "forceFIPSCompliance": lambda n : setattr(self, 'force_f_i_p_s_compliance', n.get_bool_value()),
+            "meteredConnectionLimit": lambda n : setattr(self, 'metered_connection_limit', n.get_enum_value(metered_connection_limit_type.MeteredConnectionLimitType)),
+            "networkName": lambda n : setattr(self, 'network_name', n.get_str_value()),
+            "preSharedKey": lambda n : setattr(self, 'pre_shared_key', n.get_str_value()),
+            "proxyAutomaticConfigurationUrl": lambda n : setattr(self, 'proxy_automatic_configuration_url', n.get_str_value()),
+            "proxyManualAddress": lambda n : setattr(self, 'proxy_manual_address', n.get_str_value()),
+            "proxyManualPort": lambda n : setattr(self, 'proxy_manual_port', n.get_int_value()),
+            "proxySetting": lambda n : setattr(self, 'proxy_setting', n.get_enum_value(wi_fi_proxy_setting.WiFiProxySetting)),
             "ssid": lambda n : setattr(self, 'ssid', n.get_str_value()),
-            "wifi_security_type": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(wi_fi_security_type.WiFiSecurityType)),
+            "wifiSecurityType": lambda n : setattr(self, 'wifi_security_type', n.get_enum_value(wi_fi_security_type.WiFiSecurityType)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -159,7 +159,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the meteredConnectionLimit property value. Specify the metered connection limit type for the wifi connection. Possible values are: unrestricted, fixed, variable.
         Args:
-            value: Value to set for the meteredConnectionLimit property.
+            value: Value to set for the metered_connection_limit property.
         """
         self._metered_connection_limit = value
     
@@ -176,7 +176,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the networkName property value. Specify the network configuration name.
         Args:
-            value: Value to set for the networkName property.
+            value: Value to set for the network_name property.
         """
         self._network_name = value
     
@@ -193,7 +193,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the preSharedKey property value. This is the pre-shared key for WPA Personal Wi-Fi network.
         Args:
-            value: Value to set for the preSharedKey property.
+            value: Value to set for the pre_shared_key property.
         """
         self._pre_shared_key = value
     
@@ -210,7 +210,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyAutomaticConfigurationUrl property value. Specify the URL for the proxy server configuration script.
         Args:
-            value: Value to set for the proxyAutomaticConfigurationUrl property.
+            value: Value to set for the proxy_automatic_configuration_url property.
         """
         self._proxy_automatic_configuration_url = value
     
@@ -227,7 +227,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyManualAddress property value. Specify the IP address for the proxy server.
         Args:
-            value: Value to set for the proxyManualAddress property.
+            value: Value to set for the proxy_manual_address property.
         """
         self._proxy_manual_address = value
     
@@ -244,7 +244,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxyManualPort property value. Specify the port for the proxy server.
         Args:
-            value: Value to set for the proxyManualPort property.
+            value: Value to set for the proxy_manual_port property.
         """
         self._proxy_manual_port = value
     
@@ -261,7 +261,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the proxySetting property value. Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic.
         Args:
-            value: Value to set for the proxySetting property.
+            value: Value to set for the proxy_setting property.
         """
         self._proxy_setting = value
     
@@ -318,7 +318,7 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         Sets the wifiSecurityType property value. Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
         Args:
-            value: Value to set for the wifiSecurityType property.
+            value: Value to set for the wifi_security_type property.
         """
         self._wifi_security_type = value
     

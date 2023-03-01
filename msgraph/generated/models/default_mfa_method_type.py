@@ -1,7 +1,7 @@
 from enum import Enum
 
 class DefaultMfaMethodType(Enum):
-    None_escaped = "none",
+    None_ = "none",
     MobilePhone = "mobilePhone",
     AlternateMobilePhone = "alternateMobilePhone",
     OfficePhone = "officePhone",

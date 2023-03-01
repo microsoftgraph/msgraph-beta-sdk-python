@@ -26,7 +26,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the authenticationMethod property value. Indicates the Authentication Method the client (device) needs to use when the EAP Type is configured to PEAP or EAP-TTLS. Possible values are: certificate, usernameAndPassword, derivedCredential.
         Args:
-            value: Value to set for the authenticationMethod property.
+            value: Value to set for the authentication_method property.
         """
         self._authentication_method = value
     
@@ -80,7 +80,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the derivedCredentialSettings property value. Tenant level settings for the Derived Credentials to be used for authentication.
         Args:
-            value: Value to set for the derivedCredentialSettings property.
+            value: Value to set for the derived_credential_settings property.
         """
         self._derived_credential_settings = value
     
@@ -97,7 +97,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the eapType property value. Extensible Authentication Protocol (EAP) Configuration Types.
         Args:
-            value: Value to set for the eapType property.
+            value: Value to set for the eap_type property.
         """
         self._eap_type = value
     
@@ -107,15 +107,15 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "authentication_method": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
-            "derived_credential_settings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
-            "eap_type": lambda n : setattr(self, 'eap_type', n.get_enum_value(android_eap_type.AndroidEapType)),
-            "identity_certificate_for_client_authentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase)),
-            "inner_authentication_protocol_for_eap_ttls": lambda n : setattr(self, 'inner_authentication_protocol_for_eap_ttls', n.get_enum_value(non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType)),
-            "inner_authentication_protocol_for_peap": lambda n : setattr(self, 'inner_authentication_protocol_for_peap', n.get_enum_value(non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap)),
-            "outer_identity_privacy_temporary_value": lambda n : setattr(self, 'outer_identity_privacy_temporary_value', n.get_str_value()),
-            "root_certificate_for_server_validation": lambda n : setattr(self, 'root_certificate_for_server_validation', n.get_object_value(android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate)),
-            "trusted_server_certificate_names": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),
+            "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(wi_fi_authentication_method.WiFiAuthenticationMethod)),
+            "derivedCredentialSettings": lambda n : setattr(self, 'derived_credential_settings', n.get_object_value(device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings)),
+            "eapType": lambda n : setattr(self, 'eap_type', n.get_enum_value(android_eap_type.AndroidEapType)),
+            "identityCertificateForClientAuthentication": lambda n : setattr(self, 'identity_certificate_for_client_authentication', n.get_object_value(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase)),
+            "innerAuthenticationProtocolForEapTtls": lambda n : setattr(self, 'inner_authentication_protocol_for_eap_ttls', n.get_enum_value(non_eap_authentication_method_for_eap_ttls_type.NonEapAuthenticationMethodForEapTtlsType)),
+            "innerAuthenticationProtocolForPeap": lambda n : setattr(self, 'inner_authentication_protocol_for_peap', n.get_enum_value(non_eap_authentication_method_for_peap.NonEapAuthenticationMethodForPeap)),
+            "outerIdentityPrivacyTemporaryValue": lambda n : setattr(self, 'outer_identity_privacy_temporary_value', n.get_str_value()),
+            "rootCertificateForServerValidation": lambda n : setattr(self, 'root_certificate_for_server_validation', n.get_object_value(android_device_owner_trusted_root_certificate.AndroidDeviceOwnerTrustedRootCertificate)),
+            "trustedServerCertificateNames": lambda n : setattr(self, 'trusted_server_certificate_names', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -134,7 +134,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the identityCertificateForClientAuthentication property value. Identity Certificate for client authentication when EAP Type is configured to EAP-TLS, EAP-TTLS (with Certificate Authentication), or PEAP (with Certificate Authentication). This is the certificate presented by client to the Wi-Fi endpoint. The authentication server sitting behind the Wi-Fi endpoint must accept this certificate to successfully establish a Wi-Fi connection.
         Args:
-            value: Value to set for the identityCertificateForClientAuthentication property.
+            value: Value to set for the identity_certificate_for_client_authentication property.
         """
         self._identity_certificate_for_client_authentication = value
     
@@ -151,7 +151,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the innerAuthenticationProtocolForEapTtls property value. Non-EAP Method for Authentication (Inner Identity) when EAP Type is EAP-TTLS and Authenticationmethod is Username and Password. Possible values are: unencryptedPassword, challengeHandshakeAuthenticationProtocol, microsoftChap, microsoftChapVersionTwo.
         Args:
-            value: Value to set for the innerAuthenticationProtocolForEapTtls property.
+            value: Value to set for the inner_authentication_protocol_for_eap_ttls property.
         """
         self._inner_authentication_protocol_for_eap_ttls = value
     
@@ -168,7 +168,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the innerAuthenticationProtocolForPeap property value. Non-EAP Method for Authentication (Inner Identity) when EAP Type is PEAP and Authenticationmethod is Username and Password. Possible values are: none, microsoftChapVersionTwo.
         Args:
-            value: Value to set for the innerAuthenticationProtocolForPeap property.
+            value: Value to set for the inner_authentication_protocol_for_peap property.
         """
         self._inner_authentication_protocol_for_peap = value
     
@@ -185,7 +185,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the outerIdentityPrivacyTemporaryValue property value. Enable identity privacy (Outer Identity) when EAP Type is configured to EAP-TTLS or PEAP. The String provided here is used to mask the username of individual users when they attempt to connect to Wi-Fi network.
         Args:
-            value: Value to set for the outerIdentityPrivacyTemporaryValue property.
+            value: Value to set for the outer_identity_privacy_temporary_value property.
         """
         self._outer_identity_privacy_temporary_value = value
     
@@ -202,7 +202,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the rootCertificateForServerValidation property value. Trusted Root Certificate for Server Validation when EAP Type is configured to EAP-TLS, EAP-TTLS or PEAP. This is the certificate presented by the Wi-Fi endpoint when the device attempts to connect to Wi-Fi endpoint. The device (or user) must accept this certificate to continue the connection attempt.
         Args:
-            value: Value to set for the rootCertificateForServerValidation property.
+            value: Value to set for the root_certificate_for_server_validation property.
         """
         self._root_certificate_for_server_validation = value
     
@@ -238,7 +238,7 @@ class AndroidDeviceOwnerEnterpriseWiFiConfiguration(android_device_owner_wi_fi_c
         """
         Sets the trustedServerCertificateNames property value. Trusted server certificate names when EAP Type is configured to EAP-TLS/TTLS/FAST or PEAP. This is the common name used in the certificates issued by your trusted certificate authority (CA). If you provide this information, you can bypass the dynamic trust dialog that is displayed on end users' devices when they connect to this Wi-Fi network.
         Args:
-            value: Value to set for the trustedServerCertificateNames property.
+            value: Value to set for the trusted_server_certificate_names property.
         """
         self._trusted_server_certificate_names = value
     

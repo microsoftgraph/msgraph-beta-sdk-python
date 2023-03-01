@@ -54,7 +54,7 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, Parsable):
         """
         fields = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "role_kind": lambda n : setattr(self, 'role_kind', n.get_enum_value(planner_user_role_kind.PlannerUserRoleKind)),
+            "roleKind": lambda n : setattr(self, 'role_kind', n.get_enum_value(planner_user_role_kind.PlannerUserRoleKind)),
         }
         return fields
     
@@ -71,7 +71,7 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -88,7 +88,7 @@ class PlannerTaskConfigurationRoleBase(AdditionalDataHolder, Parsable):
         """
         Sets the roleKind property value. The roleKind property
         Args:
-            value: Value to set for the roleKind property.
+            value: Value to set for the role_kind property.
         """
         self._role_kind = value
     

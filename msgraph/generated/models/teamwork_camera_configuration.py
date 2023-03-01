@@ -70,7 +70,7 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the contentCameraConfiguration property value. The configuration for the content camera.
         Args:
-            value: Value to set for the contentCameraConfiguration property.
+            value: Value to set for the content_camera_configuration property.
         """
         self._content_camera_configuration = value
     
@@ -99,7 +99,7 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the defaultContentCamera property value. The defaultContentCamera property
         Args:
-            value: Value to set for the defaultContentCamera property.
+            value: Value to set for the default_content_camera property.
         """
         self._default_content_camera = value
     
@@ -110,8 +110,8 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         fields = {
             "cameras": lambda n : setattr(self, 'cameras', n.get_collection_of_object_values(teamwork_peripheral.TeamworkPeripheral)),
-            "content_camera_configuration": lambda n : setattr(self, 'content_camera_configuration', n.get_object_value(teamwork_content_camera_configuration.TeamworkContentCameraConfiguration)),
-            "default_content_camera": lambda n : setattr(self, 'default_content_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
+            "contentCameraConfiguration": lambda n : setattr(self, 'content_camera_configuration', n.get_object_value(teamwork_content_camera_configuration.TeamworkContentCameraConfiguration)),
+            "defaultContentCamera": lambda n : setattr(self, 'default_content_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -129,7 +129,7 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

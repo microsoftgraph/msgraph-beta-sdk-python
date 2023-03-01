@@ -44,12 +44,11 @@ class FilterOperatorsRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[FilterOperatorsRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[filter_operator_schema_collection_response.FilterOperatorSchemaCollectionResponse]:
+    async def get(self,request_configuration: Optional[FilterOperatorsRequestBuilderGetRequestConfiguration] = None) -> Optional[filter_operator_schema_collection_response.FilterOperatorSchemaCollectionResponse]:
         """
         Get entities from filterOperators
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[filter_operator_schema_collection_response.FilterOperatorSchemaCollectionResponse]
         """
         request_info = self.to_get_request_information(
@@ -61,15 +60,14 @@ class FilterOperatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, filter_operator_schema_collection_response.FilterOperatorSchemaCollectionResponse, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, filter_operator_schema_collection_response.FilterOperatorSchemaCollectionResponse, error_mapping)
     
-    async def post(self,body: Optional[filter_operator_schema.FilterOperatorSchema] = None, request_configuration: Optional[FilterOperatorsRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[filter_operator_schema.FilterOperatorSchema]:
+    async def post(self,body: Optional[filter_operator_schema.FilterOperatorSchema] = None, request_configuration: Optional[FilterOperatorsRequestBuilderPostRequestConfiguration] = None) -> Optional[filter_operator_schema.FilterOperatorSchema]:
         """
         Add new entity to filterOperators
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[filter_operator_schema.FilterOperatorSchema]
         """
         if body is None:
@@ -83,7 +81,7 @@ class FilterOperatorsRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, filter_operator_schema.FilterOperatorSchema, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, filter_operator_schema.FilterOperatorSchema, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[FilterOperatorsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -96,7 +94,7 @@ class FilterOperatorsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -117,7 +115,7 @@ class FilterOperatorsRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -187,7 +185,7 @@ class FilterOperatorsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -202,7 +200,7 @@ class FilterOperatorsRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

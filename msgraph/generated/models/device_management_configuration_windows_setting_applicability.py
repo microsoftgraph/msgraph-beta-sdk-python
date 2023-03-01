@@ -21,7 +21,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         """
         Sets the configurationServiceProviderVersion property value. Version of CSP setting is a part of
         Args:
-            value: Value to set for the configurationServiceProviderVersion property.
+            value: Value to set for the configuration_service_provider_version property.
         """
         self._configuration_service_provider_version = value
     
@@ -62,12 +62,12 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "configuration_service_provider_version": lambda n : setattr(self, 'configuration_service_provider_version', n.get_str_value()),
-            "maximum_supported_version": lambda n : setattr(self, 'maximum_supported_version', n.get_str_value()),
-            "minimum_supported_version": lambda n : setattr(self, 'minimum_supported_version', n.get_str_value()),
-            "required_azure_ad_trust_type": lambda n : setattr(self, 'required_azure_ad_trust_type', n.get_enum_value(device_management_configuration_azure_ad_trust_type.DeviceManagementConfigurationAzureAdTrustType)),
-            "requires_azure_ad": lambda n : setattr(self, 'requires_azure_ad', n.get_bool_value()),
-            "windows_skus": lambda n : setattr(self, 'windows_skus', n.get_collection_of_enum_values(device_management_configuration_windows_skus.DeviceManagementConfigurationWindowsSkus)),
+            "configurationServiceProviderVersion": lambda n : setattr(self, 'configuration_service_provider_version', n.get_str_value()),
+            "maximumSupportedVersion": lambda n : setattr(self, 'maximum_supported_version', n.get_str_value()),
+            "minimumSupportedVersion": lambda n : setattr(self, 'minimum_supported_version', n.get_str_value()),
+            "requiredAzureAdTrustType": lambda n : setattr(self, 'required_azure_ad_trust_type', n.get_enum_value(device_management_configuration_azure_ad_trust_type.DeviceManagementConfigurationAzureAdTrustType)),
+            "requiresAzureAd": lambda n : setattr(self, 'requires_azure_ad', n.get_bool_value()),
+            "windowsSkus": lambda n : setattr(self, 'windows_skus', n.get_collection_of_enum_values(device_management_configuration_windows_skus.DeviceManagementConfigurationWindowsSkus)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -86,7 +86,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         """
         Sets the maximumSupportedVersion property value. Maximum supported version of Windows
         Args:
-            value: Value to set for the maximumSupportedVersion property.
+            value: Value to set for the maximum_supported_version property.
         """
         self._maximum_supported_version = value
     
@@ -103,7 +103,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         """
         Sets the minimumSupportedVersion property value. Minimum supported version of Windows
         Args:
-            value: Value to set for the minimumSupportedVersion property.
+            value: Value to set for the minimum_supported_version property.
         """
         self._minimum_supported_version = value
     
@@ -120,7 +120,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         """
         Sets the requiredAzureAdTrustType property value. Required AAD Trust Type
         Args:
-            value: Value to set for the requiredAzureAdTrustType property.
+            value: Value to set for the required_azure_ad_trust_type property.
         """
         self._required_azure_ad_trust_type = value
     
@@ -137,7 +137,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         """
         Sets the requiresAzureAd property value. AzureAD setting requirement
         Args:
-            value: Value to set for the requiresAzureAd property.
+            value: Value to set for the requires_azure_ad property.
         """
         self._requires_azure_ad = value
     
@@ -170,7 +170,7 @@ class DeviceManagementConfigurationWindowsSettingApplicability(device_management
         """
         Sets the windowsSkus property value. List of Windows SKUs that the setting is applicable for
         Args:
-            value: Value to set for the windowsSkus property.
+            value: Value to set for the windows_skus property.
         """
         self._windows_skus = value
     

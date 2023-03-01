@@ -20,7 +20,7 @@ class StatusDetails(status_base.StatusBase):
         """
         Sets the additionalDetails property value. Additional details in case of error.
         Args:
-            value: Value to set for the additionalDetails property.
+            value: Value to set for the additional_details property.
         """
         self._additional_details = value
     
@@ -66,7 +66,7 @@ class StatusDetails(status_base.StatusBase):
         """
         Sets the errorCategory property value. Categorizes the error code. Possible values are Failure, NonServiceFailure, Success.
         Args:
-            value: Value to set for the errorCategory property.
+            value: Value to set for the error_category property.
         """
         self._error_category = value
     
@@ -83,7 +83,7 @@ class StatusDetails(status_base.StatusBase):
         """
         Sets the errorCode property value. Unique error code if any occurred. Learn more
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -93,11 +93,11 @@ class StatusDetails(status_base.StatusBase):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "additional_details": lambda n : setattr(self, 'additional_details', n.get_str_value()),
-            "error_category": lambda n : setattr(self, 'error_category', n.get_enum_value(provisioning_status_error_category.ProvisioningStatusErrorCategory)),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_str_value()),
+            "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
+            "errorCategory": lambda n : setattr(self, 'error_category', n.get_enum_value(provisioning_status_error_category.ProvisioningStatusErrorCategory)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
-            "recommended_action": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
+            "recommendedAction": lambda n : setattr(self, 'recommended_action', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -133,7 +133,7 @@ class StatusDetails(status_base.StatusBase):
         """
         Sets the recommendedAction property value. Provides the resolution for the corresponding error.
         Args:
-            value: Value to set for the recommendedAction property.
+            value: Value to set for the recommended_action property.
         """
         self._recommended_action = value
     

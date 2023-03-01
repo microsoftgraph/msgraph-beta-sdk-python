@@ -22,7 +22,7 @@ class EducationalActivity(item_facet.ItemFacet):
         """
         Sets the completionMonthYear property value. The month and year the user graduated or completed the activity.
         Args:
-            value: Value to set for the completionMonthYear property.
+            value: Value to set for the completion_month_year property.
         """
         self._completion_month_year = value
     
@@ -68,7 +68,7 @@ class EducationalActivity(item_facet.ItemFacet):
         """
         Sets the endMonthYear property value. The month and year the user completed the educational activity referenced.
         Args:
-            value: Value to set for the endMonthYear property.
+            value: Value to set for the end_month_year property.
         """
         self._end_month_year = value
     
@@ -78,11 +78,11 @@ class EducationalActivity(item_facet.ItemFacet):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "completion_month_year": lambda n : setattr(self, 'completion_month_year', n.get_object_value(Date)),
-            "end_month_year": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
+            "completionMonthYear": lambda n : setattr(self, 'completion_month_year', n.get_object_value(Date)),
+            "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
             "institution": lambda n : setattr(self, 'institution', n.get_object_value(institution_data.InstitutionData)),
             "program": lambda n : setattr(self, 'program', n.get_object_value(educational_activity_detail.EducationalActivityDetail)),
-            "start_month_year": lambda n : setattr(self, 'start_month_year', n.get_object_value(Date)),
+            "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_object_value(Date)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -150,7 +150,7 @@ class EducationalActivity(item_facet.ItemFacet):
         """
         Sets the startMonthYear property value. The month and year the user commenced the activity referenced.
         Args:
-            value: Value to set for the startMonthYear property.
+            value: Value to set for the start_month_year property.
         """
         self._start_month_year = value
     

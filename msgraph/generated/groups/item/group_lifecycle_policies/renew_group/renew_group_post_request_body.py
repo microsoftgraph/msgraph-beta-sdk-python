@@ -49,7 +49,7 @@ class RenewGroupPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_id": lambda n : setattr(self, 'group_id', n.get_str_value()),
+            "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class RenewGroupPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the groupId property value. The groupId property
         Args:
-            value: Value to set for the groupId property.
+            value: Value to set for the group_id property.
         """
         self._group_id = value
     

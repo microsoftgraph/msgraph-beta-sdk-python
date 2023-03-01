@@ -1,7 +1,7 @@
 from enum import Enum
 
 class DeviceManagementConfigurationSettingAccessTypes(Enum):
-    None_escaped = "none",
+    None_ = "none",
     Add = "add",
     Copy = "copy",
     Delete = "delete",

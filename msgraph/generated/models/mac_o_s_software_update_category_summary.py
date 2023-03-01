@@ -63,7 +63,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the deviceId property value. The device ID.
         Args:
-            value: Value to set for the deviceId property.
+            value: Value to set for the device_id property.
         """
         self._device_id = value
     
@@ -80,7 +80,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the displayName property value. The name of the report
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -97,7 +97,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the failedUpdateCount property value. Number of failed updates on the device
         Args:
-            value: Value to set for the failedUpdateCount property.
+            value: Value to set for the failed_update_count property.
         """
         self._failed_update_count = value
     
@@ -107,15 +107,15 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "device_id": lambda n : setattr(self, 'device_id', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "failed_update_count": lambda n : setattr(self, 'failed_update_count', n.get_int_value()),
-            "last_updated_date_time": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
-            "successful_update_count": lambda n : setattr(self, 'successful_update_count', n.get_int_value()),
-            "total_update_count": lambda n : setattr(self, 'total_update_count', n.get_int_value()),
-            "update_category": lambda n : setattr(self, 'update_category', n.get_enum_value(mac_o_s_software_update_category.MacOSSoftwareUpdateCategory)),
-            "update_state_summaries": lambda n : setattr(self, 'update_state_summaries', n.get_collection_of_object_values(mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary)),
-            "user_id": lambda n : setattr(self, 'user_id', n.get_str_value()),
+            "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "failedUpdateCount": lambda n : setattr(self, 'failed_update_count', n.get_int_value()),
+            "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
+            "successfulUpdateCount": lambda n : setattr(self, 'successful_update_count', n.get_int_value()),
+            "totalUpdateCount": lambda n : setattr(self, 'total_update_count', n.get_int_value()),
+            "updateCategory": lambda n : setattr(self, 'update_category', n.get_enum_value(mac_o_s_software_update_category.MacOSSoftwareUpdateCategory)),
+            "updateStateSummaries": lambda n : setattr(self, 'update_state_summaries', n.get_collection_of_object_values(mac_o_s_software_update_state_summary.MacOSSoftwareUpdateStateSummary)),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -134,7 +134,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the lastUpdatedDateTime property value. Last date time the report for this device was updated.
         Args:
-            value: Value to set for the lastUpdatedDateTime property.
+            value: Value to set for the last_updated_date_time property.
         """
         self._last_updated_date_time = value
     
@@ -170,7 +170,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the successfulUpdateCount property value. Number of successful updates on the device
         Args:
-            value: Value to set for the successfulUpdateCount property.
+            value: Value to set for the successful_update_count property.
         """
         self._successful_update_count = value
     
@@ -187,7 +187,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the totalUpdateCount property value. Number of total updates on the device
         Args:
-            value: Value to set for the totalUpdateCount property.
+            value: Value to set for the total_update_count property.
         """
         self._total_update_count = value
     
@@ -204,7 +204,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the updateCategory property value. MacOS Software Update Category
         Args:
-            value: Value to set for the updateCategory property.
+            value: Value to set for the update_category property.
         """
         self._update_category = value
     
@@ -221,7 +221,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the updateStateSummaries property value. Summary of the update states.
         Args:
-            value: Value to set for the updateStateSummaries property.
+            value: Value to set for the update_state_summaries property.
         """
         self._update_state_summaries = value
     
@@ -238,7 +238,7 @@ class MacOSSoftwareUpdateCategorySummary(entity.Entity):
         """
         Sets the userId property value. The user ID.
         Args:
-            value: Value to set for the userId property.
+            value: Value to set for the user_id property.
         """
         self._user_id = value
     

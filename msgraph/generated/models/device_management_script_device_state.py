@@ -57,7 +57,7 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         """
         Sets the errorCode property value. Error code corresponding to erroneous execution of the device management script.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -74,7 +74,7 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         """
         Sets the errorDescription property value. Error description corresponding to erroneous execution of the device management script.
         Args:
-            value: Value to set for the errorDescription property.
+            value: Value to set for the error_description property.
         """
         self._error_description = value
     
@@ -84,12 +84,12 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "error_description": lambda n : setattr(self, 'error_description', n.get_str_value()),
-            "last_state_update_date_time": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
-            "managed_device": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
-            "result_message": lambda n : setattr(self, 'result_message', n.get_str_value()),
-            "run_state": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "errorDescription": lambda n : setattr(self, 'error_description', n.get_str_value()),
+            "lastStateUpdateDateTime": lambda n : setattr(self, 'last_state_update_date_time', n.get_datetime_value()),
+            "managedDevice": lambda n : setattr(self, 'managed_device', n.get_object_value(managed_device.ManagedDevice)),
+            "resultMessage": lambda n : setattr(self, 'result_message', n.get_str_value()),
+            "runState": lambda n : setattr(self, 'run_state', n.get_enum_value(run_state.RunState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -108,7 +108,7 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         """
         Sets the lastStateUpdateDateTime property value. Latest time the device management script executes.
         Args:
-            value: Value to set for the lastStateUpdateDateTime property.
+            value: Value to set for the last_state_update_date_time property.
         """
         self._last_state_update_date_time = value
     
@@ -125,7 +125,7 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         """
         Sets the managedDevice property value. The managed devices that executes the device management script.
         Args:
-            value: Value to set for the managedDevice property.
+            value: Value to set for the managed_device property.
         """
         self._managed_device = value
     
@@ -142,7 +142,7 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         """
         Sets the resultMessage property value. Details of execution output.
         Args:
-            value: Value to set for the resultMessage property.
+            value: Value to set for the result_message property.
         """
         self._result_message = value
     
@@ -159,7 +159,7 @@ class DeviceManagementScriptDeviceState(entity.Entity):
         """
         Sets the runState property value. Indicates the type of execution status of the device management script.
         Args:
-            value: Value to set for the runState property.
+            value: Value to set for the run_state property.
         """
         self._run_state = value
     

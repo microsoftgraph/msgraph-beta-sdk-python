@@ -20,7 +20,7 @@ class AndroidManagedStoreAppAssignmentSettings(mobile_app_assignment_settings.Mo
         """
         Sets the androidManagedStoreAppTrackIds property value. The track IDs to enable for this app assignment.
         Args:
-            value: Value to set for the androidManagedStoreAppTrackIds property.
+            value: Value to set for the android_managed_store_app_track_ids property.
         """
         self._android_managed_store_app_track_ids = value
     
@@ -37,7 +37,7 @@ class AndroidManagedStoreAppAssignmentSettings(mobile_app_assignment_settings.Mo
         """
         Sets the autoUpdateMode property value. Prioritization for automatic updates of Android Managed Store apps set on assignment.
         Args:
-            value: Value to set for the autoUpdateMode property.
+            value: Value to set for the auto_update_mode property.
         """
         self._auto_update_mode = value
     
@@ -70,8 +70,8 @@ class AndroidManagedStoreAppAssignmentSettings(mobile_app_assignment_settings.Mo
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "android_managed_store_app_track_ids": lambda n : setattr(self, 'android_managed_store_app_track_ids', n.get_collection_of_primitive_values(str)),
-            "auto_update_mode": lambda n : setattr(self, 'auto_update_mode', n.get_enum_value(android_managed_store_auto_update_mode.AndroidManagedStoreAutoUpdateMode)),
+            "androidManagedStoreAppTrackIds": lambda n : setattr(self, 'android_managed_store_app_track_ids', n.get_collection_of_primitive_values(str)),
+            "autoUpdateMode": lambda n : setattr(self, 'auto_update_mode', n.get_enum_value(android_managed_store_auto_update_mode.AndroidManagedStoreAutoUpdateMode)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

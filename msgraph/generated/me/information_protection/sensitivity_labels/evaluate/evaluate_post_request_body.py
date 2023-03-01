@@ -61,7 +61,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the currentLabel property value. The currentLabel property
         Args:
-            value: Value to set for the currentLabel property.
+            value: Value to set for the current_label property.
         """
         self._current_label = value
     
@@ -78,7 +78,7 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the discoveredSensitiveTypes property value. The discoveredSensitiveTypes property
         Args:
-            value: Value to set for the discoveredSensitiveTypes property.
+            value: Value to set for the discovered_sensitive_types property.
         """
         self._discovered_sensitive_types = value
     
@@ -88,8 +88,8 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "current_label": lambda n : setattr(self, 'current_label', n.get_object_value(current_label.CurrentLabel)),
-            "discovered_sensitive_types": lambda n : setattr(self, 'discovered_sensitive_types', n.get_collection_of_object_values(discovered_sensitive_type.DiscoveredSensitiveType)),
+            "currentLabel": lambda n : setattr(self, 'current_label', n.get_object_value(current_label.CurrentLabel)),
+            "discoveredSensitiveTypes": lambda n : setattr(self, 'discovered_sensitive_types', n.get_collection_of_object_values(discovered_sensitive_type.DiscoveredSensitiveType)),
         }
         return fields
     

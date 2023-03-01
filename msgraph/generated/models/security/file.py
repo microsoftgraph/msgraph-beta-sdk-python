@@ -84,7 +84,7 @@ class File(entity.Entity):
         """
         Sets the dateTime property value. The dateTime property
         Args:
-            value: Value to set for the dateTime property.
+            value: Value to set for the date_time property.
         """
         self._date_time = value
     
@@ -118,7 +118,7 @@ class File(entity.Entity):
         """
         Sets the extractedTextContent property value. The extractedTextContent property
         Args:
-            value: Value to set for the extractedTextContent property.
+            value: Value to set for the extracted_text_content property.
         """
         self._extracted_text_content = value
     
@@ -129,17 +129,17 @@ class File(entity.Entity):
         """
         fields = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
-            "date_time": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
+            "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "extension": lambda n : setattr(self, 'extension', n.get_str_value()),
-            "extracted_text_content": lambda n : setattr(self, 'extracted_text_content', n.get_bytes_value()),
-            "media_type": lambda n : setattr(self, 'media_type', n.get_str_value()),
+            "extractedTextContent": lambda n : setattr(self, 'extracted_text_content', n.get_bytes_value()),
+            "mediaType": lambda n : setattr(self, 'media_type', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "other_properties": lambda n : setattr(self, 'other_properties', n.get_object_value(string_value_dictionary.StringValueDictionary)),
-            "processing_status": lambda n : setattr(self, 'processing_status', n.get_enum_value(file_processing_status.FileProcessingStatus)),
-            "sender_or_authors": lambda n : setattr(self, 'sender_or_authors', n.get_collection_of_primitive_values(str)),
+            "otherProperties": lambda n : setattr(self, 'other_properties', n.get_object_value(string_value_dictionary.StringValueDictionary)),
+            "processingStatus": lambda n : setattr(self, 'processing_status', n.get_enum_value(file_processing_status.FileProcessingStatus)),
+            "senderOrAuthors": lambda n : setattr(self, 'sender_or_authors', n.get_collection_of_primitive_values(str)),
             "size": lambda n : setattr(self, 'size', n.get_int_value()),
-            "source_type": lambda n : setattr(self, 'source_type', n.get_enum_value(source_type.SourceType)),
-            "subject_title": lambda n : setattr(self, 'subject_title', n.get_str_value()),
+            "sourceType": lambda n : setattr(self, 'source_type', n.get_enum_value(source_type.SourceType)),
+            "subjectTitle": lambda n : setattr(self, 'subject_title', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -158,7 +158,7 @@ class File(entity.Entity):
         """
         Sets the mediaType property value. The mediaType property
         Args:
-            value: Value to set for the mediaType property.
+            value: Value to set for the media_type property.
         """
         self._media_type = value
     
@@ -192,7 +192,7 @@ class File(entity.Entity):
         """
         Sets the otherProperties property value. The otherProperties property
         Args:
-            value: Value to set for the otherProperties property.
+            value: Value to set for the other_properties property.
         """
         self._other_properties = value
     
@@ -209,7 +209,7 @@ class File(entity.Entity):
         """
         Sets the processingStatus property value. The processingStatus property
         Args:
-            value: Value to set for the processingStatus property.
+            value: Value to set for the processing_status property.
         """
         self._processing_status = value
     
@@ -226,7 +226,7 @@ class File(entity.Entity):
         """
         Sets the senderOrAuthors property value. The senderOrAuthors property
         Args:
-            value: Value to set for the senderOrAuthors property.
+            value: Value to set for the sender_or_authors property.
         """
         self._sender_or_authors = value
     
@@ -282,7 +282,7 @@ class File(entity.Entity):
         """
         Sets the sourceType property value. The sourceType property
         Args:
-            value: Value to set for the sourceType property.
+            value: Value to set for the source_type property.
         """
         self._source_type = value
     
@@ -299,7 +299,7 @@ class File(entity.Entity):
         """
         Sets the subjectTitle property value. The subjectTitle property
         Args:
-            value: Value to set for the subjectTitle property.
+            value: Value to set for the subject_title property.
         """
         self._subject_title = value
     

@@ -66,7 +66,7 @@ class CancelPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
+            "Comment": lambda n : setattr(self, 'comment', n.get_str_value()),
         }
         return fields
     

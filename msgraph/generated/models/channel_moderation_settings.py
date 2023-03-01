@@ -37,7 +37,7 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowNewMessageFromBots property value. Indicates whether bots are allowed to post messages.
         Args:
-            value: Value to set for the allowNewMessageFromBots property.
+            value: Value to set for the allow_new_message_from_bots property.
         """
         self._allow_new_message_from_bots = value
     
@@ -54,7 +54,7 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the allowNewMessageFromConnectors property value. Indicates whether connectors are allowed to post messages.
         Args:
-            value: Value to set for the allowNewMessageFromConnectors property.
+            value: Value to set for the allow_new_message_from_connectors property.
         """
         self._allow_new_message_from_connectors = value
     
@@ -94,11 +94,11 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "allow_new_message_from_bots": lambda n : setattr(self, 'allow_new_message_from_bots', n.get_bool_value()),
-            "allow_new_message_from_connectors": lambda n : setattr(self, 'allow_new_message_from_connectors', n.get_bool_value()),
+            "allowNewMessageFromBots": lambda n : setattr(self, 'allow_new_message_from_bots', n.get_bool_value()),
+            "allowNewMessageFromConnectors": lambda n : setattr(self, 'allow_new_message_from_connectors', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "reply_restriction": lambda n : setattr(self, 'reply_restriction', n.get_enum_value(reply_restriction.ReplyRestriction)),
-            "user_new_message_restriction": lambda n : setattr(self, 'user_new_message_restriction', n.get_enum_value(user_new_message_restriction.UserNewMessageRestriction)),
+            "replyRestriction": lambda n : setattr(self, 'reply_restriction', n.get_enum_value(reply_restriction.ReplyRestriction)),
+            "userNewMessageRestriction": lambda n : setattr(self, 'user_new_message_restriction', n.get_enum_value(user_new_message_restriction.UserNewMessageRestriction)),
         }
         return fields
     
@@ -115,7 +115,7 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -132,7 +132,7 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the replyRestriction property value. Indicates who is allowed to reply to the teams channel. Possible values are: everyone, authorAndModerators, unknownFutureValue.
         Args:
-            value: Value to set for the replyRestriction property.
+            value: Value to set for the reply_restriction property.
         """
         self._reply_restriction = value
     
@@ -164,7 +164,7 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         """
         Sets the userNewMessageRestriction property value. Indicates who is allowed to post messages to teams channel. Possible values are: everyone, everyoneExceptGuests, moderators, unknownFutureValue.
         Args:
-            value: Value to set for the userNewMessageRestriction property.
+            value: Value to set for the user_new_message_restriction property.
         """
         self._user_new_message_restriction = value
     

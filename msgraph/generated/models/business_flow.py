@@ -59,7 +59,7 @@ class BusinessFlow(entity.Entity):
         """
         Sets the customData property value. The customData property
         Args:
-            value: Value to set for the customData property.
+            value: Value to set for the custom_data property.
         """
         self._custom_data = value
     
@@ -76,7 +76,7 @@ class BusinessFlow(entity.Entity):
         """
         Sets the deDuplicationId property value. The deDuplicationId property
         Args:
-            value: Value to set for the deDuplicationId property.
+            value: Value to set for the de_duplication_id property.
         """
         self._de_duplication_id = value
     
@@ -110,7 +110,7 @@ class BusinessFlow(entity.Entity):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -120,14 +120,14 @@ class BusinessFlow(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "custom_data": lambda n : setattr(self, 'custom_data', n.get_str_value()),
-            "de_duplication_id": lambda n : setattr(self, 'de_duplication_id', n.get_str_value()),
+            "customData": lambda n : setattr(self, 'custom_data', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "deDuplicationId": lambda n : setattr(self, 'de_duplication_id', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "policy": lambda n : setattr(self, 'policy', n.get_object_value(governance_policy.GovernancePolicy)),
-            "policy_template_id": lambda n : setattr(self, 'policy_template_id', n.get_str_value()),
-            "record_version": lambda n : setattr(self, 'record_version', n.get_str_value()),
-            "schema_id": lambda n : setattr(self, 'schema_id', n.get_str_value()),
+            "policyTemplateId": lambda n : setattr(self, 'policy_template_id', n.get_str_value()),
+            "recordVersion": lambda n : setattr(self, 'record_version', n.get_str_value()),
+            "schemaId": lambda n : setattr(self, 'schema_id', n.get_str_value()),
             "settings": lambda n : setattr(self, 'settings', n.get_object_value(business_flow_settings.BusinessFlowSettings)),
         }
         super_fields = super().get_field_deserializers()
@@ -164,7 +164,7 @@ class BusinessFlow(entity.Entity):
         """
         Sets the policyTemplateId property value. The policyTemplateId property
         Args:
-            value: Value to set for the policyTemplateId property.
+            value: Value to set for the policy_template_id property.
         """
         self._policy_template_id = value
     
@@ -181,7 +181,7 @@ class BusinessFlow(entity.Entity):
         """
         Sets the recordVersion property value. The recordVersion property
         Args:
-            value: Value to set for the recordVersion property.
+            value: Value to set for the record_version property.
         """
         self._record_version = value
     
@@ -198,7 +198,7 @@ class BusinessFlow(entity.Entity):
         """
         Sets the schemaId property value. The schemaId property
         Args:
-            value: Value to set for the schemaId property.
+            value: Value to set for the schema_id property.
         """
         self._schema_id = value
     
@@ -212,8 +212,8 @@ class BusinessFlow(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("customData", self.custom_data)
-        writer.write_str_value("deDuplicationId", self.de_duplication_id)
         writer.write_str_value("description", self.description)
+        writer.write_str_value("deDuplicationId", self.de_duplication_id)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("policy", self.policy)
         writer.write_str_value("policyTemplateId", self.policy_template_id)

@@ -55,10 +55,10 @@ class IdleSessionSignOut(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "is_enabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
+            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "sign_out_after_in_seconds": lambda n : setattr(self, 'sign_out_after_in_seconds', n.get_int_value()),
-            "warn_after_in_seconds": lambda n : setattr(self, 'warn_after_in_seconds', n.get_int_value()),
+            "signOutAfterInSeconds": lambda n : setattr(self, 'sign_out_after_in_seconds', n.get_int_value()),
+            "warnAfterInSeconds": lambda n : setattr(self, 'warn_after_in_seconds', n.get_int_value()),
         }
         return fields
     
@@ -75,7 +75,7 @@ class IdleSessionSignOut(AdditionalDataHolder, Parsable):
         """
         Sets the isEnabled property value. Indicates whether the idle session sign-out policy is enabled.
         Args:
-            value: Value to set for the isEnabled property.
+            value: Value to set for the is_enabled property.
         """
         self._is_enabled = value
     
@@ -92,7 +92,7 @@ class IdleSessionSignOut(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -123,7 +123,7 @@ class IdleSessionSignOut(AdditionalDataHolder, Parsable):
         """
         Sets the signOutAfterInSeconds property value. Number of seconds of inactivity after which a user is signed out.
         Args:
-            value: Value to set for the signOutAfterInSeconds property.
+            value: Value to set for the sign_out_after_in_seconds property.
         """
         self._sign_out_after_in_seconds = value
     
@@ -140,7 +140,7 @@ class IdleSessionSignOut(AdditionalDataHolder, Parsable):
         """
         Sets the warnAfterInSeconds property value. Number of seconds of inactivity after which a user is notified that they'll be signed out.
         Args:
-            value: Value to set for the warnAfterInSeconds property.
+            value: Value to set for the warn_after_in_seconds property.
         """
         self._warn_after_in_seconds = value
     

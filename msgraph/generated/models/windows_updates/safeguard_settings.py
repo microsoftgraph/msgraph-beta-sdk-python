@@ -60,7 +60,7 @@ class SafeguardSettings(AdditionalDataHolder, Parsable):
         """
         Sets the disabledSafeguardProfiles property value. List of safeguards to ignore per device.
         Args:
-            value: Value to set for the disabledSafeguardProfiles property.
+            value: Value to set for the disabled_safeguard_profiles property.
         """
         self._disabled_safeguard_profiles = value
     
@@ -70,7 +70,7 @@ class SafeguardSettings(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "disabled_safeguard_profiles": lambda n : setattr(self, 'disabled_safeguard_profiles', n.get_collection_of_object_values(safeguard_profile.SafeguardProfile)),
+            "disabledSafeguardProfiles": lambda n : setattr(self, 'disabled_safeguard_profiles', n.get_collection_of_object_values(safeguard_profile.SafeguardProfile)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -88,7 +88,7 @@ class SafeguardSettings(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     

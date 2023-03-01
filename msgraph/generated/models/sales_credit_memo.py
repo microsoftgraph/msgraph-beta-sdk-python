@@ -13,23 +13,6 @@ sales_credit_memo_line = lazy_import('msgraph.generated.models.sales_credit_memo
 
 class SalesCreditMemo(entity.Entity):
     @property
-    def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
-        """
-        Gets the billingPostalAddress property value. The billingPostalAddress property
-        Returns: Optional[postal_address_type.PostalAddressType]
-        """
-        return self._billing_postal_address
-    
-    @billing_postal_address.setter
-    def billing_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
-        """
-        Sets the billingPostalAddress property value. The billingPostalAddress property
-        Args:
-            value: Value to set for the billingPostalAddress property.
-        """
-        self._billing_postal_address = value
-    
-    @property
     def bill_to_customer_id(self,) -> Optional[Guid]:
         """
         Gets the billToCustomerId property value. The billToCustomerId property
@@ -42,7 +25,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the billToCustomerId property value. The billToCustomerId property
         Args:
-            value: Value to set for the billToCustomerId property.
+            value: Value to set for the bill_to_customer_id property.
         """
         self._bill_to_customer_id = value
     
@@ -59,7 +42,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the billToCustomerNumber property value. The billToCustomerNumber property
         Args:
-            value: Value to set for the billToCustomerNumber property.
+            value: Value to set for the bill_to_customer_number property.
         """
         self._bill_to_customer_number = value
     
@@ -76,23 +59,40 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the billToName property value. The billToName property
         Args:
-            value: Value to set for the billToName property.
+            value: Value to set for the bill_to_name property.
         """
         self._bill_to_name = value
+    
+    @property
+    def billing_postal_address(self,) -> Optional[postal_address_type.PostalAddressType]:
+        """
+        Gets the billingPostalAddress property value. The billingPostalAddress property
+        Returns: Optional[postal_address_type.PostalAddressType]
+        """
+        return self._billing_postal_address
+    
+    @billing_postal_address.setter
+    def billing_postal_address(self,value: Optional[postal_address_type.PostalAddressType] = None) -> None:
+        """
+        Sets the billingPostalAddress property value. The billingPostalAddress property
+        Args:
+            value: Value to set for the billing_postal_address property.
+        """
+        self._billing_postal_address = value
     
     def __init__(self,) -> None:
         """
         Instantiates a new salesCreditMemo and sets the default values.
         """
         super().__init__()
-        # The billingPostalAddress property
-        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The billToCustomerId property
         self._bill_to_customer_id: Optional[Guid] = None
         # The billToCustomerNumber property
         self._bill_to_customer_number: Optional[str] = None
         # The billToName property
         self._bill_to_name: Optional[str] = None
+        # The billingPostalAddress property
+        self._billing_postal_address: Optional[postal_address_type.PostalAddressType] = None
         # The creditMemoDate property
         self._credit_memo_date: Optional[Date] = None
         # The currency property
@@ -177,7 +177,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the creditMemoDate property value. The creditMemoDate property
         Args:
-            value: Value to set for the creditMemoDate property.
+            value: Value to set for the credit_memo_date property.
         """
         self._credit_memo_date = value
     
@@ -211,7 +211,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the currencyCode property value. The currencyCode property
         Args:
-            value: Value to set for the currencyCode property.
+            value: Value to set for the currency_code property.
         """
         self._currency_code = value
     
@@ -228,7 +228,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the currencyId property value. The currencyId property
         Args:
-            value: Value to set for the currencyId property.
+            value: Value to set for the currency_id property.
         """
         self._currency_id = value
     
@@ -262,7 +262,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the customerId property value. The customerId property
         Args:
-            value: Value to set for the customerId property.
+            value: Value to set for the customer_id property.
         """
         self._customer_id = value
     
@@ -279,7 +279,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the customerName property value. The customerName property
         Args:
-            value: Value to set for the customerName property.
+            value: Value to set for the customer_name property.
         """
         self._customer_name = value
     
@@ -296,7 +296,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the customerNumber property value. The customerNumber property
         Args:
-            value: Value to set for the customerNumber property.
+            value: Value to set for the customer_number property.
         """
         self._customer_number = value
     
@@ -313,7 +313,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the discountAmount property value. The discountAmount property
         Args:
-            value: Value to set for the discountAmount property.
+            value: Value to set for the discount_amount property.
         """
         self._discount_amount = value
     
@@ -330,7 +330,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the discountAppliedBeforeTax property value. The discountAppliedBeforeTax property
         Args:
-            value: Value to set for the discountAppliedBeforeTax property.
+            value: Value to set for the discount_applied_before_tax property.
         """
         self._discount_applied_before_tax = value
     
@@ -347,7 +347,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the dueDate property value. The dueDate property
         Args:
-            value: Value to set for the dueDate property.
+            value: Value to set for the due_date property.
         """
         self._due_date = value
     
@@ -381,7 +381,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the externalDocumentNumber property value. The externalDocumentNumber property
         Args:
-            value: Value to set for the externalDocumentNumber property.
+            value: Value to set for the external_document_number property.
         """
         self._external_document_number = value
     
@@ -391,38 +391,38 @@ class SalesCreditMemo(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "billing_postal_address": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
-            "bill_to_customer_id": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
-            "bill_to_customer_number": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
-            "bill_to_name": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
-            "credit_memo_date": lambda n : setattr(self, 'credit_memo_date', n.get_object_value(Date)),
+            "billingPostalAddress": lambda n : setattr(self, 'billing_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "billToCustomerId": lambda n : setattr(self, 'bill_to_customer_id', n.get_object_value(Guid)),
+            "billToCustomerNumber": lambda n : setattr(self, 'bill_to_customer_number', n.get_str_value()),
+            "billToName": lambda n : setattr(self, 'bill_to_name', n.get_str_value()),
+            "creditMemoDate": lambda n : setattr(self, 'credit_memo_date', n.get_object_value(Date)),
             "currency": lambda n : setattr(self, 'currency', n.get_object_value(currency.Currency)),
-            "currency_code": lambda n : setattr(self, 'currency_code', n.get_str_value()),
-            "currency_id": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
+            "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
+            "currencyId": lambda n : setattr(self, 'currency_id', n.get_object_value(Guid)),
             "customer": lambda n : setattr(self, 'customer', n.get_object_value(customer.Customer)),
-            "customer_id": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
-            "customer_name": lambda n : setattr(self, 'customer_name', n.get_str_value()),
-            "customer_number": lambda n : setattr(self, 'customer_number', n.get_str_value()),
-            "discount_amount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
-            "discount_applied_before_tax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
-            "due_date": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
+            "customerId": lambda n : setattr(self, 'customer_id', n.get_object_value(Guid)),
+            "customerName": lambda n : setattr(self, 'customer_name', n.get_str_value()),
+            "customerNumber": lambda n : setattr(self, 'customer_number', n.get_str_value()),
+            "discountAmount": lambda n : setattr(self, 'discount_amount', n.get_float_value()),
+            "discountAppliedBeforeTax": lambda n : setattr(self, 'discount_applied_before_tax', n.get_bool_value()),
+            "dueDate": lambda n : setattr(self, 'due_date', n.get_object_value(Date)),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
-            "external_document_number": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
-            "invoice_id": lambda n : setattr(self, 'invoice_id', n.get_object_value(Guid)),
-            "invoice_number": lambda n : setattr(self, 'invoice_number', n.get_str_value()),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "externalDocumentNumber": lambda n : setattr(self, 'external_document_number', n.get_str_value()),
+            "invoiceId": lambda n : setattr(self, 'invoice_id', n.get_object_value(Guid)),
+            "invoiceNumber": lambda n : setattr(self, 'invoice_number', n.get_str_value()),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
-            "payment_term": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
-            "payment_terms_id": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
-            "phone_number": lambda n : setattr(self, 'phone_number', n.get_str_value()),
-            "prices_include_tax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
-            "sales_credit_memo_lines": lambda n : setattr(self, 'sales_credit_memo_lines', n.get_collection_of_object_values(sales_credit_memo_line.SalesCreditMemoLine)),
+            "paymentTerm": lambda n : setattr(self, 'payment_term', n.get_object_value(payment_term.PaymentTerm)),
+            "paymentTermsId": lambda n : setattr(self, 'payment_terms_id', n.get_object_value(Guid)),
+            "phoneNumber": lambda n : setattr(self, 'phone_number', n.get_str_value()),
+            "pricesIncludeTax": lambda n : setattr(self, 'prices_include_tax', n.get_bool_value()),
             "salesperson": lambda n : setattr(self, 'salesperson', n.get_str_value()),
-            "selling_postal_address": lambda n : setattr(self, 'selling_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
+            "salesCreditMemoLines": lambda n : setattr(self, 'sales_credit_memo_lines', n.get_collection_of_object_values(sales_credit_memo_line.SalesCreditMemoLine)),
+            "sellingPostalAddress": lambda n : setattr(self, 'selling_postal_address', n.get_object_value(postal_address_type.PostalAddressType)),
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
-            "total_amount_excluding_tax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
-            "total_amount_including_tax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
-            "total_tax_amount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
+            "totalAmountExcludingTax": lambda n : setattr(self, 'total_amount_excluding_tax', n.get_float_value()),
+            "totalAmountIncludingTax": lambda n : setattr(self, 'total_amount_including_tax', n.get_float_value()),
+            "totalTaxAmount": lambda n : setattr(self, 'total_tax_amount', n.get_float_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -441,7 +441,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the invoiceId property value. The invoiceId property
         Args:
-            value: Value to set for the invoiceId property.
+            value: Value to set for the invoice_id property.
         """
         self._invoice_id = value
     
@@ -458,7 +458,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the invoiceNumber property value. The invoiceNumber property
         Args:
-            value: Value to set for the invoiceNumber property.
+            value: Value to set for the invoice_number property.
         """
         self._invoice_number = value
     
@@ -475,7 +475,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The lastModifiedDateTime property
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -509,7 +509,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the paymentTerm property value. The paymentTerm property
         Args:
-            value: Value to set for the paymentTerm property.
+            value: Value to set for the payment_term property.
         """
         self._payment_term = value
     
@@ -526,7 +526,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the paymentTermsId property value. The paymentTermsId property
         Args:
-            value: Value to set for the paymentTermsId property.
+            value: Value to set for the payment_terms_id property.
         """
         self._payment_terms_id = value
     
@@ -543,7 +543,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the phoneNumber property value. The phoneNumber property
         Args:
-            value: Value to set for the phoneNumber property.
+            value: Value to set for the phone_number property.
         """
         self._phone_number = value
     
@@ -560,7 +560,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the pricesIncludeTax property value. The pricesIncludeTax property
         Args:
-            value: Value to set for the pricesIncludeTax property.
+            value: Value to set for the prices_include_tax property.
         """
         self._prices_include_tax = value
     
@@ -577,7 +577,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the salesCreditMemoLines property value. The salesCreditMemoLines property
         Args:
-            value: Value to set for the salesCreditMemoLines property.
+            value: Value to set for the sales_credit_memo_lines property.
         """
         self._sales_credit_memo_lines = value
     
@@ -611,7 +611,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the sellingPostalAddress property value. The sellingPostalAddress property
         Args:
-            value: Value to set for the sellingPostalAddress property.
+            value: Value to set for the selling_postal_address property.
         """
         self._selling_postal_address = value
     
@@ -649,8 +649,8 @@ class SalesCreditMemo(entity.Entity):
         writer.write_object_value("paymentTermsId", self.payment_terms_id)
         writer.write_str_value("phoneNumber", self.phone_number)
         writer.write_bool_value("pricesIncludeTax", self.prices_include_tax)
-        writer.write_collection_of_object_values("salesCreditMemoLines", self.sales_credit_memo_lines)
         writer.write_str_value("salesperson", self.salesperson)
+        writer.write_collection_of_object_values("salesCreditMemoLines", self.sales_credit_memo_lines)
         writer.write_object_value("sellingPostalAddress", self.selling_postal_address)
         writer.write_str_value("status", self.status)
         writer.write_float_value("totalAmountExcludingTax", self.total_amount_excluding_tax)
@@ -687,7 +687,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the totalAmountExcludingTax property value. The totalAmountExcludingTax property
         Args:
-            value: Value to set for the totalAmountExcludingTax property.
+            value: Value to set for the total_amount_excluding_tax property.
         """
         self._total_amount_excluding_tax = value
     
@@ -704,7 +704,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the totalAmountIncludingTax property value. The totalAmountIncludingTax property
         Args:
-            value: Value to set for the totalAmountIncludingTax property.
+            value: Value to set for the total_amount_including_tax property.
         """
         self._total_amount_including_tax = value
     
@@ -721,7 +721,7 @@ class SalesCreditMemo(entity.Entity):
         """
         Sets the totalTaxAmount property value. The totalTaxAmount property
         Args:
-            value: Value to set for the totalTaxAmount property.
+            value: Value to set for the total_tax_amount property.
         """
         self._total_tax_amount = value
     

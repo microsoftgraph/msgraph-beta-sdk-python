@@ -103,7 +103,7 @@ class ClonePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the displayName property value. The displayName property
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -115,9 +115,9 @@ class ClonePostRequestBody(AdditionalDataHolder, Parsable):
         fields = {
             "classification": lambda n : setattr(self, 'classification', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "mail_nickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
-            "parts_to_clone": lambda n : setattr(self, 'parts_to_clone', n.get_enum_value(clonable_team_parts.ClonableTeamParts)),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "mailNickname": lambda n : setattr(self, 'mail_nickname', n.get_str_value()),
+            "partsToClone": lambda n : setattr(self, 'parts_to_clone', n.get_enum_value(clonable_team_parts.ClonableTeamParts)),
             "visibility": lambda n : setattr(self, 'visibility', n.get_enum_value(team_visibility_type.TeamVisibilityType)),
         }
         return fields
@@ -135,7 +135,7 @@ class ClonePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the mailNickname property value. The mailNickname property
         Args:
-            value: Value to set for the mailNickname property.
+            value: Value to set for the mail_nickname property.
         """
         self._mail_nickname = value
     
@@ -152,7 +152,7 @@ class ClonePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the partsToClone property value. The partsToClone property
         Args:
-            value: Value to set for the partsToClone property.
+            value: Value to set for the parts_to_clone property.
         """
         self._parts_to_clone = value
     

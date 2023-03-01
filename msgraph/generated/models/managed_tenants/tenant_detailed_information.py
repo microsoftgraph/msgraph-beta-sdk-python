@@ -64,7 +64,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the countryCode property value. The code for the country where the managed tenant is located. Optional. Read-only.
         Args:
-            value: Value to set for the countryCode property.
+            value: Value to set for the country_code property.
         """
         self._country_code = value
     
@@ -81,7 +81,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the countryName property value. The name for the country where the managed tenant is located. Optional. Read-only.
         Args:
-            value: Value to set for the countryName property.
+            value: Value to set for the country_name property.
         """
         self._country_name = value
     
@@ -110,7 +110,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the defaultDomainName property value. The default domain name for the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the defaultDomainName property.
+            value: Value to set for the default_domain_name property.
         """
         self._default_domain_name = value
     
@@ -127,7 +127,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the displayName property value. The display name for the managed tenant.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -138,15 +138,15 @@ class TenantDetailedInformation(entity.Entity):
         """
         fields = {
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
-            "country_code": lambda n : setattr(self, 'country_code', n.get_str_value()),
-            "country_name": lambda n : setattr(self, 'country_name', n.get_str_value()),
-            "default_domain_name": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "industry_name": lambda n : setattr(self, 'industry_name', n.get_str_value()),
+            "countryCode": lambda n : setattr(self, 'country_code', n.get_str_value()),
+            "countryName": lambda n : setattr(self, 'country_name', n.get_str_value()),
+            "defaultDomainName": lambda n : setattr(self, 'default_domain_name', n.get_str_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "industryName": lambda n : setattr(self, 'industry_name', n.get_str_value()),
             "region": lambda n : setattr(self, 'region', n.get_str_value()),
-            "segment_name": lambda n : setattr(self, 'segment_name', n.get_str_value()),
-            "tenant_id": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
-            "vertical_name": lambda n : setattr(self, 'vertical_name', n.get_str_value()),
+            "segmentName": lambda n : setattr(self, 'segment_name', n.get_str_value()),
+            "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "verticalName": lambda n : setattr(self, 'vertical_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -165,7 +165,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the industryName property value. The business industry associated with the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the industryName property.
+            value: Value to set for the industry_name property.
         """
         self._industry_name = value
     
@@ -199,7 +199,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the segmentName property value. The business segment associated with the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the segmentName property.
+            value: Value to set for the segment_name property.
         """
         self._segment_name = value
     
@@ -236,7 +236,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the tenantId property value. The Azure Active Directory tenant identifier for the managed tenant.
         Args:
-            value: Value to set for the tenantId property.
+            value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
     
@@ -253,7 +253,7 @@ class TenantDetailedInformation(entity.Entity):
         """
         Sets the verticalName property value. The vertical associated with the managed tenant. Optional. Read-only.
         Args:
-            value: Value to set for the verticalName property.
+            value: Value to set for the vertical_name property.
         """
         self._vertical_name = value
     

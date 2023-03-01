@@ -29,7 +29,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the advancedBitLockerStates property value. Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
         Args:
-            value: Value to set for the advancedBitLockerStates property.
+            value: Value to set for the advanced_bit_locker_states property.
         """
         self._advanced_bit_locker_states = value
     
@@ -88,7 +88,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the deviceName property value. Device name
         Args:
-            value: Value to set for the deviceName property.
+            value: Value to set for the device_name property.
         """
         self._device_name = value
     
@@ -105,7 +105,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the deviceType property value. Device type.
         Args:
-            value: Value to set for the deviceType property.
+            value: Value to set for the device_type property.
         """
         self._device_type = value
     
@@ -122,7 +122,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the encryptionPolicySettingState property value. The encryptionPolicySettingState property
         Args:
-            value: Value to set for the encryptionPolicySettingState property.
+            value: Value to set for the encryption_policy_setting_state property.
         """
         self._encryption_policy_setting_state = value
     
@@ -139,7 +139,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the encryptionReadinessState property value. Encryption readiness state
         Args:
-            value: Value to set for the encryptionReadinessState property.
+            value: Value to set for the encryption_readiness_state property.
         """
         self._encryption_readiness_state = value
     
@@ -156,7 +156,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the encryptionState property value. Encryption state
         Args:
-            value: Value to set for the encryptionState property.
+            value: Value to set for the encryption_state property.
         """
         self._encryption_state = value
     
@@ -173,7 +173,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the fileVaultStates property value. FileVault State. Possible values are: success, driveEncryptedByUser, userDeferredEncryption, escrowNotEnabled.
         Args:
-            value: Value to set for the fileVaultStates property.
+            value: Value to set for the file_vault_states property.
         """
         self._file_vault_states = value
     
@@ -183,17 +183,17 @@ class ManagedDeviceEncryptionState(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "advanced_bit_locker_states": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_enum_value(advanced_bit_locker_state.AdvancedBitLockerState)),
-            "device_name": lambda n : setattr(self, 'device_name', n.get_str_value()),
-            "device_type": lambda n : setattr(self, 'device_type', n.get_enum_value(device_types.DeviceTypes)),
-            "encryption_policy_setting_state": lambda n : setattr(self, 'encryption_policy_setting_state', n.get_enum_value(compliance_status.ComplianceStatus)),
-            "encryption_readiness_state": lambda n : setattr(self, 'encryption_readiness_state', n.get_enum_value(encryption_readiness_state.EncryptionReadinessState)),
-            "encryption_state": lambda n : setattr(self, 'encryption_state', n.get_enum_value(encryption_state.EncryptionState)),
-            "file_vault_states": lambda n : setattr(self, 'file_vault_states', n.get_enum_value(file_vault_state.FileVaultState)),
-            "os_version": lambda n : setattr(self, 'os_version', n.get_str_value()),
-            "policy_details": lambda n : setattr(self, 'policy_details', n.get_collection_of_object_values(encryption_report_policy_details.EncryptionReportPolicyDetails)),
-            "tpm_specification_version": lambda n : setattr(self, 'tpm_specification_version', n.get_str_value()),
-            "user_principal_name": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
+            "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_enum_value(advanced_bit_locker_state.AdvancedBitLockerState)),
+            "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
+            "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_types.DeviceTypes)),
+            "encryptionPolicySettingState": lambda n : setattr(self, 'encryption_policy_setting_state', n.get_enum_value(compliance_status.ComplianceStatus)),
+            "encryptionReadinessState": lambda n : setattr(self, 'encryption_readiness_state', n.get_enum_value(encryption_readiness_state.EncryptionReadinessState)),
+            "encryptionState": lambda n : setattr(self, 'encryption_state', n.get_enum_value(encryption_state.EncryptionState)),
+            "fileVaultStates": lambda n : setattr(self, 'file_vault_states', n.get_enum_value(file_vault_state.FileVaultState)),
+            "osVersion": lambda n : setattr(self, 'os_version', n.get_str_value()),
+            "policyDetails": lambda n : setattr(self, 'policy_details', n.get_collection_of_object_values(encryption_report_policy_details.EncryptionReportPolicyDetails)),
+            "tpmSpecificationVersion": lambda n : setattr(self, 'tpm_specification_version', n.get_str_value()),
+            "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -212,7 +212,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the osVersion property value. Operating system version of the device
         Args:
-            value: Value to set for the osVersion property.
+            value: Value to set for the os_version property.
         """
         self._os_version = value
     
@@ -229,7 +229,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the policyDetails property value. Policy Details
         Args:
-            value: Value to set for the policyDetails property.
+            value: Value to set for the policy_details property.
         """
         self._policy_details = value
     
@@ -267,7 +267,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the tpmSpecificationVersion property value. Device TPM Version
         Args:
-            value: Value to set for the tpmSpecificationVersion property.
+            value: Value to set for the tpm_specification_version property.
         """
         self._tpm_specification_version = value
     
@@ -284,7 +284,7 @@ class ManagedDeviceEncryptionState(entity.Entity):
         """
         Sets the userPrincipalName property value. User name
         Args:
-            value: Value to set for the userPrincipalName property.
+            value: Value to set for the user_principal_name property.
         """
         self._user_principal_name = value
     

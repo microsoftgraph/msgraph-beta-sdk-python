@@ -33,7 +33,7 @@ class WindowsKioskActiveDirectoryGroup(windows_kiosk_user.WindowsKioskUser):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "group_name": lambda n : setattr(self, 'group_name', n.get_str_value()),
+            "groupName": lambda n : setattr(self, 'group_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -52,7 +52,7 @@ class WindowsKioskActiveDirectoryGroup(windows_kiosk_user.WindowsKioskUser):
         """
         Sets the groupName property value. The name of the AD group that will be locked to this kiosk configuration
         Args:
-            value: Value to set for the groupName property.
+            value: Value to set for the group_name property.
         """
         self._group_name = value
     

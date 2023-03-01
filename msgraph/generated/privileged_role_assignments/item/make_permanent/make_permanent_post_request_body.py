@@ -54,8 +54,8 @@ class MakePermanentPostRequestBody(AdditionalDataHolder, Parsable):
         """
         fields = {
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),
-            "ticket_number": lambda n : setattr(self, 'ticket_number', n.get_str_value()),
-            "ticket_system": lambda n : setattr(self, 'ticket_system', n.get_str_value()),
+            "ticketNumber": lambda n : setattr(self, 'ticket_number', n.get_str_value()),
+            "ticketSystem": lambda n : setattr(self, 'ticket_system', n.get_str_value()),
         }
         return fields
     
@@ -102,7 +102,7 @@ class MakePermanentPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the ticketNumber property value. The ticketNumber property
         Args:
-            value: Value to set for the ticketNumber property.
+            value: Value to set for the ticket_number property.
         """
         self._ticket_number = value
     
@@ -119,7 +119,7 @@ class MakePermanentPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the ticketSystem property value. The ticketSystem property
         Args:
-            value: Value to set for the ticketSystem property.
+            value: Value to set for the ticket_system property.
         """
         self._ticket_system = value
     

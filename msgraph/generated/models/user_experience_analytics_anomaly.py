@@ -26,7 +26,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the anomalyFirstOccurrenceDateTime property value. Indicates the first occurrence date and time for the anomaly.
         Args:
-            value: Value to set for the anomalyFirstOccurrenceDateTime property.
+            value: Value to set for the anomaly_first_occurrence_date_time property.
         """
         self._anomaly_first_occurrence_date_time = value
     
@@ -43,7 +43,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the anomalyId property value. The unique identifier of the anomaly.
         Args:
-            value: Value to set for the anomalyId property.
+            value: Value to set for the anomaly_id property.
         """
         self._anomaly_id = value
     
@@ -60,7 +60,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the anomalyLatestOccurrenceDateTime property value. Indicates the latest occurrence date and time for the anomaly.
         Args:
-            value: Value to set for the anomalyLatestOccurrenceDateTime property.
+            value: Value to set for the anomaly_latest_occurrence_date_time property.
         """
         self._anomaly_latest_occurrence_date_time = value
     
@@ -77,7 +77,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the anomalyName property value. The name of the anomaly.
         Args:
-            value: Value to set for the anomalyName property.
+            value: Value to set for the anomaly_name property.
         """
         self._anomaly_name = value
     
@@ -94,7 +94,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the anomalyType property value. Indicates the category of the anomaly. Eg: anomaly type can be device, application, stop error, driver or other.
         Args:
-            value: Value to set for the anomalyType property.
+            value: Value to set for the anomaly_type property.
         """
         self._anomaly_type = value
     
@@ -111,7 +111,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the assetName property value. The name of the application or module that caused the anomaly.
         Args:
-            value: Value to set for the assetName property.
+            value: Value to set for the asset_name property.
         """
         self._asset_name = value
     
@@ -128,7 +128,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the assetPublisher property value. The publisher of the application or module that caused the anomaly.
         Args:
-            value: Value to set for the assetPublisher property.
+            value: Value to set for the asset_publisher property.
         """
         self._asset_publisher = value
     
@@ -145,7 +145,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the assetVersion property value. The version of the application or module that caused the anomaly.
         Args:
-            value: Value to set for the assetVersion property.
+            value: Value to set for the asset_version property.
         """
         self._asset_version = value
     
@@ -208,7 +208,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the detectionModelId property value. The unique identifier of the anomaly detection model.
         Args:
-            value: Value to set for the detectionModelId property.
+            value: Value to set for the detection_model_id property.
         """
         self._detection_model_id = value
     
@@ -225,7 +225,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the deviceImpactedCount property value. The number of devices impacted by the anomaly. Valid values -2147483648 to 2147483647
         Args:
-            value: Value to set for the deviceImpactedCount property.
+            value: Value to set for the device_impacted_count property.
         """
         self._device_impacted_count = value
     
@@ -235,17 +235,17 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "anomaly_first_occurrence_date_time": lambda n : setattr(self, 'anomaly_first_occurrence_date_time', n.get_datetime_value()),
-            "anomaly_id": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
-            "anomaly_latest_occurrence_date_time": lambda n : setattr(self, 'anomaly_latest_occurrence_date_time', n.get_datetime_value()),
-            "anomaly_name": lambda n : setattr(self, 'anomaly_name', n.get_str_value()),
-            "anomaly_type": lambda n : setattr(self, 'anomaly_type', n.get_enum_value(user_experience_analytics_anomaly_type.UserExperienceAnalyticsAnomalyType)),
-            "asset_name": lambda n : setattr(self, 'asset_name', n.get_str_value()),
-            "asset_publisher": lambda n : setattr(self, 'asset_publisher', n.get_str_value()),
-            "asset_version": lambda n : setattr(self, 'asset_version', n.get_str_value()),
-            "detection_model_id": lambda n : setattr(self, 'detection_model_id', n.get_str_value()),
-            "device_impacted_count": lambda n : setattr(self, 'device_impacted_count', n.get_int_value()),
-            "issue_id": lambda n : setattr(self, 'issue_id', n.get_str_value()),
+            "anomalyFirstOccurrenceDateTime": lambda n : setattr(self, 'anomaly_first_occurrence_date_time', n.get_datetime_value()),
+            "anomalyId": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
+            "anomalyLatestOccurrenceDateTime": lambda n : setattr(self, 'anomaly_latest_occurrence_date_time', n.get_datetime_value()),
+            "anomalyName": lambda n : setattr(self, 'anomaly_name', n.get_str_value()),
+            "anomalyType": lambda n : setattr(self, 'anomaly_type', n.get_enum_value(user_experience_analytics_anomaly_type.UserExperienceAnalyticsAnomalyType)),
+            "assetName": lambda n : setattr(self, 'asset_name', n.get_str_value()),
+            "assetPublisher": lambda n : setattr(self, 'asset_publisher', n.get_str_value()),
+            "assetVersion": lambda n : setattr(self, 'asset_version', n.get_str_value()),
+            "detectionModelId": lambda n : setattr(self, 'detection_model_id', n.get_str_value()),
+            "deviceImpactedCount": lambda n : setattr(self, 'device_impacted_count', n.get_int_value()),
+            "issueId": lambda n : setattr(self, 'issue_id', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(user_experience_analytics_anomaly_severity.UserExperienceAnalyticsAnomalySeverity)),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(user_experience_analytics_anomaly_state.UserExperienceAnalyticsAnomalyState)),
         }
@@ -266,7 +266,7 @@ class UserExperienceAnalyticsAnomaly(entity.Entity):
         """
         Sets the issueId property value. The unique identifier of the anomaly detection model.
         Args:
-            value: Value to set for the issueId property.
+            value: Value to set for the issue_id property.
         """
         self._issue_id = value
     

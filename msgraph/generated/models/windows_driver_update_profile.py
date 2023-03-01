@@ -27,7 +27,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the approvalType property value. An enum type to represent approval type of a driver update profile.
         Args:
-            value: Value to set for the approvalType property.
+            value: Value to set for the approval_type property.
         """
         self._approval_type = value
     
@@ -93,7 +93,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the createdDateTime property value. The date time that the profile was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -122,7 +122,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the deploymentDeferralInDays property value. Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
         Args:
-            value: Value to set for the deploymentDeferralInDays property.
+            value: Value to set for the deployment_deferral_in_days property.
         """
         self._deployment_deferral_in_days = value
     
@@ -156,7 +156,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the deviceReporting property value. Number of devices reporting for this profile
         Args:
-            value: Value to set for the deviceReporting property.
+            value: Value to set for the device_reporting property.
         """
         self._device_reporting = value
     
@@ -173,7 +173,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the displayName property value. The display name for the profile.
         Args:
-            value: Value to set for the displayName property.
+            value: Value to set for the display_name property.
         """
         self._display_name = value
     
@@ -190,7 +190,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the driverInventories property value. Driver inventories for this profile.
         Args:
-            value: Value to set for the driverInventories property.
+            value: Value to set for the driver_inventories property.
         """
         self._driver_inventories = value
     
@@ -200,18 +200,18 @@ class WindowsDriverUpdateProfile(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "approval_type": lambda n : setattr(self, 'approval_type', n.get_enum_value(driver_update_profile_approval_type.DriverUpdateProfileApprovalType)),
+            "approvalType": lambda n : setattr(self, 'approval_type', n.get_enum_value(driver_update_profile_approval_type.DriverUpdateProfileApprovalType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "deployment_deferral_in_days": lambda n : setattr(self, 'deployment_deferral_in_days', n.get_int_value()),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "deploymentDeferralInDays": lambda n : setattr(self, 'deployment_deferral_in_days', n.get_int_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
-            "device_reporting": lambda n : setattr(self, 'device_reporting', n.get_int_value()),
-            "display_name": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "driver_inventories": lambda n : setattr(self, 'driver_inventories', n.get_collection_of_object_values(windows_driver_update_inventory.WindowsDriverUpdateInventory)),
-            "inventory_sync_status": lambda n : setattr(self, 'inventory_sync_status', n.get_object_value(windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "new_updates": lambda n : setattr(self, 'new_updates', n.get_int_value()),
-            "role_scope_tag_ids": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
+            "deviceReporting": lambda n : setattr(self, 'device_reporting', n.get_int_value()),
+            "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
+            "driverInventories": lambda n : setattr(self, 'driver_inventories', n.get_collection_of_object_values(windows_driver_update_inventory.WindowsDriverUpdateInventory)),
+            "inventorySyncStatus": lambda n : setattr(self, 'inventory_sync_status', n.get_object_value(windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "newUpdates": lambda n : setattr(self, 'new_updates', n.get_int_value()),
+            "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -230,7 +230,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the inventorySyncStatus property value. Driver inventory sync status for this profile.
         Args:
-            value: Value to set for the inventorySyncStatus property.
+            value: Value to set for the inventory_sync_status property.
         """
         self._inventory_sync_status = value
     
@@ -247,7 +247,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The date time that the profile was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -264,7 +264,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the newUpdates property value. Number of new driver updates available for this profile.
         Args:
-            value: Value to set for the newUpdates property.
+            value: Value to set for the new_updates property.
         """
         self._new_updates = value
     
@@ -281,7 +281,7 @@ class WindowsDriverUpdateProfile(entity.Entity):
         """
         Sets the roleScopeTagIds property value. List of Scope Tags for this Driver Update entity.
         Args:
-            value: Value to set for the roleScopeTagIds property.
+            value: Value to set for the role_scope_tag_ids property.
         """
         self._role_scope_tag_ids = value
     

@@ -37,7 +37,7 @@ class TargetAppsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the appGroupType property value. The appGroupType property
         Args:
-            value: Value to set for the appGroupType property.
+            value: Value to set for the app_group_type property.
         """
         self._app_group_type = value
     
@@ -88,8 +88,8 @@ class TargetAppsPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "app_group_type": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
+            "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
         }
         return fields
     
@@ -101,8 +101,8 @@ class TargetAppsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
-        writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_collection_of_object_values("apps", self.apps)
+        writer.write_enum_value("appGroupType", self.app_group_type)
         writer.write_additional_data_value(self.additional_data)
     
 

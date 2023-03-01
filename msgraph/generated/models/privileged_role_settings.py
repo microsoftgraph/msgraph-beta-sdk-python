@@ -20,7 +20,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the approvalOnElevation property value. true if the approval is required when activate the role. false if the approval is not required when activate the role.
         Args:
-            value: Value to set for the approvalOnElevation property.
+            value: Value to set for the approval_on_elevation property.
         """
         self._approval_on_elevation = value
     
@@ -37,7 +37,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the approverIds property value. List of Approval ids, if approval is required for activation.
         Args:
-            value: Value to set for the approverIds property.
+            value: Value to set for the approver_ids property.
         """
         self._approver_ids = value
     
@@ -94,7 +94,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the elevationDuration property value. The duration when the role is activated.
         Args:
-            value: Value to set for the elevationDuration property.
+            value: Value to set for the elevation_duration property.
         """
         self._elevation_duration = value
     
@@ -104,16 +104,16 @@ class PrivilegedRoleSettings(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "approval_on_elevation": lambda n : setattr(self, 'approval_on_elevation', n.get_bool_value()),
-            "approver_ids": lambda n : setattr(self, 'approver_ids', n.get_collection_of_primitive_values(str)),
-            "elevation_duration": lambda n : setattr(self, 'elevation_duration', n.get_object_value(Timedelta)),
-            "is_mfa_on_elevation_configurable": lambda n : setattr(self, 'is_mfa_on_elevation_configurable', n.get_bool_value()),
-            "last_global_admin": lambda n : setattr(self, 'last_global_admin', n.get_bool_value()),
-            "max_elavation_duration": lambda n : setattr(self, 'max_elavation_duration', n.get_object_value(Timedelta)),
-            "mfa_on_elevation": lambda n : setattr(self, 'mfa_on_elevation', n.get_bool_value()),
-            "min_elevation_duration": lambda n : setattr(self, 'min_elevation_duration', n.get_object_value(Timedelta)),
-            "notification_to_user_on_elevation": lambda n : setattr(self, 'notification_to_user_on_elevation', n.get_bool_value()),
-            "ticketing_info_on_elevation": lambda n : setattr(self, 'ticketing_info_on_elevation', n.get_bool_value()),
+            "approvalOnElevation": lambda n : setattr(self, 'approval_on_elevation', n.get_bool_value()),
+            "approverIds": lambda n : setattr(self, 'approver_ids', n.get_collection_of_primitive_values(str)),
+            "elevationDuration": lambda n : setattr(self, 'elevation_duration', n.get_object_value(Timedelta)),
+            "isMfaOnElevationConfigurable": lambda n : setattr(self, 'is_mfa_on_elevation_configurable', n.get_bool_value()),
+            "lastGlobalAdmin": lambda n : setattr(self, 'last_global_admin', n.get_bool_value()),
+            "maxElavationDuration": lambda n : setattr(self, 'max_elavation_duration', n.get_object_value(Timedelta)),
+            "mfaOnElevation": lambda n : setattr(self, 'mfa_on_elevation', n.get_bool_value()),
+            "minElevationDuration": lambda n : setattr(self, 'min_elevation_duration', n.get_object_value(Timedelta)),
+            "notificationToUserOnElevation": lambda n : setattr(self, 'notification_to_user_on_elevation', n.get_bool_value()),
+            "ticketingInfoOnElevation": lambda n : setattr(self, 'ticketing_info_on_elevation', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -132,7 +132,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the isMfaOnElevationConfigurable property value. true if mfaOnElevation is configurable. false if mfaOnElevation is not configurable.
         Args:
-            value: Value to set for the isMfaOnElevationConfigurable property.
+            value: Value to set for the is_mfa_on_elevation_configurable property.
         """
         self._is_mfa_on_elevation_configurable = value
     
@@ -149,7 +149,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the lastGlobalAdmin property value. Internal used only.
         Args:
-            value: Value to set for the lastGlobalAdmin property.
+            value: Value to set for the last_global_admin property.
         """
         self._last_global_admin = value
     
@@ -166,7 +166,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the maxElavationDuration property value. Maximal duration for the activated role.
         Args:
-            value: Value to set for the maxElavationDuration property.
+            value: Value to set for the max_elavation_duration property.
         """
         self._max_elavation_duration = value
     
@@ -183,7 +183,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the mfaOnElevation property value. true if MFA is required to activate the role. false if MFA is not required to activate the role.
         Args:
-            value: Value to set for the mfaOnElevation property.
+            value: Value to set for the mfa_on_elevation property.
         """
         self._mfa_on_elevation = value
     
@@ -200,7 +200,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the minElevationDuration property value. Minimal duration for the activated role.
         Args:
-            value: Value to set for the minElevationDuration property.
+            value: Value to set for the min_elevation_duration property.
         """
         self._min_elevation_duration = value
     
@@ -217,7 +217,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the notificationToUserOnElevation property value. true if send notification to the end user when the role is activated. false if do not send notification when the role is activated.
         Args:
-            value: Value to set for the notificationToUserOnElevation property.
+            value: Value to set for the notification_to_user_on_elevation property.
         """
         self._notification_to_user_on_elevation = value
     
@@ -254,7 +254,7 @@ class PrivilegedRoleSettings(entity.Entity):
         """
         Sets the ticketingInfoOnElevation property value. true if the ticketing information is required when activate the role. false if the ticketing information is not required when activate the role.
         Args:
-            value: Value to set for the ticketingInfoOnElevation property.
+            value: Value to set for the ticketing_info_on_elevation property.
         """
         self._ticketing_info_on_elevation = value
     

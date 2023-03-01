@@ -49,7 +49,7 @@ class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the contentInfo property value. The contentInfo property
         Args:
-            value: Value to set for the contentInfo property.
+            value: Value to set for the content_info property.
         """
         self._content_info = value
     
@@ -71,8 +71,8 @@ class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "content_info": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
-            "labeling_options": lambda n : setattr(self, 'labeling_options', n.get_object_value(labeling_options.LabelingOptions)),
+            "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
+            "labelingOptions": lambda n : setattr(self, 'labeling_options', n.get_object_value(labeling_options.LabelingOptions)),
         }
         return fields
     
@@ -89,7 +89,7 @@ class EvaluateApplicationPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the labelingOptions property value. The labelingOptions property
         Args:
-            value: Value to set for the labelingOptions property.
+            value: Value to set for the labeling_options property.
         """
         self._labeling_options = value
     

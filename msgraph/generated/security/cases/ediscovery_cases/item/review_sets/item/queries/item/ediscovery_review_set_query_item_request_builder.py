@@ -12,27 +12,34 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 ediscovery_review_set_query = lazy_import('msgraph.generated.models.security.ediscovery_review_set_query')
-apply_tags_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.apply_tags.apply_tags_request_builder')
-export_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.export.export_request_builder')
-run_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.run.run_request_builder')
+security_apply_tags_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.security_apply_tags.security_apply_tags_request_builder')
+security_export_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.security_export.security_export_request_builder')
+security_run_request_builder = lazy_import('msgraph.generated.security.cases.ediscovery_cases.item.review_sets.item.queries.item.security_run.security_run_request_builder')
 
 class EdiscoveryReviewSetQueryItemRequestBuilder():
     """
     Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
     """
     @property
-    def apply_tags(self) -> apply_tags_request_builder.ApplyTagsRequestBuilder:
+    def security_apply_tags(self) -> security_apply_tags_request_builder.SecurityApplyTagsRequestBuilder:
         """
         Provides operations to call the applyTags method.
         """
-        return apply_tags_request_builder.ApplyTagsRequestBuilder(self.request_adapter, self.path_parameters)
+        return security_apply_tags_request_builder.SecurityApplyTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def export(self) -> export_request_builder.ExportRequestBuilder:
+    def security_export(self) -> security_export_request_builder.SecurityExportRequestBuilder:
         """
         Provides operations to call the export method.
         """
-        return export_request_builder.ExportRequestBuilder(self.request_adapter, self.path_parameters)
+        return security_export_request_builder.SecurityExportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def security_run(self) -> security_run_request_builder.SecurityRunRequestBuilder:
+        """
+        Provides operations to call the run method.
+        """
+        return security_run_request_builder.SecurityRunRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -52,12 +59,11 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def delete(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> None:
+    async def delete(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property queries for security
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         """
         request_info = self.to_delete_request_information(
             request_configuration
@@ -68,14 +74,13 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_no_response_content_async(request_info, response_handler, error_mapping)
+        return await self.request_adapter.send_no_response_content_async(request_info, error_mapping)
     
-    async def get(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
+    async def get(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderGetRequestConfiguration] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
         """
         Represents queries within the review set.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]
         """
         request_info = self.to_get_request_information(
@@ -87,15 +92,14 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, error_mapping)
     
-    async def patch(self,body: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery] = None, request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
+    async def patch(self,body: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery] = None, request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]:
         """
         Update the navigation property queries in security
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[ediscovery_review_set_query.EdiscoveryReviewSetQuery]
         """
         if body is None:
@@ -109,14 +113,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, response_handler, error_mapping)
-    
-    def run(self,) -> run_request_builder.RunRequestBuilder:
-        """
-        Provides operations to call the run method.
-        Returns: run_request_builder.RunRequestBuilder
-        """
-        return run_request_builder.RunRequestBuilder(self.request_adapter, self.path_parameters)
+        return await self.request_adapter.send_async(request_info, ediscovery_review_set_query.EdiscoveryReviewSetQuery, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EdiscoveryReviewSetQueryItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
         """
@@ -145,7 +142,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -166,7 +163,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.PATCH
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -179,7 +176,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -218,7 +215,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None
@@ -233,7 +230,7 @@ class EdiscoveryReviewSetQueryItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

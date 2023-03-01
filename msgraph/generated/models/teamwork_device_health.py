@@ -69,7 +69,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the createdBy property value. Identity of the user who created the device health document.
         Args:
-            value: Value to set for the createdBy property.
+            value: Value to set for the created_by property.
         """
         self._created_by = value
     
@@ -86,7 +86,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the createdDateTime property value. The UTC date and time when the device health document was created.
         Args:
-            value: Value to set for the createdDateTime property.
+            value: Value to set for the created_date_time property.
         """
         self._created_date_time = value
     
@@ -109,14 +109,14 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         fields = {
             "connection": lambda n : setattr(self, 'connection', n.get_object_value(teamwork_connection.TeamworkConnection)),
-            "created_by": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
-            "created_date_time": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "hardware_health": lambda n : setattr(self, 'hardware_health', n.get_object_value(teamwork_hardware_health.TeamworkHardwareHealth)),
-            "last_modified_by": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
-            "last_modified_date_time": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "login_status": lambda n : setattr(self, 'login_status', n.get_object_value(teamwork_login_status.TeamworkLoginStatus)),
-            "peripherals_health": lambda n : setattr(self, 'peripherals_health', n.get_object_value(teamwork_peripherals_health.TeamworkPeripheralsHealth)),
-            "software_update_health": lambda n : setattr(self, 'software_update_health', n.get_object_value(teamwork_software_update_health.TeamworkSoftwareUpdateHealth)),
+            "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
+            "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "hardwareHealth": lambda n : setattr(self, 'hardware_health', n.get_object_value(teamwork_hardware_health.TeamworkHardwareHealth)),
+            "lastModifiedBy": lambda n : setattr(self, 'last_modified_by', n.get_object_value(identity_set.IdentitySet)),
+            "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
+            "loginStatus": lambda n : setattr(self, 'login_status', n.get_object_value(teamwork_login_status.TeamworkLoginStatus)),
+            "peripheralsHealth": lambda n : setattr(self, 'peripherals_health', n.get_object_value(teamwork_peripherals_health.TeamworkPeripheralsHealth)),
+            "softwareUpdateHealth": lambda n : setattr(self, 'software_update_health', n.get_object_value(teamwork_software_update_health.TeamworkSoftwareUpdateHealth)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -135,7 +135,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the hardwareHealth property value. Health details about the device hardware.
         Args:
-            value: Value to set for the hardwareHealth property.
+            value: Value to set for the hardware_health property.
         """
         self._hardware_health = value
     
@@ -152,7 +152,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the lastModifiedBy property value. Identity of the user who last modified the device health details.
         Args:
-            value: Value to set for the lastModifiedBy property.
+            value: Value to set for the last_modified_by property.
         """
         self._last_modified_by = value
     
@@ -169,7 +169,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the lastModifiedDateTime property value. The UTC date and time when the device health detail was last modified.
         Args:
-            value: Value to set for the lastModifiedDateTime property.
+            value: Value to set for the last_modified_date_time property.
         """
         self._last_modified_date_time = value
     
@@ -186,7 +186,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the loginStatus property value. The login status of Microsoft Teams, Skype for Business, and Exchange.
         Args:
-            value: Value to set for the loginStatus property.
+            value: Value to set for the login_status property.
         """
         self._login_status = value
     
@@ -203,7 +203,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the peripheralsHealth property value. Health details about all peripherals (for example, speaker and microphone) attached to a device.
         Args:
-            value: Value to set for the peripheralsHealth property.
+            value: Value to set for the peripherals_health property.
         """
         self._peripherals_health = value
     
@@ -239,7 +239,7 @@ class TeamworkDeviceHealth(entity.Entity):
         """
         Sets the softwareUpdateHealth property value. Software updates available for the device.
         Args:
-            value: Value to set for the softwareUpdateHealth property.
+            value: Value to set for the software_update_health property.
         """
         self._software_update_health = value
     

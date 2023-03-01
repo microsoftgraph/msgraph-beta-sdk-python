@@ -38,7 +38,7 @@ class UnifiedRbacResourceNamespace(entity.Entity):
         """
         fields = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
-            "resource_actions": lambda n : setattr(self, 'resource_actions', n.get_collection_of_object_values(unified_rbac_resource_action.UnifiedRbacResourceAction)),
+            "resourceActions": lambda n : setattr(self, 'resource_actions', n.get_collection_of_object_values(unified_rbac_resource_action.UnifiedRbacResourceAction)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -74,7 +74,7 @@ class UnifiedRbacResourceNamespace(entity.Entity):
         """
         Sets the resourceActions property value. Operations that an authorized principal are allowed to perform.
         Args:
-            value: Value to set for the resourceActions property.
+            value: Value to set for the resource_actions property.
         """
         self._resource_actions = value
     

@@ -10,7 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.task_processing_results.item.resume.resume_request_builder')
+identity_governance_resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.task_processing_results.item.identity_governance_resume.identity_governance_resume_request_builder')
 subject_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.task_processing_results.item.subject.subject_request_builder')
 task_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.runs.item.task_processing_results.item.task.task_request_builder')
 task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
@@ -21,11 +21,11 @@ class TaskProcessingResultItemRequestBuilder():
     Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.run entity.
     """
     @property
-    def resume(self) -> resume_request_builder.ResumeRequestBuilder:
+    def identity_governance_resume(self) -> identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder:
         """
         Provides operations to call the resume method.
         """
-        return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
+        return identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def subject(self) -> subject_request_builder.SubjectRequestBuilder:
@@ -59,12 +59,11 @@ class TaskProcessingResultItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[task_processing_result.TaskProcessingResult]:
+    async def get(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> Optional[task_processing_result.TaskProcessingResult]:
         """
         The related taskProcessingResults.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[task_processing_result.TaskProcessingResult]
         """
         request_info = self.to_get_request_information(
@@ -76,7 +75,7 @@ class TaskProcessingResultItemRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
@@ -89,7 +88,7 @@ class TaskProcessingResultItemRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.GET
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.set_query_string_parameters_from_raw_object(request_configuration.query_parameters)
@@ -129,7 +128,7 @@ class TaskProcessingResultItemRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

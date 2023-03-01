@@ -4,45 +4,59 @@ from kiota_abstractions.request_adapter import RequestAdapter
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-application_request_builder = lazy_import('msgraph.generated.groups.item.members.item.application.application_request_builder')
-device_request_builder = lazy_import('msgraph.generated.groups.item.members.item.device.device_request_builder')
-group_request_builder = lazy_import('msgraph.generated.groups.item.members.item.group.group_request_builder')
-org_contact_request_builder = lazy_import('msgraph.generated.groups.item.members.item.org_contact.org_contact_request_builder')
+graph_application_request_builder = lazy_import('msgraph.generated.groups.item.members.item.graph_application.graph_application_request_builder')
+graph_device_request_builder = lazy_import('msgraph.generated.groups.item.members.item.graph_device.graph_device_request_builder')
+graph_group_request_builder = lazy_import('msgraph.generated.groups.item.members.item.graph_group.graph_group_request_builder')
+graph_org_contact_request_builder = lazy_import('msgraph.generated.groups.item.members.item.graph_org_contact.graph_org_contact_request_builder')
+graph_service_principal_request_builder = lazy_import('msgraph.generated.groups.item.members.item.graph_service_principal.graph_service_principal_request_builder')
+graph_user_request_builder = lazy_import('msgraph.generated.groups.item.members.item.graph_user.graph_user_request_builder')
 ref_request_builder = lazy_import('msgraph.generated.groups.item.members.item.ref.ref_request_builder')
-service_principal_request_builder = lazy_import('msgraph.generated.groups.item.members.item.service_principal.service_principal_request_builder')
-user_request_builder = lazy_import('msgraph.generated.groups.item.members.item.user.user_request_builder')
 
 class DirectoryObjectItemRequestBuilder():
     """
     Builds and executes requests for operations under /groups/{group-id}/members/{directoryObject-id}
     """
     @property
-    def application(self) -> application_request_builder.ApplicationRequestBuilder:
+    def graph_application(self) -> graph_application_request_builder.GraphApplicationRequestBuilder:
         """
         Casts the previous resource to application.
         """
-        return application_request_builder.ApplicationRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_application_request_builder.GraphApplicationRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def device(self) -> device_request_builder.DeviceRequestBuilder:
+    def graph_device(self) -> graph_device_request_builder.GraphDeviceRequestBuilder:
         """
         Casts the previous resource to device.
         """
-        return device_request_builder.DeviceRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_device_request_builder.GraphDeviceRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def group(self) -> group_request_builder.GroupRequestBuilder:
+    def graph_group(self) -> graph_group_request_builder.GraphGroupRequestBuilder:
         """
         Casts the previous resource to group.
         """
-        return group_request_builder.GroupRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_group_request_builder.GraphGroupRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
-    def org_contact(self) -> org_contact_request_builder.OrgContactRequestBuilder:
+    def graph_org_contact(self) -> graph_org_contact_request_builder.GraphOrgContactRequestBuilder:
         """
         Casts the previous resource to orgContact.
         """
-        return org_contact_request_builder.OrgContactRequestBuilder(self.request_adapter, self.path_parameters)
+        return graph_org_contact_request_builder.GraphOrgContactRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_service_principal(self) -> graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder:
+        """
+        Casts the previous resource to servicePrincipal.
+        """
+        return graph_service_principal_request_builder.GraphServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def graph_user(self) -> graph_user_request_builder.GraphUserRequestBuilder:
+        """
+        Casts the previous resource to user.
+        """
+        return graph_user_request_builder.GraphUserRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def ref(self) -> ref_request_builder.RefRequestBuilder:
@@ -50,20 +64,6 @@ class DirectoryObjectItemRequestBuilder():
         Provides operations to manage the collection of group entities.
         """
         return ref_request_builder.RefRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def service_principal(self) -> service_principal_request_builder.ServicePrincipalRequestBuilder:
-        """
-        Casts the previous resource to servicePrincipal.
-        """
-        return service_principal_request_builder.ServicePrincipalRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user(self) -> user_request_builder.UserRequestBuilder:
-        """
-        Casts the previous resource to user.
-        """
-        return user_request_builder.UserRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """

@@ -49,7 +49,7 @@ class ResetPasswordPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "new_password": lambda n : setattr(self, 'new_password', n.get_str_value()),
+            "newPassword": lambda n : setattr(self, 'new_password', n.get_str_value()),
         }
         return fields
     
@@ -66,7 +66,7 @@ class ResetPasswordPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the newPassword property value. The newPassword property
         Args:
-            value: Value to set for the newPassword property.
+            value: Value to set for the new_password property.
         """
         self._new_password = value
     

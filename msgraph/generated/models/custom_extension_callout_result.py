@@ -10,7 +10,7 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @property
     def callout_date_time(self,) -> Optional[datetime]:
         """
-        Gets the calloutDateTime property value. The calloutDateTime property
+        Gets the calloutDateTime property value. When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
         Returns: Optional[datetime]
         """
         return self._callout_date_time
@@ -18,9 +18,9 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @callout_date_time.setter
     def callout_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the calloutDateTime property value. The calloutDateTime property
+        Sets the calloutDateTime property value. When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
         Args:
-            value: Value to set for the calloutDateTime property.
+            value: Value to set for the callout_date_time property.
         """
         self._callout_date_time = value
     
@@ -30,15 +30,15 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.customExtensionCalloutResult"
-        # The calloutDateTime property
+        # When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time. Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
         self._callout_date_time: Optional[datetime] = None
-        # The customExtensionId property
+        # Identifier of the custom extension that was called.
         self._custom_extension_id: Optional[str] = None
-        # The errorCode property
+        # Error code that was returned when the last API attempt failed.
         self._error_code: Optional[int] = None
-        # The httpStatus property
+        # The HTTP status code that was returned by the target API endpoint after the last API attempt.
         self._http_status: Optional[int] = None
-        # The numberOfAttempts property
+        # The number of API calls to the customer's API.
         self._number_of_attempts: Optional[int] = None
     
     @staticmethod
@@ -56,7 +56,7 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @property
     def custom_extension_id(self,) -> Optional[str]:
         """
-        Gets the customExtensionId property value. The customExtensionId property
+        Gets the customExtensionId property value. Identifier of the custom extension that was called.
         Returns: Optional[str]
         """
         return self._custom_extension_id
@@ -64,16 +64,16 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @custom_extension_id.setter
     def custom_extension_id(self,value: Optional[str] = None) -> None:
         """
-        Sets the customExtensionId property value. The customExtensionId property
+        Sets the customExtensionId property value. Identifier of the custom extension that was called.
         Args:
-            value: Value to set for the customExtensionId property.
+            value: Value to set for the custom_extension_id property.
         """
         self._custom_extension_id = value
     
     @property
     def error_code(self,) -> Optional[int]:
         """
-        Gets the errorCode property value. The errorCode property
+        Gets the errorCode property value. Error code that was returned when the last API attempt failed.
         Returns: Optional[int]
         """
         return self._error_code
@@ -81,9 +81,9 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @error_code.setter
     def error_code(self,value: Optional[int] = None) -> None:
         """
-        Sets the errorCode property value. The errorCode property
+        Sets the errorCode property value. Error code that was returned when the last API attempt failed.
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -93,11 +93,11 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "callout_date_time": lambda n : setattr(self, 'callout_date_time', n.get_datetime_value()),
-            "custom_extension_id": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
-            "http_status": lambda n : setattr(self, 'http_status', n.get_int_value()),
-            "number_of_attempts": lambda n : setattr(self, 'number_of_attempts', n.get_int_value()),
+            "calloutDateTime": lambda n : setattr(self, 'callout_date_time', n.get_datetime_value()),
+            "customExtensionId": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "httpStatus": lambda n : setattr(self, 'http_status', n.get_int_value()),
+            "numberOfAttempts": lambda n : setattr(self, 'number_of_attempts', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -106,7 +106,7 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @property
     def http_status(self,) -> Optional[int]:
         """
-        Gets the httpStatus property value. The httpStatus property
+        Gets the httpStatus property value. The HTTP status code that was returned by the target API endpoint after the last API attempt.
         Returns: Optional[int]
         """
         return self._http_status
@@ -114,16 +114,16 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @http_status.setter
     def http_status(self,value: Optional[int] = None) -> None:
         """
-        Sets the httpStatus property value. The httpStatus property
+        Sets the httpStatus property value. The HTTP status code that was returned by the target API endpoint after the last API attempt.
         Args:
-            value: Value to set for the httpStatus property.
+            value: Value to set for the http_status property.
         """
         self._http_status = value
     
     @property
     def number_of_attempts(self,) -> Optional[int]:
         """
-        Gets the numberOfAttempts property value. The numberOfAttempts property
+        Gets the numberOfAttempts property value. The number of API calls to the customer's API.
         Returns: Optional[int]
         """
         return self._number_of_attempts
@@ -131,9 +131,9 @@ class CustomExtensionCalloutResult(authentication_event_handler_result.Authentic
     @number_of_attempts.setter
     def number_of_attempts(self,value: Optional[int] = None) -> None:
         """
-        Sets the numberOfAttempts property value. The numberOfAttempts property
+        Sets the numberOfAttempts property value. The number of API calls to the customer's API.
         Args:
-            value: Value to set for the numberOfAttempts property.
+            value: Value to set for the number_of_attempts property.
         """
         self._number_of_attempts = value
     

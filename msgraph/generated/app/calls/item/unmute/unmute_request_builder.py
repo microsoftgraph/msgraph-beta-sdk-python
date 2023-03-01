@@ -30,19 +30,18 @@ class UnmuteRequestBuilder():
         if request_adapter is None:
             raise Exception("request_adapter cannot be undefined")
         # Url template to use to build the URL for the current request builder
-        self.url_template: str = "{+baseurl}/app/calls/{call%2Did}/microsoft.graph.unmute"
+        self.url_template: str = "{+baseurl}/app/calls/{call%2Did}/unmute"
 
         url_tpl_params = get_path_parameters(path_parameters)
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
-    async def post(self,body: Optional[unmute_post_request_body.UnmutePostRequestBody] = None, request_configuration: Optional[UnmuteRequestBuilderPostRequestConfiguration] = None, response_handler: Optional[ResponseHandler] = None) -> Optional[unmute_participant_operation.UnmuteParticipantOperation]:
+    async def post(self,body: Optional[unmute_post_request_body.UnmutePostRequestBody] = None, request_configuration: Optional[UnmuteRequestBuilderPostRequestConfiguration] = None) -> Optional[unmute_participant_operation.UnmuteParticipantOperation]:
         """
         Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
-            responseHandler: Response handler to use in place of the default response handling provided by the core service
         Returns: Optional[unmute_participant_operation.UnmuteParticipantOperation]
         """
         if body is None:
@@ -56,7 +55,7 @@ class UnmuteRequestBuilder():
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
-        return await self.request_adapter.send_async(request_info, unmute_participant_operation.UnmuteParticipantOperation, response_handler, error_mapping)
+        return await self.request_adapter.send_async(request_info, unmute_participant_operation.UnmuteParticipantOperation, error_mapping)
     
     def to_post_request_information(self,body: Optional[unmute_post_request_body.UnmutePostRequestBody] = None, request_configuration: Optional[UnmuteRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
@@ -72,7 +71,7 @@ class UnmuteRequestBuilder():
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
         request_info.http_method = Method.POST
-        request_info.headers["Accept"] = "application/json"
+        request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
@@ -85,7 +84,7 @@ class UnmuteRequestBuilder():
         Configuration for the request such as headers, query parameters, and middleware options.
         """
         # Request headers
-        headers: Optional[Dict[str, str]] = None
+        headers: Optional[Dict[str, Union[str, List[str]]]] = None
 
         # Request options
         options: Optional[List[RequestOption]] = None

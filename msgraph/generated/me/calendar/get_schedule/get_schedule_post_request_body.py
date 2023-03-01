@@ -36,7 +36,7 @@ class GetSchedulePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the availabilityViewInterval property value. The AvailabilityViewInterval property
         Args:
-            value: Value to set for the AvailabilityViewInterval property.
+            value: Value to set for the availability_view_interval property.
         """
         self._availability_view_interval = value
     
@@ -81,7 +81,7 @@ class GetSchedulePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the endTime property value. The EndTime property
         Args:
-            value: Value to set for the EndTime property.
+            value: Value to set for the end_time property.
         """
         self._end_time = value
     
@@ -91,10 +91,10 @@ class GetSchedulePostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "availability_view_interval": lambda n : setattr(self, 'availability_view_interval', n.get_int_value()),
-            "end_time": lambda n : setattr(self, 'end_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
-            "schedules": lambda n : setattr(self, 'schedules', n.get_collection_of_primitive_values(str)),
-            "start_time": lambda n : setattr(self, 'start_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "AvailabilityViewInterval": lambda n : setattr(self, 'availability_view_interval', n.get_int_value()),
+            "EndTime": lambda n : setattr(self, 'end_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
+            "Schedules": lambda n : setattr(self, 'schedules', n.get_collection_of_primitive_values(str)),
+            "StartTime": lambda n : setattr(self, 'start_time', n.get_object_value(date_time_time_zone.DateTimeTimeZone)),
         }
         return fields
     
@@ -142,7 +142,7 @@ class GetSchedulePostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the startTime property value. The StartTime property
         Args:
-            value: Value to set for the StartTime property.
+            value: Value to set for the start_time property.
         """
         self._start_time = value
     

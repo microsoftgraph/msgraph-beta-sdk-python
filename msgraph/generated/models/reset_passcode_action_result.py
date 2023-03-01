@@ -43,7 +43,7 @@ class ResetPasscodeActionResult(device_action_result.DeviceActionResult):
         """
         Sets the errorCode property value. RotateBitLockerKeys action error code. Valid values 0 to 2147483647
         Args:
-            value: Value to set for the errorCode property.
+            value: Value to set for the error_code property.
         """
         self._error_code = value
     
@@ -53,7 +53,7 @@ class ResetPasscodeActionResult(device_action_result.DeviceActionResult):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "error_code": lambda n : setattr(self, 'error_code', n.get_int_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_int_value()),
             "passcode": lambda n : setattr(self, 'passcode', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

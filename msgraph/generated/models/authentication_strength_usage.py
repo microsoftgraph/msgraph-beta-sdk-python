@@ -33,7 +33,7 @@ class AuthenticationStrengthUsage(AdditionalDataHolder, Parsable):
         # The mfa property
         self._mfa: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None
         # The none property
-        self._none_escaped: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None
+        self._none_: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
     
@@ -56,7 +56,7 @@ class AuthenticationStrengthUsage(AdditionalDataHolder, Parsable):
         """
         fields = {
             "mfa": lambda n : setattr(self, 'mfa', n.get_collection_of_object_values(conditional_access_policy.ConditionalAccessPolicy)),
-            "none": lambda n : setattr(self, 'none_escaped', n.get_collection_of_object_values(conditional_access_policy.ConditionalAccessPolicy)),
+            "none": lambda n : setattr(self, 'none_', n.get_collection_of_object_values(conditional_access_policy.ConditionalAccessPolicy)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
@@ -79,21 +79,21 @@ class AuthenticationStrengthUsage(AdditionalDataHolder, Parsable):
         self._mfa = value
     
     @property
-    def none_escaped(self,) -> Optional[List[conditional_access_policy.ConditionalAccessPolicy]]:
+    def none_(self,) -> Optional[List[conditional_access_policy.ConditionalAccessPolicy]]:
         """
         Gets the none property value. The none property
         Returns: Optional[List[conditional_access_policy.ConditionalAccessPolicy]]
         """
-        return self._none_escaped
+        return self._none_
     
-    @none_escaped.setter
-    def none_escaped(self,value: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None) -> None:
+    @none_.setter
+    def none_(self,value: Optional[List[conditional_access_policy.ConditionalAccessPolicy]] = None) -> None:
         """
         Sets the none property value. The none property
         Args:
-            value: Value to set for the none_escaped property.
+            value: Value to set for the none_ property.
         """
-        self._none_escaped = value
+        self._none_ = value
     
     @property
     def odata_type(self,) -> Optional[str]:
@@ -108,7 +108,7 @@ class AuthenticationStrengthUsage(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -121,7 +121,7 @@ class AuthenticationStrengthUsage(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_object_values("mfa", self.mfa)
-        writer.write_collection_of_object_values("none", self.none_escaped)
+        writer.write_collection_of_object_values("none", self.none_)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

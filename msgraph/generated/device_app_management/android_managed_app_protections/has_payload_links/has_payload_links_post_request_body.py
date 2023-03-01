@@ -49,7 +49,7 @@ class HasPayloadLinksPostRequestBody(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "payload_ids": lambda n : setattr(self, 'payload_ids', n.get_collection_of_primitive_values(str)),
+            "payloadIds": lambda n : setattr(self, 'payload_ids', n.get_collection_of_primitive_values(str)),
         }
         return fields
     
@@ -66,7 +66,7 @@ class HasPayloadLinksPostRequestBody(AdditionalDataHolder, Parsable):
         """
         Sets the payloadIds property value. The payloadIds property
         Args:
-            value: Value to set for the payloadIds property.
+            value: Value to set for the payload_ids property.
         """
         self._payload_ids = value
     

@@ -37,7 +37,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the compliancePolicy property value. Whether compliance policy is managed by Intune
         Args:
-            value: Value to set for the compliancePolicy property.
+            value: Value to set for the compliance_policy property.
         """
         self._compliance_policy = value
     
@@ -92,7 +92,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the deviceConfiguration property value. Whether device configuration is managed by Intune
         Args:
-            value: Value to set for the deviceConfiguration property.
+            value: Value to set for the device_configuration property.
         """
         self._device_configuration = value
     
@@ -109,7 +109,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the endpointProtection property value. Whether Endpoint Protection is managed by Intune
         Args:
-            value: Value to set for the endpointProtection property.
+            value: Value to set for the endpoint_protection property.
         """
         self._endpoint_protection = value
     
@@ -119,15 +119,15 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
-            "compliance_policy": lambda n : setattr(self, 'compliance_policy', n.get_bool_value()),
-            "device_configuration": lambda n : setattr(self, 'device_configuration', n.get_bool_value()),
-            "endpoint_protection": lambda n : setattr(self, 'endpoint_protection', n.get_bool_value()),
+            "compliancePolicy": lambda n : setattr(self, 'compliance_policy', n.get_bool_value()),
+            "deviceConfiguration": lambda n : setattr(self, 'device_configuration', n.get_bool_value()),
+            "endpointProtection": lambda n : setattr(self, 'endpoint_protection', n.get_bool_value()),
             "inventory": lambda n : setattr(self, 'inventory', n.get_bool_value()),
-            "modern_apps": lambda n : setattr(self, 'modern_apps', n.get_bool_value()),
+            "modernApps": lambda n : setattr(self, 'modern_apps', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "office_apps": lambda n : setattr(self, 'office_apps', n.get_bool_value()),
-            "resource_access": lambda n : setattr(self, 'resource_access', n.get_bool_value()),
-            "windows_update_for_business": lambda n : setattr(self, 'windows_update_for_business', n.get_bool_value()),
+            "officeApps": lambda n : setattr(self, 'office_apps', n.get_bool_value()),
+            "resourceAccess": lambda n : setattr(self, 'resource_access', n.get_bool_value()),
+            "windowsUpdateForBusiness": lambda n : setattr(self, 'windows_update_for_business', n.get_bool_value()),
         }
         return fields
     
@@ -161,7 +161,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the modernApps property value. Whether modern application is managed by Intune
         Args:
-            value: Value to set for the modernApps property.
+            value: Value to set for the modern_apps property.
         """
         self._modern_apps = value
     
@@ -178,7 +178,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the @odata.type property value. The OdataType property
         Args:
-            value: Value to set for the OdataType property.
+            value: Value to set for the odata_type property.
         """
         self._odata_type = value
     
@@ -195,7 +195,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the officeApps property value. Whether Office application is managed by Intune
         Args:
-            value: Value to set for the officeApps property.
+            value: Value to set for the office_apps property.
         """
         self._office_apps = value
     
@@ -212,7 +212,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the resourceAccess property value. Whether resource access is managed by Intune
         Args:
-            value: Value to set for the resourceAccess property.
+            value: Value to set for the resource_access property.
         """
         self._resource_access = value
     
@@ -248,7 +248,7 @@ class ConfigurationManagerClientEnabledFeatures(AdditionalDataHolder, Parsable):
         """
         Sets the windowsUpdateForBusiness property value. Whether Windows Update for Business is managed by Intune
         Args:
-            value: Value to set for the windowsUpdateForBusiness property.
+            value: Value to set for the windows_update_for_business property.
         """
         self._windows_update_for_business = value
     

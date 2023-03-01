@@ -1,7 +1,7 @@
 from enum import Enum
 
 class SubmissionResultDetail(Enum):
-    None_escaped = "none",
+    None_ = "none",
     UnderInvestigation = "underInvestigation",
     SimulatedThreat = "simulatedThreat",
     AllowedBySecOps = "allowedBySecOps",
