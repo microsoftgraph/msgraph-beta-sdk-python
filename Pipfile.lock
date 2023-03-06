@@ -495,11 +495,11 @@
         },
         "microsoft-kiota-abstractions": {
             "hashes": [
-                "sha256:317be35be5ed1c88e264ebcd40b290ebd063d4efcaa9922716b6f6d8cbc408bb",
-                "sha256:a04a6eb95f8bd02c5d0231c68d3627e229cd580954b9f8bf105475f0b8d88224"
+                "sha256:05235ea101725d5766408fec149c04dc2e0ca71b7b31a0e920987bb97a44cf81",
+                "sha256:6a5dfbeb2d6bc6d05e79ce3cbbd487da36fc0ddf0ecbab58ca96222ff2daa39e"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.5.0"
         },
         "microsoft-kiota-authentication-azure": {
             "hashes": [
