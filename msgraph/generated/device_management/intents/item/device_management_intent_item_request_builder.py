@@ -22,6 +22,7 @@ device_management_intent_device_setting_state_summary_item_request_builder = laz
 device_states_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_states.device_states_request_builder')
 device_management_intent_device_state_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_states.item.device_management_intent_device_state_item_request_builder')
 device_state_summary_request_builder = lazy_import('msgraph.generated.device_management.intents.item.device_state_summary.device_state_summary_request_builder')
+get_customized_settings_request_builder = lazy_import('msgraph.generated.device_management.intents.item.get_customized_settings.get_customized_settings_request_builder')
 migrate_to_template_request_builder = lazy_import('msgraph.generated.device_management.intents.item.migrate_to_template.migrate_to_template_request_builder')
 settings_request_builder = lazy_import('msgraph.generated.device_management.intents.item.settings.settings_request_builder')
 device_management_setting_instance_item_request_builder = lazy_import('msgraph.generated.device_management.intents.item.settings.item.device_management_setting_instance_item_request_builder')
@@ -84,6 +85,13 @@ class DeviceManagementIntentItemRequestBuilder():
         Provides operations to manage the deviceStateSummary property of the microsoft.graph.deviceManagementIntent entity.
         """
         return device_state_summary_request_builder.DeviceStateSummaryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_customized_settings(self) -> get_customized_settings_request_builder.GetCustomizedSettingsRequestBuilder:
+        """
+        Provides operations to call the getCustomizedSettings method.
+        """
+        return get_customized_settings_request_builder.GetCustomizedSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def migrate_to_template(self) -> migrate_to_template_request_builder.MigrateToTemplateRequestBuilder:

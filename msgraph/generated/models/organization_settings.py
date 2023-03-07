@@ -7,6 +7,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 insights_settings = lazy_import('msgraph.generated.models.insights_settings')
 microsoft_application_data_access_settings = lazy_import('msgraph.generated.models.microsoft_application_data_access_settings')
 profile_card_property = lazy_import('msgraph.generated.models.profile_card_property')
+pronouns_settings = lazy_import('msgraph.generated.models.pronouns_settings')
 
 class OrganizationSettings(entity.Entity):
     def __init__(self,) -> None:
@@ -26,6 +27,8 @@ class OrganizationSettings(entity.Entity):
         self._people_insights: Optional[insights_settings.InsightsSettings] = None
         # Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card. Get organization settings returns the properties configured for profile cards for the organization.
         self._profile_card_properties: Optional[List[profile_card_property.ProfileCardProperty]] = None
+        # Represents administrator settings that manage the support of pronouns in an organization.
+        self._pronouns: Optional[pronouns_settings.PronounsSettings] = None
     
     @property
     def contact_insights(self,) -> Optional[insights_settings.InsightsSettings]:
@@ -67,6 +70,7 @@ class OrganizationSettings(entity.Entity):
             "microsoftApplicationDataAccess": lambda n : setattr(self, 'microsoft_application_data_access', n.get_object_value(microsoft_application_data_access_settings.MicrosoftApplicationDataAccessSettings)),
             "peopleInsights": lambda n : setattr(self, 'people_insights', n.get_object_value(insights_settings.InsightsSettings)),
             "profileCardProperties": lambda n : setattr(self, 'profile_card_properties', n.get_collection_of_object_values(profile_card_property.ProfileCardProperty)),
+            "pronouns": lambda n : setattr(self, 'pronouns', n.get_object_value(pronouns_settings.PronounsSettings)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -140,6 +144,23 @@ class OrganizationSettings(entity.Entity):
         """
         self._profile_card_properties = value
     
+    @property
+    def pronouns(self,) -> Optional[pronouns_settings.PronounsSettings]:
+        """
+        Gets the pronouns property value. Represents administrator settings that manage the support of pronouns in an organization.
+        Returns: Optional[pronouns_settings.PronounsSettings]
+        """
+        return self._pronouns
+    
+    @pronouns.setter
+    def pronouns(self,value: Optional[pronouns_settings.PronounsSettings] = None) -> None:
+        """
+        Sets the pronouns property value. Represents administrator settings that manage the support of pronouns in an organization.
+        Args:
+            value: Value to set for the pronouns property.
+        """
+        self._pronouns = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -154,5 +175,6 @@ class OrganizationSettings(entity.Entity):
         writer.write_object_value("microsoftApplicationDataAccess", self.microsoft_application_data_access)
         writer.write_object_value("peopleInsights", self.people_insights)
         writer.write_collection_of_object_values("profileCardProperties", self.profile_card_properties)
+        writer.write_object_value("pronouns", self.pronouns)
     
 

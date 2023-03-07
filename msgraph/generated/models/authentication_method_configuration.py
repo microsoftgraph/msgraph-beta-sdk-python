@@ -10,7 +10,7 @@ exclude_target = lazy_import('msgraph.generated.models.exclude_target')
 class AuthenticationMethodConfiguration(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new authenticationMethodConfiguration and sets the default values.
+        Instantiates a new AuthenticationMethodConfiguration and sets the default values.
         """
         super().__init__()
         # Groups of users that are excluded from a policy.

@@ -28,7 +28,7 @@ class CloudPcUserSetting(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcUserSetting and sets the default values.
+        Instantiates a new cloudPcUserSetting and sets the default values.
         """
         super().__init__()
         # Represents the set of Microsoft 365 groups and security groups in Azure Active Directory that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSettingample.

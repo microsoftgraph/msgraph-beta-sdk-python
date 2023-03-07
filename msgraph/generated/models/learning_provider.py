@@ -14,8 +14,6 @@ class LearningProvider(entity.Entity):
         super().__init__()
         # The display name that appears in Viva Learning. Required.
         self._display_name: Optional[str] = None
-        # The state of the provider. Optional.
-        self._is_enabled: Optional[bool] = None
         # Learning catalog items for the provider.
         self._learning_contents: Optional[List[learning_content.LearningContent]] = None
         # Authentication URL to access the courses for the provider. Optional.
@@ -67,7 +65,6 @@ class LearningProvider(entity.Entity):
         """
         fields = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),
             "learningContents": lambda n : setattr(self, 'learning_contents', n.get_collection_of_object_values(learning_content.LearningContent)),
             "loginWebUrl": lambda n : setattr(self, 'login_web_url', n.get_str_value()),
             "longLogoWebUrlForDarkTheme": lambda n : setattr(self, 'long_logo_web_url_for_dark_theme', n.get_str_value()),
@@ -78,23 +75,6 @@ class LearningProvider(entity.Entity):
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
-    
-    @property
-    def is_enabled(self,) -> Optional[bool]:
-        """
-        Gets the isEnabled property value. The state of the provider. Optional.
-        Returns: Optional[bool]
-        """
-        return self._is_enabled
-    
-    @is_enabled.setter
-    def is_enabled(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the isEnabled property value. The state of the provider. Optional.
-        Args:
-            value: Value to set for the is_enabled property.
-        """
-        self._is_enabled = value
     
     @property
     def learning_contents(self,) -> Optional[List[learning_content.LearningContent]]:
@@ -174,7 +154,6 @@ class LearningProvider(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_bool_value("isEnabled", self.is_enabled)
         writer.write_collection_of_object_values("learningContents", self.learning_contents)
         writer.write_str_value("loginWebUrl", self.login_web_url)
         writer.write_str_value("longLogoWebUrlForDarkTheme", self.long_logo_web_url_for_dark_theme)

@@ -37,7 +37,7 @@ class TemplateDefinitionRequestBuilder():
     
     async def get(self,request_configuration: Optional[TemplateDefinitionRequestBuilderGetRequestConfiguration] = None) -> Optional[team_template_definition.TeamTemplateDefinition]:
         """
-        Get templateDefinition from groups
+        Generic representation of a team template definition for a team with a specific structure and configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[team_template_definition.TeamTemplateDefinition]
@@ -55,7 +55,7 @@ class TemplateDefinitionRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[TemplateDefinitionRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get templateDefinition from groups
+        Generic representation of a team template definition for a team with a specific structure and configuration.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -74,7 +74,7 @@ class TemplateDefinitionRequestBuilder():
     @dataclass
     class TemplateDefinitionRequestBuilderGetQueryParameters():
         """
-        Get templateDefinition from groups
+        Generic representation of a team template definition for a team with a specific structure and configuration.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

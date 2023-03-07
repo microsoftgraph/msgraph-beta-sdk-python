@@ -12,9 +12,6 @@ managed_device_mobile_app_configuration_user_status = lazy_import('msgraph.gener
 managed_device_mobile_app_configuration_user_summary = lazy_import('msgraph.generated.models.managed_device_mobile_app_configuration_user_summary')
 
 class ManagedDeviceMobileAppConfiguration(entity.Entity):
-    """
-    An abstract class for Mobile app configuration for enrolled devices.
-    """
     @property
     def assignments(self,) -> Optional[List[managed_device_mobile_app_configuration_assignment.ManagedDeviceMobileAppConfigurationAssignment]]:
         """
@@ -34,7 +31,7 @@ class ManagedDeviceMobileAppConfiguration(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new managedDeviceMobileAppConfiguration and sets the default values.
+        Instantiates a new ManagedDeviceMobileAppConfiguration and sets the default values.
         """
         super().__init__()
         # The list of group assignemenets for app configration.

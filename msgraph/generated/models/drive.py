@@ -49,7 +49,7 @@ class Drive(base_item.BaseItem):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new Drive and sets the default values.
+        Instantiates a new drive and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.drive"

@@ -11,6 +11,9 @@ subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_al
 subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
 
 class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfiguration):
+    """
+    Base Windows Phone 8.1+ certificate profile.
+    """
     @property
     def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
         """

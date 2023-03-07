@@ -12,6 +12,9 @@ enablement = lazy_import('msgraph.generated.models.enablement')
 windows_delivery_optimization_mode = lazy_import('msgraph.generated.models.windows_delivery_optimization_mode')
 
 class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfiguration):
+    """
+    Windows Delivery Optimization configuration
+    """
     @property
     def background_download_from_http_delay_in_seconds(self,) -> Optional[int]:
         """
@@ -99,7 +102,7 @@ class WindowsDeliveryOptimizationConfiguration(device_configuration.DeviceConfig
     
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsDeliveryOptimizationConfiguration and sets the default values.
+        Instantiates a new windowsDeliveryOptimizationConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsDeliveryOptimizationConfiguration"

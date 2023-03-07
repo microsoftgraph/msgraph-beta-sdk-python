@@ -66,7 +66,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcProvisioningPolicy and sets the default values.
+        Instantiates a new CloudPcProvisioningPolicy and sets the default values.
         """
         super().__init__()
         # The URL of the alternate resource that links to this provisioning policy. Read-only.

@@ -4,6 +4,7 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+app_log_upload_state = lazy_import('msgraph.generated.models.app_log_upload_state')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class DeviceLogCollectionResponse(entity.Entity):
@@ -33,8 +34,10 @@ class DeviceLogCollectionResponse(entity.Entity):
         self._requested_date_time_u_t_c: Optional[datetime] = None
         # The size of the logs. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
         self._size: Optional[float] = None
-        # The status of the log collection request
-        self._status: Optional[str] = None
+        # The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._size_in_k_b: Optional[float] = None
+        # AppLogUploadStatus
+        self._status: Optional[app_log_upload_state.AppLogUploadState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceLogCollectionResponse:
@@ -113,7 +116,8 @@ class DeviceLogCollectionResponse(entity.Entity):
             "receivedDateTimeUTC": lambda n : setattr(self, 'received_date_time_u_t_c', n.get_datetime_value()),
             "requestedDateTimeUTC": lambda n : setattr(self, 'requested_date_time_u_t_c', n.get_datetime_value()),
             "size": lambda n : setattr(self, 'size', n.get_float_value()),
-            "status": lambda n : setattr(self, 'status', n.get_str_value()),
+            "sizeInKB": lambda n : setattr(self, 'size_in_k_b', n.get_float_value()),
+            "status": lambda n : setattr(self, 'status', n.get_enum_value(app_log_upload_state.AppLogUploadState)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -204,7 +208,8 @@ class DeviceLogCollectionResponse(entity.Entity):
         writer.write_datetime_value("receivedDateTimeUTC", self.received_date_time_u_t_c)
         writer.write_datetime_value("requestedDateTimeUTC", self.requested_date_time_u_t_c)
         writer.write_float_value("size", self.size)
-        writer.write_str_value("status", self.status)
+        writer.write_float_value("sizeInKB", self.size_in_k_b)
+        writer.write_enum_value("status", self.status)
     
     @property
     def size(self,) -> Optional[float]:
@@ -224,17 +229,34 @@ class DeviceLogCollectionResponse(entity.Entity):
         self._size = value
     
     @property
-    def status(self,) -> Optional[str]:
+    def size_in_k_b(self,) -> Optional[float]:
         """
-        Gets the status property value. The status of the log collection request
-        Returns: Optional[str]
+        Gets the sizeInKB property value. The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        Returns: Optional[float]
+        """
+        return self._size_in_k_b
+    
+    @size_in_k_b.setter
+    def size_in_k_b(self,value: Optional[float] = None) -> None:
+        """
+        Sets the sizeInKB property value. The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        Args:
+            value: Value to set for the size_in_k_b property.
+        """
+        self._size_in_k_b = value
+    
+    @property
+    def status(self,) -> Optional[app_log_upload_state.AppLogUploadState]:
+        """
+        Gets the status property value. AppLogUploadStatus
+        Returns: Optional[app_log_upload_state.AppLogUploadState]
         """
         return self._status
     
     @status.setter
-    def status(self,value: Optional[str] = None) -> None:
+    def status(self,value: Optional[app_log_upload_state.AppLogUploadState] = None) -> None:
         """
-        Sets the status property value. The status of the log collection request
+        Sets the status property value. AppLogUploadStatus
         Args:
             value: Value to set for the status property.
         """

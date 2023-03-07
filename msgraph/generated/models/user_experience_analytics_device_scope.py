@@ -10,9 +10,6 @@ device_scope_status = lazy_import('msgraph.generated.models.device_scope_status'
 entity = lazy_import('msgraph.generated.models.entity')
 
 class UserExperienceAnalyticsDeviceScope(entity.Entity):
-    """
-    The user experience analytics device scope entity contains device scope configuration values use to apply filtering on the endpoint analytics reports.
-    """
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsDeviceScope and sets the default values.

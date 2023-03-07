@@ -36,7 +36,7 @@ class SubjectRightsRequestStageDetail(AdditionalDataHolder, Parsable):
         self._error: Optional[public_error.PublicError] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue.
+        # The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue, approval.
         self._stage: Optional[subject_rights_request_stage.SubjectRightsRequestStage] = None
         # Status of the current stage. Possible values are: notStarted, current, completed, failed, unknownFutureValue.
         self._status: Optional[subject_rights_request_stage_status.SubjectRightsRequestStageStatus] = None
@@ -117,7 +117,7 @@ class SubjectRightsRequestStageDetail(AdditionalDataHolder, Parsable):
     @property
     def stage(self,) -> Optional[subject_rights_request_stage.SubjectRightsRequestStage]:
         """
-        Gets the stage property value. The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue.
+        Gets the stage property value. The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue, approval.
         Returns: Optional[subject_rights_request_stage.SubjectRightsRequestStage]
         """
         return self._stage
@@ -125,7 +125,7 @@ class SubjectRightsRequestStageDetail(AdditionalDataHolder, Parsable):
     @stage.setter
     def stage(self,value: Optional[subject_rights_request_stage.SubjectRightsRequestStage] = None) -> None:
         """
-        Sets the stage property value. The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue.
+        Sets the stage property value. The stage of the subject rights request. Possible values are: contentRetrieval, contentReview, generateReport, contentDeletion, caseResolved, unknownFutureValue, approval.
         Args:
             value: Value to set for the stage property.
         """

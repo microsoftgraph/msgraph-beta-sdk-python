@@ -6,12 +6,9 @@ from typing import Any, Callable, Dict, List, Optional, Union
 entity = lazy_import('msgraph.generated.models.entity')
 
 class BookingNamedEntity(entity.Entity):
-    """
-    Booking entities that provide a display name.
-    """
     def __init__(self,) -> None:
         """
-        Instantiates a new bookingNamedEntity and sets the default values.
+        Instantiates a new BookingNamedEntity and sets the default values.
         """
         super().__init__()
         # A name for the derived entity, which interfaces with customers.
