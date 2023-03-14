@@ -80,7 +80,7 @@ class CloudPcOnPremisesConnection(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcOnPremisesConnection and sets the default values.
+        Instantiates a new cloudPcOnPremisesConnection and sets the default values.
         """
         super().__init__()
         # The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Optional.

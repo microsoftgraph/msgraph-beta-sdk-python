@@ -9,6 +9,9 @@ group_policy_definition = lazy_import('msgraph.generated.models.group_policy_def
 group_policy_type = lazy_import('msgraph.generated.models.group_policy_type')
 
 class GroupPolicyDefinitionFile(entity.Entity):
+    """
+    The entity represents an ADMX (Administrative Template) XML file. The ADMX file contains a collection of group policy definitions and their locations by category path. The group policy definition file also contains the languages supported as determined by the language dependent ADML (Administrative Template) language files.
+    """
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicyDefinitionFile and sets the default values.

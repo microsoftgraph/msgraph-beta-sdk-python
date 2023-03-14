@@ -15,6 +15,7 @@ lobby_bypass_settings = lazy_import('msgraph.generated.models.lobby_bypass_setti
 meeting_attendance_report = lazy_import('msgraph.generated.models.meeting_attendance_report')
 meeting_capabilities = lazy_import('msgraph.generated.models.meeting_capabilities')
 meeting_chat_history_default_mode = lazy_import('msgraph.generated.models.meeting_chat_history_default_mode')
+meeting_chat_mode = lazy_import('msgraph.generated.models.meeting_chat_mode')
 meeting_participants = lazy_import('msgraph.generated.models.meeting_participants')
 meeting_registration = lazy_import('msgraph.generated.models.meeting_registration')
 online_meeting_presenters = lazy_import('msgraph.generated.models.online_meeting_presenters')
@@ -58,9 +59,26 @@ class OnlineMeeting(entity.Entity):
         self._allow_attendee_to_enable_mic = value
     
     @property
+    def allow_meeting_chat(self,) -> Optional[meeting_chat_mode.MeetingChatMode]:
+        """
+        Gets the allowMeetingChat property value. Specifies the mode of meeting chat.
+        Returns: Optional[meeting_chat_mode.MeetingChatMode]
+        """
+        return self._allow_meeting_chat
+    
+    @allow_meeting_chat.setter
+    def allow_meeting_chat(self,value: Optional[meeting_chat_mode.MeetingChatMode] = None) -> None:
+        """
+        Sets the allowMeetingChat property value. Specifies the mode of meeting chat.
+        Args:
+            value: Value to set for the allow_meeting_chat property.
+        """
+        self._allow_meeting_chat = value
+    
+    @property
     def allow_participants_to_change_name(self,) -> Optional[bool]:
         """
-        Gets the allowParticipantsToChangeName property value. The allowParticipantsToChangeName property
+        Gets the allowParticipantsToChangeName property value. Specifies if participants are allowed to rename themselves in an instance of the meeting.
         Returns: Optional[bool]
         """
         return self._allow_participants_to_change_name
@@ -68,7 +86,7 @@ class OnlineMeeting(entity.Entity):
     @allow_participants_to_change_name.setter
     def allow_participants_to_change_name(self,value: Optional[bool] = None) -> None:
         """
-        Sets the allowParticipantsToChangeName property value. The allowParticipantsToChangeName property
+        Sets the allowParticipantsToChangeName property value. Specifies if participants are allowed to rename themselves in an instance of the meeting.
         Args:
             value: Value to set for the allow_participants_to_change_name property.
         """
@@ -253,7 +271,9 @@ class OnlineMeeting(entity.Entity):
         self._allow_attendee_to_enable_camera: Optional[bool] = None
         # Indicates whether attendees can turn on their microphone.
         self._allow_attendee_to_enable_mic: Optional[bool] = None
-        # The allowParticipantsToChangeName property
+        # Specifies the mode of meeting chat.
+        self._allow_meeting_chat: Optional[meeting_chat_mode.MeetingChatMode] = None
+        # Specifies if participants are allowed to rename themselves in an instance of the meeting.
         self._allow_participants_to_change_name: Optional[bool] = None
         # Indicates if Teams reactions are enabled for the meeting.
         self._allow_teamwork_reactions: Optional[bool] = None
@@ -394,6 +414,7 @@ class OnlineMeeting(entity.Entity):
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(online_meeting_presenters.OnlineMeetingPresenters)),
             "allowAttendeeToEnableCamera": lambda n : setattr(self, 'allow_attendee_to_enable_camera', n.get_bool_value()),
             "allowAttendeeToEnableMic": lambda n : setattr(self, 'allow_attendee_to_enable_mic', n.get_bool_value()),
+            "allowMeetingChat": lambda n : setattr(self, 'allow_meeting_chat', n.get_enum_value(meeting_chat_mode.MeetingChatMode)),
             "allowParticipantsToChangeName": lambda n : setattr(self, 'allow_participants_to_change_name', n.get_bool_value()),
             "allowTeamworkReactions": lambda n : setattr(self, 'allow_teamwork_reactions', n.get_bool_value()),
             "alternativeRecording": lambda n : setattr(self, 'alternative_recording', n.get_bytes_value()),
@@ -647,6 +668,7 @@ class OnlineMeeting(entity.Entity):
         writer.write_enum_value("allowedPresenters", self.allowed_presenters)
         writer.write_bool_value("allowAttendeeToEnableCamera", self.allow_attendee_to_enable_camera)
         writer.write_bool_value("allowAttendeeToEnableMic", self.allow_attendee_to_enable_mic)
+        writer.write_enum_value("allowMeetingChat", self.allow_meeting_chat)
         writer.write_bool_value("allowParticipantsToChangeName", self.allow_participants_to_change_name)
         writer.write_bool_value("allowTeamworkReactions", self.allow_teamwork_reactions)
         writer.write_object_value("alternativeRecording", self.alternative_recording)

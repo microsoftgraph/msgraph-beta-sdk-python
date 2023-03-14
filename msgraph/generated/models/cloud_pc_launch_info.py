@@ -68,6 +68,10 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
         self._cloud_pc_launch_url: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+        # Indicates whether the Cloud PC supports switch functionality. If the value is true, it supports switch functionality; otherwise,  false.
+        self._windows365_switch_compatible: Optional[bool] = None
+        # Indicates the reason the Cloud PC doesn't support switch. CPCOsVersionNotMeetRequirement indicates that the user needs to update their Cloud PC operation system version. CPCHardwareNotMeetRequirement indicates that the Cloud PC needs more CPU or RAM to support the functionality.
+        self._windows365_switch_not_compatible_reason: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcLaunchInfo:
@@ -90,6 +94,8 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
             "cloudPcId": lambda n : setattr(self, 'cloud_pc_id', n.get_str_value()),
             "cloudPcLaunchUrl": lambda n : setattr(self, 'cloud_pc_launch_url', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
+            "windows365SwitchCompatible": lambda n : setattr(self, 'windows365_switch_compatible', n.get_bool_value()),
+            "windows365SwitchNotCompatibleReason": lambda n : setattr(self, 'windows365_switch_not_compatible_reason', n.get_str_value()),
         }
         return fields
     
@@ -121,6 +127,42 @@ class CloudPcLaunchInfo(AdditionalDataHolder, Parsable):
         writer.write_str_value("cloudPcId", self.cloud_pc_id)
         writer.write_str_value("cloudPcLaunchUrl", self.cloud_pc_launch_url)
         writer.write_str_value("@odata.type", self.odata_type)
+        writer.write_bool_value("windows365SwitchCompatible", self.windows365_switch_compatible)
+        writer.write_str_value("windows365SwitchNotCompatibleReason", self.windows365_switch_not_compatible_reason)
         writer.write_additional_data_value(self.additional_data)
+    
+    @property
+    def windows365_switch_compatible(self,) -> Optional[bool]:
+        """
+        Gets the windows365SwitchCompatible property value. Indicates whether the Cloud PC supports switch functionality. If the value is true, it supports switch functionality; otherwise,  false.
+        Returns: Optional[bool]
+        """
+        return self._windows365_switch_compatible
+    
+    @windows365_switch_compatible.setter
+    def windows365_switch_compatible(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the windows365SwitchCompatible property value. Indicates whether the Cloud PC supports switch functionality. If the value is true, it supports switch functionality; otherwise,  false.
+        Args:
+            value: Value to set for the windows365_switch_compatible property.
+        """
+        self._windows365_switch_compatible = value
+    
+    @property
+    def windows365_switch_not_compatible_reason(self,) -> Optional[str]:
+        """
+        Gets the windows365SwitchNotCompatibleReason property value. Indicates the reason the Cloud PC doesn't support switch. CPCOsVersionNotMeetRequirement indicates that the user needs to update their Cloud PC operation system version. CPCHardwareNotMeetRequirement indicates that the Cloud PC needs more CPU or RAM to support the functionality.
+        Returns: Optional[str]
+        """
+        return self._windows365_switch_not_compatible_reason
+    
+    @windows365_switch_not_compatible_reason.setter
+    def windows365_switch_not_compatible_reason(self,value: Optional[str] = None) -> None:
+        """
+        Sets the windows365SwitchNotCompatibleReason property value. Indicates the reason the Cloud PC doesn't support switch. CPCOsVersionNotMeetRequirement indicates that the user needs to update their Cloud PC operation system version. CPCHardwareNotMeetRequirement indicates that the Cloud PC needs more CPU or RAM to support the functionality.
+        Args:
+            value: Value to set for the windows365_switch_not_compatible_reason property.
+        """
+        self._windows365_switch_not_compatible_reason = value
     
 

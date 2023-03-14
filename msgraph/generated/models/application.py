@@ -214,7 +214,7 @@ class Application(directory_object.DirectoryObject):
         self._sign_in_audience: Optional[str] = None
         # Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
         self._spa: Optional[spa_application.SpaApplication] = None
-        # The synchronization property
+        # Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         self._synchronization: Optional[synchronization.Synchronization] = None
         # Custom strings that can be used to categorize and identify the application. Not nullable.Supports $filter (eq, not, ge, le, startsWith).
         self._tags: Optional[List[str]] = None
@@ -888,7 +888,7 @@ class Application(directory_object.DirectoryObject):
     @property
     def synchronization(self,) -> Optional[synchronization.Synchronization]:
         """
-        Gets the synchronization property value. The synchronization property
+        Gets the synchronization property value. Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         Returns: Optional[synchronization.Synchronization]
         """
         return self._synchronization
@@ -896,7 +896,7 @@ class Application(directory_object.DirectoryObject):
     @synchronization.setter
     def synchronization(self,value: Optional[synchronization.Synchronization] = None) -> None:
         """
-        Sets the synchronization property value. The synchronization property
+        Sets the synchronization property value. Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         Args:
             value: Value to set for the synchronization property.
         """

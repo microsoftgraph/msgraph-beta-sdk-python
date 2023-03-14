@@ -3,6 +3,8 @@ from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, Par
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+authentication_strength_result = lazy_import('msgraph.generated.models.authentication_strength_result')
+
 class AuthenticationStrength(AdditionalDataHolder, Parsable):
     @property
     def additional_data(self,) -> Dict[str, Any]:
@@ -38,6 +40,23 @@ class AuthenticationStrength(AdditionalDataHolder, Parsable):
         """
         self._authentication_strength_id = value
     
+    @property
+    def authentication_strength_result(self,) -> Optional[authentication_strength_result.AuthenticationStrengthResult]:
+        """
+        Gets the authenticationStrengthResult property value. The result of the authentication strength. The possible values are: notSet, skippedForProofUp, satisfied, singleChallengeRequired, multipleChallengesRequired, singleRegistrationRequired, multipleRegistrationsRequired, cannotSatisfyDueToCombinationConfiguration, cannotSatisfy, unknownFutureValue.
+        Returns: Optional[authentication_strength_result.AuthenticationStrengthResult]
+        """
+        return self._authentication_strength_result
+    
+    @authentication_strength_result.setter
+    def authentication_strength_result(self,value: Optional[authentication_strength_result.AuthenticationStrengthResult] = None) -> None:
+        """
+        Sets the authenticationStrengthResult property value. The result of the authentication strength. The possible values are: notSet, skippedForProofUp, satisfied, singleChallengeRequired, multipleChallengesRequired, singleRegistrationRequired, multipleRegistrationsRequired, cannotSatisfyDueToCombinationConfiguration, cannotSatisfy, unknownFutureValue.
+        Args:
+            value: Value to set for the authentication_strength_result property.
+        """
+        self._authentication_strength_result = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new authenticationStrength and sets the default values.
@@ -47,6 +66,8 @@ class AuthenticationStrength(AdditionalDataHolder, Parsable):
 
         # Identifier of the authentication strength.
         self._authentication_strength_id: Optional[str] = None
+        # The result of the authentication strength. The possible values are: notSet, skippedForProofUp, satisfied, singleChallengeRequired, multipleChallengesRequired, singleRegistrationRequired, multipleRegistrationsRequired, cannotSatisfyDueToCombinationConfiguration, cannotSatisfy, unknownFutureValue.
+        self._authentication_strength_result: Optional[authentication_strength_result.AuthenticationStrengthResult] = None
         # The name of the authentication strength.
         self._display_name: Optional[str] = None
         # The OdataType property
@@ -88,6 +109,7 @@ class AuthenticationStrength(AdditionalDataHolder, Parsable):
         """
         fields = {
             "authenticationStrengthId": lambda n : setattr(self, 'authentication_strength_id', n.get_str_value()),
+            "authenticationStrengthResult": lambda n : setattr(self, 'authentication_strength_result', n.get_enum_value(authentication_strength_result.AuthenticationStrengthResult)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
@@ -119,6 +141,7 @@ class AuthenticationStrength(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_str_value("authenticationStrengthId", self.authentication_strength_id)
+        writer.write_enum_value("authenticationStrengthResult", self.authentication_strength_result)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)

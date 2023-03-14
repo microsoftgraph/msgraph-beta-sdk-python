@@ -7,6 +7,9 @@ microsoft_edge_channel = lazy_import('msgraph.generated.models.microsoft_edge_ch
 mobile_app = lazy_import('msgraph.generated.models.mobile_app')
 
 class WindowsMicrosoftEdgeApp(mobile_app.MobileApp):
+    """
+    Contains properties and inherited properties for the Microsoft Edge app on Windows.
+    """
     @property
     def channel(self,) -> Optional[microsoft_edge_channel.MicrosoftEdgeChannel]:
         """
@@ -26,7 +29,7 @@ class WindowsMicrosoftEdgeApp(mobile_app.MobileApp):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new WindowsMicrosoftEdgeApp and sets the default values.
+        Instantiates a new windowsMicrosoftEdgeApp and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.windowsMicrosoftEdgeApp"

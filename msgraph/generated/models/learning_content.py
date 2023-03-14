@@ -35,7 +35,7 @@ class LearningContent(entity.Entity):
         self._content_web_url: Optional[str] = None
         # The authors, creators, or contributors of the learning content. Optional.
         self._contributors: Optional[List[str]] = None
-        # The date when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
+        # The date and time when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         self._created_date_time: Optional[datetime] = None
         # The description or summary for the learning content. Optional.
         self._description: Optional[str] = None
@@ -45,7 +45,7 @@ class LearningContent(entity.Entity):
         self._external_id: Optional[str] = None
         # The format of the learning content. For example, Course, Video, Book, Book Summary, Audiobook Summary. Optional.
         self._format: Optional[str] = None
-        # Indicates whether the content is active or not. Inactive content will not show up in the UI. The default value is true. Optional.
+        # Indicates whether the content is active or not. Inactive content doesn't show up in the UI. The default value is true. Optional.
         self._is_active: Optional[bool] = None
         # Indicates whether the learning content requires the user to sign-in on the learning provider platform or not. The default value is false. Optional.
         self._is_premium: Optional[bool] = None
@@ -53,7 +53,7 @@ class LearningContent(entity.Entity):
         self._is_searchable: Optional[bool] = None
         # The language of the learning content, for example, en-us or fr-fr. Required.
         self._language_tag: Optional[str] = None
-        # The date when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
+        # The date and time when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         self._last_modified_date_time: Optional[datetime] = None
         # The number of pages of the learning content, for example, 9. Optional.
         self._number_of_pages: Optional[int] = None
@@ -105,7 +105,7 @@ class LearningContent(entity.Entity):
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
-        Gets the createdDateTime property value. The date when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
+        Gets the createdDateTime property value. The date and time when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         Returns: Optional[datetime]
         """
         return self._created_date_time
@@ -113,7 +113,7 @@ class LearningContent(entity.Entity):
     @created_date_time.setter
     def created_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the createdDateTime property value. The date when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
+        Sets the createdDateTime property value. The date and time when the learning content was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         Args:
             value: Value to set for the created_date_time property.
         """
@@ -231,7 +231,7 @@ class LearningContent(entity.Entity):
     @property
     def is_active(self,) -> Optional[bool]:
         """
-        Gets the isActive property value. Indicates whether the content is active or not. Inactive content will not show up in the UI. The default value is true. Optional.
+        Gets the isActive property value. Indicates whether the content is active or not. Inactive content doesn't show up in the UI. The default value is true. Optional.
         Returns: Optional[bool]
         """
         return self._is_active
@@ -239,7 +239,7 @@ class LearningContent(entity.Entity):
     @is_active.setter
     def is_active(self,value: Optional[bool] = None) -> None:
         """
-        Sets the isActive property value. Indicates whether the content is active or not. Inactive content will not show up in the UI. The default value is true. Optional.
+        Sets the isActive property value. Indicates whether the content is active or not. Inactive content doesn't show up in the UI. The default value is true. Optional.
         Args:
             value: Value to set for the is_active property.
         """
@@ -299,7 +299,7 @@ class LearningContent(entity.Entity):
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
         """
-        Gets the lastModifiedDateTime property value. The date when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
+        Gets the lastModifiedDateTime property value. The date and time when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         Returns: Optional[datetime]
         """
         return self._last_modified_date_time
@@ -307,7 +307,7 @@ class LearningContent(entity.Entity):
     @last_modified_date_time.setter
     def last_modified_date_time(self,value: Optional[datetime] = None) -> None:
         """
-        Sets the lastModifiedDateTime property value. The date when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
+        Sets the lastModifiedDateTime property value. The date and time when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.
         Args:
             value: Value to set for the last_modified_date_time property.
         """

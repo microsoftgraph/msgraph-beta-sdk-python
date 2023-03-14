@@ -24,7 +24,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @property
     def code(self,) -> Optional[str]:
         """
-        Gets the code property value. The code property
+        Gets the code property value. The error code.
         Returns: Optional[str]
         """
         return self._code
@@ -32,7 +32,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @code.setter
     def code(self,value: Optional[str] = None) -> None:
         """
-        Sets the code property value. The code property
+        Sets the code property value. The error code.
         Args:
             value: Value to set for the code property.
         """
@@ -45,13 +45,13 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # The code property
+        # The error code.
         self._code: Optional[str] = None
-        # The message property
+        # The error message.
         self._message: Optional[str] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # The tenantActionable property
+        # The action to take to resolve the error.
         self._tenant_actionable: Optional[bool] = None
     
     @staticmethod
@@ -82,7 +82,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @property
     def message(self,) -> Optional[str]:
         """
-        Gets the message property value. The message property
+        Gets the message property value. The error message.
         Returns: Optional[str]
         """
         return self._message
@@ -90,7 +90,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @message.setter
     def message(self,value: Optional[str] = None) -> None:
         """
-        Sets the message property value. The message property
+        Sets the message property value. The error message.
         Args:
             value: Value to set for the message property.
         """
@@ -130,7 +130,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @property
     def tenant_actionable(self,) -> Optional[bool]:
         """
-        Gets the tenantActionable property value. The tenantActionable property
+        Gets the tenantActionable property value. The action to take to resolve the error.
         Returns: Optional[bool]
         """
         return self._tenant_actionable
@@ -138,7 +138,7 @@ class SynchronizationError(AdditionalDataHolder, Parsable):
     @tenant_actionable.setter
     def tenant_actionable(self,value: Optional[bool] = None) -> None:
         """
-        Sets the tenantActionable property value. The tenantActionable property
+        Sets the tenantActionable property value. The action to take to resolve the error.
         Args:
             value: Value to set for the tenant_actionable property.
         """

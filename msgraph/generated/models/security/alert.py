@@ -172,6 +172,8 @@ class Alert(entity.Entity):
         self._severity: Optional[alert_severity.AlertSeverity] = None
         # The status property
         self._status: Optional[alert_status.AlertStatus] = None
+        # The systemTags property
+        self._system_tags: Optional[List[str]] = None
         # The Azure Active Directory tenant the alert was created in.
         self._tenant_id: Optional[str] = None
         # The threat associated with this alert.
@@ -342,6 +344,7 @@ class Alert(entity.Entity):
             "serviceSource": lambda n : setattr(self, 'service_source', n.get_enum_value(service_source.ServiceSource)),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(alert_severity.AlertSeverity)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(alert_status.AlertStatus)),
+            "systemTags": lambda n : setattr(self, 'system_tags', n.get_collection_of_primitive_values(str)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "threatDisplayName": lambda n : setattr(self, 'threat_display_name', n.get_str_value()),
             "threatFamilyName": lambda n : setattr(self, 'threat_family_name', n.get_str_value()),
@@ -520,6 +523,7 @@ class Alert(entity.Entity):
         writer.write_enum_value("serviceSource", self.service_source)
         writer.write_enum_value("severity", self.severity)
         writer.write_enum_value("status", self.status)
+        writer.write_collection_of_primitive_values("systemTags", self.system_tags)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("threatDisplayName", self.threat_display_name)
         writer.write_str_value("threatFamilyName", self.threat_family_name)
@@ -575,6 +579,23 @@ class Alert(entity.Entity):
             value: Value to set for the status property.
         """
         self._status = value
+    
+    @property
+    def system_tags(self,) -> Optional[List[str]]:
+        """
+        Gets the systemTags property value. The systemTags property
+        Returns: Optional[List[str]]
+        """
+        return self._system_tags
+    
+    @system_tags.setter
+    def system_tags(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the systemTags property value. The systemTags property
+        Args:
+            value: Value to set for the system_tags property.
+        """
+        self._system_tags = value
     
     @property
     def tenant_id(self,) -> Optional[str]:

@@ -18,8 +18,26 @@ subject_rights_request_stage_detail = lazy_import('msgraph.generated.models.subj
 subject_rights_request_status = lazy_import('msgraph.generated.models.subject_rights_request_status')
 subject_rights_request_type = lazy_import('msgraph.generated.models.subject_rights_request_type')
 team = lazy_import('msgraph.generated.models.team')
+user = lazy_import('msgraph.generated.models.user')
 
 class SubjectRightsRequest(entity.Entity):
+    @property
+    def approvers(self,) -> Optional[List[user.User]]:
+        """
+        Gets the approvers property value. The approvers property
+        Returns: Optional[List[user.User]]
+        """
+        return self._approvers
+    
+    @approvers.setter
+    def approvers(self,value: Optional[List[user.User]] = None) -> None:
+        """
+        Sets the approvers property value. The approvers property
+        Args:
+            value: Value to set for the approvers property.
+        """
+        self._approvers = value
+    
     @property
     def assigned_to(self,) -> Optional[identity.Identity]:
         """
@@ -54,15 +72,36 @@ class SubjectRightsRequest(entity.Entity):
         """
         self._closed_date_time = value
     
+    @property
+    def collaborators(self,) -> Optional[List[user.User]]:
+        """
+        Gets the collaborators property value. The collaborators property
+        Returns: Optional[List[user.User]]
+        """
+        return self._collaborators
+    
+    @collaborators.setter
+    def collaborators(self,value: Optional[List[user.User]] = None) -> None:
+        """
+        Sets the collaborators property value. The collaborators property
+        Args:
+            value: Value to set for the collaborators property.
+        """
+        self._collaborators = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new SubjectRightsRequest and sets the default values.
         """
         super().__init__()
+        # The approvers property
+        self._approvers: Optional[List[user.User]] = None
         # Identity that the request is assigned to.
         self._assigned_to: Optional[identity.Identity] = None
         # The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._closed_date_time: Optional[datetime] = None
+        # The collaborators property
+        self._collaborators: Optional[List[user.User]] = None
         # KQL based content query that should be used for search. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
         self._content_query: Optional[str] = None
         # Identity information for the entity that created the request.
@@ -268,8 +307,10 @@ class SubjectRightsRequest(entity.Entity):
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "approvers": lambda n : setattr(self, 'approvers', n.get_collection_of_object_values(user.User)),
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_object_value(identity.Identity)),
             "closedDateTime": lambda n : setattr(self, 'closed_date_time', n.get_datetime_value()),
+            "collaborators": lambda n : setattr(self, 'collaborators', n.get_collection_of_object_values(user.User)),
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -495,8 +536,10 @@ class SubjectRightsRequest(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("approvers", self.approvers)
         writer.write_object_value("assignedTo", self.assigned_to)
         writer.write_datetime_value("closedDateTime", self.closed_date_time)
+        writer.write_collection_of_object_values("collaborators", self.collaborators)
         writer.write_str_value("contentQuery", self.content_query)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

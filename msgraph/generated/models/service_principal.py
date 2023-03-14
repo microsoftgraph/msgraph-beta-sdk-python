@@ -269,7 +269,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new servicePrincipal and sets the default values.
+        Instantiates a new ServicePrincipal and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.servicePrincipal"
@@ -371,7 +371,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
         self._service_principal_type: Optional[str] = None
         # Specifies the Microsoft accounts that are supported for the current application. Read-only. Supported values are:AzureADMyOrg: Users with a Microsoft work or school account in my organization’s Azure AD tenant (single-tenant).AzureADMultipleOrgs: Users with a Microsoft work or school account in any organization’s Azure AD tenant (multi-tenant).AzureADandPersonalMicrosoftAccount: Users with a personal Microsoft account, or a work or school account in any organization’s Azure AD tenant.PersonalMicrosoftAccount: Users with a personal Microsoft account only.
         self._sign_in_audience: Optional[str] = None
-        # The synchronization property
+        # Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         self._synchronization: Optional[synchronization.Synchronization] = None
         # Custom strings that can be used to categorize and identify the service principal. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
         self._tags: Optional[List[str]] = None
@@ -1129,7 +1129,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     @property
     def synchronization(self,) -> Optional[synchronization.Synchronization]:
         """
-        Gets the synchronization property value. The synchronization property
+        Gets the synchronization property value. Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         Returns: Optional[synchronization.Synchronization]
         """
         return self._synchronization
@@ -1137,7 +1137,7 @@ class ServicePrincipal(directory_object.DirectoryObject):
     @synchronization.setter
     def synchronization(self,value: Optional[synchronization.Synchronization] = None) -> None:
         """
-        Sets the synchronization property value. The synchronization property
+        Sets the synchronization property value. Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         Args:
             value: Value to set for the synchronization property.
         """

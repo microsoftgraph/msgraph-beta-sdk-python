@@ -8,4 +8,5 @@ class SubjectRightsRequestStage(Enum):
     CaseResolved = "caseResolved",
     ContentEstimate = "contentEstimate",
     UnknownFutureValue = "unknownFutureValue",
+    Approval = "approval",
 

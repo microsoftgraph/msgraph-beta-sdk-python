@@ -64,9 +64,26 @@ class CloudPcProvisioningPolicy(entity.Entity):
         """
         self._cloud_pc_group_display_name = value
     
+    @property
+    def cloud_pc_naming_template(self,) -> Optional[str]:
+        """
+        Gets the cloudPcNamingTemplate property value. The cloudPcNamingTemplate property
+        Returns: Optional[str]
+        """
+        return self._cloud_pc_naming_template
+    
+    @cloud_pc_naming_template.setter
+    def cloud_pc_naming_template(self,value: Optional[str] = None) -> None:
+        """
+        Sets the cloudPcNamingTemplate property value. The cloudPcNamingTemplate property
+        Args:
+            value: Value to set for the cloud_pc_naming_template property.
+        """
+        self._cloud_pc_naming_template = value
+    
     def __init__(self,) -> None:
         """
-        Instantiates a new cloudPcProvisioningPolicy and sets the default values.
+        Instantiates a new CloudPcProvisioningPolicy and sets the default values.
         """
         super().__init__()
         # The URL of the alternate resource that links to this provisioning policy. Read-only.
@@ -75,6 +92,8 @@ class CloudPcProvisioningPolicy(entity.Entity):
         self._assignments: Optional[List[cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment]] = None
         # The display name of the Cloud PC group that the Cloud PCs reside in. Read-only.
         self._cloud_pc_group_display_name: Optional[str] = None
+        # The cloudPcNamingTemplate property
+        self._cloud_pc_naming_template: Optional[str] = None
         # The provisioning policy description.
         self._description: Optional[str] = None
         # The display name for the provisioning policy.
@@ -214,6 +233,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
             "alternateResourceUrl": lambda n : setattr(self, 'alternate_resource_url', n.get_str_value()),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(cloud_pc_provisioning_policy_assignment.CloudPcProvisioningPolicyAssignment)),
             "cloudPcGroupDisplayName": lambda n : setattr(self, 'cloud_pc_group_display_name', n.get_str_value()),
+            "cloudPcNamingTemplate": lambda n : setattr(self, 'cloud_pc_naming_template', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "domainJoinConfiguration": lambda n : setattr(self, 'domain_join_configuration', n.get_object_value(cloud_pc_domain_join_configuration.CloudPcDomainJoinConfiguration)),
@@ -399,6 +419,7 @@ class CloudPcProvisioningPolicy(entity.Entity):
         writer.write_str_value("alternateResourceUrl", self.alternate_resource_url)
         writer.write_collection_of_object_values("assignments", self.assignments)
         writer.write_str_value("cloudPcGroupDisplayName", self.cloud_pc_group_display_name)
+        writer.write_str_value("cloudPcNamingTemplate", self.cloud_pc_naming_template)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_object_value("domainJoinConfiguration", self.domain_join_configuration)

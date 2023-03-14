@@ -23,6 +23,8 @@ rename_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.it
 reprovision_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.reprovision.reprovision_request_builder')
 restore_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.restore.restore_request_builder')
 retry_partner_agent_installation_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.retry_partner_agent_installation.retry_partner_agent_installation_request_builder')
+start_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.start.start_request_builder')
+stop_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.stop.stop_request_builder')
 troubleshoot_request_builder = lazy_import('msgraph.generated.users.item.cloud_p_cs.item.troubleshoot.troubleshoot_request_builder')
 
 class CloudPCItemRequestBuilder():
@@ -105,6 +107,20 @@ class CloudPCItemRequestBuilder():
         Provides operations to call the retryPartnerAgentInstallation method.
         """
         return retry_partner_agent_installation_request_builder.RetryPartnerAgentInstallationRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def start(self) -> start_request_builder.StartRequestBuilder:
+        """
+        Provides operations to call the start method.
+        """
+        return start_request_builder.StartRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def stop(self) -> stop_request_builder.StopRequestBuilder:
+        """
+        Provides operations to call the stop method.
+        """
+        return stop_request_builder.StopRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def troubleshoot(self) -> troubleshoot_request_builder.TroubleshootRequestBuilder:

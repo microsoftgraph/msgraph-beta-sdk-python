@@ -12,9 +12,6 @@ vpp_licensing_type = lazy_import('msgraph.generated.models.vpp_licensing_type')
 vpp_token_account_type = lazy_import('msgraph.generated.models.vpp_token_account_type')
 
 class IosVppApp(mobile_app.MobileApp):
-    """
-    Contains properties and inherited properties for iOS Volume-Purchased Program (VPP) Apps.
-    """
     @property
     def app_store_url(self,) -> Optional[str]:
         """
@@ -85,7 +82,7 @@ class IosVppApp(mobile_app.MobileApp):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new iosVppApp and sets the default values.
+        Instantiates a new IosVppApp and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.iosVppApp"

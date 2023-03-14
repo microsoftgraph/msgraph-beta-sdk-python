@@ -26,7 +26,7 @@ class PrivilegedOperationEvent(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new privilegedOperationEvent and sets the default values.
+        Instantiates a new PrivilegedOperationEvent and sets the default values.
         """
         super().__init__()
         # Detailed human readable information for the event.

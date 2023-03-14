@@ -10,7 +10,7 @@ scoped_role_membership = lazy_import('msgraph.generated.models.scoped_role_membe
 class AdministrativeUnit(directory_object.DirectoryObject):
     def __init__(self,) -> None:
         """
-        Instantiates a new administrativeUnit and sets the default values.
+        Instantiates a new AdministrativeUnit and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.administrativeUnit"

@@ -10,6 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+assigned_users_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.provisioning_policies.item.assignments.item.assigned_users.assigned_users_request_builder')
+user_item_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.provisioning_policies.item.assignments.item.assigned_users.item.user_item_request_builder')
 cloud_pc_provisioning_policy_assignment = lazy_import('msgraph.generated.models.cloud_pc_provisioning_policy_assignment')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -17,6 +19,26 @@ class CloudPcProvisioningPolicyAssignmentItemRequestBuilder():
     """
     Provides operations to manage the assignments property of the microsoft.graph.cloudPcProvisioningPolicy entity.
     """
+    @property
+    def assigned_users(self) -> assigned_users_request_builder.AssignedUsersRequestBuilder:
+        """
+        Provides operations to manage the assignedUsers property of the microsoft.graph.cloudPcProvisioningPolicyAssignment entity.
+        """
+        return assigned_users_request_builder.AssignedUsersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def assigned_users_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
+        """
+        Provides operations to manage the assignedUsers property of the microsoft.graph.cloudPcProvisioningPolicyAssignment entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: user_item_request_builder.UserItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["user%2Did"] = id
+        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new CloudPcProvisioningPolicyAssignmentItemRequestBuilder and sets the default values.

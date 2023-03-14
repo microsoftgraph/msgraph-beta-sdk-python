@@ -10,7 +10,6 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-activate_service_plan_request_builder = lazy_import('msgraph.generated.me.activate_service_plan.activate_service_plan_request_builder')
 activities_request_builder = lazy_import('msgraph.generated.me.activities.activities_request_builder')
 user_activity_item_request_builder = lazy_import('msgraph.generated.me.activities.item.user_activity_item_request_builder')
 agreement_acceptances_request_builder = lazy_import('msgraph.generated.me.agreement_acceptances.agreement_acceptances_request_builder')
@@ -161,13 +160,6 @@ class MeRequestBuilder():
     """
     Provides operations to manage the user singleton.
     """
-    @property
-    def activate_service_plan(self) -> activate_service_plan_request_builder.ActivateServicePlanRequestBuilder:
-        """
-        Provides operations to call the activateServicePlan method.
-        """
-        return activate_service_plan_request_builder.ActivateServicePlanRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
         """
@@ -1164,7 +1156,7 @@ class MeRequestBuilder():
     
     async def get(self,request_configuration: Optional[MeRequestBuilderGetRequestConfiguration] = None) -> Optional[user.User]:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[user.User]
@@ -1464,7 +1456,7 @@ class MeRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[MeRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -1556,7 +1548,7 @@ class MeRequestBuilder():
     @dataclass
     class MeRequestBuilderGetQueryParameters():
         """
-        Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These _default_ properties are noted in the Properties section. To get properties that are _not_ returned by default, do a GET operation for the user and specify the properties in a `$select` OData query option. Because the **user** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **user** instance.
+        Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

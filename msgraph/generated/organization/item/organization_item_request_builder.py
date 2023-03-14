@@ -12,7 +12,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 organization = lazy_import('msgraph.generated.models.organization')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-activate_service_request_builder = lazy_import('msgraph.generated.organization.item.activate_service.activate_service_request_builder')
 branding_request_builder = lazy_import('msgraph.generated.organization.item.branding.branding_request_builder')
 certificate_based_auth_configuration_request_builder = lazy_import('msgraph.generated.organization.item.certificate_based_auth_configuration.certificate_based_auth_configuration_request_builder')
 certificate_based_auth_configuration_item_request_builder = lazy_import('msgraph.generated.organization.item.certificate_based_auth_configuration.item.certificate_based_auth_configuration_item_request_builder')
@@ -30,13 +29,6 @@ class OrganizationItemRequestBuilder():
     """
     Provides operations to manage the collection of organization entities.
     """
-    @property
-    def activate_service(self) -> activate_service_request_builder.ActivateServiceRequestBuilder:
-        """
-        Provides operations to call the activateService method.
-        """
-        return activate_service_request_builder.ActivateServiceRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def branding(self) -> branding_request_builder.BrandingRequestBuilder:
         """

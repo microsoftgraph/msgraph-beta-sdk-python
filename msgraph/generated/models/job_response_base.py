@@ -29,6 +29,8 @@ class JobResponseBase(entity.Entity):
         self._tenant_id: Optional[str] = None
         # The type property
         self._type: Optional[str] = None
+        # The userId property
+        self._user_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> JobResponseBase:
@@ -106,6 +108,7 @@ class JobResponseBase(entity.Entity):
             "status": lambda n : setattr(self, 'status', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
+            "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -127,6 +130,7 @@ class JobResponseBase(entity.Entity):
         writer.write_str_value("status", self.status)
         writer.write_str_value("tenantId", self.tenant_id)
         writer.write_str_value("type", self.type)
+        writer.write_str_value("userId", self.user_id)
     
     @property
     def start_date_time(self,) -> Optional[datetime]:
@@ -195,5 +199,22 @@ class JobResponseBase(entity.Entity):
             value: Value to set for the type property.
         """
         self._type = value
+    
+    @property
+    def user_id(self,) -> Optional[str]:
+        """
+        Gets the userId property value. The userId property
+        Returns: Optional[str]
+        """
+        return self._user_id
+    
+    @user_id.setter
+    def user_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the userId property value. The userId property
+        Args:
+            value: Value to set for the user_id property.
+        """
+        self._user_id = value
     
 

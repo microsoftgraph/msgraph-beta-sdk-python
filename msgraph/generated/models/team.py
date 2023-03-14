@@ -141,7 +141,7 @@ class Team(entity.Entity):
         self._tags: Optional[List[teamwork_tag.TeamworkTag]] = None
         # The template this team was created from. See available templates.
         self._template: Optional[teams_template.TeamsTemplate] = None
-        # The templateDefinition property
+        # Generic representation of a team template definition for a team with a specific structure and configuration.
         self._template_definition: Optional[team_template_definition.TeamTemplateDefinition] = None
         # The ID of the Azure Active Directory tenant.
         self._tenant_id: Optional[str] = None
@@ -675,7 +675,7 @@ class Team(entity.Entity):
     @property
     def template_definition(self,) -> Optional[team_template_definition.TeamTemplateDefinition]:
         """
-        Gets the templateDefinition property value. The templateDefinition property
+        Gets the templateDefinition property value. Generic representation of a team template definition for a team with a specific structure and configuration.
         Returns: Optional[team_template_definition.TeamTemplateDefinition]
         """
         return self._template_definition
@@ -683,7 +683,7 @@ class Team(entity.Entity):
     @template_definition.setter
     def template_definition(self,value: Optional[team_template_definition.TeamTemplateDefinition] = None) -> None:
         """
-        Sets the templateDefinition property value. The templateDefinition property
+        Sets the templateDefinition property value. Generic representation of a team template definition for a team with a specific structure and configuration.
         Args:
             value: Value to set for the template_definition property.
         """

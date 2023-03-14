@@ -9,7 +9,7 @@ entity = lazy_import('msgraph.generated.models.entity')
 class AttributeMappingFunctionSchema(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new AttributeMappingFunctionSchema and sets the default values.
+        Instantiates a new attributeMappingFunctionSchema and sets the default values.
         """
         super().__init__()
         # The OdataType property

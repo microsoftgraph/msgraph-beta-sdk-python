@@ -13,9 +13,9 @@ class AndroidLobApp(mobile_lob_app.MobileLobApp):
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.androidLobApp"
-        # The Identity Name. This property is deprecated starting in February 2023 (Release 2302).
+        # The Identity Name. This property is deprecated starting  in February 2023 (Release 2302).
         self._identity_name: Optional[str] = None
-        # The identity version. This property is deprecated starting in February 2023 (Release 2302).
+        # The identity version. This property is deprecated starting  in February 2023 (Release 2302).
         self._identity_version: Optional[str] = None
         # The value for the minimum applicable operating system.
         self._minimum_supported_operating_system: Optional[android_minimum_operating_system.AndroidMinimumOperatingSystem] = None
@@ -58,7 +58,7 @@ class AndroidLobApp(mobile_lob_app.MobileLobApp):
     @property
     def identity_name(self,) -> Optional[str]:
         """
-        Gets the identityName property value. The Identity Name. This property is deprecated starting in February 2023 (Release 2302).
+        Gets the identityName property value. The Identity Name. This property is deprecated starting  in February 2023 (Release 2302).
         Returns: Optional[str]
         """
         return self._identity_name
@@ -66,7 +66,7 @@ class AndroidLobApp(mobile_lob_app.MobileLobApp):
     @identity_name.setter
     def identity_name(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityName property value. The Identity Name. This property is deprecated starting in February 2023 (Release 2302).
+        Sets the identityName property value. The Identity Name. This property is deprecated starting  in February 2023 (Release 2302).
         Args:
             value: Value to set for the identity_name property.
         """
@@ -75,7 +75,7 @@ class AndroidLobApp(mobile_lob_app.MobileLobApp):
     @property
     def identity_version(self,) -> Optional[str]:
         """
-        Gets the identityVersion property value. The identity version. This property is deprecated starting in February 2023 (Release 2302).
+        Gets the identityVersion property value. The identity version. This property is deprecated starting  in February 2023 (Release 2302).
         Returns: Optional[str]
         """
         return self._identity_version
@@ -83,7 +83,7 @@ class AndroidLobApp(mobile_lob_app.MobileLobApp):
     @identity_version.setter
     def identity_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityVersion property value. The identity version. This property is deprecated starting in February 2023 (Release 2302).
+        Sets the identityVersion property value. The identity version. This property is deprecated starting  in February 2023 (Release 2302).
         Args:
             value: Value to set for the identity_version property.
         """
