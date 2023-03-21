@@ -9,9 +9,6 @@ entity = lazy_import('msgraph.generated.models.entity')
 key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
 
 class DeviceManagementTroubleshootingEvent(entity.Entity):
-    """
-    Event representing an general failure.
-    """
     @property
     def additional_information(self,) -> Optional[List[key_value_pair.KeyValuePair]]:
         """
@@ -31,7 +28,7 @@ class DeviceManagementTroubleshootingEvent(entity.Entity):
     
     def __init__(self,) -> None:
         """
-        Instantiates a new deviceManagementTroubleshootingEvent and sets the default values.
+        Instantiates a new DeviceManagementTroubleshootingEvent and sets the default values.
         """
         super().__init__()
         # A set of string key and string value pairs which provides additional information on the Troubleshooting event

@@ -31,7 +31,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @property
     def archive_folder(self,) -> Optional[str]:
         """
-        Gets the archiveFolder property value. Folder ID of an archive folder for the user. Read only.
+        Gets the archiveFolder property value. Folder ID of an archive folder for the user. Read-only.
         Returns: Optional[str]
         """
         return self._archive_folder
@@ -39,7 +39,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @archive_folder.setter
     def archive_folder(self,value: Optional[str] = None) -> None:
         """
-        Sets the archiveFolder property value. Folder ID of an archive folder for the user. Read only.
+        Sets the archiveFolder property value. Folder ID of an archive folder for the user. Read-only.
         Args:
             value: Value to set for the archive_folder property.
         """
@@ -69,7 +69,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
         # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
         self._additional_data: Dict[str, Any] = {}
 
-        # Folder ID of an archive folder for the user. Read only.
+        # Folder ID of an archive folder for the user. Read-only.
         self._archive_folder: Optional[str] = None
         # Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.
         self._automatic_replies_setting: Optional[automatic_replies_setting.AutomaticRepliesSetting] = None
@@ -85,7 +85,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
         self._time_format: Optional[str] = None
         # The default time zone for the user's mailbox.
         self._time_zone: Optional[str] = None
-        # The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.
+        # The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
         self._user_purpose: Optional[user_purpose.UserPurpose] = None
         # The userPurposeV2 property
         self._user_purpose_v2: Optional[mailbox_recipient_type.MailboxRecipientType] = None
@@ -250,7 +250,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @property
     def user_purpose(self,) -> Optional[user_purpose.UserPurpose]:
         """
-        Gets the userPurpose property value. The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.
+        Gets the userPurpose property value. The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
         Returns: Optional[user_purpose.UserPurpose]
         """
         return self._user_purpose
@@ -258,7 +258,7 @@ class MailboxSettings(AdditionalDataHolder, Parsable):
     @user_purpose.setter
     def user_purpose(self,value: Optional[user_purpose.UserPurpose] = None) -> None:
         """
-        Sets the userPurpose property value. The purpose of the mailbox. Used to differentiate a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Read only.
+        Sets the userPurpose property value. The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
         Args:
             value: Value to set for the user_purpose property.
         """

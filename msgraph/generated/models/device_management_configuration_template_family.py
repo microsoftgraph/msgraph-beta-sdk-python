@@ -27,4 +27,6 @@ class DeviceManagementConfigurationTemplateFamily(Enum):
     Baseline = "baseline",
     # Evolvable enumeration sentinel value. Do not use.
     UnknownFutureValue = "unknownFutureValue",
+    # Template Family for device configuration scripts
+    DeviceConfigurationScripts = "deviceConfigurationScripts",
 

@@ -34,4 +34,5 @@ class ConditionalAccessRule(Enum):
     B2bDirectConnectUser = "b2bDirectConnectUser",
     OtherExternalUser = "otherExternalUser",
     ServiceProvider = "serviceProvider",
+    MicrosoftAdminPortals = "microsoftAdminPortals",
 

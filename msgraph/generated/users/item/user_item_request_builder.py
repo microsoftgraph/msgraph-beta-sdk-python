@@ -12,7 +12,6 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 user = lazy_import('msgraph.generated.models.user')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-activate_service_plan_request_builder = lazy_import('msgraph.generated.users.item.activate_service_plan.activate_service_plan_request_builder')
 activities_request_builder = lazy_import('msgraph.generated.users.item.activities.activities_request_builder')
 user_activity_item_request_builder = lazy_import('msgraph.generated.users.item.activities.item.user_activity_item_request_builder')
 agreement_acceptances_request_builder = lazy_import('msgraph.generated.users.item.agreement_acceptances.agreement_acceptances_request_builder')
@@ -161,13 +160,6 @@ class UserItemRequestBuilder():
     """
     Provides operations to manage the collection of user entities.
     """
-    @property
-    def activate_service_plan(self) -> activate_service_plan_request_builder.ActivateServicePlanRequestBuilder:
-        """
-        Provides operations to call the activateServicePlan method.
-        """
-        return activate_service_plan_request_builder.ActivateServicePlanRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
         """

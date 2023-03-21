@@ -11,9 +11,9 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
         Instantiates a new DeviceManagementConfigurationSimpleSettingCollectionDefinition and sets the default values.
         """
         super().__init__()
-        # Maximum number of simple settings in the collection. Valid values 1 to 100
+        # Maximum number of simple settings in the collection
         self._maximum_count: Optional[int] = None
-        # Minimum number of simple settings in the collection. Valid values 1 to 100
+        # Minimum number of simple settings in the collection
         self._minimum_count: Optional[int] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
@@ -46,7 +46,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
     @property
     def maximum_count(self,) -> Optional[int]:
         """
-        Gets the maximumCount property value. Maximum number of simple settings in the collection. Valid values 1 to 100
+        Gets the maximumCount property value. Maximum number of simple settings in the collection
         Returns: Optional[int]
         """
         return self._maximum_count
@@ -54,7 +54,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
     @maximum_count.setter
     def maximum_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the maximumCount property value. Maximum number of simple settings in the collection. Valid values 1 to 100
+        Sets the maximumCount property value. Maximum number of simple settings in the collection
         Args:
             value: Value to set for the maximum_count property.
         """
@@ -63,7 +63,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
     @property
     def minimum_count(self,) -> Optional[int]:
         """
-        Gets the minimumCount property value. Minimum number of simple settings in the collection. Valid values 1 to 100
+        Gets the minimumCount property value. Minimum number of simple settings in the collection
         Returns: Optional[int]
         """
         return self._minimum_count
@@ -71,7 +71,7 @@ class DeviceManagementConfigurationSimpleSettingCollectionDefinition(device_mana
     @minimum_count.setter
     def minimum_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the minimumCount property value. Minimum number of simple settings in the collection. Valid values 1 to 100
+        Sets the minimumCount property value. Minimum number of simple settings in the collection
         Args:
             value: Value to set for the minimum_count property.
         """

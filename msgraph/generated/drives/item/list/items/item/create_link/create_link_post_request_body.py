@@ -41,6 +41,8 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         self._retain_inherited_permissions: Optional[bool] = None
         # The scope property
         self._scope: Optional[str] = None
+        # The sendNotification property
+        self._send_notification: Optional[bool] = None
         # The type property
         self._type: Optional[str] = None
     
@@ -84,6 +86,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(drive_recipient.DriveRecipient)),
             "retainInheritedPermissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
+            "sendNotification": lambda n : setattr(self, 'send_notification', n.get_bool_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         return fields
@@ -156,6 +159,23 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._scope = value
     
+    @property
+    def send_notification(self,) -> Optional[bool]:
+        """
+        Gets the sendNotification property value. The sendNotification property
+        Returns: Optional[bool]
+        """
+        return self._send_notification
+    
+    @send_notification.setter
+    def send_notification(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the sendNotification property value. The sendNotification property
+        Args:
+            value: Value to set for the send_notification property.
+        """
+        self._send_notification = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -169,6 +189,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_collection_of_object_values("recipients", self.recipients)
         writer.write_bool_value("retainInheritedPermissions", self.retain_inherited_permissions)
         writer.write_str_value("scope", self.scope)
+        writer.write_bool_value("sendNotification", self.send_notification)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     

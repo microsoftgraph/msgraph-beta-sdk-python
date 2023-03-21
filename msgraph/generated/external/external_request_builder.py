@@ -12,6 +12,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 connections_request_builder = lazy_import('msgraph.generated.external.connections.connections_request_builder')
 external_connection_item_request_builder = lazy_import('msgraph.generated.external.connections.item.external_connection_item_request_builder')
+industry_data_request_builder = lazy_import('msgraph.generated.external.industry_data.industry_data_request_builder')
 external = lazy_import('msgraph.generated.models.external_connectors.external')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -25,6 +26,13 @@ class ExternalRequestBuilder():
         Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.
         """
         return connections_request_builder.ConnectionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def industry_data(self) -> industry_data_request_builder.IndustryDataRequestBuilder:
+        """
+        Provides operations to manage the industryData property of the microsoft.graph.externalConnectors.external entity.
+        """
+        return industry_data_request_builder.IndustryDataRequestBuilder(self.request_adapter, self.path_parameters)
     
     def connections_by_id(self,id: str) -> external_connection_item_request_builder.ExternalConnectionItemRequestBuilder:
         """

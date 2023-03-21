@@ -13,7 +13,7 @@ class TeamworkTag(entity.Entity):
         Instantiates a new teamworkTag and sets the default values.
         """
         super().__init__()
-        # Tag description as it will appear to the user in Microsoft Teams.
+        # Tag description as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
         self._description: Optional[str] = None
         # Tag name as it will appear to the user in Microsoft Teams.
         self._display_name: Optional[str] = None
@@ -43,7 +43,7 @@ class TeamworkTag(entity.Entity):
     @property
     def description(self,) -> Optional[str]:
         """
-        Gets the description property value. Tag description as it will appear to the user in Microsoft Teams.
+        Gets the description property value. Tag description as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
         Returns: Optional[str]
         """
         return self._description
@@ -51,7 +51,7 @@ class TeamworkTag(entity.Entity):
     @description.setter
     def description(self,value: Optional[str] = None) -> None:
         """
-        Sets the description property value. Tag description as it will appear to the user in Microsoft Teams.
+        Sets the description property value. Tag description as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
         Args:
             value: Value to set for the description property.
         """

@@ -15,6 +15,7 @@ access_package_assignment_request_builder = lazy_import('msgraph.generated.ident
 cancel_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_requests.item.cancel.cancel_request_builder')
 reprocess_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_requests.item.reprocess.reprocess_request_builder')
 requestor_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_requests.item.requestor.requestor_request_builder')
+resume_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_requests.item.resume.resume_request_builder')
 access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -56,6 +57,13 @@ class AccessPackageAssignmentRequestItemRequestBuilder():
         Provides operations to manage the requestor property of the microsoft.graph.accessPackageAssignmentRequest entity.
         """
         return requestor_request_builder.RequestorRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def resume(self) -> resume_request_builder.ResumeRequestBuilder:
+        """
+        Provides operations to call the resume method.
+        """
+        return resume_request_builder.ResumeRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """

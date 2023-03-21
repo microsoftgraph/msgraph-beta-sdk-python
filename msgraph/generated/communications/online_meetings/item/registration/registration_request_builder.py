@@ -76,7 +76,7 @@ class RegistrationRequestBuilder():
     
     async def get(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> Optional[meeting_registration.MeetingRegistration]:
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[meeting_registration.MeetingRegistration]
@@ -131,7 +131,7 @@ class RegistrationRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[RegistrationRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -183,7 +183,7 @@ class RegistrationRequestBuilder():
     @dataclass
     class RegistrationRequestBuilderGetQueryParameters():
         """
-        Get the externalMeetingRegistration details associated with an onlineMeeting.
+        Get the meetingRegistration details associated with an onlineMeeting on behalf of the organizer.
         """
         # Expand related entities
         expand: Optional[List[str]] = None

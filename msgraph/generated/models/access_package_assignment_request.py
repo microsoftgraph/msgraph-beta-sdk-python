@@ -8,6 +8,7 @@ access_package = lazy_import('msgraph.generated.models.access_package')
 access_package_answer = lazy_import('msgraph.generated.models.access_package_answer')
 access_package_assignment = lazy_import('msgraph.generated.models.access_package_assignment')
 access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
+custom_extension_callout_instance = lazy_import('msgraph.generated.models.custom_extension_callout_instance')
 custom_extension_handler_instance = lazy_import('msgraph.generated.models.custom_extension_handler_instance')
 entity = lazy_import('msgraph.generated.models.entity')
 request_schedule = lazy_import('msgraph.generated.models.request_schedule')
@@ -96,6 +97,8 @@ class AccessPackageAssignmentRequest(entity.Entity):
         self._completed_date: Optional[datetime] = None
         # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
         self._created_date_time: Optional[datetime] = None
+        # Information about all the custom extension calls that were made during the access package assignment request workflow.
+        self._custom_extension_callout_instances: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None
         # A collection of custom workflow extension instances being run on an assignment request. Read-only.
         self._custom_extension_handler_instances: Optional[List[custom_extension_handler_instance.CustomExtensionHandlerInstance]] = None
         # The expirationDateTime property
@@ -147,6 +150,23 @@ class AccessPackageAssignmentRequest(entity.Entity):
         return AccessPackageAssignmentRequest()
     
     @property
+    def custom_extension_callout_instances(self,) -> Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]:
+        """
+        Gets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment request workflow.
+        Returns: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]
+        """
+        return self._custom_extension_callout_instances
+    
+    @custom_extension_callout_instances.setter
+    def custom_extension_callout_instances(self,value: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None) -> None:
+        """
+        Sets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment request workflow.
+        Args:
+            value: Value to set for the custom_extension_callout_instances property.
+        """
+        self._custom_extension_callout_instances = value
+    
+    @property
     def custom_extension_handler_instances(self,) -> Optional[List[custom_extension_handler_instance.CustomExtensionHandlerInstance]]:
         """
         Gets the customExtensionHandlerInstances property value. A collection of custom workflow extension instances being run on an assignment request. Read-only.
@@ -191,6 +211,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
             "answers": lambda n : setattr(self, 'answers', n.get_collection_of_object_values(access_package_answer.AccessPackageAnswer)),
             "completedDate": lambda n : setattr(self, 'completed_date', n.get_datetime_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "customExtensionCalloutInstances": lambda n : setattr(self, 'custom_extension_callout_instances', n.get_collection_of_object_values(custom_extension_callout_instance.CustomExtensionCalloutInstance)),
             "customExtensionHandlerInstances": lambda n : setattr(self, 'custom_extension_handler_instances', n.get_collection_of_object_values(custom_extension_handler_instance.CustomExtensionHandlerInstance)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
@@ -338,6 +359,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         writer.write_collection_of_object_values("answers", self.answers)
         writer.write_datetime_value("completedDate", self.completed_date)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_collection_of_object_values("customExtensionCalloutInstances", self.custom_extension_callout_instances)
         writer.write_collection_of_object_values("customExtensionHandlerInstances", self.custom_extension_handler_instances)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_bool_value("isValidationOnly", self.is_validation_only)

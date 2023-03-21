@@ -18,6 +18,7 @@ microsoft_application_data_access_request_builder = lazy_import('msgraph.generat
 people_insights_request_builder = lazy_import('msgraph.generated.organization.item.settings.people_insights.people_insights_request_builder')
 profile_card_properties_request_builder = lazy_import('msgraph.generated.organization.item.settings.profile_card_properties.profile_card_properties_request_builder')
 profile_card_property_item_request_builder = lazy_import('msgraph.generated.organization.item.settings.profile_card_properties.item.profile_card_property_item_request_builder')
+pronouns_request_builder = lazy_import('msgraph.generated.organization.item.settings.pronouns.pronouns_request_builder')
 
 class SettingsRequestBuilder():
     """
@@ -57,6 +58,13 @@ class SettingsRequestBuilder():
         Provides operations to manage the profileCardProperties property of the microsoft.graph.organizationSettings entity.
         """
         return profile_card_properties_request_builder.ProfileCardPropertiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def pronouns(self) -> pronouns_request_builder.PronounsRequestBuilder:
+        """
+        Provides operations to manage the pronouns property of the microsoft.graph.organizationSettings entity.
+        """
+        return pronouns_request_builder.PronounsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """

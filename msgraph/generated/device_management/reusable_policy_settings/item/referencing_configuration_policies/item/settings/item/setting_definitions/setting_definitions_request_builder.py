@@ -45,7 +45,7 @@ class SettingDefinitionsRequestBuilder():
     
     async def get(self,request_configuration: Optional[SettingDefinitionsRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_setting_definition_collection_response.DeviceManagementConfigurationSettingDefinitionCollectionResponse]:
         """
-        List of related Setting Definitions. This property is read-only.
+        List of related Setting Definitions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_management_configuration_setting_definition_collection_response.DeviceManagementConfigurationSettingDefinitionCollectionResponse]
@@ -63,7 +63,7 @@ class SettingDefinitionsRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[SettingDefinitionsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of related Setting Definitions. This property is read-only.
+        List of related Setting Definitions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -82,7 +82,7 @@ class SettingDefinitionsRequestBuilder():
     @dataclass
     class SettingDefinitionsRequestBuilderGetQueryParameters():
         """
-        List of related Setting Definitions. This property is read-only.
+        List of related Setting Definitions
         """
         # Include count of items
         count: Optional[bool] = None

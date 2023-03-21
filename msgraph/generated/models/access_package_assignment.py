@@ -9,6 +9,7 @@ access_package_assignment_policy = lazy_import('msgraph.generated.models.access_
 access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
 access_package_assignment_resource_role = lazy_import('msgraph.generated.models.access_package_assignment_resource_role')
 access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
+custom_extension_callout_instance = lazy_import('msgraph.generated.models.custom_extension_callout_instance')
 entity = lazy_import('msgraph.generated.models.entity')
 request_schedule = lazy_import('msgraph.generated.models.request_schedule')
 
@@ -189,6 +190,8 @@ class AccessPackageAssignment(entity.Entity):
         self._assignment_status: Optional[str] = None
         # The identifier of the catalog containing the access package. Read-only.
         self._catalog_id: Optional[str] = None
+        # Information about all the custom extension calls that were made during the access package assignment workflow.
+        self._custom_extension_callout_instances: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None
         # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
         self._expired_date_time: Optional[datetime] = None
         # Indicates whether the access package assignment is extended. Read-only.
@@ -213,6 +216,23 @@ class AccessPackageAssignment(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AccessPackageAssignment()
+    
+    @property
+    def custom_extension_callout_instances(self,) -> Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]:
+        """
+        Gets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+        Returns: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]
+        """
+        return self._custom_extension_callout_instances
+    
+    @custom_extension_callout_instances.setter
+    def custom_extension_callout_instances(self,value: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None) -> None:
+        """
+        Sets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+        Args:
+            value: Value to set for the custom_extension_callout_instances property.
+        """
+        self._custom_extension_callout_instances = value
     
     @property
     def expired_date_time(self,) -> Optional[datetime]:
@@ -246,6 +266,7 @@ class AccessPackageAssignment(entity.Entity):
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "assignmentStatus": lambda n : setattr(self, 'assignment_status', n.get_str_value()),
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "customExtensionCalloutInstances": lambda n : setattr(self, 'custom_extension_callout_instances', n.get_collection_of_object_values(custom_extension_callout_instance.CustomExtensionCalloutInstance)),
             "expiredDateTime": lambda n : setattr(self, 'expired_date_time', n.get_datetime_value()),
             "isExtended": lambda n : setattr(self, 'is_extended', n.get_bool_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(request_schedule.RequestSchedule)),
@@ -308,6 +329,7 @@ class AccessPackageAssignment(entity.Entity):
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_str_value("assignmentStatus", self.assignment_status)
         writer.write_str_value("catalogId", self.catalog_id)
+        writer.write_collection_of_object_values("customExtensionCalloutInstances", self.custom_extension_callout_instances)
         writer.write_datetime_value("expiredDateTime", self.expired_date_time)
         writer.write_bool_value("isExtended", self.is_extended)
         writer.write_object_value("schedule", self.schedule)

@@ -10,7 +10,6 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
-activate_service_plan_request_builder = lazy_import('msgraph.generated.me.activate_service_plan.activate_service_plan_request_builder')
 activities_request_builder = lazy_import('msgraph.generated.me.activities.activities_request_builder')
 user_activity_item_request_builder = lazy_import('msgraph.generated.me.activities.item.user_activity_item_request_builder')
 agreement_acceptances_request_builder = lazy_import('msgraph.generated.me.agreement_acceptances.agreement_acceptances_request_builder')
@@ -161,13 +160,6 @@ class MeRequestBuilder():
     """
     Provides operations to manage the user singleton.
     """
-    @property
-    def activate_service_plan(self) -> activate_service_plan_request_builder.ActivateServicePlanRequestBuilder:
-        """
-        Provides operations to call the activateServicePlan method.
-        """
-        return activate_service_plan_request_builder.ActivateServicePlanRequestBuilder(self.request_adapter, self.path_parameters)
-    
     @property
     def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
         """

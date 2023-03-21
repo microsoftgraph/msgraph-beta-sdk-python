@@ -14,7 +14,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
     @property
     def azure_blob_container(self,) -> Optional[str]:
         """
-        Gets the azureBlobContainer property value. The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
+        Gets the azureBlobContainer property value. The azureBlobContainer property
         Returns: Optional[str]
         """
         return self._azure_blob_container
@@ -22,7 +22,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
     @azure_blob_container.setter
     def azure_blob_container(self,value: Optional[str] = None) -> None:
         """
-        Sets the azureBlobContainer property value. The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
+        Sets the azureBlobContainer property value. The azureBlobContainer property
         Args:
             value: Value to set for the azure_blob_container property.
         """
@@ -31,7 +31,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
     @property
     def azure_blob_token(self,) -> Optional[str]:
         """
-        Gets the azureBlobToken property value. The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
+        Gets the azureBlobToken property value. The azureBlobToken property
         Returns: Optional[str]
         """
         return self._azure_blob_token
@@ -39,7 +39,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
     @azure_blob_token.setter
     def azure_blob_token(self,value: Optional[str] = None) -> None:
         """
-        Sets the azureBlobToken property value. The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
+        Sets the azureBlobToken property value. The azureBlobToken property
         Args:
             value: Value to set for the azure_blob_token property.
         """
@@ -50,15 +50,15 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
         Instantiates a new EdiscoveryExportOperation and sets the default values.
         """
         super().__init__()
-        # The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
+        # The azureBlobContainer property
         self._azure_blob_container: Optional[str] = None
-        # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
+        # The azureBlobToken property
         self._azure_blob_token: Optional[str] = None
         # The description provided for the export.
         self._description: Optional[str] = None
         # The exportFileMetadata property
         self._export_file_metadata: Optional[List[export_file_metadata.ExportFileMetadata]] = None
-        # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+        # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30th, 2023. Going forward, the summary and load file are always included.
         self._export_options: Optional[export_options.ExportOptions] = None
         # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
         self._export_structure: Optional[export_file_structure.ExportFileStructure] = None
@@ -122,7 +122,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
     @property
     def export_options(self,) -> Optional[export_options.ExportOptions]:
         """
-        Gets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+        Gets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30th, 2023. Going forward, the summary and load file are always included.
         Returns: Optional[export_options.ExportOptions]
         """
         return self._export_options
@@ -130,7 +130,7 @@ class EdiscoveryExportOperation(case_operation.CaseOperation):
     @export_options.setter
     def export_options(self,value: Optional[export_options.ExportOptions] = None) -> None:
         """
-        Sets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+        Sets the exportOptions property value. The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags. The fileInfo member is deprecated and will stop returning data on April 30th, 2023. Going forward, the summary and load file are always included.
         Args:
             value: Value to set for the export_options property.
         """

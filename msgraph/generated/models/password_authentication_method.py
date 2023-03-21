@@ -15,8 +15,6 @@ class PasswordAuthenticationMethod(authentication_method.AuthenticationMethod):
         self.odata_type = "#microsoft.graph.passwordAuthenticationMethod"
         # The date and time when this password was last updated. This property is currently not populated. Read-only. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._created_date_time: Optional[datetime] = None
-        # The creationDateTime property
-        self._creation_date_time: Optional[datetime] = None
         # For security, the password is always returned as null from a LIST or GET operation.
         self._password: Optional[str] = None
     
@@ -49,23 +47,6 @@ class PasswordAuthenticationMethod(authentication_method.AuthenticationMethod):
             raise Exception("parse_node cannot be undefined")
         return PasswordAuthenticationMethod()
     
-    @property
-    def creation_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the creationDateTime property value. The creationDateTime property
-        Returns: Optional[datetime]
-        """
-        return self._creation_date_time
-    
-    @creation_date_time.setter
-    def creation_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the creationDateTime property value. The creationDateTime property
-        Args:
-            value: Value to set for the creation_date_time property.
-        """
-        self._creation_date_time = value
-    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
@@ -73,7 +54,6 @@ class PasswordAuthenticationMethod(authentication_method.AuthenticationMethod):
         """
         fields = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
-            "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -107,7 +87,6 @@ class PasswordAuthenticationMethod(authentication_method.AuthenticationMethod):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
-        writer.write_datetime_value("creationDateTime", self.creation_date_time)
         writer.write_str_value("password", self.password)
     
 

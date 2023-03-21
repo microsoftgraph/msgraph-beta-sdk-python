@@ -10,6 +10,8 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+access_package_custom_workflow_extensions_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_package_custom_workflow_extensions.access_package_custom_workflow_extensions_request_builder')
+custom_callout_extension_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_package_custom_workflow_extensions.item.custom_callout_extension_item_request_builder')
 access_package_resource_roles_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_package_resource_roles.access_package_resource_roles_request_builder')
 access_package_resource_role_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_package_resource_roles.item.access_package_resource_role_item_request_builder')
 access_package_resources_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_package_resources.access_package_resources_request_builder')
@@ -27,6 +29,13 @@ class AccessPackageCatalogItemRequestBuilder():
     """
     Provides operations to manage the accessPackageCatalogs property of the microsoft.graph.entitlementManagement entity.
     """
+    @property
+    def access_package_custom_workflow_extensions(self) -> access_package_custom_workflow_extensions_request_builder.AccessPackageCustomWorkflowExtensionsRequestBuilder:
+        """
+        Provides operations to manage the accessPackageCustomWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
+        """
+        return access_package_custom_workflow_extensions_request_builder.AccessPackageCustomWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def access_package_resource_roles(self) -> access_package_resource_roles_request_builder.AccessPackageResourceRolesRequestBuilder:
         """
@@ -61,6 +70,19 @@ class AccessPackageCatalogItemRequestBuilder():
         Provides operations to manage the customAccessPackageWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
         """
         return custom_access_package_workflow_extensions_request_builder.CustomAccessPackageWorkflowExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def access_package_custom_workflow_extensions_by_id(self,id: str) -> custom_callout_extension_item_request_builder.CustomCalloutExtensionItemRequestBuilder:
+        """
+        Provides operations to manage the accessPackageCustomWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: custom_callout_extension_item_request_builder.CustomCalloutExtensionItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customCalloutExtension%2Did"] = id
+        return custom_callout_extension_item_request_builder.CustomCalloutExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def access_package_resource_roles_by_id(self,id: str) -> access_package_resource_role_item_request_builder.AccessPackageResourceRoleItemRequestBuilder:
         """

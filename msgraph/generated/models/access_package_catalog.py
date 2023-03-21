@@ -9,9 +9,27 @@ access_package_resource = lazy_import('msgraph.generated.models.access_package_r
 access_package_resource_role = lazy_import('msgraph.generated.models.access_package_resource_role')
 access_package_resource_scope = lazy_import('msgraph.generated.models.access_package_resource_scope')
 custom_access_package_workflow_extension = lazy_import('msgraph.generated.models.custom_access_package_workflow_extension')
+custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_extension')
 entity = lazy_import('msgraph.generated.models.entity')
 
 class AccessPackageCatalog(entity.Entity):
+    @property
+    def access_package_custom_workflow_extensions(self,) -> Optional[List[custom_callout_extension.CustomCalloutExtension]]:
+        """
+        Gets the accessPackageCustomWorkflowExtensions property value. The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Returns: Optional[List[custom_callout_extension.CustomCalloutExtension]]
+        """
+        return self._access_package_custom_workflow_extensions
+    
+    @access_package_custom_workflow_extensions.setter
+    def access_package_custom_workflow_extensions(self,value: Optional[List[custom_callout_extension.CustomCalloutExtension]] = None) -> None:
+        """
+        Sets the accessPackageCustomWorkflowExtensions property value. The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        Args:
+            value: Value to set for the access_package_custom_workflow_extensions property.
+        """
+        self._access_package_custom_workflow_extensions = value
+    
     @property
     def access_package_resource_roles(self,) -> Optional[List[access_package_resource_role.AccessPackageResourceRole]]:
         """
@@ -119,6 +137,8 @@ class AccessPackageCatalog(entity.Entity):
         Instantiates a new accessPackageCatalog and sets the default values.
         """
         super().__init__()
+        # The attributes of a logic app, which can be called at various stages of an access package request and assignment cycle.
+        self._access_package_custom_workflow_extensions: Optional[List[custom_callout_extension.CustomCalloutExtension]] = None
         # The roles in each resource in a catalog. Read-only.
         self._access_package_resource_roles: Optional[List[access_package_resource_role.AccessPackageResourceRole]] = None
         # The accessPackageResourceScopes property
@@ -254,6 +274,7 @@ class AccessPackageCatalog(entity.Entity):
         """
         fields = {
             "accessPackages": lambda n : setattr(self, 'access_packages', n.get_collection_of_object_values(access_package.AccessPackage)),
+            "accessPackageCustomWorkflowExtensions": lambda n : setattr(self, 'access_package_custom_workflow_extensions', n.get_collection_of_object_values(custom_callout_extension.CustomCalloutExtension)),
             "accessPackageResources": lambda n : setattr(self, 'access_package_resources', n.get_collection_of_object_values(access_package_resource.AccessPackageResource)),
             "accessPackageResourceRoles": lambda n : setattr(self, 'access_package_resource_roles', n.get_collection_of_object_values(access_package_resource_role.AccessPackageResourceRole)),
             "accessPackageResourceScopes": lambda n : setattr(self, 'access_package_resource_scopes', n.get_collection_of_object_values(access_package_resource_scope.AccessPackageResourceScope)),
@@ -333,6 +354,7 @@ class AccessPackageCatalog(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_collection_of_object_values("accessPackages", self.access_packages)
+        writer.write_collection_of_object_values("accessPackageCustomWorkflowExtensions", self.access_package_custom_workflow_extensions)
         writer.write_collection_of_object_values("accessPackageResources", self.access_package_resources)
         writer.write_collection_of_object_values("accessPackageResourceRoles", self.access_package_resource_roles)
         writer.write_collection_of_object_values("accessPackageResourceScopes", self.access_package_resource_scopes)

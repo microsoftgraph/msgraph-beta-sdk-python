@@ -3,15 +3,35 @@ from kiota_abstractions.serialization import Parsable, ParseNode, SerializationW
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+application = lazy_import('msgraph.generated.models.application')
 custom_extension_callback_configuration = lazy_import('msgraph.generated.models.custom_extension_callback_configuration')
 
 class CustomTaskExtensionCallbackConfiguration(custom_extension_callback_configuration.CustomExtensionCallbackConfiguration):
+    @property
+    def authorized_apps(self,) -> Optional[List[application.Application]]:
+        """
+        Gets the authorizedApps property value. The authorizedApps property
+        Returns: Optional[List[application.Application]]
+        """
+        return self._authorized_apps
+    
+    @authorized_apps.setter
+    def authorized_apps(self,value: Optional[List[application.Application]] = None) -> None:
+        """
+        Sets the authorizedApps property value. The authorizedApps property
+        Args:
+            value: Value to set for the authorized_apps property.
+        """
+        self._authorized_apps = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new CustomTaskExtensionCallbackConfiguration and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration"
+        # The authorizedApps property
+        self._authorized_apps: Optional[List[application.Application]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomTaskExtensionCallbackConfiguration:
@@ -31,6 +51,7 @@ class CustomTaskExtensionCallbackConfiguration(custom_extension_callback_configu
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "authorizedApps": lambda n : setattr(self, 'authorized_apps', n.get_collection_of_object_values(application.Application)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -45,5 +66,6 @@ class CustomTaskExtensionCallbackConfiguration(custom_extension_callback_configu
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("authorizedApps", self.authorized_apps)
     
 

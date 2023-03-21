@@ -10,6 +10,7 @@ access_package_question = lazy_import('msgraph.generated.models.access_package_q
 approval_settings = lazy_import('msgraph.generated.models.approval_settings')
 assignment_review_settings = lazy_import('msgraph.generated.models.assignment_review_settings')
 custom_extension_handler = lazy_import('msgraph.generated.models.custom_extension_handler')
+custom_extension_stage_setting = lazy_import('msgraph.generated.models.custom_extension_stage_setting')
 entity = lazy_import('msgraph.generated.models.entity')
 requestor_settings = lazy_import('msgraph.generated.models.requestor_settings')
 
@@ -120,6 +121,8 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         self._created_date_time: Optional[datetime] = None
         # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
         self._custom_extension_handlers: Optional[List[custom_extension_handler.CustomExtensionHandler]] = None
+        # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        self._custom_extension_stage_settings: Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]] = None
         # The description of the policy.
         self._description: Optional[str] = None
         # The display name of the policy. Supports $filter (eq).
@@ -205,6 +208,23 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         self._custom_extension_handlers = value
     
     @property
+    def custom_extension_stage_settings(self,) -> Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]]:
+        """
+        Gets the customExtensionStageSettings property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        Returns: Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]]
+        """
+        return self._custom_extension_stage_settings
+    
+    @custom_extension_stage_settings.setter
+    def custom_extension_stage_settings(self,value: Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]] = None) -> None:
+        """
+        Sets the customExtensionStageSettings property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        Args:
+            value: Value to set for the custom_extension_stage_settings property.
+        """
+        self._custom_extension_stage_settings = value
+    
+    @property
     def description(self,) -> Optional[str]:
         """
         Gets the description property value. The description of the policy.
@@ -286,6 +306,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "customExtensionHandlers": lambda n : setattr(self, 'custom_extension_handlers', n.get_collection_of_object_values(custom_extension_handler.CustomExtensionHandler)),
+            "customExtensionStageSettings": lambda n : setattr(self, 'custom_extension_stage_settings', n.get_collection_of_object_values(custom_extension_stage_setting.CustomExtensionStageSetting)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
@@ -402,6 +423,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         writer.write_str_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("customExtensionHandlers", self.custom_extension_handlers)
+        writer.write_collection_of_object_values("customExtensionStageSettings", self.custom_extension_stage_settings)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("durationInDays", self.duration_in_days)

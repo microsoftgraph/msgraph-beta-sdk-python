@@ -65,6 +65,7 @@ retrieve_remote_help_session_with_session_key_request_builder = lazy_import('msg
 revoke_apple_vpp_licenses_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.revoke_apple_vpp_licenses.revoke_apple_vpp_licenses_request_builder')
 rotate_bit_locker_keys_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.rotate_bit_locker_keys.rotate_bit_locker_keys_request_builder')
 rotate_file_vault_key_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.rotate_file_vault_key.rotate_file_vault_key_request_builder')
+rotate_local_admin_password_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.rotate_local_admin_password.rotate_local_admin_password_request_builder')
 security_baseline_states_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.security_baseline_states.security_baseline_states_request_builder')
 security_baseline_state_item_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.security_baseline_states.item.security_baseline_state_item_request_builder')
 send_custom_notification_to_company_portal_request_builder = lazy_import('msgraph.generated.users.item.managed_devices.item.send_custom_notification_to_company_portal.send_custom_notification_to_company_portal_request_builder')
@@ -405,6 +406,13 @@ class ManagedDeviceItemRequestBuilder():
         Provides operations to call the rotateFileVaultKey method.
         """
         return rotate_file_vault_key_request_builder.RotateFileVaultKeyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def rotate_local_admin_password(self) -> rotate_local_admin_password_request_builder.RotateLocalAdminPasswordRequestBuilder:
+        """
+        Provides operations to call the rotateLocalAdminPassword method.
+        """
+        return rotate_local_admin_password_request_builder.RotateLocalAdminPasswordRequestBuilder(self.request_adapter, self.path_parameters)
     
     @property
     def security_baseline_states(self) -> security_baseline_states_request_builder.SecurityBaselineStatesRequestBuilder:

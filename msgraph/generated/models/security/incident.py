@@ -11,6 +11,7 @@ alert_comment = lazy_import('msgraph.generated.models.security.alert_comment')
 alert_determination = lazy_import('msgraph.generated.models.security.alert_determination')
 alert_severity = lazy_import('msgraph.generated.models.security.alert_severity')
 incident_status = lazy_import('msgraph.generated.models.security.incident_status')
+recommended_hunting_query = lazy_import('msgraph.generated.models.security.recommended_hunting_query')
 
 class Incident(entity.Entity):
     @property
@@ -98,6 +99,8 @@ class Incident(entity.Entity):
         self._created_date_time: Optional[datetime] = None
         # Array of custom tags associated with an incident.
         self._custom_tags: Optional[List[str]] = None
+        # The description property
+        self._description: Optional[str] = None
         # Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
         self._determination: Optional[alert_determination.AlertDetermination] = None
         # The incident name.
@@ -108,12 +111,18 @@ class Incident(entity.Entity):
         self._last_update_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # The recommendedActions property
+        self._recommended_actions: Optional[str] = None
+        # The recommendedHuntingQueries property
+        self._recommended_hunting_queries: Optional[List[recommended_hunting_query.RecommendedHuntingQuery]] = None
         # Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
         self._redirect_incident_id: Optional[str] = None
         # The severity property
         self._severity: Optional[alert_severity.AlertSeverity] = None
         # The status property
         self._status: Optional[incident_status.IncidentStatus] = None
+        # The systemTags property
+        self._system_tags: Optional[List[str]] = None
         # The Azure Active Directory tenant in which the alert was created.
         self._tenant_id: Optional[str] = None
     
@@ -164,6 +173,23 @@ class Incident(entity.Entity):
         self._custom_tags = value
     
     @property
+    def description(self,) -> Optional[str]:
+        """
+        Gets the description property value. The description property
+        Returns: Optional[str]
+        """
+        return self._description
+    
+    @description.setter
+    def description(self,value: Optional[str] = None) -> None:
+        """
+        Sets the description property value. The description property
+        Args:
+            value: Value to set for the description property.
+        """
+        self._description = value
+    
+    @property
     def determination(self,) -> Optional[alert_determination.AlertDetermination]:
         """
         Gets the determination property value. Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
@@ -209,13 +235,17 @@ class Incident(entity.Entity):
             "comments": lambda n : setattr(self, 'comments', n.get_collection_of_object_values(alert_comment.AlertComment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "customTags": lambda n : setattr(self, 'custom_tags', n.get_collection_of_primitive_values(str)),
+            "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "determination": lambda n : setattr(self, 'determination', n.get_enum_value(alert_determination.AlertDetermination)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "incidentWebUrl": lambda n : setattr(self, 'incident_web_url', n.get_str_value()),
             "lastUpdateDateTime": lambda n : setattr(self, 'last_update_date_time', n.get_datetime_value()),
+            "recommendedActions": lambda n : setattr(self, 'recommended_actions', n.get_str_value()),
+            "recommendedHuntingQueries": lambda n : setattr(self, 'recommended_hunting_queries', n.get_collection_of_object_values(recommended_hunting_query.RecommendedHuntingQuery)),
             "redirectIncidentId": lambda n : setattr(self, 'redirect_incident_id', n.get_str_value()),
             "severity": lambda n : setattr(self, 'severity', n.get_enum_value(alert_severity.AlertSeverity)),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(incident_status.IncidentStatus)),
+            "systemTags": lambda n : setattr(self, 'system_tags', n.get_collection_of_primitive_values(str)),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -257,6 +287,40 @@ class Incident(entity.Entity):
         self._last_update_date_time = value
     
     @property
+    def recommended_actions(self,) -> Optional[str]:
+        """
+        Gets the recommendedActions property value. The recommendedActions property
+        Returns: Optional[str]
+        """
+        return self._recommended_actions
+    
+    @recommended_actions.setter
+    def recommended_actions(self,value: Optional[str] = None) -> None:
+        """
+        Sets the recommendedActions property value. The recommendedActions property
+        Args:
+            value: Value to set for the recommended_actions property.
+        """
+        self._recommended_actions = value
+    
+    @property
+    def recommended_hunting_queries(self,) -> Optional[List[recommended_hunting_query.RecommendedHuntingQuery]]:
+        """
+        Gets the recommendedHuntingQueries property value. The recommendedHuntingQueries property
+        Returns: Optional[List[recommended_hunting_query.RecommendedHuntingQuery]]
+        """
+        return self._recommended_hunting_queries
+    
+    @recommended_hunting_queries.setter
+    def recommended_hunting_queries(self,value: Optional[List[recommended_hunting_query.RecommendedHuntingQuery]] = None) -> None:
+        """
+        Sets the recommendedHuntingQueries property value. The recommendedHuntingQueries property
+        Args:
+            value: Value to set for the recommended_hunting_queries property.
+        """
+        self._recommended_hunting_queries = value
+    
+    @property
     def redirect_incident_id(self,) -> Optional[str]:
         """
         Gets the redirectIncidentId property value. Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
@@ -288,13 +352,17 @@ class Incident(entity.Entity):
         writer.write_collection_of_object_values("comments", self.comments)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_primitive_values("customTags", self.custom_tags)
+        writer.write_str_value("description", self.description)
         writer.write_enum_value("determination", self.determination)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("incidentWebUrl", self.incident_web_url)
         writer.write_datetime_value("lastUpdateDateTime", self.last_update_date_time)
+        writer.write_str_value("recommendedActions", self.recommended_actions)
+        writer.write_collection_of_object_values("recommendedHuntingQueries", self.recommended_hunting_queries)
         writer.write_str_value("redirectIncidentId", self.redirect_incident_id)
         writer.write_enum_value("severity", self.severity)
         writer.write_enum_value("status", self.status)
+        writer.write_collection_of_primitive_values("systemTags", self.system_tags)
         writer.write_str_value("tenantId", self.tenant_id)
     
     @property
@@ -330,6 +398,23 @@ class Incident(entity.Entity):
             value: Value to set for the status property.
         """
         self._status = value
+    
+    @property
+    def system_tags(self,) -> Optional[List[str]]:
+        """
+        Gets the systemTags property value. The systemTags property
+        Returns: Optional[List[str]]
+        """
+        return self._system_tags
+    
+    @system_tags.setter
+    def system_tags(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the systemTags property value. The systemTags property
+        Args:
+            value: Value to set for the system_tags property.
+        """
+        self._system_tags = value
     
     @property
     def tenant_id(self,) -> Optional[str]:

@@ -37,7 +37,7 @@ class DeviceManagementConfigurationSettingDefinitionItemRequestBuilder():
     
     async def get(self,request_configuration: Optional[DeviceManagementConfigurationSettingDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> Optional[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]:
         """
-        List of related Setting Definitions. This property is read-only.
+        List of related Setting Definitions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: Optional[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]
@@ -55,7 +55,7 @@ class DeviceManagementConfigurationSettingDefinitionItemRequestBuilder():
     
     def to_get_request_information(self,request_configuration: Optional[DeviceManagementConfigurationSettingDefinitionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
         """
-        List of related Setting Definitions. This property is read-only.
+        List of related Setting Definitions
         Args:
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
         Returns: RequestInformation
@@ -74,7 +74,7 @@ class DeviceManagementConfigurationSettingDefinitionItemRequestBuilder():
     @dataclass
     class DeviceManagementConfigurationSettingDefinitionItemRequestBuilderGetQueryParameters():
         """
-        List of related Setting Definitions. This property is read-only.
+        List of related Setting Definitions
         """
         # Expand related entities
         expand: Optional[List[str]] = None

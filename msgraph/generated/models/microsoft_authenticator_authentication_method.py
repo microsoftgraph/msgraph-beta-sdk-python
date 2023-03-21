@@ -6,14 +6,34 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 authentication_method = lazy_import('msgraph.generated.models.authentication_method')
 device = lazy_import('msgraph.generated.models.device')
+microsoft_authenticator_authentication_method_client_app_name = lazy_import('msgraph.generated.models.microsoft_authenticator_authentication_method_client_app_name')
 
 class MicrosoftAuthenticatorAuthenticationMethod(authentication_method.AuthenticationMethod):
+    @property
+    def client_app_name(self,) -> Optional[microsoft_authenticator_authentication_method_client_app_name.MicrosoftAuthenticatorAuthenticationMethodClientAppName]:
+        """
+        Gets the clientAppName property value. The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.
+        Returns: Optional[microsoft_authenticator_authentication_method_client_app_name.MicrosoftAuthenticatorAuthenticationMethodClientAppName]
+        """
+        return self._client_app_name
+    
+    @client_app_name.setter
+    def client_app_name(self,value: Optional[microsoft_authenticator_authentication_method_client_app_name.MicrosoftAuthenticatorAuthenticationMethodClientAppName] = None) -> None:
+        """
+        Sets the clientAppName property value. The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.
+        Args:
+            value: Value to set for the client_app_name property.
+        """
+        self._client_app_name = value
+    
     def __init__(self,) -> None:
         """
         Instantiates a new MicrosoftAuthenticatorAuthenticationMethod and sets the default values.
         """
         super().__init__()
         self.odata_type = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethod"
+        # The app that the user has registered to use to approve push notifications. The possible values are: microsoftAuthenticator, outlookMobile, unknownFutureValue.
+        self._client_app_name: Optional[microsoft_authenticator_authentication_method_client_app_name.MicrosoftAuthenticatorAuthenticationMethodClientAppName] = None
         # The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.
         self._created_date_time: Optional[datetime] = None
         # The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
@@ -111,6 +131,7 @@ class MicrosoftAuthenticatorAuthenticationMethod(authentication_method.Authentic
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
         fields = {
+            "clientAppName": lambda n : setattr(self, 'client_app_name', n.get_enum_value(microsoft_authenticator_authentication_method_client_app_name.MicrosoftAuthenticatorAuthenticationMethodClientAppName)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "device": lambda n : setattr(self, 'device', n.get_object_value(device.Device)),
             "deviceTag": lambda n : setattr(self, 'device_tag', n.get_str_value()),
@@ -147,6 +168,7 @@ class MicrosoftAuthenticatorAuthenticationMethod(authentication_method.Authentic
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_enum_value("clientAppName", self.client_app_name)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_object_value("device", self.device)
         writer.write_str_value("deviceTag", self.device_tag)

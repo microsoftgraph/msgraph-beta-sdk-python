@@ -56,7 +56,7 @@ class RefRequestBuilder():
     
     async def post(self,body: Optional[reference_create.ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> None:
         """
-        Assign a tokenLifetimePolicy to an application or servicePrincipal.
+        Create new navigation property ref to tokenLifetimePolicies for applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.
@@ -94,7 +94,7 @@ class RefRequestBuilder():
     
     def to_post_request_information(self,body: Optional[reference_create.ReferenceCreate] = None, request_configuration: Optional[RefRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:
         """
-        Assign a tokenLifetimePolicy to an application or servicePrincipal.
+        Create new navigation property ref to tokenLifetimePolicies for applications
         Args:
             body: The request body
             requestConfiguration: Configuration for the request such as headers, query parameters, and middleware options.

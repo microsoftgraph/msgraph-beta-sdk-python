@@ -12,6 +12,10 @@ from typing import Any, Callable, Dict, List, Optional, Union
 
 subject_rights_request = lazy_import('msgraph.generated.models.subject_rights_request')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+approvers_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.approvers.approvers_request_builder')
+user_item_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.approvers.item.user_item_request_builder')
+collaborators_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.collaborators.collaborators_request_builder')
+user_item_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.collaborators.item.user_item_request_builder')
 get_final_attachment_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.get_final_attachment.get_final_attachment_request_builder')
 get_final_report_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.get_final_report.get_final_report_request_builder')
 notes_request_builder = lazy_import('msgraph.generated.privacy.subject_rights_requests.item.notes.notes_request_builder')
@@ -22,6 +26,20 @@ class SubjectRightsRequestItemRequestBuilder():
     """
     Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.
     """
+    @property
+    def approvers(self) -> approvers_request_builder.ApproversRequestBuilder:
+        """
+        Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
+        """
+        return approvers_request_builder.ApproversRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def collaborators(self) -> collaborators_request_builder.CollaboratorsRequestBuilder:
+        """
+        Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.
+        """
+        return collaborators_request_builder.CollaboratorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def get_final_attachment(self) -> get_final_attachment_request_builder.GetFinalAttachmentRequestBuilder:
         """
@@ -49,6 +67,32 @@ class SubjectRightsRequestItemRequestBuilder():
         Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
         """
         return team_request_builder.TeamRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    def approvers_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
+        """
+        Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: user_item_request_builder.UserItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["user%2Did"] = id
+        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def collaborators_by_id(self,id: str) -> user_item_request_builder.UserItemRequestBuilder:
+        """
+        Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: user_item_request_builder.UserItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["user%2Did"] = id
+        return user_item_request_builder.UserItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """

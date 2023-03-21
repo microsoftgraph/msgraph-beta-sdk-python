@@ -10,7 +10,7 @@ user = lazy_import('msgraph.generated.models.user')
 class Invitation(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new Invitation and sets the default values.
+        Instantiates a new invitation and sets the default values.
         """
         super().__init__()
         # The URL the user can use to redeem their invitation. Read-only.

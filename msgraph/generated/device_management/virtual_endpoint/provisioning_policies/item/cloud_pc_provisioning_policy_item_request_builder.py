@@ -10,6 +10,7 @@ from kiota_abstractions.serialization import Parsable, ParsableFactory
 from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
+apply_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.provisioning_policies.item.apply.apply_request_builder')
 assign_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.provisioning_policies.item.assign.assign_request_builder')
 assignments_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.provisioning_policies.item.assignments.assignments_request_builder')
 cloud_pc_provisioning_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.provisioning_policies.item.assignments.item.cloud_pc_provisioning_policy_assignment_item_request_builder')
@@ -20,6 +21,13 @@ class CloudPcProvisioningPolicyItemRequestBuilder():
     """
     Provides operations to manage the provisioningPolicies property of the microsoft.graph.virtualEndpoint entity.
     """
+    @property
+    def apply(self) -> apply_request_builder.ApplyRequestBuilder:
+        """
+        Provides operations to call the apply method.
+        """
+        return apply_request_builder.ApplyRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @property
     def assign(self) -> assign_request_builder.AssignRequestBuilder:
         """

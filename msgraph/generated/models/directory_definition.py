@@ -24,7 +24,7 @@ class DirectoryDefinition(entity.Entity):
         self._objects: Optional[List[object_definition.ObjectDefinition]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The readOnly property
+        # Whether this object is read-only.
         self._read_only: Optional[bool] = None
         # Read only value that indicates version discovered. null if discovery has not yet occurred.
         self._version: Optional[str] = None
@@ -129,7 +129,7 @@ class DirectoryDefinition(entity.Entity):
     @property
     def read_only(self,) -> Optional[bool]:
         """
-        Gets the readOnly property value. The readOnly property
+        Gets the readOnly property value. Whether this object is read-only.
         Returns: Optional[bool]
         """
         return self._read_only
@@ -137,7 +137,7 @@ class DirectoryDefinition(entity.Entity):
     @read_only.setter
     def read_only(self,value: Optional[bool] = None) -> None:
         """
-        Sets the readOnly property value. The readOnly property
+        Sets the readOnly property value. Whether this object is read-only.
         Args:
             value: Value to set for the read_only property.
         """

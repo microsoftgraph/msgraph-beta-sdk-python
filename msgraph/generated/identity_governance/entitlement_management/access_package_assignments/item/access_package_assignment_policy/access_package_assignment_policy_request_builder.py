@@ -14,6 +14,8 @@ access_package_request_builder = lazy_import('msgraph.generated.identity_governa
 access_package_catalog_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.access_package_catalog.access_package_catalog_request_builder')
 custom_extension_handlers_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.custom_extension_handlers.custom_extension_handlers_request_builder')
 custom_extension_handler_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.custom_extension_handlers.item.custom_extension_handler_item_request_builder')
+custom_extension_stage_settings_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.custom_extension_stage_settings.custom_extension_stage_settings_request_builder')
+custom_extension_stage_setting_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.custom_extension_stage_settings.item.custom_extension_stage_setting_item_request_builder')
 access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
 o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
 
@@ -41,6 +43,13 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         """
         return custom_extension_handlers_request_builder.CustomExtensionHandlersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def custom_extension_stage_settings(self) -> custom_extension_stage_settings_request_builder.CustomExtensionStageSettingsRequestBuilder:
+        """
+        Provides operations to manage the customExtensionStageSettings property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        """
+        return custom_extension_stage_settings_request_builder.CustomExtensionStageSettingsRequestBuilder(self.request_adapter, self.path_parameters)
     
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
@@ -72,6 +81,19 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["customExtensionHandler%2Did"] = id
         return custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def custom_extension_stage_settings_by_id(self,id: str) -> custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder:
+        """
+        Provides operations to manage the customExtensionStageSettings property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customExtensionStageSetting%2Did"] = id
+        return custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessPackageAssignmentPolicyRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """

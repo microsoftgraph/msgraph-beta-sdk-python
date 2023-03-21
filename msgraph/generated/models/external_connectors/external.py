@@ -4,6 +4,7 @@ from kiota_abstractions.utils import lazy_import
 from typing import Any, Callable, Dict, List, Optional, Union
 
 external_connection = lazy_import('msgraph.generated.models.external_connectors.external_connection')
+industry_data_root = lazy_import('msgraph.generated.models.industry_data.industry_data_root')
 
 class External(AdditionalDataHolder, Parsable):
     @property
@@ -49,6 +50,8 @@ class External(AdditionalDataHolder, Parsable):
 
         # The connections property
         self._connections: Optional[List[external_connection.ExternalConnection]] = None
+        # The industryData property
+        self._industry_data: Optional[industry_data_root.IndustryDataRoot] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
     
@@ -71,9 +74,27 @@ class External(AdditionalDataHolder, Parsable):
         """
         fields = {
             "connections": lambda n : setattr(self, 'connections', n.get_collection_of_object_values(external_connection.ExternalConnection)),
+            "industryData": lambda n : setattr(self, 'industry_data', n.get_object_value(industry_data_root.IndustryDataRoot)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields
+    
+    @property
+    def industry_data(self,) -> Optional[industry_data_root.IndustryDataRoot]:
+        """
+        Gets the industryData property value. The industryData property
+        Returns: Optional[industry_data_root.IndustryDataRoot]
+        """
+        return self._industry_data
+    
+    @industry_data.setter
+    def industry_data(self,value: Optional[industry_data_root.IndustryDataRoot] = None) -> None:
+        """
+        Sets the industryData property value. The industryData property
+        Args:
+            value: Value to set for the industry_data property.
+        """
+        self._industry_data = value
     
     @property
     def odata_type(self,) -> Optional[str]:
@@ -101,6 +122,7 @@ class External(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_collection_of_object_values("connections", self.connections)
+        writer.write_object_value("industryData", self.industry_data)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_additional_data_value(self.additional_data)
     

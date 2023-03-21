@@ -18,7 +18,7 @@ class DeviceManagementConfigurationSetting(entity.Entity):
         super().__init__()
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # List of related Setting Definitions. This property is read-only.
+        # List of related Setting Definitions
         self._setting_definitions: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]] = None
         # Setting instance within policy
         self._setting_instance: Optional[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance] = None
@@ -63,7 +63,7 @@ class DeviceManagementConfigurationSetting(entity.Entity):
     @property
     def setting_definitions(self,) -> Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]]:
         """
-        Gets the settingDefinitions property value. List of related Setting Definitions. This property is read-only.
+        Gets the settingDefinitions property value. List of related Setting Definitions
         Returns: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]]
         """
         return self._setting_definitions
@@ -71,7 +71,7 @@ class DeviceManagementConfigurationSetting(entity.Entity):
     @setting_definitions.setter
     def setting_definitions(self,value: Optional[List[device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition]] = None) -> None:
         """
-        Sets the settingDefinitions property value. List of related Setting Definitions. This property is read-only.
+        Sets the settingDefinitions property value. List of related Setting Definitions
         Args:
             value: Value to set for the setting_definitions property.
         """

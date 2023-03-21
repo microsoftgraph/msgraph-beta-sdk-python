@@ -9,7 +9,7 @@ source_collection = lazy_import('msgraph.generated.models.ediscovery.source_coll
 class EstimateStatisticsOperation(case_operation.CaseOperation):
     def __init__(self,) -> None:
         """
-        Instantiates a new estimateStatisticsOperation and sets the default values.
+        Instantiates a new EstimateStatisticsOperation and sets the default values.
         """
         super().__init__()
         # The estimated count of items for the sourceCollection that matched the content query.

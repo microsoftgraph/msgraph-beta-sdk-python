@@ -31,7 +31,7 @@ class CustomExtensionCallbackConfiguration(AdditionalDataHolder, Parsable):
 
         # The OdataType property
         self._odata_type: Optional[str] = None
-        # Callback time out in ISO 8601 time duration. Accepted time durations are between five minutes to three hours. For example, PT5M for five minutes and PT3H for three hours.
+        # The maximum duration in ISO 8601 format that Azure AD will wait for a resume action for the callout it sent to the logic app. The valid range for custom extensions in lifecycle workflows is five minutes to three hours. The valid range for custom extensions in entitlement management is between 5 minutes and 14 days. For example, PT3H refers to three hours, P3D refers to three days, PT10M refers to ten minutes.
         self._timeout_duration: Optional[Timedelta] = None
     
     @staticmethod
@@ -89,7 +89,7 @@ class CustomExtensionCallbackConfiguration(AdditionalDataHolder, Parsable):
     @property
     def timeout_duration(self,) -> Optional[Timedelta]:
         """
-        Gets the timeoutDuration property value. Callback time out in ISO 8601 time duration. Accepted time durations are between five minutes to three hours. For example, PT5M for five minutes and PT3H for three hours.
+        Gets the timeoutDuration property value. The maximum duration in ISO 8601 format that Azure AD will wait for a resume action for the callout it sent to the logic app. The valid range for custom extensions in lifecycle workflows is five minutes to three hours. The valid range for custom extensions in entitlement management is between 5 minutes and 14 days. For example, PT3H refers to three hours, P3D refers to three days, PT10M refers to ten minutes.
         Returns: Optional[Timedelta]
         """
         return self._timeout_duration
@@ -97,7 +97,7 @@ class CustomExtensionCallbackConfiguration(AdditionalDataHolder, Parsable):
     @timeout_duration.setter
     def timeout_duration(self,value: Optional[Timedelta] = None) -> None:
         """
-        Sets the timeoutDuration property value. Callback time out in ISO 8601 time duration. Accepted time durations are between five minutes to three hours. For example, PT5M for five minutes and PT3H for three hours.
+        Sets the timeoutDuration property value. The maximum duration in ISO 8601 format that Azure AD will wait for a resume action for the callout it sent to the logic app. The valid range for custom extensions in lifecycle workflows is five minutes to three hours. The valid range for custom extensions in entitlement management is between 5 minutes and 14 days. For example, PT3H refers to three hours, P3D refers to three days, PT10M refers to ten minutes.
         Args:
             value: Value to set for the timeout_duration property.
         """

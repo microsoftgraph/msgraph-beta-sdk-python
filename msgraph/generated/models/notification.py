@@ -12,7 +12,7 @@ target_policy_endpoints = lazy_import('msgraph.generated.models.target_policy_en
 class Notification(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new notification and sets the default values.
+        Instantiates a new Notification and sets the default values.
         """
         super().__init__()
         # Sets how long (in seconds) this notification content will stay in each platform's notification viewer. For example, when the notification is delivered to a Windows device, the value of this property is passed on to ToastNotification.ExpirationTime, which determines how long the toast notification will stay in the user's Windows Action Center.

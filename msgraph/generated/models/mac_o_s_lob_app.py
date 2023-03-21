@@ -71,7 +71,7 @@ class MacOSLobApp(mobile_lob_app.MobileLobApp):
         self._bundle_id: Optional[str] = None
         # List of ComplexType macOSLobChildApp objects. Represents the apps expected to be installed by the package.
         self._child_apps: Optional[List[mac_o_s_lob_child_app.MacOSLobChildApp]] = None
-        # The identity version. This property is being deprecated in 2211(November 2022).
+        # The identity version. This property is deprecated starting  in 2211(November 2022).
         self._identity_version: Optional[str] = None
         # When TRUE, indicates that the app's version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app's version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature.
         self._ignore_version_detection: Optional[bool] = None
@@ -122,7 +122,7 @@ class MacOSLobApp(mobile_lob_app.MobileLobApp):
     @property
     def identity_version(self,) -> Optional[str]:
         """
-        Gets the identityVersion property value. The identity version. This property is being deprecated in 2211(November 2022).
+        Gets the identityVersion property value. The identity version. This property is deprecated starting  in 2211(November 2022).
         Returns: Optional[str]
         """
         return self._identity_version
@@ -130,7 +130,7 @@ class MacOSLobApp(mobile_lob_app.MobileLobApp):
     @identity_version.setter
     def identity_version(self,value: Optional[str] = None) -> None:
         """
-        Sets the identityVersion property value. The identity version. This property is being deprecated in 2211(November 2022).
+        Sets the identityVersion property value. The identity version. This property is deprecated starting  in 2211(November 2022).
         Args:
             value: Value to set for the identity_version property.
         """

@@ -91,7 +91,7 @@ class CloudPC(entity.Entity):
         self._provisioning_policy_id: Optional[str] = None
         # The provisioning policy that is applied during the provisioning of Cloud PCs.
         self._provisioning_policy_name: Optional[str] = None
-        # The provisioningType property
+        # The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
         self._provisioning_type: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None
         # The service plan ID of the Cloud PC.
         self._service_plan_id: Optional[str] = None
@@ -396,7 +396,7 @@ class CloudPC(entity.Entity):
     @property
     def provisioning_type(self,) -> Optional[cloud_pc_provisioning_type.CloudPcProvisioningType]:
         """
-        Gets the provisioningType property value. The provisioningType property
+        Gets the provisioningType property value. The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
         Returns: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType]
         """
         return self._provisioning_type
@@ -404,7 +404,7 @@ class CloudPC(entity.Entity):
     @provisioning_type.setter
     def provisioning_type(self,value: Optional[cloud_pc_provisioning_type.CloudPcProvisioningType] = None) -> None:
         """
-        Sets the provisioningType property value. The provisioningType property
+        Sets the provisioningType property value. The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. Default value is dedicated.
         Args:
             value: Value to set for the provisioning_type property.
         """
