@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-management_template_step_deployment = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_deployment')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-managed_tenants_change_deployment_status_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_step_versions.item.deployments.item.managed_tenants_change_deployment_status.managed_tenants_change_deployment_status_request_builder')
-template_step_version_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_template_step_versions.item.deployments.item.template_step_version.template_step_version_request_builder')
+if TYPE_CHECKING:
+    from .......models.managed_tenants import management_template_step_deployment
+    from .......models.o_data_errors import o_data_error
+    from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
+    from .template_step_version import template_step_version_request_builder
 
 class ManagementTemplateStepDeploymentItemRequestBuilder():
     """
     Provides operations to manage the deployments property of the microsoft.graph.managedTenants.managementTemplateStepVersion entity.
     """
-    @property
-    def managed_tenants_change_deployment_status(self) -> managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder:
-        """
-        Provides operations to call the changeDeploymentStatus method.
-        """
-        return managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def template_step_version(self) -> template_step_version_request_builder.TemplateStepVersionRequestBuilder:
-        """
-        Provides operations to manage the templateStepVersion property of the microsoft.graph.managedTenants.managementTemplateStepDeployment entity.
-        """
-        return template_step_version_request_builder.TemplateStepVersionRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ManagementTemplateStepDeploymentItemRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.managed_tenants import management_template_step_deployment
+
         return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
     async def patch(self,body: Optional[management_template_step_deployment.ManagementTemplateStepDeployment] = None, request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[management_template_step_deployment.ManagementTemplateStepDeployment]:
@@ -99,12 +91,16 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.managed_tenants import management_template_step_deployment
+
         return await self.request_adapter.send_async(request_info, management_template_step_deployment.ManagementTemplateStepDeployment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def managed_tenants_change_deployment_status(self) -> managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder:
+        """
+        Provides operations to call the changeDeploymentStatus method.
+        """
+        from .managed_tenants_change_deployment_status import managed_tenants_change_deployment_status_request_builder
+
+        return managed_tenants_change_deployment_status_request_builder.ManagedTenantsChangeDeploymentStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def template_step_version(self) -> template_step_version_request_builder.TemplateStepVersionRequestBuilder:
+        """
+        Provides operations to manage the templateStepVersion property of the microsoft.graph.managedTenants.managementTemplateStepDeployment entity.
+        """
+        from .template_step_version import template_step_version_request_builder
+
+        return template_step_version_request_builder.TemplateStepVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ManagementTemplateStepDeploymentItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
         """
         Get deployments from tenantRelationships
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class ManagementTemplateStepDeploymentItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ManagementTemplateStepDeploymentItemRequestBuilderGetRequestConfiguration():

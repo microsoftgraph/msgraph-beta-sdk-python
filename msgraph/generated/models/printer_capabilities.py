@@ -1,92 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-integer_range = lazy_import('msgraph.generated.models.integer_range')
-print_color_configuration = lazy_import('msgraph.generated.models.print_color_configuration')
-print_color_mode = lazy_import('msgraph.generated.models.print_color_mode')
-print_duplex_configuration = lazy_import('msgraph.generated.models.print_duplex_configuration')
-print_duplex_mode = lazy_import('msgraph.generated.models.print_duplex_mode')
-print_finishing = lazy_import('msgraph.generated.models.print_finishing')
-print_media_type = lazy_import('msgraph.generated.models.print_media_type')
-print_multipage_layout = lazy_import('msgraph.generated.models.print_multipage_layout')
-print_orientation = lazy_import('msgraph.generated.models.print_orientation')
-print_presentation_direction = lazy_import('msgraph.generated.models.print_presentation_direction')
-print_quality = lazy_import('msgraph.generated.models.print_quality')
-print_scaling = lazy_import('msgraph.generated.models.print_scaling')
-printer_feed_direction = lazy_import('msgraph.generated.models.printer_feed_direction')
-printer_feed_orientation = lazy_import('msgraph.generated.models.printer_feed_orientation')
+if TYPE_CHECKING:
+    from . import integer_range, printer_feed_direction, printer_feed_orientation, print_color_configuration, print_color_mode, print_duplex_configuration, print_duplex_mode, print_finishing, print_media_type, print_multipage_layout, print_orientation, print_presentation_direction, print_quality, print_scaling
 
 class PrinterCapabilities(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
-    @property
-    def bottom_margins(self,) -> Optional[List[int]]:
-        """
-        Gets the bottomMargins property value. A list of supported bottom margins(in microns) for the printer.
-        Returns: Optional[List[int]]
-        """
-        return self._bottom_margins
-    
-    @bottom_margins.setter
-    def bottom_margins(self,value: Optional[List[int]] = None) -> None:
-        """
-        Sets the bottomMargins property value. A list of supported bottom margins(in microns) for the printer.
-        Args:
-            value: Value to set for the bottom_margins property.
-        """
-        self._bottom_margins = value
-    
-    @property
-    def collation(self,) -> Optional[bool]:
-        """
-        Gets the collation property value. True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
-        Returns: Optional[bool]
-        """
-        return self._collation
-    
-    @collation.setter
-    def collation(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the collation property value. True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
-        Args:
-            value: Value to set for the collation property.
-        """
-        self._collation = value
-    
-    @property
-    def color_modes(self,) -> Optional[List[print_color_mode.PrintColorMode]]:
-        """
-        Gets the colorModes property value. The color modes supported by the printer. Valid values are described in the following table.
-        Returns: Optional[List[print_color_mode.PrintColorMode]]
-        """
-        return self._color_modes
-    
-    @color_modes.setter
-    def color_modes(self,value: Optional[List[print_color_mode.PrintColorMode]] = None) -> None:
-        """
-        Sets the colorModes property value. The color modes supported by the printer. Valid values are described in the following table.
-        Args:
-            value: Value to set for the color_modes property.
-        """
-        self._color_modes = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new printerCapabilities and sets the default values.
@@ -174,6 +93,74 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         self._supports_fit_pdf_to_page: Optional[bool] = None
         # A list of supported top margins(in microns) for the printer.
         self._top_margins: Optional[List[int]] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
+    @property
+    def bottom_margins(self,) -> Optional[List[int]]:
+        """
+        Gets the bottomMargins property value. A list of supported bottom margins(in microns) for the printer.
+        Returns: Optional[List[int]]
+        """
+        return self._bottom_margins
+    
+    @bottom_margins.setter
+    def bottom_margins(self,value: Optional[List[int]] = None) -> None:
+        """
+        Sets the bottomMargins property value. A list of supported bottom margins(in microns) for the printer.
+        Args:
+            value: Value to set for the bottom_margins property.
+        """
+        self._bottom_margins = value
+    
+    @property
+    def collation(self,) -> Optional[bool]:
+        """
+        Gets the collation property value. True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
+        Returns: Optional[bool]
+        """
+        return self._collation
+    
+    @collation.setter
+    def collation(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the collation property value. True if the printer supports collating when printing muliple copies of a multi-page document; false otherwise.
+        Args:
+            value: Value to set for the collation property.
+        """
+        self._collation = value
+    
+    @property
+    def color_modes(self,) -> Optional[List[print_color_mode.PrintColorMode]]:
+        """
+        Gets the colorModes property value. The color modes supported by the printer. Valid values are described in the following table.
+        Returns: Optional[List[print_color_mode.PrintColorMode]]
+        """
+        return self._color_modes
+    
+    @color_modes.setter
+    def color_modes(self,value: Optional[List[print_color_mode.PrintColorMode]] = None) -> None:
+        """
+        Sets the colorModes property value. The color modes supported by the printer. Valid values are described in the following table.
+        Args:
+            value: Value to set for the color_modes property.
+        """
+        self._color_modes = value
     
     @property
     def content_types(self,) -> Optional[List[str]]:
@@ -311,7 +298,9 @@ class PrinterCapabilities(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import integer_range, printer_feed_direction, printer_feed_orientation, print_color_configuration, print_color_mode, print_duplex_configuration, print_duplex_mode, print_finishing, print_media_type, print_multipage_layout, print_orientation, print_presentation_direction, print_quality, print_scaling
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bottomMargins": lambda n : setattr(self, 'bottom_margins', n.get_collection_of_primitive_values(int)),
             "collation": lambda n : setattr(self, 'collation', n.get_bool_value()),
             "colorModes": lambda n : setattr(self, 'color_modes', n.get_collection_of_enum_values(print_color_mode.PrintColorMode)),

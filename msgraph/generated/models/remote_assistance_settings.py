@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-remote_assistance_state = lazy_import('msgraph.generated.models.remote_assistance_state')
+if TYPE_CHECKING:
+    from . import entity, remote_assistance_state
+
+from . import entity
 
 class RemoteAssistanceSettings(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new remoteAssistanceSettings and sets the default values.
+        """
+        super().__init__()
+        # Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
+        self._allow_sessions_to_unenrolled_devices: Optional[bool] = None
+        # Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
+        self._block_chat: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # State of remote assistance for the account
+        self._remote_assistance_state: Optional[remote_assistance_state.RemoteAssistanceState] = None
+    
     @property
     def allow_sessions_to_unenrolled_devices(self,) -> Optional[bool]:
         """
@@ -41,20 +56,6 @@ class RemoteAssistanceSettings(entity.Entity):
         """
         self._block_chat = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new remoteAssistanceSettings and sets the default values.
-        """
-        super().__init__()
-        # Indicates if sessions to unenrolled devices are allowed for the account. This setting is configurable by the admin. Default value is false.
-        self._allow_sessions_to_unenrolled_devices: Optional[bool] = None
-        # Indicates if sessions to block chat function. This setting is configurable by the admin. Default value is false.
-        self._block_chat: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # State of remote assistance for the account
-        self._remote_assistance_state: Optional[remote_assistance_state.RemoteAssistanceState] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RemoteAssistanceSettings:
         """
@@ -72,7 +73,9 @@ class RemoteAssistanceSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, remote_assistance_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowSessionsToUnenrolledDevices": lambda n : setattr(self, 'allow_sessions_to_unenrolled_devices', n.get_bool_value()),
             "blockChat": lambda n : setattr(self, 'block_chat', n.get_bool_value()),
             "remoteAssistanceState": lambda n : setattr(self, 'remote_assistance_state', n.get_enum_value(remote_assistance_state.RemoteAssistanceState)),

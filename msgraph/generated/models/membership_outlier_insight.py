@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-directory_object = lazy_import('msgraph.generated.models.directory_object')
-governance_insight = lazy_import('msgraph.generated.models.governance_insight')
-outlier_container_type = lazy_import('msgraph.generated.models.outlier_container_type')
-outlier_member_type = lazy_import('msgraph.generated.models.outlier_member_type')
+if TYPE_CHECKING:
+    from . import directory_object, governance_insight, outlier_container_type, outlier_member_type
+
+from . import governance_insight
 
 class MembershipOutlierInsight(governance_insight.GovernanceInsight):
     def __init__(self,) -> None:
@@ -79,7 +78,9 @@ class MembershipOutlierInsight(governance_insight.GovernanceInsight):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import directory_object, governance_insight, outlier_container_type, outlier_member_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "container": lambda n : setattr(self, 'container', n.get_object_value(directory_object.DirectoryObject)),
             "containerId": lambda n : setattr(self, 'container_id', n.get_str_value()),
             "member": lambda n : setattr(self, 'member', n.get_object_value(directory_object.DirectoryObject)),

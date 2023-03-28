@@ -1,22 +1,52 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class AgedAccountsPayable(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new agedAccountsPayable and sets the default values.
+        """
+        super().__init__()
+        # The agedAsOfDate property
+        self._aged_as_of_date: Optional[date] = None
+        # The balanceDue property
+        self._balance_due: Optional[float] = None
+        # The currencyCode property
+        self._currency_code: Optional[str] = None
+        # The currentAmount property
+        self._current_amount: Optional[float] = None
+        # The name property
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The periodLengthFilter property
+        self._period_length_filter: Optional[str] = None
+        # The period1Amount property
+        self._period1_amount: Optional[float] = None
+        # The period2Amount property
+        self._period2_amount: Optional[float] = None
+        # The period3Amount property
+        self._period3_amount: Optional[float] = None
+        # The vendorNumber property
+        self._vendor_number: Optional[str] = None
+    
     @property
-    def aged_as_of_date(self,) -> Optional[Date]:
+    def aged_as_of_date(self,) -> Optional[date]:
         """
         Gets the agedAsOfDate property value. The agedAsOfDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._aged_as_of_date
     
     @aged_as_of_date.setter
-    def aged_as_of_date(self,value: Optional[Date] = None) -> None:
+    def aged_as_of_date(self,value: Optional[date] = None) -> None:
         """
         Sets the agedAsOfDate property value. The agedAsOfDate property
         Args:
@@ -40,34 +70,6 @@ class AgedAccountsPayable(entity.Entity):
             value: Value to set for the balance_due property.
         """
         self._balance_due = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new agedAccountsPayable and sets the default values.
-        """
-        super().__init__()
-        # The agedAsOfDate property
-        self._aged_as_of_date: Optional[Date] = None
-        # The balanceDue property
-        self._balance_due: Optional[float] = None
-        # The currencyCode property
-        self._currency_code: Optional[str] = None
-        # The currentAmount property
-        self._current_amount: Optional[float] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The periodLengthFilter property
-        self._period_length_filter: Optional[str] = None
-        # The period1Amount property
-        self._period1_amount: Optional[float] = None
-        # The period2Amount property
-        self._period2_amount: Optional[float] = None
-        # The period3Amount property
-        self._period3_amount: Optional[float] = None
-        # The vendorNumber property
-        self._vendor_number: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AgedAccountsPayable:
@@ -120,8 +122,10 @@ class AgedAccountsPayable(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "agedAsOfDate": lambda n : setattr(self, 'aged_as_of_date', n.get_object_value(Date)),
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "agedAsOfDate": lambda n : setattr(self, 'aged_as_of_date', n.get_date_value()),
             "balanceDue": lambda n : setattr(self, 'balance_due', n.get_float_value()),
             "currencyCode": lambda n : setattr(self, 'currency_code', n.get_str_value()),
             "currentAmount": lambda n : setattr(self, 'current_amount', n.get_float_value()),
@@ -230,7 +234,7 @@ class AgedAccountsPayable(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("agedAsOfDate", self.aged_as_of_date)
+        writer.write_date_value("agedAsOfDate", self.aged_as_of_date)
         writer.write_float_value("balanceDue", self.balance_due)
         writer.write_str_value("currencyCode", self.currency_code)
         writer.write_float_value("currentAmount", self.current_amount)

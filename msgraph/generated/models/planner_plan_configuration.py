@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-planner_plan_configuration_bucket_definition = lazy_import('msgraph.generated.models.planner_plan_configuration_bucket_definition')
-planner_plan_configuration_localization = lazy_import('msgraph.generated.models.planner_plan_configuration_localization')
+if TYPE_CHECKING:
+    from . import entity, identity_set, planner_plan_configuration_bucket_definition, planner_plan_configuration_localization
+
+from . import entity
 
 class PlannerPlanConfiguration(entity.Entity):
-    @property
-    def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]]:
-        """
-        Gets the buckets property value. List the buckets that should be created in the plan.
-        Returns: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]]
-        """
-        return self._buckets
-    
-    @buckets.setter
-    def buckets(self,value: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]] = None) -> None:
-        """
-        Sets the buckets property value. List the buckets that should be created in the plan.
-        Args:
-            value: Value to set for the buckets property.
-        """
-        self._buckets = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new plannerPlanConfiguration and sets the default values.
@@ -48,6 +30,23 @@ class PlannerPlanConfiguration(entity.Entity):
         self._localizations: Optional[List[planner_plan_configuration_localization.PlannerPlanConfigurationLocalization]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def buckets(self,) -> Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]]:
+        """
+        Gets the buckets property value. List the buckets that should be created in the plan.
+        Returns: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]]
+        """
+        return self._buckets
+    
+    @buckets.setter
+    def buckets(self,value: Optional[List[planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition]] = None) -> None:
+        """
+        Sets the buckets property value. List the buckets that should be created in the plan.
+        Args:
+            value: Value to set for the buckets property.
+        """
+        self._buckets = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -117,7 +116,9 @@ class PlannerPlanConfiguration(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, planner_plan_configuration_bucket_definition, planner_plan_configuration_localization
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(planner_plan_configuration_bucket_definition.PlannerPlanConfigurationBucketDefinition)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-configuration_usage = lazy_import('msgraph.generated.models.configuration_usage')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import configuration_usage, device_configuration
+
+from . import device_configuration
 
 class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -76,7 +77,9 @@ class WindowsIdentityProtectionConfiguration(device_configuration.DeviceConfigur
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import configuration_usage, device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enhancedAntiSpoofingForFacialFeaturesEnabled": lambda n : setattr(self, 'enhanced_anti_spoofing_for_facial_features_enabled', n.get_bool_value()),
             "pinExpirationInDays": lambda n : setattr(self, 'pin_expiration_in_days', n.get_int_value()),
             "pinLowercaseCharactersUsage": lambda n : setattr(self, 'pin_lowercase_characters_usage', n.get_enum_value(configuration_usage.ConfigurationUsage)),

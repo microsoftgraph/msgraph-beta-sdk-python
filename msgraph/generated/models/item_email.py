@@ -1,12 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-email_type = lazy_import('msgraph.generated.models.email_type')
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import email_type, item_facet
+
+from . import item_facet
 
 class ItemEmail(item_facet.ItemFacet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ItemEmail and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.itemEmail"
+        # The email address itself.
+        self._address: Optional[str] = None
+        # The name or label a user has associated with a particular email address.
+        self._display_name: Optional[str] = None
+        # The type property
+        self._type: Optional[email_type.EmailType] = None
+    
     @property
     def address(self,) -> Optional[str]:
         """
@@ -23,19 +37,6 @@ class ItemEmail(item_facet.ItemFacet):
             value: Value to set for the address property.
         """
         self._address = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ItemEmail and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.itemEmail"
-        # The email address itself.
-        self._address: Optional[str] = None
-        # The name or label a user has associated with a particular email address.
-        self._display_name: Optional[str] = None
-        # The type property
-        self._type: Optional[email_type.EmailType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ItemEmail:
@@ -71,7 +72,9 @@ class ItemEmail(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import email_type, item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "address": lambda n : setattr(self, 'address', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(email_type.EmailType)),

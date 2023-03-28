@@ -1,14 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(entity.Entity):
     """
     The user experience analytics battery health device app impact entity contains battery usage related information at an app level for a given device.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsBatteryHealthDeviceAppImpact and sets the default values.
+        """
+        super().__init__()
+        # User friendly display name for the app. Eg: Outlook
+        self._app_display_name: Optional[str] = None
+        # App name. Eg: oltk.exe
+        self._app_name: Optional[str] = None
+        # App publisher. Eg: Microsoft Corporation
+        self._app_publisher: Optional[str] = None
+        # The percent of total battery power used by this application when the device was not plugged into AC power, over 14 days. Unit in percentage. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
+        self._battery_usage_percentage: Optional[float] = None
+        # The unique identifier of the device, Intune DeviceID or SCCM device id.
+        self._device_id: Optional[str] = None
+        # true if the user had active interaction with the app.
+        self._is_foreground_app: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def app_display_name(self,) -> Optional[str]:
         """
@@ -77,26 +99,6 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(entity.Entity):
         """
         self._battery_usage_percentage = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsBatteryHealthDeviceAppImpact and sets the default values.
-        """
-        super().__init__()
-        # User friendly display name for the app. Eg: Outlook
-        self._app_display_name: Optional[str] = None
-        # App name. Eg: oltk.exe
-        self._app_name: Optional[str] = None
-        # App publisher. Eg: Microsoft Corporation
-        self._app_publisher: Optional[str] = None
-        # The percent of total battery power used by this application when the device was not plugged into AC power, over 14 days. Unit in percentage. Valid values -1.79769313486232E+308 to 1.79769313486232E+308
-        self._battery_usage_percentage: Optional[float] = None
-        # The unique identifier of the device, Intune DeviceID or SCCM device id.
-        self._device_id: Optional[str] = None
-        # true if the user had active interaction with the app.
-        self._is_foreground_app: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthDeviceAppImpact:
         """
@@ -131,7 +133,9 @@ class UserExperienceAnalyticsBatteryHealthDeviceAppImpact(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),
             "appPublisher": lambda n : setattr(self, 'app_publisher', n.get_str_value()),

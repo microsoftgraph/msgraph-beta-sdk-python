@@ -1,14 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class ProgramControlType(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new programControlType and sets the default values.
+        Instantiates a new ProgramControlType and sets the default values.
         """
         super().__init__()
         # The controlTypeGroupId property
@@ -69,7 +71,9 @@ class ProgramControlType(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "controlTypeGroupId": lambda n : setattr(self, 'control_type_group_id', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
         }

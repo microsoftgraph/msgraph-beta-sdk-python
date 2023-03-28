@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-browser_shared_cookie = lazy_import('msgraph.generated.models.browser_shared_cookie')
-browser_site = lazy_import('msgraph.generated.models.browser_site')
+if TYPE_CHECKING:
+    from .......models import browser_shared_cookie, browser_site
 
 class PublishPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new publishPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The revision property
+        self._revision: Optional[str] = None
+        # The sharedCookies property
+        self._shared_cookies: Optional[List[browser_shared_cookie.BrowserSharedCookie]] = None
+        # The sites property
+        self._sites: Optional[List[browser_site.BrowserSite]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class PublishPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new publishPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The revision property
-        self._revision: Optional[str] = None
-        # The sharedCookies property
-        self._shared_cookies: Optional[List[browser_shared_cookie.BrowserSharedCookie]] = None
-        # The sites property
-        self._sites: Optional[List[browser_site.BrowserSite]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PublishPostRequestBody:
@@ -55,7 +54,9 @@ class PublishPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .......models import browser_shared_cookie, browser_site
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "revision": lambda n : setattr(self, 'revision', n.get_str_value()),
             "sharedCookies": lambda n : setattr(self, 'shared_cookies', n.get_collection_of_object_values(browser_shared_cookie.BrowserSharedCookie)),
             "sites": lambda n : setattr(self, 'sites', n.get_collection_of_object_values(browser_site.BrowserSite)),

@@ -1,13 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-payload_types = lazy_import('msgraph.generated.models.payload_types')
-priority = lazy_import('msgraph.generated.models.priority')
-target_policy_endpoints = lazy_import('msgraph.generated.models.target_policy_endpoints')
+if TYPE_CHECKING:
+    from . import entity, payload_types, priority, target_policy_endpoints
+
+from . import entity
 
 class Notification(entity.Entity):
     def __init__(self,) -> None:
@@ -83,7 +82,9 @@ class Notification(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, payload_types, priority, target_policy_endpoints
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayTimeToLive": lambda n : setattr(self, 'display_time_to_live', n.get_int_value()),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "groupName": lambda n : setattr(self, 'group_name', n.get_str_value()),

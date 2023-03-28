@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assignment_method = lazy_import('msgraph.generated.models.security.assignment_method')
+if TYPE_CHECKING:
+    from . import assignment_method
 
 class ContentLabel(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new contentLabel and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The assignmentMethod property
+        self._assignment_method: Optional[assignment_method.AssignmentMethod] = None
+        # The createdDateTime property
+        self._created_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The sensitivityLabelId property
+        self._sensitivity_label_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,22 +56,6 @@ class ContentLabel(AdditionalDataHolder, Parsable):
             value: Value to set for the assignment_method property.
         """
         self._assignment_method = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new contentLabel and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The assignmentMethod property
-        self._assignment_method: Optional[assignment_method.AssignmentMethod] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The sensitivityLabelId property
-        self._sensitivity_label_id: Optional[str] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -91,7 +91,9 @@ class ContentLabel(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import assignment_method
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentMethod": lambda n : setattr(self, 'assignment_method', n.get_enum_value(assignment_method.AssignmentMethod)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

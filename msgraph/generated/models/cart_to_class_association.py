@@ -1,32 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class CartToClassAssociation(entity.Entity):
     """
     CartToClassAssociation for associating device carts with classrooms.
     """
-    @property
-    def classroom_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the classroomIds property value. Identifiers of classrooms to be associated with device carts.
-        Returns: Optional[List[str]]
-        """
-        return self._classroom_ids
-    
-    @classroom_ids.setter
-    def classroom_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the classroomIds property value. Identifiers of classrooms to be associated with device carts.
-        Args:
-            value: Value to set for the classroom_ids property.
-        """
-        self._classroom_ids = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new cartToClassAssociation and sets the default values.
@@ -48,6 +33,23 @@ class CartToClassAssociation(entity.Entity):
         self.odata_type: Optional[str] = None
         # Version of the CartToClassAssociation.
         self._version: Optional[int] = None
+    
+    @property
+    def classroom_ids(self,) -> Optional[List[str]]:
+        """
+        Gets the classroomIds property value. Identifiers of classrooms to be associated with device carts.
+        Returns: Optional[List[str]]
+        """
+        return self._classroom_ids
+    
+    @classroom_ids.setter
+    def classroom_ids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the classroomIds property value. Identifiers of classrooms to be associated with device carts.
+        Args:
+            value: Value to set for the classroom_ids property.
+        """
+        self._classroom_ids = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -134,7 +136,9 @@ class CartToClassAssociation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classroomIds": lambda n : setattr(self, 'classroom_ids', n.get_collection_of_primitive_values(str)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

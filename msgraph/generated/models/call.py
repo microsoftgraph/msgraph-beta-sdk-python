@@ -1,32 +1,81 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-audio_routing_group = lazy_import('msgraph.generated.models.audio_routing_group')
-call_direction = lazy_import('msgraph.generated.models.call_direction')
-call_media_state = lazy_import('msgraph.generated.models.call_media_state')
-call_options = lazy_import('msgraph.generated.models.call_options')
-call_route = lazy_import('msgraph.generated.models.call_route')
-call_state = lazy_import('msgraph.generated.models.call_state')
-call_transcription_info = lazy_import('msgraph.generated.models.call_transcription_info')
-chat_info = lazy_import('msgraph.generated.models.chat_info')
-comms_operation = lazy_import('msgraph.generated.models.comms_operation')
-content_sharing_session = lazy_import('msgraph.generated.models.content_sharing_session')
-entity = lazy_import('msgraph.generated.models.entity')
-incoming_context = lazy_import('msgraph.generated.models.incoming_context')
-invitation_participant_info = lazy_import('msgraph.generated.models.invitation_participant_info')
-media_config = lazy_import('msgraph.generated.models.media_config')
-meeting_capability = lazy_import('msgraph.generated.models.meeting_capability')
-meeting_info = lazy_import('msgraph.generated.models.meeting_info')
-modality = lazy_import('msgraph.generated.models.modality')
-participant = lazy_import('msgraph.generated.models.participant')
-participant_info = lazy_import('msgraph.generated.models.participant_info')
-result_info = lazy_import('msgraph.generated.models.result_info')
-routing_policy = lazy_import('msgraph.generated.models.routing_policy')
-tone_info = lazy_import('msgraph.generated.models.tone_info')
+if TYPE_CHECKING:
+    from . import audio_routing_group, call_direction, call_media_state, call_options, call_route, call_state, call_transcription_info, chat_info, comms_operation, content_sharing_session, entity, incoming_context, invitation_participant_info, media_config, meeting_capability, meeting_info, modality, participant, participant_info, result_info, routing_policy, tone_info
+
+from . import entity
 
 class Call(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new call and sets the default values.
+        """
+        super().__init__()
+        # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
+        self._active_modalities: Optional[List[modality.Modality]] = None
+        # The participant that answered the call. Read-only.
+        self._answered_by: Optional[participant_info.ParticipantInfo] = None
+        # The audioRoutingGroups property
+        self._audio_routing_groups: Optional[List[audio_routing_group.AudioRoutingGroup]] = None
+        # A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This needs to be copied over from Microsoft.Graph.Call.CallChainId.
+        self._call_chain_id: Optional[str] = None
+        # Contains the optional features for the call.
+        self._call_options: Optional[call_options.CallOptions] = None
+        # The routing information on how the call was retargeted. Read-only.
+        self._call_routes: Optional[List[call_route.CallRoute]] = None
+        # The callback URL on which callbacks will be delivered. Must be https.
+        self._callback_uri: Optional[str] = None
+        # The chat information. Required information for meeting scenarios.
+        self._chat_info: Optional[chat_info.ChatInfo] = None
+        # The contentSharingSessions property
+        self._content_sharing_sessions: Optional[List[content_sharing_session.ContentSharingSession]] = None
+        # The direction of the call. The possible value are incoming or outgoing. Read-only.
+        self._direction: Optional[call_direction.CallDirection] = None
+        # The context associated with an incoming call. Read-only. Server generated.
+        self._incoming_context: Optional[incoming_context.IncomingContext] = None
+        # The media configuration. Required information for creating peer to peer calls or joining meetings.
+        self._media_config: Optional[media_config.MediaConfig] = None
+        # Read-only. The call media state.
+        self._media_state: Optional[call_media_state.CallMediaState] = None
+        # Contains the capabilities of a meeting. Read-only.
+        self._meeting_capability: Optional[meeting_capability.MeetingCapability] = None
+        # The meeting information. Required information for meeting scenarios.
+        self._meeting_info: Optional[meeting_info.MeetingInfo] = None
+        # The myParticipantId property
+        self._my_participant_id: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The operations property
+        self._operations: Optional[List[comms_operation.CommsOperation]] = None
+        # The participants property
+        self._participants: Optional[List[participant.Participant]] = None
+        # The requestedModalities property
+        self._requested_modalities: Optional[List[modality.Modality]] = None
+        # The resultInfo property
+        self._result_info: Optional[result_info.ResultInfo] = None
+        # The ringingTimeoutInSeconds property
+        self._ringing_timeout_in_seconds: Optional[int] = None
+        # The routingPolicies property
+        self._routing_policies: Optional[List[routing_policy.RoutingPolicy]] = None
+        # The source property
+        self._source: Optional[participant_info.ParticipantInfo] = None
+        # The state property
+        self._state: Optional[call_state.CallState] = None
+        # The subject property
+        self._subject: Optional[str] = None
+        # The targets property
+        self._targets: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None
+        # The tenantId property
+        self._tenant_id: Optional[str] = None
+        # The terminationReason property
+        self._termination_reason: Optional[str] = None
+        # The toneInfo property
+        self._tone_info: Optional[tone_info.ToneInfo] = None
+        # The transcription information for the call. Read-only.
+        self._transcription: Optional[call_transcription_info.CallTranscriptionInfo] = None
+    
     @property
     def active_modalities(self,) -> Optional[List[modality.Modality]]:
         """
@@ -163,74 +212,6 @@ class Call(entity.Entity):
         """
         self._chat_info = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new call and sets the default values.
-        """
-        super().__init__()
-        # The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
-        self._active_modalities: Optional[List[modality.Modality]] = None
-        # The participant that answered the call. Read-only.
-        self._answered_by: Optional[participant_info.ParticipantInfo] = None
-        # The audioRoutingGroups property
-        self._audio_routing_groups: Optional[List[audio_routing_group.AudioRoutingGroup]] = None
-        # A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This needs to be copied over from Microsoft.Graph.Call.CallChainId.
-        self._call_chain_id: Optional[str] = None
-        # Contains the optional features for the call.
-        self._call_options: Optional[call_options.CallOptions] = None
-        # The routing information on how the call was retargeted. Read-only.
-        self._call_routes: Optional[List[call_route.CallRoute]] = None
-        # The callback URL on which callbacks will be delivered. Must be https.
-        self._callback_uri: Optional[str] = None
-        # The chat information. Required information for meeting scenarios.
-        self._chat_info: Optional[chat_info.ChatInfo] = None
-        # The contentSharingSessions property
-        self._content_sharing_sessions: Optional[List[content_sharing_session.ContentSharingSession]] = None
-        # The direction of the call. The possible value are incoming or outgoing. Read-only.
-        self._direction: Optional[call_direction.CallDirection] = None
-        # The context associated with an incoming call. Read-only. Server generated.
-        self._incoming_context: Optional[incoming_context.IncomingContext] = None
-        # The media configuration. Required information for creating peer to peer calls or joining meetings.
-        self._media_config: Optional[media_config.MediaConfig] = None
-        # Read-only. The call media state.
-        self._media_state: Optional[call_media_state.CallMediaState] = None
-        # Contains the capabilities of a meeting. Read-only.
-        self._meeting_capability: Optional[meeting_capability.MeetingCapability] = None
-        # The meeting information. Required information for meeting scenarios.
-        self._meeting_info: Optional[meeting_info.MeetingInfo] = None
-        # The myParticipantId property
-        self._my_participant_id: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The operations property
-        self._operations: Optional[List[comms_operation.CommsOperation]] = None
-        # The participants property
-        self._participants: Optional[List[participant.Participant]] = None
-        # The requestedModalities property
-        self._requested_modalities: Optional[List[modality.Modality]] = None
-        # The resultInfo property
-        self._result_info: Optional[result_info.ResultInfo] = None
-        # The ringingTimeoutInSeconds property
-        self._ringing_timeout_in_seconds: Optional[int] = None
-        # The routingPolicies property
-        self._routing_policies: Optional[List[routing_policy.RoutingPolicy]] = None
-        # The source property
-        self._source: Optional[participant_info.ParticipantInfo] = None
-        # The state property
-        self._state: Optional[call_state.CallState] = None
-        # The subject property
-        self._subject: Optional[str] = None
-        # The targets property
-        self._targets: Optional[List[invitation_participant_info.InvitationParticipantInfo]] = None
-        # The tenantId property
-        self._tenant_id: Optional[str] = None
-        # The terminationReason property
-        self._termination_reason: Optional[str] = None
-        # The toneInfo property
-        self._tone_info: Optional[tone_info.ToneInfo] = None
-        # The transcription information for the call. Read-only.
-        self._transcription: Optional[call_transcription_info.CallTranscriptionInfo] = None
-    
     @property
     def content_sharing_sessions(self,) -> Optional[List[content_sharing_session.ContentSharingSession]]:
         """
@@ -282,7 +263,9 @@ class Call(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import audio_routing_group, call_direction, call_media_state, call_options, call_route, call_state, call_transcription_info, chat_info, comms_operation, content_sharing_session, entity, incoming_context, invitation_participant_info, media_config, meeting_capability, meeting_info, modality, participant, participant_info, result_info, routing_policy, tone_info
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeModalities": lambda n : setattr(self, 'active_modalities', n.get_collection_of_enum_values(modality.Modality)),
             "answeredBy": lambda n : setattr(self, 'answered_by', n.get_object_value(participant_info.ParticipantInfo)),
             "audioRoutingGroups": lambda n : setattr(self, 'audio_routing_groups', n.get_collection_of_object_values(audio_routing_group.AudioRoutingGroup)),

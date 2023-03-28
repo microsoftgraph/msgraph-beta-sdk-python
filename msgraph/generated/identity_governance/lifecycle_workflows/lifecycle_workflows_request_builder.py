@@ -7,68 +7,26 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_task_extensions_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.custom_task_extensions.custom_task_extensions_request_builder')
-custom_task_extension_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.custom_task_extensions.item.custom_task_extension_item_request_builder')
-deleted_items_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.deleted_items_request_builder')
-settings_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.settings.settings_request_builder')
-task_definitions_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.task_definitions.task_definitions_request_builder')
-task_definition_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.task_definitions.item.task_definition_item_request_builder')
-workflows_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.workflows_request_builder')
-workflow_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.workflow_item_request_builder')
-workflow_templates_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflow_templates.workflow_templates_request_builder')
-workflow_template_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflow_templates.item.workflow_template_item_request_builder')
-lifecycle_workflows_container = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflows_container')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models.identity_governance import lifecycle_workflows_container
+    from ...models.o_data_errors import o_data_error
+    from .custom_task_extensions import custom_task_extensions_request_builder
+    from .custom_task_extensions.item import custom_task_extension_item_request_builder
+    from .deleted_items import deleted_items_request_builder
+    from .settings import settings_request_builder
+    from .task_definitions import task_definitions_request_builder
+    from .task_definitions.item import task_definition_item_request_builder
+    from .workflows import workflows_request_builder
+    from .workflows.item import workflow_item_request_builder
+    from .workflow_templates import workflow_templates_request_builder
+    from .workflow_templates.item import workflow_template_item_request_builder
 
 class LifecycleWorkflowsRequestBuilder():
     """
     Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
     """
-    @property
-    def custom_task_extensions(self) -> custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder:
-        """
-        Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        """
-        return custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def deleted_items(self) -> deleted_items_request_builder.DeletedItemsRequestBuilder:
-        """
-        Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        """
-        return deleted_items_request_builder.DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        """
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def task_definitions(self) -> task_definitions_request_builder.TaskDefinitionsRequestBuilder:
-        """
-        Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        """
-        return task_definitions_request_builder.TaskDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:
-        """
-        Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        """
-        return workflows_request_builder.WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def workflow_templates(self) -> workflow_templates_request_builder.WorkflowTemplatesRequestBuilder:
-        """
-        Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
-        """
-        return workflow_templates_request_builder.WorkflowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new LifecycleWorkflowsRequestBuilder and sets the default values.
@@ -96,6 +54,8 @@ class LifecycleWorkflowsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .custom_task_extensions.item import custom_task_extension_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["customTaskExtension%2Did"] = id
         return custom_task_extension_item_request_builder.CustomTaskExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -109,6 +69,8 @@ class LifecycleWorkflowsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -127,12 +89,16 @@ class LifecycleWorkflowsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models.identity_governance import lifecycle_workflows_container
+
         return await self.request_adapter.send_async(request_info, lifecycle_workflows_container.LifecycleWorkflowsContainer, error_mapping)
     
     async def patch(self,body: Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer] = None, request_configuration: Optional[LifecycleWorkflowsRequestBuilderPatchRequestConfiguration] = None) -> Optional[lifecycle_workflows_container.LifecycleWorkflowsContainer]:
@@ -148,12 +114,16 @@ class LifecycleWorkflowsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models.identity_governance import lifecycle_workflows_container
+
         return await self.request_adapter.send_async(request_info, lifecycle_workflows_container.LifecycleWorkflowsContainer, error_mapping)
     
     def task_definitions_by_id(self,id: str) -> task_definition_item_request_builder.TaskDefinitionItemRequestBuilder:
@@ -165,6 +135,8 @@ class LifecycleWorkflowsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .task_definitions.item import task_definition_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["taskDefinition%2Did"] = id
         return task_definition_item_request_builder.TaskDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -233,6 +205,8 @@ class LifecycleWorkflowsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .workflows.item import workflow_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["workflow%2Did"] = id
         return workflow_item_request_builder.WorkflowItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -246,9 +220,65 @@ class LifecycleWorkflowsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .workflow_templates.item import workflow_template_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["workflowTemplate%2Did"] = id
         return workflow_template_item_request_builder.WorkflowTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def custom_task_extensions(self) -> custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder:
+        """
+        Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .custom_task_extensions import custom_task_extensions_request_builder
+
+        return custom_task_extensions_request_builder.CustomTaskExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def deleted_items(self) -> deleted_items_request_builder.DeletedItemsRequestBuilder:
+        """
+        Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .deleted_items import deleted_items_request_builder
+
+        return deleted_items_request_builder.DeletedItemsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .settings import settings_request_builder
+
+        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def task_definitions(self) -> task_definitions_request_builder.TaskDefinitionsRequestBuilder:
+        """
+        Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .task_definitions import task_definitions_request_builder
+
+        return task_definitions_request_builder.TaskDefinitionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def workflows(self) -> workflows_request_builder.WorkflowsRequestBuilder:
+        """
+        Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .workflows import workflows_request_builder
+
+        return workflows_request_builder.WorkflowsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def workflow_templates(self) -> workflow_templates_request_builder.WorkflowTemplatesRequestBuilder:
+        """
+        Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
+        """
+        from .workflow_templates import workflow_templates_request_builder
+
+        return workflow_templates_request_builder.WorkflowTemplatesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LifecycleWorkflowsRequestBuilderDeleteRequestConfiguration():
@@ -267,12 +297,6 @@ class LifecycleWorkflowsRequestBuilder():
         """
         Get lifecycleWorkflows from identityGovernance
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -288,6 +312,12 @@ class LifecycleWorkflowsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class LifecycleWorkflowsRequestBuilderGetRequestConfiguration():

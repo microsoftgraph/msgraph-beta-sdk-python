@@ -1,13 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-wi_fi_proxy_setting = lazy_import('msgraph.generated.models.wi_fi_proxy_setting')
-wi_fi_security_type = lazy_import('msgraph.generated.models.wi_fi_security_type')
+if TYPE_CHECKING:
+    from . import device_configuration, ios_enterprise_wi_fi_configuration, wi_fi_proxy_setting, wi_fi_security_type
+
+from . import device_configuration
 
 class IosWiFiConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new IosWiFiConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.iosWiFiConfiguration"
+        # Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
+        self._connect_automatically: Optional[bool] = None
+        # Connect when the network is not broadcasting its name (SSID). When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
+        self._connect_when_network_name_is_hidden: Optional[bool] = None
+        # If set to true, forces devices connecting using this Wi-Fi profile to present their actual Wi-Fi MAC address instead of a random MAC address. Applies to iOS 14 and later.
+        self._disable_mac_address_randomization: Optional[bool] = None
+        # Network Name
+        self._network_name: Optional[str] = None
+        # This is the pre-shared key for WPA Personal Wi-Fi network.
+        self._pre_shared_key: Optional[str] = None
+        # URL of the proxy server automatic configuration script when automatic configuration is selected. This URL is typically the location of PAC (Proxy Auto Configuration) file.
+        self._proxy_automatic_configuration_url: Optional[str] = None
+        # IP Address or DNS hostname of the proxy server when manual configuration is selected.
+        self._proxy_manual_address: Optional[str] = None
+        # Port of the proxy server when manual configuration is selected.
+        self._proxy_manual_port: Optional[int] = None
+        # Wi-Fi Proxy Settings.
+        self._proxy_settings: Optional[wi_fi_proxy_setting.WiFiProxySetting] = None
+        # This is the name of the Wi-Fi network that is broadcast to all devices.
+        self._ssid: Optional[str] = None
+        # Wi-Fi Security Types.
+        self._wi_fi_security_type: Optional[wi_fi_security_type.WiFiSecurityType] = None
+    
     @property
     def connect_automatically(self,) -> Optional[bool]:
         """
@@ -42,35 +71,6 @@ class IosWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         self._connect_when_network_name_is_hidden = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new IosWiFiConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.iosWiFiConfiguration"
-        # Connect automatically when this network is in range. Setting this to true will skip the user prompt and automatically connect the device to Wi-Fi network.
-        self._connect_automatically: Optional[bool] = None
-        # Connect when the network is not broadcasting its name (SSID). When set to true, this profile forces the device to connect to a network that doesn't broadcast its SSID to all devices.
-        self._connect_when_network_name_is_hidden: Optional[bool] = None
-        # If set to true, forces devices connecting using this Wi-Fi profile to present their actual Wi-Fi MAC address instead of a random MAC address. Applies to iOS 14 and later.
-        self._disable_mac_address_randomization: Optional[bool] = None
-        # Network Name
-        self._network_name: Optional[str] = None
-        # This is the pre-shared key for WPA Personal Wi-Fi network.
-        self._pre_shared_key: Optional[str] = None
-        # URL of the proxy server automatic configuration script when automatic configuration is selected. This URL is typically the location of PAC (Proxy Auto Configuration) file.
-        self._proxy_automatic_configuration_url: Optional[str] = None
-        # IP Address or DNS hostname of the proxy server when manual configuration is selected.
-        self._proxy_manual_address: Optional[str] = None
-        # Port of the proxy server when manual configuration is selected.
-        self._proxy_manual_port: Optional[int] = None
-        # Wi-Fi Proxy Settings.
-        self._proxy_settings: Optional[wi_fi_proxy_setting.WiFiProxySetting] = None
-        # This is the name of the Wi-Fi network that is broadcast to all devices.
-        self._ssid: Optional[str] = None
-        # Wi-Fi Security Types.
-        self._wi_fi_security_type: Optional[wi_fi_security_type.WiFiSecurityType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosWiFiConfiguration:
         """
@@ -81,6 +81,13 @@ class IosWiFiConfiguration(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosEnterpriseWiFiConfiguration":
+                from . import ios_enterprise_wi_fi_configuration
+
+                return ios_enterprise_wi_fi_configuration.IosEnterpriseWiFiConfiguration()
         return IosWiFiConfiguration()
     
     @property
@@ -105,7 +112,9 @@ class IosWiFiConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, ios_enterprise_wi_fi_configuration, wi_fi_proxy_setting, wi_fi_security_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),
             "disableMacAddressRandomization": lambda n : setattr(self, 'disable_mac_address_randomization', n.get_bool_value()),

@@ -1,12 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-air_print_destination = lazy_import('msgraph.generated.models.air_print_destination')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import air_print_destination, device_configuration, ios_device_features_configuration, mac_o_s_device_features_configuration
+
+from . import device_configuration
 
 class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AppleDeviceFeaturesConfigurationBase and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
+        # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
+        self._air_print_destinations: Optional[List[air_print_destination.AirPrintDestination]] = None
+    
     @property
     def air_print_destinations(self,) -> Optional[List[air_print_destination.AirPrintDestination]]:
         """
@@ -24,15 +34,6 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         """
         self._air_print_destinations = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AppleDeviceFeaturesConfigurationBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.appleDeviceFeaturesConfigurationBase"
-        # An array of AirPrint printers that should always be shown. This collection can contain a maximum of 500 elements.
-        self._air_print_destinations: Optional[List[air_print_destination.AirPrintDestination]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleDeviceFeaturesConfigurationBase:
         """
@@ -43,6 +44,17 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosDeviceFeaturesConfiguration":
+                from . import ios_device_features_configuration
+
+                return ios_device_features_configuration.IosDeviceFeaturesConfiguration()
+            if mapping_value == "#microsoft.graph.macOSDeviceFeaturesConfiguration":
+                from . import mac_o_s_device_features_configuration
+
+                return mac_o_s_device_features_configuration.MacOSDeviceFeaturesConfiguration()
         return AppleDeviceFeaturesConfigurationBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -50,7 +62,9 @@ class AppleDeviceFeaturesConfigurationBase(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import air_print_destination, device_configuration, ios_device_features_configuration, mac_o_s_device_features_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "airPrintDestinations": lambda n : setattr(self, 'air_print_destinations', n.get_collection_of_object_values(air_print_destination.AirPrintDestination)),
         }
         super_fields = super().get_field_deserializers()

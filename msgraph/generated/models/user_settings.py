@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-contact_merge_suggestions = lazy_import('msgraph.generated.models.contact_merge_suggestions')
-entity = lazy_import('msgraph.generated.models.entity')
-regional_and_language_settings = lazy_import('msgraph.generated.models.regional_and_language_settings')
-shift_preferences = lazy_import('msgraph.generated.models.shift_preferences')
-user_insights_settings = lazy_import('msgraph.generated.models.user_insights_settings')
+if TYPE_CHECKING:
+    from . import contact_merge_suggestions, entity, regional_and_language_settings, shift_preferences, user_insights_settings
+
+from . import entity
 
 class UserSettings(entity.Entity):
     def __init__(self,) -> None:
@@ -98,7 +96,9 @@ class UserSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import contact_merge_suggestions, entity, regional_and_language_settings, shift_preferences, user_insights_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contactMergeSuggestions": lambda n : setattr(self, 'contact_merge_suggestions', n.get_object_value(contact_merge_suggestions.ContactMergeSuggestions)),
             "contributionToContentDiscoveryAsOrganizationDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_as_organization_disabled', n.get_bool_value()),
             "contributionToContentDiscoveryDisabled": lambda n : setattr(self, 'contribution_to_content_discovery_disabled', n.get_bool_value()),

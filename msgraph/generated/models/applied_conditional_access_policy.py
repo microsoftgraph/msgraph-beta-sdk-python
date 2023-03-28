@@ -1,14 +1,43 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-applied_conditional_access_policy_result = lazy_import('msgraph.generated.models.applied_conditional_access_policy_result')
-authentication_strength = lazy_import('msgraph.generated.models.authentication_strength')
-conditional_access_conditions = lazy_import('msgraph.generated.models.conditional_access_conditions')
-conditional_access_rule_satisfied = lazy_import('msgraph.generated.models.conditional_access_rule_satisfied')
+if TYPE_CHECKING:
+    from . import applied_conditional_access_policy_result, authentication_strength, conditional_access_conditions, conditional_access_rule_satisfied
 
 class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appliedConditionalAccessPolicy and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The custom authentication strength enforced in a Conditional Access policy.
+        self._authentication_strength: Optional[authentication_strength.AuthenticationStrength] = None
+        # Refers to the conditional access policy conditions that are not satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
+        self._conditions_not_satisfied: Optional[conditional_access_conditions.ConditionalAccessConditions] = None
+        # Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
+        self._conditions_satisfied: Optional[conditional_access_conditions.ConditionalAccessConditions] = None
+        # Name of the conditional access policy.
+        self._display_name: Optional[str] = None
+        # Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
+        self._enforced_grant_controls: Optional[List[str]] = None
+        # Refers to the session controls enforced by the conditional access policy (example: 'Require app enforced controls').
+        self._enforced_session_controls: Optional[List[str]] = None
+        # List of key-value pairs containing each matched exclude condition in the conditional access policy. Example: [{'devicePlatform' : 'DevicePlatform'}] means the policy didn’t apply, because the DevicePlatform condition was a match.
+        self._exclude_rules_satisfied: Optional[List[conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied]] = None
+        # Identifier of the conditional access policy.
+        self._id: Optional[str] = None
+        # List of key-value pairs containing each matched include condition in the conditional access policy. Example: [{ 'application' : 'AllApps'}, {'users': 'Group'}], meaning Application condition was a match because AllApps are included and Users condition was a match because the user was part of the included Group rule.
+        self._include_rules_satisfied: Optional[List[conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions were not met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue, reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted.
+        self._result: Optional[applied_conditional_access_policy_result.AppliedConditionalAccessPolicyResult] = None
+        # Refers to the session controls that a sign-in activity did not satisfy. (Example: Application enforced Restrictions).
+        self._session_controls_not_satisfied: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -76,38 +105,6 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
             value: Value to set for the conditions_satisfied property.
         """
         self._conditions_satisfied = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appliedConditionalAccessPolicy and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The custom authentication strength enforced in a Conditional Access policy.
-        self._authentication_strength: Optional[authentication_strength.AuthenticationStrength] = None
-        # Refers to the conditional access policy conditions that are not satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
-        self._conditions_not_satisfied: Optional[conditional_access_conditions.ConditionalAccessConditions] = None
-        # Refers to the conditional access policy conditions that are satisfied. The possible values are: none, application, users, devicePlatform, location, clientType, signInRisk, userRisk, time, deviceState, client,ipAddressSeenByAzureAD,ipAddressSeenByResourceProvider,unknownFutureValue,servicePrincipals,servicePrincipalRisk. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: servicePrincipals,servicePrincipalRisk.
-        self._conditions_satisfied: Optional[conditional_access_conditions.ConditionalAccessConditions] = None
-        # Name of the conditional access policy.
-        self._display_name: Optional[str] = None
-        # Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
-        self._enforced_grant_controls: Optional[List[str]] = None
-        # Refers to the session controls enforced by the conditional access policy (example: 'Require app enforced controls').
-        self._enforced_session_controls: Optional[List[str]] = None
-        # List of key-value pairs containing each matched exclude condition in the conditional access policy. Example: [{'devicePlatform' : 'DevicePlatform'}] means the policy didn’t apply, because the DevicePlatform condition was a match.
-        self._exclude_rules_satisfied: Optional[List[conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied]] = None
-        # Identifier of the conditional access policy.
-        self._id: Optional[str] = None
-        # List of key-value pairs containing each matched include condition in the conditional access policy. Example: [{ 'application' : 'AllApps'}, {'users': 'Group'}], meaning Application condition was a match because AllApps are included and Users condition was a match because the user was part of the included Group rule.
-        self._include_rules_satisfied: Optional[List[conditional_access_rule_satisfied.ConditionalAccessRuleSatisfied]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions were not met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue, reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reportOnlySuccess, reportOnlyFailure, reportOnlyNotApplied, reportOnlyInterrupted.
-        self._result: Optional[applied_conditional_access_policy_result.AppliedConditionalAccessPolicyResult] = None
-        # Refers to the session controls that a sign-in activity did not satisfy. (Example: Application enforced Restrictions).
-        self._session_controls_not_satisfied: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppliedConditionalAccessPolicy:
@@ -194,7 +191,9 @@ class AppliedConditionalAccessPolicy(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import applied_conditional_access_policy_result, authentication_strength, conditional_access_conditions, conditional_access_rule_satisfied
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationStrength": lambda n : setattr(self, 'authentication_strength', n.get_object_value(authentication_strength.AuthenticationStrength)),
             "conditionsNotSatisfied": lambda n : setattr(self, 'conditions_not_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),
             "conditionsSatisfied": lambda n : setattr(self, 'conditions_satisfied', n.get_enum_value(conditional_access_conditions.ConditionalAccessConditions)),

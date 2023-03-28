@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_rule_template = lazy_import('msgraph.generated.models.device_management.alert_rule_template')
-notification_channel = lazy_import('msgraph.generated.models.device_management.notification_channel')
-rule_severity_type = lazy_import('msgraph.generated.models.device_management.rule_severity_type')
-rule_threshold = lazy_import('msgraph.generated.models.device_management.rule_threshold')
+if TYPE_CHECKING:
+    from . import alert_rule_template, notification_channel, rule_severity_type, rule_threshold
+    from .. import entity
+
+from .. import entity
 
 class AlertRule(entity.Entity):
-    @property
-    def alert_rule_template(self,) -> Optional[alert_rule_template.AlertRuleTemplate]:
-        """
-        Gets the alertRuleTemplate property value. The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        Returns: Optional[alert_rule_template.AlertRuleTemplate]
-        """
-        return self._alert_rule_template
-    
-    @alert_rule_template.setter
-    def alert_rule_template(self,value: Optional[alert_rule_template.AlertRuleTemplate] = None) -> None:
-        """
-        Sets the alertRuleTemplate property value. The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        Args:
-            value: Value to set for the alert_rule_template property.
-        """
-        self._alert_rule_template = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new alertRule and sets the default values.
@@ -50,6 +32,23 @@ class AlertRule(entity.Entity):
         self._severity: Optional[rule_severity_type.RuleSeverityType] = None
         # The conditions to send alerts. For example, send alert when provisioning has failed for greater than or equal to 6 Cloud PCs.
         self._threshold: Optional[rule_threshold.RuleThreshold] = None
+    
+    @property
+    def alert_rule_template(self,) -> Optional[alert_rule_template.AlertRuleTemplate]:
+        """
+        Gets the alertRuleTemplate property value. The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
+        Returns: Optional[alert_rule_template.AlertRuleTemplate]
+        """
+        return self._alert_rule_template
+    
+    @alert_rule_template.setter
+    def alert_rule_template(self,value: Optional[alert_rule_template.AlertRuleTemplate] = None) -> None:
+        """
+        Sets the alertRuleTemplate property value. The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
+        Args:
+            value: Value to set for the alert_rule_template property.
+        """
+        self._alert_rule_template = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AlertRule:
@@ -119,7 +118,10 @@ class AlertRule(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_rule_template, notification_channel, rule_severity_type, rule_threshold
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

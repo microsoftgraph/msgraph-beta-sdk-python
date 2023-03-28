@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activity_statistics = lazy_import('msgraph.generated.models.activity_statistics')
+if TYPE_CHECKING:
+    from . import activity_statistics
+
+from . import activity_statistics
 
 class ChatActivityStatistics(activity_statistics.ActivityStatistics):
-    @property
-    def after_hours(self,) -> Optional[Timedelta]:
-        """
-        Gets the afterHours property value. Time spent on chats outside of working hours, which is based on the user's Microsoft Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Returns: Optional[Timedelta]
-        """
-        return self._after_hours
-    
-    @after_hours.setter
-    def after_hours(self,value: Optional[Timedelta] = None) -> None:
-        """
-        Sets the afterHours property value. Time spent on chats outside of working hours, which is based on the user's Microsoft Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        Args:
-            value: Value to set for the after_hours property.
-        """
-        self._after_hours = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new ChatActivityStatistics and sets the default values.
@@ -31,7 +16,24 @@ class ChatActivityStatistics(activity_statistics.ActivityStatistics):
         super().__init__()
         self.odata_type = "#microsoft.graph.chatActivityStatistics"
         # Time spent on chats outside of working hours, which is based on the user's Microsoft Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
-        self._after_hours: Optional[Timedelta] = None
+        self._after_hours: Optional[timedelta] = None
+    
+    @property
+    def after_hours(self,) -> Optional[timedelta]:
+        """
+        Gets the afterHours property value. Time spent on chats outside of working hours, which is based on the user's Microsoft Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
+        Returns: Optional[timedelta]
+        """
+        return self._after_hours
+    
+    @after_hours.setter
+    def after_hours(self,value: Optional[timedelta] = None) -> None:
+        """
+        Sets the afterHours property value. Time spent on chats outside of working hours, which is based on the user's Microsoft Outlook calendar setting for work hours. The value is represented in ISO 8601 format for durations.
+        Args:
+            value: Value to set for the after_hours property.
+        """
+        self._after_hours = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChatActivityStatistics:
@@ -50,8 +52,10 @@ class ChatActivityStatistics(activity_statistics.ActivityStatistics):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "afterHours": lambda n : setattr(self, 'after_hours', n.get_object_value(Timedelta)),
+        from . import activity_statistics
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "afterHours": lambda n : setattr(self, 'after_hours', n.get_timedelta_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -66,6 +70,6 @@ class ChatActivityStatistics(activity_statistics.ActivityStatistics):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("afterHours", self.after_hours)
+        writer.write_timedelta_value("afterHours", self.after_hours)
     
 

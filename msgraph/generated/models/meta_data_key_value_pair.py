@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-json = lazy_import('msgraph.generated.models.json')
+if TYPE_CHECKING:
+    from . import json
 
 class MetaDataKeyValuePair(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new metaDataKeyValuePair and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Key of the metadata.
+        self._key: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Value of the metadata. Should be an object.
+        self._value: Optional[json.Json] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class MetaDataKeyValuePair(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new metaDataKeyValuePair and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Key of the metadata.
-        self._key: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Value of the metadata. Should be an object.
-        self._value: Optional[json.Json] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MetaDataKeyValuePair:
@@ -54,7 +54,9 @@ class MetaDataKeyValuePair(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import json
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "key": lambda n : setattr(self, 'key', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "value": lambda n : setattr(self, 'value', n.get_object_value(json.Json)),

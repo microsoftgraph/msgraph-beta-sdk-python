@@ -7,59 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-export_jobs_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.export_jobs.export_jobs_request_builder')
-cloud_pc_export_job_item_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.export_jobs.item.cloud_pc_export_job_item_request_builder')
-get_daily_aggregated_remote_connection_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_daily_aggregated_remote_connection_reports.get_daily_aggregated_remote_connection_reports_request_builder')
-get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_real_time_remote_connection_latency_with_cloud_pc_id.get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder')
-get_real_time_remote_connection_status_with_cloud_pc_id_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_real_time_remote_connection_status_with_cloud_pc_id.get_real_time_remote_connection_status_with_cloud_pc_id_request_builder')
-get_remote_connection_historical_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_remote_connection_historical_reports.get_remote_connection_historical_reports_request_builder')
-get_shared_use_license_usage_report_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_shared_use_license_usage_report.get_shared_use_license_usage_report_request_builder')
-get_total_aggregated_remote_connection_reports_request_builder = lazy_import('msgraph.generated.device_management.virtual_endpoint.reports.get_total_aggregated_remote_connection_reports.get_total_aggregated_remote_connection_reports_request_builder')
-cloud_pc_reports = lazy_import('msgraph.generated.models.cloud_pc_reports')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import cloud_pc_reports
+    from ....models.o_data_errors import o_data_error
+    from .export_jobs import export_jobs_request_builder
+    from .export_jobs.item import cloud_pc_export_job_item_request_builder
+    from .get_daily_aggregated_remote_connection_reports import get_daily_aggregated_remote_connection_reports_request_builder
+    from .get_real_time_remote_connection_latency_with_cloud_pc_id import get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder
+    from .get_real_time_remote_connection_status_with_cloud_pc_id import get_real_time_remote_connection_status_with_cloud_pc_id_request_builder
+    from .get_remote_connection_historical_reports import get_remote_connection_historical_reports_request_builder
+    from .get_shared_use_license_usage_report import get_shared_use_license_usage_report_request_builder
+    from .get_total_aggregated_remote_connection_reports import get_total_aggregated_remote_connection_reports_request_builder
 
 class ReportsRequestBuilder():
     """
     Provides operations to manage the reports property of the microsoft.graph.virtualEndpoint entity.
     """
-    @property
-    def export_jobs(self) -> export_jobs_request_builder.ExportJobsRequestBuilder:
-        """
-        Provides operations to manage the exportJobs property of the microsoft.graph.cloudPcReports entity.
-        """
-        return export_jobs_request_builder.ExportJobsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_daily_aggregated_remote_connection_reports(self) -> get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder:
-        """
-        Provides operations to call the getDailyAggregatedRemoteConnectionReports method.
-        """
-        return get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_remote_connection_historical_reports(self) -> get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder:
-        """
-        Provides operations to call the getRemoteConnectionHistoricalReports method.
-        """
-        return get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_shared_use_license_usage_report(self) -> get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder:
-        """
-        Provides operations to call the getSharedUseLicenseUsageReport method.
-        """
-        return get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def get_total_aggregated_remote_connection_reports(self) -> get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
-        """
-        Provides operations to call the getTotalAggregatedRemoteConnectionReports method.
-        """
-        return get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ReportsRequestBuilder and sets the default values.
@@ -87,6 +52,8 @@ class ReportsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -104,6 +71,8 @@ class ReportsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .export_jobs.item import cloud_pc_export_job_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["cloudPcExportJob%2Did"] = id
         return cloud_pc_export_job_item_request_builder.CloudPcExportJobItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -118,12 +87,16 @@ class ReportsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import cloud_pc_reports
+
         return await self.request_adapter.send_async(request_info, cloud_pc_reports.CloudPcReports, error_mapping)
     
     def get_real_time_remote_connection_latency_with_cloud_pc_id(self,cloud_pc_id: Optional[str] = None) -> get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder:
@@ -135,7 +108,9 @@ class ReportsRequestBuilder():
         """
         if cloud_pc_id is None:
             raise Exception("cloud_pc_id cannot be undefined")
-        return get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloudPcId)
+        from .get_real_time_remote_connection_latency_with_cloud_pc_id import get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder
+
+        return get_real_time_remote_connection_latency_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionLatencyWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloud_pc_id)
     
     def get_real_time_remote_connection_status_with_cloud_pc_id(self,cloud_pc_id: Optional[str] = None) -> get_real_time_remote_connection_status_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder:
         """
@@ -146,7 +121,9 @@ class ReportsRequestBuilder():
         """
         if cloud_pc_id is None:
             raise Exception("cloud_pc_id cannot be undefined")
-        return get_real_time_remote_connection_status_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloudPcId)
+        from .get_real_time_remote_connection_status_with_cloud_pc_id import get_real_time_remote_connection_status_with_cloud_pc_id_request_builder
+
+        return get_real_time_remote_connection_status_with_cloud_pc_id_request_builder.GetRealTimeRemoteConnectionStatusWithCloudPcIdRequestBuilder(self.request_adapter, self.path_parameters, cloud_pc_id)
     
     async def patch(self,body: Optional[cloud_pc_reports.CloudPcReports] = None, request_configuration: Optional[ReportsRequestBuilderPatchRequestConfiguration] = None) -> Optional[cloud_pc_reports.CloudPcReports]:
         """
@@ -161,12 +138,16 @@ class ReportsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import cloud_pc_reports
+
         return await self.request_adapter.send_async(request_info, cloud_pc_reports.CloudPcReports, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ReportsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -224,6 +205,51 @@ class ReportsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def export_jobs(self) -> export_jobs_request_builder.ExportJobsRequestBuilder:
+        """
+        Provides operations to manage the exportJobs property of the microsoft.graph.cloudPcReports entity.
+        """
+        from .export_jobs import export_jobs_request_builder
+
+        return export_jobs_request_builder.ExportJobsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_daily_aggregated_remote_connection_reports(self) -> get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder:
+        """
+        Provides operations to call the getDailyAggregatedRemoteConnectionReports method.
+        """
+        from .get_daily_aggregated_remote_connection_reports import get_daily_aggregated_remote_connection_reports_request_builder
+
+        return get_daily_aggregated_remote_connection_reports_request_builder.GetDailyAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_remote_connection_historical_reports(self) -> get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder:
+        """
+        Provides operations to call the getRemoteConnectionHistoricalReports method.
+        """
+        from .get_remote_connection_historical_reports import get_remote_connection_historical_reports_request_builder
+
+        return get_remote_connection_historical_reports_request_builder.GetRemoteConnectionHistoricalReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_shared_use_license_usage_report(self) -> get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder:
+        """
+        Provides operations to call the getSharedUseLicenseUsageReport method.
+        """
+        from .get_shared_use_license_usage_report import get_shared_use_license_usage_report_request_builder
+
+        return get_shared_use_license_usage_report_request_builder.GetSharedUseLicenseUsageReportRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def get_total_aggregated_remote_connection_reports(self) -> get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder:
+        """
+        Provides operations to call the getTotalAggregatedRemoteConnectionReports method.
+        """
+        from .get_total_aggregated_remote_connection_reports import get_total_aggregated_remote_connection_reports_request_builder
+
+        return get_total_aggregated_remote_connection_reports_request_builder.GetTotalAggregatedRemoteConnectionReportsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ReportsRequestBuilderDeleteRequestConfiguration():
         """
@@ -241,12 +267,6 @@ class ReportsRequestBuilder():
         """
         Cloud PC related reports.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -262,6 +282,12 @@ class ReportsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ReportsRequestBuilderGetRequestConfiguration():

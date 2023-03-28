@@ -1,16 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-connector_health_state = lazy_import('msgraph.generated.models.connector_health_state')
-connector_name = lazy_import('msgraph.generated.models.connector_name')
+if TYPE_CHECKING:
+    from . import connector_health_state, connector_name
 
 class ConnectorStatusDetails(AdditionalDataHolder, Parsable):
     """
     Represent connector status
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new connectorStatusDetails and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Connector Instance Id
+        self._connector_instance_id: Optional[str] = None
+        # Connectors name for connector status
+        self._connector_name: Optional[connector_name.ConnectorName] = None
+        # Event datetime
+        self._event_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Connector health state for connector status
+        self._status: Optional[connector_health_state.ConnectorHealthState] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -62,24 +79,6 @@ class ConnectorStatusDetails(AdditionalDataHolder, Parsable):
         """
         self._connector_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new connectorStatusDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Connector Instance Id
-        self._connector_instance_id: Optional[str] = None
-        # Connectors name for connector status
-        self._connector_name: Optional[connector_name.ConnectorName] = None
-        # Event datetime
-        self._event_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Connector health state for connector status
-        self._status: Optional[connector_health_state.ConnectorHealthState] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectorStatusDetails:
         """
@@ -114,7 +113,9 @@ class ConnectorStatusDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import connector_health_state, connector_name
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectorInstanceId": lambda n : setattr(self, 'connector_instance_id', n.get_str_value()),
             "connectorName": lambda n : setattr(self, 'connector_name', n.get_enum_value(connector_name.ConnectorName)),
             "eventDateTime": lambda n : setattr(self, 'event_date_time', n.get_datetime_value()),

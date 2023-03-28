@@ -1,12 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-allowed_value = lazy_import('msgraph.generated.models.allowed_value')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import allowed_value, entity
+
+from . import entity
 
 class CustomSecurityAttributeDefinition(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new customSecurityAttributeDefinition and sets the default values.
+        """
+        super().__init__()
+        # Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
+        self._allowed_values: Optional[List[allowed_value.AllowedValue]] = None
+        # Name of the attribute set. Case insensitive.
+        self._attribute_set: Optional[str] = None
+        # Description of the custom security attribute. Can be up to 128 characters long and include Unicode characters. Can be changed later.
+        self._description: Optional[str] = None
+        # Indicates whether multiple values can be assigned to the custom security attribute. Cannot be changed later. If type is set to Boolean, isCollection cannot be set to true.
+        self._is_collection: Optional[bool] = None
+        # Indicates whether custom security attribute values will be indexed for searching on objects that are assigned attribute values. Cannot be changed later.
+        self._is_searchable: Optional[bool] = None
+        # Name of the custom security attribute. Must be unique within an attribute set. Can be up to 32 characters long and include Unicode characters. Cannot contain spaces or special characters. Cannot be changed later. Case insensitive.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Specifies whether the custom security attribute is active or deactivated. Acceptable values are Available and Deprecated. Can be changed later.
+        self._status: Optional[str] = None
+        # Data type for the custom security attribute values. Supported types are Boolean, Integer, and String. Cannot be changed later.
+        self._type: Optional[str] = None
+        # Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but cannot be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly cannot be set to true.
+        self._use_pre_defined_values_only: Optional[bool] = None
+    
     @property
     def allowed_values(self,) -> Optional[List[allowed_value.AllowedValue]]:
         """
@@ -40,32 +67,6 @@ class CustomSecurityAttributeDefinition(entity.Entity):
             value: Value to set for the attribute_set property.
         """
         self._attribute_set = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customSecurityAttributeDefinition and sets the default values.
-        """
-        super().__init__()
-        # Values that are predefined for this custom security attribute.This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.
-        self._allowed_values: Optional[List[allowed_value.AllowedValue]] = None
-        # Name of the attribute set. Case insensitive.
-        self._attribute_set: Optional[str] = None
-        # Description of the custom security attribute. Can be up to 128 characters long and include Unicode characters. Can be changed later.
-        self._description: Optional[str] = None
-        # Indicates whether multiple values can be assigned to the custom security attribute. Cannot be changed later. If type is set to Boolean, isCollection cannot be set to true.
-        self._is_collection: Optional[bool] = None
-        # Indicates whether custom security attribute values will be indexed for searching on objects that are assigned attribute values. Cannot be changed later.
-        self._is_searchable: Optional[bool] = None
-        # Name of the custom security attribute. Must be unique within an attribute set. Can be up to 32 characters long and include Unicode characters. Cannot contain spaces or special characters. Cannot be changed later. Case insensitive.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Specifies whether the custom security attribute is active or deactivated. Acceptable values are Available and Deprecated. Can be changed later.
-        self._status: Optional[str] = None
-        # Data type for the custom security attribute values. Supported types are Boolean, Integer, and String. Cannot be changed later.
-        self._type: Optional[str] = None
-        # Indicates whether only predefined values can be assigned to the custom security attribute. If set to false, free-form values are allowed. Can later be changed from true to false, but cannot be changed from false to true. If type is set to Boolean, usePreDefinedValuesOnly cannot be set to true.
-        self._use_pre_defined_values_only: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomSecurityAttributeDefinition:
@@ -101,7 +102,9 @@ class CustomSecurityAttributeDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import allowed_value, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedValues": lambda n : setattr(self, 'allowed_values', n.get_collection_of_object_values(allowed_value.AllowedValue)),
             "attributeSet": lambda n : setattr(self, 'attribute_set', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

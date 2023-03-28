@@ -1,34 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-excluded_apps = lazy_import('msgraph.generated.models.excluded_apps')
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
-office_product_id = lazy_import('msgraph.generated.models.office_product_id')
-office_suite_default_file_format_type = lazy_import('msgraph.generated.models.office_suite_default_file_format_type')
-office_suite_install_progress_display_level = lazy_import('msgraph.generated.models.office_suite_install_progress_display_level')
-office_update_channel = lazy_import('msgraph.generated.models.office_update_channel')
-windows_architecture = lazy_import('msgraph.generated.models.windows_architecture')
+if TYPE_CHECKING:
+    from . import excluded_apps, mobile_app, office_product_id, office_suite_default_file_format_type, office_suite_install_progress_display_level, office_update_channel, windows_architecture
+
+from . import mobile_app
 
 class OfficeSuiteApp(mobile_app.MobileApp):
-    @property
-    def auto_accept_eula(self,) -> Optional[bool]:
-        """
-        Gets the autoAcceptEula property value. The value to accept the EULA automatically on the enduser's device.
-        Returns: Optional[bool]
-        """
-        return self._auto_accept_eula
-    
-    @auto_accept_eula.setter
-    def auto_accept_eula(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the autoAcceptEula property value. The value to accept the EULA automatically on the enduser's device.
-        Args:
-            value: Value to set for the auto_accept_eula property.
-        """
-        self._auto_accept_eula = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new OfficeSuiteApp and sets the default values.
@@ -61,6 +40,23 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         self._update_version: Optional[str] = None
         # The property to represent that whether the shared computer activation is used not for Office365 app suite.
         self._use_shared_computer_activation: Optional[bool] = None
+    
+    @property
+    def auto_accept_eula(self,) -> Optional[bool]:
+        """
+        Gets the autoAcceptEula property value. The value to accept the EULA automatically on the enduser's device.
+        Returns: Optional[bool]
+        """
+        return self._auto_accept_eula
+    
+    @auto_accept_eula.setter
+    def auto_accept_eula(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the autoAcceptEula property value. The value to accept the EULA automatically on the enduser's device.
+        Args:
+            value: Value to set for the auto_accept_eula property.
+        """
+        self._auto_accept_eula = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OfficeSuiteApp:
@@ -96,7 +92,9 @@ class OfficeSuiteApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import excluded_apps, mobile_app, office_product_id, office_suite_default_file_format_type, office_suite_install_progress_display_level, office_update_channel, windows_architecture
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "autoAcceptEula": lambda n : setattr(self, 'auto_accept_eula', n.get_bool_value()),
             "excludedApps": lambda n : setattr(self, 'excluded_apps', n.get_object_value(excluded_apps.ExcludedApps)),
             "installProgressDisplayLevel": lambda n : setattr(self, 'install_progress_display_level', n.get_enum_value(office_suite_install_progress_display_level.OfficeSuiteInstallProgressDisplayLevel)),

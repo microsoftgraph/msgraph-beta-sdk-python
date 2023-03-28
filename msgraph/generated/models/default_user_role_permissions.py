@@ -1,9 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new defaultUserRolePermissions and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether the default user role can create applications.
+        self._allowed_to_create_apps: Optional[bool] = None
+        # Indicates whether the default user role can create security groups.
+        self._allowed_to_create_security_groups: Optional[bool] = None
+        # Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
+        self._allowed_to_read_bitlocker_keys_for_owned_device: Optional[bool] = None
+        # Indicates whether the default user role can read other users.
+        self._allowed_to_read_other_users: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -89,24 +106,6 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         """
         self._allowed_to_read_other_users = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new defaultUserRolePermissions and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether the default user role can create applications.
-        self._allowed_to_create_apps: Optional[bool] = None
-        # Indicates whether the default user role can create security groups.
-        self._allowed_to_create_security_groups: Optional[bool] = None
-        # Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
-        self._allowed_to_read_bitlocker_keys_for_owned_device: Optional[bool] = None
-        # Indicates whether the default user role can read other users.
-        self._allowed_to_read_other_users: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DefaultUserRolePermissions:
         """
@@ -124,7 +123,7 @@ class DefaultUserRolePermissions(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedToCreateApps": lambda n : setattr(self, 'allowed_to_create_apps', n.get_bool_value()),
             "allowedToCreateSecurityGroups": lambda n : setattr(self, 'allowed_to_create_security_groups', n.get_bool_value()),
             "allowedToReadBitlockerKeysForOwnedDevice": lambda n : setattr(self, 'allowed_to_read_bitlocker_keys_for_owned_device', n.get_bool_value()),

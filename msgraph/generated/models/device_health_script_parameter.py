@@ -1,12 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import device_health_script_boolean_parameter, device_health_script_integer_parameter, device_health_script_string_parameter
 
 class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
     """
     Base properties of the script parameter.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceHealthScriptParameter and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Whether Apply DefaultValue When Not Assigned
+        self._apply_default_value_when_not_assigned: Optional[bool] = None
+        # The description of the param
+        self._description: Optional[str] = None
+        # Whether the param is required
+        self._is_required: Optional[bool] = None
+        # The name of the param
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,24 +61,6 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         """
         self._apply_default_value_when_not_assigned = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceHealthScriptParameter and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Whether Apply DefaultValue When Not Assigned
-        self._apply_default_value_when_not_assigned: Optional[bool] = None
-        # The description of the param
-        self._description: Optional[str] = None
-        # Whether the param is required
-        self._is_required: Optional[bool] = None
-        # The name of the param
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptParameter:
         """
@@ -69,6 +71,21 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptBooleanParameter":
+                from . import device_health_script_boolean_parameter
+
+                return device_health_script_boolean_parameter.DeviceHealthScriptBooleanParameter()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptIntegerParameter":
+                from . import device_health_script_integer_parameter
+
+                return device_health_script_integer_parameter.DeviceHealthScriptIntegerParameter()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptStringParameter":
+                from . import device_health_script_string_parameter
+
+                return device_health_script_string_parameter.DeviceHealthScriptStringParameter()
         return DeviceHealthScriptParameter()
     
     @property
@@ -93,7 +110,9 @@ class DeviceHealthScriptParameter(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_health_script_boolean_parameter, device_health_script_integer_parameter, device_health_script_string_parameter
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applyDefaultValueWhenNotAssigned": lambda n : setattr(self, 'apply_default_value_when_not_assigned', n.get_bool_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),

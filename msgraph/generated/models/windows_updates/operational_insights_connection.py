@@ -1,11 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-resource_connection = lazy_import('msgraph.generated.models.windows_updates.resource_connection')
+if TYPE_CHECKING:
+    from . import resource_connection
+
+from . import resource_connection
 
 class OperationalInsightsConnection(resource_connection.ResourceConnection):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new OperationalInsightsConnection and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
+        # The name of the Azure resource group that contains the Log Analytics workspace.
+        self._azure_resource_group_name: Optional[str] = None
+        # The Azure subscription ID that contains the Log Analytics workspace.
+        self._azure_subscription_id: Optional[str] = None
+        # The name of the Log Analytics workspace.
+        self._workspace_name: Optional[str] = None
+    
     @property
     def azure_resource_group_name(self,) -> Optional[str]:
         """
@@ -40,19 +55,6 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         """
         self._azure_subscription_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OperationalInsightsConnection and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsUpdates.operationalInsightsConnection"
-        # The name of the Azure resource group that contains the Log Analytics workspace.
-        self._azure_resource_group_name: Optional[str] = None
-        # The Azure subscription ID that contains the Log Analytics workspace.
-        self._azure_subscription_id: Optional[str] = None
-        # The name of the Log Analytics workspace.
-        self._workspace_name: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OperationalInsightsConnection:
         """
@@ -70,7 +72,9 @@ class OperationalInsightsConnection(resource_connection.ResourceConnection):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import resource_connection
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureResourceGroupName": lambda n : setattr(self, 'azure_resource_group_name', n.get_str_value()),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "workspaceName": lambda n : setattr(self, 'workspace_name', n.get_str_value()),

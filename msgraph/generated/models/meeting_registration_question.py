@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-answer_input_type = lazy_import('msgraph.generated.models.answer_input_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import answer_input_type, entity
+
+from . import entity
 
 class MeetingRegistrationQuestion(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new meetingRegistrationQuestion and sets the default values.
+        """
+        super().__init__()
+        # Answer input type of the custom registration question.
+        self._answer_input_type: Optional[answer_input_type.AnswerInputType] = None
+        # Answer options when answerInputType is radioButton.
+        self._answer_options: Optional[List[str]] = None
+        # Display name of the custom registration question.
+        self._display_name: Optional[str] = None
+        # Indicates whether the question is required. Default value is false.
+        self._is_required: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def answer_input_type(self,) -> Optional[answer_input_type.AnswerInputType]:
         """
@@ -40,22 +57,6 @@ class MeetingRegistrationQuestion(entity.Entity):
             value: Value to set for the answer_options property.
         """
         self._answer_options = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new meetingRegistrationQuestion and sets the default values.
-        """
-        super().__init__()
-        # Answer input type of the custom registration question.
-        self._answer_input_type: Optional[answer_input_type.AnswerInputType] = None
-        # Answer options when answerInputType is radioButton.
-        self._answer_options: Optional[List[str]] = None
-        # Display name of the custom registration question.
-        self._display_name: Optional[str] = None
-        # Indicates whether the question is required. Default value is false.
-        self._is_required: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MeetingRegistrationQuestion:
@@ -91,7 +92,9 @@ class MeetingRegistrationQuestion(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import answer_input_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "answerInputType": lambda n : setattr(self, 'answer_input_type', n.get_enum_value(answer_input_type.AnswerInputType)),
             "answerOptions": lambda n : setattr(self, 'answer_options', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

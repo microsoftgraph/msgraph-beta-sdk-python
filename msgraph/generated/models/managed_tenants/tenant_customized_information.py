@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-tenant_contact_information = lazy_import('msgraph.generated.models.managed_tenants.tenant_contact_information')
+if TYPE_CHECKING:
+    from . import tenant_contact_information
+    from .. import entity
+
+from .. import entity
 
 class TenantCustomizedInformation(entity.Entity):
     def __init__(self,) -> None:
@@ -74,7 +76,10 @@ class TenantCustomizedInformation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import tenant_contact_information
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contacts": lambda n : setattr(self, 'contacts', n.get_collection_of_object_values(tenant_contact_information.TenantContactInformation)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),

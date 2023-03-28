@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_device_usage_type = lazy_import('msgraph.generated.models.windows_device_usage_type')
-windows_user_type = lazy_import('msgraph.generated.models.windows_user_type')
+if TYPE_CHECKING:
+    from . import windows_device_usage_type, windows_user_type
 
 class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
     """
     Out of box experience setting
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new outOfBoxExperienceSettings and sets the default values.
@@ -48,6 +30,23 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         self._skip_keyboard_selection_page: Optional[bool] = None
         # The userType property
         self._user_type: Optional[windows_user_type.WindowsUserType] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OutOfBoxExperienceSettings:
@@ -83,7 +82,9 @@ class OutOfBoxExperienceSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_device_usage_type, windows_user_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deviceUsageType": lambda n : setattr(self, 'device_usage_type', n.get_enum_value(windows_device_usage_type.WindowsDeviceUsageType)),
             "hideEscapeLink": lambda n : setattr(self, 'hide_escape_link', n.get_bool_value()),
             "hideEULA": lambda n : setattr(self, 'hide_e_u_l_a', n.get_bool_value()),

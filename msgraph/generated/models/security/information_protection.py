@@ -1,11 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-information_protection_policy_setting = lazy_import('msgraph.generated.models.security.information_protection_policy_setting')
-sensitivity_label = lazy_import('msgraph.generated.models.security.sensitivity_label')
+if TYPE_CHECKING:
+    from . import information_protection_policy_setting, sensitivity_label
+    from .. import entity
+
+from .. import entity
 
 class InformationProtection(entity.Entity):
     def __init__(self,) -> None:
@@ -37,7 +38,10 @@ class InformationProtection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import information_protection_policy_setting, sensitivity_label
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "labelPolicySettings": lambda n : setattr(self, 'label_policy_settings', n.get_object_value(information_protection_policy_setting.InformationProtectionPolicySetting)),
             "sensitivityLabels": lambda n : setattr(self, 'sensitivity_labels', n.get_collection_of_object_values(sensitivity_label.SensitivityLabel)),
         }

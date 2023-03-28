@@ -7,11 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-export_mobile_config_response = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.export_mobile_config.export_mobile_config_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from . import export_mobile_config_response
+    from .......models.o_data_errors import o_data_error
 
 class ExportMobileConfigRequestBuilder():
     """
@@ -45,12 +45,16 @@ class ExportMobileConfigRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from . import export_mobile_config_response
+
         return await self.request_adapter.send_async(request_info, export_mobile_config_response.ExportMobileConfigResponse, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[ExportMobileConfigRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:

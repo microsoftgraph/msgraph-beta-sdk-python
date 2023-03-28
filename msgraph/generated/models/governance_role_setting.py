@@ -1,15 +1,44 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-governance_resource = lazy_import('msgraph.generated.models.governance_resource')
-governance_role_definition = lazy_import('msgraph.generated.models.governance_role_definition')
-governance_rule_setting = lazy_import('msgraph.generated.models.governance_rule_setting')
+if TYPE_CHECKING:
+    from . import entity, governance_resource, governance_role_definition, governance_rule_setting
+
+from . import entity
 
 class GovernanceRoleSetting(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new governanceRoleSetting and sets the default values.
+        """
+        super().__init__()
+        # The rule settings that are evaluated when an administrator tries to add an eligible role assignment.
+        self._admin_eligible_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
+        # The rule settings that are evaluated when an administrator tries to add a direct member role assignment.
+        self._admin_member_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
+        # Read-only. Indicate if the roleSetting is a default roleSetting
+        self._is_default: Optional[bool] = None
+        # Read-only. The display name of the administrator who last updated the roleSetting.
+        self._last_updated_by: Optional[str] = None
+        # Read-only. The time when the role setting was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._last_updated_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Read-only. The associated resource for this role setting.
+        self._resource: Optional[governance_resource.GovernanceResource] = None
+        # Required. The id of the resource that the role setting is associated with.
+        self._resource_id: Optional[str] = None
+        # Read-only. The role definition that is enforced with this role setting.
+        self._role_definition: Optional[governance_role_definition.GovernanceRoleDefinition] = None
+        # Required. The id of the role definition that the role setting is associated with.
+        self._role_definition_id: Optional[str] = None
+        # The rule settings that are evaluated when a user tries to add an eligible role assignment. The setting is not supported for now.
+        self._user_eligible_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
+        # The rule settings that are evaluated when a user tries to activate his role assignment.
+        self._user_member_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
+    
     @property
     def admin_eligible_settings(self,) -> Optional[List[governance_rule_setting.GovernanceRuleSetting]]:
         """
@@ -44,36 +73,6 @@ class GovernanceRoleSetting(entity.Entity):
         """
         self._admin_member_settings = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new governanceRoleSetting and sets the default values.
-        """
-        super().__init__()
-        # The rule settings that are evaluated when an administrator tries to add an eligible role assignment.
-        self._admin_eligible_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
-        # The rule settings that are evaluated when an administrator tries to add a direct member role assignment.
-        self._admin_member_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
-        # Read-only. Indicate if the roleSetting is a default roleSetting
-        self._is_default: Optional[bool] = None
-        # Read-only. The display name of the administrator who last updated the roleSetting.
-        self._last_updated_by: Optional[str] = None
-        # Read-only. The time when the role setting was last updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Read-only. The associated resource for this role setting.
-        self._resource: Optional[governance_resource.GovernanceResource] = None
-        # Required. The id of the resource that the role setting is associated with.
-        self._resource_id: Optional[str] = None
-        # Read-only. The role definition that is enforced with this role setting.
-        self._role_definition: Optional[governance_role_definition.GovernanceRoleDefinition] = None
-        # Required. The id of the role definition that the role setting is associated with.
-        self._role_definition_id: Optional[str] = None
-        # The rule settings that are evaluated when a user tries to add an eligible role assignment. The setting is not supported for now.
-        self._user_eligible_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
-        # The rule settings that are evaluated when a user tries to activate his role assignment.
-        self._user_member_settings: Optional[List[governance_rule_setting.GovernanceRuleSetting]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GovernanceRoleSetting:
         """
@@ -91,7 +90,9 @@ class GovernanceRoleSetting(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, governance_resource, governance_role_definition, governance_rule_setting
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "adminEligibleSettings": lambda n : setattr(self, 'admin_eligible_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
             "adminMemberSettings": lambda n : setattr(self, 'admin_member_settings', n.get_collection_of_object_values(governance_rule_setting.GovernanceRuleSetting)),
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),

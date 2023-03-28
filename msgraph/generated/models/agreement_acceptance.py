@@ -1,47 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-agreement_acceptance_state = lazy_import('msgraph.generated.models.agreement_acceptance_state')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import agreement_acceptance_state, entity
+
+from . import entity
 
 class AgreementAcceptance(entity.Entity):
-    @property
-    def agreement_file_id(self,) -> Optional[str]:
-        """
-        Gets the agreementFileId property value. ID of the agreement file accepted by the user.
-        Returns: Optional[str]
-        """
-        return self._agreement_file_id
-    
-    @agreement_file_id.setter
-    def agreement_file_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the agreementFileId property value. ID of the agreement file accepted by the user.
-        Args:
-            value: Value to set for the agreement_file_id property.
-        """
-        self._agreement_file_id = value
-    
-    @property
-    def agreement_id(self,) -> Optional[str]:
-        """
-        Gets the agreementId property value. ID of the agreement.
-        Returns: Optional[str]
-        """
-        return self._agreement_id
-    
-    @agreement_id.setter
-    def agreement_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the agreementId property value. ID of the agreement.
-        Args:
-            value: Value to set for the agreement_id property.
-        """
-        self._agreement_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new agreementAcceptance and sets the default values.
@@ -75,6 +42,40 @@ class AgreementAcceptance(entity.Entity):
         self._user_id: Optional[str] = None
         # UPN of the user when the acceptance was recorded.
         self._user_principal_name: Optional[str] = None
+    
+    @property
+    def agreement_file_id(self,) -> Optional[str]:
+        """
+        Gets the agreementFileId property value. ID of the agreement file accepted by the user.
+        Returns: Optional[str]
+        """
+        return self._agreement_file_id
+    
+    @agreement_file_id.setter
+    def agreement_file_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the agreementFileId property value. ID of the agreement file accepted by the user.
+        Args:
+            value: Value to set for the agreement_file_id property.
+        """
+        self._agreement_file_id = value
+    
+    @property
+    def agreement_id(self,) -> Optional[str]:
+        """
+        Gets the agreementId property value. ID of the agreement.
+        Returns: Optional[str]
+        """
+        return self._agreement_id
+    
+    @agreement_id.setter
+    def agreement_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the agreementId property value. ID of the agreement.
+        Args:
+            value: Value to set for the agreement_id property.
+        """
+        self._agreement_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AgreementAcceptance:
@@ -178,7 +179,9 @@ class AgreementAcceptance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import agreement_acceptance_state, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "agreementFileId": lambda n : setattr(self, 'agreement_file_id', n.get_str_value()),
             "agreementId": lambda n : setattr(self, 'agreement_id', n.get_str_value()),
             "deviceDisplayName": lambda n : setattr(self, 'device_display_name', n.get_str_value()),

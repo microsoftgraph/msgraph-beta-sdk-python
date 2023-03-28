@@ -1,14 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-deleted_team = lazy_import('msgraph.generated.models.deleted_team')
-entity = lazy_import('msgraph.generated.models.entity')
-team_template = lazy_import('msgraph.generated.models.team_template')
-teams_app_settings = lazy_import('msgraph.generated.models.teams_app_settings')
-teamwork_device = lazy_import('msgraph.generated.models.teamwork_device')
-workforce_integration = lazy_import('msgraph.generated.models.workforce_integration')
+if TYPE_CHECKING:
+    from . import deleted_team, entity, teams_app_settings, teamwork_device, team_template, workforce_integration
+
+from . import entity
 
 class Teamwork(entity.Entity):
     def __init__(self,) -> None:
@@ -80,7 +77,9 @@ class Teamwork(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import deleted_team, entity, teams_app_settings, teamwork_device, team_template, workforce_integration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deletedTeams": lambda n : setattr(self, 'deleted_teams', n.get_collection_of_object_values(deleted_team.DeletedTeam)),
             "devices": lambda n : setattr(self, 'devices', n.get_collection_of_object_values(teamwork_device.TeamworkDevice)),
             "teamsAppSettings": lambda n : setattr(self, 'teams_app_settings', n.get_object_value(teams_app_settings.TeamsAppSettings)),

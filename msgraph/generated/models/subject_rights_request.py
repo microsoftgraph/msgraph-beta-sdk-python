@@ -1,68 +1,27 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authored_note = lazy_import('msgraph.generated.models.authored_note')
-data_subject = lazy_import('msgraph.generated.models.data_subject')
-data_subject_type = lazy_import('msgraph.generated.models.data_subject_type')
-entity = lazy_import('msgraph.generated.models.entity')
-identity = lazy_import('msgraph.generated.models.identity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-subject_rights_request_detail = lazy_import('msgraph.generated.models.subject_rights_request_detail')
-subject_rights_request_history = lazy_import('msgraph.generated.models.subject_rights_request_history')
-subject_rights_request_mailbox_location = lazy_import('msgraph.generated.models.subject_rights_request_mailbox_location')
-subject_rights_request_site_location = lazy_import('msgraph.generated.models.subject_rights_request_site_location')
-subject_rights_request_stage_detail = lazy_import('msgraph.generated.models.subject_rights_request_stage_detail')
-subject_rights_request_status = lazy_import('msgraph.generated.models.subject_rights_request_status')
-subject_rights_request_type = lazy_import('msgraph.generated.models.subject_rights_request_type')
-team = lazy_import('msgraph.generated.models.team')
+if TYPE_CHECKING:
+    from . import authored_note, data_subject, data_subject_type, entity, identity, identity_set, subject_rights_request_detail, subject_rights_request_history, subject_rights_request_mailbox_location, subject_rights_request_site_location, subject_rights_request_stage_detail, subject_rights_request_status, subject_rights_request_type, team, user
+
+from . import entity
 
 class SubjectRightsRequest(entity.Entity):
-    @property
-    def assigned_to(self,) -> Optional[identity.Identity]:
-        """
-        Gets the assignedTo property value. Identity that the request is assigned to.
-        Returns: Optional[identity.Identity]
-        """
-        return self._assigned_to
-    
-    @assigned_to.setter
-    def assigned_to(self,value: Optional[identity.Identity] = None) -> None:
-        """
-        Sets the assignedTo property value. Identity that the request is assigned to.
-        Args:
-            value: Value to set for the assigned_to property.
-        """
-        self._assigned_to = value
-    
-    @property
-    def closed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the closedDateTime property value. The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Returns: Optional[datetime]
-        """
-        return self._closed_date_time
-    
-    @closed_date_time.setter
-    def closed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the closedDateTime property value. The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        Args:
-            value: Value to set for the closed_date_time property.
-        """
-        self._closed_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new SubjectRightsRequest and sets the default values.
         """
         super().__init__()
+        # The approvers property
+        self._approvers: Optional[List[user.User]] = None
         # Identity that the request is assigned to.
         self._assigned_to: Optional[identity.Identity] = None
         # The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
         self._closed_date_time: Optional[datetime] = None
+        # The collaborators property
+        self._collaborators: Optional[List[user.User]] = None
         # KQL based content query that should be used for search. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.
         self._content_query: Optional[str] = None
         # Identity information for the entity that created the request.
@@ -113,6 +72,74 @@ class SubjectRightsRequest(entity.Entity):
         self._team: Optional[team.Team] = None
         # The type of the request. Possible values are: export, delete, access, tagForAction, unknownFutureValue.
         self._type: Optional[subject_rights_request_type.SubjectRightsRequestType] = None
+    
+    @property
+    def approvers(self,) -> Optional[List[user.User]]:
+        """
+        Gets the approvers property value. The approvers property
+        Returns: Optional[List[user.User]]
+        """
+        return self._approvers
+    
+    @approvers.setter
+    def approvers(self,value: Optional[List[user.User]] = None) -> None:
+        """
+        Sets the approvers property value. The approvers property
+        Args:
+            value: Value to set for the approvers property.
+        """
+        self._approvers = value
+    
+    @property
+    def assigned_to(self,) -> Optional[identity.Identity]:
+        """
+        Gets the assignedTo property value. Identity that the request is assigned to.
+        Returns: Optional[identity.Identity]
+        """
+        return self._assigned_to
+    
+    @assigned_to.setter
+    def assigned_to(self,value: Optional[identity.Identity] = None) -> None:
+        """
+        Sets the assignedTo property value. Identity that the request is assigned to.
+        Args:
+            value: Value to set for the assigned_to property.
+        """
+        self._assigned_to = value
+    
+    @property
+    def closed_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the closedDateTime property value. The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        Returns: Optional[datetime]
+        """
+        return self._closed_date_time
+    
+    @closed_date_time.setter
+    def closed_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the closedDateTime property value. The date and time when the request was closed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        Args:
+            value: Value to set for the closed_date_time property.
+        """
+        self._closed_date_time = value
+    
+    @property
+    def collaborators(self,) -> Optional[List[user.User]]:
+        """
+        Gets the collaborators property value. The collaborators property
+        Returns: Optional[List[user.User]]
+        """
+        return self._collaborators
+    
+    @collaborators.setter
+    def collaborators(self,value: Optional[List[user.User]] = None) -> None:
+        """
+        Sets the collaborators property value. The collaborators property
+        Args:
+            value: Value to set for the collaborators property.
+        """
+        self._collaborators = value
     
     @property
     def content_query(self,) -> Optional[str]:
@@ -267,9 +294,13 @@ class SubjectRightsRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authored_note, data_subject, data_subject_type, entity, identity, identity_set, subject_rights_request_detail, subject_rights_request_history, subject_rights_request_mailbox_location, subject_rights_request_site_location, subject_rights_request_stage_detail, subject_rights_request_status, subject_rights_request_type, team, user
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "approvers": lambda n : setattr(self, 'approvers', n.get_collection_of_object_values(user.User)),
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_object_value(identity.Identity)),
             "closedDateTime": lambda n : setattr(self, 'closed_date_time', n.get_datetime_value()),
+            "collaborators": lambda n : setattr(self, 'collaborators', n.get_collection_of_object_values(user.User)),
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
@@ -495,8 +526,10 @@ class SubjectRightsRequest(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
+        writer.write_collection_of_object_values("approvers", self.approvers)
         writer.write_object_value("assignedTo", self.assigned_to)
         writer.write_datetime_value("closedDateTime", self.closed_date_time)
+        writer.write_collection_of_object_values("collaborators", self.collaborators)
         writer.write_str_value("contentQuery", self.content_query)
         writer.write_object_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)

@@ -1,14 +1,40 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
+if TYPE_CHECKING:
+    from . import certificate_validity_period_scale
 
 class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
     """
     Trusted Root and PFX certificates for iOS EDU.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new iosEduCertificateSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # File name to display in UI.
+        self._cert_file_name: Optional[str] = None
+        # PKCS Certificate Template Name.
+        self._certificate_template_name: Optional[str] = None
+        # Certificate Validity Period Options.
+        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+        # Value for the Certificate Validity Period.
+        self._certificate_validity_period_value: Optional[int] = None
+        # PKCS Certification Authority.
+        self._certification_authority: Optional[str] = None
+        # PKCS Certification Authority Name.
+        self._certification_authority_name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Certificate renewal threshold percentage. Valid values 1 to 99
+        self._renewal_threshold_percentage: Optional[int] = None
+        # Trusted Root Certificate.
+        self._trusted_root_certificate: Optional[bytes] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -128,32 +154,6 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         """
         self._certification_authority_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new iosEduCertificateSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # File name to display in UI.
-        self._cert_file_name: Optional[str] = None
-        # PKCS Certificate Template Name.
-        self._certificate_template_name: Optional[str] = None
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validity Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # PKCS Certification Authority.
-        self._certification_authority: Optional[str] = None
-        # PKCS Certification Authority Name.
-        self._certification_authority_name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Certificate renewal threshold percentage. Valid values 1 to 99
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Trusted Root Certificate.
-        self._trusted_root_certificate: Optional[bytes] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosEduCertificateSettings:
         """
@@ -171,7 +171,9 @@ class IosEduCertificateSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_validity_period_scale
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateTemplateName": lambda n : setattr(self, 'certificate_template_name', n.get_str_value()),
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),

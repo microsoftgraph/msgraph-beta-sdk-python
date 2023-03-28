@@ -1,15 +1,50 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-domain_registrant = lazy_import('msgraph.generated.models.domain_registrant')
-entity = lazy_import('msgraph.generated.models.entity')
-reputation_category = lazy_import('msgraph.generated.models.reputation_category')
-security_vendor_information = lazy_import('msgraph.generated.models.security_vendor_information')
+if TYPE_CHECKING:
+    from . import domain_registrant, entity, reputation_category, security_vendor_information
+
+from . import entity
 
 class DomainSecurityProfile(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new domainSecurityProfile and sets the default values.
+        """
+        super().__init__()
+        # The activityGroupNames property
+        self._activity_group_names: Optional[List[str]] = None
+        # The azureSubscriptionId property
+        self._azure_subscription_id: Optional[str] = None
+        # The azureTenantId property
+        self._azure_tenant_id: Optional[str] = None
+        # The countHits property
+        self._count_hits: Optional[int] = None
+        # The countInOrg property
+        self._count_in_org: Optional[int] = None
+        # The domainCategories property
+        self._domain_categories: Optional[List[reputation_category.ReputationCategory]] = None
+        # The domainRegisteredDateTime property
+        self._domain_registered_date_time: Optional[datetime] = None
+        # The firstSeenDateTime property
+        self._first_seen_date_time: Optional[datetime] = None
+        # The lastSeenDateTime property
+        self._last_seen_date_time: Optional[datetime] = None
+        # The name property
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The registrant property
+        self._registrant: Optional[domain_registrant.DomainRegistrant] = None
+        # The riskScore property
+        self._risk_score: Optional[str] = None
+        # The tags property
+        self._tags: Optional[List[str]] = None
+        # The vendorInformation property
+        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
+    
     @property
     def activity_group_names(self,) -> Optional[List[str]]:
         """
@@ -60,42 +95,6 @@ class DomainSecurityProfile(entity.Entity):
             value: Value to set for the azure_tenant_id property.
         """
         self._azure_tenant_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new domainSecurityProfile and sets the default values.
-        """
-        super().__init__()
-        # The activityGroupNames property
-        self._activity_group_names: Optional[List[str]] = None
-        # The azureSubscriptionId property
-        self._azure_subscription_id: Optional[str] = None
-        # The azureTenantId property
-        self._azure_tenant_id: Optional[str] = None
-        # The countHits property
-        self._count_hits: Optional[int] = None
-        # The countInOrg property
-        self._count_in_org: Optional[int] = None
-        # The domainCategories property
-        self._domain_categories: Optional[List[reputation_category.ReputationCategory]] = None
-        # The domainRegisteredDateTime property
-        self._domain_registered_date_time: Optional[datetime] = None
-        # The firstSeenDateTime property
-        self._first_seen_date_time: Optional[datetime] = None
-        # The lastSeenDateTime property
-        self._last_seen_date_time: Optional[datetime] = None
-        # The name property
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The registrant property
-        self._registrant: Optional[domain_registrant.DomainRegistrant] = None
-        # The riskScore property
-        self._risk_score: Optional[str] = None
-        # The tags property
-        self._tags: Optional[List[str]] = None
-        # The vendorInformation property
-        self._vendor_information: Optional[security_vendor_information.SecurityVendorInformation] = None
     
     @property
     def count_hits(self,) -> Optional[int]:
@@ -199,7 +198,9 @@ class DomainSecurityProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import domain_registrant, entity, reputation_category, security_vendor_information
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activityGroupNames": lambda n : setattr(self, 'activity_group_names', n.get_collection_of_primitive_values(str)),
             "azureSubscriptionId": lambda n : setattr(self, 'azure_subscription_id', n.get_str_value()),
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),

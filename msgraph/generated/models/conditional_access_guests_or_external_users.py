@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-conditional_access_external_tenants = lazy_import('msgraph.generated.models.conditional_access_external_tenants')
-conditional_access_guest_or_external_user_types = lazy_import('msgraph.generated.models.conditional_access_guest_or_external_user_types')
+if TYPE_CHECKING:
+    from . import conditional_access_external_tenants, conditional_access_guest_or_external_user_types
 
 class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new conditionalAccessGuestsOrExternalUsers and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The tenant ids of the selected types of external users. It could be either all b2b tenant, or a collection of tenant ids. External tenants can be specified only when guestOrExternalUserTypes is not null or an empty string.
+        self._external_tenants: Optional[conditional_access_external_tenants.ConditionalAccessExternalTenants] = None
+        # The guestOrExternalUserTypes property
+        self._guest_or_external_user_types: Optional[conditional_access_guest_or_external_user_types.ConditionalAccessGuestOrExternalUserTypes] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new conditionalAccessGuestsOrExternalUsers and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The tenant ids of the selected types of external users. It could be either all b2b tenant, or a collection of tenant ids. External tenants can be specified only when guestOrExternalUserTypes is not null or an empty string.
-        self._external_tenants: Optional[conditional_access_external_tenants.ConditionalAccessExternalTenants] = None
-        # The guestOrExternalUserTypes property
-        self._guest_or_external_user_types: Optional[conditional_access_guest_or_external_user_types.ConditionalAccessGuestOrExternalUserTypes] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConditionalAccessGuestsOrExternalUsers:
@@ -72,7 +71,9 @@ class ConditionalAccessGuestsOrExternalUsers(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import conditional_access_external_tenants, conditional_access_guest_or_external_user_types
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "externalTenants": lambda n : setattr(self, 'external_tenants', n.get_object_value(conditional_access_external_tenants.ConditionalAccessExternalTenants)),
             "guestOrExternalUserTypes": lambda n : setattr(self, 'guest_or_external_user_types', n.get_enum_value(conditional_access_guest_or_external_user_types.ConditionalAccessGuestOrExternalUserTypes)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

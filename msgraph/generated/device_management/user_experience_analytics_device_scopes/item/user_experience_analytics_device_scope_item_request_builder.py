@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-trigger_device_scope_action_request_builder = lazy_import('msgraph.generated.device_management.user_experience_analytics_device_scopes.item.trigger_device_scope_action.trigger_device_scope_action_request_builder')
-user_experience_analytics_device_scope = lazy_import('msgraph.generated.models.user_experience_analytics_device_scope')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import user_experience_analytics_device_scope
+    from ....models.o_data_errors import o_data_error
+    from .trigger_device_scope_action import trigger_device_scope_action_request_builder
 
 class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
     """
     Provides operations to manage the userExperienceAnalyticsDeviceScopes property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def trigger_device_scope_action(self) -> trigger_device_scope_action_request_builder.TriggerDeviceScopeActionRequestBuilder:
-        """
-        Provides operations to call the triggerDeviceScopeAction method.
-        """
-        return trigger_device_scope_action_request_builder.TriggerDeviceScopeActionRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new UserExperienceAnalyticsDeviceScopeItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import user_experience_analytics_device_scope
+
         return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope, error_mapping)
     
     async def patch(self,body: Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope] = None, request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope]:
@@ -91,12 +90,16 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import user_experience_analytics_device_scope
+
         return await self.request_adapter.send_async(request_info, user_experience_analytics_device_scope.UserExperienceAnalyticsDeviceScope, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[UserExperienceAnalyticsDeviceScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def trigger_device_scope_action(self) -> trigger_device_scope_action_request_builder.TriggerDeviceScopeActionRequestBuilder:
+        """
+        Provides operations to call the triggerDeviceScopeAction method.
+        """
+        from .trigger_device_scope_action import trigger_device_scope_action_request_builder
+
+        return trigger_device_scope_action_request_builder.TriggerDeviceScopeActionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class UserExperienceAnalyticsDeviceScopeItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,12 +183,6 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
         """
         The user experience analytics device scope entity contains device scope configuration use to apply filtering on the endpoint analytics reports.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -192,6 +198,12 @@ class UserExperienceAnalyticsDeviceScopeItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class UserExperienceAnalyticsDeviceScopeItemRequestBuilderGetRequestConfiguration():

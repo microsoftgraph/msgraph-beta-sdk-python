@@ -7,44 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-tenant_relationship = lazy_import('msgraph.generated.models.tenant_relationship')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-delegated_admin_customers_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_customers.delegated_admin_customers_request_builder')
-delegated_admin_customer_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_customers.item.delegated_admin_customer_item_request_builder')
-delegated_admin_relationships_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.delegated_admin_relationships_request_builder')
-delegated_admin_relationship_item_request_builder = lazy_import('msgraph.generated.tenant_relationships.delegated_admin_relationships.item.delegated_admin_relationship_item_request_builder')
-find_tenant_information_by_domain_name_with_domain_name_request_builder = lazy_import('msgraph.generated.tenant_relationships.find_tenant_information_by_domain_name_with_domain_name.find_tenant_information_by_domain_name_with_domain_name_request_builder')
-find_tenant_information_by_tenant_id_with_tenant_id_request_builder = lazy_import('msgraph.generated.tenant_relationships.find_tenant_information_by_tenant_id_with_tenant_id.find_tenant_information_by_tenant_id_with_tenant_id_request_builder')
-managed_tenants_request_builder = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.managed_tenants_request_builder')
+if TYPE_CHECKING:
+    from ..models import tenant_relationship
+    from ..models.o_data_errors import o_data_error
+    from .delegated_admin_customers import delegated_admin_customers_request_builder
+    from .delegated_admin_customers.item import delegated_admin_customer_item_request_builder
+    from .delegated_admin_relationships import delegated_admin_relationships_request_builder
+    from .delegated_admin_relationships.item import delegated_admin_relationship_item_request_builder
+    from .find_tenant_information_by_domain_name_with_domain_name import find_tenant_information_by_domain_name_with_domain_name_request_builder
+    from .find_tenant_information_by_tenant_id_with_tenant_id import find_tenant_information_by_tenant_id_with_tenant_id_request_builder
+    from .managed_tenants import managed_tenants_request_builder
 
 class TenantRelationshipsRequestBuilder():
     """
     Provides operations to manage the tenantRelationship singleton.
     """
-    @property
-    def delegated_admin_customers(self) -> delegated_admin_customers_request_builder.DelegatedAdminCustomersRequestBuilder:
-        """
-        Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
-        """
-        return delegated_admin_customers_request_builder.DelegatedAdminCustomersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def delegated_admin_relationships(self) -> delegated_admin_relationships_request_builder.DelegatedAdminRelationshipsRequestBuilder:
-        """
-        Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
-        """
-        return delegated_admin_relationships_request_builder.DelegatedAdminRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def managed_tenants(self) -> managed_tenants_request_builder.ManagedTenantsRequestBuilder:
-        """
-        Provides operations to manage the managedTenants property of the microsoft.graph.tenantRelationship entity.
-        """
-        return managed_tenants_request_builder.ManagedTenantsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TenantRelationshipsRequestBuilder and sets the default values.
@@ -72,6 +51,8 @@ class TenantRelationshipsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .delegated_admin_customers.item import delegated_admin_customer_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["delegatedAdminCustomer%2Did"] = id
         return delegated_admin_customer_item_request_builder.DelegatedAdminCustomerItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -85,6 +66,8 @@ class TenantRelationshipsRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .delegated_admin_relationships.item import delegated_admin_relationship_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["delegatedAdminRelationship%2Did"] = id
         return delegated_admin_relationship_item_request_builder.DelegatedAdminRelationshipItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -98,7 +81,9 @@ class TenantRelationshipsRequestBuilder():
         """
         if domain_name is None:
             raise Exception("domain_name cannot be undefined")
-        return find_tenant_information_by_domain_name_with_domain_name_request_builder.FindTenantInformationByDomainNameWithDomainNameRequestBuilder(self.request_adapter, self.path_parameters, domainName)
+        from .find_tenant_information_by_domain_name_with_domain_name import find_tenant_information_by_domain_name_with_domain_name_request_builder
+
+        return find_tenant_information_by_domain_name_with_domain_name_request_builder.FindTenantInformationByDomainNameWithDomainNameRequestBuilder(self.request_adapter, self.path_parameters, domain_name)
     
     def find_tenant_information_by_tenant_id_with_tenant_id(self,tenant_id: Optional[str] = None) -> find_tenant_information_by_tenant_id_with_tenant_id_request_builder.FindTenantInformationByTenantIdWithTenantIdRequestBuilder:
         """
@@ -109,7 +94,9 @@ class TenantRelationshipsRequestBuilder():
         """
         if tenant_id is None:
             raise Exception("tenant_id cannot be undefined")
-        return find_tenant_information_by_tenant_id_with_tenant_id_request_builder.FindTenantInformationByTenantIdWithTenantIdRequestBuilder(self.request_adapter, self.path_parameters, tenantId)
+        from .find_tenant_information_by_tenant_id_with_tenant_id import find_tenant_information_by_tenant_id_with_tenant_id_request_builder
+
+        return find_tenant_information_by_tenant_id_with_tenant_id_request_builder.FindTenantInformationByTenantIdWithTenantIdRequestBuilder(self.request_adapter, self.path_parameters, tenant_id)
     
     async def get(self,request_configuration: Optional[TenantRelationshipsRequestBuilderGetRequestConfiguration] = None) -> Optional[tenant_relationship.TenantRelationship]:
         """
@@ -121,12 +108,16 @@ class TenantRelationshipsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import tenant_relationship
+
         return await self.request_adapter.send_async(request_info, tenant_relationship.TenantRelationship, error_mapping)
     
     async def patch(self,body: Optional[tenant_relationship.TenantRelationship] = None, request_configuration: Optional[TenantRelationshipsRequestBuilderPatchRequestConfiguration] = None) -> Optional[tenant_relationship.TenantRelationship]:
@@ -142,12 +133,16 @@ class TenantRelationshipsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import tenant_relationship
+
         return await self.request_adapter.send_async(request_info, tenant_relationship.TenantRelationship, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TenantRelationshipsRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -189,17 +184,38 @@ class TenantRelationshipsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def delegated_admin_customers(self) -> delegated_admin_customers_request_builder.DelegatedAdminCustomersRequestBuilder:
+        """
+        Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
+        """
+        from .delegated_admin_customers import delegated_admin_customers_request_builder
+
+        return delegated_admin_customers_request_builder.DelegatedAdminCustomersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def delegated_admin_relationships(self) -> delegated_admin_relationships_request_builder.DelegatedAdminRelationshipsRequestBuilder:
+        """
+        Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
+        """
+        from .delegated_admin_relationships import delegated_admin_relationships_request_builder
+
+        return delegated_admin_relationships_request_builder.DelegatedAdminRelationshipsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def managed_tenants(self) -> managed_tenants_request_builder.ManagedTenantsRequestBuilder:
+        """
+        Provides operations to manage the managedTenants property of the microsoft.graph.tenantRelationship entity.
+        """
+        from .managed_tenants import managed_tenants_request_builder
+
+        return managed_tenants_request_builder.ManagedTenantsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TenantRelationshipsRequestBuilderGetQueryParameters():
         """
         Get tenantRelationships
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -215,6 +231,12 @@ class TenantRelationshipsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TenantRelationshipsRequestBuilderGetRequestConfiguration():

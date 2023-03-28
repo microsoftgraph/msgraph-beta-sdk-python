@@ -1,15 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-application = lazy_import('msgraph.generated.models.application')
-connector = lazy_import('msgraph.generated.models.connector')
-connector_group_region = lazy_import('msgraph.generated.models.connector_group_region')
-connector_group_type = lazy_import('msgraph.generated.models.connector_group_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import application, connector, connector_group_region, connector_group_type, entity
+
+from . import entity
 
 class ConnectorGroup(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new connectorGroup and sets the default values.
+        """
+        super().__init__()
+        # The applications property
+        self._applications: Optional[List[application.Application]] = None
+        # The connectorGroupType property
+        self._connector_group_type: Optional[connector_group_type.ConnectorGroupType] = None
+        # Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
+        self._is_default: Optional[bool] = None
+        # The members property
+        self._members: Optional[List[connector.Connector]] = None
+        # The name associated with the connectorGroup.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
+        self._region: Optional[connector_group_region.ConnectorGroupRegion] = None
+    
     @property
     def applications(self,) -> Optional[List[application.Application]]:
         """
@@ -44,26 +62,6 @@ class ConnectorGroup(entity.Entity):
         """
         self._connector_group_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new connectorGroup and sets the default values.
-        """
-        super().__init__()
-        # The applications property
-        self._applications: Optional[List[application.Application]] = None
-        # The connectorGroupType property
-        self._connector_group_type: Optional[connector_group_type.ConnectorGroupType] = None
-        # Indicates if the connectorGroup is the default connectorGroup. Only a single connector group can be the default connectorGroup and this is pre-set by the system. Read-only.
-        self._is_default: Optional[bool] = None
-        # The members property
-        self._members: Optional[List[connector.Connector]] = None
-        # The name associated with the connectorGroup.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The region the connectorGroup is assigned to and will optimize traffic for. This region can only be set if no connectors or applications are assigned to the connectorGroup. The possible values are: nam (for North America), eur (for Europe), aus (for Australia), asia (for Asia), ind (for India), and unknownFutureValue.
-        self._region: Optional[connector_group_region.ConnectorGroupRegion] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConnectorGroup:
         """
@@ -81,7 +79,9 @@ class ConnectorGroup(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application, connector, connector_group_region, connector_group_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applications": lambda n : setattr(self, 'applications', n.get_collection_of_object_values(application.Application)),
             "connectorGroupType": lambda n : setattr(self, 'connector_group_type', n.get_enum_value(connector_group_type.ConnectorGroupType)),
             "isDefault": lambda n : setattr(self, 'is_default', n.get_bool_value()),

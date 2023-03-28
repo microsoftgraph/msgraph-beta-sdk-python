@@ -1,17 +1,52 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user_experience_analytics_autopilot_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_autopilot_devices_summary')
-user_experience_analytics_cloud_identity_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_cloud_identity_devices_summary')
-user_experience_analytics_cloud_management_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_cloud_management_devices_summary')
-user_experience_analytics_windows10_devices_summary = lazy_import('msgraph.generated.models.user_experience_analytics_windows10_devices_summary')
+if TYPE_CHECKING:
+    from . import user_experience_analytics_autopilot_devices_summary, user_experience_analytics_cloud_identity_devices_summary, user_experience_analytics_cloud_management_devices_summary, user_experience_analytics_windows10_devices_summary
 
 class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder, Parsable):
     """
     The user experience analytics Work From Anywhere metrics devices summary.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsWorkFromAnywhereDevicesSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The value of work from anywhere autopilot devices summary.
+        self._autopilot_devices_summary: Optional[user_experience_analytics_autopilot_devices_summary.UserExperienceAnalyticsAutopilotDevicesSummary] = None
+        # The user experience analytics work from anywhere Cloud Identity devices summary.
+        self._cloud_identity_devices_summary: Optional[user_experience_analytics_cloud_identity_devices_summary.UserExperienceAnalyticsCloudIdentityDevicesSummary] = None
+        # The user experience work from anywhere Cloud management devices summary.
+        self._cloud_management_devices_summary: Optional[user_experience_analytics_cloud_management_devices_summary.UserExperienceAnalyticsCloudManagementDevicesSummary] = None
+        # Total number of co-managed devices. Valid values -2147483648 to 2147483647
+        self._co_managed_devices: Optional[int] = None
+        # The count of intune devices that are not autopilot registerd. Valid values -2147483648 to 2147483647
+        self._devices_not_autopilot_registered: Optional[int] = None
+        # The count of intune devices not autopilot profile assigned. Valid values -2147483648 to 2147483647
+        self._devices_without_autopilot_profile_assigned: Optional[int] = None
+        # The count of devices that are not cloud identity. Valid values -2147483648 to 2147483647
+        self._devices_without_cloud_identity: Optional[int] = None
+        # The count of intune devices that are not autopilot registerd. Valid values -2147483648 to 2147483647
+        self._intune_devices: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Total count of tenant attach devices. Valid values -2147483648 to 2147483647
+        self._tenant_attach_devices: Optional[int] = None
+        # The total count of devices. Valid values -2147483648 to 2147483647
+        self._total_devices: Optional[int] = None
+        # The count of Windows 10 devices that have unsupported OS versions. Valid values -2147483648 to 2147483647
+        self._unsupported_o_sversion_devices: Optional[int] = None
+        # The count of windows 10 devices. Valid values -2147483648 to 2147483647
+        self._windows10_devices: Optional[int] = None
+        # The user experience analytics work from anywhere Windows 10 devices summary.
+        self._windows10_devices_summary: Optional[user_experience_analytics_windows10_devices_summary.UserExperienceAnalyticsWindows10DevicesSummary] = None
+        # The count of windows 10 devices that are Intune and Comanaged. Valid values -2147483648 to 2147483647
+        self._windows10_devices_without_tenant_attach: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -97,44 +132,6 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         """
         self._co_managed_devices = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsWorkFromAnywhereDevicesSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The value of work from anywhere autopilot devices summary.
-        self._autopilot_devices_summary: Optional[user_experience_analytics_autopilot_devices_summary.UserExperienceAnalyticsAutopilotDevicesSummary] = None
-        # The user experience analytics work from anywhere Cloud Identity devices summary.
-        self._cloud_identity_devices_summary: Optional[user_experience_analytics_cloud_identity_devices_summary.UserExperienceAnalyticsCloudIdentityDevicesSummary] = None
-        # The user experience work from anywhere Cloud management devices summary.
-        self._cloud_management_devices_summary: Optional[user_experience_analytics_cloud_management_devices_summary.UserExperienceAnalyticsCloudManagementDevicesSummary] = None
-        # Total number of co-managed devices. Valid values -2147483648 to 2147483647
-        self._co_managed_devices: Optional[int] = None
-        # The count of intune devices that are not autopilot registerd. Valid values -2147483648 to 2147483647
-        self._devices_not_autopilot_registered: Optional[int] = None
-        # The count of intune devices not autopilot profile assigned. Valid values -2147483648 to 2147483647
-        self._devices_without_autopilot_profile_assigned: Optional[int] = None
-        # The count of devices that are not cloud identity. Valid values -2147483648 to 2147483647
-        self._devices_without_cloud_identity: Optional[int] = None
-        # The count of intune devices that are not autopilot registerd. Valid values -2147483648 to 2147483647
-        self._intune_devices: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Total count of tenant attach devices. Valid values -2147483648 to 2147483647
-        self._tenant_attach_devices: Optional[int] = None
-        # The total count of devices. Valid values -2147483648 to 2147483647
-        self._total_devices: Optional[int] = None
-        # The count of Windows 10 devices that have unsupported OS versions. Valid values -2147483648 to 2147483647
-        self._unsupported_o_sversion_devices: Optional[int] = None
-        # The count of windows 10 devices. Valid values -2147483648 to 2147483647
-        self._windows10_devices: Optional[int] = None
-        # The user experience analytics work from anywhere Windows 10 devices summary.
-        self._windows10_devices_summary: Optional[user_experience_analytics_windows10_devices_summary.UserExperienceAnalyticsWindows10DevicesSummary] = None
-        # The count of windows 10 devices that are Intune and Comanaged. Valid values -2147483648 to 2147483647
-        self._windows10_devices_without_tenant_attach: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsWorkFromAnywhereDevicesSummary:
         """
@@ -203,7 +200,9 @@ class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary(AdditionalDataHolder
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import user_experience_analytics_autopilot_devices_summary, user_experience_analytics_cloud_identity_devices_summary, user_experience_analytics_cloud_management_devices_summary, user_experience_analytics_windows10_devices_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "autopilotDevicesSummary": lambda n : setattr(self, 'autopilot_devices_summary', n.get_object_value(user_experience_analytics_autopilot_devices_summary.UserExperienceAnalyticsAutopilotDevicesSummary)),
             "cloudIdentityDevicesSummary": lambda n : setattr(self, 'cloud_identity_devices_summary', n.get_object_value(user_experience_analytics_cloud_identity_devices_summary.UserExperienceAnalyticsCloudIdentityDevicesSummary)),
             "cloudManagementDevicesSummary": lambda n : setattr(self, 'cloud_management_devices_summary', n.get_object_value(user_experience_analytics_cloud_management_devices_summary.UserExperienceAnalyticsCloudManagementDevicesSummary)),

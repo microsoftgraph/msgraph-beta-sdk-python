@@ -1,10 +1,25 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new itemActivityTimeSet and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The lastRecordedDateTime property
+        self._last_recorded_date_time: Optional[datetime] = None
+        # When the activity was observed to take place.
+        self._observed_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # When the observation was recorded on the service.
+        self._recorded_date_time: Optional[datetime] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -21,22 +36,6 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new itemActivityTimeSet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The lastRecordedDateTime property
-        self._last_recorded_date_time: Optional[datetime] = None
-        # When the activity was observed to take place.
-        self._observed_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # When the observation was recorded on the service.
-        self._recorded_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ItemActivityTimeSet:
@@ -55,7 +54,7 @@ class ItemActivityTimeSet(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "lastRecordedDateTime": lambda n : setattr(self, 'last_recorded_date_time', n.get_datetime_value()),
             "observedDateTime": lambda n : setattr(self, 'observed_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

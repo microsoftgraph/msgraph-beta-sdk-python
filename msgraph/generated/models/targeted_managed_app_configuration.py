@@ -1,16 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_management_level = lazy_import('msgraph.generated.models.app_management_level')
-managed_app_configuration = lazy_import('msgraph.generated.models.managed_app_configuration')
-managed_app_policy_deployment_summary = lazy_import('msgraph.generated.models.managed_app_policy_deployment_summary')
-managed_mobile_app = lazy_import('msgraph.generated.models.managed_mobile_app')
-targeted_managed_app_group_type = lazy_import('msgraph.generated.models.targeted_managed_app_group_type')
-targeted_managed_app_policy_assignment = lazy_import('msgraph.generated.models.targeted_managed_app_policy_assignment')
+if TYPE_CHECKING:
+    from . import app_management_level, managed_app_configuration, managed_app_policy_deployment_summary, managed_mobile_app, targeted_managed_app_group_type, targeted_managed_app_policy_assignment
+
+from . import managed_app_configuration
 
 class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new TargetedManagedAppConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.targetedManagedAppConfiguration"
+        # Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
+        self._app_group_type: Optional[targeted_managed_app_group_type.TargetedManagedAppGroupType] = None
+        # List of apps to which the policy is deployed.
+        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
+        # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        self._assignments: Optional[List[targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment]] = None
+        # Count of apps to which the current policy is deployed.
+        self._deployed_app_count: Optional[int] = None
+        # Navigation property to deployment summary of the configuration.
+        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
+        # Indicates if the policy is deployed to any inclusion groups or not.
+        self._is_assigned: Optional[bool] = None
+        # Management levels for apps
+        self._targeted_app_management_levels: Optional[app_management_level.AppManagementLevel] = None
+    
     @property
     def app_group_type(self,) -> Optional[targeted_managed_app_group_type.TargetedManagedAppGroupType]:
         """
@@ -61,27 +79,6 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
             value: Value to set for the assignments property.
         """
         self._assignments = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new TargetedManagedAppConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.targetedManagedAppConfiguration"
-        # Indicates a collection of apps to target which can be one of several pre-defined lists of apps or a manually selected list of apps
-        self._app_group_type: Optional[targeted_managed_app_group_type.TargetedManagedAppGroupType] = None
-        # List of apps to which the policy is deployed.
-        self._apps: Optional[List[managed_mobile_app.ManagedMobileApp]] = None
-        # Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
-        self._assignments: Optional[List[targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment]] = None
-        # Count of apps to which the current policy is deployed.
-        self._deployed_app_count: Optional[int] = None
-        # Navigation property to deployment summary of the configuration.
-        self._deployment_summary: Optional[managed_app_policy_deployment_summary.ManagedAppPolicyDeploymentSummary] = None
-        # Indicates if the policy is deployed to any inclusion groups or not.
-        self._is_assigned: Optional[bool] = None
-        # Management levels for apps
-        self._targeted_app_management_levels: Optional[app_management_level.AppManagementLevel] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TargetedManagedAppConfiguration:
@@ -134,7 +131,9 @@ class TargetedManagedAppConfiguration(managed_app_configuration.ManagedAppConfig
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_management_level, managed_app_configuration, managed_app_policy_deployment_summary, managed_mobile_app, targeted_managed_app_group_type, targeted_managed_app_policy_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "apps": lambda n : setattr(self, 'apps', n.get_collection_of_object_values(managed_mobile_app.ManagedMobileApp)),
             "appGroupType": lambda n : setattr(self, 'app_group_type', n.get_enum_value(targeted_managed_app_group_type.TargetedManagedAppGroupType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(targeted_managed_app_policy_assignment.TargetedManagedAppPolicyAssignment)),

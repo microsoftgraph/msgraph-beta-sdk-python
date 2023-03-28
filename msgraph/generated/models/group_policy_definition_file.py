@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
-group_policy_type = lazy_import('msgraph.generated.models.group_policy_type')
+if TYPE_CHECKING:
+    from . import entity, group_policy_definition, group_policy_type, group_policy_uploaded_definition_file
+
+from . import entity
 
 class GroupPolicyDefinitionFile(entity.Entity):
     def __init__(self,) -> None:
@@ -47,6 +47,13 @@ class GroupPolicyDefinitionFile(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.groupPolicyUploadedDefinitionFile":
+                from . import group_policy_uploaded_definition_file
+
+                return group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile()
         return GroupPolicyDefinitionFile()
     
     @property
@@ -122,7 +129,9 @@ class GroupPolicyDefinitionFile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_definition, group_policy_type, group_policy_uploaded_definition_file
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "definitions": lambda n : setattr(self, 'definitions', n.get_collection_of_object_values(group_policy_definition.GroupPolicyDefinition)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

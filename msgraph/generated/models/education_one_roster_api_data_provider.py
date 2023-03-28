@@ -1,13 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-education_synchronization_connection_settings = lazy_import('msgraph.generated.models.education_synchronization_connection_settings')
-education_synchronization_customizations = lazy_import('msgraph.generated.models.education_synchronization_customizations')
-education_synchronization_data_provider = lazy_import('msgraph.generated.models.education_synchronization_data_provider')
+if TYPE_CHECKING:
+    from . import education_synchronization_connection_settings, education_synchronization_customizations, education_synchronization_data_provider
+
+from . import education_synchronization_data_provider
 
 class EducationOneRosterApiDataProvider(education_synchronization_data_provider.EducationSynchronizationDataProvider):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new EducationOneRosterApiDataProvider and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.educationOneRosterApiDataProvider"
+        # The connectionSettings property
+        self._connection_settings: Optional[education_synchronization_connection_settings.EducationSynchronizationConnectionSettings] = None
+        # The connectionUrl property
+        self._connection_url: Optional[str] = None
+        # The customizations property
+        self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
+        # The providerName property
+        self._provider_name: Optional[str] = None
+        # The schoolsIds property
+        self._schools_ids: Optional[List[str]] = None
+        # The termIds property
+        self._term_ids: Optional[List[str]] = None
+    
     @property
     def connection_settings(self,) -> Optional[education_synchronization_connection_settings.EducationSynchronizationConnectionSettings]:
         """
@@ -41,25 +60,6 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
             value: Value to set for the connection_url property.
         """
         self._connection_url = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new EducationOneRosterApiDataProvider and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.educationOneRosterApiDataProvider"
-        # The connectionSettings property
-        self._connection_settings: Optional[education_synchronization_connection_settings.EducationSynchronizationConnectionSettings] = None
-        # The connectionUrl property
-        self._connection_url: Optional[str] = None
-        # The customizations property
-        self._customizations: Optional[education_synchronization_customizations.EducationSynchronizationCustomizations] = None
-        # The providerName property
-        self._provider_name: Optional[str] = None
-        # The schoolsIds property
-        self._schools_ids: Optional[List[str]] = None
-        # The termIds property
-        self._term_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationOneRosterApiDataProvider:
@@ -95,7 +95,9 @@ class EducationOneRosterApiDataProvider(education_synchronization_data_provider.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_synchronization_connection_settings, education_synchronization_customizations, education_synchronization_data_provider
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectionSettings": lambda n : setattr(self, 'connection_settings', n.get_object_value(education_synchronization_connection_settings.EducationSynchronizationConnectionSettings)),
             "connectionUrl": lambda n : setattr(self, 'connection_url', n.get_str_value()),
             "customizations": lambda n : setattr(self, 'customizations', n.get_object_value(education_synchronization_customizations.EducationSynchronizationCustomizations)),

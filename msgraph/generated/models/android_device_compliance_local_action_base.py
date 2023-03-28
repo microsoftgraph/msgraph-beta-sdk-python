@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import android_device_compliance_local_action_lock_device, android_device_compliance_local_action_lock_device_with_passcode, entity
+
+from . import entity
 
 class AndroidDeviceComplianceLocalActionBase(entity.Entity):
     def __init__(self,) -> None:
@@ -26,6 +28,17 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.androidDeviceComplianceLocalActionLockDevice":
+                from . import android_device_compliance_local_action_lock_device
+
+                return android_device_compliance_local_action_lock_device.AndroidDeviceComplianceLocalActionLockDevice()
+            if mapping_value == "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode":
+                from . import android_device_compliance_local_action_lock_device_with_passcode
+
+                return android_device_compliance_local_action_lock_device_with_passcode.AndroidDeviceComplianceLocalActionLockDeviceWithPasscode()
         return AndroidDeviceComplianceLocalActionBase()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -33,7 +46,9 @@ class AndroidDeviceComplianceLocalActionBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_compliance_local_action_lock_device, android_device_compliance_local_action_lock_device_with_passcode, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "gracePeriodInMinutes": lambda n : setattr(self, 'grace_period_in_minutes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()

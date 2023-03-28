@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_setting_instance = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance')
-device_management_configuration_setting_value = lazy_import('msgraph.generated.models.device_management_configuration_setting_value')
+if TYPE_CHECKING:
+    from . import device_management_configuration_setting_instance, device_management_configuration_setting_value
+
+from . import device_management_configuration_setting_value
 
 class DeviceManagementConfigurationChoiceSettingValue(device_management_configuration_setting_value.DeviceManagementConfigurationSettingValue):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceManagementConfigurationChoiceSettingValue and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue"
+        # Child settings.
+        self._children: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None
+        # Choice setting value: an OptionDefinition ItemId.
+        self._value: Optional[str] = None
+    
     @property
     def children(self,) -> Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]]:
         """
@@ -23,17 +35,6 @@ class DeviceManagementConfigurationChoiceSettingValue(device_management_configur
             value: Value to set for the children property.
         """
         self._children = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationChoiceSettingValue and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValue"
-        # Child settings.
-        self._children: Optional[List[device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance]] = None
-        # Choice setting value: an OptionDefinition ItemId.
-        self._value: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingValue:
@@ -52,7 +53,9 @@ class DeviceManagementConfigurationChoiceSettingValue(device_management_configur
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_setting_instance, device_management_configuration_setting_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance.DeviceManagementConfigurationSettingInstance)),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),
         }

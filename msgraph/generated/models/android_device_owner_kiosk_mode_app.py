@@ -1,11 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_kiosk_mode_folder_item = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_folder_item')
+if TYPE_CHECKING:
+    from . import android_device_owner_kiosk_mode_folder_item
+
+from . import android_device_owner_kiosk_mode_folder_item
 
 class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidDeviceOwnerKioskModeApp and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidDeviceOwnerKioskModeApp"
+        # Class name of application
+        self._class_name: Optional[str] = None
+        # Package name of application
+        self._package: Optional[str] = None
+    
     @property
     def class_name(self,) -> Optional[str]:
         """
@@ -22,17 +35,6 @@ class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item
             value: Value to set for the class_name property.
         """
         self._class_name = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerKioskModeApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerKioskModeApp"
-        # Class name of application
-        self._class_name: Optional[str] = None
-        # Package name of application
-        self._package: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerKioskModeApp:
@@ -51,7 +53,9 @@ class AndroidDeviceOwnerKioskModeApp(android_device_owner_kiosk_mode_folder_item
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_kiosk_mode_folder_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "className": lambda n : setattr(self, 'class_name', n.get_str_value()),
             "package": lambda n : setattr(self, 'package', n.get_str_value()),
         }

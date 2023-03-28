@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_definition_value = lazy_import('msgraph.generated.models.group_policy_definition_value')
-group_policy_presentation = lazy_import('msgraph.generated.models.group_policy_presentation')
+if TYPE_CHECKING:
+    from . import entity, group_policy_definition_value, group_policy_presentation, group_policy_presentation_value_boolean, group_policy_presentation_value_decimal, group_policy_presentation_value_list, group_policy_presentation_value_long_decimal, group_policy_presentation_value_multi_text, group_policy_presentation_value_text
+
+from . import entity
 
 class GroupPolicyPresentationValue(entity.Entity):
     """
@@ -55,6 +55,33 @@ class GroupPolicyPresentationValue(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.groupPolicyPresentationValueBoolean":
+                from . import group_policy_presentation_value_boolean
+
+                return group_policy_presentation_value_boolean.GroupPolicyPresentationValueBoolean()
+            if mapping_value == "#microsoft.graph.groupPolicyPresentationValueDecimal":
+                from . import group_policy_presentation_value_decimal
+
+                return group_policy_presentation_value_decimal.GroupPolicyPresentationValueDecimal()
+            if mapping_value == "#microsoft.graph.groupPolicyPresentationValueList":
+                from . import group_policy_presentation_value_list
+
+                return group_policy_presentation_value_list.GroupPolicyPresentationValueList()
+            if mapping_value == "#microsoft.graph.groupPolicyPresentationValueLongDecimal":
+                from . import group_policy_presentation_value_long_decimal
+
+                return group_policy_presentation_value_long_decimal.GroupPolicyPresentationValueLongDecimal()
+            if mapping_value == "#microsoft.graph.groupPolicyPresentationValueMultiText":
+                from . import group_policy_presentation_value_multi_text
+
+                return group_policy_presentation_value_multi_text.GroupPolicyPresentationValueMultiText()
+            if mapping_value == "#microsoft.graph.groupPolicyPresentationValueText":
+                from . import group_policy_presentation_value_text
+
+                return group_policy_presentation_value_text.GroupPolicyPresentationValueText()
         return GroupPolicyPresentationValue()
     
     @property
@@ -79,7 +106,9 @@ class GroupPolicyPresentationValue(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_definition_value, group_policy_presentation, group_policy_presentation_value_boolean, group_policy_presentation_value_decimal, group_policy_presentation_value_list, group_policy_presentation_value_long_decimal, group_policy_presentation_value_multi_text, group_policy_presentation_value_text
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "definitionValue": lambda n : setattr(self, 'definition_value', n.get_object_value(group_policy_definition_value.GroupPolicyDefinitionValue)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),

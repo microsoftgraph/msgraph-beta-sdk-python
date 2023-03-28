@@ -1,15 +1,29 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_health_script_remediation_history_data = lazy_import('msgraph.generated.models.device_health_script_remediation_history_data')
+if TYPE_CHECKING:
+    from . import device_health_script_remediation_history_data
 
 class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
     """
     The number of devices remediated by a device health script on a given date with the last modified time.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceHealthScriptRemediationHistory and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The number of devices remediated by the device health script on the given date.
+        self._history_data: Optional[List[device_health_script_remediation_history_data.DeviceHealthScriptRemediationHistoryData]] = None
+        # The date on which the results history is calculated for the healthscript.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,20 +40,6 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceHealthScriptRemediationHistory and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The number of devices remediated by the device health script on the given date.
-        self._history_data: Optional[List[device_health_script_remediation_history_data.DeviceHealthScriptRemediationHistoryData]] = None
-        # The date on which the results history is calculated for the healthscript.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptRemediationHistory:
@@ -58,7 +58,9 @@ class DeviceHealthScriptRemediationHistory(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_health_script_remediation_history_data
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "historyData": lambda n : setattr(self, 'history_data', n.get_collection_of_object_values(device_health_script_remediation_history_data.DeviceHealthScriptRemediationHistoryData)),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

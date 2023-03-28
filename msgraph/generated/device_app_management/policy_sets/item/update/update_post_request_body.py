@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-policy_set_assignment = lazy_import('msgraph.generated.models.policy_set_assignment')
-policy_set_item = lazy_import('msgraph.generated.models.policy_set_item')
+if TYPE_CHECKING:
+    from .....models import policy_set_assignment, policy_set_item
 
 class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updatePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The addedPolicySetItems property
+        self._added_policy_set_items: Optional[List[policy_set_item.PolicySetItem]] = None
+        # The assignments property
+        self._assignments: Optional[List[policy_set_assignment.PolicySetAssignment]] = None
+        # The deletedPolicySetItems property
+        self._deleted_policy_set_items: Optional[List[str]] = None
+        # The updatedPolicySetItems property
+        self._updated_policy_set_items: Optional[List[policy_set_item.PolicySetItem]] = None
+    
     @property
     def added_policy_set_items(self,) -> Optional[List[policy_set_item.PolicySetItem]]:
         """
@@ -58,22 +73,6 @@ class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._assignments = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The addedPolicySetItems property
-        self._added_policy_set_items: Optional[List[policy_set_item.PolicySetItem]] = None
-        # The assignments property
-        self._assignments: Optional[List[policy_set_assignment.PolicySetAssignment]] = None
-        # The deletedPolicySetItems property
-        self._deleted_policy_set_items: Optional[List[str]] = None
-        # The updatedPolicySetItems property
-        self._updated_policy_set_items: Optional[List[policy_set_item.PolicySetItem]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdatePostRequestBody:
         """
@@ -108,7 +107,9 @@ class UpdatePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import policy_set_assignment, policy_set_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "addedPolicySetItems": lambda n : setattr(self, 'added_policy_set_items', n.get_collection_of_object_values(policy_set_item.PolicySetItem)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(policy_set_assignment.PolicySetAssignment)),
             "deletedPolicySetItems": lambda n : setattr(self, 'deleted_policy_set_items', n.get_collection_of_primitive_values(str)),

@@ -1,31 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsResourcePerformance(entity.Entity):
     """
     The user experience analytics resource performance entity.
     """
-    @property
-    def average_spike_time_score(self,) -> Optional[int]:
-        """
-        Gets the averageSpikeTimeScore property value. AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
-        Returns: Optional[int]
-        """
-        return self._average_spike_time_score
-    
-    @average_spike_time_score.setter
-    def average_spike_time_score(self,value: Optional[int] = None) -> None:
-        """
-        Sets the averageSpikeTimeScore property value. AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
-        Args:
-            value: Value to set for the average_spike_time_score property.
-        """
-        self._average_spike_time_score = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsResourcePerformance and sets the default values.
@@ -59,6 +44,23 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         self._ram_spike_time_percentage_threshold: Optional[float] = None
         # The user experience analytics device RAM spike time score. Valid values 0 to 100
         self._ram_spike_time_score: Optional[int] = None
+    
+    @property
+    def average_spike_time_score(self,) -> Optional[int]:
+        """
+        Gets the averageSpikeTimeScore property value. AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
+        Returns: Optional[int]
+        """
+        return self._average_spike_time_score
+    
+    @average_spike_time_score.setter
+    def average_spike_time_score(self,value: Optional[int] = None) -> None:
+        """
+        Sets the averageSpikeTimeScore property value. AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
+        Args:
+            value: Value to set for the average_spike_time_score property.
+        """
+        self._average_spike_time_score = value
     
     @property
     def cpu_spike_time_percentage(self,) -> Optional[float]:
@@ -196,7 +198,9 @@ class UserExperienceAnalyticsResourcePerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "averageSpikeTimeScore": lambda n : setattr(self, 'average_spike_time_score', n.get_int_value()),
             "cpuSpikeTimePercentage": lambda n : setattr(self, 'cpu_spike_time_percentage', n.get_float_value()),
             "cpuSpikeTimePercentageThreshold": lambda n : setattr(self, 'cpu_spike_time_percentage_threshold', n.get_float_value()),

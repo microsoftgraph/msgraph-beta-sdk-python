@@ -1,33 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_resource_access_profile_assignment = lazy_import('msgraph.generated.models.device_management_resource_access_profile_assignment')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_resource_access_profile_assignment, entity, windows10_x_certificate_profile, windows10_x_s_c_e_p_certificate_profile, windows10_x_trusted_root_certificate, windows10_x_vpn_configuration, windows10_x_wifi_configuration
+
+from . import entity
 
 class DeviceManagementResourceAccessProfileBase(entity.Entity):
     """
     Base Profile Type for Resource Access
     """
-    @property
-    def assignments(self,) -> Optional[List[device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment]]:
-        """
-        Gets the assignments property value. The list of assignments for the device configuration profile.
-        Returns: Optional[List[device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of assignments for the device configuration profile.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementResourceAccessProfileBase and sets the default values.
@@ -50,6 +34,23 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         # Version of the profile
         self._version: Optional[int] = None
     
+    @property
+    def assignments(self,) -> Optional[List[device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment]]:
+        """
+        Gets the assignments property value. The list of assignments for the device configuration profile.
+        Returns: Optional[List[device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of assignments for the device configuration profile.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementResourceAccessProfileBase:
         """
@@ -60,6 +61,29 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windows10XCertificateProfile":
+                from . import windows10_x_certificate_profile
+
+                return windows10_x_certificate_profile.Windows10XCertificateProfile()
+            if mapping_value == "#microsoft.graph.windows10XSCEPCertificateProfile":
+                from . import windows10_x_s_c_e_p_certificate_profile
+
+                return windows10_x_s_c_e_p_certificate_profile.Windows10XSCEPCertificateProfile()
+            if mapping_value == "#microsoft.graph.windows10XTrustedRootCertificate":
+                from . import windows10_x_trusted_root_certificate
+
+                return windows10_x_trusted_root_certificate.Windows10XTrustedRootCertificate()
+            if mapping_value == "#microsoft.graph.windows10XVpnConfiguration":
+                from . import windows10_x_vpn_configuration
+
+                return windows10_x_vpn_configuration.Windows10XVpnConfiguration()
+            if mapping_value == "#microsoft.graph.windows10XWifiConfiguration":
+                from . import windows10_x_wifi_configuration
+
+                return windows10_x_wifi_configuration.Windows10XWifiConfiguration()
         return DeviceManagementResourceAccessProfileBase()
     
     @property
@@ -118,7 +142,9 @@ class DeviceManagementResourceAccessProfileBase(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_resource_access_profile_assignment, entity, windows10_x_certificate_profile, windows10_x_s_c_e_p_certificate_profile, windows10_x_trusted_root_certificate, windows10_x_vpn_configuration, windows10_x_wifi_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_resource_access_profile_assignment.DeviceManagementResourceAccessProfileAssignment)),
             "creationDateTime": lambda n : setattr(self, 'creation_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

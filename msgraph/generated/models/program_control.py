@@ -1,13 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-program = lazy_import('msgraph.generated.models.program')
-program_resource = lazy_import('msgraph.generated.models.program_resource')
-user_identity = lazy_import('msgraph.generated.models.user_identity')
+if TYPE_CHECKING:
+    from . import entity, program, program_resource, user_identity
+
+from . import entity
 
 class ProgramControl(entity.Entity):
     def __init__(self,) -> None:
@@ -121,7 +120,9 @@ class ProgramControl(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, program, program_resource, user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "controlId": lambda n : setattr(self, 'control_id', n.get_str_value()),
             "controlTypeId": lambda n : setattr(self, 'control_type_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

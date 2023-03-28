@@ -1,46 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class WindowsProtectionState(entity.Entity):
-    @property
-    def anti_malware_version(self,) -> Optional[str]:
-        """
-        Gets the antiMalwareVersion property value. The anti-malware version for the managed device. Optional. Read-only.
-        Returns: Optional[str]
-        """
-        return self._anti_malware_version
-    
-    @anti_malware_version.setter
-    def anti_malware_version(self,value: Optional[str] = None) -> None:
-        """
-        Sets the antiMalwareVersion property value. The anti-malware version for the managed device. Optional. Read-only.
-        Args:
-            value: Value to set for the anti_malware_version property.
-        """
-        self._anti_malware_version = value
-    
-    @property
-    def attention_required(self,) -> Optional[bool]:
-        """
-        Gets the attentionRequired property value. A flag indicating whether attention is required for the managed device. Optional. Read-only.
-        Returns: Optional[bool]
-        """
-        return self._attention_required
-    
-    @attention_required.setter
-    def attention_required(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the attentionRequired property value. A flag indicating whether attention is required for the managed device. Optional. Read-only.
-        Args:
-            value: Value to set for the attention_required property.
-        """
-        self._attention_required = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsProtectionState and sets the default values.
@@ -98,6 +66,40 @@ class WindowsProtectionState(entity.Entity):
         self._tenant_display_name: Optional[str] = None
         # The Azure Active Directory tenant identifier for the managed tenant. Optional. Read-only.
         self._tenant_id: Optional[str] = None
+    
+    @property
+    def anti_malware_version(self,) -> Optional[str]:
+        """
+        Gets the antiMalwareVersion property value. The anti-malware version for the managed device. Optional. Read-only.
+        Returns: Optional[str]
+        """
+        return self._anti_malware_version
+    
+    @anti_malware_version.setter
+    def anti_malware_version(self,value: Optional[str] = None) -> None:
+        """
+        Sets the antiMalwareVersion property value. The anti-malware version for the managed device. Optional. Read-only.
+        Args:
+            value: Value to set for the anti_malware_version property.
+        """
+        self._anti_malware_version = value
+    
+    @property
+    def attention_required(self,) -> Optional[bool]:
+        """
+        Gets the attentionRequired property value. A flag indicating whether attention is required for the managed device. Optional. Read-only.
+        Returns: Optional[bool]
+        """
+        return self._attention_required
+    
+    @attention_required.setter
+    def attention_required(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the attentionRequired property value. A flag indicating whether attention is required for the managed device. Optional. Read-only.
+        Args:
+            value: Value to set for the attention_required property.
+        """
+        self._attention_required = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsProtectionState:
@@ -201,7 +203,9 @@ class WindowsProtectionState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "antiMalwareVersion": lambda n : setattr(self, 'anti_malware_version', n.get_str_value()),
             "attentionRequired": lambda n : setattr(self, 'attention_required', n.get_bool_value()),
             "deviceDeleted": lambda n : setattr(self, 'device_deleted', n.get_bool_value()),

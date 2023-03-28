@@ -1,16 +1,45 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_category = lazy_import('msgraph.generated.models.user_experience_analytics_category')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_category
+
+from . import entity
 
 class UserExperienceAnalyticsBaseline(entity.Entity):
     """
     The user experience analytics baseline entity contains baseline values against which to compare the user experience analytics scores.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsBaseline and sets the default values.
+        """
+        super().__init__()
+        # The user experience analytics app health metrics.
+        self._app_health_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+        # The user experience analytics battery health metrics.
+        self._battery_health_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+        # The user experience analytics best practices metrics.
+        self._best_practices_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+        # The date the custom baseline was created.
+        self._created_date_time: Optional[datetime] = None
+        # The user experience analytics device boot performance metrics.
+        self._device_boot_performance_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+        # The name of the user experience analytics baseline.
+        self._display_name: Optional[str] = None
+        # Signifies if the current baseline is the commercial median baseline or a custom baseline.
+        self._is_built_in: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The user experience analytics reboot analytics metrics.
+        self._reboot_analytics_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+        # The user experience analytics resource performance metrics.
+        self._resource_performance_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+        # The user experience analytics work from anywhere metrics.
+        self._work_from_anywhere_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
+    
     @property
     def app_health_metrics(self,) -> Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory]:
         """
@@ -61,34 +90,6 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
             value: Value to set for the best_practices_metrics property.
         """
         self._best_practices_metrics = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsBaseline and sets the default values.
-        """
-        super().__init__()
-        # The user experience analytics app health metrics.
-        self._app_health_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
-        # The user experience analytics battery health metrics.
-        self._battery_health_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
-        # The user experience analytics best practices metrics.
-        self._best_practices_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
-        # The date the custom baseline was created.
-        self._created_date_time: Optional[datetime] = None
-        # The user experience analytics device boot performance metrics.
-        self._device_boot_performance_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
-        # The name of the user experience analytics baseline.
-        self._display_name: Optional[str] = None
-        # Signifies if the current baseline is the commercial median baseline or a custom baseline.
-        self._is_built_in: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The user experience analytics reboot analytics metrics.
-        self._reboot_analytics_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
-        # The user experience analytics resource performance metrics.
-        self._resource_performance_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
-        # The user experience analytics work from anywhere metrics.
-        self._work_from_anywhere_metrics: Optional[user_experience_analytics_category.UserExperienceAnalyticsCategory] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -158,7 +159,9 @@ class UserExperienceAnalyticsBaseline(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_category
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appHealthMetrics": lambda n : setattr(self, 'app_health_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
             "batteryHealthMetrics": lambda n : setattr(self, 'battery_health_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),
             "bestPracticesMetrics": lambda n : setattr(self, 'best_practices_metrics', n.get_object_value(user_experience_analytics_category.UserExperienceAnalyticsCategory)),

@@ -1,12 +1,48 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_field_rules = lazy_import('msgraph.generated.models.planner_field_rules')
-planner_property_rule = lazy_import('msgraph.generated.models.planner_property_rule')
+if TYPE_CHECKING:
+    from . import planner_field_rules, planner_property_rule
+
+from . import planner_property_rule
 
 class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PlannerTaskPropertyRule and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.plannerTaskPropertyRule"
+        # Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
+        self._applied_categories: Optional[planner_field_rules.PlannerFieldRules] = None
+        # Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
+        self._assignments: Optional[planner_field_rules.PlannerFieldRules] = None
+        # Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
+        self._check_lists: Optional[planner_field_rules.PlannerFieldRules] = None
+        # Rules and restrictions for deleting the task. Accepted values are allow and block.
+        self._delete: Optional[List[str]] = None
+        # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
+        self._due_date: Optional[List[str]] = None
+        # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
+        self._move: Optional[List[str]] = None
+        # Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
+        self._notes: Optional[List[str]] = None
+        # Rules and restrictions for changing the order of the task. Accepted values are allow and block.
+        self._order: Optional[List[str]] = None
+        # Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, setToNotStarted, setToInProgress, and block.
+        self._percent_complete: Optional[List[str]] = None
+        # Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
+        self._preview_type: Optional[List[str]] = None
+        # Rules and restrictions for changing the priority of the task. Accepted values are allow and block.
+        self._priority: Optional[List[str]] = None
+        # Rules and restrictions for references. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, block.
+        self._references: Optional[planner_field_rules.PlannerFieldRules] = None
+        # Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
+        self._start_date: Optional[List[str]] = None
+        # Rules and restrictions for changing the title of the task. Accepted values are allow and block.
+        self._title: Optional[List[str]] = None
+    
     @property
     def applied_categories(self,) -> Optional[planner_field_rules.PlannerFieldRules]:
         """
@@ -57,41 +93,6 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
             value: Value to set for the check_lists property.
         """
         self._check_lists = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PlannerTaskPropertyRule and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.plannerTaskPropertyRule"
-        # Rules and restrictions for applied categories. This value does not currently support overrides. Accepted values for the default rule and individual overrides are allow, block.
-        self._applied_categories: Optional[planner_field_rules.PlannerFieldRules] = None
-        # Rules and restrictions for assignments. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, addSelf, addOther, remove, removeSelf, removeOther, block.
-        self._assignments: Optional[planner_field_rules.PlannerFieldRules] = None
-        # Rules and restrictions for checklist. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, update, check, reorder, block.
-        self._check_lists: Optional[planner_field_rules.PlannerFieldRules] = None
-        # Rules and restrictions for deleting the task. Accepted values are allow and block.
-        self._delete: Optional[List[str]] = None
-        # Rules and restrictions for changing the due date of the task. Accepted values are allow and block.
-        self._due_date: Optional[List[str]] = None
-        # Rules and restrictions for moving the task between buckets or plans. Accepted values are allow, moveBetweenPlans, moveBetweenBuckets, and block.
-        self._move: Optional[List[str]] = None
-        # Rules and restrictions for changing the notes of the task. Accepted values are allow and block.
-        self._notes: Optional[List[str]] = None
-        # Rules and restrictions for changing the order of the task. Accepted values are allow and block.
-        self._order: Optional[List[str]] = None
-        # Rules and restrictions for changing the completion percentage of the task. Accepted values are allow, setToComplete, setToNotStarted, setToInProgress, and block.
-        self._percent_complete: Optional[List[str]] = None
-        # Rules and restrictions for changing the preview type of the task. Accepted values are allow and block.
-        self._preview_type: Optional[List[str]] = None
-        # Rules and restrictions for changing the priority of the task. Accepted values are allow and block.
-        self._priority: Optional[List[str]] = None
-        # Rules and restrictions for references. Allowed overrides are userCreated and applicationCreated. Accepted values for the default rule and individual overrides are allow, add, remove, block.
-        self._references: Optional[planner_field_rules.PlannerFieldRules] = None
-        # Rules and restrictions for changing the start date of the task. Accepted values are allow and block.
-        self._start_date: Optional[List[str]] = None
-        # Rules and restrictions for changing the title of the task. Accepted values are allow and block.
-        self._title: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerTaskPropertyRule:
@@ -144,7 +145,9 @@ class PlannerTaskPropertyRule(planner_property_rule.PlannerPropertyRule):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_field_rules, planner_property_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appliedCategories": lambda n : setattr(self, 'applied_categories', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_object_value(planner_field_rules.PlannerFieldRules)),
             "checkLists": lambda n : setattr(self, 'check_lists', n.get_object_value(planner_field_rules.PlannerFieldRules)),

@@ -1,16 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-exact_match_data_store = lazy_import('msgraph.generated.models.exact_match_data_store')
-exact_match_upload_agent = lazy_import('msgraph.generated.models.exact_match_upload_agent')
-job_response_base = lazy_import('msgraph.generated.models.job_response_base')
-sensitive_type = lazy_import('msgraph.generated.models.sensitive_type')
-sensitivity_label = lazy_import('msgraph.generated.models.sensitivity_label')
+if TYPE_CHECKING:
+    from . import entity, exact_match_data_store, exact_match_upload_agent, job_response_base, sensitive_type, sensitivity_label
+
+from . import entity
 
 class DataClassificationService(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DataClassificationService and sets the default values.
+        """
+        super().__init__()
+        # The classifyFileJobs property
+        self._classify_file_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+        # The classifyTextJobs property
+        self._classify_text_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+        # The evaluateDlpPoliciesJobs property
+        self._evaluate_dlp_policies_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+        # The evaluateLabelJobs property
+        self._evaluate_label_jobs: Optional[List[job_response_base.JobResponseBase]] = None
+        # The exactMatchDataStores property
+        self._exact_match_data_stores: Optional[List[exact_match_data_store.ExactMatchDataStore]] = None
+        # The exactMatchUploadAgents property
+        self._exact_match_upload_agents: Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]] = None
+        # The jobs property
+        self._jobs: Optional[List[job_response_base.JobResponseBase]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The sensitiveTypes property
+        self._sensitive_types: Optional[List[sensitive_type.SensitiveType]] = None
+        # The sensitivityLabels property
+        self._sensitivity_labels: Optional[List[sensitivity_label.SensitivityLabel]] = None
+    
     @property
     def classify_file_jobs(self,) -> Optional[List[job_response_base.JobResponseBase]]:
         """
@@ -44,32 +67,6 @@ class DataClassificationService(entity.Entity):
             value: Value to set for the classify_text_jobs property.
         """
         self._classify_text_jobs = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DataClassificationService and sets the default values.
-        """
-        super().__init__()
-        # The classifyFileJobs property
-        self._classify_file_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The classifyTextJobs property
-        self._classify_text_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The evaluateDlpPoliciesJobs property
-        self._evaluate_dlp_policies_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The evaluateLabelJobs property
-        self._evaluate_label_jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The exactMatchDataStores property
-        self._exact_match_data_stores: Optional[List[exact_match_data_store.ExactMatchDataStore]] = None
-        # The exactMatchUploadAgents property
-        self._exact_match_upload_agents: Optional[List[exact_match_upload_agent.ExactMatchUploadAgent]] = None
-        # The jobs property
-        self._jobs: Optional[List[job_response_base.JobResponseBase]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The sensitiveTypes property
-        self._sensitive_types: Optional[List[sensitive_type.SensitiveType]] = None
-        # The sensitivityLabels property
-        self._sensitivity_labels: Optional[List[sensitivity_label.SensitivityLabel]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DataClassificationService:
@@ -156,7 +153,9 @@ class DataClassificationService(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, exact_match_data_store, exact_match_upload_agent, job_response_base, sensitive_type, sensitivity_label
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classifyFileJobs": lambda n : setattr(self, 'classify_file_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
             "classifyTextJobs": lambda n : setattr(self, 'classify_text_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),
             "evaluateDlpPoliciesJobs": lambda n : setattr(self, 'evaluate_dlp_policies_jobs', n.get_collection_of_object_values(job_response_base.JobResponseBase)),

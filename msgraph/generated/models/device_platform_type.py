@@ -21,4 +21,10 @@ class DevicePlatformType(Enum):
     Unknown = "unknown",
     # Android AOSP.
     AndroidAOSP = "androidAOSP",
+    # Indicates Mobile Application Management (MAM) for android devices.
+    AndroidMobileApplicationManagement = "androidMobileApplicationManagement",
+    # Indicates Mobile Application Management (MAM) for iOS devices
+    IOSMobileApplicationManagement = "iOSMobileApplicationManagement",
+    # Evolvable enumeration sentinel value. Do not use
+    UnknownFutureValue = "unknownFutureValue",
 

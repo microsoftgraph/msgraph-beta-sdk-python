@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-content_alignment = lazy_import('msgraph.generated.models.content_alignment')
-information_protection_action = lazy_import('msgraph.generated.models.information_protection_action')
+if TYPE_CHECKING:
+    from . import content_alignment, information_protection_action
+
+from . import information_protection_action
 
 class AddContentHeaderAction(information_protection_action.InformationProtectionAction):
-    @property
-    def alignment(self,) -> Optional[content_alignment.ContentAlignment]:
-        """
-        Gets the alignment property value. The alignment property
-        Returns: Optional[content_alignment.ContentAlignment]
-        """
-        return self._alignment
-    
-    @alignment.setter
-    def alignment(self,value: Optional[content_alignment.ContentAlignment] = None) -> None:
-        """
-        Sets the alignment property value. The alignment property
-        Args:
-            value: Value to set for the alignment property.
-        """
-        self._alignment = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AddContentHeaderAction and sets the default values.
@@ -44,6 +28,23 @@ class AddContentHeaderAction(information_protection_action.InformationProtection
         self._text: Optional[str] = None
         # The name of the UI element where the header should be placed.
         self._ui_element_name: Optional[str] = None
+    
+    @property
+    def alignment(self,) -> Optional[content_alignment.ContentAlignment]:
+        """
+        Gets the alignment property value. The alignment property
+        Returns: Optional[content_alignment.ContentAlignment]
+        """
+        return self._alignment
+    
+    @alignment.setter
+    def alignment(self,value: Optional[content_alignment.ContentAlignment] = None) -> None:
+        """
+        Sets the alignment property value. The alignment property
+        Args:
+            value: Value to set for the alignment property.
+        """
+        self._alignment = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddContentHeaderAction:
@@ -113,7 +114,9 @@ class AddContentHeaderAction(information_protection_action.InformationProtection
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import content_alignment, information_protection_action
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(content_alignment.ContentAlignment)),
             "fontColor": lambda n : setattr(self, 'font_color', n.get_str_value()),
             "fontName": lambda n : setattr(self, 'font_name', n.get_str_value()),

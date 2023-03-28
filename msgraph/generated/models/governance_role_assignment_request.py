@@ -1,34 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-governance_resource = lazy_import('msgraph.generated.models.governance_resource')
-governance_role_assignment_request_status = lazy_import('msgraph.generated.models.governance_role_assignment_request_status')
-governance_role_definition = lazy_import('msgraph.generated.models.governance_role_definition')
-governance_schedule = lazy_import('msgraph.generated.models.governance_schedule')
-governance_subject = lazy_import('msgraph.generated.models.governance_subject')
+if TYPE_CHECKING:
+    from . import entity, governance_resource, governance_role_assignment_request_status, governance_role_definition, governance_schedule, governance_subject
+
+from . import entity
 
 class GovernanceRoleAssignmentRequest(entity.Entity):
-    @property
-    def assignment_state(self,) -> Optional[str]:
-        """
-        Gets the assignmentState property value. Required. The state of the assignment. The possible values are: Eligible (for eligible assignment),  Active (if it is directly assigned), Active (by administrators, or activated on an eligible assignment by the users).
-        Returns: Optional[str]
-        """
-        return self._assignment_state
-    
-    @assignment_state.setter
-    def assignment_state(self,value: Optional[str] = None) -> None:
-        """
-        Sets the assignmentState property value. Required. The state of the assignment. The possible values are: Eligible (for eligible assignment),  Active (if it is directly assigned), Active (by administrators, or activated on an eligible assignment by the users).
-        Args:
-            value: Value to set for the assignment_state property.
-        """
-        self._assignment_state = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new governanceRoleAssignmentRequest and sets the default values.
@@ -63,6 +43,23 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         # Required. Representing the type of the operation on the role assignment. The possible values are: AdminAdd , UserAdd , AdminUpdate , AdminRemove , UserRemove , UserExtend , AdminExtend , UserRenew , AdminRenew.
         self._type: Optional[str] = None
     
+    @property
+    def assignment_state(self,) -> Optional[str]:
+        """
+        Gets the assignmentState property value. Required. The state of the assignment. The possible values are: Eligible (for eligible assignment),  Active (if it is directly assigned), Active (by administrators, or activated on an eligible assignment by the users).
+        Returns: Optional[str]
+        """
+        return self._assignment_state
+    
+    @assignment_state.setter
+    def assignment_state(self,value: Optional[str] = None) -> None:
+        """
+        Sets the assignmentState property value. Required. The state of the assignment. The possible values are: Eligible (for eligible assignment),  Active (if it is directly assigned), Active (by administrators, or activated on an eligible assignment by the users).
+        Args:
+            value: Value to set for the assignment_state property.
+        """
+        self._assignment_state = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GovernanceRoleAssignmentRequest:
         """
@@ -80,7 +77,9 @@ class GovernanceRoleAssignmentRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, governance_resource, governance_role_assignment_request_status, governance_role_definition, governance_schedule, governance_subject
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "linkedEligibleRoleAssignmentId": lambda n : setattr(self, 'linked_eligible_role_assignment_id', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),

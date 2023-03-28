@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_operating_system = lazy_import('msgraph.generated.models.cloud_pc_operating_system')
-cloud_pc_user_account_type = lazy_import('msgraph.generated.models.cloud_pc_user_account_type')
-cloud_pc_windows_settings = lazy_import('msgraph.generated.models.cloud_pc_windows_settings')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_operating_system, cloud_pc_user_account_type, cloud_pc_windows_settings, entity
+
+from . import entity
 
 class CloudPcOrganizationSettings(entity.Entity):
     def __init__(self,) -> None:
@@ -78,7 +77,9 @@ class CloudPcOrganizationSettings(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_operating_system, cloud_pc_user_account_type, cloud_pc_windows_settings, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enableMEMAutoEnroll": lambda n : setattr(self, 'enable_m_e_m_auto_enroll', n.get_bool_value()),
             "enableSingleSignOn": lambda n : setattr(self, 'enable_single_sign_on', n.get_bool_value()),
             "osVersion": lambda n : setattr(self, 'os_version', n.get_enum_value(cloud_pc_operating_system.CloudPcOperatingSystem)),

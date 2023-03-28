@@ -1,18 +1,57 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_control_type = lazy_import('msgraph.generated.models.device_management_configuration_control_type')
-device_management_configuration_referred_setting_information = lazy_import('msgraph.generated.models.device_management_configuration_referred_setting_information')
-device_management_configuration_setting_access_types = lazy_import('msgraph.generated.models.device_management_configuration_setting_access_types')
-device_management_configuration_setting_applicability = lazy_import('msgraph.generated.models.device_management_configuration_setting_applicability')
-device_management_configuration_setting_occurrence = lazy_import('msgraph.generated.models.device_management_configuration_setting_occurrence')
-device_management_configuration_setting_usage = lazy_import('msgraph.generated.models.device_management_configuration_setting_usage')
-device_management_configuration_setting_visibility = lazy_import('msgraph.generated.models.device_management_configuration_setting_visibility')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_collection_definition, device_management_configuration_choice_setting_definition, device_management_configuration_control_type, device_management_configuration_redirect_setting_definition, device_management_configuration_referred_setting_information, device_management_configuration_setting_access_types, device_management_configuration_setting_applicability, device_management_configuration_setting_group_collection_definition, device_management_configuration_setting_group_definition, device_management_configuration_setting_occurrence, device_management_configuration_setting_usage, device_management_configuration_setting_visibility, device_management_configuration_simple_setting_collection_definition, device_management_configuration_simple_setting_definition, entity
+
+from . import entity
 
 class DeviceManagementConfigurationSettingDefinition(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationSettingDefinition and sets the default values.
+        """
+        super().__init__()
+        # The accessTypes property
+        self._access_types: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes] = None
+        # Details which device setting is applicable on
+        self._applicability: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None
+        # Base CSP Path
+        self._base_uri: Optional[str] = None
+        # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
+        self._category_id: Optional[str] = None
+        # Description of the item
+        self._description: Optional[str] = None
+        # Display name of the item
+        self._display_name: Optional[str] = None
+        # Help text of the item
+        self._help_text: Optional[str] = None
+        # List of links more info for the setting can be found at
+        self._info_urls: Optional[List[str]] = None
+        # Tokens which to search settings on
+        self._keywords: Optional[List[str]] = None
+        # Name of the item
+        self._name: Optional[str] = None
+        # Indicates whether the setting is required or not
+        self._occurrence: Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Offset CSP Path from Base
+        self._offset_uri: Optional[str] = None
+        # List of referred setting information.
+        self._referred_setting_information_list: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]] = None
+        # Root setting definition if the setting is a child setting.
+        self._root_definition_id: Optional[str] = None
+        # Supported setting types
+        self._setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
+        # Setting control type representation in the UX
+        self._ux_behavior: Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType] = None
+        # Item Version
+        self._version: Optional[str] = None
+        # Supported setting types
+        self._visibility: Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility] = None
+    
     @property
     def access_types(self,) -> Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes]:
         """
@@ -81,50 +120,6 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         self._category_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationSettingDefinition and sets the default values.
-        """
-        super().__init__()
-        # The accessTypes property
-        self._access_types: Optional[device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes] = None
-        # Details which device setting is applicable on
-        self._applicability: Optional[device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability] = None
-        # Base CSP Path
-        self._base_uri: Optional[str] = None
-        # Specifies the area group under which the setting is configured in a specified configuration service provider (CSP)
-        self._category_id: Optional[str] = None
-        # Description of the item
-        self._description: Optional[str] = None
-        # Display name of the item
-        self._display_name: Optional[str] = None
-        # Help text of the item
-        self._help_text: Optional[str] = None
-        # List of links more info for the setting can be found at
-        self._info_urls: Optional[List[str]] = None
-        # Tokens which to search settings on
-        self._keywords: Optional[List[str]] = None
-        # Name of the item
-        self._name: Optional[str] = None
-        # Indicates whether the setting is required or not
-        self._occurrence: Optional[device_management_configuration_setting_occurrence.DeviceManagementConfigurationSettingOccurrence] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Offset CSP Path from Base
-        self._offset_uri: Optional[str] = None
-        # List of referred setting information.
-        self._referred_setting_information_list: Optional[List[device_management_configuration_referred_setting_information.DeviceManagementConfigurationReferredSettingInformation]] = None
-        # Root setting definition if the setting is a child setting.
-        self._root_definition_id: Optional[str] = None
-        # Supported setting types
-        self._setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
-        # Setting control type representation in the UX
-        self._ux_behavior: Optional[device_management_configuration_control_type.DeviceManagementConfigurationControlType] = None
-        # Item Version
-        self._version: Optional[str] = None
-        # Supported setting types
-        self._visibility: Optional[device_management_configuration_setting_visibility.DeviceManagementConfigurationSettingVisibility] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingDefinition:
         """
@@ -135,6 +130,37 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionDefinition":
+                from . import device_management_configuration_choice_setting_collection_definition
+
+                return device_management_configuration_choice_setting_collection_definition.DeviceManagementConfigurationChoiceSettingCollectionDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationChoiceSettingDefinition":
+                from . import device_management_configuration_choice_setting_definition
+
+                return device_management_configuration_choice_setting_definition.DeviceManagementConfigurationChoiceSettingDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationRedirectSettingDefinition":
+                from . import device_management_configuration_redirect_setting_definition
+
+                return device_management_configuration_redirect_setting_definition.DeviceManagementConfigurationRedirectSettingDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition":
+                from . import device_management_configuration_setting_group_collection_definition
+
+                return device_management_configuration_setting_group_collection_definition.DeviceManagementConfigurationSettingGroupCollectionDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSettingGroupDefinition":
+                from . import device_management_configuration_setting_group_definition
+
+                return device_management_configuration_setting_group_definition.DeviceManagementConfigurationSettingGroupDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSimpleSettingCollectionDefinition":
+                from . import device_management_configuration_simple_setting_collection_definition
+
+                return device_management_configuration_simple_setting_collection_definition.DeviceManagementConfigurationSimpleSettingCollectionDefinition()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSimpleSettingDefinition":
+                from . import device_management_configuration_simple_setting_definition
+
+                return device_management_configuration_simple_setting_definition.DeviceManagementConfigurationSimpleSettingDefinition()
         return DeviceManagementConfigurationSettingDefinition()
     
     @property
@@ -176,7 +202,9 @@ class DeviceManagementConfigurationSettingDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_collection_definition, device_management_configuration_choice_setting_definition, device_management_configuration_control_type, device_management_configuration_redirect_setting_definition, device_management_configuration_referred_setting_information, device_management_configuration_setting_access_types, device_management_configuration_setting_applicability, device_management_configuration_setting_group_collection_definition, device_management_configuration_setting_group_definition, device_management_configuration_setting_occurrence, device_management_configuration_setting_usage, device_management_configuration_setting_visibility, device_management_configuration_simple_setting_collection_definition, device_management_configuration_simple_setting_definition, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessTypes": lambda n : setattr(self, 'access_types', n.get_enum_value(device_management_configuration_setting_access_types.DeviceManagementConfigurationSettingAccessTypes)),
             "applicability": lambda n : setattr(self, 'applicability', n.get_object_value(device_management_configuration_setting_applicability.DeviceManagementConfigurationSettingApplicability)),
             "baseUri": lambda n : setattr(self, 'base_uri', n.get_str_value()),

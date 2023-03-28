@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-credential = lazy_import('msgraph.generated.models.credential')
+if TYPE_CHECKING:
+    from ....models import credential
 
 class CreatePasswordSingleSignOnCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new createPasswordSingleSignOnCredentialsPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The credentials property
+        self._credentials: Optional[List[credential.Credential]] = None
+        # The id property
+        self._id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,18 +34,6 @@ class CreatePasswordSingleSignOnCredentialsPostRequestBody(AdditionalDataHolder,
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new createPasswordSingleSignOnCredentialsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The credentials property
-        self._credentials: Optional[List[credential.Credential]] = None
-        # The id property
-        self._id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CreatePasswordSingleSignOnCredentialsPostRequestBody:
@@ -69,7 +69,9 @@ class CreatePasswordSingleSignOnCredentialsPostRequestBody(AdditionalDataHolder,
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import credential
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "credentials": lambda n : setattr(self, 'credentials', n.get_collection_of_object_values(credential.Credential)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
         }

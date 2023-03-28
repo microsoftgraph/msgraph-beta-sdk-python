@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-governance_schedule = lazy_import('msgraph.generated.models.governance_schedule')
+if TYPE_CHECKING:
+    from ........models import governance_schedule
 
 class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateRequestPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The assignmentState property
+        self._assignment_state: Optional[str] = None
+        # The decision property
+        self._decision: Optional[str] = None
+        # The reason property
+        self._reason: Optional[str] = None
+        # The schedule property
+        self._schedule: Optional[governance_schedule.GovernanceSchedule] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,22 +55,6 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the assignment_state property.
         """
         self._assignment_state = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateRequestPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The assignmentState property
-        self._assignment_state: Optional[str] = None
-        # The decision property
-        self._decision: Optional[str] = None
-        # The reason property
-        self._reason: Optional[str] = None
-        # The schedule property
-        self._schedule: Optional[governance_schedule.GovernanceSchedule] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateRequestPostRequestBody:
@@ -90,7 +90,9 @@ class UpdateRequestPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ........models import governance_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "decision": lambda n : setattr(self, 'decision', n.get_str_value()),
             "reason": lambda n : setattr(self, 'reason', n.get_str_value()),

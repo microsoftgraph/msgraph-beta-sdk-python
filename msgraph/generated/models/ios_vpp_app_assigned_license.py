@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity, ios_vpp_app_assigned_device_license, ios_vpp_app_assigned_user_license
+
+from . import entity
 
 class IosVppAppAssignedLicense(entity.Entity):
     """
@@ -35,6 +37,17 @@ class IosVppAppAssignedLicense(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosVppAppAssignedDeviceLicense":
+                from . import ios_vpp_app_assigned_device_license
+
+                return ios_vpp_app_assigned_device_license.IosVppAppAssignedDeviceLicense()
+            if mapping_value == "#microsoft.graph.iosVppAppAssignedUserLicense":
+                from . import ios_vpp_app_assigned_user_license
+
+                return ios_vpp_app_assigned_user_license.IosVppAppAssignedUserLicense()
         return IosVppAppAssignedLicense()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -42,7 +55,9 @@ class IosVppAppAssignedLicense(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, ios_vpp_app_assigned_device_license, ios_vpp_app_assigned_user_license
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "userEmailAddress": lambda n : setattr(self, 'user_email_address', n.get_str_value()),
             "userId": lambda n : setattr(self, 'user_id', n.get_str_value()),
             "userName": lambda n : setattr(self, 'user_name', n.get_str_value()),

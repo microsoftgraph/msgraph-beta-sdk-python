@@ -1,12 +1,34 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Currency(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new currency and sets the default values.
+        """
+        super().__init__()
+        # The amountDecimalPlaces property
+        self._amount_decimal_places: Optional[str] = None
+        # The amountRoundingPrecision property
+        self._amount_rounding_precision: Optional[float] = None
+        # The code property
+        self._code: Optional[str] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The symbol property
+        self._symbol: Optional[str] = None
+    
     @property
     def amount_decimal_places(self,) -> Optional[str]:
         """
@@ -58,26 +80,6 @@ class Currency(entity.Entity):
         """
         self._code = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new currency and sets the default values.
-        """
-        super().__init__()
-        # The amountDecimalPlaces property
-        self._amount_decimal_places: Optional[str] = None
-        # The amountRoundingPrecision property
-        self._amount_rounding_precision: Optional[float] = None
-        # The code property
-        self._code: Optional[str] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The symbol property
-        self._symbol: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Currency:
         """
@@ -112,7 +114,9 @@ class Currency(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "amountDecimalPlaces": lambda n : setattr(self, 'amount_decimal_places', n.get_str_value()),
             "amountRoundingPrecision": lambda n : setattr(self, 'amount_rounding_precision', n.get_float_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),

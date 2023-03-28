@@ -1,13 +1,36 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-logon_type = lazy_import('msgraph.generated.models.logon_type')
-user_account_security_type = lazy_import('msgraph.generated.models.user_account_security_type')
+if TYPE_CHECKING:
+    from . import logon_type, user_account_security_type
 
 class LogonUser(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new logonUser and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Domain of user account used to logon.
+        self._account_domain: Optional[str] = None
+        # Account name of user account used to logon.
+        self._account_name: Optional[str] = None
+        # User Account type, per Windows definition. Possible values are: unknown, standard, power, administrator.
+        self._account_type: Optional[user_account_security_type.UserAccountSecurityType] = None
+        # DateTime at which the earliest logon by this user account occurred (provider-determined period). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._first_seen_date_time: Optional[datetime] = None
+        # DateTime at which the latest logon by this user account occurred. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._last_seen_date_time: Optional[datetime] = None
+        # User logon ID.
+        self._logon_id: Optional[str] = None
+        # Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
+        self._logon_types: Optional[List[logon_type.LogonType]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def account_domain(self,) -> Optional[str]:
         """
@@ -76,30 +99,6 @@ class LogonUser(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new logonUser and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Domain of user account used to logon.
-        self._account_domain: Optional[str] = None
-        # Account name of user account used to logon.
-        self._account_name: Optional[str] = None
-        # User Account type, per Windows definition. Possible values are: unknown, standard, power, administrator.
-        self._account_type: Optional[user_account_security_type.UserAccountSecurityType] = None
-        # DateTime at which the earliest logon by this user account occurred (provider-determined period). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._first_seen_date_time: Optional[datetime] = None
-        # DateTime at which the latest logon by this user account occurred. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._last_seen_date_time: Optional[datetime] = None
-        # User logon ID.
-        self._logon_id: Optional[str] = None
-        # Collection of the logon types observed for the logged on user from when first to last seen. Possible values are: unknown, interactive, remoteInteractive, network, batch, service.
-        self._logon_types: Optional[List[logon_type.LogonType]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> LogonUser:
         """
@@ -134,7 +133,9 @@ class LogonUser(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import logon_type, user_account_security_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accountDomain": lambda n : setattr(self, 'account_domain', n.get_str_value()),
             "accountName": lambda n : setattr(self, 'account_name', n.get_str_value()),
             "accountType": lambda n : setattr(self, 'account_type', n.get_enum_value(user_account_security_type.UserAccountSecurityType)),

@@ -1,9 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new migrateToTemplatePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The newTemplateId property
+        self._new_template_id: Optional[str] = None
+        # The preserveCustomValues property
+        self._preserve_custom_values: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -20,18 +31,6 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new migrateToTemplatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The newTemplateId property
-        self._new_template_id: Optional[str] = None
-        # The preserveCustomValues property
-        self._preserve_custom_values: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MigrateToTemplatePostRequestBody:
@@ -50,7 +49,7 @@ class MigrateToTemplatePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "newTemplateId": lambda n : setattr(self, 'new_template_id', n.get_str_value()),
             "preserveCustomValues": lambda n : setattr(self, 'preserve_custom_values', n.get_bool_value()),
         }

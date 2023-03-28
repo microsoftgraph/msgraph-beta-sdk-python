@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_choice_setting_value_template = lazy_import('msgraph.generated.models.device_management_configuration_choice_setting_value_template')
-device_management_configuration_setting_instance_template = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_value_template, device_management_configuration_setting_instance_template
+
+from . import device_management_configuration_setting_instance_template
 
 class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate"
+        # Linked policy may append values which are not present in the template.
+        self._allow_unmanaged_values: Optional[bool] = None
+        # Choice Setting Collection Value Template
+        self._choice_setting_collection_value_template: Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]] = None
+    
     @property
     def allow_unmanaged_values(self,) -> Optional[bool]:
         """
@@ -41,17 +53,6 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(devic
         """
         self._choice_setting_collection_value_template = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingCollectionInstanceTemplate"
-        # Linked policy may append values which are not present in the template.
-        self._allow_unmanaged_values: Optional[bool] = None
-        # Choice Setting Collection Value Template
-        self._choice_setting_collection_value_template: Optional[List[device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate:
         """
@@ -69,7 +70,9 @@ class DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate(devic
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_value_template, device_management_configuration_setting_instance_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowUnmanagedValues": lambda n : setattr(self, 'allow_unmanaged_values', n.get_bool_value()),
             "choiceSettingCollectionValueTemplate": lambda n : setattr(self, 'choice_setting_collection_value_template', n.get_collection_of_object_values(device_management_configuration_choice_setting_value_template.DeviceManagementConfigurationChoiceSettingValueTemplate)),
         }

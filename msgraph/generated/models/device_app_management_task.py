@@ -1,18 +1,45 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_app_management_task_category = lazy_import('msgraph.generated.models.device_app_management_task_category')
-device_app_management_task_priority = lazy_import('msgraph.generated.models.device_app_management_task_priority')
-device_app_management_task_status = lazy_import('msgraph.generated.models.device_app_management_task_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import app_vulnerability_task, device_app_management_task_category, device_app_management_task_priority, device_app_management_task_status, entity, security_configuration_task, unmanaged_device_discovery_task
+
+from . import entity
 
 class DeviceAppManagementTask(entity.Entity):
     """
     A device app management task.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceAppManagementTask and sets the default values.
+        """
+        super().__init__()
+        # The name or email of the admin this task is assigned to.
+        self._assigned_to: Optional[str] = None
+        # Device app management task category.
+        self._category: Optional[device_app_management_task_category.DeviceAppManagementTaskCategory] = None
+        # The created date.
+        self._created_date_time: Optional[datetime] = None
+        # The email address of the creator.
+        self._creator: Optional[str] = None
+        # Notes from the creator.
+        self._creator_notes: Optional[str] = None
+        # The description.
+        self._description: Optional[str] = None
+        # The name.
+        self._display_name: Optional[str] = None
+        # The due date.
+        self._due_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Device app management task priority.
+        self._priority: Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority] = None
+        # Device app management task status.
+        self._status: Optional[device_app_management_task_status.DeviceAppManagementTaskStatus] = None
+    
     @property
     def assigned_to(self,) -> Optional[str]:
         """
@@ -47,34 +74,6 @@ class DeviceAppManagementTask(entity.Entity):
         """
         self._category = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceAppManagementTask and sets the default values.
-        """
-        super().__init__()
-        # The name or email of the admin this task is assigned to.
-        self._assigned_to: Optional[str] = None
-        # Device app management task category.
-        self._category: Optional[device_app_management_task_category.DeviceAppManagementTaskCategory] = None
-        # The created date.
-        self._created_date_time: Optional[datetime] = None
-        # The email address of the creator.
-        self._creator: Optional[str] = None
-        # Notes from the creator.
-        self._creator_notes: Optional[str] = None
-        # The description.
-        self._description: Optional[str] = None
-        # The name.
-        self._display_name: Optional[str] = None
-        # The due date.
-        self._due_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Device app management task priority.
-        self._priority: Optional[device_app_management_task_priority.DeviceAppManagementTaskPriority] = None
-        # Device app management task status.
-        self._status: Optional[device_app_management_task_status.DeviceAppManagementTaskStatus] = None
-    
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
@@ -102,6 +101,21 @@ class DeviceAppManagementTask(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.appVulnerabilityTask":
+                from . import app_vulnerability_task
+
+                return app_vulnerability_task.AppVulnerabilityTask()
+            if mapping_value == "#microsoft.graph.securityConfigurationTask":
+                from . import security_configuration_task
+
+                return security_configuration_task.SecurityConfigurationTask()
+            if mapping_value == "#microsoft.graph.unmanagedDeviceDiscoveryTask":
+                from . import unmanaged_device_discovery_task
+
+                return unmanaged_device_discovery_task.UnmanagedDeviceDiscoveryTask()
         return DeviceAppManagementTask()
     
     @property
@@ -194,7 +208,9 @@ class DeviceAppManagementTask(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_vulnerability_task, device_app_management_task_category, device_app_management_task_priority, device_app_management_task_status, entity, security_configuration_task, unmanaged_device_discovery_task
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "category": lambda n : setattr(self, 'category', n.get_enum_value(device_app_management_task_category.DeviceAppManagementTaskCategory)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

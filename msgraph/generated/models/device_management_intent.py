@@ -1,23 +1,55 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_intent_assignment = lazy_import('msgraph.generated.models.device_management_intent_assignment')
-device_management_intent_device_setting_state_summary = lazy_import('msgraph.generated.models.device_management_intent_device_setting_state_summary')
-device_management_intent_device_state = lazy_import('msgraph.generated.models.device_management_intent_device_state')
-device_management_intent_device_state_summary = lazy_import('msgraph.generated.models.device_management_intent_device_state_summary')
-device_management_intent_setting_category = lazy_import('msgraph.generated.models.device_management_intent_setting_category')
-device_management_intent_user_state = lazy_import('msgraph.generated.models.device_management_intent_user_state')
-device_management_intent_user_state_summary = lazy_import('msgraph.generated.models.device_management_intent_user_state_summary')
-device_management_setting_instance = lazy_import('msgraph.generated.models.device_management_setting_instance')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_intent_assignment, device_management_intent_device_setting_state_summary, device_management_intent_device_state, device_management_intent_device_state_summary, device_management_intent_setting_category, device_management_intent_user_state, device_management_intent_user_state_summary, device_management_setting_instance, entity
+
+from . import entity
 
 class DeviceManagementIntent(entity.Entity):
     """
     Entity that represents an intent to apply settings to a device
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementIntent and sets the default values.
+        """
+        super().__init__()
+        # Collection of assignments
+        self._assignments: Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]] = None
+        # Collection of setting categories within the intent
+        self._categories: Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]] = None
+        # The user given description
+        self._description: Optional[str] = None
+        # Collection of settings and their states and counts of devices that belong to corresponding state for all settings within the intent
+        self._device_setting_state_summaries: Optional[List[device_management_intent_device_setting_state_summary.DeviceManagementIntentDeviceSettingStateSummary]] = None
+        # A summary of device states and counts of devices that belong to corresponding state for all devices that the intent is applied to
+        self._device_state_summary: Optional[device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary] = None
+        # Collection of states of all devices that the intent is applied to
+        self._device_states: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]] = None
+        # The user given display name
+        self._display_name: Optional[str] = None
+        # Signifies whether or not the intent is assigned to users
+        self._is_assigned: Optional[bool] = None
+        # Signifies whether or not the intent is being migrated to the configurationPolicies endpoint
+        self._is_migrating_to_configuration_policy: Optional[bool] = None
+        # When the intent was last modified
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # List of Scope Tags for this Entity instance.
+        self._role_scope_tag_ids: Optional[List[str]] = None
+        # Collection of all settings to be applied
+        self._settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
+        # The ID of the template this intent was created from (if any)
+        self._template_id: Optional[str] = None
+        # A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
+        self._user_state_summary: Optional[device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary] = None
+        # Collection of states of all users that the intent is applied to
+        self._user_states: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None
+    
     @property
     def assignments(self,) -> Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]]:
         """
@@ -51,42 +83,6 @@ class DeviceManagementIntent(entity.Entity):
             value: Value to set for the categories property.
         """
         self._categories = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementIntent and sets the default values.
-        """
-        super().__init__()
-        # Collection of assignments
-        self._assignments: Optional[List[device_management_intent_assignment.DeviceManagementIntentAssignment]] = None
-        # Collection of setting categories within the intent
-        self._categories: Optional[List[device_management_intent_setting_category.DeviceManagementIntentSettingCategory]] = None
-        # The user given description
-        self._description: Optional[str] = None
-        # Collection of settings and their states and counts of devices that belong to corresponding state for all settings within the intent
-        self._device_setting_state_summaries: Optional[List[device_management_intent_device_setting_state_summary.DeviceManagementIntentDeviceSettingStateSummary]] = None
-        # A summary of device states and counts of devices that belong to corresponding state for all devices that the intent is applied to
-        self._device_state_summary: Optional[device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary] = None
-        # Collection of states of all devices that the intent is applied to
-        self._device_states: Optional[List[device_management_intent_device_state.DeviceManagementIntentDeviceState]] = None
-        # The user given display name
-        self._display_name: Optional[str] = None
-        # Signifies whether or not the intent is assigned to users
-        self._is_assigned: Optional[bool] = None
-        # When the intent was last modified
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of Scope Tags for this Entity instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
-        # Collection of all settings to be applied
-        self._settings: Optional[List[device_management_setting_instance.DeviceManagementSettingInstance]] = None
-        # The ID of the template this intent was created from (if any)
-        self._template_id: Optional[str] = None
-        # A summary of user states and counts of users that belong to corresponding state for all users that the intent is applied to
-        self._user_state_summary: Optional[device_management_intent_user_state_summary.DeviceManagementIntentUserStateSummary] = None
-        # Collection of states of all users that the intent is applied to
-        self._user_states: Optional[List[device_management_intent_user_state.DeviceManagementIntentUserState]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntent:
@@ -190,7 +186,9 @@ class DeviceManagementIntent(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_intent_assignment, device_management_intent_device_setting_state_summary, device_management_intent_device_state, device_management_intent_device_state_summary, device_management_intent_setting_category, device_management_intent_user_state, device_management_intent_user_state_summary, device_management_setting_instance, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(device_management_intent_assignment.DeviceManagementIntentAssignment)),
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(device_management_intent_setting_category.DeviceManagementIntentSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
@@ -199,6 +197,7 @@ class DeviceManagementIntent(entity.Entity):
             "deviceStateSummary": lambda n : setattr(self, 'device_state_summary', n.get_object_value(device_management_intent_device_state_summary.DeviceManagementIntentDeviceStateSummary)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "isAssigned": lambda n : setattr(self, 'is_assigned', n.get_bool_value()),
+            "isMigratingToConfigurationPolicy": lambda n : setattr(self, 'is_migrating_to_configuration_policy', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "roleScopeTagIds": lambda n : setattr(self, 'role_scope_tag_ids', n.get_collection_of_primitive_values(str)),
             "settings": lambda n : setattr(self, 'settings', n.get_collection_of_object_values(device_management_setting_instance.DeviceManagementSettingInstance)),
@@ -226,6 +225,23 @@ class DeviceManagementIntent(entity.Entity):
             value: Value to set for the is_assigned property.
         """
         self._is_assigned = value
+    
+    @property
+    def is_migrating_to_configuration_policy(self,) -> Optional[bool]:
+        """
+        Gets the isMigratingToConfigurationPolicy property value. Signifies whether or not the intent is being migrated to the configurationPolicies endpoint
+        Returns: Optional[bool]
+        """
+        return self._is_migrating_to_configuration_policy
+    
+    @is_migrating_to_configuration_policy.setter
+    def is_migrating_to_configuration_policy(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the isMigratingToConfigurationPolicy property value. Signifies whether or not the intent is being migrated to the configurationPolicies endpoint
+        Args:
+            value: Value to set for the is_migrating_to_configuration_policy property.
+        """
+        self._is_migrating_to_configuration_policy = value
     
     @property
     def last_modified_date_time(self,) -> Optional[datetime]:
@@ -278,6 +294,7 @@ class DeviceManagementIntent(entity.Entity):
         writer.write_object_value("deviceStateSummary", self.device_state_summary)
         writer.write_str_value("displayName", self.display_name)
         writer.write_bool_value("isAssigned", self.is_assigned)
+        writer.write_bool_value("isMigratingToConfigurationPolicy", self.is_migrating_to_configuration_policy)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_collection_of_primitive_values("roleScopeTagIds", self.role_scope_tag_ids)
         writer.write_collection_of_object_values("settings", self.settings)

@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-error_code = lazy_import('msgraph.generated.models.error_code')
-policy_set_status = lazy_import('msgraph.generated.models.policy_set_status')
+if TYPE_CHECKING:
+    from . import device_compliance_policy_policy_set_item, device_configuration_policy_set_item, device_management_configuration_policy_policy_set_item, device_management_script_policy_set_item, enrollment_restrictions_configuration_policy_set_item, entity, error_code, ios_lob_app_provisioning_configuration_policy_set_item, managed_app_protection_policy_set_item, managed_device_mobile_app_configuration_policy_set_item, mdm_windows_information_protection_policy_policy_set_item, mobile_app_policy_set_item, policy_set_status, targeted_managed_app_configuration_policy_set_item, windows10_enrollment_completion_page_configuration_policy_set_item, windows_autopilot_deployment_profile_policy_set_item
+
+from . import entity
 
 class PolicySetItem(entity.Entity):
     """
@@ -63,6 +63,61 @@ class PolicySetItem(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceCompliancePolicyPolicySetItem":
+                from . import device_compliance_policy_policy_set_item
+
+                return device_compliance_policy_policy_set_item.DeviceCompliancePolicyPolicySetItem()
+            if mapping_value == "#microsoft.graph.deviceConfigurationPolicySetItem":
+                from . import device_configuration_policy_set_item
+
+                return device_configuration_policy_set_item.DeviceConfigurationPolicySetItem()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationPolicyPolicySetItem":
+                from . import device_management_configuration_policy_policy_set_item
+
+                return device_management_configuration_policy_policy_set_item.DeviceManagementConfigurationPolicyPolicySetItem()
+            if mapping_value == "#microsoft.graph.deviceManagementScriptPolicySetItem":
+                from . import device_management_script_policy_set_item
+
+                return device_management_script_policy_set_item.DeviceManagementScriptPolicySetItem()
+            if mapping_value == "#microsoft.graph.enrollmentRestrictionsConfigurationPolicySetItem":
+                from . import enrollment_restrictions_configuration_policy_set_item
+
+                return enrollment_restrictions_configuration_policy_set_item.EnrollmentRestrictionsConfigurationPolicySetItem()
+            if mapping_value == "#microsoft.graph.iosLobAppProvisioningConfigurationPolicySetItem":
+                from . import ios_lob_app_provisioning_configuration_policy_set_item
+
+                return ios_lob_app_provisioning_configuration_policy_set_item.IosLobAppProvisioningConfigurationPolicySetItem()
+            if mapping_value == "#microsoft.graph.managedAppProtectionPolicySetItem":
+                from . import managed_app_protection_policy_set_item
+
+                return managed_app_protection_policy_set_item.ManagedAppProtectionPolicySetItem()
+            if mapping_value == "#microsoft.graph.managedDeviceMobileAppConfigurationPolicySetItem":
+                from . import managed_device_mobile_app_configuration_policy_set_item
+
+                return managed_device_mobile_app_configuration_policy_set_item.ManagedDeviceMobileAppConfigurationPolicySetItem()
+            if mapping_value == "#microsoft.graph.mdmWindowsInformationProtectionPolicyPolicySetItem":
+                from . import mdm_windows_information_protection_policy_policy_set_item
+
+                return mdm_windows_information_protection_policy_policy_set_item.MdmWindowsInformationProtectionPolicyPolicySetItem()
+            if mapping_value == "#microsoft.graph.mobileAppPolicySetItem":
+                from . import mobile_app_policy_set_item
+
+                return mobile_app_policy_set_item.MobileAppPolicySetItem()
+            if mapping_value == "#microsoft.graph.targetedManagedAppConfigurationPolicySetItem":
+                from . import targeted_managed_app_configuration_policy_set_item
+
+                return targeted_managed_app_configuration_policy_set_item.TargetedManagedAppConfigurationPolicySetItem()
+            if mapping_value == "#microsoft.graph.windows10EnrollmentCompletionPageConfigurationPolicySetItem":
+                from . import windows10_enrollment_completion_page_configuration_policy_set_item
+
+                return windows10_enrollment_completion_page_configuration_policy_set_item.Windows10EnrollmentCompletionPageConfigurationPolicySetItem()
+            if mapping_value == "#microsoft.graph.windowsAutopilotDeploymentProfilePolicySetItem":
+                from . import windows_autopilot_deployment_profile_policy_set_item
+
+                return windows_autopilot_deployment_profile_policy_set_item.WindowsAutopilotDeploymentProfilePolicySetItem()
         return PolicySetItem()
     
     @property
@@ -104,7 +159,9 @@ class PolicySetItem(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_compliance_policy_policy_set_item, device_configuration_policy_set_item, device_management_configuration_policy_policy_set_item, device_management_script_policy_set_item, enrollment_restrictions_configuration_policy_set_item, entity, error_code, ios_lob_app_provisioning_configuration_policy_set_item, managed_app_protection_policy_set_item, managed_device_mobile_app_configuration_policy_set_item, mdm_windows_information_protection_policy_policy_set_item, mobile_app_policy_set_item, policy_set_status, targeted_managed_app_configuration_policy_set_item, windows10_enrollment_completion_page_configuration_policy_set_item, windows_autopilot_deployment_profile_policy_set_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(error_code.ErrorCode)),

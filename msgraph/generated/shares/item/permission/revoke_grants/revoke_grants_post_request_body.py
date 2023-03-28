@@ -1,11 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-drive_recipient = lazy_import('msgraph.generated.models.drive_recipient')
+if TYPE_CHECKING:
+    from .....models import drive_recipient
 
 class RevokeGrantsPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new revokeGrantsPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The grantees property
+        self._grantees: Optional[List[drive_recipient.DriveRecipient]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,16 +32,6 @@ class RevokeGrantsPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new revokeGrantsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The grantees property
-        self._grantees: Optional[List[drive_recipient.DriveRecipient]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RevokeGrantsPostRequestBody:
@@ -50,7 +50,9 @@ class RevokeGrantsPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import drive_recipient
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "grantees": lambda n : setattr(self, 'grantees', n.get_collection_of_object_values(drive_recipient.DriveRecipient)),
         }
         return fields

@@ -1,37 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_setting_instance = lazy_import('msgraph.generated.models.device_management_setting_instance')
-device_management_template_setting_category = lazy_import('msgraph.generated.models.device_management_template_setting_category')
-device_management_template_subtype = lazy_import('msgraph.generated.models.device_management_template_subtype')
-device_management_template_type = lazy_import('msgraph.generated.models.device_management_template_type')
-entity = lazy_import('msgraph.generated.models.entity')
-policy_platform_type = lazy_import('msgraph.generated.models.policy_platform_type')
+if TYPE_CHECKING:
+    from . import device_management_setting_instance, device_management_template_setting_category, device_management_template_subtype, device_management_template_type, entity, policy_platform_type, security_baseline_template
+
+from . import entity
 
 class DeviceManagementTemplate(entity.Entity):
     """
     Entity that represents a defined collection of device settings
     """
-    @property
-    def categories(self,) -> Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]]:
-        """
-        Gets the categories property value. Collection of setting categories within the template
-        Returns: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]]
-        """
-        return self._categories
-    
-    @categories.setter
-    def categories(self,value: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]] = None) -> None:
-        """
-        Sets the categories property value. Collection of setting categories within the template
-        Args:
-            value: Value to set for the categories property.
-        """
-        self._categories = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceManagementTemplate and sets the default values.
@@ -64,6 +44,23 @@ class DeviceManagementTemplate(entity.Entity):
         # The template's version information
         self._version_info: Optional[str] = None
     
+    @property
+    def categories(self,) -> Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]]:
+        """
+        Gets the categories property value. Collection of setting categories within the template
+        Returns: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]]
+        """
+        return self._categories
+    
+    @categories.setter
+    def categories(self,value: Optional[List[device_management_template_setting_category.DeviceManagementTemplateSettingCategory]] = None) -> None:
+        """
+        Sets the categories property value. Collection of setting categories within the template
+        Args:
+            value: Value to set for the categories property.
+        """
+        self._categories = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementTemplate:
         """
@@ -74,6 +71,13 @@ class DeviceManagementTemplate(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.securityBaselineTemplate":
+                from . import security_baseline_template
+
+                return security_baseline_template.SecurityBaselineTemplate()
         return DeviceManagementTemplate()
     
     @property
@@ -115,7 +119,9 @@ class DeviceManagementTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_setting_instance, device_management_template_setting_category, device_management_template_subtype, device_management_template_type, entity, policy_platform_type, security_baseline_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_object_values(device_management_template_setting_category.DeviceManagementTemplateSettingCategory)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

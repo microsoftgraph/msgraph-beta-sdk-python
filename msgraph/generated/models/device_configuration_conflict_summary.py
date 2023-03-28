@@ -1,15 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-setting_source = lazy_import('msgraph.generated.models.setting_source')
+if TYPE_CHECKING:
+    from . import entity, setting_source
+
+from . import entity
 
 class DeviceConfigurationConflictSummary(entity.Entity):
     """
     Conflict summary for a set of device configuration policies.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceConfigurationConflictSummary and sets the default values.
+        """
+        super().__init__()
+        # The set of policies in conflict with the given setting
+        self._conflicting_device_configurations: Optional[List[setting_source.SettingSource]] = None
+        # The set of settings in conflict with the given policies
+        self._contributing_settings: Optional[List[str]] = None
+        # The count of checkins impacted by the conflicting policies and settings
+        self._device_checkins_impacted: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def conflicting_device_configurations(self,) -> Optional[List[setting_source.SettingSource]]:
         """
@@ -26,20 +41,6 @@ class DeviceConfigurationConflictSummary(entity.Entity):
             value: Value to set for the conflicting_device_configurations property.
         """
         self._conflicting_device_configurations = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceConfigurationConflictSummary and sets the default values.
-        """
-        super().__init__()
-        # The set of policies in conflict with the given setting
-        self._conflicting_device_configurations: Optional[List[setting_source.SettingSource]] = None
-        # The set of settings in conflict with the given policies
-        self._contributing_settings: Optional[List[str]] = None
-        # The count of checkins impacted by the conflicting policies and settings
-        self._device_checkins_impacted: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @property
     def contributing_settings(self,) -> Optional[List[str]]:
@@ -92,7 +93,9 @@ class DeviceConfigurationConflictSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, setting_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "conflictingDeviceConfigurations": lambda n : setattr(self, 'conflicting_device_configurations', n.get_collection_of_object_values(setting_source.SettingSource)),
             "contributingSettings": lambda n : setattr(self, 'contributing_settings', n.get_collection_of_primitive_values(str)),
             "deviceCheckinsImpacted": lambda n : setattr(self, 'device_checkins_impacted', n.get_int_value()),

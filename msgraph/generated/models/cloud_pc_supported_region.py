@@ -1,17 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
-cloud_pc_region_group = lazy_import('msgraph.generated.models.cloud_pc_region_group')
-cloud_pc_supported_region_status = lazy_import('msgraph.generated.models.cloud_pc_supported_region_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_management_service, cloud_pc_region_group, cloud_pc_supported_region_status, entity
+
+from . import entity
 
 class CloudPcSupportedRegion(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new CloudPcSupportedRegion and sets the default values.
+        Instantiates a new cloudPcSupportedRegion and sets the default values.
         """
         super().__init__()
         # The name for the supported region. Read-only.
@@ -59,7 +58,9 @@ class CloudPcSupportedRegion(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_management_service, cloud_pc_region_group, cloud_pc_supported_region_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "regionGroup": lambda n : setattr(self, 'region_group', n.get_enum_value(cloud_pc_region_group.CloudPcRegionGroup)),
             "regionStatus": lambda n : setattr(self, 'region_status', n.get_enum_value(cloud_pc_supported_region_status.CloudPcSupportedRegionStatus)),

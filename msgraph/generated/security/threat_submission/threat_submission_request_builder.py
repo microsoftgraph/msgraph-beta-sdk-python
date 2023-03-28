@@ -7,52 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-threat_submission_root = lazy_import('msgraph.generated.models.security.threat_submission_root')
-email_threats_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threats.email_threats_request_builder')
-email_threat_submission_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threats.item.email_threat_submission_item_request_builder')
-email_threat_submission_policies_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threat_submission_policies.email_threat_submission_policies_request_builder')
-email_threat_submission_policy_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.email_threat_submission_policies.item.email_threat_submission_policy_item_request_builder')
-file_threats_request_builder = lazy_import('msgraph.generated.security.threat_submission.file_threats.file_threats_request_builder')
-file_threat_submission_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.file_threats.item.file_threat_submission_item_request_builder')
-url_threats_request_builder = lazy_import('msgraph.generated.security.threat_submission.url_threats.url_threats_request_builder')
-url_threat_submission_item_request_builder = lazy_import('msgraph.generated.security.threat_submission.url_threats.item.url_threat_submission_item_request_builder')
+if TYPE_CHECKING:
+    from ...models.o_data_errors import o_data_error
+    from ...models.security import threat_submission_root
+    from .email_threats import email_threats_request_builder
+    from .email_threats.item import email_threat_submission_item_request_builder
+    from .email_threat_submission_policies import email_threat_submission_policies_request_builder
+    from .email_threat_submission_policies.item import email_threat_submission_policy_item_request_builder
+    from .file_threats import file_threats_request_builder
+    from .file_threats.item import file_threat_submission_item_request_builder
+    from .url_threats import url_threats_request_builder
+    from .url_threats.item import url_threat_submission_item_request_builder
 
 class ThreatSubmissionRequestBuilder():
     """
     Provides operations to manage the threatSubmission property of the microsoft.graph.security entity.
     """
-    @property
-    def email_threats(self) -> email_threats_request_builder.EmailThreatsRequestBuilder:
-        """
-        Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        """
-        return email_threats_request_builder.EmailThreatsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def email_threat_submission_policies(self) -> email_threat_submission_policies_request_builder.EmailThreatSubmissionPoliciesRequestBuilder:
-        """
-        Provides operations to manage the emailThreatSubmissionPolicies property of the microsoft.graph.security.threatSubmissionRoot entity.
-        """
-        return email_threat_submission_policies_request_builder.EmailThreatSubmissionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def file_threats(self) -> file_threats_request_builder.FileThreatsRequestBuilder:
-        """
-        Provides operations to manage the fileThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        """
-        return file_threats_request_builder.FileThreatsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def url_threats(self) -> url_threats_request_builder.UrlThreatsRequestBuilder:
-        """
-        Provides operations to manage the urlThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
-        """
-        return url_threats_request_builder.UrlThreatsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ThreatSubmissionRequestBuilder and sets the default values.
@@ -80,6 +52,8 @@ class ThreatSubmissionRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -97,6 +71,8 @@ class ThreatSubmissionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .email_threats.item import email_threat_submission_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["emailThreatSubmission%2Did"] = id
         return email_threat_submission_item_request_builder.EmailThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -110,6 +86,8 @@ class ThreatSubmissionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .email_threat_submission_policies.item import email_threat_submission_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["emailThreatSubmissionPolicy%2Did"] = id
         return email_threat_submission_policy_item_request_builder.EmailThreatSubmissionPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -123,6 +101,8 @@ class ThreatSubmissionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .file_threats.item import file_threat_submission_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["fileThreatSubmission%2Did"] = id
         return file_threat_submission_item_request_builder.FileThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -137,12 +117,16 @@ class ThreatSubmissionRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models.security import threat_submission_root
+
         return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, error_mapping)
     
     async def patch(self,body: Optional[threat_submission_root.ThreatSubmissionRoot] = None, request_configuration: Optional[ThreatSubmissionRequestBuilderPatchRequestConfiguration] = None) -> Optional[threat_submission_root.ThreatSubmissionRoot]:
@@ -158,12 +142,16 @@ class ThreatSubmissionRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models.security import threat_submission_root
+
         return await self.request_adapter.send_async(request_info, threat_submission_root.ThreatSubmissionRoot, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ThreatSubmissionRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -230,9 +218,47 @@ class ThreatSubmissionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .url_threats.item import url_threat_submission_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["urlThreatSubmission%2Did"] = id
         return url_threat_submission_item_request_builder.UrlThreatSubmissionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def email_threats(self) -> email_threats_request_builder.EmailThreatsRequestBuilder:
+        """
+        Provides operations to manage the emailThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
+        """
+        from .email_threats import email_threats_request_builder
+
+        return email_threats_request_builder.EmailThreatsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def email_threat_submission_policies(self) -> email_threat_submission_policies_request_builder.EmailThreatSubmissionPoliciesRequestBuilder:
+        """
+        Provides operations to manage the emailThreatSubmissionPolicies property of the microsoft.graph.security.threatSubmissionRoot entity.
+        """
+        from .email_threat_submission_policies import email_threat_submission_policies_request_builder
+
+        return email_threat_submission_policies_request_builder.EmailThreatSubmissionPoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def file_threats(self) -> file_threats_request_builder.FileThreatsRequestBuilder:
+        """
+        Provides operations to manage the fileThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
+        """
+        from .file_threats import file_threats_request_builder
+
+        return file_threats_request_builder.FileThreatsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def url_threats(self) -> url_threats_request_builder.UrlThreatsRequestBuilder:
+        """
+        Provides operations to manage the urlThreats property of the microsoft.graph.security.threatSubmissionRoot entity.
+        """
+        from .url_threats import url_threats_request_builder
+
+        return url_threats_request_builder.UrlThreatsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ThreatSubmissionRequestBuilderDeleteRequestConfiguration():
@@ -251,12 +277,6 @@ class ThreatSubmissionRequestBuilder():
         """
         A threat submission sent to Microsoft; for example, a suspicious email threat, URL threat, or file threat.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -272,6 +292,12 @@ class ThreatSubmissionRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ThreatSubmissionRequestBuilderGetRequestConfiguration():

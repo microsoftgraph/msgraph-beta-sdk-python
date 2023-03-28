@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-person_name_pronounciation = lazy_import('msgraph.generated.models.person_name_pronounciation')
+if TYPE_CHECKING:
+    from . import item_facet, person_name_pronounciation
+
+from . import item_facet
 
 class PersonName(item_facet.ItemFacet):
     def __init__(self,) -> None:
@@ -87,7 +88,9 @@ class PersonName(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet, person_name_pronounciation
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "first": lambda n : setattr(self, 'first', n.get_str_value()),
             "initials": lambda n : setattr(self, 'initials', n.get_str_value()),

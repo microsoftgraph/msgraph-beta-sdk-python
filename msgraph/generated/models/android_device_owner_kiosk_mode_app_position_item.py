@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_kiosk_mode_home_screen_item = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_home_screen_item')
+if TYPE_CHECKING:
+    from . import android_device_owner_kiosk_mode_home_screen_item
 
 class AndroidDeviceOwnerKioskModeAppPositionItem(AdditionalDataHolder, Parsable):
     """
     An item in the list of app positions that sets the order of items on the Managed Home Screen
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new androidDeviceOwnerKioskModeAppPositionItem and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Represents an item on the Android Device Owner Managed Home Screen (application, weblink or folder
+        self._item: Optional[android_device_owner_kiosk_mode_home_screen_item.AndroidDeviceOwnerKioskModeHomeScreenItem] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Position of the item on the grid. Valid values 0 to 9999999
+        self._position: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,20 +39,6 @@ class AndroidDeviceOwnerKioskModeAppPositionItem(AdditionalDataHolder, Parsable)
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidDeviceOwnerKioskModeAppPositionItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Represents an item on the Android Device Owner Managed Home Screen (application, weblink or folder
-        self._item: Optional[android_device_owner_kiosk_mode_home_screen_item.AndroidDeviceOwnerKioskModeHomeScreenItem] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Position of the item on the grid. Valid values 0 to 9999999
-        self._position: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerKioskModeAppPositionItem:
@@ -57,7 +57,9 @@ class AndroidDeviceOwnerKioskModeAppPositionItem(AdditionalDataHolder, Parsable)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_kiosk_mode_home_screen_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "item": lambda n : setattr(self, 'item', n.get_object_value(android_device_owner_kiosk_mode_home_screen_item.AndroidDeviceOwnerKioskModeHomeScreenItem)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "position": lambda n : setattr(self, 'position', n.get_int_value()),

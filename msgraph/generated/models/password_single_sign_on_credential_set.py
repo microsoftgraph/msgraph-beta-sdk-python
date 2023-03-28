@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-credential = lazy_import('msgraph.generated.models.credential')
+if TYPE_CHECKING:
+    from . import credential
 
 class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new passwordSingleSignOnCredentialSet and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A list of credential objects that define the complete sign in flow.
+        self._credentials: Optional[List[credential.Credential]] = None
+        # The ID of the user or group this credential set belongs to.
+        self._id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new passwordSingleSignOnCredentialSet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A list of credential objects that define the complete sign in flow.
-        self._credentials: Optional[List[credential.Credential]] = None
-        # The ID of the user or group this credential set belongs to.
-        self._id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PasswordSingleSignOnCredentialSet:
@@ -71,7 +71,9 @@ class PasswordSingleSignOnCredentialSet(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import credential
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "credentials": lambda n : setattr(self, 'credentials', n.get_collection_of_object_values(credential.Credential)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

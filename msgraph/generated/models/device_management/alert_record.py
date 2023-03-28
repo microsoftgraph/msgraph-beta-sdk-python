@@ -1,16 +1,41 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_impact = lazy_import('msgraph.generated.models.device_management.alert_impact')
-alert_rule_template = lazy_import('msgraph.generated.models.device_management.alert_rule_template')
-alert_status_type = lazy_import('msgraph.generated.models.device_management.alert_status_type')
-rule_severity_type = lazy_import('msgraph.generated.models.device_management.rule_severity_type')
+if TYPE_CHECKING:
+    from . import alert_impact, alert_rule_template, alert_status_type, rule_severity_type
+    from .. import entity
+
+from .. import entity
 
 class AlertRecord(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new alertRecord and sets the default values.
+        """
+        super().__init__()
+        # The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. 12 affectedCloudPcPercentage means 12% of Cloud PCs are affected.
+        self._alert_impact: Optional[alert_impact.AlertImpact] = None
+        # The corresponding ID of the alert rule.
+        self._alert_rule_id: Optional[str] = None
+        # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
+        self._alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
+        # The date and time when the alert event was detected. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._detected_date_time: Optional[datetime] = None
+        # The display name of the alert record.
+        self._display_name: Optional[str] = None
+        # The date and time when the alert record was last updated. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._last_updated_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The date and time when the alert event was resolved. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._resolved_date_time: Optional[datetime] = None
+        # The severity of the alert event. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
+        self._severity: Optional[rule_severity_type.RuleSeverityType] = None
+        # The status of the alert record. The possible values are: active, resolved, unknownFutureValue.
+        self._status: Optional[alert_status_type.AlertStatusType] = None
+    
     @property
     def alert_impact(self,) -> Optional[alert_impact.AlertImpact]:
         """
@@ -61,32 +86,6 @@ class AlertRecord(entity.Entity):
             value: Value to set for the alert_rule_template property.
         """
         self._alert_rule_template = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new alertRecord and sets the default values.
-        """
-        super().__init__()
-        # The impact of the alert event. Consists of a number followed by the aggregation type. For example, 6 affectedCloudPcCount means that 6 Cloud PCs are affected. 12 affectedCloudPcPercentage means 12% of Cloud PCs are affected.
-        self._alert_impact: Optional[alert_impact.AlertImpact] = None
-        # The corresponding ID of the alert rule.
-        self._alert_rule_id: Optional[str] = None
-        # The rule template of the alert event. The possible values are: cloudPcProvisionScenario, cloudPcImageUploadScenario, cloudPcOnPremiseNetworkConnectionCheckScenario, unknownFutureValue.
-        self._alert_rule_template: Optional[alert_rule_template.AlertRuleTemplate] = None
-        # The date and time when the alert event was detected. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._detected_date_time: Optional[datetime] = None
-        # The display name of the alert record.
-        self._display_name: Optional[str] = None
-        # The date and time when the alert record was last updated. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date and time when the alert event was resolved. The Timestamp type represents date and time information using ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._resolved_date_time: Optional[datetime] = None
-        # The severity of the alert event. The possible values are: unknown, informational, warning, critical, unknownFutureValue.
-        self._severity: Optional[rule_severity_type.RuleSeverityType] = None
-        # The status of the alert record. The possible values are: active, resolved, unknownFutureValue.
-        self._status: Optional[alert_status_type.AlertStatusType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AlertRecord:
@@ -139,7 +138,10 @@ class AlertRecord(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_impact, alert_rule_template, alert_status_type, rule_severity_type
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertImpact": lambda n : setattr(self, 'alert_impact', n.get_object_value(alert_impact.AlertImpact)),
             "alertRuleId": lambda n : setattr(self, 'alert_rule_id', n.get_str_value()),
             "alertRuleTemplate": lambda n : setattr(self, 'alert_rule_template', n.get_enum_value(alert_rule_template.AlertRuleTemplate)),

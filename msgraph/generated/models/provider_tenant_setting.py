@@ -1,29 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class ProviderTenantSetting(entity.Entity):
-    @property
-    def azure_tenant_id(self,) -> Optional[str]:
-        """
-        Gets the azureTenantId property value. The azureTenantId property
-        Returns: Optional[str]
-        """
-        return self._azure_tenant_id
-    
-    @azure_tenant_id.setter
-    def azure_tenant_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the azureTenantId property value. The azureTenantId property
-        Args:
-            value: Value to set for the azure_tenant_id property.
-        """
-        self._azure_tenant_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new providerTenantSetting and sets the default values.
@@ -41,6 +26,23 @@ class ProviderTenantSetting(entity.Entity):
         self._provider: Optional[str] = None
         # The vendor property
         self._vendor: Optional[str] = None
+    
+    @property
+    def azure_tenant_id(self,) -> Optional[str]:
+        """
+        Gets the azureTenantId property value. The azureTenantId property
+        Returns: Optional[str]
+        """
+        return self._azure_tenant_id
+    
+    @azure_tenant_id.setter
+    def azure_tenant_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the azureTenantId property value. The azureTenantId property
+        Args:
+            value: Value to set for the azure_tenant_id property.
+        """
+        self._azure_tenant_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProviderTenantSetting:
@@ -76,7 +78,9 @@ class ProviderTenantSetting(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureTenantId": lambda n : setattr(self, 'azure_tenant_id', n.get_str_value()),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),

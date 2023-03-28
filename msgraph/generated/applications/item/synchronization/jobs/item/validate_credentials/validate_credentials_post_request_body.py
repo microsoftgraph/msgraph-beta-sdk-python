@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-synchronization_secret_key_string_value_pair = lazy_import('msgraph.generated.models.synchronization_secret_key_string_value_pair')
+if TYPE_CHECKING:
+    from .......models import synchronization_secret_key_string_value_pair
 
 class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new validateCredentialsPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The applicationIdentifier property
+        self._application_identifier: Optional[str] = None
+        # The credentials property
+        self._credentials: Optional[List[synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair]] = None
+        # The templateId property
+        self._template_id: Optional[str] = None
+        # The useSavedCredentials property
+        self._use_saved_credentials: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,22 +55,6 @@ class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the application_identifier property.
         """
         self._application_identifier = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new validateCredentialsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The applicationIdentifier property
-        self._application_identifier: Optional[str] = None
-        # The credentials property
-        self._credentials: Optional[List[synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair]] = None
-        # The templateId property
-        self._template_id: Optional[str] = None
-        # The useSavedCredentials property
-        self._use_saved_credentials: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ValidateCredentialsPostRequestBody:
@@ -90,7 +90,9 @@ class ValidateCredentialsPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .......models import synchronization_secret_key_string_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationIdentifier": lambda n : setattr(self, 'application_identifier', n.get_str_value()),
             "credentials": lambda n : setattr(self, 'credentials', n.get_collection_of_object_values(synchronization_secret_key_string_value_pair.SynchronizationSecretKeyStringValuePair)),
             "templateId": lambda n : setattr(self, 'template_id', n.get_str_value()),

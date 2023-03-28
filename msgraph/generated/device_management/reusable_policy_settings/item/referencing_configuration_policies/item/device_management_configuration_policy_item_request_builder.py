@@ -7,71 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.assign.assign_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.assignments.assignments_request_builder')
-device_management_configuration_policy_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.assignments.item.device_management_configuration_policy_assignment_item_request_builder')
-create_copy_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.create_copy.create_copy_request_builder')
-reorder_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.reorder.reorder_request_builder')
-settings_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.settings.settings_request_builder')
-device_management_configuration_setting_item_request_builder = lazy_import('msgraph.generated.device_management.reusable_policy_settings.item.referencing_configuration_policies.item.settings.item.device_management_configuration_setting_item_request_builder')
-device_management_configuration_policy = lazy_import('msgraph.generated.models.device_management_configuration_policy')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import device_management_configuration_policy
+    from ......models.o_data_errors import o_data_error
+    from .assign import assign_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import device_management_configuration_policy_assignment_item_request_builder
+    from .create_copy import create_copy_request_builder
+    from .reorder import reorder_request_builder
+    from .settings import settings_request_builder
+    from .settings.item import device_management_configuration_setting_item_request_builder
 
 class DeviceManagementConfigurationPolicyItemRequestBuilder():
     """
     Provides operations to manage the referencingConfigurationPolicies property of the microsoft.graph.deviceManagementReusablePolicySetting entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
-        """
-        Provides operations to call the createCopy method.
-        """
-        return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def reorder(self) -> reorder_request_builder.ReorderRequestBuilder:
-        """
-        Provides operations to call the reorder method.
-        """
-        return reorder_request_builder.ReorderRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
-        """
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementConfigurationPolicyAssignment%2Did"] = id
-        return device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementConfigurationPolicyItemRequestBuilder and sets the default values.
@@ -90,6 +42,21 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import device_management_configuration_policy_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementConfigurationPolicyAssignment%2Did"] = id
+        return device_management_configuration_policy_assignment_item_request_builder.DeviceManagementConfigurationPolicyAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property referencingConfigurationPolicies for deviceManagement
@@ -99,6 +66,8 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -117,12 +86,16 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import device_management_configuration_policy
+
         return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
     
     async def patch(self,body: Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy] = None, request_configuration: Optional[DeviceManagementConfigurationPolicyItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_configuration_policy.DeviceManagementConfigurationPolicy]:
@@ -138,12 +111,16 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import device_management_configuration_policy
+
         return await self.request_adapter.send_async(request_info, device_management_configuration_policy.DeviceManagementConfigurationPolicy, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder:
@@ -155,6 +132,8 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .settings.item import device_management_configuration_setting_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementConfigurationSetting%2Did"] = id
         return device_management_configuration_setting_item_request_builder.DeviceManagementConfigurationSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -214,6 +193,51 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        from .assign import assign_request_builder
+
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def create_copy(self) -> create_copy_request_builder.CreateCopyRequestBuilder:
+        """
+        Provides operations to call the createCopy method.
+        """
+        from .create_copy import create_copy_request_builder
+
+        return create_copy_request_builder.CreateCopyRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def reorder(self) -> reorder_request_builder.ReorderRequestBuilder:
+        """
+        Provides operations to call the reorder method.
+        """
+        from .reorder import reorder_request_builder
+
+        return reorder_request_builder.ReorderRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.deviceManagementConfigurationPolicy entity.
+        """
+        from .settings import settings_request_builder
+
+        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementConfigurationPolicyItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -231,12 +255,6 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
         """
         configuration policies referencing the current reusable setting. This property is read-only.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -252,6 +270,12 @@ class DeviceManagementConfigurationPolicyItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementConfigurationPolicyItemRequestBuilderGetRequestConfiguration():

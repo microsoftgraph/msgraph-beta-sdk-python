@@ -1,14 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attribute_mapping = lazy_import('msgraph.generated.models.attribute_mapping')
-filter = lazy_import('msgraph.generated.models.filter')
-metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
-object_flow_types = lazy_import('msgraph.generated.models.object_flow_types')
+if TYPE_CHECKING:
+    from . import attribute_mapping, filter, metadata_entry, object_flow_types
 
 class ObjectMapping(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new objectMapping and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Attribute mappings define which attributes to map from the source object into the target object and how they should flow. A number of functions are available to support the transformation of the original source values.
+        self._attribute_mappings: Optional[List[attribute_mapping.AttributeMapping]] = None
+        # When true, this object mapping will be processed during synchronization. When false, this object mapping will be skipped.
+        self._enabled: Optional[bool] = None
+        # The flowTypes property
+        self._flow_types: Optional[object_flow_types.ObjectFlowTypes] = None
+        # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
+        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        # Human-friendly name of the object mapping.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Defines a filter to be used when deciding whether a given object should be provisioned. For example, you might want to only provision users that are located in the US.
+        self._scope: Optional[filter.Filter] = None
+        # Name of the object in the source directory. Must match the object name from the source directory definition.
+        self._source_object_name: Optional[str] = None
+        # Name of the object in target directory. Must match the object name from the target directory definition.
+        self._target_object_name: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -42,32 +65,6 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
             value: Value to set for the attribute_mappings property.
         """
         self._attribute_mappings = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new objectMapping and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Attribute mappings define which attributes to map from the source object into the target object and how they should flow. A number of functions are available to support the transformation of the original source values.
-        self._attribute_mappings: Optional[List[attribute_mapping.AttributeMapping]] = None
-        # When true, this object mapping will be processed during synchronization. When false, this object mapping will be skipped.
-        self._enabled: Optional[bool] = None
-        # The flowTypes property
-        self._flow_types: Optional[object_flow_types.ObjectFlowTypes] = None
-        # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
-        # Human-friendly name of the object mapping.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Defines a filter to be used when deciding whether a given object should be provisioned. For example, you might want to only provision users that are located in the US.
-        self._scope: Optional[filter.Filter] = None
-        # Name of the object in the source directory. Must match the object name from the source directory definition.
-        self._source_object_name: Optional[str] = None
-        # Name of the object in target directory. Must match the object name from the target directory definition.
-        self._target_object_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ObjectMapping:
@@ -120,7 +117,9 @@ class ObjectMapping(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attribute_mapping, filter, metadata_entry, object_flow_types
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attributeMappings": lambda n : setattr(self, 'attribute_mappings', n.get_collection_of_object_values(attribute_mapping.AttributeMapping)),
             "enabled": lambda n : setattr(self, 'enabled', n.get_bool_value()),
             "flowTypes": lambda n : setattr(self, 'flow_types', n.get_enum_value(object_flow_types.ObjectFlowTypes)),

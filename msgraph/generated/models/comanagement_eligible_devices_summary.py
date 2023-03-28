@@ -1,9 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new comanagementEligibleDevicesSummary and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Count of devices already Co-Managed
+        self._comanaged_count: Optional[int] = None
+        # Count of devices eligible for Co-Management but not yet joined to Azure Active Directory
+        self._eligible_but_not_azure_ad_joined_count: Optional[int] = None
+        # Count of devices fully eligible for Co-Management
+        self._eligible_count: Optional[int] = None
+        # Count of devices ineligible for Co-Management
+        self._ineligible_count: Optional[int] = None
+        # Count of devices that will be eligible for Co-Management after an OS update
+        self._needs_os_update_count: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Count of devices scheduled for Co-Management enrollment. Valid values 0 to 9999999
+        self._scheduled_for_enrollment_count: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -37,28 +58,6 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
             value: Value to set for the comanaged_count property.
         """
         self._comanaged_count = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new comanagementEligibleDevicesSummary and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Count of devices already Co-Managed
-        self._comanaged_count: Optional[int] = None
-        # Count of devices eligible for Co-Management but not yet joined to Azure Active Directory
-        self._eligible_but_not_azure_ad_joined_count: Optional[int] = None
-        # Count of devices fully eligible for Co-Management
-        self._eligible_count: Optional[int] = None
-        # Count of devices ineligible for Co-Management
-        self._ineligible_count: Optional[int] = None
-        # Count of devices that will be eligible for Co-Management after an OS update
-        self._needs_os_update_count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Count of devices scheduled for Co-Management enrollment. Valid values 0 to 9999999
-        self._scheduled_for_enrollment_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ComanagementEligibleDevicesSummary:
@@ -111,7 +110,7 @@ class ComanagementEligibleDevicesSummary(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "comanagedCount": lambda n : setattr(self, 'comanaged_count', n.get_int_value()),
             "eligibleButNotAzureAdJoinedCount": lambda n : setattr(self, 'eligible_but_not_azure_ad_joined_count', n.get_int_value()),
             "eligibleCount": lambda n : setattr(self, 'eligible_count', n.get_int_value()),

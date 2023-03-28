@@ -1,14 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_list_item = lazy_import('msgraph.generated.models.app_list_item')
+if TYPE_CHECKING:
+    from . import app_list_item
 
 class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
     """
     iOS Kerberos authentication settings for single sign-on
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new iosSingleSignOnSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
+        self._allowed_apps_list: Optional[List[app_list_item.AppListItem]] = None
+        # List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
+        self._allowed_urls: Optional[List[str]] = None
+        # The display name of login settings shown on the receiving device.
+        self._display_name: Optional[str] = None
+        # A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
+        self._kerberos_principal_name: Optional[str] = None
+        # A Kerberos realm name. Case sensitive.
+        self._kerberos_realm: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -60,26 +80,6 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         """
         self._allowed_urls = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new iosSingleSignOnSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # List of app identifiers that are allowed to use this login. If this field is omitted, the login applies to all applications on the device. This collection can contain a maximum of 500 elements.
-        self._allowed_apps_list: Optional[List[app_list_item.AppListItem]] = None
-        # List of HTTP URLs that must be matched in order to use this login. With iOS 9.0 or later, a wildcard characters may be used.
-        self._allowed_urls: Optional[List[str]] = None
-        # The display name of login settings shown on the receiving device.
-        self._display_name: Optional[str] = None
-        # A Kerberos principal name. If not provided, the user is prompted for one during profile installation.
-        self._kerberos_principal_name: Optional[str] = None
-        # A Kerberos realm name. Case sensitive.
-        self._kerberos_realm: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosSingleSignOnSettings:
         """
@@ -114,7 +114,9 @@ class IosSingleSignOnSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_list_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedAppsList": lambda n : setattr(self, 'allowed_apps_list', n.get_collection_of_object_values(app_list_item.AppListItem)),
             "allowedUrls": lambda n : setattr(self, 'allowed_urls', n.get_collection_of_primitive_values(str)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

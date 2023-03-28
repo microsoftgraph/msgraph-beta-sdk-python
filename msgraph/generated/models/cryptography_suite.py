@@ -1,18 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_transform_constant = lazy_import('msgraph.generated.models.authentication_transform_constant')
-diffie_hellman_group = lazy_import('msgraph.generated.models.diffie_hellman_group')
-perfect_forward_secrecy_group = lazy_import('msgraph.generated.models.perfect_forward_secrecy_group')
-vpn_encryption_algorithm_type = lazy_import('msgraph.generated.models.vpn_encryption_algorithm_type')
-vpn_integrity_algorithm_type = lazy_import('msgraph.generated.models.vpn_integrity_algorithm_type')
+if TYPE_CHECKING:
+    from . import authentication_transform_constant, diffie_hellman_group, perfect_forward_secrecy_group, vpn_encryption_algorithm_type, vpn_integrity_algorithm_type
 
 class CryptographySuite(AdditionalDataHolder, Parsable):
     """
     VPN Security Association Parameters
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cryptographySuite and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Authentication Transform Constants. Possible values are: md5_96, sha1_96, sha_256_128, aes128Gcm, aes192Gcm, aes256Gcm.
+        self._authentication_transform_constants: Optional[authentication_transform_constant.AuthenticationTransformConstant] = None
+        # Cipher Transform Constants. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
+        self._cipher_transform_constants: Optional[vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType] = None
+        # Diffie Hellman Group. Possible values are: group1, group2, group14, ecp256, ecp384, group24.
+        self._dh_group: Optional[diffie_hellman_group.DiffieHellmanGroup] = None
+        # Encryption Method. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
+        self._encryption_method: Optional[vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType] = None
+        # Integrity Check Method. Possible values are: sha2_256, sha1_96, sha1_160, sha2_384, sha2_512, md5.
+        self._integrity_check_method: Optional[vpn_integrity_algorithm_type.VpnIntegrityAlgorithmType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Perfect Forward Secrecy Group. Possible values are: pfs1, pfs2, pfs2048, ecp256, ecp384, pfsMM, pfs24.
+        self._pfs_group: Optional[perfect_forward_secrecy_group.PerfectForwardSecrecyGroup] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -63,28 +81,6 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
             value: Value to set for the cipher_transform_constants property.
         """
         self._cipher_transform_constants = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cryptographySuite and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Authentication Transform Constants. Possible values are: md5_96, sha1_96, sha_256_128, aes128Gcm, aes192Gcm, aes256Gcm.
-        self._authentication_transform_constants: Optional[authentication_transform_constant.AuthenticationTransformConstant] = None
-        # Cipher Transform Constants. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
-        self._cipher_transform_constants: Optional[vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType] = None
-        # Diffie Hellman Group. Possible values are: group1, group2, group14, ecp256, ecp384, group24.
-        self._dh_group: Optional[diffie_hellman_group.DiffieHellmanGroup] = None
-        # Encryption Method. Possible values are: aes256, des, tripleDes, aes128, aes128Gcm, aes256Gcm, aes192, aes192Gcm, chaCha20Poly1305.
-        self._encryption_method: Optional[vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType] = None
-        # Integrity Check Method. Possible values are: sha2_256, sha1_96, sha1_160, sha2_384, sha2_512, md5.
-        self._integrity_check_method: Optional[vpn_integrity_algorithm_type.VpnIntegrityAlgorithmType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Perfect Forward Secrecy Group. Possible values are: pfs1, pfs2, pfs2048, ecp256, ecp384, pfsMM, pfs24.
-        self._pfs_group: Optional[perfect_forward_secrecy_group.PerfectForwardSecrecyGroup] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CryptographySuite:
@@ -137,7 +133,9 @@ class CryptographySuite(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_transform_constant, diffie_hellman_group, perfect_forward_secrecy_group, vpn_encryption_algorithm_type, vpn_integrity_algorithm_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationTransformConstants": lambda n : setattr(self, 'authentication_transform_constants', n.get_enum_value(authentication_transform_constant.AuthenticationTransformConstant)),
             "cipherTransformConstants": lambda n : setattr(self, 'cipher_transform_constants', n.get_enum_value(vpn_encryption_algorithm_type.VpnEncryptionAlgorithmType)),
             "dhGroup": lambda n : setattr(self, 'dh_group', n.get_enum_value(diffie_hellman_group.DiffieHellmanGroup)),

@@ -1,15 +1,84 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
-device_compliance_policy_script = lazy_import('msgraph.generated.models.device_compliance_policy_script')
-device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
-operating_system_version_range = lazy_import('msgraph.generated.models.operating_system_version_range')
-required_password_type = lazy_import('msgraph.generated.models.required_password_type')
+if TYPE_CHECKING:
+    from . import device_compliance_policy, device_compliance_policy_script, device_threat_protection_level, operating_system_version_range, required_password_type
+
+from . import device_compliance_policy
 
 class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10CompliancePolicy and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10CompliancePolicy"
+        # Require active firewall on Windows devices.
+        self._active_firewall_required: Optional[bool] = None
+        # Require any AntiSpyware solution registered with Windows Decurity Center to be on and monitoring (e.g. Symantec, Windows Defender).
+        self._anti_spyware_required: Optional[bool] = None
+        # Require any Antivirus solution registered with Windows Decurity Center to be on and monitoring (e.g. Symantec, Windows Defender).
+        self._antivirus_required: Optional[bool] = None
+        # Require devices to be reported healthy by Windows Device Health Attestation - bit locker is enabled
+        self._bit_locker_enabled: Optional[bool] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation.
+        self._code_integrity_enabled: Optional[bool] = None
+        # Require to consider SCCM Compliance state into consideration for Intune Compliance State.
+        self._configuration_manager_compliance_required: Optional[bool] = None
+        # Require Windows Defender Antimalware on Windows devices.
+        self._defender_enabled: Optional[bool] = None
+        # Require Windows Defender Antimalware minimum version on Windows devices.
+        self._defender_version: Optional[str] = None
+        # Not yet documented
+        self._device_compliance_policy_script: Optional[device_compliance_policy_script.DeviceCompliancePolicyScript] = None
+        # Require that devices have enabled device threat protection.
+        self._device_threat_protection_enabled: Optional[bool] = None
+        # Device threat protection levels for the Device Threat Protection API.
+        self._device_threat_protection_required_security_level: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.
+        self._early_launch_anti_malware_driver_enabled: Optional[bool] = None
+        # Maximum Windows Phone version.
+        self._mobile_os_maximum_version: Optional[str] = None
+        # Minimum Windows Phone version.
+        self._mobile_os_minimum_version: Optional[str] = None
+        # Maximum Windows 10 version.
+        self._os_maximum_version: Optional[str] = None
+        # Minimum Windows 10 version.
+        self._os_minimum_version: Optional[str] = None
+        # Indicates whether or not to block simple password.
+        self._password_block_simple: Optional[bool] = None
+        # The password expiration in days.
+        self._password_expiration_days: Optional[int] = None
+        # The number of character sets required in the password.
+        self._password_minimum_character_set_count: Optional[int] = None
+        # The minimum password length.
+        self._password_minimum_length: Optional[int] = None
+        # Minutes of inactivity before a password is required.
+        self._password_minutes_of_inactivity_before_lock: Optional[int] = None
+        # The number of previous passwords to prevent re-use of.
+        self._password_previous_password_block_count: Optional[int] = None
+        # Require a password to unlock Windows device.
+        self._password_required: Optional[bool] = None
+        # Require a password to unlock an idle device.
+        self._password_required_to_unlock_from_idle: Optional[bool] = None
+        # Possible values of required passwords.
+        self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation.
+        self._require_healthy_device_report: Optional[bool] = None
+        # Require Windows Defender Antimalware Real-Time Protection on Windows devices.
+        self._rtp_enabled: Optional[bool] = None
+        # Require devices to be reported as healthy by Windows Device Health Attestation - secure boot is enabled.
+        self._secure_boot_enabled: Optional[bool] = None
+        # Require Windows Defender Antimalware Signature to be up to date on Windows devices.
+        self._signature_out_of_date: Optional[bool] = None
+        # Require encryption on windows devices.
+        self._storage_require_encryption: Optional[bool] = None
+        # Require Trusted Platform Module(TPM) to be present.
+        self._tpm_required: Optional[bool] = None
+        # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
+        self._valid_operating_system_build_ranges: Optional[List[operating_system_version_range.OperatingSystemVersionRange]] = None
+    
     @property
     def active_firewall_required(self,) -> Optional[bool]:
         """
@@ -111,77 +180,6 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
             value: Value to set for the configuration_manager_compliance_required property.
         """
         self._configuration_manager_compliance_required = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10CompliancePolicy and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10CompliancePolicy"
-        # Require active firewall on Windows devices.
-        self._active_firewall_required: Optional[bool] = None
-        # Require any AntiSpyware solution registered with Windows Decurity Center to be on and monitoring (e.g. Symantec, Windows Defender).
-        self._anti_spyware_required: Optional[bool] = None
-        # Require any Antivirus solution registered with Windows Decurity Center to be on and monitoring (e.g. Symantec, Windows Defender).
-        self._antivirus_required: Optional[bool] = None
-        # Require devices to be reported healthy by Windows Device Health Attestation - bit locker is enabled
-        self._bit_locker_enabled: Optional[bool] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation.
-        self._code_integrity_enabled: Optional[bool] = None
-        # Require to consider SCCM Compliance state into consideration for Intune Compliance State.
-        self._configuration_manager_compliance_required: Optional[bool] = None
-        # Require Windows Defender Antimalware on Windows devices.
-        self._defender_enabled: Optional[bool] = None
-        # Require Windows Defender Antimalware minimum version on Windows devices.
-        self._defender_version: Optional[str] = None
-        # Not yet documented
-        self._device_compliance_policy_script: Optional[device_compliance_policy_script.DeviceCompliancePolicyScript] = None
-        # Require that devices have enabled device threat protection.
-        self._device_threat_protection_enabled: Optional[bool] = None
-        # Device threat protection levels for the Device Threat Protection API.
-        self._device_threat_protection_required_security_level: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation - early launch antimalware driver is enabled.
-        self._early_launch_anti_malware_driver_enabled: Optional[bool] = None
-        # Maximum Windows Phone version.
-        self._mobile_os_maximum_version: Optional[str] = None
-        # Minimum Windows Phone version.
-        self._mobile_os_minimum_version: Optional[str] = None
-        # Maximum Windows 10 version.
-        self._os_maximum_version: Optional[str] = None
-        # Minimum Windows 10 version.
-        self._os_minimum_version: Optional[str] = None
-        # Indicates whether or not to block simple password.
-        self._password_block_simple: Optional[bool] = None
-        # The password expiration in days.
-        self._password_expiration_days: Optional[int] = None
-        # The number of character sets required in the password.
-        self._password_minimum_character_set_count: Optional[int] = None
-        # The minimum password length.
-        self._password_minimum_length: Optional[int] = None
-        # Minutes of inactivity before a password is required.
-        self._password_minutes_of_inactivity_before_lock: Optional[int] = None
-        # The number of previous passwords to prevent re-use of.
-        self._password_previous_password_block_count: Optional[int] = None
-        # Require a password to unlock Windows device.
-        self._password_required: Optional[bool] = None
-        # Require a password to unlock an idle device.
-        self._password_required_to_unlock_from_idle: Optional[bool] = None
-        # Possible values of required passwords.
-        self._password_required_type: Optional[required_password_type.RequiredPasswordType] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation.
-        self._require_healthy_device_report: Optional[bool] = None
-        # Require Windows Defender Antimalware Real-Time Protection on Windows devices.
-        self._rtp_enabled: Optional[bool] = None
-        # Require devices to be reported as healthy by Windows Device Health Attestation - secure boot is enabled.
-        self._secure_boot_enabled: Optional[bool] = None
-        # Require Windows Defender Antimalware Signature to be up to date on Windows devices.
-        self._signature_out_of_date: Optional[bool] = None
-        # Require encryption on windows devices.
-        self._storage_require_encryption: Optional[bool] = None
-        # Require Trusted Platform Module(TPM) to be present.
-        self._tpm_required: Optional[bool] = None
-        # The valid operating system build ranges on Windows devices. This collection can contain a maximum of 10000 elements.
-        self._valid_operating_system_build_ranges: Optional[List[operating_system_version_range.OperatingSystemVersionRange]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10CompliancePolicy:
@@ -302,7 +300,9 @@ class Windows10CompliancePolicy(device_compliance_policy.DeviceCompliancePolicy)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_compliance_policy, device_compliance_policy_script, device_threat_protection_level, operating_system_version_range, required_password_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeFirewallRequired": lambda n : setattr(self, 'active_firewall_required', n.get_bool_value()),
             "antivirusRequired": lambda n : setattr(self, 'antivirus_required', n.get_bool_value()),
             "antiSpywareRequired": lambda n : setattr(self, 'anti_spyware_required', n.get_bool_value()),

@@ -1,29 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-drive_recipient = lazy_import('msgraph.generated.models.drive_recipient')
+if TYPE_CHECKING:
+    from ..........models import drive_recipient
 
 class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new createLinkPostRequestBody and sets the default values.
@@ -41,8 +24,27 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         self._retain_inherited_permissions: Optional[bool] = None
         # The scope property
         self._scope: Optional[str] = None
+        # The sendNotification property
+        self._send_notification: Optional[bool] = None
         # The type property
         self._type: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CreateLinkPostRequestBody:
@@ -78,12 +80,15 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ..........models import drive_recipient
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "password": lambda n : setattr(self, 'password', n.get_str_value()),
             "recipients": lambda n : setattr(self, 'recipients', n.get_collection_of_object_values(drive_recipient.DriveRecipient)),
             "retainInheritedPermissions": lambda n : setattr(self, 'retain_inherited_permissions', n.get_bool_value()),
             "scope": lambda n : setattr(self, 'scope', n.get_str_value()),
+            "sendNotification": lambda n : setattr(self, 'send_notification', n.get_bool_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
         }
         return fields
@@ -156,6 +161,23 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._scope = value
     
+    @property
+    def send_notification(self,) -> Optional[bool]:
+        """
+        Gets the sendNotification property value. The sendNotification property
+        Returns: Optional[bool]
+        """
+        return self._send_notification
+    
+    @send_notification.setter
+    def send_notification(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the sendNotification property value. The sendNotification property
+        Args:
+            value: Value to set for the send_notification property.
+        """
+        self._send_notification = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -169,6 +191,7 @@ class CreateLinkPostRequestBody(AdditionalDataHolder, Parsable):
         writer.write_collection_of_object_values("recipients", self.recipients)
         writer.write_bool_value("retainInheritedPermissions", self.retain_inherited_permissions)
         writer.write_str_value("scope", self.scope)
+        writer.write_bool_value("sendNotification", self.send_notification)
         writer.write_str_value("type", self.type)
         writer.write_additional_data_value(self.additional_data)
     

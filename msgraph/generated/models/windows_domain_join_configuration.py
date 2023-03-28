@@ -1,11 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
+if TYPE_CHECKING:
+    from . import device_configuration
+
+from . import device_configuration
 
 class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsDomainJoinConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsDomainJoinConfiguration"
+        # Active Directory domain name to join.
+        self._active_directory_domain_name: Optional[str] = None
+        # Fixed prefix to be used for computer name.
+        self._computer_name_static_prefix: Optional[str] = None
+        # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
+        self._computer_name_suffix_random_char_count: Optional[int] = None
+        # Reference to device configurations required for network connectivity
+        self._network_access_configurations: Optional[List[device_configuration.DeviceConfiguration]] = None
+        # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
+        self._organizational_unit: Optional[str] = None
+    
     @property
     def active_directory_domain_name(self,) -> Optional[str]:
         """
@@ -57,23 +76,6 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         """
         self._computer_name_suffix_random_char_count = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsDomainJoinConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsDomainJoinConfiguration"
-        # Active Directory domain name to join.
-        self._active_directory_domain_name: Optional[str] = None
-        # Fixed prefix to be used for computer name.
-        self._computer_name_static_prefix: Optional[str] = None
-        # Dynamically generated characters used as suffix for computer name. Valid values 3 to 14
-        self._computer_name_suffix_random_char_count: Optional[int] = None
-        # Reference to device configurations required for network connectivity
-        self._network_access_configurations: Optional[List[device_configuration.DeviceConfiguration]] = None
-        # Organizational unit (OU) where the computer account will be created. If this parameter is NULL, the well known computer object container will be used as published in the domain.
-        self._organizational_unit: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsDomainJoinConfiguration:
         """
@@ -91,7 +93,9 @@ class WindowsDomainJoinConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDirectoryDomainName": lambda n : setattr(self, 'active_directory_domain_name', n.get_str_value()),
             "computerNameStaticPrefix": lambda n : setattr(self, 'computer_name_static_prefix', n.get_str_value()),
             "computerNameSuffixRandomCharCount": lambda n : setattr(self, 'computer_name_suffix_random_char_count', n.get_int_value()),

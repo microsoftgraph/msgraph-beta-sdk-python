@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_compliance_policy = lazy_import('msgraph.generated.models.device_compliance_policy')
-device_threat_protection_level = lazy_import('msgraph.generated.models.device_threat_protection_level')
-mac_o_s_gatekeeper_app_sources = lazy_import('msgraph.generated.models.mac_o_s_gatekeeper_app_sources')
-required_password_type = lazy_import('msgraph.generated.models.required_password_type')
+if TYPE_CHECKING:
+    from . import device_compliance_policy, device_threat_protection_level, mac_o_s_gatekeeper_app_sources, required_password_type
+
+from . import device_compliance_policy
 
 class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
-    @property
-    def advanced_threat_protection_required_security_level(self,) -> Optional[device_threat_protection_level.DeviceThreatProtectionLevel]:
-        """
-        Gets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
-        Returns: Optional[device_threat_protection_level.DeviceThreatProtectionLevel]
-        """
-        return self._advanced_threat_protection_required_security_level
-    
-    @advanced_threat_protection_required_security_level.setter
-    def advanced_threat_protection_required_security_level(self,value: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None) -> None:
-        """
-        Sets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
-        Args:
-            value: Value to set for the advanced_threat_protection_required_security_level property.
-        """
-        self._advanced_threat_protection_required_security_level = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new MacOSCompliancePolicy and sets the default values.
@@ -74,6 +56,23 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         self._storage_require_encryption: Optional[bool] = None
         # Require that devices have enabled system integrity protection.
         self._system_integrity_protection_enabled: Optional[bool] = None
+    
+    @property
+    def advanced_threat_protection_required_security_level(self,) -> Optional[device_threat_protection_level.DeviceThreatProtectionLevel]:
+        """
+        Gets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
+        Returns: Optional[device_threat_protection_level.DeviceThreatProtectionLevel]
+        """
+        return self._advanced_threat_protection_required_security_level
+    
+    @advanced_threat_protection_required_security_level.setter
+    def advanced_threat_protection_required_security_level(self,value: Optional[device_threat_protection_level.DeviceThreatProtectionLevel] = None) -> None:
+        """
+        Sets the advancedThreatProtectionRequiredSecurityLevel property value. Device threat protection levels for the Device Threat Protection API.
+        Args:
+            value: Value to set for the advanced_threat_protection_required_security_level property.
+        """
+        self._advanced_threat_protection_required_security_level = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSCompliancePolicy:
@@ -194,7 +193,9 @@ class MacOSCompliancePolicy(device_compliance_policy.DeviceCompliancePolicy):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_compliance_policy, device_threat_protection_level, mac_o_s_gatekeeper_app_sources, required_password_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'advanced_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),
             "deviceThreatProtectionEnabled": lambda n : setattr(self, 'device_threat_protection_enabled', n.get_bool_value()),
             "deviceThreatProtectionRequiredSecurityLevel": lambda n : setattr(self, 'device_threat_protection_required_security_level', n.get_enum_value(device_threat_protection_level.DeviceThreatProtectionLevel)),

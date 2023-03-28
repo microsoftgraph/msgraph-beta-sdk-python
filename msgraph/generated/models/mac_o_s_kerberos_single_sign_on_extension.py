@@ -1,11 +1,80 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mac_o_s_single_sign_on_extension = lazy_import('msgraph.generated.models.mac_o_s_single_sign_on_extension')
+if TYPE_CHECKING:
+    from . import mac_o_s_single_sign_on_extension
+
+from . import mac_o_s_single_sign_on_extension
 
 class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSKerberosSingleSignOnExtension and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSKerberosSingleSignOnExtension"
+        # Gets or sets the Active Directory site.
+        self._active_directory_site_code: Optional[str] = None
+        # Enables or disables whether the Kerberos extension can automatically determine its site name.
+        self._block_active_directory_site_auto_discovery: Optional[bool] = None
+        # Enables or disables Keychain usage.
+        self._block_automatic_login: Optional[bool] = None
+        # Gets or sets the Generic Security Services name of the Kerberos cache to use for this profile.
+        self._cache_name: Optional[str] = None
+        # Gets or sets a list of app Bundle IDs allowed to access the Kerberos Ticket Granting Ticket.
+        self._credential_bundle_id_access_control_list: Optional[List[str]] = None
+        # When set to True, the credential is requested on the next matching Kerberos challenge or network state change. When the credential is expired or missing, a new credential is created. Available for devices running macOS versions 12 and later.
+        self._credentials_cache_monitored: Optional[bool] = None
+        # Gets or sets a list of realms for custom domain-realm mapping. Realms are case sensitive.
+        self._domain_realms: Optional[List[str]] = None
+        # Gets or sets a list of hosts or domain names for which the app extension performs SSO.
+        self._domains: Optional[List[str]] = None
+        # When true, this profile's realm will be selected as the default. Necessary if multiple Kerberos-type profiles are configured.
+        self._is_default_realm: Optional[bool] = None
+        # When set to True, the Kerberos extension allows any apps entered with the app bundle ID, managed apps, and standard Kerberos utilities, such as TicketViewer and klist, to access and use the credential. Available for devices running macOS versions 12 and later.
+        self._kerberos_apps_in_bundle_id_a_c_l_included: Optional[bool] = None
+        # When set to True, the Kerberos extension allows managed apps, and any apps entered with the app bundle ID to access the credential. When set to False, the Kerberos extension allows all apps to access the credential. Available for devices running iOS and iPadOS versions 14 and later.
+        self._managed_apps_in_bundle_id_a_c_l_included: Optional[bool] = None
+        # Select how other processes use the Kerberos Extension credential.
+        self._mode_credential_used: Optional[str] = None
+        # Enables or disables password changes.
+        self._password_block_modification: Optional[bool] = None
+        # Gets or sets the URL that the user will be sent to when they initiate a password change.
+        self._password_change_url: Optional[str] = None
+        # Enables or disables password syncing. This won't affect users logged in with a mobile account on macOS.
+        self._password_enable_local_sync: Optional[bool] = None
+        # Overrides the default password expiration in days. For most domains, this value is calculated automatically.
+        self._password_expiration_days: Optional[int] = None
+        # Gets or sets the number of days until the user is notified that their password will expire (default is 15).
+        self._password_expiration_notification_days: Optional[int] = None
+        # Gets or sets the minimum number of days until a user can change their password again.
+        self._password_minimum_age_days: Optional[int] = None
+        # Gets or sets the minimum length of a password.
+        self._password_minimum_length: Optional[int] = None
+        # Gets or sets the number of previous passwords to block.
+        self._password_previous_password_block_count: Optional[int] = None
+        # Enables or disables whether passwords must meet Active Directory's complexity requirements.
+        self._password_require_active_directory_complexity: Optional[bool] = None
+        # Gets or sets a description of the password complexity requirements.
+        self._password_requirements_description: Optional[str] = None
+        # Add creates an ordered list of preferred Key Distribution Centers (KDCs) to use for Kerberos traffic. This list is used when the servers are not discoverable using DNS. When the servers are discoverable, the list is used for both connectivity checks, and used first for Kerberos traffic. If the servers don’t respond, then the device uses DNS discovery. Delete removes an existing list, and devices use DNS discovery. Available for devices running macOS versions 12 and later.
+        self._preferred_k_d_cs: Optional[List[str]] = None
+        # Gets or sets the case-sensitive realm name for this profile.
+        self._realm: Optional[str] = None
+        # Gets or sets whether to require authentication via Touch ID, Face ID, or a passcode to access the keychain entry.
+        self._require_user_presence: Optional[bool] = None
+        # Text displayed to the user at the Kerberos sign in window. Available for devices running iOS and iPadOS versions 14 and later.
+        self._sign_in_help_text: Optional[str] = None
+        # When set to True, LDAP connections are required to use Transport Layer Security (TLS). Available for devices running macOS versions 11 and later.
+        self._tls_for_l_d_a_p_required: Optional[bool] = None
+        # Gets or sets the principle user name to use for this profile. The realm name does not need to be included.
+        self._user_principal_name: Optional[str] = None
+        # When set to True, the user isn’t prompted to set up the Kerberos extension until the extension is enabled by the admin, or a Kerberos challenge is received. Available for devices running macOS versions 11 and later.
+        self._user_setup_delayed: Optional[bool] = None
+        # This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
+        self._username_label_custom: Optional[str] = None
+    
     @property
     def active_directory_site_code(self,) -> Optional[str]:
         """
@@ -73,73 +142,6 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
             value: Value to set for the cache_name property.
         """
         self._cache_name = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSKerberosSingleSignOnExtension and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSKerberosSingleSignOnExtension"
-        # Gets or sets the Active Directory site.
-        self._active_directory_site_code: Optional[str] = None
-        # Enables or disables whether the Kerberos extension can automatically determine its site name.
-        self._block_active_directory_site_auto_discovery: Optional[bool] = None
-        # Enables or disables Keychain usage.
-        self._block_automatic_login: Optional[bool] = None
-        # Gets or sets the Generic Security Services name of the Kerberos cache to use for this profile.
-        self._cache_name: Optional[str] = None
-        # Gets or sets a list of app Bundle IDs allowed to access the Kerberos Ticket Granting Ticket.
-        self._credential_bundle_id_access_control_list: Optional[List[str]] = None
-        # When set to True, the credential is requested on the next matching Kerberos challenge or network state change. When the credential is expired or missing, a new credential is created. Available for devices running macOS versions 12 and later.
-        self._credentials_cache_monitored: Optional[bool] = None
-        # Gets or sets a list of realms for custom domain-realm mapping. Realms are case sensitive.
-        self._domain_realms: Optional[List[str]] = None
-        # Gets or sets a list of hosts or domain names for which the app extension performs SSO.
-        self._domains: Optional[List[str]] = None
-        # When true, this profile's realm will be selected as the default. Necessary if multiple Kerberos-type profiles are configured.
-        self._is_default_realm: Optional[bool] = None
-        # When set to True, the Kerberos extension allows any apps entered with the app bundle ID, managed apps, and standard Kerberos utilities, such as TicketViewer and klist, to access and use the credential. Available for devices running macOS versions 12 and later.
-        self._kerberos_apps_in_bundle_id_a_c_l_included: Optional[bool] = None
-        # When set to True, the Kerberos extension allows managed apps, and any apps entered with the app bundle ID to access the credential. When set to False, the Kerberos extension allows all apps to access the credential. Available for devices running iOS and iPadOS versions 14 and later.
-        self._managed_apps_in_bundle_id_a_c_l_included: Optional[bool] = None
-        # Select how other processes use the Kerberos Extension credential.
-        self._mode_credential_used: Optional[str] = None
-        # Enables or disables password changes.
-        self._password_block_modification: Optional[bool] = None
-        # Gets or sets the URL that the user will be sent to when they initiate a password change.
-        self._password_change_url: Optional[str] = None
-        # Enables or disables password syncing. This won't affect users logged in with a mobile account on macOS.
-        self._password_enable_local_sync: Optional[bool] = None
-        # Overrides the default password expiration in days. For most domains, this value is calculated automatically.
-        self._password_expiration_days: Optional[int] = None
-        # Gets or sets the number of days until the user is notified that their password will expire (default is 15).
-        self._password_expiration_notification_days: Optional[int] = None
-        # Gets or sets the minimum number of days until a user can change their password again.
-        self._password_minimum_age_days: Optional[int] = None
-        # Gets or sets the minimum length of a password.
-        self._password_minimum_length: Optional[int] = None
-        # Gets or sets the number of previous passwords to block.
-        self._password_previous_password_block_count: Optional[int] = None
-        # Enables or disables whether passwords must meet Active Directory's complexity requirements.
-        self._password_require_active_directory_complexity: Optional[bool] = None
-        # Gets or sets a description of the password complexity requirements.
-        self._password_requirements_description: Optional[str] = None
-        # Add creates an ordered list of preferred Key Distribution Centers (KDCs) to use for Kerberos traffic. This list is used when the servers are not discoverable using DNS. When the servers are discoverable, the list is used for both connectivity checks, and used first for Kerberos traffic. If the servers don’t respond, then the device uses DNS discovery. Delete removes an existing list, and devices use DNS discovery. Available for devices running macOS versions 12 and later.
-        self._preferred_k_d_cs: Optional[List[str]] = None
-        # Gets or sets the case-sensitive realm name for this profile.
-        self._realm: Optional[str] = None
-        # Gets or sets whether to require authentication via Touch ID, Face ID, or a passcode to access the keychain entry.
-        self._require_user_presence: Optional[bool] = None
-        # Text displayed to the user at the Kerberos sign in window. Available for devices running iOS and iPadOS versions 14 and later.
-        self._sign_in_help_text: Optional[str] = None
-        # When set to True, LDAP connections are required to use Transport Layer Security (TLS). Available for devices running macOS versions 11 and later.
-        self._tls_for_l_d_a_p_required: Optional[bool] = None
-        # Gets or sets the principle user name to use for this profile. The realm name does not need to be included.
-        self._user_principal_name: Optional[str] = None
-        # When set to True, the user isn’t prompted to set up the Kerberos extension until the extension is enabled by the admin, or a Kerberos challenge is received. Available for devices running macOS versions 11 and later.
-        self._user_setup_delayed: Optional[bool] = None
-        # This label replaces the user name shown in the Kerberos extension. You can enter a name to match the name of your company or organization. Available for devices running macOS versions 11 and later.
-        self._username_label_custom: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSKerberosSingleSignOnExtension:
@@ -226,7 +228,9 @@ class MacOSKerberosSingleSignOnExtension(mac_o_s_single_sign_on_extension.MacOSS
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mac_o_s_single_sign_on_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activeDirectorySiteCode": lambda n : setattr(self, 'active_directory_site_code', n.get_str_value()),
             "blockActiveDirectorySiteAutoDiscovery": lambda n : setattr(self, 'block_active_directory_site_auto_discovery', n.get_bool_value()),
             "blockAutomaticLogin": lambda n : setattr(self, 'block_automatic_login', n.get_bool_value()),

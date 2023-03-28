@@ -1,31 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_callout_extension = lazy_import('msgraph.generated.models.custom_callout_extension')
-custom_extension_callback_configuration = lazy_import('msgraph.generated.models.custom_extension_callback_configuration')
-user = lazy_import('msgraph.generated.models.user')
+if TYPE_CHECKING:
+    from .. import custom_callout_extension, custom_extension_callback_configuration, user
+
+from .. import custom_callout_extension
 
 class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
-    @property
-    def callback_configuration(self,) -> Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration]:
-        """
-        Gets the callbackConfiguration property value. The callback configuration for a custom extension.
-        Returns: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration]
-        """
-        return self._callback_configuration
-    
-    @callback_configuration.setter
-    def callback_configuration(self,value: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration] = None) -> None:
-        """
-        Sets the callbackConfiguration property value. The callback configuration for a custom extension.
-        Args:
-            value: Value to set for the callback_configuration property.
-        """
-        self._callback_configuration = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new CustomTaskExtension and sets the default values.
@@ -42,6 +25,23 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         self._last_modified_by: Optional[user.User] = None
         # When the custom extension was last modified.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         self._last_modified_date_time: Optional[datetime] = None
+    
+    @property
+    def callback_configuration(self,) -> Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration]:
+        """
+        Gets the callbackConfiguration property value. The callback configuration for a custom extension.
+        Returns: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration]
+        """
+        return self._callback_configuration
+    
+    @callback_configuration.setter
+    def callback_configuration(self,value: Optional[custom_extension_callback_configuration.CustomExtensionCallbackConfiguration] = None) -> None:
+        """
+        Sets the callbackConfiguration property value. The callback configuration for a custom extension.
+        Args:
+            value: Value to set for the callback_configuration property.
+        """
+        self._callback_configuration = value
     
     @property
     def created_by(self,) -> Optional[user.User]:
@@ -94,7 +94,9 @@ class CustomTaskExtension(custom_callout_extension.CustomCalloutExtension):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import custom_callout_extension, custom_extension_callback_configuration, user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "callbackConfiguration": lambda n : setattr(self, 'callback_configuration', n.get_object_value(custom_extension_callback_configuration.CustomExtensionCallbackConfiguration)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user.User)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-operation_error = lazy_import('msgraph.generated.models.operation_error')
-teamwork_device_operation_type = lazy_import('msgraph.generated.models.teamwork_device_operation_type')
+if TYPE_CHECKING:
+    from . import entity, identity_set, operation_error, teamwork_device_operation_type
+
+from . import entity
 
 class TeamworkDeviceOperation(entity.Entity):
-    @property
-    def completed_date_time(self,) -> Optional[datetime]:
-        """
-        Gets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
-        Returns: Optional[datetime]
-        """
-        return self._completed_date_time
-    
-    @completed_date_time.setter
-    def completed_date_time(self,value: Optional[datetime] = None) -> None:
-        """
-        Sets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
-        Args:
-            value: Value to set for the completed_date_time property.
-        """
-        self._completed_date_time = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new teamworkDeviceOperation and sets the default values.
@@ -52,6 +34,23 @@ class TeamworkDeviceOperation(entity.Entity):
         self._started_date_time: Optional[datetime] = None
         # The current status of the async operation, for example, Queued, Scheduled, InProgress,  Successful, Cancelled, and Failed.
         self._status: Optional[str] = None
+    
+    @property
+    def completed_date_time(self,) -> Optional[datetime]:
+        """
+        Gets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
+        Returns: Optional[datetime]
+        """
+        return self._completed_date_time
+    
+    @completed_date_time.setter
+    def completed_date_time(self,value: Optional[datetime] = None) -> None:
+        """
+        Sets the completedDateTime property value. Time at which the operation reached a final state (for example, Successful, Failed, and Cancelled).
+        Args:
+            value: Value to set for the completed_date_time property.
+        """
+        self._completed_date_time = value
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -121,7 +120,9 @@ class TeamworkDeviceOperation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, operation_error, teamwork_device_operation_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(identity_set.IdentitySet)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

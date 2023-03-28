@@ -7,32 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_resource_role_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.access_package_resource_role_scopes.item.access_package_resource_role.access_package_resource_role_request_builder')
-access_package_resource_scope_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_catalogs.item.access_packages.item.access_package_resource_role_scopes.item.access_package_resource_scope.access_package_resource_scope_request_builder')
-access_package_resource_role_scope = lazy_import('msgraph.generated.models.access_package_resource_role_scope')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .........models import access_package_resource_role_scope
+    from .........models.o_data_errors import o_data_error
+    from .access_package_resource_role import access_package_resource_role_request_builder
+    from .access_package_resource_scope import access_package_resource_scope_request_builder
 
 class AccessPackageResourceRoleScopeItemRequestBuilder():
     """
     Provides operations to manage the accessPackageResourceRoleScopes property of the microsoft.graph.accessPackage entity.
     """
-    @property
-    def access_package_resource_role(self) -> access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceRole property of the microsoft.graph.accessPackageResourceRoleScope entity.
-        """
-        return access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def access_package_resource_scope(self) -> access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder:
-        """
-        Provides operations to manage the accessPackageResourceScope property of the microsoft.graph.accessPackageResourceRoleScope entity.
-        """
-        return access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AccessPackageResourceRoleScopeItemRequestBuilder and sets the default values.
@@ -60,6 +46,8 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -78,12 +66,16 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .........models import access_package_resource_role_scope
+
         return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, error_mapping)
     
     async def patch(self,body: Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope] = None, request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_resource_role_scope.AccessPackageResourceRoleScope]:
@@ -99,12 +91,16 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .........models import access_package_resource_role_scope
+
         return await self.request_adapter.send_async(request_info, access_package_resource_role_scope.AccessPackageResourceRoleScope, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageResourceRoleScopeItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -162,6 +158,24 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def access_package_resource_role(self) -> access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceRole property of the microsoft.graph.accessPackageResourceRoleScope entity.
+        """
+        from .access_package_resource_role import access_package_resource_role_request_builder
+
+        return access_package_resource_role_request_builder.AccessPackageResourceRoleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def access_package_resource_scope(self) -> access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder:
+        """
+        Provides operations to manage the accessPackageResourceScope property of the microsoft.graph.accessPackageResourceRoleScope entity.
+        """
+        from .access_package_resource_scope import access_package_resource_scope_request_builder
+
+        return access_package_resource_scope_request_builder.AccessPackageResourceScopeRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AccessPackageResourceRoleScopeItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -179,12 +193,6 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
         """
         Get accessPackageResourceRoleScopes from identityGovernance
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -200,6 +208,12 @@ class AccessPackageResourceRoleScopeItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AccessPackageResourceRoleScopeItemRequestBuilderGetRequestConfiguration():

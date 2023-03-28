@@ -1,12 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-application_segment = lazy_import('msgraph.generated.models.application_segment')
-cors_configuration_v2 = lazy_import('msgraph.generated.models.cors_configuration_v2')
+if TYPE_CHECKING:
+    from . import application_segment, cors_configuration_v2
+
+from . import application_segment
 
 class WebApplicationSegment(application_segment.ApplicationSegment):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WebApplicationSegment and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.webApplicationSegment"
+        # If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.
+        self._alternate_url: Optional[str] = None
+        # A collection of CORS Rule definitions for a particular application segment.
+        self._cors_configurations: Optional[List[cors_configuration_v2.CorsConfiguration_v2]] = None
+        # The published external URL for the application segment; for example, https://intranet.contoso.com/.
+        self._external_url: Optional[str] = None
+        # The internal URL of the application segment; for example, https://intranet/.
+        self._internal_url: Optional[str] = None
+    
     @property
     def alternate_url(self,) -> Optional[str]:
         """
@@ -23,21 +39,6 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
             value: Value to set for the alternate_url property.
         """
         self._alternate_url = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WebApplicationSegment and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.webApplicationSegment"
-        # If you're configuring a traffic manager in front of multiple App Proxy application segments, this property contains the user-friendly URL that will point to the traffic manager.
-        self._alternate_url: Optional[str] = None
-        # A collection of CORS Rule definitions for a particular application segment.
-        self._cors_configurations: Optional[List[cors_configuration_v2.CorsConfiguration_v2]] = None
-        # The published external URL for the application segment; for example, https://intranet.contoso.com/.
-        self._external_url: Optional[str] = None
-        # The internal URL of the application segment; for example, https://intranet/.
-        self._internal_url: Optional[str] = None
     
     @property
     def cors_configurations(self,) -> Optional[List[cors_configuration_v2.CorsConfiguration_v2]]:
@@ -90,7 +91,9 @@ class WebApplicationSegment(application_segment.ApplicationSegment):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_segment, cors_configuration_v2
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
             "corsConfigurations": lambda n : setattr(self, 'cors_configurations', n.get_collection_of_object_values(cors_configuration_v2.CorsConfiguration_v2)),
             "externalUrl": lambda n : setattr(self, 'external_url', n.get_str_value()),

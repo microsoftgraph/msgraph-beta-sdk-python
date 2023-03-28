@@ -7,40 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity_governance_resume_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.item.task_processing_results.item.identity_governance_resume.identity_governance_resume_request_builder')
-subject_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.item.task_processing_results.item.subject.subject_request_builder')
-task_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.workflows.item.user_processing_results.item.task_processing_results.item.task.task_request_builder')
-task_processing_result = lazy_import('msgraph.generated.models.identity_governance.task_processing_result')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .........models.identity_governance import task_processing_result
+    from .........models.o_data_errors import o_data_error
+    from .identity_governance_resume import identity_governance_resume_request_builder
+    from .subject import subject_request_builder
+    from .task import task_request_builder
 
 class TaskProcessingResultItemRequestBuilder():
     """
     Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
     """
-    @property
-    def identity_governance_resume(self) -> identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder:
-        """
-        Provides operations to call the resume method.
-        """
-        return identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def subject(self) -> subject_request_builder.SubjectRequestBuilder:
-        """
-        Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
-        """
-        return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def task(self) -> task_request_builder.TaskRequestBuilder:
-        """
-        Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
-        """
-        return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TaskProcessingResultItemRequestBuilder and sets the default values.
@@ -69,12 +48,16 @@ class TaskProcessingResultItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .........models.identity_governance import task_processing_result
+
         return await self.request_adapter.send_async(request_info, task_processing_result.TaskProcessingResult, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[TaskProcessingResultItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -95,17 +78,38 @@ class TaskProcessingResultItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def identity_governance_resume(self) -> identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder:
+        """
+        Provides operations to call the resume method.
+        """
+        from .identity_governance_resume import identity_governance_resume_request_builder
+
+        return identity_governance_resume_request_builder.IdentityGovernanceResumeRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def subject(self) -> subject_request_builder.SubjectRequestBuilder:
+        """
+        Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
+        """
+        from .subject import subject_request_builder
+
+        return subject_request_builder.SubjectRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def task(self) -> task_request_builder.TaskRequestBuilder:
+        """
+        Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
+        """
+        from .task import task_request_builder
+
+        return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TaskProcessingResultItemRequestBuilderGetQueryParameters():
         """
         The associated individual task execution.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -121,6 +125,12 @@ class TaskProcessingResultItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TaskProcessingResultItemRequestBuilderGetRequestConfiguration():

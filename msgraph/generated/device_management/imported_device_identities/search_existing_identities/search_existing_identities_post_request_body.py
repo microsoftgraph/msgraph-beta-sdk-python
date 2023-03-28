@@ -1,11 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-imported_device_identity = lazy_import('msgraph.generated.models.imported_device_identity')
+if TYPE_CHECKING:
+    from ....models import imported_device_identity
 
 class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new searchExistingIdentitiesPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The importedDeviceIdentities property
+        self._imported_device_identities: Optional[List[imported_device_identity.ImportedDeviceIdentity]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,16 +32,6 @@ class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new searchExistingIdentitiesPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The importedDeviceIdentities property
-        self._imported_device_identities: Optional[List[imported_device_identity.ImportedDeviceIdentity]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SearchExistingIdentitiesPostRequestBody:
@@ -50,7 +50,9 @@ class SearchExistingIdentitiesPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import imported_device_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "importedDeviceIdentities": lambda n : setattr(self, 'imported_device_identities', n.get_collection_of_object_values(imported_device_identity.ImportedDeviceIdentity)),
         }
         return fields

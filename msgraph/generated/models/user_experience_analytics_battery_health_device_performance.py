@@ -1,32 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-user_experience_analytics_health_state = lazy_import('msgraph.generated.models.user_experience_analytics_health_state')
+if TYPE_CHECKING:
+    from . import entity, user_experience_analytics_health_state
+
+from . import entity
 
 class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
     """
     The user experience analytics battery health device performance entity contains device level battery information.
     """
-    @property
-    def battery_age_in_days(self,) -> Optional[int]:
-        """
-        Gets the batteryAgeInDays property value. Estimated battery age. Unit in days. Valid values -2147483648 to 2147483647
-        Returns: Optional[int]
-        """
-        return self._battery_age_in_days
-    
-    @battery_age_in_days.setter
-    def battery_age_in_days(self,value: Optional[int] = None) -> None:
-        """
-        Sets the batteryAgeInDays property value. Estimated battery age. Unit in days. Valid values -2147483648 to 2147483647
-        Args:
-            value: Value to set for the battery_age_in_days property.
-        """
-        self._battery_age_in_days = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new userExperienceAnalyticsBatteryHealthDevicePerformance and sets the default values.
@@ -52,6 +36,23 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         self._model: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def battery_age_in_days(self,) -> Optional[int]:
+        """
+        Gets the batteryAgeInDays property value. Estimated battery age. Unit in days. Valid values -2147483648 to 2147483647
+        Returns: Optional[int]
+        """
+        return self._battery_age_in_days
+    
+    @battery_age_in_days.setter
+    def battery_age_in_days(self,value: Optional[int] = None) -> None:
+        """
+        Sets the batteryAgeInDays property value. Estimated battery age. Unit in days. Valid values -2147483648 to 2147483647
+        Args:
+            value: Value to set for the battery_age_in_days property.
+        """
+        self._battery_age_in_days = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsBatteryHealthDevicePerformance:
@@ -138,7 +139,9 @@ class UserExperienceAnalyticsBatteryHealthDevicePerformance(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, user_experience_analytics_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "batteryAgeInDays": lambda n : setattr(self, 'battery_age_in_days', n.get_int_value()),
             "deviceBatteryHealthScore": lambda n : setattr(self, 'device_battery_health_score', n.get_int_value()),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),

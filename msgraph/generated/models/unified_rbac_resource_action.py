@@ -1,12 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-unified_rbac_resource_scope = lazy_import('msgraph.generated.models.unified_rbac_resource_scope')
+if TYPE_CHECKING:
+    from . import entity, unified_rbac_resource_scope
+
+from . import entity
 
 class UnifiedRbacResourceAction(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new unifiedRbacResourceAction and sets the default values.
+        """
+        super().__init__()
+        # HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
+        self._action_verb: Optional[str] = None
+        # The authenticationContextId property
+        self._authentication_context_id: Optional[str] = None
+        # Description for the action. Supports $filter (eq).
+        self._description: Optional[str] = None
+        # The isAuthenticationContextSettable property
+        self._is_authentication_context_settable: Optional[bool] = None
+        # Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The resourceScope property
+        self._resource_scope: Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope] = None
+        # Not implemented.
+        self._resource_scope_id: Optional[str] = None
+    
     @property
     def action_verb(self,) -> Optional[str]:
         """
@@ -40,28 +63,6 @@ class UnifiedRbacResourceAction(entity.Entity):
             value: Value to set for the authentication_context_id property.
         """
         self._authentication_context_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRbacResourceAction and sets the default values.
-        """
-        super().__init__()
-        # HTTP method for the action, such as DELETE, GET, PATCH, POST, PUT, or null. Supports $filter (eq) but not for null values.
-        self._action_verb: Optional[str] = None
-        # The authenticationContextId property
-        self._authentication_context_id: Optional[str] = None
-        # Description for the action. Supports $filter (eq).
-        self._description: Optional[str] = None
-        # The isAuthenticationContextSettable property
-        self._is_authentication_context_settable: Optional[bool] = None
-        # Name for the action within the resource namespace, such as microsoft.insights/programs/update. Can include slash character (/). Case insensitive. Required. Supports $filter (eq).
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The resourceScope property
-        self._resource_scope: Optional[unified_rbac_resource_scope.UnifiedRbacResourceScope] = None
-        # Not implemented.
-        self._resource_scope_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRbacResourceAction:
@@ -97,7 +98,9 @@ class UnifiedRbacResourceAction(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, unified_rbac_resource_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionVerb": lambda n : setattr(self, 'action_verb', n.get_str_value()),
             "authenticationContextId": lambda n : setattr(self, 'authentication_context_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

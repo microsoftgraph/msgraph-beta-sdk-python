@@ -1,17 +1,46 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_platforms = lazy_import('msgraph.generated.models.device_management_configuration_platforms')
-device_management_configuration_setting_usage = lazy_import('msgraph.generated.models.device_management_configuration_setting_usage')
-device_management_configuration_technologies = lazy_import('msgraph.generated.models.device_management_configuration_technologies')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_configuration_platforms, device_management_configuration_setting_usage, device_management_configuration_technologies, entity
+
+from . import entity
 
 class DeviceManagementConfigurationCategory(entity.Entity):
     """
     Device Management Configuration Policy
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationCategory and sets the default values.
+        """
+        super().__init__()
+        # Description of the category header
+        self._category_description: Optional[str] = None
+        # List of child ids of the category.
+        self._child_category_ids: Optional[List[str]] = None
+        # Description of the item
+        self._description: Optional[str] = None
+        # Display name of the item
+        self._display_name: Optional[str] = None
+        # Help text of the item
+        self._help_text: Optional[str] = None
+        # Name of the item
+        self._name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Parent id of the category.
+        self._parent_category_id: Optional[str] = None
+        # Supported platform types.
+        self._platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
+        # Root id of the category.
+        self._root_category_id: Optional[str] = None
+        # Supported setting types
+        self._setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
+        # Describes which technology this setting can be deployed with
+        self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
+    
     @property
     def category_description(self,) -> Optional[str]:
         """
@@ -45,36 +74,6 @@ class DeviceManagementConfigurationCategory(entity.Entity):
             value: Value to set for the child_category_ids property.
         """
         self._child_category_ids = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationCategory and sets the default values.
-        """
-        super().__init__()
-        # Description of the category header
-        self._category_description: Optional[str] = None
-        # List of child ids of the category.
-        self._child_category_ids: Optional[List[str]] = None
-        # Description of the item
-        self._description: Optional[str] = None
-        # Display name of the item
-        self._display_name: Optional[str] = None
-        # Help text of the item
-        self._help_text: Optional[str] = None
-        # Name of the item
-        self._name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Parent id of the category.
-        self._parent_category_id: Optional[str] = None
-        # Supported platform types.
-        self._platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
-        # Root id of the category.
-        self._root_category_id: Optional[str] = None
-        # Supported setting types
-        self._setting_usage: Optional[device_management_configuration_setting_usage.DeviceManagementConfigurationSettingUsage] = None
-        # Describes which technology this setting can be deployed with
-        self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationCategory:
@@ -127,7 +126,9 @@ class DeviceManagementConfigurationCategory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_platforms, device_management_configuration_setting_usage, device_management_configuration_technologies, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categoryDescription": lambda n : setattr(self, 'category_description', n.get_str_value()),
             "childCategoryIds": lambda n : setattr(self, 'child_category_ids', n.get_collection_of_primitive_values(str)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

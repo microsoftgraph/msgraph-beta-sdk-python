@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-email_address = lazy_import('msgraph.generated.models.email_address')
-email_type = lazy_import('msgraph.generated.models.email_type')
+if TYPE_CHECKING:
+    from . import email_address, email_type
+
+from . import email_address
 
 class TypedEmailAddress(email_address.EmailAddress):
     def __init__(self,) -> None:
@@ -35,7 +36,9 @@ class TypedEmailAddress(email_address.EmailAddress):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import email_address, email_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "otherLabel": lambda n : setattr(self, 'other_label', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(email_type.EmailType)),
         }

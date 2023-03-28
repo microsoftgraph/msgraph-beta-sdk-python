@@ -1,38 +1,148 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-applied_authentication_event_listener = lazy_import('msgraph.generated.models.applied_authentication_event_listener')
-applied_conditional_access_policy = lazy_import('msgraph.generated.models.applied_conditional_access_policy')
-authentication_app_device_details = lazy_import('msgraph.generated.models.authentication_app_device_details')
-authentication_app_policy_details = lazy_import('msgraph.generated.models.authentication_app_policy_details')
-authentication_context = lazy_import('msgraph.generated.models.authentication_context')
-authentication_detail = lazy_import('msgraph.generated.models.authentication_detail')
-authentication_requirement_policy = lazy_import('msgraph.generated.models.authentication_requirement_policy')
-client_credential_type = lazy_import('msgraph.generated.models.client_credential_type')
-conditional_access_status = lazy_import('msgraph.generated.models.conditional_access_status')
-device_detail = lazy_import('msgraph.generated.models.device_detail')
-entity = lazy_import('msgraph.generated.models.entity')
-incoming_token_type = lazy_import('msgraph.generated.models.incoming_token_type')
-key_value = lazy_import('msgraph.generated.models.key_value')
-mfa_detail = lazy_import('msgraph.generated.models.mfa_detail')
-network_location_detail = lazy_import('msgraph.generated.models.network_location_detail')
-private_link_details = lazy_import('msgraph.generated.models.private_link_details')
-protocol_type = lazy_import('msgraph.generated.models.protocol_type')
-risk_detail = lazy_import('msgraph.generated.models.risk_detail')
-risk_level = lazy_import('msgraph.generated.models.risk_level')
-risk_state = lazy_import('msgraph.generated.models.risk_state')
-session_lifetime_policy = lazy_import('msgraph.generated.models.session_lifetime_policy')
-sign_in_access_type = lazy_import('msgraph.generated.models.sign_in_access_type')
-sign_in_identifier_type = lazy_import('msgraph.generated.models.sign_in_identifier_type')
-sign_in_location = lazy_import('msgraph.generated.models.sign_in_location')
-sign_in_status = lazy_import('msgraph.generated.models.sign_in_status')
-sign_in_user_type = lazy_import('msgraph.generated.models.sign_in_user_type')
-token_issuer_type = lazy_import('msgraph.generated.models.token_issuer_type')
+if TYPE_CHECKING:
+    from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
+
+from . import entity
 
 class SignIn(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new SignIn and sets the default values.
+        """
+        super().__init__()
+        # The application name displayed in the Azure Portal. Supports $filter (eq and startsWith operators only).
+        self._app_display_name: Optional[str] = None
+        # The application identifier in Azure Active Directory. Supports $filter (eq operator only).
+        self._app_id: Optional[str] = None
+        # A list of conditional access policies that are triggered by the corresponding sign-in activity.
+        self._applied_conditional_access_policies: Optional[List[applied_conditional_access_policy.AppliedConditionalAccessPolicy]] = None
+        # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
+        self._applied_event_listeners: Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]] = None
+        # Provides details about the app and device used during an Azure AD authentication step.
+        self._authentication_app_device_details: Optional[authentication_app_device_details.AuthenticationAppDeviceDetails] = None
+        # Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
+        self._authentication_app_policy_evaluation_details: Optional[List[authentication_app_policy_details.AuthenticationAppPolicyDetails]] = None
+        # Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in.
+        self._authentication_context_class_references: Optional[List[authentication_context.AuthenticationContext]] = None
+        # The result of the authentication attempt and additional details on the authentication method.
+        self._authentication_details: Optional[List[authentication_detail.AuthenticationDetail]] = None
+        # The authentication methods used. Possible values: SMS, Authenticator App, App Verification code, Password, FIDO, PTA, or PHS.
+        self._authentication_methods_used: Optional[List[str]] = None
+        # Additional authentication processing details, such as the agent name in case of PTA/PHS or Server/farm name in case of federated authentication.
+        self._authentication_processing_details: Optional[List[key_value.KeyValue]] = None
+        # Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue. For authentications that use protocols other than the possible values listed, the protocol type is listed as none.
+        self._authentication_protocol: Optional[protocol_type.ProtocolType] = None
+        # This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed. Supports $filter (eq and startsWith operators only).
+        self._authentication_requirement: Optional[str] = None
+        # Sources of authentication requirement, such as conditional access, per-user MFA, identity protection, and security defaults.
+        self._authentication_requirement_policies: Optional[List[authentication_requirement_policy.AuthenticationRequirementPolicy]] = None
+        # The Autonomous System Number (ASN) of the network used by the actor.
+        self._autonomous_system_number: Optional[int] = None
+        # Contains a fully qualified Azure Resource Manager ID of an Azure resource accessed during the sign-in.
+        self._azure_resource_id: Optional[str] = None
+        # The legacy client used for sign-in activity. For example: Browser, Exchange ActiveSync, Modern clients, IMAP, MAPI, SMTP, or POP. Supports $filter (eq operator only).
+        self._client_app_used: Optional[str] = None
+        # Describes the credential type that a user client or service principal provided to Azure AD to authenticate itself. You may wish to review clientCredentialType to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
+        self._client_credential_type: Optional[client_credential_type.ClientCredentialType] = None
+        # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue. Supports $filter (eq operator only).
+        self._conditional_access_status: Optional[conditional_access_status.ConditionalAccessStatus] = None
+        # The identifier that's sent from the client when sign-in is initiated. This is used for troubleshooting the corresponding sign-in activity when calling for support. Supports $filter (eq operator only).
+        self._correlation_id: Optional[str] = None
+        # The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $orderby and $filter (eq, le, and ge operators only).
+        self._created_date_time: Optional[datetime] = None
+        # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in did not cross tenant boundaries, the value is none.
+        self._cross_tenant_access_type: Optional[sign_in_access_type.SignInAccessType] = None
+        # The device information from where the sign-in occurred. Includes information such as deviceId, OS, and browser. Supports $filter (eq and startsWith operators only) on browser and operatingSystem properties.
+        self._device_detail: Optional[device_detail.DeviceDetail] = None
+        # Contains the identifier of an application's federated identity credential, if a federated identity credential was used to sign in.
+        self._federated_credential_id: Optional[str] = None
+        # During a failed sign in, a user may click a button in the Azure portal to mark the failed event for tenant admins. If a user clicked the button to flag the failed sign in, this value is true.
+        self._flagged_for_review: Optional[bool] = None
+        # The tenant identifier of the user initiating the sign in. Not applicable in Managed Identity or service principal sign ins.
+        self._home_tenant_id: Optional[str] = None
+        # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Azure AD to show the tenant content.
+        self._home_tenant_name: Optional[str] = None
+        # Indicates the token types that were presented to Azure AD to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Azure AD may have also used token types not listed in this Enum type to authenticate the actor. Do not infer the lack of a token if it is not one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
+        self._incoming_token_type: Optional[incoming_token_type.IncomingTokenType] = None
+        # The IP address of the client from where the sign-in occurred. Supports $filter (eq and startsWith operators only).
+        self._ip_address: Optional[str] = None
+        # The IP address a user used to reach a resource provider, used to determine Conditional Access compliance for some policies. For example, when a user interacts with Exchange Online, the IP address Exchange receives from the user may be recorded here. This value is often null.
+        self._ip_address_from_resource_provider: Optional[str] = None
+        # Indicates whether a user sign in is interactive. In interactive sign in, the user provides an authentication factor to Azure AD. These factors include passwords, responses to MFA challenges, biometric factors, or QR codes that a user provides to Azure AD or an associated app. In non-interactive sign in, the user doesn't provide an authentication factor. Instead, the client app uses a token or code to authenticate or access a resource on behalf of a user. Non-interactive sign ins are commonly used for a client to sign in on a user's behalf in a process transparent to the user.
+        self._is_interactive: Optional[bool] = None
+        # Shows whether the sign in event was subject to an Azure AD tenant restriction policy.
+        self._is_tenant_restricted: Optional[bool] = None
+        # The city, state, and 2 letter country code from where the sign-in occurred. Supports $filter (eq and startsWith operators only) on city, state, and countryOrRegion properties.
+        self._location: Optional[sign_in_location.SignInLocation] = None
+        # The mfaDetail property
+        self._mfa_detail: Optional[mfa_detail.MfaDetail] = None
+        # The network location details including the type of network used and its names.
+        self._network_location_details: Optional[List[network_location_detail.NetworkLocationDetail]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The request identifier of the first request in the authentication sequence. Supports $filter (eq operator only).
+        self._original_request_id: Optional[str] = None
+        # Contains information about the Azure AD Private Link policy that is associated with the sign in event.
+        self._private_link_details: Optional[private_link_details.PrivateLinkDetails] = None
+        # The request processing time in milliseconds in AD STS.
+        self._processing_time_in_milliseconds: Optional[int] = None
+        # The name of the resource that the user signed in to. Supports $filter (eq operator only).
+        self._resource_display_name: Optional[str] = None
+        # The identifier of the resource that the user signed in to. Supports $filter (eq operator only).
+        self._resource_id: Optional[str] = None
+        # The identifier of the service principal representing the target resource in the sign-in event.
+        self._resource_service_principal_id: Optional[str] = None
+        # The tenant identifier of the resource referenced in the sign in.
+        self._resource_tenant_id: Optional[str] = None
+        # The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
+        self._risk_detail: Optional[risk_detail.RiskDetail] = None
+        # The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue. Supports $filter (eq and startsWith operators only).
+        self._risk_event_types_v2: Optional[List[str]] = None
+        # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
+        self._risk_level_aggregated: Optional[risk_level.RiskLevel] = None
+        # The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
+        self._risk_level_during_sign_in: Optional[risk_level.RiskLevel] = None
+        # The risk state of a risky user, sign-in, or a risk event. Possible values: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, or unknownFutureValue. Supports $filter (eq operator only).
+        self._risk_state: Optional[risk_state.RiskState] = None
+        # The unique identifier of the key credential used by the service principal to authenticate.
+        self._service_principal_credential_key_id: Optional[str] = None
+        # The certificate thumbprint of the certificate used by the service principal to authenticate.
+        self._service_principal_credential_thumbprint: Optional[str] = None
+        # The application identifier used for sign-in. This field is populated when you are signing in using an application. Supports $filter (eq and startsWith operators only).
+        self._service_principal_id: Optional[str] = None
+        # The application name used for sign-in. This field is populated when you are signing in using an application. Supports $filter (eq and startsWith operators only).
+        self._service_principal_name: Optional[str] = None
+        # Any conditional access session management policies that were applied during the sign-in event.
+        self._session_lifetime_policies: Optional[List[session_lifetime_policy.SessionLifetimePolicy]] = None
+        # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue. Supports $filter (eq, ne).
+        self._sign_in_event_types: Optional[List[str]] = None
+        # The identification that the user provided to sign in. It may be the userPrincipalName but it's also populated when a user signs in using other identifiers.
+        self._sign_in_identifier: Optional[str] = None
+        # The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
+        self._sign_in_identifier_type: Optional[sign_in_identifier_type.SignInIdentifierType] = None
+        # The sign-in status. Includes the error code and description of the error (in case of a sign-in failure). Supports $filter (eq operator only) on errorCode property.
+        self._status: Optional[sign_in_status.SignInStatus] = None
+        # The name of the identity provider. For example, sts.microsoft.com. Supports $filter (eq operator only).
+        self._token_issuer_name: Optional[str] = None
+        # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
+        self._token_issuer_type: Optional[token_issuer_type.TokenIssuerType] = None
+        # A unique base64 encoded request identifier used to track tokens issued by Azure AD as they are redeemed at resource providers.
+        self._unique_token_identifier: Optional[str] = None
+        # The user agent information related to sign-in. Supports $filter (eq and startsWith operators only).
+        self._user_agent: Optional[str] = None
+        # The display name of the user. Supports $filter (eq and startsWith operators only).
+        self._user_display_name: Optional[str] = None
+        # The identifier of the user. Supports $filter (eq operator only).
+        self._user_id: Optional[str] = None
+        # The UPN of the user. Supports $filter (eq and startsWith operators only).
+        self._user_principal_name: Optional[str] = None
+        # Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue.
+        self._user_type: Optional[sign_in_user_type.SignInUserType] = None
+    
     @property
     def app_display_name(self,) -> Optional[str]:
         """
@@ -339,140 +449,6 @@ class SignIn(entity.Entity):
         """
         self._conditional_access_status = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new signIn and sets the default values.
-        """
-        super().__init__()
-        # The application name displayed in the Azure Portal. Supports $filter (eq and startsWith operators only).
-        self._app_display_name: Optional[str] = None
-        # The application identifier in Azure Active Directory. Supports $filter (eq operator only).
-        self._app_id: Optional[str] = None
-        # A list of conditional access policies that are triggered by the corresponding sign-in activity.
-        self._applied_conditional_access_policies: Optional[List[applied_conditional_access_policy.AppliedConditionalAccessPolicy]] = None
-        # Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event.
-        self._applied_event_listeners: Optional[List[applied_authentication_event_listener.AppliedAuthenticationEventListener]] = None
-        # Provides details about the app and device used during an Azure AD authentication step.
-        self._authentication_app_device_details: Optional[authentication_app_device_details.AuthenticationAppDeviceDetails] = None
-        # Provides details of the Azure AD policies applied to a user and client authentication app during an authentication step.
-        self._authentication_app_policy_evaluation_details: Optional[List[authentication_app_policy_details.AuthenticationAppPolicyDetails]] = None
-        # Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in.
-        self._authentication_context_class_references: Optional[List[authentication_context.AuthenticationContext]] = None
-        # The result of the authentication attempt and additional details on the authentication method.
-        self._authentication_details: Optional[List[authentication_detail.AuthenticationDetail]] = None
-        # The authentication methods used. Possible values: SMS, Authenticator App, App Verification code, Password, FIDO, PTA, or PHS.
-        self._authentication_methods_used: Optional[List[str]] = None
-        # Additional authentication processing details, such as the agent name in case of PTA/PHS or Server/farm name in case of federated authentication.
-        self._authentication_processing_details: Optional[List[key_value.KeyValue]] = None
-        # Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue. For authentications that use protocols other than the possible values listed, the protocol type is listed as none.
-        self._authentication_protocol: Optional[protocol_type.ProtocolType] = None
-        # This holds the highest level of authentication needed through all the sign-in steps, for sign-in to succeed. Supports $filter (eq and startsWith operators only).
-        self._authentication_requirement: Optional[str] = None
-        # Sources of authentication requirement, such as conditional access, per-user MFA, identity protection, and security defaults.
-        self._authentication_requirement_policies: Optional[List[authentication_requirement_policy.AuthenticationRequirementPolicy]] = None
-        # The Autonomous System Number (ASN) of the network used by the actor.
-        self._autonomous_system_number: Optional[int] = None
-        # Contains a fully qualified Azure Resource Manager ID of an Azure resource accessed during the sign-in.
-        self._azure_resource_id: Optional[str] = None
-        # The legacy client used for sign-in activity. For example: Browser, Exchange ActiveSync, Modern clients, IMAP, MAPI, SMTP, or POP. Supports $filter (eq operator only).
-        self._client_app_used: Optional[str] = None
-        # Describes the credential type that a user client or service principal provided to Azure AD to authenticate itself. You may wish to review clientCredentialType to track and eliminate less secure credential types or to watch for clients and service principals using anomalous credential types. The possible values are: none, clientSecret, clientAssertion, federatedIdentityCredential, managedIdentity, certificate, unknownFutureValue.
-        self._client_credential_type: Optional[client_credential_type.ClientCredentialType] = None
-        # The status of the conditional access policy triggered. Possible values: success, failure, notApplied, or unknownFutureValue. Supports $filter (eq operator only).
-        self._conditional_access_status: Optional[conditional_access_status.ConditionalAccessStatus] = None
-        # The identifier that's sent from the client when sign-in is initiated. This is used for troubleshooting the corresponding sign-in activity when calling for support. Supports $filter (eq operator only).
-        self._correlation_id: Optional[str] = None
-        # The date and time the sign-in was initiated. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $orderby and $filter (eq, le, and ge operators only).
-        self._created_date_time: Optional[datetime] = None
-        # Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in did not cross tenant boundaries, the value is none.
-        self._cross_tenant_access_type: Optional[sign_in_access_type.SignInAccessType] = None
-        # The device information from where the sign-in occurred. Includes information such as deviceId, OS, and browser. Supports $filter (eq and startsWith operators only) on browser and operatingSystem properties.
-        self._device_detail: Optional[device_detail.DeviceDetail] = None
-        # Contains the identifier of an application's federated identity credential, if a federated identity credential was used to sign in.
-        self._federated_credential_id: Optional[str] = None
-        # During a failed sign in, a user may click a button in the Azure portal to mark the failed event for tenant admins. If a user clicked the button to flag the failed sign in, this value is true.
-        self._flagged_for_review: Optional[bool] = None
-        # The tenant identifier of the user initiating the sign in. Not applicable in Managed Identity or service principal sign ins.
-        self._home_tenant_id: Optional[str] = None
-        # For user sign ins, the identifier of the tenant that the user is a member of. Only populated in cases where the home tenant has provided affirmative consent to Azure AD to show the tenant content.
-        self._home_tenant_name: Optional[str] = None
-        # Indicates the token types that were presented to Azure AD to authenticate the actor in the sign in. The possible values are: none, primaryRefreshToken, saml11, saml20, unknownFutureValue, remoteDesktopToken.  NOTE Azure AD may have also used token types not listed in this Enum type to authenticate the actor. Do not infer the lack of a token if it is not one of the types listed. Also, please note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: remoteDesktopToken.
-        self._incoming_token_type: Optional[incoming_token_type.IncomingTokenType] = None
-        # The IP address of the client from where the sign-in occurred. Supports $filter (eq and startsWith operators only).
-        self._ip_address: Optional[str] = None
-        # The IP address a user used to reach a resource provider, used to determine Conditional Access compliance for some policies. For example, when a user interacts with Exchange Online, the IP address Exchange receives from the user may be recorded here. This value is often null.
-        self._ip_address_from_resource_provider: Optional[str] = None
-        # Indicates whether a user sign in is interactive. In interactive sign in, the user provides an authentication factor to Azure AD. These factors include passwords, responses to MFA challenges, biometric factors, or QR codes that a user provides to Azure AD or an associated app. In non-interactive sign in, the user doesn't provide an authentication factor. Instead, the client app uses a token or code to authenticate or access a resource on behalf of a user. Non-interactive sign ins are commonly used for a client to sign in on a user's behalf in a process transparent to the user.
-        self._is_interactive: Optional[bool] = None
-        # Shows whether the sign in event was subject to an Azure AD tenant restriction policy.
-        self._is_tenant_restricted: Optional[bool] = None
-        # The city, state, and 2 letter country code from where the sign-in occurred. Supports $filter (eq and startsWith operators only) on city, state, and countryOrRegion properties.
-        self._location: Optional[sign_in_location.SignInLocation] = None
-        # The mfaDetail property
-        self._mfa_detail: Optional[mfa_detail.MfaDetail] = None
-        # The network location details including the type of network used and its names.
-        self._network_location_details: Optional[List[network_location_detail.NetworkLocationDetail]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The request identifier of the first request in the authentication sequence. Supports $filter (eq operator only).
-        self._original_request_id: Optional[str] = None
-        # Contains information about the Azure AD Private Link policy that is associated with the sign in event.
-        self._private_link_details: Optional[private_link_details.PrivateLinkDetails] = None
-        # The request processing time in milliseconds in AD STS.
-        self._processing_time_in_milliseconds: Optional[int] = None
-        # The name of the resource that the user signed in to. Supports $filter (eq operator only).
-        self._resource_display_name: Optional[str] = None
-        # The identifier of the resource that the user signed in to. Supports $filter (eq operator only).
-        self._resource_id: Optional[str] = None
-        # The identifier of the service principal representing the target resource in the sign-in event.
-        self._resource_service_principal_id: Optional[str] = None
-        # The tenant identifier of the resource referenced in the sign in.
-        self._resource_tenant_id: Optional[str] = None
-        # The reason behind a specific state of a risky user, sign-in, or a risk event. Possible values: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, or unknownFutureValue. The value none means that no action has been performed on the user or sign-in so far. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
-        self._risk_detail: Optional[risk_detail.RiskDetail] = None
-        # The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence,  generic, or unknownFutureValue. Supports $filter (eq and startsWith operators only).
-        self._risk_event_types_v2: Optional[List[str]] = None
-        # The aggregated risk level. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
-        self._risk_level_aggregated: Optional[risk_level.RiskLevel] = None
-        # The risk level during sign-in. Possible values: none, low, medium, high, hidden, or unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection. Supports $filter (eq operator only). Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.
-        self._risk_level_during_sign_in: Optional[risk_level.RiskLevel] = None
-        # The risk state of a risky user, sign-in, or a risk event. Possible values: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, or unknownFutureValue. Supports $filter (eq operator only).
-        self._risk_state: Optional[risk_state.RiskState] = None
-        # The unique identifier of the key credential used by the service principal to authenticate.
-        self._service_principal_credential_key_id: Optional[str] = None
-        # The certificate thumbprint of the certificate used by the service principal to authenticate.
-        self._service_principal_credential_thumbprint: Optional[str] = None
-        # The application identifier used for sign-in. This field is populated when you are signing in using an application. Supports $filter (eq and startsWith operators only).
-        self._service_principal_id: Optional[str] = None
-        # The application name used for sign-in. This field is populated when you are signing in using an application. Supports $filter (eq and startsWith operators only).
-        self._service_principal_name: Optional[str] = None
-        # Any conditional access session management policies that were applied during the sign-in event.
-        self._session_lifetime_policies: Optional[List[session_lifetime_policy.SessionLifetimePolicy]] = None
-        # Indicates the category of sign in that the event represents. For user sign ins, the category can be interactiveUser or nonInteractiveUser and corresponds to the value for the isInteractive property on the signin resource. For managed identity sign ins, the category is managedIdentity. For service principal sign ins, the category is servicePrincipal. Possible values are: interactiveUser, nonInteractiveUser, servicePrincipal, managedIdentity, unknownFutureValue. Supports $filter (eq, ne).
-        self._sign_in_event_types: Optional[List[str]] = None
-        # The identification that the user provided to sign in. It may be the userPrincipalName but it's also populated when a user signs in using other identifiers.
-        self._sign_in_identifier: Optional[str] = None
-        # The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue.
-        self._sign_in_identifier_type: Optional[sign_in_identifier_type.SignInIdentifierType] = None
-        # The sign-in status. Includes the error code and description of the error (in case of a sign-in failure). Supports $filter (eq operator only) on errorCode property.
-        self._status: Optional[sign_in_status.SignInStatus] = None
-        # The name of the identity provider. For example, sts.microsoft.com. Supports $filter (eq operator only).
-        self._token_issuer_name: Optional[str] = None
-        # The type of identity provider. The possible values are: AzureAD, ADFederationServices, UnknownFutureValue, AzureADBackupAuth, ADFederationServicesMFAAdapter, NPSExtension. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: AzureADBackupAuth , ADFederationServicesMFAAdapter , NPSExtension.
-        self._token_issuer_type: Optional[token_issuer_type.TokenIssuerType] = None
-        # A unique base64 encoded request identifier used to track tokens issued by Azure AD as they are redeemed at resource providers.
-        self._unique_token_identifier: Optional[str] = None
-        # The user agent information related to sign-in. Supports $filter (eq and startsWith operators only).
-        self._user_agent: Optional[str] = None
-        # The display name of the user. Supports $filter (eq and startsWith operators only).
-        self._user_display_name: Optional[str] = None
-        # The identifier of the user. Supports $filter (eq operator only).
-        self._user_id: Optional[str] = None
-        # The UPN of the user. Supports $filter (eq and startsWith operators only).
-        self._user_principal_name: Optional[str] = None
-        # Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue.
-        self._user_type: Optional[sign_in_user_type.SignInUserType] = None
-    
     @property
     def correlation_id(self,) -> Optional[str]:
         """
@@ -592,7 +568,9 @@ class SignIn(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import applied_authentication_event_listener, applied_conditional_access_policy, authentication_app_device_details, authentication_app_policy_details, authentication_context, authentication_detail, authentication_requirement_policy, client_credential_type, conditional_access_status, device_detail, entity, incoming_token_type, key_value, mfa_detail, network_location_detail, private_link_details, protocol_type, risk_detail, risk_level, risk_state, session_lifetime_policy, sign_in_access_type, sign_in_identifier_type, sign_in_location, sign_in_status, sign_in_user_type, token_issuer_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appliedConditionalAccessPolicies": lambda n : setattr(self, 'applied_conditional_access_policies', n.get_collection_of_object_values(applied_conditional_access_policy.AppliedConditionalAccessPolicy)),
             "appliedEventListeners": lambda n : setattr(self, 'applied_event_listeners', n.get_collection_of_object_values(applied_authentication_event_listener.AppliedAuthenticationEventListener)),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),

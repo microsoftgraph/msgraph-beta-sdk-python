@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-application_segment = lazy_import('msgraph.generated.models.application_segment')
+if TYPE_CHECKING:
+    from . import application_segment
+
+from . import application_segment
 
 class IpApplicationSegment(application_segment.ApplicationSegment):
     def __init__(self,) -> None:
@@ -51,7 +53,9 @@ class IpApplicationSegment(application_segment.ApplicationSegment):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_segment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "destinationHost": lambda n : setattr(self, 'destination_host', n.get_str_value()),
             "port": lambda n : setattr(self, 'port', n.get_int_value()),
         }

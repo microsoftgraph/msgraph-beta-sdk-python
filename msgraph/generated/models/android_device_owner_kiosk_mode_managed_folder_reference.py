@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_kiosk_mode_home_screen_item = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_home_screen_item')
+if TYPE_CHECKING:
+    from . import android_device_owner_kiosk_mode_home_screen_item
+
+from . import android_device_owner_kiosk_mode_home_screen_item
 
 class AndroidDeviceOwnerKioskModeManagedFolderReference(android_device_owner_kiosk_mode_home_screen_item.AndroidDeviceOwnerKioskModeHomeScreenItem):
     def __init__(self,) -> None:
@@ -68,7 +70,9 @@ class AndroidDeviceOwnerKioskModeManagedFolderReference(android_device_owner_kio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_kiosk_mode_home_screen_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "folderIdentifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
             "folderName": lambda n : setattr(self, 'folder_name', n.get_str_value()),
         }

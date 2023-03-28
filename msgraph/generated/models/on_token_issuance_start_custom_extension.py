@@ -1,12 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_authentication_extension = lazy_import('msgraph.generated.models.custom_authentication_extension')
-on_token_issuance_start_return_claim = lazy_import('msgraph.generated.models.on_token_issuance_start_return_claim')
+if TYPE_CHECKING:
+    from . import custom_authentication_extension, on_token_issuance_start_return_claim
+
+from . import custom_authentication_extension
 
 class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.CustomAuthenticationExtension):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new OnTokenIssuanceStartCustomExtension and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.onTokenIssuanceStartCustomExtension"
+        # The claimsForTokenConfiguration property
+        self._claims_for_token_configuration: Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]] = None
+    
     @property
     def claims_for_token_configuration(self,) -> Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]]:
         """
@@ -23,15 +33,6 @@ class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.Custom
             value: Value to set for the claims_for_token_configuration property.
         """
         self._claims_for_token_configuration = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new OnTokenIssuanceStartCustomExtension and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.onTokenIssuanceStartCustomExtension"
-        # The claimsForTokenConfiguration property
-        self._claims_for_token_configuration: Optional[List[on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnTokenIssuanceStartCustomExtension:
@@ -50,7 +51,9 @@ class OnTokenIssuanceStartCustomExtension(custom_authentication_extension.Custom
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_authentication_extension, on_token_issuance_start_return_claim
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "claimsForTokenConfiguration": lambda n : setattr(self, 'claims_for_token_configuration', n.get_collection_of_object_values(on_token_issuance_start_return_claim.OnTokenIssuanceStartReturnClaim)),
         }
         super_fields = super().get_field_deserializers()

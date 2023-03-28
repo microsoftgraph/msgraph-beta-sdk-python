@@ -1,15 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-data_source_container = lazy_import('msgraph.generated.models.ediscovery.data_source_container')
-site_source = lazy_import('msgraph.generated.models.ediscovery.site_source')
-unified_group_source = lazy_import('msgraph.generated.models.ediscovery.unified_group_source')
-user_source = lazy_import('msgraph.generated.models.ediscovery.user_source')
+if TYPE_CHECKING:
+    from . import data_source_container, site_source, unified_group_source, user_source
+
+from . import data_source_container
 
 class Custodian(data_source_container.DataSourceContainer):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Custodian and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.ediscovery.custodian"
+        # Date and time the custodian acknowledged a hold notification.
+        self._acknowledged_date_time: Optional[datetime] = None
+        # Identifies whether a custodian's sources were placed on hold during creation.
+        self._apply_hold_to_sources: Optional[bool] = None
+        # Email address of the custodian.
+        self._email: Optional[str] = None
+        # Data source entity for SharePoint sites associated with the custodian.
+        self._site_sources: Optional[List[site_source.SiteSource]] = None
+        # Data source entity for groups associated with the custodian.
+        self._unified_group_sources: Optional[List[unified_group_source.UnifiedGroupSource]] = None
+        # Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
+        self._user_sources: Optional[List[user_source.UserSource]] = None
+    
     @property
     def acknowledged_date_time(self,) -> Optional[datetime]:
         """
@@ -43,25 +61,6 @@ class Custodian(data_source_container.DataSourceContainer):
             value: Value to set for the apply_hold_to_sources property.
         """
         self._apply_hold_to_sources = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Custodian and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.ediscovery.custodian"
-        # Date and time the custodian acknowledged a hold notification.
-        self._acknowledged_date_time: Optional[datetime] = None
-        # Identifies whether a custodian's sources were placed on hold during creation.
-        self._apply_hold_to_sources: Optional[bool] = None
-        # Email address of the custodian.
-        self._email: Optional[str] = None
-        # Data source entity for SharePoint sites associated with the custodian.
-        self._site_sources: Optional[List[site_source.SiteSource]] = None
-        # Data source entity for groups associated with the custodian.
-        self._unified_group_sources: Optional[List[unified_group_source.UnifiedGroupSource]] = None
-        # Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.
-        self._user_sources: Optional[List[user_source.UserSource]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Custodian:
@@ -97,7 +96,9 @@ class Custodian(data_source_container.DataSourceContainer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import data_source_container, site_source, unified_group_source, user_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acknowledgedDateTime": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
             "applyHoldToSources": lambda n : setattr(self, 'apply_hold_to_sources', n.get_bool_value()),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),

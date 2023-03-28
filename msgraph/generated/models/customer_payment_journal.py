@@ -1,14 +1,37 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-account = lazy_import('msgraph.generated.models.account')
-customer_payment = lazy_import('msgraph.generated.models.customer_payment')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import account, customer_payment, entity
+
+from . import entity
 
 class CustomerPaymentJournal(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new customerPaymentJournal and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[account.Account] = None
+        # The balancingAccountId property
+        self._balancing_account_id: Optional[UUID] = None
+        # The balancingAccountNumber property
+        self._balancing_account_number: Optional[str] = None
+        # The code property
+        self._code: Optional[str] = None
+        # The customerPayments property
+        self._customer_payments: Optional[List[customer_payment.CustomerPayment]] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def account(self,) -> Optional[account.Account]:
         """
@@ -27,15 +50,15 @@ class CustomerPaymentJournal(entity.Entity):
         self._account = value
     
     @property
-    def balancing_account_id(self,) -> Optional[Guid]:
+    def balancing_account_id(self,) -> Optional[UUID]:
         """
         Gets the balancingAccountId property value. The balancingAccountId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._balancing_account_id
     
     @balancing_account_id.setter
-    def balancing_account_id(self,value: Optional[Guid] = None) -> None:
+    def balancing_account_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the balancingAccountId property value. The balancingAccountId property
         Args:
@@ -76,28 +99,6 @@ class CustomerPaymentJournal(entity.Entity):
             value: Value to set for the code property.
         """
         self._code = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customerPaymentJournal and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The balancingAccountId property
-        self._balancing_account_id: Optional[Guid] = None
-        # The balancingAccountNumber property
-        self._balancing_account_number: Optional[str] = None
-        # The code property
-        self._code: Optional[str] = None
-        # The customerPayments property
-        self._customer_payments: Optional[List[customer_payment.CustomerPayment]] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomerPaymentJournal:
@@ -150,9 +151,11 @@ class CustomerPaymentJournal(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, customer_payment, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "balancingAccountId": lambda n : setattr(self, 'balancing_account_id', n.get_object_value(Guid)),
+            "balancingAccountId": lambda n : setattr(self, 'balancing_account_id', n.get_uuid_value()),
             "balancingAccountNumber": lambda n : setattr(self, 'balancing_account_number', n.get_str_value()),
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "customerPayments": lambda n : setattr(self, 'customer_payments', n.get_collection_of_object_values(customer_payment.CustomerPayment)),
@@ -190,7 +193,7 @@ class CustomerPaymentJournal(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("account", self.account)
-        writer.write_object_value("balancingAccountId", self.balancing_account_id)
+        writer.write_uuid_value("balancingAccountId", self.balancing_account_id)
         writer.write_str_value("balancingAccountNumber", self.balancing_account_number)
         writer.write_str_value("code", self.code)
         writer.write_collection_of_object_values("customerPayments", self.customer_payments)

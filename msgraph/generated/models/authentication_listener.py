@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_source_filter = lazy_import('msgraph.generated.models.authentication_source_filter')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import authentication_source_filter, entity, invoke_user_flow_listener
+
+from . import entity
 
 class AuthenticationListener(entity.Entity):
     def __init__(self,) -> None:
@@ -29,6 +30,13 @@ class AuthenticationListener(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.invokeUserFlowListener":
+                from . import invoke_user_flow_listener
+
+                return invoke_user_flow_listener.InvokeUserFlowListener()
         return AuthenticationListener()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -36,7 +44,9 @@ class AuthenticationListener(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_source_filter, entity, invoke_user_flow_listener
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "priority": lambda n : setattr(self, 'priority', n.get_int_value()),
             "sourceFilter": lambda n : setattr(self, 'source_filter', n.get_object_value(authentication_source_filter.AuthenticationSourceFilter)),
         }

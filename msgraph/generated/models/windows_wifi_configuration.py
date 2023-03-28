@@ -1,14 +1,46 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-metered_connection_limit_type = lazy_import('msgraph.generated.models.metered_connection_limit_type')
-wi_fi_proxy_setting = lazy_import('msgraph.generated.models.wi_fi_proxy_setting')
-wi_fi_security_type = lazy_import('msgraph.generated.models.wi_fi_security_type')
+if TYPE_CHECKING:
+    from . import device_configuration, metered_connection_limit_type, windows_wifi_enterprise_e_a_p_configuration, wi_fi_proxy_setting, wi_fi_security_type
+
+from . import device_configuration
 
 class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsWifiConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsWifiConfiguration"
+        # Specify whether the wifi connection should connect automatically when in range.
+        self._connect_automatically: Optional[bool] = None
+        # Specify whether the wifi connection should connect to more preferred networks when already connected to this one.  Requires ConnectAutomatically to be true.
+        self._connect_to_preferred_network: Optional[bool] = None
+        # Specify whether the wifi connection should connect automatically even when the SSID is not broadcasting.
+        self._connect_when_network_name_is_hidden: Optional[bool] = None
+        # Specify whether to force FIPS compliance.
+        self._force_f_i_p_s_compliance: Optional[bool] = None
+        # Specify the metered connection limit type for the wifi connection. Possible values are: unrestricted, fixed, variable.
+        self._metered_connection_limit: Optional[metered_connection_limit_type.MeteredConnectionLimitType] = None
+        # Specify the network configuration name.
+        self._network_name: Optional[str] = None
+        # This is the pre-shared key for WPA Personal Wi-Fi network.
+        self._pre_shared_key: Optional[str] = None
+        # Specify the URL for the proxy server configuration script.
+        self._proxy_automatic_configuration_url: Optional[str] = None
+        # Specify the IP address for the proxy server.
+        self._proxy_manual_address: Optional[str] = None
+        # Specify the port for the proxy server.
+        self._proxy_manual_port: Optional[int] = None
+        # Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic.
+        self._proxy_setting: Optional[wi_fi_proxy_setting.WiFiProxySetting] = None
+        # Specify the SSID of the wifi connection.
+        self._ssid: Optional[str] = None
+        # Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
+        self._wifi_security_type: Optional[wi_fi_security_type.WiFiSecurityType] = None
+    
     @property
     def connect_automatically(self,) -> Optional[bool]:
         """
@@ -60,39 +92,6 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         self._connect_when_network_name_is_hidden = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsWifiConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsWifiConfiguration"
-        # Specify whether the wifi connection should connect automatically when in range.
-        self._connect_automatically: Optional[bool] = None
-        # Specify whether the wifi connection should connect to more preferred networks when already connected to this one.  Requires ConnectAutomatically to be true.
-        self._connect_to_preferred_network: Optional[bool] = None
-        # Specify whether the wifi connection should connect automatically even when the SSID is not broadcasting.
-        self._connect_when_network_name_is_hidden: Optional[bool] = None
-        # Specify whether to force FIPS compliance.
-        self._force_f_i_p_s_compliance: Optional[bool] = None
-        # Specify the metered connection limit type for the wifi connection. Possible values are: unrestricted, fixed, variable.
-        self._metered_connection_limit: Optional[metered_connection_limit_type.MeteredConnectionLimitType] = None
-        # Specify the network configuration name.
-        self._network_name: Optional[str] = None
-        # This is the pre-shared key for WPA Personal Wi-Fi network.
-        self._pre_shared_key: Optional[str] = None
-        # Specify the URL for the proxy server configuration script.
-        self._proxy_automatic_configuration_url: Optional[str] = None
-        # Specify the IP address for the proxy server.
-        self._proxy_manual_address: Optional[str] = None
-        # Specify the port for the proxy server.
-        self._proxy_manual_port: Optional[int] = None
-        # Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic.
-        self._proxy_setting: Optional[wi_fi_proxy_setting.WiFiProxySetting] = None
-        # Specify the SSID of the wifi connection.
-        self._ssid: Optional[str] = None
-        # Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal, wpa2Enterprise.
-        self._wifi_security_type: Optional[wi_fi_security_type.WiFiSecurityType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsWifiConfiguration:
         """
@@ -103,6 +102,13 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsWifiEnterpriseEAPConfiguration":
+                from . import windows_wifi_enterprise_e_a_p_configuration
+
+                return windows_wifi_enterprise_e_a_p_configuration.WindowsWifiEnterpriseEAPConfiguration()
         return WindowsWifiConfiguration()
     
     @property
@@ -127,7 +133,9 @@ class WindowsWifiConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, metered_connection_limit_type, windows_wifi_enterprise_e_a_p_configuration, wi_fi_proxy_setting, wi_fi_security_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectAutomatically": lambda n : setattr(self, 'connect_automatically', n.get_bool_value()),
             "connectToPreferredNetwork": lambda n : setattr(self, 'connect_to_preferred_network', n.get_bool_value()),
             "connectWhenNetworkNameIsHidden": lambda n : setattr(self, 'connect_when_network_name_is_hidden', n.get_bool_value()),

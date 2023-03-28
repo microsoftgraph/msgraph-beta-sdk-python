@@ -1,36 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-action_url = lazy_import('msgraph.generated.models.action_url')
-entity = lazy_import('msgraph.generated.models.entity')
-management_category = lazy_import('msgraph.generated.models.managed_tenants.management_category')
-management_provider = lazy_import('msgraph.generated.models.managed_tenants.management_provider')
-management_template_collection = lazy_import('msgraph.generated.models.managed_tenants.management_template_collection')
-management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
-template_parameter = lazy_import('msgraph.generated.models.managed_tenants.template_parameter')
-workload_action = lazy_import('msgraph.generated.models.managed_tenants.workload_action')
+if TYPE_CHECKING:
+    from . import management_category, management_provider, management_template_collection, management_template_step, template_parameter, workload_action
+    from .. import action_url, entity
+
+from .. import entity
 
 class ManagementTemplate(entity.Entity):
-    @property
-    def category(self,) -> Optional[management_category.ManagementCategory]:
-        """
-        Gets the category property value. The management category for the management template. Possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
-        Returns: Optional[management_category.ManagementCategory]
-        """
-        return self._category
-    
-    @category.setter
-    def category(self,value: Optional[management_category.ManagementCategory] = None) -> None:
-        """
-        Sets the category property value. The management category for the management template. Possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
-        Args:
-            value: Value to set for the category property.
-        """
-        self._category = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managementTemplate and sets the default values.
@@ -70,6 +49,23 @@ class ManagementTemplate(entity.Entity):
         self._version: Optional[int] = None
         # The collection of workload actions associated with the management template. Optional. Read-only.
         self._workload_actions: Optional[List[workload_action.WorkloadAction]] = None
+    
+    @property
+    def category(self,) -> Optional[management_category.ManagementCategory]:
+        """
+        Gets the category property value. The management category for the management template. Possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
+        Returns: Optional[management_category.ManagementCategory]
+        """
+        return self._category
+    
+    @category.setter
+    def category(self,value: Optional[management_category.ManagementCategory] = None) -> None:
+        """
+        Sets the category property value. The management category for the management template. Possible values are: custom, devices, identity, unknownFutureValue. Required. Read-only.
+        Args:
+            value: Value to set for the category property.
+        """
+        self._category = value
     
     @property
     def created_by_user_id(self,) -> Optional[str]:
@@ -156,7 +152,10 @@ class ManagementTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_category, management_provider, management_template_collection, management_template_step, template_parameter, workload_action
+        from .. import action_url, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

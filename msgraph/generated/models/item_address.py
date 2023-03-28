@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-geo_coordinates = lazy_import('msgraph.generated.models.geo_coordinates')
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-physical_address = lazy_import('msgraph.generated.models.physical_address')
+if TYPE_CHECKING:
+    from . import geo_coordinates, item_facet, physical_address
+
+from . import item_facet
 
 class ItemAddress(item_facet.ItemFacet):
     def __init__(self,) -> None:
@@ -89,7 +89,9 @@ class ItemAddress(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import geo_coordinates, item_facet, physical_address
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "detail": lambda n : setattr(self, 'detail', n.get_object_value(physical_address.PhysicalAddress)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "geoCoordinates": lambda n : setattr(self, 'geo_coordinates', n.get_object_value(geo_coordinates.GeoCoordinates)),

@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-online_meeting_content_sharing_disabled_reason = lazy_import('msgraph.generated.models.online_meeting_content_sharing_disabled_reason')
-online_meeting_video_disabled_reason = lazy_import('msgraph.generated.models.online_meeting_video_disabled_reason')
+if TYPE_CHECKING:
+    from . import online_meeting_content_sharing_disabled_reason, online_meeting_video_disabled_reason
 
 class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new onlineMeetingRestricted and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Specifies the reason why shared content from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
+        self._content_sharing_disabled: Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Specifies the reason why video from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
+        self._video_disabled: Optional[online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new onlineMeetingRestricted and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Specifies the reason why shared content from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
-        self._content_sharing_disabled: Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Specifies the reason why video from this participant is disabled. Possible values are: watermarkProtection, unknownFutureValue.
-        self._video_disabled: Optional[online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason] = None
     
     @property
     def content_sharing_disabled(self,) -> Optional[online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason]:
@@ -72,7 +71,9 @@ class OnlineMeetingRestricted(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import online_meeting_content_sharing_disabled_reason, online_meeting_video_disabled_reason
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentSharingDisabled": lambda n : setattr(self, 'content_sharing_disabled', n.get_enum_value(online_meeting_content_sharing_disabled_reason.OnlineMeetingContentSharingDisabledReason)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "videoDisabled": lambda n : setattr(self, 'video_disabled', n.get_enum_value(online_meeting_video_disabled_reason.OnlineMeetingVideoDisabledReason)),

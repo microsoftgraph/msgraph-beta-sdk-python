@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-management_category = lazy_import('msgraph.generated.models.managed_tenants.management_category')
+if TYPE_CHECKING:
+    from . import management_category
 
 class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managementTemplateDetailedInfo and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The category property
+        self._category: Optional[management_category.ManagementCategory] = None
+        # The display name for the management template. Required. Read-only.
+        self._display_name: Optional[str] = None
+        # The unique identifier for the management template. Required. Read-only.
+        self._management_template_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The version property
+        self._version: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,24 +57,6 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managementTemplateDetailedInfo and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The category property
-        self._category: Optional[management_category.ManagementCategory] = None
-        # The display name for the management template. Required. Read-only.
-        self._display_name: Optional[str] = None
-        # The unique identifier for the management template. Required. Read-only.
-        self._management_template_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The version property
-        self._version: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementTemplateDetailedInfo:
@@ -92,7 +92,9 @@ class ManagementTemplateDetailedInfo(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_category
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(management_category.ManagementCategory)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),

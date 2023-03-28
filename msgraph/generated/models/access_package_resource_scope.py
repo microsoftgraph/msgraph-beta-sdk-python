@@ -1,29 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_resource = lazy_import('msgraph.generated.models.access_package_resource')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_resource, entity
+
+from . import entity
 
 class AccessPackageResourceScope(entity.Entity):
-    @property
-    def access_package_resource(self,) -> Optional[access_package_resource.AccessPackageResource]:
-        """
-        Gets the accessPackageResource property value. The accessPackageResource property
-        Returns: Optional[access_package_resource.AccessPackageResource]
-        """
-        return self._access_package_resource
-    
-    @access_package_resource.setter
-    def access_package_resource(self,value: Optional[access_package_resource.AccessPackageResource] = None) -> None:
-        """
-        Sets the accessPackageResource property value. The accessPackageResource property
-        Args:
-            value: Value to set for the access_package_resource property.
-        """
-        self._access_package_resource = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new accessPackageResourceScope and sets the default values.
@@ -47,6 +31,23 @@ class AccessPackageResourceScope(entity.Entity):
         self._role_origin_id: Optional[str] = None
         # A resource locator for the scope.
         self._url: Optional[str] = None
+    
+    @property
+    def access_package_resource(self,) -> Optional[access_package_resource.AccessPackageResource]:
+        """
+        Gets the accessPackageResource property value. The accessPackageResource property
+        Returns: Optional[access_package_resource.AccessPackageResource]
+        """
+        return self._access_package_resource
+    
+    @access_package_resource.setter
+    def access_package_resource(self,value: Optional[access_package_resource.AccessPackageResource] = None) -> None:
+        """
+        Sets the accessPackageResource property value. The accessPackageResource property
+        Args:
+            value: Value to set for the access_package_resource property.
+        """
+        self._access_package_resource = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageResourceScope:
@@ -99,7 +100,9 @@ class AccessPackageResourceScope(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_resource, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackageResource": lambda n : setattr(self, 'access_package_resource', n.get_object_value(access_package_resource.AccessPackageResource)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

@@ -7,41 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-task_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.item.task.task_request_builder')
-task_definition_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.item.task_definition.task_definition_request_builder')
-task_processing_results_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.item.task_processing_results.task_processing_results_request_builder')
-task_processing_result_item_request_builder = lazy_import('msgraph.generated.identity_governance.lifecycle_workflows.deleted_items.workflows.item.task_reports.item.task_processing_results.item.task_processing_result_item_request_builder')
-task_report = lazy_import('msgraph.generated.models.identity_governance.task_report')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ........models.identity_governance import task_report
+    from ........models.o_data_errors import o_data_error
+    from .task import task_request_builder
+    from .task_definition import task_definition_request_builder
+    from .task_processing_results import task_processing_results_request_builder
+    from .task_processing_results.item import task_processing_result_item_request_builder
 
 class TaskReportItemRequestBuilder():
     """
     Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
     """
-    @property
-    def task(self) -> task_request_builder.TaskRequestBuilder:
-        """
-        Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.
-        """
-        return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def task_definition(self) -> task_definition_request_builder.TaskDefinitionRequestBuilder:
-        """
-        Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.
-        """
-        return task_definition_request_builder.TaskDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
-        """
-        Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
-        """
-        return task_processing_results_request_builder.TaskProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TaskReportItemRequestBuilder and sets the default values.
@@ -70,12 +49,16 @@ class TaskReportItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ........models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ........models.identity_governance import task_report
+
         return await self.request_adapter.send_async(request_info, task_report.TaskReport, error_mapping)
     
     def task_processing_results_by_id(self,id: str) -> task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder:
@@ -87,6 +70,8 @@ class TaskReportItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .task_processing_results.item import task_processing_result_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["taskProcessingResult%2Did"] = id
         return task_processing_result_item_request_builder.TaskProcessingResultItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -109,17 +94,38 @@ class TaskReportItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def task(self) -> task_request_builder.TaskRequestBuilder:
+        """
+        Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.
+        """
+        from .task import task_request_builder
+
+        return task_request_builder.TaskRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def task_definition(self) -> task_definition_request_builder.TaskDefinitionRequestBuilder:
+        """
+        Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.
+        """
+        from .task_definition import task_definition_request_builder
+
+        return task_definition_request_builder.TaskDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def task_processing_results(self) -> task_processing_results_request_builder.TaskProcessingResultsRequestBuilder:
+        """
+        Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
+        """
+        from .task_processing_results import task_processing_results_request_builder
+
+        return task_processing_results_request_builder.TaskProcessingResultsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TaskReportItemRequestBuilderGetQueryParameters():
         """
         Represents the aggregation of task execution data for tasks within a workflow object.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -135,6 +141,12 @@ class TaskReportItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TaskReportItemRequestBuilderGetRequestConfiguration():

@@ -7,76 +7,24 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-categories_request_builder = lazy_import('msgraph.generated.device_management.templates.item.categories.categories_request_builder')
-device_management_template_setting_category_item_request_builder = lazy_import('msgraph.generated.device_management.templates.item.categories.item.device_management_template_setting_category_item_request_builder')
-compare_with_template_id_request_builder = lazy_import('msgraph.generated.device_management.templates.item.compare_with_template_id.compare_with_template_id_request_builder')
-create_instance_request_builder = lazy_import('msgraph.generated.device_management.templates.item.create_instance.create_instance_request_builder')
-migratable_to_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.migratable_to_request_builder')
-device_management_template_item_request_builder = lazy_import('msgraph.generated.device_management.templates.item.migratable_to.item.device_management_template_item_request_builder')
-settings_request_builder = lazy_import('msgraph.generated.device_management.templates.item.settings.settings_request_builder')
-device_management_setting_instance_item_request_builder = lazy_import('msgraph.generated.device_management.templates.item.settings.item.device_management_setting_instance_item_request_builder')
-device_management_template = lazy_import('msgraph.generated.models.device_management_template')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import device_management_template
+    from ....models.o_data_errors import o_data_error
+    from .categories import categories_request_builder
+    from .categories.item import device_management_template_setting_category_item_request_builder
+    from .compare_with_template_id import compare_with_template_id_request_builder
+    from .create_instance import create_instance_request_builder
+    from .migratable_to import migratable_to_request_builder
+    from .migratable_to.item import device_management_template_item_request_builder
+    from .settings import settings_request_builder
+    from .settings.item import device_management_setting_instance_item_request_builder
 
 class DeviceManagementTemplateItemRequestBuilder():
     """
     Provides operations to manage the templates property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
-        """
-        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def create_instance(self) -> create_instance_request_builder.CreateInstanceRequestBuilder:
-        """
-        Provides operations to call the createInstance method.
-        """
-        return create_instance_request_builder.CreateInstanceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def migratable_to(self) -> migratable_to_request_builder.MigratableToRequestBuilder:
-        """
-        Provides operations to manage the migratableTo property of the microsoft.graph.deviceManagementTemplate entity.
-        """
-        return migratable_to_request_builder.MigratableToRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
-        """
-        Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
-        """
-        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def categories_by_id(self,id: str) -> device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder:
-        """
-        Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementTemplateSettingCategory%2Did"] = id
-        return device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
-        """
-        Provides operations to call the compare method.
-        Args:
-            templateId: Usage: templateId='{templateId}'
-        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
-        """
-        if template_id is None:
-            raise Exception("template_id cannot be undefined")
-        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, templateId)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementTemplateItemRequestBuilder and sets the default values.
@@ -95,6 +43,34 @@ class DeviceManagementTemplateItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def categories_by_id(self,id: str) -> device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder:
+        """
+        Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .categories.item import device_management_template_setting_category_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementTemplateSettingCategory%2Did"] = id
+        return device_management_template_setting_category_item_request_builder.DeviceManagementTemplateSettingCategoryItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def compare_with_template_id(self,template_id: Optional[str] = None) -> compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder:
+        """
+        Provides operations to call the compare method.
+        Args:
+            templateId: Usage: templateId='{templateId}'
+        Returns: compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder
+        """
+        if template_id is None:
+            raise Exception("template_id cannot be undefined")
+        from .compare_with_template_id import compare_with_template_id_request_builder
+
+        return compare_with_template_id_request_builder.CompareWithTemplateIdRequestBuilder(self.request_adapter, self.path_parameters, template_id)
+    
     async def delete(self,request_configuration: Optional[DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property templates for deviceManagement
@@ -104,6 +80,8 @@ class DeviceManagementTemplateItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -122,12 +100,16 @@ class DeviceManagementTemplateItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_management_template
+
         return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
     
     def migratable_to_by_id(self,id: str) -> DeviceManagementTemplateItemRequestBuilder:
@@ -139,6 +121,8 @@ class DeviceManagementTemplateItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .migratable_to.item import device_management_template_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementTemplate%2Did1"] = id
         return DeviceManagementTemplateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -156,12 +140,16 @@ class DeviceManagementTemplateItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_management_template
+
         return await self.request_adapter.send_async(request_info, device_management_template.DeviceManagementTemplate, error_mapping)
     
     def settings_by_id(self,id: str) -> device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder:
@@ -173,6 +161,8 @@ class DeviceManagementTemplateItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .settings.item import device_management_setting_instance_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["deviceManagementSettingInstance%2Did"] = id
         return device_management_setting_instance_item_request_builder.DeviceManagementSettingInstanceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -232,6 +222,42 @@ class DeviceManagementTemplateItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def categories(self) -> categories_request_builder.CategoriesRequestBuilder:
+        """
+        Provides operations to manage the categories property of the microsoft.graph.deviceManagementTemplate entity.
+        """
+        from .categories import categories_request_builder
+
+        return categories_request_builder.CategoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def create_instance(self) -> create_instance_request_builder.CreateInstanceRequestBuilder:
+        """
+        Provides operations to call the createInstance method.
+        """
+        from .create_instance import create_instance_request_builder
+
+        return create_instance_request_builder.CreateInstanceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def migratable_to(self) -> migratable_to_request_builder.MigratableToRequestBuilder:
+        """
+        Provides operations to manage the migratableTo property of the microsoft.graph.deviceManagementTemplate entity.
+        """
+        from .migratable_to import migratable_to_request_builder
+
+        return migratable_to_request_builder.MigratableToRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def settings(self) -> settings_request_builder.SettingsRequestBuilder:
+        """
+        Provides operations to manage the settings property of the microsoft.graph.deviceManagementTemplate entity.
+        """
+        from .settings import settings_request_builder
+
+        return settings_request_builder.SettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementTemplateItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -249,12 +275,6 @@ class DeviceManagementTemplateItemRequestBuilder():
         """
         The available templates
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -270,6 +290,12 @@ class DeviceManagementTemplateItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementTemplateItemRequestBuilderGetRequestConfiguration():

@@ -1,9 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import label_details
 
 class ParentLabelDetails(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new parentLabelDetails and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The color that the user interface should display for the label, if configured.
+        self._color: Optional[str] = None
+        # The admin-defined description for the label.
+        self._description: Optional[str] = None
+        # The label ID is a globally unique identifier (GUID).
+        self._id: Optional[str] = None
+        # Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
+        self._is_active: Optional[bool] = None
+        # The plaintext name of the label.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The parent property
+        self._parent: Optional[ParentLabelDetails] = None
+        # The sensitivity value of the label, where lower is less sensitive.
+        self._sensitivity: Optional[int] = None
+        # The tooltip that should be displayed for the label in a user interface.
+        self._tooltip: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -38,32 +66,6 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         """
         self._color = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new parentLabelDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The color that the user interface should display for the label, if configured.
-        self._color: Optional[str] = None
-        # The admin-defined description for the label.
-        self._description: Optional[str] = None
-        # The label ID is a globally unique identifier (GUID).
-        self._id: Optional[str] = None
-        # Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
-        self._is_active: Optional[bool] = None
-        # The plaintext name of the label.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The parent property
-        self._parent: Optional[ParentLabelDetails] = None
-        # The sensitivity value of the label, where lower is less sensitive.
-        self._sensitivity: Optional[int] = None
-        # The tooltip that should be displayed for the label in a user interface.
-        self._tooltip: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ParentLabelDetails:
         """
@@ -74,6 +76,13 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.labelDetails":
+                from . import label_details
+
+                return label_details.LabelDetails()
         return ParentLabelDetails()
     
     @property
@@ -98,7 +107,9 @@ class ParentLabelDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import label_details
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "color": lambda n : setattr(self, 'color', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),

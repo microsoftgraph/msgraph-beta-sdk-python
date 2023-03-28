@@ -1,13 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-file_processing_status = lazy_import('msgraph.generated.models.security.file_processing_status')
-source_type = lazy_import('msgraph.generated.models.security.source_type')
-string_value_dictionary = lazy_import('msgraph.generated.models.security.string_value_dictionary')
+if TYPE_CHECKING:
+    from . import ediscovery_file, file_processing_status, source_type, string_value_dictionary
+    from .. import entity
+
+from .. import entity
 
 class File(entity.Entity):
     def __init__(self,) -> None:
@@ -69,6 +69,13 @@ class File(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.security.ediscoveryFile":
+                from . import ediscovery_file
+
+                return ediscovery_file.EdiscoveryFile()
         return File()
     
     @property
@@ -127,7 +134,10 @@ class File(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import ediscovery_file, file_processing_status, source_type, string_value_dictionary
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "content": lambda n : setattr(self, 'content', n.get_bytes_value()),
             "dateTime": lambda n : setattr(self, 'date_time', n.get_datetime_value()),
             "extension": lambda n : setattr(self, 'extension', n.get_str_value()),

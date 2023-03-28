@@ -7,46 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-activities_request_builder = lazy_import('msgraph.generated.connections.item.items.item.activities.activities_request_builder')
-external_activity_item_request_builder = lazy_import('msgraph.generated.connections.item.items.item.activities.item.external_activity_item_request_builder')
-external_connectors_add_activities_request_builder = lazy_import('msgraph.generated.connections.item.items.item.external_connectors_add_activities.external_connectors_add_activities_request_builder')
-external_item = lazy_import('msgraph.generated.models.external_connectors.external_item')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models.external_connectors import external_item
+    from .....models.o_data_errors import o_data_error
+    from .activities import activities_request_builder
+    from .activities.item import external_activity_item_request_builder
+    from .external_connectors_add_activities import external_connectors_add_activities_request_builder
 
 class ExternalItemItemRequestBuilder():
     """
     Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.
     """
-    @property
-    def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
-        """
-        return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def external_connectors_add_activities(self) -> external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder:
-        """
-        Provides operations to call the addActivities method.
-        """
-        return external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def activities_by_id(self,id: str) -> external_activity_item_request_builder.ExternalActivityItemRequestBuilder:
-        """
-        Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: external_activity_item_request_builder.ExternalActivityItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["externalActivity%2Did"] = id
-        return external_activity_item_request_builder.ExternalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ExternalItemItemRequestBuilder and sets the default values.
@@ -65,6 +38,21 @@ class ExternalItemItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def activities_by_id(self,id: str) -> external_activity_item_request_builder.ExternalActivityItemRequestBuilder:
+        """
+        Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: external_activity_item_request_builder.ExternalActivityItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .activities.item import external_activity_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["externalActivity%2Did"] = id
+        return external_activity_item_request_builder.ExternalActivityItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property items for connections
@@ -74,6 +62,8 @@ class ExternalItemItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -92,15 +82,19 @@ class ExternalItemItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models.external_connectors import external_item
+
         return await self.request_adapter.send_async(request_info, external_item.ExternalItem, error_mapping)
     
-    async def patch(self,body: Optional[external_item.ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[external_item.ExternalItem]:
+    async def put(self,body: Optional[external_item.ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPutRequestConfiguration] = None) -> Optional[external_item.ExternalItem]:
         """
         Update the navigation property items in connections
         Args:
@@ -110,15 +104,19 @@ class ExternalItemItemRequestBuilder():
         """
         if body is None:
             raise Exception("body cannot be undefined")
-        request_info = self.to_patch_request_information(
+        request_info = self.to_put_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models.external_connectors import external_item
+
         return await self.request_adapter.send_async(request_info, external_item.ExternalItem, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExternalItemItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -155,7 +153,7 @@ class ExternalItemItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
-    def to_patch_request_information(self,body: Optional[external_item.ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPatchRequestConfiguration] = None) -> RequestInformation:
+    def to_put_request_information(self,body: Optional[external_item.ExternalItem] = None, request_configuration: Optional[ExternalItemItemRequestBuilderPutRequestConfiguration] = None) -> RequestInformation:
         """
         Update the navigation property items in connections
         Args:
@@ -168,13 +166,31 @@ class ExternalItemItemRequestBuilder():
         request_info = RequestInformation()
         request_info.url_template = self.url_template
         request_info.path_parameters = self.path_parameters
-        request_info.http_method = Method.PATCH
+        request_info.http_method = Method.PUT
         request_info.headers["Accept"] = ["application/json"]
         if request_configuration:
             request_info.add_request_headers(request_configuration.headers)
             request_info.add_request_options(request_configuration.options)
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
+    
+    @property
+    def activities(self) -> activities_request_builder.ActivitiesRequestBuilder:
+        """
+        Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
+        """
+        from .activities import activities_request_builder
+
+        return activities_request_builder.ActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def external_connectors_add_activities(self) -> external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder:
+        """
+        Provides operations to call the addActivities method.
+        """
+        from .external_connectors_add_activities import external_connectors_add_activities_request_builder
+
+        return external_connectors_add_activities_request_builder.ExternalConnectorsAddActivitiesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class ExternalItemItemRequestBuilderDeleteRequestConfiguration():
@@ -193,12 +209,6 @@ class ExternalItemItemRequestBuilder():
         """
         Get items from connections
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -214,6 +224,12 @@ class ExternalItemItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ExternalItemItemRequestBuilderGetRequestConfiguration():
@@ -231,7 +247,7 @@ class ExternalItemItemRequestBuilder():
 
     
     @dataclass
-    class ExternalItemItemRequestBuilderPatchRequestConfiguration():
+    class ExternalItemItemRequestBuilderPutRequestConfiguration():
         """
         Configuration for the request such as headers, query parameters, and middleware options.
         """

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-detected_sensitive_content_wrapper = lazy_import('msgraph.generated.models.detected_sensitive_content_wrapper')
-job_response_base = lazy_import('msgraph.generated.models.job_response_base')
+if TYPE_CHECKING:
+    from . import detected_sensitive_content_wrapper, job_response_base
+
+from . import job_response_base
 
 class ClassificationJobResponse(job_response_base.JobResponseBase):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class ClassificationJobResponse(job_response_base.JobResponseBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import detected_sensitive_content_wrapper, job_response_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "result": lambda n : setattr(self, 'result', n.get_object_value(detected_sensitive_content_wrapper.DetectedSensitiveContentWrapper)),
         }
         super_fields = super().get_field_deserializers()

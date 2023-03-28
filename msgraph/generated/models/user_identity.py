@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity = lazy_import('msgraph.generated.models.identity')
+if TYPE_CHECKING:
+    from . import audit_user_identity, identity
+
+from . import identity
 
 class UserIdentity(identity.Identity):
     def __init__(self,) -> None:
@@ -27,6 +29,13 @@ class UserIdentity(identity.Identity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.auditUserIdentity":
+                from . import audit_user_identity
+
+                return audit_user_identity.AuditUserIdentity()
         return UserIdentity()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -34,7 +43,9 @@ class UserIdentity(identity.Identity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import audit_user_identity, identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "ipAddress": lambda n : setattr(self, 'ip_address', n.get_str_value()),
             "userPrincipalName": lambda n : setattr(self, 'user_principal_name', n.get_str_value()),
         }

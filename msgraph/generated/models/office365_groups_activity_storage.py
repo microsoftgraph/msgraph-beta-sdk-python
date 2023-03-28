@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365GroupsActivityStorage(entity.Entity):
     def __init__(self,) -> None:
@@ -17,11 +19,11 @@ class Office365GroupsActivityStorage(entity.Entity):
         # The OdataType property
         self.odata_type: Optional[str] = None
         # The snapshot date for Exchange and SharePoint used storage.
-        self._report_date: Optional[Date] = None
+        self._report_date: Optional[date] = None
         # The number of days the report covers.
         self._report_period: Optional[str] = None
         # The latest date of the content.
-        self._report_refresh_date: Optional[Date] = None
+        self._report_refresh_date: Optional[date] = None
         # The storage used in SharePoint document library.
         self._site_storage_used_in_bytes: Optional[int] = None
     
@@ -42,11 +44,13 @@ class Office365GroupsActivityStorage(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "mailboxStorageUsedInBytes": lambda n : setattr(self, 'mailbox_storage_used_in_bytes', n.get_int_value()),
-            "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
+            "reportDate": lambda n : setattr(self, 'report_date', n.get_date_value()),
             "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_date_value()),
             "siteStorageUsedInBytes": lambda n : setattr(self, 'site_storage_used_in_bytes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -71,15 +75,15 @@ class Office365GroupsActivityStorage(entity.Entity):
         self._mailbox_storage_used_in_bytes = value
     
     @property
-    def report_date(self,) -> Optional[Date]:
+    def report_date(self,) -> Optional[date]:
         """
         Gets the reportDate property value. The snapshot date for Exchange and SharePoint used storage.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._report_date
     
     @report_date.setter
-    def report_date(self,value: Optional[Date] = None) -> None:
+    def report_date(self,value: Optional[date] = None) -> None:
         """
         Sets the reportDate property value. The snapshot date for Exchange and SharePoint used storage.
         Args:
@@ -105,15 +109,15 @@ class Office365GroupsActivityStorage(entity.Entity):
         self._report_period = value
     
     @property
-    def report_refresh_date(self,) -> Optional[Date]:
+    def report_refresh_date(self,) -> Optional[date]:
         """
         Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._report_refresh_date
     
     @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[Date] = None) -> None:
+    def report_refresh_date(self,value: Optional[date] = None) -> None:
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
@@ -131,9 +135,9 @@ class Office365GroupsActivityStorage(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_int_value("mailboxStorageUsedInBytes", self.mailbox_storage_used_in_bytes)
-        writer.write_object_value("reportDate", self.report_date)
+        writer.write_date_value("reportDate", self.report_date)
         writer.write_str_value("reportPeriod", self.report_period)
-        writer.write_object_value("reportRefreshDate", self.report_refresh_date)
+        writer.write_date_value("reportRefreshDate", self.report_refresh_date)
         writer.write_int_value("siteStorageUsedInBytes", self.site_storage_used_in_bytes)
     
     @property

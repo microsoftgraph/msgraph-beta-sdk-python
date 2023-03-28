@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_permission_action_type = lazy_import('msgraph.generated.models.android_permission_action_type')
+if TYPE_CHECKING:
+    from . import android_permission_action_type
 
 class AndroidPermissionAction(AdditionalDataHolder, Parsable):
     """
     Mapping between an Android app permission and the action Android should take when that permission is requested.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new androidPermissionAction and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Android action taken when an app requests a dangerous permission.
+        self._action: Optional[android_permission_action_type.AndroidPermissionActionType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Android permission string, defined in the official Android documentation.  Example 'android.permission.READ_CONTACTS'.
+        self._permission: Optional[str] = None
+    
     @property
     def action(self,) -> Optional[android_permission_action_type.AndroidPermissionActionType]:
         """
@@ -43,20 +57,6 @@ class AndroidPermissionAction(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidPermissionAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Android action taken when an app requests a dangerous permission.
-        self._action: Optional[android_permission_action_type.AndroidPermissionActionType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Android permission string, defined in the official Android documentation.  Example 'android.permission.READ_CONTACTS'.
-        self._permission: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidPermissionAction:
         """
@@ -74,7 +74,9 @@ class AndroidPermissionAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_permission_action_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(android_permission_action_type.AndroidPermissionActionType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "permission": lambda n : setattr(self, 'permission', n.get_str_value()),

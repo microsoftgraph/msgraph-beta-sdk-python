@@ -1,11 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-person_annual_event_type = lazy_import('msgraph.generated.models.person_annual_event_type')
+if TYPE_CHECKING:
+    from . import item_facet, person_annual_event_type
+
+from . import item_facet
 
 class PersonAnnualEvent(item_facet.ItemFacet):
     def __init__(self,) -> None:
@@ -15,7 +16,7 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         super().__init__()
         self.odata_type = "#microsoft.graph.personAnnualEvent"
         # The date property
-        self._date: Optional[Date] = None
+        self._date: Optional[date] = None
         # The displayName property
         self._display_name: Optional[str] = None
         # The type property
@@ -34,15 +35,15 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         return PersonAnnualEvent()
     
     @property
-    def date(self,) -> Optional[Date]:
+    def date(self,) -> Optional[date]:
         """
         Gets the date property value. The date property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._date
     
     @date.setter
-    def date(self,value: Optional[Date] = None) -> None:
+    def date(self,value: Optional[date] = None) -> None:
         """
         Sets the date property value. The date property
         Args:
@@ -72,8 +73,10 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "date": lambda n : setattr(self, 'date', n.get_object_value(Date)),
+        from . import item_facet, person_annual_event_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "date": lambda n : setattr(self, 'date', n.get_date_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(person_annual_event_type.PersonAnnualEventType)),
         }
@@ -90,7 +93,7 @@ class PersonAnnualEvent(item_facet.ItemFacet):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("date", self.date)
+        writer.write_date_value("date", self.date)
         writer.write_str_value("displayName", self.display_name)
         writer.write_enum_value("type", self.type)
     

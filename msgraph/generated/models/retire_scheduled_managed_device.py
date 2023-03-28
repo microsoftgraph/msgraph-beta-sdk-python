@@ -1,18 +1,47 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-compliance_status = lazy_import('msgraph.generated.models.compliance_status')
-device_type = lazy_import('msgraph.generated.models.device_type')
-managed_device_owner_type = lazy_import('msgraph.generated.models.managed_device_owner_type')
-management_agent_type = lazy_import('msgraph.generated.models.management_agent_type')
+if TYPE_CHECKING:
+    from . import compliance_status, device_type, managed_device_owner_type, management_agent_type
 
 class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
     """
     ManagedDevices that are scheduled for retire
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new retireScheduledManagedDevice and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The complianceState property
+        self._compliance_state: Optional[compliance_status.ComplianceStatus] = None
+        # Device Compliance PolicyId
+        self._device_compliance_policy_id: Optional[str] = None
+        # Device Compliance Policy Name
+        self._device_compliance_policy_name: Optional[str] = None
+        # Device type.
+        self._device_type: Optional[device_type.DeviceType] = None
+        # Key of the entity.
+        self._id: Optional[str] = None
+        # Managed DeviceId
+        self._managed_device_id: Optional[str] = None
+        # Managed Device Name
+        self._managed_device_name: Optional[str] = None
+        # Management agent type.
+        self._management_agent: Optional[management_agent_type.ManagementAgentType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Owner type of device.
+        self._owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
+        # Managed Device Retire After DateTime
+        self._retire_after_date_time: Optional[datetime] = None
+        # List of Scope Tags for this Entity instance.
+        self._role_scope_tag_ids: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -46,38 +75,6 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
             value: Value to set for the compliance_state property.
         """
         self._compliance_state = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new retireScheduledManagedDevice and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The complianceState property
-        self._compliance_state: Optional[compliance_status.ComplianceStatus] = None
-        # Device Compliance PolicyId
-        self._device_compliance_policy_id: Optional[str] = None
-        # Device Compliance Policy Name
-        self._device_compliance_policy_name: Optional[str] = None
-        # Device type.
-        self._device_type: Optional[device_type.DeviceType] = None
-        # Key of the entity.
-        self._id: Optional[str] = None
-        # Managed DeviceId
-        self._managed_device_id: Optional[str] = None
-        # Managed Device Name
-        self._managed_device_name: Optional[str] = None
-        # Management agent type.
-        self._management_agent: Optional[management_agent_type.ManagementAgentType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
-        # Managed Device Retire After DateTime
-        self._retire_after_date_time: Optional[datetime] = None
-        # List of Scope Tags for this Entity instance.
-        self._role_scope_tag_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RetireScheduledManagedDevice:
@@ -147,7 +144,9 @@ class RetireScheduledManagedDevice(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import compliance_status, device_type, managed_device_owner_type, management_agent_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "complianceState": lambda n : setattr(self, 'compliance_state', n.get_enum_value(compliance_status.ComplianceStatus)),
             "deviceCompliancePolicyId": lambda n : setattr(self, 'device_compliance_policy_id', n.get_str_value()),
             "deviceCompliancePolicyName": lambda n : setattr(self, 'device_compliance_policy_name', n.get_str_value()),

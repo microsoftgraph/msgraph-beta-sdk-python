@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_custom_extension_stage = lazy_import('msgraph.generated.models.access_package_custom_extension_stage')
-custom_access_package_workflow_extension = lazy_import('msgraph.generated.models.custom_access_package_workflow_extension')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import access_package_custom_extension_stage, custom_access_package_workflow_extension, entity
+
+from . import entity
 
 class CustomExtensionHandler(entity.Entity):
     def __init__(self,) -> None:
@@ -54,7 +54,9 @@ class CustomExtensionHandler(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_custom_extension_stage, custom_access_package_workflow_extension, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "customExtension": lambda n : setattr(self, 'custom_extension', n.get_object_value(custom_access_package_workflow_extension.CustomAccessPackageWorkflowExtension)),
             "stage": lambda n : setattr(self, 'stage', n.get_enum_value(access_package_custom_extension_stage.AccessPackageCustomExtensionStage)),
         }

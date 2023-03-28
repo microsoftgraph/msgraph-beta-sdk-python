@@ -1,17 +1,63 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-external_authentication_type = lazy_import('msgraph.generated.models.external_authentication_type')
-key_credential = lazy_import('msgraph.generated.models.key_credential')
-on_premises_application_segment = lazy_import('msgraph.generated.models.on_premises_application_segment')
-on_premises_publishing_single_sign_on = lazy_import('msgraph.generated.models.on_premises_publishing_single_sign_on')
-password_credential = lazy_import('msgraph.generated.models.password_credential')
-segment_configuration = lazy_import('msgraph.generated.models.segment_configuration')
-verified_custom_domain_certificates_metadata = lazy_import('msgraph.generated.models.verified_custom_domain_certificates_metadata')
+if TYPE_CHECKING:
+    from . import external_authentication_type, key_credential, on_premises_application_segment, on_premises_publishing_single_sign_on, password_credential, segment_configuration, verified_custom_domain_certificates_metadata
 
 class OnPremisesPublishing(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new onPremisesPublishing and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # If you are configuring a traffic manager in front of multiple App Proxy applications, the alternateUrl is the user-friendly URL that will point to the traffic manager.
+        self._alternate_url: Optional[str] = None
+        # The duration the connector will wait for a response from the backend application before closing the connection. Possible values are default, long. When set to default, the backend application timeout has a length of 85 seconds. When set to long, the backend timeout is increased to 180 seconds. Use long if your server takes more than 85 seconds to respond to requests or if you are unable to access the application and the error status is 'Backend Timeout'. Default value is default.
+        self._application_server_timeout: Optional[str] = None
+        # Indicates if this application is an Application Proxy configured application. This is pre-set by the system. Read-only.
+        self._application_type: Optional[str] = None
+        # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Passthru does not require authentication. Possible values are: passthru, aadPreAuthentication.
+        self._external_authentication_type: Optional[external_authentication_type.ExternalAuthenticationType] = None
+        # The published external url for the application. For example, https://intranet-contoso.msappproxy.net/.
+        self._external_url: Optional[str] = None
+        # The internal url of the application. For example, https://intranet/.
+        self._internal_url: Optional[str] = None
+        # Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy apps, the property will be set to true by default. For all existing apps, the property will be set to false.
+        self._is_backend_certificate_validation_enabled: Optional[bool] = None
+        # Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
+        self._is_http_only_cookie_enabled: Optional[bool] = None
+        # Indicates if the application is currently being published via Application Proxy or not. This is pre-set by the system. Read-only.
+        self._is_on_prem_publishing_enabled: Optional[bool] = None
+        # Indicates if the Persistent cookie flag should be set in the HTTP response headers. Keep this value set to false. Only use this setting for applications that can't share cookies between processes. For more information about cookie settings, see Cookie settings for accessing on-premises applications in Azure Active Directory. Default value is false.
+        self._is_persistent_cookie_enabled: Optional[bool] = None
+        # Indicates if the Secure cookie flag should be set in the HTTP response headers. Set this value to true to transmit cookies over a secure channel such as an encrypted HTTPS request. Default value is true.
+        self._is_secure_cookie_enabled: Optional[bool] = None
+        # Indicates whether validation of the state parameter when the client uses the OAuth 2.0 authorization code grant flow is enabled. This setting allows admins to specify whether they want to enable CSRF protection for their apps.
+        self._is_state_session_enabled: Optional[bool] = None
+        # Indicates if the application should translate urls in the reponse headers. Keep this value as true unless your application required the original host header in the authentication request. Default value is true.
+        self._is_translate_host_header_enabled: Optional[bool] = None
+        # Indicates if the application should translate urls in the application body. Keep this value as false unless you have hardcoded HTML links to other on-premises applications and don't use custom domains. For more information, see Link translation with Application Proxy. Default value is false.
+        self._is_translate_links_in_body_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The onPremisesApplicationSegments property
+        self._on_premises_application_segments: Optional[List[on_premises_application_segment.OnPremisesApplicationSegment]] = None
+        # Represents the collection of application segments for an on-premises wildcard application that's published through Azure AD Application Proxy.
+        self._segments_configuration: Optional[segment_configuration.SegmentConfiguration] = None
+        # Represents the single sign-on configuration for the on-premises application.
+        self._single_sign_on_settings: Optional[on_premises_publishing_single_sign_on.OnPremisesPublishingSingleSignOn] = None
+        # The useAlternateUrlForTranslationAndRedirect property
+        self._use_alternate_url_for_translation_and_redirect: Optional[bool] = None
+        # Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
+        self._verified_custom_domain_certificates_metadata: Optional[verified_custom_domain_certificates_metadata.VerifiedCustomDomainCertificatesMetadata] = None
+        # The associated key credential for the custom domain used.
+        self._verified_custom_domain_key_credential: Optional[key_credential.KeyCredential] = None
+        # The associated password credential for the custom domain used.
+        self._verified_custom_domain_password_credential: Optional[password_credential.PasswordCredential] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -80,58 +126,6 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         """
         self._application_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new onPremisesPublishing and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # If you are configuring a traffic manager in front of multiple App Proxy applications, the alternateUrl is the user-friendly URL that will point to the traffic manager.
-        self._alternate_url: Optional[str] = None
-        # The duration the connector will wait for a response from the backend application before closing the connection. Possible values are default, long. When set to default, the backend application timeout has a length of 85 seconds. When set to long, the backend timeout is increased to 180 seconds. Use long if your server takes more than 85 seconds to respond to requests or if you are unable to access the application and the error status is 'Backend Timeout'. Default value is default.
-        self._application_server_timeout: Optional[str] = None
-        # Indicates if this application is an Application Proxy configured application. This is pre-set by the system. Read-only.
-        self._application_type: Optional[str] = None
-        # Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Passthru does not require authentication. Possible values are: passthru, aadPreAuthentication.
-        self._external_authentication_type: Optional[external_authentication_type.ExternalAuthenticationType] = None
-        # The published external url for the application. For example, https://intranet-contoso.msappproxy.net/.
-        self._external_url: Optional[str] = None
-        # The internal url of the application. For example, https://intranet/.
-        self._internal_url: Optional[str] = None
-        # Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy apps, the property will be set to true by default. For all existing apps, the property will be set to false.
-        self._is_backend_certificate_validation_enabled: Optional[bool] = None
-        # Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services, set this value to False. Default value is false.
-        self._is_http_only_cookie_enabled: Optional[bool] = None
-        # Indicates if the application is currently being published via Application Proxy or not. This is pre-set by the system. Read-only.
-        self._is_on_prem_publishing_enabled: Optional[bool] = None
-        # Indicates if the Persistent cookie flag should be set in the HTTP response headers. Keep this value set to false. Only use this setting for applications that can't share cookies between processes. For more information about cookie settings, see Cookie settings for accessing on-premises applications in Azure Active Directory. Default value is false.
-        self._is_persistent_cookie_enabled: Optional[bool] = None
-        # Indicates if the Secure cookie flag should be set in the HTTP response headers. Set this value to true to transmit cookies over a secure channel such as an encrypted HTTPS request. Default value is true.
-        self._is_secure_cookie_enabled: Optional[bool] = None
-        # Indicates whether validation of the state parameter when the client uses the OAuth 2.0 authorization code grant flow is enabled. This setting allows admins to specify whether they want to enable CSRF protection for their apps.
-        self._is_state_session_enabled: Optional[bool] = None
-        # Indicates if the application should translate urls in the reponse headers. Keep this value as true unless your application required the original host header in the authentication request. Default value is true.
-        self._is_translate_host_header_enabled: Optional[bool] = None
-        # Indicates if the application should translate urls in the application body. Keep this value as false unless you have hardcoded HTML links to other on-premises applications and don't use custom domains. For more information, see Link translation with Application Proxy. Default value is false.
-        self._is_translate_links_in_body_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The onPremisesApplicationSegments property
-        self._on_premises_application_segments: Optional[List[on_premises_application_segment.OnPremisesApplicationSegment]] = None
-        # Represents the collection of application segments for an on-premises wildcard application that's published through Azure AD Application Proxy.
-        self._segments_configuration: Optional[segment_configuration.SegmentConfiguration] = None
-        # Represents the single sign-on configuration for the on-premises application.
-        self._single_sign_on_settings: Optional[on_premises_publishing_single_sign_on.OnPremisesPublishingSingleSignOn] = None
-        # The useAlternateUrlForTranslationAndRedirect property
-        self._use_alternate_url_for_translation_and_redirect: Optional[bool] = None
-        # Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
-        self._verified_custom_domain_certificates_metadata: Optional[verified_custom_domain_certificates_metadata.VerifiedCustomDomainCertificatesMetadata] = None
-        # The associated key credential for the custom domain used.
-        self._verified_custom_domain_key_credential: Optional[key_credential.KeyCredential] = None
-        # The associated password credential for the custom domain used.
-        self._verified_custom_domain_password_credential: Optional[password_credential.PasswordCredential] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesPublishing:
         """
@@ -183,7 +177,9 @@ class OnPremisesPublishing(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import external_authentication_type, key_credential, on_premises_application_segment, on_premises_publishing_single_sign_on, password_credential, segment_configuration, verified_custom_domain_certificates_metadata
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alternateUrl": lambda n : setattr(self, 'alternate_url', n.get_str_value()),
             "applicationServerTimeout": lambda n : setattr(self, 'application_server_timeout', n.get_str_value()),
             "applicationType": lambda n : setattr(self, 'application_type', n.get_str_value()),

@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-on_premises_accidental_deletion_prevention = lazy_import('msgraph.generated.models.on_premises_accidental_deletion_prevention')
+if TYPE_CHECKING:
+    from . import on_premises_accidental_deletion_prevention
 
 class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new onPremisesDirectorySynchronizationConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Contains the accidental deletion prevention configuration for a tenant.
+        self._accidental_deletion_prevention: Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention] = None
+        # Interval of time that the customer requested the sync client waits between sync cycles.
+        self._customer_requested_synchronization_interval: Optional[timedelta] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Interval of time the sync client should honor between sync cycles
+        self._synchronization_interval: Optional[timedelta] = None
+    
     @property
     def accidental_deletion_prevention(self,) -> Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention]:
         """
@@ -41,22 +57,6 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new onPremisesDirectorySynchronizationConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Contains the accidental deletion prevention configuration for a tenant.
-        self._accidental_deletion_prevention: Optional[on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention] = None
-        # Interval of time that the customer requested the sync client waits between sync cycles.
-        self._customer_requested_synchronization_interval: Optional[Timedelta] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Interval of time the sync client should honor between sync cycles
-        self._synchronization_interval: Optional[Timedelta] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OnPremisesDirectorySynchronizationConfiguration:
         """
@@ -70,15 +70,15 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         return OnPremisesDirectorySynchronizationConfiguration()
     
     @property
-    def customer_requested_synchronization_interval(self,) -> Optional[Timedelta]:
+    def customer_requested_synchronization_interval(self,) -> Optional[timedelta]:
         """
         Gets the customerRequestedSynchronizationInterval property value. Interval of time that the customer requested the sync client waits between sync cycles.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._customer_requested_synchronization_interval
     
     @customer_requested_synchronization_interval.setter
-    def customer_requested_synchronization_interval(self,value: Optional[Timedelta] = None) -> None:
+    def customer_requested_synchronization_interval(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the customerRequestedSynchronizationInterval property value. Interval of time that the customer requested the sync client waits between sync cycles.
         Args:
@@ -91,11 +91,13 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import on_premises_accidental_deletion_prevention
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accidentalDeletionPrevention": lambda n : setattr(self, 'accidental_deletion_prevention', n.get_object_value(on_premises_accidental_deletion_prevention.OnPremisesAccidentalDeletionPrevention)),
-            "customerRequestedSynchronizationInterval": lambda n : setattr(self, 'customer_requested_synchronization_interval', n.get_object_value(Timedelta)),
+            "customerRequestedSynchronizationInterval": lambda n : setattr(self, 'customer_requested_synchronization_interval', n.get_timedelta_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "synchronizationInterval": lambda n : setattr(self, 'synchronization_interval', n.get_object_value(Timedelta)),
+            "synchronizationInterval": lambda n : setattr(self, 'synchronization_interval', n.get_timedelta_value()),
         }
         return fields
     
@@ -125,21 +127,21 @@ class OnPremisesDirectorySynchronizationConfiguration(AdditionalDataHolder, Pars
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_object_value("accidentalDeletionPrevention", self.accidental_deletion_prevention)
-        writer.write_object_value("customerRequestedSynchronizationInterval", self.customer_requested_synchronization_interval)
+        writer.write_timedelta_value("customerRequestedSynchronizationInterval", self.customer_requested_synchronization_interval)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_object_value("synchronizationInterval", self.synchronization_interval)
+        writer.write_timedelta_value("synchronizationInterval", self.synchronization_interval)
         writer.write_additional_data_value(self.additional_data)
     
     @property
-    def synchronization_interval(self,) -> Optional[Timedelta]:
+    def synchronization_interval(self,) -> Optional[timedelta]:
         """
         Gets the synchronizationInterval property value. Interval of time the sync client should honor between sync cycles
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._synchronization_interval
     
     @synchronization_interval.setter
-    def synchronization_interval(self,value: Optional[Timedelta] = None) -> None:
+    def synchronization_interval(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the synchronizationInterval property value. Interval of time the sync client should honor between sync cycles
         Args:

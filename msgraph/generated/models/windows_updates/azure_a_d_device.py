@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-updatable_asset = lazy_import('msgraph.generated.models.windows_updates.updatable_asset')
-updatable_asset_enrollment = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_enrollment')
-updatable_asset_error = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_error')
+if TYPE_CHECKING:
+    from . import updatable_asset, updatable_asset_enrollment, updatable_asset_error
+
+from . import updatable_asset
 
 class AzureADDevice(updatable_asset.UpdatableAsset):
     def __init__(self,) -> None:
@@ -70,7 +70,9 @@ class AzureADDevice(updatable_asset.UpdatableAsset):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import updatable_asset, updatable_asset_enrollment, updatable_asset_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enrollments": lambda n : setattr(self, 'enrollments', n.get_collection_of_object_values(updatable_asset_enrollment.UpdatableAssetEnrollment)),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(updatable_asset_error.UpdatableAssetError)),
         }

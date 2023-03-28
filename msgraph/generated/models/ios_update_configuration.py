@@ -1,49 +1,14 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_update_time_window = lazy_import('msgraph.generated.models.custom_update_time_window')
-day_of_week = lazy_import('msgraph.generated.models.day_of_week')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-ios_software_update_schedule_type = lazy_import('msgraph.generated.models.ios_software_update_schedule_type')
+if TYPE_CHECKING:
+    from . import custom_update_time_window, day_of_week, device_configuration, ios_software_update_schedule_type
+
+from . import device_configuration
 
 class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
-    @property
-    def active_hours_end(self,) -> Optional[Time]:
-        """
-        Gets the activeHoursEnd property value. Active Hours End (active hours mean the time window when updates install should not happen)
-        Returns: Optional[Time]
-        """
-        return self._active_hours_end
-    
-    @active_hours_end.setter
-    def active_hours_end(self,value: Optional[Time] = None) -> None:
-        """
-        Sets the activeHoursEnd property value. Active Hours End (active hours mean the time window when updates install should not happen)
-        Args:
-            value: Value to set for the active_hours_end property.
-        """
-        self._active_hours_end = value
-    
-    @property
-    def active_hours_start(self,) -> Optional[Time]:
-        """
-        Gets the activeHoursStart property value. Active Hours Start (active hours mean the time window when updates install should not happen)
-        Returns: Optional[Time]
-        """
-        return self._active_hours_start
-    
-    @active_hours_start.setter
-    def active_hours_start(self,value: Optional[Time] = None) -> None:
-        """
-        Sets the activeHoursStart property value. Active Hours Start (active hours mean the time window when updates install should not happen)
-        Args:
-            value: Value to set for the active_hours_start property.
-        """
-        self._active_hours_start = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new IosUpdateConfiguration and sets the default values.
@@ -51,9 +16,9 @@ class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
         super().__init__()
         self.odata_type = "#microsoft.graph.iosUpdateConfiguration"
         # Active Hours End (active hours mean the time window when updates install should not happen)
-        self._active_hours_end: Optional[Time] = None
+        self._active_hours_end: Optional[time] = None
         # Active Hours Start (active hours mean the time window when updates install should not happen)
-        self._active_hours_start: Optional[Time] = None
+        self._active_hours_start: Optional[time] = None
         # If update schedule type is set to use time window scheduling, custom time windows when updates will be scheduled. This collection can contain a maximum of 20 elements.
         self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
         # If left unspecified, devices will update to the latest version of the OS.
@@ -68,6 +33,40 @@ class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
         self._update_schedule_type: Optional[ios_software_update_schedule_type.IosSoftwareUpdateScheduleType] = None
         # UTC Time Offset indicated in minutes
         self._utc_time_offset_in_minutes: Optional[int] = None
+    
+    @property
+    def active_hours_end(self,) -> Optional[time]:
+        """
+        Gets the activeHoursEnd property value. Active Hours End (active hours mean the time window when updates install should not happen)
+        Returns: Optional[time]
+        """
+        return self._active_hours_end
+    
+    @active_hours_end.setter
+    def active_hours_end(self,value: Optional[time] = None) -> None:
+        """
+        Sets the activeHoursEnd property value. Active Hours End (active hours mean the time window when updates install should not happen)
+        Args:
+            value: Value to set for the active_hours_end property.
+        """
+        self._active_hours_end = value
+    
+    @property
+    def active_hours_start(self,) -> Optional[time]:
+        """
+        Gets the activeHoursStart property value. Active Hours Start (active hours mean the time window when updates install should not happen)
+        Returns: Optional[time]
+        """
+        return self._active_hours_start
+    
+    @active_hours_start.setter
+    def active_hours_start(self,value: Optional[time] = None) -> None:
+        """
+        Sets the activeHoursStart property value. Active Hours Start (active hours mean the time window when updates install should not happen)
+        Args:
+            value: Value to set for the active_hours_start property.
+        """
+        self._active_hours_start = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosUpdateConfiguration:
@@ -137,9 +136,11 @@ class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "activeHoursEnd": lambda n : setattr(self, 'active_hours_end', n.get_object_value(Time)),
-            "activeHoursStart": lambda n : setattr(self, 'active_hours_start', n.get_object_value(Time)),
+        from . import custom_update_time_window, day_of_week, device_configuration, ios_software_update_schedule_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "activeHoursEnd": lambda n : setattr(self, 'active_hours_end', n.get_time_value()),
+            "activeHoursStart": lambda n : setattr(self, 'active_hours_start', n.get_time_value()),
             "customUpdateTimeWindows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(custom_update_time_window.CustomUpdateTimeWindow)),
             "desiredOsVersion": lambda n : setattr(self, 'desired_os_version', n.get_str_value()),
             "enforcedSoftwareUpdateDelayInDays": lambda n : setattr(self, 'enforced_software_update_delay_in_days', n.get_int_value()),
@@ -195,8 +196,8 @@ class IosUpdateConfiguration(device_configuration.DeviceConfiguration):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("activeHoursEnd", self.active_hours_end)
-        writer.write_object_value("activeHoursStart", self.active_hours_start)
+        writer.write_time_value("activeHoursEnd", self.active_hours_end)
+        writer.write_time_value("activeHoursStart", self.active_hours_start)
         writer.write_collection_of_object_values("customUpdateTimeWindows", self.custom_update_time_windows)
         writer.write_str_value("desiredOsVersion", self.desired_os_version)
         writer.write_int_value("enforcedSoftwareUpdateDelayInDays", self.enforced_software_update_delay_in_days)

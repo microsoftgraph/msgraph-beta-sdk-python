@@ -1,29 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_custom_extension_handler_status = lazy_import('msgraph.generated.models.access_package_custom_extension_handler_status')
-access_package_custom_extension_stage = lazy_import('msgraph.generated.models.access_package_custom_extension_stage')
+if TYPE_CHECKING:
+    from . import access_package_custom_extension_handler_status, access_package_custom_extension_stage
 
 class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new customExtensionHandlerInstance and sets the default values.
@@ -41,6 +23,23 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         self._stage: Optional[access_package_custom_extension_stage.AccessPackageCustomExtensionStage] = None
         # Status of the request to run the access package custom extension workflow that is associated with the logic app. The possible values are: requestSent, requestReceived, unknownFutureValue.
         self._status: Optional[access_package_custom_extension_handler_status.AccessPackageCustomExtensionHandlerStatus] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomExtensionHandlerInstance:
@@ -93,7 +92,9 @@ class CustomExtensionHandlerInstance(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_custom_extension_handler_status, access_package_custom_extension_stage
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "customExtensionId": lambda n : setattr(self, 'custom_extension_id', n.get_str_value()),
             "externalCorrelationId": lambda n : setattr(self, 'external_correlation_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

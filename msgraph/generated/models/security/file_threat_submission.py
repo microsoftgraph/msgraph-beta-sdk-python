@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-threat_submission = lazy_import('msgraph.generated.models.security.threat_submission')
+if TYPE_CHECKING:
+    from . import file_content_threat_submission, file_url_threat_submission, threat_submission
+
+from . import threat_submission
 
 class FileThreatSubmission(threat_submission.ThreatSubmission):
     def __init__(self,) -> None:
@@ -25,6 +27,17 @@ class FileThreatSubmission(threat_submission.ThreatSubmission):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.security.fileContentThreatSubmission":
+                from . import file_content_threat_submission
+
+                return file_content_threat_submission.FileContentThreatSubmission()
+            if mapping_value == "#microsoft.graph.security.fileUrlThreatSubmission":
+                from . import file_url_threat_submission
+
+                return file_url_threat_submission.FileUrlThreatSubmission()
         return FileThreatSubmission()
     
     @property
@@ -49,7 +62,9 @@ class FileThreatSubmission(threat_submission.ThreatSubmission):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import file_content_threat_submission, file_url_threat_submission, threat_submission
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "fileName": lambda n : setattr(self, 'file_name', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

@@ -1,11 +1,35 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-physical_address_type = lazy_import('msgraph.generated.models.physical_address_type')
+if TYPE_CHECKING:
+    from . import physical_address_type
 
 class PhysicalAddress(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new physicalAddress and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The city.
+        self._city: Optional[str] = None
+        # The country or region. It's a free-format string value, for example, 'United States'.
+        self._country_or_region: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The post office box number.
+        self._post_office_box: Optional[str] = None
+        # The postal code.
+        self._postal_code: Optional[str] = None
+        # The state.
+        self._state: Optional[str] = None
+        # The street.
+        self._street: Optional[str] = None
+        # The type of address. Possible values are: unknown, home, business, other.
+        self._type: Optional[physical_address_type.PhysicalAddressType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,30 +63,6 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
             value: Value to set for the city property.
         """
         self._city = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new physicalAddress and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The city.
-        self._city: Optional[str] = None
-        # The country or region. It's a free-format string value, for example, 'United States'.
-        self._country_or_region: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The post office box number.
-        self._post_office_box: Optional[str] = None
-        # The postal code.
-        self._postal_code: Optional[str] = None
-        # The state.
-        self._state: Optional[str] = None
-        # The street.
-        self._street: Optional[str] = None
-        # The type of address. Possible values are: unknown, home, business, other.
-        self._type: Optional[physical_address_type.PhysicalAddressType] = None
     
     @property
     def country_or_region(self,) -> Optional[str]:
@@ -98,7 +98,9 @@ class PhysicalAddress(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import physical_address_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "city": lambda n : setattr(self, 'city', n.get_str_value()),
             "countryOrRegion": lambda n : setattr(self, 'country_or_region', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

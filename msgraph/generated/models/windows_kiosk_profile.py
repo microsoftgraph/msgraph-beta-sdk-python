@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_kiosk_app_configuration = lazy_import('msgraph.generated.models.windows_kiosk_app_configuration')
-windows_kiosk_user = lazy_import('msgraph.generated.models.windows_kiosk_user')
+if TYPE_CHECKING:
+    from . import windows_kiosk_app_configuration, windows_kiosk_user
 
 class WindowsKioskProfile(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsKioskProfile and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The app base class used to identify the application info for the kiosk configuration
+        self._app_configuration: Optional[windows_kiosk_app_configuration.WindowsKioskAppConfiguration] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Key of the entity.
+        self._profile_id: Optional[str] = None
+        # This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the users to whom this kiosk configuration is assigned.
+        self._profile_name: Optional[str] = None
+        # The user accounts that will be locked to this kiosk configuration. This collection can contain a maximum of 100 elements.
+        self._user_accounts_configuration: Optional[List[windows_kiosk_user.WindowsKioskUser]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,24 +58,6 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         """
         self._app_configuration = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsKioskProfile and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The app base class used to identify the application info for the kiosk configuration
-        self._app_configuration: Optional[windows_kiosk_app_configuration.WindowsKioskAppConfiguration] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Key of the entity.
-        self._profile_id: Optional[str] = None
-        # This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the users to whom this kiosk configuration is assigned.
-        self._profile_name: Optional[str] = None
-        # The user accounts that will be locked to this kiosk configuration. This collection can contain a maximum of 100 elements.
-        self._user_accounts_configuration: Optional[List[windows_kiosk_user.WindowsKioskUser]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsKioskProfile:
         """
@@ -76,7 +75,9 @@ class WindowsKioskProfile(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_kiosk_app_configuration, windows_kiosk_user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appConfiguration": lambda n : setattr(self, 'app_configuration', n.get_object_value(windows_kiosk_app_configuration.WindowsKioskAppConfiguration)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "profileId": lambda n : setattr(self, 'profile_id', n.get_str_value()),

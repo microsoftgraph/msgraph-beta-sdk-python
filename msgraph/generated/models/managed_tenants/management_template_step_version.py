@@ -1,31 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-management_template_step = lazy_import('msgraph.generated.models.managed_tenants.management_template_step')
-management_template_step_deployment = lazy_import('msgraph.generated.models.managed_tenants.management_template_step_deployment')
+if TYPE_CHECKING:
+    from . import management_template_step, management_template_step_deployment
+    from .. import entity
+
+from .. import entity
 
 class ManagementTemplateStepVersion(entity.Entity):
-    @property
-    def accepted_for(self,) -> Optional[management_template_step.ManagementTemplateStep]:
-        """
-        Gets the acceptedFor property value. The acceptedFor property
-        Returns: Optional[management_template_step.ManagementTemplateStep]
-        """
-        return self._accepted_for
-    
-    @accepted_for.setter
-    def accepted_for(self,value: Optional[management_template_step.ManagementTemplateStep] = None) -> None:
-        """
-        Sets the acceptedFor property value. The acceptedFor property
-        Args:
-            value: Value to set for the accepted_for property.
-        """
-        self._accepted_for = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managementTemplateStepVersion and sets the default values.
@@ -55,6 +39,23 @@ class ManagementTemplateStepVersion(entity.Entity):
         self._version: Optional[int] = None
         # The versionInformation property
         self._version_information: Optional[str] = None
+    
+    @property
+    def accepted_for(self,) -> Optional[management_template_step.ManagementTemplateStep]:
+        """
+        Gets the acceptedFor property value. The acceptedFor property
+        Returns: Optional[management_template_step.ManagementTemplateStep]
+        """
+        return self._accepted_for
+    
+    @accepted_for.setter
+    def accepted_for(self,value: Optional[management_template_step.ManagementTemplateStep] = None) -> None:
+        """
+        Sets the acceptedFor property value. The acceptedFor property
+        Args:
+            value: Value to set for the accepted_for property.
+        """
+        self._accepted_for = value
     
     @property
     def content_markdown(self,) -> Optional[str]:
@@ -141,7 +142,10 @@ class ManagementTemplateStepVersion(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_template_step, management_template_step_deployment
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acceptedFor": lambda n : setattr(self, 'accepted_for', n.get_object_value(management_template_step.ManagementTemplateStep)),
             "contentMarkdown": lambda n : setattr(self, 'content_markdown', n.get_str_value()),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),

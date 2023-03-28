@@ -1,37 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-planner_bucket = lazy_import('msgraph.generated.models.planner_bucket')
-planner_delta = lazy_import('msgraph.generated.models.planner_delta')
-planner_plan_container = lazy_import('msgraph.generated.models.planner_plan_container')
-planner_plan_context_collection = lazy_import('msgraph.generated.models.planner_plan_context_collection')
-planner_plan_creation = lazy_import('msgraph.generated.models.planner_plan_creation')
-planner_plan_details = lazy_import('msgraph.generated.models.planner_plan_details')
-planner_shared_with_container = lazy_import('msgraph.generated.models.planner_shared_with_container')
-planner_task = lazy_import('msgraph.generated.models.planner_task')
+if TYPE_CHECKING:
+    from . import identity_set, planner_bucket, planner_delta, planner_plan_container, planner_plan_context_collection, planner_plan_creation, planner_plan_details, planner_shared_with_container, planner_task
+
+from . import planner_delta
 
 class PlannerPlan(planner_delta.PlannerDelta):
-    @property
-    def buckets(self,) -> Optional[List[planner_bucket.PlannerBucket]]:
-        """
-        Gets the buckets property value. Collection of buckets in the plan. Read-only. Nullable.
-        Returns: Optional[List[planner_bucket.PlannerBucket]]
-        """
-        return self._buckets
-    
-    @buckets.setter
-    def buckets(self,value: Optional[List[planner_bucket.PlannerBucket]] = None) -> None:
-        """
-        Sets the buckets property value. Collection of buckets in the plan. Read-only. Nullable.
-        Args:
-            value: Value to set for the buckets property.
-        """
-        self._buckets = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new plannerPlan and sets the default values.
@@ -61,6 +38,23 @@ class PlannerPlan(planner_delta.PlannerDelta):
         self._tasks: Optional[List[planner_task.PlannerTask]] = None
         # Required. Title of the plan.
         self._title: Optional[str] = None
+    
+    @property
+    def buckets(self,) -> Optional[List[planner_bucket.PlannerBucket]]:
+        """
+        Gets the buckets property value. Collection of buckets in the plan. Read-only. Nullable.
+        Returns: Optional[List[planner_bucket.PlannerBucket]]
+        """
+        return self._buckets
+    
+    @buckets.setter
+    def buckets(self,value: Optional[List[planner_bucket.PlannerBucket]] = None) -> None:
+        """
+        Sets the buckets property value. Collection of buckets in the plan. Read-only. Nullable.
+        Args:
+            value: Value to set for the buckets property.
+        """
+        self._buckets = value
     
     @property
     def container(self,) -> Optional[planner_plan_container.PlannerPlanContainer]:
@@ -181,7 +175,9 @@ class PlannerPlan(planner_delta.PlannerDelta):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import identity_set, planner_bucket, planner_delta, planner_plan_container, planner_plan_context_collection, planner_plan_creation, planner_plan_details, planner_shared_with_container, planner_task
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "buckets": lambda n : setattr(self, 'buckets', n.get_collection_of_object_values(planner_bucket.PlannerBucket)),
             "container": lambda n : setattr(self, 'container', n.get_object_value(planner_plan_container.PlannerPlanContainer)),
             "contexts": lambda n : setattr(self, 'contexts', n.get_object_value(planner_plan_context_collection.PlannerPlanContextCollection)),

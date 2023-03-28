@@ -7,43 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-site_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.site_sources.site_sources_request_builder')
-site_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.site_sources.item.site_source_item_request_builder')
-unified_group_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.unified_group_sources.unified_group_sources_request_builder')
-unified_group_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.unified_group_sources.item.unified_group_source_item_request_builder')
-user_sources_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.user_sources.user_sources_request_builder')
-user_source_item_request_builder = lazy_import('msgraph.generated.compliance.ediscovery.cases.item.legal_holds.item.user_sources.item.user_source_item_request_builder')
-legal_hold = lazy_import('msgraph.generated.models.ediscovery.legal_hold')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .......models.ediscovery import legal_hold
+    from .......models.o_data_errors import o_data_error
+    from .site_sources import site_sources_request_builder
+    from .site_sources.item import site_source_item_request_builder
+    from .unified_group_sources import unified_group_sources_request_builder
+    from .unified_group_sources.item import unified_group_source_item_request_builder
+    from .user_sources import user_sources_request_builder
+    from .user_sources.item import user_source_item_request_builder
 
 class LegalHoldItemRequestBuilder():
     """
     Provides operations to manage the legalHolds property of the microsoft.graph.ediscovery.case entity.
     """
-    @property
-    def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
-        """
-        Provides operations to manage the siteSources property of the microsoft.graph.ediscovery.legalHold entity.
-        """
-        return site_sources_request_builder.SiteSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unified_group_sources(self) -> unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder:
-        """
-        Provides operations to manage the unifiedGroupSources property of the microsoft.graph.ediscovery.legalHold entity.
-        """
-        return unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def user_sources(self) -> user_sources_request_builder.UserSourcesRequestBuilder:
-        """
-        Provides operations to manage the userSources property of the microsoft.graph.ediscovery.legalHold entity.
-        """
-        return user_sources_request_builder.UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new LegalHoldItemRequestBuilder and sets the default values.
@@ -71,6 +50,8 @@ class LegalHoldItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -89,12 +70,16 @@ class LegalHoldItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.ediscovery import legal_hold
+
         return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, error_mapping)
     
     async def patch(self,body: Optional[legal_hold.LegalHold] = None, request_configuration: Optional[LegalHoldItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[legal_hold.LegalHold]:
@@ -110,12 +95,16 @@ class LegalHoldItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.ediscovery import legal_hold
+
         return await self.request_adapter.send_async(request_info, legal_hold.LegalHold, error_mapping)
     
     def site_sources_by_id(self,id: str) -> site_source_item_request_builder.SiteSourceItemRequestBuilder:
@@ -127,6 +116,8 @@ class LegalHoldItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .site_sources.item import site_source_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["siteSource%2Did"] = id
         return site_source_item_request_builder.SiteSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -195,6 +186,8 @@ class LegalHoldItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .unified_group_sources.item import unified_group_source_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unifiedGroupSource%2Did"] = id
         return unified_group_source_item_request_builder.UnifiedGroupSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -208,9 +201,38 @@ class LegalHoldItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .user_sources.item import user_source_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["userSource%2Did"] = id
         return user_source_item_request_builder.UserSourceItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def site_sources(self) -> site_sources_request_builder.SiteSourcesRequestBuilder:
+        """
+        Provides operations to manage the siteSources property of the microsoft.graph.ediscovery.legalHold entity.
+        """
+        from .site_sources import site_sources_request_builder
+
+        return site_sources_request_builder.SiteSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unified_group_sources(self) -> unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder:
+        """
+        Provides operations to manage the unifiedGroupSources property of the microsoft.graph.ediscovery.legalHold entity.
+        """
+        from .unified_group_sources import unified_group_sources_request_builder
+
+        return unified_group_sources_request_builder.UnifiedGroupSourcesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def user_sources(self) -> user_sources_request_builder.UserSourcesRequestBuilder:
+        """
+        Provides operations to manage the userSources property of the microsoft.graph.ediscovery.legalHold entity.
+        """
+        from .user_sources import user_sources_request_builder
+
+        return user_sources_request_builder.UserSourcesRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class LegalHoldItemRequestBuilderDeleteRequestConfiguration():
@@ -229,12 +251,6 @@ class LegalHoldItemRequestBuilder():
         """
         Returns a list of case legalHold objects for this case.  Nullable.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -250,6 +266,12 @@ class LegalHoldItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class LegalHoldItemRequestBuilderGetRequestConfiguration():

@@ -1,23 +1,45 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-administrative_unit = lazy_import('msgraph.generated.models.administrative_unit')
-attribute_set = lazy_import('msgraph.generated.models.attribute_set')
-custom_security_attribute_definition = lazy_import('msgraph.generated.models.custom_security_attribute_definition')
-directory_object = lazy_import('msgraph.generated.models.directory_object')
-entity = lazy_import('msgraph.generated.models.entity')
-feature_rollout_policy = lazy_import('msgraph.generated.models.feature_rollout_policy')
-identity_provider_base = lazy_import('msgraph.generated.models.identity_provider_base')
-impacted_resource = lazy_import('msgraph.generated.models.impacted_resource')
-inbound_shared_user_profile = lazy_import('msgraph.generated.models.inbound_shared_user_profile')
-on_premises_directory_synchronization = lazy_import('msgraph.generated.models.on_premises_directory_synchronization')
-outbound_shared_user_profile = lazy_import('msgraph.generated.models.outbound_shared_user_profile')
-recommendation = lazy_import('msgraph.generated.models.recommendation')
-shared_email_domain = lazy_import('msgraph.generated.models.shared_email_domain')
+if TYPE_CHECKING:
+    from . import administrative_unit, attribute_set, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, impacted_resource, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, shared_email_domain
+
+from . import entity
 
 class Directory(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Directory and sets the default values.
+        """
+        super().__init__()
+        # Conceptual container for user and group directory objects.
+        self._administrative_units: Optional[List[administrative_unit.AdministrativeUnit]] = None
+        # Group of related custom security attribute definitions.
+        self._attribute_sets: Optional[List[attribute_set.AttributeSet]] = None
+        # Schema of a custom security attributes (key-value pairs).
+        self._custom_security_attribute_definitions: Optional[List[custom_security_attribute_definition.CustomSecurityAttributeDefinition]] = None
+        # The deletedItems property
+        self._deleted_items: Optional[List[directory_object.DirectoryObject]] = None
+        # The featureRolloutPolicies property
+        self._feature_rollout_policies: Optional[List[feature_rollout_policy.FeatureRolloutPolicy]] = None
+        # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
+        self._federation_configurations: Optional[List[identity_provider_base.IdentityProviderBase]] = None
+        # The impactedResources property
+        self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
+        # The inboundSharedUserProfiles property
+        self._inbound_shared_user_profiles: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # A container for on-premises directory synchronization functionalities that are available for the organization.
+        self._on_premises_synchronization: Optional[List[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]] = None
+        # The outboundSharedUserProfiles property
+        self._outbound_shared_user_profiles: Optional[List[outbound_shared_user_profile.OutboundSharedUserProfile]] = None
+        # List of recommended improvements to improve tenant posture.
+        self._recommendations: Optional[List[recommendation.Recommendation]] = None
+        # The sharedEmailDomains property
+        self._shared_email_domains: Optional[List[shared_email_domain.SharedEmailDomain]] = None
+    
     @property
     def administrative_units(self,) -> Optional[List[administrative_unit.AdministrativeUnit]]:
         """
@@ -51,38 +73,6 @@ class Directory(entity.Entity):
             value: Value to set for the attribute_sets property.
         """
         self._attribute_sets = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Directory and sets the default values.
-        """
-        super().__init__()
-        # Conceptual container for user and group directory objects.
-        self._administrative_units: Optional[List[administrative_unit.AdministrativeUnit]] = None
-        # Group of related custom security attribute definitions.
-        self._attribute_sets: Optional[List[attribute_set.AttributeSet]] = None
-        # Schema of a custom security attributes (key-value pairs).
-        self._custom_security_attribute_definitions: Optional[List[custom_security_attribute_definition.CustomSecurityAttributeDefinition]] = None
-        # The deletedItems property
-        self._deleted_items: Optional[List[directory_object.DirectoryObject]] = None
-        # The featureRolloutPolicies property
-        self._feature_rollout_policies: Optional[List[feature_rollout_policy.FeatureRolloutPolicy]] = None
-        # Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
-        self._federation_configurations: Optional[List[identity_provider_base.IdentityProviderBase]] = None
-        # The impactedResources property
-        self._impacted_resources: Optional[List[impacted_resource.ImpactedResource]] = None
-        # The inboundSharedUserProfiles property
-        self._inbound_shared_user_profiles: Optional[List[inbound_shared_user_profile.InboundSharedUserProfile]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A container for on-premises directory synchronization functionalities that are available for the organization.
-        self._on_premises_synchronization: Optional[List[on_premises_directory_synchronization.OnPremisesDirectorySynchronization]] = None
-        # The outboundSharedUserProfiles property
-        self._outbound_shared_user_profiles: Optional[List[outbound_shared_user_profile.OutboundSharedUserProfile]] = None
-        # List of recommended improvements to improve tenant posture.
-        self._recommendations: Optional[List[recommendation.Recommendation]] = None
-        # The sharedEmailDomains property
-        self._shared_email_domains: Optional[List[shared_email_domain.SharedEmailDomain]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Directory:
@@ -169,7 +159,9 @@ class Directory(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import administrative_unit, attribute_set, custom_security_attribute_definition, directory_object, entity, feature_rollout_policy, identity_provider_base, impacted_resource, inbound_shared_user_profile, on_premises_directory_synchronization, outbound_shared_user_profile, recommendation, shared_email_domain
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "administrativeUnits": lambda n : setattr(self, 'administrative_units', n.get_collection_of_object_values(administrative_unit.AdministrativeUnit)),
             "attributeSets": lambda n : setattr(self, 'attribute_sets', n.get_collection_of_object_values(attribute_set.AttributeSet)),
             "customSecurityAttributeDefinitions": lambda n : setattr(self, 'custom_security_attribute_definitions', n.get_collection_of_object_values(custom_security_attribute_definition.CustomSecurityAttributeDefinition)),

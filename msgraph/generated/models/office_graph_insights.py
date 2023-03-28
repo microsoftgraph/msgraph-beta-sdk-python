@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-shared_insight = lazy_import('msgraph.generated.models.shared_insight')
-trending = lazy_import('msgraph.generated.models.trending')
-used_insight = lazy_import('msgraph.generated.models.used_insight')
+if TYPE_CHECKING:
+    from . import entity, item_insights, shared_insight, trending, used_insight
+
+from . import entity
 
 class OfficeGraphInsights(entity.Entity):
     def __init__(self,) -> None:
@@ -33,6 +32,13 @@ class OfficeGraphInsights(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.itemInsights":
+                from . import item_insights
+
+                return item_insights.ItemInsights()
         return OfficeGraphInsights()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -40,7 +46,9 @@ class OfficeGraphInsights(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, item_insights, shared_insight, trending, used_insight
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "shared": lambda n : setattr(self, 'shared', n.get_collection_of_object_values(shared_insight.SharedInsight)),
             "trending": lambda n : setattr(self, 'trending', n.get_collection_of_object_values(trending.Trending)),
             "used": lambda n : setattr(self, 'used', n.get_collection_of_object_values(used_insight.UsedInsight)),

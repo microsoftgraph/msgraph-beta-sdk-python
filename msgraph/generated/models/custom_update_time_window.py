@@ -1,15 +1,33 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-day_of_week = lazy_import('msgraph.generated.models.day_of_week')
+if TYPE_CHECKING:
+    from . import day_of_week
 
 class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
     """
     Custom update time window
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new customUpdateTimeWindow and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The endDay property
+        self._end_day: Optional[day_of_week.DayOfWeek] = None
+        # End time of the time window
+        self._end_time: Optional[time] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The startDay property
+        self._start_day: Optional[day_of_week.DayOfWeek] = None
+        # Start time of the time window
+        self._start_time: Optional[time] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,24 +44,6 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new customUpdateTimeWindow and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The endDay property
-        self._end_day: Optional[day_of_week.DayOfWeek] = None
-        # End time of the time window
-        self._end_time: Optional[Time] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The startDay property
-        self._start_day: Optional[day_of_week.DayOfWeek] = None
-        # Start time of the time window
-        self._start_time: Optional[Time] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CustomUpdateTimeWindow:
@@ -75,15 +75,15 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         self._end_day = value
     
     @property
-    def end_time(self,) -> Optional[Time]:
+    def end_time(self,) -> Optional[time]:
         """
         Gets the endTime property value. End time of the time window
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._end_time
     
     @end_time.setter
-    def end_time(self,value: Optional[Time] = None) -> None:
+    def end_time(self,value: Optional[time] = None) -> None:
         """
         Sets the endTime property value. End time of the time window
         Args:
@@ -96,12 +96,14 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import day_of_week
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "endDay": lambda n : setattr(self, 'end_day', n.get_enum_value(day_of_week.DayOfWeek)),
-            "endTime": lambda n : setattr(self, 'end_time', n.get_object_value(Time)),
+            "endTime": lambda n : setattr(self, 'end_time', n.get_time_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "startDay": lambda n : setattr(self, 'start_day', n.get_enum_value(day_of_week.DayOfWeek)),
-            "startTime": lambda n : setattr(self, 'start_time', n.get_object_value(Time)),
+            "startTime": lambda n : setattr(self, 'start_time', n.get_time_value()),
         }
         return fields
     
@@ -131,10 +133,10 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_enum_value("endDay", self.end_day)
-        writer.write_object_value("endTime", self.end_time)
+        writer.write_time_value("endTime", self.end_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("startDay", self.start_day)
-        writer.write_object_value("startTime", self.start_time)
+        writer.write_time_value("startTime", self.start_time)
         writer.write_additional_data_value(self.additional_data)
     
     @property
@@ -155,15 +157,15 @@ class CustomUpdateTimeWindow(AdditionalDataHolder, Parsable):
         self._start_day = value
     
     @property
-    def start_time(self,) -> Optional[Time]:
+    def start_time(self,) -> Optional[time]:
         """
         Gets the startTime property value. Start time of the time window
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._start_time
     
     @start_time.setter
-    def start_time(self,value: Optional[Time] = None) -> None:
+    def start_time(self,value: Optional[time] = None) -> None:
         """
         Sets the startTime property value. Start time of the time window
         Args:

@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dlp_evaluation_input = lazy_import('msgraph.generated.models.dlp_evaluation_input')
-dlp_notification = lazy_import('msgraph.generated.models.dlp_notification')
+if TYPE_CHECKING:
+    from ......models import dlp_evaluation_input, dlp_notification
 
 class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluatePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The evaluationInput property
+        self._evaluation_input: Optional[dlp_evaluation_input.DlpEvaluationInput] = None
+        # The notificationInfo property
+        self._notification_info: Optional[dlp_notification.DlpNotification] = None
+        # The target property
+        self._target: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The evaluationInput property
-        self._evaluation_input: Optional[dlp_evaluation_input.DlpEvaluationInput] = None
-        # The notificationInfo property
-        self._notification_info: Optional[dlp_notification.DlpNotification] = None
-        # The target property
-        self._target: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluatePostRequestBody:
@@ -72,7 +71,9 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ......models import dlp_evaluation_input, dlp_notification
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "evaluationInput": lambda n : setattr(self, 'evaluation_input', n.get_object_value(dlp_evaluation_input.DlpEvaluationInput)),
             "notificationInfo": lambda n : setattr(self, 'notification_info', n.get_object_value(dlp_notification.DlpNotification)),
             "target": lambda n : setattr(self, 'target', n.get_str_value()),

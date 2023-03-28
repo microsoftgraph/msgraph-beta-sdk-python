@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-phone_type = lazy_import('msgraph.generated.models.phone_type')
+if TYPE_CHECKING:
+    from . import item_facet, phone_type
+
+from . import item_facet
 
 class ItemPhone(item_facet.ItemFacet):
     def __init__(self,) -> None:
@@ -54,7 +55,9 @@ class ItemPhone(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet, phone_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(phone_type.PhoneType)),

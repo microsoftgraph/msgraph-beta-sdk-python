@@ -1,30 +1,12 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_recommendation_insight_setting = lazy_import('msgraph.generated.models.access_review_recommendation_insight_setting')
-access_review_reviewer_scope = lazy_import('msgraph.generated.models.access_review_reviewer_scope')
+if TYPE_CHECKING:
+    from . import access_review_recommendation_insight_setting, access_review_reviewer_scope
 
 class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new accessReviewStageSettings and sets the default values.
@@ -45,13 +27,30 @@ class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
         # The recommendationInsightSettings property
         self._recommendation_insight_settings: Optional[List[access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting]] = None
         # Optional field. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days. NOTE: The value of this property will override the corresponding setting on the accessReviewScheduleDefinition object.
-        self._recommendation_look_back_duration: Optional[Timedelta] = None
+        self._recommendation_look_back_duration: Optional[timedelta] = None
         # Indicates whether showing recommendations to reviewers is enabled. Required. NOTE: The value of this property will override override the corresponding setting on the accessReviewScheduleDefinition object.
         self._recommendations_enabled: Optional[bool] = None
         # Defines who the reviewers are. If none are specified, the review is a self-review (users review their own access).  For examples of options for assigning reviewers, see Assign reviewers to your access review definition using the Microsoft Graph API. NOTE: The value of this property will override the corresponding setting on the accessReviewScheduleDefinition.
         self._reviewers: Optional[List[access_review_reviewer_scope.AccessReviewReviewerScope]] = None
         # Unique identifier of the accessReviewStageSettings. The stageId will be used in dependsOn property to indicate the stage relationship. Required.
         self._stage_id: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessReviewStageSettings:
@@ -138,7 +137,9 @@ class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_recommendation_insight_setting, access_review_reviewer_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "decisionsThatWillMoveToNextStage": lambda n : setattr(self, 'decisions_that_will_move_to_next_stage', n.get_collection_of_primitive_values(str)),
             "dependsOn": lambda n : setattr(self, 'depends_on', n.get_collection_of_primitive_values(str)),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
@@ -146,7 +147,7 @@ class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recommendationsEnabled": lambda n : setattr(self, 'recommendations_enabled', n.get_bool_value()),
             "recommendationInsightSettings": lambda n : setattr(self, 'recommendation_insight_settings', n.get_collection_of_object_values(access_review_recommendation_insight_setting.AccessReviewRecommendationInsightSetting)),
-            "recommendationLookBackDuration": lambda n : setattr(self, 'recommendation_look_back_duration', n.get_object_value(Timedelta)),
+            "recommendationLookBackDuration": lambda n : setattr(self, 'recommendation_look_back_duration', n.get_timedelta_value()),
             "reviewers": lambda n : setattr(self, 'reviewers', n.get_collection_of_object_values(access_review_reviewer_scope.AccessReviewReviewerScope)),
             "stageId": lambda n : setattr(self, 'stage_id', n.get_str_value()),
         }
@@ -187,15 +188,15 @@ class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
         self._recommendation_insight_settings = value
     
     @property
-    def recommendation_look_back_duration(self,) -> Optional[Timedelta]:
+    def recommendation_look_back_duration(self,) -> Optional[timedelta]:
         """
         Gets the recommendationLookBackDuration property value. Optional field. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days. NOTE: The value of this property will override the corresponding setting on the accessReviewScheduleDefinition object.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._recommendation_look_back_duration
     
     @recommendation_look_back_duration.setter
-    def recommendation_look_back_duration(self,value: Optional[Timedelta] = None) -> None:
+    def recommendation_look_back_duration(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the recommendationLookBackDuration property value. Optional field. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look back duration. For reviews of groups and Azure AD roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days. NOTE: The value of this property will override the corresponding setting on the accessReviewScheduleDefinition object.
         Args:
@@ -252,7 +253,7 @@ class AccessReviewStageSettings(AdditionalDataHolder, Parsable):
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_bool_value("recommendationsEnabled", self.recommendations_enabled)
         writer.write_collection_of_object_values("recommendationInsightSettings", self.recommendation_insight_settings)
-        writer.write_object_value("recommendationLookBackDuration", self.recommendation_look_back_duration)
+        writer.write_timedelta_value("recommendationLookBackDuration", self.recommendation_look_back_duration)
         writer.write_collection_of_object_values("reviewers", self.reviewers)
         writer.write_str_value("stageId", self.stage_id)
         writer.write_additional_data_value(self.additional_data)

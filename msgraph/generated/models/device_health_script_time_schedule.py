@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import time
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_health_script_run_schedule = lazy_import('msgraph.generated.models.device_health_script_run_schedule')
+if TYPE_CHECKING:
+    from . import device_health_script_daily_schedule, device_health_script_run_once_schedule, device_health_script_run_schedule
+
+from . import device_health_script_run_schedule
 
 class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHealthScriptRunSchedule):
     def __init__(self,) -> None:
@@ -14,7 +16,7 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         super().__init__()
         self.odata_type = "#microsoft.graph.deviceHealthScriptTimeSchedule"
         # At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        self._time: Optional[Time] = None
+        self._time: Optional[time] = None
         # Indicate if the time is Utc or client local time.
         self._use_utc: Optional[bool] = None
     
@@ -28,6 +30,17 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptDailySchedule":
+                from . import device_health_script_daily_schedule
+
+                return device_health_script_daily_schedule.DeviceHealthScriptDailySchedule()
+            if mapping_value == "#microsoft.graph.deviceHealthScriptRunOnceSchedule":
+                from . import device_health_script_run_once_schedule
+
+                return device_health_script_run_once_schedule.DeviceHealthScriptRunOnceSchedule()
         return DeviceHealthScriptTimeSchedule()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -35,8 +48,10 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "time": lambda n : setattr(self, 'time', n.get_object_value(Time)),
+        from . import device_health_script_daily_schedule, device_health_script_run_once_schedule, device_health_script_run_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "time": lambda n : setattr(self, 'time', n.get_time_value()),
             "useUtc": lambda n : setattr(self, 'use_utc', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()
@@ -52,19 +67,19 @@ class DeviceHealthScriptTimeSchedule(device_health_script_run_schedule.DeviceHea
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("time", self.time)
+        writer.write_time_value("time", self.time)
         writer.write_bool_value("useUtc", self.use_utc)
     
     @property
-    def time(self,) -> Optional[Time]:
+    def time(self,) -> Optional[time]:
         """
         Gets the time property value. At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._time
     
     @time.setter
-    def time(self,value: Optional[Time] = None) -> None:
+    def time(self,value: Optional[time] = None) -> None:
         """
         Sets the time property value. At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
         Args:

@@ -1,9 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ClassificationResult(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new classificationResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The confidence level, 0 to 100, of the result.
+        self._confidence_level: Optional[int] = None
+        # The number of instances of the specific information type in the input.
+        self._count: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The GUID of the discovered sensitive information type.
+        self._sensitive_type_id: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -37,22 +52,6 @@ class ClassificationResult(AdditionalDataHolder, Parsable):
             value: Value to set for the confidence_level property.
         """
         self._confidence_level = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new classificationResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The confidence level, 0 to 100, of the result.
-        self._confidence_level: Optional[int] = None
-        # The number of instances of the specific information type in the input.
-        self._count: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The GUID of the discovered sensitive information type.
-        self._sensitive_type_id: Optional[str] = None
     
     @property
     def count(self,) -> Optional[int]:
@@ -88,7 +87,7 @@ class ClassificationResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "confidenceLevel": lambda n : setattr(self, 'confidence_level', n.get_int_value()),
             "count": lambda n : setattr(self, 'count', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

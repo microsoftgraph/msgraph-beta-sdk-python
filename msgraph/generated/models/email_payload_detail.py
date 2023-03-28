@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-payload_detail = lazy_import('msgraph.generated.models.payload_detail')
+if TYPE_CHECKING:
+    from . import payload_detail
+
+from . import payload_detail
 
 class EmailPayloadDetail(payload_detail.PayloadDetail):
     def __init__(self,) -> None:
@@ -72,7 +74,9 @@ class EmailPayloadDetail(payload_detail.PayloadDetail):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import payload_detail
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "fromEmail": lambda n : setattr(self, 'from_email', n.get_str_value()),
             "fromName": lambda n : setattr(self, 'from_name', n.get_str_value()),
             "isExternalSender": lambda n : setattr(self, 'is_external_sender', n.get_bool_value()),

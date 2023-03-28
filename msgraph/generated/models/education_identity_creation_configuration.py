@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-education_identity_domain = lazy_import('msgraph.generated.models.education_identity_domain')
-education_identity_synchronization_configuration = lazy_import('msgraph.generated.models.education_identity_synchronization_configuration')
+if TYPE_CHECKING:
+    from . import education_identity_domain, education_identity_synchronization_configuration
+
+from . import education_identity_synchronization_configuration
 
 class EducationIdentityCreationConfiguration(education_identity_synchronization_configuration.EducationIdentitySynchronizationConfiguration):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class EducationIdentityCreationConfiguration(education_identity_synchronization_
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_identity_domain, education_identity_synchronization_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "userDomains": lambda n : setattr(self, 'user_domains', n.get_collection_of_object_values(education_identity_domain.EducationIdentityDomain)),
         }
         super_fields = super().get_field_deserializers()

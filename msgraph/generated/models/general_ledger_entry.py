@@ -1,13 +1,43 @@
 from __future__ import annotations
 from datetime import date, datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-account = lazy_import('msgraph.generated.models.account')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import account, entity
+
+from . import entity
 
 class GeneralLedgerEntry(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new generalLedgerEntry and sets the default values.
+        """
+        super().__init__()
+        # The account property
+        self._account: Optional[account.Account] = None
+        # The accountId property
+        self._account_id: Optional[UUID] = None
+        # The accountNumber property
+        self._account_number: Optional[str] = None
+        # The creditAmount property
+        self._credit_amount: Optional[float] = None
+        # The debitAmount property
+        self._debit_amount: Optional[float] = None
+        # The description property
+        self._description: Optional[str] = None
+        # The documentNumber property
+        self._document_number: Optional[str] = None
+        # The documentType property
+        self._document_type: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The postingDate property
+        self._posting_date: Optional[date] = None
+    
     @property
     def account(self,) -> Optional[account.Account]:
         """
@@ -26,15 +56,15 @@ class GeneralLedgerEntry(entity.Entity):
         self._account = value
     
     @property
-    def account_id(self,) -> Optional[Guid]:
+    def account_id(self,) -> Optional[UUID]:
         """
         Gets the accountId property value. The accountId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._account_id
     
     @account_id.setter
-    def account_id(self,value: Optional[Guid] = None) -> None:
+    def account_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the accountId property value. The accountId property
         Args:
@@ -58,34 +88,6 @@ class GeneralLedgerEntry(entity.Entity):
             value: Value to set for the account_number property.
         """
         self._account_number = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new generalLedgerEntry and sets the default values.
-        """
-        super().__init__()
-        # The account property
-        self._account: Optional[account.Account] = None
-        # The accountId property
-        self._account_id: Optional[Guid] = None
-        # The accountNumber property
-        self._account_number: Optional[str] = None
-        # The creditAmount property
-        self._credit_amount: Optional[float] = None
-        # The debitAmount property
-        self._debit_amount: Optional[float] = None
-        # The description property
-        self._description: Optional[str] = None
-        # The documentNumber property
-        self._document_number: Optional[str] = None
-        # The documentType property
-        self._document_type: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The postingDate property
-        self._posting_date: Optional[Date] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GeneralLedgerEntry:
@@ -189,9 +191,11 @@ class GeneralLedgerEntry(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "account": lambda n : setattr(self, 'account', n.get_object_value(account.Account)),
-            "accountId": lambda n : setattr(self, 'account_id', n.get_object_value(Guid)),
+            "accountId": lambda n : setattr(self, 'account_id', n.get_uuid_value()),
             "accountNumber": lambda n : setattr(self, 'account_number', n.get_str_value()),
             "creditAmount": lambda n : setattr(self, 'credit_amount', n.get_float_value()),
             "debitAmount": lambda n : setattr(self, 'debit_amount', n.get_float_value()),
@@ -199,7 +203,7 @@ class GeneralLedgerEntry(entity.Entity):
             "documentNumber": lambda n : setattr(self, 'document_number', n.get_str_value()),
             "documentType": lambda n : setattr(self, 'document_type', n.get_str_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
-            "postingDate": lambda n : setattr(self, 'posting_date', n.get_object_value(Date)),
+            "postingDate": lambda n : setattr(self, 'posting_date', n.get_date_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -223,15 +227,15 @@ class GeneralLedgerEntry(entity.Entity):
         self._last_modified_date_time = value
     
     @property
-    def posting_date(self,) -> Optional[Date]:
+    def posting_date(self,) -> Optional[date]:
         """
         Gets the postingDate property value. The postingDate property
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._posting_date
     
     @posting_date.setter
-    def posting_date(self,value: Optional[Date] = None) -> None:
+    def posting_date(self,value: Optional[date] = None) -> None:
         """
         Sets the postingDate property value. The postingDate property
         Args:
@@ -249,7 +253,7 @@ class GeneralLedgerEntry(entity.Entity):
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_object_value("account", self.account)
-        writer.write_object_value("accountId", self.account_id)
+        writer.write_uuid_value("accountId", self.account_id)
         writer.write_str_value("accountNumber", self.account_number)
         writer.write_float_value("creditAmount", self.credit_amount)
         writer.write_float_value("debitAmount", self.debit_amount)
@@ -257,6 +261,6 @@ class GeneralLedgerEntry(entity.Entity):
         writer.write_str_value("documentNumber", self.document_number)
         writer.write_str_value("documentType", self.document_type)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
-        writer.write_object_value("postingDate", self.posting_date)
+        writer.write_date_value("postingDate", self.posting_date)
     
 

@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-content_info = lazy_import('msgraph.generated.models.content_info')
-downgrade_justification = lazy_import('msgraph.generated.models.downgrade_justification')
+if TYPE_CHECKING:
+    from .....models import content_info, downgrade_justification
 
 class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluateRemovalPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The contentInfo property
+        self._content_info: Optional[content_info.ContentInfo] = None
+        # The downgradeJustification property
+        self._downgrade_justification: Optional[downgrade_justification.DowngradeJustification] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,18 +34,6 @@ class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluateRemovalPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The contentInfo property
-        self._content_info: Optional[content_info.ContentInfo] = None
-        # The downgradeJustification property
-        self._downgrade_justification: Optional[downgrade_justification.DowngradeJustification] = None
     
     @property
     def content_info(self,) -> Optional[content_info.ContentInfo]:
@@ -87,7 +86,9 @@ class EvaluateRemovalPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import content_info, downgrade_justification
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentInfo": lambda n : setattr(self, 'content_info', n.get_object_value(content_info.ContentInfo)),
             "downgradeJustification": lambda n : setattr(self, 'downgrade_justification', n.get_object_value(downgrade_justification.DowngradeJustification)),
         }

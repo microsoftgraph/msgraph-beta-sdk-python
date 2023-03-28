@@ -1,12 +1,39 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-advanced_threat_protection_onboarding_device_setting_state = lazy_import('msgraph.generated.models.advanced_threat_protection_onboarding_device_setting_state')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import advanced_threat_protection_onboarding_device_setting_state, entity
+
+from . import entity
 
 class AdvancedThreatProtectionOnboardingStateSummary(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new advancedThreatProtectionOnboardingStateSummary and sets the default values.
+        """
+        super().__init__()
+        # Not yet documented
+        self._advanced_threat_protection_onboarding_device_setting_states: Optional[List[advanced_threat_protection_onboarding_device_setting_state.AdvancedThreatProtectionOnboardingDeviceSettingState]] = None
+        # Number of compliant devices
+        self._compliant_device_count: Optional[int] = None
+        # Number of conflict devices
+        self._conflict_device_count: Optional[int] = None
+        # Number of error devices
+        self._error_device_count: Optional[int] = None
+        # Number of NonCompliant devices
+        self._non_compliant_device_count: Optional[int] = None
+        # Number of not applicable devices
+        self._not_applicable_device_count: Optional[int] = None
+        # Number of not assigned devices
+        self._not_assigned_device_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Number of remediated devices
+        self._remediated_device_count: Optional[int] = None
+        # Number of unknown devices
+        self._unknown_device_count: Optional[int] = None
+    
     @property
     def advanced_threat_protection_onboarding_device_setting_states(self,) -> Optional[List[advanced_threat_protection_onboarding_device_setting_state.AdvancedThreatProtectionOnboardingDeviceSettingState]]:
         """
@@ -58,32 +85,6 @@ class AdvancedThreatProtectionOnboardingStateSummary(entity.Entity):
         """
         self._conflict_device_count = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new advancedThreatProtectionOnboardingStateSummary and sets the default values.
-        """
-        super().__init__()
-        # Not yet documented
-        self._advanced_threat_protection_onboarding_device_setting_states: Optional[List[advanced_threat_protection_onboarding_device_setting_state.AdvancedThreatProtectionOnboardingDeviceSettingState]] = None
-        # Number of compliant devices
-        self._compliant_device_count: Optional[int] = None
-        # Number of conflict devices
-        self._conflict_device_count: Optional[int] = None
-        # Number of error devices
-        self._error_device_count: Optional[int] = None
-        # Number of NonCompliant devices
-        self._non_compliant_device_count: Optional[int] = None
-        # Number of not applicable devices
-        self._not_applicable_device_count: Optional[int] = None
-        # Number of not assigned devices
-        self._not_assigned_device_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Number of remediated devices
-        self._remediated_device_count: Optional[int] = None
-        # Number of unknown devices
-        self._unknown_device_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AdvancedThreatProtectionOnboardingStateSummary:
         """
@@ -118,7 +119,9 @@ class AdvancedThreatProtectionOnboardingStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import advanced_threat_protection_onboarding_device_setting_state, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedThreatProtectionOnboardingDeviceSettingStates": lambda n : setattr(self, 'advanced_threat_protection_onboarding_device_setting_states', n.get_collection_of_object_values(advanced_threat_protection_onboarding_device_setting_state.AdvancedThreatProtectionOnboardingDeviceSettingState)),
             "compliantDeviceCount": lambda n : setattr(self, 'compliant_device_count', n.get_int_value()),
             "conflictDeviceCount": lambda n : setattr(self, 'conflict_device_count', n.get_int_value()),

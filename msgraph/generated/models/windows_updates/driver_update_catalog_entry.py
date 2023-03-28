@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-software_update_catalog_entry = lazy_import('msgraph.generated.models.windows_updates.software_update_catalog_entry')
+if TYPE_CHECKING:
+    from . import software_update_catalog_entry
+
+from . import software_update_catalog_entry
 
 class DriverUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCatalogEntry):
     def __init__(self,) -> None:
@@ -79,7 +81,9 @@ class DriverUpdateCatalogEntry(software_update_catalog_entry.SoftwareUpdateCatal
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import software_update_catalog_entry
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "driverClass": lambda n : setattr(self, 'driver_class', n.get_str_value()),
             "manufacturer": lambda n : setattr(self, 'manufacturer', n.get_str_value()),

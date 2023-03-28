@@ -1,18 +1,55 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-aggregation_option = lazy_import('msgraph.generated.models.aggregation_option')
-collapse_property = lazy_import('msgraph.generated.models.collapse_property')
-entity_type = lazy_import('msgraph.generated.models.entity_type')
-result_template_option = lazy_import('msgraph.generated.models.result_template_option')
-search_alteration_options = lazy_import('msgraph.generated.models.search_alteration_options')
-search_query = lazy_import('msgraph.generated.models.search_query')
-share_point_one_drive_options = lazy_import('msgraph.generated.models.share_point_one_drive_options')
-sort_property = lazy_import('msgraph.generated.models.sort_property')
+if TYPE_CHECKING:
+    from . import aggregation_option, collapse_property, entity_type, result_template_option, search_alteration_options, search_query, share_point_one_drive_options, sort_property
 
 class SearchRequest(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new searchRequest and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Contains one or more filters to obtain search results aggregated and filtered to a specific value of a field. Optional.Build this filter based on a prior search that aggregates by the same field. From the response of the prior search, identify the searchBucket that filters results to the specific value of the field, use the string in its aggregationFilterToken property, and build an aggregation filter string in the format '{field}:/'{aggregationFilterToken}/''. If multiple values for the same field need to be provided, use the strings in its aggregationFilterToken property and build an aggregation filter string in the format '{field}:or(/'{aggregationFilterToken1}/',/'{aggregationFilterToken2}/')'. For example, searching and aggregating drive items by file type returns a searchBucket for the file type docx in the response. You can conveniently use the aggregationFilterToken returned for this searchBucket in a subsequent search query and filter matches down to drive items of the docx file type. Example 1 and example 2 show the actual requests and responses.
+        self._aggregation_filters: Optional[List[str]] = None
+        # Specifies aggregations (also known as refiners) to be returned alongside search results. Optional.
+        self._aggregations: Optional[List[aggregation_option.AggregationOption]] = None
+        # Contains the ordered collection of fields and limit to collapse results. Optional.
+        self._collapse_properties: Optional[List[collapse_property.CollapseProperty]] = None
+        # Contains the connection to be targeted. Respects the following format : /external/connections/connectionid where connectionid is the ConnectionId defined in the Connectors Administration.  Note: contentSource is only applicable when entityType=externalItem. Optional.
+        self._content_sources: Optional[List[str]] = None
+        # This triggers hybrid sort for messages: the first 3 messages are the most relevant. This property is only applicable to entityType=message. Optional.
+        self._enable_top_results: Optional[bool] = None
+        # One or more types of resources expected in the response. Possible values are: list, site, listItem, message, event, drive, driveItem, person, externalItem, acronym, bookmark, chatMessage. For details about combinations of two or more entity types that are supported in the same search request, see known limitations. Required.
+        self._entity_types: Optional[List[entity_type.EntityType]] = None
+        # Contains the fields to be returned for each resource object specified in entityTypes, allowing customization of the fields returned by default otherwise, including additional fields such as custom managed properties from SharePoint and OneDrive, or custom fields in externalItem from content that Microsoft Graph connectors bring in. The fields property can be using the semantic labels applied to properties. For example, if a property is label as title, you can retrieve it using the following syntax : label_title.Optional.
+        self._fields: Optional[List[str]] = None
+        # Specifies the offset for the search results. Offset 0 returns the very first result. Optional.
+        self._from_: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The query property
+        self._query: Optional[search_query.SearchQuery] = None
+        # Provides query alteration options formatted as a JSON blob that contains two optional flags related to spelling correction. Optional.
+        self._query_alteration_options: Optional[search_alteration_options.SearchAlterationOptions] = None
+        # Required for searches that use application permissions. Represents the geographic location for the search. For details, see Get the region value.
+        self._region: Optional[str] = None
+        # Provides the search result templates options for rendering connectors search results.
+        self._result_template_options: Optional[result_template_option.ResultTemplateOption] = None
+        # Indicates the kind of contents to be searched when a search is performed using application permissions. Optional.
+        self._share_point_one_drive_options: Optional[share_point_one_drive_options.SharePointOneDriveOptions] = None
+        # The size of the page to be retrieved. Optional.
+        self._size: Optional[int] = None
+        # Contains the ordered collection of fields and direction to sort results. There can be at most 5 sort properties in the collection. Optional.
+        self._sort_properties: Optional[List[sort_property.SortProperty]] = None
+        # The stored_fields property
+        self._stored_fields: Optional[List[str]] = None
+        # Indicates whether to trim away the duplicate SharePoint files from search results. Default value is false. Optional.
+        self._trim_duplicates: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -80,50 +117,6 @@ class SearchRequest(AdditionalDataHolder, Parsable):
             value: Value to set for the collapse_properties property.
         """
         self._collapse_properties = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new searchRequest and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Contains one or more filters to obtain search results aggregated and filtered to a specific value of a field. Optional.Build this filter based on a prior search that aggregates by the same field. From the response of the prior search, identify the searchBucket that filters results to the specific value of the field, use the string in its aggregationFilterToken property, and build an aggregation filter string in the format '{field}:/'{aggregationFilterToken}/''. If multiple values for the same field need to be provided, use the strings in its aggregationFilterToken property and build an aggregation filter string in the format '{field}:or(/'{aggregationFilterToken1}/',/'{aggregationFilterToken2}/')'. For example, searching and aggregating drive items by file type returns a searchBucket for the file type docx in the response. You can conveniently use the aggregationFilterToken returned for this searchBucket in a subsequent search query and filter matches down to drive items of the docx file type. Example 1 and example 2 show the actual requests and responses.
-        self._aggregation_filters: Optional[List[str]] = None
-        # Specifies aggregations (also known as refiners) to be returned alongside search results. Optional.
-        self._aggregations: Optional[List[aggregation_option.AggregationOption]] = None
-        # Contains the ordered collection of fields and limit to collapse results. Optional.
-        self._collapse_properties: Optional[List[collapse_property.CollapseProperty]] = None
-        # Contains the connection to be targeted. Respects the following format : /external/connections/connectionid where connectionid is the ConnectionId defined in the Connectors Administration.  Note: contentSource is only applicable when entityType=externalItem. Optional.
-        self._content_sources: Optional[List[str]] = None
-        # This triggers hybrid sort for messages: the first 3 messages are the most relevant. This property is only applicable to entityType=message. Optional.
-        self._enable_top_results: Optional[bool] = None
-        # One or more types of resources expected in the response. Possible values are: list, site, listItem, message, event, drive, driveItem, person, externalItem, acronym, bookmark, chatMessage. For details about combinations of two or more entity types that are supported in the same search request, see known limitations. Required.
-        self._entity_types: Optional[List[entity_type.EntityType]] = None
-        # Contains the fields to be returned for each resource object specified in entityTypes, allowing customization of the fields returned by default otherwise, including additional fields such as custom managed properties from SharePoint and OneDrive, or custom fields in externalItem from content that Microsoft Graph connectors bring in. The fields property can be using the semantic labels applied to properties. For example, if a property is label as title, you can retrieve it using the following syntax : label_title.Optional.
-        self._fields: Optional[List[str]] = None
-        # Specifies the offset for the search results. Offset 0 returns the very first result. Optional.
-        self._from_: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The query property
-        self._query: Optional[search_query.SearchQuery] = None
-        # Provides query alteration options formatted as a JSON blob that contains two optional flags related to spelling correction. Optional.
-        self._query_alteration_options: Optional[search_alteration_options.SearchAlterationOptions] = None
-        # Required for searches that use application permissions. Represents the geographic location for the search. For details, see Get the region value.
-        self._region: Optional[str] = None
-        # Provides the search result templates options for rendering connectors search results.
-        self._result_template_options: Optional[result_template_option.ResultTemplateOption] = None
-        # Indicates the kind of contents to be searched when a search is performed using application permissions. Optional.
-        self._share_point_one_drive_options: Optional[share_point_one_drive_options.SharePointOneDriveOptions] = None
-        # The size of the page to be retrieved. Optional.
-        self._size: Optional[int] = None
-        # Contains the ordered collection of fields and direction to sort results. There can be at most 5 sort properties in the collection. Optional.
-        self._sort_properties: Optional[List[sort_property.SortProperty]] = None
-        # The stored_fields property
-        self._stored_fields: Optional[List[str]] = None
-        # Indicates whether to trim away the duplicate SharePoint files from search results. Default value is false. Optional.
-        self._trim_duplicates: Optional[bool] = None
     
     @property
     def content_sources(self,) -> Optional[List[str]]:
@@ -227,7 +220,9 @@ class SearchRequest(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import aggregation_option, collapse_property, entity_type, result_template_option, search_alteration_options, search_query, share_point_one_drive_options, sort_property
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "aggregations": lambda n : setattr(self, 'aggregations', n.get_collection_of_object_values(aggregation_option.AggregationOption)),
             "aggregationFilters": lambda n : setattr(self, 'aggregation_filters', n.get_collection_of_primitive_values(str)),
             "collapseProperties": lambda n : setattr(self, 'collapse_properties', n.get_collection_of_object_values(collapse_property.CollapseProperty)),

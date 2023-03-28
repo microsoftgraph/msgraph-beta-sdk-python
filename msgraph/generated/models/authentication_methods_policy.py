@@ -1,32 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_configuration = lazy_import('msgraph.generated.models.authentication_method_configuration')
-authentication_methods_policy_migration_state = lazy_import('msgraph.generated.models.authentication_methods_policy_migration_state')
-entity = lazy_import('msgraph.generated.models.entity')
-registration_enforcement = lazy_import('msgraph.generated.models.registration_enforcement')
+if TYPE_CHECKING:
+    from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement
+
+from . import entity
 
 class AuthenticationMethodsPolicy(entity.Entity):
-    @property
-    def authentication_method_configurations(self,) -> Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]:
-        """
-        Gets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
-        Returns: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]
-        """
-        return self._authentication_method_configurations
-    
-    @authentication_method_configurations.setter
-    def authentication_method_configurations(self,value: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]] = None) -> None:
-        """
-        Sets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
-        Args:
-            value: Value to set for the authentication_method_configurations property.
-        """
-        self._authentication_method_configurations = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new AuthenticationMethodsPolicy and sets the default values.
@@ -50,6 +32,23 @@ class AuthenticationMethodsPolicy(entity.Entity):
         self._reconfirmation_in_days: Optional[int] = None
         # Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
         self._registration_enforcement: Optional[registration_enforcement.RegistrationEnforcement] = None
+    
+    @property
+    def authentication_method_configurations(self,) -> Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]:
+        """
+        Gets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
+        Returns: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]]
+        """
+        return self._authentication_method_configurations
+    
+    @authentication_method_configurations.setter
+    def authentication_method_configurations(self,value: Optional[List[authentication_method_configuration.AuthenticationMethodConfiguration]] = None) -> None:
+        """
+        Sets the authenticationMethodConfigurations property value. Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
+        Args:
+            value: Value to set for the authentication_method_configurations property.
+        """
+        self._authentication_method_configurations = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationMethodsPolicy:
@@ -102,7 +101,9 @@ class AuthenticationMethodsPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_methods_policy_migration_state, authentication_method_configuration, entity, registration_enforcement
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethodConfigurations": lambda n : setattr(self, 'authentication_method_configurations', n.get_collection_of_object_values(authentication_method_configuration.AuthenticationMethodConfiguration)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

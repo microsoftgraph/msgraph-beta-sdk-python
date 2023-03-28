@@ -1,14 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mac_o_s_process_identifier_type = lazy_import('msgraph.generated.models.mac_o_s_process_identifier_type')
+if TYPE_CHECKING:
+    from . import mac_o_s_process_identifier_type
 
 class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
     """
     Represents a process that can receive an Apple Event notification.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSAppleEventReceiver and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Allow or block this app from receiving Apple events.
+        self._allowed: Optional[bool] = None
+        # Code requirement for the app or binary that receives the Apple Event.
+        self._code_requirement: Optional[str] = None
+        # Bundle ID of the app or file path of the process or executable that receives the Apple Event.
+        self._identifier: Optional[str] = None
+        # Process identifier types for MacOS Privacy Preferences
+        self._identifier_type: Optional[mac_o_s_process_identifier_type.MacOSProcessIdentifierType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -60,24 +78,6 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
         """
         self._code_requirement = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSAppleEventReceiver and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Allow or block this app from receiving Apple events.
-        self._allowed: Optional[bool] = None
-        # Code requirement for the app or binary that receives the Apple Event.
-        self._code_requirement: Optional[str] = None
-        # Bundle ID of the app or file path of the process or executable that receives the Apple Event.
-        self._identifier: Optional[str] = None
-        # Process identifier types for MacOS Privacy Preferences
-        self._identifier_type: Optional[mac_o_s_process_identifier_type.MacOSProcessIdentifierType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSAppleEventReceiver:
         """
@@ -95,7 +95,9 @@ class MacOSAppleEventReceiver(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mac_o_s_process_identifier_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowed": lambda n : setattr(self, 'allowed', n.get_bool_value()),
             "codeRequirement": lambda n : setattr(self, 'code_requirement', n.get_str_value()),
             "identifier": lambda n : setattr(self, 'identifier', n.get_str_value()),

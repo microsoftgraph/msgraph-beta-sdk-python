@@ -1,32 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-content_applicability_settings = lazy_import('msgraph.generated.models.windows_updates.content_applicability_settings')
-expedite_settings = lazy_import('msgraph.generated.models.windows_updates.expedite_settings')
-monitoring_settings = lazy_import('msgraph.generated.models.windows_updates.monitoring_settings')
-schedule_settings = lazy_import('msgraph.generated.models.windows_updates.schedule_settings')
-user_experience_settings = lazy_import('msgraph.generated.models.windows_updates.user_experience_settings')
+if TYPE_CHECKING:
+    from . import content_applicability_settings, expedite_settings, monitoring_settings, schedule_settings, user_experience_settings
 
 class DeploymentSettings(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deploymentSettings and sets the default values.
@@ -46,6 +25,23 @@ class DeploymentSettings(AdditionalDataHolder, Parsable):
         self._schedule: Optional[schedule_settings.ScheduleSettings] = None
         # Settings for governing end user update experience.
         self._user_experience: Optional[user_experience_settings.UserExperienceSettings] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @property
     def content_applicability(self,) -> Optional[content_applicability_settings.ContentApplicabilitySettings]:
@@ -98,7 +94,9 @@ class DeploymentSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import content_applicability_settings, expedite_settings, monitoring_settings, schedule_settings, user_experience_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentApplicability": lambda n : setattr(self, 'content_applicability', n.get_object_value(content_applicability_settings.ContentApplicabilitySettings)),
             "expedite": lambda n : setattr(self, 'expedite', n.get_object_value(expedite_settings.ExpediteSettings)),
             "monitoring": lambda n : setattr(self, 'monitoring', n.get_object_value(monitoring_settings.MonitoringSettings)),

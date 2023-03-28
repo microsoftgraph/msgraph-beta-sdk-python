@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-account_target_content_type = lazy_import('msgraph.generated.models.account_target_content_type')
+if TYPE_CHECKING:
+    from . import account_target_content_type, address_book_account_target_content, include_all_account_target_content
 
 class AccountTargetContent(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accountTargetContent and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The type of account target content. Possible values are: unknown,includeAll, addressBook,  unknownFutureValue.
+        self._type: Optional[account_target_content_type.AccountTargetContentType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,18 +35,6 @@ class AccountTargetContent(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accountTargetContent and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The type of account target content. Possible values are: unknown,includeAll, addressBook,  unknownFutureValue.
-        self._type: Optional[account_target_content_type.AccountTargetContentType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccountTargetContent:
         """
@@ -45,6 +45,17 @@ class AccountTargetContent(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.addressBookAccountTargetContent":
+                from . import address_book_account_target_content
+
+                return address_book_account_target_content.AddressBookAccountTargetContent()
+            if mapping_value == "#microsoft.graph.includeAllAccountTargetContent":
+                from . import include_all_account_target_content
+
+                return include_all_account_target_content.IncludeAllAccountTargetContent()
         return AccountTargetContent()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -52,7 +63,9 @@ class AccountTargetContent(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import account_target_content_type, address_book_account_target_content, include_all_account_target_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(account_target_content_type.AccountTargetContentType)),
         }

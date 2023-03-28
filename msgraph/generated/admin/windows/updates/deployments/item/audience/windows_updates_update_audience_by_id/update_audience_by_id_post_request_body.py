@@ -1,9 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UpdateAudienceByIdPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateAudienceByIdPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The addExclusions property
+        self._add_exclusions: Optional[List[str]] = None
+        # The addMembers property
+        self._add_members: Optional[List[str]] = None
+        # The memberEntityType property
+        self._member_entity_type: Optional[str] = None
+        # The removeExclusions property
+        self._remove_exclusions: Optional[List[str]] = None
+        # The removeMembers property
+        self._remove_members: Optional[List[str]] = None
+    
     @property
     def add_exclusions(self,) -> Optional[List[str]]:
         """
@@ -55,24 +72,6 @@ class UpdateAudienceByIdPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateAudienceByIdPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The addExclusions property
-        self._add_exclusions: Optional[List[str]] = None
-        # The addMembers property
-        self._add_members: Optional[List[str]] = None
-        # The memberEntityType property
-        self._member_entity_type: Optional[str] = None
-        # The removeExclusions property
-        self._remove_exclusions: Optional[List[str]] = None
-        # The removeMembers property
-        self._remove_members: Optional[List[str]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateAudienceByIdPostRequestBody:
         """
@@ -90,7 +89,7 @@ class UpdateAudienceByIdPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "addExclusions": lambda n : setattr(self, 'add_exclusions', n.get_collection_of_primitive_values(str)),
             "addMembers": lambda n : setattr(self, 'add_members', n.get_collection_of_primitive_values(str)),
             "memberEntityType": lambda n : setattr(self, 'member_entity_type', n.get_str_value()),

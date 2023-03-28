@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-default_mfa_method_type = lazy_import('msgraph.generated.models.default_mfa_method_type')
-entity = lazy_import('msgraph.generated.models.entity')
-sign_in_user_type = lazy_import('msgraph.generated.models.sign_in_user_type')
+if TYPE_CHECKING:
+    from . import default_mfa_method_type, entity, sign_in_user_type
+
+from . import entity
 
 class UserRegistrationDetails(entity.Entity):
     def __init__(self,) -> None:
@@ -74,7 +74,9 @@ class UserRegistrationDetails(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import default_mfa_method_type, entity, sign_in_user_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultMfaMethod": lambda n : setattr(self, 'default_mfa_method', n.get_enum_value(default_mfa_method_type.DefaultMfaMethodType)),
             "isAdmin": lambda n : setattr(self, 'is_admin', n.get_bool_value()),
             "isMfaCapable": lambda n : setattr(self, 'is_mfa_capable', n.get_bool_value()),

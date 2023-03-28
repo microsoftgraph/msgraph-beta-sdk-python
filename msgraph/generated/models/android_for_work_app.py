@@ -1,11 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
+if TYPE_CHECKING:
+    from . import mobile_app
+
+from . import mobile_app
 
 class AndroidForWorkApp(mobile_app.MobileApp):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidForWorkApp and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidForWorkApp"
+        # The Identity Name.
+        self._app_identifier: Optional[str] = None
+        # The Play for Work Store app URL.
+        self._app_store_url: Optional[str] = None
+        # The package identifier.
+        self._package_id: Optional[str] = None
+        # The total number of VPP licenses.
+        self._total_license_count: Optional[int] = None
+        # The number of VPP licenses in use.
+        self._used_license_count: Optional[int] = None
+    
     @property
     def app_identifier(self,) -> Optional[str]:
         """
@@ -40,23 +59,6 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         """
         self._app_store_url = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidForWorkApp and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidForWorkApp"
-        # The Identity Name.
-        self._app_identifier: Optional[str] = None
-        # The Play for Work Store app URL.
-        self._app_store_url: Optional[str] = None
-        # The package identifier.
-        self._package_id: Optional[str] = None
-        # The total number of VPP licenses.
-        self._total_license_count: Optional[int] = None
-        # The number of VPP licenses in use.
-        self._used_license_count: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidForWorkApp:
         """
@@ -74,7 +76,9 @@ class AndroidForWorkApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appIdentifier": lambda n : setattr(self, 'app_identifier', n.get_str_value()),
             "appStoreUrl": lambda n : setattr(self, 'app_store_url', n.get_str_value()),
             "packageId": lambda n : setattr(self, 'package_id', n.get_str_value()),

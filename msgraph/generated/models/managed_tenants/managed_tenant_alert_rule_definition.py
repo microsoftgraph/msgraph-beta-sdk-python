@@ -1,31 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_rule_definition_template = lazy_import('msgraph.generated.models.managed_tenants.alert_rule_definition_template')
-managed_tenant_alert_rule = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule')
+if TYPE_CHECKING:
+    from . import alert_rule_definition_template, managed_tenant_alert_rule
+    from .. import entity
+
+from .. import entity
 
 class ManagedTenantAlertRuleDefinition(entity.Entity):
-    @property
-    def alert_rules(self,) -> Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]:
-        """
-        Gets the alertRules property value. The alertRules property
-        Returns: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]
-        """
-        return self._alert_rules
-    
-    @alert_rules.setter
-    def alert_rules(self,value: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]] = None) -> None:
-        """
-        Sets the alertRules property value. The alertRules property
-        Args:
-            value: Value to set for the alert_rules property.
-        """
-        self._alert_rules = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managedTenantAlertRuleDefinition and sets the default values.
@@ -47,6 +31,23 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         self._last_action_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def alert_rules(self,) -> Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]:
+        """
+        Gets the alertRules property value. The alertRules property
+        Returns: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]]
+        """
+        return self._alert_rules
+    
+    @alert_rules.setter
+    def alert_rules(self,value: Optional[List[managed_tenant_alert_rule.ManagedTenantAlertRule]] = None) -> None:
+        """
+        Sets the alertRules property value. The alertRules property
+        Args:
+            value: Value to set for the alert_rules property.
+        """
+        self._alert_rules = value
     
     @property
     def created_by_user_id(self,) -> Optional[str]:
@@ -133,7 +134,10 @@ class ManagedTenantAlertRuleDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_rule_definition_template, managed_tenant_alert_rule
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertRules": lambda n : setattr(self, 'alert_rules', n.get_collection_of_object_values(managed_tenant_alert_rule.ManagedTenantAlertRule)),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

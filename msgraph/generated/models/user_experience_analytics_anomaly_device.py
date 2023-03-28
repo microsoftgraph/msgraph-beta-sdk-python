@@ -1,15 +1,43 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
     """
     The user experience analytics anomaly entity contains device details.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAnomalyDevice and sets the default values.
+        """
+        super().__init__()
+        # The unique identifier of the anomaly.
+        self._anomaly_id: Optional[str] = None
+        # Indicates the first occurance date and time for the anomaly on the device.
+        self._anomaly_on_device_first_occurrence_date_time: Optional[datetime] = None
+        # Indicates the latest occurance date and time for the anomaly on the device.
+        self._anomaly_on_device_latest_occurrence_date_time: Optional[datetime] = None
+        # The unique identifier of the device.
+        self._device_id: Optional[str] = None
+        # The manufacturer name of the device.
+        self._device_manufacturer: Optional[str] = None
+        # The model name of the device.
+        self._device_model: Optional[str] = None
+        # The name of the device.
+        self._device_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The name of the OS installed on the device.
+        self._os_name: Optional[str] = None
+        # The OS version installed on the device.
+        self._os_version: Optional[str] = None
+    
     @property
     def anomaly_id(self,) -> Optional[str]:
         """
@@ -60,32 +88,6 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
             value: Value to set for the anomaly_on_device_latest_occurrence_date_time property.
         """
         self._anomaly_on_device_latest_occurrence_date_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAnomalyDevice and sets the default values.
-        """
-        super().__init__()
-        # The unique identifier of the anomaly.
-        self._anomaly_id: Optional[str] = None
-        # Indicates the first occurance date and time for the anomaly on the device.
-        self._anomaly_on_device_first_occurrence_date_time: Optional[datetime] = None
-        # Indicates the latest occurance date and time for the anomaly on the device.
-        self._anomaly_on_device_latest_occurrence_date_time: Optional[datetime] = None
-        # The unique identifier of the device.
-        self._device_id: Optional[str] = None
-        # The manufacturer name of the device.
-        self._device_manufacturer: Optional[str] = None
-        # The model name of the device.
-        self._device_model: Optional[str] = None
-        # The name of the device.
-        self._device_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The name of the OS installed on the device.
-        self._os_name: Optional[str] = None
-        # The OS version installed on the device.
-        self._os_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAnomalyDevice:
@@ -172,7 +174,9 @@ class UserExperienceAnalyticsAnomalyDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "anomalyId": lambda n : setattr(self, 'anomaly_id', n.get_str_value()),
             "anomalyOnDeviceFirstOccurrenceDateTime": lambda n : setattr(self, 'anomaly_on_device_first_occurrence_date_time', n.get_datetime_value()),
             "anomalyOnDeviceLatestOccurrenceDateTime": lambda n : setattr(self, 'anomaly_on_device_latest_occurrence_date_time', n.get_datetime_value()),

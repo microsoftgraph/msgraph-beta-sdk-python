@@ -1,24 +1,67 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
-item_category = lazy_import('msgraph.generated.models.item_category')
-picture = lazy_import('msgraph.generated.models.picture')
+if TYPE_CHECKING:
+    from . import entity, item_category, picture
+
+from . import entity
 
 class Item(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new item and sets the default values.
+        """
+        super().__init__()
+        # The baseUnitOfMeasureId property
+        self._base_unit_of_measure_id: Optional[UUID] = None
+        # The blocked property
+        self._blocked: Optional[bool] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The gtin property
+        self._gtin: Optional[str] = None
+        # The inventory property
+        self._inventory: Optional[float] = None
+        # The itemCategory property
+        self._item_category: Optional[item_category.ItemCategory] = None
+        # The itemCategoryCode property
+        self._item_category_code: Optional[str] = None
+        # The itemCategoryId property
+        self._item_category_id: Optional[UUID] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The number property
+        self._number: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The picture property
+        self._picture: Optional[List[picture.Picture]] = None
+        # The priceIncludesTax property
+        self._price_includes_tax: Optional[bool] = None
+        # The taxGroupCode property
+        self._tax_group_code: Optional[str] = None
+        # The taxGroupId property
+        self._tax_group_id: Optional[UUID] = None
+        # The type property
+        self._type: Optional[str] = None
+        # The unitCost property
+        self._unit_cost: Optional[float] = None
+        # The unitPrice property
+        self._unit_price: Optional[float] = None
+    
     @property
-    def base_unit_of_measure_id(self,) -> Optional[Guid]:
+    def base_unit_of_measure_id(self,) -> Optional[UUID]:
         """
         Gets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._base_unit_of_measure_id
     
     @base_unit_of_measure_id.setter
-    def base_unit_of_measure_id(self,value: Optional[Guid] = None) -> None:
+    def base_unit_of_measure_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the baseUnitOfMeasureId property value. The baseUnitOfMeasureId property
         Args:
@@ -42,48 +85,6 @@ class Item(entity.Entity):
             value: Value to set for the blocked property.
         """
         self._blocked = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new item and sets the default values.
-        """
-        super().__init__()
-        # The baseUnitOfMeasureId property
-        self._base_unit_of_measure_id: Optional[Guid] = None
-        # The blocked property
-        self._blocked: Optional[bool] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The gtin property
-        self._gtin: Optional[str] = None
-        # The inventory property
-        self._inventory: Optional[float] = None
-        # The itemCategory property
-        self._item_category: Optional[item_category.ItemCategory] = None
-        # The itemCategoryCode property
-        self._item_category_code: Optional[str] = None
-        # The itemCategoryId property
-        self._item_category_id: Optional[Guid] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The number property
-        self._number: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The picture property
-        self._picture: Optional[List[picture.Picture]] = None
-        # The priceIncludesTax property
-        self._price_includes_tax: Optional[bool] = None
-        # The taxGroupCode property
-        self._tax_group_code: Optional[str] = None
-        # The taxGroupId property
-        self._tax_group_id: Optional[Guid] = None
-        # The type property
-        self._type: Optional[str] = None
-        # The unitCost property
-        self._unit_cost: Optional[float] = None
-        # The unitPrice property
-        self._unit_price: Optional[float] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Item:
@@ -119,21 +120,23 @@ class Item(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "baseUnitOfMeasureId": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_object_value(Guid)),
+        from . import entity, item_category, picture
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "baseUnitOfMeasureId": lambda n : setattr(self, 'base_unit_of_measure_id', n.get_uuid_value()),
             "blocked": lambda n : setattr(self, 'blocked', n.get_bool_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "gtin": lambda n : setattr(self, 'gtin', n.get_str_value()),
             "inventory": lambda n : setattr(self, 'inventory', n.get_float_value()),
             "itemCategory": lambda n : setattr(self, 'item_category', n.get_object_value(item_category.ItemCategory)),
             "itemCategoryCode": lambda n : setattr(self, 'item_category_code', n.get_str_value()),
-            "itemCategoryId": lambda n : setattr(self, 'item_category_id', n.get_object_value(Guid)),
+            "itemCategoryId": lambda n : setattr(self, 'item_category_id', n.get_uuid_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "number": lambda n : setattr(self, 'number', n.get_str_value()),
             "picture": lambda n : setattr(self, 'picture', n.get_collection_of_object_values(picture.Picture)),
             "priceIncludesTax": lambda n : setattr(self, 'price_includes_tax', n.get_bool_value()),
             "taxGroupCode": lambda n : setattr(self, 'tax_group_code', n.get_str_value()),
-            "taxGroupId": lambda n : setattr(self, 'tax_group_id', n.get_object_value(Guid)),
+            "taxGroupId": lambda n : setattr(self, 'tax_group_id', n.get_uuid_value()),
             "type": lambda n : setattr(self, 'type', n.get_str_value()),
             "unitCost": lambda n : setattr(self, 'unit_cost', n.get_float_value()),
             "unitPrice": lambda n : setattr(self, 'unit_price', n.get_float_value()),
@@ -211,15 +214,15 @@ class Item(entity.Entity):
         self._item_category_code = value
     
     @property
-    def item_category_id(self,) -> Optional[Guid]:
+    def item_category_id(self,) -> Optional[UUID]:
         """
         Gets the itemCategoryId property value. The itemCategoryId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._item_category_id
     
     @item_category_id.setter
-    def item_category_id(self,value: Optional[Guid] = None) -> None:
+    def item_category_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the itemCategoryId property value. The itemCategoryId property
         Args:
@@ -304,20 +307,20 @@ class Item(entity.Entity):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("baseUnitOfMeasureId", self.base_unit_of_measure_id)
+        writer.write_uuid_value("baseUnitOfMeasureId", self.base_unit_of_measure_id)
         writer.write_bool_value("blocked", self.blocked)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("gtin", self.gtin)
         writer.write_float_value("inventory", self.inventory)
         writer.write_object_value("itemCategory", self.item_category)
         writer.write_str_value("itemCategoryCode", self.item_category_code)
-        writer.write_object_value("itemCategoryId", self.item_category_id)
+        writer.write_uuid_value("itemCategoryId", self.item_category_id)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("number", self.number)
         writer.write_collection_of_object_values("picture", self.picture)
         writer.write_bool_value("priceIncludesTax", self.price_includes_tax)
         writer.write_str_value("taxGroupCode", self.tax_group_code)
-        writer.write_object_value("taxGroupId", self.tax_group_id)
+        writer.write_uuid_value("taxGroupId", self.tax_group_id)
         writer.write_str_value("type", self.type)
         writer.write_float_value("unitCost", self.unit_cost)
         writer.write_float_value("unitPrice", self.unit_price)
@@ -340,15 +343,15 @@ class Item(entity.Entity):
         self._tax_group_code = value
     
     @property
-    def tax_group_id(self,) -> Optional[Guid]:
+    def tax_group_id(self,) -> Optional[UUID]:
         """
         Gets the taxGroupId property value. The taxGroupId property
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._tax_group_id
     
     @tax_group_id.setter
-    def tax_group_id(self,value: Optional[Guid] = None) -> None:
+    def tax_group_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the taxGroupId property value. The taxGroupId property
         Args:

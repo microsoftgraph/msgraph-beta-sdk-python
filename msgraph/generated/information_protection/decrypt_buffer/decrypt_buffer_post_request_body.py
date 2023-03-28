@@ -1,9 +1,20 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new decryptBufferPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The encryptedBuffer property
+        self._encrypted_buffer: Optional[bytes] = None
+        # The publishingLicense property
+        self._publishing_license: Optional[bytes] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -20,18 +31,6 @@ class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new decryptBufferPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The encryptedBuffer property
-        self._encrypted_buffer: Optional[bytes] = None
-        # The publishingLicense property
-        self._publishing_license: Optional[bytes] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DecryptBufferPostRequestBody:
@@ -67,7 +66,7 @@ class DecryptBufferPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "encryptedBuffer": lambda n : setattr(self, 'encrypted_buffer', n.get_bytes_value()),
             "publishingLicense": lambda n : setattr(self, 'publishing_license', n.get_bytes_value()),
         }

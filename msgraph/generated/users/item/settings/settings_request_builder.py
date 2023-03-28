@@ -7,48 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user_settings = lazy_import('msgraph.generated.models.user_settings')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-contact_merge_suggestions_request_builder = lazy_import('msgraph.generated.users.item.settings.contact_merge_suggestions.contact_merge_suggestions_request_builder')
-item_insights_request_builder = lazy_import('msgraph.generated.users.item.settings.item_insights.item_insights_request_builder')
-regional_and_language_settings_request_builder = lazy_import('msgraph.generated.users.item.settings.regional_and_language_settings.regional_and_language_settings_request_builder')
-shift_preferences_request_builder = lazy_import('msgraph.generated.users.item.settings.shift_preferences.shift_preferences_request_builder')
+if TYPE_CHECKING:
+    from ....models import user_settings
+    from ....models.o_data_errors import o_data_error
+    from .contact_merge_suggestions import contact_merge_suggestions_request_builder
+    from .item_insights import item_insights_request_builder
+    from .regional_and_language_settings import regional_and_language_settings_request_builder
+    from .shift_preferences import shift_preferences_request_builder
 
 class SettingsRequestBuilder():
     """
     Provides operations to manage the settings property of the microsoft.graph.user entity.
     """
-    @property
-    def contact_merge_suggestions(self) -> contact_merge_suggestions_request_builder.ContactMergeSuggestionsRequestBuilder:
-        """
-        Provides operations to manage the contactMergeSuggestions property of the microsoft.graph.userSettings entity.
-        """
-        return contact_merge_suggestions_request_builder.ContactMergeSuggestionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def item_insights(self) -> item_insights_request_builder.ItemInsightsRequestBuilder:
-        """
-        Provides operations to manage the itemInsights property of the microsoft.graph.userSettings entity.
-        """
-        return item_insights_request_builder.ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def regional_and_language_settings(self) -> regional_and_language_settings_request_builder.RegionalAndLanguageSettingsRequestBuilder:
-        """
-        Provides operations to manage the regionalAndLanguageSettings property of the microsoft.graph.userSettings entity.
-        """
-        return regional_and_language_settings_request_builder.RegionalAndLanguageSettingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def shift_preferences(self) -> shift_preferences_request_builder.ShiftPreferencesRequestBuilder:
-        """
-        Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.
-        """
-        return shift_preferences_request_builder.ShiftPreferencesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SettingsRequestBuilder and sets the default values.
@@ -76,6 +48,8 @@ class SettingsRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -94,12 +68,16 @@ class SettingsRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import user_settings
+
         return await self.request_adapter.send_async(request_info, user_settings.UserSettings, error_mapping)
     
     async def patch(self,body: Optional[user_settings.UserSettings] = None, request_configuration: Optional[SettingsRequestBuilderPatchRequestConfiguration] = None) -> Optional[user_settings.UserSettings]:
@@ -115,12 +93,16 @@ class SettingsRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import user_settings
+
         return await self.request_adapter.send_async(request_info, user_settings.UserSettings, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SettingsRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -178,6 +160,42 @@ class SettingsRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def contact_merge_suggestions(self) -> contact_merge_suggestions_request_builder.ContactMergeSuggestionsRequestBuilder:
+        """
+        Provides operations to manage the contactMergeSuggestions property of the microsoft.graph.userSettings entity.
+        """
+        from .contact_merge_suggestions import contact_merge_suggestions_request_builder
+
+        return contact_merge_suggestions_request_builder.ContactMergeSuggestionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def item_insights(self) -> item_insights_request_builder.ItemInsightsRequestBuilder:
+        """
+        Provides operations to manage the itemInsights property of the microsoft.graph.userSettings entity.
+        """
+        from .item_insights import item_insights_request_builder
+
+        return item_insights_request_builder.ItemInsightsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def regional_and_language_settings(self) -> regional_and_language_settings_request_builder.RegionalAndLanguageSettingsRequestBuilder:
+        """
+        Provides operations to manage the regionalAndLanguageSettings property of the microsoft.graph.userSettings entity.
+        """
+        from .regional_and_language_settings import regional_and_language_settings_request_builder
+
+        return regional_and_language_settings_request_builder.RegionalAndLanguageSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def shift_preferences(self) -> shift_preferences_request_builder.ShiftPreferencesRequestBuilder:
+        """
+        Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.
+        """
+        from .shift_preferences import shift_preferences_request_builder
+
+        return shift_preferences_request_builder.ShiftPreferencesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SettingsRequestBuilderDeleteRequestConfiguration():
         """
@@ -195,12 +213,6 @@ class SettingsRequestBuilder():
         """
         Get settings from users
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -216,6 +228,12 @@ class SettingsRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SettingsRequestBuilderGetRequestConfiguration():

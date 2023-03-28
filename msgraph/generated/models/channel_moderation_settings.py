@@ -1,12 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-reply_restriction = lazy_import('msgraph.generated.models.reply_restriction')
-user_new_message_restriction = lazy_import('msgraph.generated.models.user_new_message_restriction')
+if TYPE_CHECKING:
+    from . import reply_restriction, user_new_message_restriction
 
 class ChannelModerationSettings(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new channelModerationSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether bots are allowed to post messages.
+        self._allow_new_message_from_bots: Optional[bool] = None
+        # Indicates whether connectors are allowed to post messages.
+        self._allow_new_message_from_connectors: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Indicates who is allowed to reply to the teams channel. Possible values are: everyone, authorAndModerators, unknownFutureValue.
+        self._reply_restriction: Optional[reply_restriction.ReplyRestriction] = None
+        # Indicates who is allowed to post messages to teams channel. Possible values are: everyone, everyoneExceptGuests, moderators, unknownFutureValue.
+        self._user_new_message_restriction: Optional[user_new_message_restriction.UserNewMessageRestriction] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -58,24 +75,6 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         """
         self._allow_new_message_from_connectors = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new channelModerationSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether bots are allowed to post messages.
-        self._allow_new_message_from_bots: Optional[bool] = None
-        # Indicates whether connectors are allowed to post messages.
-        self._allow_new_message_from_connectors: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates who is allowed to reply to the teams channel. Possible values are: everyone, authorAndModerators, unknownFutureValue.
-        self._reply_restriction: Optional[reply_restriction.ReplyRestriction] = None
-        # Indicates who is allowed to post messages to teams channel. Possible values are: everyone, everyoneExceptGuests, moderators, unknownFutureValue.
-        self._user_new_message_restriction: Optional[user_new_message_restriction.UserNewMessageRestriction] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ChannelModerationSettings:
         """
@@ -93,7 +92,9 @@ class ChannelModerationSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import reply_restriction, user_new_message_restriction
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowNewMessageFromBots": lambda n : setattr(self, 'allow_new_message_from_bots', n.get_bool_value()),
             "allowNewMessageFromConnectors": lambda n : setattr(self, 'allow_new_message_from_connectors', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

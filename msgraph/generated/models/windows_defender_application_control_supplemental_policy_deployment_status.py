@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-windows_defender_application_control_supplemental_policy = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy')
-windows_defender_application_control_supplemental_policy_statuses = lazy_import('msgraph.generated.models.windows_defender_application_control_supplemental_policy_statuses')
+if TYPE_CHECKING:
+    from . import entity, windows_defender_application_control_supplemental_policy, windows_defender_application_control_supplemental_policy_statuses
+
+from . import entity
 
 class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity.Entity):
     """
@@ -108,7 +108,9 @@ class WindowsDefenderApplicationControlSupplementalPolicyDeploymentStatus(entity
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, windows_defender_application_control_supplemental_policy, windows_defender_application_control_supplemental_policy_statuses
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deploymentStatus": lambda n : setattr(self, 'deployment_status', n.get_enum_value(windows_defender_application_control_supplemental_policy_statuses.WindowsDefenderApplicationControlSupplementalPolicyStatuses)),
             "deviceId": lambda n : setattr(self, 'device_id', n.get_str_value()),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),

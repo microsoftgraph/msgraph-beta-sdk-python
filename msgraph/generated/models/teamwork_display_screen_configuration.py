@@ -1,10 +1,29 @@
 from __future__ import annotations
 from datetime import timedelta
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkDisplayScreenConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The brightness level on the device (0-100). Not applicable for Microsoft Teams Rooms devices.
+        self._backlight_brightness: Optional[int] = None
+        # Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
+        self._backlight_timeout: Optional[timedelta] = None
+        # True if high contrast mode is enabled. Not applicable for Teams Rooms devices.
+        self._is_high_contrast_enabled: Optional[bool] = None
+        # True if screensaver is enabled. Not applicable for Teams Rooms devices.
+        self._is_screensaver_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
+        self._screensaver_timeout: Optional[timedelta] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,41 +59,21 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         self._backlight_brightness = value
     
     @property
-    def backlight_timeout(self,) -> Optional[Timedelta]:
+    def backlight_timeout(self,) -> Optional[timedelta]:
         """
         Gets the backlightTimeout property value. Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._backlight_timeout
     
     @backlight_timeout.setter
-    def backlight_timeout(self,value: Optional[Timedelta] = None) -> None:
+    def backlight_timeout(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the backlightTimeout property value. Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
         Args:
             value: Value to set for the backlight_timeout property.
         """
         self._backlight_timeout = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDisplayScreenConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The brightness level on the device (0-100). Not applicable for Microsoft Teams Rooms devices.
-        self._backlight_brightness: Optional[int] = None
-        # Timeout for backlight (30-3600 secs). Not applicable for Teams Rooms devices.
-        self._backlight_timeout: Optional[Timedelta] = None
-        # True if high contrast mode is enabled. Not applicable for Teams Rooms devices.
-        self._is_high_contrast_enabled: Optional[bool] = None
-        # True if screensaver is enabled. Not applicable for Teams Rooms devices.
-        self._is_screensaver_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
-        self._screensaver_timeout: Optional[Timedelta] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkDisplayScreenConfiguration:
@@ -93,13 +92,13 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "backlightBrightness": lambda n : setattr(self, 'backlight_brightness', n.get_int_value()),
-            "backlightTimeout": lambda n : setattr(self, 'backlight_timeout', n.get_object_value(Timedelta)),
+            "backlightTimeout": lambda n : setattr(self, 'backlight_timeout', n.get_timedelta_value()),
             "isHighContrastEnabled": lambda n : setattr(self, 'is_high_contrast_enabled', n.get_bool_value()),
             "isScreensaverEnabled": lambda n : setattr(self, 'is_screensaver_enabled', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
-            "screensaverTimeout": lambda n : setattr(self, 'screensaver_timeout', n.get_object_value(Timedelta)),
+            "screensaverTimeout": lambda n : setattr(self, 'screensaver_timeout', n.get_timedelta_value()),
         }
         return fields
     
@@ -155,15 +154,15 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         self._odata_type = value
     
     @property
-    def screensaver_timeout(self,) -> Optional[Timedelta]:
+    def screensaver_timeout(self,) -> Optional[timedelta]:
         """
         Gets the screensaverTimeout property value. Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
-        Returns: Optional[Timedelta]
+        Returns: Optional[timedelta]
         """
         return self._screensaver_timeout
     
     @screensaver_timeout.setter
-    def screensaver_timeout(self,value: Optional[Timedelta] = None) -> None:
+    def screensaver_timeout(self,value: Optional[timedelta] = None) -> None:
         """
         Sets the screensaverTimeout property value. Screensaver timeout from 30 to 3600 secs. Not applicable for Teams Rooms devices.
         Args:
@@ -180,11 +179,11 @@ class TeamworkDisplayScreenConfiguration(AdditionalDataHolder, Parsable):
         if writer is None:
             raise Exception("writer cannot be undefined")
         writer.write_int_value("backlightBrightness", self.backlight_brightness)
-        writer.write_object_value("backlightTimeout", self.backlight_timeout)
+        writer.write_timedelta_value("backlightTimeout", self.backlight_timeout)
         writer.write_bool_value("isHighContrastEnabled", self.is_high_contrast_enabled)
         writer.write_bool_value("isScreensaverEnabled", self.is_screensaver_enabled)
         writer.write_str_value("@odata.type", self.odata_type)
-        writer.write_object_value("screensaverTimeout", self.screensaver_timeout)
+        writer.write_timedelta_value("screensaverTimeout", self.screensaver_timeout)
         writer.write_additional_data_value(self.additional_data)
     
 

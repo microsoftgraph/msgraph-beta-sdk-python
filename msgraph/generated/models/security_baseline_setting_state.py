@@ -1,12 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-security_baseline_compliance_state = lazy_import('msgraph.generated.models.security_baseline_compliance_state')
-security_baseline_contributing_policy = lazy_import('msgraph.generated.models.security_baseline_contributing_policy')
-setting_source = lazy_import('msgraph.generated.models.setting_source')
+if TYPE_CHECKING:
+    from . import entity, security_baseline_compliance_state, security_baseline_contributing_policy, setting_source
+
+from . import entity
 
 class SecurityBaselineSettingState(entity.Entity):
     """
@@ -87,7 +86,9 @@ class SecurityBaselineSettingState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, security_baseline_compliance_state, security_baseline_contributing_policy, setting_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contributingPolicies": lambda n : setattr(self, 'contributing_policies', n.get_collection_of_object_values(security_baseline_contributing_policy.SecurityBaselineContributingPolicy)),
             "errorCode": lambda n : setattr(self, 'error_code', n.get_str_value()),
             "settingCategoryId": lambda n : setattr(self, 'setting_category_id', n.get_str_value()),

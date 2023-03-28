@@ -7,12 +7,11 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-get_role_scope_tags_by_id_post_request_body = lazy_import('msgraph.generated.device_management.role_scope_tags.get_role_scope_tags_by_id.get_role_scope_tags_by_id_post_request_body')
-get_role_scope_tags_by_id_response = lazy_import('msgraph.generated.device_management.role_scope_tags.get_role_scope_tags_by_id.get_role_scope_tags_by_id_response')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from . import get_role_scope_tags_by_id_post_request_body, get_role_scope_tags_by_id_response
+    from ....models.o_data_errors import o_data_error
 
 class GetRoleScopeTagsByIdRequestBuilder():
     """
@@ -49,12 +48,16 @@ class GetRoleScopeTagsByIdRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from . import get_role_scope_tags_by_id_response
+
         return await self.request_adapter.send_async(request_info, get_role_scope_tags_by_id_response.GetRoleScopeTagsByIdResponse, error_mapping)
     
     def to_post_request_information(self,body: Optional[get_role_scope_tags_by_id_post_request_body.GetRoleScopeTagsByIdPostRequestBody] = None, request_configuration: Optional[GetRoleScopeTagsByIdRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:

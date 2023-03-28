@@ -1,11 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-subject_set = lazy_import('msgraph.generated.models.subject_set')
-workflow_execution_conditions = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_conditions')
-workflow_execution_trigger = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_trigger')
+if TYPE_CHECKING:
+    from . import workflow_execution_conditions, workflow_execution_trigger
+    from .. import subject_set
+
+from . import workflow_execution_conditions
 
 class TriggerAndScopeBasedConditions(workflow_execution_conditions.WorkflowExecutionConditions):
     def __init__(self,) -> None:
@@ -36,7 +37,10 @@ class TriggerAndScopeBasedConditions(workflow_execution_conditions.WorkflowExecu
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import workflow_execution_conditions, workflow_execution_trigger
+        from .. import subject_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "scope": lambda n : setattr(self, 'scope', n.get_object_value(subject_set.SubjectSet)),
             "trigger": lambda n : setattr(self, 'trigger', n.get_object_value(workflow_execution_trigger.WorkflowExecutionTrigger)),
         }

@@ -1,35 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-managed_device = lazy_import('msgraph.generated.models.managed_device')
-remediation_state = lazy_import('msgraph.generated.models.remediation_state')
-run_state = lazy_import('msgraph.generated.models.run_state')
+if TYPE_CHECKING:
+    from . import entity, managed_device, remediation_state, run_state
+
+from . import entity
 
 class DeviceHealthScriptDeviceState(entity.Entity):
     """
     Contains properties for device run state of the device health script.
     """
-    @property
-    def assignment_filter_ids(self,) -> Optional[List[str]]:
-        """
-        Gets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
-        Returns: Optional[List[str]]
-        """
-        return self._assignment_filter_ids
-    
-    @assignment_filter_ids.setter
-    def assignment_filter_ids(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
-        Args:
-            value: Value to set for the assignment_filter_ids property.
-        """
-        self._assignment_filter_ids = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deviceHealthScriptDeviceState and sets the default values.
@@ -61,6 +43,23 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         self._remediation_script_error: Optional[str] = None
         # Indicates the type of execution status of the device management script.
         self._remediation_state: Optional[remediation_state.RemediationState] = None
+    
+    @property
+    def assignment_filter_ids(self,) -> Optional[List[str]]:
+        """
+        Gets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
+        Returns: Optional[List[str]]
+        """
+        return self._assignment_filter_ids
+    
+    @assignment_filter_ids.setter
+    def assignment_filter_ids(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the assignmentFilterIds property value. A list of the assignment filter ids used for health script applicability evaluation
+        Args:
+            value: Value to set for the assignment_filter_ids property.
+        """
+        self._assignment_filter_ids = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceHealthScriptDeviceState:
@@ -113,7 +112,9 @@ class DeviceHealthScriptDeviceState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, managed_device, remediation_state, run_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignmentFilterIds": lambda n : setattr(self, 'assignment_filter_ids', n.get_collection_of_primitive_values(str)),
             "detectionState": lambda n : setattr(self, 'detection_state', n.get_enum_value(run_state.RunState)),
             "expectedStateUpdateDateTime": lambda n : setattr(self, 'expected_state_update_date_time', n.get_datetime_value()),

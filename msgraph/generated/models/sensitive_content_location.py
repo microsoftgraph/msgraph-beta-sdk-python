@@ -1,11 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-sensitive_content_evidence = lazy_import('msgraph.generated.models.sensitive_content_evidence')
+if TYPE_CHECKING:
+    from . import sensitive_content_evidence
 
 class SensitiveContentLocation(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new sensitiveContentLocation and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The confidence property
+        self._confidence: Optional[int] = None
+        # The evidences property
+        self._evidences: Optional[List[sensitive_content_evidence.SensitiveContentEvidence]] = None
+        # The idMatch property
+        self._id_match: Optional[str] = None
+        # The length property
+        self._length: Optional[int] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The offset property
+        self._offset: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,26 +59,6 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
             value: Value to set for the confidence property.
         """
         self._confidence = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new sensitiveContentLocation and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The confidence property
-        self._confidence: Optional[int] = None
-        # The evidences property
-        self._evidences: Optional[List[sensitive_content_evidence.SensitiveContentEvidence]] = None
-        # The idMatch property
-        self._id_match: Optional[str] = None
-        # The length property
-        self._length: Optional[int] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The offset property
-        self._offset: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitiveContentLocation:
@@ -94,7 +94,9 @@ class SensitiveContentLocation(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import sensitive_content_evidence
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "confidence": lambda n : setattr(self, 'confidence', n.get_int_value()),
             "evidences": lambda n : setattr(self, 'evidences', n.get_collection_of_object_values(sensitive_content_evidence.SensitiveContentEvidence)),
             "idMatch": lambda n : setattr(self, 'id_match', n.get_str_value()),

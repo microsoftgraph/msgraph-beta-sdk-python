@@ -1,15 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-trust_framework_key = lazy_import('msgraph.generated.models.trust_framework_key')
+if TYPE_CHECKING:
+    from . import entity, trust_framework_key
+
+from . import entity
 
 class TrustFrameworkKeySet(entity.Entity):
     def __init__(self,) -> None:
         """
-        Instantiates a new trustFrameworkKeySet and sets the default values.
+        Instantiates a new TrustFrameworkKeySet and sets the default values.
         """
         super().__init__()
         # A collection of the keys.
@@ -34,7 +35,9 @@ class TrustFrameworkKeySet(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, trust_framework_key
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "keys": lambda n : setattr(self, 'keys', n.get_collection_of_object_values(trust_framework_key.TrustFrameworkKey)),
         }
         super_fields = super().get_field_deserializers()

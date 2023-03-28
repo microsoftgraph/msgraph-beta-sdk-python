@@ -1,13 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-discovery_source = lazy_import('msgraph.generated.models.discovery_source')
-enrollment_state = lazy_import('msgraph.generated.models.enrollment_state')
-entity = lazy_import('msgraph.generated.models.entity')
-platform = lazy_import('msgraph.generated.models.platform')
+if TYPE_CHECKING:
+    from . import discovery_source, enrollment_state, entity, imported_apple_device_identity_result, platform
+
+from . import entity
 
 class ImportedAppleDeviceIdentity(entity.Entity):
     """
@@ -70,6 +69,13 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.importedAppleDeviceIdentityResult":
+                from . import imported_apple_device_identity_result
+
+                return imported_apple_device_identity_result.ImportedAppleDeviceIdentityResult()
         return ImportedAppleDeviceIdentity()
     
     @property
@@ -128,7 +134,9 @@ class ImportedAppleDeviceIdentity(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import discovery_source, enrollment_state, entity, imported_apple_device_identity_result, platform
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "discoverySource": lambda n : setattr(self, 'discovery_source', n.get_enum_value(discovery_source.DiscoverySource)),

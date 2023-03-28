@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-application_mode = lazy_import('msgraph.generated.models.application_mode')
+if TYPE_CHECKING:
+    from . import application_mode
 
 class CurrentLabel(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new currentLabel and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The applicationMode property
+        self._application_mode: Optional[application_mode.ApplicationMode] = None
+        # The id property
+        self._id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,20 +54,6 @@ class CurrentLabel(AdditionalDataHolder, Parsable):
         """
         self._application_mode = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new currentLabel and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The applicationMode property
-        self._application_mode: Optional[application_mode.ApplicationMode] = None
-        # The id property
-        self._id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CurrentLabel:
         """
@@ -71,7 +71,9 @@ class CurrentLabel(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import application_mode
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationMode": lambda n : setattr(self, 'application_mode', n.get_enum_value(application_mode.ApplicationMode)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

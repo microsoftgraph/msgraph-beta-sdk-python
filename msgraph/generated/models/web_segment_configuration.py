@@ -1,12 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-segment_configuration = lazy_import('msgraph.generated.models.segment_configuration')
-web_application_segment = lazy_import('msgraph.generated.models.web_application_segment')
+if TYPE_CHECKING:
+    from . import segment_configuration, web_application_segment
+
+from . import segment_configuration
 
 class WebSegmentConfiguration(segment_configuration.SegmentConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WebSegmentConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.webSegmentConfiguration"
+        # The applicationSegments property
+        self._application_segments: Optional[List[web_application_segment.WebApplicationSegment]] = None
+    
     @property
     def application_segments(self,) -> Optional[List[web_application_segment.WebApplicationSegment]]:
         """
@@ -23,15 +33,6 @@ class WebSegmentConfiguration(segment_configuration.SegmentConfiguration):
             value: Value to set for the application_segments property.
         """
         self._application_segments = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WebSegmentConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.webSegmentConfiguration"
-        # The applicationSegments property
-        self._application_segments: Optional[List[web_application_segment.WebApplicationSegment]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WebSegmentConfiguration:
@@ -50,7 +51,9 @@ class WebSegmentConfiguration(segment_configuration.SegmentConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import segment_configuration, web_application_segment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationSegments": lambda n : setattr(self, 'application_segments', n.get_collection_of_object_values(web_application_segment.WebApplicationSegment)),
         }
         super_fields = super().get_field_deserializers()

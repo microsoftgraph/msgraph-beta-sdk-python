@@ -1,12 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-unified_role_management_alert_incident = lazy_import('msgraph.generated.models.unified_role_management_alert_incident')
+if TYPE_CHECKING:
+    from . import unified_role_management_alert_incident
+
+from . import unified_role_management_alert_incident
 
 class SequentialActivationRenewalsAlertIncident(unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new SequentialActivationRenewalsAlertIncident and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.sequentialActivationRenewalsAlertIncident"
+        # The activationCount property
+        self._activation_count: Optional[int] = None
+        # The assigneeDisplayName property
+        self._assignee_display_name: Optional[str] = None
+        # The assigneeId property
+        self._assignee_id: Optional[str] = None
+        # The assigneeUserPrincipalName property
+        self._assignee_user_principal_name: Optional[str] = None
+        # The roleDefinitionId property
+        self._role_definition_id: Optional[str] = None
+        # The roleDisplayName property
+        self._role_display_name: Optional[str] = None
+        # The roleTemplateId property
+        self._role_template_id: Optional[str] = None
+        # The sequenceEndDateTime property
+        self._sequence_end_date_time: Optional[datetime] = None
+        # The sequenceStartDateTime property
+        self._sequence_start_date_time: Optional[datetime] = None
+    
     @property
     def activation_count(self,) -> Optional[int]:
         """
@@ -75,31 +102,6 @@ class SequentialActivationRenewalsAlertIncident(unified_role_management_alert_in
         """
         self._assignee_user_principal_name = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new SequentialActivationRenewalsAlertIncident and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.sequentialActivationRenewalsAlertIncident"
-        # The activationCount property
-        self._activation_count: Optional[int] = None
-        # The assigneeDisplayName property
-        self._assignee_display_name: Optional[str] = None
-        # The assigneeId property
-        self._assignee_id: Optional[str] = None
-        # The assigneeUserPrincipalName property
-        self._assignee_user_principal_name: Optional[str] = None
-        # The roleDefinitionId property
-        self._role_definition_id: Optional[str] = None
-        # The roleDisplayName property
-        self._role_display_name: Optional[str] = None
-        # The roleTemplateId property
-        self._role_template_id: Optional[str] = None
-        # The sequenceEndDateTime property
-        self._sequence_end_date_time: Optional[datetime] = None
-        # The sequenceStartDateTime property
-        self._sequence_start_date_time: Optional[datetime] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SequentialActivationRenewalsAlertIncident:
         """
@@ -117,7 +119,9 @@ class SequentialActivationRenewalsAlertIncident(unified_role_management_alert_in
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import unified_role_management_alert_incident
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activationCount": lambda n : setattr(self, 'activation_count', n.get_int_value()),
             "assigneeDisplayName": lambda n : setattr(self, 'assignee_display_name', n.get_str_value()),
             "assigneeId": lambda n : setattr(self, 'assignee_id', n.get_str_value()),

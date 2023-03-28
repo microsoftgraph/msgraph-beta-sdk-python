@@ -1,15 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_certificate_access_type = lazy_import('msgraph.generated.models.android_device_owner_certificate_access_type')
-android_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.android_device_owner_certificate_profile_base')
-android_device_owner_silent_certificate_access = lazy_import('msgraph.generated.models.android_device_owner_silent_certificate_access')
-intended_purpose = lazy_import('msgraph.generated.models.intended_purpose')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import android_device_owner_certificate_access_type, android_device_owner_certificate_profile_base, android_device_owner_silent_certificate_access, intended_purpose, managed_device_certificate_state
+
+from . import android_device_owner_certificate_profile_base
 
 class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidDeviceOwnerImportedPFXCertificateProfile and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile"
+        # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
+        self._certificate_access_type: Optional[android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType] = None
+        # PFX Import Options.
+        self._intended_purpose: Optional[intended_purpose.IntendedPurpose] = None
+        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
+        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
+        # Certificate access information. This collection can contain a maximum of 50 elements.
+        self._silent_certificate_access_details: Optional[List[android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess]] = None
+    
     @property
     def certificate_access_type(self,) -> Optional[android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType]:
         """
@@ -26,21 +39,6 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
             value: Value to set for the certificate_access_type property.
         """
         self._certificate_access_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerImportedPFXCertificateProfile and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile"
-        # Certificate access type. Possible values are: userApproval, specificApps, unknownFutureValue.
-        self._certificate_access_type: Optional[android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType] = None
-        # PFX Import Options.
-        self._intended_purpose: Optional[intended_purpose.IntendedPurpose] = None
-        # Certificate state for devices. This collection can contain a maximum of 2147483647 elements.
-        self._managed_device_certificate_states: Optional[List[managed_device_certificate_state.ManagedDeviceCertificateState]] = None
-        # Certificate access information. This collection can contain a maximum of 50 elements.
-        self._silent_certificate_access_details: Optional[List[android_device_owner_silent_certificate_access.AndroidDeviceOwnerSilentCertificateAccess]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerImportedPFXCertificateProfile:
@@ -59,7 +57,9 @@ class AndroidDeviceOwnerImportedPFXCertificateProfile(android_device_owner_certi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_certificate_access_type, android_device_owner_certificate_profile_base, android_device_owner_silent_certificate_access, intended_purpose, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateAccessType": lambda n : setattr(self, 'certificate_access_type', n.get_enum_value(android_device_owner_certificate_access_type.AndroidDeviceOwnerCertificateAccessType)),
             "intendedPurpose": lambda n : setattr(self, 'intended_purpose', n.get_enum_value(intended_purpose.IntendedPurpose)),
             "managedDeviceCertificateStates": lambda n : setattr(self, 'managed_device_certificate_states', n.get_collection_of_object_values(managed_device_certificate_state.ManagedDeviceCertificateState)),

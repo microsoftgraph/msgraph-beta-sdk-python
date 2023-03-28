@@ -1,14 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_kiosk_mode_folder_item = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_folder_item')
+if TYPE_CHECKING:
+    from . import android_device_owner_kiosk_mode_folder_item
 
 class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
     """
     A folder containing pages of apps and weblinks on the Managed Home Screen
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new androidDeviceOwnerKioskModeManagedFolder and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Unique identifier for the folder
+        self._folder_identifier: Optional[str] = None
+        # Display name for the folder
+        self._folder_name: Optional[str] = None
+        # Items to be added to managed folder. This collection can contain a maximum of 500 elements.
+        self._items: Optional[List[android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,22 +41,6 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new androidDeviceOwnerKioskModeManagedFolder and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Unique identifier for the folder
-        self._folder_identifier: Optional[str] = None
-        # Display name for the folder
-        self._folder_name: Optional[str] = None
-        # Items to be added to managed folder. This collection can contain a maximum of 500 elements.
-        self._items: Optional[List[android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerKioskModeManagedFolder:
@@ -93,7 +93,9 @@ class AndroidDeviceOwnerKioskModeManagedFolder(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_kiosk_mode_folder_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "folderIdentifier": lambda n : setattr(self, 'folder_identifier', n.get_str_value()),
             "folderName": lambda n : setattr(self, 'folder_name', n.get_str_value()),
             "items": lambda n : setattr(self, 'items', n.get_collection_of_object_values(android_device_owner_kiosk_mode_folder_item.AndroidDeviceOwnerKioskModeFolderItem)),

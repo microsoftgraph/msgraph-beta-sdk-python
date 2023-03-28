@@ -1,14 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
     """
     Entity that represents device setting state summary for an intent
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementIntentDeviceSettingStateSummary and sets the default values.
+        """
+        super().__init__()
+        # Number of compliant devices
+        self._compliant_count: Optional[int] = None
+        # Number of devices in conflict
+        self._conflict_count: Optional[int] = None
+        # Number of error devices
+        self._error_count: Optional[int] = None
+        # Number of non compliant devices
+        self._non_compliant_count: Optional[int] = None
+        # Number of not applicable devices
+        self._not_applicable_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Number of remediated devices
+        self._remediated_count: Optional[int] = None
+        # Name of a setting
+        self._setting_name: Optional[str] = None
+    
     @property
     def compliant_count(self,) -> Optional[int]:
         """
@@ -42,28 +66,6 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
             value: Value to set for the conflict_count property.
         """
         self._conflict_count = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementIntentDeviceSettingStateSummary and sets the default values.
-        """
-        super().__init__()
-        # Number of compliant devices
-        self._compliant_count: Optional[int] = None
-        # Number of devices in conflict
-        self._conflict_count: Optional[int] = None
-        # Number of error devices
-        self._error_count: Optional[int] = None
-        # Number of non compliant devices
-        self._non_compliant_count: Optional[int] = None
-        # Number of not applicable devices
-        self._not_applicable_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Number of remediated devices
-        self._remediated_count: Optional[int] = None
-        # Name of a setting
-        self._setting_name: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementIntentDeviceSettingStateSummary:
@@ -99,7 +101,9 @@ class DeviceManagementIntentDeviceSettingStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "compliantCount": lambda n : setattr(self, 'compliant_count', n.get_int_value()),
             "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
             "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),

@@ -7,60 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-alert_records_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_records.alert_records_request_builder')
-alert_record_item_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_records.item.alert_record_item_request_builder')
-alert_rules_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_rules.alert_rules_request_builder')
-alert_rule_item_request_builder = lazy_import('msgraph.generated.device_management.monitoring.alert_rules.item.alert_rule_item_request_builder')
-monitoring = lazy_import('msgraph.generated.models.device_management.monitoring')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ...models.device_management import monitoring
+    from ...models.o_data_errors import o_data_error
+    from .alert_records import alert_records_request_builder
+    from .alert_records.item import alert_record_item_request_builder
+    from .alert_rules import alert_rules_request_builder
+    from .alert_rules.item import alert_rule_item_request_builder
 
 class MonitoringRequestBuilder():
     """
     Provides operations to manage the monitoring property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def alert_records(self) -> alert_records_request_builder.AlertRecordsRequestBuilder:
-        """
-        Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
-        """
-        return alert_records_request_builder.AlertRecordsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def alert_rules(self) -> alert_rules_request_builder.AlertRulesRequestBuilder:
-        """
-        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
-        """
-        return alert_rules_request_builder.AlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def alert_records_by_id(self,id: str) -> alert_record_item_request_builder.AlertRecordItemRequestBuilder:
-        """
-        Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: alert_record_item_request_builder.AlertRecordItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["alertRecord%2Did"] = id
-        return alert_record_item_request_builder.AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def alert_rules_by_id(self,id: str) -> alert_rule_item_request_builder.AlertRuleItemRequestBuilder:
-        """
-        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: alert_rule_item_request_builder.AlertRuleItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["alertRule%2Did"] = id
-        return alert_rule_item_request_builder.AlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new MonitoringRequestBuilder and sets the default values.
@@ -79,6 +39,36 @@ class MonitoringRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def alert_records_by_id(self,id: str) -> alert_record_item_request_builder.AlertRecordItemRequestBuilder:
+        """
+        Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: alert_record_item_request_builder.AlertRecordItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .alert_records.item import alert_record_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["alertRecord%2Did"] = id
+        return alert_record_item_request_builder.AlertRecordItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def alert_rules_by_id(self,id: str) -> alert_rule_item_request_builder.AlertRuleItemRequestBuilder:
+        """
+        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: alert_rule_item_request_builder.AlertRuleItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .alert_rules.item import alert_rule_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["alertRule%2Did"] = id
+        return alert_rule_item_request_builder.AlertRuleItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[MonitoringRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property monitoring for deviceManagement
@@ -88,6 +78,8 @@ class MonitoringRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -106,12 +98,16 @@ class MonitoringRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models.device_management import monitoring
+
         return await self.request_adapter.send_async(request_info, monitoring.Monitoring, error_mapping)
     
     async def patch(self,body: Optional[monitoring.Monitoring] = None, request_configuration: Optional[MonitoringRequestBuilderPatchRequestConfiguration] = None) -> Optional[monitoring.Monitoring]:
@@ -127,12 +123,16 @@ class MonitoringRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models.device_management import monitoring
+
         return await self.request_adapter.send_async(request_info, monitoring.Monitoring, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[MonitoringRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -190,6 +190,24 @@ class MonitoringRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def alert_records(self) -> alert_records_request_builder.AlertRecordsRequestBuilder:
+        """
+        Provides operations to manage the alertRecords property of the microsoft.graph.deviceManagement.monitoring entity.
+        """
+        from .alert_records import alert_records_request_builder
+
+        return alert_records_request_builder.AlertRecordsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def alert_rules(self) -> alert_rules_request_builder.AlertRulesRequestBuilder:
+        """
+        Provides operations to manage the alertRules property of the microsoft.graph.deviceManagement.monitoring entity.
+        """
+        from .alert_rules import alert_rules_request_builder
+
+        return alert_rules_request_builder.AlertRulesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class MonitoringRequestBuilderDeleteRequestConfiguration():
         """
@@ -207,12 +225,6 @@ class MonitoringRequestBuilder():
         """
         Get monitoring from deviceManagement
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -228,6 +240,12 @@ class MonitoringRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class MonitoringRequestBuilderGetRequestConfiguration():

@@ -1,11 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_feature_configuration = lazy_import('msgraph.generated.models.authentication_method_feature_configuration')
+if TYPE_CHECKING:
+    from . import authentication_method_feature_configuration
 
 class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new microsoftAuthenticatorFeatureSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
+        self._companion_app_allowed_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+        # Determines whether the user's Authenticator app will show them the client app they are signing into.
+        self._display_app_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+        # Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
+        self._display_location_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+        # Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
+        self._number_matching_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,21 +41,22 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
+    @property
+    def companion_app_allowed_state(self,) -> Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]:
         """
-        Instantiates a new microsoftAuthenticatorFeatureSettings and sets the default values.
+        Gets the companionAppAllowedState property value. Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
+        Returns: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration]
         """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Determines whether the user's Authenticator app will show them the client app they are signing into.
-        self._display_app_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
-        self._display_location_information_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # Specifies whether the user needs to enter a number in the Authenticator app from the login screen to complete their login. Value is ignored for phone sign-in notifications.
-        self._number_matching_required_state: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
+        return self._companion_app_allowed_state
+    
+    @companion_app_allowed_state.setter
+    def companion_app_allowed_state(self,value: Optional[authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration] = None) -> None:
+        """
+        Sets the companionAppAllowedState property value. Determines whether users will be able to approve push notifications on other Microsoft applications such as Outlook Mobile.
+        Args:
+            value: Value to set for the companion_app_allowed_state property.
+        """
+        self._companion_app_allowed_state = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftAuthenticatorFeatureSettings:
@@ -90,7 +109,10 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_method_feature_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "companionAppAllowedState": lambda n : setattr(self, 'companion_app_allowed_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
             "displayAppInformationRequiredState": lambda n : setattr(self, 'display_app_information_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
             "displayLocationInformationRequiredState": lambda n : setattr(self, 'display_location_information_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
             "numberMatchingRequiredState": lambda n : setattr(self, 'number_matching_required_state', n.get_object_value(authentication_method_feature_configuration.AuthenticationMethodFeatureConfiguration)),
@@ -140,6 +162,7 @@ class MicrosoftAuthenticatorFeatureSettings(AdditionalDataHolder, Parsable):
         """
         if writer is None:
             raise Exception("writer cannot be undefined")
+        writer.write_object_value("companionAppAllowedState", self.companion_app_allowed_state)
         writer.write_object_value("displayAppInformationRequiredState", self.display_app_information_required_state)
         writer.write_object_value("displayLocationInformationRequiredState", self.display_location_information_required_state)
         writer.write_object_value("numberMatchingRequiredState", self.number_matching_required_state)

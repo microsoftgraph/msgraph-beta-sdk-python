@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_software_type = lazy_import('msgraph.generated.models.teamwork_software_type')
+if TYPE_CHECKING:
+    from .....models import teamwork_software_type
 
 class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateSoftwarePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The softwareType property
+        self._software_type: Optional[teamwork_software_type.TeamworkSoftwareType] = None
+        # The softwareVersion property
+        self._software_version: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,18 +34,6 @@ class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateSoftwarePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The softwareType property
-        self._software_type: Optional[teamwork_software_type.TeamworkSoftwareType] = None
-        # The softwareVersion property
-        self._software_version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateSoftwarePostRequestBody:
@@ -52,7 +52,9 @@ class UpdateSoftwarePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import teamwork_software_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "softwareType": lambda n : setattr(self, 'software_type', n.get_enum_value(teamwork_software_type.TeamworkSoftwareType)),
             "softwareVersion": lambda n : setattr(self, 'software_version', n.get_str_value()),
         }

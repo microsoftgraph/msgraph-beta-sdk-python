@@ -7,41 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.access_package.access_package_request_builder')
-access_package_catalog_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.access_package_catalog.access_package_catalog_request_builder')
-custom_extension_handlers_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.custom_extension_handlers.custom_extension_handlers_request_builder')
-custom_extension_handler_item_request_builder = lazy_import('msgraph.generated.identity_governance.entitlement_management.access_package_assignments.item.access_package_assignment_policy.custom_extension_handlers.item.custom_extension_handler_item_request_builder')
-access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import access_package_assignment_policy
+    from ......models.o_data_errors import o_data_error
+    from .access_package import access_package_request_builder
+    from .access_package_catalog import access_package_catalog_request_builder
+    from .custom_extension_handlers import custom_extension_handlers_request_builder
+    from .custom_extension_handlers.item import custom_extension_handler_item_request_builder
+    from .custom_extension_stage_settings import custom_extension_stage_settings_request_builder
+    from .custom_extension_stage_settings.item import custom_extension_stage_setting_item_request_builder
 
 class AccessPackageAssignmentPolicyRequestBuilder():
     """
     Provides operations to manage the accessPackageAssignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.
     """
-    @property
-    def access_package(self) -> access_package_request_builder.AccessPackageRequestBuilder:
-        """
-        Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentPolicy entity.
-        """
-        return access_package_request_builder.AccessPackageRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def access_package_catalog(self) -> access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder:
-        """
-        Provides operations to manage the accessPackageCatalog property of the microsoft.graph.accessPackageAssignmentPolicy entity.
-        """
-        return access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def custom_extension_handlers(self) -> custom_extension_handlers_request_builder.CustomExtensionHandlersRequestBuilder:
-        """
-        Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
-        """
-        return custom_extension_handlers_request_builder.CustomExtensionHandlersRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AccessPackageAssignmentPolicyRequestBuilder and sets the default values.
@@ -69,9 +50,26 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .custom_extension_handlers.item import custom_extension_handler_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["customExtensionHandler%2Did"] = id
         return custom_extension_handler_item_request_builder.CustomExtensionHandlerItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def custom_extension_stage_settings_by_id(self,id: str) -> custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder:
+        """
+        Provides operations to manage the customExtensionStageSettings property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .custom_extension_stage_settings.item import custom_extension_stage_setting_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["customExtensionStageSetting%2Did"] = id
+        return custom_extension_stage_setting_item_request_builder.CustomExtensionStageSettingItemRequestBuilder(self.request_adapter, url_tpl_params)
     
     async def delete(self,request_configuration: Optional[AccessPackageAssignmentPolicyRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
@@ -82,6 +80,8 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -100,12 +100,16 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import access_package_assignment_policy
+
         return await self.request_adapter.send_async(request_info, access_package_assignment_policy.AccessPackageAssignmentPolicy, error_mapping)
     
     async def patch(self,body: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy] = None, request_configuration: Optional[AccessPackageAssignmentPolicyRequestBuilderPatchRequestConfiguration] = None) -> Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy]:
@@ -121,12 +125,16 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import access_package_assignment_policy
+
         return await self.request_adapter.send_async(request_info, access_package_assignment_policy.AccessPackageAssignmentPolicy, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AccessPackageAssignmentPolicyRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -184,6 +192,42 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def access_package(self) -> access_package_request_builder.AccessPackageRequestBuilder:
+        """
+        Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        """
+        from .access_package import access_package_request_builder
+
+        return access_package_request_builder.AccessPackageRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def access_package_catalog(self) -> access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder:
+        """
+        Provides operations to manage the accessPackageCatalog property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        """
+        from .access_package_catalog import access_package_catalog_request_builder
+
+        return access_package_catalog_request_builder.AccessPackageCatalogRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def custom_extension_handlers(self) -> custom_extension_handlers_request_builder.CustomExtensionHandlersRequestBuilder:
+        """
+        Provides operations to manage the customExtensionHandlers property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        """
+        from .custom_extension_handlers import custom_extension_handlers_request_builder
+
+        return custom_extension_handlers_request_builder.CustomExtensionHandlersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def custom_extension_stage_settings(self) -> custom_extension_stage_settings_request_builder.CustomExtensionStageSettingsRequestBuilder:
+        """
+        Provides operations to manage the customExtensionStageSettings property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        """
+        from .custom_extension_stage_settings import custom_extension_stage_settings_request_builder
+
+        return custom_extension_stage_settings_request_builder.CustomExtensionStageSettingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AccessPackageAssignmentPolicyRequestBuilderDeleteRequestConfiguration():
         """
@@ -201,12 +245,6 @@ class AccessPackageAssignmentPolicyRequestBuilder():
         """
         Read-only. Nullable. Supports $filter (eq) on the id property
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -222,6 +260,12 @@ class AccessPackageAssignmentPolicyRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AccessPackageAssignmentPolicyRequestBuilderGetRequestConfiguration():

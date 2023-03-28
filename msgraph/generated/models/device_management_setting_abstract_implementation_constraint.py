@@ -1,11 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_constraint = lazy_import('msgraph.generated.models.device_management_constraint')
+if TYPE_CHECKING:
+    from . import device_management_constraint
+
+from . import device_management_constraint
 
 class DeviceManagementSettingAbstractImplementationConstraint(device_management_constraint.DeviceManagementConstraint):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceManagementSettingAbstractImplementationConstraint and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceManagementSettingAbstractImplementationConstraint"
+        # List of value which means not configured for the setting
+        self._allowed_abstract_implementation_definition_ids: Optional[List[str]] = None
+    
     @property
     def allowed_abstract_implementation_definition_ids(self,) -> Optional[List[str]]:
         """
@@ -22,15 +33,6 @@ class DeviceManagementSettingAbstractImplementationConstraint(device_management_
             value: Value to set for the allowed_abstract_implementation_definition_ids property.
         """
         self._allowed_abstract_implementation_definition_ids = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementSettingAbstractImplementationConstraint and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementSettingAbstractImplementationConstraint"
-        # List of value which means not configured for the setting
-        self._allowed_abstract_implementation_definition_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementSettingAbstractImplementationConstraint:
@@ -49,7 +51,9 @@ class DeviceManagementSettingAbstractImplementationConstraint(device_management_
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_constraint
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedAbstractImplementationDefinitionIds": lambda n : setattr(self, 'allowed_abstract_implementation_definition_ids', n.get_collection_of_primitive_values(str)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,34 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-expedited_windows_quality_update_settings = lazy_import('msgraph.generated.models.expedited_windows_quality_update_settings')
-windows_quality_update_profile_assignment = lazy_import('msgraph.generated.models.windows_quality_update_profile_assignment')
+if TYPE_CHECKING:
+    from . import entity, expedited_windows_quality_update_settings, windows_quality_update_profile_assignment
+
+from . import entity
 
 class WindowsQualityUpdateProfile(entity.Entity):
     """
     Windows Quality Update Profile
     """
-    @property
-    def assignments(self,) -> Optional[List[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]]:
-        """
-        Gets the assignments property value. The list of group assignments of the profile.
-        Returns: Optional[List[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]]
-        """
-        return self._assignments
-    
-    @assignments.setter
-    def assignments(self,value: Optional[List[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]] = None) -> None:
-        """
-        Sets the assignments property value. The list of group assignments of the profile.
-        Args:
-            value: Value to set for the assignments property.
-        """
-        self._assignments = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsQualityUpdateProfile and sets the default values.
@@ -54,6 +37,23 @@ class WindowsQualityUpdateProfile(entity.Entity):
         self._release_date_display_name: Optional[str] = None
         # List of Scope Tags for this Quality Update entity.
         self._role_scope_tag_ids: Optional[List[str]] = None
+    
+    @property
+    def assignments(self,) -> Optional[List[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]]:
+        """
+        Gets the assignments property value. The list of group assignments of the profile.
+        Returns: Optional[List[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]]
+        """
+        return self._assignments
+    
+    @assignments.setter
+    def assignments(self,value: Optional[List[windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment]] = None) -> None:
+        """
+        Sets the assignments property value. The list of group assignments of the profile.
+        Args:
+            value: Value to set for the assignments property.
+        """
+        self._assignments = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -157,7 +157,9 @@ class WindowsQualityUpdateProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, expedited_windows_quality_update_settings, windows_quality_update_profile_assignment
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_quality_update_profile_assignment.WindowsQualityUpdateProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "deployableContentDisplayName": lambda n : setattr(self, 'deployable_content_display_name', n.get_str_value()),

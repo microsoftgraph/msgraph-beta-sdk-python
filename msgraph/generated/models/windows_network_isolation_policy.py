@@ -1,32 +1,14 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-ip_range = lazy_import('msgraph.generated.models.ip_range')
-proxied_domain = lazy_import('msgraph.generated.models.proxied_domain')
+if TYPE_CHECKING:
+    from . import ip_range, proxied_domain
 
 class WindowsNetworkIsolationPolicy(AdditionalDataHolder, Parsable):
     """
     Windows Network Isolation Policy
     """
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new windowsNetworkIsolationPolicy and sets the default values.
@@ -52,6 +34,23 @@ class WindowsNetworkIsolationPolicy(AdditionalDataHolder, Parsable):
         self._neutral_domain_resources: Optional[List[str]] = None
         # The OdataType property
         self._odata_type: Optional[str] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsNetworkIsolationPolicy:
@@ -189,7 +188,9 @@ class WindowsNetworkIsolationPolicy(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import ip_range, proxied_domain
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enterpriseCloudResources": lambda n : setattr(self, 'enterprise_cloud_resources', n.get_collection_of_object_values(proxied_domain.ProxiedDomain)),
             "enterpriseInternalProxyServers": lambda n : setattr(self, 'enterprise_internal_proxy_servers', n.get_collection_of_primitive_values(str)),
             "enterpriseIPRanges": lambda n : setattr(self, 'enterprise_i_p_ranges', n.get_collection_of_object_values(ip_range.IpRange)),

@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_question_answer = lazy_import('msgraph.generated.models.custom_question_answer')
-meeting_registrant_base = lazy_import('msgraph.generated.models.meeting_registrant_base')
-meeting_registrant_status = lazy_import('msgraph.generated.models.meeting_registrant_status')
+if TYPE_CHECKING:
+    from . import custom_question_answer, meeting_registrant_base, meeting_registrant_status
+
+from . import meeting_registrant_base
 
 class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
     def __init__(self,) -> None:
@@ -96,7 +96,9 @@ class MeetingRegistrant(meeting_registrant_base.MeetingRegistrantBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_question_answer, meeting_registrant_base, meeting_registrant_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "customQuestionAnswers": lambda n : setattr(self, 'custom_question_answers', n.get_collection_of_object_values(custom_question_answer.CustomQuestionAnswer)),
             "email": lambda n : setattr(self, 'email', n.get_str_value()),
             "firstName": lambda n : setattr(self, 'first_name', n.get_str_value()),

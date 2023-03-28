@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_user_initiated_enrollment_type = lazy_import('msgraph.generated.models.apple_user_initiated_enrollment_type')
-managed_device_owner_type = lazy_import('msgraph.generated.models.managed_device_owner_type')
+if TYPE_CHECKING:
+    from . import apple_user_initiated_enrollment_type, managed_device_owner_type
 
 class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appleOwnerTypeEnrollmentType and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The enrollmentType property
+        self._enrollment_type: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Owner type of device.
+        self._owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appleOwnerTypeEnrollmentType and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The enrollmentType property
-        self._enrollment_type: Optional[apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Owner type of device.
-        self._owner_type: Optional[managed_device_owner_type.ManagedDeviceOwnerType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleOwnerTypeEnrollmentType:
@@ -72,7 +71,9 @@ class AppleOwnerTypeEnrollmentType(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_user_initiated_enrollment_type, managed_device_owner_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enrollmentType": lambda n : setattr(self, 'enrollment_type', n.get_enum_value(apple_user_initiated_enrollment_type.AppleUserInitiatedEnrollmentType)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "ownerType": lambda n : setattr(self, 'owner_type', n.get_enum_value(managed_device_owner_type.ManagedDeviceOwnerType)),

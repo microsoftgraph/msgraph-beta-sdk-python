@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_autopilot_deployment_profile = lazy_import('msgraph.generated.models.windows_autopilot_deployment_profile')
-windows_domain_join_configuration = lazy_import('msgraph.generated.models.windows_domain_join_configuration')
+if TYPE_CHECKING:
+    from . import windows_autopilot_deployment_profile, windows_domain_join_configuration
+
+from . import windows_autopilot_deployment_profile
 
 class ActiveDirectoryWindowsAutopilotDeploymentProfile(windows_autopilot_deployment_profile.WindowsAutopilotDeploymentProfile):
     def __init__(self,) -> None:
@@ -52,7 +53,9 @@ class ActiveDirectoryWindowsAutopilotDeploymentProfile(windows_autopilot_deploym
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_autopilot_deployment_profile, windows_domain_join_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "domainJoinConfiguration": lambda n : setattr(self, 'domain_join_configuration', n.get_object_value(windows_domain_join_configuration.WindowsDomainJoinConfiguration)),
             "hybridAzureADJoinSkipConnectivityCheck": lambda n : setattr(self, 'hybrid_azure_a_d_join_skip_connectivity_check', n.get_bool_value()),
         }

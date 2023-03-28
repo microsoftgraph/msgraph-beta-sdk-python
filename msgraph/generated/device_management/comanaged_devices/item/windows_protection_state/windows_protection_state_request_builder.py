@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-detected_malware_state_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.windows_protection_state.detected_malware_state.detected_malware_state_request_builder')
-windows_device_malware_state_item_request_builder = lazy_import('msgraph.generated.device_management.comanaged_devices.item.windows_protection_state.detected_malware_state.item.windows_device_malware_state_item_request_builder')
-windows_protection_state = lazy_import('msgraph.generated.models.windows_protection_state')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import windows_protection_state
+    from .....models.o_data_errors import o_data_error
+    from .detected_malware_state import detected_malware_state_request_builder
+    from .detected_malware_state.item import windows_device_malware_state_item_request_builder
 
 class WindowsProtectionStateRequestBuilder():
     """
     Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
     """
-    @property
-    def detected_malware_state(self) -> detected_malware_state_request_builder.DetectedMalwareStateRequestBuilder:
-        """
-        Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.
-        """
-        return detected_malware_state_request_builder.DetectedMalwareStateRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new WindowsProtectionStateRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class WindowsProtectionStateRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,6 +65,8 @@ class WindowsProtectionStateRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .detected_malware_state.item import windows_device_malware_state_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["windowsDeviceMalwareState%2Did"] = id
         return windows_device_malware_state_item_request_builder.WindowsDeviceMalwareStateItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -84,12 +81,16 @@ class WindowsProtectionStateRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import windows_protection_state
+
         return await self.request_adapter.send_async(request_info, windows_protection_state.WindowsProtectionState, error_mapping)
     
     async def patch(self,body: Optional[windows_protection_state.WindowsProtectionState] = None, request_configuration: Optional[WindowsProtectionStateRequestBuilderPatchRequestConfiguration] = None) -> Optional[windows_protection_state.WindowsProtectionState]:
@@ -105,12 +106,16 @@ class WindowsProtectionStateRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import windows_protection_state
+
         return await self.request_adapter.send_async(request_info, windows_protection_state.WindowsProtectionState, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[WindowsProtectionStateRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -168,6 +173,15 @@ class WindowsProtectionStateRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def detected_malware_state(self) -> detected_malware_state_request_builder.DetectedMalwareStateRequestBuilder:
+        """
+        Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.
+        """
+        from .detected_malware_state import detected_malware_state_request_builder
+
+        return detected_malware_state_request_builder.DetectedMalwareStateRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class WindowsProtectionStateRequestBuilderDeleteRequestConfiguration():
         """
@@ -185,12 +199,6 @@ class WindowsProtectionStateRequestBuilder():
         """
         The device protection status. This property is read-only.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -206,6 +214,12 @@ class WindowsProtectionStateRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class WindowsProtectionStateRequestBuilderGetRequestConfiguration():

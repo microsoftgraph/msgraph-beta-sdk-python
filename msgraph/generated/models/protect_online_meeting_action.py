@@ -1,14 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-label_action_base = lazy_import('msgraph.generated.models.label_action_base')
-lobby_bypass_settings = lazy_import('msgraph.generated.models.lobby_bypass_settings')
-online_meeting_forwarders = lazy_import('msgraph.generated.models.online_meeting_forwarders')
-online_meeting_presenters = lazy_import('msgraph.generated.models.online_meeting_presenters')
+if TYPE_CHECKING:
+    from . import label_action_base, lobby_bypass_settings, online_meeting_forwarders, online_meeting_presenters
+
+from . import label_action_base
 
 class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ProtectOnlineMeetingAction and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.protectOnlineMeetingAction"
+        # The allowedForwarders property
+        self._allowed_forwarders: Optional[online_meeting_forwarders.OnlineMeetingForwarders] = None
+        # The allowedPresenters property
+        self._allowed_presenters: Optional[online_meeting_presenters.OnlineMeetingPresenters] = None
+        # The isCopyToClipboardEnabled property
+        self._is_copy_to_clipboard_enabled: Optional[bool] = None
+        # The isLobbyEnabled property
+        self._is_lobby_enabled: Optional[bool] = None
+        # The lobbyBypassSettings property
+        self._lobby_bypass_settings: Optional[lobby_bypass_settings.LobbyBypassSettings] = None
+    
     @property
     def allowed_forwarders(self,) -> Optional[online_meeting_forwarders.OnlineMeetingForwarders]:
         """
@@ -43,23 +59,6 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         """
         self._allowed_presenters = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProtectOnlineMeetingAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.protectOnlineMeetingAction"
-        # The allowedForwarders property
-        self._allowed_forwarders: Optional[online_meeting_forwarders.OnlineMeetingForwarders] = None
-        # The allowedPresenters property
-        self._allowed_presenters: Optional[online_meeting_presenters.OnlineMeetingPresenters] = None
-        # The isCopyToClipboardEnabled property
-        self._is_copy_to_clipboard_enabled: Optional[bool] = None
-        # The isLobbyEnabled property
-        self._is_lobby_enabled: Optional[bool] = None
-        # The lobbyBypassSettings property
-        self._lobby_bypass_settings: Optional[lobby_bypass_settings.LobbyBypassSettings] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProtectOnlineMeetingAction:
         """
@@ -77,7 +76,9 @@ class ProtectOnlineMeetingAction(label_action_base.LabelActionBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import label_action_base, lobby_bypass_settings, online_meeting_forwarders, online_meeting_presenters
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedForwarders": lambda n : setattr(self, 'allowed_forwarders', n.get_enum_value(online_meeting_forwarders.OnlineMeetingForwarders)),
             "allowedPresenters": lambda n : setattr(self, 'allowed_presenters', n.get_enum_value(online_meeting_presenters.OnlineMeetingPresenters)),
             "isCopyToClipboardEnabled": lambda n : setattr(self, 'is_copy_to_clipboard_enabled', n.get_bool_value()),

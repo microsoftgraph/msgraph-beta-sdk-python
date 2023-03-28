@@ -1,32 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-directory_object = lazy_import('msgraph.generated.models.directory_object')
-group = lazy_import('msgraph.generated.models.group')
-privileged_access_group_member_type = lazy_import('msgraph.generated.models.privileged_access_group_member_type')
-privileged_access_group_relationships = lazy_import('msgraph.generated.models.privileged_access_group_relationships')
-privileged_access_schedule_instance = lazy_import('msgraph.generated.models.privileged_access_schedule_instance')
+if TYPE_CHECKING:
+    from . import directory_object, group, privileged_access_group_member_type, privileged_access_group_relationships, privileged_access_schedule_instance
+
+from . import privileged_access_schedule_instance
 
 class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedule_instance.PrivilegedAccessScheduleInstance):
-    @property
-    def access_id(self,) -> Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]:
-        """
-        Gets the accessId property value. The accessId property
-        Returns: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]
-        """
-        return self._access_id
-    
-    @access_id.setter
-    def access_id(self,value: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None) -> None:
-        """
-        Sets the accessId property value. The accessId property
-        Args:
-            value: Value to set for the access_id property.
-        """
-        self._access_id = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new privilegedAccessGroupEligibilityScheduleInstance and sets the default values.
@@ -47,6 +28,23 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         self._principal: Optional[directory_object.DirectoryObject] = None
         # The principalId property
         self._principal_id: Optional[str] = None
+    
+    @property
+    def access_id(self,) -> Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]:
+        """
+        Gets the accessId property value. The accessId property
+        Returns: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships]
+        """
+        return self._access_id
+    
+    @access_id.setter
+    def access_id(self,value: Optional[privileged_access_group_relationships.PrivilegedAccessGroupRelationships] = None) -> None:
+        """
+        Sets the accessId property value. The accessId property
+        Args:
+            value: Value to set for the access_id property.
+        """
+        self._access_id = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PrivilegedAccessGroupEligibilityScheduleInstance:
@@ -82,7 +80,9 @@ class PrivilegedAccessGroupEligibilityScheduleInstance(privileged_access_schedul
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import directory_object, group, privileged_access_group_member_type, privileged_access_group_relationships, privileged_access_schedule_instance
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessId": lambda n : setattr(self, 'access_id', n.get_enum_value(privileged_access_group_relationships.PrivilegedAccessGroupRelationships)),
             "eligibilityScheduleId": lambda n : setattr(self, 'eligibility_schedule_id', n.get_str_value()),
             "group": lambda n : setattr(self, 'group', n.get_object_value(group.Group)),

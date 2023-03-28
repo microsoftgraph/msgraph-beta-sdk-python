@@ -1,18 +1,42 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_certificate_profile_base = lazy_import('msgraph.generated.models.android_device_owner_certificate_profile_base')
-android_vpn_connection_type = lazy_import('msgraph.generated.models.android_vpn_connection_type')
-app_list_item = lazy_import('msgraph.generated.models.app_list_item')
-device_management_derived_credential_settings = lazy_import('msgraph.generated.models.device_management_derived_credential_settings')
-key_value = lazy_import('msgraph.generated.models.key_value')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-vpn_configuration = lazy_import('msgraph.generated.models.vpn_configuration')
-vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
+if TYPE_CHECKING:
+    from . import android_device_owner_certificate_profile_base, android_vpn_connection_type, app_list_item, device_management_derived_credential_settings, key_value, key_value_pair, vpn_configuration, vpn_proxy_server
+
+from . import vpn_configuration
 
 class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AndroidDeviceOwnerVpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.androidDeviceOwnerVpnConfiguration"
+        # Whether or not to enable always-on VPN connection.
+        self._always_on: Optional[bool] = None
+        # If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
+        self._always_on_lockdown: Optional[bool] = None
+        # Android VPN connection type.
+        self._connection_type: Optional[android_vpn_connection_type.AndroidVpnConnectionType] = None
+        # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
+        self._custom_data: Optional[List[key_value.KeyValue]] = None
+        # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
+        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Tenant level settings for the Derived Credentials to be used for authentication.
+        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
+        # Identity certificate for client authentication when authentication method is certificate.
+        self._identity_certificate: Optional[android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase] = None
+        # Microsoft Tunnel site ID.
+        self._microsoft_tunnel_site_id: Optional[str] = None
+        # Proxy server.
+        self._proxy_server: Optional[vpn_proxy_server.VpnProxyServer] = None
+        # Targeted mobile apps. This collection can contain a maximum of 500 elements.
+        self._targeted_mobile_apps: Optional[List[app_list_item.AppListItem]] = None
+        # Targeted App package IDs.
+        self._targeted_package_ids: Optional[List[str]] = None
+    
     @property
     def always_on(self,) -> Optional[bool]:
         """
@@ -63,35 +87,6 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
             value: Value to set for the connection_type property.
         """
         self._connection_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AndroidDeviceOwnerVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.androidDeviceOwnerVpnConfiguration"
-        # Whether or not to enable always-on VPN connection.
-        self._always_on: Optional[bool] = None
-        # If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
-        self._always_on_lockdown: Optional[bool] = None
-        # Android VPN connection type.
-        self._connection_type: Optional[android_vpn_connection_type.AndroidVpnConnectionType] = None
-        # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        self._custom_data: Optional[List[key_value.KeyValue]] = None
-        # Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25 elements.
-        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Tenant level settings for the Derived Credentials to be used for authentication.
-        self._derived_credential_settings: Optional[device_management_derived_credential_settings.DeviceManagementDerivedCredentialSettings] = None
-        # Identity certificate for client authentication when authentication method is certificate.
-        self._identity_certificate: Optional[android_device_owner_certificate_profile_base.AndroidDeviceOwnerCertificateProfileBase] = None
-        # Microsoft Tunnel site ID.
-        self._microsoft_tunnel_site_id: Optional[str] = None
-        # Proxy server.
-        self._proxy_server: Optional[vpn_proxy_server.VpnProxyServer] = None
-        # Targeted mobile apps. This collection can contain a maximum of 500 elements.
-        self._targeted_mobile_apps: Optional[List[app_list_item.AppListItem]] = None
-        # Targeted App package IDs.
-        self._targeted_package_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AndroidDeviceOwnerVpnConfiguration:
@@ -161,7 +156,9 @@ class AndroidDeviceOwnerVpnConfiguration(vpn_configuration.VpnConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_certificate_profile_base, android_vpn_connection_type, app_list_item, device_management_derived_credential_settings, key_value, key_value_pair, vpn_configuration, vpn_proxy_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alwaysOn": lambda n : setattr(self, 'always_on', n.get_bool_value()),
             "alwaysOnLockdown": lambda n : setattr(self, 'always_on_lockdown', n.get_bool_value()),
             "connectionType": lambda n : setattr(self, 'connection_type', n.get_enum_value(android_vpn_connection_type.AndroidVpnConnectionType)),

@@ -1,33 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-microsoft_tunnel_server_health_status = lazy_import('msgraph.generated.models.microsoft_tunnel_server_health_status')
+if TYPE_CHECKING:
+    from . import entity, microsoft_tunnel_server_health_status
+
+from . import entity
 
 class MicrosoftTunnelServer(entity.Entity):
     """
     Entity that represents a single Microsoft Tunnel server
     """
-    @property
-    def agent_image_digest(self,) -> Optional[str]:
-        """
-        Gets the agentImageDigest property value. The digest of the current agent image running on this server
-        Returns: Optional[str]
-        """
-        return self._agent_image_digest
-    
-    @agent_image_digest.setter
-    def agent_image_digest(self,value: Optional[str] = None) -> None:
-        """
-        Sets the agentImageDigest property value. The digest of the current agent image running on this server
-        Args:
-            value: Value to set for the agent_image_digest property.
-        """
-        self._agent_image_digest = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new microsoftTunnelServer and sets the default values.
@@ -45,6 +29,23 @@ class MicrosoftTunnelServer(entity.Entity):
         self._server_image_digest: Optional[str] = None
         # Enum of possible MicrosoftTunnelServer health status types
         self._tunnel_server_health_status: Optional[microsoft_tunnel_server_health_status.MicrosoftTunnelServerHealthStatus] = None
+    
+    @property
+    def agent_image_digest(self,) -> Optional[str]:
+        """
+        Gets the agentImageDigest property value. The digest of the current agent image running on this server
+        Returns: Optional[str]
+        """
+        return self._agent_image_digest
+    
+    @agent_image_digest.setter
+    def agent_image_digest(self,value: Optional[str] = None) -> None:
+        """
+        Sets the agentImageDigest property value. The digest of the current agent image running on this server
+        Args:
+            value: Value to set for the agent_image_digest property.
+        """
+        self._agent_image_digest = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MicrosoftTunnelServer:
@@ -80,7 +81,9 @@ class MicrosoftTunnelServer(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, microsoft_tunnel_server_health_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "agentImageDigest": lambda n : setattr(self, 'agent_image_digest', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastCheckinDateTime": lambda n : setattr(self, 'last_checkin_date_time', n.get_datetime_value()),

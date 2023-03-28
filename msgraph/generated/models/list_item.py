@@ -1,20 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_item = lazy_import('msgraph.generated.models.base_item')
-content_type_info = lazy_import('msgraph.generated.models.content_type_info')
-deleted = lazy_import('msgraph.generated.models.deleted')
-document_set_version = lazy_import('msgraph.generated.models.document_set_version')
-drive_item = lazy_import('msgraph.generated.models.drive_item')
-field_value_set = lazy_import('msgraph.generated.models.field_value_set')
-item_activity_o_l_d = lazy_import('msgraph.generated.models.item_activity_o_l_d')
-item_analytics = lazy_import('msgraph.generated.models.item_analytics')
-list_item_version = lazy_import('msgraph.generated.models.list_item_version')
-sharepoint_ids = lazy_import('msgraph.generated.models.sharepoint_ids')
+if TYPE_CHECKING:
+    from . import base_item, content_type_info, deleted, document_set_version, drive_item, field_value_set, item_activity_o_l_d, item_analytics, list_item_version, sharepoint_ids
+
+from . import base_item
 
 class ListItem(base_item.BaseItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new listItem and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.listItem"
+        # The list of recent activities that took place on this item.
+        self._activities: Optional[List[item_activity_o_l_d.ItemActivityOLD]] = None
+        # Analytics about the view activities that took place on this item.
+        self._analytics: Optional[item_analytics.ItemAnalytics] = None
+        # The content type of this list item
+        self._content_type: Optional[content_type_info.ContentTypeInfo] = None
+        # The deleted property
+        self._deleted: Optional[deleted.Deleted] = None
+        # Version information for a document set version created by a user.
+        self._document_set_versions: Optional[List[document_set_version.DocumentSetVersion]] = None
+        # For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        self._drive_item: Optional[drive_item.DriveItem] = None
+        # The values of the columns set on this list item.
+        self._fields: Optional[field_value_set.FieldValueSet] = None
+        # Returns identifiers useful for SharePoint REST compatibility. Read-only.
+        self._sharepoint_ids: Optional[sharepoint_ids.SharepointIds] = None
+        # The list of previous versions of the list item.
+        self._versions: Optional[List[list_item_version.ListItemVersion]] = None
+    
     @property
     def activities(self,) -> Optional[List[item_activity_o_l_d.ItemActivityOLD]]:
         """
@@ -48,31 +66,6 @@ class ListItem(base_item.BaseItem):
             value: Value to set for the analytics property.
         """
         self._analytics = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new listItem and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.listItem"
-        # The list of recent activities that took place on this item.
-        self._activities: Optional[List[item_activity_o_l_d.ItemActivityOLD]] = None
-        # Analytics about the view activities that took place on this item.
-        self._analytics: Optional[item_analytics.ItemAnalytics] = None
-        # The content type of this list item
-        self._content_type: Optional[content_type_info.ContentTypeInfo] = None
-        # The deleted property
-        self._deleted: Optional[deleted.Deleted] = None
-        # Version information for a document set version created by a user.
-        self._document_set_versions: Optional[List[document_set_version.DocumentSetVersion]] = None
-        # For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
-        self._drive_item: Optional[drive_item.DriveItem] = None
-        # The values of the columns set on this list item.
-        self._fields: Optional[field_value_set.FieldValueSet] = None
-        # Returns identifiers useful for SharePoint REST compatibility. Read-only.
-        self._sharepoint_ids: Optional[sharepoint_ids.SharepointIds] = None
-        # The list of previous versions of the list item.
-        self._versions: Optional[List[list_item_version.ListItemVersion]] = None
     
     @property
     def content_type(self,) -> Optional[content_type_info.ContentTypeInfo]:
@@ -176,7 +169,9 @@ class ListItem(base_item.BaseItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import base_item, content_type_info, deleted, document_set_version, drive_item, field_value_set, item_activity_o_l_d, item_analytics, list_item_version, sharepoint_ids
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_object_values(item_activity_o_l_d.ItemActivityOLD)),
             "analytics": lambda n : setattr(self, 'analytics', n.get_object_value(item_analytics.ItemAnalytics)),
             "contentType": lambda n : setattr(self, 'content_type', n.get_object_value(content_type_info.ContentTypeInfo)),

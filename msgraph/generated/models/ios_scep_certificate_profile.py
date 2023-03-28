@@ -1,35 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_store = lazy_import('msgraph.generated.models.certificate_store')
-custom_subject_alternative_name = lazy_import('msgraph.generated.models.custom_subject_alternative_name')
-extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
-ios_certificate_profile_base = lazy_import('msgraph.generated.models.ios_certificate_profile_base')
-ios_trusted_root_certificate = lazy_import('msgraph.generated.models.ios_trusted_root_certificate')
-key_size = lazy_import('msgraph.generated.models.key_size')
-key_usages = lazy_import('msgraph.generated.models.key_usages')
-managed_device_certificate_state = lazy_import('msgraph.generated.models.managed_device_certificate_state')
+if TYPE_CHECKING:
+    from . import certificate_store, custom_subject_alternative_name, extended_key_usage, ios_certificate_profile_base, ios_trusted_root_certificate, key_size, key_usages, managed_device_certificate_state
+
+from . import ios_certificate_profile_base
 
 class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfileBase):
-    @property
-    def certificate_store(self,) -> Optional[certificate_store.CertificateStore]:
-        """
-        Gets the certificateStore property value. Target store certificate. Possible values are: user, machine.
-        Returns: Optional[certificate_store.CertificateStore]
-        """
-        return self._certificate_store
-    
-    @certificate_store.setter
-    def certificate_store(self,value: Optional[certificate_store.CertificateStore] = None) -> None:
-        """
-        Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
-        Args:
-            value: Value to set for the certificate_store property.
-        """
-        self._certificate_store = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new IosScepCertificateProfile and sets the default values.
@@ -56,6 +34,23 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         self._subject_alternative_name_format_string: Optional[str] = None
         # Custom format to use with SubjectNameFormat = Custom. Example: CN={{EmailAddress}},E={{EmailAddress}},OU=Enterprise Users,O=Contoso Corporation,L=Redmond,ST=WA,C=US
         self._subject_name_format_string: Optional[str] = None
+    
+    @property
+    def certificate_store(self,) -> Optional[certificate_store.CertificateStore]:
+        """
+        Gets the certificateStore property value. Target store certificate. Possible values are: user, machine.
+        Returns: Optional[certificate_store.CertificateStore]
+        """
+        return self._certificate_store
+    
+    @certificate_store.setter
+    def certificate_store(self,value: Optional[certificate_store.CertificateStore] = None) -> None:
+        """
+        Sets the certificateStore property value. Target store certificate. Possible values are: user, machine.
+        Args:
+            value: Value to set for the certificate_store property.
+        """
+        self._certificate_store = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IosScepCertificateProfile:
@@ -108,7 +103,9 @@ class IosScepCertificateProfile(ios_certificate_profile_base.IosCertificateProfi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_store, custom_subject_alternative_name, extended_key_usage, ios_certificate_profile_base, ios_trusted_root_certificate, key_size, key_usages, managed_device_certificate_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateStore": lambda n : setattr(self, 'certificate_store', n.get_enum_value(certificate_store.CertificateStore)),
             "customSubjectAlternativeNames": lambda n : setattr(self, 'custom_subject_alternative_names', n.get_collection_of_object_values(custom_subject_alternative_name.CustomSubjectAlternativeName)),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),

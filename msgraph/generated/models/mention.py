@@ -1,13 +1,38 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-email_address = lazy_import('msgraph.generated.models.email_address')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import email_address, entity
+
+from . import entity
 
 class Mention(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new mention and sets the default values.
+        """
+        super().__init__()
+        # The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
+        self._application: Optional[str] = None
+        # A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
+        self._client_reference: Optional[str] = None
+        # The email information of the user who made the mention.
+        self._created_by: Optional[email_address.EmailAddress] = None
+        # The date and time that the mention is created on the client.
+        self._created_date_time: Optional[datetime] = None
+        # A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
+        self._deep_link: Optional[str] = None
+        # Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
+        self._mention_text: Optional[str] = None
+        # The mentioned property
+        self._mentioned: Optional[email_address.EmailAddress] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
+        self._server_created_date_time: Optional[datetime] = None
+    
     @property
     def application(self,) -> Optional[str]:
         """
@@ -41,30 +66,6 @@ class Mention(entity.Entity):
             value: Value to set for the client_reference property.
         """
         self._client_reference = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new mention and sets the default values.
-        """
-        super().__init__()
-        # The name of the application where the mention is created. Optional. Not used and defaulted as null for message.
-        self._application: Optional[str] = None
-        # A unique identifier that represents a parent of the resource instance. Optional. Not used and defaulted as null for message.
-        self._client_reference: Optional[str] = None
-        # The email information of the user who made the mention.
-        self._created_by: Optional[email_address.EmailAddress] = None
-        # The date and time that the mention is created on the client.
-        self._created_date_time: Optional[datetime] = None
-        # A deep web link to the context of the mention in the resource instance. Optional. Not used and defaulted as null for message.
-        self._deep_link: Optional[str] = None
-        # Optional. Not used and defaulted as null for message. To get the mentions in a message, see the bodyPreview property of the message instead.
-        self._mention_text: Optional[str] = None
-        # The mentioned property
-        self._mentioned: Optional[email_address.EmailAddress] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The date and time that the mention is created on the server. Optional. Not used and defaulted as null for message.
-        self._server_created_date_time: Optional[datetime] = None
     
     @property
     def created_by(self,) -> Optional[email_address.EmailAddress]:
@@ -134,7 +135,9 @@ class Mention(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import email_address, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "application": lambda n : setattr(self, 'application', n.get_str_value()),
             "clientReference": lambda n : setattr(self, 'client_reference', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(email_address.EmailAddress)),

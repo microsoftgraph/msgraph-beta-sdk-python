@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-migration_status = lazy_import('msgraph.generated.models.migration_status')
+if TYPE_CHECKING:
+    from . import entity, key_value_pair, migration_status
+
+from . import entity
 
 class RelyingPartyDetailedSummary(entity.Entity):
     def __init__(self,) -> None:
@@ -72,7 +72,9 @@ class RelyingPartyDetailedSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, key_value_pair, migration_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "failedSignInCount": lambda n : setattr(self, 'failed_sign_in_count', n.get_int_value()),
             "migrationStatus": lambda n : setattr(self, 'migration_status', n.get_enum_value(migration_status.MigrationStatus)),
             "migrationValidationDetails": lambda n : setattr(self, 'migration_validation_details', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),

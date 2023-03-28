@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_software_freshness = lazy_import('msgraph.generated.models.teamwork_software_freshness')
+if TYPE_CHECKING:
+    from . import teamwork_software_freshness
 
 class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkSoftwareUpdateStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The available software version to update.
+        self._available_version: Optional[str] = None
+        # The current software version.
+        self._current_version: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The update status of the software. The possible values are: unknown, latest, updateAvailable, unknownFutureValue.
+        self._software_freshness: Optional[teamwork_software_freshness.TeamworkSoftwareFreshness] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,22 +55,6 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
             value: Value to set for the available_version property.
         """
         self._available_version = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkSoftwareUpdateStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The available software version to update.
-        self._available_version: Optional[str] = None
-        # The current software version.
-        self._current_version: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The update status of the software. The possible values are: unknown, latest, updateAvailable, unknownFutureValue.
-        self._software_freshness: Optional[teamwork_software_freshness.TeamworkSoftwareFreshness] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> TeamworkSoftwareUpdateStatus:
@@ -90,7 +90,9 @@ class TeamworkSoftwareUpdateStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_software_freshness
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "availableVersion": lambda n : setattr(self, 'available_version', n.get_str_value()),
             "currentVersion": lambda n : setattr(self, 'current_version', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

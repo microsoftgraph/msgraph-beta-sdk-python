@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_choice_setting_value_default_template = lazy_import('msgraph.generated.models.device_management_configuration_choice_setting_value_default_template')
-device_management_configuration_setting_instance_template = lazy_import('msgraph.generated.models.device_management_configuration_setting_instance_template')
+if TYPE_CHECKING:
+    from . import device_management_configuration_choice_setting_value_default_template, device_management_configuration_setting_instance_template
+
+from . import device_management_configuration_choice_setting_value_default_template
 
 class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(device_management_configuration_choice_setting_value_default_template.DeviceManagementConfigurationChoiceSettingValueDefaultTemplate):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate"
+        # Option Children
+        self._children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
+        # Default Constant Value
+        self._setting_definition_option_id: Optional[str] = None
+    
     @property
     def children(self,) -> Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]]:
         """
@@ -23,17 +35,6 @@ class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(dev
             value: Value to set for the children property.
         """
         self._children = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate"
-        # Option Children
-        self._children: Optional[List[device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate]] = None
-        # Default Constant Value
-        self._setting_definition_option_id: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate:
@@ -52,7 +53,9 @@ class DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate(dev
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_choice_setting_value_default_template, device_management_configuration_setting_instance_template
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "children": lambda n : setattr(self, 'children', n.get_collection_of_object_values(device_management_configuration_setting_instance_template.DeviceManagementConfigurationSettingInstanceTemplate)),
             "settingDefinitionOptionId": lambda n : setattr(self, 'setting_definition_option_id', n.get_str_value()),
         }

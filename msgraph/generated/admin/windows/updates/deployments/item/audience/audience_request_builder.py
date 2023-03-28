@@ -7,50 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-exclusions_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.exclusions_request_builder')
-updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.exclusions.item.updatable_asset_item_request_builder')
-members_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.members_request_builder')
-updatable_asset_item_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.members.item.updatable_asset_item_request_builder')
-windows_updates_update_audience_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.windows_updates_update_audience.windows_updates_update_audience_request_builder')
-windows_updates_update_audience_by_id_request_builder = lazy_import('msgraph.generated.admin.windows.updates.deployments.item.audience.windows_updates_update_audience_by_id.windows_updates_update_audience_by_id_request_builder')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
+if TYPE_CHECKING:
+    from .......models.o_data_errors import o_data_error
+    from .......models.windows_updates import deployment_audience
+    from .exclusions import exclusions_request_builder
+    from .exclusions.item import updatable_asset_item_request_builder
+    from .members import members_request_builder
+    from .members.item import updatable_asset_item_request_builder
+    from .windows_updates_update_audience import windows_updates_update_audience_request_builder
+    from .windows_updates_update_audience_by_id import windows_updates_update_audience_by_id_request_builder
 
 class AudienceRequestBuilder():
     """
     Provides operations to manage the audience property of the microsoft.graph.windowsUpdates.deployment entity.
     """
-    @property
-    def exclusions(self) -> exclusions_request_builder.ExclusionsRequestBuilder:
-        """
-        Provides operations to manage the exclusions property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
-        """
-        return exclusions_request_builder.ExclusionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def members(self) -> members_request_builder.MembersRequestBuilder:
-        """
-        Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
-        """
-        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_updates_update_audience(self) -> windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder:
-        """
-        Provides operations to call the updateAudience method.
-        """
-        return windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def windows_updates_update_audience_by_id(self) -> windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder:
-        """
-        Provides operations to call the updateAudienceById method.
-        """
-        return windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AudienceRequestBuilder and sets the default values.
@@ -78,6 +50,8 @@ class AudienceRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -95,6 +69,9 @@ class AudienceRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .exclusions.item import updatable_asset_item_request_builder
+        from .members.item import updatable_asset_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["updatableAsset%2Did"] = id
         return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -109,12 +86,16 @@ class AudienceRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.windows_updates import deployment_audience
+
         return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, error_mapping)
     
     def members_by_id(self,id: str) -> updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder:
@@ -126,6 +107,9 @@ class AudienceRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .exclusions.item import updatable_asset_item_request_builder
+        from .members.item import updatable_asset_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["updatableAsset%2Did"] = id
         return updatable_asset_item_request_builder.UpdatableAssetItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -143,12 +127,16 @@ class AudienceRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models.windows_updates import deployment_audience
+
         return await self.request_adapter.send_async(request_info, deployment_audience.DeploymentAudience, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[AudienceRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -206,6 +194,42 @@ class AudienceRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def exclusions(self) -> exclusions_request_builder.ExclusionsRequestBuilder:
+        """
+        Provides operations to manage the exclusions property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
+        """
+        from .exclusions import exclusions_request_builder
+
+        return exclusions_request_builder.ExclusionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def members(self) -> members_request_builder.MembersRequestBuilder:
+        """
+        Provides operations to manage the members property of the microsoft.graph.windowsUpdates.deploymentAudience entity.
+        """
+        from .members import members_request_builder
+
+        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_updates_update_audience(self) -> windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder:
+        """
+        Provides operations to call the updateAudience method.
+        """
+        from .windows_updates_update_audience import windows_updates_update_audience_request_builder
+
+        return windows_updates_update_audience_request_builder.WindowsUpdatesUpdateAudienceRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def windows_updates_update_audience_by_id(self) -> windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder:
+        """
+        Provides operations to call the updateAudienceById method.
+        """
+        from .windows_updates_update_audience_by_id import windows_updates_update_audience_by_id_request_builder
+
+        return windows_updates_update_audience_by_id_request_builder.WindowsUpdatesUpdateAudienceByIdRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AudienceRequestBuilderDeleteRequestConfiguration():
         """
@@ -223,12 +247,6 @@ class AudienceRequestBuilder():
         """
         Specifies the audience to which content is deployed.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -244,6 +262,12 @@ class AudienceRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AudienceRequestBuilderGetRequestConfiguration():

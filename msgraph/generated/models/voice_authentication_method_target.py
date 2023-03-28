@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_target = lazy_import('msgraph.generated.models.authentication_method_target')
+if TYPE_CHECKING:
+    from . import authentication_method_target
+
+from . import authentication_method_target
 
 class VoiceAuthenticationMethodTarget(authentication_method_target.AuthenticationMethodTarget):
     def __init__(self,) -> None:
@@ -31,7 +33,9 @@ class VoiceAuthenticationMethodTarget(authentication_method_target.Authenticatio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_method_target
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

@@ -1,14 +1,40 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.Entity):
     """
     The user experience analytics application performance entity contains app performance by app version details.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails and sets the default values.
+        """
+        super().__init__()
+        # The number of crashes for the app. Valid values -2147483648 to 2147483647
+        self._app_crash_count: Optional[int] = None
+        # The friendly name of the application.
+        self._app_display_name: Optional[str] = None
+        # The name of the application.
+        self._app_name: Optional[str] = None
+        # The publisher of the application.
+        self._app_publisher: Optional[str] = None
+        # The version of the application.
+        self._app_version: Optional[str] = None
+        # The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
+        self._device_count_with_crashes: Optional[int] = None
+        # Is the version of application the latest version for that app that is in use.
+        self._is_latest_used_version: Optional[bool] = None
+        # Is the version of application the most used version for that app.
+        self._is_most_used_version: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def app_crash_count(self,) -> Optional[int]:
         """
@@ -94,30 +120,6 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         """
         self._app_version = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails and sets the default values.
-        """
-        super().__init__()
-        # The number of crashes for the app. Valid values -2147483648 to 2147483647
-        self._app_crash_count: Optional[int] = None
-        # The friendly name of the application.
-        self._app_display_name: Optional[str] = None
-        # The name of the application.
-        self._app_name: Optional[str] = None
-        # The publisher of the application.
-        self._app_publisher: Optional[str] = None
-        # The version of the application.
-        self._app_version: Optional[str] = None
-        # The total number of devices that have reported one or more application crashes for this application and version. Valid values -2147483648 to 2147483647
-        self._device_count_with_crashes: Optional[int] = None
-        # Is the version of application the latest version for that app that is in use.
-        self._is_latest_used_version: Optional[bool] = None
-        # Is the version of application the most used version for that app.
-        self._is_most_used_version: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails:
         """
@@ -152,7 +154,9 @@ class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails(entity.E
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appCrashCount": lambda n : setattr(self, 'app_crash_count', n.get_int_value()),
             "appDisplayName": lambda n : setattr(self, 'app_display_name', n.get_str_value()),
             "appName": lambda n : setattr(self, 'app_name', n.get_str_value()),

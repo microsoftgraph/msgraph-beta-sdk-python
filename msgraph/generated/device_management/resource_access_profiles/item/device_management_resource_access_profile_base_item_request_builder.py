@@ -7,46 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-assign_request_builder = lazy_import('msgraph.generated.device_management.resource_access_profiles.item.assign.assign_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_management.resource_access_profiles.item.assignments.assignments_request_builder')
-device_management_resource_access_profile_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.resource_access_profiles.item.assignments.item.device_management_resource_access_profile_assignment_item_request_builder')
-device_management_resource_access_profile_base = lazy_import('msgraph.generated.models.device_management_resource_access_profile_base')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import device_management_resource_access_profile_base
+    from ....models.o_data_errors import o_data_error
+    from .assign import assign_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import device_management_resource_access_profile_assignment_item_request_builder
 
 class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
     """
     Provides operations to manage the resourceAccessProfiles property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def assign(self) -> assign_request_builder.AssignRequestBuilder:
-        """
-        Provides operations to call the assign method.
-        """
-        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementResourceAccessProfileBase entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def assignments_by_id(self,id: str) -> device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementResourceAccessProfileBase entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["deviceManagementResourceAccessProfileAssignment%2Did"] = id
-        return device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceManagementResourceAccessProfileBaseItemRequestBuilder and sets the default values.
@@ -65,6 +38,21 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def assignments_by_id(self,id: str) -> device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementResourceAccessProfileBase entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import device_management_resource_access_profile_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["deviceManagementResourceAccessProfileAssignment%2Did"] = id
+        return device_management_resource_access_profile_assignment_item_request_builder.DeviceManagementResourceAccessProfileAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[DeviceManagementResourceAccessProfileBaseItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property resourceAccessProfiles for deviceManagement
@@ -74,6 +62,8 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -92,12 +82,16 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_management_resource_access_profile_base
+
         return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase, error_mapping)
     
     async def patch(self,body: Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase] = None, request_configuration: Optional[DeviceManagementResourceAccessProfileBaseItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase]:
@@ -113,12 +107,16 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_management_resource_access_profile_base
+
         return await self.request_adapter.send_async(request_info, device_management_resource_access_profile_base.DeviceManagementResourceAccessProfileBase, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceManagementResourceAccessProfileBaseItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -176,6 +174,24 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def assign(self) -> assign_request_builder.AssignRequestBuilder:
+        """
+        Provides operations to call the assign method.
+        """
+        from .assign import assign_request_builder
+
+        return assign_request_builder.AssignRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.deviceManagementResourceAccessProfileBase entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceManagementResourceAccessProfileBaseItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -193,12 +209,6 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
         """
         Collection of resource access settings associated with account.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -214,6 +224,12 @@ class DeviceManagementResourceAccessProfileBaseItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceManagementResourceAccessProfileBaseItemRequestBuilderGetRequestConfiguration():

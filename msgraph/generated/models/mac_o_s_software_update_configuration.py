@@ -1,14 +1,38 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_update_time_window = lazy_import('msgraph.generated.models.custom_update_time_window')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-mac_o_s_software_update_behavior = lazy_import('msgraph.generated.models.mac_o_s_software_update_behavior')
-mac_o_s_software_update_schedule_type = lazy_import('msgraph.generated.models.mac_o_s_software_update_schedule_type')
+if TYPE_CHECKING:
+    from . import custom_update_time_window, device_configuration, mac_o_s_priority, mac_o_s_software_update_behavior, mac_o_s_software_update_schedule_type
+
+from . import device_configuration
 
 class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSSoftwareUpdateConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSSoftwareUpdateConfiguration"
+        # Update behavior options for macOS software updates.
+        self._all_other_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Update behavior options for macOS software updates.
+        self._config_data_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Update behavior options for macOS software updates.
+        self._critical_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # Custom Time windows when updates will be allowed or blocked. This collection can contain a maximum of 20 elements.
+        self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
+        # Update behavior options for macOS software updates.
+        self._firmware_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
+        # The maximum number of times the system allows the user to postpone an update before it’s installed. Supported values: 0 - 366. Valid values 0 to 365
+        self._max_user_deferrals_count: Optional[int] = None
+        # The scheduling priority for downloading and preparing the requested update. Default: Low. Possible values: Null, Low, High. Possible values are: low, high, unknownFutureValue.
+        self._priority: Optional[mac_o_s_priority.MacOSPriority] = None
+        # Update schedule type for macOS software updates.
+        self._update_schedule_type: Optional[mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType] = None
+        # Minutes indicating UTC offset for each update time window
+        self._update_time_window_utc_offset_in_minutes: Optional[int] = None
+    
     @property
     def all_other_update_behavior(self,) -> Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior]:
         """
@@ -42,27 +66,6 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
             value: Value to set for the config_data_update_behavior property.
         """
         self._config_data_update_behavior = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSSoftwareUpdateConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSSoftwareUpdateConfiguration"
-        # Update behavior options for macOS software updates.
-        self._all_other_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Update behavior options for macOS software updates.
-        self._config_data_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Update behavior options for macOS software updates.
-        self._critical_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Custom Time windows when updates will be allowed or blocked. This collection can contain a maximum of 20 elements.
-        self._custom_update_time_windows: Optional[List[custom_update_time_window.CustomUpdateTimeWindow]] = None
-        # Update behavior options for macOS software updates.
-        self._firmware_update_behavior: Optional[mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior] = None
-        # Update schedule type for macOS software updates.
-        self._update_schedule_type: Optional[mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType] = None
-        # Minutes indicating UTC offset for each update time window
-        self._update_time_window_utc_offset_in_minutes: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSSoftwareUpdateConfiguration:
@@ -132,18 +135,56 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import custom_update_time_window, device_configuration, mac_o_s_priority, mac_o_s_software_update_behavior, mac_o_s_software_update_schedule_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allOtherUpdateBehavior": lambda n : setattr(self, 'all_other_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
             "configDataUpdateBehavior": lambda n : setattr(self, 'config_data_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
             "criticalUpdateBehavior": lambda n : setattr(self, 'critical_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
             "customUpdateTimeWindows": lambda n : setattr(self, 'custom_update_time_windows', n.get_collection_of_object_values(custom_update_time_window.CustomUpdateTimeWindow)),
             "firmwareUpdateBehavior": lambda n : setattr(self, 'firmware_update_behavior', n.get_enum_value(mac_o_s_software_update_behavior.MacOSSoftwareUpdateBehavior)),
+            "maxUserDeferralsCount": lambda n : setattr(self, 'max_user_deferrals_count', n.get_int_value()),
+            "priority": lambda n : setattr(self, 'priority', n.get_enum_value(mac_o_s_priority.MacOSPriority)),
             "updateScheduleType": lambda n : setattr(self, 'update_schedule_type', n.get_enum_value(mac_o_s_software_update_schedule_type.MacOSSoftwareUpdateScheduleType)),
             "updateTimeWindowUtcOffsetInMinutes": lambda n : setattr(self, 'update_time_window_utc_offset_in_minutes', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
         return fields
+    
+    @property
+    def max_user_deferrals_count(self,) -> Optional[int]:
+        """
+        Gets the maxUserDeferralsCount property value. The maximum number of times the system allows the user to postpone an update before it’s installed. Supported values: 0 - 366. Valid values 0 to 365
+        Returns: Optional[int]
+        """
+        return self._max_user_deferrals_count
+    
+    @max_user_deferrals_count.setter
+    def max_user_deferrals_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the maxUserDeferralsCount property value. The maximum number of times the system allows the user to postpone an update before it’s installed. Supported values: 0 - 366. Valid values 0 to 365
+        Args:
+            value: Value to set for the max_user_deferrals_count property.
+        """
+        self._max_user_deferrals_count = value
+    
+    @property
+    def priority(self,) -> Optional[mac_o_s_priority.MacOSPriority]:
+        """
+        Gets the priority property value. The scheduling priority for downloading and preparing the requested update. Default: Low. Possible values: Null, Low, High. Possible values are: low, high, unknownFutureValue.
+        Returns: Optional[mac_o_s_priority.MacOSPriority]
+        """
+        return self._priority
+    
+    @priority.setter
+    def priority(self,value: Optional[mac_o_s_priority.MacOSPriority] = None) -> None:
+        """
+        Sets the priority property value. The scheduling priority for downloading and preparing the requested update. Default: Low. Possible values: Null, Low, High. Possible values are: low, high, unknownFutureValue.
+        Args:
+            value: Value to set for the priority property.
+        """
+        self._priority = value
     
     def serialize(self,writer: SerializationWriter) -> None:
         """
@@ -159,6 +200,8 @@ class MacOSSoftwareUpdateConfiguration(device_configuration.DeviceConfiguration)
         writer.write_enum_value("criticalUpdateBehavior", self.critical_update_behavior)
         writer.write_collection_of_object_values("customUpdateTimeWindows", self.custom_update_time_windows)
         writer.write_enum_value("firmwareUpdateBehavior", self.firmware_update_behavior)
+        writer.write_int_value("maxUserDeferralsCount", self.max_user_deferrals_count)
+        writer.write_enum_value("priority", self.priority)
         writer.write_enum_value("updateScheduleType", self.update_schedule_type)
         writer.write_int_value("updateTimeWindowUtcOffsetInMinutes", self.update_time_window_utc_offset_in_minutes)
     

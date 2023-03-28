@@ -1,31 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class ResourceOperation(entity.Entity):
     """
     Describes the resourceOperation resource (entity) of the Microsoft Graph API (REST), which supports Intune workflows related to role-based access control (RBAC).
     """
-    @property
-    def action_name(self,) -> Optional[str]:
-        """
-        Gets the actionName property value. Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.
-        Returns: Optional[str]
-        """
-        return self._action_name
-    
-    @action_name.setter
-    def action_name(self,value: Optional[str] = None) -> None:
-        """
-        Sets the actionName property value. Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.
-        Args:
-            value: Value to set for the action_name property.
-        """
-        self._action_name = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new resourceOperation and sets the default values.
@@ -43,6 +28,23 @@ class ResourceOperation(entity.Entity):
         self._resource: Optional[str] = None
         # Name of the Resource this operation is performed on.
         self._resource_name: Optional[str] = None
+    
+    @property
+    def action_name(self,) -> Optional[str]:
+        """
+        Gets the actionName property value. Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.
+        Returns: Optional[str]
+        """
+        return self._action_name
+    
+    @action_name.setter
+    def action_name(self,value: Optional[str] = None) -> None:
+        """
+        Sets the actionName property value. Type of action this operation is going to perform. The actionName should be concise and limited to as few words as possible.
+        Args:
+            value: Value to set for the action_name property.
+        """
+        self._action_name = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ResourceOperation:
@@ -95,7 +97,9 @@ class ResourceOperation(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionName": lambda n : setattr(self, 'action_name', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "enabledForScopeValidation": lambda n : setattr(self, 'enabled_for_scope_validation', n.get_bool_value()),

@@ -7,42 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-group_policy_setting_mappings_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.group_policy_setting_mappings_request_builder')
-group_policy_setting_mapping_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.group_policy_setting_mappings.item.group_policy_setting_mapping_item_request_builder')
-unsupported_group_policy_extensions_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.unsupported_group_policy_extensions_request_builder')
-unsupported_group_policy_extension_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.unsupported_group_policy_extensions.item.unsupported_group_policy_extension_item_request_builder')
-update_scope_tags_request_builder = lazy_import('msgraph.generated.device_management.group_policy_migration_reports.item.update_scope_tags.update_scope_tags_request_builder')
-group_policy_migration_report = lazy_import('msgraph.generated.models.group_policy_migration_report')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import group_policy_migration_report
+    from ....models.o_data_errors import o_data_error
+    from .group_policy_setting_mappings import group_policy_setting_mappings_request_builder
+    from .group_policy_setting_mappings.item import group_policy_setting_mapping_item_request_builder
+    from .unsupported_group_policy_extensions import unsupported_group_policy_extensions_request_builder
+    from .unsupported_group_policy_extensions.item import unsupported_group_policy_extension_item_request_builder
+    from .update_scope_tags import update_scope_tags_request_builder
 
 class GroupPolicyMigrationReportItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyMigrationReports property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def group_policy_setting_mappings(self) -> group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder:
-        """
-        Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
-        """
-        return group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def unsupported_group_policy_extensions(self) -> unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder:
-        """
-        Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
-        """
-        return unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_scope_tags(self) -> update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder:
-        """
-        Provides operations to call the updateScopeTags method.
-        """
-        return update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GroupPolicyMigrationReportItemRequestBuilder and sets the default values.
@@ -70,6 +49,8 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -88,12 +69,16 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import group_policy_migration_report
+
         return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def group_policy_setting_mappings_by_id(self,id: str) -> group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder:
@@ -105,6 +90,8 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .group_policy_setting_mappings.item import group_policy_setting_mapping_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupPolicySettingMapping%2Did"] = id
         return group_policy_setting_mapping_item_request_builder.GroupPolicySettingMappingItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -122,12 +109,16 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import group_policy_migration_report
+
         return await self.request_adapter.send_async(request_info, group_policy_migration_report.GroupPolicyMigrationReport, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -194,9 +185,38 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .unsupported_group_policy_extensions.item import unsupported_group_policy_extension_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["unsupportedGroupPolicyExtension%2Did"] = id
         return unsupported_group_policy_extension_item_request_builder.UnsupportedGroupPolicyExtensionItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    @property
+    def group_policy_setting_mappings(self) -> group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder:
+        """
+        Provides operations to manage the groupPolicySettingMappings property of the microsoft.graph.groupPolicyMigrationReport entity.
+        """
+        from .group_policy_setting_mappings import group_policy_setting_mappings_request_builder
+
+        return group_policy_setting_mappings_request_builder.GroupPolicySettingMappingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def unsupported_group_policy_extensions(self) -> unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder:
+        """
+        Provides operations to manage the unsupportedGroupPolicyExtensions property of the microsoft.graph.groupPolicyMigrationReport entity.
+        """
+        from .unsupported_group_policy_extensions import unsupported_group_policy_extensions_request_builder
+
+        return unsupported_group_policy_extensions_request_builder.UnsupportedGroupPolicyExtensionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_scope_tags(self) -> update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder:
+        """
+        Provides operations to call the updateScopeTags method.
+        """
+        from .update_scope_tags import update_scope_tags_request_builder
+
+        return update_scope_tags_request_builder.UpdateScopeTagsRequestBuilder(self.request_adapter, self.path_parameters)
     
     @dataclass
     class GroupPolicyMigrationReportItemRequestBuilderDeleteRequestConfiguration():
@@ -215,12 +235,6 @@ class GroupPolicyMigrationReportItemRequestBuilder():
         """
         A list of Group Policy migration reports.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -236,6 +250,12 @@ class GroupPolicyMigrationReportItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GroupPolicyMigrationReportItemRequestBuilderGetRequestConfiguration():

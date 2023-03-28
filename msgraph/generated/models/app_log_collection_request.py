@@ -1,16 +1,33 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_log_upload_state = lazy_import('msgraph.generated.models.app_log_upload_state')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import app_log_upload_state, entity
+
+from . import entity
 
 class AppLogCollectionRequest(entity.Entity):
     """
     Entity for AppLogCollectionRequest contains all logs values.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new appLogCollectionRequest and sets the default values.
+        """
+        super().__init__()
+        # Time at which the upload log request reached a completed state if not completed yet NULL will be returned.
+        self._completed_date_time: Optional[datetime] = None
+        # List of log folders.
+        self._custom_log_folders: Optional[List[str]] = None
+        # Indicates error message if any during the upload process.
+        self._error_message: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # AppLogUploadStatus
+        self._status: Optional[app_log_upload_state.AppLogUploadState] = None
+    
     @property
     def completed_date_time(self,) -> Optional[datetime]:
         """
@@ -27,22 +44,6 @@ class AppLogCollectionRequest(entity.Entity):
             value: Value to set for the completed_date_time property.
         """
         self._completed_date_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new appLogCollectionRequest and sets the default values.
-        """
-        super().__init__()
-        # Time at which the upload log request reached a completed state if not completed yet NULL will be returned.
-        self._completed_date_time: Optional[datetime] = None
-        # List of log folders.
-        self._custom_log_folders: Optional[List[str]] = None
-        # Indicates error message if any during the upload process.
-        self._error_message: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # AppLogUploadStatus
-        self._status: Optional[app_log_upload_state.AppLogUploadState] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppLogCollectionRequest:
@@ -95,7 +96,9 @@ class AppLogCollectionRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_log_upload_state, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "customLogFolders": lambda n : setattr(self, 'custom_log_folders', n.get_collection_of_primitive_values(str)),
             "errorMessage": lambda n : setattr(self, 'error_message', n.get_str_value()),

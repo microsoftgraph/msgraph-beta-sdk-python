@@ -7,47 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-calls_request_builder = lazy_import('msgraph.generated.app.calls.calls_request_builder')
-call_item_request_builder = lazy_import('msgraph.generated.app.calls.item.call_item_request_builder')
-online_meetings_request_builder = lazy_import('msgraph.generated.app.online_meetings.online_meetings_request_builder')
-online_meeting_item_request_builder = lazy_import('msgraph.generated.app.online_meetings.item.online_meeting_item_request_builder')
-comms_application = lazy_import('msgraph.generated.models.comms_application')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ..models import comms_application
+    from ..models.o_data_errors import o_data_error
+    from .calls import calls_request_builder
+    from .calls.item import call_item_request_builder
+    from .online_meetings import online_meetings_request_builder
+    from .online_meetings.item import online_meeting_item_request_builder
 
 class AppRequestBuilder():
     """
     Provides operations to manage the commsApplication singleton.
     """
-    @property
-    def calls(self) -> calls_request_builder.CallsRequestBuilder:
-        """
-        Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
-        """
-        return calls_request_builder.CallsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def online_meetings(self) -> online_meetings_request_builder.OnlineMeetingsRequestBuilder:
-        """
-        Provides operations to manage the onlineMeetings property of the microsoft.graph.commsApplication entity.
-        """
-        return online_meetings_request_builder.OnlineMeetingsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def calls_by_id(self,id: str) -> call_item_request_builder.CallItemRequestBuilder:
-        """
-        Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: call_item_request_builder.CallItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["call%2Did"] = id
-        return call_item_request_builder.CallItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new AppRequestBuilder and sets the default values.
@@ -66,6 +39,21 @@ class AppRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def calls_by_id(self,id: str) -> call_item_request_builder.CallItemRequestBuilder:
+        """
+        Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: call_item_request_builder.CallItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .calls.item import call_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["call%2Did"] = id
+        return call_item_request_builder.CallItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def get(self,request_configuration: Optional[AppRequestBuilderGetRequestConfiguration] = None) -> Optional[comms_application.CommsApplication]:
         """
         Get app
@@ -76,12 +64,16 @@ class AppRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import comms_application
+
         return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, error_mapping)
     
     def online_meetings_by_id(self,id: str) -> online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder:
@@ -93,6 +85,8 @@ class AppRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .online_meetings.item import online_meeting_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["onlineMeeting%2Did"] = id
         return online_meeting_item_request_builder.OnlineMeetingItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -110,12 +104,16 @@ class AppRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import comms_application
+
         return await self.request_adapter.send_async(request_info, comms_application.CommsApplication, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[AppRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -157,17 +155,29 @@ class AppRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def calls(self) -> calls_request_builder.CallsRequestBuilder:
+        """
+        Provides operations to manage the calls property of the microsoft.graph.commsApplication entity.
+        """
+        from .calls import calls_request_builder
+
+        return calls_request_builder.CallsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def online_meetings(self) -> online_meetings_request_builder.OnlineMeetingsRequestBuilder:
+        """
+        Provides operations to manage the onlineMeetings property of the microsoft.graph.commsApplication entity.
+        """
+        from .online_meetings import online_meetings_request_builder
+
+        return online_meetings_request_builder.OnlineMeetingsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class AppRequestBuilderGetQueryParameters():
         """
         Get app
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -183,6 +193,12 @@ class AppRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class AppRequestBuilderGetRequestConfiguration():

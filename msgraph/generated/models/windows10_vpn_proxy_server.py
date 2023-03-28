@@ -1,11 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
+if TYPE_CHECKING:
+    from . import vpn_proxy_server
+
+from . import vpn_proxy_server
 
 class Windows10VpnProxyServer(vpn_proxy_server.VpnProxyServer):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10VpnProxyServer and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10VpnProxyServer"
+        # Bypass proxy server for local address.
+        self._bypass_proxy_server_for_local_address: Optional[bool] = None
+    
     @property
     def bypass_proxy_server_for_local_address(self,) -> Optional[bool]:
         """
@@ -22,15 +33,6 @@ class Windows10VpnProxyServer(vpn_proxy_server.VpnProxyServer):
             value: Value to set for the bypass_proxy_server_for_local_address property.
         """
         self._bypass_proxy_server_for_local_address = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10VpnProxyServer and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10VpnProxyServer"
-        # Bypass proxy server for local address.
-        self._bypass_proxy_server_for_local_address: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10VpnProxyServer:
@@ -49,7 +51,9 @@ class Windows10VpnProxyServer(vpn_proxy_server.VpnProxyServer):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import vpn_proxy_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "bypassProxyServerForLocalAddress": lambda n : setattr(self, 'bypass_proxy_server_for_local_address', n.get_bool_value()),
         }
         super_fields = super().get_field_deserializers()

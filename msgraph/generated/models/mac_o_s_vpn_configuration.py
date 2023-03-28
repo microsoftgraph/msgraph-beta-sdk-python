@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_vpn_configuration = lazy_import('msgraph.generated.models.apple_vpn_configuration')
-mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
+if TYPE_CHECKING:
+    from . import apple_vpn_configuration, mac_o_s_certificate_profile_base
+
+from . import apple_vpn_configuration
 
 class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class MacOSVpnConfiguration(apple_vpn_configuration.AppleVpnConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_vpn_configuration, mac_o_s_certificate_profile_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "identityCertificate": lambda n : setattr(self, 'identity_certificate', n.get_object_value(mac_o_s_certificate_profile_base.MacOSCertificateProfileBase)),
         }
         super_fields = super().get_field_deserializers()

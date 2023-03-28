@@ -1,52 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-add_to_review_set_operation = lazy_import('msgraph.generated.models.ediscovery.add_to_review_set_operation')
-data_source = lazy_import('msgraph.generated.models.ediscovery.data_source')
-data_source_scopes = lazy_import('msgraph.generated.models.ediscovery.data_source_scopes')
-estimate_statistics_operation = lazy_import('msgraph.generated.models.ediscovery.estimate_statistics_operation')
-noncustodial_data_source = lazy_import('msgraph.generated.models.ediscovery.noncustodial_data_source')
+if TYPE_CHECKING:
+    from . import add_to_review_set_operation, data_source, data_source_scopes, estimate_statistics_operation, noncustodial_data_source
+    from .. import entity, identity_set
+
+from .. import entity
 
 class SourceCollection(entity.Entity):
-    @property
-    def add_to_review_set_operation(self,) -> Optional[add_to_review_set_operation.AddToReviewSetOperation]:
-        """
-        Gets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
-        Returns: Optional[add_to_review_set_operation.AddToReviewSetOperation]
-        """
-        return self._add_to_review_set_operation
-    
-    @add_to_review_set_operation.setter
-    def add_to_review_set_operation(self,value: Optional[add_to_review_set_operation.AddToReviewSetOperation] = None) -> None:
-        """
-        Sets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
-        Args:
-            value: Value to set for the add_to_review_set_operation property.
-        """
-        self._add_to_review_set_operation = value
-    
-    @property
-    def additional_sources(self,) -> Optional[List[data_source.DataSource]]:
-        """
-        Gets the additionalSources property value. Adds an additional source to the sourceCollection.
-        Returns: Optional[List[data_source.DataSource]]
-        """
-        return self._additional_sources
-    
-    @additional_sources.setter
-    def additional_sources(self,value: Optional[List[data_source.DataSource]] = None) -> None:
-        """
-        Sets the additionalSources property value. Adds an additional source to the sourceCollection.
-        Args:
-            value: Value to set for the additional_sources property.
-        """
-        self._additional_sources = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new sourceCollection and sets the default values.
@@ -80,6 +43,40 @@ class SourceCollection(entity.Entity):
         self._noncustodial_sources: Optional[List[noncustodial_data_source.NoncustodialDataSource]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def add_to_review_set_operation(self,) -> Optional[add_to_review_set_operation.AddToReviewSetOperation]:
+        """
+        Gets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
+        Returns: Optional[add_to_review_set_operation.AddToReviewSetOperation]
+        """
+        return self._add_to_review_set_operation
+    
+    @add_to_review_set_operation.setter
+    def add_to_review_set_operation(self,value: Optional[add_to_review_set_operation.AddToReviewSetOperation] = None) -> None:
+        """
+        Sets the addToReviewSetOperation property value. Adds the results of the sourceCollection to the specified reviewSet.
+        Args:
+            value: Value to set for the add_to_review_set_operation property.
+        """
+        self._add_to_review_set_operation = value
+    
+    @property
+    def additional_sources(self,) -> Optional[List[data_source.DataSource]]:
+        """
+        Gets the additionalSources property value. Adds an additional source to the sourceCollection.
+        Returns: Optional[List[data_source.DataSource]]
+        """
+        return self._additional_sources
+    
+    @additional_sources.setter
+    def additional_sources(self,value: Optional[List[data_source.DataSource]] = None) -> None:
+        """
+        Sets the additionalSources property value. Adds an additional source to the sourceCollection.
+        Args:
+            value: Value to set for the additional_sources property.
+        """
+        self._additional_sources = value
     
     @property
     def content_query(self,) -> Optional[str]:
@@ -217,7 +214,10 @@ class SourceCollection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import add_to_review_set_operation, data_source, data_source_scopes, estimate_statistics_operation, noncustodial_data_source
+        from .. import entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalSources": lambda n : setattr(self, 'additional_sources', n.get_collection_of_object_values(data_source.DataSource)),
             "addToReviewSetOperation": lambda n : setattr(self, 'add_to_review_set_operation', n.get_object_value(add_to_review_set_operation.AddToReviewSetOperation)),
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),

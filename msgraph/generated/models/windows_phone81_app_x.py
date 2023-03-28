@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_lob_app = lazy_import('msgraph.generated.models.mobile_lob_app')
-windows_architecture = lazy_import('msgraph.generated.models.windows_architecture')
-windows_minimum_operating_system = lazy_import('msgraph.generated.models.windows_minimum_operating_system')
+if TYPE_CHECKING:
+    from . import mobile_lob_app, windows_architecture, windows_minimum_operating_system, windows_phone81_app_x_bundle
+
+from . import mobile_lob_app
 
 class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
-    @property
-    def applicable_architectures(self,) -> Optional[windows_architecture.WindowsArchitecture]:
-        """
-        Gets the applicableArchitectures property value. Contains properties for Windows architecture.
-        Returns: Optional[windows_architecture.WindowsArchitecture]
-        """
-        return self._applicable_architectures
-    
-    @applicable_architectures.setter
-    def applicable_architectures(self,value: Optional[windows_architecture.WindowsArchitecture] = None) -> None:
-        """
-        Sets the applicableArchitectures property value. Contains properties for Windows architecture.
-        Args:
-            value: Value to set for the applicable_architectures property.
-        """
-        self._applicable_architectures = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new WindowsPhone81AppX and sets the default values.
@@ -48,6 +31,23 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         # The Phone Publisher Id.
         self._phone_publisher_id: Optional[str] = None
     
+    @property
+    def applicable_architectures(self,) -> Optional[windows_architecture.WindowsArchitecture]:
+        """
+        Gets the applicableArchitectures property value. Contains properties for Windows architecture.
+        Returns: Optional[windows_architecture.WindowsArchitecture]
+        """
+        return self._applicable_architectures
+    
+    @applicable_architectures.setter
+    def applicable_architectures(self,value: Optional[windows_architecture.WindowsArchitecture] = None) -> None:
+        """
+        Sets the applicableArchitectures property value. Contains properties for Windows architecture.
+        Args:
+            value: Value to set for the applicable_architectures property.
+        """
+        self._applicable_architectures = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81AppX:
         """
@@ -58,6 +58,13 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsPhone81AppXBundle":
+                from . import windows_phone81_app_x_bundle
+
+                return windows_phone81_app_x_bundle.WindowsPhone81AppXBundle()
         return WindowsPhone81AppX()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -65,7 +72,9 @@ class WindowsPhone81AppX(mobile_lob_app.MobileLobApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_lob_app, windows_architecture, windows_minimum_operating_system, windows_phone81_app_x_bundle
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicableArchitectures": lambda n : setattr(self, 'applicable_architectures', n.get_enum_value(windows_architecture.WindowsArchitecture)),
             "identityName": lambda n : setattr(self, 'identity_name', n.get_str_value()),
             "identityPublisherHash": lambda n : setattr(self, 'identity_publisher_hash', n.get_str_value()),

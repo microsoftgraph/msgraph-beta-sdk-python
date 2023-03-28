@@ -1,18 +1,52 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package = lazy_import('msgraph.generated.models.access_package')
-access_package_assignment_policy = lazy_import('msgraph.generated.models.access_package_assignment_policy')
-access_package_assignment_request = lazy_import('msgraph.generated.models.access_package_assignment_request')
-access_package_assignment_resource_role = lazy_import('msgraph.generated.models.access_package_assignment_resource_role')
-access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
-entity = lazy_import('msgraph.generated.models.entity')
-request_schedule = lazy_import('msgraph.generated.models.request_schedule')
+if TYPE_CHECKING:
+    from . import access_package, access_package_assignment_policy, access_package_assignment_request, access_package_assignment_resource_role, access_package_subject, custom_extension_callout_instance, entity, request_schedule
+
+from . import entity
 
 class AccessPackageAssignment(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageAssignment and sets the default values.
+        """
+        super().__init__()
+        # Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
+        self._access_package: Optional[access_package.AccessPackage] = None
+        # Read-only. Nullable. Supports $filter (eq) on the id property
+        self._access_package_assignment_policy: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy] = None
+        # The accessPackageAssignmentRequests property
+        self._access_package_assignment_requests: Optional[List[access_package_assignment_request.AccessPackageAssignmentRequest]] = None
+        # The resource roles delivered to the target user for this assignment. Read-only. Nullable.
+        self._access_package_assignment_resource_roles: Optional[List[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]] = None
+        # The identifier of the access package. Read-only.
+        self._access_package_id: Optional[str] = None
+        # The identifier of the access package assignment policy. Read-only.
+        self._assignment_policy_id: Optional[str] = None
+        # The state of the access package assignment. Possible values are Delivering, Delivered, or Expired. Read-only. Supports $filter (eq).
+        self._assignment_state: Optional[str] = None
+        # More information about the assignment lifecycle.  Possible values include Delivering, Delivered, NearExpiry1DayNotificationTriggered, or ExpiredNotificationTriggered.  Read-only.
+        self._assignment_status: Optional[str] = None
+        # The identifier of the catalog containing the access package. Read-only.
+        self._catalog_id: Optional[str] = None
+        # Information about all the custom extension calls that were made during the access package assignment workflow.
+        self._custom_extension_callout_instances: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._expired_date_time: Optional[datetime] = None
+        # Indicates whether the access package assignment is extended. Read-only.
+        self._is_extended: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # When the access assignment is to be in place. Read-only.
+        self._schedule: Optional[request_schedule.RequestSchedule] = None
+        # The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
+        self._target: Optional[access_package_subject.AccessPackageSubject] = None
+        # The ID of the subject with the assignment. Read-only.
+        self._target_id: Optional[str] = None
+    
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:
         """
@@ -166,42 +200,6 @@ class AccessPackageAssignment(entity.Entity):
         """
         self._catalog_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageAssignment and sets the default values.
-        """
-        super().__init__()
-        # Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
-        self._access_package: Optional[access_package.AccessPackage] = None
-        # Read-only. Nullable. Supports $filter (eq) on the id property
-        self._access_package_assignment_policy: Optional[access_package_assignment_policy.AccessPackageAssignmentPolicy] = None
-        # The accessPackageAssignmentRequests property
-        self._access_package_assignment_requests: Optional[List[access_package_assignment_request.AccessPackageAssignmentRequest]] = None
-        # The resource roles delivered to the target user for this assignment. Read-only. Nullable.
-        self._access_package_assignment_resource_roles: Optional[List[access_package_assignment_resource_role.AccessPackageAssignmentResourceRole]] = None
-        # The identifier of the access package. Read-only.
-        self._access_package_id: Optional[str] = None
-        # The identifier of the access package assignment policy. Read-only.
-        self._assignment_policy_id: Optional[str] = None
-        # The state of the access package assignment. Possible values are Delivering, Delivered, or Expired. Read-only. Supports $filter (eq).
-        self._assignment_state: Optional[str] = None
-        # More information about the assignment lifecycle.  Possible values include Delivering, Delivered, NearExpiry1DayNotificationTriggered, or ExpiredNotificationTriggered.  Read-only.
-        self._assignment_status: Optional[str] = None
-        # The identifier of the catalog containing the access package. Read-only.
-        self._catalog_id: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._expired_date_time: Optional[datetime] = None
-        # Indicates whether the access package assignment is extended. Read-only.
-        self._is_extended: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # When the access assignment is to be in place. Read-only.
-        self._schedule: Optional[request_schedule.RequestSchedule] = None
-        # The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.
-        self._target: Optional[access_package_subject.AccessPackageSubject] = None
-        # The ID of the subject with the assignment. Read-only.
-        self._target_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageAssignment:
         """
@@ -213,6 +211,23 @@ class AccessPackageAssignment(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AccessPackageAssignment()
+    
+    @property
+    def custom_extension_callout_instances(self,) -> Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]:
+        """
+        Gets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+        Returns: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]
+        """
+        return self._custom_extension_callout_instances
+    
+    @custom_extension_callout_instances.setter
+    def custom_extension_callout_instances(self,value: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None) -> None:
+        """
+        Sets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+        Args:
+            value: Value to set for the custom_extension_callout_instances property.
+        """
+        self._custom_extension_callout_instances = value
     
     @property
     def expired_date_time(self,) -> Optional[datetime]:
@@ -236,7 +251,9 @@ class AccessPackageAssignment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package, access_package_assignment_policy, access_package_assignment_request, access_package_assignment_resource_role, access_package_subject, custom_extension_callout_instance, entity, request_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
             "accessPackageAssignmentPolicy": lambda n : setattr(self, 'access_package_assignment_policy', n.get_object_value(access_package_assignment_policy.AccessPackageAssignmentPolicy)),
             "accessPackageAssignmentRequests": lambda n : setattr(self, 'access_package_assignment_requests', n.get_collection_of_object_values(access_package_assignment_request.AccessPackageAssignmentRequest)),
@@ -246,6 +263,7 @@ class AccessPackageAssignment(entity.Entity):
             "assignmentState": lambda n : setattr(self, 'assignment_state', n.get_str_value()),
             "assignmentStatus": lambda n : setattr(self, 'assignment_status', n.get_str_value()),
             "catalogId": lambda n : setattr(self, 'catalog_id', n.get_str_value()),
+            "customExtensionCalloutInstances": lambda n : setattr(self, 'custom_extension_callout_instances', n.get_collection_of_object_values(custom_extension_callout_instance.CustomExtensionCalloutInstance)),
             "expiredDateTime": lambda n : setattr(self, 'expired_date_time', n.get_datetime_value()),
             "isExtended": lambda n : setattr(self, 'is_extended', n.get_bool_value()),
             "schedule": lambda n : setattr(self, 'schedule', n.get_object_value(request_schedule.RequestSchedule)),
@@ -308,6 +326,7 @@ class AccessPackageAssignment(entity.Entity):
         writer.write_str_value("assignmentState", self.assignment_state)
         writer.write_str_value("assignmentStatus", self.assignment_status)
         writer.write_str_value("catalogId", self.catalog_id)
+        writer.write_collection_of_object_values("customExtensionCalloutInstances", self.custom_extension_callout_instances)
         writer.write_datetime_value("expiredDateTime", self.expired_date_time)
         writer.write_bool_value("isExtended", self.is_extended)
         writer.write_object_value("schedule", self.schedule)

@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_health_script_parameter = lazy_import('msgraph.generated.models.device_health_script_parameter')
+if TYPE_CHECKING:
+    from . import device_health_script_parameter
+
+from . import device_health_script_parameter
 
 class DeviceHealthScriptStringParameter(device_health_script_parameter.DeviceHealthScriptParameter):
     def __init__(self,) -> None:
@@ -49,7 +51,9 @@ class DeviceHealthScriptStringParameter(device_health_script_parameter.DeviceHea
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_health_script_parameter
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultValue": lambda n : setattr(self, 'default_value', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

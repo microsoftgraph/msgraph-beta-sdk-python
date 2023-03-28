@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-update_status_request_builder = lazy_import('msgraph.generated.device_app_management.device_app_management_tasks.item.update_status.update_status_request_builder')
-device_app_management_task = lazy_import('msgraph.generated.models.device_app_management_task')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import device_app_management_task
+    from ....models.o_data_errors import o_data_error
+    from .update_status import update_status_request_builder
 
 class DeviceAppManagementTaskItemRequestBuilder():
     """
     Provides operations to manage the deviceAppManagementTasks property of the microsoft.graph.deviceAppManagement entity.
     """
-    @property
-    def update_status(self) -> update_status_request_builder.UpdateStatusRequestBuilder:
-        """
-        Provides operations to call the updateStatus method.
-        """
-        return update_status_request_builder.UpdateStatusRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DeviceAppManagementTaskItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class DeviceAppManagementTaskItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class DeviceAppManagementTaskItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_app_management_task
+
         return await self.request_adapter.send_async(request_info, device_app_management_task.DeviceAppManagementTask, error_mapping)
     
     async def patch(self,body: Optional[device_app_management_task.DeviceAppManagementTask] = None, request_configuration: Optional[DeviceAppManagementTaskItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[device_app_management_task.DeviceAppManagementTask]:
@@ -91,12 +90,16 @@ class DeviceAppManagementTaskItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import device_app_management_task
+
         return await self.request_adapter.send_async(request_info, device_app_management_task.DeviceAppManagementTask, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[DeviceAppManagementTaskItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class DeviceAppManagementTaskItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def update_status(self) -> update_status_request_builder.UpdateStatusRequestBuilder:
+        """
+        Provides operations to call the updateStatus method.
+        """
+        from .update_status import update_status_request_builder
+
+        return update_status_request_builder.UpdateStatusRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DeviceAppManagementTaskItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,12 +183,6 @@ class DeviceAppManagementTaskItemRequestBuilder():
         """
         Device app management tasks.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -192,6 +198,12 @@ class DeviceAppManagementTaskItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DeviceAppManagementTaskItemRequestBuilderGetRequestConfiguration():

@@ -1,13 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-app_log_collection_request = lazy_import('msgraph.generated.models.app_log_collection_request')
-device_management_troubleshooting_event = lazy_import('msgraph.generated.models.device_management_troubleshooting_event')
-mobile_app_troubleshooting_history_item = lazy_import('msgraph.generated.models.mobile_app_troubleshooting_history_item')
+if TYPE_CHECKING:
+    from . import app_log_collection_request, device_management_troubleshooting_event, mobile_app_troubleshooting_history_item
+
+from . import device_management_troubleshooting_event
 
 class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.DeviceManagementTroubleshootingEvent):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MobileAppTroubleshootingEvent and sets the default values.
+        """
+        super().__init__()
+        # The collection property of AppLogUploadRequest.
+        self._app_log_collection_requests: Optional[List[app_log_collection_request.AppLogCollectionRequest]] = None
+        # Intune application identifier.
+        self._application_id: Optional[str] = None
+        # Intune Mobile Application Troubleshooting History Item
+        self._history: Optional[List[mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem]] = None
+        # Device identifier created or collected by Intune.
+        self._managed_device_identifier: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Identifier for the user that tried to enroll the device.
+        self._user_id: Optional[str] = None
+    
     @property
     def app_log_collection_requests(self,) -> Optional[List[app_log_collection_request.AppLogCollectionRequest]]:
         """
@@ -42,24 +60,6 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         """
         self._application_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MobileAppTroubleshootingEvent and sets the default values.
-        """
-        super().__init__()
-        # The collection property of AppLogUploadRequest.
-        self._app_log_collection_requests: Optional[List[app_log_collection_request.AppLogCollectionRequest]] = None
-        # Intune application identifier.
-        self._application_id: Optional[str] = None
-        # Intune Mobile Application Troubleshooting History Item
-        self._history: Optional[List[mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem]] = None
-        # Device identifier created or collected by Intune.
-        self._managed_device_identifier: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Identifier for the user that tried to enroll the device.
-        self._user_id: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobileAppTroubleshootingEvent:
         """
@@ -77,7 +77,9 @@ class MobileAppTroubleshootingEvent(device_management_troubleshooting_event.Devi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import app_log_collection_request, device_management_troubleshooting_event, mobile_app_troubleshooting_history_item
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationId": lambda n : setattr(self, 'application_id', n.get_str_value()),
             "appLogCollectionRequests": lambda n : setattr(self, 'app_log_collection_requests', n.get_collection_of_object_values(app_log_collection_request.AppLogCollectionRequest)),
             "history": lambda n : setattr(self, 'history', n.get_collection_of_object_values(mobile_app_troubleshooting_history_item.MobileAppTroubleshootingHistoryItem)),

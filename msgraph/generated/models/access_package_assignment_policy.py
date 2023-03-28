@@ -1,19 +1,58 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package = lazy_import('msgraph.generated.models.access_package')
-access_package_catalog = lazy_import('msgraph.generated.models.access_package_catalog')
-access_package_question = lazy_import('msgraph.generated.models.access_package_question')
-approval_settings = lazy_import('msgraph.generated.models.approval_settings')
-assignment_review_settings = lazy_import('msgraph.generated.models.assignment_review_settings')
-custom_extension_handler = lazy_import('msgraph.generated.models.custom_extension_handler')
-entity = lazy_import('msgraph.generated.models.entity')
-requestor_settings = lazy_import('msgraph.generated.models.requestor_settings')
+if TYPE_CHECKING:
+    from . import access_package, access_package_catalog, access_package_question, approval_settings, assignment_review_settings, custom_extension_handler, custom_extension_stage_setting, entity, requestor_settings
+
+from . import entity
 
 class AccessPackageAssignmentPolicy(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageAssignmentPolicy and sets the default values.
+        """
+        super().__init__()
+        # The access package with this policy. Read-only. Nullable. Supports $expand.
+        self._access_package: Optional[access_package.AccessPackage] = None
+        # The accessPackageCatalog property
+        self._access_package_catalog: Optional[access_package_catalog.AccessPackageCatalog] = None
+        # Identifier of the access package.
+        self._access_package_id: Optional[str] = None
+        # Who must review, and how often, the assignments to the access package from this policy. This property is null if reviews are not required.
+        self._access_review_settings: Optional[assignment_review_settings.AssignmentReviewSettings] = None
+        # Indicates whether a user can extend the access package assignment duration after approval.
+        self._can_extend: Optional[bool] = None
+        # The createdBy property
+        self._created_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._created_date_time: Optional[datetime] = None
+        # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        self._custom_extension_handlers: Optional[List[custom_extension_handler.CustomExtensionHandler]] = None
+        # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        self._custom_extension_stage_settings: Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]] = None
+        # The description of the policy.
+        self._description: Optional[str] = None
+        # The display name of the policy. Supports $filter (eq).
+        self._display_name: Optional[str] = None
+        # The number of days in which assignments from this policy last until they are expired.
+        self._duration_in_days: Optional[int] = None
+        # The expiration date for assignments created in this policy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._expiration_date_time: Optional[datetime] = None
+        # The modifiedBy property
+        self._modified_by: Optional[str] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Questions that are posed to the  requestor.
+        self._questions: Optional[List[access_package_question.AccessPackageQuestion]] = None
+        # Who must approve requests for access package in this policy.
+        self._request_approval_settings: Optional[approval_settings.ApprovalSettings] = None
+        # Who can request this access package from this policy.
+        self._requestor_settings: Optional[requestor_settings.RequestorSettings] = None
+    
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:
         """
@@ -99,48 +138,6 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         """
         self._can_extend = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageAssignmentPolicy and sets the default values.
-        """
-        super().__init__()
-        # The access package with this policy. Read-only. Nullable. Supports $expand.
-        self._access_package: Optional[access_package.AccessPackage] = None
-        # The accessPackageCatalog property
-        self._access_package_catalog: Optional[access_package_catalog.AccessPackageCatalog] = None
-        # Identifier of the access package.
-        self._access_package_id: Optional[str] = None
-        # Who must review, and how often, the assignments to the access package from this policy. This property is null if reviews are not required.
-        self._access_review_settings: Optional[assignment_review_settings.AssignmentReviewSettings] = None
-        # Indicates whether a user can extend the access package assignment duration after approval.
-        self._can_extend: Optional[bool] = None
-        # The createdBy property
-        self._created_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._created_date_time: Optional[datetime] = None
-        # The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
-        self._custom_extension_handlers: Optional[List[custom_extension_handler.CustomExtensionHandler]] = None
-        # The description of the policy.
-        self._description: Optional[str] = None
-        # The display name of the policy. Supports $filter (eq).
-        self._display_name: Optional[str] = None
-        # The number of days in which assignments from this policy last until they are expired.
-        self._duration_in_days: Optional[int] = None
-        # The expiration date for assignments created in this policy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._expiration_date_time: Optional[datetime] = None
-        # The modifiedBy property
-        self._modified_by: Optional[str] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Questions that are posed to the  requestor.
-        self._questions: Optional[List[access_package_question.AccessPackageQuestion]] = None
-        # Who must approve requests for access package in this policy.
-        self._request_approval_settings: Optional[approval_settings.ApprovalSettings] = None
-        # Who can request this access package from this policy.
-        self._requestor_settings: Optional[requestor_settings.RequestorSettings] = None
-    
     @property
     def created_by(self,) -> Optional[str]:
         """
@@ -203,6 +200,23 @@ class AccessPackageAssignmentPolicy(entity.Entity):
             value: Value to set for the custom_extension_handlers property.
         """
         self._custom_extension_handlers = value
+    
+    @property
+    def custom_extension_stage_settings(self,) -> Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]]:
+        """
+        Gets the customExtensionStageSettings property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        Returns: Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]]
+        """
+        return self._custom_extension_stage_settings
+    
+    @custom_extension_stage_settings.setter
+    def custom_extension_stage_settings(self,value: Optional[List[custom_extension_stage_setting.CustomExtensionStageSetting]] = None) -> None:
+        """
+        Sets the customExtensionStageSettings property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+        Args:
+            value: Value to set for the custom_extension_stage_settings property.
+        """
+        self._custom_extension_stage_settings = value
     
     @property
     def description(self,) -> Optional[str]:
@@ -277,7 +291,9 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package, access_package_catalog, access_package_question, approval_settings, assignment_review_settings, custom_extension_handler, custom_extension_stage_setting, entity, requestor_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
             "accessPackageCatalog": lambda n : setattr(self, 'access_package_catalog', n.get_object_value(access_package_catalog.AccessPackageCatalog)),
             "accessPackageId": lambda n : setattr(self, 'access_package_id', n.get_str_value()),
@@ -286,6 +302,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
             "createdBy": lambda n : setattr(self, 'created_by', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "customExtensionHandlers": lambda n : setattr(self, 'custom_extension_handlers', n.get_collection_of_object_values(custom_extension_handler.CustomExtensionHandler)),
+            "customExtensionStageSettings": lambda n : setattr(self, 'custom_extension_stage_settings', n.get_collection_of_object_values(custom_extension_stage_setting.CustomExtensionStageSetting)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
@@ -402,6 +419,7 @@ class AccessPackageAssignmentPolicy(entity.Entity):
         writer.write_str_value("createdBy", self.created_by)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
         writer.write_collection_of_object_values("customExtensionHandlers", self.custom_extension_handlers)
+        writer.write_collection_of_object_values("customExtensionStageSettings", self.custom_extension_stage_settings)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
         writer.write_int_value("durationInDays", self.duration_in_days)

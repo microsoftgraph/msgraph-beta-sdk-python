@@ -1,17 +1,57 @@
 from __future__ import annotations
 from datetime import datetime, time
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-zebra_fota_network_type = lazy_import('msgraph.generated.models.zebra_fota_network_type')
-zebra_fota_schedule_mode = lazy_import('msgraph.generated.models.zebra_fota_schedule_mode')
-zebra_fota_update_type = lazy_import('msgraph.generated.models.zebra_fota_update_type')
+if TYPE_CHECKING:
+    from . import zebra_fota_network_type, zebra_fota_schedule_mode, zebra_fota_update_type
 
 class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
     """
     The Zebra FOTA deployment complex type that describes the settings required to create a FOTA deployment.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new zebraFotaDeploymentSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Minimum battery level (%) required for both download and installation. Default: -1 (System defaults). Maximum is 100.
+        self._battery_rule_minimum_battery_level_percentage: Optional[int] = None
+        # Flag indicating if charger is required. When set to false, the client can install updates whether the device is in or out of the charger. Applied only for installation. Defaults to false.
+        self._battery_rule_require_charger: Optional[bool] = None
+        # Deploy update for devices with this model only.
+        self._device_model: Optional[str] = None
+        # Represents various network types for Zebra FOTA deployment.
+        self._download_rule_network_type: Optional[zebra_fota_network_type.ZebraFotaNetworkType] = None
+        # Date and time in the device time zone when the download will start (e.g., 2018-07-25T10:20:32). The default value is UTC now and the maximum is 10 days from deployment creation.
+        self._download_rule_start_date_time: Optional[datetime] = None
+        # A description provided by Zebra for the the firmware artifact to update the device to (e.g.: LifeGuard Update 120 (released 29-June-2022).
+        self._firmware_target_artifact_description: Optional[str] = None
+        # Deployment's Board Support Package (BSP. E.g.: '01.18.02.00'). Required only for custom update type.
+        self._firmware_target_board_support_package_version: Optional[str] = None
+        # Target OS Version (e.g.: '8.1.0'). Required only for custom update type.
+        self._firmware_target_os_version: Optional[str] = None
+        # Target patch name (e.g.: 'U06'). Required only for custom update type.
+        self._firmware_target_patch: Optional[str] = None
+        # Date and time in device time zone when the install will start. Default - download startDate if configured, otherwise defaults to NOW. Ignored when deployment update type was set to auto.
+        self._install_rule_start_date_time: Optional[datetime] = None
+        # Time of day after which the install cannot start. Possible range is 00:30:00 to 23:59:59. Should be greater than 'installRuleWindowStartTime' by 30 mins. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 23:59:59. Respected for all values of update type, including AUTO.
+        self._install_rule_window_end_time: Optional[time] = None
+        # Time of day (00:00:00 - 23:30:00) when installation should begin. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 00:00:00. Respected for all values of update type, including AUTO.
+        self._install_rule_window_start_time: Optional[time] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Maximum 28 days. Default is 28 days. Sequence of dates are: 1) Download start date. 2) Install start date. 3) Schedule end date. If any of the values are not provided, the date provided in the preceding step of the sequence is used. If no values are provided, the string value of the current UTC is used.
+        self._schedule_duration_in_days: Optional[int] = None
+        # Represents various schedule modes for Zebra FOTA deployment.
+        self._schedule_mode: Optional[zebra_fota_schedule_mode.ZebraFotaScheduleMode] = None
+        # This attribute indicates the deployment time offset (e.g.180 represents an offset of +03:00, and -270 represents an offset of -04:30). The time offset is the time timezone where the devices are located. The deployment start and end data uses this timezone
+        self._time_zone_offset_in_minutes: Optional[int] = None
+        # Represents various update types for Zebra FOTA deployment.
+        self._update_type: Optional[zebra_fota_update_type.ZebraFotaUpdateType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -62,48 +102,6 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
             value: Value to set for the battery_rule_require_charger property.
         """
         self._battery_rule_require_charger = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new zebraFotaDeploymentSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Minimum battery level (%) required for both download and installation. Default: -1 (System defaults). Maximum is 100.
-        self._battery_rule_minimum_battery_level_percentage: Optional[int] = None
-        # Flag indicating if charger is required. When set to false, the client can install updates whether the device is in or out of the charger. Applied only for installation. Defaults to false.
-        self._battery_rule_require_charger: Optional[bool] = None
-        # Deploy update for devices with this model only.
-        self._device_model: Optional[str] = None
-        # Represents various network types for Zebra FOTA deployment.
-        self._download_rule_network_type: Optional[zebra_fota_network_type.ZebraFotaNetworkType] = None
-        # Date and time in the device time zone when the download will start (e.g., 2018-07-25T10:20:32). The default value is UTC now and the maximum is 10 days from deployment creation.
-        self._download_rule_start_date_time: Optional[datetime] = None
-        # A description provided by Zebra for the the firmware artifact to update the device to (e.g.: LifeGuard Update 120 (released 29-June-2022).
-        self._firmware_target_artifact_description: Optional[str] = None
-        # Deployment's Board Support Package (BSP. E.g.: '01.18.02.00'). Required only for custom update type.
-        self._firmware_target_board_support_package_version: Optional[str] = None
-        # Target OS Version (e.g.: '8.1.0'). Required only for custom update type.
-        self._firmware_target_os_version: Optional[str] = None
-        # Target patch name (e.g.: 'U06'). Required only for custom update type.
-        self._firmware_target_patch: Optional[str] = None
-        # Date and time in device time zone when the install will start. Default - download startDate if configured, otherwise defaults to NOW. Ignored when deployment update type was set to auto.
-        self._install_rule_start_date_time: Optional[datetime] = None
-        # Time of day after which the install cannot start. Possible range is 00:30:00 to 23:59:59. Should be greater than 'installRuleWindowStartTime' by 30 mins. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 23:59:59. Respected for all values of update type, including AUTO.
-        self._install_rule_window_end_time: Optional[Time] = None
-        # Time of day (00:00:00 - 23:30:00) when installation should begin. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 00:00:00. Respected for all values of update type, including AUTO.
-        self._install_rule_window_start_time: Optional[Time] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Maximum 28 days. Default is 28 days. Sequence of dates are: 1) Download start date. 2) Install start date. 3) Schedule end date. If any of the values are not provided, the date provided in the preceding step of the sequence is used. If no values are provided, the string value of the current UTC is used.
-        self._schedule_duration_in_days: Optional[int] = None
-        # Represents various schedule modes for Zebra FOTA deployment.
-        self._schedule_mode: Optional[zebra_fota_schedule_mode.ZebraFotaScheduleMode] = None
-        # This attribute indicates the deployment time offset (e.g.180 represents an offset of +03:00, and -270 represents an offset of -04:30). The time offset is the time timezone where the devices are located. The deployment start and end data uses this timezone
-        self._time_zone_offset_in_minutes: Optional[int] = None
-        # Represents various update types for Zebra FOTA deployment.
-        self._update_type: Optional[zebra_fota_update_type.ZebraFotaUpdateType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaDeploymentSettings:
@@ -241,7 +239,9 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import zebra_fota_network_type, zebra_fota_schedule_mode, zebra_fota_update_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "batteryRuleMinimumBatteryLevelPercentage": lambda n : setattr(self, 'battery_rule_minimum_battery_level_percentage', n.get_int_value()),
             "batteryRuleRequireCharger": lambda n : setattr(self, 'battery_rule_require_charger', n.get_bool_value()),
             "deviceModel": lambda n : setattr(self, 'device_model', n.get_str_value()),
@@ -252,8 +252,8 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
             "firmwareTargetOsVersion": lambda n : setattr(self, 'firmware_target_os_version', n.get_str_value()),
             "firmwareTargetPatch": lambda n : setattr(self, 'firmware_target_patch', n.get_str_value()),
             "installRuleStartDateTime": lambda n : setattr(self, 'install_rule_start_date_time', n.get_datetime_value()),
-            "installRuleWindowEndTime": lambda n : setattr(self, 'install_rule_window_end_time', n.get_object_value(Time)),
-            "installRuleWindowStartTime": lambda n : setattr(self, 'install_rule_window_start_time', n.get_object_value(Time)),
+            "installRuleWindowEndTime": lambda n : setattr(self, 'install_rule_window_end_time', n.get_time_value()),
+            "installRuleWindowStartTime": lambda n : setattr(self, 'install_rule_window_start_time', n.get_time_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "scheduleDurationInDays": lambda n : setattr(self, 'schedule_duration_in_days', n.get_int_value()),
             "scheduleMode": lambda n : setattr(self, 'schedule_mode', n.get_enum_value(zebra_fota_schedule_mode.ZebraFotaScheduleMode)),
@@ -280,15 +280,15 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         self._install_rule_start_date_time = value
     
     @property
-    def install_rule_window_end_time(self,) -> Optional[Time]:
+    def install_rule_window_end_time(self,) -> Optional[time]:
         """
         Gets the installRuleWindowEndTime property value. Time of day after which the install cannot start. Possible range is 00:30:00 to 23:59:59. Should be greater than 'installRuleWindowStartTime' by 30 mins. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 23:59:59. Respected for all values of update type, including AUTO.
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._install_rule_window_end_time
     
     @install_rule_window_end_time.setter
-    def install_rule_window_end_time(self,value: Optional[Time] = None) -> None:
+    def install_rule_window_end_time(self,value: Optional[time] = None) -> None:
         """
         Sets the installRuleWindowEndTime property value. Time of day after which the install cannot start. Possible range is 00:30:00 to 23:59:59. Should be greater than 'installRuleWindowStartTime' by 30 mins. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 23:59:59. Respected for all values of update type, including AUTO.
         Args:
@@ -297,15 +297,15 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         self._install_rule_window_end_time = value
     
     @property
-    def install_rule_window_start_time(self,) -> Optional[Time]:
+    def install_rule_window_start_time(self,) -> Optional[time]:
         """
         Gets the installRuleWindowStartTime property value. Time of day (00:00:00 - 23:30:00) when installation should begin. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 00:00:00. Respected for all values of update type, including AUTO.
-        Returns: Optional[Time]
+        Returns: Optional[time]
         """
         return self._install_rule_window_start_time
     
     @install_rule_window_start_time.setter
-    def install_rule_window_start_time(self,value: Optional[Time] = None) -> None:
+    def install_rule_window_start_time(self,value: Optional[time] = None) -> None:
         """
         Sets the installRuleWindowStartTime property value. Time of day (00:00:00 - 23:30:00) when installation should begin. The time is expressed in a 24-hour format, as hh:mm, and is in the device time zone. Default - 00:00:00. Respected for all values of update type, including AUTO.
         Args:
@@ -382,8 +382,8 @@ class ZebraFotaDeploymentSettings(AdditionalDataHolder, Parsable):
         writer.write_str_value("firmwareTargetOsVersion", self.firmware_target_os_version)
         writer.write_str_value("firmwareTargetPatch", self.firmware_target_patch)
         writer.write_datetime_value("installRuleStartDateTime", self.install_rule_start_date_time)
-        writer.write_object_value("installRuleWindowEndTime", self.install_rule_window_end_time)
-        writer.write_object_value("installRuleWindowStartTime", self.install_rule_window_start_time)
+        writer.write_time_value("installRuleWindowEndTime", self.install_rule_window_end_time)
+        writer.write_time_value("installRuleWindowStartTime", self.install_rule_window_start_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_int_value("scheduleDurationInDays", self.schedule_duration_in_days)
         writer.write_enum_value("scheduleMode", self.schedule_mode)

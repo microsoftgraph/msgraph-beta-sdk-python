@@ -1,22 +1,52 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
-teamwork_device_activity = lazy_import('msgraph.generated.models.teamwork_device_activity')
-teamwork_device_activity_state = lazy_import('msgraph.generated.models.teamwork_device_activity_state')
-teamwork_device_configuration = lazy_import('msgraph.generated.models.teamwork_device_configuration')
-teamwork_device_health = lazy_import('msgraph.generated.models.teamwork_device_health')
-teamwork_device_health_status = lazy_import('msgraph.generated.models.teamwork_device_health_status')
-teamwork_device_operation = lazy_import('msgraph.generated.models.teamwork_device_operation')
-teamwork_device_type = lazy_import('msgraph.generated.models.teamwork_device_type')
-teamwork_hardware_detail = lazy_import('msgraph.generated.models.teamwork_hardware_detail')
-teamwork_user_identity = lazy_import('msgraph.generated.models.teamwork_user_identity')
+if TYPE_CHECKING:
+    from . import entity, identity_set, teamwork_device_activity, teamwork_device_activity_state, teamwork_device_configuration, teamwork_device_health, teamwork_device_health_status, teamwork_device_operation, teamwork_device_type, teamwork_hardware_detail, teamwork_user_identity
+
+from . import entity
 
 class TeamworkDevice(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkDevice and sets the default values.
+        """
+        super().__init__()
+        # The activity properties that change based on the device usage.
+        self._activity: Optional[teamwork_device_activity.TeamworkDeviceActivity] = None
+        # The activity state of the device. The possible values are: unknown, busy, idle, unavailable, unknownFutureValue.
+        self._activity_state: Optional[teamwork_device_activity_state.TeamworkDeviceActivityState] = None
+        # The company asset tag assigned by the admin on the device.
+        self._company_asset_tag: Optional[str] = None
+        # The configuration properties of the device.
+        self._configuration: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration] = None
+        # Identity of the user who enrolled the device to the tenant.
+        self._created_by: Optional[identity_set.IdentitySet] = None
+        # The UTC date and time when the device was enrolled to the tenant.
+        self._created_date_time: Optional[datetime] = None
+        # The signed-in user on the device.
+        self._current_user: Optional[teamwork_user_identity.TeamworkUserIdentity] = None
+        # The deviceType property
+        self._device_type: Optional[teamwork_device_type.TeamworkDeviceType] = None
+        # The hardwareDetail property
+        self._hardware_detail: Optional[teamwork_hardware_detail.TeamworkHardwareDetail] = None
+        # The health properties of the device.
+        self._health: Optional[teamwork_device_health.TeamworkDeviceHealth] = None
+        # The health status of the device. The possible values are: unknown, offline, critical, nonUrgent, healthy, unknownFutureValue.
+        self._health_status: Optional[teamwork_device_health_status.TeamworkDeviceHealthStatus] = None
+        # Identity of the user who last modified the device details.
+        self._last_modified_by: Optional[identity_set.IdentitySet] = None
+        # The UTC date and time when the device detail was last modified.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The notes added by the admin to the device.
+        self._notes: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The async operations on the device.
+        self._operations: Optional[List[teamwork_device_operation.TeamworkDeviceOperation]] = None
+    
     @property
     def activity(self,) -> Optional[teamwork_device_activity.TeamworkDeviceActivity]:
         """
@@ -84,44 +114,6 @@ class TeamworkDevice(entity.Entity):
             value: Value to set for the configuration property.
         """
         self._configuration = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkDevice and sets the default values.
-        """
-        super().__init__()
-        # The activity properties that change based on the device usage.
-        self._activity: Optional[teamwork_device_activity.TeamworkDeviceActivity] = None
-        # The activity state of the device. The possible values are: unknown, busy, idle, unavailable, unknownFutureValue.
-        self._activity_state: Optional[teamwork_device_activity_state.TeamworkDeviceActivityState] = None
-        # The company asset tag assigned by the admin on the device.
-        self._company_asset_tag: Optional[str] = None
-        # The configuration properties of the device.
-        self._configuration: Optional[teamwork_device_configuration.TeamworkDeviceConfiguration] = None
-        # Identity of the user who enrolled the device to the tenant.
-        self._created_by: Optional[identity_set.IdentitySet] = None
-        # The UTC date and time when the device was enrolled to the tenant.
-        self._created_date_time: Optional[datetime] = None
-        # The signed-in user on the device.
-        self._current_user: Optional[teamwork_user_identity.TeamworkUserIdentity] = None
-        # The deviceType property
-        self._device_type: Optional[teamwork_device_type.TeamworkDeviceType] = None
-        # The hardwareDetail property
-        self._hardware_detail: Optional[teamwork_hardware_detail.TeamworkHardwareDetail] = None
-        # The health properties of the device.
-        self._health: Optional[teamwork_device_health.TeamworkDeviceHealth] = None
-        # The health status of the device. The possible values are: unknown, offline, critical, nonUrgent, healthy, unknownFutureValue.
-        self._health_status: Optional[teamwork_device_health_status.TeamworkDeviceHealthStatus] = None
-        # Identity of the user who last modified the device details.
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The UTC date and time when the device detail was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The notes added by the admin to the device.
-        self._notes: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The async operations on the device.
-        self._operations: Optional[List[teamwork_device_operation.TeamworkDeviceOperation]] = None
     
     @property
     def created_by(self,) -> Optional[identity_set.IdentitySet]:
@@ -208,7 +200,9 @@ class TeamworkDevice(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, identity_set, teamwork_device_activity, teamwork_device_activity_state, teamwork_device_configuration, teamwork_device_health, teamwork_device_health_status, teamwork_device_operation, teamwork_device_type, teamwork_hardware_detail, teamwork_user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "activity": lambda n : setattr(self, 'activity', n.get_object_value(teamwork_device_activity.TeamworkDeviceActivity)),
             "activityState": lambda n : setattr(self, 'activity_state', n.get_enum_value(teamwork_device_activity_state.TeamworkDeviceActivityState)),
             "companyAssetTag": lambda n : setattr(self, 'company_asset_tag', n.get_str_value()),

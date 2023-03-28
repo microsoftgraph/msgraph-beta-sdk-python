@@ -1,15 +1,30 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-bit_locker_encryption_method = lazy_import('msgraph.generated.models.bit_locker_encryption_method')
-bit_locker_recovery_options = lazy_import('msgraph.generated.models.bit_locker_recovery_options')
+if TYPE_CHECKING:
+    from . import bit_locker_encryption_method, bit_locker_recovery_options
 
 class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
     """
     BitLocker Fixed Drive Policies.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new bitLockerFixedDrivePolicy and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
+        self._encryption_method: Optional[bit_locker_encryption_method.BitLockerEncryptionMethod] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
+        self._recovery_options: Optional[bit_locker_recovery_options.BitLockerRecoveryOptions] = None
+        # This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
+        self._require_encryption_for_write_access: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,22 +41,6 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bitLockerFixedDrivePolicy and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Select the encryption method for fixed drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.
-        self._encryption_method: Optional[bit_locker_encryption_method.BitLockerEncryptionMethod] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
-        self._recovery_options: Optional[bit_locker_recovery_options.BitLockerRecoveryOptions] = None
-        # This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
-        self._require_encryption_for_write_access: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BitLockerFixedDrivePolicy:
@@ -77,7 +76,9 @@ class BitLockerFixedDrivePolicy(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import bit_locker_encryption_method, bit_locker_recovery_options
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "encryptionMethod": lambda n : setattr(self, 'encryption_method', n.get_enum_value(bit_locker_encryption_method.BitLockerEncryptionMethod)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "recoveryOptions": lambda n : setattr(self, 'recovery_options', n.get_object_value(bit_locker_recovery_options.BitLockerRecoveryOptions)),

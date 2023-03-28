@@ -1,29 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-management_action_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_status')
-workload_action_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.workload_action_deployment_status')
+if TYPE_CHECKING:
+    from . import management_action_status, workload_action_deployment_status
 
 class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managementActionDeploymentStatus and sets the default values.
@@ -44,6 +26,23 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         # The collection of workload action deployment statues for the given management action. Optional.
         self._workload_action_deployment_statuses: Optional[List[workload_action_deployment_status.WorkloadActionDeploymentStatus]] = None
     
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagementActionDeploymentStatus:
         """
@@ -61,7 +60,9 @@ class ManagementActionDeploymentStatus(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import management_action_status, workload_action_deployment_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "managementActionId": lambda n : setattr(self, 'management_action_id', n.get_str_value()),
             "managementTemplateId": lambda n : setattr(self, 'management_template_id', n.get_str_value()),
             "managementTemplateVersion": lambda n : setattr(self, 'management_template_version', n.get_int_value()),

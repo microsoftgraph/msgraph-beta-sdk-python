@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_exchange_access_rule_type = lazy_import('msgraph.generated.models.device_management_exchange_access_rule_type')
+if TYPE_CHECKING:
+    from . import device_management_exchange_access_rule_type
 
 class DeviceManagementExchangeDeviceClass(AdditionalDataHolder, Parsable):
     """
     Device Class in Exchange.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementExchangeDeviceClass and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Name of the device class which will be impacted by this rule.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Criteria which defines the type of device this access rule will apply to
+        self._type: Optional[device_management_exchange_access_rule_type.DeviceManagementExchangeAccessRuleType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -25,20 +39,6 @@ class DeviceManagementExchangeDeviceClass(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementExchangeDeviceClass and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Name of the device class which will be impacted by this rule.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Criteria which defines the type of device this access rule will apply to
-        self._type: Optional[device_management_exchange_access_rule_type.DeviceManagementExchangeAccessRuleType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementExchangeDeviceClass:
@@ -57,7 +57,9 @@ class DeviceManagementExchangeDeviceClass(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_exchange_access_rule_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "type": lambda n : setattr(self, 'type', n.get_enum_value(device_management_exchange_access_rule_type.DeviceManagementExchangeAccessRuleType)),

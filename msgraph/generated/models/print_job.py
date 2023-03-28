@@ -1,17 +1,48 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-print_document = lazy_import('msgraph.generated.models.print_document')
-print_job_configuration = lazy_import('msgraph.generated.models.print_job_configuration')
-print_job_status = lazy_import('msgraph.generated.models.print_job_status')
-print_task = lazy_import('msgraph.generated.models.print_task')
-user_identity = lazy_import('msgraph.generated.models.user_identity')
+if TYPE_CHECKING:
+    from . import entity, print_document, print_job_configuration, print_job_status, print_task, user_identity
+
+from . import entity
 
 class PrintJob(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new printJob and sets the default values.
+        """
+        super().__init__()
+        # The acknowledgedDateTime property
+        self._acknowledged_date_time: Optional[datetime] = None
+        # The completedDateTime property
+        self._completed_date_time: Optional[datetime] = None
+        # A group of settings that a printer should use to print a job.
+        self._configuration: Optional[print_job_configuration.PrintJobConfiguration] = None
+        # The createdBy property
+        self._created_by: Optional[user_identity.UserIdentity] = None
+        # The DateTimeOffset when the job was created. Read-only.
+        self._created_date_time: Optional[datetime] = None
+        # The name of the print job.
+        self._display_name: Optional[str] = None
+        # The documents property
+        self._documents: Optional[List[print_document.PrintDocument]] = None
+        # The errorCode property
+        self._error_code: Optional[int] = None
+        # If true, document can be fetched by printer.
+        self._is_fetchable: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Contains the source job URL, if the job has been redirected from another printer.
+        self._redirected_from: Optional[str] = None
+        # Contains the destination job URL, if the job has been redirected to another printer.
+        self._redirected_to: Optional[str] = None
+        # The status of the print job. Read-only.
+        self._status: Optional[print_job_status.PrintJobStatus] = None
+        # A list of printTasks that were triggered by this print job.
+        self._tasks: Optional[List[print_task.PrintTask]] = None
+    
     @property
     def acknowledged_date_time(self,) -> Optional[datetime]:
         """
@@ -62,40 +93,6 @@ class PrintJob(entity.Entity):
             value: Value to set for the configuration property.
         """
         self._configuration = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new printJob and sets the default values.
-        """
-        super().__init__()
-        # The acknowledgedDateTime property
-        self._acknowledged_date_time: Optional[datetime] = None
-        # The completedDateTime property
-        self._completed_date_time: Optional[datetime] = None
-        # A group of settings that a printer should use to print a job.
-        self._configuration: Optional[print_job_configuration.PrintJobConfiguration] = None
-        # The createdBy property
-        self._created_by: Optional[user_identity.UserIdentity] = None
-        # The DateTimeOffset when the job was created. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # The name of the print job.
-        self._display_name: Optional[str] = None
-        # The documents property
-        self._documents: Optional[List[print_document.PrintDocument]] = None
-        # The errorCode property
-        self._error_code: Optional[int] = None
-        # If true, document can be fetched by printer.
-        self._is_fetchable: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Contains the source job URL, if the job has been redirected from another printer.
-        self._redirected_from: Optional[str] = None
-        # Contains the destination job URL, if the job has been redirected to another printer.
-        self._redirected_to: Optional[str] = None
-        # The status of the print job. Read-only.
-        self._status: Optional[print_job_status.PrintJobStatus] = None
-        # A list of printTasks that were triggered by this print job.
-        self._tasks: Optional[List[print_task.PrintTask]] = None
     
     @property
     def created_by(self,) -> Optional[user_identity.UserIdentity]:
@@ -199,7 +196,9 @@ class PrintJob(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, print_document, print_job_configuration, print_job_status, print_task, user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acknowledgedDateTime": lambda n : setattr(self, 'acknowledged_date_time', n.get_datetime_value()),
             "completedDateTime": lambda n : setattr(self, 'completed_date_time', n.get_datetime_value()),
             "configuration": lambda n : setattr(self, 'configuration', n.get_object_value(print_job_configuration.PrintJobConfiguration)),

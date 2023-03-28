@@ -7,12 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-update_request_post_request_body = lazy_import('msgraph.generated.governance_role_assignment_requests.item.update_request.update_request_post_request_body')
-governance_role_assignment_request = lazy_import('msgraph.generated.models.governance_role_assignment_request')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from . import update_request_post_request_body
+    from ....models import governance_role_assignment_request
+    from ....models.o_data_errors import o_data_error
 
 class UpdateRequestRequestBuilder():
     """
@@ -49,12 +49,16 @@ class UpdateRequestRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import governance_role_assignment_request
+
         return await self.request_adapter.send_async(request_info, governance_role_assignment_request.GovernanceRoleAssignmentRequest, error_mapping)
     
     def to_post_request_information(self,body: Optional[update_request_post_request_body.UpdateRequestPostRequestBody] = None, request_configuration: Optional[UpdateRequestRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:

@@ -1,18 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_exchange_access_level = lazy_import('msgraph.generated.models.device_management_exchange_access_level')
-device_management_exchange_access_rule = lazy_import('msgraph.generated.models.device_management_exchange_access_rule')
-device_management_exchange_device_class = lazy_import('msgraph.generated.models.device_management_exchange_device_class')
-entity = lazy_import('msgraph.generated.models.entity')
-on_premises_conditional_access_settings = lazy_import('msgraph.generated.models.on_premises_conditional_access_settings')
+if TYPE_CHECKING:
+    from . import device_management_exchange_access_level, device_management_exchange_access_rule, device_management_exchange_device_class, entity, on_premises_conditional_access_settings
+
+from . import entity
 
 class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
     """
     Singleton entity which represents the Exchange OnPremises policy configured for a tenant.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementExchangeOnPremisesPolicy and sets the default values.
+        """
+        super().__init__()
+        # The list of device access rules in Exchange. The access rules apply globally to the entire Exchange organization
+        self._access_rules: Optional[List[device_management_exchange_access_rule.DeviceManagementExchangeAccessRule]] = None
+        # The Exchange on premises conditional access settings. On premises conditional access will require devices to be both enrolled and compliant for mail access
+        self._conditional_access_settings: Optional[on_premises_conditional_access_settings.OnPremisesConditionalAccessSettings] = None
+        # Access Level in Exchange.
+        self._default_access_level: Optional[device_management_exchange_access_level.DeviceManagementExchangeAccessLevel] = None
+        # The list of device classes known to Exchange
+        self._known_device_classes: Optional[List[device_management_exchange_device_class.DeviceManagementExchangeDeviceClass]] = None
+        # Notification text that will be sent to users quarantined by this policy. This is UTF8 encoded byte array HTML.
+        self._notification_content: Optional[bytes] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def access_rules(self,) -> Optional[List[device_management_exchange_access_rule.DeviceManagementExchangeAccessRule]]:
         """
@@ -46,24 +62,6 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
             value: Value to set for the conditional_access_settings property.
         """
         self._conditional_access_settings = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementExchangeOnPremisesPolicy and sets the default values.
-        """
-        super().__init__()
-        # The list of device access rules in Exchange. The access rules apply globally to the entire Exchange organization
-        self._access_rules: Optional[List[device_management_exchange_access_rule.DeviceManagementExchangeAccessRule]] = None
-        # The Exchange on premises conditional access settings. On premises conditional access will require devices to be both enrolled and compliant for mail access
-        self._conditional_access_settings: Optional[on_premises_conditional_access_settings.OnPremisesConditionalAccessSettings] = None
-        # Access Level in Exchange.
-        self._default_access_level: Optional[device_management_exchange_access_level.DeviceManagementExchangeAccessLevel] = None
-        # The list of device classes known to Exchange
-        self._known_device_classes: Optional[List[device_management_exchange_device_class.DeviceManagementExchangeDeviceClass]] = None
-        # Notification text that will be sent to users quarantined by this policy. This is UTF8 encoded byte array HTML.
-        self._notification_content: Optional[bytes] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementExchangeOnPremisesPolicy:
@@ -99,7 +97,9 @@ class DeviceManagementExchangeOnPremisesPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_exchange_access_level, device_management_exchange_access_rule, device_management_exchange_device_class, entity, on_premises_conditional_access_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessRules": lambda n : setattr(self, 'access_rules', n.get_collection_of_object_values(device_management_exchange_access_rule.DeviceManagementExchangeAccessRule)),
             "conditionalAccessSettings": lambda n : setattr(self, 'conditional_access_settings', n.get_object_value(on_premises_conditional_access_settings.OnPremisesConditionalAccessSettings)),
             "defaultAccessLevel": lambda n : setattr(self, 'default_access_level', n.get_enum_value(device_management_exchange_access_level.DeviceManagementExchangeAccessLevel)),

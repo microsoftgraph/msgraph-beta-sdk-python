@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365ActiveUserCounts(entity.Entity):
     def __init__(self,) -> None:
@@ -21,11 +23,11 @@ class Office365ActiveUserCounts(entity.Entity):
         # The number of active users in OneDrive. Any user who viewed or edited files, shared files internally or externally, or synced files is considered an active user.
         self._one_drive: Optional[int] = None
         # The date on which a number of users were active.
-        self._report_date: Optional[Date] = None
+        self._report_date: Optional[date] = None
         # The number of days the report covers.
         self._report_period: Optional[str] = None
         # The latest date of the content.
-        self._report_refresh_date: Optional[Date] = None
+        self._report_refresh_date: Optional[date] = None
         # The number of active users in SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
         self._share_point: Optional[int] = None
         # The number of active users in Skype For Business. Any user who organized or participated in conferences, or joined peer-to-peer sessions is considered an active user.
@@ -69,13 +71,15 @@ class Office365ActiveUserCounts(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "exchange": lambda n : setattr(self, 'exchange', n.get_int_value()),
             "office365": lambda n : setattr(self, 'office365', n.get_int_value()),
             "oneDrive": lambda n : setattr(self, 'one_drive', n.get_int_value()),
-            "reportDate": lambda n : setattr(self, 'report_date', n.get_object_value(Date)),
+            "reportDate": lambda n : setattr(self, 'report_date', n.get_date_value()),
             "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_date_value()),
             "sharePoint": lambda n : setattr(self, 'share_point', n.get_int_value()),
             "skypeForBusiness": lambda n : setattr(self, 'skype_for_business', n.get_int_value()),
             "teams": lambda n : setattr(self, 'teams', n.get_int_value()),
@@ -120,15 +124,15 @@ class Office365ActiveUserCounts(entity.Entity):
         self._one_drive = value
     
     @property
-    def report_date(self,) -> Optional[Date]:
+    def report_date(self,) -> Optional[date]:
         """
         Gets the reportDate property value. The date on which a number of users were active.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._report_date
     
     @report_date.setter
-    def report_date(self,value: Optional[Date] = None) -> None:
+    def report_date(self,value: Optional[date] = None) -> None:
         """
         Sets the reportDate property value. The date on which a number of users were active.
         Args:
@@ -154,15 +158,15 @@ class Office365ActiveUserCounts(entity.Entity):
         self._report_period = value
     
     @property
-    def report_refresh_date(self,) -> Optional[Date]:
+    def report_refresh_date(self,) -> Optional[date]:
         """
         Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._report_refresh_date
     
     @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[Date] = None) -> None:
+    def report_refresh_date(self,value: Optional[date] = None) -> None:
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
@@ -182,9 +186,9 @@ class Office365ActiveUserCounts(entity.Entity):
         writer.write_int_value("exchange", self.exchange)
         writer.write_int_value("office365", self.office365)
         writer.write_int_value("oneDrive", self.one_drive)
-        writer.write_object_value("reportDate", self.report_date)
+        writer.write_date_value("reportDate", self.report_date)
         writer.write_str_value("reportPeriod", self.report_period)
-        writer.write_object_value("reportRefreshDate", self.report_refresh_date)
+        writer.write_date_value("reportRefreshDate", self.report_refresh_date)
         writer.write_int_value("sharePoint", self.share_point)
         writer.write_int_value("skypeForBusiness", self.skype_for_business)
         writer.write_int_value("teams", self.teams)

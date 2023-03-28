@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-category_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.next_version_definition.category.category_request_builder')
-definition_file_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.next_version_definition.definition_file.definition_file_request_builder')
-presentations_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.next_version_definition.presentations.presentations_request_builder')
-group_policy_presentation_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.next_version_definition.presentations.item.group_policy_presentation_item_request_builder')
-previous_version_definition_request_builder = lazy_import('msgraph.generated.device_management.group_policy_definitions.item.next_version_definition.previous_version_definition.previous_version_definition_request_builder')
-group_policy_definition = lazy_import('msgraph.generated.models.group_policy_definition')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import group_policy_definition
+    from .....models.o_data_errors import o_data_error
+    from .category import category_request_builder
+    from .definition_file import definition_file_request_builder
+    from .presentations import presentations_request_builder
+    from .presentations.item import group_policy_presentation_item_request_builder
+    from .previous_version_definition import previous_version_definition_request_builder
 
 class NextVersionDefinitionRequestBuilder():
     """
     Provides operations to manage the nextVersionDefinition property of the microsoft.graph.groupPolicyDefinition entity.
     """
-    @property
-    def category(self) -> category_request_builder.CategoryRequestBuilder:
-        """
-        Provides operations to manage the category property of the microsoft.graph.groupPolicyDefinition entity.
-        """
-        return category_request_builder.CategoryRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def definition_file(self) -> definition_file_request_builder.DefinitionFileRequestBuilder:
-        """
-        Provides operations to manage the definitionFile property of the microsoft.graph.groupPolicyDefinition entity.
-        """
-        return definition_file_request_builder.DefinitionFileRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def presentations(self) -> presentations_request_builder.PresentationsRequestBuilder:
-        """
-        Provides operations to manage the presentations property of the microsoft.graph.groupPolicyDefinition entity.
-        """
-        return presentations_request_builder.PresentationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def previous_version_definition(self) -> previous_version_definition_request_builder.PreviousVersionDefinitionRequestBuilder:
-        """
-        Provides operations to manage the previousVersionDefinition property of the microsoft.graph.groupPolicyDefinition entity.
-        """
-        return previous_version_definition_request_builder.PreviousVersionDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new NextVersionDefinitionRequestBuilder and sets the default values.
@@ -77,6 +49,8 @@ class NextVersionDefinitionRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -95,12 +69,16 @@ class NextVersionDefinitionRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import group_policy_definition
+
         return await self.request_adapter.send_async(request_info, group_policy_definition.GroupPolicyDefinition, error_mapping)
     
     async def patch(self,body: Optional[group_policy_definition.GroupPolicyDefinition] = None, request_configuration: Optional[NextVersionDefinitionRequestBuilderPatchRequestConfiguration] = None) -> Optional[group_policy_definition.GroupPolicyDefinition]:
@@ -116,12 +94,16 @@ class NextVersionDefinitionRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import group_policy_definition
+
         return await self.request_adapter.send_async(request_info, group_policy_definition.GroupPolicyDefinition, error_mapping)
     
     def presentations_by_id(self,id: str) -> group_policy_presentation_item_request_builder.GroupPolicyPresentationItemRequestBuilder:
@@ -133,6 +115,8 @@ class NextVersionDefinitionRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .presentations.item import group_policy_presentation_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupPolicyPresentation%2Did"] = id
         return group_policy_presentation_item_request_builder.GroupPolicyPresentationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -192,6 +176,42 @@ class NextVersionDefinitionRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def category(self) -> category_request_builder.CategoryRequestBuilder:
+        """
+        Provides operations to manage the category property of the microsoft.graph.groupPolicyDefinition entity.
+        """
+        from .category import category_request_builder
+
+        return category_request_builder.CategoryRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def definition_file(self) -> definition_file_request_builder.DefinitionFileRequestBuilder:
+        """
+        Provides operations to manage the definitionFile property of the microsoft.graph.groupPolicyDefinition entity.
+        """
+        from .definition_file import definition_file_request_builder
+
+        return definition_file_request_builder.DefinitionFileRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def presentations(self) -> presentations_request_builder.PresentationsRequestBuilder:
+        """
+        Provides operations to manage the presentations property of the microsoft.graph.groupPolicyDefinition entity.
+        """
+        from .presentations import presentations_request_builder
+
+        return presentations_request_builder.PresentationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def previous_version_definition(self) -> previous_version_definition_request_builder.PreviousVersionDefinitionRequestBuilder:
+        """
+        Provides operations to manage the previousVersionDefinition property of the microsoft.graph.groupPolicyDefinition entity.
+        """
+        from .previous_version_definition import previous_version_definition_request_builder
+
+        return previous_version_definition_request_builder.PreviousVersionDefinitionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class NextVersionDefinitionRequestBuilderDeleteRequestConfiguration():
         """
@@ -209,12 +229,6 @@ class NextVersionDefinitionRequestBuilder():
         """
         Definition of the next version of this definition
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -230,6 +244,12 @@ class NextVersionDefinitionRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class NextVersionDefinitionRequestBuilderGetRequestConfiguration():

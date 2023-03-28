@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_compliance_local_action_base = lazy_import('msgraph.generated.models.android_device_compliance_local_action_base')
+if TYPE_CHECKING:
+    from . import android_device_compliance_local_action_base
+
+from . import android_device_compliance_local_action_base
 
 class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(android_device_compliance_local_action_base.AndroidDeviceComplianceLocalActionBase):
     def __init__(self,) -> None:
@@ -34,7 +36,9 @@ class AndroidDeviceComplianceLocalActionLockDeviceWithPasscode(android_device_co
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_compliance_local_action_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "passcode": lambda n : setattr(self, 'passcode', n.get_str_value()),
             "passcodeSignInFailureCountBeforeWipe": lambda n : setattr(self, 'passcode_sign_in_failure_count_before_wipe', n.get_int_value()),
         }

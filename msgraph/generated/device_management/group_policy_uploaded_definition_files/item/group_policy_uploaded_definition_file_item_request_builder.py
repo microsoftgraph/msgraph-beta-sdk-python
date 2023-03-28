@@ -7,65 +7,23 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-add_language_files_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.add_language_files.add_language_files_request_builder')
-group_policy_operations_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.group_policy_operations.group_policy_operations_request_builder')
-group_policy_operation_item_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.group_policy_operations.item.group_policy_operation_item_request_builder')
-remove_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.remove.remove_request_builder')
-remove_language_files_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.remove_language_files.remove_language_files_request_builder')
-update_language_files_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.update_language_files.update_language_files_request_builder')
-upload_new_version_request_builder = lazy_import('msgraph.generated.device_management.group_policy_uploaded_definition_files.item.upload_new_version.upload_new_version_request_builder')
-group_policy_uploaded_definition_file = lazy_import('msgraph.generated.models.group_policy_uploaded_definition_file')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import group_policy_uploaded_definition_file
+    from ....models.o_data_errors import o_data_error
+    from .add_language_files import add_language_files_request_builder
+    from .group_policy_operations import group_policy_operations_request_builder
+    from .group_policy_operations.item import group_policy_operation_item_request_builder
+    from .remove import remove_request_builder
+    from .remove_language_files import remove_language_files_request_builder
+    from .update_language_files import update_language_files_request_builder
+    from .upload_new_version import upload_new_version_request_builder
 
 class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
     """
     Provides operations to manage the groupPolicyUploadedDefinitionFiles property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def add_language_files(self) -> add_language_files_request_builder.AddLanguageFilesRequestBuilder:
-        """
-        Provides operations to call the addLanguageFiles method.
-        """
-        return add_language_files_request_builder.AddLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def group_policy_operations(self) -> group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder:
-        """
-        Provides operations to manage the groupPolicyOperations property of the microsoft.graph.groupPolicyUploadedDefinitionFile entity.
-        """
-        return group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def remove(self) -> remove_request_builder.RemoveRequestBuilder:
-        """
-        Provides operations to call the remove method.
-        """
-        return remove_request_builder.RemoveRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def remove_language_files(self) -> remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder:
-        """
-        Provides operations to call the removeLanguageFiles method.
-        """
-        return remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_language_files(self) -> update_language_files_request_builder.UpdateLanguageFilesRequestBuilder:
-        """
-        Provides operations to call the updateLanguageFiles method.
-        """
-        return update_language_files_request_builder.UpdateLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def upload_new_version(self) -> upload_new_version_request_builder.UploadNewVersionRequestBuilder:
-        """
-        Provides operations to call the uploadNewVersion method.
-        """
-        return upload_new_version_request_builder.UploadNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new GroupPolicyUploadedDefinitionFileItemRequestBuilder and sets the default values.
@@ -93,6 +51,8 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -111,12 +71,16 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import group_policy_uploaded_definition_file
+
         return await self.request_adapter.send_async(request_info, group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile, error_mapping)
     
     def group_policy_operations_by_id(self,id: str) -> group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder:
@@ -128,6 +92,8 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .group_policy_operations.item import group_policy_operation_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["groupPolicyOperation%2Did"] = id
         return group_policy_operation_item_request_builder.GroupPolicyOperationItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -145,12 +111,16 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import group_policy_uploaded_definition_file
+
         return await self.request_adapter.send_async(request_info, group_policy_uploaded_definition_file.GroupPolicyUploadedDefinitionFile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[GroupPolicyUploadedDefinitionFileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -208,6 +178,60 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def add_language_files(self) -> add_language_files_request_builder.AddLanguageFilesRequestBuilder:
+        """
+        Provides operations to call the addLanguageFiles method.
+        """
+        from .add_language_files import add_language_files_request_builder
+
+        return add_language_files_request_builder.AddLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def group_policy_operations(self) -> group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder:
+        """
+        Provides operations to manage the groupPolicyOperations property of the microsoft.graph.groupPolicyUploadedDefinitionFile entity.
+        """
+        from .group_policy_operations import group_policy_operations_request_builder
+
+        return group_policy_operations_request_builder.GroupPolicyOperationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove(self) -> remove_request_builder.RemoveRequestBuilder:
+        """
+        Provides operations to call the remove method.
+        """
+        from .remove import remove_request_builder
+
+        return remove_request_builder.RemoveRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def remove_language_files(self) -> remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder:
+        """
+        Provides operations to call the removeLanguageFiles method.
+        """
+        from .remove_language_files import remove_language_files_request_builder
+
+        return remove_language_files_request_builder.RemoveLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_language_files(self) -> update_language_files_request_builder.UpdateLanguageFilesRequestBuilder:
+        """
+        Provides operations to call the updateLanguageFiles method.
+        """
+        from .update_language_files import update_language_files_request_builder
+
+        return update_language_files_request_builder.UpdateLanguageFilesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def upload_new_version(self) -> upload_new_version_request_builder.UploadNewVersionRequestBuilder:
+        """
+        Provides operations to call the uploadNewVersion method.
+        """
+        from .upload_new_version import upload_new_version_request_builder
+
+        return upload_new_version_request_builder.UploadNewVersionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class GroupPolicyUploadedDefinitionFileItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -225,12 +249,6 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
         """
         The available group policy uploaded definition files for this account.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -246,6 +264,12 @@ class GroupPolicyUploadedDefinitionFileItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class GroupPolicyUploadedDefinitionFileItemRequestBuilderGetRequestConfiguration():

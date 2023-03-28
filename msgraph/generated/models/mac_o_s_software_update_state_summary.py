@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-mac_o_s_software_update_category = lazy_import('msgraph.generated.models.mac_o_s_software_update_category')
-mac_o_s_software_update_state = lazy_import('msgraph.generated.models.mac_o_s_software_update_state')
+if TYPE_CHECKING:
+    from . import entity, mac_o_s_software_update_category, mac_o_s_software_update_state
+
+from . import entity
 
 class MacOSSoftwareUpdateStateSummary(entity.Entity):
     """
@@ -66,7 +66,9 @@ class MacOSSoftwareUpdateStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, mac_o_s_software_update_category, mac_o_s_software_update_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "productKey": lambda n : setattr(self, 'product_key', n.get_str_value()),

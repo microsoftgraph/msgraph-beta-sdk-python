@@ -1,31 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity, security_baseline_category_state_summary
+
+from . import entity
 
 class SecurityBaselineStateSummary(entity.Entity):
     """
     The security baseline compliance state summary for the security baseline of the account.
     """
-    @property
-    def conflict_count(self,) -> Optional[int]:
-        """
-        Gets the conflictCount property value. Number of conflict devices
-        Returns: Optional[int]
-        """
-        return self._conflict_count
-    
-    @conflict_count.setter
-    def conflict_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the conflictCount property value. Number of conflict devices
-        Args:
-            value: Value to set for the conflict_count property.
-        """
-        self._conflict_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new securityBaselineStateSummary and sets the default values.
@@ -46,6 +31,23 @@ class SecurityBaselineStateSummary(entity.Entity):
         # Number of unknown devices
         self._unknown_count: Optional[int] = None
     
+    @property
+    def conflict_count(self,) -> Optional[int]:
+        """
+        Gets the conflictCount property value. Number of conflict devices
+        Returns: Optional[int]
+        """
+        return self._conflict_count
+    
+    @conflict_count.setter
+    def conflict_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the conflictCount property value. Number of conflict devices
+        Args:
+            value: Value to set for the conflict_count property.
+        """
+        self._conflict_count = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecurityBaselineStateSummary:
         """
@@ -56,6 +58,13 @@ class SecurityBaselineStateSummary(entity.Entity):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.securityBaselineCategoryStateSummary":
+                from . import security_baseline_category_state_summary
+
+                return security_baseline_category_state_summary.SecurityBaselineCategoryStateSummary()
         return SecurityBaselineStateSummary()
     
     @property
@@ -80,7 +89,9 @@ class SecurityBaselineStateSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, security_baseline_category_state_summary
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "conflictCount": lambda n : setattr(self, 'conflict_count', n.get_int_value()),
             "errorCount": lambda n : setattr(self, 'error_count', n.get_int_value()),
             "notApplicableCount": lambda n : setattr(self, 'not_applicable_count', n.get_int_value()),

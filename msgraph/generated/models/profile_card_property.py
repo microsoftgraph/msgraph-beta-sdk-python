@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-profile_card_annotation = lazy_import('msgraph.generated.models.profile_card_annotation')
+if TYPE_CHECKING:
+    from . import entity, profile_card_annotation
+
+from . import entity
 
 class ProfileCardProperty(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new profileCardProperty and sets the default values.
+        """
+        super().__init__()
+        # Allows an administrator to set a custom display label for the directory property and localize it for the users in their tenant.
+        self._annotations: Optional[List[profile_card_annotation.ProfileCardAnnotation]] = None
+        # Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
+        self._directory_property_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def annotations(self,) -> Optional[List[profile_card_annotation.ProfileCardAnnotation]]:
         """
@@ -23,18 +36,6 @@ class ProfileCardProperty(entity.Entity):
             value: Value to set for the annotations property.
         """
         self._annotations = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new profileCardProperty and sets the default values.
-        """
-        super().__init__()
-        # Allows an administrator to set a custom display label for the directory property and localize it for the users in their tenant.
-        self._annotations: Optional[List[profile_card_annotation.ProfileCardAnnotation]] = None
-        # Identifies a profileCardProperty resource in Get, Update, or Delete operations. Allows an administrator to surface hidden Azure Active Directory (Azure AD) properties on the Microsoft 365 profile card within their tenant. When present, the Azure AD field referenced in this field will be visible to all users in your tenant on the contact pane of the profile card. Allowed values for this field are: UserPrincipalName, Fax, StreetAddress, PostalCode, StateOrProvince, Alias, CustomAttribute1,  CustomAttribute2, CustomAttribute3, CustomAttribute4, CustomAttribute5, CustomAttribute6, CustomAttribute7, CustomAttribute8, CustomAttribute9, CustomAttribute10, CustomAttribute11, CustomAttribute12, CustomAttribute13, CustomAttribute14, CustomAttribute15.
-        self._directory_property_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProfileCardProperty:
@@ -70,7 +71,9 @@ class ProfileCardProperty(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, profile_card_annotation
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "annotations": lambda n : setattr(self, 'annotations', n.get_collection_of_object_values(profile_card_annotation.ProfileCardAnnotation)),
             "directoryPropertyName": lambda n : setattr(self, 'directory_property_name', n.get_str_value()),
         }

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-url_match_info = lazy_import('msgraph.generated.models.external_connectors.url_match_info')
-url_to_item_resolver_base = lazy_import('msgraph.generated.models.external_connectors.url_to_item_resolver_base')
+if TYPE_CHECKING:
+    from . import url_match_info, url_to_item_resolver_base
+
+from . import url_to_item_resolver_base
 
 class ItemIdResolver(url_to_item_resolver_base.UrlToItemResolverBase):
     def __init__(self,) -> None:
@@ -35,7 +36,9 @@ class ItemIdResolver(url_to_item_resolver_base.UrlToItemResolverBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import url_match_info, url_to_item_resolver_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "itemId": lambda n : setattr(self, 'item_id', n.get_str_value()),
             "urlMatchInfo": lambda n : setattr(self, 'url_match_info', n.get_object_value(url_match_info.UrlMatchInfo)),
         }

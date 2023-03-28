@@ -1,11 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-conditional_access_filter = lazy_import('msgraph.generated.models.conditional_access_filter')
+if TYPE_CHECKING:
+    from . import conditional_access_filter
 
 class ConditionalAccessApplications(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new conditionalAccessApplications and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Filter that defines the dynamic-application-syntax rule to include/exclude cloud applications. A filter can use custom security attributes to include/exclude applications.
+        self._application_filter: Optional[conditional_access_filter.ConditionalAccessFilter] = None
+        # Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
+        self._exclude_applications: Optional[List[str]] = None
+        # Can be one of the following:  The list of client IDs (appId) the policy applies to, unless explicitly excluded (in excludeApplications)  All  Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
+        self._include_applications: Optional[List[str]] = None
+        # Authentication context class references include. Supported values are c1 through c25.
+        self._include_authentication_context_class_references: Optional[List[str]] = None
+        # User actions to include. Supported values are urn:user:registersecurityinfo and urn:user:registerdevice
+        self._include_user_actions: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,26 +59,6 @@ class ConditionalAccessApplications(AdditionalDataHolder, Parsable):
             value: Value to set for the application_filter property.
         """
         self._application_filter = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new conditionalAccessApplications and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Filter that defines the dynamic-application-syntax rule to include/exclude cloud applications. A filter can use custom security attributes to include/exclude applications.
-        self._application_filter: Optional[conditional_access_filter.ConditionalAccessFilter] = None
-        # Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
-        self._exclude_applications: Optional[List[str]] = None
-        # Can be one of the following:  The list of client IDs (appId) the policy applies to, unless explicitly excluded (in excludeApplications)  All  Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
-        self._include_applications: Optional[List[str]] = None
-        # Authentication context class references include. Supported values are c1 through c25.
-        self._include_authentication_context_class_references: Optional[List[str]] = None
-        # User actions to include. Supported values are urn:user:registersecurityinfo and urn:user:registerdevice
-        self._include_user_actions: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ConditionalAccessApplications:
@@ -94,7 +94,9 @@ class ConditionalAccessApplications(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import conditional_access_filter
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "applicationFilter": lambda n : setattr(self, 'application_filter', n.get_object_value(conditional_access_filter.ConditionalAccessFilter)),
             "excludeApplications": lambda n : setattr(self, 'exclude_applications', n.get_collection_of_primitive_values(str)),
             "includeApplications": lambda n : setattr(self, 'include_applications', n.get_collection_of_primitive_values(str)),

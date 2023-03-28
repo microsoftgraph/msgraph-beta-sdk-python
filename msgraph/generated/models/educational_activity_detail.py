@@ -1,9 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class EducationalActivityDetail(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new educationalActivityDetail and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Shortened name of the degree or program (example: PhD, MBA)
+        self._abbreviation: Optional[str] = None
+        # Extracurricular activities undertaken alongside the program.
+        self._activities: Optional[List[str]] = None
+        # Any awards or honors associated with the program.
+        self._awards: Optional[List[str]] = None
+        # Short description of the program provided by the user.
+        self._description: Optional[str] = None
+        # Long-form name of the program that the user has provided.
+        self._display_name: Optional[str] = None
+        # Majors and minors associated with the program. (if applicable)
+        self._fields_of_study: Optional[List[str]] = None
+        # The final grade, class, GPA or score.
+        self._grade: Optional[str] = None
+        # Additional notes the user has provided.
+        self._notes: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Link to the degree or program page.
+        self._web_url: Optional[str] = None
+    
     @property
     def abbreviation(self,) -> Optional[str]:
         """
@@ -71,34 +98,6 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
             value: Value to set for the awards property.
         """
         self._awards = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new educationalActivityDetail and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Shortened name of the degree or program (example: PhD, MBA)
-        self._abbreviation: Optional[str] = None
-        # Extracurricular activities undertaken alongside the program.
-        self._activities: Optional[List[str]] = None
-        # Any awards or honors associated with the program.
-        self._awards: Optional[List[str]] = None
-        # Short description of the program provided by the user.
-        self._description: Optional[str] = None
-        # Long-form name of the program that the user has provided.
-        self._display_name: Optional[str] = None
-        # Majors and minors associated with the program. (if applicable)
-        self._fields_of_study: Optional[List[str]] = None
-        # The final grade, class, GPA or score.
-        self._grade: Optional[str] = None
-        # Additional notes the user has provided.
-        self._notes: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Link to the degree or program page.
-        self._web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationalActivityDetail:
@@ -168,7 +167,7 @@ class EducationalActivityDetail(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "abbreviation": lambda n : setattr(self, 'abbreviation', n.get_str_value()),
             "activities": lambda n : setattr(self, 'activities', n.get_collection_of_primitive_values(str)),
             "awards": lambda n : setattr(self, 'awards', n.get_collection_of_primitive_values(str)),

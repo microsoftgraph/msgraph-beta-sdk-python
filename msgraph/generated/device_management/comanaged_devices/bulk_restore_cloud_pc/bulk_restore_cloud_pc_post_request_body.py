@@ -1,12 +1,26 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-restore_time_range = lazy_import('msgraph.generated.models.restore_time_range')
+if TYPE_CHECKING:
+    from ....models import restore_time_range
 
 class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new bulkRestoreCloudPcPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The managedDeviceIds property
+        self._managed_device_ids: Optional[List[str]] = None
+        # The restorePointDateTime property
+        self._restore_point_date_time: Optional[datetime] = None
+        # The timeRange property
+        self._time_range: Optional[restore_time_range.RestoreTimeRange] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +37,6 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bulkRestoreCloudPcPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The managedDeviceIds property
-        self._managed_device_ids: Optional[List[str]] = None
-        # The restorePointDateTime property
-        self._restore_point_date_time: Optional[datetime] = None
-        # The timeRange property
-        self._time_range: Optional[restore_time_range.RestoreTimeRange] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BulkRestoreCloudPcPostRequestBody:
@@ -55,7 +55,9 @@ class BulkRestoreCloudPcPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import restore_time_range
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "managedDeviceIds": lambda n : setattr(self, 'managed_device_ids', n.get_collection_of_primitive_values(str)),
             "restorePointDateTime": lambda n : setattr(self, 'restore_point_date_time', n.get_datetime_value()),
             "timeRange": lambda n : setattr(self, 'time_range', n.get_enum_value(restore_time_range.RestoreTimeRange)),

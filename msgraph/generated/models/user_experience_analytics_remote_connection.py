@@ -1,14 +1,50 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class UserExperienceAnalyticsRemoteConnection(entity.Entity):
     """
     The user experience analyte remote connection entity.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new userExperienceAnalyticsRemoteConnection and sets the default values.
+        """
+        super().__init__()
+        # The sign in failure percentage of Cloud PC Device. Valid values 0 to 100
+        self._cloud_pc_failure_percentage: Optional[float] = None
+        # The round tip time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
+        self._cloud_pc_round_trip_time: Optional[float] = None
+        # The sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
+        self._cloud_pc_sign_in_time: Optional[float] = None
+        # The core boot time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
+        self._core_boot_time: Optional[float] = None
+        # The core sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
+        self._core_sign_in_time: Optional[float] = None
+        # The count of remote connection. Valid values 0 to 2147483647
+        self._device_count: Optional[int] = None
+        # The id of the device.
+        self._device_id: Optional[str] = None
+        # The name of the device.
+        self._device_name: Optional[str] = None
+        # The user experience analytics manufacturer.
+        self._manufacturer: Optional[str] = None
+        # The user experience analytics device model.
+        self._model: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The remote sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
+        self._remote_sign_in_time: Optional[float] = None
+        # The user experience analytics userPrincipalName.
+        self._user_principal_name: Optional[str] = None
+        # The user experience analytics virtual network.
+        self._virtual_network: Optional[str] = None
+    
     @property
     def cloud_pc_failure_percentage(self,) -> Optional[float]:
         """
@@ -59,40 +95,6 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
             value: Value to set for the cloud_pc_sign_in_time property.
         """
         self._cloud_pc_sign_in_time = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new userExperienceAnalyticsRemoteConnection and sets the default values.
-        """
-        super().__init__()
-        # The sign in failure percentage of Cloud PC Device. Valid values 0 to 100
-        self._cloud_pc_failure_percentage: Optional[float] = None
-        # The round tip time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-        self._cloud_pc_round_trip_time: Optional[float] = None
-        # The sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-        self._cloud_pc_sign_in_time: Optional[float] = None
-        # The core boot time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-        self._core_boot_time: Optional[float] = None
-        # The core sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-        self._core_sign_in_time: Optional[float] = None
-        # The count of remote connection. Valid values 0 to 2147483647
-        self._device_count: Optional[int] = None
-        # The id of the device.
-        self._device_id: Optional[str] = None
-        # The name of the device.
-        self._device_name: Optional[str] = None
-        # The user experience analytics manufacturer.
-        self._manufacturer: Optional[str] = None
-        # The user experience analytics device model.
-        self._model: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The remote sign in time of Cloud PC Device. Valid values 0 to 1.79769313486232E+308
-        self._remote_sign_in_time: Optional[float] = None
-        # The user experience analytics userPrincipalName.
-        self._user_principal_name: Optional[str] = None
-        # The user experience analytics virtual network.
-        self._virtual_network: Optional[str] = None
     
     @property
     def core_boot_time(self,) -> Optional[float]:
@@ -196,7 +198,9 @@ class UserExperienceAnalyticsRemoteConnection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cloudPcFailurePercentage": lambda n : setattr(self, 'cloud_pc_failure_percentage', n.get_float_value()),
             "cloudPcRoundTripTime": lambda n : setattr(self, 'cloud_pc_round_trip_time', n.get_float_value()),
             "cloudPcSignInTime": lambda n : setattr(self, 'cloud_pc_sign_in_time', n.get_float_value()),

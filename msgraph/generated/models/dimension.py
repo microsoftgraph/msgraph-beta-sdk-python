@@ -1,13 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dimension_value = lazy_import('msgraph.generated.models.dimension_value')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import dimension_value, entity
+
+from . import entity
 
 class Dimension(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new dimension and sets the default values.
+        """
+        super().__init__()
+        # The code property
+        self._code: Optional[str] = None
+        # The dimensionValues property
+        self._dimension_values: Optional[List[dimension_value.DimensionValue]] = None
+        # The displayName property
+        self._display_name: Optional[str] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def code(self,) -> Optional[str]:
         """
@@ -24,22 +41,6 @@ class Dimension(entity.Entity):
             value: Value to set for the code property.
         """
         self._code = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new dimension and sets the default values.
-        """
-        super().__init__()
-        # The code property
-        self._code: Optional[str] = None
-        # The dimensionValues property
-        self._dimension_values: Optional[List[dimension_value.DimensionValue]] = None
-        # The displayName property
-        self._display_name: Optional[str] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Dimension:
@@ -92,7 +93,9 @@ class Dimension(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dimension_value, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "code": lambda n : setattr(self, 'code', n.get_str_value()),
             "dimensionValues": lambda n : setattr(self, 'dimension_values', n.get_collection_of_object_values(dimension_value.DimensionValue)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

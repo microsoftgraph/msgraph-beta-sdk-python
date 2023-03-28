@@ -1,15 +1,45 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user = lazy_import('msgraph.generated.models.user')
-lifecycle_workflow_category = lazy_import('msgraph.generated.models.identity_governance.lifecycle_workflow_category')
-task = lazy_import('msgraph.generated.models.identity_governance.task')
-workflow_execution_conditions = lazy_import('msgraph.generated.models.identity_governance.workflow_execution_conditions')
+if TYPE_CHECKING:
+    from . import lifecycle_workflow_category, task, workflow, workflow_execution_conditions, workflow_version
+    from .. import user
 
 class WorkflowBase(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new workflowBase and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The category property
+        self._category: Optional[lifecycle_workflow_category.LifecycleWorkflowCategory] = None
+        # The user who created the workflow.
+        self._created_by: Optional[user.User] = None
+        # When a workflow was created.
+        self._created_date_time: Optional[datetime] = None
+        # A string that describes the purpose of the workflow.
+        self._description: Optional[str] = None
+        # A string to identify the workflow.
+        self._display_name: Optional[str] = None
+        # Defines when and for who the workflow will run.
+        self._execution_conditions: Optional[workflow_execution_conditions.WorkflowExecutionConditions] = None
+        # Whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.
+        self._is_enabled: Optional[bool] = None
+        # If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Cannot be true for a disabled workflow (where isEnabled is false).
+        self._is_scheduling_enabled: Optional[bool] = None
+        # The user who last modified the workflow.
+        self._last_modified_by: Optional[user.User] = None
+        # When the workflow was last modified.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The tasks in the workflow.
+        self._tasks: Optional[List[task.Task]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -43,38 +73,6 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
             value: Value to set for the category property.
         """
         self._category = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new workflowBase and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The category property
-        self._category: Optional[lifecycle_workflow_category.LifecycleWorkflowCategory] = None
-        # The user who created the workflow.
-        self._created_by: Optional[user.User] = None
-        # When a workflow was created.
-        self._created_date_time: Optional[datetime] = None
-        # A string that describes the purpose of the workflow.
-        self._description: Optional[str] = None
-        # A string to identify the workflow.
-        self._display_name: Optional[str] = None
-        # Defines when and for who the workflow will run.
-        self._execution_conditions: Optional[workflow_execution_conditions.WorkflowExecutionConditions] = None
-        # Whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.
-        self._is_enabled: Optional[bool] = None
-        # If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Cannot be true for a disabled workflow (where isEnabled is false).
-        self._is_scheduling_enabled: Optional[bool] = None
-        # The user who last modified the workflow.
-        self._last_modified_by: Optional[user.User] = None
-        # When the workflow was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The tasks in the workflow.
-        self._tasks: Optional[List[task.Task]] = None
     
     @property
     def created_by(self,) -> Optional[user.User]:
@@ -120,6 +118,17 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.identityGovernance.workflow":
+                from . import workflow
+
+                return workflow.Workflow()
+            if mapping_value == "#microsoft.graph.identityGovernance.workflowVersion":
+                from . import workflow_version
+
+                return workflow_version.WorkflowVersion()
         return WorkflowBase()
     
     @property
@@ -178,7 +187,10 @@ class WorkflowBase(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import lifecycle_workflow_category, task, workflow, workflow_execution_conditions, workflow_version
+        from .. import user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_enum_value(lifecycle_workflow_category.LifecycleWorkflowCategory)),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user.User)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

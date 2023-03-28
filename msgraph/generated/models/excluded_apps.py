@@ -1,12 +1,51 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ExcludedApps(AdditionalDataHolder, Parsable):
     """
     Contains properties for Excluded Office365 Apps.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new excludedApps and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The value for if MS Office Access should be excluded or not.
+        self._access: Optional[bool] = None
+        # The value for if Microsoft Search as default should be excluded or not.
+        self._bing: Optional[bool] = None
+        # The value for if MS Office Excel should be excluded or not.
+        self._excel: Optional[bool] = None
+        # The value for if MS Office OneDrive for Business - Groove should be excluded or not.
+        self._groove: Optional[bool] = None
+        # The value for if MS Office InfoPath should be excluded or not.
+        self._info_path: Optional[bool] = None
+        # The value for if MS Office Skype for Business - Lync should be excluded or not.
+        self._lync: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The value for if MS Office OneDrive should be excluded or not.
+        self._one_drive: Optional[bool] = None
+        # The value for if MS Office OneNote should be excluded or not.
+        self._one_note: Optional[bool] = None
+        # The value for if MS Office Outlook should be excluded or not.
+        self._outlook: Optional[bool] = None
+        # The value for if MS Office PowerPoint should be excluded or not.
+        self._power_point: Optional[bool] = None
+        # The value for if MS Office Publisher should be excluded or not.
+        self._publisher: Optional[bool] = None
+        # The value for if MS Office SharePointDesigner should be excluded or not.
+        self._share_point_designer: Optional[bool] = None
+        # The value for if MS Office Teams should be excluded or not.
+        self._teams: Optional[bool] = None
+        # The value for if MS Office Visio should be excluded or not.
+        self._visio: Optional[bool] = None
+        # The value for if MS Office Word should be excluded or not.
+        self._word: Optional[bool] = None
+    
     @property
     def access(self,) -> Optional[bool]:
         """
@@ -58,46 +97,6 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         """
         self._bing = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new excludedApps and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The value for if MS Office Access should be excluded or not.
-        self._access: Optional[bool] = None
-        # The value for if Microsoft Search as default should be excluded or not.
-        self._bing: Optional[bool] = None
-        # The value for if MS Office Excel should be excluded or not.
-        self._excel: Optional[bool] = None
-        # The value for if MS Office OneDrive for Business - Groove should be excluded or not.
-        self._groove: Optional[bool] = None
-        # The value for if MS Office InfoPath should be excluded or not.
-        self._info_path: Optional[bool] = None
-        # The value for if MS Office Skype for Business - Lync should be excluded or not.
-        self._lync: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The value for if MS Office OneDrive should be excluded or not.
-        self._one_drive: Optional[bool] = None
-        # The value for if MS Office OneNote should be excluded or not.
-        self._one_note: Optional[bool] = None
-        # The value for if MS Office Outlook should be excluded or not.
-        self._outlook: Optional[bool] = None
-        # The value for if MS Office PowerPoint should be excluded or not.
-        self._power_point: Optional[bool] = None
-        # The value for if MS Office Publisher should be excluded or not.
-        self._publisher: Optional[bool] = None
-        # The value for if MS Office SharePointDesigner should be excluded or not.
-        self._share_point_designer: Optional[bool] = None
-        # The value for if MS Office Teams should be excluded or not.
-        self._teams: Optional[bool] = None
-        # The value for if MS Office Visio should be excluded or not.
-        self._visio: Optional[bool] = None
-        # The value for if MS Office Word should be excluded or not.
-        self._word: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExcludedApps:
         """
@@ -132,7 +131,7 @@ class ExcludedApps(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "access": lambda n : setattr(self, 'access', n.get_bool_value()),
             "bing": lambda n : setattr(self, 'bing', n.get_bool_value()),
             "excel": lambda n : setattr(self, 'excel', n.get_bool_value()),

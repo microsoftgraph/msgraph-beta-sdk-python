@@ -1,33 +1,15 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-deployable_content = lazy_import('msgraph.generated.models.windows_updates.deployable_content')
-deployment_audience = lazy_import('msgraph.generated.models.windows_updates.deployment_audience')
-deployment_settings = lazy_import('msgraph.generated.models.windows_updates.deployment_settings')
-deployment_state = lazy_import('msgraph.generated.models.windows_updates.deployment_state')
+if TYPE_CHECKING:
+    from . import deployable_content, deployment_audience, deployment_settings, deployment_state
+    from .. import entity
+
+from .. import entity
 
 class Deployment(entity.Entity):
-    @property
-    def audience(self,) -> Optional[deployment_audience.DeploymentAudience]:
-        """
-        Gets the audience property value. Specifies the audience to which content is deployed.
-        Returns: Optional[deployment_audience.DeploymentAudience]
-        """
-        return self._audience
-    
-    @audience.setter
-    def audience(self,value: Optional[deployment_audience.DeploymentAudience] = None) -> None:
-        """
-        Sets the audience property value. Specifies the audience to which content is deployed.
-        Args:
-            value: Value to set for the audience property.
-        """
-        self._audience = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new deployment and sets the default values.
@@ -47,6 +29,23 @@ class Deployment(entity.Entity):
         self._settings: Optional[deployment_settings.DeploymentSettings] = None
         # Execution status of the deployment. Returned by default.
         self._state: Optional[deployment_state.DeploymentState] = None
+    
+    @property
+    def audience(self,) -> Optional[deployment_audience.DeploymentAudience]:
+        """
+        Gets the audience property value. Specifies the audience to which content is deployed.
+        Returns: Optional[deployment_audience.DeploymentAudience]
+        """
+        return self._audience
+    
+    @audience.setter
+    def audience(self,value: Optional[deployment_audience.DeploymentAudience] = None) -> None:
+        """
+        Sets the audience property value. Specifies the audience to which content is deployed.
+        Args:
+            value: Value to set for the audience property.
+        """
+        self._audience = value
     
     @property
     def content(self,) -> Optional[deployable_content.DeployableContent]:
@@ -99,7 +98,10 @@ class Deployment(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import deployable_content, deployment_audience, deployment_settings, deployment_state
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "audience": lambda n : setattr(self, 'audience', n.get_object_value(deployment_audience.DeploymentAudience)),
             "content": lambda n : setattr(self, 'content', n.get_object_value(deployable_content.DeployableContent)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

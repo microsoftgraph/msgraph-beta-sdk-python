@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
+if TYPE_CHECKING:
+    from . import ios_azure_ad_single_sign_on_extension, ios_credential_single_sign_on_extension, ios_kerberos_single_sign_on_extension, ios_redirect_single_sign_on_extension, single_sign_on_extension
+
+from . import single_sign_on_extension
 
 class IosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
     def __init__(self,) -> None:
@@ -23,6 +25,25 @@ class IosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosAzureAdSingleSignOnExtension":
+                from . import ios_azure_ad_single_sign_on_extension
+
+                return ios_azure_ad_single_sign_on_extension.IosAzureAdSingleSignOnExtension()
+            if mapping_value == "#microsoft.graph.iosCredentialSingleSignOnExtension":
+                from . import ios_credential_single_sign_on_extension
+
+                return ios_credential_single_sign_on_extension.IosCredentialSingleSignOnExtension()
+            if mapping_value == "#microsoft.graph.iosKerberosSingleSignOnExtension":
+                from . import ios_kerberos_single_sign_on_extension
+
+                return ios_kerberos_single_sign_on_extension.IosKerberosSingleSignOnExtension()
+            if mapping_value == "#microsoft.graph.iosRedirectSingleSignOnExtension":
+                from . import ios_redirect_single_sign_on_extension
+
+                return ios_redirect_single_sign_on_extension.IosRedirectSingleSignOnExtension()
         return IosSingleSignOnExtension()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -30,7 +51,9 @@ class IosSingleSignOnExtension(single_sign_on_extension.SingleSignOnExtension):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import ios_azure_ad_single_sign_on_extension, ios_credential_single_sign_on_extension, ios_kerberos_single_sign_on_extension, ios_redirect_single_sign_on_extension, single_sign_on_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

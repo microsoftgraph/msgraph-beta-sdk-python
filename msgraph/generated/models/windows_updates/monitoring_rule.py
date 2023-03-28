@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-monitoring_action = lazy_import('msgraph.generated.models.windows_updates.monitoring_action')
-monitoring_signal = lazy_import('msgraph.generated.models.windows_updates.monitoring_signal')
+if TYPE_CHECKING:
+    from . import monitoring_action, monitoring_signal
 
 class MonitoringRule(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new monitoringRule and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The action triggered when the threshold for the given signal is met. Possible values are: alertError, pauseDeployment, unknownFutureValue.
+        self._action: Optional[monitoring_action.MonitoringAction] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The signal to monitor. Possible values are: rollback, unknownFutureValue.
+        self._signal: Optional[monitoring_signal.MonitoringSignal] = None
+        # The threshold for a signal at which to trigger action. An integer from 1 to 100 (inclusive).
+        self._threshold: Optional[int] = None
+    
     @property
     def action(self,) -> Optional[monitoring_action.MonitoringAction]:
         """
@@ -41,22 +56,6 @@ class MonitoringRule(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new monitoringRule and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The action triggered when the threshold for the given signal is met. Possible values are: alertError, pauseDeployment, unknownFutureValue.
-        self._action: Optional[monitoring_action.MonitoringAction] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The signal to monitor. Possible values are: rollback, unknownFutureValue.
-        self._signal: Optional[monitoring_signal.MonitoringSignal] = None
-        # The threshold for a signal at which to trigger action. An integer from 1 to 100 (inclusive).
-        self._threshold: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MonitoringRule:
         """
@@ -74,7 +73,9 @@ class MonitoringRule(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import monitoring_action, monitoring_signal
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "action": lambda n : setattr(self, 'action', n.get_enum_value(monitoring_action.MonitoringAction)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "signal": lambda n : setattr(self, 'signal', n.get_enum_value(monitoring_signal.MonitoringSignal)),

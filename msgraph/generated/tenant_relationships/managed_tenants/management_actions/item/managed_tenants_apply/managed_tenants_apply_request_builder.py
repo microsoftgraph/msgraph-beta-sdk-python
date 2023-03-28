@@ -7,12 +7,12 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-management_action_deployment_status = lazy_import('msgraph.generated.models.managed_tenants.management_action_deployment_status')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-apply_post_request_body = lazy_import('msgraph.generated.tenant_relationships.managed_tenants.management_actions.item.managed_tenants_apply.apply_post_request_body')
+if TYPE_CHECKING:
+    from . import apply_post_request_body
+    from ......models.managed_tenants import management_action_deployment_status
+    from ......models.o_data_errors import o_data_error
 
 class ManagedTenantsApplyRequestBuilder():
     """
@@ -49,12 +49,16 @@ class ManagedTenantsApplyRequestBuilder():
         request_info = self.to_post_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models.managed_tenants import management_action_deployment_status
+
         return await self.request_adapter.send_async(request_info, management_action_deployment_status.ManagementActionDeploymentStatus, error_mapping)
     
     def to_post_request_information(self,body: Optional[apply_post_request_body.ApplyPostRequestBody] = None, request_configuration: Optional[ManagedTenantsApplyRequestBuilderPostRequestConfiguration] = None) -> RequestInformation:

@@ -1,11 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
+if TYPE_CHECKING:
+    from .....models import authentication_method_modes
 
 class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new updateAllowedCombinationsPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The allowedCombinations property
+        self._allowed_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,16 +50,6 @@ class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._allowed_combinations = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new updateAllowedCombinationsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The allowedCombinations property
-        self._allowed_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UpdateAllowedCombinationsPostRequestBody:
         """
@@ -67,7 +67,9 @@ class UpdateAllowedCombinationsPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import authentication_method_modes
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedCombinations": lambda n : setattr(self, 'allowed_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
         }
         return fields

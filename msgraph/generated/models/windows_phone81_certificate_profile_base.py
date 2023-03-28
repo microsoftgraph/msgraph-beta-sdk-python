@@ -1,16 +1,34 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_validity_period_scale = lazy_import('msgraph.generated.models.certificate_validity_period_scale')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-extended_key_usage = lazy_import('msgraph.generated.models.extended_key_usage')
-key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
-subject_alternative_name_type = lazy_import('msgraph.generated.models.subject_alternative_name_type')
-subject_name_format = lazy_import('msgraph.generated.models.subject_name_format')
+if TYPE_CHECKING:
+    from . import certificate_validity_period_scale, device_configuration, extended_key_usage, key_storage_provider_option, subject_alternative_name_type, subject_name_format, windows_phone81_s_c_e_p_certificate_profile
+
+from . import device_configuration
 
 class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsPhone81CertificateProfileBase and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsPhone81CertificateProfileBase"
+        # Certificate Validity Period Options.
+        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
+        # Value for the Certificate Validtiy Period.
+        self._certificate_validity_period_value: Optional[int] = None
+        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
+        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
+        # Key Storage Provider (KSP) Import Options.
+        self._key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
+        # Certificate renewal threshold percentage.
+        self._renewal_threshold_percentage: Optional[int] = None
+        # Subject Alternative Name Options.
+        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
+        # Subject Name Format Options.
+        self._subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
+    
     @property
     def certificate_validity_period_scale(self,) -> Optional[certificate_validity_period_scale.CertificateValidityPeriodScale]:
         """
@@ -45,27 +63,6 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         self._certificate_validity_period_value = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsPhone81CertificateProfileBase and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsPhone81CertificateProfileBase"
-        # Certificate Validity Period Options.
-        self._certificate_validity_period_scale: Optional[certificate_validity_period_scale.CertificateValidityPeriodScale] = None
-        # Value for the Certificate Validtiy Period.
-        self._certificate_validity_period_value: Optional[int] = None
-        # Extended Key Usage (EKU) settings. This collection can contain a maximum of 500 elements.
-        self._extended_key_usages: Optional[List[extended_key_usage.ExtendedKeyUsage]] = None
-        # Key Storage Provider (KSP) Import Options.
-        self._key_storage_provider: Optional[key_storage_provider_option.KeyStorageProviderOption] = None
-        # Certificate renewal threshold percentage.
-        self._renewal_threshold_percentage: Optional[int] = None
-        # Subject Alternative Name Options.
-        self._subject_alternative_name_type: Optional[subject_alternative_name_type.SubjectAlternativeNameType] = None
-        # Subject Name Format Options.
-        self._subject_name_format: Optional[subject_name_format.SubjectNameFormat] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsPhone81CertificateProfileBase:
         """
@@ -76,6 +73,13 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.windowsPhone81SCEPCertificateProfile":
+                from . import windows_phone81_s_c_e_p_certificate_profile
+
+                return windows_phone81_s_c_e_p_certificate_profile.WindowsPhone81SCEPCertificateProfile()
         return WindowsPhone81CertificateProfileBase()
     
     @property
@@ -100,7 +104,9 @@ class WindowsPhone81CertificateProfileBase(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_validity_period_scale, device_configuration, extended_key_usage, key_storage_provider_option, subject_alternative_name_type, subject_name_format, windows_phone81_s_c_e_p_certificate_profile
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateValidityPeriodScale": lambda n : setattr(self, 'certificate_validity_period_scale', n.get_enum_value(certificate_validity_period_scale.CertificateValidityPeriodScale)),
             "certificateValidityPeriodValue": lambda n : setattr(self, 'certificate_validity_period_value', n.get_int_value()),
             "extendedKeyUsages": lambda n : setattr(self, 'extended_key_usages', n.get_collection_of_object_values(extended_key_usage.ExtendedKeyUsage)),

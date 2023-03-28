@@ -1,13 +1,36 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-alert_feedback = lazy_import('msgraph.generated.models.alert_feedback')
-alert_status = lazy_import('msgraph.generated.models.alert_status')
+if TYPE_CHECKING:
+    from . import alert_feedback, alert_status
 
 class AlertHistoryState(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new alertHistoryState and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The Application ID of the calling application that submitted an update (PATCH) to the alert. The appId should be extracted from the auth token and not entered manually by the calling application.
+        self._app_id: Optional[str] = None
+        # UPN of user the alert was assigned to (note: alert.assignedTo only stores the last value/UPN).
+        self._assigned_to: Optional[str] = None
+        # Comment entered by signed-in user.
+        self._comments: Optional[List[str]] = None
+        # Analyst feedback on the alert in this update. Possible values are: unknown, truePositive, falsePositive, benignPositive.
+        self._feedback: Optional[alert_feedback.AlertFeedback] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Alert status value (if updated). Possible values are: unknown, newAlert, inProgress, resolved, dismissed.
+        self._status: Optional[alert_status.AlertStatus] = None
+        # Date and time of the alert update. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._updated_date_time: Optional[datetime] = None
+        # UPN of the signed-in user that updated the alert (taken from the bearer token - if in user/delegated auth mode).
+        self._user: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -76,30 +99,6 @@ class AlertHistoryState(AdditionalDataHolder, Parsable):
         """
         self._comments = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new alertHistoryState and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The Application ID of the calling application that submitted an update (PATCH) to the alert. The appId should be extracted from the auth token and not entered manually by the calling application.
-        self._app_id: Optional[str] = None
-        # UPN of user the alert was assigned to (note: alert.assignedTo only stores the last value/UPN).
-        self._assigned_to: Optional[str] = None
-        # Comment entered by signed-in user.
-        self._comments: Optional[List[str]] = None
-        # Analyst feedback on the alert in this update. Possible values are: unknown, truePositive, falsePositive, benignPositive.
-        self._feedback: Optional[alert_feedback.AlertFeedback] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Alert status value (if updated). Possible values are: unknown, newAlert, inProgress, resolved, dismissed.
-        self._status: Optional[alert_status.AlertStatus] = None
-        # Date and time of the alert update. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._updated_date_time: Optional[datetime] = None
-        # UPN of the signed-in user that updated the alert (taken from the bearer token - if in user/delegated auth mode).
-        self._user: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AlertHistoryState:
         """
@@ -134,7 +133,9 @@ class AlertHistoryState(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_feedback, alert_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "assignedTo": lambda n : setattr(self, 'assigned_to', n.get_str_value()),
             "comments": lambda n : setattr(self, 'comments', n.get_collection_of_primitive_values(str)),

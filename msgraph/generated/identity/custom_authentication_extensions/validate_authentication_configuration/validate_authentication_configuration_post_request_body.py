@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-custom_extension_authentication_configuration = lazy_import('msgraph.generated.models.custom_extension_authentication_configuration')
-custom_extension_endpoint_configuration = lazy_import('msgraph.generated.models.custom_extension_endpoint_configuration')
+if TYPE_CHECKING:
+    from ....models import custom_extension_authentication_configuration, custom_extension_endpoint_configuration
 
 class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new validateAuthenticationConfigurationPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The authenticationConfiguration property
+        self._authentication_configuration: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None
+        # The endpointConfiguration property
+        self._endpoint_configuration: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,18 +51,6 @@ class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, P
             value: Value to set for the authentication_configuration property.
         """
         self._authentication_configuration = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new validateAuthenticationConfigurationPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The authenticationConfiguration property
-        self._authentication_configuration: Optional[custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration] = None
-        # The endpointConfiguration property
-        self._endpoint_configuration: Optional[custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ValidateAuthenticationConfigurationPostRequestBody:
@@ -87,7 +86,9 @@ class ValidateAuthenticationConfigurationPostRequestBody(AdditionalDataHolder, P
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ....models import custom_extension_authentication_configuration, custom_extension_endpoint_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationConfiguration": lambda n : setattr(self, 'authentication_configuration', n.get_object_value(custom_extension_authentication_configuration.CustomExtensionAuthenticationConfiguration)),
             "endpointConfiguration": lambda n : setattr(self, 'endpoint_configuration', n.get_object_value(custom_extension_endpoint_configuration.CustomExtensionEndpointConfiguration)),
         }

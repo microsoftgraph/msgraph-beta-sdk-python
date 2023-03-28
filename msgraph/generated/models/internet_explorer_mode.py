@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-browser_site_list = lazy_import('msgraph.generated.models.browser_site_list')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import browser_site_list, entity
+
+from . import entity
 
 class InternetExplorerMode(entity.Entity):
     def __init__(self,) -> None:
@@ -34,7 +35,9 @@ class InternetExplorerMode(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import browser_site_list, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "siteLists": lambda n : setattr(self, 'site_lists', n.get_collection_of_object_values(browser_site_list.BrowserSiteList)),
         }
         super_fields = super().get_field_deserializers()

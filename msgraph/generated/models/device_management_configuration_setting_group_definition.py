@@ -1,13 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_dependent_on = lazy_import('msgraph.generated.models.device_management_configuration_dependent_on')
-device_management_configuration_setting_definition = lazy_import('msgraph.generated.models.device_management_configuration_setting_definition')
-device_management_configuration_setting_depended_on_by = lazy_import('msgraph.generated.models.device_management_configuration_setting_depended_on_by')
+if TYPE_CHECKING:
+    from . import device_management_configuration_dependent_on, device_management_configuration_setting_definition, device_management_configuration_setting_depended_on_by, device_management_configuration_setting_group_collection_definition
+
+from . import device_management_configuration_setting_definition
 
 class DeviceManagementConfigurationSettingGroupDefinition(device_management_configuration_setting_definition.DeviceManagementConfigurationSettingDefinition):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceManagementConfigurationSettingGroupDefinition and sets the default values.
+        """
+        super().__init__()
+        # Dependent child settings to this group of settings
+        self._child_ids: Optional[List[str]] = None
+        # List of child settings that depend on this setting
+        self._depended_on_by: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]] = None
+        # List of Dependencies for the setting group
+        self._dependent_on: Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def child_ids(self,) -> Optional[List[str]]:
         """
@@ -25,20 +39,6 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         """
         self._child_ids = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceManagementConfigurationSettingGroupDefinition and sets the default values.
-        """
-        super().__init__()
-        # Dependent child settings to this group of settings
-        self._child_ids: Optional[List[str]] = None
-        # List of child settings that depend on this setting
-        self._depended_on_by: Optional[List[device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy]] = None
-        # List of Dependencies for the setting group
-        self._dependent_on: Optional[List[device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationSettingGroupDefinition:
         """
@@ -49,6 +49,13 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition":
+                from . import device_management_configuration_setting_group_collection_definition
+
+                return device_management_configuration_setting_group_collection_definition.DeviceManagementConfigurationSettingGroupCollectionDefinition()
         return DeviceManagementConfigurationSettingGroupDefinition()
     
     @property
@@ -90,7 +97,9 @@ class DeviceManagementConfigurationSettingGroupDefinition(device_management_conf
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_dependent_on, device_management_configuration_setting_definition, device_management_configuration_setting_depended_on_by, device_management_configuration_setting_group_collection_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "childIds": lambda n : setattr(self, 'child_ids', n.get_collection_of_primitive_values(str)),
             "dependedOnBy": lambda n : setattr(self, 'depended_on_by', n.get_collection_of_object_values(device_management_configuration_setting_depended_on_by.DeviceManagementConfigurationSettingDependedOnBy)),
             "dependentOn": lambda n : setattr(self, 'dependent_on', n.get_collection_of_object_values(device_management_configuration_dependent_on.DeviceManagementConfigurationDependentOn)),

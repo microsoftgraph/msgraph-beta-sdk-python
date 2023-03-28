@@ -1,21 +1,49 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-browser_site_compatibility_mode = lazy_import('msgraph.generated.models.browser_site_compatibility_mode')
-browser_site_history = lazy_import('msgraph.generated.models.browser_site_history')
-browser_site_merge_type = lazy_import('msgraph.generated.models.browser_site_merge_type')
-browser_site_status = lazy_import('msgraph.generated.models.browser_site_status')
-browser_site_target_environment = lazy_import('msgraph.generated.models.browser_site_target_environment')
-entity = lazy_import('msgraph.generated.models.entity')
-identity_set = lazy_import('msgraph.generated.models.identity_set')
+if TYPE_CHECKING:
+    from . import browser_site_compatibility_mode, browser_site_history, browser_site_merge_type, browser_site_status, browser_site_target_environment, entity, identity_set
+
+from . import entity
 
 class BrowserSite(entity.Entity):
     """
     Singleton entity which is used to specify IE mode site metadata
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new browserSite and sets the default values.
+        """
+        super().__init__()
+        # Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
+        self._allow_redirect: Optional[bool] = None
+        # The comment for the site.
+        self._comment: Optional[str] = None
+        # The compatibilityMode property
+        self._compatibility_mode: Optional[browser_site_compatibility_mode.BrowserSiteCompatibilityMode] = None
+        # The date and time when the site was created.
+        self._created_date_time: Optional[datetime] = None
+        # The date and time when the site was deleted.
+        self._deleted_date_time: Optional[datetime] = None
+        # The history of modifications applied to the site.
+        self._history: Optional[List[browser_site_history.BrowserSiteHistory]] = None
+        # The user who last modified the site.
+        self._last_modified_by: Optional[identity_set.IdentitySet] = None
+        # The date and time when the site was last modified.
+        self._last_modified_date_time: Optional[datetime] = None
+        # The mergeType property
+        self._merge_type: Optional[browser_site_merge_type.BrowserSiteMergeType] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The status property
+        self._status: Optional[browser_site_status.BrowserSiteStatus] = None
+        # The targetEnvironment property
+        self._target_environment: Optional[browser_site_target_environment.BrowserSiteTargetEnvironment] = None
+        # The URL of the site.
+        self._web_url: Optional[str] = None
+    
     @property
     def allow_redirect(self,) -> Optional[bool]:
         """
@@ -66,38 +94,6 @@ class BrowserSite(entity.Entity):
             value: Value to set for the compatibility_mode property.
         """
         self._compatibility_mode = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new browserSite and sets the default values.
-        """
-        super().__init__()
-        # Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
-        self._allow_redirect: Optional[bool] = None
-        # The comment for the site.
-        self._comment: Optional[str] = None
-        # The compatibilityMode property
-        self._compatibility_mode: Optional[browser_site_compatibility_mode.BrowserSiteCompatibilityMode] = None
-        # The date and time when the site was created.
-        self._created_date_time: Optional[datetime] = None
-        # The date and time when the site was deleted.
-        self._deleted_date_time: Optional[datetime] = None
-        # The history of modifications applied to the site.
-        self._history: Optional[List[browser_site_history.BrowserSiteHistory]] = None
-        # The user who last modified the site.
-        self._last_modified_by: Optional[identity_set.IdentitySet] = None
-        # The date and time when the site was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # The mergeType property
-        self._merge_type: Optional[browser_site_merge_type.BrowserSiteMergeType] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The status property
-        self._status: Optional[browser_site_status.BrowserSiteStatus] = None
-        # The targetEnvironment property
-        self._target_environment: Optional[browser_site_target_environment.BrowserSiteTargetEnvironment] = None
-        # The URL of the site.
-        self._web_url: Optional[str] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -150,7 +146,9 @@ class BrowserSite(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import browser_site_compatibility_mode, browser_site_history, browser_site_merge_type, browser_site_status, browser_site_target_environment, entity, identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowRedirect": lambda n : setattr(self, 'allow_redirect', n.get_bool_value()),
             "comment": lambda n : setattr(self, 'comment', n.get_str_value()),
             "compatibilityMode": lambda n : setattr(self, 'compatibility_mode', n.get_enum_value(browser_site_compatibility_mode.BrowserSiteCompatibilityMode)),

@@ -1,12 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-operation_status = lazy_import('msgraph.generated.models.operation_status')
+if TYPE_CHECKING:
+    from . import operation_status
 
 class SecurityActionState(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new securityActionState and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The Application ID of the calling application that submitted an update (PATCH) to the action. The appId should be extracted from the auth token and not entered manually by the calling application.
+        self._app_id: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Status of the securityAction in this update. Possible values are: NotStarted, Running, Completed, Failed.
+        self._status: Optional[operation_status.OperationStatus] = None
+        # Timestamp when the actionState was updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._updated_date_time: Optional[datetime] = None
+        # The user principal name of the signed-in user that submitted an update (PATCH) to the action. The user should be extracted from the auth token and not entered manually by the calling application.
+        self._user: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -41,24 +59,6 @@ class SecurityActionState(AdditionalDataHolder, Parsable):
         """
         self._app_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new securityActionState and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The Application ID of the calling application that submitted an update (PATCH) to the action. The appId should be extracted from the auth token and not entered manually by the calling application.
-        self._app_id: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Status of the securityAction in this update. Possible values are: NotStarted, Running, Completed, Failed.
-        self._status: Optional[operation_status.OperationStatus] = None
-        # Timestamp when the actionState was updated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._updated_date_time: Optional[datetime] = None
-        # The user principal name of the signed-in user that submitted an update (PATCH) to the action. The user should be extracted from the auth token and not entered manually by the calling application.
-        self._user: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SecurityActionState:
         """
@@ -76,7 +76,9 @@ class SecurityActionState(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import operation_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appId": lambda n : setattr(self, 'app_id', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "status": lambda n : setattr(self, 'status', n.get_enum_value(operation_status.OperationStatus)),

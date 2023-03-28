@@ -7,48 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.cancel.cancel_request_builder')
-commit_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.commit.commit_request_builder')
-renew_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.renew.renew_request_builder')
-upload_agent_request_builder = lazy_import('msgraph.generated.data_classification.exact_match_data_stores.item.sessions.item.upload_agent.upload_agent_request_builder')
-exact_match_session = lazy_import('msgraph.generated.models.exact_match_session')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import exact_match_session
+    from ......models.o_data_errors import o_data_error
+    from .cancel import cancel_request_builder
+    from .commit import commit_request_builder
+    from .renew import renew_request_builder
+    from .upload_agent import upload_agent_request_builder
 
 class ExactMatchSessionItemRequestBuilder():
     """
     Provides operations to manage the sessions property of the microsoft.graph.exactMatchDataStore entity.
     """
-    @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def commit(self) -> commit_request_builder.CommitRequestBuilder:
-        """
-        Provides operations to call the commit method.
-        """
-        return commit_request_builder.CommitRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def renew(self) -> renew_request_builder.RenewRequestBuilder:
-        """
-        Provides operations to call the renew method.
-        """
-        return renew_request_builder.RenewRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def upload_agent(self) -> upload_agent_request_builder.UploadAgentRequestBuilder:
-        """
-        Provides operations to manage the uploadAgent property of the microsoft.graph.exactMatchSession entity.
-        """
-        return upload_agent_request_builder.UploadAgentRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ExactMatchSessionItemRequestBuilder and sets the default values.
@@ -76,6 +48,8 @@ class ExactMatchSessionItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -94,12 +68,16 @@ class ExactMatchSessionItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import exact_match_session
+
         return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
     
     async def patch(self,body: Optional[exact_match_session.ExactMatchSession] = None, request_configuration: Optional[ExactMatchSessionItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[exact_match_session.ExactMatchSession]:
@@ -115,12 +93,16 @@ class ExactMatchSessionItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import exact_match_session
+
         return await self.request_adapter.send_async(request_info, exact_match_session.ExactMatchSession, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ExactMatchSessionItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -178,6 +160,42 @@ class ExactMatchSessionItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel import cancel_request_builder
+
+        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def commit(self) -> commit_request_builder.CommitRequestBuilder:
+        """
+        Provides operations to call the commit method.
+        """
+        from .commit import commit_request_builder
+
+        return commit_request_builder.CommitRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def renew(self) -> renew_request_builder.RenewRequestBuilder:
+        """
+        Provides operations to call the renew method.
+        """
+        from .renew import renew_request_builder
+
+        return renew_request_builder.RenewRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def upload_agent(self) -> upload_agent_request_builder.UploadAgentRequestBuilder:
+        """
+        Provides operations to manage the uploadAgent property of the microsoft.graph.exactMatchSession entity.
+        """
+        from .upload_agent import upload_agent_request_builder
+
+        return upload_agent_request_builder.UploadAgentRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ExactMatchSessionItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -195,12 +213,6 @@ class ExactMatchSessionItemRequestBuilder():
         """
         Get sessions from dataClassification
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -216,6 +228,12 @@ class ExactMatchSessionItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ExactMatchSessionItemRequestBuilderGetRequestConfiguration():

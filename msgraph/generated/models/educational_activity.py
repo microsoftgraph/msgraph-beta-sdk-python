@@ -1,31 +1,14 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-educational_activity_detail = lazy_import('msgraph.generated.models.educational_activity_detail')
-institution_data = lazy_import('msgraph.generated.models.institution_data')
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import educational_activity_detail, institution_data, item_facet
+
+from . import item_facet
 
 class EducationalActivity(item_facet.ItemFacet):
-    @property
-    def completion_month_year(self,) -> Optional[Date]:
-        """
-        Gets the completionMonthYear property value. The month and year the user graduated or completed the activity.
-        Returns: Optional[Date]
-        """
-        return self._completion_month_year
-    
-    @completion_month_year.setter
-    def completion_month_year(self,value: Optional[Date] = None) -> None:
-        """
-        Sets the completionMonthYear property value. The month and year the user graduated or completed the activity.
-        Args:
-            value: Value to set for the completion_month_year property.
-        """
-        self._completion_month_year = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new EducationalActivity and sets the default values.
@@ -33,15 +16,32 @@ class EducationalActivity(item_facet.ItemFacet):
         super().__init__()
         self.odata_type = "#microsoft.graph.educationalActivity"
         # The month and year the user graduated or completed the activity.
-        self._completion_month_year: Optional[Date] = None
+        self._completion_month_year: Optional[date] = None
         # The month and year the user completed the educational activity referenced.
-        self._end_month_year: Optional[Date] = None
+        self._end_month_year: Optional[date] = None
         # The institution property
         self._institution: Optional[institution_data.InstitutionData] = None
         # The program property
         self._program: Optional[educational_activity_detail.EducationalActivityDetail] = None
         # The month and year the user commenced the activity referenced.
-        self._start_month_year: Optional[Date] = None
+        self._start_month_year: Optional[date] = None
+    
+    @property
+    def completion_month_year(self,) -> Optional[date]:
+        """
+        Gets the completionMonthYear property value. The month and year the user graduated or completed the activity.
+        Returns: Optional[date]
+        """
+        return self._completion_month_year
+    
+    @completion_month_year.setter
+    def completion_month_year(self,value: Optional[date] = None) -> None:
+        """
+        Sets the completionMonthYear property value. The month and year the user graduated or completed the activity.
+        Args:
+            value: Value to set for the completion_month_year property.
+        """
+        self._completion_month_year = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationalActivity:
@@ -56,15 +56,15 @@ class EducationalActivity(item_facet.ItemFacet):
         return EducationalActivity()
     
     @property
-    def end_month_year(self,) -> Optional[Date]:
+    def end_month_year(self,) -> Optional[date]:
         """
         Gets the endMonthYear property value. The month and year the user completed the educational activity referenced.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._end_month_year
     
     @end_month_year.setter
-    def end_month_year(self,value: Optional[Date] = None) -> None:
+    def end_month_year(self,value: Optional[date] = None) -> None:
         """
         Sets the endMonthYear property value. The month and year the user completed the educational activity referenced.
         Args:
@@ -77,12 +77,14 @@ class EducationalActivity(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
-            "completionMonthYear": lambda n : setattr(self, 'completion_month_year', n.get_object_value(Date)),
-            "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_object_value(Date)),
+        from . import educational_activity_detail, institution_data, item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
+            "completionMonthYear": lambda n : setattr(self, 'completion_month_year', n.get_date_value()),
+            "endMonthYear": lambda n : setattr(self, 'end_month_year', n.get_date_value()),
             "institution": lambda n : setattr(self, 'institution', n.get_object_value(institution_data.InstitutionData)),
             "program": lambda n : setattr(self, 'program', n.get_object_value(educational_activity_detail.EducationalActivityDetail)),
-            "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_object_value(Date)),
+            "startMonthYear": lambda n : setattr(self, 'start_month_year', n.get_date_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -131,22 +133,22 @@ class EducationalActivity(item_facet.ItemFacet):
         if writer is None:
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
-        writer.write_object_value("completionMonthYear", self.completion_month_year)
-        writer.write_object_value("endMonthYear", self.end_month_year)
+        writer.write_date_value("completionMonthYear", self.completion_month_year)
+        writer.write_date_value("endMonthYear", self.end_month_year)
         writer.write_object_value("institution", self.institution)
         writer.write_object_value("program", self.program)
-        writer.write_object_value("startMonthYear", self.start_month_year)
+        writer.write_date_value("startMonthYear", self.start_month_year)
     
     @property
-    def start_month_year(self,) -> Optional[Date]:
+    def start_month_year(self,) -> Optional[date]:
         """
         Gets the startMonthYear property value. The month and year the user commenced the activity referenced.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._start_month_year
     
     @start_month_year.setter
-    def start_month_year(self,value: Optional[Date] = None) -> None:
+    def start_month_year(self,value: Optional[date] = None) -> None:
         """
         Sets the startMonthYear property value. The month and year the user commenced the activity referenced.
         Args:

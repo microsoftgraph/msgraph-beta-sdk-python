@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-policy_base = lazy_import('msgraph.generated.models.security.policy_base')
-site_source = lazy_import('msgraph.generated.models.security.site_source')
-user_source = lazy_import('msgraph.generated.models.security.user_source')
+if TYPE_CHECKING:
+    from . import policy_base, site_source, user_source
+
+from . import policy_base
 
 class EdiscoveryHoldPolicy(policy_base.PolicyBase):
     def __init__(self,) -> None:
@@ -76,7 +76,9 @@ class EdiscoveryHoldPolicy(policy_base.PolicyBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import policy_base, site_source, user_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentQuery": lambda n : setattr(self, 'content_query', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_primitive_values(str)),
             "isEnabled": lambda n : setattr(self, 'is_enabled', n.get_bool_value()),

@@ -1,16 +1,31 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_attribute = lazy_import('msgraph.generated.models.classification_attribute')
-classification_method = lazy_import('msgraph.generated.models.classification_method')
-detected_sensitive_content_base = lazy_import('msgraph.generated.models.detected_sensitive_content_base')
-sensitive_content_location = lazy_import('msgraph.generated.models.sensitive_content_location')
-sensitive_type_scope = lazy_import('msgraph.generated.models.sensitive_type_scope')
-sensitive_type_source = lazy_import('msgraph.generated.models.sensitive_type_source')
+if TYPE_CHECKING:
+    from . import classification_attribute, classification_method, detected_sensitive_content_base, machine_learning_detected_sensitive_content, sensitive_content_location, sensitive_type_scope, sensitive_type_source
+
+from . import detected_sensitive_content_base
 
 class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitiveContentBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DetectedSensitiveContent and sets the default values.
+        """
+        super().__init__()
+        # The classificationAttributes property
+        self._classification_attributes: Optional[List[classification_attribute.ClassificationAttribute]] = None
+        # The classificationMethod property
+        self._classification_method: Optional[classification_method.ClassificationMethod] = None
+        # The matches property
+        self._matches: Optional[List[sensitive_content_location.SensitiveContentLocation]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The scope property
+        self._scope: Optional[sensitive_type_scope.SensitiveTypeScope] = None
+        # The sensitiveTypeSource property
+        self._sensitive_type_source: Optional[sensitive_type_source.SensitiveTypeSource] = None
+    
     @property
     def classification_attributes(self,) -> Optional[List[classification_attribute.ClassificationAttribute]]:
         """
@@ -45,24 +60,6 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         """
         self._classification_method = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DetectedSensitiveContent and sets the default values.
-        """
-        super().__init__()
-        # The classificationAttributes property
-        self._classification_attributes: Optional[List[classification_attribute.ClassificationAttribute]] = None
-        # The classificationMethod property
-        self._classification_method: Optional[classification_method.ClassificationMethod] = None
-        # The matches property
-        self._matches: Optional[List[sensitive_content_location.SensitiveContentLocation]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The scope property
-        self._scope: Optional[sensitive_type_scope.SensitiveTypeScope] = None
-        # The sensitiveTypeSource property
-        self._sensitive_type_source: Optional[sensitive_type_source.SensitiveTypeSource] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DetectedSensitiveContent:
         """
@@ -73,6 +70,13 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.machineLearningDetectedSensitiveContent":
+                from . import machine_learning_detected_sensitive_content
+
+                return machine_learning_detected_sensitive_content.MachineLearningDetectedSensitiveContent()
         return DetectedSensitiveContent()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -80,7 +84,9 @@ class DetectedSensitiveContent(detected_sensitive_content_base.DetectedSensitive
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_attribute, classification_method, detected_sensitive_content_base, machine_learning_detected_sensitive_content, sensitive_content_location, sensitive_type_scope, sensitive_type_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classificationAttributes": lambda n : setattr(self, 'classification_attributes', n.get_collection_of_object_values(classification_attribute.ClassificationAttribute)),
             "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(classification_method.ClassificationMethod)),
             "matches": lambda n : setattr(self, 'matches', n.get_collection_of_object_values(sensitive_content_location.SensitiveContentLocation)),

@@ -1,13 +1,46 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-certificate_revocation_status = lazy_import('msgraph.generated.models.certificate_revocation_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import certificate_revocation_status, entity
+
+from . import entity
 
 class ManagedAllDeviceCertificateState(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedAllDeviceCertificateState and sets the default values.
+        """
+        super().__init__()
+        # Certificate expiry date
+        self._certificate_expiration_date_time: Optional[datetime] = None
+        # Enhanced Key Usage
+        self._certificate_extended_key_usages: Optional[str] = None
+        # Issuance date
+        self._certificate_issuance_date_time: Optional[datetime] = None
+        # Issuer
+        self._certificate_issuer_name: Optional[str] = None
+        # Key Usage
+        self._certificate_key_usages: Optional[int] = None
+        # Certificate Revocation Status.
+        self._certificate_revoke_status: Optional[certificate_revocation_status.CertificateRevocationStatus] = None
+        # The time the revoke status was last changed
+        self._certificate_revoke_status_last_change_date_time: Optional[datetime] = None
+        # Serial number
+        self._certificate_serial_number: Optional[str] = None
+        # Certificate subject name
+        self._certificate_subject_name: Optional[str] = None
+        # Thumbprint
+        self._certificate_thumbprint: Optional[str] = None
+        # Device display name
+        self._managed_device_display_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # User principal name
+        self._user_principal_name: Optional[str] = None
+    
     @property
     def certificate_expiration_date_time(self,) -> Optional[datetime]:
         """
@@ -178,38 +211,6 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         """
         self._certificate_thumbprint = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedAllDeviceCertificateState and sets the default values.
-        """
-        super().__init__()
-        # Certificate expiry date
-        self._certificate_expiration_date_time: Optional[datetime] = None
-        # Enhanced Key Usage
-        self._certificate_extended_key_usages: Optional[str] = None
-        # Issuance date
-        self._certificate_issuance_date_time: Optional[datetime] = None
-        # Issuer
-        self._certificate_issuer_name: Optional[str] = None
-        # Key Usage
-        self._certificate_key_usages: Optional[int] = None
-        # Certificate Revocation Status.
-        self._certificate_revoke_status: Optional[certificate_revocation_status.CertificateRevocationStatus] = None
-        # The time the revoke status was last changed
-        self._certificate_revoke_status_last_change_date_time: Optional[datetime] = None
-        # Serial number
-        self._certificate_serial_number: Optional[str] = None
-        # Certificate subject name
-        self._certificate_subject_name: Optional[str] = None
-        # Thumbprint
-        self._certificate_thumbprint: Optional[str] = None
-        # Device display name
-        self._managed_device_display_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # User principal name
-        self._user_principal_name: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedAllDeviceCertificateState:
         """
@@ -227,7 +228,9 @@ class ManagedAllDeviceCertificateState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import certificate_revocation_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificateExpirationDateTime": lambda n : setattr(self, 'certificate_expiration_date_time', n.get_datetime_value()),
             "certificateExtendedKeyUsages": lambda n : setattr(self, 'certificate_extended_key_usages', n.get_str_value()),
             "certificateIssuanceDateTime": lambda n : setattr(self, 'certificate_issuance_date_time', n.get_datetime_value()),

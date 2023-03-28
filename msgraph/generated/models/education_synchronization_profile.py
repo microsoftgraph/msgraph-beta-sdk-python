@@ -1,16 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-education_identity_synchronization_configuration = lazy_import('msgraph.generated.models.education_identity_synchronization_configuration')
-education_synchronization_data_provider = lazy_import('msgraph.generated.models.education_synchronization_data_provider')
-education_synchronization_error = lazy_import('msgraph.generated.models.education_synchronization_error')
-education_synchronization_license_assignment = lazy_import('msgraph.generated.models.education_synchronization_license_assignment')
-education_synchronization_profile_state = lazy_import('msgraph.generated.models.education_synchronization_profile_state')
-education_synchronization_profile_status = lazy_import('msgraph.generated.models.education_synchronization_profile_status')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import education_identity_synchronization_configuration, education_synchronization_data_provider, education_synchronization_error, education_synchronization_license_assignment, education_synchronization_profile_state, education_synchronization_profile_status, entity
+
+from . import entity
 
 class EducationSynchronizationProfile(entity.Entity):
     def __init__(self,) -> None:
@@ -25,7 +21,7 @@ class EducationSynchronizationProfile(entity.Entity):
         # All errors associated with this synchronization profile.
         self._errors: Optional[List[education_synchronization_error.EducationSynchronizationError]] = None
         # The date the profile should be considered expired and cease syncing. Provide the date in YYYY-MM-DD format, following ISO 8601. Maximum value is 18 months from profile creation.  (optional)
-        self._expiration_date: Optional[Date] = None
+        self._expiration_date: Optional[date] = None
         # Determines if School Data Sync should automatically replace unsupported special characters while syncing from source.
         self._handle_special_character_constraint: Optional[bool] = None
         # The identitySynchronizationConfiguration property
@@ -103,15 +99,15 @@ class EducationSynchronizationProfile(entity.Entity):
         self._errors = value
     
     @property
-    def expiration_date(self,) -> Optional[Date]:
+    def expiration_date(self,) -> Optional[date]:
         """
         Gets the expirationDate property value. The date the profile should be considered expired and cease syncing. Provide the date in YYYY-MM-DD format, following ISO 8601. Maximum value is 18 months from profile creation.  (optional)
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._expiration_date
     
     @expiration_date.setter
-    def expiration_date(self,value: Optional[Date] = None) -> None:
+    def expiration_date(self,value: Optional[date] = None) -> None:
         """
         Sets the expirationDate property value. The date the profile should be considered expired and cease syncing. Provide the date in YYYY-MM-DD format, following ISO 8601. Maximum value is 18 months from profile creation.  (optional)
         Args:
@@ -124,11 +120,13 @@ class EducationSynchronizationProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_identity_synchronization_configuration, education_synchronization_data_provider, education_synchronization_error, education_synchronization_license_assignment, education_synchronization_profile_state, education_synchronization_profile_status, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dataProvider": lambda n : setattr(self, 'data_provider', n.get_object_value(education_synchronization_data_provider.EducationSynchronizationDataProvider)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "errors": lambda n : setattr(self, 'errors', n.get_collection_of_object_values(education_synchronization_error.EducationSynchronizationError)),
-            "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_object_value(Date)),
+            "expirationDate": lambda n : setattr(self, 'expiration_date', n.get_date_value()),
             "handleSpecialCharacterConstraint": lambda n : setattr(self, 'handle_special_character_constraint', n.get_bool_value()),
             "identitySynchronizationConfiguration": lambda n : setattr(self, 'identity_synchronization_configuration', n.get_object_value(education_identity_synchronization_configuration.EducationIdentitySynchronizationConfiguration)),
             "licensesToAssign": lambda n : setattr(self, 'licenses_to_assign', n.get_collection_of_object_values(education_synchronization_license_assignment.EducationSynchronizationLicenseAssignment)),
@@ -219,7 +217,7 @@ class EducationSynchronizationProfile(entity.Entity):
         writer.write_object_value("dataProvider", self.data_provider)
         writer.write_str_value("displayName", self.display_name)
         writer.write_collection_of_object_values("errors", self.errors)
-        writer.write_object_value("expirationDate", self.expiration_date)
+        writer.write_date_value("expirationDate", self.expiration_date)
         writer.write_bool_value("handleSpecialCharacterConstraint", self.handle_special_character_constraint)
         writer.write_object_value("identitySynchronizationConfiguration", self.identity_synchronization_configuration)
         writer.write_collection_of_object_values("licensesToAssign", self.licenses_to_assign)

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-content_properties = lazy_import('msgraph.generated.models.content_properties')
-dlp_evaluation_input = lazy_import('msgraph.generated.models.dlp_evaluation_input')
+if TYPE_CHECKING:
+    from . import content_properties, dlp_evaluation_input
+
+from . import dlp_evaluation_input
 
 class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
     def __init__(self,) -> None:
@@ -52,7 +53,9 @@ class DlpEvaluationWindowsDevicesInput(dlp_evaluation_input.DlpEvaluationInput):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import content_properties, dlp_evaluation_input
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "contentProperties": lambda n : setattr(self, 'content_properties', n.get_object_value(content_properties.ContentProperties)),
             "sharedBy": lambda n : setattr(self, 'shared_by', n.get_str_value()),
         }

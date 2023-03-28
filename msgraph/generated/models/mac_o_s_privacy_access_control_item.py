@@ -1,16 +1,76 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-enablement = lazy_import('msgraph.generated.models.enablement')
-mac_o_s_apple_event_receiver = lazy_import('msgraph.generated.models.mac_o_s_apple_event_receiver')
-mac_o_s_process_identifier_type = lazy_import('msgraph.generated.models.mac_o_s_process_identifier_type')
+if TYPE_CHECKING:
+    from . import enablement, mac_o_s_apple_event_receiver, mac_o_s_process_identifier_type
 
 class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
     """
     Represents per-process privacy preferences.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new macOSPrivacyAccessControlItem and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Possible values of a property
+        self._accessibility: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._address_book: Optional[enablement.Enablement] = None
+        # Allow or deny the app or process to send a restricted Apple event to another app or process. You will need to know the identifier, identifier type, and code requirement of the receiving app or process. This collection can contain a maximum of 500 elements.
+        self._apple_events_allowed_receivers: Optional[List[mac_o_s_apple_event_receiver.MacOSAppleEventReceiver]] = None
+        # Block access to camera app.
+        self._block_camera: Optional[bool] = None
+        # Block the app or process from listening to events from input devices such as mouse, keyboard, and trackpad.Requires macOS 10.15 or later.
+        self._block_listen_event: Optional[bool] = None
+        # Block access to microphone.
+        self._block_microphone: Optional[bool] = None
+        # Block app from capturing contents of system display. Requires macOS 10.15 or later.
+        self._block_screen_capture: Optional[bool] = None
+        # Possible values of a property
+        self._calendar: Optional[enablement.Enablement] = None
+        # Enter the code requirement, which can be obtained with the command 'codesign –display -r –' in the Terminal app. Include everything after '=>'.
+        self._code_requirement: Optional[str] = None
+        # The display name of the app, process, or executable.
+        self._display_name: Optional[str] = None
+        # Possible values of a property
+        self._file_provider_presence: Optional[enablement.Enablement] = None
+        # The bundle ID or path of the app, process, or executable.
+        self._identifier: Optional[str] = None
+        # Process identifier types for MacOS Privacy Preferences
+        self._identifier_type: Optional[mac_o_s_process_identifier_type.MacOSProcessIdentifierType] = None
+        # Possible values of a property
+        self._media_library: Optional[enablement.Enablement] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Possible values of a property
+        self._photos: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._post_event: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._reminders: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._speech_recognition: Optional[enablement.Enablement] = None
+        # Statically validates the code requirement. Use this setting if the process invalidates its dynamic code signature.
+        self._static_code_validation: Optional[bool] = None
+        # Possible values of a property
+        self._system_policy_all_files: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._system_policy_desktop_folder: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._system_policy_documents_folder: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._system_policy_downloads_folder: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._system_policy_network_volumes: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._system_policy_removable_volumes: Optional[enablement.Enablement] = None
+        # Possible values of a property
+        self._system_policy_system_admin_files: Optional[enablement.Enablement] = None
+    
     @property
     def accessibility(self,) -> Optional[enablement.Enablement]:
         """
@@ -181,68 +241,6 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         """
         self._code_requirement = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new macOSPrivacyAccessControlItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Possible values of a property
-        self._accessibility: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._address_book: Optional[enablement.Enablement] = None
-        # Allow or deny the app or process to send a restricted Apple event to another app or process. You will need to know the identifier, identifier type, and code requirement of the receiving app or process. This collection can contain a maximum of 500 elements.
-        self._apple_events_allowed_receivers: Optional[List[mac_o_s_apple_event_receiver.MacOSAppleEventReceiver]] = None
-        # Block access to camera app.
-        self._block_camera: Optional[bool] = None
-        # Block the app or process from listening to events from input devices such as mouse, keyboard, and trackpad.Requires macOS 10.15 or later.
-        self._block_listen_event: Optional[bool] = None
-        # Block access to microphone.
-        self._block_microphone: Optional[bool] = None
-        # Block app from capturing contents of system display. Requires macOS 10.15 or later.
-        self._block_screen_capture: Optional[bool] = None
-        # Possible values of a property
-        self._calendar: Optional[enablement.Enablement] = None
-        # Enter the code requirement, which can be obtained with the command 'codesign –display -r –' in the Terminal app. Include everything after '=>'.
-        self._code_requirement: Optional[str] = None
-        # The display name of the app, process, or executable.
-        self._display_name: Optional[str] = None
-        # Possible values of a property
-        self._file_provider_presence: Optional[enablement.Enablement] = None
-        # The bundle ID or path of the app, process, or executable.
-        self._identifier: Optional[str] = None
-        # Process identifier types for MacOS Privacy Preferences
-        self._identifier_type: Optional[mac_o_s_process_identifier_type.MacOSProcessIdentifierType] = None
-        # Possible values of a property
-        self._media_library: Optional[enablement.Enablement] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Possible values of a property
-        self._photos: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._post_event: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._reminders: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._speech_recognition: Optional[enablement.Enablement] = None
-        # Statically validates the code requirement. Use this setting if the process invalidates its dynamic code signature.
-        self._static_code_validation: Optional[bool] = None
-        # Possible values of a property
-        self._system_policy_all_files: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._system_policy_desktop_folder: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._system_policy_documents_folder: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._system_policy_downloads_folder: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._system_policy_network_volumes: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._system_policy_removable_volumes: Optional[enablement.Enablement] = None
-        # Possible values of a property
-        self._system_policy_system_admin_files: Optional[enablement.Enablement] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MacOSPrivacyAccessControlItem:
         """
@@ -294,7 +292,9 @@ class MacOSPrivacyAccessControlItem(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import enablement, mac_o_s_apple_event_receiver, mac_o_s_process_identifier_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessibility": lambda n : setattr(self, 'accessibility', n.get_enum_value(enablement.Enablement)),
             "addressBook": lambda n : setattr(self, 'address_book', n.get_enum_value(enablement.Enablement)),
             "appleEventsAllowedReceivers": lambda n : setattr(self, 'apple_events_allowed_receivers', n.get_collection_of_object_values(mac_o_s_apple_event_receiver.MacOSAppleEventReceiver)),

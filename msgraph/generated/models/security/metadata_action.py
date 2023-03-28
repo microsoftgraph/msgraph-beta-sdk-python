@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-information_protection_action = lazy_import('msgraph.generated.models.security.information_protection_action')
-key_value_pair = lazy_import('msgraph.generated.models.security.key_value_pair')
+if TYPE_CHECKING:
+    from . import information_protection_action, key_value_pair
+
+from . import information_protection_action
 
 class MetadataAction(information_protection_action.InformationProtectionAction):
     def __init__(self,) -> None:
@@ -35,7 +36,9 @@ class MetadataAction(information_protection_action.InformationProtectionAction):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import information_protection_action, key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "metadataToAdd": lambda n : setattr(self, 'metadata_to_add', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),
             "metadataToRemove": lambda n : setattr(self, 'metadata_to_remove', n.get_collection_of_primitive_values(str)),
         }

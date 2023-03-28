@@ -1,12 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-meta_data_key_string_pair = lazy_import('msgraph.generated.models.meta_data_key_string_pair')
-meta_data_key_value_pair = lazy_import('msgraph.generated.models.meta_data_key_value_pair')
+if TYPE_CHECKING:
+    from . import meta_data_key_string_pair, meta_data_key_value_pair
 
 class ServerProcessedContent(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new serverProcessedContent and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
+        self._component_dependencies: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
+        # A key-value map where keys are string identifier and values are object of custom key-value pair.
+        self._custom_metadata: Optional[List[meta_data_key_value_pair.MetaDataKeyValuePair]] = None
+        # A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
+        self._html_strings: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
+        # A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
+        self._image_sources: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
+        # A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.
+        self._links: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # A key-value map where keys are string identifiers and values are strings that should be search indexed.
+        self._searchable_plain_texts: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,28 +61,6 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
             value: Value to set for the component_dependencies property.
         """
         self._component_dependencies = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new serverProcessedContent and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A key-value map where keys are string identifiers and values are component ids. SharePoint servers might decide to use this hint to preload the script for corresponding components for performance boost.
-        self._component_dependencies: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # A key-value map where keys are string identifier and values are object of custom key-value pair.
-        self._custom_metadata: Optional[List[meta_data_key_value_pair.MetaDataKeyValuePair]] = None
-        # A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.
-        self._html_strings: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.
-        self._image_sources: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.
-        self._links: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # A key-value map where keys are string identifiers and values are strings that should be search indexed.
-        self._searchable_plain_texts: Optional[List[meta_data_key_string_pair.MetaDataKeyStringPair]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ServerProcessedContent:
@@ -97,7 +96,9 @@ class ServerProcessedContent(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import meta_data_key_string_pair, meta_data_key_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "componentDependencies": lambda n : setattr(self, 'component_dependencies', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),
             "customMetadata": lambda n : setattr(self, 'custom_metadata', n.get_collection_of_object_values(meta_data_key_value_pair.MetaDataKeyValuePair)),
             "htmlStrings": lambda n : setattr(self, 'html_strings', n.get_collection_of_object_values(meta_data_key_string_pair.MetaDataKeyStringPair)),

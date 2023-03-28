@@ -1,46 +1,14 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from .. import entity
+
+from .. import entity
 
 class ManagementTemplateCollectionTenantSummary(entity.Entity):
-    @property
-    def complete_steps_count(self,) -> Optional[int]:
-        """
-        Gets the completeStepsCount property value. The completeStepsCount property
-        Returns: Optional[int]
-        """
-        return self._complete_steps_count
-    
-    @complete_steps_count.setter
-    def complete_steps_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the completeStepsCount property value. The completeStepsCount property
-        Args:
-            value: Value to set for the complete_steps_count property.
-        """
-        self._complete_steps_count = value
-    
-    @property
-    def complete_users_count(self,) -> Optional[int]:
-        """
-        Gets the completeUsersCount property value. The completeUsersCount property
-        Returns: Optional[int]
-        """
-        return self._complete_users_count
-    
-    @complete_users_count.setter
-    def complete_users_count(self,value: Optional[int] = None) -> None:
-        """
-        Sets the completeUsersCount property value. The completeUsersCount property
-        Args:
-            value: Value to set for the complete_users_count property.
-        """
-        self._complete_users_count = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managementTemplateCollectionTenantSummary and sets the default values.
@@ -78,8 +46,48 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         self._management_template_collection_id: Optional[str] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+        # The regressedStepsCount property
+        self._regressed_steps_count: Optional[int] = None
+        # The regressedUsersCount property
+        self._regressed_users_count: Optional[int] = None
         # The tenantId property
         self._tenant_id: Optional[str] = None
+        # The unlicensedUsersCount property
+        self._unlicensed_users_count: Optional[int] = None
+    
+    @property
+    def complete_steps_count(self,) -> Optional[int]:
+        """
+        Gets the completeStepsCount property value. The completeStepsCount property
+        Returns: Optional[int]
+        """
+        return self._complete_steps_count
+    
+    @complete_steps_count.setter
+    def complete_steps_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the completeStepsCount property value. The completeStepsCount property
+        Args:
+            value: Value to set for the complete_steps_count property.
+        """
+        self._complete_steps_count = value
+    
+    @property
+    def complete_users_count(self,) -> Optional[int]:
+        """
+        Gets the completeUsersCount property value. The completeUsersCount property
+        Returns: Optional[int]
+        """
+        return self._complete_users_count
+    
+    @complete_users_count.setter
+    def complete_users_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the completeUsersCount property value. The completeUsersCount property
+        Args:
+            value: Value to set for the complete_users_count property.
+        """
+        self._complete_users_count = value
     
     @property
     def created_by_user_id(self,) -> Optional[str]:
@@ -183,7 +191,9 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "completeStepsCount": lambda n : setattr(self, 'complete_steps_count', n.get_int_value()),
             "completeUsersCount": lambda n : setattr(self, 'complete_users_count', n.get_int_value()),
             "createdByUserId": lambda n : setattr(self, 'created_by_user_id', n.get_str_value()),
@@ -199,7 +209,10 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
             "lastActionDateTime": lambda n : setattr(self, 'last_action_date_time', n.get_datetime_value()),
             "managementTemplateCollectionDisplayName": lambda n : setattr(self, 'management_template_collection_display_name', n.get_str_value()),
             "managementTemplateCollectionId": lambda n : setattr(self, 'management_template_collection_id', n.get_str_value()),
+            "regressedStepsCount": lambda n : setattr(self, 'regressed_steps_count', n.get_int_value()),
+            "regressedUsersCount": lambda n : setattr(self, 'regressed_users_count', n.get_int_value()),
             "tenantId": lambda n : setattr(self, 'tenant_id', n.get_str_value()),
+            "unlicensedUsersCount": lambda n : setattr(self, 'unlicensed_users_count', n.get_int_value()),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -341,6 +354,40 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         """
         self._management_template_collection_id = value
     
+    @property
+    def regressed_steps_count(self,) -> Optional[int]:
+        """
+        Gets the regressedStepsCount property value. The regressedStepsCount property
+        Returns: Optional[int]
+        """
+        return self._regressed_steps_count
+    
+    @regressed_steps_count.setter
+    def regressed_steps_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the regressedStepsCount property value. The regressedStepsCount property
+        Args:
+            value: Value to set for the regressed_steps_count property.
+        """
+        self._regressed_steps_count = value
+    
+    @property
+    def regressed_users_count(self,) -> Optional[int]:
+        """
+        Gets the regressedUsersCount property value. The regressedUsersCount property
+        Returns: Optional[int]
+        """
+        return self._regressed_users_count
+    
+    @regressed_users_count.setter
+    def regressed_users_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the regressedUsersCount property value. The regressedUsersCount property
+        Args:
+            value: Value to set for the regressed_users_count property.
+        """
+        self._regressed_users_count = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -365,7 +412,10 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
         writer.write_datetime_value("lastActionDateTime", self.last_action_date_time)
         writer.write_str_value("managementTemplateCollectionDisplayName", self.management_template_collection_display_name)
         writer.write_str_value("managementTemplateCollectionId", self.management_template_collection_id)
+        writer.write_int_value("regressedStepsCount", self.regressed_steps_count)
+        writer.write_int_value("regressedUsersCount", self.regressed_users_count)
         writer.write_str_value("tenantId", self.tenant_id)
+        writer.write_int_value("unlicensedUsersCount", self.unlicensed_users_count)
     
     @property
     def tenant_id(self,) -> Optional[str]:
@@ -383,5 +433,22 @@ class ManagementTemplateCollectionTenantSummary(entity.Entity):
             value: Value to set for the tenant_id property.
         """
         self._tenant_id = value
+    
+    @property
+    def unlicensed_users_count(self,) -> Optional[int]:
+        """
+        Gets the unlicensedUsersCount property value. The unlicensedUsersCount property
+        Returns: Optional[int]
+        """
+        return self._unlicensed_users_count
+    
+    @unlicensed_users_count.setter
+    def unlicensed_users_count(self,value: Optional[int] = None) -> None:
+        """
+        Sets the unlicensedUsersCount property value. The unlicensedUsersCount property
+        Args:
+            value: Value to set for the unlicensed_users_count property.
+        """
+        self._unlicensed_users_count = value
     
 

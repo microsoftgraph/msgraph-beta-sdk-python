@@ -1,12 +1,30 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_connectivity_event_result = lazy_import('msgraph.generated.models.cloud_pc_connectivity_event_result')
+if TYPE_CHECKING:
+    from . import cloud_pc_connectivity_event_result
 
 class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new cloudPcHealthCheckItem and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Additional message for this health check.
+        self._additional_details: Optional[str] = None
+        # The connectivity health check item name.
+        self._display_name: Optional[str] = None
+        # Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
+        self._last_health_check_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The result property
+        self._result: Optional[cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,24 +58,6 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
             value: Value to set for the additional_details property.
         """
         self._additional_details = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new cloudPcHealthCheckItem and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Additional message for this health check.
-        self._additional_details: Optional[str] = None
-        # The connectivity health check item name.
-        self._display_name: Optional[str] = None
-        # Timestamp when the last check occurs. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z.
-        self._last_health_check_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The result property
-        self._result: Optional[cloud_pc_connectivity_event_result.CloudPcConnectivityEventResult] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcHealthCheckItem:
@@ -93,7 +93,9 @@ class CloudPcHealthCheckItem(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_connectivity_event_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalDetails": lambda n : setattr(self, 'additional_details', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "lastHealthCheckDateTime": lambda n : setattr(self, 'last_health_check_date_time', n.get_datetime_value()),

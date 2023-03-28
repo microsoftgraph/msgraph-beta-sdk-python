@@ -1,9 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new getWebPartsByPositionPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The columnId property
+        self._column_id: Optional[float] = None
+        # The horizontalSectionId property
+        self._horizontal_section_id: Optional[float] = None
+        # The isInVerticalSection property
+        self._is_in_vertical_section: Optional[bool] = None
+        # The webPartIndex property
+        self._web_part_index: Optional[float] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -38,22 +53,6 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         """
         self._column_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new getWebPartsByPositionPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The columnId property
-        self._column_id: Optional[float] = None
-        # The horizontalSectionId property
-        self._horizontal_section_id: Optional[float] = None
-        # The isInVerticalSection property
-        self._is_in_vertical_section: Optional[bool] = None
-        # The webPartIndex property
-        self._web_part_index: Optional[float] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GetWebPartsByPositionPostRequestBody:
         """
@@ -71,7 +70,7 @@ class GetWebPartsByPositionPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "columnId": lambda n : setattr(self, 'column_id', n.get_float_value()),
             "horizontalSectionId": lambda n : setattr(self, 'horizontal_section_id', n.get_float_value()),
             "isInVerticalSection": lambda n : setattr(self, 'is_in_vertical_section', n.get_bool_value()),

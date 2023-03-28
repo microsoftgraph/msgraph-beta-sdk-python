@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-message_event = lazy_import('msgraph.generated.models.message_event')
-message_status = lazy_import('msgraph.generated.models.message_status')
+if TYPE_CHECKING:
+    from . import entity, message_event, message_status
+
+from . import entity
 
 class MessageRecipient(entity.Entity):
     def __init__(self,) -> None:
@@ -73,7 +73,9 @@ class MessageRecipient(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, message_event, message_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deliveryStatus": lambda n : setattr(self, 'delivery_status', n.get_enum_value(message_status.MessageStatus)),
             "events": lambda n : setattr(self, 'events', n.get_collection_of_object_values(message_event.MessageEvent)),
             "recipientEmail": lambda n : setattr(self, 'recipient_email', n.get_str_value()),

@@ -1,14 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-company_detail = lazy_import('msgraph.generated.models.company_detail')
-item_facet = lazy_import('msgraph.generated.models.item_facet')
-position_detail = lazy_import('msgraph.generated.models.position_detail')
-related_person = lazy_import('msgraph.generated.models.related_person')
+if TYPE_CHECKING:
+    from . import company_detail, item_facet, position_detail, related_person
+
+from . import item_facet
 
 class ProjectParticipation(item_facet.ItemFacet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ProjectParticipation and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.projectParticipation"
+        # Contains categories a user has associated with the project (for example, digital transformation, oil rig).
+        self._categories: Optional[List[str]] = None
+        # Contains detailed information about the client the project was for.
+        self._client: Optional[company_detail.CompanyDetail] = None
+        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+        self._collaboration_tags: Optional[List[str]] = None
+        # Lists people that also worked on the project.
+        self._colleagues: Optional[List[related_person.RelatedPerson]] = None
+        # Contains detail about the user's role on the project.
+        self._detail: Optional[position_detail.PositionDetail] = None
+        # Contains a friendly name for the project.
+        self._display_name: Optional[str] = None
+        # The Person or people who sponsored the project.
+        self._sponsors: Optional[List[related_person.RelatedPerson]] = None
+        # The thumbnailUrl property
+        self._thumbnail_url: Optional[str] = None
+    
     @property
     def categories(self,) -> Optional[List[str]]:
         """
@@ -77,29 +99,6 @@ class ProjectParticipation(item_facet.ItemFacet):
         """
         self._colleagues = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ProjectParticipation and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.projectParticipation"
-        # Contains categories a user has associated with the project (for example, digital transformation, oil rig).
-        self._categories: Optional[List[str]] = None
-        # Contains detailed information about the client the project was for.
-        self._client: Optional[company_detail.CompanyDetail] = None
-        # Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are: askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
-        self._collaboration_tags: Optional[List[str]] = None
-        # Lists people that also worked on the project.
-        self._colleagues: Optional[List[related_person.RelatedPerson]] = None
-        # Contains detail about the user's role on the project.
-        self._detail: Optional[position_detail.PositionDetail] = None
-        # Contains a friendly name for the project.
-        self._display_name: Optional[str] = None
-        # The Person or people who sponsored the project.
-        self._sponsors: Optional[List[related_person.RelatedPerson]] = None
-        # The thumbnailUrl property
-        self._thumbnail_url: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ProjectParticipation:
         """
@@ -151,7 +150,9 @@ class ProjectParticipation(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import company_detail, item_facet, position_detail, related_person
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "categories": lambda n : setattr(self, 'categories', n.get_collection_of_primitive_values(str)),
             "client": lambda n : setattr(self, 'client', n.get_object_value(company_detail.CompanyDetail)),
             "collaborationTags": lambda n : setattr(self, 'collaboration_tags', n.get_collection_of_primitive_values(str)),

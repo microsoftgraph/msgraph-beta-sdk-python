@@ -1,22 +1,104 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_device_features_configuration_base = lazy_import('msgraph.generated.models.apple_device_features_configuration_base')
-ip_range = lazy_import('msgraph.generated.models.ip_range')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-mac_o_s_associated_domains_item = lazy_import('msgraph.generated.models.mac_o_s_associated_domains_item')
-mac_o_s_certificate_profile_base = lazy_import('msgraph.generated.models.mac_o_s_certificate_profile_base')
-mac_o_s_content_caching_client_policy = lazy_import('msgraph.generated.models.mac_o_s_content_caching_client_policy')
-mac_o_s_content_caching_parent_selection_policy = lazy_import('msgraph.generated.models.mac_o_s_content_caching_parent_selection_policy')
-mac_o_s_content_caching_peer_policy = lazy_import('msgraph.generated.models.mac_o_s_content_caching_peer_policy')
-mac_o_s_content_caching_type = lazy_import('msgraph.generated.models.mac_o_s_content_caching_type')
-mac_o_s_launch_item = lazy_import('msgraph.generated.models.mac_o_s_launch_item')
-mac_o_s_single_sign_on_extension = lazy_import('msgraph.generated.models.mac_o_s_single_sign_on_extension')
-single_sign_on_extension = lazy_import('msgraph.generated.models.single_sign_on_extension')
+if TYPE_CHECKING:
+    from . import apple_device_features_configuration_base, ip_range, key_value_pair, mac_o_s_associated_domains_item, mac_o_s_certificate_profile_base, mac_o_s_content_caching_client_policy, mac_o_s_content_caching_parent_selection_policy, mac_o_s_content_caching_peer_policy, mac_o_s_content_caching_type, mac_o_s_launch_item, mac_o_s_single_sign_on_extension, single_sign_on_extension
+
+from . import apple_device_features_configuration_base
 
 class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.AppleDeviceFeaturesConfigurationBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MacOSDeviceFeaturesConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.macOSDeviceFeaturesConfiguration"
+        # Whether to show admin host information on the login window.
+        self._admin_show_host_info: Optional[bool] = None
+        # Gets or sets a list that maps apps to their associated domains. Application identifiers must be unique. This collection can contain a maximum of 500 elements.
+        self._app_associated_domains: Optional[List[mac_o_s_associated_domains_item.MacOSAssociatedDomainsItem]] = None
+        # DEPRECATED: use appAssociatedDomains instead. Gets or sets a list that maps apps to their associated domains. The key should match the app's ID, and the value should be a string in the form of 'service:domain' where domain is a fully qualified hostname (e.g. webcredentials:example.com). This collection can contain a maximum of 500 elements.
+        self._associated_domains: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Whether to show the name and password dialog or a list of users on the login window.
+        self._authorized_users_list_hidden: Optional[bool] = None
+        # Whether to hide admin users in the authorized users list on the login window.
+        self._authorized_users_list_hide_admin_users: Optional[bool] = None
+        # Whether to show only network and system users in the authorized users list on the login window.
+        self._authorized_users_list_hide_local_users: Optional[bool] = None
+        # Whether to hide mobile users in the authorized users list on the login window.
+        self._authorized_users_list_hide_mobile_accounts: Optional[bool] = None
+        # Whether to show network users in the authorized users list on the login window.
+        self._authorized_users_list_include_network_users: Optional[bool] = None
+        # Whether to show other users in the authorized users list on the login window.
+        self._authorized_users_list_show_other_managed_users: Optional[bool] = None
+        # List of applications, files, folders, and other items to launch when the user logs in. This collection can contain a maximum of 500 elements.
+        self._auto_launch_items: Optional[List[mac_o_s_launch_item.MacOSLaunchItem]] = None
+        # Whether the Other user will disregard use of the console special user name.
+        self._console_access_disabled: Optional[bool] = None
+        # Prevents content caches from purging content to free up disk space for other apps.
+        self._content_caching_block_deletion: Optional[bool] = None
+        # A list of custom IP ranges content caches will use to listen for clients. This collection can contain a maximum of 500 elements.
+        self._content_caching_client_listen_ranges: Optional[List[ip_range.IpRange]] = None
+        # Determines which clients a content cache will serve.
+        self._content_caching_client_policy: Optional[mac_o_s_content_caching_client_policy.MacOSContentCachingClientPolicy] = None
+        # The path to the directory used to store cached content. The value must be (or end with) /Library/Application Support/Apple/AssetCache/Data
+        self._content_caching_data_path: Optional[str] = None
+        # Disables internet connection sharing.
+        self._content_caching_disable_connection_sharing: Optional[bool] = None
+        # Enables content caching and prevents it from being disabled by the user.
+        self._content_caching_enabled: Optional[bool] = None
+        # Forces internet connection sharing. contentCachingDisableConnectionSharing overrides this setting.
+        self._content_caching_force_connection_sharing: Optional[bool] = None
+        # Prevent the device from sleeping if content caching is enabled.
+        self._content_caching_keep_awake: Optional[bool] = None
+        # Enables logging of IP addresses and ports of clients that request cached content.
+        self._content_caching_log_client_identities: Optional[bool] = None
+        # The maximum number of bytes of disk space that will be used for the content cache. A value of 0 (default) indicates unlimited disk space.
+        self._content_caching_max_size_bytes: Optional[int] = None
+        # Determines how content caches select a parent cache.
+        self._content_caching_parent_selection_policy: Optional[mac_o_s_content_caching_parent_selection_policy.MacOSContentCachingParentSelectionPolicy] = None
+        # A list of IP addresses representing parent content caches.
+        self._content_caching_parents: Optional[List[str]] = None
+        # A list of custom IP ranges content caches will use to query for content from peers caches. This collection can contain a maximum of 500 elements.
+        self._content_caching_peer_filter_ranges: Optional[List[ip_range.IpRange]] = None
+        # A list of custom IP ranges content caches will use to listen for peer caches. This collection can contain a maximum of 500 elements.
+        self._content_caching_peer_listen_ranges: Optional[List[ip_range.IpRange]] = None
+        # Determines which content caches other content caches will peer with.
+        self._content_caching_peer_policy: Optional[mac_o_s_content_caching_peer_policy.MacOSContentCachingPeerPolicy] = None
+        # Sets the port used for content caching. If the value is 0, a random available port will be selected. Valid values 0 to 65535
+        self._content_caching_port: Optional[int] = None
+        # A list of custom IP ranges that Apple's content caching service should use to match clients to content caches. This collection can contain a maximum of 500 elements.
+        self._content_caching_public_ranges: Optional[List[ip_range.IpRange]] = None
+        # Display content caching alerts as system notifications.
+        self._content_caching_show_alerts: Optional[bool] = None
+        # Indicates the type of content allowed to be cached by Apple's content caching service.
+        self._content_caching_type: Optional[mac_o_s_content_caching_type.MacOSContentCachingType] = None
+        # Whether the Log Out menu item on the login window will be disabled while the user is logged in.
+        self._log_out_disabled_while_logged_in: Optional[bool] = None
+        # Custom text to be displayed on the login window.
+        self._login_window_text: Optional[str] = None
+        # Gets or sets a single sign-on extension profile.
+        self._mac_o_s_single_sign_on_extension: Optional[mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension] = None
+        # Whether the Power Off menu item on the login window will be disabled while the user is logged in.
+        self._power_off_disabled_while_logged_in: Optional[bool] = None
+        # Whether to hide the Restart button item on the login window.
+        self._restart_disabled: Optional[bool] = None
+        # Whether the Restart menu item on the login window will be disabled while the user is logged in.
+        self._restart_disabled_while_logged_in: Optional[bool] = None
+        # Whether to disable the immediate screen lock functions.
+        self._screen_lock_disable_immediate: Optional[bool] = None
+        # Whether to hide the Shut Down button item on the login window.
+        self._shut_down_disabled: Optional[bool] = None
+        # Whether the Shut Down menu item on the login window will be disabled while the user is logged in.
+        self._shut_down_disabled_while_logged_in: Optional[bool] = None
+        # Gets or sets a single sign-on extension profile. Deprecated: use MacOSSingleSignOnExtension instead.
+        self._single_sign_on_extension: Optional[single_sign_on_extension.SingleSignOnExtension] = None
+        # PKINIT Certificate for the authentication with single sign-on extensions.
+        self._single_sign_on_extension_pkinit_certificate: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None
+        # Whether to hide the Sleep menu item on the login window.
+        self._sleep_disabled: Optional[bool] = None
+    
     @property
     def admin_show_host_info(self,) -> Optional[bool]:
         """
@@ -203,97 +285,6 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
             value: Value to set for the console_access_disabled property.
         """
         self._console_access_disabled = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MacOSDeviceFeaturesConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.macOSDeviceFeaturesConfiguration"
-        # Whether to show admin host information on the login window.
-        self._admin_show_host_info: Optional[bool] = None
-        # Gets or sets a list that maps apps to their associated domains. Application identifiers must be unique. This collection can contain a maximum of 500 elements.
-        self._app_associated_domains: Optional[List[mac_o_s_associated_domains_item.MacOSAssociatedDomainsItem]] = None
-        # DEPRECATED: use appAssociatedDomains instead. Gets or sets a list that maps apps to their associated domains. The key should match the app's ID, and the value should be a string in the form of 'service:domain' where domain is a fully qualified hostname (e.g. webcredentials:example.com). This collection can contain a maximum of 500 elements.
-        self._associated_domains: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Whether to show the name and password dialog or a list of users on the login window.
-        self._authorized_users_list_hidden: Optional[bool] = None
-        # Whether to hide admin users in the authorized users list on the login window.
-        self._authorized_users_list_hide_admin_users: Optional[bool] = None
-        # Whether to show only network and system users in the authorized users list on the login window.
-        self._authorized_users_list_hide_local_users: Optional[bool] = None
-        # Whether to hide mobile users in the authorized users list on the login window.
-        self._authorized_users_list_hide_mobile_accounts: Optional[bool] = None
-        # Whether to show network users in the authorized users list on the login window.
-        self._authorized_users_list_include_network_users: Optional[bool] = None
-        # Whether to show other users in the authorized users list on the login window.
-        self._authorized_users_list_show_other_managed_users: Optional[bool] = None
-        # List of applications, files, folders, and other items to launch when the user logs in. This collection can contain a maximum of 500 elements.
-        self._auto_launch_items: Optional[List[mac_o_s_launch_item.MacOSLaunchItem]] = None
-        # Whether the Other user will disregard use of the console special user name.
-        self._console_access_disabled: Optional[bool] = None
-        # Prevents content caches from purging content to free up disk space for other apps.
-        self._content_caching_block_deletion: Optional[bool] = None
-        # A list of custom IP ranges content caches will use to listen for clients. This collection can contain a maximum of 500 elements.
-        self._content_caching_client_listen_ranges: Optional[List[ip_range.IpRange]] = None
-        # Determines which clients a content cache will serve.
-        self._content_caching_client_policy: Optional[mac_o_s_content_caching_client_policy.MacOSContentCachingClientPolicy] = None
-        # The path to the directory used to store cached content. The value must be (or end with) /Library/Application Support/Apple/AssetCache/Data
-        self._content_caching_data_path: Optional[str] = None
-        # Disables internet connection sharing.
-        self._content_caching_disable_connection_sharing: Optional[bool] = None
-        # Enables content caching and prevents it from being disabled by the user.
-        self._content_caching_enabled: Optional[bool] = None
-        # Forces internet connection sharing. contentCachingDisableConnectionSharing overrides this setting.
-        self._content_caching_force_connection_sharing: Optional[bool] = None
-        # Prevent the device from sleeping if content caching is enabled.
-        self._content_caching_keep_awake: Optional[bool] = None
-        # Enables logging of IP addresses and ports of clients that request cached content.
-        self._content_caching_log_client_identities: Optional[bool] = None
-        # The maximum number of bytes of disk space that will be used for the content cache. A value of 0 (default) indicates unlimited disk space.
-        self._content_caching_max_size_bytes: Optional[int] = None
-        # Determines how content caches select a parent cache.
-        self._content_caching_parent_selection_policy: Optional[mac_o_s_content_caching_parent_selection_policy.MacOSContentCachingParentSelectionPolicy] = None
-        # A list of IP addresses representing parent content caches.
-        self._content_caching_parents: Optional[List[str]] = None
-        # A list of custom IP ranges content caches will use to query for content from peers caches. This collection can contain a maximum of 500 elements.
-        self._content_caching_peer_filter_ranges: Optional[List[ip_range.IpRange]] = None
-        # A list of custom IP ranges content caches will use to listen for peer caches. This collection can contain a maximum of 500 elements.
-        self._content_caching_peer_listen_ranges: Optional[List[ip_range.IpRange]] = None
-        # Determines which content caches other content caches will peer with.
-        self._content_caching_peer_policy: Optional[mac_o_s_content_caching_peer_policy.MacOSContentCachingPeerPolicy] = None
-        # Sets the port used for content caching. If the value is 0, a random available port will be selected. Valid values 0 to 65535
-        self._content_caching_port: Optional[int] = None
-        # A list of custom IP ranges that Apple's content caching service should use to match clients to content caches. This collection can contain a maximum of 500 elements.
-        self._content_caching_public_ranges: Optional[List[ip_range.IpRange]] = None
-        # Display content caching alerts as system notifications.
-        self._content_caching_show_alerts: Optional[bool] = None
-        # Indicates the type of content allowed to be cached by Apple's content caching service.
-        self._content_caching_type: Optional[mac_o_s_content_caching_type.MacOSContentCachingType] = None
-        # Whether the Log Out menu item on the login window will be disabled while the user is logged in.
-        self._log_out_disabled_while_logged_in: Optional[bool] = None
-        # Custom text to be displayed on the login window.
-        self._login_window_text: Optional[str] = None
-        # Gets or sets a single sign-on extension profile.
-        self._mac_o_s_single_sign_on_extension: Optional[mac_o_s_single_sign_on_extension.MacOSSingleSignOnExtension] = None
-        # Whether the Power Off menu item on the login window will be disabled while the user is logged in.
-        self._power_off_disabled_while_logged_in: Optional[bool] = None
-        # Whether to hide the Restart button item on the login window.
-        self._restart_disabled: Optional[bool] = None
-        # Whether the Restart menu item on the login window will be disabled while the user is logged in.
-        self._restart_disabled_while_logged_in: Optional[bool] = None
-        # Whether to disable the immediate screen lock functions.
-        self._screen_lock_disable_immediate: Optional[bool] = None
-        # Whether to hide the Shut Down button item on the login window.
-        self._shut_down_disabled: Optional[bool] = None
-        # Whether the Shut Down menu item on the login window will be disabled while the user is logged in.
-        self._shut_down_disabled_while_logged_in: Optional[bool] = None
-        # Gets or sets a single sign-on extension profile. Deprecated: use MacOSSingleSignOnExtension instead.
-        self._single_sign_on_extension: Optional[single_sign_on_extension.SingleSignOnExtension] = None
-        # PKINIT Certificate for the authentication with single sign-on extensions.
-        self._single_sign_on_extension_pkinit_certificate: Optional[mac_o_s_certificate_profile_base.MacOSCertificateProfileBase] = None
-        # Whether to hide the Sleep menu item on the login window.
-        self._sleep_disabled: Optional[bool] = None
     
     @property
     def content_caching_block_deletion(self,) -> Optional[bool]:
@@ -635,7 +626,9 @@ class MacOSDeviceFeaturesConfiguration(apple_device_features_configuration_base.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_device_features_configuration_base, ip_range, key_value_pair, mac_o_s_associated_domains_item, mac_o_s_certificate_profile_base, mac_o_s_content_caching_client_policy, mac_o_s_content_caching_parent_selection_policy, mac_o_s_content_caching_peer_policy, mac_o_s_content_caching_type, mac_o_s_launch_item, mac_o_s_single_sign_on_extension, single_sign_on_extension
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "adminShowHostInfo": lambda n : setattr(self, 'admin_show_host_info', n.get_bool_value()),
             "appAssociatedDomains": lambda n : setattr(self, 'app_associated_domains', n.get_collection_of_object_values(mac_o_s_associated_domains_item.MacOSAssociatedDomainsItem)),
             "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_object_values(key_value_pair.KeyValuePair)),

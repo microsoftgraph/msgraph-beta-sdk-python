@@ -1,32 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class ConfigManagerCollection(entity.Entity):
     """
     A ConfigManager defined collection of devices or users.
     """
-    @property
-    def collection_identifier(self,) -> Optional[str]:
-        """
-        Gets the collectionIdentifier property value. The collection identifier in SCCM.
-        Returns: Optional[str]
-        """
-        return self._collection_identifier
-    
-    @collection_identifier.setter
-    def collection_identifier(self,value: Optional[str] = None) -> None:
-        """
-        Sets the collectionIdentifier property value. The collection identifier in SCCM.
-        Args:
-            value: Value to set for the collection_identifier property.
-        """
-        self._collection_identifier = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new configManagerCollection and sets the default values.
@@ -46,6 +31,23 @@ class ConfigManagerCollection(entity.Entity):
         self._last_modified_date_time: Optional[datetime] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
+    
+    @property
+    def collection_identifier(self,) -> Optional[str]:
+        """
+        Gets the collectionIdentifier property value. The collection identifier in SCCM.
+        Returns: Optional[str]
+        """
+        return self._collection_identifier
+    
+    @collection_identifier.setter
+    def collection_identifier(self,value: Optional[str] = None) -> None:
+        """
+        Sets the collectionIdentifier property value. The collection identifier in SCCM.
+        Args:
+            value: Value to set for the collection_identifier property.
+        """
+        self._collection_identifier = value
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -98,7 +100,9 @@ class ConfigManagerCollection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "collectionIdentifier": lambda n : setattr(self, 'collection_identifier', n.get_str_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),

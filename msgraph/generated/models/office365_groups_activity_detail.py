@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365GroupsActivityDetail(entity.Entity):
     def __init__(self,) -> None:
@@ -29,7 +31,7 @@ class Office365GroupsActivityDetail(entity.Entity):
         # Whether this user has been deleted or soft deleted.
         self._is_deleted: Optional[bool] = None
         # The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        self._last_activity_date: Optional[Date] = None
+        self._last_activity_date: Optional[date] = None
         # The group member count.
         self._member_count: Optional[int] = None
         # The OdataType property
@@ -39,16 +41,16 @@ class Office365GroupsActivityDetail(entity.Entity):
         # The number of days the report covers.
         self._report_period: Optional[str] = None
         # The latest date of the content.
-        self._report_refresh_date: Optional[Date] = None
+        self._report_refresh_date: Optional[date] = None
         # The number of active files in SharePoint Group site.
         self._share_point_active_file_count: Optional[int] = None
         # The storage used by SharePoint Group site.
         self._share_point_site_storage_used_in_bytes: Optional[int] = None
         # The total number of files in SharePoint Group site.
         self._share_point_total_file_count: Optional[int] = None
-        # The teamsChannelMessagesCount property
+        # The number of channel messages in Teams team.
         self._teams_channel_messages_count: Optional[int] = None
-        # The teamsMeetingsOrganizedCount property
+        # The number of meetings organized in Teams team.
         self._teams_meetings_organized_count: Optional[int] = None
         # The number of messages liked in Yammer groups.
         self._yammer_liked_message_count: Optional[int] = None
@@ -142,7 +144,9 @@ class Office365GroupsActivityDetail(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "exchangeMailboxStorageUsedInBytes": lambda n : setattr(self, 'exchange_mailbox_storage_used_in_bytes', n.get_int_value()),
             "exchangeMailboxTotalItemCount": lambda n : setattr(self, 'exchange_mailbox_total_item_count', n.get_int_value()),
             "exchangeReceivedEmailCount": lambda n : setattr(self, 'exchange_received_email_count', n.get_int_value()),
@@ -151,11 +155,11 @@ class Office365GroupsActivityDetail(entity.Entity):
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
             "groupType": lambda n : setattr(self, 'group_type', n.get_str_value()),
             "isDeleted": lambda n : setattr(self, 'is_deleted', n.get_bool_value()),
-            "lastActivityDate": lambda n : setattr(self, 'last_activity_date', n.get_object_value(Date)),
+            "lastActivityDate": lambda n : setattr(self, 'last_activity_date', n.get_date_value()),
             "memberCount": lambda n : setattr(self, 'member_count', n.get_int_value()),
             "ownerPrincipalName": lambda n : setattr(self, 'owner_principal_name', n.get_str_value()),
             "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_date_value()),
             "sharePointActiveFileCount": lambda n : setattr(self, 'share_point_active_file_count', n.get_int_value()),
             "sharePointSiteStorageUsedInBytes": lambda n : setattr(self, 'share_point_site_storage_used_in_bytes', n.get_int_value()),
             "sharePointTotalFileCount": lambda n : setattr(self, 'share_point_total_file_count', n.get_int_value()),
@@ -238,15 +242,15 @@ class Office365GroupsActivityDetail(entity.Entity):
         self._is_deleted = value
     
     @property
-    def last_activity_date(self,) -> Optional[Date]:
+    def last_activity_date(self,) -> Optional[date]:
         """
         Gets the lastActivityDate property value. The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._last_activity_date
     
     @last_activity_date.setter
-    def last_activity_date(self,value: Optional[Date] = None) -> None:
+    def last_activity_date(self,value: Optional[date] = None) -> None:
         """
         Sets the lastActivityDate property value. The last activity date for the following scenarios:  group mailbox received email; user viewed, edited, shared, or synced files in SharePoint document library; user viewed SharePoint pages; user posted, read, or liked messages in Yammer groups.
         Args:
@@ -306,15 +310,15 @@ class Office365GroupsActivityDetail(entity.Entity):
         self._report_period = value
     
     @property
-    def report_refresh_date(self,) -> Optional[Date]:
+    def report_refresh_date(self,) -> Optional[date]:
         """
         Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._report_refresh_date
     
     @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[Date] = None) -> None:
+    def report_refresh_date(self,value: Optional[date] = None) -> None:
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
@@ -339,11 +343,11 @@ class Office365GroupsActivityDetail(entity.Entity):
         writer.write_str_value("groupId", self.group_id)
         writer.write_str_value("groupType", self.group_type)
         writer.write_bool_value("isDeleted", self.is_deleted)
-        writer.write_object_value("lastActivityDate", self.last_activity_date)
+        writer.write_date_value("lastActivityDate", self.last_activity_date)
         writer.write_int_value("memberCount", self.member_count)
         writer.write_str_value("ownerPrincipalName", self.owner_principal_name)
         writer.write_str_value("reportPeriod", self.report_period)
-        writer.write_object_value("reportRefreshDate", self.report_refresh_date)
+        writer.write_date_value("reportRefreshDate", self.report_refresh_date)
         writer.write_int_value("sharePointActiveFileCount", self.share_point_active_file_count)
         writer.write_int_value("sharePointSiteStorageUsedInBytes", self.share_point_site_storage_used_in_bytes)
         writer.write_int_value("sharePointTotalFileCount", self.share_point_total_file_count)
@@ -407,7 +411,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @property
     def teams_channel_messages_count(self,) -> Optional[int]:
         """
-        Gets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
+        Gets the teamsChannelMessagesCount property value. The number of channel messages in Teams team.
         Returns: Optional[int]
         """
         return self._teams_channel_messages_count
@@ -415,7 +419,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @teams_channel_messages_count.setter
     def teams_channel_messages_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the teamsChannelMessagesCount property value. The teamsChannelMessagesCount property
+        Sets the teamsChannelMessagesCount property value. The number of channel messages in Teams team.
         Args:
             value: Value to set for the teams_channel_messages_count property.
         """
@@ -424,7 +428,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @property
     def teams_meetings_organized_count(self,) -> Optional[int]:
         """
-        Gets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
+        Gets the teamsMeetingsOrganizedCount property value. The number of meetings organized in Teams team.
         Returns: Optional[int]
         """
         return self._teams_meetings_organized_count
@@ -432,7 +436,7 @@ class Office365GroupsActivityDetail(entity.Entity):
     @teams_meetings_organized_count.setter
     def teams_meetings_organized_count(self,value: Optional[int] = None) -> None:
         """
-        Sets the teamsMeetingsOrganizedCount property value. The teamsMeetingsOrganizedCount property
+        Sets the teamsMeetingsOrganizedCount property value. The number of meetings organized in Teams team.
         Args:
             value: Value to set for the teams_meetings_organized_count property.
         """

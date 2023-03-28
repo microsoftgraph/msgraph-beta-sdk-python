@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-education_synchronization_customization = lazy_import('msgraph.generated.models.education_synchronization_customization')
-education_synchronization_customizations_base = lazy_import('msgraph.generated.models.education_synchronization_customizations_base')
+if TYPE_CHECKING:
+    from . import education_synchronization_customization, education_synchronization_customizations_base
+
+from . import education_synchronization_customizations_base
 
 class EducationSynchronizationCustomizations(education_synchronization_customizations_base.EducationSynchronizationCustomizationsBase):
     def __init__(self,) -> None:
@@ -43,7 +44,9 @@ class EducationSynchronizationCustomizations(education_synchronization_customiza
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_synchronization_customization, education_synchronization_customizations_base
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "school": lambda n : setattr(self, 'school', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
             "section": lambda n : setattr(self, 'section', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),
             "student": lambda n : setattr(self, 'student', n.get_object_value(education_synchronization_customization.EducationSynchronizationCustomization)),

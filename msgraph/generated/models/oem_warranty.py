@@ -1,14 +1,32 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-warranty_offer = lazy_import('msgraph.generated.models.warranty_offer')
+if TYPE_CHECKING:
+    from . import warranty_offer
 
 class OemWarranty(AdditionalDataHolder, Parsable):
     """
     OEM Warranty information for a given device
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new oemWarranty and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # List of additional warranty offers. This collection can contain a maximum of 100 elements.
+        self._additional_warranties: Optional[List[warranty_offer.WarrantyOffer]] = None
+        # List of base warranty offers. This collection can contain a maximum of 100 elements.
+        self._base_warranties: Optional[List[warranty_offer.WarrantyOffer]] = None
+        # Device configuration page URL
+        self._device_configuration_url: Optional[str] = None
+        # Device warranty page URL
+        self._device_warranty_url: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -59,24 +77,6 @@ class OemWarranty(AdditionalDataHolder, Parsable):
             value: Value to set for the base_warranties property.
         """
         self._base_warranties = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new oemWarranty and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # List of additional warranty offers. This collection can contain a maximum of 100 elements.
-        self._additional_warranties: Optional[List[warranty_offer.WarrantyOffer]] = None
-        # List of base warranty offers. This collection can contain a maximum of 100 elements.
-        self._base_warranties: Optional[List[warranty_offer.WarrantyOffer]] = None
-        # Device configuration page URL
-        self._device_configuration_url: Optional[str] = None
-        # Device warranty page URL
-        self._device_warranty_url: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> OemWarranty:
@@ -129,7 +129,9 @@ class OemWarranty(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import warranty_offer
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "additionalWarranties": lambda n : setattr(self, 'additional_warranties', n.get_collection_of_object_values(warranty_offer.WarrantyOffer)),
             "baseWarranties": lambda n : setattr(self, 'base_warranties', n.get_collection_of_object_values(warranty_offer.WarrantyOffer)),
             "deviceConfigurationUrl": lambda n : setattr(self, 'device_configuration_url', n.get_str_value()),

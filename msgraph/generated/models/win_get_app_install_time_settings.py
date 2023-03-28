@@ -1,13 +1,26 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class WinGetAppInstallTimeSettings(AdditionalDataHolder, Parsable):
     """
     Contains properties used to determine when to offer an app to devices and when to install the app on devices.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new winGetAppInstallTimeSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The time at which the app should be installed.
+        self._deadline_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Whether the local device time or UTC time should be used when determining the deadline times.
+        self._use_local_time: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -24,20 +37,6 @@ class WinGetAppInstallTimeSettings(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new winGetAppInstallTimeSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The time at which the app should be installed.
-        self._deadline_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Whether the local device time or UTC time should be used when determining the deadline times.
-        self._use_local_time: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WinGetAppInstallTimeSettings:
@@ -73,7 +72,7 @@ class WinGetAppInstallTimeSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "deadlineDateTime": lambda n : setattr(self, 'deadline_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "useLocalTime": lambda n : setattr(self, 'use_local_time', n.get_bool_value()),

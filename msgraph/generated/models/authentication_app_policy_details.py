@@ -1,13 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_app_admin_configuration = lazy_import('msgraph.generated.models.authentication_app_admin_configuration')
-authentication_app_evaluation = lazy_import('msgraph.generated.models.authentication_app_evaluation')
-authentication_app_policy_status = lazy_import('msgraph.generated.models.authentication_app_policy_status')
+if TYPE_CHECKING:
+    from . import authentication_app_admin_configuration, authentication_app_evaluation, authentication_app_policy_status
 
 class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new authenticationAppPolicyDetails and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The admin configuration of the policy on the user's authentication app. For a policy that does not impact the success/failure of the authentication, the evaluation defaults to notApplicable. The possible values are: notApplicable, enabled, disabled, unknownFutureValue.
+        self._admin_configuration: Optional[authentication_app_admin_configuration.AuthenticationAppAdminConfiguration] = None
+        # Evaluates the success/failure of the authentication based on the admin configuration of the policy on the user's client authentication app. The possible values are: success, failure, unknownFutureValue.
+        self._authentication_evaluation: Optional[authentication_app_evaluation.AuthenticationAppEvaluation] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The name of the policy enforced on the user's authentication app.
+        self._policy_name: Optional[str] = None
+        # Refers to whether the policy executed as expected on the user's client authentication app. The possible values are: unknown, appLockOutOfDate, appLockEnabled, appLockDisabled, appContextOutOfDate, appContextShown, appContextNotShown, locationContextOutOfDate, locationContextShown, locationContextNotShown, numberMatchOutOfDate, numberMatchCorrectNumberEntered, numberMatchIncorrectNumberEntered, numberMatchDeny, tamperResistantHardwareOutOfDate, tamperResistantHardwareUsed, tamperResistantHardwareNotUsed, unknownFutureValue.
+        self._status: Optional[authentication_app_policy_status.AuthenticationAppPolicyStatus] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -59,24 +75,6 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         """
         self._authentication_evaluation = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new authenticationAppPolicyDetails and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The admin configuration of the policy on the user's authentication app. For a policy that does not impact the success/failure of the authentication, the evaluation defaults to notApplicable. The possible values are: notApplicable, enabled, disabled, unknownFutureValue.
-        self._admin_configuration: Optional[authentication_app_admin_configuration.AuthenticationAppAdminConfiguration] = None
-        # Evaluates the success/failure of the authentication based on the admin configuration of the policy on the user's client authentication app. The possible values are: success, failure, unknownFutureValue.
-        self._authentication_evaluation: Optional[authentication_app_evaluation.AuthenticationAppEvaluation] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The name of the policy enforced on the user's authentication app.
-        self._policy_name: Optional[str] = None
-        # Refers to whether the policy executed as expected on the user's client authentication app. The possible values are: unknown, appLockOutOfDate, appLockEnabled, appLockDisabled, appContextOutOfDate, appContextShown, appContextNotShown, locationContextOutOfDate, locationContextShown, locationContextNotShown, numberMatchOutOfDate, numberMatchCorrectNumberEntered, numberMatchIncorrectNumberEntered, numberMatchDeny, tamperResistantHardwareOutOfDate, tamperResistantHardwareUsed, tamperResistantHardwareNotUsed, unknownFutureValue.
-        self._status: Optional[authentication_app_policy_status.AuthenticationAppPolicyStatus] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationAppPolicyDetails:
         """
@@ -94,7 +92,9 @@ class AuthenticationAppPolicyDetails(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_app_admin_configuration, authentication_app_evaluation, authentication_app_policy_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "adminConfiguration": lambda n : setattr(self, 'admin_configuration', n.get_enum_value(authentication_app_admin_configuration.AuthenticationAppAdminConfiguration)),
             "authenticationEvaluation": lambda n : setattr(self, 'authentication_evaluation', n.get_enum_value(authentication_app_evaluation.AuthenticationAppEvaluation)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

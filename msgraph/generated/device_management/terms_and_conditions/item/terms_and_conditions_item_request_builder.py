@@ -7,69 +7,22 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-acceptance_statuses_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.acceptance_statuses.acceptance_statuses_request_builder')
-terms_and_conditions_acceptance_status_item_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.acceptance_statuses.item.terms_and_conditions_acceptance_status_item_request_builder')
-assignments_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.assignments.assignments_request_builder')
-terms_and_conditions_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.assignments.item.terms_and_conditions_assignment_item_request_builder')
-group_assignments_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.group_assignments.group_assignments_request_builder')
-terms_and_conditions_group_assignment_item_request_builder = lazy_import('msgraph.generated.device_management.terms_and_conditions.item.group_assignments.item.terms_and_conditions_group_assignment_item_request_builder')
-terms_and_conditions = lazy_import('msgraph.generated.models.terms_and_conditions')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ....models import terms_and_conditions
+    from ....models.o_data_errors import o_data_error
+    from .acceptance_statuses import acceptance_statuses_request_builder
+    from .acceptance_statuses.item import terms_and_conditions_acceptance_status_item_request_builder
+    from .assignments import assignments_request_builder
+    from .assignments.item import terms_and_conditions_assignment_item_request_builder
+    from .group_assignments import group_assignments_request_builder
+    from .group_assignments.item import terms_and_conditions_group_assignment_item_request_builder
 
 class TermsAndConditionsItemRequestBuilder():
     """
     Provides operations to manage the termsAndConditions property of the microsoft.graph.deviceManagement entity.
     """
-    @property
-    def acceptance_statuses(self) -> acceptance_statuses_request_builder.AcceptanceStatusesRequestBuilder:
-        """
-        Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
-        """
-        return acceptance_statuses_request_builder.AcceptanceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
-        """
-        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
-        """
-        Provides operations to manage the groupAssignments property of the microsoft.graph.termsAndConditions entity.
-        """
-        return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def acceptance_statuses_by_id(self,id: str) -> terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder:
-        """
-        Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["termsAndConditionsAcceptanceStatus%2Did"] = id
-        return terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
-    def assignments_by_id(self,id: str) -> terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder:
-        """
-        Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["termsAndConditionsAssignment%2Did"] = id
-        return terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TermsAndConditionsItemRequestBuilder and sets the default values.
@@ -88,6 +41,36 @@ class TermsAndConditionsItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def acceptance_statuses_by_id(self,id: str) -> terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder:
+        """
+        Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .acceptance_statuses.item import terms_and_conditions_acceptance_status_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["termsAndConditionsAcceptanceStatus%2Did"] = id
+        return terms_and_conditions_acceptance_status_item_request_builder.TermsAndConditionsAcceptanceStatusItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
+    def assignments_by_id(self,id: str) -> terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .assignments.item import terms_and_conditions_assignment_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["termsAndConditionsAssignment%2Did"] = id
+        return terms_and_conditions_assignment_item_request_builder.TermsAndConditionsAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[TermsAndConditionsItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property termsAndConditions for deviceManagement
@@ -97,6 +80,8 @@ class TermsAndConditionsItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -115,12 +100,16 @@ class TermsAndConditionsItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import terms_and_conditions
+
         return await self.request_adapter.send_async(request_info, terms_and_conditions.TermsAndConditions, error_mapping)
     
     def group_assignments_by_id(self,id: str) -> terms_and_conditions_group_assignment_item_request_builder.TermsAndConditionsGroupAssignmentItemRequestBuilder:
@@ -132,6 +121,8 @@ class TermsAndConditionsItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .group_assignments.item import terms_and_conditions_group_assignment_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["termsAndConditionsGroupAssignment%2Did"] = id
         return terms_and_conditions_group_assignment_item_request_builder.TermsAndConditionsGroupAssignmentItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -149,12 +140,16 @@ class TermsAndConditionsItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ....models import terms_and_conditions
+
         return await self.request_adapter.send_async(request_info, terms_and_conditions.TermsAndConditions, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[TermsAndConditionsItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -212,6 +207,33 @@ class TermsAndConditionsItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def acceptance_statuses(self) -> acceptance_statuses_request_builder.AcceptanceStatusesRequestBuilder:
+        """
+        Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
+        """
+        from .acceptance_statuses import acceptance_statuses_request_builder
+
+        return acceptance_statuses_request_builder.AcceptanceStatusesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def assignments(self) -> assignments_request_builder.AssignmentsRequestBuilder:
+        """
+        Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
+        """
+        from .assignments import assignments_request_builder
+
+        return assignments_request_builder.AssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def group_assignments(self) -> group_assignments_request_builder.GroupAssignmentsRequestBuilder:
+        """
+        Provides operations to manage the groupAssignments property of the microsoft.graph.termsAndConditions entity.
+        """
+        from .group_assignments import group_assignments_request_builder
+
+        return group_assignments_request_builder.GroupAssignmentsRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TermsAndConditionsItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -229,12 +251,6 @@ class TermsAndConditionsItemRequestBuilder():
         """
         The terms and conditions associated with device management of the company.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -250,6 +266,12 @@ class TermsAndConditionsItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TermsAndConditionsItemRequestBuilderGetRequestConfiguration():

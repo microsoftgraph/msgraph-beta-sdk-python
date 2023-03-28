@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app_assignment_settings = lazy_import('msgraph.generated.models.mobile_app_assignment_settings')
+if TYPE_CHECKING:
+    from . import mobile_app_assignment_settings
+
+from . import mobile_app_assignment_settings
 
 class IosLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssignmentSettings):
     def __init__(self,) -> None:
@@ -14,6 +16,8 @@ class IosLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
         self.odata_type = "#microsoft.graph.iosLobAppAssignmentSettings"
         # When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.
         self._is_removable: Optional[bool] = None
+        # When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.
+        self._prevent_managed_app_backup: Optional[bool] = None
         # Whether or not to uninstall the app when device is removed from Intune.
         self._uninstall_on_device_removal: Optional[bool] = None
         # The VPN Configuration Id to apply for this app.
@@ -36,8 +40,11 @@ class IosLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app_assignment_settings
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isRemovable": lambda n : setattr(self, 'is_removable', n.get_bool_value()),
+            "preventManagedAppBackup": lambda n : setattr(self, 'prevent_managed_app_backup', n.get_bool_value()),
             "uninstallOnDeviceRemoval": lambda n : setattr(self, 'uninstall_on_device_removal', n.get_bool_value()),
             "vpnConfigurationId": lambda n : setattr(self, 'vpn_configuration_id', n.get_str_value()),
         }
@@ -62,6 +69,23 @@ class IosLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
         """
         self._is_removable = value
     
+    @property
+    def prevent_managed_app_backup(self,) -> Optional[bool]:
+        """
+        Gets the preventManagedAppBackup property value. When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.
+        Returns: Optional[bool]
+        """
+        return self._prevent_managed_app_backup
+    
+    @prevent_managed_app_backup.setter
+    def prevent_managed_app_backup(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the preventManagedAppBackup property value. When TRUE, indicates that the app should not be backed up to iCloud. When FALSE, indicates that the app may be backed up to iCloud. By default, this property is set to null which internally is treated as FALSE.
+        Args:
+            value: Value to set for the prevent_managed_app_backup property.
+        """
+        self._prevent_managed_app_backup = value
+    
     def serialize(self,writer: SerializationWriter) -> None:
         """
         Serializes information the current object
@@ -72,6 +96,7 @@ class IosLobAppAssignmentSettings(mobile_app_assignment_settings.MobileAppAssign
             raise Exception("writer cannot be undefined")
         super().serialize(writer)
         writer.write_bool_value("isRemovable", self.is_removable)
+        writer.write_bool_value("preventManagedAppBackup", self.prevent_managed_app_backup)
         writer.write_bool_value("uninstallOnDeviceRemoval", self.uninstall_on_device_removal)
         writer.write_str_value("vpnConfigurationId", self.vpn_configuration_id)
     

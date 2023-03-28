@@ -1,14 +1,28 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-win32_lob_app_detection_operator = lazy_import('msgraph.generated.models.win32_lob_app_detection_operator')
+if TYPE_CHECKING:
+    from . import win32_lob_app_detection_operator, win32_lob_app_file_system_requirement, win32_lob_app_power_shell_script_requirement, win32_lob_app_registry_requirement
 
 class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
     """
     Base class to detect a Win32 App
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new win32LobAppRequirement and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The detection value
+        self._detection_value: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Contains properties for detection operator.
+        self._operator: Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -26,20 +40,6 @@ class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new win32LobAppRequirement and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The detection value
-        self._detection_value: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Contains properties for detection operator.
-        self._operator: Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobAppRequirement:
         """
@@ -50,6 +50,21 @@ class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.win32LobAppFileSystemRequirement":
+                from . import win32_lob_app_file_system_requirement
+
+                return win32_lob_app_file_system_requirement.Win32LobAppFileSystemRequirement()
+            if mapping_value == "#microsoft.graph.win32LobAppPowerShellScriptRequirement":
+                from . import win32_lob_app_power_shell_script_requirement
+
+                return win32_lob_app_power_shell_script_requirement.Win32LobAppPowerShellScriptRequirement()
+            if mapping_value == "#microsoft.graph.win32LobAppRegistryRequirement":
+                from . import win32_lob_app_registry_requirement
+
+                return win32_lob_app_registry_requirement.Win32LobAppRegistryRequirement()
         return Win32LobAppRequirement()
     
     @property
@@ -74,7 +89,9 @@ class Win32LobAppRequirement(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import win32_lob_app_detection_operator, win32_lob_app_file_system_requirement, win32_lob_app_power_shell_script_requirement, win32_lob_app_registry_requirement
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operator": lambda n : setattr(self, 'operator', n.get_enum_value(win32_lob_app_detection_operator.Win32LobAppDetectionOperator)),

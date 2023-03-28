@@ -1,13 +1,40 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_timeout_behavior = lazy_import('msgraph.generated.models.access_review_timeout_behavior')
-user_set = lazy_import('msgraph.generated.models.user_set')
+if TYPE_CHECKING:
+    from . import access_review_timeout_behavior, user_set
 
 class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new assignmentReviewSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The default decision to apply if the request is not reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
+        self._access_review_timeout_behavior: Optional[access_review_timeout_behavior.AccessReviewTimeoutBehavior] = None
+        # The number of days within which reviewers should provide input.
+        self._duration_in_days: Optional[int] = None
+        # Specifies whether to display recommendations to the reviewer. The default value is true
+        self._is_access_recommendation_enabled: Optional[bool] = None
+        # Specifies whether the reviewer must provide justification for the approval. The default value is true.
+        self._is_approval_justification_required: Optional[bool] = None
+        # If true, access reviews are required for assignments from this policy.
+        self._is_enabled: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The interval for recurrence, such as monthly or quarterly.
+        self._recurrence_type: Optional[str] = None
+        # Who should be asked to do the review, either Self or Reviewers.
+        self._reviewer_type: Optional[str] = None
+        # If the reviewerType is Reviewers, this collection specifies the users who will be reviewers, either by ID or as members of a group, using a collection of singleUser and groupMembers.
+        self._reviewers: Optional[List[user_set.UserSet]] = None
+        # When the first review should start.
+        self._start_date_time: Optional[datetime] = None
+    
     @property
     def access_review_timeout_behavior(self,) -> Optional[access_review_timeout_behavior.AccessReviewTimeoutBehavior]:
         """
@@ -41,34 +68,6 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new assignmentReviewSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The default decision to apply if the request is not reviewed within the period specified in durationInDays. The possible values are: acceptAccessRecommendation, keepAccess, removeAccess, and unknownFutureValue.
-        self._access_review_timeout_behavior: Optional[access_review_timeout_behavior.AccessReviewTimeoutBehavior] = None
-        # The number of days within which reviewers should provide input.
-        self._duration_in_days: Optional[int] = None
-        # Specifies whether to display recommendations to the reviewer. The default value is true
-        self._is_access_recommendation_enabled: Optional[bool] = None
-        # Specifies whether the reviewer must provide justification for the approval. The default value is true.
-        self._is_approval_justification_required: Optional[bool] = None
-        # If true, access reviews are required for assignments from this policy.
-        self._is_enabled: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The interval for recurrence, such as monthly or quarterly.
-        self._recurrence_type: Optional[str] = None
-        # Who should be asked to do the review, either Self or Reviewers.
-        self._reviewer_type: Optional[str] = None
-        # If the reviewerType is Reviewers, this collection specifies the users who will be reviewers, either by ID or as members of a group, using a collection of singleUser and groupMembers.
-        self._reviewers: Optional[List[user_set.UserSet]] = None
-        # When the first review should start.
-        self._start_date_time: Optional[datetime] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AssignmentReviewSettings:
@@ -104,7 +103,9 @@ class AssignmentReviewSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_timeout_behavior, user_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessReviewTimeoutBehavior": lambda n : setattr(self, 'access_review_timeout_behavior', n.get_enum_value(access_review_timeout_behavior.AccessReviewTimeoutBehavior)),
             "durationInDays": lambda n : setattr(self, 'duration_in_days', n.get_int_value()),
             "isAccessRecommendationEnabled": lambda n : setattr(self, 'is_access_recommendation_enabled', n.get_bool_value()),

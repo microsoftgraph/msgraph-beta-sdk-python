@@ -1,10 +1,12 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
-credential_user_registrations_summary = lazy_import('msgraph.generated.models.managed_tenants.credential_user_registrations_summary')
+if TYPE_CHECKING:
+    from . import credential_user_registrations_summary
+    from .. import base_collection_pagination_count_response
+
+from .. import base_collection_pagination_count_response
 
 class CredentialUserRegistrationsSummaryCollectionResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     def __init__(self,) -> None:
@@ -32,7 +34,10 @@ class CredentialUserRegistrationsSummaryCollectionResponse(base_collection_pagin
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import credential_user_registrations_summary
+        from .. import base_collection_pagination_count_response
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(credential_user_registrations_summary.CredentialUserRegistrationsSummary)),
         }
         super_fields = super().get_field_deserializers()

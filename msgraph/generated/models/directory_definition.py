@@ -1,12 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-directory_definition_discoverabilities = lazy_import('msgraph.generated.models.directory_definition_discoverabilities')
-entity = lazy_import('msgraph.generated.models.entity')
-object_definition = lazy_import('msgraph.generated.models.object_definition')
+if TYPE_CHECKING:
+    from . import directory_definition_discoverabilities, entity, object_definition
+
+from . import entity
 
 class DirectoryDefinition(entity.Entity):
     def __init__(self,) -> None:
@@ -24,7 +24,7 @@ class DirectoryDefinition(entity.Entity):
         self._objects: Optional[List[object_definition.ObjectDefinition]] = None
         # The OdataType property
         self.odata_type: Optional[str] = None
-        # The readOnly property
+        # Whether this object is read-only.
         self._read_only: Optional[bool] = None
         # Read only value that indicates version discovered. null if discovery has not yet occurred.
         self._version: Optional[str] = None
@@ -80,7 +80,9 @@ class DirectoryDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import directory_definition_discoverabilities, entity, object_definition
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "discoverabilities": lambda n : setattr(self, 'discoverabilities', n.get_enum_value(directory_definition_discoverabilities.DirectoryDefinitionDiscoverabilities)),
             "discoveryDateTime": lambda n : setattr(self, 'discovery_date_time', n.get_datetime_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),
@@ -129,7 +131,7 @@ class DirectoryDefinition(entity.Entity):
     @property
     def read_only(self,) -> Optional[bool]:
         """
-        Gets the readOnly property value. The readOnly property
+        Gets the readOnly property value. Whether this object is read-only.
         Returns: Optional[bool]
         """
         return self._read_only
@@ -137,7 +139,7 @@ class DirectoryDefinition(entity.Entity):
     @read_only.setter
     def read_only(self,value: Optional[bool] = None) -> None:
         """
-        Sets the readOnly property value. The readOnly property
+        Sets the readOnly property value. Whether this object is read-only.
         Args:
             value: Value to set for the read_only property.
         """

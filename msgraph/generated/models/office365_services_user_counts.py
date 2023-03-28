@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class Office365ServicesUserCounts(entity.Entity):
     def __init__(self,) -> None:
@@ -29,7 +31,7 @@ class Office365ServicesUserCounts(entity.Entity):
         # The number of days the report covers.
         self._report_period: Optional[str] = None
         # The latest date of the content.
-        self._report_refresh_date: Optional[Date] = None
+        self._report_refresh_date: Optional[date] = None
         # The number of active users on SharePoint. Any user who viewed or edited files, shared files internally or externally, synced files, or viewed SharePoint pages is considered an active user.
         self._share_point_active: Optional[int] = None
         # The number of inactive users on SharePoint.
@@ -98,7 +100,9 @@ class Office365ServicesUserCounts(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "exchangeActive": lambda n : setattr(self, 'exchange_active', n.get_int_value()),
             "exchangeInactive": lambda n : setattr(self, 'exchange_inactive', n.get_int_value()),
             "office365Active": lambda n : setattr(self, 'office365_active', n.get_int_value()),
@@ -106,7 +110,7 @@ class Office365ServicesUserCounts(entity.Entity):
             "oneDriveActive": lambda n : setattr(self, 'one_drive_active', n.get_int_value()),
             "oneDriveInactive": lambda n : setattr(self, 'one_drive_inactive', n.get_int_value()),
             "reportPeriod": lambda n : setattr(self, 'report_period', n.get_str_value()),
-            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_object_value(Date)),
+            "reportRefreshDate": lambda n : setattr(self, 'report_refresh_date', n.get_date_value()),
             "sharePointActive": lambda n : setattr(self, 'share_point_active', n.get_int_value()),
             "sharePointInactive": lambda n : setattr(self, 'share_point_inactive', n.get_int_value()),
             "skypeForBusinessActive": lambda n : setattr(self, 'skype_for_business_active', n.get_int_value()),
@@ -206,15 +210,15 @@ class Office365ServicesUserCounts(entity.Entity):
         self._report_period = value
     
     @property
-    def report_refresh_date(self,) -> Optional[Date]:
+    def report_refresh_date(self,) -> Optional[date]:
         """
         Gets the reportRefreshDate property value. The latest date of the content.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._report_refresh_date
     
     @report_refresh_date.setter
-    def report_refresh_date(self,value: Optional[Date] = None) -> None:
+    def report_refresh_date(self,value: Optional[date] = None) -> None:
         """
         Sets the reportRefreshDate property value. The latest date of the content.
         Args:
@@ -238,7 +242,7 @@ class Office365ServicesUserCounts(entity.Entity):
         writer.write_int_value("oneDriveActive", self.one_drive_active)
         writer.write_int_value("oneDriveInactive", self.one_drive_inactive)
         writer.write_str_value("reportPeriod", self.report_period)
-        writer.write_object_value("reportRefreshDate", self.report_refresh_date)
+        writer.write_date_value("reportRefreshDate", self.report_refresh_date)
         writer.write_int_value("sharePointActive", self.share_point_active)
         writer.write_int_value("sharePointInactive", self.share_point_inactive)
         writer.write_int_value("skypeForBusinessActive", self.skype_for_business_active)

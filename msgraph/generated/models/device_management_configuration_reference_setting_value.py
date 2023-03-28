@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_string_setting_value = lazy_import('msgraph.generated.models.device_management_configuration_string_setting_value')
+if TYPE_CHECKING:
+    from . import device_management_configuration_string_setting_value
+
+from . import device_management_configuration_string_setting_value
 
 class DeviceManagementConfigurationReferenceSettingValue(device_management_configuration_string_setting_value.DeviceManagementConfigurationStringSettingValue):
     def __init__(self,) -> None:
@@ -32,7 +34,9 @@ class DeviceManagementConfigurationReferenceSettingValue(device_management_confi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_string_setting_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "note": lambda n : setattr(self, 'note', n.get_str_value()),
         }
         super_fields = super().get_field_deserializers()

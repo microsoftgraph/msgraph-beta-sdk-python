@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-teamwork_content_camera_configuration = lazy_import('msgraph.generated.models.teamwork_content_camera_configuration')
-teamwork_peripheral = lazy_import('msgraph.generated.models.teamwork_peripheral')
+if TYPE_CHECKING:
+    from . import teamwork_content_camera_configuration, teamwork_peripheral
 
 class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new teamworkCameraConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The cameras property
+        self._cameras: Optional[List[teamwork_peripheral.TeamworkPeripheral]] = None
+        # The configuration for the content camera.
+        self._content_camera_configuration: Optional[teamwork_content_camera_configuration.TeamworkContentCameraConfiguration] = None
+        # The defaultContentCamera property
+        self._default_content_camera: Optional[teamwork_peripheral.TeamworkPeripheral] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,22 +55,6 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the cameras property.
         """
         self._cameras = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new teamworkCameraConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The cameras property
-        self._cameras: Optional[List[teamwork_peripheral.TeamworkPeripheral]] = None
-        # The configuration for the content camera.
-        self._content_camera_configuration: Optional[teamwork_content_camera_configuration.TeamworkContentCameraConfiguration] = None
-        # The defaultContentCamera property
-        self._default_content_camera: Optional[teamwork_peripheral.TeamworkPeripheral] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
     
     @property
     def content_camera_configuration(self,) -> Optional[teamwork_content_camera_configuration.TeamworkContentCameraConfiguration]:
@@ -108,7 +107,9 @@ class TeamworkCameraConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import teamwork_content_camera_configuration, teamwork_peripheral
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cameras": lambda n : setattr(self, 'cameras', n.get_collection_of_object_values(teamwork_peripheral.TeamworkPeripheral)),
             "contentCameraConfiguration": lambda n : setattr(self, 'content_camera_configuration', n.get_object_value(teamwork_content_camera_configuration.TeamworkContentCameraConfiguration)),
             "defaultContentCamera": lambda n : setattr(self, 'default_content_camera', n.get_object_value(teamwork_peripheral.TeamworkPeripheral)),

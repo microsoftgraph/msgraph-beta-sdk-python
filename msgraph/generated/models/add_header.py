@@ -1,12 +1,24 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-alignment = lazy_import('msgraph.generated.models.alignment')
-mark_content = lazy_import('msgraph.generated.models.mark_content')
+if TYPE_CHECKING:
+    from . import alignment, mark_content
+
+from . import mark_content
 
 class AddHeader(mark_content.MarkContent):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AddHeader and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.addHeader"
+        # The alignment property
+        self._alignment: Optional[alignment.Alignment] = None
+        # The margin property
+        self._margin: Optional[int] = None
+    
     @property
     def alignment(self,) -> Optional[alignment.Alignment]:
         """
@@ -23,17 +35,6 @@ class AddHeader(mark_content.MarkContent):
             value: Value to set for the alignment property.
         """
         self._alignment = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AddHeader and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.addHeader"
-        # The alignment property
-        self._alignment: Optional[alignment.Alignment] = None
-        # The margin property
-        self._margin: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AddHeader:
@@ -52,7 +53,9 @@ class AddHeader(mark_content.MarkContent):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alignment, mark_content
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alignment": lambda n : setattr(self, 'alignment', n.get_enum_value(alignment.Alignment)),
             "margin": lambda n : setattr(self, 'margin', n.get_int_value()),
         }

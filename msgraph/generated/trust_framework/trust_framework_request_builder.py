@@ -7,34 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-trust_framework = lazy_import('msgraph.generated.models.trust_framework')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-key_sets_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.key_sets_request_builder')
-trust_framework_key_set_item_request_builder = lazy_import('msgraph.generated.trust_framework.key_sets.item.trust_framework_key_set_item_request_builder')
-policies_request_builder = lazy_import('msgraph.generated.trust_framework.policies.policies_request_builder')
-trust_framework_policy_item_request_builder = lazy_import('msgraph.generated.trust_framework.policies.item.trust_framework_policy_item_request_builder')
+if TYPE_CHECKING:
+    from ..models import trust_framework
+    from ..models.o_data_errors import o_data_error
+    from .key_sets import key_sets_request_builder
+    from .key_sets.item import trust_framework_key_set_item_request_builder
+    from .policies import policies_request_builder
+    from .policies.item import trust_framework_policy_item_request_builder
 
 class TrustFrameworkRequestBuilder():
     """
     Provides operations to manage the trustFramework singleton.
     """
-    @property
-    def key_sets(self) -> key_sets_request_builder.KeySetsRequestBuilder:
-        """
-        Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
-        """
-        return key_sets_request_builder.KeySetsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
-        """
-        Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
-        """
-        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new TrustFrameworkRequestBuilder and sets the default values.
@@ -63,12 +49,16 @@ class TrustFrameworkRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import trust_framework
+
         return await self.request_adapter.send_async(request_info, trust_framework.TrustFramework, error_mapping)
     
     def key_sets_by_id(self,id: str) -> trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder:
@@ -80,6 +70,8 @@ class TrustFrameworkRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .key_sets.item import trust_framework_key_set_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["trustFrameworkKeySet%2Did"] = id
         return trust_framework_key_set_item_request_builder.TrustFrameworkKeySetItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -97,12 +89,16 @@ class TrustFrameworkRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ..models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ..models import trust_framework
+
         return await self.request_adapter.send_async(request_info, trust_framework.TrustFramework, error_mapping)
     
     def policies_by_id(self,id: str) -> trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder:
@@ -114,6 +110,8 @@ class TrustFrameworkRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .policies.item import trust_framework_policy_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["trustFrameworkPolicy%2Did"] = id
         return trust_framework_policy_item_request_builder.TrustFrameworkPolicyItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -157,17 +155,29 @@ class TrustFrameworkRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def key_sets(self) -> key_sets_request_builder.KeySetsRequestBuilder:
+        """
+        Provides operations to manage the keySets property of the microsoft.graph.trustFramework entity.
+        """
+        from .key_sets import key_sets_request_builder
+
+        return key_sets_request_builder.KeySetsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def policies(self) -> policies_request_builder.PoliciesRequestBuilder:
+        """
+        Provides operations to manage the policies property of the microsoft.graph.trustFramework entity.
+        """
+        from .policies import policies_request_builder
+
+        return policies_request_builder.PoliciesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class TrustFrameworkRequestBuilderGetQueryParameters():
         """
         Get trustFramework
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -183,6 +193,12 @@ class TrustFrameworkRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class TrustFrameworkRequestBuilderGetRequestConfiguration():

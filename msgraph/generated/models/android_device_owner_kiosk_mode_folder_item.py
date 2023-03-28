@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-android_device_owner_kiosk_mode_home_screen_item = lazy_import('msgraph.generated.models.android_device_owner_kiosk_mode_home_screen_item')
+if TYPE_CHECKING:
+    from . import android_device_owner_kiosk_mode_app, android_device_owner_kiosk_mode_home_screen_item, android_device_owner_kiosk_mode_weblink
+
+from . import android_device_owner_kiosk_mode_home_screen_item
 
 class AndroidDeviceOwnerKioskModeFolderItem(android_device_owner_kiosk_mode_home_screen_item.AndroidDeviceOwnerKioskModeHomeScreenItem):
     def __init__(self,) -> None:
@@ -23,6 +25,17 @@ class AndroidDeviceOwnerKioskModeFolderItem(android_device_owner_kiosk_mode_home
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.androidDeviceOwnerKioskModeApp":
+                from . import android_device_owner_kiosk_mode_app
+
+                return android_device_owner_kiosk_mode_app.AndroidDeviceOwnerKioskModeApp()
+            if mapping_value == "#microsoft.graph.androidDeviceOwnerKioskModeWeblink":
+                from . import android_device_owner_kiosk_mode_weblink
+
+                return android_device_owner_kiosk_mode_weblink.AndroidDeviceOwnerKioskModeWeblink()
         return AndroidDeviceOwnerKioskModeFolderItem()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -30,7 +43,9 @@ class AndroidDeviceOwnerKioskModeFolderItem(android_device_owner_kiosk_mode_home
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import android_device_owner_kiosk_mode_app, android_device_owner_kiosk_mode_home_screen_item, android_device_owner_kiosk_mode_weblink
+
+        fields: Dict[str, Callable[[Any], None]] = {
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)

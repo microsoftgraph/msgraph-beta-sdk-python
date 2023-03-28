@@ -1,18 +1,52 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package = lazy_import('msgraph.generated.models.access_package')
-access_package_answer = lazy_import('msgraph.generated.models.access_package_answer')
-access_package_assignment = lazy_import('msgraph.generated.models.access_package_assignment')
-access_package_subject = lazy_import('msgraph.generated.models.access_package_subject')
-custom_extension_handler_instance = lazy_import('msgraph.generated.models.custom_extension_handler_instance')
-entity = lazy_import('msgraph.generated.models.entity')
-request_schedule = lazy_import('msgraph.generated.models.request_schedule')
+if TYPE_CHECKING:
+    from . import access_package, access_package_answer, access_package_assignment, access_package_subject, custom_extension_callout_instance, custom_extension_handler_instance, entity, request_schedule
+
+from . import entity
 
 class AccessPackageAssignmentRequest(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new accessPackageAssignmentRequest and sets the default values.
+        """
+        super().__init__()
+        # The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.
+        self._access_package: Optional[access_package.AccessPackage] = None
+        # For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.  Supports $expand.
+        self._access_package_assignment: Optional[access_package_assignment.AccessPackageAssignment] = None
+        # Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
+        self._answers: Optional[List[access_package_answer.AccessPackageAnswer]] = None
+        # The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        self._completed_date: Optional[datetime] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+        self._created_date_time: Optional[datetime] = None
+        # Information about all the custom extension calls that were made during the access package assignment request workflow.
+        self._custom_extension_callout_instances: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None
+        # A collection of custom workflow extension instances being run on an assignment request. Read-only.
+        self._custom_extension_handler_instances: Optional[List[custom_extension_handler_instance.CustomExtensionHandlerInstance]] = None
+        # The expirationDateTime property
+        self._expiration_date_time: Optional[datetime] = None
+        # True if the request is not to be processed for assignment.
+        self._is_validation_only: Optional[bool] = None
+        # The requestor's supplied justification.
+        self._justification: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
+        self._request_state: Optional[str] = None
+        # More information on the request processing status. Read-only.
+        self._request_status: Optional[str] = None
+        # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove or SystemRemove. A request from the user themselves would have requestType of UserAdd, UserUpdate or UserRemove. Read-only.
+        self._request_type: Optional[str] = None
+        # The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
+        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
+        # The range of dates that access is to be assigned to the requestor. Read-only.
+        self._schedule: Optional[request_schedule.RequestSchedule] = None
+    
     @property
     def access_package(self,) -> Optional[access_package.AccessPackage]:
         """
@@ -81,42 +115,6 @@ class AccessPackageAssignmentRequest(entity.Entity):
         """
         self._completed_date = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new accessPackageAssignmentRequest and sets the default values.
-        """
-        super().__init__()
-        # The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable. Supports $expand.
-        self._access_package: Optional[access_package.AccessPackage] = None
-        # For a requestType of UserAdd or AdminAdd, this is an access package assignment requested to be created.  For a requestType of UserRemove, AdminRemove or SystemRemove, this has the id property of an existing assignment to be removed.  Supports $expand.
-        self._access_package_assignment: Optional[access_package_assignment.AccessPackageAssignment] = None
-        # Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
-        self._answers: Optional[List[access_package_answer.AccessPackageAnswer]] = None
-        # The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._completed_date: Optional[datetime] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
-        self._created_date_time: Optional[datetime] = None
-        # A collection of custom workflow extension instances being run on an assignment request. Read-only.
-        self._custom_extension_handler_instances: Optional[List[custom_extension_handler_instance.CustomExtensionHandlerInstance]] = None
-        # The expirationDateTime property
-        self._expiration_date_time: Optional[datetime] = None
-        # True if the request is not to be processed for assignment.
-        self._is_validation_only: Optional[bool] = None
-        # The requestor's supplied justification.
-        self._justification: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # One of PendingApproval, Canceled,  Denied, Delivering, Delivered, PartiallyDelivered, DeliveryFailed, Submitted or Scheduled. Read-only.
-        self._request_state: Optional[str] = None
-        # More information on the request processing status. Read-only.
-        self._request_status: Optional[str] = None
-        # One of UserAdd, UserExtend, UserUpdate, UserRemove, AdminAdd, AdminRemove or SystemRemove. A request from the user themselves would have requestType of UserAdd, UserUpdate or UserRemove. Read-only.
-        self._request_type: Optional[str] = None
-        # The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
-        self._requestor: Optional[access_package_subject.AccessPackageSubject] = None
-        # The range of dates that access is to be assigned to the requestor. Read-only.
-        self._schedule: Optional[request_schedule.RequestSchedule] = None
-    
     @property
     def created_date_time(self,) -> Optional[datetime]:
         """
@@ -145,6 +143,23 @@ class AccessPackageAssignmentRequest(entity.Entity):
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
         return AccessPackageAssignmentRequest()
+    
+    @property
+    def custom_extension_callout_instances(self,) -> Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]:
+        """
+        Gets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment request workflow.
+        Returns: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]]
+        """
+        return self._custom_extension_callout_instances
+    
+    @custom_extension_callout_instances.setter
+    def custom_extension_callout_instances(self,value: Optional[List[custom_extension_callout_instance.CustomExtensionCalloutInstance]] = None) -> None:
+        """
+        Sets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment request workflow.
+        Args:
+            value: Value to set for the custom_extension_callout_instances property.
+        """
+        self._custom_extension_callout_instances = value
     
     @property
     def custom_extension_handler_instances(self,) -> Optional[List[custom_extension_handler_instance.CustomExtensionHandlerInstance]]:
@@ -185,12 +200,15 @@ class AccessPackageAssignmentRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package, access_package_answer, access_package_assignment, access_package_subject, custom_extension_callout_instance, custom_extension_handler_instance, entity, request_schedule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "accessPackage": lambda n : setattr(self, 'access_package', n.get_object_value(access_package.AccessPackage)),
             "accessPackageAssignment": lambda n : setattr(self, 'access_package_assignment', n.get_object_value(access_package_assignment.AccessPackageAssignment)),
             "answers": lambda n : setattr(self, 'answers', n.get_collection_of_object_values(access_package_answer.AccessPackageAnswer)),
             "completedDate": lambda n : setattr(self, 'completed_date', n.get_datetime_value()),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),
+            "customExtensionCalloutInstances": lambda n : setattr(self, 'custom_extension_callout_instances', n.get_collection_of_object_values(custom_extension_callout_instance.CustomExtensionCalloutInstance)),
             "customExtensionHandlerInstances": lambda n : setattr(self, 'custom_extension_handler_instances', n.get_collection_of_object_values(custom_extension_handler_instance.CustomExtensionHandlerInstance)),
             "expirationDateTime": lambda n : setattr(self, 'expiration_date_time', n.get_datetime_value()),
             "isValidationOnly": lambda n : setattr(self, 'is_validation_only', n.get_bool_value()),
@@ -338,6 +356,7 @@ class AccessPackageAssignmentRequest(entity.Entity):
         writer.write_collection_of_object_values("answers", self.answers)
         writer.write_datetime_value("completedDate", self.completed_date)
         writer.write_datetime_value("createdDateTime", self.created_date_time)
+        writer.write_collection_of_object_values("customExtensionCalloutInstances", self.custom_extension_callout_instances)
         writer.write_collection_of_object_values("customExtensionHandlerInstances", self.custom_extension_handler_instances)
         writer.write_datetime_value("expirationDateTime", self.expiration_date_time)
         writer.write_bool_value("isValidationOnly", self.is_validation_only)

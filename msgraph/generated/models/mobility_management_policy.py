@@ -1,13 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group = lazy_import('msgraph.generated.models.group')
-policy_scope = lazy_import('msgraph.generated.models.policy_scope')
+if TYPE_CHECKING:
+    from . import entity, group, policy_scope
+
+from . import entity
 
 class MobilityManagementPolicy(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new MobilityManagementPolicy and sets the default values.
+        """
+        super().__init__()
+        # Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.
+        self._applies_to: Optional[policy_scope.PolicyScope] = None
+        # Compliance URL of the mobility management application.
+        self._compliance_url: Optional[str] = None
+        # Description of the mobility management application.
+        self._description: Optional[str] = None
+        # Discovery URL of the mobility management application.
+        self._discovery_url: Optional[str] = None
+        # Display name of the mobility management application.
+        self._display_name: Optional[str] = None
+        # Azure AD groups under the scope of the mobility management application if appliesTo is selected
+        self._included_groups: Optional[List[group.Group]] = None
+        # Whether policy is valid. Invalid policies may not be updated and should be deleted.
+        self._is_valid: Optional[bool] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Terms of Use URL of the mobility management application.
+        self._terms_of_use_url: Optional[str] = None
+    
     @property
     def applies_to(self,) -> Optional[policy_scope.PolicyScope]:
         """
@@ -41,30 +65,6 @@ class MobilityManagementPolicy(entity.Entity):
             value: Value to set for the compliance_url property.
         """
         self._compliance_url = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new MobilityManagementPolicy and sets the default values.
-        """
-        super().__init__()
-        # Indicates the user scope of the mobility management policy. Possible values are: none, all, selected.
-        self._applies_to: Optional[policy_scope.PolicyScope] = None
-        # Compliance URL of the mobility management application.
-        self._compliance_url: Optional[str] = None
-        # Description of the mobility management application.
-        self._description: Optional[str] = None
-        # Discovery URL of the mobility management application.
-        self._discovery_url: Optional[str] = None
-        # Display name of the mobility management application.
-        self._display_name: Optional[str] = None
-        # Azure AD groups under the scope of the mobility management application if appliesTo is selected
-        self._included_groups: Optional[List[group.Group]] = None
-        # Whether policy is valid. Invalid policies may not be updated and should be deleted.
-        self._is_valid: Optional[bool] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Terms of Use URL of the mobility management application.
-        self._terms_of_use_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> MobilityManagementPolicy:
@@ -134,7 +134,9 @@ class MobilityManagementPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group, policy_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "appliesTo": lambda n : setattr(self, 'applies_to', n.get_enum_value(policy_scope.PolicyScope)),
             "complianceUrl": lambda n : setattr(self, 'compliance_url', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

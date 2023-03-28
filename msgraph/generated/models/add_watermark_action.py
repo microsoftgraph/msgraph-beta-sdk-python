@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-information_protection_action = lazy_import('msgraph.generated.models.information_protection_action')
-watermark_layout = lazy_import('msgraph.generated.models.watermark_layout')
+if TYPE_CHECKING:
+    from . import information_protection_action, watermark_layout
+
+from . import information_protection_action
 
 class AddWatermarkAction(information_protection_action.InformationProtectionAction):
     def __init__(self,) -> None:
@@ -94,7 +95,9 @@ class AddWatermarkAction(information_protection_action.InformationProtectionActi
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import information_protection_action, watermark_layout
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "fontColor": lambda n : setattr(self, 'font_color', n.get_str_value()),
             "fontName": lambda n : setattr(self, 'font_name', n.get_str_value()),
             "fontSize": lambda n : setattr(self, 'font_size', n.get_int_value()),

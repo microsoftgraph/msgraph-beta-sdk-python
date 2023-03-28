@@ -1,16 +1,38 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_combination_configuration = lazy_import('msgraph.generated.models.authentication_combination_configuration')
-authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
-authentication_strength_policy_type = lazy_import('msgraph.generated.models.authentication_strength_policy_type')
-authentication_strength_requirements = lazy_import('msgraph.generated.models.authentication_strength_requirements')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import authentication_combination_configuration, authentication_method_modes, authentication_strength_policy_type, authentication_strength_requirements, entity
+
+from . import entity
 
 class AuthenticationStrengthPolicy(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new authenticationStrengthPolicy and sets the default values.
+        """
+        super().__init__()
+        # A collection of authentication method modes that are required be used to satify this authentication strength.
+        self._allowed_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+        # Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        self._combination_configurations: Optional[List[authentication_combination_configuration.AuthenticationCombinationConfiguration]] = None
+        # The datetime when this policy was created.
+        self._created_date_time: Optional[datetime] = None
+        # The human-readable description of this policy.
+        self._description: Optional[str] = None
+        # The human-readable display name of this policy. Supports $filter (eq, ne, not , and in).
+        self._display_name: Optional[str] = None
+        # The datetime when this policy was last modified.
+        self._modified_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The policyType property
+        self._policy_type: Optional[authentication_strength_policy_type.AuthenticationStrengthPolicyType] = None
+        # The requirementsSatisfied property
+        self._requirements_satisfied: Optional[authentication_strength_requirements.AuthenticationStrengthRequirements] = None
+    
     @property
     def allowed_combinations(self,) -> Optional[List[authentication_method_modes.AuthenticationMethodModes]]:
         """
@@ -44,30 +66,6 @@ class AuthenticationStrengthPolicy(entity.Entity):
             value: Value to set for the combination_configurations property.
         """
         self._combination_configurations = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AuthenticationStrengthPolicy and sets the default values.
-        """
-        super().__init__()
-        # A collection of authentication method modes that are required be used to satify this authentication strength.
-        self._allowed_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-        # Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
-        self._combination_configurations: Optional[List[authentication_combination_configuration.AuthenticationCombinationConfiguration]] = None
-        # The datetime when this policy was created.
-        self._created_date_time: Optional[datetime] = None
-        # The human-readable description of this policy.
-        self._description: Optional[str] = None
-        # The human-readable display name of this policy. Supports $filter (eq, ne, not , and in).
-        self._display_name: Optional[str] = None
-        # The datetime when this policy was last modified.
-        self._modified_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The policyType property
-        self._policy_type: Optional[authentication_strength_policy_type.AuthenticationStrengthPolicyType] = None
-        # The requirementsSatisfied property
-        self._requirements_satisfied: Optional[authentication_strength_requirements.AuthenticationStrengthRequirements] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -137,7 +135,9 @@ class AuthenticationStrengthPolicy(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_combination_configuration, authentication_method_modes, authentication_strength_policy_type, authentication_strength_requirements, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowedCombinations": lambda n : setattr(self, 'allowed_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
             "combinationConfigurations": lambda n : setattr(self, 'combination_configurations', n.get_collection_of_object_values(authentication_combination_configuration.AuthenticationCombinationConfiguration)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

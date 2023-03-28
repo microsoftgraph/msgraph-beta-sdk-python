@@ -1,14 +1,33 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
-enrollment_notification_branding_options = lazy_import('msgraph.generated.models.enrollment_notification_branding_options')
-enrollment_notification_template_type = lazy_import('msgraph.generated.models.enrollment_notification_template_type')
-enrollment_restriction_platform_type = lazy_import('msgraph.generated.models.enrollment_restriction_platform_type')
+if TYPE_CHECKING:
+    from . import device_enrollment_configuration, enrollment_notification_branding_options, enrollment_notification_template_type, enrollment_restriction_platform_type
+
+from . import device_enrollment_configuration
 
 class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new DeviceEnrollmentNotificationConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.deviceEnrollmentNotificationConfiguration"
+        # Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
+        self._branding_options: Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions] = None
+        # DefaultLocale for the Enrollment Notification
+        self._default_locale: Optional[str] = None
+        # Notification Message Template Id
+        self._notification_message_template_id: Optional[UUID] = None
+        # The list of notification data -
+        self._notification_templates: Optional[List[str]] = None
+        # This enum indicates the platform type for which the enrollment restriction applies.
+        self._platform_type: Optional[enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType] = None
+        # This enum indicates the Template type for which the enrollment notification applies.
+        self._template_type: Optional[enrollment_notification_template_type.EnrollmentNotificationTemplateType] = None
+    
     @property
     def branding_options(self,) -> Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions]:
         """
@@ -25,25 +44,6 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
             value: Value to set for the branding_options property.
         """
         self._branding_options = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new DeviceEnrollmentNotificationConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.deviceEnrollmentNotificationConfiguration"
-        # Branding Options for the Message Template. Branding is defined in the Intune Admin Console.
-        self._branding_options: Optional[enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions] = None
-        # DefaultLocale for the Enrollment Notification
-        self._default_locale: Optional[str] = None
-        # Notification Message Template Id
-        self._notification_message_template_id: Optional[Guid] = None
-        # The list of notification data -
-        self._notification_templates: Optional[List[str]] = None
-        # This enum indicates the platform type for which the enrollment restriction applies.
-        self._platform_type: Optional[enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType] = None
-        # This enum indicates the Template type for which the enrollment notification applies.
-        self._template_type: Optional[enrollment_notification_template_type.EnrollmentNotificationTemplateType] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceEnrollmentNotificationConfiguration:
@@ -79,10 +79,12 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_enrollment_configuration, enrollment_notification_branding_options, enrollment_notification_template_type, enrollment_restriction_platform_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "brandingOptions": lambda n : setattr(self, 'branding_options', n.get_enum_value(enrollment_notification_branding_options.EnrollmentNotificationBrandingOptions)),
             "defaultLocale": lambda n : setattr(self, 'default_locale', n.get_str_value()),
-            "notificationMessageTemplateId": lambda n : setattr(self, 'notification_message_template_id', n.get_object_value(Guid)),
+            "notificationMessageTemplateId": lambda n : setattr(self, 'notification_message_template_id', n.get_uuid_value()),
             "notificationTemplates": lambda n : setattr(self, 'notification_templates', n.get_collection_of_primitive_values(str)),
             "platformType": lambda n : setattr(self, 'platform_type', n.get_enum_value(enrollment_restriction_platform_type.EnrollmentRestrictionPlatformType)),
             "templateType": lambda n : setattr(self, 'template_type', n.get_enum_value(enrollment_notification_template_type.EnrollmentNotificationTemplateType)),
@@ -92,15 +94,15 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         return fields
     
     @property
-    def notification_message_template_id(self,) -> Optional[Guid]:
+    def notification_message_template_id(self,) -> Optional[UUID]:
         """
         Gets the notificationMessageTemplateId property value. Notification Message Template Id
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._notification_message_template_id
     
     @notification_message_template_id.setter
-    def notification_message_template_id(self,value: Optional[Guid] = None) -> None:
+    def notification_message_template_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the notificationMessageTemplateId property value. Notification Message Template Id
         Args:
@@ -153,7 +155,7 @@ class DeviceEnrollmentNotificationConfiguration(device_enrollment_configuration.
         super().serialize(writer)
         writer.write_enum_value("brandingOptions", self.branding_options)
         writer.write_str_value("defaultLocale", self.default_locale)
-        writer.write_object_value("notificationMessageTemplateId", self.notification_message_template_id)
+        writer.write_uuid_value("notificationMessageTemplateId", self.notification_message_template_id)
         writer.write_collection_of_primitive_values("notificationTemplates", self.notification_templates)
         writer.write_enum_value("platformType", self.platform_type)
         writer.write_enum_value("templateType", self.template_type)

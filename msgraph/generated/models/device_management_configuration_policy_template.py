@@ -1,19 +1,48 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_management_configuration_platforms = lazy_import('msgraph.generated.models.device_management_configuration_platforms')
-device_management_configuration_setting_template = lazy_import('msgraph.generated.models.device_management_configuration_setting_template')
-device_management_configuration_technologies = lazy_import('msgraph.generated.models.device_management_configuration_technologies')
-device_management_configuration_template_family = lazy_import('msgraph.generated.models.device_management_configuration_template_family')
-device_management_template_lifecycle_state = lazy_import('msgraph.generated.models.device_management_template_lifecycle_state')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import device_management_configuration_platforms, device_management_configuration_setting_template, device_management_configuration_technologies, device_management_configuration_template_family, device_management_template_lifecycle_state, entity
+
+from . import entity
 
 class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
     """
     Device Management Configuration Policy Template
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new deviceManagementConfigurationPolicyTemplate and sets the default values.
+        """
+        super().__init__()
+        # Allow unmanaged setting templates
+        self._allow_unmanaged_settings: Optional[bool] = None
+        # Template base identifier
+        self._base_id: Optional[str] = None
+        # Template description
+        self._description: Optional[str] = None
+        # Template display name
+        self._display_name: Optional[str] = None
+        # Description of template version
+        self._display_version: Optional[str] = None
+        # Describes current lifecycle state of a template
+        self._lifecycle_state: Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Supported platform types.
+        self._platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
+        # Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
+        self._setting_template_count: Optional[int] = None
+        # Setting templates
+        self._setting_templates: Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]] = None
+        # Describes which technology this setting can be deployed with
+        self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
+        # Describes the TemplateFamily for the Template entity
+        self._template_family: Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily] = None
+        # Template version. Valid values 1 to 2147483647. This property is read-only.
+        self._version: Optional[int] = None
+    
     @property
     def allow_unmanaged_settings(self,) -> Optional[bool]:
         """
@@ -47,38 +76,6 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
             value: Value to set for the base_id property.
         """
         self._base_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new deviceManagementConfigurationPolicyTemplate and sets the default values.
-        """
-        super().__init__()
-        # Allow unmanaged setting templates
-        self._allow_unmanaged_settings: Optional[bool] = None
-        # Template base identifier
-        self._base_id: Optional[str] = None
-        # Template description
-        self._description: Optional[str] = None
-        # Template display name
-        self._display_name: Optional[str] = None
-        # Description of template version
-        self._display_version: Optional[str] = None
-        # Describes current lifecycle state of a template
-        self._lifecycle_state: Optional[device_management_template_lifecycle_state.DeviceManagementTemplateLifecycleState] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Supported platform types.
-        self._platforms: Optional[device_management_configuration_platforms.DeviceManagementConfigurationPlatforms] = None
-        # Number of setting templates. Valid values 0 to 2147483647. This property is read-only.
-        self._setting_template_count: Optional[int] = None
-        # Setting templates
-        self._setting_templates: Optional[List[device_management_configuration_setting_template.DeviceManagementConfigurationSettingTemplate]] = None
-        # Describes which technology this setting can be deployed with
-        self._technologies: Optional[device_management_configuration_technologies.DeviceManagementConfigurationTechnologies] = None
-        # Describes the TemplateFamily for the Template entity
-        self._template_family: Optional[device_management_configuration_template_family.DeviceManagementConfigurationTemplateFamily] = None
-        # Template version. Valid values 1 to 2147483647. This property is read-only.
-        self._version: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> DeviceManagementConfigurationPolicyTemplate:
@@ -148,7 +145,9 @@ class DeviceManagementConfigurationPolicyTemplate(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_management_configuration_platforms, device_management_configuration_setting_template, device_management_configuration_technologies, device_management_configuration_template_family, device_management_template_lifecycle_state, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowUnmanagedSettings": lambda n : setattr(self, 'allow_unmanaged_settings', n.get_bool_value()),
             "baseId": lambda n : setattr(self, 'base_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

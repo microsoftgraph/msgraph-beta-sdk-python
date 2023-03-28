@@ -1,15 +1,55 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-zebra_fota_deployment_state = lazy_import('msgraph.generated.models.zebra_fota_deployment_state')
+if TYPE_CHECKING:
+    from . import zebra_fota_deployment_state, zebra_fota_error_code
 
 class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
     """
     Describes the status for a single FOTA deployment.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new zebraFotaDeploymentStatus and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
+        self._cancel_requested: Optional[bool] = None
+        # The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
+        self._complete_or_canceled_date_time: Optional[datetime] = None
+        # An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
+        self._error_code: Optional[zebra_fota_error_code.ZebraFotaErrorCode] = None
+        # Date and time when the deployment status was updated from Zebra
+        self._last_updated_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Represents the state of Zebra FOTA deployment.
+        self._state: Optional[zebra_fota_deployment_state.ZebraFotaDeploymentState] = None
+        # An integer that indicates the total number of devices where installation was successful.
+        self._total_awaiting_install: Optional[int] = None
+        # An integer that indicates the total number of devices where installation was canceled.
+        self._total_canceled: Optional[int] = None
+        # An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
+        self._total_created: Optional[int] = None
+        # An integer that indicates the total number of devices in the deployment.
+        self._total_devices: Optional[int] = None
+        # An integer that indicates the total number of devices where installation was successful.
+        self._total_downloading: Optional[int] = None
+        # An integer that indicates the total number of devices that have failed to download the new OS file.
+        self._total_failed_download: Optional[int] = None
+        # An integer that indicates the total number of devices that have failed to install the new OS file.
+        self._total_failed_install: Optional[int] = None
+        # An integer that indicates the total number of devices that received the json and are scheduled.
+        self._total_scheduled: Optional[int] = None
+        # An integer that indicates the total number of devices where installation was successful.
+        self._total_succeeded_install: Optional[int] = None
+        # An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
+        self._total_unknown: Optional[int] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -61,44 +101,6 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
         """
         self._complete_or_canceled_date_time = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new zebraFotaDeploymentStatus and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A boolean that indicates if a cancellation was requested on the deployment. NOTE: A cancellation request does not guarantee that the deployment was canceled.
-        self._cancel_requested: Optional[bool] = None
-        # The date and time when this deployment was completed or canceled. The actual date time is determined by the value of state. If the state is canceled, this property holds the cancellation date/time. If the the state is completed, this property holds the completion date/time. If the deployment is not completed before the deployment end date, then completed date/time and end date/time are the same. This is always in the deployment timezone. Note: An installation that is in progress can continue past the deployment end date.
-        self._complete_or_canceled_date_time: Optional[datetime] = None
-        # Date and time when the deployment status was updated from Zebra
-        self._last_updated_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Represents the state of Zebra FOTA deployment.
-        self._state: Optional[zebra_fota_deployment_state.ZebraFotaDeploymentState] = None
-        # An integer that indicates the total number of devices where installation was successful.
-        self._total_awaiting_install: Optional[int] = None
-        # An integer that indicates the total number of devices where installation was canceled.
-        self._total_canceled: Optional[int] = None
-        # An integer that indicates the total number of devices that have a job in the CREATED state. Typically indicates jobs that did not reach the devices.
-        self._total_created: Optional[int] = None
-        # An integer that indicates the total number of devices in the deployment.
-        self._total_devices: Optional[int] = None
-        # An integer that indicates the total number of devices where installation was successful.
-        self._total_downloading: Optional[int] = None
-        # An integer that indicates the total number of devices that have failed to download the new OS file.
-        self._total_failed_download: Optional[int] = None
-        # An integer that indicates the total number of devices that have failed to install the new OS file.
-        self._total_failed_install: Optional[int] = None
-        # An integer that indicates the total number of devices that received the json and are scheduled.
-        self._total_scheduled: Optional[int] = None
-        # An integer that indicates the total number of devices where installation was successful.
-        self._total_succeeded_install: Optional[int] = None
-        # An integer that indicates the total number of devices where no deployment status or end state has not received, even after the scheduled end date was reached.
-        self._total_unknown: Optional[int] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ZebraFotaDeploymentStatus:
         """
@@ -111,14 +113,34 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
             raise Exception("parse_node cannot be undefined")
         return ZebraFotaDeploymentStatus()
     
+    @property
+    def error_code(self,) -> Optional[zebra_fota_error_code.ZebraFotaErrorCode]:
+        """
+        Gets the errorCode property value. An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
+        Returns: Optional[zebra_fota_error_code.ZebraFotaErrorCode]
+        """
+        return self._error_code
+    
+    @error_code.setter
+    def error_code(self,value: Optional[zebra_fota_error_code.ZebraFotaErrorCode] = None) -> None:
+        """
+        Sets the errorCode property value. An error code indicating the failure reason, when the deployment state is createFailed. Possible values: See zebraFotaErrorCode enum.
+        Args:
+            value: Value to set for the error_code property.
+        """
+        self._error_code = value
+    
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
         """
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import zebra_fota_deployment_state, zebra_fota_error_code
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "cancelRequested": lambda n : setattr(self, 'cancel_requested', n.get_bool_value()),
             "completeOrCanceledDateTime": lambda n : setattr(self, 'complete_or_canceled_date_time', n.get_datetime_value()),
+            "errorCode": lambda n : setattr(self, 'error_code', n.get_enum_value(zebra_fota_error_code.ZebraFotaErrorCode)),
             "lastUpdatedDateTime": lambda n : setattr(self, 'last_updated_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "state": lambda n : setattr(self, 'state', n.get_enum_value(zebra_fota_deployment_state.ZebraFotaDeploymentState)),
@@ -179,6 +201,7 @@ class ZebraFotaDeploymentStatus(AdditionalDataHolder, Parsable):
             raise Exception("writer cannot be undefined")
         writer.write_bool_value("cancelRequested", self.cancel_requested)
         writer.write_datetime_value("completeOrCanceledDateTime", self.complete_or_canceled_date_time)
+        writer.write_enum_value("errorCode", self.error_code)
         writer.write_datetime_value("lastUpdatedDateTime", self.last_updated_date_time)
         writer.write_str_value("@odata.type", self.odata_type)
         writer.write_enum_value("state", self.state)

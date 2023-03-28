@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-vpp_token_action_failure_reason = lazy_import('msgraph.generated.models.vpp_token_action_failure_reason')
-vpp_token_action_result = lazy_import('msgraph.generated.models.vpp_token_action_result')
+if TYPE_CHECKING:
+    from . import vpp_token_action_failure_reason, vpp_token_action_result
+
+from . import vpp_token_action_result
 
 class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionResult):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new VppTokenRevokeLicensesActionResult and sets the default values.
+        """
+        super().__init__()
+        # Possible types of reasons for an Apple Volume Purchase Program token action failure.
+        self._action_failure_reason: Optional[vpp_token_action_failure_reason.VppTokenActionFailureReason] = None
+        # A count of the number of licenses that failed to revoke.
+        self._failed_licenses_count: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # A count of the number of licenses that were attempted to revoke.
+        self._total_licenses_count: Optional[int] = None
+    
     @property
     def action_failure_reason(self,) -> Optional[vpp_token_action_failure_reason.VppTokenActionFailureReason]:
         """
@@ -23,20 +38,6 @@ class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionR
             value: Value to set for the action_failure_reason property.
         """
         self._action_failure_reason = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new VppTokenRevokeLicensesActionResult and sets the default values.
-        """
-        super().__init__()
-        # Possible types of reasons for an Apple Volume Purchase Program token action failure.
-        self._action_failure_reason: Optional[vpp_token_action_failure_reason.VppTokenActionFailureReason] = None
-        # A count of the number of licenses that failed to revoke.
-        self._failed_licenses_count: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A count of the number of licenses that were attempted to revoke.
-        self._total_licenses_count: Optional[int] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> VppTokenRevokeLicensesActionResult:
@@ -72,7 +73,9 @@ class VppTokenRevokeLicensesActionResult(vpp_token_action_result.VppTokenActionR
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import vpp_token_action_failure_reason, vpp_token_action_result
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actionFailureReason": lambda n : setattr(self, 'action_failure_reason', n.get_enum_value(vpp_token_action_failure_reason.VppTokenActionFailureReason)),
             "failedLicensesCount": lambda n : setattr(self, 'failed_licenses_count', n.get_int_value()),
             "totalLicensesCount": lambda n : setattr(self, 'total_licenses_count', n.get_int_value()),

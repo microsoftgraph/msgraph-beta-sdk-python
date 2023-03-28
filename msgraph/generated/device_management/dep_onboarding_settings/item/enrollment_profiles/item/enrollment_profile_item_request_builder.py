@@ -7,40 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-export_mobile_config_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.export_mobile_config.export_mobile_config_request_builder')
-set_default_profile_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.set_default_profile.set_default_profile_request_builder')
-update_device_profile_assignment_request_builder = lazy_import('msgraph.generated.device_management.dep_onboarding_settings.item.enrollment_profiles.item.update_device_profile_assignment.update_device_profile_assignment_request_builder')
-enrollment_profile = lazy_import('msgraph.generated.models.enrollment_profile')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import enrollment_profile
+    from ......models.o_data_errors import o_data_error
+    from .export_mobile_config import export_mobile_config_request_builder
+    from .set_default_profile import set_default_profile_request_builder
+    from .update_device_profile_assignment import update_device_profile_assignment_request_builder
 
 class EnrollmentProfileItemRequestBuilder():
     """
     Provides operations to manage the enrollmentProfiles property of the microsoft.graph.depOnboardingSetting entity.
     """
-    @property
-    def export_mobile_config(self) -> export_mobile_config_request_builder.ExportMobileConfigRequestBuilder:
-        """
-        Provides operations to call the exportMobileConfig method.
-        """
-        return export_mobile_config_request_builder.ExportMobileConfigRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def set_default_profile(self) -> set_default_profile_request_builder.SetDefaultProfileRequestBuilder:
-        """
-        Provides operations to call the setDefaultProfile method.
-        """
-        return set_default_profile_request_builder.SetDefaultProfileRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def update_device_profile_assignment(self) -> update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder:
-        """
-        Provides operations to call the updateDeviceProfileAssignment method.
-        """
-        return update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new EnrollmentProfileItemRequestBuilder and sets the default values.
@@ -68,6 +47,8 @@ class EnrollmentProfileItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -86,12 +67,16 @@ class EnrollmentProfileItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import enrollment_profile
+
         return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
     
     async def patch(self,body: Optional[enrollment_profile.EnrollmentProfile] = None, request_configuration: Optional[EnrollmentProfileItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[enrollment_profile.EnrollmentProfile]:
@@ -107,12 +92,16 @@ class EnrollmentProfileItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import enrollment_profile
+
         return await self.request_adapter.send_async(request_info, enrollment_profile.EnrollmentProfile, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -170,6 +159,33 @@ class EnrollmentProfileItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def export_mobile_config(self) -> export_mobile_config_request_builder.ExportMobileConfigRequestBuilder:
+        """
+        Provides operations to call the exportMobileConfig method.
+        """
+        from .export_mobile_config import export_mobile_config_request_builder
+
+        return export_mobile_config_request_builder.ExportMobileConfigRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def set_default_profile(self) -> set_default_profile_request_builder.SetDefaultProfileRequestBuilder:
+        """
+        Provides operations to call the setDefaultProfile method.
+        """
+        from .set_default_profile import set_default_profile_request_builder
+
+        return set_default_profile_request_builder.SetDefaultProfileRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def update_device_profile_assignment(self) -> update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder:
+        """
+        Provides operations to call the updateDeviceProfileAssignment method.
+        """
+        from .update_device_profile_assignment import update_device_profile_assignment_request_builder
+
+        return update_device_profile_assignment_request_builder.UpdateDeviceProfileAssignmentRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class EnrollmentProfileItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -187,12 +203,6 @@ class EnrollmentProfileItemRequestBuilder():
         """
         The enrollment profiles.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -208,6 +218,12 @@ class EnrollmentProfileItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class EnrollmentProfileItemRequestBuilderGetRequestConfiguration():

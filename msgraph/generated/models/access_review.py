@@ -1,37 +1,17 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_review_decision = lazy_import('msgraph.generated.models.access_review_decision')
-access_review_reviewer = lazy_import('msgraph.generated.models.access_review_reviewer')
-access_review_settings = lazy_import('msgraph.generated.models.access_review_settings')
-entity = lazy_import('msgraph.generated.models.entity')
-identity = lazy_import('msgraph.generated.models.identity')
-user_identity = lazy_import('msgraph.generated.models.user_identity')
+if TYPE_CHECKING:
+    from . import access_review_decision, access_review_reviewer, access_review_settings, entity, identity, user_identity
+
+from . import entity
 
 class AccessReview(entity.Entity):
-    @property
-    def business_flow_template_id(self,) -> Optional[str]:
-        """
-        Gets the businessFlowTemplateId property value. The business flow template identifier. Required on create.  This value is case sensitive.
-        Returns: Optional[str]
-        """
-        return self._business_flow_template_id
-    
-    @business_flow_template_id.setter
-    def business_flow_template_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the businessFlowTemplateId property value. The business flow template identifier. Required on create.  This value is case sensitive.
-        Args:
-            value: Value to set for the business_flow_template_id property.
-        """
-        self._business_flow_template_id = value
-    
     def __init__(self,) -> None:
         """
-        Instantiates a new accessReview and sets the default values.
+        Instantiates a new AccessReview and sets the default values.
         """
         super().__init__()
         # The business flow template identifier. Required on create.  This value is case sensitive.
@@ -47,7 +27,7 @@ class AccessReview(entity.Entity):
         # The DateTime when the review is scheduled to end. This must be at least one day later than the start date.  Required on create.
         self._end_date_time: Optional[datetime] = None
         # The collection of access reviews instances past, present and future, if this object is a recurring access review.
-        self._instances: Optional[List[AccessReview]] = None
+        self._instances: Optional[List[access_review.AccessReview]] = None
         # The collection of decisions for the caller, if the caller is a reviewer.
         self._my_decisions: Optional[List[access_review_decision.AccessReviewDecision]] = None
         # The OdataType property
@@ -64,6 +44,23 @@ class AccessReview(entity.Entity):
         self._start_date_time: Optional[datetime] = None
         # This read-only field specifies the status of an accessReview. The typical states include Initializing, NotStarted, Starting,InProgress, Completing, Completed, AutoReviewing, and AutoReviewed.
         self._status: Optional[str] = None
+    
+    @property
+    def business_flow_template_id(self,) -> Optional[str]:
+        """
+        Gets the businessFlowTemplateId property value. The business flow template identifier. Required on create.  This value is case sensitive.
+        Returns: Optional[str]
+        """
+        return self._business_flow_template_id
+    
+    @business_flow_template_id.setter
+    def business_flow_template_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the businessFlowTemplateId property value. The business flow template identifier. Required on create.  This value is case sensitive.
+        Args:
+            value: Value to set for the business_flow_template_id property.
+        """
+        self._business_flow_template_id = value
     
     @property
     def created_by(self,) -> Optional[user_identity.UserIdentity]:
@@ -167,14 +164,16 @@ class AccessReview(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_review_decision, access_review_reviewer, access_review_settings, entity, identity, user_identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "businessFlowTemplateId": lambda n : setattr(self, 'business_flow_template_id', n.get_str_value()),
             "createdBy": lambda n : setattr(self, 'created_by', n.get_object_value(user_identity.UserIdentity)),
             "decisions": lambda n : setattr(self, 'decisions', n.get_collection_of_object_values(access_review_decision.AccessReviewDecision)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "endDateTime": lambda n : setattr(self, 'end_date_time', n.get_datetime_value()),
-            "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(AccessReview)),
+            "instances": lambda n : setattr(self, 'instances', n.get_collection_of_object_values(access_review.AccessReview)),
             "myDecisions": lambda n : setattr(self, 'my_decisions', n.get_collection_of_object_values(access_review_decision.AccessReviewDecision)),
             "reviewedEntity": lambda n : setattr(self, 'reviewed_entity', n.get_object_value(identity.Identity)),
             "reviewers": lambda n : setattr(self, 'reviewers', n.get_collection_of_object_values(access_review_reviewer.AccessReviewReviewer)),
@@ -188,15 +187,15 @@ class AccessReview(entity.Entity):
         return fields
     
     @property
-    def instances(self,) -> Optional[List[AccessReview]]:
+    def instances(self,) -> Optional[List[access_review.AccessReview]]:
         """
         Gets the instances property value. The collection of access reviews instances past, present and future, if this object is a recurring access review.
-        Returns: Optional[List[AccessReview]]
+        Returns: Optional[List[access_review.AccessReview]]
         """
         return self._instances
     
     @instances.setter
-    def instances(self,value: Optional[List[AccessReview]] = None) -> None:
+    def instances(self,value: Optional[List[access_review.AccessReview]] = None) -> None:
         """
         Sets the instances property value. The collection of access reviews instances past, present and future, if this object is a recurring access review.
         Args:

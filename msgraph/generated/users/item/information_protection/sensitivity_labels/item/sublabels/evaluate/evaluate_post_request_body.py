@@ -1,12 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-current_label = lazy_import('msgraph.generated.models.current_label')
-discovered_sensitive_type = lazy_import('msgraph.generated.models.discovered_sensitive_type')
+if TYPE_CHECKING:
+    from ........models import current_label, discovered_sensitive_type
 
 class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new evaluatePostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The currentLabel property
+        self._current_label: Optional[current_label.CurrentLabel] = None
+        # The discoveredSensitiveTypes property
+        self._discovered_sensitive_types: Optional[List[discovered_sensitive_type.DiscoveredSensitiveType]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,18 +34,6 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new evaluatePostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The currentLabel property
-        self._current_label: Optional[current_label.CurrentLabel] = None
-        # The discoveredSensitiveTypes property
-        self._discovered_sensitive_types: Optional[List[discovered_sensitive_type.DiscoveredSensitiveType]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EvaluatePostRequestBody:
@@ -87,7 +86,9 @@ class EvaluatePostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from ........models import current_label, discovered_sensitive_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "currentLabel": lambda n : setattr(self, 'current_label', n.get_object_value(current_label.CurrentLabel)),
             "discoveredSensitiveTypes": lambda n : setattr(self, 'discovered_sensitive_types', n.get_collection_of_object_values(discovered_sensitive_type.DiscoveredSensitiveType)),
         }

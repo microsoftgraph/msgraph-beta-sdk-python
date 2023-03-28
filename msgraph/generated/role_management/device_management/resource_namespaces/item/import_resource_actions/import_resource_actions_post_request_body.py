@@ -1,9 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class ImportResourceActionsPostRequestBody(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new importResourceActionsPostRequestBody and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The format property
+        self._format: Optional[str] = None
+        # The overwriteResourceNamespace property
+        self._overwrite_resource_namespace: Optional[bool] = None
+        # The value property
+        self._value: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -20,20 +33,6 @@ class ImportResourceActionsPostRequestBody(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new importResourceActionsPostRequestBody and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The format property
-        self._format: Optional[str] = None
-        # The overwriteResourceNamespace property
-        self._overwrite_resource_namespace: Optional[bool] = None
-        # The value property
-        self._value: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ImportResourceActionsPostRequestBody:
@@ -69,7 +68,7 @@ class ImportResourceActionsPostRequestBody(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "format": lambda n : setattr(self, 'format', n.get_str_value()),
             "overwriteResourceNamespace": lambda n : setattr(self, 'overwrite_resource_namespace', n.get_bool_value()),
             "value": lambda n : setattr(self, 'value', n.get_str_value()),

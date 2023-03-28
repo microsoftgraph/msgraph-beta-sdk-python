@@ -1,15 +1,55 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cloud_pc_management_service = lazy_import('msgraph.generated.models.cloud_pc_management_service')
-cloud_pc_on_premises_connection_status = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_status')
-cloud_pc_on_premises_connection_status_details = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_status_details')
-cloud_pc_on_premises_connection_type = lazy_import('msgraph.generated.models.cloud_pc_on_premises_connection_type')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import cloud_pc_management_service, cloud_pc_on_premises_connection_status, cloud_pc_on_premises_connection_status_details, cloud_pc_on_premises_connection_type, entity
+
+from . import entity
 
 class CloudPcOnPremisesConnection(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CloudPcOnPremisesConnection and sets the default values.
+        """
+        super().__init__()
+        # The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Optional.
+        self._ad_domain_name: Optional[str] = None
+        # The password associated with adDomainUsername.
+        self._ad_domain_password: Optional[str] = None
+        # The username of an Active Directory account (user or service account) that has permissions to create computer objects in Active Directory. Required format: admin@contoso.com. Optional.
+        self._ad_domain_username: Optional[str] = None
+        # The interface URL of the partner service's resource that links to this Azure network connection. Returned only on $select.
+        self._alternate_resource_url: Optional[str] = None
+        # The display name for the Azure network connection.
+        self._display_name: Optional[str] = None
+        # The healthCheckStatus property
+        self._health_check_status: Optional[cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus] = None
+        # The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
+        self._health_check_status_details: Optional[cloud_pc_on_premises_connection_status_details.CloudPcOnPremisesConnectionStatusDetails] = None
+        # When true, the Azure network connection is in use. When false, the connection is not in use. You cannot delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
+        self._in_use: Optional[bool] = None
+        # The managedBy property
+        self._managed_by: Optional[cloud_pc_management_service.CloudPcManagementService] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The organizational unit (OU) in which the computer account is created. If left null, the OU that’s configured as the default (a well-known computer object container) in your Active Directory domain (OU) is used. Optional.
+        self._organizational_unit: Optional[str] = None
+        # The ID of the target resource group. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}.
+        self._resource_group_id: Optional[str] = None
+        # The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
+        self._subnet_id: Optional[str] = None
+        # The ID of the target Azure subscription that’s associated with your tenant.
+        self._subscription_id: Optional[str] = None
+        # The name of the target Azure subscription. Read-only.
+        self._subscription_name: Optional[str] = None
+        # Specifies how the provisioned Cloud PC will be joined to Azure Active Directory. Default value is hybridAzureADJoin. Possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
+        self._type: Optional[cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType] = None
+        # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
+        self._virtual_network_id: Optional[str] = None
+        # Indicates resource location of the virtual target network. Read-only, computed value.
+        self._virtual_network_location: Optional[str] = None
+    
     @property
     def ad_domain_name(self,) -> Optional[str]:
         """
@@ -78,48 +118,6 @@ class CloudPcOnPremisesConnection(entity.Entity):
         """
         self._alternate_resource_url = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CloudPcOnPremisesConnection and sets the default values.
-        """
-        super().__init__()
-        # The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Optional.
-        self._ad_domain_name: Optional[str] = None
-        # The password associated with adDomainUsername.
-        self._ad_domain_password: Optional[str] = None
-        # The username of an Active Directory account (user or service account) that has permissions to create computer objects in Active Directory. Required format: admin@contoso.com. Optional.
-        self._ad_domain_username: Optional[str] = None
-        # The interface URL of the partner service's resource that links to this Azure network connection. Returned only on $select.
-        self._alternate_resource_url: Optional[str] = None
-        # The display name for the Azure network connection.
-        self._display_name: Optional[str] = None
-        # The healthCheckStatus property
-        self._health_check_status: Optional[cloud_pc_on_premises_connection_status.CloudPcOnPremisesConnectionStatus] = None
-        # The details of the connection's health checks and the corresponding results. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
-        self._health_check_status_details: Optional[cloud_pc_on_premises_connection_status_details.CloudPcOnPremisesConnectionStatusDetails] = None
-        # When true, the Azure network connection is in use. When false, the connection is not in use. You cannot delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetails. Read-only.
-        self._in_use: Optional[bool] = None
-        # The managedBy property
-        self._managed_by: Optional[cloud_pc_management_service.CloudPcManagementService] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The organizational unit (OU) in which the computer account is created. If left null, the OU that’s configured as the default (a well-known computer object container) in your Active Directory domain (OU) is used. Optional.
-        self._organizational_unit: Optional[str] = None
-        # The ID of the target resource group. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}.
-        self._resource_group_id: Optional[str] = None
-        # The ID of the target subnet. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkId}/subnets/{subnetName}.
-        self._subnet_id: Optional[str] = None
-        # The ID of the target Azure subscription that’s associated with your tenant.
-        self._subscription_id: Optional[str] = None
-        # The name of the target Azure subscription. Read-only.
-        self._subscription_name: Optional[str] = None
-        # Specifies how the provisioned Cloud PC will be joined to Azure Active Directory. Default value is hybridAzureADJoin. Possible values are: azureADJoin, hybridAzureADJoin, unknownFutureValue.
-        self._type: Optional[cloud_pc_on_premises_connection_type.CloudPcOnPremisesConnectionType] = None
-        # The ID of the target virtual network. Required format: /subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}.
-        self._virtual_network_id: Optional[str] = None
-        # Indicates resource location of the virtual target network. Read-only, computed value.
-        self._virtual_network_location: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CloudPcOnPremisesConnection:
         """
@@ -154,7 +152,9 @@ class CloudPcOnPremisesConnection(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import cloud_pc_management_service, cloud_pc_on_premises_connection_status, cloud_pc_on_premises_connection_status_details, cloud_pc_on_premises_connection_type, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "adDomainName": lambda n : setattr(self, 'ad_domain_name', n.get_str_value()),
             "adDomainPassword": lambda n : setattr(self, 'ad_domain_password', n.get_str_value()),
             "adDomainUsername": lambda n : setattr(self, 'ad_domain_username', n.get_str_value()),

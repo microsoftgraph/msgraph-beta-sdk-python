@@ -7,47 +7,20 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-connector_group = lazy_import('msgraph.generated.models.connector_group')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-applications_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.applications.applications_request_builder')
-application_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.applications.item.application_item_request_builder')
-members_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.members.members_request_builder')
-connector_item_request_builder = lazy_import('msgraph.generated.on_premises_publishing_profiles.item.connector_groups.item.members.item.connector_item_request_builder')
+if TYPE_CHECKING:
+    from .....models import connector_group
+    from .....models.o_data_errors import o_data_error
+    from .applications import applications_request_builder
+    from .applications.item import application_item_request_builder
+    from .members import members_request_builder
+    from .members.item import connector_item_request_builder
 
 class ConnectorGroupItemRequestBuilder():
     """
     Provides operations to manage the connectorGroups property of the microsoft.graph.onPremisesPublishingProfile entity.
     """
-    @property
-    def applications(self) -> applications_request_builder.ApplicationsRequestBuilder:
-        """
-        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
-        """
-        return applications_request_builder.ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def members(self) -> members_request_builder.MembersRequestBuilder:
-        """
-        Provides operations to manage the members property of the microsoft.graph.connectorGroup entity.
-        """
-        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    def applications_by_id(self,id: str) -> application_item_request_builder.ApplicationItemRequestBuilder:
-        """
-        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
-        Args:
-            id: Unique identifier of the item
-        Returns: application_item_request_builder.ApplicationItemRequestBuilder
-        """
-        if id is None:
-            raise Exception("id cannot be undefined")
-        url_tpl_params = get_path_parameters(self.path_parameters)
-        url_tpl_params["application%2Did"] = id
-        return application_item_request_builder.ApplicationItemRequestBuilder(self.request_adapter, url_tpl_params)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new ConnectorGroupItemRequestBuilder and sets the default values.
@@ -66,6 +39,21 @@ class ConnectorGroupItemRequestBuilder():
         self.path_parameters = url_tpl_params
         self.request_adapter = request_adapter
     
+    def applications_by_id(self,id: str) -> application_item_request_builder.ApplicationItemRequestBuilder:
+        """
+        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
+        Args:
+            id: Unique identifier of the item
+        Returns: application_item_request_builder.ApplicationItemRequestBuilder
+        """
+        if id is None:
+            raise Exception("id cannot be undefined")
+        from .applications.item import application_item_request_builder
+
+        url_tpl_params = get_path_parameters(self.path_parameters)
+        url_tpl_params["application%2Did"] = id
+        return application_item_request_builder.ApplicationItemRequestBuilder(self.request_adapter, url_tpl_params)
+    
     async def delete(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> None:
         """
         Delete navigation property connectorGroups for onPremisesPublishingProfiles
@@ -75,6 +63,8 @@ class ConnectorGroupItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -93,12 +83,16 @@ class ConnectorGroupItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import connector_group
+
         return await self.request_adapter.send_async(request_info, connector_group.ConnectorGroup, error_mapping)
     
     def members_by_id(self,id: str) -> connector_item_request_builder.ConnectorItemRequestBuilder:
@@ -110,6 +104,8 @@ class ConnectorGroupItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .members.item import connector_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["connector%2Did"] = id
         return connector_item_request_builder.ConnectorItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -127,12 +123,16 @@ class ConnectorGroupItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import connector_group
+
         return await self.request_adapter.send_async(request_info, connector_group.ConnectorGroup, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[ConnectorGroupItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -190,6 +190,24 @@ class ConnectorGroupItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def applications(self) -> applications_request_builder.ApplicationsRequestBuilder:
+        """
+        Provides operations to manage the applications property of the microsoft.graph.connectorGroup entity.
+        """
+        from .applications import applications_request_builder
+
+        return applications_request_builder.ApplicationsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def members(self) -> members_request_builder.MembersRequestBuilder:
+        """
+        Provides operations to manage the members property of the microsoft.graph.connectorGroup entity.
+        """
+        from .members import members_request_builder
+
+        return members_request_builder.MembersRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class ConnectorGroupItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -207,12 +225,6 @@ class ConnectorGroupItemRequestBuilder():
         """
         List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -228,6 +240,12 @@ class ConnectorGroupItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class ConnectorGroupItemRequestBuilderGetRequestConfiguration():

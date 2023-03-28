@@ -1,31 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-classification_method = lazy_import('msgraph.generated.models.classification_method')
-entity = lazy_import('msgraph.generated.models.entity')
-sensitive_type_scope = lazy_import('msgraph.generated.models.sensitive_type_scope')
-sensitive_type_source = lazy_import('msgraph.generated.models.sensitive_type_source')
+if TYPE_CHECKING:
+    from . import classification_method, entity, sensitive_type_scope, sensitive_type_source
+
+from . import entity
 
 class SensitiveType(entity.Entity):
-    @property
-    def classification_method(self,) -> Optional[classification_method.ClassificationMethod]:
-        """
-        Gets the classificationMethod property value. The classificationMethod property
-        Returns: Optional[classification_method.ClassificationMethod]
-        """
-        return self._classification_method
-    
-    @classification_method.setter
-    def classification_method(self,value: Optional[classification_method.ClassificationMethod] = None) -> None:
-        """
-        Sets the classificationMethod property value. The classificationMethod property
-        Args:
-            value: Value to set for the classification_method property.
-        """
-        self._classification_method = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new sensitiveType and sets the default values.
@@ -51,6 +33,23 @@ class SensitiveType(entity.Entity):
         self._sensitive_type_source: Optional[sensitive_type_source.SensitiveTypeSource] = None
         # The state property
         self._state: Optional[str] = None
+    
+    @property
+    def classification_method(self,) -> Optional[classification_method.ClassificationMethod]:
+        """
+        Gets the classificationMethod property value. The classificationMethod property
+        Returns: Optional[classification_method.ClassificationMethod]
+        """
+        return self._classification_method
+    
+    @classification_method.setter
+    def classification_method(self,value: Optional[classification_method.ClassificationMethod] = None) -> None:
+        """
+        Sets the classificationMethod property value. The classificationMethod property
+        Args:
+            value: Value to set for the classification_method property.
+        """
+        self._classification_method = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> SensitiveType:
@@ -86,7 +85,9 @@ class SensitiveType(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import classification_method, entity, sensitive_type_scope, sensitive_type_source
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "classificationMethod": lambda n : setattr(self, 'classification_method', n.get_enum_value(classification_method.ClassificationMethod)),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "name": lambda n : setattr(self, 'name', n.get_str_value()),

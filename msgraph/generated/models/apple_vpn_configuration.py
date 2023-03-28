@@ -1,19 +1,64 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-apple_vpn_connection_type = lazy_import('msgraph.generated.models.apple_vpn_connection_type')
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-key_value = lazy_import('msgraph.generated.models.key_value')
-key_value_pair = lazy_import('msgraph.generated.models.key_value_pair')
-vpn_authentication_method = lazy_import('msgraph.generated.models.vpn_authentication_method')
-vpn_on_demand_rule = lazy_import('msgraph.generated.models.vpn_on_demand_rule')
-vpn_provider_type = lazy_import('msgraph.generated.models.vpn_provider_type')
-vpn_proxy_server = lazy_import('msgraph.generated.models.vpn_proxy_server')
-vpn_server = lazy_import('msgraph.generated.models.vpn_server')
+if TYPE_CHECKING:
+    from . import apple_vpn_connection_type, device_configuration, iosik_ev2_vpn_configuration, ios_vpn_configuration, key_value, key_value_pair, mac_o_s_vpn_configuration, vpn_authentication_method, vpn_on_demand_rule, vpn_provider_type, vpn_proxy_server, vpn_server
+
+from . import device_configuration
 
 class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AppleVpnConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.appleVpnConfiguration"
+        # Associated Domains
+        self._associated_domains: Optional[List[str]] = None
+        # VPN Authentication Method.
+        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
+        # Connection name displayed to the user.
+        self._connection_name: Optional[str] = None
+        # Apple VPN connection type.
+        self._connection_type: Optional[apple_vpn_connection_type.AppleVpnConnectionType] = None
+        # Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
+        self._custom_data: Optional[List[key_value.KeyValue]] = None
+        # Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
+        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
+        # Toggle to prevent user from disabling automatic VPN in the Settings app
+        self._disable_on_demand_user_override: Optional[bool] = None
+        # Whether to disconnect after on-demand connection idles
+        self._disconnect_on_idle: Optional[bool] = None
+        # The length of time in seconds to wait before disconnecting an on-demand connection. Valid values 0 to 65535
+        self._disconnect_on_idle_timer_in_seconds: Optional[int] = None
+        # Setting this to true creates Per-App VPN payload which can later be associated with Apps that can trigger this VPN conneciton on the end user's iOS device.
+        self._enable_per_app: Optional[bool] = None
+        # Send all network traffic through VPN.
+        self._enable_split_tunneling: Optional[bool] = None
+        # Domains that are accessed through the public internet instead of through VPN, even when per-app VPN is activated
+        self._excluded_domains: Optional[List[str]] = None
+        # Identifier provided by VPN vendor when connection type is set to Custom VPN. For example: Cisco AnyConnect uses an identifier of the form com.cisco.anyconnect.applevpn.plugin
+        self._identifier: Optional[str] = None
+        # Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
+        self._login_group_or_domain: Optional[str] = None
+        # On-Demand Rules. This collection can contain a maximum of 500 elements.
+        self._on_demand_rules: Optional[List[vpn_on_demand_rule.VpnOnDemandRule]] = None
+        # Opt-In to sharing the device's Id to third-party vpn clients for use during network access control validation.
+        self._opt_in_to_device_id_sharing: Optional[bool] = None
+        # Provider type for per-app VPN. Possible values are: notConfigured, appProxy, packetTunnel.
+        self._provider_type: Optional[vpn_provider_type.VpnProviderType] = None
+        # Proxy Server.
+        self._proxy_server: Optional[vpn_proxy_server.VpnProxyServer] = None
+        # Realm when connection type is set to Pulse Secure.
+        self._realm: Optional[str] = None
+        # Role when connection type is set to Pulse Secure.
+        self._role: Optional[str] = None
+        # Safari domains when this VPN per App setting is enabled. In addition to the apps associated with this VPN, Safari domains specified here will also be able to trigger this VPN connection.
+        self._safari_domains: Optional[List[str]] = None
+        # VPN Server definition.
+        self._server: Optional[vpn_server.VpnServer] = None
+    
     @property
     def associated_domains(self,) -> Optional[List[str]]:
         """
@@ -82,57 +127,6 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         self._connection_type = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AppleVpnConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.appleVpnConfiguration"
-        # Associated Domains
-        self._associated_domains: Optional[List[str]] = None
-        # VPN Authentication Method.
-        self._authentication_method: Optional[vpn_authentication_method.VpnAuthenticationMethod] = None
-        # Connection name displayed to the user.
-        self._connection_name: Optional[str] = None
-        # Apple VPN connection type.
-        self._connection_type: Optional[apple_vpn_connection_type.AppleVpnConnectionType] = None
-        # Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
-        self._custom_data: Optional[List[key_value.KeyValue]] = None
-        # Custom data when connection type is set to Custom VPN. Use this field to enable functionality not supported by Intune, but available in your VPN solution. Contact your VPN vendor to learn how to add these key/value pairs. This collection can contain a maximum of 25 elements.
-        self._custom_key_value_data: Optional[List[key_value_pair.KeyValuePair]] = None
-        # Toggle to prevent user from disabling automatic VPN in the Settings app
-        self._disable_on_demand_user_override: Optional[bool] = None
-        # Whether to disconnect after on-demand connection idles
-        self._disconnect_on_idle: Optional[bool] = None
-        # The length of time in seconds to wait before disconnecting an on-demand connection. Valid values 0 to 65535
-        self._disconnect_on_idle_timer_in_seconds: Optional[int] = None
-        # Setting this to true creates Per-App VPN payload which can later be associated with Apps that can trigger this VPN conneciton on the end user's iOS device.
-        self._enable_per_app: Optional[bool] = None
-        # Send all network traffic through VPN.
-        self._enable_split_tunneling: Optional[bool] = None
-        # Domains that are accessed through the public internet instead of through VPN, even when per-app VPN is activated
-        self._excluded_domains: Optional[List[str]] = None
-        # Identifier provided by VPN vendor when connection type is set to Custom VPN. For example: Cisco AnyConnect uses an identifier of the form com.cisco.anyconnect.applevpn.plugin
-        self._identifier: Optional[str] = None
-        # Login group or domain when connection type is set to Dell SonicWALL Mobile Connection.
-        self._login_group_or_domain: Optional[str] = None
-        # On-Demand Rules. This collection can contain a maximum of 500 elements.
-        self._on_demand_rules: Optional[List[vpn_on_demand_rule.VpnOnDemandRule]] = None
-        # Opt-In to sharing the device's Id to third-party vpn clients for use during network access control validation.
-        self._opt_in_to_device_id_sharing: Optional[bool] = None
-        # Provider type for per-app VPN. Possible values are: notConfigured, appProxy, packetTunnel.
-        self._provider_type: Optional[vpn_provider_type.VpnProviderType] = None
-        # Proxy Server.
-        self._proxy_server: Optional[vpn_proxy_server.VpnProxyServer] = None
-        # Realm when connection type is set to Pulse Secure.
-        self._realm: Optional[str] = None
-        # Role when connection type is set to Pulse Secure.
-        self._role: Optional[str] = None
-        # Safari domains when this VPN per App setting is enabled. In addition to the apps associated with this VPN, Safari domains specified here will also be able to trigger this VPN connection.
-        self._safari_domains: Optional[List[str]] = None
-        # VPN Server definition.
-        self._server: Optional[vpn_server.VpnServer] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AppleVpnConfiguration:
         """
@@ -143,6 +137,21 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.iosikEv2VpnConfiguration":
+                from . import iosik_ev2_vpn_configuration
+
+                return iosik_ev2_vpn_configuration.IosikEv2VpnConfiguration()
+            if mapping_value == "#microsoft.graph.iosVpnConfiguration":
+                from . import ios_vpn_configuration
+
+                return ios_vpn_configuration.IosVpnConfiguration()
+            if mapping_value == "#microsoft.graph.macOSVpnConfiguration":
+                from . import mac_o_s_vpn_configuration
+
+                return mac_o_s_vpn_configuration.MacOSVpnConfiguration()
         return AppleVpnConfiguration()
     
     @property
@@ -286,7 +295,9 @@ class AppleVpnConfiguration(device_configuration.DeviceConfiguration):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import apple_vpn_connection_type, device_configuration, iosik_ev2_vpn_configuration, ios_vpn_configuration, key_value, key_value_pair, mac_o_s_vpn_configuration, vpn_authentication_method, vpn_on_demand_rule, vpn_provider_type, vpn_proxy_server, vpn_server
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "associatedDomains": lambda n : setattr(self, 'associated_domains', n.get_collection_of_primitive_values(str)),
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_enum_value(vpn_authentication_method.VpnAuthenticationMethod)),
             "connectionName": lambda n : setattr(self, 'connection_name', n.get_str_value()),

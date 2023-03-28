@@ -1,10 +1,12 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-governance_insight = lazy_import('msgraph.generated.models.governance_insight')
+if TYPE_CHECKING:
+    from . import governance_insight
+
+from . import governance_insight
 
 class UserSignInInsight(governance_insight.GovernanceInsight):
     def __init__(self,) -> None:
@@ -33,7 +35,9 @@ class UserSignInInsight(governance_insight.GovernanceInsight):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import governance_insight
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "lastSignInDateTime": lambda n : setattr(self, 'last_sign_in_date_time', n.get_datetime_value()),
         }
         super_fields = super().get_field_deserializers()

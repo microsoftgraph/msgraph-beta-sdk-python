@@ -7,40 +7,19 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-privileged_role_assignment = lazy_import('msgraph.generated.models.privileged_role_assignment')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-make_eligible_request_builder = lazy_import('msgraph.generated.privileged_role_assignments.item.make_eligible.make_eligible_request_builder')
-make_permanent_request_builder = lazy_import('msgraph.generated.privileged_role_assignments.item.make_permanent.make_permanent_request_builder')
-role_info_request_builder = lazy_import('msgraph.generated.privileged_role_assignments.item.role_info.role_info_request_builder')
+if TYPE_CHECKING:
+    from ...models import privileged_role_assignment
+    from ...models.o_data_errors import o_data_error
+    from .make_eligible import make_eligible_request_builder
+    from .make_permanent import make_permanent_request_builder
+    from .role_info import role_info_request_builder
 
 class PrivilegedRoleAssignmentItemRequestBuilder():
     """
     Provides operations to manage the collection of privilegedRoleAssignment entities.
     """
-    @property
-    def make_eligible(self) -> make_eligible_request_builder.MakeEligibleRequestBuilder:
-        """
-        Provides operations to call the makeEligible method.
-        """
-        return make_eligible_request_builder.MakeEligibleRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def make_permanent(self) -> make_permanent_request_builder.MakePermanentRequestBuilder:
-        """
-        Provides operations to call the makePermanent method.
-        """
-        return make_permanent_request_builder.MakePermanentRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
-        """
-        Provides operations to manage the roleInfo property of the microsoft.graph.privilegedRoleAssignment entity.
-        """
-        return role_info_request_builder.RoleInfoRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new PrivilegedRoleAssignmentItemRequestBuilder and sets the default values.
@@ -68,6 +47,8 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -86,12 +67,16 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import privileged_role_assignment
+
         return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, error_mapping)
     
     async def patch(self,body: Optional[privileged_role_assignment.PrivilegedRoleAssignment] = None, request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[privileged_role_assignment.PrivilegedRoleAssignment]:
@@ -107,12 +92,16 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from ...models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ...models import privileged_role_assignment
+
         return await self.request_adapter.send_async(request_info, privileged_role_assignment.PrivilegedRoleAssignment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[PrivilegedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -170,6 +159,33 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def make_eligible(self) -> make_eligible_request_builder.MakeEligibleRequestBuilder:
+        """
+        Provides operations to call the makeEligible method.
+        """
+        from .make_eligible import make_eligible_request_builder
+
+        return make_eligible_request_builder.MakeEligibleRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def make_permanent(self) -> make_permanent_request_builder.MakePermanentRequestBuilder:
+        """
+        Provides operations to call the makePermanent method.
+        """
+        from .make_permanent import make_permanent_request_builder
+
+        return make_permanent_request_builder.MakePermanentRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def role_info(self) -> role_info_request_builder.RoleInfoRequestBuilder:
+        """
+        Provides operations to manage the roleInfo property of the microsoft.graph.privilegedRoleAssignment entity.
+        """
+        from .role_info import role_info_request_builder
+
+        return role_info_request_builder.RoleInfoRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class PrivilegedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -187,12 +203,6 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
         """
         Retrieve the properties and relationships of privilegedRoleAssignment object.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -208,6 +218,12 @@ class PrivilegedRoleAssignmentItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class PrivilegedRoleAssignmentItemRequestBuilderGetRequestConfiguration():

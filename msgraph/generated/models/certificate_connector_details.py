@@ -1,15 +1,35 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import entity
+
+from . import entity
 
 class CertificateConnectorDetails(entity.Entity):
     """
     Entity used to retrieve information about Intune Certificate Connectors.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new certificateConnectorDetails and sets the default values.
+        """
+        super().__init__()
+        # Connector name (set during enrollment).
+        self._connector_name: Optional[str] = None
+        # Version of the connector installed.
+        self._connector_version: Optional[str] = None
+        # Date/time when this connector was enrolled.
+        self._enrollment_date_time: Optional[datetime] = None
+        # Date/time when this connector last connected to the service.
+        self._last_checkin_date_time: Optional[datetime] = None
+        # Name of the machine hosting this connector service.
+        self._machine_name: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def connector_name(self,) -> Optional[str]:
         """
@@ -43,24 +63,6 @@ class CertificateConnectorDetails(entity.Entity):
             value: Value to set for the connector_version property.
         """
         self._connector_version = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new certificateConnectorDetails and sets the default values.
-        """
-        super().__init__()
-        # Connector name (set during enrollment).
-        self._connector_name: Optional[str] = None
-        # Version of the connector installed.
-        self._connector_version: Optional[str] = None
-        # Date/time when this connector was enrolled.
-        self._enrollment_date_time: Optional[datetime] = None
-        # Date/time when this connector last connected to the service.
-        self._last_checkin_date_time: Optional[datetime] = None
-        # Name of the machine hosting this connector service.
-        self._machine_name: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CertificateConnectorDetails:
@@ -96,7 +98,9 @@ class CertificateConnectorDetails(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "connectorName": lambda n : setattr(self, 'connector_name', n.get_str_value()),
             "connectorVersion": lambda n : setattr(self, 'connector_version', n.get_str_value()),
             "enrollmentDateTime": lambda n : setattr(self, 'enrollment_date_time', n.get_datetime_value()),

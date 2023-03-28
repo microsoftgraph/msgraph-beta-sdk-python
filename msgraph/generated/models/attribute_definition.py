@@ -1,15 +1,45 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attribute_type = lazy_import('msgraph.generated.models.attribute_type')
-metadata_entry = lazy_import('msgraph.generated.models.metadata_entry')
-mutability = lazy_import('msgraph.generated.models.mutability')
-referenced_object = lazy_import('msgraph.generated.models.referenced_object')
-string_key_string_value_pair = lazy_import('msgraph.generated.models.string_key_string_value_pair')
+if TYPE_CHECKING:
+    from . import attribute_type, metadata_entry, mutability, referenced_object, string_key_string_value_pair
 
 class AttributeDefinition(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new attributeDefinition and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # true if the attribute should be used as the anchor for the object. Anchor attributes must have a unique value identifying an object, and must be immutable. Default is false. One, and only one, of the object's attributes must be designated as the anchor to support synchronization.
+        self._anchor: Optional[bool] = None
+        # The apiExpressions property
+        self._api_expressions: Optional[List[string_key_string_value_pair.StringKeyStringValuePair]] = None
+        # true if value of this attribute should be treated as case-sensitive. This setting affects how the synchronization engine detects changes for the attribute.
+        self._case_exact: Optional[bool] = None
+        # The defaultValue property
+        self._default_value: Optional[str] = None
+        # 'true' to allow null values for attributes.
+        self._flow_null_values: Optional[bool] = None
+        # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
+        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
+        # true if an attribute can have multiple values. Default is false.
+        self._multivalued: Optional[bool] = None
+        # The mutability property
+        self._mutability: Optional[mutability.Mutability] = None
+        # Name of the attribute. Must be unique within the object definition. Not nullable.
+        self._name: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).
+        self._referenced_objects: Optional[List[referenced_object.ReferencedObject]] = None
+        # true if attribute is required. Object can not be created if any of the required attributes are missing. If during synchronization, the required attribute has no value, the default value will be used. If default the value was not set, synchronization will record an error.
+        self._required: Optional[bool] = None
+        # The type property
+        self._type: Optional[attribute_type.AttributeType] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -78,40 +108,6 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         """
         self._case_exact = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new attributeDefinition and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # true if the attribute should be used as the anchor for the object. Anchor attributes must have a unique value identifying an object, and must be immutable. Default is false. One, and only one, of the object's attributes must be designated as the anchor to support synchronization.
-        self._anchor: Optional[bool] = None
-        # The apiExpressions property
-        self._api_expressions: Optional[List[string_key_string_value_pair.StringKeyStringValuePair]] = None
-        # true if value of this attribute should be treated as case-sensitive. This setting affects how the synchronization engine detects changes for the attribute.
-        self._case_exact: Optional[bool] = None
-        # The defaultValue property
-        self._default_value: Optional[str] = None
-        # 'true' to allow null values for attributes.
-        self._flow_null_values: Optional[bool] = None
-        # Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-        self._metadata: Optional[List[metadata_entry.MetadataEntry]] = None
-        # true if an attribute can have multiple values. Default is false.
-        self._multivalued: Optional[bool] = None
-        # The mutability property
-        self._mutability: Optional[mutability.Mutability] = None
-        # Name of the attribute. Must be unique within the object definition. Not nullable.
-        self._name: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).
-        self._referenced_objects: Optional[List[referenced_object.ReferencedObject]] = None
-        # true if attribute is required. Object can not be created if any of the required attributes are missing. If during synchronization, the required attribute has no value, the default value will be used. If default the value was not set, synchronization will record an error.
-        self._required: Optional[bool] = None
-        # The type property
-        self._type: Optional[attribute_type.AttributeType] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AttributeDefinition:
         """
@@ -163,7 +159,9 @@ class AttributeDefinition(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attribute_type, metadata_entry, mutability, referenced_object, string_key_string_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "anchor": lambda n : setattr(self, 'anchor', n.get_bool_value()),
             "apiExpressions": lambda n : setattr(self, 'api_expressions', n.get_collection_of_object_values(string_key_string_value_pair.StringKeyStringValuePair)),
             "caseExact": lambda n : setattr(self, 'case_exact', n.get_bool_value()),

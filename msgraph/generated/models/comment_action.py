@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity_set = lazy_import('msgraph.generated.models.identity_set')
+if TYPE_CHECKING:
+    from . import identity_set
 
 class CommentAction(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new commentAction and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # If true, this activity was a reply to an existing comment thread.
+        self._is_reply: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The identity of the user who started the comment thread.
+        self._parent_author: Optional[identity_set.IdentitySet] = None
+        # The identities of the users participating in this comment thread.
+        self._participants: Optional[List[identity_set.IdentitySet]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,22 +38,6 @@ class CommentAction(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new commentAction and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # If true, this activity was a reply to an existing comment thread.
-        self._is_reply: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The identity of the user who started the comment thread.
-        self._parent_author: Optional[identity_set.IdentitySet] = None
-        # The identities of the users participating in this comment thread.
-        self._participants: Optional[List[identity_set.IdentitySet]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CommentAction:
@@ -56,7 +56,9 @@ class CommentAction(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import identity_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "isReply": lambda n : setattr(self, 'is_reply', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "parentAuthor": lambda n : setattr(self, 'parent_author', n.get_object_value(identity_set.IdentitySet)),

@@ -1,19 +1,49 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-driver_update_profile_approval_type = lazy_import('msgraph.generated.models.driver_update_profile_approval_type')
-entity = lazy_import('msgraph.generated.models.entity')
-windows_driver_update_inventory = lazy_import('msgraph.generated.models.windows_driver_update_inventory')
-windows_driver_update_profile_assignment = lazy_import('msgraph.generated.models.windows_driver_update_profile_assignment')
-windows_driver_update_profile_inventory_sync_status = lazy_import('msgraph.generated.models.windows_driver_update_profile_inventory_sync_status')
+if TYPE_CHECKING:
+    from . import driver_update_profile_approval_type, entity, windows_driver_update_inventory, windows_driver_update_profile_assignment, windows_driver_update_profile_inventory_sync_status
+
+from . import entity
 
 class WindowsDriverUpdateProfile(entity.Entity):
     """
     Windows Driver Update Profile
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsDriverUpdateProfile and sets the default values.
+        """
+        super().__init__()
+        # An enum type to represent approval type of a driver update profile.
+        self._approval_type: Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType] = None
+        # The list of group assignments of the profile.
+        self._assignments: Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]] = None
+        # The date time that the profile was created.
+        self._created_date_time: Optional[datetime] = None
+        # Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
+        self._deployment_deferral_in_days: Optional[int] = None
+        # The description of the profile which is specified by the user.
+        self._description: Optional[str] = None
+        # Number of devices reporting for this profile
+        self._device_reporting: Optional[int] = None
+        # The display name for the profile.
+        self._display_name: Optional[str] = None
+        # Driver inventories for this profile.
+        self._driver_inventories: Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]] = None
+        # Driver inventory sync status for this profile.
+        self._inventory_sync_status: Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus] = None
+        # The date time that the profile was last modified.
+        self._last_modified_date_time: Optional[datetime] = None
+        # Number of new driver updates available for this profile.
+        self._new_updates: Optional[int] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # List of Scope Tags for this Driver Update entity.
+        self._role_scope_tag_ids: Optional[List[str]] = None
+    
     @property
     def approval_type(self,) -> Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType]:
         """
@@ -47,38 +77,6 @@ class WindowsDriverUpdateProfile(entity.Entity):
             value: Value to set for the assignments property.
         """
         self._assignments = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsDriverUpdateProfile and sets the default values.
-        """
-        super().__init__()
-        # An enum type to represent approval type of a driver update profile.
-        self._approval_type: Optional[driver_update_profile_approval_type.DriverUpdateProfileApprovalType] = None
-        # The list of group assignments of the profile.
-        self._assignments: Optional[List[windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment]] = None
-        # The date time that the profile was created.
-        self._created_date_time: Optional[datetime] = None
-        # Deployment deferral settings in days, only applicable when ApprovalType is set to automatic approval.
-        self._deployment_deferral_in_days: Optional[int] = None
-        # The description of the profile which is specified by the user.
-        self._description: Optional[str] = None
-        # Number of devices reporting for this profile
-        self._device_reporting: Optional[int] = None
-        # The display name for the profile.
-        self._display_name: Optional[str] = None
-        # Driver inventories for this profile.
-        self._driver_inventories: Optional[List[windows_driver_update_inventory.WindowsDriverUpdateInventory]] = None
-        # Driver inventory sync status for this profile.
-        self._inventory_sync_status: Optional[windows_driver_update_profile_inventory_sync_status.WindowsDriverUpdateProfileInventorySyncStatus] = None
-        # The date time that the profile was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # Number of new driver updates available for this profile.
-        self._new_updates: Optional[int] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # List of Scope Tags for this Driver Update entity.
-        self._role_scope_tag_ids: Optional[List[str]] = None
     
     @property
     def created_date_time(self,) -> Optional[datetime]:
@@ -199,7 +197,9 @@ class WindowsDriverUpdateProfile(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import driver_update_profile_approval_type, entity, windows_driver_update_inventory, windows_driver_update_profile_assignment, windows_driver_update_profile_inventory_sync_status
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "approvalType": lambda n : setattr(self, 'approval_type', n.get_enum_value(driver_update_profile_approval_type.DriverUpdateProfileApprovalType)),
             "assignments": lambda n : setattr(self, 'assignments', n.get_collection_of_object_values(windows_driver_update_profile_assignment.WindowsDriverUpdateProfileAssignment)),
             "createdDateTime": lambda n : setattr(self, 'created_date_time', n.get_datetime_value()),

@@ -1,9 +1,21 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from . import education_identity_creation_configuration, education_identity_matching_configuration
 
 class EducationIdentitySynchronizationConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new educationIdentitySynchronizationConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -21,16 +33,6 @@ class EducationIdentitySynchronizationConfiguration(AdditionalDataHolder, Parsab
         """
         self._additional_data = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new educationIdentitySynchronizationConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> EducationIdentitySynchronizationConfiguration:
         """
@@ -41,6 +43,17 @@ class EducationIdentitySynchronizationConfiguration(AdditionalDataHolder, Parsab
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.educationIdentityCreationConfiguration":
+                from . import education_identity_creation_configuration
+
+                return education_identity_creation_configuration.EducationIdentityCreationConfiguration()
+            if mapping_value == "#microsoft.graph.educationIdentityMatchingConfiguration":
+                from . import education_identity_matching_configuration
+
+                return education_identity_matching_configuration.EducationIdentityMatchingConfiguration()
         return EducationIdentitySynchronizationConfiguration()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -48,7 +61,9 @@ class EducationIdentitySynchronizationConfiguration(AdditionalDataHolder, Parsab
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import education_identity_creation_configuration, education_identity_matching_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }
         return fields

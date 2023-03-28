@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-key_storage_provider_option = lazy_import('msgraph.generated.models.key_storage_provider_option')
+if TYPE_CHECKING:
+    from . import device_configuration, key_storage_provider_option
+
+from . import device_configuration
 
 class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfiguration):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class Windows10PFXImportCertificateProfile(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, key_storage_provider_option
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "keyStorageProvider": lambda n : setattr(self, 'key_storage_provider', n.get_enum_value(key_storage_provider_option.KeyStorageProviderOption)),
         }
         super_fields = super().get_field_deserializers()

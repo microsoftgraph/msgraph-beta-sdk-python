@@ -1,12 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class BulkDriverActionResult(AdditionalDataHolder, Parsable):
     """
     A complex type to represent the result of bulk driver action.
     """
+    def __init__(self,) -> None:
+        """
+        Instantiates a new bulkDriverActionResult and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # List of driver Ids where the action is failed.
+        self._failed_driver_ids: Optional[List[str]] = None
+        # List of driver Ids that are not found.
+        self._not_found_driver_ids: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # List of driver Ids where the action is successful.
+        self._successful_driver_ids: Optional[List[str]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,22 +38,6 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new bulkDriverActionResult and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # List of driver Ids where the action is failed.
-        self._failed_driver_ids: Optional[List[str]] = None
-        # List of driver Ids that are not found.
-        self._not_found_driver_ids: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # List of driver Ids where the action is successful.
-        self._successful_driver_ids: Optional[List[str]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> BulkDriverActionResult:
@@ -74,7 +73,7 @@ class BulkDriverActionResult(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "failedDriverIds": lambda n : setattr(self, 'failed_driver_ids', n.get_collection_of_primitive_values(str)),
             "notFoundDriverIds": lambda n : setattr(self, 'not_found_driver_ids', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

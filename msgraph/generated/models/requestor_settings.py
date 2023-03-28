@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user_set = lazy_import('msgraph.generated.models.user_set')
+if TYPE_CHECKING:
+    from . import user_set
 
 class RequestorSettings(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new requestorSettings and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates whether new requests are accepted on this policy.
+        self._accept_requests: Optional[bool] = None
+        # The users who are allowed to request on this policy, which can be singleUser, groupMembers, and connectedOrganizationMembers.
+        self._allowed_requestors: Optional[List[user_set.UserSet]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Who can request. One of NoSubjects, SpecificDirectorySubjects, SpecificConnectedOrganizationSubjects, AllConfiguredConnectedOrganizationSubjects, AllExistingConnectedOrganizationSubjects, AllExistingDirectoryMemberUsers, AllExistingDirectorySubjects or AllExternalSubjects.
+        self._scope_type: Optional[str] = None
+    
     @property
     def accept_requests(self,) -> Optional[bool]:
         """
@@ -57,22 +73,6 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         """
         self._allowed_requestors = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new requestorSettings and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates whether new requests are accepted on this policy.
-        self._accept_requests: Optional[bool] = None
-        # The users who are allowed to request on this policy, which can be singleUser, groupMembers, and connectedOrganizationMembers.
-        self._allowed_requestors: Optional[List[user_set.UserSet]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Who can request. One of NoSubjects, SpecificDirectorySubjects, SpecificConnectedOrganizationSubjects, AllConfiguredConnectedOrganizationSubjects, AllExistingConnectedOrganizationSubjects, AllExistingDirectoryMemberUsers, AllExistingDirectorySubjects or AllExternalSubjects.
-        self._scope_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RequestorSettings:
         """
@@ -90,7 +90,9 @@ class RequestorSettings(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import user_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acceptRequests": lambda n : setattr(self, 'accept_requests', n.get_bool_value()),
             "allowedRequestors": lambda n : setattr(self, 'allowed_requestors', n.get_collection_of_object_values(user_set.UserSet)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

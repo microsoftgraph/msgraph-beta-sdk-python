@@ -7,24 +7,17 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-cancel_request_builder = lazy_import('msgraph.generated.booking_businesses.item.calendar_view.item.cancel.cancel_request_builder')
-booking_appointment = lazy_import('msgraph.generated.models.booking_appointment')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from .....models import booking_appointment
+    from .....models.o_data_errors import o_data_error
+    from .cancel import cancel_request_builder
 
 class BookingAppointmentItemRequestBuilder():
     """
     Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
     """
-    @property
-    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
-        """
-        Provides operations to call the cancel method.
-        """
-        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new BookingAppointmentItemRequestBuilder and sets the default values.
@@ -52,6 +45,8 @@ class BookingAppointmentItemRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -70,12 +65,16 @@ class BookingAppointmentItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import booking_appointment
+
         return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, error_mapping)
     
     async def patch(self,body: Optional[booking_appointment.BookingAppointment] = None, request_configuration: Optional[BookingAppointmentItemRequestBuilderPatchRequestConfiguration] = None) -> Optional[booking_appointment.BookingAppointment]:
@@ -91,12 +90,16 @@ class BookingAppointmentItemRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .....models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .....models import booking_appointment
+
         return await self.request_adapter.send_async(request_info, booking_appointment.BookingAppointment, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[BookingAppointmentItemRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -154,6 +157,15 @@ class BookingAppointmentItemRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def cancel(self) -> cancel_request_builder.CancelRequestBuilder:
+        """
+        Provides operations to call the cancel method.
+        """
+        from .cancel import cancel_request_builder
+
+        return cancel_request_builder.CancelRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class BookingAppointmentItemRequestBuilderDeleteRequestConfiguration():
         """
@@ -171,18 +183,6 @@ class BookingAppointmentItemRequestBuilder():
         """
         The set of appointments of this business in a specified date range. Read-only. Nullable.
         """
-        # The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00
-        end: Optional[str] = None
-
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
-        # The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00
-        start: Optional[str] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -198,6 +198,18 @@ class BookingAppointmentItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00
+        end: Optional[str] = None
+
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
+        # The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00
+        start: Optional[str] = None
+
     
     @dataclass
     class BookingAppointmentItemRequestBuilderGetRequestConfiguration():

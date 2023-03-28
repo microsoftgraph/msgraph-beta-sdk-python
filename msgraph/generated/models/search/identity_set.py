@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-identity = lazy_import('msgraph.generated.models.search.identity')
+if TYPE_CHECKING:
+    from . import identity
 
 class IdentitySet(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new identitySet and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The application property
+        self._application: Optional[identity.Identity] = None
+        # The device property
+        self._device: Optional[identity.Identity] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The user property
+        self._user: Optional[identity.Identity] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -39,22 +55,6 @@ class IdentitySet(AdditionalDataHolder, Parsable):
             value: Value to set for the application property.
         """
         self._application = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new identitySet and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The application property
-        self._application: Optional[identity.Identity] = None
-        # The device property
-        self._device: Optional[identity.Identity] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The user property
-        self._user: Optional[identity.Identity] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> IdentitySet:
@@ -90,7 +90,9 @@ class IdentitySet(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import identity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "application": lambda n : setattr(self, 'application', n.get_object_value(identity.Identity)),
             "device": lambda n : setattr(self, 'device', n.get_object_value(identity.Identity)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

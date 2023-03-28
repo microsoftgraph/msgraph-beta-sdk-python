@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-ml_classification_match_tolerance = lazy_import('msgraph.generated.models.ml_classification_match_tolerance')
-sensitive_type_scope = lazy_import('msgraph.generated.models.sensitive_type_scope')
+if TYPE_CHECKING:
+    from . import entity, ml_classification_match_tolerance, sensitive_type_scope
+
+from . import entity
 
 class TextClassificationRequest(entity.Entity):
     def __init__(self,) -> None:
@@ -60,7 +60,9 @@ class TextClassificationRequest(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, ml_classification_match_tolerance, sensitive_type_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "fileExtension": lambda n : setattr(self, 'file_extension', n.get_str_value()),
             "matchTolerancesToInclude": lambda n : setattr(self, 'match_tolerances_to_include', n.get_enum_value(ml_classification_match_tolerance.MlClassificationMatchTolerance)),
             "scopesToRun": lambda n : setattr(self, 'scopes_to_run', n.get_enum_value(sensitive_type_scope.SensitiveTypeScope)),

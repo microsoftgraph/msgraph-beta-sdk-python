@@ -1,12 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-object_definition = lazy_import('msgraph.generated.models.object_definition')
-string_key_object_value_pair = lazy_import('msgraph.generated.models.string_key_object_value_pair')
+if TYPE_CHECKING:
+    from . import object_definition, string_key_object_value_pair
 
 class ExpressionInputObject(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new expressionInputObject and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Definition of the test object.
+        self._definition: Optional[object_definition.ObjectDefinition] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Property values of the test object.
+        self._properties: Optional[List[string_key_object_value_pair.StringKeyObjectValuePair]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -23,20 +36,6 @@ class ExpressionInputObject(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new expressionInputObject and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Definition of the test object.
-        self._definition: Optional[object_definition.ObjectDefinition] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Property values of the test object.
-        self._properties: Optional[List[string_key_object_value_pair.StringKeyObjectValuePair]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ExpressionInputObject:
@@ -72,7 +71,9 @@ class ExpressionInputObject(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import object_definition, string_key_object_value_pair
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "definition": lambda n : setattr(self, 'definition', n.get_object_value(object_definition.ObjectDefinition)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "properties": lambda n : setattr(self, 'properties', n.get_collection_of_object_values(string_key_object_value_pair.StringKeyObjectValuePair)),

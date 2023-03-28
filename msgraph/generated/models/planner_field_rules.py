@@ -1,11 +1,25 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-planner_rule_override = lazy_import('msgraph.generated.models.planner_rule_override')
+if TYPE_CHECKING:
+    from . import planner_rule_override
 
 class PlannerFieldRules(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new plannerFieldRules and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The default rules that apply if no override matches to the current data.
+        self._default_rules: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Overrides that specify different rules for specific data associated with the field.
+        self._overrides: Optional[List[planner_rule_override.PlannerRuleOverride]] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,20 +36,6 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new plannerFieldRules and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The default rules that apply if no override matches to the current data.
-        self._default_rules: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Overrides that specify different rules for specific data associated with the field.
-        self._overrides: Optional[List[planner_rule_override.PlannerRuleOverride]] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PlannerFieldRules:
@@ -71,7 +71,9 @@ class PlannerFieldRules(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import planner_rule_override
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "defaultRules": lambda n : setattr(self, 'default_rules', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "overrides": lambda n : setattr(self, 'overrides', n.get_collection_of_object_values(planner_rule_override.PlannerRuleOverride)),

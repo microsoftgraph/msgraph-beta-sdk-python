@@ -1,17 +1,57 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_category = lazy_import('msgraph.generated.models.group_policy_category')
-group_policy_definition_class_type = lazy_import('msgraph.generated.models.group_policy_definition_class_type')
-group_policy_definition_file = lazy_import('msgraph.generated.models.group_policy_definition_file')
-group_policy_presentation = lazy_import('msgraph.generated.models.group_policy_presentation')
-group_policy_type = lazy_import('msgraph.generated.models.group_policy_type')
+if TYPE_CHECKING:
+    from . import entity, group_policy_category, group_policy_definition_class_type, group_policy_definition_file, group_policy_presentation, group_policy_type
+
+from . import entity
 
 class GroupPolicyDefinition(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new groupPolicyDefinition and sets the default values.
+        """
+        super().__init__()
+        # The group policy category associated with the definition.
+        self._category: Optional[group_policy_category.GroupPolicyCategory] = None
+        # The localized full category path for the policy.
+        self._category_path: Optional[str] = None
+        # Group Policy Definition Class Type.
+        self._class_type: Optional[group_policy_definition_class_type.GroupPolicyDefinitionClassType] = None
+        # The group policy file associated with the definition.
+        self._definition_file: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None
+        # The localized policy name.
+        self._display_name: Optional[str] = None
+        # The localized explanation or help text associated with the policy. The default value is empty.
+        self._explain_text: Optional[str] = None
+        # The category id of the parent category
+        self._group_policy_category_id: Optional[UUID] = None
+        # Signifies whether or not there are related definitions to this definition
+        self._has_related_definitions: Optional[bool] = None
+        # The date and time the entity was last modified.
+        self._last_modified_date_time: Optional[datetime] = None
+        # Minimum required CSP version for device configuration in this definition
+        self._min_device_csp_version: Optional[str] = None
+        # Minimum required CSP version for user configuration in this definition
+        self._min_user_csp_version: Optional[str] = None
+        # Definition of the next version of this definition
+        self._next_version_definition: Optional[GroupPolicyDefinition] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # Type of Group Policy File or Definition.
+        self._policy_type: Optional[group_policy_type.GroupPolicyType] = None
+        # The group policy presentations associated with the definition.
+        self._presentations: Optional[List[group_policy_presentation.GroupPolicyPresentation]] = None
+        # Definition of the previous version of this definition
+        self._previous_version_definition: Optional[GroupPolicyDefinition] = None
+        # Localized string used to specify what operating system or application version is affected by the policy.
+        self._supported_on: Optional[str] = None
+        # Setting definition version
+        self._version: Optional[str] = None
+    
     @property
     def category(self,) -> Optional[group_policy_category.GroupPolicyCategory]:
         """
@@ -62,48 +102,6 @@ class GroupPolicyDefinition(entity.Entity):
             value: Value to set for the class_type property.
         """
         self._class_type = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new groupPolicyDefinition and sets the default values.
-        """
-        super().__init__()
-        # The group policy category associated with the definition.
-        self._category: Optional[group_policy_category.GroupPolicyCategory] = None
-        # The localized full category path for the policy.
-        self._category_path: Optional[str] = None
-        # Group Policy Definition Class Type.
-        self._class_type: Optional[group_policy_definition_class_type.GroupPolicyDefinitionClassType] = None
-        # The group policy file associated with the definition.
-        self._definition_file: Optional[group_policy_definition_file.GroupPolicyDefinitionFile] = None
-        # The localized policy name.
-        self._display_name: Optional[str] = None
-        # The localized explanation or help text associated with the policy. The default value is empty.
-        self._explain_text: Optional[str] = None
-        # The category id of the parent category
-        self._group_policy_category_id: Optional[Guid] = None
-        # Signifies whether or not there are related definitions to this definition
-        self._has_related_definitions: Optional[bool] = None
-        # The date and time the entity was last modified.
-        self._last_modified_date_time: Optional[datetime] = None
-        # Minimum required CSP version for device configuration in this definition
-        self._min_device_csp_version: Optional[str] = None
-        # Minimum required CSP version for user configuration in this definition
-        self._min_user_csp_version: Optional[str] = None
-        # Definition of the next version of this definition
-        self._next_version_definition: Optional[GroupPolicyDefinition] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # Type of Group Policy File or Definition.
-        self._policy_type: Optional[group_policy_type.GroupPolicyType] = None
-        # The group policy presentations associated with the definition.
-        self._presentations: Optional[List[group_policy_presentation.GroupPolicyPresentation]] = None
-        # Definition of the previous version of this definition
-        self._previous_version_definition: Optional[GroupPolicyDefinition] = None
-        # Localized string used to specify what operating system or application version is affected by the policy.
-        self._supported_on: Optional[str] = None
-        # Setting definition version
-        self._version: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicyDefinition:
@@ -173,14 +171,16 @@ class GroupPolicyDefinition(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_category, group_policy_definition_class_type, group_policy_definition_file, group_policy_presentation, group_policy_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "category": lambda n : setattr(self, 'category', n.get_object_value(group_policy_category.GroupPolicyCategory)),
             "categoryPath": lambda n : setattr(self, 'category_path', n.get_str_value()),
             "classType": lambda n : setattr(self, 'class_type', n.get_enum_value(group_policy_definition_class_type.GroupPolicyDefinitionClassType)),
             "definitionFile": lambda n : setattr(self, 'definition_file', n.get_object_value(group_policy_definition_file.GroupPolicyDefinitionFile)),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "explainText": lambda n : setattr(self, 'explain_text', n.get_str_value()),
-            "groupPolicyCategoryId": lambda n : setattr(self, 'group_policy_category_id', n.get_object_value(Guid)),
+            "groupPolicyCategoryId": lambda n : setattr(self, 'group_policy_category_id', n.get_uuid_value()),
             "hasRelatedDefinitions": lambda n : setattr(self, 'has_related_definitions', n.get_bool_value()),
             "lastModifiedDateTime": lambda n : setattr(self, 'last_modified_date_time', n.get_datetime_value()),
             "minDeviceCspVersion": lambda n : setattr(self, 'min_device_csp_version', n.get_str_value()),
@@ -197,15 +197,15 @@ class GroupPolicyDefinition(entity.Entity):
         return fields
     
     @property
-    def group_policy_category_id(self,) -> Optional[Guid]:
+    def group_policy_category_id(self,) -> Optional[UUID]:
         """
         Gets the groupPolicyCategoryId property value. The category id of the parent category
-        Returns: Optional[Guid]
+        Returns: Optional[UUID]
         """
         return self._group_policy_category_id
     
     @group_policy_category_id.setter
-    def group_policy_category_id(self,value: Optional[Guid] = None) -> None:
+    def group_policy_category_id(self,value: Optional[UUID] = None) -> None:
         """
         Sets the groupPolicyCategoryId property value. The category id of the parent category
         Args:
@@ -364,7 +364,7 @@ class GroupPolicyDefinition(entity.Entity):
         writer.write_object_value("definitionFile", self.definition_file)
         writer.write_str_value("displayName", self.display_name)
         writer.write_str_value("explainText", self.explain_text)
-        writer.write_object_value("groupPolicyCategoryId", self.group_policy_category_id)
+        writer.write_uuid_value("groupPolicyCategoryId", self.group_policy_category_id)
         writer.write_bool_value("hasRelatedDefinitions", self.has_related_definitions)
         writer.write_datetime_value("lastModifiedDateTime", self.last_modified_date_time)
         writer.write_str_value("minDeviceCspVersion", self.min_device_csp_version)

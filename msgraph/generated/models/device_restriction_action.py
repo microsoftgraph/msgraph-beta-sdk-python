@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dlp_action_info = lazy_import('msgraph.generated.models.dlp_action_info')
-restriction_action = lazy_import('msgraph.generated.models.restriction_action')
-restriction_trigger = lazy_import('msgraph.generated.models.restriction_trigger')
+if TYPE_CHECKING:
+    from . import dlp_action_info, restriction_action, restriction_trigger
+
+from . import dlp_action_info
 
 class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
     def __init__(self,) -> None:
@@ -39,7 +39,9 @@ class DeviceRestrictionAction(dlp_action_info.DlpActionInfo):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import dlp_action_info, restriction_action, restriction_trigger
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "message": lambda n : setattr(self, 'message', n.get_str_value()),
             "restrictionAction": lambda n : setattr(self, 'restriction_action', n.get_enum_value(restriction_action.RestrictionAction)),
             "triggers": lambda n : setattr(self, 'triggers', n.get_collection_of_enum_values(restriction_trigger.RestrictionTrigger)),

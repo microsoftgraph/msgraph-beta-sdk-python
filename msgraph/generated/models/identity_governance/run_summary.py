@@ -1,26 +1,8 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class RunSummary(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new runSummary and sets the default values.
@@ -38,10 +20,27 @@ class RunSummary(AdditionalDataHolder, Parsable):
         self._successful_runs: Optional[int] = None
         # The total number of runs for a workflow.
         self._total_runs: Optional[int] = None
-        # The totalTasks property
+        # The total number of tasks processed by a workflow.
         self._total_tasks: Optional[int] = None
-        # The totalUsers property
+        # The total number of users processed by a workflow.
         self._total_users: Optional[int] = None
+    
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> RunSummary:
@@ -94,7 +93,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "failedRuns": lambda n : setattr(self, 'failed_runs', n.get_int_value()),
             "failedTasks": lambda n : setattr(self, 'failed_tasks', n.get_int_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
@@ -176,7 +175,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
     @property
     def total_tasks(self,) -> Optional[int]:
         """
-        Gets the totalTasks property value. The totalTasks property
+        Gets the totalTasks property value. The total number of tasks processed by a workflow.
         Returns: Optional[int]
         """
         return self._total_tasks
@@ -184,7 +183,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
     @total_tasks.setter
     def total_tasks(self,value: Optional[int] = None) -> None:
         """
-        Sets the totalTasks property value. The totalTasks property
+        Sets the totalTasks property value. The total number of tasks processed by a workflow.
         Args:
             value: Value to set for the total_tasks property.
         """
@@ -193,7 +192,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
     @property
     def total_users(self,) -> Optional[int]:
         """
-        Gets the totalUsers property value. The totalUsers property
+        Gets the totalUsers property value. The total number of users processed by a workflow.
         Returns: Optional[int]
         """
         return self._total_users
@@ -201,7 +200,7 @@ class RunSummary(AdditionalDataHolder, Parsable):
     @total_users.setter
     def total_users(self,value: Optional[int] = None) -> None:
         """
-        Sets the totalUsers property value. The totalUsers property
+        Sets the totalUsers property value. The total number of users processed by a workflow.
         Args:
             value: Value to set for the total_users property.
         """

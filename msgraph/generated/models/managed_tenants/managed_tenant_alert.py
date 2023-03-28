@@ -1,20 +1,61 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-alert_data = lazy_import('msgraph.generated.models.managed_tenants.alert_data')
-alert_data_reference_string = lazy_import('msgraph.generated.models.managed_tenants.alert_data_reference_string')
-alert_severity = lazy_import('msgraph.generated.models.managed_tenants.alert_severity')
-alert_status = lazy_import('msgraph.generated.models.managed_tenants.alert_status')
-managed_tenant_alert_log = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_log')
-managed_tenant_alert_rule = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_alert_rule')
-managed_tenant_api_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_api_notification')
-managed_tenant_email_notification = lazy_import('msgraph.generated.models.managed_tenants.managed_tenant_email_notification')
+if TYPE_CHECKING:
+    from . import alert_data, alert_data_reference_string, alert_severity, alert_status, managed_tenant_alert_log, managed_tenant_alert_rule, managed_tenant_api_notification, managed_tenant_email_notification
+    from .. import entity
+
+from .. import entity
 
 class ManagedTenantAlert(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new managedTenantAlert and sets the default values.
+        """
+        super().__init__()
+        # The alertData property
+        self._alert_data: Optional[alert_data.AlertData] = None
+        # The alertDataReferenceStrings property
+        self._alert_data_reference_strings: Optional[List[alert_data_reference_string.AlertDataReferenceString]] = None
+        # The alertLogs property
+        self._alert_logs: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None
+        # The alertRule property
+        self._alert_rule: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule] = None
+        # The alertRuleDisplayName property
+        self._alert_rule_display_name: Optional[str] = None
+        # The apiNotifications property
+        self._api_notifications: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None
+        # The assignedToUserId property
+        self._assigned_to_user_id: Optional[str] = None
+        # The correlationCount property
+        self._correlation_count: Optional[int] = None
+        # The correlationId property
+        self._correlation_id: Optional[str] = None
+        # The createdByUserId property
+        self._created_by_user_id: Optional[str] = None
+        # The createdDateTime property
+        self._created_date_time: Optional[datetime] = None
+        # The emailNotifications property
+        self._email_notifications: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None
+        # The lastActionByUserId property
+        self._last_action_by_user_id: Optional[str] = None
+        # The lastActionDateTime property
+        self._last_action_date_time: Optional[datetime] = None
+        # The message property
+        self._message: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The severity property
+        self._severity: Optional[alert_severity.AlertSeverity] = None
+        # The status property
+        self._status: Optional[alert_status.AlertStatus] = None
+        # The tenantId property
+        self._tenant_id: Optional[str] = None
+        # The title property
+        self._title: Optional[str] = None
+    
     @property
     def alert_data(self,) -> Optional[alert_data.AlertData]:
         """
@@ -134,52 +175,6 @@ class ManagedTenantAlert(entity.Entity):
         """
         self._assigned_to_user_id = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new managedTenantAlert and sets the default values.
-        """
-        super().__init__()
-        # The alertData property
-        self._alert_data: Optional[alert_data.AlertData] = None
-        # The alertDataReferenceStrings property
-        self._alert_data_reference_strings: Optional[List[alert_data_reference_string.AlertDataReferenceString]] = None
-        # The alertLogs property
-        self._alert_logs: Optional[List[managed_tenant_alert_log.ManagedTenantAlertLog]] = None
-        # The alertRule property
-        self._alert_rule: Optional[managed_tenant_alert_rule.ManagedTenantAlertRule] = None
-        # The alertRuleDisplayName property
-        self._alert_rule_display_name: Optional[str] = None
-        # The apiNotifications property
-        self._api_notifications: Optional[List[managed_tenant_api_notification.ManagedTenantApiNotification]] = None
-        # The assignedToUserId property
-        self._assigned_to_user_id: Optional[str] = None
-        # The correlationCount property
-        self._correlation_count: Optional[int] = None
-        # The correlationId property
-        self._correlation_id: Optional[str] = None
-        # The createdByUserId property
-        self._created_by_user_id: Optional[str] = None
-        # The createdDateTime property
-        self._created_date_time: Optional[datetime] = None
-        # The emailNotifications property
-        self._email_notifications: Optional[List[managed_tenant_email_notification.ManagedTenantEmailNotification]] = None
-        # The lastActionByUserId property
-        self._last_action_by_user_id: Optional[str] = None
-        # The lastActionDateTime property
-        self._last_action_date_time: Optional[datetime] = None
-        # The message property
-        self._message: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The severity property
-        self._severity: Optional[alert_severity.AlertSeverity] = None
-        # The status property
-        self._status: Optional[alert_status.AlertStatus] = None
-        # The tenantId property
-        self._tenant_id: Optional[str] = None
-        # The title property
-        self._title: Optional[str] = None
-    
     @property
     def correlation_count(self,) -> Optional[int]:
         """
@@ -282,7 +277,10 @@ class ManagedTenantAlert(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import alert_data, alert_data_reference_string, alert_severity, alert_status, managed_tenant_alert_log, managed_tenant_alert_rule, managed_tenant_api_notification, managed_tenant_email_notification
+        from .. import entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertData": lambda n : setattr(self, 'alert_data', n.get_object_value(alert_data.AlertData)),
             "alertDataReferenceStrings": lambda n : setattr(self, 'alert_data_reference_strings', n.get_collection_of_object_values(alert_data_reference_string.AlertDataReferenceString)),
             "alertLogs": lambda n : setattr(self, 'alert_logs', n.get_collection_of_object_values(managed_tenant_alert_log.ManagedTenantAlertLog)),

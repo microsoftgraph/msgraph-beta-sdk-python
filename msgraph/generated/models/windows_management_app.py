@@ -1,13 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-managed_installer_status = lazy_import('msgraph.generated.models.managed_installer_status')
-windows_management_app_health_state = lazy_import('msgraph.generated.models.windows_management_app_health_state')
+if TYPE_CHECKING:
+    from . import entity, managed_installer_status, windows_management_app_health_state
+
+from . import entity
 
 class WindowsManagementApp(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new windowsManagementApp and sets the default values.
+        """
+        super().__init__()
+        # Windows management app available version.
+        self._available_version: Optional[str] = None
+        # The list of health states for installed Windows management app.
+        self._health_states: Optional[List[windows_management_app_health_state.WindowsManagementAppHealthState]] = None
+        # ManagedInstallerStatus
+        self._managed_installer: Optional[managed_installer_status.ManagedInstallerStatus] = None
+        # Managed Installer Configured Date Time
+        self._managed_installer_configured_date_time: Optional[str] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+    
     @property
     def available_version(self,) -> Optional[str]:
         """
@@ -24,22 +40,6 @@ class WindowsManagementApp(entity.Entity):
             value: Value to set for the available_version property.
         """
         self._available_version = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new windowsManagementApp and sets the default values.
-        """
-        super().__init__()
-        # Windows management app available version.
-        self._available_version: Optional[str] = None
-        # The list of health states for installed Windows management app.
-        self._health_states: Optional[List[windows_management_app_health_state.WindowsManagementAppHealthState]] = None
-        # ManagedInstallerStatus
-        self._managed_installer: Optional[managed_installer_status.ManagedInstallerStatus] = None
-        # Managed Installer Configured Date Time
-        self._managed_installer_configured_date_time: Optional[str] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsManagementApp:
@@ -58,7 +58,9 @@ class WindowsManagementApp(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, managed_installer_status, windows_management_app_health_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "availableVersion": lambda n : setattr(self, 'available_version', n.get_str_value()),
             "healthStates": lambda n : setattr(self, 'health_states', n.get_collection_of_object_values(windows_management_app_health_state.WindowsManagementAppHealthState)),
             "managedInstaller": lambda n : setattr(self, 'managed_installer', n.get_enum_value(managed_installer_status.ManagedInstallerStatus)),

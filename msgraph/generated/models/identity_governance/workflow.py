@@ -1,15 +1,13 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-user = lazy_import('msgraph.generated.models.user')
-run = lazy_import('msgraph.generated.models.identity_governance.run')
-task_report = lazy_import('msgraph.generated.models.identity_governance.task_report')
-user_processing_result = lazy_import('msgraph.generated.models.identity_governance.user_processing_result')
-workflow_base = lazy_import('msgraph.generated.models.identity_governance.workflow_base')
-workflow_version = lazy_import('msgraph.generated.models.identity_governance.workflow_version')
+if TYPE_CHECKING:
+    from . import run, task_report, user_processing_result, workflow_base, workflow_version
+    from .. import user
+
+from . import workflow_base
 
 class Workflow(workflow_base.WorkflowBase):
     def __init__(self,) -> None:
@@ -26,11 +24,11 @@ class Workflow(workflow_base.WorkflowBase):
         self._id: Optional[str] = None
         # The date time when the workflow is expected to run next based on the schedule interval, if there are any users matching the execution conditions. Supports $filter(lt,gt) and $orderBy.
         self._next_schedule_run_date_time: Optional[datetime] = None
-        # The runs property
+        # Workflow runs.
         self._runs: Optional[List[run.Run]] = None
         # Represents the aggregation of task execution data for tasks within a workflow object.
         self._task_reports: Optional[List[task_report.TaskReport]] = None
-        # The userProcessingResults property
+        # Per-user workflow execution results.
         self._user_processing_results: Optional[List[user_processing_result.UserProcessingResult]] = None
         # The current version number of the workflow. Value is 1 when the workflow is first created.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
         self._version: Optional[int] = None
@@ -88,7 +86,10 @@ class Workflow(workflow_base.WorkflowBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import run, task_report, user_processing_result, workflow_base, workflow_version
+        from .. import user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "deletedDateTime": lambda n : setattr(self, 'deleted_date_time', n.get_datetime_value()),
             "executionScope": lambda n : setattr(self, 'execution_scope', n.get_collection_of_object_values(user.User)),
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
@@ -140,7 +141,7 @@ class Workflow(workflow_base.WorkflowBase):
     @property
     def runs(self,) -> Optional[List[run.Run]]:
         """
-        Gets the runs property value. The runs property
+        Gets the runs property value. Workflow runs.
         Returns: Optional[List[run.Run]]
         """
         return self._runs
@@ -148,7 +149,7 @@ class Workflow(workflow_base.WorkflowBase):
     @runs.setter
     def runs(self,value: Optional[List[run.Run]] = None) -> None:
         """
-        Sets the runs property value. The runs property
+        Sets the runs property value. Workflow runs.
         Args:
             value: Value to set for the runs property.
         """
@@ -193,7 +194,7 @@ class Workflow(workflow_base.WorkflowBase):
     @property
     def user_processing_results(self,) -> Optional[List[user_processing_result.UserProcessingResult]]:
         """
-        Gets the userProcessingResults property value. The userProcessingResults property
+        Gets the userProcessingResults property value. Per-user workflow execution results.
         Returns: Optional[List[user_processing_result.UserProcessingResult]]
         """
         return self._user_processing_results
@@ -201,7 +202,7 @@ class Workflow(workflow_base.WorkflowBase):
     @user_processing_results.setter
     def user_processing_results(self,value: Optional[List[user_processing_result.UserProcessingResult]] = None) -> None:
         """
-        Sets the userProcessingResults property value. The userProcessingResults property
+        Sets the userProcessingResults property value. Per-user workflow execution results.
         Args:
             value: Value to set for the user_processing_results property.
         """

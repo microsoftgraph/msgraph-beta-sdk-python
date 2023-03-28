@@ -1,15 +1,39 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-print_connector = lazy_import('msgraph.generated.models.print_connector')
-print_task_trigger = lazy_import('msgraph.generated.models.print_task_trigger')
-printer_base = lazy_import('msgraph.generated.models.printer_base')
-printer_share = lazy_import('msgraph.generated.models.printer_share')
+if TYPE_CHECKING:
+    from . import printer_base, printer_share, print_connector, print_task_trigger
+
+from . import printer_base
 
 class Printer(printer_base.PrinterBase):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new printer and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.printer"
+        # The acceptingJobs property
+        self._accepting_jobs: Optional[bool] = None
+        # The connectors that are associated with the printer.
+        self._connectors: Optional[List[print_connector.PrintConnector]] = None
+        # True if the printer has a physical device for printing. Read-only.
+        self._has_physical_device: Optional[bool] = None
+        # True if the printer is shared; false otherwise. Read-only.
+        self._is_shared: Optional[bool] = None
+        # The most recent dateTimeOffset when a printer interacted with Universal Print. Read-only.
+        self._last_seen_date_time: Optional[datetime] = None
+        # The DateTimeOffset when the printer was registered. Read-only.
+        self._registered_date_time: Optional[datetime] = None
+        # The share property
+        self._share: Optional[printer_share.PrinterShare] = None
+        # The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
+        self._shares: Optional[List[printer_share.PrinterShare]] = None
+        # A list of task triggers that are associated with the printer.
+        self._task_triggers: Optional[List[print_task_trigger.PrintTaskTrigger]] = None
+    
     @property
     def accepting_jobs(self,) -> Optional[bool]:
         """
@@ -44,31 +68,6 @@ class Printer(printer_base.PrinterBase):
         """
         self._connectors = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new printer and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.printer"
-        # The acceptingJobs property
-        self._accepting_jobs: Optional[bool] = None
-        # The connectors that are associated with the printer.
-        self._connectors: Optional[List[print_connector.PrintConnector]] = None
-        # True if the printer has a physical device for printing. Read-only.
-        self._has_physical_device: Optional[bool] = None
-        # True if the printer is shared; false otherwise. Read-only.
-        self._is_shared: Optional[bool] = None
-        # The most recent dateTimeOffset when a printer interacted with Universal Print. Read-only.
-        self._last_seen_date_time: Optional[datetime] = None
-        # The DateTimeOffset when the printer was registered. Read-only.
-        self._registered_date_time: Optional[datetime] = None
-        # The share property
-        self._share: Optional[printer_share.PrinterShare] = None
-        # The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
-        self._shares: Optional[List[printer_share.PrinterShare]] = None
-        # A list of task triggers that are associated with the printer.
-        self._task_triggers: Optional[List[print_task_trigger.PrintTaskTrigger]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Printer:
         """
@@ -86,7 +85,9 @@ class Printer(printer_base.PrinterBase):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import printer_base, printer_share, print_connector, print_task_trigger
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "acceptingJobs": lambda n : setattr(self, 'accepting_jobs', n.get_bool_value()),
             "connectors": lambda n : setattr(self, 'connectors', n.get_collection_of_object_values(print_connector.PrintConnector)),
             "hasPhysicalDevice": lambda n : setattr(self, 'has_physical_device', n.get_bool_value()),

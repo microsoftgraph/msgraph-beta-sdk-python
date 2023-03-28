@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-base_collection_pagination_count_response = lazy_import('msgraph.generated.models.base_collection_pagination_count_response')
-certificate_connector_health_metric_value = lazy_import('msgraph.generated.models.certificate_connector_health_metric_value')
+if TYPE_CHECKING:
+    from .....models import base_collection_pagination_count_response, certificate_connector_health_metric_value
+
+from .....models import base_collection_pagination_count_response
 
 class GetHealthMetricTimeSeriesResponse(base_collection_pagination_count_response.BaseCollectionPaginationCountResponse):
     def __init__(self,) -> None:
@@ -32,7 +33,9 @@ class GetHealthMetricTimeSeriesResponse(base_collection_pagination_count_respons
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from .....models import base_collection_pagination_count_response, certificate_connector_health_metric_value
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "value": lambda n : setattr(self, 'value', n.get_collection_of_object_values(certificate_connector_health_metric_value.CertificateConnectorHealthMetricValue)),
         }
         super_fields = super().get_field_deserializers()

@@ -1,15 +1,42 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-unified_role_management_alert_configuration = lazy_import('msgraph.generated.models.unified_role_management_alert_configuration')
-unified_role_management_alert_definition = lazy_import('msgraph.generated.models.unified_role_management_alert_definition')
-unified_role_management_alert_incident = lazy_import('msgraph.generated.models.unified_role_management_alert_incident')
+if TYPE_CHECKING:
+    from . import entity, unified_role_management_alert_configuration, unified_role_management_alert_definition, unified_role_management_alert_incident
+
+from . import entity
 
 class UnifiedRoleManagementAlert(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new unifiedRoleManagementAlert and sets the default values.
+        """
+        super().__init__()
+        # The alertConfiguration property
+        self._alert_configuration: Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration] = None
+        # The alertDefinition property
+        self._alert_definition: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None
+        # The alertDefinitionId property
+        self._alert_definition_id: Optional[str] = None
+        # The alertIncidents property
+        self._alert_incidents: Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]] = None
+        # The incidentCount property
+        self._incident_count: Optional[int] = None
+        # The isActive property
+        self._is_active: Optional[bool] = None
+        # The lastModifiedDateTime property
+        self._last_modified_date_time: Optional[datetime] = None
+        # The lastScannedDateTime property
+        self._last_scanned_date_time: Optional[datetime] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The scopeId property
+        self._scope_id: Optional[str] = None
+        # The scopeType property
+        self._scope_type: Optional[str] = None
+    
     @property
     def alert_configuration(self,) -> Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration]:
         """
@@ -78,34 +105,6 @@ class UnifiedRoleManagementAlert(entity.Entity):
         """
         self._alert_incidents = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new unifiedRoleManagementAlert and sets the default values.
-        """
-        super().__init__()
-        # The alertConfiguration property
-        self._alert_configuration: Optional[unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration] = None
-        # The alertDefinition property
-        self._alert_definition: Optional[unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition] = None
-        # The alertDefinitionId property
-        self._alert_definition_id: Optional[str] = None
-        # The alertIncidents property
-        self._alert_incidents: Optional[List[unified_role_management_alert_incident.UnifiedRoleManagementAlertIncident]] = None
-        # The incidentCount property
-        self._incident_count: Optional[int] = None
-        # The isActive property
-        self._is_active: Optional[bool] = None
-        # The lastModifiedDateTime property
-        self._last_modified_date_time: Optional[datetime] = None
-        # The lastScannedDateTime property
-        self._last_scanned_date_time: Optional[datetime] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The scopeId property
-        self._scope_id: Optional[str] = None
-        # The scopeType property
-        self._scope_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UnifiedRoleManagementAlert:
         """
@@ -123,7 +122,9 @@ class UnifiedRoleManagementAlert(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, unified_role_management_alert_configuration, unified_role_management_alert_definition, unified_role_management_alert_incident
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "alertConfiguration": lambda n : setattr(self, 'alert_configuration', n.get_object_value(unified_role_management_alert_configuration.UnifiedRoleManagementAlertConfiguration)),
             "alertDefinition": lambda n : setattr(self, 'alert_definition', n.get_object_value(unified_role_management_alert_definition.UnifiedRoleManagementAlertDefinition)),
             "alertDefinitionId": lambda n : setattr(self, 'alert_definition_id', n.get_str_value()),

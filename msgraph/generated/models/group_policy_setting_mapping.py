@@ -1,51 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-group_policy_setting_scope = lazy_import('msgraph.generated.models.group_policy_setting_scope')
-group_policy_setting_type = lazy_import('msgraph.generated.models.group_policy_setting_type')
-mdm_supported_state = lazy_import('msgraph.generated.models.mdm_supported_state')
+if TYPE_CHECKING:
+    from . import entity, group_policy_setting_scope, group_policy_setting_type, mdm_supported_state
+
+from . import entity
 
 class GroupPolicySettingMapping(entity.Entity):
     """
     The Group Policy setting to MDM/Intune mapping.
     """
-    @property
-    def admx_setting_definition_id(self,) -> Optional[str]:
-        """
-        Gets the admxSettingDefinitionId property value. Admx Group Policy Id
-        Returns: Optional[str]
-        """
-        return self._admx_setting_definition_id
-    
-    @admx_setting_definition_id.setter
-    def admx_setting_definition_id(self,value: Optional[str] = None) -> None:
-        """
-        Sets the admxSettingDefinitionId property value. Admx Group Policy Id
-        Args:
-            value: Value to set for the admx_setting_definition_id property.
-        """
-        self._admx_setting_definition_id = value
-    
-    @property
-    def child_id_list(self,) -> Optional[List[str]]:
-        """
-        Gets the childIdList property value. List of Child Ids of the group policy setting.
-        Returns: Optional[List[str]]
-        """
-        return self._child_id_list
-    
-    @child_id_list.setter
-    def child_id_list(self,value: Optional[List[str]] = None) -> None:
-        """
-        Sets the childIdList property value. List of Child Ids of the group policy setting.
-        Args:
-            value: Value to set for the child_id_list property.
-        """
-        self._child_id_list = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new groupPolicySettingMapping and sets the default values.
@@ -94,6 +59,40 @@ class GroupPolicySettingMapping(entity.Entity):
         # The value type of this group policy setting.
         self._setting_value_type: Optional[str] = None
     
+    @property
+    def admx_setting_definition_id(self,) -> Optional[str]:
+        """
+        Gets the admxSettingDefinitionId property value. Admx Group Policy Id
+        Returns: Optional[str]
+        """
+        return self._admx_setting_definition_id
+    
+    @admx_setting_definition_id.setter
+    def admx_setting_definition_id(self,value: Optional[str] = None) -> None:
+        """
+        Sets the admxSettingDefinitionId property value. Admx Group Policy Id
+        Args:
+            value: Value to set for the admx_setting_definition_id property.
+        """
+        self._admx_setting_definition_id = value
+    
+    @property
+    def child_id_list(self,) -> Optional[List[str]]:
+        """
+        Gets the childIdList property value. List of Child Ids of the group policy setting.
+        Returns: Optional[List[str]]
+        """
+        return self._child_id_list
+    
+    @child_id_list.setter
+    def child_id_list(self,value: Optional[List[str]] = None) -> None:
+        """
+        Sets the childIdList property value. List of Child Ids of the group policy setting.
+        Args:
+            value: Value to set for the child_id_list property.
+        """
+        self._child_id_list = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> GroupPolicySettingMapping:
         """
@@ -111,7 +110,9 @@ class GroupPolicySettingMapping(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, group_policy_setting_scope, group_policy_setting_type, mdm_supported_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "admxSettingDefinitionId": lambda n : setattr(self, 'admx_setting_definition_id', n.get_str_value()),
             "childIdList": lambda n : setattr(self, 'child_id_list', n.get_collection_of_primitive_values(str)),
             "intuneSettingDefinitionId": lambda n : setattr(self, 'intune_setting_definition_id', n.get_str_value()),

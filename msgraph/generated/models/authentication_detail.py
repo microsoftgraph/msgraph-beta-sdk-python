@@ -1,10 +1,31 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class AuthenticationDetail(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new authenticationDetail and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The type of authentication method used to perform this step of authentication. Possible values: Password, SMS, Voice, Authenticator App, Software OATH token, Satisfied by token, Previously satisfied.
+        self._authentication_method: Optional[str] = None
+        # Details about the authentication method used to perform this authentication step. For example, phone number (for SMS and voice), device name (for Authenticator app), and password source (e.g. cloud, AD FS, PTA, PHS).
+        self._authentication_method_detail: Optional[str] = None
+        # Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+        self._authentication_step_date_time: Optional[datetime] = None
+        # The step of authentication that this satisfied. For example, primary authentication, or multi-factor authentication.
+        self._authentication_step_requirement: Optional[str] = None
+        # Details about why the step succeeded or failed. For examples, user is blocked, fraud code entered, no phone input - timed out, phone unreachable, or claim in token.
+        self._authentication_step_result_detail: Optional[str] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Indicates the status of the authentication step. Possible values: succeeded, failed.
+        self._succeeded: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -107,28 +128,6 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         """
         self._authentication_step_result_detail = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new authenticationDetail and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The type of authentication method used to perform this step of authentication. Possible values: Password, SMS, Voice, Authenticator App, Software OATH token, Satisfied by token, Previously satisfied.
-        self._authentication_method: Optional[str] = None
-        # Details about the authentication method used to perform this authentication step. For example, phone number (for SMS and voice), device name (for Authenticator app), and password source (e.g. cloud, AD FS, PTA, PHS).
-        self._authentication_method_detail: Optional[str] = None
-        # Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
-        self._authentication_step_date_time: Optional[datetime] = None
-        # The step of authentication that this satisfied. For example, primary authentication, or multi-factor authentication.
-        self._authentication_step_requirement: Optional[str] = None
-        # Details about why the step succeeded or failed. For examples, user is blocked, fraud code entered, no phone input - timed out, phone unreachable, or claim in token.
-        self._authentication_step_result_detail: Optional[str] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Indicates the status of the authentication step. Possible values: succeeded, failed.
-        self._succeeded: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationDetail:
         """
@@ -146,7 +145,7 @@ class AuthenticationDetail(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationMethod": lambda n : setattr(self, 'authentication_method', n.get_str_value()),
             "authenticationMethodDetail": lambda n : setattr(self, 'authentication_method_detail', n.get_str_value()),
             "authenticationStepDateTime": lambda n : setattr(self, 'authentication_step_date_time', n.get_datetime_value()),

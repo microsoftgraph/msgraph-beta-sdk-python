@@ -1,14 +1,37 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-case_operation = lazy_import('msgraph.generated.models.ediscovery.case_operation')
-export_file_structure = lazy_import('msgraph.generated.models.ediscovery.export_file_structure')
-export_options = lazy_import('msgraph.generated.models.ediscovery.export_options')
-review_set = lazy_import('msgraph.generated.models.ediscovery.review_set')
+if TYPE_CHECKING:
+    from . import case_operation, export_file_structure, export_options, review_set
+
+from . import case_operation
 
 class CaseExportOperation(case_operation.CaseOperation):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new CaseExportOperation and sets the default values.
+        """
+        super().__init__()
+        # The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
+        self._azure_blob_container: Optional[str] = None
+        # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
+        self._azure_blob_token: Optional[str] = None
+        # The description provided for the export.
+        self._description: Optional[str] = None
+        # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
+        self._export_options: Optional[export_options.ExportOptions] = None
+        # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
+        self._export_structure: Optional[export_file_structure.ExportFileStructure] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # The outputFolderId property
+        self._output_folder_id: Optional[str] = None
+        # The name provided for the export.
+        self._output_name: Optional[str] = None
+        # The review set the content is being exported from.
+        self._review_set: Optional[review_set.ReviewSet] = None
+    
     @property
     def azure_blob_container(self,) -> Optional[str]:
         """
@@ -42,30 +65,6 @@ class CaseExportOperation(case_operation.CaseOperation):
             value: Value to set for the azure_blob_token property.
         """
         self._azure_blob_token = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new CaseExportOperation and sets the default values.
-        """
-        super().__init__()
-        # The name of the Azure storage location where the export will be stored. This only applies to exports stored in your own Azure storage location.
-        self._azure_blob_container: Optional[str] = None
-        # The SAS token for the Azure storage location.  This only applies to exports stored in your own Azure storage location.
-        self._azure_blob_token: Optional[str] = None
-        # The description provided for the export.
-        self._description: Optional[str] = None
-        # The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement, fileInfo, tags.
-        self._export_options: Optional[export_options.ExportOptions] = None
-        # The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.
-        self._export_structure: Optional[export_file_structure.ExportFileStructure] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # The outputFolderId property
-        self._output_folder_id: Optional[str] = None
-        # The name provided for the export.
-        self._output_name: Optional[str] = None
-        # The review set the content is being exported from.
-        self._review_set: Optional[review_set.ReviewSet] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> CaseExportOperation:
@@ -135,7 +134,9 @@ class CaseExportOperation(case_operation.CaseOperation):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import case_operation, export_file_structure, export_options, review_set
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "azureBlobContainer": lambda n : setattr(self, 'azure_blob_container', n.get_str_value()),
             "azureBlobToken": lambda n : setattr(self, 'azure_blob_token', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),

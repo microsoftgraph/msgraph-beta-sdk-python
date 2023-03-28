@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-windows_kiosk_user = lazy_import('msgraph.generated.models.windows_kiosk_user')
+if TYPE_CHECKING:
+    from . import windows_kiosk_user
+
+from . import windows_kiosk_user
 
 class WindowsKioskAzureADGroup(windows_kiosk_user.WindowsKioskUser):
     def __init__(self,) -> None:
@@ -51,7 +53,9 @@ class WindowsKioskAzureADGroup(windows_kiosk_user.WindowsKioskUser):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import windows_kiosk_user
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
             "groupId": lambda n : setattr(self, 'group_id', n.get_str_value()),
         }

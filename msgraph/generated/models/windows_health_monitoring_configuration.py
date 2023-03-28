@@ -1,13 +1,26 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_configuration = lazy_import('msgraph.generated.models.device_configuration')
-enablement = lazy_import('msgraph.generated.models.enablement')
-windows_health_monitoring_scope = lazy_import('msgraph.generated.models.windows_health_monitoring_scope')
+if TYPE_CHECKING:
+    from . import device_configuration, enablement, windows_health_monitoring_scope
+
+from . import device_configuration
 
 class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new WindowsHealthMonitoringConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windowsHealthMonitoringConfiguration"
+        # Possible values of a property
+        self._allow_device_health_monitoring: Optional[enablement.Enablement] = None
+        # Specifies custom set of events collected from the device where health monitoring is enabled
+        self._config_device_health_monitoring_custom_scope: Optional[str] = None
+        # Device health monitoring scope
+        self._config_device_health_monitoring_scope: Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope] = None
+    
     @property
     def allow_device_health_monitoring(self,) -> Optional[enablement.Enablement]:
         """
@@ -59,19 +72,6 @@ class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfigurat
         """
         self._config_device_health_monitoring_scope = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new WindowsHealthMonitoringConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windowsHealthMonitoringConfiguration"
-        # Possible values of a property
-        self._allow_device_health_monitoring: Optional[enablement.Enablement] = None
-        # Specifies custom set of events collected from the device where health monitoring is enabled
-        self._config_device_health_monitoring_custom_scope: Optional[str] = None
-        # Device health monitoring scope
-        self._config_device_health_monitoring_scope: Optional[windows_health_monitoring_scope.WindowsHealthMonitoringScope] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> WindowsHealthMonitoringConfiguration:
         """
@@ -89,7 +89,9 @@ class WindowsHealthMonitoringConfiguration(device_configuration.DeviceConfigurat
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_configuration, enablement, windows_health_monitoring_scope
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowDeviceHealthMonitoring": lambda n : setattr(self, 'allow_device_health_monitoring', n.get_enum_value(enablement.Enablement)),
             "configDeviceHealthMonitoringCustomScope": lambda n : setattr(self, 'config_device_health_monitoring_custom_scope', n.get_str_value()),
             "configDeviceHealthMonitoringScope": lambda n : setattr(self, 'config_device_health_monitoring_scope', n.get_enum_value(windows_health_monitoring_scope.WindowsHealthMonitoringScope)),

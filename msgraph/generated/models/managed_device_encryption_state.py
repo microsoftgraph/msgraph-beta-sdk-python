@@ -1,38 +1,16 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-advanced_bit_locker_state = lazy_import('msgraph.generated.models.advanced_bit_locker_state')
-compliance_status = lazy_import('msgraph.generated.models.compliance_status')
-device_types = lazy_import('msgraph.generated.models.device_types')
-encryption_readiness_state = lazy_import('msgraph.generated.models.encryption_readiness_state')
-encryption_report_policy_details = lazy_import('msgraph.generated.models.encryption_report_policy_details')
-encryption_state = lazy_import('msgraph.generated.models.encryption_state')
-entity = lazy_import('msgraph.generated.models.entity')
-file_vault_state = lazy_import('msgraph.generated.models.file_vault_state')
+if TYPE_CHECKING:
+    from . import advanced_bit_locker_state, compliance_status, device_types, encryption_readiness_state, encryption_report_policy_details, encryption_state, entity, file_vault_state
+
+from . import entity
 
 class ManagedDeviceEncryptionState(entity.Entity):
     """
     Encryption report per device
     """
-    @property
-    def advanced_bit_locker_states(self,) -> Optional[advanced_bit_locker_state.AdvancedBitLockerState]:
-        """
-        Gets the advancedBitLockerStates property value. Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
-        Returns: Optional[advanced_bit_locker_state.AdvancedBitLockerState]
-        """
-        return self._advanced_bit_locker_states
-    
-    @advanced_bit_locker_states.setter
-    def advanced_bit_locker_states(self,value: Optional[advanced_bit_locker_state.AdvancedBitLockerState] = None) -> None:
-        """
-        Sets the advancedBitLockerStates property value. Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
-        Args:
-            value: Value to set for the advanced_bit_locker_states property.
-        """
-        self._advanced_bit_locker_states = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new managedDeviceEncryptionState and sets the default values.
@@ -62,6 +40,23 @@ class ManagedDeviceEncryptionState(entity.Entity):
         self._tpm_specification_version: Optional[str] = None
         # User name
         self._user_principal_name: Optional[str] = None
+    
+    @property
+    def advanced_bit_locker_states(self,) -> Optional[advanced_bit_locker_state.AdvancedBitLockerState]:
+        """
+        Gets the advancedBitLockerStates property value. Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
+        Returns: Optional[advanced_bit_locker_state.AdvancedBitLockerState]
+        """
+        return self._advanced_bit_locker_states
+    
+    @advanced_bit_locker_states.setter
+    def advanced_bit_locker_states(self,value: Optional[advanced_bit_locker_state.AdvancedBitLockerState] = None) -> None:
+        """
+        Sets the advancedBitLockerStates property value. Advanced BitLocker State. Possible values are: success, noUserConsent, osVolumeUnprotected, osVolumeTpmRequired, osVolumeTpmOnlyRequired, osVolumeTpmPinRequired, osVolumeTpmStartupKeyRequired, osVolumeTpmPinStartupKeyRequired, osVolumeEncryptionMethodMismatch, recoveryKeyBackupFailed, fixedDriveNotEncrypted, fixedDriveEncryptionMethodMismatch, loggedOnUserNonAdmin, windowsRecoveryEnvironmentNotConfigured, tpmNotAvailable, tpmNotReady, networkError.
+        Args:
+            value: Value to set for the advanced_bit_locker_states property.
+        """
+        self._advanced_bit_locker_states = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ManagedDeviceEncryptionState:
@@ -182,7 +177,9 @@ class ManagedDeviceEncryptionState(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import advanced_bit_locker_state, compliance_status, device_types, encryption_readiness_state, encryption_report_policy_details, encryption_state, entity, file_vault_state
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "advancedBitLockerStates": lambda n : setattr(self, 'advanced_bit_locker_states', n.get_enum_value(advanced_bit_locker_state.AdvancedBitLockerState)),
             "deviceName": lambda n : setattr(self, 'device_name', n.get_str_value()),
             "deviceType": lambda n : setattr(self, 'device_type', n.get_enum_value(device_types.DeviceTypes)),

@@ -1,12 +1,28 @@
 from __future__ import annotations
 from datetime import datetime
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-update_window = lazy_import('msgraph.generated.models.update_window')
+if TYPE_CHECKING:
+    from . import update_window
 
 class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new hybridAgentUpdaterConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Indicates if updater configuration will be skipped and the agent will receive an update when the next version of the agent is available.
+        self._allow_update_configuration_override: Optional[bool] = None
+        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+        self._defer_update_date_time: Optional[datetime] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # The updateWindow property
+        self._update_window: Optional[update_window.UpdateWindow] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,22 +56,6 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the allow_update_configuration_override property.
         """
         self._allow_update_configuration_override = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new hybridAgentUpdaterConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Indicates if updater configuration will be skipped and the agent will receive an update when the next version of the agent is available.
-        self._allow_update_configuration_override: Optional[bool] = None
-        # The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
-        self._defer_update_date_time: Optional[datetime] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # The updateWindow property
-        self._update_window: Optional[update_window.UpdateWindow] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> HybridAgentUpdaterConfiguration:
@@ -91,7 +91,9 @@ class HybridAgentUpdaterConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import update_window
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowUpdateConfigurationOverride": lambda n : setattr(self, 'allow_update_configuration_override', n.get_bool_value()),
             "deferUpdateDateTime": lambda n : setattr(self, 'defer_update_date_time', n.get_datetime_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),

@@ -1,11 +1,44 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-device_enrollment_configuration = lazy_import('msgraph.generated.models.device_enrollment_configuration')
+if TYPE_CHECKING:
+    from . import device_enrollment_configuration
+
+from . import device_enrollment_configuration
 
 class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configuration.DeviceEnrollmentConfiguration):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Windows10EnrollmentCompletionPageConfiguration and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
+        # Allow or block device reset on installation failure
+        self._allow_device_reset_on_install_failure: Optional[bool] = None
+        # Allow the user to continue using the device on installation failure
+        self._allow_device_use_on_install_failure: Optional[bool] = None
+        # Allow or block log collection on installation failure
+        self._allow_log_collection_on_install_failure: Optional[bool] = None
+        # Install all required apps as non blocking apps during white glove
+        self._allow_non_blocking_app_installation: Optional[bool] = None
+        # Allow the user to retry the setup on installation failure
+        self._block_device_setup_retry_by_user: Optional[bool] = None
+        # Set custom error message to show upon installation failure
+        self._custom_error_message: Optional[str] = None
+        # Only show installation progress for first user post enrollment
+        self._disable_user_status_tracking_after_first_user: Optional[bool] = None
+        # Set installation progress timeout in minutes
+        self._install_progress_timeout_in_minutes: Optional[int] = None
+        # Allows quality updates installation during OOBE
+        self._install_quality_updates: Optional[bool] = None
+        # Selected applications to track the installation status
+        self._selected_mobile_app_ids: Optional[List[str]] = None
+        # Show or hide installation progress to user
+        self._show_installation_progress: Optional[bool] = None
+        # Only show installation progress for Autopilot enrollment scenarios
+        self._track_install_progress_for_autopilot_only: Optional[bool] = None
+    
     @property
     def allow_device_reset_on_install_failure(self,) -> Optional[bool]:
         """
@@ -91,37 +124,6 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         """
         self._block_device_setup_retry_by_user = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Windows10EnrollmentCompletionPageConfiguration and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration"
-        # Allow or block device reset on installation failure
-        self._allow_device_reset_on_install_failure: Optional[bool] = None
-        # Allow the user to continue using the device on installation failure
-        self._allow_device_use_on_install_failure: Optional[bool] = None
-        # Allow or block log collection on installation failure
-        self._allow_log_collection_on_install_failure: Optional[bool] = None
-        # Install all required apps as non blocking apps during white glove
-        self._allow_non_blocking_app_installation: Optional[bool] = None
-        # Allow the user to retry the setup on installation failure
-        self._block_device_setup_retry_by_user: Optional[bool] = None
-        # Set custom error message to show upon installation failure
-        self._custom_error_message: Optional[str] = None
-        # Only show installation progress for first user post enrollment
-        self._disable_user_status_tracking_after_first_user: Optional[bool] = None
-        # Set installation progress timeout in minutes
-        self._install_progress_timeout_in_minutes: Optional[int] = None
-        # Allows quality updates installation during OOBE
-        self._install_quality_updates: Optional[bool] = None
-        # Selected applications to track the installation status
-        self._selected_mobile_app_ids: Optional[List[str]] = None
-        # Show or hide installation progress to user
-        self._show_installation_progress: Optional[bool] = None
-        # Only show installation progress for Autopilot enrollment scenarios
-        self._track_install_progress_for_autopilot_only: Optional[bool] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Windows10EnrollmentCompletionPageConfiguration:
         """
@@ -173,7 +175,9 @@ class Windows10EnrollmentCompletionPageConfiguration(device_enrollment_configura
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import device_enrollment_configuration
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "allowDeviceResetOnInstallFailure": lambda n : setattr(self, 'allow_device_reset_on_install_failure', n.get_bool_value()),
             "allowDeviceUseOnInstallFailure": lambda n : setattr(self, 'allow_device_use_on_install_failure', n.get_bool_value()),
             "allowLogCollectionOnInstallFailure": lambda n : setattr(self, 'allow_log_collection_on_install_failure', n.get_bool_value()),

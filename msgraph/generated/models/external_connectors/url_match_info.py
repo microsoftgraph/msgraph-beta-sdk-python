@@ -1,9 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class UrlMatchInfo(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new urlMatchInfo and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # A list of the URL prefixes that must match URLs to be processed by this URL-to-item-resolver.
+        self._base_urls: Optional[List[str]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # A regular expression that will be matched towards the URL that is processed by this URL-to-item-resolver. The ECMAScript specification for regular expressions (ECMA-262) is used for the evaluation. The named groups defined by the regular expression will be used later to extract values from the URL.
+        self._url_pattern: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -38,20 +51,6 @@ class UrlMatchInfo(AdditionalDataHolder, Parsable):
         """
         self._base_urls = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new urlMatchInfo and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # A list of the URL prefixes that must match URLs to be processed by this URL-to-item-resolver.
-        self._base_urls: Optional[List[str]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # A regular expression that will be matched towards the URL that is processed by this URL-to-item-resolver. The ECMAScript specification for regular expressions (ECMA-262) is used for the evaluation. The named groups defined by the regular expression will be used later to extract values from the URL.
-        self._url_pattern: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> UrlMatchInfo:
         """
@@ -69,7 +68,7 @@ class UrlMatchInfo(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "baseUrls": lambda n : setattr(self, 'base_urls', n.get_collection_of_primitive_values(str)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "urlPattern": lambda n : setattr(self, 'url_pattern', n.get_str_value()),

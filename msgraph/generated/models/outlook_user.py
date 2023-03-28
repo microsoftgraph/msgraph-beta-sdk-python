@@ -1,13 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-entity = lazy_import('msgraph.generated.models.entity')
-outlook_category = lazy_import('msgraph.generated.models.outlook_category')
-outlook_task = lazy_import('msgraph.generated.models.outlook_task')
-outlook_task_folder = lazy_import('msgraph.generated.models.outlook_task_folder')
-outlook_task_group = lazy_import('msgraph.generated.models.outlook_task_group')
+if TYPE_CHECKING:
+    from . import entity, outlook_category, outlook_task, outlook_task_folder, outlook_task_group
+
+from . import entity
 
 class OutlookUser(entity.Entity):
     def __init__(self,) -> None:
@@ -43,7 +41,9 @@ class OutlookUser(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import entity, outlook_category, outlook_task, outlook_task_folder, outlook_task_group
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "masterCategories": lambda n : setattr(self, 'master_categories', n.get_collection_of_object_values(outlook_category.OutlookCategory)),
             "tasks": lambda n : setattr(self, 'tasks', n.get_collection_of_object_values(outlook_task.OutlookTask)),
             "taskFolders": lambda n : setattr(self, 'task_folders', n.get_collection_of_object_values(outlook_task_folder.OutlookTaskFolder)),

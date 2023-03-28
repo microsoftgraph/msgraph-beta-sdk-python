@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app_dependency_type = lazy_import('msgraph.generated.models.mobile_app_dependency_type')
-mobile_app_relationship = lazy_import('msgraph.generated.models.mobile_app_relationship')
+if TYPE_CHECKING:
+    from . import mobile_app_dependency_type, mobile_app_relationship
+
+from . import mobile_app_relationship
 
 class MobileAppDependency(mobile_app_relationship.MobileAppRelationship):
     def __init__(self,) -> None:
@@ -88,7 +89,9 @@ class MobileAppDependency(mobile_app_relationship.MobileAppRelationship):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app_dependency_type, mobile_app_relationship
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "dependencyType": lambda n : setattr(self, 'dependency_type', n.get_enum_value(mobile_app_dependency_type.MobileAppDependencyType)),
             "dependentAppCount": lambda n : setattr(self, 'dependent_app_count', n.get_int_value()),
             "dependsOnAppCount": lambda n : setattr(self, 'depends_on_app_count', n.get_int_value()),

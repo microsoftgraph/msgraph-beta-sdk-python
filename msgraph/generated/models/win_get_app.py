@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-mobile_app = lazy_import('msgraph.generated.models.mobile_app')
-win_get_app_install_experience = lazy_import('msgraph.generated.models.win_get_app_install_experience')
+if TYPE_CHECKING:
+    from . import mobile_app, win_get_app_install_experience
+
+from . import mobile_app
 
 class WinGetApp(mobile_app.MobileApp):
     def __init__(self,) -> None:
@@ -37,7 +38,9 @@ class WinGetApp(mobile_app.MobileApp):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import mobile_app, win_get_app_install_experience
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "installExperience": lambda n : setattr(self, 'install_experience', n.get_object_value(win_get_app_install_experience.WinGetAppInstallExperience)),
             "manifestHash": lambda n : setattr(self, 'manifest_hash', n.get_str_value()),
             "packageIdentifier": lambda n : setattr(self, 'package_identifier', n.get_str_value()),

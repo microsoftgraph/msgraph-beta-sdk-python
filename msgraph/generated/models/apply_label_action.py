@@ -1,13 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from uuid import UUID
 
-action_source = lazy_import('msgraph.generated.models.action_source')
-information_protection_action = lazy_import('msgraph.generated.models.information_protection_action')
-label_details = lazy_import('msgraph.generated.models.label_details')
+if TYPE_CHECKING:
+    from . import action_source, information_protection_action, label_details
+
+from . import information_protection_action
 
 class ApplyLabelAction(information_protection_action.InformationProtectionAction):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new ApplyLabelAction and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.applyLabelAction"
+        # The actionSource property
+        self._action_source: Optional[action_source.ActionSource] = None
+        # The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.
+        self._actions: Optional[List[information_protection_action.InformationProtectionAction]] = None
+        # Object that describes the details of the label to apply.
+        self._label: Optional[label_details.LabelDetails] = None
+        # If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
+        self._responsible_sensitive_type_ids: Optional[List[UUID]] = None
+    
     @property
     def action_source(self,) -> Optional[action_source.ActionSource]:
         """
@@ -42,21 +58,6 @@ class ApplyLabelAction(information_protection_action.InformationProtectionAction
         """
         self._actions = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new ApplyLabelAction and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.applyLabelAction"
-        # The actionSource property
-        self._action_source: Optional[action_source.ActionSource] = None
-        # The collection of specific actions that should be taken by the consuming application to label the document. See  informationProtectionAction for the full list.
-        self._actions: Optional[List[information_protection_action.InformationProtectionAction]] = None
-        # Object that describes the details of the label to apply.
-        self._label: Optional[label_details.LabelDetails] = None
-        # If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
-        self._responsible_sensitive_type_ids: Optional[List[Guid]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> ApplyLabelAction:
         """
@@ -74,11 +75,13 @@ class ApplyLabelAction(information_protection_action.InformationProtectionAction
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import action_source, information_protection_action, label_details
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "actions": lambda n : setattr(self, 'actions', n.get_collection_of_object_values(information_protection_action.InformationProtectionAction)),
             "actionSource": lambda n : setattr(self, 'action_source', n.get_enum_value(action_source.ActionSource)),
             "label": lambda n : setattr(self, 'label', n.get_object_value(label_details.LabelDetails)),
-            "responsibleSensitiveTypeIds": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(guid)),
+            "responsibleSensitiveTypeIds": lambda n : setattr(self, 'responsible_sensitive_type_ids', n.get_collection_of_primitive_values(u_u_i_d)),
         }
         super_fields = super().get_field_deserializers()
         fields.update(super_fields)
@@ -102,15 +105,15 @@ class ApplyLabelAction(information_protection_action.InformationProtectionAction
         self._label = value
     
     @property
-    def responsible_sensitive_type_ids(self,) -> Optional[List[Guid]]:
+    def responsible_sensitive_type_ids(self,) -> Optional[List[UUID]]:
         """
         Gets the responsibleSensitiveTypeIds property value. If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
-        Returns: Optional[List[Guid]]
+        Returns: Optional[List[UUID]]
         """
         return self._responsible_sensitive_type_ids
     
     @responsible_sensitive_type_ids.setter
-    def responsible_sensitive_type_ids(self,value: Optional[List[Guid]] = None) -> None:
+    def responsible_sensitive_type_ids(self,value: Optional[List[UUID]] = None) -> None:
         """
         Sets the responsibleSensitiveTypeIds property value. If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that resulted in the returned label.
         Args:

@@ -1,10 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-azure_a_d_device_registration_error_reason = lazy_import('msgraph.generated.models.windows_updates.azure_a_d_device_registration_error_reason')
-updatable_asset_error = lazy_import('msgraph.generated.models.windows_updates.updatable_asset_error')
+if TYPE_CHECKING:
+    from . import azure_a_d_device_registration_error_reason, updatable_asset_error
+
+from . import updatable_asset_error
 
 class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
     def __init__(self,) -> None:
@@ -33,7 +34,9 @@ class AzureADDeviceRegistrationError(updatable_asset_error.UpdatableAssetError):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import azure_a_d_device_registration_error_reason, updatable_asset_error
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "reason": lambda n : setattr(self, 'reason', n.get_enum_value(azure_a_d_device_registration_error_reason.AzureADDeviceRegistrationErrorReason)),
         }
         super_fields = super().get_field_deserializers()

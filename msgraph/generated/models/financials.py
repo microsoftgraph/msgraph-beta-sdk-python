@@ -1,11 +1,23 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-company = lazy_import('msgraph.generated.models.company')
+if TYPE_CHECKING:
+    from . import company
 
 class Financials(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Financials and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The companies property
+        self._companies: Optional[List[company.Company]] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -40,18 +52,6 @@ class Financials(AdditionalDataHolder, Parsable):
         """
         self._companies = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Financials and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The companies property
-        self._companies: Optional[List[company.Company]] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Financials:
         """
@@ -69,7 +69,9 @@ class Financials(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import company
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "companies": lambda n : setattr(self, 'companies', n.get_collection_of_object_values(company.Company)),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
         }

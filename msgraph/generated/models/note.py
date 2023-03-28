@@ -1,16 +1,36 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-attachment = lazy_import('msgraph.generated.models.attachment')
-extension = lazy_import('msgraph.generated.models.extension')
-item_body = lazy_import('msgraph.generated.models.item_body')
-multi_value_legacy_extended_property = lazy_import('msgraph.generated.models.multi_value_legacy_extended_property')
-outlook_item = lazy_import('msgraph.generated.models.outlook_item')
-single_value_legacy_extended_property = lazy_import('msgraph.generated.models.single_value_legacy_extended_property')
+if TYPE_CHECKING:
+    from . import attachment, extension, item_body, multi_value_legacy_extended_property, outlook_item, single_value_legacy_extended_property
+
+from . import outlook_item
 
 class Note(outlook_item.OutlookItem):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new Note and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.note"
+        # The attachments property
+        self._attachments: Optional[List[attachment.Attachment]] = None
+        # The body property
+        self._body: Optional[item_body.ItemBody] = None
+        # The extensions property
+        self._extensions: Optional[List[extension.Extension]] = None
+        # The hasAttachments property
+        self._has_attachments: Optional[bool] = None
+        # The isDeleted property
+        self._is_deleted: Optional[bool] = None
+        # The multiValueExtendedProperties property
+        self._multi_value_extended_properties: Optional[List[multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty]] = None
+        # The singleValueExtendedProperties property
+        self._single_value_extended_properties: Optional[List[single_value_legacy_extended_property.SingleValueLegacyExtendedProperty]] = None
+        # The subject property
+        self._subject: Optional[str] = None
+    
     @property
     def attachments(self,) -> Optional[List[attachment.Attachment]]:
         """
@@ -44,29 +64,6 @@ class Note(outlook_item.OutlookItem):
             value: Value to set for the body property.
         """
         self._body = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new Note and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.note"
-        # The attachments property
-        self._attachments: Optional[List[attachment.Attachment]] = None
-        # The body property
-        self._body: Optional[item_body.ItemBody] = None
-        # The extensions property
-        self._extensions: Optional[List[extension.Extension]] = None
-        # The hasAttachments property
-        self._has_attachments: Optional[bool] = None
-        # The isDeleted property
-        self._is_deleted: Optional[bool] = None
-        # The multiValueExtendedProperties property
-        self._multi_value_extended_properties: Optional[List[multi_value_legacy_extended_property.MultiValueLegacyExtendedProperty]] = None
-        # The singleValueExtendedProperties property
-        self._single_value_extended_properties: Optional[List[single_value_legacy_extended_property.SingleValueLegacyExtendedProperty]] = None
-        # The subject property
-        self._subject: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Note:
@@ -102,7 +99,9 @@ class Note(outlook_item.OutlookItem):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import attachment, extension, item_body, multi_value_legacy_extended_property, outlook_item, single_value_legacy_extended_property
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "attachments": lambda n : setattr(self, 'attachments', n.get_collection_of_object_values(attachment.Attachment)),
             "body": lambda n : setattr(self, 'body', n.get_object_value(item_body.ItemBody)),
             "extensions": lambda n : setattr(self, 'extensions', n.get_collection_of_object_values(extension.Extension)),

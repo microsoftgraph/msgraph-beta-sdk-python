@@ -7,49 +7,21 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-synchronization_schema = lazy_import('msgraph.generated.models.synchronization_schema')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
-directories_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.directories.directories_request_builder')
-directory_definition_item_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.directories.item.directory_definition_item_request_builder')
-filter_operators_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.filter_operators.filter_operators_request_builder')
-functions_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.functions.functions_request_builder')
-parse_expression_request_builder = lazy_import('msgraph.generated.service_principals.item.synchronization.jobs.item.schema.parse_expression.parse_expression_request_builder')
+if TYPE_CHECKING:
+    from .......models import synchronization_schema
+    from .......models.o_data_errors import o_data_error
+    from .directories import directories_request_builder
+    from .directories.item import directory_definition_item_request_builder
+    from .filter_operators import filter_operators_request_builder
+    from .functions import functions_request_builder
+    from .parse_expression import parse_expression_request_builder
 
 class SchemaRequestBuilder():
     """
     Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
     """
-    @property
-    def directories(self) -> directories_request_builder.DirectoriesRequestBuilder:
-        """
-        Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
-        """
-        return directories_request_builder.DirectoriesRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def filter_operators(self) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
-        """
-        Provides operations to call the filterOperators method.
-        """
-        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def functions(self) -> functions_request_builder.FunctionsRequestBuilder:
-        """
-        Provides operations to call the functions method.
-        """
-        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
-    
-    @property
-    def parse_expression(self) -> parse_expression_request_builder.ParseExpressionRequestBuilder:
-        """
-        Provides operations to call the parseExpression method.
-        """
-        return parse_expression_request_builder.ParseExpressionRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new SchemaRequestBuilder and sets the default values.
@@ -77,6 +49,8 @@ class SchemaRequestBuilder():
         request_info = self.to_delete_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
@@ -94,6 +68,8 @@ class SchemaRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .directories.item import directory_definition_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["directoryDefinition%2Did"] = id
         return directory_definition_item_request_builder.DirectoryDefinitionItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -108,12 +84,16 @@ class SchemaRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import synchronization_schema
+
         return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, error_mapping)
     
     async def patch(self,body: Optional[synchronization_schema.SynchronizationSchema] = None, request_configuration: Optional[SchemaRequestBuilderPatchRequestConfiguration] = None) -> Optional[synchronization_schema.SynchronizationSchema]:
@@ -129,12 +109,16 @@ class SchemaRequestBuilder():
         request_info = self.to_patch_request_information(
             body, request_configuration
         )
+        from .......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from .......models import synchronization_schema
+
         return await self.request_adapter.send_async(request_info, synchronization_schema.SynchronizationSchema, error_mapping)
     
     def to_delete_request_information(self,request_configuration: Optional[SchemaRequestBuilderDeleteRequestConfiguration] = None) -> RequestInformation:
@@ -192,6 +176,42 @@ class SchemaRequestBuilder():
         request_info.set_content_from_parsable(self.request_adapter, "application/json", body)
         return request_info
     
+    @property
+    def directories(self) -> directories_request_builder.DirectoriesRequestBuilder:
+        """
+        Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
+        """
+        from .directories import directories_request_builder
+
+        return directories_request_builder.DirectoriesRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def filter_operators(self) -> filter_operators_request_builder.FilterOperatorsRequestBuilder:
+        """
+        Provides operations to call the filterOperators method.
+        """
+        from .filter_operators import filter_operators_request_builder
+
+        return filter_operators_request_builder.FilterOperatorsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def functions(self) -> functions_request_builder.FunctionsRequestBuilder:
+        """
+        Provides operations to call the functions method.
+        """
+        from .functions import functions_request_builder
+
+        return functions_request_builder.FunctionsRequestBuilder(self.request_adapter, self.path_parameters)
+    
+    @property
+    def parse_expression(self) -> parse_expression_request_builder.ParseExpressionRequestBuilder:
+        """
+        Provides operations to call the parseExpression method.
+        """
+        from .parse_expression import parse_expression_request_builder
+
+        return parse_expression_request_builder.ParseExpressionRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class SchemaRequestBuilderDeleteRequestConfiguration():
         """
@@ -209,12 +229,6 @@ class SchemaRequestBuilder():
         """
         Retrieve the schema for a given synchronization job or template.
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -230,6 +244,12 @@ class SchemaRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class SchemaRequestBuilderGetRequestConfiguration():

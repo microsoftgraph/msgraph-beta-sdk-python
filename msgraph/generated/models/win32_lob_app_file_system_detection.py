@@ -1,30 +1,13 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-win32_lob_app_detection = lazy_import('msgraph.generated.models.win32_lob_app_detection')
-win32_lob_app_detection_operator = lazy_import('msgraph.generated.models.win32_lob_app_detection_operator')
-win32_lob_app_file_system_detection_type = lazy_import('msgraph.generated.models.win32_lob_app_file_system_detection_type')
+if TYPE_CHECKING:
+    from . import win32_lob_app_detection, win32_lob_app_detection_operator, win32_lob_app_file_system_detection_type
+
+from . import win32_lob_app_detection
 
 class Win32LobAppFileSystemDetection(win32_lob_app_detection.Win32LobAppDetection):
-    @property
-    def check32_bit_on64_system(self,) -> Optional[bool]:
-        """
-        Gets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
-        Returns: Optional[bool]
-        """
-        return self._check32_bit_on64_system
-    
-    @check32_bit_on64_system.setter
-    def check32_bit_on64_system(self,value: Optional[bool] = None) -> None:
-        """
-        Sets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
-        Args:
-            value: Value to set for the check32_bit_on64_system property.
-        """
-        self._check32_bit_on64_system = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new Win32LobAppFileSystemDetection and sets the default values.
@@ -43,6 +26,23 @@ class Win32LobAppFileSystemDetection(win32_lob_app_detection.Win32LobAppDetectio
         self._operator: Optional[win32_lob_app_detection_operator.Win32LobAppDetectionOperator] = None
         # The file or folder path to detect Win32 Line of Business (LoB) app
         self._path: Optional[str] = None
+    
+    @property
+    def check32_bit_on64_system(self,) -> Optional[bool]:
+        """
+        Gets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
+        Returns: Optional[bool]
+        """
+        return self._check32_bit_on64_system
+    
+    @check32_bit_on64_system.setter
+    def check32_bit_on64_system(self,value: Optional[bool] = None) -> None:
+        """
+        Sets the check32BitOn64System property value. A value indicating whether this file or folder is for checking 32-bit app on 64-bit system
+        Args:
+            value: Value to set for the check32_bit_on64_system property.
+        """
+        self._check32_bit_on64_system = value
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> Win32LobAppFileSystemDetection:
@@ -112,7 +112,9 @@ class Win32LobAppFileSystemDetection(win32_lob_app_detection.Win32LobAppDetectio
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import win32_lob_app_detection, win32_lob_app_detection_operator, win32_lob_app_file_system_detection_type
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "check32BitOn64System": lambda n : setattr(self, 'check32_bit_on64_system', n.get_bool_value()),
             "detectionType": lambda n : setattr(self, 'detection_type', n.get_enum_value(win32_lob_app_file_system_detection_type.Win32LobAppFileSystemDetectionType)),
             "detectionValue": lambda n : setattr(self, 'detection_value', n.get_str_value()),

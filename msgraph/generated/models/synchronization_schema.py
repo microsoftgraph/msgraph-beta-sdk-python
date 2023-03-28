@@ -1,11 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-directory_definition = lazy_import('msgraph.generated.models.directory_definition')
-entity = lazy_import('msgraph.generated.models.entity')
-synchronization_rule = lazy_import('msgraph.generated.models.synchronization_rule')
+if TYPE_CHECKING:
+    from . import directory_definition, entity, synchronization_rule
+
+from . import entity
 
 class SynchronizationSchema(entity.Entity):
     def __init__(self,) -> None:
@@ -56,7 +56,9 @@ class SynchronizationSchema(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import directory_definition, entity, synchronization_rule
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "directories": lambda n : setattr(self, 'directories', n.get_collection_of_object_values(directory_definition.DirectoryDefinition)),
             "synchronizationRules": lambda n : setattr(self, 'synchronization_rules', n.get_collection_of_object_values(synchronization_rule.SynchronizationRule)),
             "version": lambda n : setattr(self, 'version', n.get_str_value()),

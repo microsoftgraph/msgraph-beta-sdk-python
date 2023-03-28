@@ -7,25 +7,18 @@ from kiota_abstractions.request_information import RequestInformation
 from kiota_abstractions.request_option import RequestOption
 from kiota_abstractions.response_handler import ResponseHandler
 from kiota_abstractions.serialization import Parsable, ParsableFactory
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-dimension_values_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimensions.item.dimension_values.dimension_values_request_builder')
-dimension_value_item_request_builder = lazy_import('msgraph.generated.financials.companies.item.dimensions.item.dimension_values.item.dimension_value_item_request_builder')
-dimension = lazy_import('msgraph.generated.models.dimension')
-o_data_error = lazy_import('msgraph.generated.models.o_data_errors.o_data_error')
+if TYPE_CHECKING:
+    from ......models import dimension
+    from ......models.o_data_errors import o_data_error
+    from .dimension_values import dimension_values_request_builder
+    from .dimension_values.item import dimension_value_item_request_builder
 
 class DimensionItemRequestBuilder():
     """
     Provides operations to manage the dimensions property of the microsoft.graph.company entity.
     """
-    @property
-    def dimension_values(self) -> dimension_values_request_builder.DimensionValuesRequestBuilder:
-        """
-        Provides operations to manage the dimensionValues property of the microsoft.graph.dimension entity.
-        """
-        return dimension_values_request_builder.DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
-    
     def __init__(self,request_adapter: RequestAdapter, path_parameters: Optional[Union[Dict[str, Any], str]] = None) -> None:
         """
         Instantiates a new DimensionItemRequestBuilder and sets the default values.
@@ -53,6 +46,8 @@ class DimensionItemRequestBuilder():
         """
         if id is None:
             raise Exception("id cannot be undefined")
+        from .dimension_values.item import dimension_value_item_request_builder
+
         url_tpl_params = get_path_parameters(self.path_parameters)
         url_tpl_params["dimensionValue%2Did"] = id
         return dimension_value_item_request_builder.DimensionValueItemRequestBuilder(self.request_adapter, url_tpl_params)
@@ -67,12 +62,16 @@ class DimensionItemRequestBuilder():
         request_info = self.to_get_request_information(
             request_configuration
         )
+        from ......models.o_data_errors import o_data_error
+
         error_mapping: Dict[str, ParsableFactory] = {
             "4XX": o_data_error.ODataError,
             "5XX": o_data_error.ODataError,
         }
         if not self.request_adapter:
             raise Exception("Http core is null") 
+        from ......models import dimension
+
         return await self.request_adapter.send_async(request_info, dimension.Dimension, error_mapping)
     
     def to_get_request_information(self,request_configuration: Optional[DimensionItemRequestBuilderGetRequestConfiguration] = None) -> RequestInformation:
@@ -93,17 +92,20 @@ class DimensionItemRequestBuilder():
             request_info.add_request_options(request_configuration.options)
         return request_info
     
+    @property
+    def dimension_values(self) -> dimension_values_request_builder.DimensionValuesRequestBuilder:
+        """
+        Provides operations to manage the dimensionValues property of the microsoft.graph.dimension entity.
+        """
+        from .dimension_values import dimension_values_request_builder
+
+        return dimension_values_request_builder.DimensionValuesRequestBuilder(self.request_adapter, self.path_parameters)
+    
     @dataclass
     class DimensionItemRequestBuilderGetQueryParameters():
         """
         Get dimensions from financials
         """
-        # Expand related entities
-        expand: Optional[List[str]] = None
-
-        # Select properties to be returned
-        select: Optional[List[str]] = None
-
         def get_query_parameter(self,original_name: Optional[str] = None) -> str:
             """
             Maps the query parameters names to their encoded names for the URI template parsing.
@@ -119,6 +121,12 @@ class DimensionItemRequestBuilder():
                 return "%24select"
             return original_name
         
+        # Expand related entities
+        expand: Optional[List[str]] = None
+
+        # Select properties to be returned
+        select: Optional[List[str]] = None
+
     
     @dataclass
     class DimensionItemRequestBuilderGetRequestConfiguration():

@@ -1,11 +1,27 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-filter_operand = lazy_import('msgraph.generated.models.filter_operand')
+if TYPE_CHECKING:
+    from . import filter_operand
 
 class FilterClause(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new filterClause and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Name of the operator to be applied to the source and target operands. Must be one of the supported operators. Supported operators can be discovered.
+        self._operator_name: Optional[str] = None
+        # Name of source operand (the operand being tested). The source operand name must match one of the attribute names on the source object.
+        self._source_operand_name: Optional[str] = None
+        # Values that the source operand will be tested against.
+        self._target_operand: Optional[filter_operand.FilterOperand] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -22,22 +38,6 @@ class FilterClause(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new filterClause and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Name of the operator to be applied to the source and target operands. Must be one of the supported operators. Supported operators can be discovered.
-        self._operator_name: Optional[str] = None
-        # Name of source operand (the operand being tested). The source operand name must match one of the attribute names on the source object.
-        self._source_operand_name: Optional[str] = None
-        # Values that the source operand will be tested against.
-        self._target_operand: Optional[filter_operand.FilterOperand] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> FilterClause:
@@ -56,7 +56,9 @@ class FilterClause(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import filter_operand
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "operatorName": lambda n : setattr(self, 'operator_name', n.get_str_value()),
             "sourceOperandName": lambda n : setattr(self, 'source_operand_name', n.get_str_value()),

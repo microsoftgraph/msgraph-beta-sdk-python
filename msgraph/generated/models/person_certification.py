@@ -1,12 +1,41 @@
 from __future__ import annotations
 from datetime import date
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-item_facet = lazy_import('msgraph.generated.models.item_facet')
+if TYPE_CHECKING:
+    from . import item_facet
+
+from . import item_facet
 
 class PersonCertification(item_facet.ItemFacet):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new PersonCertification and sets the default values.
+        """
+        super().__init__()
+        self.odata_type = "#microsoft.graph.personCertification"
+        # The referenceable identifier for the certification.
+        self._certification_id: Optional[str] = None
+        # Description of the certification.
+        self._description: Optional[str] = None
+        # Title of the certification.
+        self._display_name: Optional[str] = None
+        # The date that the certification expires.
+        self._end_date: Optional[date] = None
+        # The date that the certification was issued.
+        self._issued_date: Optional[date] = None
+        # Authority which granted the certification.
+        self._issuing_authority: Optional[str] = None
+        # Company which granted the certification.
+        self._issuing_company: Optional[str] = None
+        # The date that the certification became valid.
+        self._start_date: Optional[date] = None
+        # URL referencing a thumbnail of the certification.
+        self._thumbnail_url: Optional[str] = None
+        # URL referencing the certification.
+        self._web_url: Optional[str] = None
+    
     @property
     def certification_id(self,) -> Optional[str]:
         """
@@ -23,33 +52,6 @@ class PersonCertification(item_facet.ItemFacet):
             value: Value to set for the certification_id property.
         """
         self._certification_id = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new PersonCertification and sets the default values.
-        """
-        super().__init__()
-        self.odata_type = "#microsoft.graph.personCertification"
-        # The referenceable identifier for the certification.
-        self._certification_id: Optional[str] = None
-        # Description of the certification.
-        self._description: Optional[str] = None
-        # Title of the certification.
-        self._display_name: Optional[str] = None
-        # The date that the certification expires.
-        self._end_date: Optional[Date] = None
-        # The date that the certification was issued.
-        self._issued_date: Optional[Date] = None
-        # Authority which granted the certification.
-        self._issuing_authority: Optional[str] = None
-        # Company which granted the certification.
-        self._issuing_company: Optional[str] = None
-        # The date that the certification became valid.
-        self._start_date: Optional[Date] = None
-        # URL referencing a thumbnail of the certification.
-        self._thumbnail_url: Optional[str] = None
-        # URL referencing the certification.
-        self._web_url: Optional[str] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> PersonCertification:
@@ -98,15 +100,15 @@ class PersonCertification(item_facet.ItemFacet):
         self._display_name = value
     
     @property
-    def end_date(self,) -> Optional[Date]:
+    def end_date(self,) -> Optional[date]:
         """
         Gets the endDate property value. The date that the certification expires.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._end_date
     
     @end_date.setter
-    def end_date(self,value: Optional[Date] = None) -> None:
+    def end_date(self,value: Optional[date] = None) -> None:
         """
         Sets the endDate property value. The date that the certification expires.
         Args:
@@ -119,15 +121,17 @@ class PersonCertification(item_facet.ItemFacet):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import item_facet
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "certificationId": lambda n : setattr(self, 'certification_id', n.get_str_value()),
             "description": lambda n : setattr(self, 'description', n.get_str_value()),
             "displayName": lambda n : setattr(self, 'display_name', n.get_str_value()),
-            "endDate": lambda n : setattr(self, 'end_date', n.get_object_value(Date)),
-            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_object_value(Date)),
+            "endDate": lambda n : setattr(self, 'end_date', n.get_date_value()),
+            "issuedDate": lambda n : setattr(self, 'issued_date', n.get_date_value()),
             "issuingAuthority": lambda n : setattr(self, 'issuing_authority', n.get_str_value()),
             "issuingCompany": lambda n : setattr(self, 'issuing_company', n.get_str_value()),
-            "startDate": lambda n : setattr(self, 'start_date', n.get_object_value(Date)),
+            "startDate": lambda n : setattr(self, 'start_date', n.get_date_value()),
             "thumbnailUrl": lambda n : setattr(self, 'thumbnail_url', n.get_str_value()),
             "webUrl": lambda n : setattr(self, 'web_url', n.get_str_value()),
         }
@@ -136,15 +140,15 @@ class PersonCertification(item_facet.ItemFacet):
         return fields
     
     @property
-    def issued_date(self,) -> Optional[Date]:
+    def issued_date(self,) -> Optional[date]:
         """
         Gets the issuedDate property value. The date that the certification was issued.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._issued_date
     
     @issued_date.setter
-    def issued_date(self,value: Optional[Date] = None) -> None:
+    def issued_date(self,value: Optional[date] = None) -> None:
         """
         Sets the issuedDate property value. The date that the certification was issued.
         Args:
@@ -198,24 +202,24 @@ class PersonCertification(item_facet.ItemFacet):
         writer.write_str_value("certificationId", self.certification_id)
         writer.write_str_value("description", self.description)
         writer.write_str_value("displayName", self.display_name)
-        writer.write_object_value("endDate", self.end_date)
-        writer.write_object_value("issuedDate", self.issued_date)
+        writer.write_date_value("endDate", self.end_date)
+        writer.write_date_value("issuedDate", self.issued_date)
         writer.write_str_value("issuingAuthority", self.issuing_authority)
         writer.write_str_value("issuingCompany", self.issuing_company)
-        writer.write_object_value("startDate", self.start_date)
+        writer.write_date_value("startDate", self.start_date)
         writer.write_str_value("thumbnailUrl", self.thumbnail_url)
         writer.write_str_value("webUrl", self.web_url)
     
     @property
-    def start_date(self,) -> Optional[Date]:
+    def start_date(self,) -> Optional[date]:
         """
         Gets the startDate property value. The date that the certification became valid.
-        Returns: Optional[Date]
+        Returns: Optional[date]
         """
         return self._start_date
     
     @start_date.setter
-    def start_date(self,value: Optional[Date] = None) -> None:
+    def start_date(self,value: Optional[date] = None) -> None:
         """
         Sets the startDate property value. The date that the certification became valid.
         Args:

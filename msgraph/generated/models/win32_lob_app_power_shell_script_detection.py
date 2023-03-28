@@ -1,9 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-win32_lob_app_detection = lazy_import('msgraph.generated.models.win32_lob_app_detection')
+if TYPE_CHECKING:
+    from . import win32_lob_app_detection
+
+from . import win32_lob_app_detection
 
 class Win32LobAppPowerShellScriptDetection(win32_lob_app_detection.Win32LobAppDetection):
     def __init__(self,) -> None:
@@ -53,7 +55,9 @@ class Win32LobAppPowerShellScriptDetection(win32_lob_app_detection.Win32LobAppDe
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import win32_lob_app_detection
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "enforceSignatureCheck": lambda n : setattr(self, 'enforce_signature_check', n.get_bool_value()),
             "runAs32Bit": lambda n : setattr(self, 'run_as32_bit', n.get_bool_value()),
             "scriptContent": lambda n : setattr(self, 'script_content', n.get_str_value()),

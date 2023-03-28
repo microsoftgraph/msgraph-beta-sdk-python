@@ -1,14 +1,29 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-authentication_method_mode_detail = lazy_import('msgraph.generated.models.authentication_method_mode_detail')
-authentication_method_modes = lazy_import('msgraph.generated.models.authentication_method_modes')
-authentication_strength_policy = lazy_import('msgraph.generated.models.authentication_strength_policy')
-entity = lazy_import('msgraph.generated.models.entity')
+if TYPE_CHECKING:
+    from . import authentication_method_modes, authentication_method_mode_detail, authentication_strength_policy, entity
+
+from . import entity
 
 class AuthenticationStrengthRoot(entity.Entity):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new AuthenticationStrengthRoot and sets the default values.
+        """
+        super().__init__()
+        # A collection of all valid authentication method combinations in the system.
+        self._authentication_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+        # Names and descriptions of all valid authentication method modes in the system.
+        self._authentication_method_modes: Optional[List[authentication_method_mode_detail.AuthenticationMethodModeDetail]] = None
+        # The combinations property
+        self._combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
+        # The OdataType property
+        self.odata_type: Optional[str] = None
+        # A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
+        self._policies: Optional[List[authentication_strength_policy.AuthenticationStrengthPolicy]] = None
+    
     @property
     def authentication_combinations(self,) -> Optional[List[authentication_method_modes.AuthenticationMethodModes]]:
         """
@@ -60,22 +75,6 @@ class AuthenticationStrengthRoot(entity.Entity):
         """
         self._combinations = value
     
-    def __init__(self,) -> None:
-        """
-        Instantiates a new AuthenticationStrengthRoot and sets the default values.
-        """
-        super().__init__()
-        # A collection of all valid authentication method combinations in the system.
-        self._authentication_combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-        # Names and descriptions of all valid authentication method modes in the system.
-        self._authentication_method_modes: Optional[List[authentication_method_mode_detail.AuthenticationMethodModeDetail]] = None
-        # The combinations property
-        self._combinations: Optional[List[authentication_method_modes.AuthenticationMethodModes]] = None
-        # The OdataType property
-        self.odata_type: Optional[str] = None
-        # A collection of authentication strength policies that exist for this tenant, including both built-in and custom policies.
-        self._policies: Optional[List[authentication_strength_policy.AuthenticationStrengthPolicy]] = None
-    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AuthenticationStrengthRoot:
         """
@@ -93,7 +92,9 @@ class AuthenticationStrengthRoot(entity.Entity):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import authentication_method_modes, authentication_method_mode_detail, authentication_strength_policy, entity
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "authenticationCombinations": lambda n : setattr(self, 'authentication_combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),
             "authenticationMethodModes": lambda n : setattr(self, 'authentication_method_modes', n.get_collection_of_object_values(authentication_method_mode_detail.AuthenticationMethodModeDetail)),
             "combinations": lambda n : setattr(self, 'combinations', n.get_collection_of_enum_values(authentication_method_modes.AuthenticationMethodModes)),

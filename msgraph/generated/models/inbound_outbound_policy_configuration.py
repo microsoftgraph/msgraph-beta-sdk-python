@@ -1,9 +1,22 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
 class InboundOutboundPolicyConfiguration(AdditionalDataHolder, Parsable):
+    def __init__(self,) -> None:
+        """
+        Instantiates a new inboundOutboundPolicyConfiguration and sets the default values.
+        """
+        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        self._additional_data: Dict[str, Any] = {}
+
+        # Defines whether external users coming inbound are allowed.
+        self._inbound_allowed: Optional[bool] = None
+        # The OdataType property
+        self._odata_type: Optional[str] = None
+        # Defines whether internal users are allowed to go outbound.
+        self._outbound_allowed: Optional[bool] = None
+    
     @property
     def additional_data(self,) -> Dict[str, Any]:
         """
@@ -20,20 +33,6 @@ class InboundOutboundPolicyConfiguration(AdditionalDataHolder, Parsable):
             value: Value to set for the AdditionalData property.
         """
         self._additional_data = value
-    
-    def __init__(self,) -> None:
-        """
-        Instantiates a new inboundOutboundPolicyConfiguration and sets the default values.
-        """
-        # Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        self._additional_data: Dict[str, Any] = {}
-
-        # Defines whether external users coming inbound are allowed.
-        self._inbound_allowed: Optional[bool] = None
-        # The OdataType property
-        self._odata_type: Optional[str] = None
-        # Defines whether internal users are allowed to go outbound.
-        self._outbound_allowed: Optional[bool] = None
     
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> InboundOutboundPolicyConfiguration:
@@ -52,7 +51,7 @@ class InboundOutboundPolicyConfiguration(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        fields: Dict[str, Callable[[Any], None]] = {
             "inboundAllowed": lambda n : setattr(self, 'inbound_allowed', n.get_bool_value()),
             "@odata.type": lambda n : setattr(self, 'odata_type', n.get_str_value()),
             "outboundAllowed": lambda n : setattr(self, 'outbound_allowed', n.get_bool_value()),

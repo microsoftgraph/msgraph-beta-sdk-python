@@ -1,28 +1,11 @@
 from __future__ import annotations
 from kiota_abstractions.serialization import AdditionalDataHolder, Parsable, ParseNode, SerializationWriter
-from kiota_abstractions.utils import lazy_import
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, TYPE_CHECKING, Union
 
-access_package_localized_content = lazy_import('msgraph.generated.models.access_package_localized_content')
+if TYPE_CHECKING:
+    from . import access_package_localized_content, access_package_multiple_choice_question, access_package_text_input_question
 
 class AccessPackageQuestion(AdditionalDataHolder, Parsable):
-    @property
-    def additional_data(self,) -> Dict[str, Any]:
-        """
-        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Returns: Dict[str, Any]
-        """
-        return self._additional_data
-    
-    @additional_data.setter
-    def additional_data(self,value: Dict[str, Any]) -> None:
-        """
-        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-        Args:
-            value: Value to set for the AdditionalData property.
-        """
-        self._additional_data = value
-    
     def __init__(self,) -> None:
         """
         Instantiates a new accessPackageQuestion and sets the default values.
@@ -43,6 +26,23 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         # The text of the question to show to the requestor.
         self._text: Optional[access_package_localized_content.AccessPackageLocalizedContent] = None
     
+    @property
+    def additional_data(self,) -> Dict[str, Any]:
+        """
+        Gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Returns: Dict[str, Any]
+        """
+        return self._additional_data
+    
+    @additional_data.setter
+    def additional_data(self,value: Dict[str, Any]) -> None:
+        """
+        Sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+        Args:
+            value: Value to set for the AdditionalData property.
+        """
+        self._additional_data = value
+    
     @staticmethod
     def create_from_discriminator_value(parse_node: Optional[ParseNode] = None) -> AccessPackageQuestion:
         """
@@ -53,6 +53,17 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         """
         if parse_node is None:
             raise Exception("parse_node cannot be undefined")
+        mapping_value_node = parse_node.get_child_node("@odata.type")
+        if mapping_value_node:
+            mapping_value = mapping_value_node.get_str_value()
+            if mapping_value == "#microsoft.graph.accessPackageMultipleChoiceQuestion":
+                from . import access_package_multiple_choice_question
+
+                return access_package_multiple_choice_question.AccessPackageMultipleChoiceQuestion()
+            if mapping_value == "#microsoft.graph.accessPackageTextInputQuestion":
+                from . import access_package_text_input_question
+
+                return access_package_text_input_question.AccessPackageTextInputQuestion()
         return AccessPackageQuestion()
     
     def get_field_deserializers(self,) -> Dict[str, Callable[[ParseNode], None]]:
@@ -60,7 +71,9 @@ class AccessPackageQuestion(AdditionalDataHolder, Parsable):
         The deserialization information for the current model
         Returns: Dict[str, Callable[[ParseNode], None]]
         """
-        fields = {
+        from . import access_package_localized_content, access_package_multiple_choice_question, access_package_text_input_question
+
+        fields: Dict[str, Callable[[Any], None]] = {
             "id": lambda n : setattr(self, 'id', n.get_str_value()),
             "isAnswerEditable": lambda n : setattr(self, 'is_answer_editable', n.get_bool_value()),
             "isRequired": lambda n : setattr(self, 'is_required', n.get_bool_value()),
